@@ -1354,11 +1354,12 @@ WHERE pnd.id_pn='" & id_payment & "'"
 
     Sub load_pay_from()
         Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        If id_coa_tag = "1" Then
-            query += " AND id_coa_type='1' "
-        Else
-            query += " AND id_coa_type='2' "
-        End If
+        'If id_coa_tag = "1" Then
+        '    query += " AND id_coa_type='1' "
+        'Else
+        '    query += " AND id_coa_type='2' "
+        'End If
+        query += " AND id_coa_type='1' "
         viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
     End Sub
 

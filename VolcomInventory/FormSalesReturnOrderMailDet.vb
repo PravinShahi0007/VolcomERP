@@ -130,6 +130,8 @@
                 SBApprove.Visible = False
                 SBPrint.Visible = False
             End If
+
+            SBAttachment.Visible = False
         Else
             'head
             Dim query As String = "
@@ -1610,10 +1612,12 @@
             If SLUEStatus.EditValue.ToString = "6" Then
                 number_skpp = execute_query("SELECT skpp_number FROM tb_sales_return_order_mail_3pl WHERE id_mail_3pl = " + id_mail_3pl, 0, True, "", "", "", "")
             Else
-                number_skpp = execute_query("SELECT LPAD((COUNT(id_mail_3pl) + 1), 3, '0') AS number_skpp FROM tb_sales_return_order_mail_3pl WHERE id_status = 6 AND id_type = 2 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())", 0, True, "", "", "", "")
+                number_skpp = execute_query("
+                    SELECT CONCAT(LPAD((COUNT(id_mail_3pl) + 1), 3, '0'), CONCAT('/EXT/WHD-SKPB/'), (SELECT CONCAT(`code`, '/', YEAR(NOW())) AS `number` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW()))) AS number_skpp
+                    FROM tb_sales_return_order_mail_3pl
+                    WHERE id_status = 6 AND id_type = 2 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())
+                ", 0, True, "", "", "", "")
             End If
-
-            Dim my As String = execute_query("SELECT CONCAT(`code`, '/', YEAR(NOW())) AS `number` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW())", 0, True, "", "", "", "")
 
             Dim store_name As String = execute_query("
                 SELECT comp_name
@@ -1625,7 +1629,7 @@
                 )
             ", 0, True, "", "", "", "")
 
-            html = html.Replace("[number]", number_skpp + "/EXT/WHD-SKPP/" + my)
+            html = html.Replace("[number]", number_skpp)
             html = html.Replace("[3pl]", SLUE3PL.Text)
             html = html.Replace("[3pl_address]", data_3pl.Rows(0)("address_primary").ToString)
             html = html.Replace("[3pl_phone]", data_3pl.Rows(0)("phone").ToString)
@@ -1696,7 +1700,7 @@
                 Dim attachment As String = get_attachment()
 
                 Dim number_skpp As String = execute_query("
-                    SELECT LPAD((COUNT(id_mail_3pl) + 1), 3, '0') AS number_skpp
+                    SELECT CONCAT(LPAD((COUNT(id_mail_3pl) + 1), 3, '0'), CONCAT('/EXT/WHD-SKPB/'), (SELECT CONCAT(`code`, '/', YEAR(NOW())) AS `number` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW()))) AS number_skpp
                     FROM tb_sales_return_order_mail_3pl
                     WHERE id_status = 6 AND id_type = 2 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())
                 ", 0, True, "", "", "", "")
@@ -1749,46 +1753,50 @@
         validating_employee()
 
         If formIsValidInPanel(ErrorProvider, PanelControl6) Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit this pickup order ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If GVDetail.RowCount > 0 Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit this pickup order ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            If confirm = DialogResult.Yes Then
-                FormMain.SplashScreenManager1.ShowWaitForm()
+                If confirm = DialogResult.Yes Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
 
-                Dim query As String = "
-                    INSERT INTO tb_sales_return_order_mail_3pl (id_type, id_employee, id_status, pick_up_date, created_date, created_by) VALUES (" + SLUEType.EditValue.ToString + ", " + SLUEEmployee.EditValue.ToString + ", 7, '" + Date.Parse(DEPickupDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();
-                "
+                    Dim query As String = "
+                        INSERT INTO tb_sales_return_order_mail_3pl (id_type, id_employee, id_status, pick_up_date, created_date, created_by) VALUES (" + SLUEType.EditValue.ToString + ", " + SLUEEmployee.EditValue.ToString + ", 7, '" + Date.Parse(DEPickupDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();
+                    "
 
-                id_mail_3pl = execute_query(query, 0, True, "", "", "", "")
+                    id_mail_3pl = execute_query(query, 0, True, "", "", "", "")
 
-                execute_non_query("CALL gen_number(" + id_mail_3pl + ", 279)", True, "", "", "", "")
+                    execute_non_query("CALL gen_number(" + id_mail_3pl + ", 279)", True, "", "", "", "")
 
-                'store
-                Dim stores() As String = CCBEStore.EditValue.ToString.Split(",")
+                    'store
+                    Dim stores() As String = CCBEStore.EditValue.ToString.Split(",")
 
-                For i = 0 To stores.Length - 1
-                    execute_non_query("INSERT INTO tb_sales_return_order_mail_3pl_store (id_mail_3pl, id_comp) VALUES (" + id_mail_3pl + ", " + stores(i).Replace(" ", "") + ")", True, "", "", "", "")
-                Next
-
-                'detail
-                If GVDetail.RowCount > 0 Then
-                    Dim query_detail As String = "INSERT INTO tb_sales_return_order_mail_3pl_det (id_mail_3pl, id_sales_order_return) VALUES "
-
-                    For i = 0 To GVDetail.RowCount - 1
-                        query_detail += "(" + id_mail_3pl + ", " + GVDetail.GetRowCellValue(i, "id_sales_return_order").ToString + "), "
+                    For i = 0 To stores.Length - 1
+                        execute_non_query("INSERT INTO tb_sales_return_order_mail_3pl_store (id_mail_3pl, id_comp) VALUES (" + id_mail_3pl + ", " + stores(i).Replace(" ", "") + ")", True, "", "", "", "")
                     Next
 
-                    query_detail = query_detail.Substring(0, query_detail.Length - 2)
+                    'detail
+                    If GVDetail.RowCount > 0 Then
+                        Dim query_detail As String = "INSERT INTO tb_sales_return_order_mail_3pl_det (id_mail_3pl, id_sales_order_return) VALUES "
 
-                    execute_non_query(query_detail, True, "", "", "", "")
+                        For i = 0 To GVDetail.RowCount - 1
+                            query_detail += "(" + id_mail_3pl + ", " + GVDetail.GetRowCellValue(i, "id_sales_return_order").ToString + "), "
+                        Next
+
+                        query_detail = query_detail.Substring(0, query_detail.Length - 2)
+
+                        execute_non_query(query_detail, True, "", "", "", "")
+                    End If
+
+                    submit_who_prepared("279", id_mail_3pl, id_user)
+
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+
+                    infoCustom("Pickup Order submitted.")
+
+                    Close()
                 End If
-
-                submit_who_prepared("279", id_mail_3pl, id_user)
-
-                FormMain.SplashScreenManager1.CloseWaitForm()
-
-                infoCustom("Pickup Order submitted.")
-
-                Close()
+            Else
+                stopCustom("Please input ROR.")
             End If
         Else
             stopCustom("Please check your input.")
@@ -1802,7 +1810,7 @@
             FormMain.SplashScreenManager1.ShowWaitForm()
 
             Dim number_skpp As String = execute_query("
-                SELECT LPAD((COUNT(id_mail_3pl) + 1), 3, '0') AS number_skpp
+                SELECT CONCAT(LPAD((COUNT(id_mail_3pl) + 1), 3, '0'), CONCAT('/EXT/WHD-SKPB/'), (SELECT CONCAT(`code`, '/', YEAR(NOW())) AS `number` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW()))) AS number_skpp
                 FROM tb_sales_return_order_mail_3pl
                 WHERE id_status = 6 AND id_type = 1 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())
             ", 0, True, "", "", "", "")
@@ -1852,6 +1860,10 @@
         For i = 0 To data_store.Rows.Count - 1
             data_store.Rows(i)("no") = i + 1
         Next
+
+        Dim number As String = execute_query("SELECT skpp_number FROM tb_sales_return_order_mail_3pl WHERE id_mail_3pl = " + id_mail_3pl, 0, True, "", "", "", "")
+
+        report.XLHead.Text = report.XLHead.Text.Replace("[number]", number)
 
         report.XLWHManagerName.Text = data_emp.Rows(0)("employee_name").ToString
         report.XLWHManagerPosition.Text = data_emp.Rows(0)("employee_position").ToString

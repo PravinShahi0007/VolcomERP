@@ -50,7 +50,11 @@
                         newRow("uom") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "uom")
                         newRow("qty_pr") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_pr")
                         newRow("val_pr") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "val_pr")
-                        newRow("qty_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_po")
+                        If FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_s_rec") <= 0 Then
+                            newRow("qty_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_s_rec") * -1
+                        Else
+                            newRow("qty_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_po")
+                        End If
                         '
                         newRow("item_detail") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "item_detail").ToString
                         newRow("id_expense_type") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "id_expense_type").ToString

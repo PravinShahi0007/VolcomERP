@@ -183,6 +183,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -483,6 +484,12 @@
       <DependentUpon>FormBatchUploadOnlineStore.vb</DependentUpon>
     </Compile>
     <Compile Include="FormBatchUploadOnlineStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBatchUploadOnlineStoreSearch.Designer.vb">
+      <DependentUpon>FormBatchUploadOnlineStoreSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBatchUploadOnlineStoreSearch.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBudgetProdDemand.Designer.vb">
@@ -8015,6 +8022,12 @@
     <Compile Include="ReportFormInvoiceTrackingSummary.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportInboundAWB.Designer.vb">
+      <DependentUpon>ReportInboundAWB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportInboundAWB.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportInvMat.Designer.vb">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
     </Compile>
@@ -9079,6 +9092,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBatchUploadOnlineStore.resx">
       <DependentUpon>FormBatchUploadOnlineStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBatchUploadOnlineStoreSearch.resx">
+      <DependentUpon>FormBatchUploadOnlineStoreSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemand.resx">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
@@ -13331,6 +13347,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFormInvoiceTrackingSummary.resx">
       <DependentUpon>ReportFormInvoiceTrackingSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportInboundAWB.resx">
+      <DependentUpon>ReportInboundAWB.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportInvMat.resx">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
