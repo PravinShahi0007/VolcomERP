@@ -178,6 +178,7 @@
         Dim is_valid_fullfill = oos.isValidFullfill(id_order, id_comp_group, id)
 
         'jika tidak ada yang open restock & tidak ada no stock & valid fulfill lansung sync
+        'decision : create SO
         If Not is_open_restock And Not is_no_stock And is_valid_fullfill Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Create Sales Order" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -227,6 +228,40 @@
                     Else
                         stopCustom("There is problem when processing order, please see log.")
                     End If
+                End If
+            End If
+        End If
+
+        'jika tidak ada yang open restock
+        ' ada no stock
+        ' valid fullfill
+        'decision : email no stock
+        If Not is_open_restock And is_no_stock And is_valid_fullfill Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Send email confirmation no stock" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+                Dim ord As New ClassSalesOrder()
+
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email no stock")
+                Dim err_send As String = ""
+                Try
+                    oos.sendEmailOOS(id_order, id_comp_group)
+                    execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3 WHERE id_ol_store_oos='" + id + "' ", True, "", "", "", "")
+                    ord.insertLogWebOrder(id_order, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
+                Catch ex As Exception
+                    err_send = addSlashes(ex.ToString)
+                    ord.insertLogWebOrder(id_order, "Evaluate result : No stock & Send Email OOS failed. Detail:" + err_send, id_comp_group)
+                End Try
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                FormOLStoreOOS.viewData()
+                If err_send = "" Then
+                    infoCustom("Email sent successfully")
+                    Close()
+                Else
+                    stopCustom("There is problem when sending email, please see log.")
                 End If
             End If
         End If
