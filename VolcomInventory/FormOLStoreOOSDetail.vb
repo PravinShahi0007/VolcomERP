@@ -268,6 +268,36 @@
                 End If
             End If
         End If
+
+        'jika tidak ada yang open restock
+        ' ada no stock
+        ' ada fulfill
+        ' valid fullfill
+        'decision : email & close order 
+        If Not is_open_restock And is_no_stock And Not is_partial_order And is_valid_fullfill Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Send email confirmation no stock & closed order" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+                Dim ord As New ClassSalesOrder()
+
+                'email confirmation
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email no stock")
+                Dim err_send As String = ""
+                Try
+                    oos.sendEmailOOS(id_order, id_comp_group)
+                    execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3 WHERE id_ol_store_oos='" + id + "' ", True, "", "", "", "")
+                    ord.insertLogWebOrder(id_order, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
+                Catch ex As Exception
+                    err_send = addSlashes(ex.ToString)
+                    ord.insertLogWebOrder(id_order, "Evaluate result : No stock & Send Email OOS failed. Detail:" + err_send, id_comp_group)
+                End Try
+
+                'close order
+                'code here
+            End If
+        End If
         Cursor = Cursors.Default
     End Sub
 
