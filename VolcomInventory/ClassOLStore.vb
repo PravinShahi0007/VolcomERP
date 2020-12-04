@@ -138,4 +138,23 @@ HAVING so_qty<>rsv_qty"
             Return True
         End If
     End Function
+
+    Function isPartialOrder(ByVal id_order_par As String, ByVal id_comp_group_par As String) As Boolean
+        Dim query As String = "SELECT SUM(od.sales_order_det_qty) AS `total_fill` 
+        FROM tb_ol_store_order od
+        WHERE od.id_comp_group='" + id_comp_group_par + "' AND od.id='" + id_order_par + "'
+        GROUP BY od.id "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim total_fill As Decimal = 0.00
+        If data.Rows.Count <= 0 Then
+            total_fill = 0.00
+        Else
+            total_fill = data.Rows(0)("total_fill")
+        End If
+        If total_fill <= 0 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
 End Class

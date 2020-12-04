@@ -173,9 +173,11 @@
         Dim oos As New ClassOLStore()
         Dim is_open_restock As Boolean = oos.isRestockOpen(id)
         'cek no stock
-        Dim is_no_stock = oos.adaNoStock(id_order, id_comp_group)
+        Dim is_no_stock As Boolean = oos.adaNoStock(id_order, id_comp_group)
+        'cek fulfill
+        Dim is_partial_order As Boolean = oos.isPartialOrder(id_order, id_comp_group)
         'cek valid fullfill & reserved qty
-        Dim is_valid_fullfill = oos.isValidFullfill(id_order, id_comp_group, id)
+        Dim is_valid_fullfill As Boolean = oos.isValidFullfill(id_order, id_comp_group, id)
 
         'jika tidak ada yang open restock & tidak ada no stock & valid fulfill lansung sync
         'decision : create SO
@@ -234,9 +236,10 @@
 
         'jika tidak ada yang open restock
         ' ada no stock
+        ' ada fulfill
         ' valid fullfill
         'decision : email no stock
-        If Not is_open_restock And is_no_stock And is_valid_fullfill Then
+        If Not is_open_restock And is_no_stock And is_partial_order And is_valid_fullfill Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Send email confirmation no stock" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
