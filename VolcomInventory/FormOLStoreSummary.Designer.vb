@@ -400,6 +400,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnerror_process = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnschedule_time = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewExpiredOrderBySyncDate = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExpiredExportToXLS = New DevExpress.XtraEditors.SimpleButton()
@@ -408,7 +409,21 @@ Partial Class FormOLStoreSummary
         Me.DEExUntil = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.DEExFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTCPromoSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnXLSPromoSummary = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewPromoSummary = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEPromoSummary = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCPromoSummary = New DevExpress.XtraGrid.GridControl()
+        Me.GVPromoSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -504,6 +519,13 @@ Partial Class FormOLStoreSummary
         CType(Me.DEExUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEExFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEExFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCPromoSummary.SuspendLayout()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.SLEPromoSummary.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPromoSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPromoSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -2672,7 +2694,7 @@ Partial Class FormOLStoreSummary
         Me.XTCPromo.SelectedTabPage = Me.XTPOrderList
         Me.XTCPromo.Size = New System.Drawing.Size(1225, 469)
         Me.XTCPromo.TabIndex = 2
-        Me.XTCPromo.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOrderList, Me.XTPPromoDetail})
+        Me.XTCPromo.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTCPromoSummary, Me.XTPOrderList, Me.XTPPromoDetail})
         '
         'XTPOrderList
         '
@@ -2680,7 +2702,7 @@ Partial Class FormOLStoreSummary
         Me.XTPOrderList.Controls.Add(Me.PanelControl4)
         Me.XTPOrderList.Name = "XTPOrderList"
         Me.XTPOrderList.Size = New System.Drawing.Size(1199, 467)
-        Me.XTPOrderList.Text = "Order List"
+        Me.XTPOrderList.Text = "Detail Promo"
         '
         'GCPromo
         '
@@ -3098,7 +3120,7 @@ Partial Class FormOLStoreSummary
         Me.XTPPromoDetail.Controls.Add(Me.PanelControl5)
         Me.XTPPromoDetail.Name = "XTPPromoDetail"
         Me.XTPPromoDetail.Size = New System.Drawing.Size(1199, 467)
-        Me.XTPPromoDetail.Text = "Detail"
+        Me.XTPPromoDetail.Text = "Stock Summary"
         '
         'GCPromoDetail
         '
@@ -3972,6 +3994,16 @@ Partial Class FormOLStoreSummary
         Me.GridColumnno.VisibleIndex = 0
         Me.GridColumnno.Width = 54
         '
+        'GridColumndiff
+        '
+        Me.GridColumndiff.Caption = "Diff (Minute)"
+        Me.GridColumndiff.DisplayFormat.FormatString = "N0"
+        Me.GridColumndiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiff.FieldName = "diff"
+        Me.GridColumndiff.Name = "GridColumndiff"
+        Me.GridColumndiff.Visible = True
+        Me.GridColumndiff.VisibleIndex = 7
+        '
         'PanelControl6
         '
         Me.PanelControl6.Controls.Add(Me.BtnViewExpiredOrderBySyncDate)
@@ -4059,15 +4091,137 @@ Partial Class FormOLStoreSummary
         Me.DEExFrom.Size = New System.Drawing.Size(141, 20)
         Me.DEExFrom.TabIndex = 3
         '
-        'GridColumndiff
+        'XTCPromoSummary
         '
-        Me.GridColumndiff.Caption = "Diff (Minute)"
-        Me.GridColumndiff.DisplayFormat.FormatString = "N0"
-        Me.GridColumndiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumndiff.FieldName = "diff"
-        Me.GridColumndiff.Name = "GridColumndiff"
-        Me.GridColumndiff.Visible = True
-        Me.GridColumndiff.VisibleIndex = 7
+        Me.XTCPromoSummary.Controls.Add(Me.GCPromoSummary)
+        Me.XTCPromoSummary.Controls.Add(Me.PanelControl7)
+        Me.XTCPromoSummary.Name = "XTCPromoSummary"
+        Me.XTCPromoSummary.Size = New System.Drawing.Size(1199, 467)
+        Me.XTCPromoSummary.Text = "Summary"
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.Controls.Add(Me.BtnXLSPromoSummary)
+        Me.PanelControl7.Controls.Add(Me.BtnViewPromoSummary)
+        Me.PanelControl7.Controls.Add(Me.SLEPromoSummary)
+        Me.PanelControl7.Controls.Add(Me.LabelControl15)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl7.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(1199, 46)
+        Me.PanelControl7.TabIndex = 0
+        '
+        'BtnXLSPromoSummary
+        '
+        Me.BtnXLSPromoSummary.Image = CType(resources.GetObject("BtnXLSPromoSummary.Image"), System.Drawing.Image)
+        Me.BtnXLSPromoSummary.Location = New System.Drawing.Point(333, 13)
+        Me.BtnXLSPromoSummary.LookAndFeel.SkinName = "Blue"
+        Me.BtnXLSPromoSummary.Name = "BtnXLSPromoSummary"
+        Me.BtnXLSPromoSummary.Size = New System.Drawing.Size(108, 20)
+        Me.BtnXLSPromoSummary.TabIndex = 18
+        Me.BtnXLSPromoSummary.Text = "Export to XLS"
+        '
+        'BtnViewPromoSummary
+        '
+        Me.BtnViewPromoSummary.Image = CType(resources.GetObject("BtnViewPromoSummary.Image"), System.Drawing.Image)
+        Me.BtnViewPromoSummary.Location = New System.Drawing.Point(251, 13)
+        Me.BtnViewPromoSummary.LookAndFeel.SkinName = "Blue"
+        Me.BtnViewPromoSummary.Name = "BtnViewPromoSummary"
+        Me.BtnViewPromoSummary.Size = New System.Drawing.Size(76, 20)
+        Me.BtnViewPromoSummary.TabIndex = 17
+        Me.BtnViewPromoSummary.Text = "View "
+        '
+        'SLEPromoSummary
+        '
+        Me.SLEPromoSummary.Location = New System.Drawing.Point(52, 13)
+        Me.SLEPromoSummary.Name = "SLEPromoSummary"
+        Me.SLEPromoSummary.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPromoSummary.Properties.View = Me.GridView7
+        Me.SLEPromoSummary.Size = New System.Drawing.Size(193, 20)
+        Me.SLEPromoSummary.TabIndex = 16
+        '
+        'GridView7
+        '
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37})
+        Me.GridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView7.Name = "GridView7"
+        Me.GridView7.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView7.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "id_ol_promo_collection"
+        Me.GridColumn32.FieldName = "id_ol_promo_collection"
+        Me.GridColumn32.Name = "GridColumn32"
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "id_promo"
+        Me.GridColumn33.FieldName = "id_promo"
+        Me.GridColumn33.Name = "GridColumn33"
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Promo"
+        Me.GridColumn34.FieldName = "promo"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 0
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Proposed Number"
+        Me.GridColumn35.FieldName = "number"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 1
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Start"
+        Me.GridColumn36.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
+        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn36.FieldName = "start_period"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 2
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "End"
+        Me.GridColumn37.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
+        Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn37.FieldName = "end_period"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 3
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(16, 16)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl15.TabIndex = 15
+        Me.LabelControl15.Text = "Promo"
+        '
+        'GCPromoSummary
+        '
+        Me.GCPromoSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPromoSummary.Location = New System.Drawing.Point(0, 46)
+        Me.GCPromoSummary.MainView = Me.GVPromoSummary
+        Me.GCPromoSummary.Name = "GCPromoSummary"
+        Me.GCPromoSummary.Size = New System.Drawing.Size(1199, 421)
+        Me.GCPromoSummary.TabIndex = 1
+        Me.GCPromoSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPromoSummary})
+        '
+        'GVPromoSummary
+        '
+        Me.GVPromoSummary.GridControl = Me.GCPromoSummary
+        Me.GVPromoSummary.Name = "GVPromoSummary"
+        Me.GVPromoSummary.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPromoSummary.OptionsBehavior.ReadOnly = True
+        Me.GVPromoSummary.OptionsFind.AlwaysVisible = True
+        Me.GVPromoSummary.OptionsView.ShowGroupPanel = False
         '
         'FormOLStoreSummary
         '
@@ -4180,6 +4334,14 @@ Partial Class FormOLStoreSummary
         CType(Me.DEExUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEExFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEExFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCPromoSummary.ResumeLayout(False)
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        Me.PanelControl7.PerformLayout()
+        CType(Me.SLEPromoSummary.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPromoSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPromoSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4555,4 +4717,19 @@ Partial Class FormOLStoreSummary
     Friend WithEvents GridColumnschedule_time As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndiff As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCPromoSummary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnXLSPromoSummary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnViewPromoSummary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEPromoSummary As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCPromoSummary As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPromoSummary As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

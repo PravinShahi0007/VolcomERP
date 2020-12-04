@@ -120,8 +120,10 @@
         INNER JOIN tb_promo prm ON prm.id_promo = p.id_promo
         WHERE p.id_report_status=6
         ORDER BY id_ol_promo_collection DESC "
-        viewSearchLookupQuery(SLEPromo, query, "id_ol_promo_collection", "promo", "id_ol_promo_collection")
+        viewSearchLookupQuery(SLEPromo, query, "id_ol_promo_collection", "promo", "id_ol_promo_collection") '
+        viewSearchLookupQuery(SLEPromoSummary, query, "id_ol_promo_collection", "promo", "id_ol_promo_collection") '
         SLEPromo.EditValue = 0
+        SLEPromoSummary.EditValue = 0
         Cursor = Cursors.Default
     End Sub
 
