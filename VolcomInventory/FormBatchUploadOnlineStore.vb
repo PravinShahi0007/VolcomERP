@@ -5,7 +5,6 @@
         view_online_store()
         view_season()
         view_division()
-        view_product()
 
         loaded = True
     End Sub
@@ -51,53 +50,6 @@
         "
 
         viewSearchLookupQuery(SLUEDivision, query, "id_code_detail", "code", "id_code_detail")
-    End Sub
-
-    Sub view_product()
-        CCBEProduct.Properties.Items.Clear()
-
-        Dim where_season As String = ""
-
-        Try
-            where_season = If(SLUESeason.EditValue.ToString = "0", "", " AND d.id_season = " + SLUESeason.EditValue.ToString)
-        Catch ex As Exception
-        End Try
-
-        Dim where_division As String = ""
-
-        Try
-            where_division = If(SLUEDivision.EditValue.ToString = "0", "", " AND c.id_code_detail = " + SLUEDivision.EditValue.ToString)
-        Catch ex As Exception
-        End Try
-
-        Dim data As DataTable = execute_query("
-            SELECT p.id_product, p.product_full_code, p.product_display_name, s.display_name AS size
-            FROM tb_m_product AS p
-            LEFT JOIN tb_m_design AS d ON p.id_design = d.id_design
-            LEFT JOIN (
-	            SELECT c.id_design, c.id_code_detail
-	            FROM tb_m_design_code AS c
-	            LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	            WHERE d.id_code = 32
-            ) AS c ON c.id_design = p.id_design
-            LEFT JOIN (
-			    SELECT c.id_product, d.display_name
-			    FROM tb_m_product_code AS c
-			    LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-            ) AS s ON p.id_product = s.id_product
-            WHERE d.id_lookup_status_order <> 2 " + where_season + " " + where_division + "
-        ", -1, True, "", "", "", "")
-
-        For i = 0 To data.Rows.Count - 1
-            Dim item As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
-
-            item.Value = data.Rows(i)("id_product").ToString
-            item.Description = data.Rows(i)("product_full_code").ToString + " (" + data.Rows(i)("product_display_name").ToString + ")" + " (" + data.Rows(i)("size").ToString + ")"
-
-            CCBEProduct.Properties.Items.Add(item)
-        Next
-
-        CCBEProduct.Properties.DropDownRows = data.Rows.Count + 1
     End Sub
 
     Sub view_column()
@@ -232,7 +184,7 @@
 
         If Not q_select = "" Then
             'query
-            Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + CCBEProduct.EditValue.ToString + """)"
+            Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + TEProductCode.EditValue.ToString + """)"
 
             Dim data_tmp As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -401,7 +353,7 @@
 
         If Not q_select = "" Then
             'query
-            Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + CCBEProduct.EditValue.ToString + """)"
+            Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + TEProductCode.EditValue.ToString + """)"
 
             Dim data_tmp As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -551,7 +503,7 @@
 
         If Not q_select = "" Then
             'query
-            Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + CCBEProduct.EditValue.ToString + """)"
+            Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + TEProductCode.EditValue.ToString + """)"
 
             Dim data_tmp As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -701,7 +653,7 @@
 
         If Not q_select = "" Then
             'query
-            Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + CCBEProduct.EditValue.ToString + """)"
+            Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + TEProductCode.EditValue.ToString + """)"
 
             Dim data_tmp As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -763,13 +715,13 @@
 
     Private Sub SLUESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLUESeason.EditValueChanged
         If loaded Then
-            view_product()
+            TEProductCode.EditValue = ""
         End If
     End Sub
 
     Private Sub SLUEDivision_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEDivision.EditValueChanged
         If loaded Then
-            view_product()
+            TEProductCode.EditValue = ""
         End If
     End Sub
 
@@ -812,5 +764,9 @@
                 e.Appearance.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
             End If
         End If
+    End Sub
+
+    Private Sub SBSearch_Click(sender As Object, e As EventArgs) Handles SBSearch.Click
+        FormBatchUploadOnlineStoreSearch.ShowDialog()
     End Sub
 End Class
