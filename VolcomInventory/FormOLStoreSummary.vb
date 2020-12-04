@@ -1291,4 +1291,18 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnXLSPromoSummary_Click(sender As Object, e As EventArgs) Handles BtnXLSPromoSummary.Click
+        If GVPromoSummary.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "ol_store_report_prm_summ.xlsx"
+            exportToXLS(path, "ol_store_report_prm_summ", GCPromoSummary)
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
