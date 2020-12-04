@@ -741,4 +741,55 @@ GROUP BY p.sku"
         End Using
         response.Close()
     End Sub
+
+    Sub get_discount_code_addition(ByVal id_promo As String, ByVal id_price_rule As String)
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+        Dim url_dc As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/price_rules/" + id_price_rule + "/discount_codes.json?limit=50"
+        Dim page_info As String = ""
+        Dim i As Integer = 0
+        Dim is_loop As Boolean = True
+        While is_loop
+            Dim url_page_info As String = ""
+            url_page_info = url_dc + (If(Not page_info = "", "&page_info=" + page_info, ""))
+            Dim request As Net.WebRequest = Net.WebRequest.Create(url_page_info)
+            request.Method = "GET"
+            request.Credentials = New Net.NetworkCredential(username, password)
+            Dim response As Net.WebResponse = request.GetResponse()
+            If Not page_info = "" Or i = 0 Then
+                Using dataStream As IO.Stream = response.GetResponseStream()
+                    Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+                    Dim responseFromServer As String = reader.ReadToEnd()
+                    Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+                    For Each row In json("discount_codes").ToList
+                        Dim disc_code As String = ""
+                        disc_code = addSlashes(row("code").ToString)
+                        Dim query_cek As String = "SELECT * FROM tb_ol_promo_collection_disc_code c WHERE c.id_ol_promo_collection='" + id_promo + "' AND c.disc_code='" + disc_code + "' "
+                        Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+                        If data_cek.Rows.Count <= 0 Then
+                            'Console.WriteLine(disc_code)
+                            Dim query_insert_diskon As String = "INSERT INTO tb_ol_promo_collection_disc_code(id_ol_promo_collection, disc_code, sync_date, sync_by, is_additional) VALUES('" + id_promo + "', '" + disc_code + "', NOW(), '" + id_user + "', '1'); "
+                            execute_non_query(query_insert_diskon, True, "", "", "", "")
+                        End If
+                    Next
+                End Using
+                is_loop = True
+            Else
+                is_loop = False
+            End If
+            i += 1
+
+            'get next page
+            Dim link As String() = response.Headers.GetValues(16)
+            Dim j1 As Integer = link(link.Count - 1).LastIndexOf(">; rel=""next")
+            Dim j2 As Integer = link(link.Count - 1).LastIndexOf("o=") + 2
+            If j1 > 0 And j2 > 0 Then
+                page_info = link(link.Count - 1).Substring(0, j1).Substring(j2)
+            Else
+                page_info = ""
+            End If
+
+            response.Close()
+        End While
+    End Sub
 End Class

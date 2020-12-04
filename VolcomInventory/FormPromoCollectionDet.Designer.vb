@@ -128,9 +128,15 @@ Partial Class FormPromoCollectionDet
         Me.XTPDiscountCode = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDiscountCode = New DevExpress.XtraGrid.GridControl()
         Me.GVDiscountCode = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnSync = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnsync_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsync_by = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsync_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_additional = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_additional_view = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtDiscountTitle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1203,6 +1209,7 @@ Partial Class FormPromoCollectionDet
         'XTPDiscountCode
         '
         Me.XTPDiscountCode.Controls.Add(Me.GCDiscountCode)
+        Me.XTPDiscountCode.Controls.Add(Me.BtnSync)
         Me.XTPDiscountCode.Name = "XTPDiscountCode"
         Me.XTPDiscountCode.Size = New System.Drawing.Size(909, 290)
         Me.XTPDiscountCode.Text = "Discount Code List"
@@ -1214,20 +1221,29 @@ Partial Class FormPromoCollectionDet
         Me.GCDiscountCode.MainView = Me.GVDiscountCode
         Me.GCDiscountCode.Name = "GCDiscountCode"
         Me.GCDiscountCode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCDiscountCode.Size = New System.Drawing.Size(909, 290)
+        Me.GCDiscountCode.Size = New System.Drawing.Size(909, 258)
         Me.GCDiscountCode.TabIndex = 17
         Me.GCDiscountCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDiscountCode})
         '
         'GVDiscountCode
         '
-        Me.GVDiscountCode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn14})
+        Me.GVDiscountCode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn14, Me.GridColumnsync_date, Me.GridColumnsync_by, Me.GridColumnsync_by_name, Me.GridColumnis_additional, Me.GridColumnis_additional_view})
         Me.GVDiscountCode.GridControl = Me.GCDiscountCode
         Me.GVDiscountCode.Name = "GVDiscountCode"
         Me.GVDiscountCode.OptionsBehavior.ReadOnly = True
         Me.GVDiscountCode.OptionsCustomization.AllowSort = False
+        Me.GVDiscountCode.OptionsFind.AlwaysVisible = True
         Me.GVDiscountCode.OptionsView.ColumnAutoWidth = False
         Me.GVDiscountCode.OptionsView.ShowFooter = True
         Me.GVDiscountCode.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "No"
+        Me.GridColumn15.FieldName = "no"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 0
         '
         'GridColumn14
         '
@@ -1246,13 +1262,62 @@ Partial Class FormPromoCollectionDet
         Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
-        'GridColumn15
+        'BtnSync
         '
-        Me.GridColumn15.Caption = "No"
-        Me.GridColumn15.FieldName = "no"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 0
+        Me.BtnSync.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnSync.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnSync.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnSync.Appearance.Options.UseBackColor = True
+        Me.BtnSync.Appearance.Options.UseFont = True
+        Me.BtnSync.Appearance.Options.UseForeColor = True
+        Me.BtnSync.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnSync.Location = New System.Drawing.Point(0, 258)
+        Me.BtnSync.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnSync.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnSync.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnSync.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnSync.Name = "BtnSync"
+        Me.BtnSync.Size = New System.Drawing.Size(909, 32)
+        Me.BtnSync.TabIndex = 19
+        Me.BtnSync.Text = "Sync Discount Code"
+        '
+        'GridColumnsync_date
+        '
+        Me.GridColumnsync_date.Caption = "Sync Date"
+        Me.GridColumnsync_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnsync_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsync_date.FieldName = "sync_date"
+        Me.GridColumnsync_date.Name = "GridColumnsync_date"
+        Me.GridColumnsync_date.Visible = True
+        Me.GridColumnsync_date.VisibleIndex = 2
+        '
+        'GridColumnsync_by
+        '
+        Me.GridColumnsync_by.Caption = "sync_by"
+        Me.GridColumnsync_by.FieldName = "sync_by"
+        Me.GridColumnsync_by.Name = "GridColumnsync_by"
+        '
+        'GridColumnsync_by_name
+        '
+        Me.GridColumnsync_by_name.Caption = "Sync by"
+        Me.GridColumnsync_by_name.FieldName = "sync_by_name"
+        Me.GridColumnsync_by_name.Name = "GridColumnsync_by_name"
+        Me.GridColumnsync_by_name.Visible = True
+        Me.GridColumnsync_by_name.VisibleIndex = 3
+        '
+        'GridColumnis_additional
+        '
+        Me.GridColumnis_additional.Caption = "is_additional"
+        Me.GridColumnis_additional.FieldName = "is_additional"
+        Me.GridColumnis_additional.Name = "GridColumnis_additional"
+        '
+        'GridColumnis_additional_view
+        '
+        Me.GridColumnis_additional_view.Caption = "Additional"
+        Me.GridColumnis_additional_view.FieldName = "is_additional_view"
+        Me.GridColumnis_additional_view.Name = "GridColumnis_additional_view"
+        Me.GridColumnis_additional_view.Visible = True
+        Me.GridColumnis_additional_view.VisibleIndex = 4
         '
         'FormPromoCollectionDet
         '
@@ -1427,4 +1492,10 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnSync As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnsync_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsync_by As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsync_by_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_additional As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_additional_view As DevExpress.XtraGrid.Columns.GridColumn
 End Class
