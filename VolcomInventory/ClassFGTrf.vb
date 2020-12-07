@@ -128,6 +128,9 @@
                     Next
                 End If
             End If
+
+            'close too
+            execute_non_query_long("CALL closing_too(" + id_so + ")", True, "", "", "", "")
         ElseIf id_status_reportx_par = "5" Then
             'cancel unique
             Dim query_cancel As String = "DELETE FROM tb_m_unique_code WHERE id_report=" + id_report_par + " AND report_mark_type=57 AND id_report_status=5;
