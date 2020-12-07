@@ -3165,6 +3165,12 @@
     <Compile Include="FormOLStoreUpdateStatus.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOOSFinalize.Designer.vb">
+      <DependentUpon>FormOOSFinalize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOOSFinalize.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOpt.Designer.vb">
       <DependentUpon>FormOpt.vb</DependentUpon>
     </Compile>
