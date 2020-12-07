@@ -19,7 +19,7 @@ Partial Class FormOLStoreOOSDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLStoreOOSDetail))
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPProduct = New DevExpress.XtraTab.XtraTabPage()
@@ -44,6 +44,13 @@ Partial Class FormOLStoreOOSDetail
         Me.GroupControlRestock = New DevExpress.XtraEditors.GroupControl()
         Me.GCRestock = New DevExpress.XtraGrid.GridControl()
         Me.GVRestock = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_sales_order = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_number_restock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_prepare_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty_too = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty_trf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiff_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnprepare_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnPrintSyncList = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPSync = New DevExpress.XtraTab.XtraTabPage()
         Me.GCVolcom = New DevExpress.XtraGrid.GridControl()
@@ -104,13 +111,6 @@ Partial Class FormOLStoreOOSDetail
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirmRestock = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnid_sales_order = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsales_order_number_restock = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_prepare_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnqty_too = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnqty_trf = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndiff_qty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnprepare_status = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPProduct.SuspendLayout()
@@ -316,13 +316,13 @@ Partial Class FormOLStoreOOSDetail
         'RepoBtnRestock
         '
         Me.RepoBtnRestock.AutoHeight = False
-        SerializableAppearanceObject2.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject2.Options.UseBackColor = True
-        SerializableAppearanceObject2.Options.UseFont = True
-        SerializableAppearanceObject2.Options.UseForeColor = True
-        Me.RepoBtnRestock.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Restock", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject1.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject1.Options.UseBackColor = True
+        SerializableAppearanceObject1.Options.UseFont = True
+        SerializableAppearanceObject1.Options.UseForeColor = True
+        Me.RepoBtnRestock.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Restock", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.RepoBtnRestock.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnRestock.Name = "RepoBtnRestock"
         Me.RepoBtnRestock.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -368,6 +368,67 @@ Partial Class FormOLStoreOOSDetail
         Me.GVRestock.OptionsView.ColumnAutoWidth = False
         Me.GVRestock.OptionsView.ShowFooter = True
         Me.GVRestock.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_sales_order
+        '
+        Me.GridColumnid_sales_order.Caption = "id_sales_order"
+        Me.GridColumnid_sales_order.FieldName = "id_sales_order"
+        Me.GridColumnid_sales_order.Name = "GridColumnid_sales_order"
+        '
+        'GridColumnsales_order_number_restock
+        '
+        Me.GridColumnsales_order_number_restock.Caption = "TOO"
+        Me.GridColumnsales_order_number_restock.FieldName = "sales_order_number"
+        Me.GridColumnsales_order_number_restock.Name = "GridColumnsales_order_number_restock"
+        Me.GridColumnsales_order_number_restock.Visible = True
+        Me.GridColumnsales_order_number_restock.VisibleIndex = 0
+        '
+        'GridColumnid_prepare_status
+        '
+        Me.GridColumnid_prepare_status.Caption = "id_prepare_status"
+        Me.GridColumnid_prepare_status.FieldName = "id_prepare_status"
+        Me.GridColumnid_prepare_status.Name = "GridColumnid_prepare_status"
+        '
+        'GridColumnqty_too
+        '
+        Me.GridColumnqty_too.Caption = "TOO Qty"
+        Me.GridColumnqty_too.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty_too.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty_too.FieldName = "qty_too"
+        Me.GridColumnqty_too.Name = "GridColumnqty_too"
+        Me.GridColumnqty_too.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_too", "{0:N0}")})
+        Me.GridColumnqty_too.Visible = True
+        Me.GridColumnqty_too.VisibleIndex = 1
+        '
+        'GridColumnqty_trf
+        '
+        Me.GridColumnqty_trf.Caption = "Trf Qty"
+        Me.GridColumnqty_trf.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty_trf.FieldName = "qty_trf"
+        Me.GridColumnqty_trf.Name = "GridColumnqty_trf"
+        Me.GridColumnqty_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_trf", "{0:N0}")})
+        Me.GridColumnqty_trf.Visible = True
+        Me.GridColumnqty_trf.VisibleIndex = 2
+        '
+        'GridColumndiff_qty
+        '
+        Me.GridColumndiff_qty.Caption = "Diff"
+        Me.GridColumndiff_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumndiff_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiff_qty.FieldName = "diff_qty"
+        Me.GridColumndiff_qty.Name = "GridColumndiff_qty"
+        Me.GridColumndiff_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", "{0:N0}")})
+        Me.GridColumndiff_qty.Visible = True
+        Me.GridColumndiff_qty.VisibleIndex = 3
+        '
+        'GridColumnprepare_status
+        '
+        Me.GridColumnprepare_status.Caption = "Status"
+        Me.GridColumnprepare_status.FieldName = "prepare_status"
+        Me.GridColumnprepare_status.Name = "GridColumnprepare_status"
+        Me.GridColumnprepare_status.Visible = True
+        Me.GridColumnprepare_status.VisibleIndex = 4
         '
         'BtnPrintSyncList
         '
@@ -869,11 +930,11 @@ Partial Class FormOLStoreOOSDetail
         '
         Me.BtnClosedOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClosedOrder.Image = CType(resources.GetObject("BtnClosedOrder.Image"), System.Drawing.Image)
-        Me.BtnClosedOrder.Location = New System.Drawing.Point(635, 2)
+        Me.BtnClosedOrder.Location = New System.Drawing.Point(561, 2)
         Me.BtnClosedOrder.Name = "BtnClosedOrder"
-        Me.BtnClosedOrder.Size = New System.Drawing.Size(103, 41)
+        Me.BtnClosedOrder.Size = New System.Drawing.Size(177, 41)
         Me.BtnClosedOrder.TabIndex = 1
-        Me.BtnClosedOrder.Text = "Close Order"
+        Me.BtnClosedOrder.Text = "Confirm as Partial Order"
         Me.BtnClosedOrder.Visible = False
         '
         'PanelControl1
@@ -908,67 +969,6 @@ Partial Class FormOLStoreOOSDetail
         Me.BtnConfirmRestock.TabIndex = 3
         Me.BtnConfirmRestock.Text = "Confirm"
         Me.BtnConfirmRestock.Visible = False
-        '
-        'GridColumnid_sales_order
-        '
-        Me.GridColumnid_sales_order.Caption = "id_sales_order"
-        Me.GridColumnid_sales_order.FieldName = "id_sales_order"
-        Me.GridColumnid_sales_order.Name = "GridColumnid_sales_order"
-        '
-        'GridColumnsales_order_number_restock
-        '
-        Me.GridColumnsales_order_number_restock.Caption = "TOO"
-        Me.GridColumnsales_order_number_restock.FieldName = "sales_order_number"
-        Me.GridColumnsales_order_number_restock.Name = "GridColumnsales_order_number_restock"
-        Me.GridColumnsales_order_number_restock.Visible = True
-        Me.GridColumnsales_order_number_restock.VisibleIndex = 0
-        '
-        'GridColumnid_prepare_status
-        '
-        Me.GridColumnid_prepare_status.Caption = "id_prepare_status"
-        Me.GridColumnid_prepare_status.FieldName = "id_prepare_status"
-        Me.GridColumnid_prepare_status.Name = "GridColumnid_prepare_status"
-        '
-        'GridColumnqty_too
-        '
-        Me.GridColumnqty_too.Caption = "TOO Qty"
-        Me.GridColumnqty_too.DisplayFormat.FormatString = "N0"
-        Me.GridColumnqty_too.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnqty_too.FieldName = "qty_too"
-        Me.GridColumnqty_too.Name = "GridColumnqty_too"
-        Me.GridColumnqty_too.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_too", "{0:N0}")})
-        Me.GridColumnqty_too.Visible = True
-        Me.GridColumnqty_too.VisibleIndex = 1
-        '
-        'GridColumnqty_trf
-        '
-        Me.GridColumnqty_trf.Caption = "Trf Qty"
-        Me.GridColumnqty_trf.DisplayFormat.FormatString = "N0"
-        Me.GridColumnqty_trf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnqty_trf.FieldName = "qty_trf"
-        Me.GridColumnqty_trf.Name = "GridColumnqty_trf"
-        Me.GridColumnqty_trf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_trf", "{0:N0}")})
-        Me.GridColumnqty_trf.Visible = True
-        Me.GridColumnqty_trf.VisibleIndex = 2
-        '
-        'GridColumndiff_qty
-        '
-        Me.GridColumndiff_qty.Caption = "Diff"
-        Me.GridColumndiff_qty.DisplayFormat.FormatString = "N0"
-        Me.GridColumndiff_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumndiff_qty.FieldName = "diff_qty"
-        Me.GridColumndiff_qty.Name = "GridColumndiff_qty"
-        Me.GridColumndiff_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", "{0:N0}")})
-        Me.GridColumndiff_qty.Visible = True
-        Me.GridColumndiff_qty.VisibleIndex = 3
-        '
-        'GridColumnprepare_status
-        '
-        Me.GridColumnprepare_status.Caption = "Status"
-        Me.GridColumnprepare_status.FieldName = "prepare_status"
-        Me.GridColumnprepare_status.Name = "GridColumnprepare_status"
-        Me.GridColumnprepare_status.Visible = True
-        Me.GridColumnprepare_status.VisibleIndex = 4
         '
         'FormOLStoreOOSDetail
         '

@@ -240,7 +240,7 @@
         ' valid fullfill
         'decision : email no stock
         If Not is_open_restock And is_no_stock And is_partial_order And is_valid_fullfill Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Send email confirmation no stock" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Send email confirmation partial item no stock" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
                     FormMain.SplashScreenManager1.ShowWaitForm()
@@ -270,12 +270,12 @@
         End If
 
         'jika tidak ada yang open restock
-        ' ada no stock
+        ' semua no stock
         ' ada fulfill
         ' valid fullfill
         'decision : email & close order 
         If Not is_open_restock And is_no_stock And Not is_partial_order And is_valid_fullfill Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Send email confirmation no stock & closed order" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Send email confirmation all items no stock & closed order" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
                     FormMain.SplashScreenManager1.ShowWaitForm()
@@ -296,6 +296,39 @@
 
                 'close order
                 'code here
+                'check jika kosong langsung di closed
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Closing order")
+                Dim err_close As String = ""
+                Try
+                    oos.checkOOSEmptyOrder(id_order, id_comp_group)
+                Catch ex As Exception
+                    err_close = addSlashes(ex.ToString)
+                    ord.insertLogWebOrder(id_order, "Failed close order :" + err_close, id_comp_group)
+                End Try
+
+
+                'other action
+                Dim err_other_act As String = ""
+                If id_api_type = "2" Then
+                    'ZALORA
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Set to ready to ship")
+                    Try
+                        Dim zal As New ClassZaloraApi()
+                        err_other_act = zal.setRTSPending()
+                    Catch ex As Exception
+                        err_other_act = addSlashes(ex.ToString)
+                        ord.insertLogWebOrder(id_order, "Failed set rts :" + err_other_act, id_comp_group)
+                    End Try
+                End If
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                FormOLStoreOOS.viewData()
+                If err_send = "" And err_close = "" And err_other_act = "" Then
+                    infoCustom("Email sent successfully and order has been closed")
+                    Close()
+                Else
+                    stopCustom("There is problem, please see log.")
+                End If
             End If
         End If
         Cursor = Cursors.Default
