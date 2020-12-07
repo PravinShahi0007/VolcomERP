@@ -1613,7 +1613,7 @@
                 number_skpp = execute_query("SELECT skpp_number FROM tb_sales_return_order_mail_3pl WHERE id_mail_3pl = " + id_mail_3pl, 0, True, "", "", "", "")
             Else
                 number_skpp = execute_query("
-                    SELECT CONCAT(LPAD((COUNT(id_mail_3pl) + 1), 3, '0'), CONCAT('/EXT/WHD-SKPB/'), (SELECT CONCAT(`code`, '/', YEAR(NOW())) AS `number` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW()))) AS number_skpp
+                    SELECT CONCAT(LPAD((COUNT(id_mail_3pl) + 1), 3, '0'), CONCAT('/EXT/WHD-SKPP/'), (SELECT CONCAT(`code`, '/', YEAR(NOW())) AS `number` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW()))) AS number_skpp
                     FROM tb_sales_return_order_mail_3pl
                     WHERE id_status = 6 AND id_type = 2 AND MONTH(updated_date) = MONTH(NOW()) AND YEAR(updated_date) = YEAR(NOW())
                 ", 0, True, "", "", "", "")
