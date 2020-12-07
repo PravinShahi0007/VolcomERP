@@ -19,7 +19,7 @@ Partial Class FormOLStoreOOSDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLStoreOOSDetail))
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPProduct = New DevExpress.XtraTab.XtraTabPage()
@@ -111,6 +111,7 @@ Partial Class FormOLStoreOOSDetail
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirmRestock = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancellAllOrder = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPProduct.SuspendLayout()
@@ -316,13 +317,13 @@ Partial Class FormOLStoreOOSDetail
         'RepoBtnRestock
         '
         Me.RepoBtnRestock.AutoHeight = False
-        SerializableAppearanceObject1.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject1.Options.UseBackColor = True
-        SerializableAppearanceObject1.Options.UseFont = True
-        SerializableAppearanceObject1.Options.UseForeColor = True
-        Me.RepoBtnRestock.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Restock", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject2.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject2.Options.UseBackColor = True
+        SerializableAppearanceObject2.Options.UseFont = True
+        SerializableAppearanceObject2.Options.UseForeColor = True
+        Me.RepoBtnRestock.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Restock", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.RepoBtnRestock.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnRestock.Name = "RepoBtnRestock"
         Me.RepoBtnRestock.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -928,17 +929,22 @@ Partial Class FormOLStoreOOSDetail
         '
         'BtnClosedOrder
         '
+        Me.BtnClosedOrder.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnClosedOrder.Appearance.Options.UseFont = True
         Me.BtnClosedOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClosedOrder.Image = CType(resources.GetObject("BtnClosedOrder.Image"), System.Drawing.Image)
-        Me.BtnClosedOrder.Location = New System.Drawing.Point(561, 2)
+        Me.BtnClosedOrder.Location = New System.Drawing.Point(553, 2)
+        Me.BtnClosedOrder.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.BtnClosedOrder.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnClosedOrder.Name = "BtnClosedOrder"
-        Me.BtnClosedOrder.Size = New System.Drawing.Size(177, 41)
+        Me.BtnClosedOrder.Size = New System.Drawing.Size(185, 41)
         Me.BtnClosedOrder.TabIndex = 1
         Me.BtnClosedOrder.Text = "Confirm as Partial Order"
         Me.BtnClosedOrder.Visible = False
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnCancellAllOrder)
         Me.PanelControl1.Controls.Add(Me.BtnLog)
         Me.PanelControl1.Controls.Add(Me.BtnClosedOrder)
         Me.PanelControl1.Controls.Add(Me.BtnConfirmRestock)
@@ -969,6 +975,22 @@ Partial Class FormOLStoreOOSDetail
         Me.BtnConfirmRestock.TabIndex = 3
         Me.BtnConfirmRestock.Text = "Confirm"
         Me.BtnConfirmRestock.Visible = False
+        '
+        'BtnCancellAllOrder
+        '
+        Me.BtnCancellAllOrder.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnCancellAllOrder.Appearance.Options.UseFont = True
+        Me.BtnCancellAllOrder.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancellAllOrder.Image = CType(resources.GetObject("BtnCancellAllOrder.Image"), System.Drawing.Image)
+        Me.BtnCancellAllOrder.Location = New System.Drawing.Point(430, 2)
+        Me.BtnCancellAllOrder.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnCancellAllOrder.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnCancellAllOrder.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCancellAllOrder.Name = "BtnCancellAllOrder"
+        Me.BtnCancellAllOrder.Size = New System.Drawing.Size(123, 41)
+        Me.BtnCancellAllOrder.TabIndex = 4
+        Me.BtnCancellAllOrder.Text = "Cancel Order"
+        Me.BtnCancellAllOrder.Visible = False
         '
         'FormOLStoreOOSDetail
         '
@@ -1107,4 +1129,5 @@ Partial Class FormOLStoreOOSDetail
     Friend WithEvents GridColumnqty_trf As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndiff_qty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnprepare_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnCancellAllOrder As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -114,6 +114,7 @@
         'show button close order
         If id_ol_store_oos_stt = "3" And id_type = "3" Then
             BtnClosedOrder.Visible = True
+            BtnCancellAllOrder.Visible = True
         End If
     End Sub
 
