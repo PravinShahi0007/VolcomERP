@@ -224,6 +224,7 @@
 
                     ord.setProceccedWebOrder("2")
                     FormMain.SplashScreenManager1.CloseWaitForm()
+                    FormOLStoreOOS.LEProgress.ItemIndex = FormOLStoreOOS.LEProgress.Properties.GetDataSourceRowIndex("id_ol_store_oos_stt", "0")
                     FormOLStoreOOS.viewData()
                     If err_other_act = "" And err_sync = "" Then
                         infoCustom("Order created successfully")
@@ -239,7 +240,7 @@
         ' ada no stock
         ' ada fulfill
         ' valid fullfill
-        'decision : email no stock
+        'decision : email no stock partial item
         If Not is_open_restock And is_no_stock And is_partial_order And is_valid_fullfill Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Send email confirmation partial item no stock" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -260,6 +261,7 @@
                 End Try
 
                 FormMain.SplashScreenManager1.CloseWaitForm()
+                FormOLStoreOOS.LEProgress.ItemIndex = FormOLStoreOOS.LEProgress.Properties.GetDataSourceRowIndex("id_ol_store_oos_stt", "0")
                 FormOLStoreOOS.viewData()
                 If err_send = "" Then
                     infoCustom("Email sent successfully")
@@ -278,57 +280,65 @@
         If Not is_open_restock And is_no_stock And Not is_partial_order And is_valid_fullfill Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Send email confirmation all items no stock & closed order" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
-                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
-                    FormMain.SplashScreenManager1.ShowWaitForm()
-                End If
-                Dim ord As New ClassSalesOrder()
-
-                'email confirmation
-                FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email no stock")
-                Dim err_send As String = ""
-                Try
-                    oos.sendEmailOOS(id_order, id_comp_group)
-                    execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id + "' ", True, "", "", "", "")
-                    ord.insertLogWebOrder(id_order, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
-                Catch ex As Exception
-                    err_send = addSlashes(ex.ToString)
-                    ord.insertLogWebOrder(id_order, "Evaluate result : No stock & Send Email OOS failed. Detail:" + err_send, id_comp_group)
-                End Try
-
-                'close order
-                'code here
-                'check jika kosong langsung di closed
-                FormMain.SplashScreenManager1.SetWaitFormDescription("Closing order")
-                Dim err_close As String = ""
-                Try
-                    oos.checkOOSEmptyOrder(id_order, id_comp_group)
-                Catch ex As Exception
-                    err_close = addSlashes(ex.ToString)
-                    ord.insertLogWebOrder(id_order, "Failed close order :" + err_close, id_comp_group)
-                End Try
-
-
-                'other action
-                Dim err_other_act As String = ""
-                If id_api_type = "2" Then
-                    'ZALORA
-                    FormMain.SplashScreenManager1.SetWaitFormDescription("Set to ready to ship")
-                    Try
-                        Dim zal As New ClassZaloraApi()
-                        err_other_act = zal.setRTSPending()
-                    Catch ex As Exception
-                        err_other_act = addSlashes(ex.ToString)
-                        ord.insertLogWebOrder(id_order, "Failed set rts :" + err_other_act, id_comp_group)
-                    End Try
-                End If
-
-                FormMain.SplashScreenManager1.CloseWaitForm()
-                FormOLStoreOOS.viewData()
-                If err_send = "" And err_close = "" And err_other_act = "" Then
-                    infoCustom("Email sent successfully and order has been closed")
-                    Close()
+                'cek on process sync
+                Dim is_processed_order As String = get_setup_field("is_processed_order")
+                If is_processed_order = "1" Then
+                    stopCustom("Sync still running")
+                    Cursor = Cursors.Default
                 Else
-                    stopCustom("There is problem, please see log.")
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
+                    Dim ord As New ClassSalesOrder()
+
+                    'email confirmation
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Sending email no stock")
+                    Dim err_send As String = ""
+                    Try
+                        oos.sendEmailOOS(id_order, id_comp_group)
+                        execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id + "' ", True, "", "", "", "")
+                        ord.insertLogWebOrder(id_order, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
+                    Catch ex As Exception
+                        err_send = addSlashes(ex.ToString)
+                        ord.insertLogWebOrder(id_order, "Evaluate result : No stock & Send Email OOS failed. Detail:" + err_send, id_comp_group)
+                    End Try
+
+                    'close order
+                    'code here
+                    'check jika kosong langsung di closed
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Closing order")
+                    Dim err_close As String = ""
+                    Try
+                        oos.checkOOSEmptyOrder(id_order, id_comp_group)
+                    Catch ex As Exception
+                        err_close = addSlashes(ex.ToString)
+                        ord.insertLogWebOrder(id_order, "Failed close order :" + err_close, id_comp_group)
+                    End Try
+
+
+                    'other action
+                    Dim err_other_act As String = ""
+                    If id_api_type = "2" Then
+                        'ZALORA
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Set to ready to ship")
+                        Try
+                            Dim zal As New ClassZaloraApi()
+                            err_other_act = zal.setRTSPending()
+                        Catch ex As Exception
+                            err_other_act = addSlashes(ex.ToString)
+                            ord.insertLogWebOrder(id_order, "Failed set rts :" + err_other_act, id_comp_group)
+                        End Try
+                    End If
+
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+                    FormOLStoreOOS.LEProgress.ItemIndex = FormOLStoreOOS.LEProgress.Properties.GetDataSourceRowIndex("id_ol_store_oos_stt", "0")
+                    FormOLStoreOOS.viewData()
+                    If err_send = "" And err_close = "" And err_other_act = "" Then
+                        infoCustom("Email sent successfully and order has been closed")
+                        Close()
+                    Else
+                        stopCustom("There is problem, please see log.")
+                    End If
                 End If
             End If
         End If
@@ -374,5 +384,75 @@
         If XTCData.SelectedTabPageIndex = 1 Then
             viewSyncInfo()
         End If
+    End Sub
+
+    Private Sub BtnClosedOrder_Click(sender As Object, e As EventArgs) Handles BtnClosedOrder.Click
+        Cursor = Cursors.WaitCursor
+        'cek open too restock
+        Dim oos As New ClassOLStore()
+        Dim is_open_restock As Boolean = oos.isRestockOpen(id)
+        'cek valid fullfill & reserved qty
+        Dim is_valid_fullfill As Boolean = oos.isValidFullfill(id_order, id_comp_group, id)
+
+        If Not is_open_restock And is_valid_fullfill Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Create Sales Order with partial items" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                'cek on process sync
+                Dim is_processed_order As String = get_setup_field("is_processed_order")
+                If is_processed_order = "1" Then
+                    stopCustom("Sync still running")
+                    Cursor = Cursors.Default
+                Else
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
+                    Dim ord As New ClassSalesOrder()
+                    ord.setProceccedWebOrder("1")
+
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing order")
+                    Dim err_sync As String = ""
+                    Try
+                        Dim qry As String = "CALL create_oos_close_stock_grp('" + id + "', '" + id_order + "', '" + id_comp_group + "');CALL create_oos_sync_grp(" + id_order + ", " + id_comp_group + ", " + id + ");"
+                        execute_non_query_long(qry, True, "", "", "", "")
+                    Catch ex As Exception
+                        err_sync = addSlashes(ex.ToString)
+                        ord.insertLogWebOrder(id_order, "Problem closing order :" + addSlashes(ex.ToString), id_comp_group)
+                    End Try
+
+                    'other action
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Other action")
+                    Dim err_other_act As String = ""
+                    If id_api_type = "2" Then
+                        'ZALORA
+                        Try
+                            Dim zal As New ClassZaloraApi()
+                            err_other_act = zal.setRTSPending()
+                        Catch ex As Exception
+                            err_other_act = "Problem set RTS :" + addSlashes(ex.ToString)
+                            ord.insertLogWebOrder(id_order, err_other_act, id_comp_group)
+                        End Try
+                    End If
+
+                    ord.setProceccedWebOrder("2")
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+                    FormOLStoreOOS.viewData()
+                    If err_other_act = "" And err_sync = "" Then
+                        infoCustom("Order created successfully")
+                        Close()
+                    Else
+                        stopCustom("There is problem when processing order, please see log.")
+                    End If
+                End If
+            End If
+            Else
+                stopCustom("Can't proceed this order. Make sure restock in WH already finished")
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCancellAllOrder_Click(sender As Object, e As EventArgs) Handles BtnCancellAllOrder.Click
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
     End Sub
 End Class

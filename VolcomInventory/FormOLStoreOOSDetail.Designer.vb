@@ -109,9 +109,9 @@ Partial Class FormOLStoreOOSDetail
         Me.BtnSendEmail = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClosedOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnCancellAllOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirmRestock = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCancellAllOrder = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPProduct.SuspendLayout()
@@ -955,6 +955,22 @@ Partial Class FormOLStoreOOSDetail
         Me.PanelControl1.Size = New System.Drawing.Size(980, 45)
         Me.PanelControl1.TabIndex = 0
         '
+        'BtnCancellAllOrder
+        '
+        Me.BtnCancellAllOrder.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnCancellAllOrder.Appearance.Options.UseFont = True
+        Me.BtnCancellAllOrder.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancellAllOrder.Image = CType(resources.GetObject("BtnCancellAllOrder.Image"), System.Drawing.Image)
+        Me.BtnCancellAllOrder.Location = New System.Drawing.Point(430, 2)
+        Me.BtnCancellAllOrder.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnCancellAllOrder.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnCancellAllOrder.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCancellAllOrder.Name = "BtnCancellAllOrder"
+        Me.BtnCancellAllOrder.Size = New System.Drawing.Size(123, 41)
+        Me.BtnCancellAllOrder.TabIndex = 4
+        Me.BtnCancellAllOrder.Text = "Cancel Order"
+        Me.BtnCancellAllOrder.Visible = False
+        '
         'BtnLog
         '
         Me.BtnLog.Dock = System.Windows.Forms.DockStyle.Left
@@ -975,22 +991,6 @@ Partial Class FormOLStoreOOSDetail
         Me.BtnConfirmRestock.TabIndex = 3
         Me.BtnConfirmRestock.Text = "Confirm"
         Me.BtnConfirmRestock.Visible = False
-        '
-        'BtnCancellAllOrder
-        '
-        Me.BtnCancellAllOrder.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnCancellAllOrder.Appearance.Options.UseFont = True
-        Me.BtnCancellAllOrder.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancellAllOrder.Image = CType(resources.GetObject("BtnCancellAllOrder.Image"), System.Drawing.Image)
-        Me.BtnCancellAllOrder.Location = New System.Drawing.Point(430, 2)
-        Me.BtnCancellAllOrder.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.BtnCancellAllOrder.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.BtnCancellAllOrder.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnCancellAllOrder.Name = "BtnCancellAllOrder"
-        Me.BtnCancellAllOrder.Size = New System.Drawing.Size(123, 41)
-        Me.BtnCancellAllOrder.TabIndex = 4
-        Me.BtnCancellAllOrder.Text = "Cancel Order"
-        Me.BtnCancellAllOrder.Visible = False
         '
         'FormOLStoreOOSDetail
         '
