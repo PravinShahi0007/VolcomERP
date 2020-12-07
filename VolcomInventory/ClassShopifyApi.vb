@@ -201,6 +201,8 @@
 
         Dim data_payment_gateway As DataTable = execute_query("SELECT ol_store_pay FROM tb_ol_store_pay", -1, True, "", "", "", "")
 
+        Dim is_allow_check_discount_app As String = get_setup_field("is_allow_check_discount_app")
+
         Using dataStream As IO.Stream = response.GetResponseStream()
             Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
 
@@ -255,6 +257,17 @@
                                 Next
                             Else
                                 discount_code = ""
+                            End If
+
+                            'discount codes app
+                            If is_allow_check_discount_app = "1" Then
+                                If row("tags").ToString.Contains("giftbox") And discount_code = "" Then
+                                    For Each row_app In row("discount_applications").ToList
+                                        If row_app("type").ToString = "manual" Then
+                                            discount_code = row_app("title").ToString
+                                        End If
+                                    Next
+                                End If
                             End If
 
                             'data customer
