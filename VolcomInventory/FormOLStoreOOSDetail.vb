@@ -252,7 +252,7 @@
                 Dim err_send As String = ""
                 Try
                     oos.sendEmailOOS(id_order, id_comp_group)
-                    execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3 WHERE id_ol_store_oos='" + id + "' ", True, "", "", "", "")
+                    execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id + "' ", True, "", "", "", "")
                     ord.insertLogWebOrder(id_order, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
                 Catch ex As Exception
                     err_send = addSlashes(ex.ToString)
@@ -288,7 +288,7 @@
                 Dim err_send As String = ""
                 Try
                     oos.sendEmailOOS(id_order, id_comp_group)
-                    execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3 WHERE id_ol_store_oos='" + id + "' ", True, "", "", "", "")
+                    execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id + "' ", True, "", "", "", "")
                     ord.insertLogWebOrder(id_order, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
                 Catch ex As Exception
                     err_send = addSlashes(ex.ToString)
