@@ -31,6 +31,7 @@ Partial Class FormOLStoreRestock
         Me.GridColumntotal_stock = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoSP = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
@@ -43,7 +44,20 @@ Partial Class FormOLStoreRestock
         Me.TxtDescription = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrintWH = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRefreshOther = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCWH = New DevExpress.XtraGrid.GridControl()
+        Me.GVWH = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCreateOther = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPOnlineWH.SuspendLayout()
@@ -52,11 +66,17 @@ Partial Class FormOLStoreRestock
         CType(Me.RepoSP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        Me.XTPOtherWH.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.GCWH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVWH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCData
@@ -122,7 +142,7 @@ Partial Class FormOLStoreRestock
         Me.GridColumncomp_number.Name = "GridColumncomp_number"
         Me.GridColumncomp_number.OptionsColumn.ReadOnly = True
         Me.GridColumncomp_number.Visible = True
-        Me.GridColumncomp_number.VisibleIndex = 0
+        Me.GridColumncomp_number.VisibleIndex = 1
         '
         'GridColumncomp_name
         '
@@ -131,7 +151,7 @@ Partial Class FormOLStoreRestock
         Me.GridColumncomp_name.Name = "GridColumncomp_name"
         Me.GridColumncomp_name.OptionsColumn.ReadOnly = True
         Me.GridColumncomp_name.Visible = True
-        Me.GridColumncomp_name.VisibleIndex = 1
+        Me.GridColumncomp_name.VisibleIndex = 2
         Me.GridColumncomp_name.Width = 95
         '
         'GridColumntotal_stock
@@ -144,7 +164,7 @@ Partial Class FormOLStoreRestock
         Me.GridColumntotal_stock.OptionsColumn.ReadOnly = True
         Me.GridColumntotal_stock.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_stock", "{0:N0}")})
         Me.GridColumntotal_stock.Visible = True
-        Me.GridColumntotal_stock.VisibleIndex = 2
+        Me.GridColumntotal_stock.VisibleIndex = 3
         '
         'GridColumntotal_order
         '
@@ -172,6 +192,16 @@ Partial Class FormOLStoreRestock
         Me.RepoSP.Mask.EditMask = "N0"
         Me.RepoSP.MaxValue = New Decimal(New Integer() {-1486618625, 232830643, 0, 0})
         Me.RepoSP.Name = "RepoSP"
+        '
+        'GridColumnnote
+        '
+        Me.GridColumnnote.Caption = "Note"
+        Me.GridColumnnote.FieldName = "note"
+        Me.GridColumnnote.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnnote.Name = "GridColumnnote"
+        Me.GridColumnnote.OptionsColumn.ReadOnly = True
+        Me.GridColumnnote.Visible = True
+        Me.GridColumnnote.VisibleIndex = 0
         '
         'PanelControl2
         '
@@ -224,6 +254,9 @@ Partial Class FormOLStoreRestock
         '
         'XTPOtherWH
         '
+        Me.XTPOtherWH.Controls.Add(Me.GCWH)
+        Me.XTPOtherWH.Controls.Add(Me.BCreateOther)
+        Me.XTPOtherWH.Controls.Add(Me.PanelControl3)
         Me.XTPOtherWH.Name = "XTPOtherWH"
         Me.XTPOtherWH.Size = New System.Drawing.Size(728, 361)
         Me.XTPOtherWH.Text = "Other WH"
@@ -302,15 +335,158 @@ Partial Class FormOLStoreRestock
         Me.LabelControl3.TabIndex = 6
         Me.LabelControl3.Text = "Code"
         '
-        'GridColumnnote
+        'PanelControl3
         '
-        Me.GridColumnnote.Caption = "Note"
-        Me.GridColumnnote.FieldName = "note"
-        Me.GridColumnnote.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridColumnnote.Name = "GridColumnnote"
-        Me.GridColumnnote.OptionsColumn.ReadOnly = True
-        Me.GridColumnnote.Visible = True
-        Me.GridColumnnote.VisibleIndex = 0
+        Me.PanelControl3.Controls.Add(Me.BtnPrintWH)
+        Me.PanelControl3.Controls.Add(Me.BtnRefreshOther)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(728, 44)
+        Me.PanelControl3.TabIndex = 21
+        '
+        'BtnPrintWH
+        '
+        Me.BtnPrintWH.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrintWH.Image = CType(resources.GetObject("BtnPrintWH.Image"), System.Drawing.Image)
+        Me.BtnPrintWH.Location = New System.Drawing.Point(543, 2)
+        Me.BtnPrintWH.Name = "BtnPrintWH"
+        Me.BtnPrintWH.Size = New System.Drawing.Size(83, 40)
+        Me.BtnPrintWH.TabIndex = 1
+        Me.BtnPrintWH.Text = "Print"
+        '
+        'BtnRefreshOther
+        '
+        Me.BtnRefreshOther.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefreshOther.Image = CType(resources.GetObject("BtnRefreshOther.Image"), System.Drawing.Image)
+        Me.BtnRefreshOther.Location = New System.Drawing.Point(626, 2)
+        Me.BtnRefreshOther.Name = "BtnRefreshOther"
+        Me.BtnRefreshOther.Size = New System.Drawing.Size(100, 40)
+        Me.BtnRefreshOther.TabIndex = 0
+        Me.BtnRefreshOther.Text = "Refresh"
+        '
+        'GCWH
+        '
+        Me.GCWH.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCWH.Location = New System.Drawing.Point(0, 44)
+        Me.GCWH.MainView = Me.GVWH
+        Me.GCWH.Name = "GCWH"
+        Me.GCWH.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
+        Me.GCWH.Size = New System.Drawing.Size(728, 285)
+        Me.GCWH.TabIndex = 22
+        Me.GCWH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWH})
+        '
+        'GVWH
+        '
+        Me.GVWH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVWH.GridControl = Me.GCWH
+        Me.GVWH.Name = "GVWH"
+        Me.GVWH.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVWH.OptionsFind.AlwaysVisible = True
+        Me.GVWH.OptionsView.ColumnAutoWidth = False
+        Me.GVWH.OptionsView.ShowFooter = True
+        Me.GVWH.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "id_wh_drawer"
+        Me.GridColumn1.FieldName = "id_wh_drawer"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "id_comp"
+        Me.GridColumn2.FieldName = "id_comp"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Account"
+        Me.GridColumn3.FieldName = "comp_number"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Acc. Description"
+        Me.GridColumn4.FieldName = "comp_name"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 95
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Available Qty"
+        Me.GridColumn5.DisplayFormat.FormatString = "N0"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "total_stock"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
+        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_stock", "{0:N0}")})
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumn6.AppearanceCell.Options.UseFont = True
+        Me.GridColumn6.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumn6.AppearanceHeader.Options.UseFont = True
+        Me.GridColumn6.Caption = "Restock Qty"
+        Me.GridColumn6.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.GridColumn6.DisplayFormat.FormatString = "N0"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "total_order"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", "{0:N0}")})
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.Width = 106
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "N0"
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N0"
+        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1486618625, 232830643, 0, 0})
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Note"
+        Me.GridColumn7.FieldName = "note"
+        Me.GridColumn7.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
+        'BCreateOther
+        '
+        Me.BCreateOther.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateOther.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateOther.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateOther.Appearance.Options.UseBackColor = True
+        Me.BCreateOther.Appearance.Options.UseFont = True
+        Me.BCreateOther.Appearance.Options.UseForeColor = True
+        Me.BCreateOther.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreateOther.Location = New System.Drawing.Point(0, 329)
+        Me.BCreateOther.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateOther.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateOther.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateOther.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateOther.Name = "BCreateOther"
+        Me.BCreateOther.Size = New System.Drawing.Size(728, 32)
+        Me.BCreateOther.TabIndex = 23
+        Me.BCreateOther.Text = "Restock"
         '
         'FormOLStoreRestock
         '
@@ -331,12 +507,18 @@ Partial Class FormOLStoreRestock
         CType(Me.RepoSP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        Me.XTPOtherWH.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.GCWH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVWH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -365,4 +547,18 @@ Partial Class FormOLStoreRestock
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnRefresh As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCWH As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVWH As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnPrintWH As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnRefreshOther As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCreateOther As DevExpress.XtraEditors.SimpleButton
 End Class
