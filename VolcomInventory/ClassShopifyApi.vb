@@ -736,7 +736,7 @@ GROUP BY p.sku"
                                             'insert detail diskon kode
                                             Dim disc_code As String = ""
                                             disc_code = row_diskon("code").ToString
-                                            Dim query_insert_diskon As String = "INSERT INTO tb_ol_promo_collection_disc_code(id_ol_promo_collection,disc_code) VALUES('" + id_ol_promo_collection + "','" + disc_code + "'); "
+                                            Dim query_insert_diskon As String = "INSERT INTO tb_ol_promo_collection_disc_code(id_ol_promo_collection,disc_code, sync_date, sync_by) VALUES('" + id_ol_promo_collection + "','" + disc_code + "',NOW(), '" + id_user + "'); "
                                             execute_non_query(query_insert_diskon, True, "", "", "", "")
                                             j += 1
                                         Next
