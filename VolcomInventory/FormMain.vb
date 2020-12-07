@@ -15668,5 +15668,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
 
     Private Sub NBOOSFinalize_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOOSFinalize.LinkClicked
         'menu here
+        Try
+            FormOLStoreOOS.MdiParent = Me
+            FormOLStoreOOS.id_type = "3"
+            FormOLStoreOOS.Show()
+            FormOLStoreOOS.WindowState = FormWindowState.Maximized
+            FormOLStoreOOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
     End Sub
 End Class

@@ -5,6 +5,11 @@
         viewType()
         viewProgress()
         If id_type = "2" Then
+            'MD Menu
+            viewData()
+        ElseIf id_type = "3" Then
+            'sales menu
+            LEProgress.ItemIndex = LEProgress.Properties.GetDataSourceRowIndex("id_ol_store_oos_stt", "3")
             viewData()
         End If
     End Sub
