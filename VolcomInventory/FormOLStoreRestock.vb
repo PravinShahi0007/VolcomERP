@@ -277,7 +277,7 @@
                         FormMain.SplashScreenManager1.SetWaitFormDescription("Restock " + (i + 1).ToString + "/" + GVWH.RowCount.ToString)
                         Dim id_wh_from As String = GVWH.GetRowCellValue(i, "id_comp").ToString
                         Dim qty As String = decimalSQL(GVWH.GetRowCellValue(i, "total_order").ToString)
-                        execute_non_query_long("CALL create_oos_restock_wh_ol_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol + ", " + id_product + ", '" + qty + "','2');", True, "", "", "", "")
+                        execute_non_query_long("CALL create_oos_restock_wh_ol_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol_use_induk + ", " + id_product + ", '" + qty + "','2');", True, "", "", "", "")
                     Next
                     FormMain.SplashScreenManager1.CloseWaitForm()
                     viewStockOther()

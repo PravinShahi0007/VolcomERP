@@ -157,4 +157,118 @@ HAVING so_qty<>rsv_qty"
             Return True
         End If
     End Function
+
+    Sub decideCompleteOrder(ByVal id_web_order As String, ByVal id_comp_group As String, ByVal id_oos As String, ByVal id_api_type As String)
+        Dim ord As New ClassSalesOrder()
+        Dim err_sync As String = ""
+        Try
+            Dim qry As String = "CALL create_oos_close_stock_grp('" + id_oos + "', '" + id_web_order + "', '" + id_comp_group + "');CALL create_oos_sync_grp(" + id_web_order + ", " + id_comp_group + ", " + id_oos + ",4);"
+            execute_non_query_long(qry, True, "", "", "", "")
+        Catch ex As Exception
+            err_sync = addSlashes(ex.ToString)
+            ord.insertLogWebOrder(id_web_order, "Problem closing order :" + addSlashes(ex.ToString), id_comp_group)
+        End Try
+        'other action
+        Dim err_other_act As String = ""
+        If id_api_type = "2" Then
+            'ZALORA
+            Try
+                Dim zal As New ClassZaloraApi()
+                err_other_act = zal.setRTSPending()
+            Catch ex As Exception
+                err_other_act = "Problem set RTS :" + addSlashes(ex.ToString)
+                ord.insertLogWebOrder(id_web_order, err_other_act, id_comp_group)
+            End Try
+        End If
+    End Sub
+
+    Sub decidePartialOrder(ByVal id_web_order As String, ByVal id_comp_group As String, ByVal id_oos As String)
+        Dim ord As New ClassSalesOrder()
+        Dim err_send As String = ""
+        Try
+            sendEmailOOS(id_web_order, id_comp_group)
+            execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id_oos + "' ", True, "", "", "", "")
+            ord.insertLogWebOrder(id_web_order, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
+        Catch ex As Exception
+            err_send = addSlashes(ex.ToString)
+            ord.insertLogWebOrder(id_web_order, "Evaluate result : No stock & Send Email OOS failed. Detail:" + err_send, id_comp_group)
+        End Try
+    End Sub
+
+    Sub decideCancelOrder(ByVal id_web_order As String, ByVal id_comp_group As String, ByVal id_oos As String, ByVal id_api_type As String)
+        Dim ord As New ClassSalesOrder()
+        'email confirmation
+        Dim err_send As String = ""
+        Try
+            sendEmailOOS(id_web_order, id_comp_group)
+            execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id_oos + "' ", True, "", "", "", "")
+            ord.insertLogWebOrder(id_web_order, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
+        Catch ex As Exception
+            err_send = addSlashes(ex.ToString)
+            ord.insertLogWebOrder(id_web_order, "Evaluate result : No stock & Send Email OOS failed. Detail:" + err_send, id_comp_group)
+        End Try
+
+        'close order
+        'code here
+        'check jika kosong langsung di closed
+        Dim err_close As String = ""
+        Try
+            checkOOSEmptyOrder(id_web_order, id_comp_group)
+        Catch ex As Exception
+            err_close = addSlashes(ex.ToString)
+            ord.insertLogWebOrder(id_web_order, "Failed close order :" + err_close, id_comp_group)
+        End Try
+
+
+        'other action
+        Dim err_other_act As String = ""
+        If id_api_type = "2" Then
+            'ZALORA
+            Try
+                Dim zal As New ClassZaloraApi()
+                err_other_act = zal.setRTSPending()
+            Catch ex As Exception
+                err_other_act = addSlashes(ex.ToString)
+                ord.insertLogWebOrder(id_web_order, "Failed set rts :" + err_other_act, id_comp_group)
+            End Try
+        End If
+    End Sub
+
+    Sub oosRestockChecking(ByVal id_web_order As String, ByVal id_comp_group As String, ByVal id_oos As String, ByVal id_api_type As String)
+        Dim is_open_restock As Boolean = isRestockOpen(id_oos)
+        'cek no stock
+        Dim is_no_stock As Boolean = adaNoStock(id_web_order, id_comp_group)
+        'cek fulfill
+        Dim is_partial_order As Boolean = isPartialOrder(id_web_order, id_comp_group)
+        'cek valid fullfill & reserved qty
+        Dim is_valid_fullfill As Boolean = isValidFullfill(id_web_order, id_comp_group, id_oos)
+        Dim ord As New ClassSalesOrder()
+
+        'jika tidak ada yang open restock & tidak ada no stock & valid fulfill lansung sync
+        'decision : complete order
+        If Not is_open_restock And Not is_no_stock And is_valid_fullfill Then
+            'completed order
+            decideCompleteOrder(id_web_order, id_comp_group, id_oos, id_api_type)
+        End If
+
+        'jika tidak ada yang open restock
+        ' ada no stock
+        ' ada fulfill
+        ' valid fullfill
+        'decision : email no stock partial item
+        If Not is_open_restock And is_no_stock And is_partial_order And is_valid_fullfill Then
+            'partial order
+            decidePartialOrder(id_web_order, id_comp_group, id_oos)
+        End If
+
+        'jika tidak ada yang open restock
+        ' semua no stock
+        ' ada fulfill
+        ' valid fullfill
+        'decision : cancel order
+        If Not is_open_restock And is_no_stock And Not is_partial_order And is_valid_fullfill Then
+            'cancel order
+            decideCancelOrder(id_web_order, id_comp_group, id_oos, id_api_type)
+        End If
+    End Sub
 End Class

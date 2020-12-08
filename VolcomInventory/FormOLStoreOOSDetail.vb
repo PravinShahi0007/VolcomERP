@@ -179,7 +179,10 @@
         Dim is_partial_order As Boolean = oos.isPartialOrder(id_order, id_comp_group)
         'cek valid fullfill & reserved qty
         Dim is_valid_fullfill As Boolean = oos.isValidFullfill(id_order, id_comp_group, id)
-
+        Console.WriteLine(is_open_restock)
+        Console.WriteLine(is_no_stock)
+        Console.WriteLine(is_partial_order)
+        Console.WriteLine(is_valid_fullfill)
         'jika tidak ada yang open restock & tidak ada no stock & valid fulfill lansung sync
         'decision : create SO
         If Not is_open_restock And Not is_no_stock And is_valid_fullfill Then
@@ -344,6 +347,17 @@
                         stopCustom("There is problem, please see log.")
                     End If
                 End If
+            End If
+        End If
+
+        'on process restock
+        If is_open_restock Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Processing restock in WH" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query As String = "UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=2 WHERE id_ol_store_oos='" + id + "' "
+                execute_non_query(query, True, "", "", "", "")
+                FormOLStoreOOS.viewData()
+                Close()
             End If
         End If
         Cursor = Cursors.Default
