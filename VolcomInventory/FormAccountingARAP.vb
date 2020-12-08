@@ -18,6 +18,15 @@
             TxtAPCode.Text = getAccNo(id_ap)
         End If
 
+        Dim id_ap_cabang As String = FormAccounting.GVCompany.GetFocusedRowCellValue("id_acc_cabang_ap").ToString
+        If id_ap_cabang = "0" Then
+            SLEAPCabang.EditValue = Nothing
+            TxtAPCodeCabang.Text = ""
+        Else
+            SLEAPCabang.EditValue = id_ap_cabang
+            TxtAPCodeCabang.Text = getAccNo(id_ap_cabang)
+        End If
+
         Dim id_dp As String = FormAccounting.GVCompany.GetFocusedRowCellValue("id_acc_dp").ToString
         If id_dp = "0" Then
             SLEDP.EditValue = Nothing
@@ -25,6 +34,15 @@
         Else
             SLEDP.EditValue = id_dp
             TxtDPCode.Text = getAccNo(id_dp)
+        End If
+
+        Dim id_dp_cabang As String = FormAccounting.GVCompany.GetFocusedRowCellValue("id_acc_cabang_dp").ToString
+        If id_dp_cabang = "0" Then
+            SLEDPCabang.EditValue = Nothing
+            TxtDPCodeCabang.Text = ""
+        Else
+            SLEDPCabang.EditValue = id_dp_cabang
+            TxtDPCodeCabang.Text = getAccNo(id_dp_cabang)
         End If
 
         Dim id_sales As String = FormAccounting.GVCompany.GetFocusedRowCellValue("id_acc_sales").ToString
@@ -123,6 +141,29 @@
             id_acc_ap = SLEAP.EditValue.ToString
         End If
 
+        Dim id_acc_dp As String = ""
+        If SLEDP.EditValue = Nothing Then
+            id_acc_dp = "NULL"
+        Else
+            id_acc_dp = SLEDP.EditValue.ToString
+        End If
+
+        '
+        Dim id_acc_ap_cabang As String = ""
+        If SLEAPCabang.EditValue = Nothing Then
+            id_acc_ap_cabang = "NULL"
+        Else
+            id_acc_ap_cabang = SLEAPCabang.EditValue.ToString
+        End If
+
+        Dim id_acc_dp_cabang As String = ""
+        If SLEDPCabang.EditValue = Nothing Then
+            id_acc_dp_cabang = "NULL"
+        Else
+            id_acc_dp_cabang = SLEDPCabang.EditValue.ToString
+        End If
+        '
+
         Dim id_acc_sales As String = ""
         If SLESales.EditValue = Nothing Then
             id_acc_sales = "NULL"
@@ -144,12 +185,7 @@
             id_acc_ar = SLEAR.EditValue.ToString
         End If
 
-        Dim id_acc_dp As String = ""
-        If SLEDP.EditValue = Nothing Then
-            id_acc_dp = "NULL"
-        Else
-            id_acc_dp = SLEDP.EditValue.ToString
-        End If
+
 
         'discount
         Dim comp_commission As String = decimalSQL(TxtStoreDiscount.EditValue.ToString)
@@ -157,7 +193,7 @@
         If id_comp = "-1" Then
             warningCustom("Store not found")
         Else
-            Dim query As String = "UPDATE tb_m_comp SET id_acc_sales=" + id_acc_sales + ", id_acc_sales_return=" + id_acc_sales_return + ",id_acc_ar=" + id_acc_ar + ", id_acc_ap=" + id_acc_ap + ", id_acc_dp=" + id_acc_dp + ", comp_commission='" + comp_commission + "' WHERE id_comp='" + id_comp + "' "
+            Dim query As String = "UPDATE tb_m_comp SET id_acc_sales=" + id_acc_sales + ", id_acc_sales_return=" + id_acc_sales_return + ",id_acc_ar=" + id_acc_ar + ", id_acc_ap=" + id_acc_ap + ", id_acc_dp=" + id_acc_dp + ", id_acc_ap_cabang=" + id_acc_ap_cabang + ", id_acc_dp_cabang=" + id_acc_dp_cabang + ", comp_commission='" + comp_commission + "' WHERE id_comp='" + id_comp + "' "
             execute_non_query(query, True, "", "", "", "")
             FormAccounting.viewCompany()
             FormAccounting.GVCompany.FocusedRowHandle = find_row(FormAccounting.GVCompany, "id_comp", id_comp)

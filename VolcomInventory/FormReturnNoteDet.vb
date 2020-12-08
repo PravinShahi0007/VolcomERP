@@ -104,7 +104,7 @@ WHERE rn.id_return_note='" & id_return_note & "'"
     End Sub
 
     Sub load_emp()
-        Dim q As String = "SELECT id_employee,employee_code,employee_name FROM tb_m_employee WHERE id_employee_status='1' AND id_departement='6'"
+        Dim q As String = "SELECT id_employee,employee_code,employee_name FROM tb_m_employee WHERE id_employee_active='1' AND id_departement='6'"
         viewSearchLookupQuery(SLEEmp, q, "id_employee", "employee_name", "id_employee")
     End Sub
 
