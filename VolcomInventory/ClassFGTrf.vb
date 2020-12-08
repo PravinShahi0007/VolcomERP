@@ -276,4 +276,11 @@
         End Try
 
     End Sub
+
+    Sub processRestockOnline(ByVal id_report_par As String)
+        Dim trf_stt As String = execute_query("SELECT id_report_status FROM tb_fg_trf WHERE id_trf='" + id_report_par + "' ", 0, True, "", "", "", "")
+        If trf_stt = "6" Then
+
+        End If
+    End Sub
 End Class
