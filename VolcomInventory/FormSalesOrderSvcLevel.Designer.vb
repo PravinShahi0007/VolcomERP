@@ -365,6 +365,9 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPClosingSuratJalan = New DevExpress.XtraTab.XtraTabPage()
+        Me.LabelControl26 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
+        Me.LETypeRestock = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -492,6 +495,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilNonStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromNonStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromNonStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LETypeRestock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -1552,9 +1556,9 @@ Partial Class FormSalesOrderSvcLevel
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl1.Controls.Add(Me.CheckEdit1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(1357, 0)
+        Me.PanelControl1.Location = New System.Drawing.Point(826, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(86, 51)
+        Me.PanelControl1.Size = New System.Drawing.Size(86, 68)
         Me.PanelControl1.TabIndex = 8902
         '
         'CheckEdit1
@@ -3149,11 +3153,11 @@ Partial Class FormSalesOrderSvcLevel
         '
         Me.GCFGTrf.ContextMenuStrip = Me.ViewPreTransfer
         Me.GCFGTrf.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCFGTrf.Location = New System.Drawing.Point(0, 39)
+        Me.GCFGTrf.Location = New System.Drawing.Point(0, 79)
         Me.GCFGTrf.MainView = Me.GVFGTrf
         Me.GCFGTrf.Name = "GCFGTrf"
         Me.GCFGTrf.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoTxtPrepOrder, Me.RepositoryItemCheckEdit5})
-        Me.GCFGTrf.Size = New System.Drawing.Size(934, 272)
+        Me.GCFGTrf.Size = New System.Drawing.Size(934, 232)
         Me.GCFGTrf.TabIndex = 8
         Me.GCFGTrf.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGTrf})
         '
@@ -3309,6 +3313,9 @@ Partial Class FormSalesOrderSvcLevel
         'GroupControl4
         '
         Me.GroupControl4.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl4.Controls.Add(Me.LETypeRestock)
+        Me.GroupControl4.Controls.Add(Me.LabelControl27)
+        Me.GroupControl4.Controls.Add(Me.LabelControl26)
         Me.GroupControl4.Controls.Add(Me.BtnUpdateTrf)
         Me.GroupControl4.Controls.Add(Me.SLEStatusTrf)
         Me.GroupControl4.Controls.Add(Me.BtnViewTrf)
@@ -3322,12 +3329,12 @@ Partial Class FormSalesOrderSvcLevel
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(934, 39)
+        Me.GroupControl4.Size = New System.Drawing.Size(934, 79)
         Me.GroupControl4.TabIndex = 7
         '
         'BtnUpdateTrf
         '
-        Me.BtnUpdateTrf.Location = New System.Drawing.Point(574, 9)
+        Me.BtnUpdateTrf.Location = New System.Drawing.Point(461, 24)
         Me.BtnUpdateTrf.LookAndFeel.SkinName = "Blue"
         Me.BtnUpdateTrf.Name = "BtnUpdateTrf"
         Me.BtnUpdateTrf.Size = New System.Drawing.Size(84, 20)
@@ -3336,7 +3343,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'SLEStatusTrf
         '
-        Me.SLEStatusTrf.Location = New System.Drawing.Point(354, 9)
+        Me.SLEStatusTrf.Location = New System.Drawing.Point(237, 35)
         Me.SLEStatusTrf.Name = "SLEStatusTrf"
         Me.SLEStatusTrf.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStatusTrf.Properties.ShowClearButton = False
@@ -3369,7 +3376,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'BtnViewTrf
         '
-        Me.BtnViewTrf.Location = New System.Drawing.Point(516, 9)
+        Me.BtnViewTrf.Location = New System.Drawing.Point(403, 24)
         Me.BtnViewTrf.LookAndFeel.SkinName = "Blue"
         Me.BtnViewTrf.Name = "BtnViewTrf"
         Me.BtnViewTrf.Size = New System.Drawing.Size(55, 20)
@@ -3378,7 +3385,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'LabelControl19
         '
-        Me.LabelControl19.Location = New System.Drawing.Point(320, 12)
+        Me.LabelControl19.Location = New System.Drawing.Point(196, 38)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl19.TabIndex = 8899
@@ -3407,19 +3414,19 @@ Partial Class FormSalesOrderSvcLevel
         'DEUntilTrf
         '
         Me.DEUntilTrf.EditValue = Nothing
-        Me.DEUntilTrf.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntilTrf.Location = New System.Drawing.Point(237, 9)
         Me.DEUntilTrf.Name = "DEUntilTrf"
         Me.DEUntilTrf.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilTrf.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntilTrf.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilTrf.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilTrf.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilTrf.Size = New System.Drawing.Size(156, 20)
         Me.DEUntilTrf.TabIndex = 8895
         '
         'DEFromTrf
         '
         Me.DEFromTrf.EditValue = Nothing
-        Me.DEFromTrf.Location = New System.Drawing.Point(58, 9)
+        Me.DEFromTrf.Location = New System.Drawing.Point(79, 9)
         Me.DEFromTrf.Name = "DEFromTrf"
         Me.DEFromTrf.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFromTrf.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -3430,7 +3437,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'LabelControl20
         '
-        Me.LabelControl20.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl20.Location = New System.Drawing.Point(196, 12)
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl20.TabIndex = 8893
@@ -3726,6 +3733,30 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPClosingSuratJalan.Size = New System.Drawing.Size(934, 311)
         Me.XTPClosingSuratJalan.Text = "Closing Surat Jalan"
         '
+        'LabelControl26
+        '
+        Me.LabelControl26.Location = New System.Drawing.Point(28, 38)
+        Me.LabelControl26.Name = "LabelControl26"
+        Me.LabelControl26.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl26.TabIndex = 8901
+        Me.LabelControl26.Text = "Type"
+        '
+        'LabelControl27
+        '
+        Me.LabelControl27.Location = New System.Drawing.Point(455, 31)
+        Me.LabelControl27.Name = "LabelControl27"
+        Me.LabelControl27.Size = New System.Drawing.Size(0, 13)
+        Me.LabelControl27.TabIndex = 8902
+        '
+        'LETypeRestock
+        '
+        Me.LETypeRestock.Location = New System.Drawing.Point(79, 35)
+        Me.LETypeRestock.MenuManager = Me.BarManager3PLMail
+        Me.LETypeRestock.Name = "LETypeRestock"
+        Me.LETypeRestock.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LETypeRestock.Size = New System.Drawing.Size(111, 20)
+        Me.LETypeRestock.TabIndex = 8903
+        '
         'FormSalesOrderSvcLevel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3875,6 +3906,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilNonStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromNonStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromNonStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LETypeRestock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -4224,4 +4256,7 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
     Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn69 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LETypeRestock As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl27 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl26 As DevExpress.XtraEditors.LabelControl
 End Class
