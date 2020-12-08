@@ -1069,6 +1069,8 @@
     End Function
 
     Sub view_interfaces()
+        WindowState = FormWindowState.Normal
+
         If SLUEType.EditValue.ToString = "1" Then
             'visible
             LCity.Visible = False
@@ -1197,6 +1199,8 @@
             SBApprove.Visible = False
             SBPrint.Visible = False
         End If
+
+        WindowState = FormWindowState.Maximized
     End Sub
 
     Private Sub SLUEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEType.EditValueChanged

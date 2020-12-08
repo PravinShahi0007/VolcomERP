@@ -62,6 +62,16 @@ Partial Class FormSalesReturnOrderMailDet
         Me.XTPreview = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.WebBrowser = New System.Windows.Forms.WebBrowser()
+        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.MESubject = New DevExpress.XtraEditors.MemoEdit()
+        Me.MECC = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.METo = New DevExpress.XtraEditors.MemoEdit()
+        Me.MEFrom = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPData = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -126,16 +136,6 @@ Partial Class FormSalesReturnOrderMailDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LType = New DevExpress.XtraEditors.LabelControl()
-        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.MEFrom = New DevExpress.XtraEditors.MemoEdit()
-        Me.METo = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.MECC = New DevExpress.XtraEditors.MemoEdit()
-        Me.MESubject = New DevExpress.XtraEditors.MemoEdit()
-        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUpdatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,6 +159,11 @@ Partial Class FormSalesReturnOrderMailDet
         Me.XTPreview.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        Me.XtraScrollableControl1.SuspendLayout()
+        CType(Me.MESubject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MECC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.METo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPData.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,11 +194,6 @@ Partial Class FormSalesReturnOrderMailDet
         Me.PanelControl7.SuspendLayout()
         CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraScrollableControl1.SuspendLayout()
-        CType(Me.MEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.METo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MECC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MESubject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -571,6 +571,100 @@ Partial Class FormSalesReturnOrderMailDet
         Me.WebBrowser.Name = "WebBrowser"
         Me.WebBrowser.Size = New System.Drawing.Size(947, 247)
         Me.WebBrowser.TabIndex = 99
+        '
+        'XtraScrollableControl1
+        '
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl12)
+        Me.XtraScrollableControl1.Controls.Add(Me.SBAttachment)
+        Me.XtraScrollableControl1.Controls.Add(Me.MESubject)
+        Me.XtraScrollableControl1.Controls.Add(Me.MECC)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl9)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl11)
+        Me.XtraScrollableControl1.Controls.Add(Me.METo)
+        Me.XtraScrollableControl1.Controls.Add(Me.MEFrom)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl10)
+        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(267, 291)
+        Me.XtraScrollableControl1.TabIndex = 100
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(11, 16)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl12.TabIndex = 99
+        Me.LabelControl12.Text = "Subject"
+        '
+        'SBAttachment
+        '
+        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
+        Me.SBAttachment.Location = New System.Drawing.Point(11, 254)
+        Me.SBAttachment.Name = "SBAttachment"
+        Me.SBAttachment.Size = New System.Drawing.Size(100, 23)
+        Me.SBAttachment.TabIndex = 99
+        Me.SBAttachment.Text = "Attachment"
+        '
+        'MESubject
+        '
+        Me.MESubject.Location = New System.Drawing.Point(11, 35)
+        Me.MESubject.Name = "MESubject"
+        Me.MESubject.Properties.ReadOnly = True
+        Me.MESubject.Size = New System.Drawing.Size(235, 35)
+        Me.MESubject.TabIndex = 99
+        '
+        'MECC
+        '
+        Me.MECC.Location = New System.Drawing.Point(11, 214)
+        Me.MECC.Name = "MECC"
+        Me.MECC.Properties.ReadOnly = True
+        Me.MECC.Size = New System.Drawing.Size(235, 30)
+        Me.MECC.TabIndex = 99
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(11, 80)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl9.TabIndex = 99
+        Me.LabelControl9.Text = "From"
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(11, 195)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(12, 13)
+        Me.LabelControl11.TabIndex = 99
+        Me.LabelControl11.Text = "Cc"
+        '
+        'METo
+        '
+        Me.METo.Location = New System.Drawing.Point(11, 156)
+        Me.METo.Name = "METo"
+        Me.METo.Properties.ReadOnly = True
+        Me.METo.Size = New System.Drawing.Size(235, 30)
+        Me.METo.TabIndex = 99
+        '
+        'MEFrom
+        '
+        Me.MEFrom.Location = New System.Drawing.Point(11, 99)
+        Me.MEFrom.Name = "MEFrom"
+        Me.MEFrom.Properties.ReadOnly = True
+        Me.MEFrom.Size = New System.Drawing.Size(235, 30)
+        Me.MEFrom.TabIndex = 99
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(11, 137)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(12, 13)
+        Me.LabelControl10.TabIndex = 99
+        Me.LabelControl10.Text = "To"
         '
         'XTPData
         '
@@ -1210,100 +1304,6 @@ Partial Class FormSalesReturnOrderMailDet
         Me.LType.TabIndex = 99
         Me.LType.Text = "Type"
         '
-        'XtraScrollableControl1
-        '
-        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl12)
-        Me.XtraScrollableControl1.Controls.Add(Me.SBAttachment)
-        Me.XtraScrollableControl1.Controls.Add(Me.MESubject)
-        Me.XtraScrollableControl1.Controls.Add(Me.MECC)
-        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl9)
-        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl11)
-        Me.XtraScrollableControl1.Controls.Add(Me.METo)
-        Me.XtraScrollableControl1.Controls.Add(Me.MEFrom)
-        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl10)
-        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(267, 291)
-        Me.XtraScrollableControl1.TabIndex = 100
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(11, 137)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(12, 13)
-        Me.LabelControl10.TabIndex = 99
-        Me.LabelControl10.Text = "To"
-        '
-        'MEFrom
-        '
-        Me.MEFrom.Location = New System.Drawing.Point(11, 99)
-        Me.MEFrom.Name = "MEFrom"
-        Me.MEFrom.Properties.ReadOnly = True
-        Me.MEFrom.Size = New System.Drawing.Size(235, 30)
-        Me.MEFrom.TabIndex = 99
-        '
-        'METo
-        '
-        Me.METo.Location = New System.Drawing.Point(11, 156)
-        Me.METo.Name = "METo"
-        Me.METo.Properties.ReadOnly = True
-        Me.METo.Size = New System.Drawing.Size(235, 30)
-        Me.METo.TabIndex = 99
-        '
-        'LabelControl11
-        '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(11, 195)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(12, 13)
-        Me.LabelControl11.TabIndex = 99
-        Me.LabelControl11.Text = "Cc"
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(11, 80)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl9.TabIndex = 99
-        Me.LabelControl9.Text = "From"
-        '
-        'MECC
-        '
-        Me.MECC.Location = New System.Drawing.Point(11, 214)
-        Me.MECC.Name = "MECC"
-        Me.MECC.Properties.ReadOnly = True
-        Me.MECC.Size = New System.Drawing.Size(235, 30)
-        Me.MECC.TabIndex = 99
-        '
-        'MESubject
-        '
-        Me.MESubject.Location = New System.Drawing.Point(11, 35)
-        Me.MESubject.Name = "MESubject"
-        Me.MESubject.Properties.ReadOnly = True
-        Me.MESubject.Size = New System.Drawing.Size(235, 35)
-        Me.MESubject.TabIndex = 99
-        '
-        'SBAttachment
-        '
-        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
-        Me.SBAttachment.Location = New System.Drawing.Point(11, 254)
-        Me.SBAttachment.Name = "SBAttachment"
-        Me.SBAttachment.Size = New System.Drawing.Size(100, 23)
-        Me.SBAttachment.TabIndex = 99
-        Me.SBAttachment.Text = "Attachment"
-        '
-        'LabelControl12
-        '
-        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Location = New System.Drawing.Point(11, 16)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(36, 13)
-        Me.LabelControl12.TabIndex = 99
-        Me.LabelControl12.Text = "Subject"
-        '
         'FormSalesReturnOrderMailDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1319,7 +1319,6 @@ Partial Class FormSalesReturnOrderMailDet
         Me.Name = "FormSalesReturnOrderMailDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pickup Order Detail"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -1344,6 +1343,12 @@ Partial Class FormSalesReturnOrderMailDet
         Me.XTPreview.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        Me.XtraScrollableControl1.ResumeLayout(False)
+        Me.XtraScrollableControl1.PerformLayout()
+        CType(Me.MESubject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MECC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.METo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPData.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1376,12 +1381,6 @@ Partial Class FormSalesReturnOrderMailDet
         Me.PanelControl7.PerformLayout()
         CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraScrollableControl1.ResumeLayout(False)
-        Me.XtraScrollableControl1.PerformLayout()
-        CType(Me.MEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.METo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MECC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MESubject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

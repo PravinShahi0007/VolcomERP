@@ -78,11 +78,15 @@ Public Class FormAccounting
         tb_m_comp_cat.comp_cat_name as company_category , tb_m_comp.comp_commission,
         IFNULL(tb_m_comp.id_acc_ap,0) AS `id_acc_ap`, 
         IFNULL(tb_m_comp.id_acc_dp,0) AS `id_acc_dp`,
+        IFNULL(tb_m_comp.id_acc_cabang_ap,0) AS `id_acc_cabang_ap`, 
+        IFNULL(tb_m_comp.id_acc_cabang_dp,0) AS `id_acc_cabang_dp`,
         IFNULL(tb_m_comp.id_acc_ar,0) AS `id_acc_ar`,
         IFNULL(tb_m_comp.id_acc_sales,0) AS `id_acc_sales`,
         IFNULL(tb_m_comp.id_acc_sales_return,0) AS `id_acc_sales_return`,
         CONCAT(ap.acc_name,' - ', ap.acc_description) AS `acc_ap`,
         CONCAT(dp.acc_name,' - ', dp.acc_description) AS `acc_dp`,
+        CONCAT(ap_cabang.acc_name,' - ', ap_cabang.acc_description) AS `acc_cabang_ap`,
+        CONCAT(dp_cabang.acc_name,' - ', dp_cabang.acc_description) AS `acc_cabang_dp`,
         CONCAT(ar.acc_name,' - ', ar.acc_description) AS `acc_ar`,
         CONCAT(sal.acc_name,' - ', sal.acc_description) AS `acc_sales`,
         CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`, cg.comp_group
@@ -90,6 +94,8 @@ Public Class FormAccounting
         INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat
         LEFT JOIN tb_a_acc ap ON ap.id_acc = tb_m_comp.id_acc_ap
         LEFT JOIN tb_a_acc dp ON dp.id_acc = tb_m_comp.id_acc_dp
+        LEFT JOIN tb_a_acc ap_cabang ON ap_cabang.id_acc = tb_m_comp.id_acc_cabang_ap
+        LEFT JOIN tb_a_acc dp_cabang ON dp_cabang.id_acc = tb_m_comp.id_acc_dp
         LEFT JOIN tb_a_acc ar ON ar.id_acc = tb_m_comp.id_acc_ar
         LEFT JOIN tb_a_acc sal ON sal.id_acc = tb_m_comp.id_acc_sales
         LEFT JOIN tb_a_acc sal_ret ON sal_ret.id_acc = tb_m_comp.id_acc_sales_return
@@ -108,11 +114,15 @@ Public Class FormAccounting
             tb_m_comp_cat.comp_cat_name as company_category , tb_m_comp_comm_extra.comp_commission,
             0 AS `id_acc_ap`, 
             0 AS `id_acc_dp`,
+            0 AS `id_acc_cabang_ap`, 
+            0 AS `id_acc_cabang_dp`,
             IFNULL(tb_m_comp_comm_extra.id_acc_ar,0) AS `id_acc_ar`,
             IFNULL(tb_m_comp_comm_extra.id_acc_sales,0) AS `id_acc_sales`,
             IFNULL(tb_m_comp_comm_extra.id_acc_sales_return,0) AS `id_acc_sales_return`,
             NULL AS `acc_ap`,
             NULL AS `acc_dp`,
+            NULL AS `acc_cabang_ap`,
+            NULL AS `acc_cabang_dp`,
             CONCAT(ar.acc_name,' - ', ar.acc_description) AS `acc_ar`,
             CONCAT(sal.acc_name,' - ', sal.acc_description) AS `acc_sales`,
             CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`, cg.comp_group
