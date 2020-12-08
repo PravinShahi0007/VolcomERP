@@ -290,4 +290,8 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub LabelControl4_Click(sender As Object, e As EventArgs) Handles LabelControl4.Click
+
+    End Sub
 End Class

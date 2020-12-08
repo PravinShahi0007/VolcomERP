@@ -37,16 +37,6 @@ Partial Class FormOLStoreRestock
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPOtherWH = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtSize = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtDescription = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtCode = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrintWH = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnRefreshOther = New DevExpress.XtraEditors.SimpleButton()
         Me.GCWH = New DevExpress.XtraGrid.GridControl()
         Me.GVWH = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,6 +48,19 @@ Partial Class FormOLStoreRestock
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreateOther = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrintWH = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRefreshOther = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtSize = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDescription = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPOnlineWH.SuspendLayout()
@@ -67,16 +70,18 @@ Partial Class FormOLStoreRestock
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         Me.XTPOtherWH.SuspendLayout()
+        CType(Me.GCWH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVWH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.GCWH, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVWH, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCData
@@ -261,118 +266,14 @@ Partial Class FormOLStoreRestock
         Me.XTPOtherWH.Size = New System.Drawing.Size(728, 361)
         Me.XTPOtherWH.Text = "Other WH"
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.LabelControl2)
-        Me.PanelControl1.Controls.Add(Me.TxtSize)
-        Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Controls.Add(Me.TxtDescription)
-        Me.PanelControl1.Controls.Add(Me.TxtCode)
-        Me.PanelControl1.Controls.Add(Me.LabelControl3)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(734, 72)
-        Me.PanelControl1.TabIndex = 1
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(446, 12)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(24, 16)
-        Me.LabelControl2.TabIndex = 11
-        Me.LabelControl2.Text = "Size"
-        '
-        'TxtSize
-        '
-        Me.TxtSize.EditValue = ""
-        Me.TxtSize.Location = New System.Drawing.Point(446, 34)
-        Me.TxtSize.Name = "TxtSize"
-        Me.TxtSize.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtSize.Properties.Appearance.Options.UseFont = True
-        Me.TxtSize.Properties.ReadOnly = True
-        Me.TxtSize.Size = New System.Drawing.Size(52, 22)
-        Me.TxtSize.TabIndex = 10
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(144, 12)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(63, 16)
-        Me.LabelControl1.TabIndex = 9
-        Me.LabelControl1.Text = "Description"
-        '
-        'TxtDescription
-        '
-        Me.TxtDescription.EditValue = ""
-        Me.TxtDescription.Location = New System.Drawing.Point(144, 34)
-        Me.TxtDescription.Name = "TxtDescription"
-        Me.TxtDescription.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDescription.Properties.Appearance.Options.UseFont = True
-        Me.TxtDescription.Properties.ReadOnly = True
-        Me.TxtDescription.Size = New System.Drawing.Size(296, 22)
-        Me.TxtDescription.TabIndex = 8
-        '
-        'TxtCode
-        '
-        Me.TxtCode.EditValue = ""
-        Me.TxtCode.Location = New System.Drawing.Point(12, 34)
-        Me.TxtCode.Name = "TxtCode"
-        Me.TxtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCode.Properties.Appearance.Options.UseFont = True
-        Me.TxtCode.Properties.ReadOnly = True
-        Me.TxtCode.Size = New System.Drawing.Size(126, 22)
-        Me.TxtCode.TabIndex = 7
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 12)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(29, 16)
-        Me.LabelControl3.TabIndex = 6
-        Me.LabelControl3.Text = "Code"
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.BtnPrintWH)
-        Me.PanelControl3.Controls.Add(Me.BtnRefreshOther)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(728, 44)
-        Me.PanelControl3.TabIndex = 21
-        '
-        'BtnPrintWH
-        '
-        Me.BtnPrintWH.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrintWH.Image = CType(resources.GetObject("BtnPrintWH.Image"), System.Drawing.Image)
-        Me.BtnPrintWH.Location = New System.Drawing.Point(543, 2)
-        Me.BtnPrintWH.Name = "BtnPrintWH"
-        Me.BtnPrintWH.Size = New System.Drawing.Size(83, 40)
-        Me.BtnPrintWH.TabIndex = 1
-        Me.BtnPrintWH.Text = "Print"
-        '
-        'BtnRefreshOther
-        '
-        Me.BtnRefreshOther.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnRefreshOther.Image = CType(resources.GetObject("BtnRefreshOther.Image"), System.Drawing.Image)
-        Me.BtnRefreshOther.Location = New System.Drawing.Point(626, 2)
-        Me.BtnRefreshOther.Name = "BtnRefreshOther"
-        Me.BtnRefreshOther.Size = New System.Drawing.Size(100, 40)
-        Me.BtnRefreshOther.TabIndex = 0
-        Me.BtnRefreshOther.Text = "Refresh"
-        '
         'GCWH
         '
         Me.GCWH.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCWH.Location = New System.Drawing.Point(0, 44)
+        Me.GCWH.Location = New System.Drawing.Point(0, 55)
         Me.GCWH.MainView = Me.GVWH
         Me.GCWH.Name = "GCWH"
         Me.GCWH.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCWH.Size = New System.Drawing.Size(728, 285)
+        Me.GCWH.Size = New System.Drawing.Size(728, 274)
         Me.GCWH.TabIndex = 22
         Me.GCWH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWH})
         '
@@ -488,6 +389,142 @@ Partial Class FormOLStoreRestock
         Me.BCreateOther.TabIndex = 23
         Me.BCreateOther.Text = "Restock"
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.PanelControl4)
+        Me.PanelControl3.Controls.Add(Me.BtnPrintWH)
+        Me.PanelControl3.Controls.Add(Me.BtnRefreshOther)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(728, 55)
+        Me.PanelControl3.TabIndex = 21
+        '
+        'BtnPrintWH
+        '
+        Me.BtnPrintWH.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrintWH.Image = CType(resources.GetObject("BtnPrintWH.Image"), System.Drawing.Image)
+        Me.BtnPrintWH.Location = New System.Drawing.Point(543, 2)
+        Me.BtnPrintWH.Name = "BtnPrintWH"
+        Me.BtnPrintWH.Size = New System.Drawing.Size(83, 51)
+        Me.BtnPrintWH.TabIndex = 1
+        Me.BtnPrintWH.Text = "Print"
+        '
+        'BtnRefreshOther
+        '
+        Me.BtnRefreshOther.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefreshOther.Image = CType(resources.GetObject("BtnRefreshOther.Image"), System.Drawing.Image)
+        Me.BtnRefreshOther.Location = New System.Drawing.Point(626, 2)
+        Me.BtnRefreshOther.Name = "BtnRefreshOther"
+        Me.BtnRefreshOther.Size = New System.Drawing.Size(100, 51)
+        Me.BtnRefreshOther.TabIndex = 0
+        Me.BtnRefreshOther.Text = "Refresh"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
+        Me.PanelControl1.Controls.Add(Me.TxtSize)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.TxtDescription)
+        Me.PanelControl1.Controls.Add(Me.TxtCode)
+        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(734, 72)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(446, 12)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(24, 16)
+        Me.LabelControl2.TabIndex = 11
+        Me.LabelControl2.Text = "Size"
+        '
+        'TxtSize
+        '
+        Me.TxtSize.EditValue = ""
+        Me.TxtSize.Location = New System.Drawing.Point(446, 34)
+        Me.TxtSize.Name = "TxtSize"
+        Me.TxtSize.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtSize.Properties.Appearance.Options.UseFont = True
+        Me.TxtSize.Properties.ReadOnly = True
+        Me.TxtSize.Size = New System.Drawing.Size(52, 22)
+        Me.TxtSize.TabIndex = 10
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(144, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(63, 16)
+        Me.LabelControl1.TabIndex = 9
+        Me.LabelControl1.Text = "Description"
+        '
+        'TxtDescription
+        '
+        Me.TxtDescription.EditValue = ""
+        Me.TxtDescription.Location = New System.Drawing.Point(144, 34)
+        Me.TxtDescription.Name = "TxtDescription"
+        Me.TxtDescription.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDescription.Properties.Appearance.Options.UseFont = True
+        Me.TxtDescription.Properties.ReadOnly = True
+        Me.TxtDescription.Size = New System.Drawing.Size(296, 22)
+        Me.TxtDescription.TabIndex = 8
+        '
+        'TxtCode
+        '
+        Me.TxtCode.EditValue = ""
+        Me.TxtCode.Location = New System.Drawing.Point(12, 34)
+        Me.TxtCode.Name = "TxtCode"
+        Me.TxtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCode.Properties.Appearance.Options.UseFont = True
+        Me.TxtCode.Properties.ReadOnly = True
+        Me.TxtCode.Size = New System.Drawing.Size(126, 22)
+        Me.TxtCode.TabIndex = 7
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 12)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(29, 16)
+        Me.LabelControl3.TabIndex = 6
+        Me.LabelControl3.Text = "Code"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.LabelControl5)
+        Me.PanelControl4.Controls.Add(Me.LabelControl4)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl4.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.PanelControl4.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(413, 51)
+        Me.PanelControl4.TabIndex = 2
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(10, 16)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(40, 15)
+        Me.LabelControl4.TabIndex = 0
+        Me.LabelControl4.Text = "NOTE : "
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(60, 12)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(316, 26)
+        Me.LabelControl5.TabIndex = 1
+        Me.LabelControl5.Text = "Sebelum melakukan restock harap berkoordinasi dengan WH " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "tentang kondisi produk." &
+    ""
+        '
         'FormOLStoreRestock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -508,17 +545,20 @@ Partial Class FormOLStoreRestock
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.XTPOtherWH.ResumeLayout(False)
+        CType(Me.GCWH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVWH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        CType(Me.GCWH, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVWH, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -561,4 +601,7 @@ Partial Class FormOLStoreRestock
     Friend WithEvents BtnPrintWH As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnRefreshOther As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BCreateOther As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class
