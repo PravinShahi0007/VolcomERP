@@ -2384,7 +2384,7 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
 
                         'completed
                         Dim stt As ClassFGTrf = New ClassFGTrf()
-                        stt.changeStatus(id_so, "6", "1")
+                        stt.changeStatus(id_so, "6")
 
                         'final comment
                         Dim query_comment As String = "INSERT INTO tb_report_mark_final_comment(report_mark_type, id_report, id_report_status, id_user, final_comment, final_comment_date, ip_user) VALUES "
@@ -2932,7 +2932,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
         ElseIf report_mark_type = "57" Then
             'TRANSFER
             Dim stt As ClassFGTrf = New ClassFGTrf()
-            stt.changeStatus(id_report, id_status_reportx, "1")
+            stt.changeStatus(id_report, id_status_reportx)
             'infoCustom("Status changed.")
 
             If form_origin = "FormFGTrfDet" Then
@@ -3840,7 +3840,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 
                         'completed
                         Dim stt As ClassFGTrf = New ClassFGTrf()
-                        stt.changeStatus(id_so, "6", "1")
+                        stt.changeStatus(id_so, "6")
 
                         'final comment
                         Dim query_comment As String = "INSERT INTO tb_report_mark_final_comment(report_mark_type, id_report, id_report_status, id_user, final_comment, final_comment_date, ip_user) VALUES "
