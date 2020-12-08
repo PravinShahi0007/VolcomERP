@@ -294,6 +294,10 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         Else
             'tidak bisa edit
             GVData.OptionsBehavior.Editable = False
+            '
+            SLEUnit.Enabled = False
+            DEDateReff.Enabled = False
+            '
             SLEPayFrom.Enabled = False
             LEPaymentMethod.Enabled = False
             CEPayLater.Enabled = False
@@ -469,6 +473,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         Report.LNote.Text = MENote.Text.ToString
         Report.LabelPaymentMethod.Text = LEPaymentMethod.Text
         Report.LabelPaymentStatus.Text = TxtPaymentStatus.Text
+        Report.LUnit.Text = SLEUnit.Text
 
         If CEPayLater.EditValue = True Then
             Report.LabelBeneficiary.Text = TxtCompName.Text
