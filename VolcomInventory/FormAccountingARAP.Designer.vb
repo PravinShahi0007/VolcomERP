@@ -296,7 +296,7 @@ Partial Class FormAccountingARAP
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 488)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 527)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(606, 39)
         Me.PanelControl1.TabIndex = 8
@@ -558,7 +558,7 @@ Partial Class FormAccountingARAP
         Me.XTCSetup.Location = New System.Drawing.Point(0, 48)
         Me.XTCSetup.Name = "XTCSetup"
         Me.XTCSetup.SelectedTabPage = Me.XTPSales
-        Me.XTCSetup.Size = New System.Drawing.Size(606, 440)
+        Me.XTCSetup.Size = New System.Drawing.Size(606, 479)
         Me.XTCSetup.TabIndex = 26
         Me.XTCSetup.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSales, Me.XTPPurchase})
         '
@@ -567,7 +567,7 @@ Partial Class FormAccountingARAP
         Me.XTPSales.Controls.Add(Me.GroupControl2)
         Me.XTPSales.Controls.Add(Me.GroupControl1)
         Me.XTPSales.Name = "XTPSales"
-        Me.XTPSales.Size = New System.Drawing.Size(600, 412)
+        Me.XTPSales.Size = New System.Drawing.Size(600, 451)
         Me.XTPSales.Text = "Sales"
         '
         'GroupControl2
@@ -578,7 +578,7 @@ Partial Class FormAccountingARAP
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 164)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(600, 248)
+        Me.GroupControl2.Size = New System.Drawing.Size(600, 287)
         Me.GroupControl2.TabIndex = 24
         Me.GroupControl2.Text = "Other Discount"
         '
@@ -589,7 +589,7 @@ Partial Class FormAccountingARAP
         Me.GCOtherDiscount.MainView = Me.GVOtherDiscount
         Me.GCOtherDiscount.Name = "GCOtherDiscount"
         Me.GCOtherDiscount.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCOtherDiscount.Size = New System.Drawing.Size(578, 210)
+        Me.GCOtherDiscount.Size = New System.Drawing.Size(578, 249)
         Me.GCOtherDiscount.TabIndex = 1
         Me.GCOtherDiscount.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOtherDiscount})
         '
@@ -960,7 +960,7 @@ Partial Class FormAccountingARAP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(606, 527)
+        Me.ClientSize = New System.Drawing.Size(606, 566)
         Me.Controls.Add(Me.XTCSetup)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)

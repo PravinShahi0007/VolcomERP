@@ -193,7 +193,7 @@
         If id_comp = "-1" Then
             warningCustom("Store not found")
         Else
-            Dim query As String = "UPDATE tb_m_comp SET id_acc_sales=" + id_acc_sales + ", id_acc_sales_return=" + id_acc_sales_return + ",id_acc_ar=" + id_acc_ar + ", id_acc_ap=" + id_acc_ap + ", id_acc_dp=" + id_acc_dp + ", id_acc_ap_cabang=" + id_acc_ap_cabang + ", id_acc_dp_cabang=" + id_acc_dp_cabang + ", comp_commission='" + comp_commission + "' WHERE id_comp='" + id_comp + "' "
+            Dim query As String = "UPDATE tb_m_comp SET id_acc_sales=" + id_acc_sales + ", id_acc_sales_return=" + id_acc_sales_return + ",id_acc_ar=" + id_acc_ar + ", id_acc_ap=" + id_acc_ap + ", id_acc_dp=" + id_acc_dp + ", id_acc_cabang_ap=" + id_acc_ap_cabang + ", id_acc_cabang_dp=" + id_acc_dp_cabang + ", comp_commission='" + comp_commission + "' WHERE id_comp='" + id_comp + "' "
             execute_non_query(query, True, "", "", "", "")
             FormAccounting.viewCompany()
             FormAccounting.GVCompany.FocusedRowHandle = find_row(FormAccounting.GVCompany, "id_comp", id_comp)
