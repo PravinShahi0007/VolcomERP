@@ -54,6 +54,9 @@
         'VS sales
         viewCoaTag()
 
+        'cabang
+        load_unit()
+
         DECAFrom.EditValue = Date.Parse(Now)
         DECATo.EditValue = Date.Parse(Now)
     End Sub
@@ -193,9 +196,7 @@ WHERE DATE(py.date_payment) >= '" & Date.Parse(DEBBKFrom.EditValue.ToString).ToS
     End Sub
 
     Sub load_unit()
-        Dim query As String = "SELECT 0 AS id_coa_tag,'ALL' AS tag_code,'ALL' AS tag_description 
-UNION ALL
-SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
+        Dim query As String = "SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         '        query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
         'UNION ALL
         'SELECT ad.`id_comp`,c.`comp_number`,c.`comp_name` FROM `tb_a_acc_trans_det` ad
@@ -464,6 +465,9 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         If Not SLEVendorExpense.EditValue.ToString = "0" Then
             where_string = "AND e.id_comp='" & SLEVendorExpense.EditValue.ToString & "' "
         End If
+
+        'cabang
+        where_string += " AND e.id_coa_tag='" & SLEUnitExpense.EditValue.ToString & "' "
 
         If SLEPayTypeExpense.EditValue.ToString = "2" Then 'payment
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "

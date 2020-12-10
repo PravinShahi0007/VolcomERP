@@ -249,7 +249,8 @@ GROUP BY pnd.kurs"
                             newRow("id_currency") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_currency").ToString
                             newRow("currency") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "currency").ToString
                             newRow("val_bef_kurs") = If(FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_currency").ToString = "1", FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "value_bef_kurs"))
-                            newRow("value_view") = If(FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance") < 0, -FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance"))
+                            'newRow("value_view") = If(FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance") < 0, -FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance"))
+                            newRow("value_view") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
                             newRow("balance_due") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
                             newRow("note") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "type").ToString & " - " & FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "inv_number").ToString
                             TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
@@ -1315,6 +1316,8 @@ GROUP BY pnd.kurs"
     Private Sub FormBankWithdrawalDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If report_mark_type = "139" Or report_mark_type = "202" Then
             id_coa_tag = FormBankWithdrawal.GVPOList.GetRowCellValue(0, "id_coa_tag").ToString
+        ElseIf report_mark_type = "157" Then 'expense
+            id_coa_tag = FormBankWithdrawal.GVExpense.GetRowCellValue(0, "id_coa_tag").ToString
         End If
 
         form_load()
@@ -1354,11 +1357,13 @@ WHERE pnd.id_pn='" & id_payment & "'"
 
     Sub load_pay_from()
         Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        'If id_coa_tag = "1" Then
-        '    query += " AND id_coa_type='1' "
-        'Else
-        '    query += " AND id_coa_type='2' "
-        'End If
+        If report_mark_type = "157" Then 'expense
+            If id_coa_tag = "1" Then
+                query += " AND id_coa_type='1' "
+            Else
+                query += " AND id_coa_type='2' "
+            End If
+        End If
         query += " AND id_coa_type='1' "
         viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
     End Sub
@@ -1562,6 +1567,8 @@ WHERE py.`id_pn`='" & id_payment & "'"
 
                     If report_mark_type = "139" Or report_mark_type = "202" Then
                         id_coa_tag = FormBankWithdrawal.GVPOList.GetRowCellValue(0, "id_coa_tag").ToString
+                    ElseIf report_mark_type = "157" Then 'expense
+                        id_coa_tag = FormBankWithdrawal.GVExpense.GetRowCellValue(0, "id_coa_tag").ToString
                     End If
 
                     Dim query As String = "INSERT INTO tb_pn(report_mark_type,kurs,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,date_payment,value,note,is_book_transfer,id_report_status,id_coa_tag,id_acc_trf_fee,trf_fee,is_auto_debet) 

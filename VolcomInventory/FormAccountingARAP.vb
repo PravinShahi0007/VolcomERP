@@ -1,6 +1,5 @@
 ﻿Public Class FormAccountingARAP
     Public id_comp As String = "-1"
-    Public id_coa_type As String = "1"
 
     Private Sub FormAccountingARAP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCOA()
@@ -72,6 +71,15 @@
             TxtARCode.Text = getAccNo(id_ar)
         End If
 
+        Dim id_ar_cabang As String = FormAccounting.GVCompany.GetFocusedRowCellValue("id_acc_cabang_ar").ToString
+        If id_ar = "0" Then
+            SLEARCabang.EditValue = Nothing
+            TxtARCodeCabang.Text = ""
+        Else
+            SLEARCabang.EditValue = id_ar_cabang
+            TxtARCodeCabang.Text = getAccNo(id_ar_cabang)
+        End If
+
         viewOtherDiscount()
     End Sub
 
@@ -102,12 +110,19 @@
     Sub viewCOA()
         Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, 
         a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
-        FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 AND a.id_coa_type='" + id_coa_type + "' "
+        FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 AND  AND a.id_coa_type='1' "
         viewSearchLookupQuery(SLESales, query, "id_acc", "acc_description", "id_acc")
         viewSearchLookupQuery(SLESalesReturn, query, "id_acc", "acc_description", "id_acc")
         viewSearchLookupQuery(SLEAR, query, "id_acc", "acc_description", "id_acc")
         viewSearchLookupQuery(SLEAP, query, "id_acc", "acc_description", "id_acc")
         viewSearchLookupQuery(SLEDP, query, "id_acc", "acc_description", "id_acc")
+        'cabang
+        Dim q_cabang As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, 
+        a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
+        FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 AND a.id_coa_type='2' "
+        viewSearchLookupQuery(SLEARCabang, q_cabang, "id_acc", "acc_description", "id_acc")
+        viewSearchLookupQuery(SLEAPCabang, q_cabang, "id_acc", "acc_description", "id_acc")
+        viewSearchLookupQuery(SLEDPCabang, q_cabang, "id_acc", "acc_description", "id_acc")
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
@@ -185,7 +200,12 @@
             id_acc_ar = SLEAR.EditValue.ToString
         End If
 
-
+        Dim id_acc_ar_cabang As String = ""
+        If SLEARCabang.EditValue = Nothing Then
+            id_acc_ar_cabang = "NULL"
+        Else
+            id_acc_ar_cabang = SLEARCabang.EditValue.ToString
+        End If
 
         'discount
         Dim comp_commission As String = decimalSQL(TxtStoreDiscount.EditValue.ToString)
@@ -193,7 +213,7 @@
         If id_comp = "-1" Then
             warningCustom("Store not found")
         Else
-            Dim query As String = "UPDATE tb_m_comp SET id_acc_sales=" + id_acc_sales + ", id_acc_sales_return=" + id_acc_sales_return + ",id_acc_ar=" + id_acc_ar + ", id_acc_ap=" + id_acc_ap + ", id_acc_dp=" + id_acc_dp + ", id_acc_cabang_ap=" + id_acc_ap_cabang + ", id_acc_cabang_dp=" + id_acc_dp_cabang + ", comp_commission='" + comp_commission + "' WHERE id_comp='" + id_comp + "' "
+            Dim query As String = "UPDATE tb_m_comp SET id_acc_sales=" + id_acc_sales + ", id_acc_sales_return=" + id_acc_sales_return + ",id_acc_ar=" + id_acc_ar + ",id_acc_cabang_ar=" + id_acc_ar_cabang + ", id_acc_ap=" + id_acc_ap + ", id_acc_dp=" + id_acc_dp + ", id_acc_cabang_ap=" + id_acc_ap_cabang + ", id_acc_cabang_dp=" + id_acc_dp_cabang + ", comp_commission='" + comp_commission + "' WHERE id_comp='" + id_comp + "' "
             execute_non_query(query, True, "", "", "", "")
             FormAccounting.viewCompany()
             FormAccounting.GVCompany.FocusedRowHandle = find_row(FormAccounting.GVCompany, "id_comp", id_comp)
@@ -300,5 +320,15 @@
         FormAccountingARAPOtherDiscount.is_for_gwp = "1"
         FormAccountingARAPOtherDiscount.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton2_Click_2(sender As Object, e As EventArgs) Handles BClearAPCabang.Click
+        SLEAPCabang.EditValue = Nothing
+        TxtAPCodeCabang.Text = ""
+    End Sub
+
+    Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles BClearDPCabang.Click
+        SLEDPCabang.EditValue = Nothing
+        TxtDPCodeCabang.Text = ""
     End Sub
 End Class
