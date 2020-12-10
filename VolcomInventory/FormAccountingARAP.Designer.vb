@@ -100,7 +100,7 @@ Partial Class FormAccountingARAP
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BClearAPCabang = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtDPCodeCabang = New DevExpress.XtraEditors.TextEdit()
         Me.SLEDPCabang = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -108,8 +108,16 @@ Partial Class FormAccountingARAP
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BClearDPCabang = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtAPCodeCabang = New DevExpress.XtraEditors.TextEdit()
+        Me.SLEARCabang = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.BClearARCabang = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtARCodeCabang = New DevExpress.XtraEditors.TextEdit()
         CType(Me.TxtCompNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,6 +159,9 @@ Partial Class FormAccountingARAP
         CType(Me.SLEDPCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAPCodeCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEARCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtARCodeCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -296,7 +307,7 @@ Partial Class FormAccountingARAP
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 527)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 590)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(606, 39)
         Me.PanelControl1.TabIndex = 8
@@ -387,7 +398,7 @@ Partial Class FormAccountingARAP
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(113, 57)
+        Me.LabelControl5.Location = New System.Drawing.Point(113, 104)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl5.TabIndex = 14
@@ -395,7 +406,7 @@ Partial Class FormAccountingARAP
         '
         'SLESales
         '
-        Me.SLESales.Location = New System.Drawing.Point(216, 76)
+        Me.SLESales.Location = New System.Drawing.Point(216, 123)
         Me.SLESales.Name = "SLESales"
         Me.SLESales.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESales.Properties.NullText = ""
@@ -437,7 +448,7 @@ Partial Class FormAccountingARAP
         '
         'BtnClearSales
         '
-        Me.BtnClearSales.Location = New System.Drawing.Point(476, 73)
+        Me.BtnClearSales.Location = New System.Drawing.Point(476, 120)
         Me.BtnClearSales.Name = "BtnClearSales"
         Me.BtnClearSales.Size = New System.Drawing.Size(42, 23)
         Me.BtnClearSales.TabIndex = 16
@@ -445,7 +456,7 @@ Partial Class FormAccountingARAP
         '
         'SLESalesReturn
         '
-        Me.SLESalesReturn.Location = New System.Drawing.Point(216, 121)
+        Me.SLESalesReturn.Location = New System.Drawing.Point(216, 168)
         Me.SLESalesReturn.Name = "SLESalesReturn"
         Me.SLESalesReturn.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESalesReturn.Properties.NullText = ""
@@ -487,7 +498,7 @@ Partial Class FormAccountingARAP
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(113, 102)
+        Me.LabelControl6.Location = New System.Drawing.Point(113, 149)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl6.TabIndex = 18
@@ -495,7 +506,7 @@ Partial Class FormAccountingARAP
         '
         'SimpleButton1
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(476, 119)
+        Me.SimpleButton1.Location = New System.Drawing.Point(476, 166)
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(42, 23)
         Me.SimpleButton1.TabIndex = 19
@@ -512,7 +523,7 @@ Partial Class FormAccountingARAP
         'TxtSalesCode
         '
         Me.TxtSalesCode.Enabled = False
-        Me.TxtSalesCode.Location = New System.Drawing.Point(113, 76)
+        Me.TxtSalesCode.Location = New System.Drawing.Point(113, 123)
         Me.TxtSalesCode.Name = "TxtSalesCode"
         Me.TxtSalesCode.Size = New System.Drawing.Size(100, 20)
         Me.TxtSalesCode.TabIndex = 21
@@ -520,7 +531,7 @@ Partial Class FormAccountingARAP
         'TxtSalesReturnCode
         '
         Me.TxtSalesReturnCode.Enabled = False
-        Me.TxtSalesReturnCode.Location = New System.Drawing.Point(113, 121)
+        Me.TxtSalesReturnCode.Location = New System.Drawing.Point(113, 168)
         Me.TxtSalesReturnCode.Name = "TxtSalesReturnCode"
         Me.TxtSalesReturnCode.Size = New System.Drawing.Size(100, 20)
         Me.TxtSalesReturnCode.TabIndex = 22
@@ -558,7 +569,7 @@ Partial Class FormAccountingARAP
         Me.XTCSetup.Location = New System.Drawing.Point(0, 48)
         Me.XTCSetup.Name = "XTCSetup"
         Me.XTCSetup.SelectedTabPage = Me.XTPSales
-        Me.XTCSetup.Size = New System.Drawing.Size(606, 479)
+        Me.XTCSetup.Size = New System.Drawing.Size(606, 542)
         Me.XTCSetup.TabIndex = 26
         Me.XTCSetup.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSales, Me.XTPPurchase})
         '
@@ -567,7 +578,7 @@ Partial Class FormAccountingARAP
         Me.XTPSales.Controls.Add(Me.GroupControl2)
         Me.XTPSales.Controls.Add(Me.GroupControl1)
         Me.XTPSales.Name = "XTPSales"
-        Me.XTPSales.Size = New System.Drawing.Size(600, 451)
+        Me.XTPSales.Size = New System.Drawing.Size(600, 514)
         Me.XTPSales.Text = "Sales"
         '
         'GroupControl2
@@ -576,9 +587,9 @@ Partial Class FormAccountingARAP
         Me.GroupControl2.Controls.Add(Me.GCOtherDiscount)
         Me.GroupControl2.Controls.Add(Me.PanelControl3)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 164)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 203)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(600, 287)
+        Me.GroupControl2.Size = New System.Drawing.Size(600, 311)
         Me.GroupControl2.TabIndex = 24
         Me.GroupControl2.Text = "Other Discount"
         '
@@ -589,7 +600,7 @@ Partial Class FormAccountingARAP
         Me.GCOtherDiscount.MainView = Me.GVOtherDiscount
         Me.GCOtherDiscount.Name = "GCOtherDiscount"
         Me.GCOtherDiscount.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCOtherDiscount.Size = New System.Drawing.Size(578, 249)
+        Me.GCOtherDiscount.Size = New System.Drawing.Size(578, 273)
         Me.GCOtherDiscount.TabIndex = 1
         Me.GCOtherDiscount.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOtherDiscount})
         '
@@ -753,6 +764,10 @@ Partial Class FormAccountingARAP
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.SLEARCabang)
+        Me.GroupControl1.Controls.Add(Me.LabelControl11)
+        Me.GroupControl1.Controls.Add(Me.BClearARCabang)
+        Me.GroupControl1.Controls.Add(Me.TxtARCodeCabang)
         Me.GroupControl1.Controls.Add(Me.LabelControl8)
         Me.GroupControl1.Controls.Add(Me.TxtStoreDiscount)
         Me.GroupControl1.Controls.Add(Me.LabelControl7)
@@ -771,7 +786,7 @@ Partial Class FormAccountingARAP
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(600, 164)
+        Me.GroupControl1.Size = New System.Drawing.Size(600, 203)
         Me.GroupControl1.TabIndex = 23
         Me.GroupControl1.Text = "Default"
         '
@@ -806,11 +821,11 @@ Partial Class FormAccountingARAP
         '
         Me.XTPPurchase.Controls.Add(Me.SLEAPCabang)
         Me.XTPPurchase.Controls.Add(Me.LabelControl9)
-        Me.XTPPurchase.Controls.Add(Me.SimpleButton2)
+        Me.XTPPurchase.Controls.Add(Me.BClearAPCabang)
         Me.XTPPurchase.Controls.Add(Me.LabelControl10)
         Me.XTPPurchase.Controls.Add(Me.TxtDPCodeCabang)
         Me.XTPPurchase.Controls.Add(Me.SLEDPCabang)
-        Me.XTPPurchase.Controls.Add(Me.SimpleButton3)
+        Me.XTPPurchase.Controls.Add(Me.BClearDPCabang)
         Me.XTPPurchase.Controls.Add(Me.TxtAPCodeCabang)
         Me.XTPPurchase.Controls.Add(Me.SLEAP)
         Me.XTPPurchase.Controls.Add(Me.LabelControl2)
@@ -821,7 +836,7 @@ Partial Class FormAccountingARAP
         Me.XTPPurchase.Controls.Add(Me.BClearDP)
         Me.XTPPurchase.Controls.Add(Me.TxtAPCode)
         Me.XTPPurchase.Name = "XTPPurchase"
-        Me.XTPPurchase.Size = New System.Drawing.Size(600, 412)
+        Me.XTPPurchase.Size = New System.Drawing.Size(600, 514)
         Me.XTPPurchase.Text = "Purchase"
         '
         'SLEAPCabang
@@ -874,13 +889,13 @@ Partial Class FormAccountingARAP
         Me.LabelControl9.TabIndex = 25
         Me.LabelControl9.Text = "Account Payable Cabang"
         '
-        'SimpleButton2
+        'BClearAPCabang
         '
-        Me.SimpleButton2.Location = New System.Drawing.Point(464, 141)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(42, 23)
-        Me.SimpleButton2.TabIndex = 27
-        Me.SimpleButton2.Text = "clear"
+        Me.BClearAPCabang.Location = New System.Drawing.Point(464, 141)
+        Me.BClearAPCabang.Name = "BClearAPCabang"
+        Me.BClearAPCabang.Size = New System.Drawing.Size(42, 23)
+        Me.BClearAPCabang.TabIndex = 27
+        Me.BClearAPCabang.Text = "clear"
         '
         'LabelControl10
         '
@@ -940,13 +955,13 @@ Partial Class FormAccountingARAP
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 1
         '
-        'SimpleButton3
+        'BClearDPCabang
         '
-        Me.SimpleButton3.Location = New System.Drawing.Point(464, 192)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(42, 23)
-        Me.SimpleButton3.TabIndex = 30
-        Me.SimpleButton3.Text = "clear"
+        Me.BClearDPCabang.Location = New System.Drawing.Point(464, 192)
+        Me.BClearDPCabang.Name = "BClearDPCabang"
+        Me.BClearDPCabang.Size = New System.Drawing.Size(42, 23)
+        Me.BClearDPCabang.TabIndex = 30
+        Me.BClearDPCabang.Text = "clear"
         '
         'TxtAPCodeCabang
         '
@@ -956,11 +971,77 @@ Partial Class FormAccountingARAP
         Me.TxtAPCodeCabang.Size = New System.Drawing.Size(100, 20)
         Me.TxtAPCodeCabang.TabIndex = 31
         '
+        'SLEARCabang
+        '
+        Me.SLEARCabang.Location = New System.Drawing.Point(216, 78)
+        Me.SLEARCabang.Name = "SLEARCabang"
+        Me.SLEARCabang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEARCabang.Properties.NullText = ""
+        Me.SLEARCabang.Properties.ShowClearButton = False
+        Me.SLEARCabang.Properties.View = Me.GridView7
+        Me.SLEARCabang.Size = New System.Drawing.Size(257, 20)
+        Me.SLEARCabang.TabIndex = 24
+        '
+        'GridView7
+        '
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
+        Me.GridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView7.Name = "GridView7"
+        Me.GridView7.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView7.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Id"
+        Me.GridColumn22.FieldName = "id_acc"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Account"
+        Me.GridColumn23.FieldName = "acc_name"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 0
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Description"
+        Me.GridColumn24.FieldName = "acc_description"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 1
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(113, 59)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(142, 13)
+        Me.LabelControl11.TabIndex = 25
+        Me.LabelControl11.Text = "Account Receivable (Cabang)"
+        '
+        'BClearARCabang
+        '
+        Me.BClearARCabang.Location = New System.Drawing.Point(476, 76)
+        Me.BClearARCabang.Name = "BClearARCabang"
+        Me.BClearARCabang.Size = New System.Drawing.Size(42, 23)
+        Me.BClearARCabang.TabIndex = 26
+        Me.BClearARCabang.Text = "clear"
+        '
+        'TxtARCodeCabang
+        '
+        Me.TxtARCodeCabang.Enabled = False
+        Me.TxtARCodeCabang.Location = New System.Drawing.Point(113, 78)
+        Me.TxtARCodeCabang.Name = "TxtARCodeCabang"
+        Me.TxtARCodeCabang.Size = New System.Drawing.Size(100, 20)
+        Me.TxtARCodeCabang.TabIndex = 27
+        '
         'FormAccountingARAP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(606, 566)
+        Me.ClientSize = New System.Drawing.Size(606, 629)
         Me.Controls.Add(Me.XTCSetup)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -1012,6 +1093,9 @@ Partial Class FormAccountingARAP
         CType(Me.SLEDPCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAPCodeCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEARCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtARCodeCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1096,7 +1180,7 @@ Partial Class FormAccountingARAP
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BClearAPCabang As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtDPCodeCabang As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SLEDPCabang As DevExpress.XtraEditors.SearchLookUpEdit
@@ -1104,6 +1188,14 @@ Partial Class FormAccountingARAP
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BClearDPCabang As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtAPCodeCabang As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SLEARCabang As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BClearARCabang As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtARCodeCabang As DevExpress.XtraEditors.TextEdit
 End Class
