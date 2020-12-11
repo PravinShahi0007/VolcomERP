@@ -54,6 +54,9 @@
         'VS sales
         viewCoaTag()
 
+        'cabang
+        load_unit()
+
         DECAFrom.EditValue = Date.Parse(Now)
         DECATo.EditValue = Date.Parse(Now)
     End Sub
@@ -190,6 +193,17 @@ WHERE DATE(py.date_payment) >= '" & Date.Parse(DEBBKFrom.EditValue.ToString).ToS
         Dim query As String = "SELECT ct.id_coa_tag, ct.tag_code, ct.tag_description, CONCAT(ct.tag_code,' - ', ct.tag_description)  AS `coa_tag`
         FROM tb_coa_tag ct WHERE ct.id_coa_tag>1 ORDER BY ct.id_coa_tag ASC "
         viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
+    End Sub
+
+    Sub load_unit()
+        Dim query As String = "SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
+        '        query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
+        'UNION ALL
+        'SELECT ad.`id_comp`,c.`comp_number`,c.`comp_name` FROM `tb_a_acc_trans_det` ad
+        'INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
+        'GROUP BY ad.id_comp"
+        viewSearchLookupQuery(SLEUnitExpense, query, "id_coa_tag", "tag_description", "id_coa_tag")
+        SLEUnitExpense.EditValue = "1"
     End Sub
     '
     Sub load_fgpo()
@@ -451,6 +465,9 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         If Not SLEVendorExpense.EditValue.ToString = "0" Then
             where_string = "AND e.id_comp='" & SLEVendorExpense.EditValue.ToString & "' "
         End If
+
+        'cabang
+        where_string += " AND e.id_coa_tag='" & SLEUnitExpense.EditValue.ToString & "' "
 
         If SLEPayTypeExpense.EditValue.ToString = "2" Then 'payment
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
