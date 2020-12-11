@@ -22,6 +22,15 @@ Partial Class FormSalesOrderSvcLevel
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesOrderSvcLevel))
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.LETypeRestockTOO = New DevExpress.XtraEditors.LookUpEdit()
+        Me.BarManager3PLMail = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelSelect = New DevExpress.XtraEditors.PanelControl()
         Me.CheckSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
@@ -116,13 +125,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl25 = New DevExpress.XtraEditors.LabelControl()
         Me.DropDownButton1 = New DevExpress.XtraEditors.DropDownButton()
         Me.PopupMenu3PLMail = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarManager3PLMail = New DevExpress.XtraBars.BarManager(Me.components)
-        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.SBViewAllPickupDate = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.SBInputTanggalPickup = New DevExpress.XtraEditors.SimpleButton()
@@ -322,6 +324,9 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTotalTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPreparedTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
+        Me.LETypeRestock = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl26 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnUpdateTrf = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusTrf = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -365,11 +370,11 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPClosingSuratJalan = New DevExpress.XtraTab.XtraTabPage()
-        Me.LabelControl26 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
-        Me.LETypeRestock = New DevExpress.XtraEditors.LookUpEdit()
+        Me.GridColumnid_ol_store_oos = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
+        CType(Me.LETypeRestockTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager3PLMail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelSelect.SuspendLayout()
         CType(Me.CheckSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -403,7 +408,6 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.SLUEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PopupMenu3PLMail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BarManager3PLMail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromRet.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromRet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilRet.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -476,6 +480,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
+        CType(Me.LETypeRestock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStatusTrf.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilTrf.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -495,12 +500,13 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilNonStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromNonStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromNonStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LETypeRestock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilter.Controls.Add(Me.LETypeRestockTOO)
+        Me.GCFilter.Controls.Add(Me.LabelControl28)
         Me.GCFilter.Controls.Add(Me.PanelSelect)
         Me.GCFilter.Controls.Add(Me.SimpleButton1)
         Me.GCFilter.Controls.Add(Me.SLEPackingStatus)
@@ -515,8 +521,75 @@ Partial Class FormSalesOrderSvcLevel
         Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCFilter.Location = New System.Drawing.Point(0, 0)
         Me.GCFilter.Name = "GCFilter"
-        Me.GCFilter.Size = New System.Drawing.Size(934, 39)
+        Me.GCFilter.Size = New System.Drawing.Size(934, 73)
         Me.GCFilter.TabIndex = 2
+        '
+        'LETypeRestockTOO
+        '
+        Me.LETypeRestockTOO.Location = New System.Drawing.Point(66, 35)
+        Me.LETypeRestockTOO.MenuManager = Me.BarManager3PLMail
+        Me.LETypeRestockTOO.Name = "LETypeRestockTOO"
+        Me.LETypeRestockTOO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LETypeRestockTOO.Size = New System.Drawing.Size(111, 20)
+        Me.LETypeRestockTOO.TabIndex = 8905
+        '
+        'BarManager3PLMail
+        '
+        Me.BarManager3PLMail.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager3PLMail.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager3PLMail.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager3PLMail.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager3PLMail.Form = Me
+        Me.BarManager3PLMail.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarButtonItem2})
+        Me.BarManager3PLMail.MaxItemId = 2
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(940, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 339)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(940, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 339)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(940, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 339)
+        '
+        'BarButtonItem1
+        '
+        Me.BarButtonItem1.Caption = "Send 3PL Mail"
+        Me.BarButtonItem1.Id = 0
+        Me.BarButtonItem1.Name = "BarButtonItem1"
+        '
+        'BarButtonItem2
+        '
+        Me.BarButtonItem2.Caption = "View 3PL Mail List"
+        Me.BarButtonItem2.Id = 1
+        Me.BarButtonItem2.Name = "BarButtonItem2"
+        '
+        'LabelControl28
+        '
+        Me.LabelControl28.Location = New System.Drawing.Point(28, 38)
+        Me.LabelControl28.Name = "LabelControl28"
+        Me.LabelControl28.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl28.TabIndex = 8904
+        Me.LabelControl28.Text = "Type"
         '
         'PanelSelect
         '
@@ -527,7 +600,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.PanelSelect.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelSelect.Location = New System.Drawing.Point(846, 2)
         Me.PanelSelect.Name = "PanelSelect"
-        Me.PanelSelect.Size = New System.Drawing.Size(86, 35)
+        Me.PanelSelect.Size = New System.Drawing.Size(86, 69)
         Me.PanelSelect.TabIndex = 8901
         '
         'CheckSelAll
@@ -542,7 +615,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'SimpleButton1
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(594, 9)
+        Me.SimpleButton1.Location = New System.Drawing.Point(447, 22)
         Me.SimpleButton1.LookAndFeel.SkinName = "Blue"
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(85, 20)
@@ -551,12 +624,12 @@ Partial Class FormSalesOrderSvcLevel
         '
         'SLEPackingStatus
         '
-        Me.SLEPackingStatus.Location = New System.Drawing.Point(354, 9)
+        Me.SLEPackingStatus.Location = New System.Drawing.Point(225, 35)
         Me.SLEPackingStatus.Name = "SLEPackingStatus"
         Me.SLEPackingStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPackingStatus.Properties.ShowClearButton = False
         Me.SLEPackingStatus.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEPackingStatus.Size = New System.Drawing.Size(156, 20)
+        Me.SLEPackingStatus.Size = New System.Drawing.Size(138, 20)
         Me.SLEPackingStatus.TabIndex = 8897
         '
         'SearchLookUpEdit1View
@@ -584,7 +657,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'BtnView
         '
-        Me.BtnView.Location = New System.Drawing.Point(516, 9)
+        Me.BtnView.Location = New System.Drawing.Point(369, 22)
         Me.BtnView.LookAndFeel.SkinName = "Blue"
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(75, 20)
@@ -593,7 +666,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(320, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(183, 38)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl1.TabIndex = 8899
@@ -622,19 +695,19 @@ Partial Class FormSalesOrderSvcLevel
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntil.Location = New System.Drawing.Point(225, 9)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntil.Size = New System.Drawing.Size(138, 20)
         Me.DEUntil.TabIndex = 8895
         '
         'DEFrom
         '
         Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(58, 9)
+        Me.DEFrom.Location = New System.Drawing.Point(66, 9)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -645,7 +718,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl2.Location = New System.Drawing.Point(183, 12)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl2.TabIndex = 8893
@@ -662,17 +735,17 @@ Partial Class FormSalesOrderSvcLevel
         'GCSalesOrder
         '
         Me.GCSalesOrder.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSalesOrder.Location = New System.Drawing.Point(0, 39)
+        Me.GCSalesOrder.Location = New System.Drawing.Point(0, 73)
         Me.GCSalesOrder.MainView = Me.GVSalesOrder
         Me.GCSalesOrder.Name = "GCSalesOrder"
         Me.GCSalesOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1, Me.RepositoryItemCheckEdit6, Me.RepositoryItemTextEdit1})
-        Me.GCSalesOrder.Size = New System.Drawing.Size(934, 272)
+        Me.GCSalesOrder.Size = New System.Drawing.Size(934, 238)
         Me.GCSalesOrder.TabIndex = 3
         Me.GCSalesOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesOrder, Me.GridView2})
         '
         'GVSalesOrder
         '
-        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumn1, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumn44, Me.GridColumnIsClosed, Me.GridColumn45, Me.GridColumnTotalSO, Me.GridColumnOutstanding, Me.GridColumnFinalDate, Me.GridColumnClosedBy, Me.GridColumnPrintedBy, Me.GridColumnPrintedDate, Me.GridColumn62, Me.GridColumnorder_type})
+        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumn1, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumn44, Me.GridColumnIsClosed, Me.GridColumn45, Me.GridColumnTotalSO, Me.GridColumnOutstanding, Me.GridColumnFinalDate, Me.GridColumnClosedBy, Me.GridColumnPrintedBy, Me.GridColumnPrintedDate, Me.GridColumn62, Me.GridColumnorder_type, Me.GridColumnid_ol_store_oos})
         Me.GVSalesOrder.GridControl = Me.GCSalesOrder
         Me.GVSalesOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", Me.GridColumnTotalSO, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "outstanding", Me.GridColumnOutstanding, "{0:n0}")})
         Me.GVSalesOrder.Name = "GVSalesOrder"
@@ -1381,56 +1454,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.PopupMenu3PLMail.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2)})
         Me.PopupMenu3PLMail.Manager = Me.BarManager3PLMail
         Me.PopupMenu3PLMail.Name = "PopupMenu3PLMail"
-        '
-        'BarButtonItem1
-        '
-        Me.BarButtonItem1.Caption = "Send 3PL Mail"
-        Me.BarButtonItem1.Id = 0
-        Me.BarButtonItem1.Name = "BarButtonItem1"
-        '
-        'BarButtonItem2
-        '
-        Me.BarButtonItem2.Caption = "View 3PL Mail List"
-        Me.BarButtonItem2.Id = 1
-        Me.BarButtonItem2.Name = "BarButtonItem2"
-        '
-        'BarManager3PLMail
-        '
-        Me.BarManager3PLMail.DockControls.Add(Me.barDockControlTop)
-        Me.BarManager3PLMail.DockControls.Add(Me.barDockControlBottom)
-        Me.BarManager3PLMail.DockControls.Add(Me.barDockControlLeft)
-        Me.BarManager3PLMail.DockControls.Add(Me.barDockControlRight)
-        Me.BarManager3PLMail.Form = Me
-        Me.BarManager3PLMail.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarButtonItem2})
-        Me.BarManager3PLMail.MaxItemId = 2
-        '
-        'barDockControlTop
-        '
-        Me.barDockControlTop.CausesValidation = False
-        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(940, 0)
-        '
-        'barDockControlBottom
-        '
-        Me.barDockControlBottom.CausesValidation = False
-        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 339)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(940, 0)
-        '
-        'barDockControlLeft
-        '
-        Me.barDockControlLeft.CausesValidation = False
-        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 339)
-        '
-        'barDockControlRight
-        '
-        Me.barDockControlRight.CausesValidation = False
-        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(940, 0)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 339)
         '
         'SBViewAllPickupDate
         '
@@ -3332,6 +3355,30 @@ Partial Class FormSalesOrderSvcLevel
         Me.GroupControl4.Size = New System.Drawing.Size(934, 79)
         Me.GroupControl4.TabIndex = 7
         '
+        'LETypeRestock
+        '
+        Me.LETypeRestock.Location = New System.Drawing.Point(79, 35)
+        Me.LETypeRestock.MenuManager = Me.BarManager3PLMail
+        Me.LETypeRestock.Name = "LETypeRestock"
+        Me.LETypeRestock.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LETypeRestock.Size = New System.Drawing.Size(111, 20)
+        Me.LETypeRestock.TabIndex = 8903
+        '
+        'LabelControl27
+        '
+        Me.LabelControl27.Location = New System.Drawing.Point(455, 31)
+        Me.LabelControl27.Name = "LabelControl27"
+        Me.LabelControl27.Size = New System.Drawing.Size(0, 13)
+        Me.LabelControl27.TabIndex = 8902
+        '
+        'LabelControl26
+        '
+        Me.LabelControl26.Location = New System.Drawing.Point(28, 38)
+        Me.LabelControl26.Name = "LabelControl26"
+        Me.LabelControl26.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl26.TabIndex = 8901
+        Me.LabelControl26.Text = "Type"
+        '
         'BtnUpdateTrf
         '
         Me.BtnUpdateTrf.Location = New System.Drawing.Point(461, 24)
@@ -3733,29 +3780,12 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPClosingSuratJalan.Size = New System.Drawing.Size(934, 311)
         Me.XTPClosingSuratJalan.Text = "Closing Surat Jalan"
         '
-        'LabelControl26
+        'GridColumnid_ol_store_oos
         '
-        Me.LabelControl26.Location = New System.Drawing.Point(28, 38)
-        Me.LabelControl26.Name = "LabelControl26"
-        Me.LabelControl26.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl26.TabIndex = 8901
-        Me.LabelControl26.Text = "Type"
-        '
-        'LabelControl27
-        '
-        Me.LabelControl27.Location = New System.Drawing.Point(455, 31)
-        Me.LabelControl27.Name = "LabelControl27"
-        Me.LabelControl27.Size = New System.Drawing.Size(0, 13)
-        Me.LabelControl27.TabIndex = 8902
-        '
-        'LETypeRestock
-        '
-        Me.LETypeRestock.Location = New System.Drawing.Point(79, 35)
-        Me.LETypeRestock.MenuManager = Me.BarManager3PLMail
-        Me.LETypeRestock.Name = "LETypeRestock"
-        Me.LETypeRestock.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LETypeRestock.Size = New System.Drawing.Size(111, 20)
-        Me.LETypeRestock.TabIndex = 8903
+        Me.GridColumnid_ol_store_oos.Caption = "id_ol_store_oos"
+        Me.GridColumnid_ol_store_oos.FieldName = "id_ol_store_oos"
+        Me.GridColumnid_ol_store_oos.Name = "GridColumnid_ol_store_oos"
+        Me.GridColumnid_ol_store_oos.OptionsColumn.ReadOnly = True
         '
         'FormSalesOrderSvcLevel
         '
@@ -3774,6 +3804,8 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
+        CType(Me.LETypeRestockTOO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager3PLMail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelSelect.ResumeLayout(False)
         CType(Me.CheckSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3808,7 +3840,6 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.SLUEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PopupMenu3PLMail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BarManager3PLMail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromRet.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromRet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilRet.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3886,6 +3917,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         Me.GroupControl4.PerformLayout()
+        CType(Me.LETypeRestock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStatusTrf.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilTrf.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3906,7 +3938,6 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilNonStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromNonStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromNonStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LETypeRestock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -4259,4 +4290,7 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents LETypeRestock As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl27 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl26 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LETypeRestockTOO As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl28 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnid_ol_store_oos As DevExpress.XtraGrid.Columns.GridColumn
 End Class

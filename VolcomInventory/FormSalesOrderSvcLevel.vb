@@ -22,6 +22,13 @@
             cond_status = "AND a.id_prepare_status='" + SLEPackingStatus.EditValue.ToString + "' "
         End If
 
+        'oos
+        If LETypeRestockTOO.EditValue.ToString = "1" Then
+            cond_status += "AND ISNULL(a.id_ol_store_oos) "
+        ElseIf LETypeRestockTOO.EditValue.ToString = "2" Then
+            cond_status += "AND !ISNULL(a.id_ol_store_oos) "
+        End If
+
         'prepare query
         Dim query_c As ClassSalesOrder = New ClassSalesOrder()
         Dim query As String = query_c.queryMain("AND a.id_report_status='6' AND (a.sales_order_date>='" + date_from_selected + "' AND a.sales_order_date<='" + date_until_selected + "') " + cond_status, "1")
@@ -294,6 +301,7 @@
         UNION ALL
         SELECT 2 AS `id_type`, 'Restock Online Order' AS `type` "
         viewLookupQuery(LETypeRestock, query, 0, "type", "id_type")
+        viewLookupQuery(LETypeRestockTOO, query, 0, "type", "id_type")
         Cursor = Cursors.Default
     End Sub
 
