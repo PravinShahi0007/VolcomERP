@@ -8,6 +8,8 @@
     Public report_numberx As String = "-1"
     Dim id_report_status As String = "-1"
 
+    Public id_coa_tag As String = "1"
+
     Private Sub FormAccountingJournalBill_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
         load_billing_type(LEBilling)
@@ -22,7 +24,6 @@
         TENumber.Text = ""
         'TEDate.EditValue = Now()
         actionLoad()
-
     End Sub
 
     Sub viewReportStatus()

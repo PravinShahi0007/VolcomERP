@@ -2356,6 +2356,47 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                 Dim cancel As New ClassSalesOrder()
                 cancel.cancelReservedStock(id_report)
             ElseIf id_status_reportx = "6" Then
+                'check stock
+                Dim cond_invalid_stock As Boolean = False
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Checking stock")
+                Dim id_wh_so As String = FormSalesOrderDet.id_comp_par
+                Dim qcs As String = "SELECT p.product_full_code AS `code`, p.product_display_name AS `description`, cd.code_detail_name AS `size`, a.available_qty,
+                IF(a.available_qty>=0,'OK', 'Not Valid') AS `status` 
+                FROM (
+	                SELECT f.id_product,
+	                SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `available_qty`
+	                FROM tb_storage_fg f
+	                INNER JOIN tb_m_wh_drawer drw ON  drw.id_wh_drawer= f.id_wh_drawer
+	                INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack
+	                INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator
+	                INNER JOIN tb_m_comp c ON c.id_comp = loc.id_comp AND c.id_comp=" + id_wh_so + "
+	                WHERE f.id_product IN (
+		                SELECT d.id_product
+		                FROM tb_sales_order_det d
+		                WHERE d.id_sales_order=" + id_report + "
+		                GROUP BY d.id_product
+	                )
+	                GROUP BY f.id_product
+                ) a
+                INNER JOIN tb_m_product p ON p.id_product = a.id_product
+                INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail "
+                Dim dsc As DataTable = execute_query(qcs, -1, True, "", "", "", "")
+                Dim dsc_filter As DataRow() = dsc.Select("[status]<>'OK' ")
+                If dsc_filter.Length > 0 Then
+                    cond_invalid_stock = True
+                End If
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                If cond_invalid_stock Then
+                    stopCustom("There is invalid stock in this order, click OK to see details")
+                    FormValidateStock.dt = dsc
+                    FormValidateStock.ShowDialog()
+                    Exit Sub
+                End If
+
                 'created transfer
                 'AND c.id_comp IN (SELECT id_comp FROM tb_wh_auto_trf) AND cf.id_comp IN (SELECT id_comp FROM tb_wh_auto_trf)
                 Dim qv As String = "SELECT so.id_warehouse_contact_to, so.id_store_contact_to, so.id_sales_order, c.id_drawer_def
@@ -6205,7 +6246,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
 	                                    WHERE py.id_pn=" & id_report & "
                                         UNION ALL
 	                                    /* Hutang dagang */
-	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`,ccvendor.id_comp  AS id_vendor, pnd.id_comp,  0 AS `qty`,IF(pnd.id_dc=2,0,ABS(pnd.value)) AS `debit`, IF(pnd.id_dc=2,ABS(pnd.value),0) AS `credit`, pnd.id_currency, pnd.kurs, IF(pnd.id_dc=2,0,ABS(pnd.val_bef_kurs)) AS debit_valas, IF(pnd.id_dc=2,ABS(pnd.val_bef_kurs),0) AS credit_valas,pnd.note AS `note`,159 AS report_mark_type,pn.id_pn AS id_report, pn.number AS report_number,pnd.report_mark_type,pnd.id_report,pnd.number,pnd.vendor,py.id_coa_tag
+	                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`,ccvendor.id_comp  AS id_vendor, pnd.id_comp,  0 AS `qty`,IF(pnd.id_dc=2,0,ABS(pnd.value)) AS `debit`, IF(pnd.id_dc=2,ABS(pnd.value),0) AS `credit`, pnd.id_currency, pnd.kurs, IF(pnd.id_dc=2,0,ABS(pnd.val_bef_kurs)) AS debit_valas, IF(pnd.id_dc=2,ABS(pnd.val_bef_kurs),0) AS credit_valas,pnd.note AS `note`,159 AS report_mark_type,pn.id_pn AS id_report, pn.number AS report_number,pnd.report_mark_type,pnd.id_report,pnd.number,pnd.vendor,pn.id_coa_tag
 	                                    FROM tb_pn_det pnd
 	                                    INNER JOIN tb_pn pn ON pnd.id_pn=pn.id_pn
                                         INNER JOIN tb_m_comp_contact ccvendor ON ccvendor.id_comp_contact=pn.id_comp_contact
