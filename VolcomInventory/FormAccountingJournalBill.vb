@@ -24,7 +24,6 @@
         TENumber.Text = ""
         'TEDate.EditValue = Now()
         actionLoad()
-
     End Sub
 
     Sub viewReportStatus()
