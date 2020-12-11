@@ -12,7 +12,7 @@
     Private Sub FormItemExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEDateReff.EditValue = Now()
         '
-        load_unit
+        load_unit()
         '
         viewReportStatus()
         viewCCRepo()
