@@ -457,6 +457,7 @@
                     Dim item_id As String = ""
                     Dim sku As String = ""
                     Dim design_price As String = ""
+                    Dim ol_order_qty As String = ""
                     Dim sales_order_det_qty As String = ""
                     Dim grams As String = ""
                     Dim discount_allocations_amo As String = "0"
@@ -465,15 +466,16 @@
                     item_id = dtd.Rows(d)("item_id").ToString
                     sku = dtd.Rows(d)("sku").ToString
                     design_price = decimalSQL(dtd.Rows(d)("design_price").ToString)
+                    ol_order_qty = "1"
                     sales_order_det_qty = "1"
                     grams = "0"
                     discount_allocations_amo = "0"
 
                     'insert
                     Dim qins As String = "INSERT tb_ol_store_order(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address,shipping_address1,shipping_address2, shipping_phone, 
-                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, shipment_provider, ol_store_sku, ol_store_id, item_id, sku, design_price, sales_order_det_qty, grams, financial_status, total_disc_order, discount_allocations_amo,checkout_id, shipping_price, discount_code, id_comp_group,is_rts) VALUES "
+                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, shipment_provider, ol_store_sku, ol_store_id, item_id, sku, design_price, ol_order_qty, sales_order_det_qty, grams, financial_status, total_disc_order, discount_allocations_amo,checkout_id, shipping_price, discount_code, id_comp_group,is_rts) VALUES "
                     qins += "('" + id_order + "', '" + sales_order_ol_shop_number + "', '" + sales_order_ol_shop_date + "', '" + addSlashes(customer_name) + "', '" + addSlashes(shipping_name) + "', '" + addSlashes(shipping_address) + "','" + addSlashes(shipping_address1) + "','" + addSlashes(shipping_address2) + "', '" + addSlashes(shipping_phone) + "', 
-                    '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + shipment_provider + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + item_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_store_group + "','2') "
+                    '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + shipment_provider + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + item_id + "', '" + sku + "', '" + design_price + "','" + ol_order_qty + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_store_group + "','2') "
                     execute_non_query(qins, True, "", "", "", "")
                 Next
             End If
