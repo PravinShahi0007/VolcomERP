@@ -6,6 +6,7 @@
     Dim id_ol_store_oos_stt As String = "-1"
     Dim id_role_super_user As String = get_setup_field("id_role_super_admin")
     Dim id_api_type As String = "-1"
+    Dim id_report_status As String = "-1"
 
 
     Private Sub FormOLStoreOOSDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -60,8 +61,12 @@
             Dim query As String = "SELECT so.id_sales_order,so.sales_order_number, stt.id_prepare_status,
             SUM(sod.sales_order_det_qty) AS `qty_too`,IFNULL(t.qty_trf,0) AS `qty_trf`,
             (IFNULL(t.qty_trf,0)-SUM(sod.sales_order_det_qty)) AS `diff_qty`,
-            stt.prepare_status
+            stt.prepare_status, w.comp_number AS `acc_from`, s.comp_number AS `acc_to`
             FROM tb_sales_order so
+            INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
+            INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+            INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = so.id_warehouse_contact_to
+            INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
             INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
             INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status=so.id_prepare_status
             LEFT JOIN (
@@ -406,6 +411,14 @@
 
     Private Sub BtnClosedOrder_Click(sender As Object, e As EventArgs) Handles BtnClosedOrder.Click
         Cursor = Cursors.WaitCursor
+        'cek attachment
+        If Not isValidAttachment() Then
+            Cursor = Cursors.Default
+            warningCustom("Please attach supporting document first")
+            showAttachment()
+            Exit Sub
+        End If
+
         'cek open too restock
         Dim oos As New ClassOLStore()
         Dim is_open_restock As Boolean = oos.isRestockOpen(id)
@@ -471,6 +484,14 @@
 
     Private Sub BtnCancellAllOrder_Click(sender As Object, e As EventArgs) Handles BtnCancellAllOrder.Click
         Cursor = Cursors.WaitCursor
+        'cek attachment
+        If Not isValidAttachment() Then
+            Cursor = Cursors.Default
+            warningCustom("Please attach supporting document first")
+            showAttachment()
+            Exit Sub
+        End If
+
         'cek open too restock
         Dim oos As New ClassOLStore()
         Dim is_open_restock As Boolean = oos.isRestockOpen(id)
@@ -543,4 +564,27 @@
 
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        showAttachment()
+    End Sub
+
+    Sub showAttachment()
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "278"
+        FormDocumentUpload.id_report = id
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Function isValidAttachment() As Boolean
+        Dim query As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type=278 AND d.id_report='" + id + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class
