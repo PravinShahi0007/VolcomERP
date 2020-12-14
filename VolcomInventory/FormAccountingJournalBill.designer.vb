@@ -172,11 +172,11 @@ Partial Class FormAccountingJournalBill
         'GCJournalDet
         '
         Me.GCJournalDet.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCJournalDet.Location = New System.Drawing.Point(0, 134)
+        Me.GCJournalDet.Location = New System.Drawing.Point(0, 141)
         Me.GCJournalDet.MainView = Me.GVJournalDet
         Me.GCJournalDet.Name = "GCJournalDet"
         Me.GCJournalDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemComboBox1, Me.RSLEStatusOpen, Me.RISLEVendor})
-        Me.GCJournalDet.Size = New System.Drawing.Size(826, 266)
+        Me.GCJournalDet.Size = New System.Drawing.Size(826, 259)
         Me.GCJournalDet.TabIndex = 16
         Me.GCJournalDet.TabStop = False
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
@@ -488,7 +488,7 @@ Partial Class FormAccountingJournalBill
         Me.PCButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCButton.Location = New System.Drawing.Point(0, 98)
         Me.PCButton.Name = "PCButton"
-        Me.PCButton.Size = New System.Drawing.Size(826, 36)
+        Me.PCButton.Size = New System.Drawing.Size(826, 43)
         Me.PCButton.TabIndex = 17
         '
         'BDelMat
@@ -498,7 +498,7 @@ Partial Class FormAccountingJournalBill
         Me.BDelMat.ImageList = Me.LargeImageCollection
         Me.BDelMat.Location = New System.Drawing.Point(513, 2)
         Me.BDelMat.Name = "BDelMat"
-        Me.BDelMat.Size = New System.Drawing.Size(91, 32)
+        Me.BDelMat.Size = New System.Drawing.Size(91, 39)
         Me.BDelMat.TabIndex = 16
         Me.BDelMat.TabStop = False
         Me.BDelMat.Text = "Delete (-)"
@@ -510,7 +510,7 @@ Partial Class FormAccountingJournalBill
         Me.BAddMat.ImageList = Me.LargeImageCollection
         Me.BAddMat.Location = New System.Drawing.Point(604, 2)
         Me.BAddMat.Name = "BAddMat"
-        Me.BAddMat.Size = New System.Drawing.Size(85, 32)
+        Me.BAddMat.Size = New System.Drawing.Size(85, 39)
         Me.BAddMat.TabIndex = 17
         Me.BAddMat.TabStop = False
         Me.BAddMat.Text = "Add (+)"
@@ -523,7 +523,7 @@ Partial Class FormAccountingJournalBill
         Me.BtnRef.ImageList = Me.LargeImageCollection
         Me.BtnRef.Location = New System.Drawing.Point(689, 2)
         Me.BtnRef.Name = "BtnRef"
-        Me.BtnRef.Size = New System.Drawing.Size(135, 32)
+        Me.BtnRef.Size = New System.Drawing.Size(135, 39)
         Me.BtnRef.TabIndex = 19
         Me.BtnRef.Text = "Browse Reference"
         '
@@ -610,13 +610,12 @@ Partial Class FormAccountingJournalBill
         '
         'SLEUnit
         '
-        Me.SLEUnit.Location = New System.Drawing.Point(90, 68)
+        Me.SLEUnit.Location = New System.Drawing.Point(90, 38)
         Me.SLEUnit.Name = "SLEUnit"
         Me.SLEUnit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEUnit.Properties.View = Me.GridView6
         Me.SLEUnit.Size = New System.Drawing.Size(252, 20)
         Me.SLEUnit.TabIndex = 160
-        Me.SLEUnit.Visible = False
         '
         'GridView6
         '
@@ -657,12 +656,11 @@ Partial Class FormAccountingJournalBill
         'LabelControl16
         '
         Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl16.Location = New System.Drawing.Point(12, 71)
+        Me.LabelControl16.Location = New System.Drawing.Point(12, 41)
         Me.LabelControl16.Name = "LabelControl16"
         Me.LabelControl16.Size = New System.Drawing.Size(19, 13)
         Me.LabelControl16.TabIndex = 159
         Me.LabelControl16.Text = "Unit"
-        Me.LabelControl16.Visible = False
         '
         'LabelControl5
         '
@@ -715,29 +713,32 @@ Partial Class FormAccountingJournalBill
         'Blink
         '
         Me.Blink.ImageList = Me.LargeImageCollection
-        Me.Blink.Location = New System.Drawing.Point(284, 41)
+        Me.Blink.Location = New System.Drawing.Point(284, 63)
         Me.Blink.Name = "Blink"
         Me.Blink.Size = New System.Drawing.Size(58, 21)
         Me.Blink.TabIndex = 3
         Me.Blink.Text = "Link"
+        Me.Blink.Visible = False
         '
         'TEReffNumber
         '
         Me.TEReffNumber.EditValue = ""
-        Me.TEReffNumber.Location = New System.Drawing.Point(90, 42)
+        Me.TEReffNumber.Location = New System.Drawing.Point(90, 64)
         Me.TEReffNumber.Name = "TEReffNumber"
         Me.TEReffNumber.Properties.EditValueChangedDelay = 1
         Me.TEReffNumber.Size = New System.Drawing.Size(188, 20)
         Me.TEReffNumber.TabIndex = 2
+        Me.TEReffNumber.Visible = False
         '
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.LabelControl4.Location = New System.Drawing.Point(12, 45)
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 67)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl4.TabIndex = 152
         Me.LabelControl4.Text = "Reff Number"
+        Me.LabelControl4.Visible = False
         '
         'LEBilling
         '

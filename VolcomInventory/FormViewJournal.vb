@@ -5,7 +5,7 @@
 
     Private Sub FormViewJournal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         load_billing_type(LEBilling)
-        Dim query As String = "SELECT a.id_user,a.acc_trans_number, a.report_number,DATE_FORMAT(a.date_created,'%Y-%m-%d') as date_created,a.acc_trans_note,id_report_status, a.id_bill_type FROM tb_a_acc_trans a WHERE a.id_acc_trans='" & id_trans & "'"
+        Dim query As String = "SELECT a.id_user,a.acc_trans_number, a.report_number,DATE_FORMAT(a.date_reference,'%d-%M-%Y') as date_reference,DATE_FORMAT(a.date_created,'%d-%M-%Y') as date_created,a.acc_trans_note,id_report_status, a.id_bill_type FROM tb_a_acc_trans a WHERE a.id_acc_trans='" & id_trans & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         TEUserEntry.Text = get_user_identify(data.Rows(0)("id_user").ToString, 1)
@@ -14,8 +14,10 @@
         Else
             TENumber.Text = data.Rows(0)("acc_trans_number").ToString
         End If
-        Dim strDate As String = data.Rows(0)("date_created").ToString
-        TEDate.Text = view_date_from(strDate, 0)
+
+        TEReffDate.Text = data.Rows(0)("date_reference").ToString
+        TEDate.Text = data.Rows(0)("date_created").ToString
+
         MENote.Text = data.Rows(0)("acc_trans_note").ToString
         MENote.Enabled = False
         LEBilling.ItemIndex = LEBilling.Properties.GetDataSourceRowIndex("id_bill_type", data.Rows(0)("id_bill_type").ToString)
@@ -40,7 +42,7 @@
     End Sub
 
     Sub view_det()
-        Dim query As String = "SELECT a.id_acc_trans_det,a.id_acc,b.acc_name,b.acc_description, c.comp_number,CAST(a.debit AS DECIMAL(13,2)) as debit,CAST(a.credit AS DECIMAL(13,2)) as credit,a.acc_trans_det_note as note,a.report_mark_type,a.id_report 
+        Dim query As String = "SELECT a.report_number,a.report_number_ref,a.id_acc_trans_det,a.id_acc,b.acc_name,b.acc_description, c.comp_number,CAST(a.debit AS DECIMAL(13,2)) as debit,CAST(a.credit AS DECIMAL(13,2)) as credit,a.acc_trans_det_note as note,a.report_mark_type,a.id_report 
         FROM tb_a_acc_trans_det a 
         INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc 
         LEFT JOIN tb_m_comp c ON c.id_comp = a.id_comp
