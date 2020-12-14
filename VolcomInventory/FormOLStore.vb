@@ -622,7 +622,7 @@
             If id_api_type <> "1" Then 'selain VIOS
                 Dim query_eval As String = "SELECT od.id, od.sales_order_ol_shop_number AS `order_number`
                 FROM tb_ol_store_order od 
-                WHERE od.id_comp_group='" + id_comp_group + "'  AND od.note_price='OK' AND od.is_process=2 AND ISNULL(od.id_ol_store_oos)
+                WHERE od.id_comp_group='" + id_comp_group + "'  AND od.note_price='OK' AND od.note_promo='OK' AND od.note_stock<>'OK' AND od.is_process=2 AND ISNULL(od.id_ol_store_oos)
                 GROUP BY od.id "
                 Dim data_eval As DataTable = execute_query(query_eval, -1, True, "", "", "", "")
                 If data_eval.Rows.Count > 0 Then
