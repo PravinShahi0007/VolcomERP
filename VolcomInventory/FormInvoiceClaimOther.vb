@@ -178,8 +178,8 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
                     newRowh("cc") = "000"
                     newRowh("report_number") = ""
                     newRowh("note") = MENote.Text
-                    newRowh("debit") = 0
-                    newRowh("credit") = TETotal.EditValue + TEVat.EditValue
+                    newRowh("debit") = TETotal.EditValue + TEVat.EditValue
+                    newRowh("credit") = 0
                     TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowh)
                     GCDraft.RefreshDataSource()
                     GVDraft.RefreshData()
@@ -205,11 +205,11 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
                         newRow("report_number") = GVList.GetRowCellValue(i, "report_number").ToString
                         newRow("note") = GVList.GetRowCellValue(i, "note").ToString
                         If GVList.GetRowCellValue(i, "valuex") < 0 Then
-                            newRow("debit") = 0
-                            newRow("credit") = Math.Abs(GVList.GetRowCellValue(i, "valuex"))
-                        Else
                             newRow("debit") = Math.Abs(GVList.GetRowCellValue(i, "valuex"))
                             newRow("credit") = 0
+                        Else
+                            newRow("debit") = 0
+                            newRow("credit") = Math.Abs(GVList.GetRowCellValue(i, "valuex"))
                         End If
                         TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
                         GCDraft.RefreshDataSource()
@@ -226,8 +226,8 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
                     newRowvat("cc") = "000"
                     newRowvat("report_number") = ""
                     newRowvat("note") = MENote.Text
-                    newRowvat("debit") = TEVat.EditValue
-                    newRowvat("credit") = 0
+                    newRowvat("debit") = 0
+                    newRowvat("credit") = TEVat.EditValue
                     TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat)
                 End If
                 '
