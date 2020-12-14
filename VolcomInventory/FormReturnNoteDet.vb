@@ -280,4 +280,9 @@ GROUP BY rn.id_return_note"
         id_return_note = "-1"
         check_but()
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        'print
+        print()
+    End Sub
 End Class
