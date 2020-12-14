@@ -78,7 +78,6 @@ Partial Class FormInvoiceClaimOther
         Me.GCDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCPORef = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCInvNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCur = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLECurrency = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
@@ -642,7 +641,7 @@ Partial Class FormInvoiceClaimOther
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn6, Me.GridColumnAccPick, Me.GCDescription, Me.GCReff, Me.GCPORef, Me.GCInvNumber, Me.GridColumnNote, Me.GCCur, Me.GCCurHide, Me.GCKurs, Me.GCBeforeKurs, Me.GCQty, Me.GridColumnPayment, Me.GCVat})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn6, Me.GridColumnAccPick, Me.GCDescription, Me.GCReff, Me.GCPORef, Me.GridColumnNote, Me.GCCur, Me.GCCurHide, Me.GCKurs, Me.GCBeforeKurs, Me.GCQty, Me.GridColumnPayment, Me.GCVat})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -722,7 +721,7 @@ Partial Class FormInvoiceClaimOther
         Me.GCDescription.FieldName = "info_design"
         Me.GCDescription.Name = "GCDescription"
         Me.GCDescription.Visible = True
-        Me.GCDescription.VisibleIndex = 3
+        Me.GCDescription.VisibleIndex = 2
         Me.GCDescription.Width = 273
         '
         'GCReff
@@ -748,19 +747,6 @@ Partial Class FormInvoiceClaimOther
         Me.GCPORef.FieldName = "prod_order_number"
         Me.GCPORef.Name = "GCPORef"
         '
-        'GCInvNumber
-        '
-        Me.GCInvNumber.AppearanceCell.Options.UseTextOptions = True
-        Me.GCInvNumber.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCInvNumber.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCInvNumber.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCInvNumber.Caption = "Inv Number"
-        Me.GCInvNumber.FieldName = "inv_number"
-        Me.GCInvNumber.Name = "GCInvNumber"
-        Me.GCInvNumber.Visible = True
-        Me.GCInvNumber.VisibleIndex = 2
-        Me.GCInvNumber.Width = 120
-        '
         'GridColumnNote
         '
         Me.GridColumnNote.Caption = "Note"
@@ -776,7 +762,7 @@ Partial Class FormInvoiceClaimOther
         Me.GCCur.Name = "GCCur"
         Me.GCCur.OptionsColumn.AllowShowHide = False
         Me.GCCur.Visible = True
-        Me.GCCur.VisibleIndex = 5
+        Me.GCCur.VisibleIndex = 4
         Me.GCCur.Width = 61
         '
         'RISLECurrency
@@ -826,7 +812,7 @@ Partial Class FormInvoiceClaimOther
         Me.GCKurs.FieldName = "kurs"
         Me.GCKurs.Name = "GCKurs"
         Me.GCKurs.Visible = True
-        Me.GCKurs.VisibleIndex = 7
+        Me.GCKurs.VisibleIndex = 6
         Me.GCKurs.Width = 61
         '
         'GCBeforeKurs
@@ -837,7 +823,7 @@ Partial Class FormInvoiceClaimOther
         Me.GCBeforeKurs.FieldName = "value_bef_kurs"
         Me.GCBeforeKurs.Name = "GCBeforeKurs"
         Me.GCBeforeKurs.Visible = True
-        Me.GCBeforeKurs.VisibleIndex = 6
+        Me.GCBeforeKurs.VisibleIndex = 5
         Me.GCBeforeKurs.Width = 93
         '
         'GCQty
@@ -852,7 +838,7 @@ Partial Class FormInvoiceClaimOther
         Me.GCQty.FieldName = "qty"
         Me.GCQty.Name = "GCQty"
         Me.GCQty.Visible = True
-        Me.GCQty.VisibleIndex = 4
+        Me.GCQty.VisibleIndex = 3
         '
         'GridColumnPayment
         '
@@ -871,7 +857,7 @@ Partial Class FormInvoiceClaimOther
         Me.GridColumnPayment.UnboundExpression = "[value_bef_kurs] * [kurs]"
         Me.GridColumnPayment.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnPayment.Visible = True
-        Me.GridColumnPayment.VisibleIndex = 8
+        Me.GridColumnPayment.VisibleIndex = 7
         Me.GridColumnPayment.Width = 85
         '
         'GCVat
@@ -887,7 +873,7 @@ Partial Class FormInvoiceClaimOther
         Me.GCVat.Name = "GCVat"
         Me.GCVat.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vat", "{0:N2}")})
         Me.GCVat.Visible = True
-        Me.GCVat.VisibleIndex = 9
+        Me.GCVat.VisibleIndex = 8
         Me.GCVat.Width = 97
         '
         'RICECheckReceive
@@ -1190,7 +1176,6 @@ Partial Class FormInvoiceClaimOther
     Friend WithEvents GCDescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCReff As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCPORef As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCInvNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCur As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RISLECurrency As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit

@@ -257,7 +257,7 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
             FormDocumentUpload.is_no_delete = "1"
         End If
         FormDocumentUpload.id_report = id_invoice
-        FormDocumentUpload.report_mark_type = "189"
+        FormDocumentUpload.report_mark_type = "280"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -277,9 +277,7 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
 
         newRow("value_bef_kurs") = 0
         '
-        newRow("pph_percent") = 0
         newRow("vat") = 0
-        newRow("inv_number") = ""
         newRow("note") = ""
 
         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
@@ -378,7 +376,7 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_acc").ToString & 
                 '
                 query = "CALL gen_number('" & id_invoice & "','280')"
                 execute_non_query(query, True, "", "", "", "")
-                submit_who_prepared("189", id_invoice, id_user)
+                submit_who_prepared("280", id_invoice, id_user)
                 '
                 infoCustom("Invoice Claim lain-lain Created")
                 '
@@ -390,5 +388,25 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_acc").ToString & 
                 Dim query As String = ""
             End If
         End If
+    End Sub
+
+    Private Sub GVList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVList.CellValueChanged
+        If e.Column.FieldName = "value_bef_kurs" Or e.Column.FieldName = "kurs" Or e.Column.FieldName = "vat" Then
+            If e.Column.FieldName = "value_bef_kurs" Then
+                GVList.SetFocusedRowCellValue("vat", Decimal.Round(GVList.GetFocusedRowCellValue("valuex") * (Decimal.Parse(get_setup_field("vat_inv_default")) / 100)))
+            End If
+
+            calculate()
+        End If
+    End Sub
+
+    Private Sub XTCBPL_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCBPL.SelectedPageChanged
+        If XTCBPL.SelectedTabPageIndex = 1 Then
+            load_draft()
+        End If
+    End Sub
+
+    Private Sub FormInvoiceClaimOther_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class

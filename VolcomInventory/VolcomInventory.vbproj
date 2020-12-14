@@ -8021,6 +8021,12 @@
     <Compile Include="ReportInvMat.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportInvoiceClaimOther.Designer.vb">
+      <DependentUpon>ReportInvoiceClaimOther.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportInvoiceClaimOther.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportItemDel.Designer.vb">
       <DependentUpon>ReportItemDel.vb</DependentUpon>
     </Compile>
