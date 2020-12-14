@@ -7,6 +7,7 @@
     Dim id_role_super_user As String = get_setup_field("id_role_super_admin")
     Dim id_api_type As String = "-1"
     Dim id_report_status As String = "-1"
+    Public is_view As String = "-1"
 
 
     Private Sub FormOLStoreOOSDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -574,6 +575,7 @@
         FormDocumentUpload.report_mark_type = "278"
         FormDocumentUpload.id_report = id
         FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.is_view = is_view
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
