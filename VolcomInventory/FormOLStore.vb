@@ -560,32 +560,32 @@
 
             'get order from web
             'hide when developed
-            'ord.insertLogWebOrder("0", "Get order from website. " + err, id_comp_group)
-            'If id_api_type = "1" Then
-            '    'SHOPIFY
-            '    Try
-            '        Dim shop As New ClassShopifyApi()
-            '        shop.get_order_erp()
-            '    Catch ex As Exception
-            '        err = ex.ToString
-            '    End Try
-            'ElseIf id_api_type = "2" Then
-            '    'ZALORA
-            '    Try
-            '        Dim shop As New ClassZaloraApi()
-            '        shop.get_order_list()
-            '    Catch ex As Exception
-            '        err = ex.ToString
-            '    End Try
-            'ElseIf id_api_type = "3" Then
-            '    'BLIBLI
-            '    Try
-            '        Dim shop As New ClassBliBliApi()
-            '        shop.get_order_list()
-            '    Catch ex As Exception
-            '        err = ex.ToString
-            '    End Try
-            'End If
+            ord.insertLogWebOrder("0", "Get order from website. " + err, id_comp_group)
+            If id_api_type = "1" Then
+                'SHOPIFY
+                Try
+                    Dim shop As New ClassShopifyApi()
+                    shop.get_order_erp()
+                Catch ex As Exception
+                    err = ex.ToString
+                End Try
+            ElseIf id_api_type = "2" Then
+                'ZALORA
+                Try
+                    Dim shop As New ClassZaloraApi()
+                    shop.get_order_list()
+                Catch ex As Exception
+                    err = ex.ToString
+                End Try
+            ElseIf id_api_type = "3" Then
+                'BLIBLI
+                Try
+                    Dim shop As New ClassBliBliApi()
+                    shop.get_order_list()
+                Catch ex As Exception
+                    err = ex.ToString
+                End Try
+            End If
 
             'get order yg belum diproses
             Dim qord As String = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
