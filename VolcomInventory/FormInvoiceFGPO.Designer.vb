@@ -19,6 +19,7 @@ Partial Class FormInvoiceFGPO
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInvoiceFGPO))
         Me.XTCInvoiceFGPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPBPL = New DevExpress.XtraTab.XtraTabPage()
@@ -38,11 +39,11 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDropQuickMenu = New DevExpress.XtraEditors.DropDownButton()
-        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BBBPLUmum = New DevExpress.XtraBars.BarButtonItem()
         Me.BBDPFGPO = New DevExpress.XtraBars.BarButtonItem()
         Me.BBPaymentFGPO = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -127,6 +128,22 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPInvoiceClaimLain = New DevExpress.XtraTab.XtraTabPage()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPBPL.SuspendLayout()
@@ -160,6 +177,9 @@ Partial Class FormInvoiceFGPO
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPInvoiceClaimLain.SuspendLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCInvoiceFGPO
@@ -171,7 +191,7 @@ Partial Class FormInvoiceFGPO
         Me.XTCInvoiceFGPO.SelectedTabPage = Me.XTPBPL
         Me.XTCInvoiceFGPO.Size = New System.Drawing.Size(1161, 586)
         Me.XTCInvoiceFGPO.TabIndex = 0
-        Me.XTCInvoiceFGPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBPL, Me.XTPDP, Me.XTPPayment, Me.XTPDPKhusus})
+        Me.XTCInvoiceFGPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBPL, Me.XTPDP, Me.XTPPayment, Me.XTPDPKhusus, Me.XTPInvoiceClaimLain})
         '
         'XTPBPL
         '
@@ -1264,6 +1284,187 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
+        'XTPInvoiceClaimLain
+        '
+        Me.XTPInvoiceClaimLain.Controls.Add(Me.GridControl1)
+        Me.XTPInvoiceClaimLain.Controls.Add(Me.SimpleButton1)
+        Me.XTPInvoiceClaimLain.Name = "XTPInvoiceClaimLain"
+        Me.XTPInvoiceClaimLain.Size = New System.Drawing.Size(1155, 558)
+        Me.XTPInvoiceClaimLain.Text = "Invoice Claim Lain-lain"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SimpleButton1.Location = New System.Drawing.Point(0, 521)
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(1155, 37)
+        Me.SimpleButton1.TabIndex = 21
+        Me.SimpleButton1.Text = "Create BPL"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GridControl1.MainView = Me.GridView2
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(1155, 521)
+        Me.GridControl1.TabIndex = 23
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68})
+        Me.GridView2.GridControl = Me.GridControl1
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsBehavior.Editable = False
+        Me.GridView2.OptionsBehavior.ReadOnly = True
+        Me.GridView2.OptionsView.ShowFooter = True
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn57
+        '
+        Me.GridColumn57.Caption = "ID"
+        Me.GridColumn57.FieldName = "id_pn_fgpo"
+        Me.GridColumn57.Name = "GridColumn57"
+        '
+        'GridColumn58
+        '
+        Me.GridColumn58.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn58.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn58.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn58.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn58.Caption = "Type"
+        Me.GridColumn58.FieldName = "pn_type"
+        Me.GridColumn58.Name = "GridColumn58"
+        Me.GridColumn58.Visible = True
+        Me.GridColumn58.VisibleIndex = 0
+        Me.GridColumn58.Width = 94
+        '
+        'GridColumn59
+        '
+        Me.GridColumn59.Caption = "Number"
+        Me.GridColumn59.FieldName = "number"
+        Me.GridColumn59.Name = "GridColumn59"
+        Me.GridColumn59.Visible = True
+        Me.GridColumn59.VisibleIndex = 3
+        Me.GridColumn59.Width = 108
+        '
+        'GridColumn60
+        '
+        Me.GridColumn60.Caption = "Date Created"
+        Me.GridColumn60.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn60.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn60.FieldName = "created_date"
+        Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.Visible = True
+        Me.GridColumn60.VisibleIndex = 4
+        Me.GridColumn60.Width = 117
+        '
+        'GridColumn61
+        '
+        Me.GridColumn61.Caption = "Payment Date"
+        Me.GridColumn61.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn61.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn61.FieldName = "due_date"
+        Me.GridColumn61.Name = "GridColumn61"
+        Me.GridColumn61.Visible = True
+        Me.GridColumn61.VisibleIndex = 5
+        Me.GridColumn61.Width = 100
+        '
+        'GridColumn62
+        '
+        Me.GridColumn62.Caption = "Created By"
+        Me.GridColumn62.FieldName = "employee_name"
+        Me.GridColumn62.Name = "GridColumn62"
+        Me.GridColumn62.Visible = True
+        Me.GridColumn62.VisibleIndex = 6
+        Me.GridColumn62.Width = 202
+        '
+        'GridColumn63
+        '
+        Me.GridColumn63.Caption = "Status"
+        Me.GridColumn63.FieldName = "report_status"
+        Me.GridColumn63.Name = "GridColumn63"
+        Me.GridColumn63.Visible = True
+        Me.GridColumn63.VisibleIndex = 10
+        Me.GridColumn63.Width = 229
+        '
+        'GridColumn64
+        '
+        Me.GridColumn64.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn64.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn64.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn64.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn64.Caption = "Total"
+        Me.GridColumn64.DisplayFormat.FormatString = "N2"
+        Me.GridColumn64.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn64.FieldName = "amount"
+        Me.GridColumn64.Name = "GridColumn64"
+        Me.GridColumn64.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumn64.Visible = True
+        Me.GridColumn64.VisibleIndex = 7
+        Me.GridColumn64.Width = 254
+        '
+        'GridColumn65
+        '
+        Me.GridColumn65.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn65.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn65.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn65.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn65.Caption = "Total VAT"
+        Me.GridColumn65.DisplayFormat.FormatString = "N2"
+        Me.GridColumn65.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn65.FieldName = "amount_vat"
+        Me.GridColumn65.Name = "GridColumn65"
+        Me.GridColumn65.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_vat", "{0:N2}")})
+        Me.GridColumn65.Visible = True
+        Me.GridColumn65.VisibleIndex = 8
+        Me.GridColumn65.Width = 80
+        '
+        'GridColumn66
+        '
+        Me.GridColumn66.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn66.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn66.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn66.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn66.Caption = "Total Include VAT"
+        Me.GridColumn66.DisplayFormat.FormatString = "N2"
+        Me.GridColumn66.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn66.FieldName = "total_amount"
+        Me.GridColumn66.Name = "GridColumn66"
+        Me.GridColumn66.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N2}")})
+        Me.GridColumn66.Visible = True
+        Me.GridColumn66.VisibleIndex = 9
+        Me.GridColumn66.Width = 141
+        '
+        'GridColumn67
+        '
+        Me.GridColumn67.Caption = "Vendor Code"
+        Me.GridColumn67.FieldName = "comp_number"
+        Me.GridColumn67.Name = "GridColumn67"
+        Me.GridColumn67.Visible = True
+        Me.GridColumn67.VisibleIndex = 1
+        Me.GridColumn67.Width = 117
+        '
+        'GridColumn68
+        '
+        Me.GridColumn68.Caption = "Vendor Name"
+        Me.GridColumn68.FieldName = "comp_name"
+        Me.GridColumn68.Name = "GridColumn68"
+        Me.GridColumn68.Visible = True
+        Me.GridColumn68.VisibleIndex = 2
+        Me.GridColumn68.Width = 190
+        '
         'FormInvoiceFGPO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1315,6 +1516,9 @@ Partial Class FormInvoiceFGPO
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPInvoiceClaimLain.ResumeLayout(False)
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1427,4 +1631,20 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBCreateDPKhusus As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPInvoiceClaimLain As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn57 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn61 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn62 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn63 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn64 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn65 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn66 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn67 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

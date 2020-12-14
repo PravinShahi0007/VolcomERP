@@ -383,6 +383,18 @@
     <Compile Include="FormAdditionalCostDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAdjustmentOG.Designer.vb">
+      <DependentUpon>FormAdjustmentOG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdjustmentOG.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdjustmentOGDet.Designer.vb">
+      <DependentUpon>FormAdjustmentOGDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdjustmentOGDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAllocationHist.Designer.vb">
       <DependentUpon>FormAllocationHist.vb</DependentUpon>
     </Compile>
@@ -9010,6 +9022,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAdditionalCostDet.resx">
       <DependentUpon>FormAdditionalCostDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdjustmentOG.resx">
+      <DependentUpon>FormAdjustmentOG.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdjustmentOGDet.resx">
+      <DependentUpon>FormAdjustmentOGDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAllocationHist.resx">
       <DependentUpon>FormAllocationHist.vb</DependentUpon>
