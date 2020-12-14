@@ -1256,7 +1256,7 @@ Partial Class FormInvoiceFGPO
         'GridColumn57
         '
         Me.GridColumn57.Caption = "ID"
-        Me.GridColumn57.FieldName = "id_pn_fgpo"
+        Me.GridColumn57.FieldName = "id_inv_claim_other"
         Me.GridColumn57.Name = "GridColumn57"
         '
         'GridColumn59

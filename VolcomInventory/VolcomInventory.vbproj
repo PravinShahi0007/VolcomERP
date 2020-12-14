@@ -13338,6 +13338,9 @@
     <EmbeddedResource Include="ReportInvMat.resx">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportInvoiceClaimOther.resx">
+      <DependentUpon>ReportInvoiceClaimOther.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportItemDel.resx">
       <DependentUpon>ReportItemDel.vb</DependentUpon>
     </EmbeddedResource>

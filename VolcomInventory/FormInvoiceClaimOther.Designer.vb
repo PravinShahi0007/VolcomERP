@@ -718,7 +718,7 @@ Partial Class FormInvoiceClaimOther
         'GCDescription
         '
         Me.GCDescription.Caption = "Description"
-        Me.GCDescription.FieldName = "info_design"
+        Me.GCDescription.FieldName = "note"
         Me.GCDescription.Name = "GCDescription"
         Me.GCDescription.Visible = True
         Me.GCDescription.VisibleIndex = 2

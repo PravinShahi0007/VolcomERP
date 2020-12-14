@@ -8966,6 +8966,75 @@ WHERE pps.id_additional_cost_pps='" & id_report & "'"
                     End If
                 End If
             End If
+        ElseIf report_mark_type = "189" Then
+            'Invoice FGPO
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'select detail
+                Dim pn_date As String = ""
+                Dim ref_date As String = ""
+
+                Dim q_head As String = "SELECT id_inv_claim_other,created_date,ref_date FROM tb_inv_claim_other WHERE id_inv_claim_other='" & id_report & "'"
+                Dim dt_head As DataTable = execute_query(q_head, -1, True, "", "", "", "")
+                If dt_head.Rows.Count > 0 Then
+                    pn_date = Date.Parse(dt_head.Rows(0)("created_date").ToString).ToString("yyyy-MM-dd")
+                    ref_date = Date.Parse(dt_head.Rows(0)("ref_date").ToString).ToString("yyyy-MM-dd")
+                End If
+
+                'Select user prepared
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','24','" + id_user_prepared + "', NOW(), '" & ref_date & "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                Dim qjd As String = ""
+                qjd = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_vendor, id_comp, qty, debit, credit, id_currency,kurs,debit_valas,credit_valas, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, vendor)
+                SELECT * FROM
+                (
+	               /* Per row */
+                    SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`,pn.id_comp AS id_vendor, cf.id_comp,SUM(pnd.`qty`) AS `qty`,IF(SUM(pnd.value)>0,0,-SUM(pnd.value)) AS `debit`,IF(SUM(pnd.value)<0,0,SUM(pnd.value)) AS `credit`,pnd.id_currency,pnd.kurs,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs)<0,0,SUM(pnd.value_bef_kurs))) AS `debit_valas`,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs)>0,0,-SUM(pnd.value_bef_kurs))) AS `credit_valas`,pnd.`note` AS `note`,280,pn.id_inv_claim_other, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+                    FROM tb_inv_claim_other_det pnd
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+                    INNER JOIN tb_inv_claim_other pn ON pnd.id_inv_claim_other=pn.id_inv_claim_other
+                    INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                    WHERE pn.id_inv_claim_other=" & id_report & "
+                    GROUP BY pnd.id_inv_claim_other_det
+                    UNION ALL
+                    /* PPN */
+                    SELECT '" & id_acc_trans & "' AS id_acc_trans,pn.id_acc_vat AS `id_acc`,pn.id_comp AS id_vendor, cf.id_comp,0 AS `qty`,IF(SUM(pnd.vat)>0,0,-SUM(pnd.vat)) AS `debit`,IF(SUM(pnd.vat)<0,0,SUM(pnd.vat)) AS `credit`,1 AS id_currency,1 AS kurs,0 AS debit_valas,0 AS credit_valas,pnd.`note` AS `note`,280,pn.id_inv_claim_other, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+                    FROM tb_inv_claim_other_det pnd
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+                    INNER JOIN tb_inv_claim_other pn ON pnd.id_inv_claim_other=pn.id_inv_claim_other
+                    INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                    WHERE pn.id_inv_claim_other=" & id_report & "
+                    GROUP BY pn.id_inv_claim_other
+                    UNION ALL
+                    /* AR */
+                    SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ar AS `id_acc`,pn.id_comp AS id_vendor, cf.id_comp,0 AS `qty`,IF(SUM(pnd.value + pnd.vat)<0,0,SUM(pnd.value + pnd.vat)) AS `debit`,IF(SUM(pnd.value + pnd.vat)>0,0,-SUM(pnd.value + pnd.vat)) AS `credit`,pnd.id_currency,pnd.kurs,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs + pnd.vat)>0,0,-SUM(pnd.value_bef_kurs + pnd.vat))) AS `debit_valas`,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs + pnd.vat)<0,0,SUM(pnd.value_bef_kurs + pnd.vat))) AS `credit_valas`,pnd.note AS `note`,280,pn.id_inv_claim_other, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+                    FROM tb_inv_claim_other_det pnd
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+                    INNER JOIN tb_inv_claim_other pn ON pnd.id_inv_claim_other=pn.id_inv_claim_other
+                    INNER JOIN tb_m_comp comp ON comp.id_comp=pn.id_comp
+                    WHERE pn.id_inv_claim_other=" & id_report & "
+                    GROUP BY pn.id_inv_claim_other
+                )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                execute_non_query(qjd, True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_inv_claim_other SET id_report_status='{0}' WHERE id_inv_claim_other ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time
