@@ -392,6 +392,9 @@
         ElseIf report_mark_type = "275" Or report_mark_type = "279" Then
             'propose return mail
             FormSalesReturnOrderMailDet.Close()
+        ElseIf report_mark_type = "280" Then
+            'Inv Claim Lain2
+            FormInvoiceClaimOther.Close()
         End If
     End Sub
     Sub show()
@@ -1329,6 +1332,10 @@ GROUP BY rec.`id_prod_order`"
             'propose return mail
             FormSalesReturnOrderMailDet.id_mail_3pl = id_report
             FormSalesReturnOrderMailDet.ShowDialog()
+        ElseIf report_mark_type = "280" Then
+            'Inv Claim Lain2
+            FormInvoiceClaimOther.id_invoice = id_report
+            FormInvoiceClaimOther.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2382,6 +2389,12 @@ GROUP BY rec.`id_prod_order`"
             If report_mark_type = "279" Then
                 field_date = "created_date"
             End If
+        ElseIf report_mark_type = "280" Then
+            'Inv Claim Lain-lain
+            table_name = "tb_inv_claim_other"
+            field_id = "id_inv_claim_other"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

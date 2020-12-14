@@ -23,6 +23,8 @@ Partial Class FormInvoiceClaimOther
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInvoiceClaimOther))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEDueDateInvoice = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.DERefDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
@@ -35,19 +37,17 @@ Partial Class FormInvoiceClaimOther
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEDueDateInvoice = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddNewRow = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEVatAcc = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -78,7 +78,6 @@ Partial Class FormInvoiceClaimOther
         Me.GCDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCReff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCPORef = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCInvNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCur = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLECurrency = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
@@ -91,14 +90,14 @@ Partial Class FormInvoiceClaimOther
         Me.GCQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCVat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.RISLECOAPPH = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.XTPDraft = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDraft = New DevExpress.XtraGrid.GridControl()
         Me.GVDraft = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -115,6 +114,8 @@ Partial Class FormInvoiceClaimOther
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.DEDueDateInvoice.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDateInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERefDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERefDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,8 +125,6 @@ Partial Class FormInvoiceClaimOther
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDueDateInvoice.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDueDateInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,11 +151,11 @@ Partial Class FormInvoiceClaimOther
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RISLECOAPPH, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLECOAPPH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDraft.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -186,6 +185,27 @@ Partial Class FormInvoiceClaimOther
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(414, 103)
         Me.PanelControl6.TabIndex = 166
+        '
+        'DEDueDateInvoice
+        '
+        Me.DEDueDateInvoice.EditValue = Nothing
+        Me.DEDueDateInvoice.Location = New System.Drawing.Point(106, 64)
+        Me.DEDueDateInvoice.Name = "DEDueDateInvoice"
+        Me.DEDueDateInvoice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDateInvoice.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDateInvoice.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDueDateInvoice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDueDateInvoice.Size = New System.Drawing.Size(298, 20)
+        Me.DEDueDateInvoice.TabIndex = 170
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(9, 67)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(83, 13)
+        Me.LabelControl1.TabIndex = 169
+        Me.LabelControl1.Text = "Due Date Invoice"
         '
         'DERefDate
         '
@@ -248,7 +268,6 @@ Partial Class FormInvoiceClaimOther
         Me.SLEVendor.Location = New System.Drawing.Point(88, 38)
         Me.SLEVendor.Name = "SLEVendor"
         Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEVendor.Properties.ReadOnly = True
         Me.SLEVendor.Properties.View = Me.GridView2
         Me.SLEVendor.Size = New System.Drawing.Size(287, 20)
         Me.SLEVendor.TabIndex = 8914
@@ -303,27 +322,6 @@ Partial Class FormInvoiceClaimOther
         Me.LabelControl5.TabIndex = 162
         Me.LabelControl5.Text = "Number"
         '
-        'DEDueDateInvoice
-        '
-        Me.DEDueDateInvoice.EditValue = Nothing
-        Me.DEDueDateInvoice.Location = New System.Drawing.Point(106, 64)
-        Me.DEDueDateInvoice.Name = "DEDueDateInvoice"
-        Me.DEDueDateInvoice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDueDateInvoice.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDueDateInvoice.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEDueDateInvoice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDueDateInvoice.Size = New System.Drawing.Size(298, 20)
-        Me.DEDueDateInvoice.TabIndex = 170
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(9, 67)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(83, 13)
-        Me.LabelControl1.TabIndex = 169
-        Me.LabelControl1.Text = "Due Date Invoice"
-        '
         'PCAddDel
         '
         Me.PCAddDel.Controls.Add(Me.BtnDelete)
@@ -367,6 +365,39 @@ Partial Class FormInvoiceClaimOther
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(1003, 46)
         Me.PanelControl7.TabIndex = 22
+        '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.LargeImageCollection
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(89, 42)
+        Me.BMark.TabIndex = 22
+        Me.BMark.TabStop = False
+        Me.BMark.Text = "Mark"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
         'BAttachment
         '
@@ -425,39 +456,6 @@ Partial Class FormInvoiceClaimOther
         Me.BtnSave.TabIndex = 16
         Me.BtnSave.TabStop = False
         Me.BtnSave.Text = "Save"
-        '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
-        '
-        'BMark
-        '
-        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BMark.ImageIndex = 4
-        Me.BMark.ImageList = Me.LargeImageCollection
-        Me.BMark.Location = New System.Drawing.Point(2, 2)
-        Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 42)
-        Me.BMark.TabIndex = 22
-        Me.BMark.TabStop = False
-        Me.BMark.Text = "Mark"
         '
         'PanelControl8
         '
@@ -643,7 +641,7 @@ Partial Class FormInvoiceClaimOther
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn6, Me.GridColumnAccPick, Me.GCDescription, Me.GCReff, Me.GCPORef, Me.GCInvNumber, Me.GridColumnNote, Me.GCCur, Me.GCCurHide, Me.GCKurs, Me.GCBeforeKurs, Me.GCQty, Me.GridColumnPayment, Me.GCVat})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn6, Me.GridColumnAccPick, Me.GCDescription, Me.GCReff, Me.GCPORef, Me.GridColumnNote, Me.GCCur, Me.GCCurHide, Me.GCKurs, Me.GCBeforeKurs, Me.GCQty, Me.GridColumnPayment, Me.GCVat})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -720,10 +718,10 @@ Partial Class FormInvoiceClaimOther
         'GCDescription
         '
         Me.GCDescription.Caption = "Description"
-        Me.GCDescription.FieldName = "info_design"
+        Me.GCDescription.FieldName = "note"
         Me.GCDescription.Name = "GCDescription"
         Me.GCDescription.Visible = True
-        Me.GCDescription.VisibleIndex = 3
+        Me.GCDescription.VisibleIndex = 2
         Me.GCDescription.Width = 273
         '
         'GCReff
@@ -749,19 +747,6 @@ Partial Class FormInvoiceClaimOther
         Me.GCPORef.FieldName = "prod_order_number"
         Me.GCPORef.Name = "GCPORef"
         '
-        'GCInvNumber
-        '
-        Me.GCInvNumber.AppearanceCell.Options.UseTextOptions = True
-        Me.GCInvNumber.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCInvNumber.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCInvNumber.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCInvNumber.Caption = "Inv Number"
-        Me.GCInvNumber.FieldName = "inv_number"
-        Me.GCInvNumber.Name = "GCInvNumber"
-        Me.GCInvNumber.Visible = True
-        Me.GCInvNumber.VisibleIndex = 2
-        Me.GCInvNumber.Width = 120
-        '
         'GridColumnNote
         '
         Me.GridColumnNote.Caption = "Note"
@@ -777,7 +762,7 @@ Partial Class FormInvoiceClaimOther
         Me.GCCur.Name = "GCCur"
         Me.GCCur.OptionsColumn.AllowShowHide = False
         Me.GCCur.Visible = True
-        Me.GCCur.VisibleIndex = 5
+        Me.GCCur.VisibleIndex = 4
         Me.GCCur.Width = 61
         '
         'RISLECurrency
@@ -827,7 +812,7 @@ Partial Class FormInvoiceClaimOther
         Me.GCKurs.FieldName = "kurs"
         Me.GCKurs.Name = "GCKurs"
         Me.GCKurs.Visible = True
-        Me.GCKurs.VisibleIndex = 7
+        Me.GCKurs.VisibleIndex = 6
         Me.GCKurs.Width = 61
         '
         'GCBeforeKurs
@@ -838,7 +823,7 @@ Partial Class FormInvoiceClaimOther
         Me.GCBeforeKurs.FieldName = "value_bef_kurs"
         Me.GCBeforeKurs.Name = "GCBeforeKurs"
         Me.GCBeforeKurs.Visible = True
-        Me.GCBeforeKurs.VisibleIndex = 6
+        Me.GCBeforeKurs.VisibleIndex = 5
         Me.GCBeforeKurs.Width = 93
         '
         'GCQty
@@ -853,7 +838,7 @@ Partial Class FormInvoiceClaimOther
         Me.GCQty.FieldName = "qty"
         Me.GCQty.Name = "GCQty"
         Me.GCQty.Visible = True
-        Me.GCQty.VisibleIndex = 4
+        Me.GCQty.VisibleIndex = 3
         '
         'GridColumnPayment
         '
@@ -872,7 +857,7 @@ Partial Class FormInvoiceClaimOther
         Me.GridColumnPayment.UnboundExpression = "[value_bef_kurs] * [kurs]"
         Me.GridColumnPayment.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnPayment.Visible = True
-        Me.GridColumnPayment.VisibleIndex = 8
+        Me.GridColumnPayment.VisibleIndex = 7
         Me.GridColumnPayment.Width = 85
         '
         'GCVat
@@ -888,8 +873,28 @@ Partial Class FormInvoiceClaimOther
         Me.GCVat.Name = "GCVat"
         Me.GCVat.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vat", "{0:N2}")})
         Me.GCVat.Visible = True
-        Me.GCVat.VisibleIndex = 9
+        Me.GCVat.VisibleIndex = 8
         Me.GCVat.Width = 97
+        '
+        'RICECheckReceive
+        '
+        Me.RICECheckReceive.AutoHeight = False
+        Me.RICECheckReceive.Name = "RICECheckReceive"
+        Me.RICECheckReceive.ValueChecked = "yes"
+        Me.RICECheckReceive.ValueUnchecked = "no"
+        '
+        'RITEDecimal
+        '
+        Me.RITEDecimal.AutoHeight = False
+        Me.RITEDecimal.Mask.EditMask = "N2"
+        Me.RITEDecimal.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEDecimal.Name = "RITEDecimal"
+        '
+        'RepositoryItemLookUpEdit1
+        '
+        Me.RepositoryItemLookUpEdit1.AutoHeight = False
+        Me.RepositoryItemLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemLookUpEdit1.Name = "RepositoryItemLookUpEdit1"
         '
         'RISLECOAPPH
         '
@@ -930,31 +935,11 @@ Partial Class FormInvoiceClaimOther
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 1
         '
-        'RICECheckReceive
-        '
-        Me.RICECheckReceive.AutoHeight = False
-        Me.RICECheckReceive.Name = "RICECheckReceive"
-        Me.RICECheckReceive.ValueChecked = "yes"
-        Me.RICECheckReceive.ValueUnchecked = "no"
-        '
-        'RITEDecimal
-        '
-        Me.RITEDecimal.AutoHeight = False
-        Me.RITEDecimal.Mask.EditMask = "N2"
-        Me.RITEDecimal.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RITEDecimal.Name = "RITEDecimal"
-        '
-        'RepositoryItemLookUpEdit1
-        '
-        Me.RepositoryItemLookUpEdit1.AutoHeight = False
-        Me.RepositoryItemLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemLookUpEdit1.Name = "RepositoryItemLookUpEdit1"
-        '
         'XTPDraft
         '
         Me.XTPDraft.Controls.Add(Me.GCDraft)
         Me.XTPDraft.Name = "XTPDraft"
-        Me.XTPDraft.Size = New System.Drawing.Size(997, 224)
+        Me.XTPDraft.Size = New System.Drawing.Size(997, 216)
         Me.XTPDraft.Text = "Draft Journal"
         '
         'GCDraft
@@ -963,7 +948,7 @@ Partial Class FormInvoiceClaimOther
         Me.GCDraft.Location = New System.Drawing.Point(0, 0)
         Me.GCDraft.MainView = Me.GVDraft
         Me.GCDraft.Name = "GCDraft"
-        Me.GCDraft.Size = New System.Drawing.Size(997, 224)
+        Me.GCDraft.Size = New System.Drawing.Size(997, 216)
         Me.GCDraft.TabIndex = 2
         Me.GCDraft.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDraft})
         '
@@ -1082,6 +1067,8 @@ Partial Class FormInvoiceClaimOther
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
+        CType(Me.DEDueDateInvoice.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDateInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERefDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERefDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1092,8 +1079,6 @@ Partial Class FormInvoiceClaimOther
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDueDateInvoice.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDueDateInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1122,11 +1107,11 @@ Partial Class FormInvoiceClaimOther
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RISLECOAPPH, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLECOAPPH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDraft.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1191,7 +1176,6 @@ Partial Class FormInvoiceClaimOther
     Friend WithEvents GCDescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCReff As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCPORef As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCInvNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCur As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RISLECurrency As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit

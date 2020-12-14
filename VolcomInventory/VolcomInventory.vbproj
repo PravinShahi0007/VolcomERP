@@ -8021,6 +8021,12 @@
     <Compile Include="ReportInvMat.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportInvoiceClaimOther.Designer.vb">
+      <DependentUpon>ReportInvoiceClaimOther.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportInvoiceClaimOther.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportItemDel.Designer.vb">
       <DependentUpon>ReportItemDel.vb</DependentUpon>
     </Compile>
@@ -13331,6 +13337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportInvMat.resx">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportInvoiceClaimOther.resx">
+      <DependentUpon>ReportInvoiceClaimOther.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportItemDel.resx">
       <DependentUpon>ReportItemDel.vb</DependentUpon>
