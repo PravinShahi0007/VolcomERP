@@ -25,7 +25,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.SimpleButtonAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.DateEditDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButtonSet = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TextEditVendor = New DevExpress.XtraEditors.TextEdit()
         Me.TextEditPONumber = New DevExpress.XtraEditors.TextEdit()
@@ -174,15 +174,15 @@ Partial Class FormBankWithdrawalAttachement
         Me.LabelControl1.TabIndex = 2
         Me.LabelControl1.Text = "Due Date"
         '
-        'SimpleButtonSet
+        'BSave
         '
-        Me.SimpleButtonSet.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButtonSet.Image = CType(resources.GetObject("SimpleButtonSet.Image"), System.Drawing.Image)
-        Me.SimpleButtonSet.Location = New System.Drawing.Point(709, 2)
-        Me.SimpleButtonSet.Name = "SimpleButtonSet"
-        Me.SimpleButtonSet.Size = New System.Drawing.Size(90, 39)
-        Me.SimpleButtonSet.TabIndex = 4
-        Me.SimpleButtonSet.Text = "Save"
+        Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
+        Me.BSave.Location = New System.Drawing.Point(709, 2)
+        Me.BSave.Name = "BSave"
+        Me.BSave.Size = New System.Drawing.Size(90, 39)
+        Me.BSave.TabIndex = 4
+        Me.BSave.Text = "Save"
         '
         'LabelControl3
         '
@@ -501,6 +501,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsFind.AllowFindPanel = False
         Me.GVPurcReq.OptionsView.ColumnAutoWidth = False
+        Me.GVPurcReq.OptionsView.ShowFooter = True
         Me.GVPurcReq.OptionsView.ShowGroupPanel = False
         '
         'GridColumn8
@@ -646,7 +647,7 @@ Partial Class FormBankWithdrawalAttachement
         '
         'PanelControl4
         '
-        Me.PanelControl4.Controls.Add(Me.SimpleButtonSet)
+        Me.PanelControl4.Controls.Add(Me.BSave)
         Me.PanelControl4.Controls.Add(Me.BSaveLock)
         Me.PanelControl4.Controls.Add(Me.SimpleButtonAttachment)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -929,7 +930,7 @@ Partial Class FormBankWithdrawalAttachement
     Friend WithEvents SimpleButtonAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DateEditDueDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SimpleButtonSet As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TextEditVendor As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TextEditPONumber As DevExpress.XtraEditors.TextEdit
