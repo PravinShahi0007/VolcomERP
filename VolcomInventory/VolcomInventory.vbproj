@@ -2402,6 +2402,12 @@
     <Compile Include="FormInvMatDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInvoiceClaimOther.Designer.vb">
+      <DependentUpon>FormInvoiceClaimOther.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceClaimOther.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormInvoiceFGPO.Designer.vb">
       <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
     </Compile>
@@ -10082,6 +10088,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvMatDet.resx">
       <DependentUpon>FormInvMatDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceClaimOther.resx">
+      <DependentUpon>FormInvoiceClaimOther.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceFGPO.resx">
       <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
