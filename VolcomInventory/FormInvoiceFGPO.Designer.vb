@@ -135,7 +135,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCreateInvoiceLain = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEVendorPayment = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -1228,7 +1228,7 @@ Partial Class FormInvoiceFGPO
         'XTPInvoiceClaimLain
         '
         Me.XTPInvoiceClaimLain.Controls.Add(Me.GCInvoiceLain)
-        Me.XTPInvoiceClaimLain.Controls.Add(Me.SimpleButton1)
+        Me.XTPInvoiceClaimLain.Controls.Add(Me.BCreateInvoiceLain)
         Me.XTPInvoiceClaimLain.Name = "XTPInvoiceClaimLain"
         Me.XTPInvoiceClaimLain.Size = New System.Drawing.Size(1155, 558)
         Me.XTPInvoiceClaimLain.Text = "Invoice Claim Lain-lain"
@@ -1374,24 +1374,24 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn68.VisibleIndex = 1
         Me.GridColumn68.Width = 190
         '
-        'SimpleButton1
+        'BCreateInvoiceLain
         '
-        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton1.Appearance.Options.UseBackColor = True
-        Me.SimpleButton1.Appearance.Options.UseFont = True
-        Me.SimpleButton1.Appearance.Options.UseForeColor = True
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SimpleButton1.Location = New System.Drawing.Point(0, 521)
-        Me.SimpleButton1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.SimpleButton1.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(1155, 37)
-        Me.SimpleButton1.TabIndex = 21
-        Me.SimpleButton1.Text = "Create BPL"
+        Me.BCreateInvoiceLain.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateInvoiceLain.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateInvoiceLain.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateInvoiceLain.Appearance.Options.UseBackColor = True
+        Me.BCreateInvoiceLain.Appearance.Options.UseFont = True
+        Me.BCreateInvoiceLain.Appearance.Options.UseForeColor = True
+        Me.BCreateInvoiceLain.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreateInvoiceLain.Location = New System.Drawing.Point(0, 521)
+        Me.BCreateInvoiceLain.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateInvoiceLain.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateInvoiceLain.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateInvoiceLain.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateInvoiceLain.Name = "BCreateInvoiceLain"
+        Me.BCreateInvoiceLain.Size = New System.Drawing.Size(1155, 37)
+        Me.BCreateInvoiceLain.TabIndex = 21
+        Me.BCreateInvoiceLain.Text = "Create Invoice Claim Lain-lain"
         '
         'PanelControl1
         '
@@ -1631,5 +1631,5 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn66 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn67 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCreateInvoiceLain As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -288,4 +288,9 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
             FormInvoiceFGPODP.ShowDialog()
         End If
     End Sub
+
+    Private Sub BCreateInvoiceLain_Click(sender As Object, e As EventArgs) Handles BCreateInvoiceLain.Click
+        FormInvoiceClaimOther.id_invoice = "-1"
+        FormInvoiceClaimOther.ShowDialog()
+    End Sub
 End Class
