@@ -624,6 +624,9 @@
         ElseIf report_mark_type = "273" Then
             'propose material
             query = String.Format("SELECT id_report_status,mat_det_code as report_number FROM tb_m_mat_det_pps WHERE id_mat_det_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "241" Then
+            'adj og
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_adjustment_og WHERE id_adjustment = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -9039,6 +9042,19 @@ WHERE pps.id_additional_cost_pps='" & id_report & "'"
 
             'update
             query = String.Format("UPDATE tb_inv_claim_other SET id_report_status='{0}' WHERE id_inv_claim_other ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "241" Then
+            'adj og
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                FormAdjustmentOGDet.update_changes()
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_adjustment_og SET id_report_status='{0}' WHERE id_adjustment ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
