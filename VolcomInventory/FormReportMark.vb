@@ -8974,7 +8974,7 @@ WHERE pps.id_additional_cost_pps='" & id_report & "'"
                     End If
                 End If
             End If
-        ElseIf report_mark_type = "189" Then
+        ElseIf report_mark_type = "280" Then
             'Invoice FGPO
             'auto completed
             If id_status_reportx = "3" Then
