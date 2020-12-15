@@ -60,7 +60,7 @@
     End Sub
 
     Function viewListOOS(ByVal cond_par As String) As DataTable
-        Dim query As String = "SELECT os.id_ol_store_oos, os.number, os.id_comp_group, cg.comp_group, os.id_order, od.sales_order_ol_shop_number AS `order_number`, os.created_date,
+        Dim query As String = "SELECT os.id_ol_store_oos, os.number, os.id_comp_group, cg.description AS `comp_group`, os.id_order, od.sales_order_ol_shop_number AS `order_number`, os.created_date,
         os.manual_send_email_reason, os.sent_email_date,os.id_ol_store_oos_stt, stt.ol_store_oos_stt,
         od.customer_name, SUM(od.ol_order_qty) AS `total_order`, SUM(od.sales_order_det_qty) AS `total_fill`, 
         SUM(od.ol_order_qty)-SUM(od.sales_order_det_qty) AS `total_no_stock`,
