@@ -110,7 +110,7 @@
     Sub viewCOA()
         Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, 
         a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
-        FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 AND a.id_coa_type='1' "
+        FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 AND  AND a.id_coa_type='1' "
         viewSearchLookupQuery(SLESales, query, "id_acc", "acc_description", "id_acc")
         viewSearchLookupQuery(SLESalesReturn, query, "id_acc", "acc_description", "id_acc")
         viewSearchLookupQuery(SLEAR, query, "id_acc", "acc_description", "id_acc")

@@ -125,7 +125,7 @@ AND awb.`id_comp`='" & SLEVendor.EditValue.ToString & "' GROUP BY koli.`id_inbou
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             Report.data_awb = dt
 
-            q = "SELECT DATE_FORMAT('" & date_start & "','%d %M %Y') AS date_start,DATE_FORMAT('" & date_until & "','%d %M %Y') AS date_until,DATE_FORMAT(NOW(),'%d %M %Y') AS date_cur,c.comp_name
+            q = "SELECT DATE_FORMAT('" & date_start & "','%d %M %Y') AS date_start,DATE_FORMAT('" & date_until & "','%d %M %Y') AS date_until,c.comp_name
 ,emp_ppr.employee_name AS prepare_by_name,emp_ppr.employee_position AS prepare_by_position
 ,emp_mngr.employee_name AS wh_manager_name,emp_mngr.employee_position AS wh_manager_position
 FROM tb_m_comp c 
@@ -140,8 +140,6 @@ WHERE c.id_comp='" & SLEVendor.EditValue.ToString & "'"
 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()
-        Else
-            warningCustom("Choose 3PL first")
         End If
     End Sub
 End Class

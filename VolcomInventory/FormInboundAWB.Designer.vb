@@ -61,7 +61,6 @@ Partial Class FormInboundAWB
         Me.GCKoli = New DevExpress.XtraGrid.GridControl()
         Me.GVKoli = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -75,9 +74,10 @@ Partial Class FormInboundAWB
         Me.BDelKoli = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddKoli = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.BPrintAWB = New DevExpress.XtraEditors.SimpleButton()
         Me.BNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BSubmitAwb = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BPrintAWB = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PCHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCHeader.SuspendLayout()
         CType(Me.SLERate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -446,19 +446,6 @@ Partial Class FormInboundAWB
         Me.GridColumn4.FieldName = "id_inbound_koli"
         Me.GridColumn4.Name = "GridColumn4"
         '
-        'GridColumn23
-        '
-        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn23.Caption = "No"
-        Me.GridColumn23.FieldName = "no"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 0
-        Me.GridColumn23.Width = 100
-        '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Remark"
@@ -603,15 +590,6 @@ Partial Class FormInboundAWB
         Me.PanelControl4.Size = New System.Drawing.Size(990, 43)
         Me.PanelControl4.TabIndex = 3
         '
-        'BPrintAWB
-        '
-        Me.BPrintAWB.Location = New System.Drawing.Point(675, 9)
-        Me.BPrintAWB.Name = "BPrintAWB"
-        Me.BPrintAWB.Size = New System.Drawing.Size(64, 23)
-        Me.BPrintAWB.TabIndex = 5
-        Me.BPrintAWB.Text = "Print AWB"
-        Me.BPrintAWB.Visible = False
-        '
         'BNext
         '
         Me.BNext.Enabled = False
@@ -628,6 +606,27 @@ Partial Class FormInboundAWB
         Me.BSubmitAwb.Size = New System.Drawing.Size(64, 23)
         Me.BSubmitAwb.TabIndex = 3
         Me.BSubmitAwb.Text = "Submit"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn23.Caption = "No"
+        Me.GridColumn23.FieldName = "no"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 0
+        Me.GridColumn23.Width = 100
+        '
+        'BPrintAWB
+        '
+        Me.BPrintAWB.Location = New System.Drawing.Point(675, 9)
+        Me.BPrintAWB.Name = "BPrintAWB"
+        Me.BPrintAWB.Size = New System.Drawing.Size(64, 23)
+        Me.BPrintAWB.TabIndex = 5
+        Me.BPrintAWB.Text = "Print AWB"
         '
         'FormInboundAWB
         '
