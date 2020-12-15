@@ -624,6 +624,9 @@
         ElseIf report_mark_type = "273" Then
             'propose material
             query = String.Format("SELECT id_report_status,mat_det_code as report_number FROM tb_m_mat_det_pps WHERE id_mat_det_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "280" Then
+            'Invoice claim lain-lain
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_inv_claim_other WHERE id_inv_claim_other = '{0}'", id_report)
         ElseIf report_mark_type = "241" Then
             'adj og
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_adjustment_og WHERE id_adjustment = '{0}'", id_report)
