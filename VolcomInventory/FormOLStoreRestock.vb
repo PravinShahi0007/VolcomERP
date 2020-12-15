@@ -90,8 +90,8 @@
         INNER JOIN tb_m_wh_drawer drw ON fg.id_wh_drawer = drw.id_wh_drawer 
         INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack 
         INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator 
-        INNER JOIN tb_m_comp wh ON wh.id_comp = loc.id_comp AND wh.id_wh_group!='" + id_gol_use_induk + "'
-        WHERE fg.id_product='" + id_product + "' AND wh.is_only_for_alloc=2
+        INNER JOIN tb_m_comp wh ON wh.id_comp = loc.id_comp AND (wh.id_wh_group!='" + id_gol_use_induk + "' OR ISNULL(wh.id_wh_group))
+        WHERE fg.id_product='" + id_product + "' AND wh.is_only_for_alloc=2 AND (wh.id_wh_type=1 OR wh.id_wh_type=2)
         GROUP BY wh.id_comp
         HAVING total_stock>0 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
