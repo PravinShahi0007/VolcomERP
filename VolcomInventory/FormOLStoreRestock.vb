@@ -203,7 +203,7 @@
         Dim query_tot As String = "SELECT SUM(od.sales_order_det_qty) AS `total_fulfill`,IFNULL(SUM(od.ol_order_qty - od.sales_order_det_qty),0) AS `total_oos`, 
         IFNULL(op.total_restock_open,0) AS `total_restock_open`,
         IFNULL(cl.total_restock_close,0) AS `total_restock_close`,
-        CAST((SUM(od.ol_order_qty - od.sales_order_det_qty))-(IFNULL(op.total_restock_open,0))) AS DECIMAL(10,0)) AS `total_allowed`
+        CAST(((SUM(od.ol_order_qty - od.sales_order_det_qty))-(IFNULL(op.total_restock_open,0))) AS DECIMAL(10,0)) AS `total_allowed`
         FROM tb_ol_store_order od 
         LEFT JOIN (
 	        SELECT sod.id_product, SUM(sod.sales_order_det_qty) AS `total_restock_open`
