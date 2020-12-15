@@ -6335,6 +6335,11 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                                                 SET is_open='2'
                                                 WHERE id_inv_mat='" & dt.Rows(i)("id_report").ToString & "'"
                             execute_non_query(qc, True, "", "", "", "")
+                        ElseIf dt.Rows(i)("report_mark_type").ToString = "280" Then 'inv mat
+                            Dim qc As String = "UPDATE tb_inv_claim_other 
+                                                SET is_open='2'
+                                                WHERE id_inv_claim_other='" & dt.Rows(i)("id_report").ToString & "'"
+                            execute_non_query(qc, True, "", "", "", "")
                         End If
                     Next
                     '
