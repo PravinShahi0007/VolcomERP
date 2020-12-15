@@ -156,7 +156,7 @@
     Private Sub RepoBtnRestock_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnRestock.ButtonClick
         If GVProduct.RowCount > 0 And GVProduct.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
-            If GVProduct.GetFocusedRowCellValue("is_poss_replace").ToString = "1" Then
+            If GVProduct.GetFocusedRowCellValue("is_poss_replace").ToString = "1" And GVProduct.GetFocusedRowCellValue("no_stock_qty") > 0 Then
                 FormOLStoreRestock.id_oos = id
                 FormOLStoreRestock.id_product = GVProduct.GetFocusedRowCellValue("id_product").ToString
                 FormOLStoreRestock.product_code = GVProduct.GetFocusedRowCellValue("code").ToString
