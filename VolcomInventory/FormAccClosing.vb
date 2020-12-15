@@ -62,6 +62,13 @@ HAVING NOT sts='Ok'"
 FROM `tb_pn_fgpo` pn 
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
 WHERE DATE(pn.ref_date) <= '" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND pn.id_report_status !=5 AND pn.id_report_status !=6"
+        'BBM
+        query += " UNION
+SELECT pn.id_rec_payment AS id_report,'162' AS report_mark_type,pn.date_received AS date_reference,'BBM' AS `type`
+,sts.report_status AS report_status,pn.date_created AS date_created,pn.number AS report_number
+FROM `tb_rec_payment` pn 
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
+WHERE DATE(pn.date_payment) <= '" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND pn.id_report_status !=5 AND pn.id_report_status !=6"
         'BBK
         query += " UNION
 SELECT pn.id_pn AS id_report,'159' AS report_mark_type,pn.date_payment AS date_reference,'BBK' AS `type`
