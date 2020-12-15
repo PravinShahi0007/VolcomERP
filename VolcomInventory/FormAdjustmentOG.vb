@@ -18,7 +18,7 @@
 
     Sub form_load()
         Dim query As String = "
-            SELECT a.id_adjustment, IF(a.id_type = 1, 'Adjustment', 'Transfer') AS `type`, IF(a.id_departement_from = 0, 'Purchasing Storage', df.departement) AS departement_from, IF(a.id_departement_to = 0, 'Purchasing Storage', dt.departement) AS departement_to, a.number, DATE_FORMAT(a.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, r.report_status
+            SELECT a.id_adjustment, IF(a.id_type = 1, 'Adjustment In', IF(a.id_type = 2, 'Adjustment Out', 'Transfer')) AS `type`, IF(a.id_departement_from = 0, 'Purchasing Storage', df.departement) AS departement_from, IF(a.id_departement_to = 0, 'Purchasing Storage', dt.departement) AS departement_to, a.number, DATE_FORMAT(a.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, r.report_status
             FROM tb_adjustment_og AS a
             LEFT JOIN tb_m_departement AS df ON a.id_departement_from = df.id_departement
             LEFT JOIN tb_m_departement AS dt ON a.id_departement_to = dt.id_departement
