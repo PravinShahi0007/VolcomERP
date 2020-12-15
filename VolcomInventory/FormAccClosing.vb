@@ -55,53 +55,7 @@ HAVING NOT sts='Ok'"
         GVClosing.BestFitColumns()
 
         'report check
-        query = ""
-        'BPL
-        query += "SELECT pn.id_pn_fgpo AS id_report,'189' AS report_mark_type,pn.ref_date AS date_reference,'BPL' AS `type`
-,sts.report_status AS report_status,pn.created_date AS date_created,pn.number AS report_number
-FROM `tb_pn_fgpo` pn 
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE DATE(pn.ref_date) <= '" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND pn.id_report_status !=5 AND pn.id_report_status !=6"
-        'BBM
-        query += " UNION
-SELECT pn.id_rec_payment AS id_report,'162' AS report_mark_type,pn.date_received AS date_reference,'BBM' AS `type`
-,sts.report_status AS report_status,pn.date_created AS date_created,pn.number AS report_number
-FROM `tb_rec_payment` pn 
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE DATE(pn.date_payment) <= '" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND pn.id_report_status !=5 AND pn.id_report_status !=6"
-        'BBK
-        query += " UNION
-SELECT pn.id_pn AS id_report,'159' AS report_mark_type,pn.date_payment AS date_reference,'BBK' AS `type`
-,sts.report_status AS report_status,pn.date_created AS date_created,pn.number AS report_number
-FROM `tb_pn` pn 
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE DATE(pn.date_payment) <= '" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND pn.id_report_status !=5 AND pn.id_report_status !=6"
-        'REC FG
-        query += " UNION
-SELECT r.id_pl_prod_order_rec AS id_report,rmt.report_mark_type AS report_mark_type,r.pl_prod_order_rec_date AS date_reference,rmt.report_mark_type_name AS `type`
-,rs.report_status AS report_status,r.pl_prod_order_rec_date AS date_created, r.pl_prod_order_rec_number AS report_number 
-FROM tb_pl_prod_order_rec r
-INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = r.id_report_status
-INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = 37
-WHERE r.pl_prod_order_rec_date<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND r.id_report_status !=5 AND r.id_report_status !=6"
-        'DEL
-        query += " UNION
-SELECT r.id_pl_sales_order_del AS id_report,rmt.report_mark_type AS report_mark_type,r.pl_sales_order_del_date AS date_reference,rmt.report_mark_type_name AS `type`
-,rs.report_status AS report_status,r.pl_sales_order_del_date AS date_created, r.pl_sales_order_del_number AS report_number 
-FROM tb_pl_sales_order_del r
-INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = r.id_report_status
-INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = 43
-WHERE r.pl_sales_order_del_date<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND r.id_report_status !=5 AND r.id_report_status !=6"
-        'Entry Journal
-        query += " UNION
-SELECT r.id_acc_trans AS id_report,rmt.report_mark_type AS report_mark_type,r.date_reference AS date_reference,rmt.report_mark_type_name AS `type`
-,rs.report_status AS report_status,r.date_created AS date_created, r.acc_trans_number AS report_number 
-FROM tb_a_acc_trans r
-INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = r.id_report_status
-INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = 36
-WHERE r.date_reference<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND r.id_report_status !=5 AND r.id_report_status !=6 "
-
-
+        query = "CALL view_need_closing('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')"
         Dim data_report As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCReport.DataSource = data_report
         GVReport.BestFitColumns()
