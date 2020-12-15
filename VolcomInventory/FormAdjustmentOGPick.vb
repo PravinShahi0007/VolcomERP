@@ -29,6 +29,7 @@
         row("id_item") = GVList.GetFocusedRowCellValue("id_item")
         row("item_desc") = GVList.GetFocusedRowCellValue("item_desc")
         row("uom") = GVList.GetFocusedRowCellValue("uom")
+        row("id_item_cat") = GVList.GetFocusedRowCellValue("id_item_cat")
         row("item_cat") = GVList.GetFocusedRowCellValue("item_cat")
         row("qty") = 0
         row("value") = GVList.GetFocusedRowCellValue("value")

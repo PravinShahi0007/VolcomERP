@@ -395,6 +395,9 @@
         ElseIf report_mark_type = "280" Then
             'Inv Claim Lain2
             FormInvoiceClaimOther.Close()
+        ElseIf report_mark_type = "241" Then
+            'adj og
+            FormAdjustmentOGDet.Close()
         End If
     End Sub
     Sub show()
@@ -1336,6 +1339,9 @@ GROUP BY rec.`id_prod_order`"
             'Inv Claim Lain2
             FormInvoiceClaimOther.id_invoice = id_report
             FormInvoiceClaimOther.ShowDialog()
+        ElseIf report_mark_type = "241" Then
+            FormAdjustmentOGDet.id_adjustment = id_report
+            FormAdjustmentOGDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2395,6 +2401,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_inv_claim_other"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "241" Then
+            'adj og
+            table_name = "tb_adjustment_og"
+            field_id = "id_adjustment"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
