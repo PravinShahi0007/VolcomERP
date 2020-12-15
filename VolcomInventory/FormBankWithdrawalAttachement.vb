@@ -182,7 +182,11 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
         TextEditVendor.EditValue = data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString
         TextEditPONumber.EditValue = data.Rows(0)("purc_order_number").ToString
         TEInvNumber.Text = data.Rows(0)("inv_number").ToString
-        SLEPPHAccount.EditValue = data.Rows(0)("pph_account").ToString
+
+        If Not data.Rows(0)("pph_account").ToString = "" Then
+            SLEPPHAccount.EditValue = data.Rows(0)("pph_account").ToString
+        End If
+
         DateEditDueDate.EditValue = data.Rows(0)("due_date")
 
         'item
