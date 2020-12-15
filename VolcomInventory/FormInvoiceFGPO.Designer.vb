@@ -1231,7 +1231,7 @@ Partial Class FormInvoiceFGPO
         Me.XTPInvoiceClaimLain.Controls.Add(Me.BCreateInvoiceLain)
         Me.XTPInvoiceClaimLain.Name = "XTPInvoiceClaimLain"
         Me.XTPInvoiceClaimLain.Size = New System.Drawing.Size(1155, 558)
-        Me.XTPInvoiceClaimLain.Text = "Invoice Claim Lain-lain"
+        Me.XTPInvoiceClaimLain.Text = "Debit Note Claim Lain"
         '
         'GCInvoiceLain
         '

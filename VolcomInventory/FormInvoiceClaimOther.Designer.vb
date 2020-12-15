@@ -1060,7 +1060,7 @@ Partial Class FormInvoiceClaimOther
         Me.MinimizeBox = False
         Me.Name = "FormInvoiceClaimOther"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Invoice Claim lain-lain"
+        Me.Text = "Debit Note Claim Lain"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
