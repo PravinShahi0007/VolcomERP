@@ -3137,38 +3137,41 @@ WHERE pps.`id_design_ecop_pps`='" & id_report & "'"
                 Dim mail As MailMessage = New MailMessage()
                 mail.From = from_mail
 
-                'send to mkt
-                Dim query_email_mktplace As String = "SELECT * FROM tb_m_comp_contact cc WHERE cc.id_comp='" + season + "' AND cc.is_default=1"
-                Dim data_email_mktplace As DataTable = execute_query(query_email_mktplace, -1, True, "", "", "", "")
-                Dim to_marketplace As MailAddress = New MailAddress(data_email_mktplace.Rows(0)("email").ToString, data_email_mktplace.Rows(0)("contact_person").ToString)
-                mail.To.Add(to_marketplace)
-
-                'Send to => design_code : email; design : contact person;
-                Dim query_send_to As String = "SELECT emp.`email_external`,emp.`employee_name` 
-                FROM tb_mail_to md
-                INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
-                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-                WHERE is_to='1' AND md.report_mark_type=278 AND md.opt=1 "
-                Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
-                For i As Integer = 0 To data_send_to.Rows.Count - 1
-                    Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
+            'Send to => design_code : email; design : contact person;
+            Dim is_found_to As Boolean = False
+            Dim query_send_to As String = "SELECT mm.id_mail_member_type, cc.email AS `mail_address`, cc.contact_person AS `display_name`, '1' AS `prior`
+            FROM tb_mail_manage_mapping mm
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = mm.id_comp_contact
+            WHERE mm.report_mark_type=278 AND mm.id_comp_group=" + comment + " AND mm.id_mail_member_type>1
+            UNION ALL
+            SELECT mu.id_mail_member_type, e.email_external AS `mail_address`, e.employee_name AS `display_name`, '2' AS `prior`
+            FROM tb_mail_manage_mapping_intern mu
+            INNER JOIN tb_m_user u ON u.id_user = mu.id_user
+            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+            WHERE mu.report_mark_type=278 AND (mu.id_comp_group=" + comment + " OR ISNULL(mu.id_comp_group)) AND mu.id_mail_member_type>1
+            ORDER BY id_mail_member_type ASC, prior ASC "
+            Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_to.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("mail_address").ToString, data_send_to.Rows(i)("display_name").ToString)
+                If data_send_to.Rows(i)("id_mail_member_type").ToString = "2" Then
                     mail.To.Add(to_mail)
-                Next
+                    is_found_to = True
+                ElseIf data_send_to.Rows(i)("id_mail_member_type").ToString = "3" Then
+                    mail.CC.Add(to_mail)
+                End If
+            Next
+            'include email management
+            Dim management_mail As String = getMailManagement(report_mark_type)
+            If management_mail <> "" Then
+                mail.CC.Add(management_mail)
+            End If
+            'jika to ndak ketemu
+            If Not is_found_to Then
+                Dim to_mail_default As MailAddress = New MailAddress("catur@volcom.co.id", "ERP Administrator")
+            End If
 
-                'Send CC
-                Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
-                FROM tb_mail_to md
-                INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
-                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-                WHERE is_to='1' AND md.report_mark_type=278 AND md.opt=1 "
-                Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
-                For i As Integer = 0 To data_send_cc.Rows.Count - 1
-                    Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
-                    mail.CC.Add(to_mail_cc)
-                Next
-
-                'get body option
-                Dim query_body As String = "SELECT o.subj_oos_partial, o.subj_oos_all, o.body_oos_partial_1, o.body_oos_partial_2, o.body_oos_all_1, o.body_oos_all_2 
+            'get body option
+            Dim query_body As String = "SELECT o.subj_oos_partial, o.subj_oos_all, o.body_oos_partial_1, o.body_oos_partial_2, o.body_oos_all_1, o.body_oos_all_2 
 FROM tb_opt o "
                 Dim data_body As DataTable = execute_query(query_body, -1, True, "", "", "", "")
                 Dim subjek As String = ""

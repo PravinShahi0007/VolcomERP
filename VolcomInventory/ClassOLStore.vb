@@ -48,6 +48,7 @@
         m.id_report = id_report
         m.report_mark_type = "278"
         m.opt = opt_email
+        m.comment = id_comp_group
         m.par1 = comp_group
         m.par2 = number
         m.date_string = created_date
