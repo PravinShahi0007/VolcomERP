@@ -2,15 +2,27 @@
     Private Sub FormAdjustmentOGPick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
         'Prepare paramater
+        Dim in_item As String = ""
+
+        For i = 0 To FormAdjustmentOGDet.GVList.RowCount - 1
+            in_item += FormAdjustmentOGDet.GVList.GetRowCellValue(i, "id_item").ToString + ", "
+        Next
+
+        If in_item = "" Then
+            in_item = "0"
+        Else
+            in_item = in_item.Substring(0, in_item.Length - 2)
+        End If
+
         Dim date_until_selected As String = Date.Parse(Now).ToString("yyyy-MM-dd")
 
         Dim dept As String = FormAdjustmentOGDet.SLUEFromDepartment.EditValue.ToString
         Dim cat As String = "0"
         '
         If dept = "-1" Then
-            dept = ""
+            dept = "AND i.id_item NOT IN (" + in_item + ")"
         Else
-            dept = "AND i.id_departement=" + dept + ""
+            dept = "AND i.id_item NOT IN (" + in_item + ") AND i.id_departement=" + dept + ""
         End If
 
         Dim stc As New ClassPurcItemStock()

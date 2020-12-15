@@ -149,43 +149,59 @@
     End Sub
 
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
-        Dim confirm As DialogResult
+        Dim msg As String = ""
 
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If GVList.RowCount = 0 Then
+            msg = "Please select item"
+        End If
 
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim id_type As String = SLUEType.EditValue.ToString
-            Dim id_departement_from As String = SLUEFromDepartment.EditValue.ToString
-            Dim id_departement_to As String = If(id_type = "1", "NULL", SLUEToDepartement.EditValue.ToString)
-            Dim created_at As String = "NOW()"
-            Dim created_by As String = id_employee_user
-            Dim id_report_status As String = "1"
+        For i = 0 To GVList.RowCount - 1
+            If GVList.GetRowCellValue(i, "qty") = 0 Then
+                msg = "Qty cannot be 0"
+            End If
+        Next
 
-            Dim query As String = "
-                INSERT INTO tb_adjustment_og (id_type, id_departement_from, id_departement_to, created_at, created_by, id_report_status) VALUES (" + id_type + ", " + id_departement_from + "," + id_departement_to + ", " + created_at + ", " + created_by + ", " + id_report_status + "); SELECT LAST_INSERT_ID();
-            "
+        If msg = "" Then
+            Dim confirm As DialogResult
 
-            id_adjustment = execute_query(query, 0, True, "", "", "", "")
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            execute_non_query("CALL gen_number(" + id_adjustment + ", '241')", True, "", "", "", "")
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id_type As String = SLUEType.EditValue.ToString
+                Dim id_departement_from As String = SLUEFromDepartment.EditValue.ToString
+                Dim id_departement_to As String = If(id_type = "1", "NULL", SLUEToDepartement.EditValue.ToString)
+                Dim created_at As String = "NOW()"
+                Dim created_by As String = id_employee_user
+                Dim id_report_status As String = "1"
 
-            For i = 0 To GVList.RowCount - 1
-                Dim id_item As String = GVList.GetRowCellValue(i, "id_item").ToString
-                Dim item_desc As String = "'" + addSlashes(GVList.GetRowCellValue(i, "item_desc").ToString) + "'"
-                Dim uom As String = "'" + addSlashes(GVList.GetRowCellValue(i, "uom").ToString) + "'"
-                Dim id_item_cat As String = GVList.GetRowCellValue(i, "id_item_cat").ToString
-                Dim item_cat As String = "'" + addSlashes(GVList.GetRowCellValue(i, "item_cat").ToString) + "'"
-                Dim qty As String = decimalSQL(GVList.GetRowCellValue(i, "qty").ToString)
-                Dim value As String = decimalSQL(GVList.GetRowCellValue(i, "value").ToString)
+                Dim query As String = "
+                    INSERT INTO tb_adjustment_og (id_type, id_departement_from, id_departement_to, created_at, created_by, id_report_status) VALUES (" + id_type + ", " + id_departement_from + "," + id_departement_to + ", " + created_at + ", " + created_by + ", " + id_report_status + "); SELECT LAST_INSERT_ID();
+                "
 
-                query = "INSERT INTO tb_adjustment_og_det (id_adjustment, id_item, item_desc, uom, id_item_cat, item_cat, qty, value) VALUES (" + id_adjustment + ", " + id_item + ", " + item_desc + ", " + uom + ", " + id_item_cat + ", " + item_cat + ", " + qty + ", " + value + ")"
+                id_adjustment = execute_query(query, 0, True, "", "", "", "")
 
-                execute_non_query(query, True, "", "", "", "")
-            Next
+                execute_non_query("CALL gen_number(" + id_adjustment + ", '241')", True, "", "", "", "")
 
-            submit_who_prepared("241", id_adjustment, id_user)
+                For i = 0 To GVList.RowCount - 1
+                    Dim id_item As String = GVList.GetRowCellValue(i, "id_item").ToString
+                    Dim item_desc As String = "'" + addSlashes(GVList.GetRowCellValue(i, "item_desc").ToString) + "'"
+                    Dim uom As String = "'" + addSlashes(GVList.GetRowCellValue(i, "uom").ToString) + "'"
+                    Dim id_item_cat As String = GVList.GetRowCellValue(i, "id_item_cat").ToString
+                    Dim item_cat As String = "'" + addSlashes(GVList.GetRowCellValue(i, "item_cat").ToString) + "'"
+                    Dim qty As String = decimalSQL(GVList.GetRowCellValue(i, "qty").ToString)
+                    Dim value As String = decimalSQL(GVList.GetRowCellValue(i, "value").ToString)
 
-            Close()
+                    query = "INSERT INTO tb_adjustment_og_det (id_adjustment, id_item, item_desc, uom, id_item_cat, item_cat, qty, value) VALUES (" + id_adjustment + ", " + id_item + ", " + item_desc + ", " + uom + ", " + id_item_cat + ", " + item_cat + ", " + qty + ", " + value + ")"
+
+                    execute_non_query(query, True, "", "", "", "")
+                Next
+
+                submit_who_prepared("241", id_adjustment, id_user)
+
+                Close()
+            End If
+        Else
+            stopCustom(msg)
         End If
     End Sub
 
@@ -205,5 +221,32 @@
         GCList.DataSource = data_detail
 
         GVList.BestFitColumns()
+    End Sub
+
+    Private Sub GVList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVList.CellValueChanged
+        If e.Column.FieldName = "qty" Then
+            Dim date_until_selected As String = Date.Parse(Now).ToString("yyyy-MM-dd")
+
+            Dim dept As String = SLUEFromDepartment.EditValue.ToString
+            Dim cat As String = "0"
+            '
+            If dept = "-1" Then
+                dept = "AND i.id_item = " + GVList.GetRowCellValue(e.RowHandle, "id_item").ToString
+            Else
+                dept = "AND i.id_item = " + GVList.GetRowCellValue(e.RowHandle, "id_item").ToString + " AND i.id_departement=" + dept + ""
+            End If
+
+            Dim stc As New ClassPurcItemStock()
+            Dim query As String = stc.queryGetStock(dept, cat, date_until_selected)
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            Dim res As Decimal = data.Rows(0)("qty") + GVList.GetRowCellValue(e.RowHandle, "qty")
+
+            If res < 0 Then
+                stopCustom("Please input value greater than -" + data.Rows(0)("qty").ToString)
+
+                GVList.SetRowCellValue(e.RowHandle, "qty", 0)
+            End If
+        End If
     End Sub
 End Class
