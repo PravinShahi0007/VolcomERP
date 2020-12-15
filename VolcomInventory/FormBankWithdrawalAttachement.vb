@@ -1,5 +1,6 @@
 ﻿Public Class FormBankWithdrawalAttachement
     Public id_purc_order As String = "-1"
+    Public is_lock As String = "2"
 
     Private Sub FormBankWithdrawalAttachement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
@@ -61,8 +62,13 @@
                 newRowvat2("credit") = 0
                 TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat2)
             Else
+                'save first
+                If is_lock = "2" Then
+                    save("draft")
+                End If
+
                 Dim query As String = "SELECT o.id_coa_out AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
-'" & decimalSQL(GVPurcReq.Columns("gross_up_value").SummaryItem.SummaryValue.ToString) & "' AS `debit`,
+" & decimalSQL(GVPurcReq.Columns("gross_up_value").SummaryItem.SummaryValue.ToString) & " AS `debit`,
 0 AS `credit`,
 i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
 FROM tb_purc_rec_det rd
@@ -82,7 +88,7 @@ UNION ALL
 -- pph grossup
 SELECT  po.`pph_account` AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
 0 AS `debit`,
-'" & decimalSQL(GVPurcReq.Columns("gross_up_value").SummaryItem.SummaryValue.ToString) & "' AS `credit`,
+" & decimalSQL(GVPurcReq.Columns("gross_up_value").SummaryItem.SummaryValue.ToString) & " AS `credit`,
 i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
 FROM tb_purc_rec_det rd
 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
@@ -99,7 +105,7 @@ GROUP BY po.id_purc_order,dep.id_main_comp
 UNION ALL
 -- hutang non grossup
 SELECT  comp.id_acc_ap AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
-'" & decimalSQL(GVPurcReq.Columns("pph").SummaryItem.SummaryValue.ToString) & "' AS `debit`,
+" & decimalSQL(GVPurcReq.Columns("pph").SummaryItem.SummaryValue.ToString) & " AS `debit`,
 0 AS `credit`,
 i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
 FROM tb_purc_rec_det rd
@@ -118,7 +124,7 @@ UNION ALL
 -- pph non grossup
 SELECT  po.`pph_account` AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
 0 AS `debit`,
-'" & decimalSQL(GVPurcReq.Columns("pph").SummaryItem.SummaryValue.ToString) & "' AS `credit`,
+" & decimalSQL(GVPurcReq.Columns("pph").SummaryItem.SummaryValue.ToString) & " AS `credit`,
 i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number
 FROM tb_purc_rec_det rd
 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
@@ -162,7 +168,7 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
         SLEPPHAccount.EditValue = "0"
 
         Dim query As String = "
-            SELECT po.purc_order_number,po.pph_account,po.inv_number, c.comp_number, c.comp_name, IFNULL(po.due_date, DATE(NOW())) AS due_date, po.vat_percent, po.vat_value, po.is_disc_percent ,po.disc_percent, po.disc_value 
+            SELECT po.purc_order_number,po.is_active_payment,po.pph_account,po.inv_number, c.comp_number, c.comp_name, IFNULL(po.due_date, DATE(NOW())) AS due_date, po.vat_percent, po.vat_value, po.is_disc_percent ,po.disc_percent, po.disc_value 
             FROM tb_purc_order AS po
             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = po.id_comp_contact
             INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
@@ -171,10 +177,16 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+        is_lock = data.Rows(0)("purc_order_number").ToString
+
         TextEditVendor.EditValue = data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString
         TextEditPONumber.EditValue = data.Rows(0)("purc_order_number").ToString
         TEInvNumber.Text = data.Rows(0)("inv_number").ToString
-        SLEPPHAccount.EditValue = data.Rows(0)("pph_account").ToString
+
+        If Not data.Rows(0)("pph_account").ToString = "" Then
+            SLEPPHAccount.EditValue = data.Rows(0)("pph_account").ToString
+        End If
+
         DateEditDueDate.EditValue = data.Rows(0)("due_date")
 
         'item
@@ -214,6 +226,13 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
 
         TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue + TEVATValue.EditValue - TEPPH.EditValue
 
+        '
+        If is_lock = "1" Then
+            BSaveLock.Visible = False
+            BSave.Visible = False
+        End If
+        '
+
         calculate()
         load_blank_draft()
     End Sub
@@ -231,7 +250,11 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub SimpleButtonSet_Click(sender As Object, e As EventArgs) Handles SimpleButtonSet.Click
+    Private Sub SimpleButtonSet_Click(sender As Object, e As EventArgs) Handles BSave.Click
+        save("1")
+    End Sub
+
+    Sub save(ByVal opt As String)
         If SLEPPHAccount.EditValue.ToString = get_opt_acc_field("id_acc_skbp") Then 'skbp
             For i As Integer = 0 To GVPurcReq.RowCount - 1
                 If GVPurcReq.GetRowCellValue(i, "gross_up_value") > 0 Then
@@ -275,7 +298,9 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
             Dim query As String = "UPDATE tb_purc_order SET pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ",due_date = '" + Date.Parse(DateEditDueDate.EditValue.ToString).ToString("yyyy-MM-dd") + "',pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ", pph_account = " + If(SLEPPHAccount.EditValue.ToString = "0", "NULL", SLEPPHAccount.EditValue.ToString) + ",inv_number='" & addSlashes(TEInvNumber.Text) & "' WHERE id_purc_order = " + id_purc_order
             execute_non_query(query, True, "", "", "", "")
 
-            infoCustom("Detail updated")
+            If opt = "1" Then
+                infoCustom("Detail updated")
+            End If
             load_form()
         End If
     End Sub
