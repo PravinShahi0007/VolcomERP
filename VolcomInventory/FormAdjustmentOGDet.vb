@@ -220,8 +220,33 @@
     End Sub
 
     Sub update_changes()
-        If SLUEType.EditValue.ToString = "" Then
+        If SLUEType.EditValue.ToString = "3" Then
+            Dim queryOut As String = "
+                INSERT INTO tb_storage_item (id_comp, id_departement, id_storage_category, id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, storage_item_notes, id_stock_status)
+                SELECT 1216 AS id_comp, a.id_departement_from AS id_departement, 2 AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, NULL AS storage_item_notes, 1 AS id_stock_status
+                FROM tb_adjustment_og_det AS d
+                LEFT JOIN tb_adjustment_og AS a ON a.id_adjustment = d.id_adjustment
+                WHERE d.id_adjusment = " + id_adjustment
 
+            execute_non_query(queryOut, True, "", "", "", "")
+
+            Dim queryIn As String = "
+                INSERT INTO tb_storage_item (id_comp, id_departement, id_storage_category, id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, storage_item_notes, id_stock_status)
+                SELECT 1216 AS id_comp, a.id_departement_to AS id_departement, 1 AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, NULL AS storage_item_notes, 1 AS id_stock_status
+                FROM tb_adjustment_og_det AS d
+                LEFT JOIN tb_adjustment_og AS a ON a.id_adjustment = d.id_adjustment
+                WHERE d.id_adjusment = " + id_adjustment
+
+            execute_non_query(queryIn, True, "", "", "", "")
+        Else
+            Dim query As String = "
+                INSERT INTO tb_storage_item (id_comp, id_departement, id_storage_category, id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, storage_item_notes, id_stock_status)
+                SELECT 1216 AS id_comp, a.id_departement_from AS id_departement, a.id_type AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, NULL AS storage_item_notes, 1 AS id_stock_status
+                FROM tb_adjustment_og_det AS d
+                LEFT JOIN tb_adjustment_og AS a ON a.id_adjustment = d.id_adjustment
+                WHERE d.id_adjusment = " + id_adjustment
+
+            execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
 
