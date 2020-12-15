@@ -333,10 +333,10 @@ WHERE pnd.`id_inv_claim_other`='" & id_invoice & "'"
         Next
 
         GCCur.VisibleIndex = -1
-        GCCurHide.VisibleIndex = 5
+        GCCurHide.VisibleIndex = 4
         GridColumnAccPick.VisibleIndex = -1
         GridColumnNote.VisibleIndex = -1
-        GCPORef.VisibleIndex = 1
+        GCReff.VisibleIndex = 1
         '
         'GridColumnPPHDesc.VisibleIndex = 10
 
@@ -352,10 +352,10 @@ WHERE pnd.`id_inv_claim_other`='" & id_invoice & "'"
         Report.GVList.OptionsPrint.PrintFooter = False
 
         GridColumnAccPick.VisibleIndex = 0
-        GCCur.VisibleIndex = 5
+        GCCur.VisibleIndex = 4
         GCCurHide.VisibleIndex = -1
         GridColumnNote.VisibleIndex = 10
-        GCPORef.VisibleIndex = -1
+        GCReff.VisibleIndex = -1
         '
 
         'search total
