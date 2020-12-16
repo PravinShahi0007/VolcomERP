@@ -15,12 +15,12 @@
 
     Sub form_load()
         Dim query As String = "
-            SELECT a.id_type, a.id_departement_from, a.id_departement_to, a.number, DATE_FORMAT(a.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, a.id_report_status
+            SELECT a.id_type, a.id_departement_from, a.id_departement_to, a.number, a.note, DATE_FORMAT(a.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, a.id_report_status
             FROM tb_adjustment_og AS a
             LEFT JOIN tb_m_employee AS e ON a.created_by = e.id_employee
             WHERE id_adjustment = " + id_adjustment + "
             UNION ALL
-            SELECT 1 AS id_type, 0 AS id_departement_from, 0 AS id_departement_to, '[autogenerate]' AS number, DATE_FORMAT(NOW(), '%d %M %Y %H:%i:%s') AS created_at, '" + get_emp(id_employee_user, "2") + "' AS created_by, 0 AS id_report_status
+            SELECT 1 AS id_type, 0 AS id_departement_from, 0 AS id_departement_to, '[autogenerate]' AS number, '' AS note, DATE_FORMAT(NOW(), '%d %M %Y %H:%i:%s') AS created_at, '" + get_emp(id_employee_user, "2") + "' AS created_by, 0 AS id_report_status
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -32,6 +32,7 @@
         TECreatedAt.EditValue = data.Rows(0)("created_at").ToString
         TECreatedBy.EditValue = data.Rows(0)("created_by").ToString
         SLUEStatus.EditValue = data.Rows(0)("id_report_status").ToString
+        MENote.EditValue = data.Rows(0)("note").ToString
 
         Dim query_detail As String = "
             SELECT id_item, item_desc, uom, id_item_cat, item_cat, qty, `value`
@@ -58,6 +59,8 @@
             SBRemove.Enabled = True
 
             GVList.Columns("qty").OptionsColumn.ReadOnly = False
+
+            MENote.ReadOnly = False
         Else
             SBSubmit.Enabled = False
             SBAttachment.Enabled = True
@@ -70,6 +73,8 @@
             SBRemove.Enabled = False
 
             GVList.Columns("qty").OptionsColumn.ReadOnly = True
+
+            MENote.ReadOnly = True
         End If
     End Sub
 
@@ -175,6 +180,10 @@
             End If
         Next
 
+        If MENote.Text = "" Then
+            msg = "Please add note"
+        End If
+
         If msg = "" Then
             Dim confirm As DialogResult
 
@@ -187,9 +196,10 @@
                 Dim created_at As String = "NOW()"
                 Dim created_by As String = id_employee_user
                 Dim id_report_status As String = "1"
+                Dim note As String = MENote.EditValue.ToString
 
                 Dim query As String = "
-                    INSERT INTO tb_adjustment_og (id_type, id_departement_from, id_departement_to, created_at, created_by, id_report_status) VALUES (" + id_type + ", " + id_departement_from + "," + id_departement_to + ", " + created_at + ", " + created_by + ", " + id_report_status + "); SELECT LAST_INSERT_ID();
+                    INSERT INTO tb_adjustment_og (id_type, id_departement_from, id_departement_to, note, created_at, created_by, id_report_status) VALUES (" + id_type + ", " + id_departement_from + "," + id_departement_to + ", '" + addSlashes(note) + "', " + created_at + ", " + created_by + ", " + id_report_status + "); SELECT LAST_INSERT_ID();
                 "
 
                 id_adjustment = execute_query(query, 0, True, "", "", "", "")
@@ -223,28 +233,28 @@
         If SLUEType.EditValue.ToString = "3" Then
             Dim queryOut As String = "
                 INSERT INTO tb_storage_item (id_comp, id_departement, id_storage_category, id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, storage_item_notes, id_stock_status)
-                SELECT 1216 AS id_comp, a.id_departement_from AS id_departement, 2 AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, NULL AS storage_item_notes, 1 AS id_stock_status
+                SELECT 0 AS id_comp, a.id_departement_from AS id_departement, 2 AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, a.note AS storage_item_notes, 1 AS id_stock_status
                 FROM tb_adjustment_og_det AS d
                 LEFT JOIN tb_adjustment_og AS a ON a.id_adjustment = d.id_adjustment
-                WHERE d.id_adjusment = " + id_adjustment
+                WHERE d.id_adjustment = " + id_adjustment
 
             execute_non_query(queryOut, True, "", "", "", "")
 
             Dim queryIn As String = "
                 INSERT INTO tb_storage_item (id_comp, id_departement, id_storage_category, id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, storage_item_notes, id_stock_status)
-                SELECT 1216 AS id_comp, a.id_departement_to AS id_departement, 1 AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, NULL AS storage_item_notes, 1 AS id_stock_status
+                SELECT 0 AS id_comp, a.id_departement_to AS id_departement, 1 AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, a.note AS storage_item_notes, 1 AS id_stock_status
                 FROM tb_adjustment_og_det AS d
                 LEFT JOIN tb_adjustment_og AS a ON a.id_adjustment = d.id_adjustment
-                WHERE d.id_adjusment = " + id_adjustment
+                WHERE d.id_adjustment = " + id_adjustment
 
             execute_non_query(queryIn, True, "", "", "", "")
         Else
             Dim query As String = "
                 INSERT INTO tb_storage_item (id_comp, id_departement, id_storage_category, id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, storage_item_notes, id_stock_status)
-                SELECT 1216 AS id_comp, a.id_departement_from AS id_departement, a.id_type AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, NULL AS storage_item_notes, 1 AS id_stock_status
+                SELECT 0 AS id_comp, a.id_departement_from AS id_departement, a.id_type AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, a.note AS storage_item_notes, 1 AS id_stock_status
                 FROM tb_adjustment_og_det AS d
                 LEFT JOIN tb_adjustment_og AS a ON a.id_adjustment = d.id_adjustment
-                WHERE d.id_adjusment = " + id_adjustment
+                WHERE d.id_adjustment = " + id_adjustment
 
             execute_non_query(query, True, "", "", "", "")
         End If
