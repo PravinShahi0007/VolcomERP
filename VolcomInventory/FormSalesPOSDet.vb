@@ -1437,10 +1437,7 @@ Public Class FormSalesPOSDet
                             .id_sales_pos_det = "0"
                         }
 
-            GCItemList.DataSource = Nothing
-            GCItemList.DataSource = query.ToList()
-            GCItemList.RefreshDataSource()
-            GVItemList.RefreshData()
+
         ElseIf id_menu = "2" Or id_menu = "3" Then
             Dim query = From table1 In tb1
                         Join rp In tb3
@@ -2763,5 +2760,11 @@ Public Class FormSalesPOSDet
         Else
             stopCustom("Please select store.")
         End If
+    End Sub
+
+    Private Sub SimpleButton2_Click_1(sender As Object, e As EventArgs)
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
     End Sub
 End Class

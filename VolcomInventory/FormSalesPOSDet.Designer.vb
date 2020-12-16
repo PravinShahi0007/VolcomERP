@@ -23,9 +23,14 @@ Partial Class FormSalesPOSDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOSDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnLoadFromReturnCentre = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnImportOLStore = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnLoadFromBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.TXTName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelName = New System.Windows.Forms.Label()
         Me.LabelBillTo = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnImportOLStoreNew = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseBillTo = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtNameBillTo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCodeBillTo = New DevExpress.XtraEditors.TextEdit()
@@ -62,6 +67,7 @@ Partial Class FormSalesPOSDet
         Me.TxtOLStoreNumber = New DevExpress.XtraEditors.TextEdit()
         Me.TxtVirtualPosNumber = New DevExpress.XtraEditors.TextEdit()
         Me.PanelCN = New DevExpress.XtraEditors.PanelControl()
+        Me.SBBrowseInvoice = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelInvoice = New DevExpress.XtraEditors.LabelControl()
         Me.TxtInvoice = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -75,7 +81,6 @@ Partial Class FormSalesPOSDet
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LEPrintOpt = New DevExpress.XtraEditors.LookUpEdit()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -154,13 +159,9 @@ Partial Class FormSalesPOSDet
         Me.GridColumnLimit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_ol_store_ret_list = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnLoadFromReturnCentre = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnLoadFromBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnLoadPOS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToReport = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnImportOLStoreNew = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNoStock = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnImportOLStore = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnListProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
@@ -180,11 +181,11 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.SBBrowseInvoice = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TXTName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameBillTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeBillTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -223,7 +224,6 @@ Partial Class FormSalesPOSDet
         Me.PanelControl1.SuspendLayout()
         CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPrintOpt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.PanelControlBottomLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -274,9 +274,13 @@ Partial Class FormSalesPOSDet
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopLeft.Controls.Add(Me.BtnLoadFromReturnCentre)
+        Me.PanelControlTopLeft.Controls.Add(Me.BtnImportOLStore)
+        Me.PanelControlTopLeft.Controls.Add(Me.BtnLoadFromBOF)
         Me.PanelControlTopLeft.Controls.Add(Me.TXTName)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelName)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelBillTo)
+        Me.PanelControlTopLeft.Controls.Add(Me.BtnImportOLStoreNew)
         Me.PanelControlTopLeft.Controls.Add(Me.BtnBrowseBillTo)
         Me.PanelControlTopLeft.Controls.Add(Me.TxtNameBillTo)
         Me.PanelControlTopLeft.Controls.Add(Me.TxtCodeBillTo)
@@ -296,6 +300,58 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(624, 205)
         Me.PanelControlTopLeft.TabIndex = 8933
+        '
+        'BtnLoadFromReturnCentre
+        '
+        Me.BtnLoadFromReturnCentre.Image = CType(resources.GetObject("BtnLoadFromReturnCentre.Image"), System.Drawing.Image)
+        Me.BtnLoadFromReturnCentre.Location = New System.Drawing.Point(456, 286)
+        Me.BtnLoadFromReturnCentre.Name = "BtnLoadFromReturnCentre"
+        Me.BtnLoadFromReturnCentre.Size = New System.Drawing.Size(161, 17)
+        Me.BtnLoadFromReturnCentre.TabIndex = 8939
+        Me.BtnLoadFromReturnCentre.Text = "Load from Ret. Centre"
+        Me.BtnLoadFromReturnCentre.Visible = False
+        '
+        'BtnImportOLStore
+        '
+        Me.BtnImportOLStore.Image = CType(resources.GetObject("BtnImportOLStore.Image"), System.Drawing.Image)
+        Me.BtnImportOLStore.ImageIndex = 3
+        Me.BtnImportOLStore.ImageList = Me.LargeImageCollection
+        Me.BtnImportOLStore.Location = New System.Drawing.Point(9, 286)
+        Me.BtnImportOLStore.Name = "BtnImportOLStore"
+        Me.BtnImportOLStore.Size = New System.Drawing.Size(138, 17)
+        Me.BtnImportOLStore.TabIndex = 24
+        Me.BtnImportOLStore.Text = "Load XLS OL Store"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        '
+        'BtnLoadFromBOF
+        '
+        Me.BtnLoadFromBOF.Image = CType(resources.GetObject("BtnLoadFromBOF.Image"), System.Drawing.Image)
+        Me.BtnLoadFromBOF.Location = New System.Drawing.Point(330, 286)
+        Me.BtnLoadFromBOF.Name = "BtnLoadFromBOF"
+        Me.BtnLoadFromBOF.Size = New System.Drawing.Size(120, 17)
+        Me.BtnLoadFromBOF.TabIndex = 8938
+        Me.BtnLoadFromBOF.Text = "Load from BOF"
+        Me.BtnLoadFromBOF.Visible = False
         '
         'TXTName
         '
@@ -332,6 +388,18 @@ Partial Class FormSalesPOSDet
         Me.LabelBillTo.TabIndex = 8898
         Me.LabelBillTo.Text = "Bill to"
         Me.LabelBillTo.Visible = False
+        '
+        'BtnImportOLStoreNew
+        '
+        Me.BtnImportOLStoreNew.Image = CType(resources.GetObject("BtnImportOLStoreNew.Image"), System.Drawing.Image)
+        Me.BtnImportOLStoreNew.ImageIndex = 3
+        Me.BtnImportOLStoreNew.ImageList = Me.LargeImageCollection
+        Me.BtnImportOLStoreNew.Location = New System.Drawing.Point(153, 286)
+        Me.BtnImportOLStoreNew.Name = "BtnImportOLStoreNew"
+        Me.BtnImportOLStoreNew.Size = New System.Drawing.Size(171, 17)
+        Me.BtnImportOLStoreNew.TabIndex = 26
+        Me.BtnImportOLStoreNew.Text = "Load XLS OL Store (Detail)"
+        Me.BtnImportOLStoreNew.Visible = False
         '
         'BtnBrowseBillTo
         '
@@ -777,6 +845,16 @@ Partial Class FormSalesPOSDet
         Me.PanelCN.TabIndex = 8938
         Me.PanelCN.Visible = False
         '
+        'SBBrowseInvoice
+        '
+        Me.SBBrowseInvoice.Enabled = False
+        Me.SBBrowseInvoice.Image = CType(resources.GetObject("SBBrowseInvoice.Image"), System.Drawing.Image)
+        Me.SBBrowseInvoice.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.SBBrowseInvoice.Location = New System.Drawing.Point(170, 3)
+        Me.SBBrowseInvoice.Name = "SBBrowseInvoice"
+        Me.SBBrowseInvoice.Size = New System.Drawing.Size(27, 20)
+        Me.SBBrowseInvoice.TabIndex = 8941
+        '
         'LabelInvoice
         '
         Me.LabelInvoice.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -918,27 +996,6 @@ Partial Class FormSalesPOSDet
         Me.BtnPrint.TabIndex = 9
         Me.BtnPrint.TabStop = False
         Me.BtnPrint.Text = "Print"
-        '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
         'BtnDel
         '
@@ -1766,13 +1823,9 @@ Partial Class FormSalesPOSDet
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlNav.Controls.Add(Me.BtnLoadFromReturnCentre)
-        Me.PanelControlNav.Controls.Add(Me.BtnLoadFromBOF)
         Me.PanelControlNav.Controls.Add(Me.BtnLoadPOS)
         Me.PanelControlNav.Controls.Add(Me.BtnExportToReport)
-        Me.PanelControlNav.Controls.Add(Me.BtnImportOLStoreNew)
         Me.PanelControlNav.Controls.Add(Me.BtnNoStock)
-        Me.PanelControlNav.Controls.Add(Me.BtnImportOLStore)
         Me.PanelControlNav.Controls.Add(Me.BtnImport)
         Me.PanelControlNav.Controls.Add(Me.BtnListProduct)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
@@ -1781,35 +1834,13 @@ Partial Class FormSalesPOSDet
         Me.PanelControlNav.Size = New System.Drawing.Size(1160, 36)
         Me.PanelControlNav.TabIndex = 0
         '
-        'BtnLoadFromReturnCentre
-        '
-        Me.BtnLoadFromReturnCentre.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnLoadFromReturnCentre.Image = CType(resources.GetObject("BtnLoadFromReturnCentre.Image"), System.Drawing.Image)
-        Me.BtnLoadFromReturnCentre.Location = New System.Drawing.Point(665, 0)
-        Me.BtnLoadFromReturnCentre.Name = "BtnLoadFromReturnCentre"
-        Me.BtnLoadFromReturnCentre.Size = New System.Drawing.Size(161, 36)
-        Me.BtnLoadFromReturnCentre.TabIndex = 8939
-        Me.BtnLoadFromReturnCentre.Text = "Load from Ret. Centre"
-        Me.BtnLoadFromReturnCentre.Visible = False
-        '
-        'BtnLoadFromBOF
-        '
-        Me.BtnLoadFromBOF.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnLoadFromBOF.Image = CType(resources.GetObject("BtnLoadFromBOF.Image"), System.Drawing.Image)
-        Me.BtnLoadFromBOF.Location = New System.Drawing.Point(545, 0)
-        Me.BtnLoadFromBOF.Name = "BtnLoadFromBOF"
-        Me.BtnLoadFromBOF.Size = New System.Drawing.Size(120, 36)
-        Me.BtnLoadFromBOF.TabIndex = 8938
-        Me.BtnLoadFromBOF.Text = "Load from BOF"
-        Me.BtnLoadFromBOF.Visible = False
-        '
         'BtnLoadPOS
         '
         Me.BtnLoadPOS.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnLoadPOS.Image = CType(resources.GetObject("BtnLoadPOS.Image"), System.Drawing.Image)
         Me.BtnLoadPOS.ImageIndex = 3
         Me.BtnLoadPOS.ImageList = Me.LargeImageCollection
-        Me.BtnLoadPOS.Location = New System.Drawing.Point(425, 0)
+        Me.BtnLoadPOS.Location = New System.Drawing.Point(116, 0)
         Me.BtnLoadPOS.Name = "BtnLoadPOS"
         Me.BtnLoadPOS.Size = New System.Drawing.Size(120, 36)
         Me.BtnLoadPOS.TabIndex = 28
@@ -1826,19 +1857,6 @@ Partial Class FormSalesPOSDet
         Me.BtnExportToReport.TabIndex = 27
         Me.BtnExportToReport.Text = "Export Data"
         '
-        'BtnImportOLStoreNew
-        '
-        Me.BtnImportOLStoreNew.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnImportOLStoreNew.Image = CType(resources.GetObject("BtnImportOLStoreNew.Image"), System.Drawing.Image)
-        Me.BtnImportOLStoreNew.ImageIndex = 3
-        Me.BtnImportOLStoreNew.ImageList = Me.LargeImageCollection
-        Me.BtnImportOLStoreNew.Location = New System.Drawing.Point(254, 0)
-        Me.BtnImportOLStoreNew.Name = "BtnImportOLStoreNew"
-        Me.BtnImportOLStoreNew.Size = New System.Drawing.Size(171, 36)
-        Me.BtnImportOLStoreNew.TabIndex = 26
-        Me.BtnImportOLStoreNew.Text = "Load XLS OL Store (Detail)"
-        Me.BtnImportOLStoreNew.Visible = False
-        '
         'BtnNoStock
         '
         Me.BtnNoStock.Dock = System.Windows.Forms.DockStyle.Right
@@ -1848,18 +1866,6 @@ Partial Class FormSalesPOSDet
         Me.BtnNoStock.Size = New System.Drawing.Size(111, 36)
         Me.BtnNoStock.TabIndex = 25
         Me.BtnNoStock.Text = "No Stock List"
-        '
-        'BtnImportOLStore
-        '
-        Me.BtnImportOLStore.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnImportOLStore.Image = CType(resources.GetObject("BtnImportOLStore.Image"), System.Drawing.Image)
-        Me.BtnImportOLStore.ImageIndex = 3
-        Me.BtnImportOLStore.ImageList = Me.LargeImageCollection
-        Me.BtnImportOLStore.Location = New System.Drawing.Point(116, 0)
-        Me.BtnImportOLStore.Name = "BtnImportOLStore"
-        Me.BtnImportOLStore.Size = New System.Drawing.Size(138, 36)
-        Me.BtnImportOLStore.TabIndex = 24
-        Me.BtnImportOLStore.Text = "Load XLS OL Store"
         '
         'BtnImport
         '
@@ -2018,16 +2024,6 @@ Partial Class FormSalesPOSDet
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
-        'SBBrowseInvoice
-        '
-        Me.SBBrowseInvoice.Enabled = False
-        Me.SBBrowseInvoice.Image = CType(resources.GetObject("SBBrowseInvoice.Image"), System.Drawing.Image)
-        Me.SBBrowseInvoice.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.SBBrowseInvoice.Location = New System.Drawing.Point(170, 3)
-        Me.SBBrowseInvoice.Name = "SBBrowseInvoice"
-        Me.SBBrowseInvoice.Size = New System.Drawing.Size(27, 20)
-        Me.SBBrowseInvoice.TabIndex = 8941
-        '
         'FormSalesPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2048,6 +2044,7 @@ Partial Class FormSalesPOSDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TXTName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameBillTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeBillTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2090,7 +2087,6 @@ Partial Class FormSalesPOSDet
         Me.PanelControl1.PerformLayout()
         CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPrintOpt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.PanelControlBottomLeft, System.ComponentModel.ISupportInitialize).EndInit()
