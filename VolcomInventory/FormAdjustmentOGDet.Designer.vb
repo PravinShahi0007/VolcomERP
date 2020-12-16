@@ -62,6 +62,9 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,10 +82,13 @@ Partial Class FormAdjustmentOGDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.MENote)
+        Me.PanelControl1.Controls.Add(Me.Label8)
         Me.PanelControl1.Controls.Add(Me.TENumber)
         Me.PanelControl1.Controls.Add(Me.Label7)
         Me.PanelControl1.Controls.Add(Me.Label6)
@@ -343,8 +349,9 @@ Partial Class FormAdjustmentOGDet
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.SBMark)
         Me.PanelControl2.Controls.Add(Me.SBAttachment)
+        Me.PanelControl2.Controls.Add(Me.SBPrint)
+        Me.PanelControl2.Controls.Add(Me.SBMark)
         Me.PanelControl2.Controls.Add(Me.SBClose)
         Me.PanelControl2.Controls.Add(Me.SBSubmit)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -367,7 +374,7 @@ Partial Class FormAdjustmentOGDet
         '
         Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
-        Me.SBAttachment.Location = New System.Drawing.Point(467, 2)
+        Me.SBAttachment.Location = New System.Drawing.Point(380, 2)
         Me.SBAttachment.Name = "SBAttachment"
         Me.SBAttachment.Size = New System.Drawing.Size(115, 41)
         Me.SBAttachment.TabIndex = 2
@@ -467,6 +474,32 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 5
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(22, 111)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(30, 13)
+        Me.Label8.TabIndex = 16
+        Me.Label8.Text = "Note"
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(118, 109)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(250, 54)
+        Me.MENote.TabIndex = 17
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
+        Me.SBPrint.Location = New System.Drawing.Point(495, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(87, 41)
+        Me.SBPrint.TabIndex = 4
+        Me.SBPrint.Text = "Print"
+        '
         'FormAdjustmentOGDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -498,6 +531,7 @@ Partial Class FormAdjustmentOGDet
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -544,4 +578,7 @@ Partial Class FormAdjustmentOGDet
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents Label8 As Label
+    Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
 End Class

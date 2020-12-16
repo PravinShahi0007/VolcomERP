@@ -149,7 +149,9 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
     Sub load_trans_type_po()
         Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
         viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
+        SLEPayType.EditValue = "2"
         viewSearchLookupQuery(SLEPayTypeExpense, query, "id_pay_type", "pay_type", "id_pay_type")
+        SLEPayTypeExpense.EditValue = "2"
     End Sub
 
     Sub load_trans_type()
@@ -1270,7 +1272,7 @@ GROUP BY sr.`id_sales_return`"
     End Sub
 
     Sub view_po_og()
-        Dim q As String = "SELECT po.`id_purc_order`,po.`purc_order_number`,emp.`employee_name` AS emp_created,c.comp_name,cc.`contact_person`,cc.`contact_number`,po.`date_created`
+        Dim q As String = "SELECT po.`id_purc_order`,po.inv_number,po.`purc_order_number`,emp.`employee_name` AS emp_created,c.comp_name,cc.`contact_person`,cc.`contact_number`,po.`date_created`
 FROM tb_purc_order_det pod
 INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`=6
 INNER JOIN tb_m_comp_contact cc ON po.`id_comp_contact`=cc.`id_comp_contact`
@@ -1411,7 +1413,7 @@ GROUP BY pns.`id_pn_summary`"
 	          WHERE m.id_report_status!=5 
 	          GROUP BY m.id_sales_branch_ref, c.comp_number
 	        ) cn ON cn.id_sales_branch_ref = b.id_sales_branch AND cn.comp_number = c.comp_number
-	        WHERE b.id_report_status=6 AND b.id_memo_type=1
+	        WHERE b.id_report_status=6 AND b.id_memo_type=1 AND b.is_close_bbk=2
 	        GROUP BY b.id_sales_branch
 	        UNION ALL
 	        SELECT b.id_sales_branch,b.number, b.id_coa_tag, b.comp_rev_normal_note AS `note`,
@@ -1437,7 +1439,7 @@ GROUP BY pns.`id_pn_summary`"
 	          WHERE m.id_report_status!=5 
 	          GROUP BY m.id_sales_branch_ref, c.comp_number
 	        ) cn ON cn.id_sales_branch_ref = b.id_sales_branch AND cn.comp_number = c.comp_number
-	        WHERE b.id_report_status=6 AND b.id_memo_type=1
+	        WHERE b.id_report_status=6 AND b.id_memo_type=1 AND b.is_close_bbk=2
 	        GROUP BY b.id_sales_branch
         ) a 
         HAVING id_coa_tag='" + id_coa_tag + "' AND amount>0

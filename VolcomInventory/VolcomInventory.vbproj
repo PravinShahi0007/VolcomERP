@@ -7515,6 +7515,12 @@
     <Compile Include="ReportAdditionalCost.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportAdjustmentOG.Designer.vb">
+      <DependentUpon>ReportAdjustmentOG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAdjustmentOG.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportAttnSum.Designer.vb">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
     </Compile>
@@ -13115,6 +13121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAdditionalCost.resx">
       <DependentUpon>ReportAdditionalCost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAdjustmentOG.resx">
+      <DependentUpon>ReportAdjustmentOG.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAttnSum.resx">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>

@@ -194,7 +194,7 @@ WHERE rn.id_return_note='" & id_return_note & "'"
         '
         GVStore.ActiveFilterString = "Not IsNullOrEmpty([id_comp])"
         '
-        If SLEType.EditValue.ToString = "1" And GVStore.RowCount = 0 Then
+        If GVStore.RowCount = 0 Then
             warningCustom("Please input store first")
         ElseIf TEQtyReturnNote.EditValue = 0 Or TEReturnNoteNumber.Text = "" Then
             warningCustom("Please fill return note detail")
