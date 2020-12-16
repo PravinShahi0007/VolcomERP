@@ -1413,7 +1413,7 @@ GROUP BY pns.`id_pn_summary`"
 	          WHERE m.id_report_status!=5 
 	          GROUP BY m.id_sales_branch_ref, c.comp_number
 	        ) cn ON cn.id_sales_branch_ref = b.id_sales_branch AND cn.comp_number = c.comp_number
-	        WHERE b.id_report_status=6 AND b.id_memo_type=1
+	        WHERE b.id_report_status=6 AND b.id_memo_type=1 AND b.is_close_bbk=2
 	        GROUP BY b.id_sales_branch
 	        UNION ALL
 	        SELECT b.id_sales_branch,b.number, b.id_coa_tag, b.comp_rev_normal_note AS `note`,
@@ -1439,7 +1439,7 @@ GROUP BY pns.`id_pn_summary`"
 	          WHERE m.id_report_status!=5 
 	          GROUP BY m.id_sales_branch_ref, c.comp_number
 	        ) cn ON cn.id_sales_branch_ref = b.id_sales_branch AND cn.comp_number = c.comp_number
-	        WHERE b.id_report_status=6 AND b.id_memo_type=1
+	        WHERE b.id_report_status=6 AND b.id_memo_type=1 AND b.is_close_bbk=2
 	        GROUP BY b.id_sales_branch
         ) a 
         HAVING id_coa_tag='" + id_coa_tag + "' AND amount>0
