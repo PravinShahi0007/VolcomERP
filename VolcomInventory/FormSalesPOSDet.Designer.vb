@@ -46,6 +46,8 @@ Partial Class FormSalesPOSDet
         Me.BtnBrowseContactFrom = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopMiddle = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEStocktake = New DevExpress.XtraEditors.DateEdit()
         Me.BtnGetKurs = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
@@ -197,6 +199,8 @@ Partial Class FormSalesPOSDet
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMiddle.SuspendLayout()
+        CType(Me.DEStocktake.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStocktake.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditInvType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -586,6 +590,8 @@ Partial Class FormSalesPOSDet
         'PanelControlTopMiddle
         '
         Me.PanelControlTopMiddle.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl23)
+        Me.PanelControlTopMiddle.Controls.Add(Me.DEStocktake)
         Me.PanelControlTopMiddle.Controls.Add(Me.BtnGetKurs)
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl20)
         Me.PanelControlTopMiddle.Controls.Add(Me.TEKurs)
@@ -604,9 +610,33 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopMiddle.Size = New System.Drawing.Size(330, 205)
         Me.PanelControlTopMiddle.TabIndex = 8934
         '
+        'LabelControl23
+        '
+        Me.LabelControl23.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl23.Location = New System.Drawing.Point(11, 65)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(42, 13)
+        Me.LabelControl23.TabIndex = 8942
+        Me.LabelControl23.Text = "Stoctake"
+        '
+        'DEStocktake
+        '
+        Me.DEStocktake.EditValue = Nothing
+        Me.DEStocktake.Enabled = False
+        Me.DEStocktake.Location = New System.Drawing.Point(68, 62)
+        Me.DEStocktake.Name = "DEStocktake"
+        Me.DEStocktake.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEStocktake.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStocktake.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEStocktake.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStocktake.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStocktake.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEStocktake.Size = New System.Drawing.Size(252, 20)
+        Me.DEStocktake.TabIndex = 8941
+        '
         'BtnGetKurs
         '
-        Me.BtnGetKurs.Location = New System.Drawing.Point(261, 62)
+        Me.BtnGetKurs.Location = New System.Drawing.Point(261, 89)
         Me.BtnGetKurs.Name = "BtnGetKurs"
         Me.BtnGetKurs.Size = New System.Drawing.Size(59, 20)
         Me.BtnGetKurs.TabIndex = 8940
@@ -615,7 +645,7 @@ Partial Class FormSalesPOSDet
         'LabelControl20
         '
         Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl20.Location = New System.Drawing.Point(11, 65)
+        Me.LabelControl20.Location = New System.Drawing.Point(11, 92)
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(38, 13)
         Me.LabelControl20.TabIndex = 8939
@@ -623,7 +653,7 @@ Partial Class FormSalesPOSDet
         '
         'TEKurs
         '
-        Me.TEKurs.Location = New System.Drawing.Point(68, 62)
+        Me.TEKurs.Location = New System.Drawing.Point(68, 89)
         Me.TEKurs.Name = "TEKurs"
         Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
         Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -2057,6 +2087,8 @@ Partial Class FormSalesPOSDet
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMiddle.ResumeLayout(False)
         Me.PanelControlTopMiddle.PerformLayout()
+        CType(Me.DEStocktake.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStocktake.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditInvType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2286,4 +2318,6 @@ Partial Class FormSalesPOSDet
     Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SBBrowseInvoice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEStocktake As DevExpress.XtraEditors.DateEdit
 End Class

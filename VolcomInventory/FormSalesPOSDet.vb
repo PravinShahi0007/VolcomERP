@@ -188,6 +188,7 @@ Public Class FormSalesPOSDet
             Dim tgl_sekarang As DateTime = getTimeDB()
             DEStart.Properties.MaxValue = tgl_sekarang
             DEEnd.Properties.MaxValue = tgl_sekarang
+            DEStocktake.Properties.MaxValue = tgl_sekarang
 
             'credit note ol store base on return centre
 
@@ -276,7 +277,7 @@ Public Class FormSalesPOSDet
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number,so.customer_name,a.kurs_trans "
+            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_st_date, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number,so.customer_name,a.kurs_trans "
             If id_menu = "5" Then
                 query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref`, sor.customer_name AS `customer_name_ref` "
             End If
@@ -516,6 +517,7 @@ Public Class FormSalesPOSDet
         Dim start_period_cek As String = "0000-01-01"
         Dim end_period_cek As String = "9999-12-01"
         Dim due_date_cek As String = "-1"
+        Dim st_date_cek As String = "-1"
         Try
             start_period_cek = DEStart.EditValue.ToString
         Catch ex As Exception
@@ -528,6 +530,18 @@ Public Class FormSalesPOSDet
             due_date_cek = DEDueDate.EditValue.ToString
         Catch ex As Exception
         End Try
+        Try
+            st_date_cek = DEStocktake.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        Dim cond_valid_stock_take_date As Boolean = True
+        If CheckEditInvType.EditValue = True Then
+            If st_date_cek <> "-1" Then
+                cond_valid_stock_take_date = True
+            Else
+                cond_valid_stock_take_date = False
+            End If
+        End If
 
         Dim do_q As String = ""
         If id_do = "-1" Then
@@ -587,6 +601,8 @@ Public Class FormSalesPOSDet
             'check stock
             'ElseIf Not valid_stock Then
             'stopCustom(err_str.ToString)
+        ElseIf Not cond_valid_stock_take_date Then
+            stopCustom("Please fill stock take date!")
         ElseIf Not cond_bill_to Then
             stopCustom("Bill to can't blank")
         ElseIf cond_no_stock Then
@@ -614,6 +630,12 @@ Public Class FormSalesPOSDet
             Dim sales_pos_vat As String = decimalSQL(SPVat.EditValue.ToString)
             total_amount = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
             Dim kurs_trans As String = decimalSQL(TEKurs.EditValue.ToString)
+            Dim sales_pos_st_date As String = ""
+            If CheckEditInvType.EditValue = True Then
+                sales_pos_st_date = "'" + DateTime.Parse(DEStocktake.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+            Else
+                sales_pos_st_date = "NULL"
+            End If
             Dim id_memo_type As String = ""
             Dim sales_pos_number As String = ""
             If id_menu = "1" Then
@@ -770,8 +792,8 @@ Public Class FormSalesPOSDet
 
                     'Main tbale
                     BtnSave.Enabled = False
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date, kurs_trans) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + ", '" + bof_number + "'," + bof_date + ", '" + kurs_trans + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date, kurs_trans, sales_pos_st_date) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + ", '" + bof_number + "'," + bof_date + ", '" + kurs_trans + "'," + sales_pos_st_date + "); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
                     'gen number
                     execute_non_query("CALL gen_number(" + id_sales_pos + ", " + report_mark_type + ");", True, "", "", "", "")
@@ -1057,6 +1079,7 @@ Public Class FormSalesPOSDet
         SPVat.Properties.ReadOnly = True
         DEStart.Properties.ReadOnly = True
         DEEnd.Properties.ReadOnly = True
+        DEStocktake.Properties.ReadOnly = True
         BtnSave.Enabled = False
 
         'update 04 oktober 2017
@@ -1357,6 +1380,13 @@ Public Class FormSalesPOSDet
         If start_period = "1945-01-01" Or end_period = "9999-12-01" Then
             stopCustom("Please fill start & end period !")
         Else
+            'check stock take det
+            If CheckEditInvType.EditValue = True And DEStocktake.EditValue = Nothing Then
+                stopCustom("Please fill stock take date")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+
             viewStockStore()
             If is_use_unique_code = "2" Then
                 load_excel_data()
@@ -1403,7 +1433,14 @@ Public Class FormSalesPOSDet
         Cursor = Cursors.WaitCursor
         'Try
         'get price master
-        Dim price_per_date As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim price_per_date As String = ""
+        If CheckEditInvType.EditValue = True Then
+            'missing
+            price_per_date = DateTime.Parse(DEStocktake.EditValue.ToString).ToString("yyyy-MM-dd")
+        Else
+            'sales
+            price_per_date = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        End If
         Dim query_price As String = "call view_product_price('AND d.id_active = 1', '" + price_per_date + "') "
         Dim dt_prc As DataTable = execute_query(query_price, -1, True, "", "", "", "")
 
@@ -1412,32 +1449,10 @@ Public Class FormSalesPOSDet
         Dim tb3 = dt_prc.AsEnumerable()
 
         If id_menu = "1" Or id_menu = "4" Then
-            Dim query = From table1 In tb1
-                        Group Join table_tmp In tb2
-                        On table1("code").ToString Equals table_tmp("code").ToString Into sjoin = Group
-                        From rs In sjoin.DefaultIfEmpty()
-                        Join rp In tb3
-                        On table1("code").ToString Equals rp("product_full_code").ToString
-                        Select New With
-                        {
-                            .code = table1("code").ToString,
-                            .name = If(rp Is Nothing, "", rp("design_display_name").ToString),
-                            .size = If(rp Is Nothing, "", rp("size").ToString),
-                            .sales_pos_det_qty = table1("qty"),
-                            .limit_qty = If(rs Is Nothing, 0, rs("qty_all_product")),
-                            .id_design_price = If(rp Is Nothing, "0", rp("id_design_price").ToString),
-                            .design_price = If(rp Is Nothing, 0, rp("design_price")),
-                            .design_price_type = If(rp Is Nothing, "", rp("design_price_type").ToString),
-                            .id_design_price_retail = If(rp Is Nothing, "0", rp("id_design_price").ToString),
-                            .design_price_retail = If(table1("price").ToString = "", If(rp Is Nothing, 0, rp("design_price")), table1("price")),
-                            .id_design = If(rp Is Nothing, "0", rp("id_design").ToString),
-                            .id_product = If(rp Is Nothing, "0", rp("id_product").ToString),
-                            .is_select = "No",
-                            .note = If(rp Is Nothing, "Product not found", If(table1("qty") > If(rs Is Nothing, 0, rs("qty_all_product")), "+" + (table1("qty") - If(rs Is Nothing, 0, rs("qty_all_product"))).ToString, "OK")),
-                            .id_sales_pos_det = "0"
-                        }
-
-
+            FormSalesPOSCompare.dt_xls = data_temp
+            FormSalesPOSCompare.dt_stock = dt_stock_store
+            FormSalesPOSCompare.dt_prc = dt_prc
+            FormSalesPOSCompare.ShowDialog()
         ElseIf id_menu = "2" Or id_menu = "3" Then
             Dim query = From table1 In tb1
                         Join rp In tb3
@@ -2191,6 +2206,15 @@ Public Class FormSalesPOSDet
         If action = "ins" Then
             viewDetail()
             viewDetailCode()
+            'activate stock take det
+            If CheckEditInvType.EditValue = True Then
+                DEStocktake.Enabled = True
+                Dim dnow As DateTime = getTimeDB()
+                DEStocktake.EditValue = dnow
+            Else
+                DEStocktake.Enabled = False
+                DEStocktake.EditValue = Nothing
+            End If
         End If
     End Sub
 
