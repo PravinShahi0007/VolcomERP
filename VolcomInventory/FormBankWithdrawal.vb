@@ -149,7 +149,9 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
     Sub load_trans_type_po()
         Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
         viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
+        SLEPayType.EditValue = "2"
         viewSearchLookupQuery(SLEPayTypeExpense, query, "id_pay_type", "pay_type", "id_pay_type")
+        SLEPayTypeExpense.EditValue = "2"
     End Sub
 
     Sub load_trans_type()
@@ -1270,7 +1272,7 @@ GROUP BY sr.`id_sales_return`"
     End Sub
 
     Sub view_po_og()
-        Dim q As String = "SELECT po.`id_purc_order`,po.`purc_order_number`,emp.`employee_name` AS emp_created,c.comp_name,cc.`contact_person`,cc.`contact_number`,po.`date_created`
+        Dim q As String = "SELECT po.`id_purc_order`,po.inv_number,po.`purc_order_number`,emp.`employee_name` AS emp_created,c.comp_name,cc.`contact_person`,cc.`contact_number`,po.`date_created`
 FROM tb_purc_order_det pod
 INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`=6
 INNER JOIN tb_m_comp_contact cc ON po.`id_comp_contact`=cc.`id_comp_contact`

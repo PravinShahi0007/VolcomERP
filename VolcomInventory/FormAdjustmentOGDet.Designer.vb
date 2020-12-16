@@ -62,6 +62,8 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,10 +81,13 @@ Partial Class FormAdjustmentOGDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.MENote)
+        Me.PanelControl1.Controls.Add(Me.Label8)
         Me.PanelControl1.Controls.Add(Me.TENumber)
         Me.PanelControl1.Controls.Add(Me.Label7)
         Me.PanelControl1.Controls.Add(Me.Label6)
@@ -467,6 +472,22 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 5
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(22, 111)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(30, 13)
+        Me.Label8.TabIndex = 16
+        Me.Label8.Text = "Note"
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(118, 109)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(250, 54)
+        Me.MENote.TabIndex = 17
+        '
         'FormAdjustmentOGDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -498,6 +519,7 @@ Partial Class FormAdjustmentOGDet
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -544,4 +566,6 @@ Partial Class FormAdjustmentOGDet
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents Label8 As Label
 End Class

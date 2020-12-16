@@ -509,6 +509,7 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn235 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
@@ -2229,7 +2230,7 @@ Partial Class FormBankWithdrawal
         '
         'GVPO
         '
-        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn193, Me.GridColumn194, Me.GridColumn195, Me.GridColumn196, Me.GridColumn197, Me.GridColumn198, Me.GridColumn199, Me.GridColumn200})
+        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn193, Me.GridColumn194, Me.GridColumn235, Me.GridColumn195, Me.GridColumn196, Me.GridColumn197, Me.GridColumn198, Me.GridColumn199, Me.GridColumn200})
         Me.GVPO.GridControl = Me.GCPO
         Me.GVPO.Name = "GVPO"
         Me.GVPO.OptionsBehavior.Editable = False
@@ -2256,7 +2257,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn195.FieldName = "emp_created"
         Me.GridColumn195.Name = "GridColumn195"
         Me.GridColumn195.Visible = True
-        Me.GridColumn195.VisibleIndex = 1
+        Me.GridColumn195.VisibleIndex = 2
         '
         'GridColumn196
         '
@@ -2264,7 +2265,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn196.FieldName = "comp_number"
         Me.GridColumn196.Name = "GridColumn196"
         Me.GridColumn196.Visible = True
-        Me.GridColumn196.VisibleIndex = 3
+        Me.GridColumn196.VisibleIndex = 4
         '
         'GridColumn197
         '
@@ -2272,7 +2273,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn197.FieldName = "comp_name"
         Me.GridColumn197.Name = "GridColumn197"
         Me.GridColumn197.Visible = True
-        Me.GridColumn197.VisibleIndex = 2
+        Me.GridColumn197.VisibleIndex = 3
         '
         'GridColumn198
         '
@@ -2280,7 +2281,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn198.FieldName = "contact_person"
         Me.GridColumn198.Name = "GridColumn198"
         Me.GridColumn198.Visible = True
-        Me.GridColumn198.VisibleIndex = 5
+        Me.GridColumn198.VisibleIndex = 6
         '
         'GridColumn199
         '
@@ -2288,7 +2289,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn199.FieldName = "contact_number"
         Me.GridColumn199.Name = "GridColumn199"
         Me.GridColumn199.Visible = True
-        Me.GridColumn199.VisibleIndex = 6
+        Me.GridColumn199.VisibleIndex = 7
         '
         'GridColumn200
         '
@@ -2298,7 +2299,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn200.FieldName = "date_created"
         Me.GridColumn200.Name = "GridColumn200"
         Me.GridColumn200.Visible = True
-        Me.GridColumn200.VisibleIndex = 4
+        Me.GridColumn200.VisibleIndex = 5
         '
         'BViewPOOG
         '
@@ -5564,6 +5565,14 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
+        'GridColumn235
+        '
+        Me.GridColumn235.Caption = "Invoice Number"
+        Me.GridColumn235.FieldName = "inv_number"
+        Me.GridColumn235.Name = "GridColumn235"
+        Me.GridColumn235.Visible = True
+        Me.GridColumn235.VisibleIndex = 1
+        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -6244,4 +6253,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn232 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn233 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn234 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn235 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
