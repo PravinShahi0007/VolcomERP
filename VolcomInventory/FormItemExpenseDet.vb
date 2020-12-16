@@ -12,7 +12,7 @@
     Private Sub FormItemExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEDateReff.EditValue = Now()
         '
-        load_unit
+        load_unit()
         '
         viewReportStatus()
         viewCCRepo()
@@ -396,13 +396,13 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         '
         GridColumnNo.MaxWidth = 30
         GridColumnCurrView.MaxWidth = 30
-        GridColumnBefKurs.MaxWidth = 65
+        GridColumnBefKurs.MaxWidth = 70
         GridColumnKurs.MaxWidth = 50
         GridColumnAmount.MaxWidth = 80
         GridColumnTaxPercent.MaxWidth = 30
         GridColumnTaxValue.MaxWidth = 70
         GridColumnPPHPercent.MaxWidth = 30
-        GridColumnPPH.MaxWidth = 60
+        GridColumnPPH.MaxWidth = 70
 
         'creating and saving the view's layout to a new memory stream 
         Dim str As System.IO.Stream

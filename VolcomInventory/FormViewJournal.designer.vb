@@ -51,6 +51,11 @@ Partial Class FormViewJournal
         Me.LTransNo = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TEReffDate = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,22 +72,25 @@ Partial Class FormViewJournal
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BalanceMenu.SuspendLayout()
+        CType(Me.TEReffDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCJournalDet
         '
         Me.GCJournalDet.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCJournalDet.Location = New System.Drawing.Point(0, 75)
+        Me.GCJournalDet.Location = New System.Drawing.Point(0, 76)
         Me.GCJournalDet.MainView = Me.GVJournalDet
         Me.GCJournalDet.Name = "GCJournalDet"
         Me.GCJournalDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
-        Me.GCJournalDet.Size = New System.Drawing.Size(834, 330)
+        Me.GCJournalDet.Size = New System.Drawing.Size(834, 329)
         Me.GCJournalDet.TabIndex = 11
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
         '
         'GVJournalDet
         '
-        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnIdReport, Me.GridColumnReportMT, Me.GridColumnDesc, Me.GridColumn8})
+        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnIdReport, Me.GridColumnReportMT, Me.GridColumnDesc, Me.GridColumn10, Me.GridColumn9, Me.GridColumn8})
         Me.GVJournalDet.GridControl = Me.GCJournalDet
         Me.GVJournalDet.Name = "GVJournalDet"
         Me.GVJournalDet.OptionsBehavior.AutoExpandAllGroups = True
@@ -102,7 +110,7 @@ Partial Class FormViewJournal
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
-        Me.GridColumn6.Width = 40
+        Me.GridColumn6.Width = 31
         '
         'GridColumn7
         '
@@ -127,7 +135,7 @@ Partial Class FormViewJournal
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 100
+        Me.GridColumn2.Width = 79
         '
         'GridColumn3
         '
@@ -135,8 +143,8 @@ Partial Class FormViewJournal
         Me.GridColumn3.FieldName = "note"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 4
-        Me.GridColumn3.Width = 300
+        Me.GridColumn3.VisibleIndex = 6
+        Me.GridColumn3.Width = 209
         '
         'GridColumn4
         '
@@ -152,8 +160,8 @@ Partial Class FormViewJournal
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 138
+        Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.Width = 95
         '
         'RepositoryItemTextEdit1
         '
@@ -181,8 +189,8 @@ Partial Class FormViewJournal
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
-        Me.GridColumn5.Width = 134
+        Me.GridColumn5.VisibleIndex = 8
+        Me.GridColumn5.Width = 105
         '
         'RepositoryItemTextEdit2
         '
@@ -215,6 +223,7 @@ Partial Class FormViewJournal
         Me.GridColumnDesc.Name = "GridColumnDesc"
         Me.GridColumnDesc.Visible = True
         Me.GridColumnDesc.VisibleIndex = 2
+        Me.GridColumnDesc.Width = 97
         '
         'GridColumn8
         '
@@ -223,6 +232,7 @@ Partial Class FormViewJournal
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 3
+        Me.GridColumn8.Width = 53
         '
         'PanelControl4
         '
@@ -279,23 +289,22 @@ Partial Class FormViewJournal
         '
         'PCGeneralheader
         '
+        Me.PCGeneralheader.Controls.Add(Me.PanelControl1)
+        Me.PCGeneralheader.Controls.Add(Me.TEReffDate)
+        Me.PCGeneralheader.Controls.Add(Me.LabelControl4)
         Me.PCGeneralheader.Controls.Add(Me.LEBilling)
-        Me.PCGeneralheader.Controls.Add(Me.TEUserEntry)
-        Me.PCGeneralheader.Controls.Add(Me.LabelControl2)
         Me.PCGeneralheader.Controls.Add(Me.TENumber)
         Me.PCGeneralheader.Controls.Add(Me.LabelControl1)
-        Me.PCGeneralheader.Controls.Add(Me.TEDate)
-        Me.PCGeneralheader.Controls.Add(Me.LTransNo)
         Me.PCGeneralheader.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCGeneralheader.Location = New System.Drawing.Point(0, 0)
         Me.PCGeneralheader.Name = "PCGeneralheader"
-        Me.PCGeneralheader.Size = New System.Drawing.Size(834, 75)
+        Me.PCGeneralheader.Size = New System.Drawing.Size(834, 76)
         Me.PCGeneralheader.TabIndex = 9
         '
         'LEBilling
         '
         Me.LEBilling.Enabled = False
-        Me.LEBilling.Location = New System.Drawing.Point(55, 12)
+        Me.LEBilling.Location = New System.Drawing.Point(98, 12)
         Me.LEBilling.Name = "LEBilling"
         Me.LEBilling.Properties.Appearance.Options.UseTextOptions = True
         Me.LEBilling.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -313,14 +322,14 @@ Partial Class FormViewJournal
         'TEUserEntry
         '
         Me.TEUserEntry.Enabled = False
-        Me.TEUserEntry.Location = New System.Drawing.Point(619, 38)
+        Me.TEUserEntry.Location = New System.Drawing.Point(86, 37)
         Me.TEUserEntry.Name = "TEUserEntry"
         Me.TEUserEntry.Size = New System.Drawing.Size(203, 20)
         Me.TEUserEntry.TabIndex = 5
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(550, 41)
+        Me.LabelControl2.Location = New System.Drawing.Point(17, 40)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(51, 13)
         Me.LabelControl2.TabIndex = 4
@@ -329,7 +338,7 @@ Partial Class FormViewJournal
         'TENumber
         '
         Me.TENumber.Enabled = False
-        Me.TENumber.Location = New System.Drawing.Point(129, 12)
+        Me.TENumber.Location = New System.Drawing.Point(172, 12)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Size = New System.Drawing.Size(193, 20)
         Me.TENumber.TabIndex = 3
@@ -345,18 +354,18 @@ Partial Class FormViewJournal
         'TEDate
         '
         Me.TEDate.Enabled = False
-        Me.TEDate.Location = New System.Drawing.Point(619, 12)
+        Me.TEDate.Location = New System.Drawing.Point(86, 11)
         Me.TEDate.Name = "TEDate"
         Me.TEDate.Size = New System.Drawing.Size(203, 20)
         Me.TEDate.TabIndex = 1
         '
         'LTransNo
         '
-        Me.LTransNo.Location = New System.Drawing.Point(550, 15)
+        Me.LTransNo.Location = New System.Drawing.Point(17, 14)
         Me.LTransNo.Name = "LTransNo"
-        Me.LTransNo.Size = New System.Drawing.Size(23, 13)
+        Me.LTransNo.Size = New System.Drawing.Size(52, 13)
         Me.LTransNo.TabIndex = 0
-        Me.LTransNo.Text = "Date"
+        Me.LTransNo.Text = "Date Entry"
         '
         'BalanceMenu
         '
@@ -370,6 +379,53 @@ Partial Class FormViewJournal
         Me.SMViewTransaction.Size = New System.Drawing.Size(157, 22)
         Me.SMViewTransaction.Text = "View document"
         '
+        'TEReffDate
+        '
+        Me.TEReffDate.Enabled = False
+        Me.TEReffDate.Location = New System.Drawing.Point(98, 38)
+        Me.TEReffDate.Name = "TEReffDate"
+        Me.TEReffDate.Size = New System.Drawing.Size(267, 20)
+        Me.TEReffDate.TabIndex = 8
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 41)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(80, 13)
+        Me.LabelControl4.TabIndex = 7
+        Me.LabelControl4.Text = "Refference Date"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Reff"
+        Me.GridColumn9.FieldName = "report_number_ref"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.Width = 59
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Report Number"
+        Me.GridColumn10.FieldName = "report_number"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 4
+        Me.GridColumn10.Width = 88
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LTransNo)
+        Me.PanelControl1.Controls.Add(Me.TEDate)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
+        Me.PanelControl1.Controls.Add(Me.TEUserEntry)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl1.Location = New System.Drawing.Point(533, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(299, 72)
+        Me.PanelControl1.TabIndex = 9
+        '
         'FormViewJournal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -380,12 +436,12 @@ Partial Class FormViewJournal
         Me.Controls.Add(Me.PCButton)
         Me.Controls.Add(Me.PCGeneralheader)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewJournal"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Journal Detail"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -404,6 +460,10 @@ Partial Class FormViewJournal
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BalanceMenu.ResumeLayout(False)
+        CType(Me.TEReffDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -438,4 +498,9 @@ Partial Class FormViewJournal
     Friend WithEvents GridColumnDesc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEReffDate As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
 End Class
