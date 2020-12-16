@@ -51,6 +51,7 @@
             SBSubmit.Enabled = True
             SBAttachment.Enabled = False
             SBMark.Enabled = False
+            SBPrint.Enabled = False
 
             SLUEType.ReadOnly = False
             SLUEFromDepartment.ReadOnly = False
@@ -65,6 +66,7 @@
             SBSubmit.Enabled = False
             SBAttachment.Enabled = True
             SBMark.Enabled = True
+            SBPrint.Enabled = True
 
             SLUEType.ReadOnly = True
             SLUEFromDepartment.ReadOnly = True
@@ -75,6 +77,10 @@
             GVList.Columns("qty").OptionsColumn.ReadOnly = True
 
             MENote.ReadOnly = True
+        End If
+
+        If data.Rows(0)("id_report_status").ToString = "5" Then
+            SBPrint.Enabled = False
         End If
     End Sub
 
@@ -307,5 +313,30 @@
                 GVList.SetRowCellValue(e.RowHandle, "qty", 0)
             End If
         End If
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim report As ReportAdjustmentOG = New ReportAdjustmentOG
+
+        report.XLNumber.Text = TENumber.Text
+        report.XLType.Text = SLUEType.Text
+        report.XLFromDepartement.Text = SLUEFromDepartment.Text
+        report.XLToDepartement.Text = SLUEToDepartement.Text
+        report.XLNote.Text = MENote.Text
+        report.XLCreatedDate.Text = TECreatedAt.Text
+        report.XLCreatedBy.Text = TECreatedBy.Text
+
+        report.id_adjustment = id_adjustment
+        report.data = GCList.DataSource
+
+        If Not SLUEType.EditValue.ToString = "3" Then
+            report.XLToDepartementL.Visible = False
+            report.XLToDepartementD.Visible = False
+            report.XLToDepartement.Visible = False
+        End If
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool.ShowPreviewDialog()
     End Sub
 End Class
