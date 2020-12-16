@@ -130,13 +130,13 @@ Partial Class FormPromoCollectionDet
         Me.GVDiscountCode = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.BtnSync = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnsync_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsync_by = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsync_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_additional = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_additional_view = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BtnSync = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtDiscountTitle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1103,6 +1103,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnqty3.FieldName = "qty3"
         Me.GridColumnqty3.Name = "GridColumnqty3"
         Me.GridColumnqty3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty3", "{0:N0}")})
         Me.GridColumnqty3.Visible = True
         Me.GridColumnqty3.VisibleIndex = 6
         '
@@ -1150,6 +1151,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnqty7.FieldName = "qty7"
         Me.GridColumnqty7.Name = "GridColumnqty7"
         Me.GridColumnqty7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty7", "{0:N0}")})
         Me.GridColumnqty7.Visible = True
         Me.GridColumnqty7.VisibleIndex = 10
         '
@@ -1161,6 +1163,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnqty8.FieldName = "qty8"
         Me.GridColumnqty8.Name = "GridColumnqty8"
         Me.GridColumnqty8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty8", "{0:N0}")})
         Me.GridColumnqty8.Visible = True
         Me.GridColumnqty8.VisibleIndex = 11
         '
@@ -1255,32 +1258,6 @@ Partial Class FormPromoCollectionDet
         Me.GridColumn14.VisibleIndex = 1
         Me.GridColumn14.Width = 79
         '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
-        '
-        'BtnSync
-        '
-        Me.BtnSync.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BtnSync.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BtnSync.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnSync.Appearance.Options.UseBackColor = True
-        Me.BtnSync.Appearance.Options.UseFont = True
-        Me.BtnSync.Appearance.Options.UseForeColor = True
-        Me.BtnSync.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnSync.Location = New System.Drawing.Point(0, 258)
-        Me.BtnSync.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnSync.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BtnSync.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnSync.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnSync.Name = "BtnSync"
-        Me.BtnSync.Size = New System.Drawing.Size(909, 32)
-        Me.BtnSync.TabIndex = 19
-        Me.BtnSync.Text = "Sync Discount Code"
-        '
         'GridColumnsync_date
         '
         Me.GridColumnsync_date.Caption = "Sync Date"
@@ -1318,6 +1295,32 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnis_additional_view.Name = "GridColumnis_additional_view"
         Me.GridColumnis_additional_view.Visible = True
         Me.GridColumnis_additional_view.VisibleIndex = 4
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
+        'BtnSync
+        '
+        Me.BtnSync.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnSync.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnSync.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnSync.Appearance.Options.UseBackColor = True
+        Me.BtnSync.Appearance.Options.UseFont = True
+        Me.BtnSync.Appearance.Options.UseForeColor = True
+        Me.BtnSync.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnSync.Location = New System.Drawing.Point(0, 258)
+        Me.BtnSync.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnSync.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnSync.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnSync.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnSync.Name = "BtnSync"
+        Me.BtnSync.Size = New System.Drawing.Size(909, 32)
+        Me.BtnSync.TabIndex = 19
+        Me.BtnSync.Text = "Sync Discount Code"
         '
         'FormPromoCollectionDet
         '
