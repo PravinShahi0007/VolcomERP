@@ -149,7 +149,9 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
     Sub load_trans_type_po()
         Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
         viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
+        SLEPayType.EditValue = "2"
         viewSearchLookupQuery(SLEPayTypeExpense, query, "id_pay_type", "pay_type", "id_pay_type")
+        SLEPayTypeExpense.EditValue = "2"
     End Sub
 
     Sub load_trans_type()
