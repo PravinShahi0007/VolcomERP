@@ -30,11 +30,14 @@
                         .design_price = If(rp Is Nothing, 0, rp("design_price")),
                         .design_price_type = If(rp Is Nothing, "", rp("design_price_type").ToString),
                         .id_design_price_retail = If(rp Is Nothing, "0", rp("id_design_price").ToString),
-                        .design_price_retail = If(table1("price").ToString = "", If(rp Is Nothing, 0, rp("design_price")), table1("price")),
+                        .design_price_retail = If(rp Is Nothing, 0, rp("design_price")),
+                        .input_price = table1("price"),
                         .id_design = If(rp Is Nothing, "0", rp("id_design").ToString),
                         .id_product = If(rp Is Nothing, "0", rp("id_product").ToString),
                         .is_select = "No",
-                        .note = If(rp Is Nothing, "Product not found", If(table1("qty") > If(rs Is Nothing, 0, rs("qty_all_product")), "+" + (table1("qty") - If(rs Is Nothing, 0, rs("qty_all_product"))).ToString, "OK")),
+                        .note = If(rs Is Nothing, "Product not found", If(table1("qty") > If(rs Is Nothing, 0, rs("qty_all_product")), "+" + (table1("qty") - If(rs Is Nothing, 0, rs("qty_all_product"))).ToString, "OK")),
+                        .note_price = If(If(rp Is Nothing, 0, rp("design_price")) = table1("price"), "OK", "Not Match"),
+                        .status = If(If(rs Is Nothing, "Product not found", If(table1("qty") > If(rs Is Nothing, 0, rs("qty_all_product")), "+" + (table1("qty") - If(rs Is Nothing, 0, rs("qty_all_product"))).ToString, "OK")) = "OK" And If(If(rp Is Nothing, 0, rp("design_price")) = table1("price"), "OK", "Not Match") = "OK", "OK", "Not Match"),
                         .id_sales_pos_det = "0"
                     }
         GCData.DataSource = Nothing
@@ -51,5 +54,21 @@
 
     Private Sub BtnDiscard_Click(sender As Object, e As EventArgs) Handles BtnDiscard.Click
         Close()
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVData_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVData.RowCellStyle
+        If e.Column.FieldName.ToString = "status" Then
+            Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("status")).ToString
+            If stt <> "OK" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.BackColor2 = Color.Salmon
+            End If
+        End If
     End Sub
 End Class
