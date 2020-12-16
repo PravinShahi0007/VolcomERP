@@ -10,6 +10,8 @@
     End Sub
 
     Private Sub FormAdjustmentOGDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        FormAdjustmentOG.form_load()
+
         Dispose()
     End Sub
 
@@ -198,7 +200,7 @@
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim id_type As String = SLUEType.EditValue.ToString
                 Dim id_departement_from As String = SLUEFromDepartment.EditValue.ToString
-                Dim id_departement_to As String = If(id_type = "1", "NULL", SLUEToDepartement.EditValue.ToString)
+                Dim id_departement_to As String = If(id_type = "3", SLUEToDepartement.EditValue.ToString, "NULL")
                 Dim created_at As String = "NOW()"
                 Dim created_by As String = id_employee_user
                 Dim id_report_status As String = "1"
