@@ -285,6 +285,7 @@
     <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassMailManage.vb" />
     <Compile Include="ClassMailManageReturn.vb" />
+    <Compile Include="ClassOLStore.vb" />
     <Compile Include="ClassOLStoreRefund.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassPayout.Designer.vb">
@@ -3092,6 +3093,36 @@
     <Compile Include="FormOLStoreImportXLS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLStoreLog.Designer.vb">
+      <DependentUpon>FormOLStoreLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLStoreOOS.Designer.vb">
+      <DependentUpon>FormOLStoreOOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreOOS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLStoreOOSDetail.Designer.vb">
+      <DependentUpon>FormOLStoreOOSDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreOOSDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLStoreOOSList.Designer.vb">
+      <DependentUpon>FormOLStoreOOSList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreOOSList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLStoreOOSManualEmail.Designer.vb">
+      <DependentUpon>FormOLStoreOOSManualEmail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreOOSManualEmail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStoreOrderId.Designer.vb">
       <DependentUpon>FormOLStoreOrderId.vb</DependentUpon>
     </Compile>
@@ -3102,6 +3133,12 @@
       <DependentUpon>FormOLStorePeriod.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOLStorePeriod.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLStoreRestock.Designer.vb">
+      <DependentUpon>FormOLStoreRestock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreRestock.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOlStoreRetCust.Designer.vb">
@@ -10446,11 +10483,29 @@
     <EmbeddedResource Include="FormOLStoreImportXLS.resx">
       <DependentUpon>FormOLStoreImportXLS.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreLog.resx">
+      <DependentUpon>FormOLStoreLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreOOS.resx">
+      <DependentUpon>FormOLStoreOOS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreOOSDetail.resx">
+      <DependentUpon>FormOLStoreOOSDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreOOSList.resx">
+      <DependentUpon>FormOLStoreOOSList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreOOSManualEmail.resx">
+      <DependentUpon>FormOLStoreOOSManualEmail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreOrderId.resx">
       <DependentUpon>FormOLStoreOrderId.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStorePeriod.resx">
       <DependentUpon>FormOLStorePeriod.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreRestock.resx">
+      <DependentUpon>FormOLStoreRestock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOlStoreRetCust.resx">
       <DependentUpon>FormOlStoreRetCust.vb</DependentUpon>

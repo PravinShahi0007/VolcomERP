@@ -87,9 +87,11 @@
 
     Sub view_type()
         Dim query As String = "
-            SELECT 1 AS id_type, 'Adjustment' AS `type`
+            SELECT 1 AS id_type, 'Adjustment In' AS `type`
             UNION ALL
-            SELECT 2 AS id_type, 'Transfer' AS `type`
+            SELECT 2 AS id_type, 'Adjustment Out' AS `type`
+            UNION ALL
+            SELECT 3 AS id_type, 'Transfer' AS `type`
         "
 
         viewSearchLookupQuery(SLUEType, query, "id_type", "type", "id_type")
@@ -116,13 +118,25 @@
     End Sub
 
     Private Sub SLUEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEType.EditValueChanged
-        If SLUEType.EditValue.ToString = "1" Then
-            Label5.Visible = False
-            SLUEToDepartement.Visible = False
-        Else
+        If SLUEType.EditValue.ToString = "3" Then
             Label5.Visible = True
             SLUEToDepartement.Visible = True
+        Else
+            Label5.Visible = False
+            SLUEToDepartement.Visible = False
         End If
+
+        Dim query_detail As String = "
+            SELECT id_item, item_desc, uom, id_item_cat, item_cat, qty, `value`
+            FROM tb_adjustment_og_det
+            WHERE id_adjustment = " + id_adjustment + "
+        "
+
+        Dim data_detail As DataTable = execute_query(query_detail, -1, True, "", "", "", "")
+
+        GCList.DataSource = data_detail
+
+        GVList.BestFitColumns()
     End Sub
 
     Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
@@ -206,7 +220,34 @@
     End Sub
 
     Sub update_changes()
+        If SLUEType.EditValue.ToString = "3" Then
+            Dim queryOut As String = "
+                INSERT INTO tb_storage_item (id_comp, id_departement, id_storage_category, id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, storage_item_notes, id_stock_status)
+                SELECT 1216 AS id_comp, a.id_departement_from AS id_departement, 2 AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, NULL AS storage_item_notes, 1 AS id_stock_status
+                FROM tb_adjustment_og_det AS d
+                LEFT JOIN tb_adjustment_og AS a ON a.id_adjustment = d.id_adjustment
+                WHERE d.id_adjusment = " + id_adjustment
 
+            execute_non_query(queryOut, True, "", "", "", "")
+
+            Dim queryIn As String = "
+                INSERT INTO tb_storage_item (id_comp, id_departement, id_storage_category, id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, storage_item_notes, id_stock_status)
+                SELECT 1216 AS id_comp, a.id_departement_to AS id_departement, 1 AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, NULL AS storage_item_notes, 1 AS id_stock_status
+                FROM tb_adjustment_og_det AS d
+                LEFT JOIN tb_adjustment_og AS a ON a.id_adjustment = d.id_adjustment
+                WHERE d.id_adjusment = " + id_adjustment
+
+            execute_non_query(queryIn, True, "", "", "", "")
+        Else
+            Dim query As String = "
+                INSERT INTO tb_storage_item (id_comp, id_departement, id_storage_category, id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, storage_item_notes, id_stock_status)
+                SELECT 1216 AS id_comp, a.id_departement_from AS id_departement, a.id_type AS id_storage_category, d.id_item, d.value, 241 AS report_mark_type, a.id_adjustment AS id_report, d.qty AS storage_item_qty, NOW() AS storage_item_datetime, NULL AS storage_item_notes, 1 AS id_stock_status
+                FROM tb_adjustment_og_det AS d
+                LEFT JOIN tb_adjustment_og AS a ON a.id_adjustment = d.id_adjustment
+                WHERE d.id_adjusment = " + id_adjustment
+
+            execute_non_query(query, True, "", "", "", "")
+        End If
     End Sub
 
     Private Sub SLUEFromDepartment_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEFromDepartment.EditValueChanged
@@ -225,25 +266,33 @@
 
     Private Sub GVList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVList.CellValueChanged
         If e.Column.FieldName = "qty" Then
-            Dim date_until_selected As String = Date.Parse(Now).ToString("yyyy-MM-dd")
+            If e.Value >= 0 Then
+                If Not SLUEType.EditValue.ToString = "1" Then
+                    Dim date_until_selected As String = Date.Parse(Now).ToString("yyyy-MM-dd")
 
-            Dim dept As String = SLUEFromDepartment.EditValue.ToString
-            Dim cat As String = "0"
-            '
-            If dept = "-1" Then
-                dept = "AND i.id_item = " + GVList.GetRowCellValue(e.RowHandle, "id_item").ToString
+                    Dim dept As String = SLUEFromDepartment.EditValue.ToString
+                    Dim cat As String = "0"
+                    '
+                    If dept = "-1" Then
+                        dept = "AND i.id_item = " + GVList.GetRowCellValue(e.RowHandle, "id_item").ToString
+                    Else
+                        dept = "AND i.id_item = " + GVList.GetRowCellValue(e.RowHandle, "id_item").ToString + " AND i.id_departement=" + dept + ""
+                    End If
+
+                    Dim stc As New ClassPurcItemStock()
+                    Dim query As String = stc.queryGetStock(dept, cat, date_until_selected)
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                    Dim res As Decimal = data.Rows(0)("qty") - GVList.GetRowCellValue(e.RowHandle, "qty")
+
+                    If res < 0 Then
+                        stopCustom("Please input value less than " + data.Rows(0)("qty").ToString)
+
+                        GVList.SetRowCellValue(e.RowHandle, "qty", 0)
+                    End If
+                End If
             Else
-                dept = "AND i.id_item = " + GVList.GetRowCellValue(e.RowHandle, "id_item").ToString + " AND i.id_departement=" + dept + ""
-            End If
-
-            Dim stc As New ClassPurcItemStock()
-            Dim query As String = stc.queryGetStock(dept, cat, date_until_selected)
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
-            Dim res As Decimal = data.Rows(0)("qty") + GVList.GetRowCellValue(e.RowHandle, "qty")
-
-            If res < 0 Then
-                stopCustom("Please input value greater than -" + data.Rows(0)("qty").ToString)
+                stopCustom("Please input value greater than 0")
 
                 GVList.SetRowCellValue(e.RowHandle, "qty", 0)
             End If

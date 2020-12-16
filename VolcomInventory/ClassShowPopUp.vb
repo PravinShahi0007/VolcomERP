@@ -392,6 +392,9 @@
         ElseIf report_mark_type = "275" Or report_mark_type = "279" Then
             'propose return mail
             FormSalesReturnOrderMailDet.Close()
+        ElseIf report_mark_type = "278" Then
+            'marketplace oos
+            FormOLStoreOOSDetail.Close()
         ElseIf report_mark_type = "280" Then
             'Inv Claim Lain2
             FormInvoiceClaimOther.Close()
@@ -1335,6 +1338,11 @@ GROUP BY rec.`id_prod_order`"
             'propose return mail
             FormSalesReturnOrderMailDet.id_mail_3pl = id_report
             FormSalesReturnOrderMailDet.ShowDialog()
+        ElseIf report_mark_type = "278" Then
+            'marketplace oos
+            FormOLStoreOOSDetail.is_view = "1"
+            FormOLStoreOOSDetail.id = id_report
+            FormOLStoreOOSDetail.ShowDialog()
         ElseIf report_mark_type = "280" Then
             'Inv Claim Lain2
             FormInvoiceClaimOther.id_invoice = id_report
