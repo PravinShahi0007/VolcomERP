@@ -4,6 +4,9 @@
     Public dt_prc As DataTable
 
     Private Sub FormSalesPOSCompare_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
         Dim tb1 = dt_xls.AsEnumerable()
         Dim tb2 = dt_stock.AsEnumerable
         Dim tb3 = dt_prc.AsEnumerable()
@@ -19,8 +22,10 @@
                         .code = table1("code").ToString,
                         .name = If(rp Is Nothing, "", rp("design_display_name").ToString),
                         .size = If(rp Is Nothing, "", rp("size").ToString),
-                        .sales_pos_det_qty = table1("qty"),
                         .limit_qty = If(rs Is Nothing, 0, rs("qty_all_product")),
+                        .sales_qty = table1("qty"),
+                        .sales_pos_det_qty = If(table1("qty") <= If(rs Is Nothing, 0, rs("qty_all_product")), table1("qty"), If(rs Is Nothing, 0, rs("qty_all_product"))),
+                        .no_stock_qty = table1("qty") - If(table1("qty") <= If(rs Is Nothing, 0, rs("qty_all_product")), table1("qty"), If(rs Is Nothing, 0, rs("qty_all_product"))),
                         .id_design_price = If(rp Is Nothing, "0", rp("id_design_price").ToString),
                         .design_price = If(rp Is Nothing, 0, rp("design_price")),
                         .design_price_type = If(rp Is Nothing, "", rp("design_price_type").ToString),
@@ -36,6 +41,8 @@
         GCData.DataSource = query.ToList()
         GCData.RefreshDataSource()
         GVData.RefreshData()
+        GVData.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
 
     Private Sub FormSalesPOSCompare_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
