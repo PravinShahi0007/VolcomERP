@@ -244,11 +244,14 @@
                             If select_id_design = data.Rows(i)("id_design").ToString Then
                                 data.Rows(i)("Image Src") = image
 
+                                data.Rows(i)("Image Position") = image.Split("_")(2).Replace(".jpg", "")
+
                                 i = i + 1
                             Else
                                 Dim row As DataRow = data.NewRow
 
                                 row("Image Src") = image
+                                row("Image Position") = image.Split("_")(2).Replace(".jpg", "")
 
                                 data.Rows.InsertAt(row, i)
                             End If
