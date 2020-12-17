@@ -75,10 +75,10 @@ Partial Class FormInboundAWB
         Me.BDelKoli = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddKoli = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BEditAWB = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintAWB = New DevExpress.XtraEditors.SimpleButton()
         Me.BNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BSubmitAwb = New DevExpress.XtraEditors.SimpleButton()
-        Me.BEditAWB = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PCHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCHeader.SuspendLayout()
         CType(Me.SLERate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -605,6 +605,15 @@ Partial Class FormInboundAWB
         Me.PanelControl4.Size = New System.Drawing.Size(990, 43)
         Me.PanelControl4.TabIndex = 3
         '
+        'BEditAWB
+        '
+        Me.BEditAWB.Enabled = False
+        Me.BEditAWB.Location = New System.Drawing.Point(675, 9)
+        Me.BEditAWB.Name = "BEditAWB"
+        Me.BEditAWB.Size = New System.Drawing.Size(107, 23)
+        Me.BEditAWB.TabIndex = 6
+        Me.BEditAWB.Text = "Edit AWB"
+        '
         'BPrintAWB
         '
         Me.BPrintAWB.Location = New System.Drawing.Point(914, 9)
@@ -630,15 +639,6 @@ Partial Class FormInboundAWB
         Me.BSubmitAwb.Size = New System.Drawing.Size(64, 23)
         Me.BSubmitAwb.TabIndex = 3
         Me.BSubmitAwb.Text = "Submit"
-        '
-        'BEditAWB
-        '
-        Me.BEditAWB.Enabled = False
-        Me.BEditAWB.Location = New System.Drawing.Point(675, 9)
-        Me.BEditAWB.Name = "BEditAWB"
-        Me.BEditAWB.Size = New System.Drawing.Size(107, 23)
-        Me.BEditAWB.TabIndex = 6
-        Me.BEditAWB.Text = "Edit AWB"
         '
         'FormInboundAWB
         '

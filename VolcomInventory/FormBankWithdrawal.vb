@@ -37,6 +37,7 @@
         TEKurs.EditValue = 1.0
         TEKursDPKhusus.EditValue = 1.0
         '
+        load_coa_type()
         load_vendor()
         load_trans_type()
         load_status_payment()
@@ -59,6 +60,11 @@
 
         DECAFrom.EditValue = Date.Parse(Now)
         DECATo.EditValue = Date.Parse(Now)
+    End Sub
+
+    Sub load_coa_type()
+        Dim q As String = "SELECT id_coa_type,coa_type FROM `tb_coa_type`"
+        viewSearchLookupQuery(SLECOAType, q, "id_coa_type", "coa_type", "id_coa_type")
     End Sub
 
     Sub load_group_store_cn()
@@ -613,6 +619,7 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
     Private Sub BCreatePay_Click(sender As Object, e As EventArgs) Handles BCreatePay.Click
         If Not SLEVendorPayment.EditValue.ToString = "0" Then
             FormBankWithdrawalDet.report_mark_type = "159"
+            FormBankWithdrawalDet.id_coa_tag = SLEUnitBBKList.EditValue.ToString
             FormBankWithdrawalDet.ShowDialog()
         End If
     End Sub
@@ -1130,6 +1137,7 @@ GROUP BY sr.`id_sales_return`"
 
     Private Sub BCreateBookTrf_Click(sender As Object, e As EventArgs) Handles BCreateBookTrf.Click
         FormBankWithdrawalDet.is_book_transfer = True
+        FormBankWithdrawalDet.id_coa_tag = SLEUnitBBKList.EditValue.ToString
         FormBankWithdrawalDet.ShowDialog()
     End Sub
 
@@ -1334,10 +1342,11 @@ ORDER BY pod.id_purc_order DESC"
     End Sub
 
     Sub view_sum()
-        Dim q As String = "SELECT pns.`id_pn_summary`,sts.report_status,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(IFNULL(pnd.`val_bef_kurs`,0)) AS val_bef_kurs
+        Dim q As String = "SELECT ct.id_coa_type,ct.coa_type,pns.`id_pn_summary`,sts.report_status,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(IFNULL(pnd.`val_bef_kurs`,0)) AS val_bef_kurs
 FROM tb_pn_summary pns
 LEFT JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
 LEFT JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
+INNER JOIN tb_coa_type ct ON ct.id_coa_type=pns.id_coa_type AND ct.id_coa_type='" & SLECOAType.EditValue.ToString & "'
 INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pns.`id_currency`
 INNER JOIN tb_m_user usr ON usr.`id_user`=pns.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
