@@ -460,7 +460,7 @@ Public Class FormSalesPOSDet
         Dim query As String = "SELECT p.id_sales_pos_prob, p.is_invalid_price, p.is_no_stock, 
         p.id_product, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
         p.id_design_price_retail, p.design_price_retail, p.design_price_store, p.id_design_price_valid, p.design_price_valid,
-        p.store_qty, p.no_stock_qty,
+        p.store_qty, p.invoice_qty, p.no_stock_qty,(p.invoice_qty+p.no_stock_qty) AS `total_qty`,
         IF(p.is_invalid_price=1,'Not Valid', 'OK') AS `note_price`
         FROM tb_sales_pos_prob p
         INNER JOIN tb_m_product prod ON prod.id_product = p.id_product

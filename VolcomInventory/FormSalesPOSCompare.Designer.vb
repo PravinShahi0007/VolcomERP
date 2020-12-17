@@ -42,7 +42,10 @@ Partial Class FormSalesPOSCompare
         Me.GridColumnlimit_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnsales_pos_det_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnno_stock_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumntotal_qty_erp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnamount_erp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnno_stock_amount_erp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumntotal_amount_erp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandCheck = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnnote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnnote_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -106,7 +109,7 @@ Partial Class FormSalesPOSCompare
         'GVData
         '
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandSummary, Me.GridBand1, Me.gridBandStore, Me.gridBandERP, Me.gridBandCheck})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnno, Me.GridColumncode, Me.GridColumndescription, Me.GridColumnsize, Me.GridColumninput_price, Me.GridColumndesign_price_retail, Me.GridColumnlimit_qty, Me.GridColumnsales_pos_det_qty, Me.GridColumnno_stock_qty, Me.GridColumnsales_qty, Me.GridColumnamount, Me.GridColumnamount_erp, Me.GridColumnnote, Me.GridColumnnote_price, Me.BandedGridColumnstt})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnno, Me.GridColumncode, Me.GridColumndescription, Me.GridColumnsize, Me.GridColumninput_price, Me.GridColumndesign_price_retail, Me.GridColumnlimit_qty, Me.GridColumnsales_pos_det_qty, Me.GridColumnno_stock_qty, Me.GridColumnsales_qty, Me.GridColumnamount, Me.GridColumnamount_erp, Me.GridColumnnote, Me.GridColumnnote_price, Me.BandedGridColumnstt, Me.BandedGridColumntotal_qty_erp, Me.BandedGridColumnno_stock_amount_erp, Me.BandedGridColumntotal_amount_erp})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -220,10 +223,13 @@ Partial Class FormSalesPOSCompare
         Me.gridBandERP.Columns.Add(Me.GridColumnlimit_qty)
         Me.gridBandERP.Columns.Add(Me.GridColumnsales_pos_det_qty)
         Me.gridBandERP.Columns.Add(Me.GridColumnno_stock_qty)
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumntotal_qty_erp)
         Me.gridBandERP.Columns.Add(Me.GridColumnamount_erp)
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumnno_stock_amount_erp)
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumntotal_amount_erp)
         Me.gridBandERP.Name = "gridBandERP"
         Me.gridBandERP.VisibleIndex = 3
-        Me.gridBandERP.Width = 300
+        Me.gridBandERP.Width = 556
         '
         'GridColumndesign_price_retail
         '
@@ -262,10 +268,23 @@ Partial Class FormSalesPOSCompare
         Me.GridColumnno_stock_qty.Name = "GridColumnno_stock_qty"
         Me.GridColumnno_stock_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "no_stock_qty", "{0:N0}")})
         Me.GridColumnno_stock_qty.Visible = True
+        Me.GridColumnno_stock_qty.Width = 90
+        '
+        'BandedGridColumntotal_qty_erp
+        '
+        Me.BandedGridColumntotal_qty_erp.Caption = "Total Qty"
+        Me.BandedGridColumntotal_qty_erp.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumntotal_qty_erp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumntotal_qty_erp.FieldName = "total_qty_erp"
+        Me.BandedGridColumntotal_qty_erp.Name = "BandedGridColumntotal_qty_erp"
+        Me.BandedGridColumntotal_qty_erp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty_erp", "{0:N0}")})
+        Me.BandedGridColumntotal_qty_erp.UnboundExpression = "[sales_pos_det_qty] + [no_stock_qty]"
+        Me.BandedGridColumntotal_qty_erp.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumntotal_qty_erp.Visible = True
         '
         'GridColumnamount_erp
         '
-        Me.GridColumnamount_erp.Caption = "Amount"
+        Me.GridColumnamount_erp.Caption = "Invoice Amount"
         Me.GridColumnamount_erp.DisplayFormat.FormatString = "N0"
         Me.GridColumnamount_erp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnamount_erp.FieldName = "amount_erp"
@@ -274,6 +293,31 @@ Partial Class FormSalesPOSCompare
         Me.GridColumnamount_erp.UnboundExpression = "[design_price_retail] * [sales_pos_det_qty]"
         Me.GridColumnamount_erp.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnamount_erp.Visible = True
+        Me.GridColumnamount_erp.Width = 91
+        '
+        'BandedGridColumnno_stock_amount_erp
+        '
+        Me.BandedGridColumnno_stock_amount_erp.Caption = "No Stock Amount"
+        Me.BandedGridColumnno_stock_amount_erp.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnno_stock_amount_erp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnno_stock_amount_erp.FieldName = "no_stock_amount_erp"
+        Me.BandedGridColumnno_stock_amount_erp.Name = "BandedGridColumnno_stock_amount_erp"
+        Me.BandedGridColumnno_stock_amount_erp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "no_stock_amount_erp", "{0:N0}")})
+        Me.BandedGridColumnno_stock_amount_erp.UnboundExpression = "[no_stock_qty] * [design_price_retail]"
+        Me.BandedGridColumnno_stock_amount_erp.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumnno_stock_amount_erp.Visible = True
+        '
+        'BandedGridColumntotal_amount_erp
+        '
+        Me.BandedGridColumntotal_amount_erp.Caption = "Total Amount"
+        Me.BandedGridColumntotal_amount_erp.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumntotal_amount_erp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumntotal_amount_erp.FieldName = "total_amount_erp"
+        Me.BandedGridColumntotal_amount_erp.Name = "BandedGridColumntotal_amount_erp"
+        Me.BandedGridColumntotal_amount_erp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_erp", "{0:N0}")})
+        Me.BandedGridColumntotal_amount_erp.UnboundExpression = "[amount_erp] + [no_stock_amount_erp]"
+        Me.BandedGridColumntotal_amount_erp.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumntotal_amount_erp.Visible = True
         '
         'gridBandCheck
         '
@@ -337,10 +381,13 @@ Partial Class FormSalesPOSCompare
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnnote_price As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnstt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents gridBandSummary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandERP As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumntotal_qty_erp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnno_stock_amount_erp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumntotal_amount_erp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandCheck As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
 End Class

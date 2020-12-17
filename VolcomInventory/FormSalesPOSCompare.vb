@@ -12,10 +12,10 @@
         Dim tb3 = dt_prc.AsEnumerable()
         Dim query = From table1 In tb1
                     Group Join table_tmp In tb2
-                    On table1("code").ToString Equals table_tmp("code").ToString Into sjoin = Group
+                    On table1("code").ToString.Trim Equals table_tmp("code").ToString Into sjoin = Group
                     From rs In sjoin.DefaultIfEmpty()
                     Group Join table_price In tb3
-                    On table1("code").ToString Equals table_price("product_full_code").ToString Into pjoin = Group
+                    On table1("code").ToString.Trim Equals table_price("product_full_code").ToString Into pjoin = Group
                     From rp In pjoin.DefaultIfEmpty
                     Select New With
                     {
@@ -119,6 +119,7 @@
         newRow("name") = GVData.GetRowCellValue(rh, "name").ToString
         newRow("size") = GVData.GetRowCellValue(rh, "size").ToString
         newRow("sales_pos_det_qty") = GVData.GetRowCellValue(rh, "sales_pos_det_qty")
+        newRow("sales_pos_det_amount") = GVData.GetRowCellValue(rh, "sales_pos_det_qty") * GVData.GetRowCellValue(rh, "design_price_retail")
         newRow("limit_qty") = GVData.GetRowCellValue(rh, "limit_qty")
         newRow("id_design_price") = GVData.GetRowCellValue(rh, "id_design_price").ToString
         newRow("design_price") = GVData.GetRowCellValue(rh, "design_price")
@@ -128,7 +129,7 @@
         newRow("id_design") = GVData.GetRowCellValue(rh, "id_design").ToString
         newRow("id_product") = GVData.GetRowCellValue(rh, "id_product").ToString
         newRow("is_select") = "No"
-        newRow("note") = GVData.GetRowCellValue(rh, "note").ToString
+        newRow("note") = "OK"
         newRow("id_sales_pos_det") = GVData.GetRowCellValue(rh, "id_sales_pos_det").ToString
         TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
         FormSalesPOSDet.GCItemList.RefreshDataSource()
@@ -172,6 +173,7 @@
         newRow("id_design_price_valid") = id_design_price_valid
         newRow("design_price_valid") = design_price_valid
         newRow("store_qty") = GVData.GetRowCellValue(rh, "sales_qty")
+        newRow("invoice_qty") = GVData.GetRowCellValue(rh, "sales_pos_det_qty")
         newRow("no_stock_qty") = GVData.GetRowCellValue(rh, "no_stock_qty")
         newRow("note_price") = note_price
         TryCast(FormSalesPOSDet.GCProbList.DataSource, DataTable).Rows.Add(newRow)
