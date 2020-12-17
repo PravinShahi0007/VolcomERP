@@ -198,6 +198,7 @@
 
         ''detail2
         viewDetail()
+        viewProb()
         viewDetailCode()
         check_but()
         calculate()
@@ -445,5 +446,29 @@
             warningCustom("Auto journal not found.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVProbList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVProbList.RowCellStyle
+        If e.Column.FieldName = "note_price" Then
+            Dim note As String = ""
+            Try
+                note = GVProbList.GetRowCellValue(e.RowHandle, "note_price").ToString
+            Catch ex As Exception
+            End Try
+            If note <> "OK" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.BackColor2 = Color.Salmon
+            End If
+        ElseIf e.Column.FieldName = "no_stock_qty" Then
+            Dim oos As String = ""
+            Try
+                oos = GVProbList.GetRowCellValue(e.RowHandle, "no_stock_qty")
+            Catch ex As Exception
+            End Try
+            If oos > 0 Then
+                e.Appearance.BackColor = Color.Yellow
+                e.Appearance.BackColor2 = Color.Yellow
+            End If
+        End If
     End Sub
 End Class

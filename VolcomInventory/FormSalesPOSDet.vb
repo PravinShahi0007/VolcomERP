@@ -974,7 +974,7 @@ Public Class FormSalesPOSDet
                             End If
                             Dim id_design_price_retail As String = GVProbList.GetRowCellValue(b, "id_design_price_retail").ToString
                             Dim design_price_retail As String = decimalSQL(GVProbList.GetRowCellValue(b, "design_price_retail").ToString)
-                            Dim design_price_store As String = decimalSQL(GVProbList.GetRowCellValue(b, "design_price_retail").ToString)
+                            Dim design_price_store As String = decimalSQL(GVProbList.GetRowCellValue(b, "design_price_store").ToString)
                             Dim id_design_price_valid As String = GVProbList.GetRowCellValue(b, "id_design_price_valid").ToString
                             If id_design_price_valid = "0" Then
                                 id_design_price_valid = "NULL"
