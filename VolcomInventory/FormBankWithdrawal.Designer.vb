@@ -514,6 +514,7 @@ Partial Class FormBankWithdrawal
         Me.GridView17 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn236 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn238 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn237 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
@@ -1118,7 +1119,7 @@ Partial Class FormBankWithdrawal
         '
         'GVBBKSummary
         '
-        Me.GVBBKSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn201, Me.GridColumn202, Me.GridColumn203, Me.GridColumn204, Me.GridColumn208, Me.GridColumn205, Me.GridColumn206, Me.GridColumn207, Me.GridColumn211})
+        Me.GVBBKSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn237, Me.GridColumn201, Me.GridColumn202, Me.GridColumn203, Me.GridColumn204, Me.GridColumn208, Me.GridColumn205, Me.GridColumn206, Me.GridColumn207, Me.GridColumn211})
         Me.GVBBKSummary.GridControl = Me.GCBBKSummary
         Me.GVBBKSummary.Name = "GVBBKSummary"
         Me.GVBBKSummary.OptionsBehavior.AutoExpandAllGroups = True
@@ -1149,7 +1150,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn203.Name = "GridColumn203"
         Me.GridColumn203.OptionsColumn.AllowEdit = False
         Me.GridColumn203.Visible = True
-        Me.GridColumn203.VisibleIndex = 1
+        Me.GridColumn203.VisibleIndex = 2
         Me.GridColumn203.Width = 107
         '
         'GridColumn204
@@ -1159,7 +1160,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn204.Name = "GridColumn204"
         Me.GridColumn204.OptionsColumn.AllowEdit = False
         Me.GridColumn204.Visible = True
-        Me.GridColumn204.VisibleIndex = 2
+        Me.GridColumn204.VisibleIndex = 3
         Me.GridColumn204.Width = 109
         '
         'GridColumn208
@@ -1172,7 +1173,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn208.FieldName = "currency"
         Me.GridColumn208.Name = "GridColumn208"
         Me.GridColumn208.Visible = True
-        Me.GridColumn208.VisibleIndex = 4
+        Me.GridColumn208.VisibleIndex = 5
         '
         'GridColumn205
         '
@@ -1187,7 +1188,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn205.Name = "GridColumn205"
         Me.GridColumn205.OptionsColumn.AllowEdit = False
         Me.GridColumn205.Visible = True
-        Me.GridColumn205.VisibleIndex = 3
+        Me.GridColumn205.VisibleIndex = 4
         '
         'GridColumn206
         '
@@ -1196,7 +1197,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn206.Name = "GridColumn206"
         Me.GridColumn206.OptionsColumn.AllowEdit = False
         Me.GridColumn206.Visible = True
-        Me.GridColumn206.VisibleIndex = 6
+        Me.GridColumn206.VisibleIndex = 7
         Me.GridColumn206.Width = 87
         '
         'GridColumn207
@@ -1206,7 +1207,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn207.Name = "GridColumn207"
         Me.GridColumn207.OptionsColumn.AllowEdit = False
         Me.GridColumn207.Visible = True
-        Me.GridColumn207.VisibleIndex = 5
+        Me.GridColumn207.VisibleIndex = 6
         '
         'GridColumn211
         '
@@ -1217,7 +1218,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn211.Name = "GridColumn211"
         Me.GridColumn211.OptionsColumn.AllowEdit = False
         Me.GridColumn211.Visible = True
-        Me.GridColumn211.VisibleIndex = 0
+        Me.GridColumn211.VisibleIndex = 1
         Me.GridColumn211.Width = 78
         '
         'RepositoryItemCheckEdit12
@@ -5612,6 +5613,15 @@ Partial Class FormBankWithdrawal
         Me.GridColumn238.VisibleIndex = 0
         Me.GridColumn238.Width = 1351
         '
+        'GridColumn237
+        '
+        Me.GridColumn237.Caption = "Type"
+        Me.GridColumn237.FieldName = "coa_type"
+        Me.GridColumn237.Name = "GridColumn237"
+        Me.GridColumn237.Visible = True
+        Me.GridColumn237.VisibleIndex = 0
+        Me.GridColumn237.Width = 139
+        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -6299,4 +6309,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridView17 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn236 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn238 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn237 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
