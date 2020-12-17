@@ -1496,7 +1496,7 @@ Partial Class FormSalesPOSDet
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QtyToolStripMenuItem, Me.PriceToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 92)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(140, 70)
         '
         'QtyToolStripMenuItem
         '
@@ -1976,7 +1976,7 @@ Partial Class FormSalesPOSDet
         Me.XTPNeedVerify.Controls.Add(Me.GCProbList)
         Me.XTPNeedVerify.Name = "XTPNeedVerify"
         Me.XTPNeedVerify.Size = New System.Drawing.Size(1182, 217)
-        Me.XTPNeedVerify.Text = "Need Verification"
+        Me.XTPNeedVerify.Text = "Problem List"
         '
         'GCProbList
         '

@@ -732,7 +732,7 @@ Public Class FormSalesPOSDet
                     If f > 0 Then
                         qry += "UNION ALL "
                     End If
-                    qry += "SELECT " + id_store_contact_from + " AS `id_store_contact_from`," + id_comp_contact_bill + " AS `id_comp_contact_bill`," + GVItemList.GetRowCellValue(f, "id_product").ToString + " AS `id_product`," + GVItemList.GetRowCellValue(f, "sales_pos_det_qty").ToString + " AS `qty`, " + decimalSQL(GVItemList.GetRowCellValue(f, "design_price_retail").ToString) + " AS `design_price_retail`, '" + sales_pos_start_period + "' AS `sales_pos_start_period`, '" + sales_pos_end_period + "' AS `sales_pos_end_period`, " + id_memo_type + " AS `id_memo_type` "
+                    qry += "SELECT " + id_store_contact_from + " AS `id_store_contact_from`," + id_comp_contact_bill + " AS `id_comp_contact_bill`," + GVItemList.GetRowCellValue(f, "id_product").ToString + " AS `id_product`," + decimalSQL(GVItemList.GetRowCellValue(f, "sales_pos_det_qty").ToString) + " AS `qty`, " + decimalSQL(GVItemList.GetRowCellValue(f, "design_price_retail").ToString) + " AS `design_price_retail`, '" + sales_pos_start_period + "' AS `sales_pos_start_period`, '" + sales_pos_end_period + "' AS `sales_pos_end_period`, " + id_memo_type + " AS `id_memo_type` "
                 Next
 
                 Dim qsi As String = "SELECT ga.`id_store_contact_from`,ga.`id_comp_contact_bill`,ga.`id_product`,ga.`qty`, ga.`design_price_retail`,
@@ -961,6 +961,37 @@ Public Class FormSalesPOSDet
                         'reserved stock
                         Dim rsv_stock As ClassSalesInv = New ClassSalesInv()
                         rsv_stock.reservedStock(id_sales_pos, report_mark_type)
+
+                        'problem list
+                        makeSafeGV(GVProbList)
+                        Dim query_prob As String = "INSERT INTO tb_sales_pos_prob(id_sales_pos, is_invalid_price, is_no_stock, id_product, id_design_price_retail, design_price_retail, design_price_store, id_design_price_valid, design_price_valid, store_qty, invoice_qty, no_stock_qty) VALUES "
+                        For b As Integer = 0 To GVProbList.RowCount - 1
+                            Dim is_invalid_price As String = GVProbList.GetRowCellValue(b, "is_invalid_price").ToString
+                            Dim is_no_stock As String = GVProbList.GetRowCellValue(b, "is_no_stock").ToString
+                            Dim id_product As String = GVProbList.GetRowCellValue(b, "id_product").ToString
+                            If id_product = "0" Then
+                                id_product = "NULL"
+                            End If
+                            Dim id_design_price_retail As String = GVProbList.GetRowCellValue(b, "id_design_price_retail").ToString
+                            Dim design_price_retail As String = decimalSQL(GVProbList.GetRowCellValue(b, "design_price_retail").ToString)
+                            Dim design_price_store As String = decimalSQL(GVProbList.GetRowCellValue(b, "design_price_retail").ToString)
+                            Dim id_design_price_valid As String = GVProbList.GetRowCellValue(b, "id_design_price_valid").ToString
+                            If id_design_price_valid = "0" Then
+                                id_design_price_valid = "NULL"
+                            End If
+                            Dim design_price_valid As String = decimalSQL(GVProbList.GetRowCellValue(b, "design_price_valid").ToString)
+                            Dim store_qty As String = decimalSQL(GVProbList.GetRowCellValue(b, "store_qty").ToString)
+                            Dim invoice_qty As String = decimalSQL(GVProbList.GetRowCellValue(b, "invoice_qty").ToString)
+                            Dim no_stock_qty As String = decimalSQL(GVProbList.GetRowCellValue(b, "no_stock_qty").ToString)
+
+                            If b > 0 Then
+                                query_prob += ","
+                            End If
+                            query_prob += "('" + id_sales_pos + "', '" + is_invalid_price + "', '" + is_no_stock + "', " + id_product + ", '" + id_design_price_retail + "', '" + design_price_retail + "', '" + design_price_store + "', " + id_design_price_valid + ", '" + design_price_valid + "', '" + store_qty + "', '" + invoice_qty + "', '" + no_stock_qty + "') "
+                        Next
+                        If GVProbList.RowCount > 0 Then
+                            execute_non_query(query_prob, True, "", "", "", "")
+                        End If
                     End If
 
                     'draft journal
