@@ -210,6 +210,8 @@
             data.Merge(data_tmp)
 
             If data.Rows.Count > 0 Then
+                Dim i As Integer = 0
+
                 'replace enter with new line
                 For i = 0 To data.Rows.Count - 1
                     For j = 0 To data.Columns.Count - 1
@@ -218,6 +220,55 @@
                         End If
                     Next
                 Next
+
+                'build image
+                Dim select_id_design As String = ""
+
+                Dim stop_while As Boolean = True
+
+                i = 0
+
+                While stop_while
+                    i = i + 1
+
+                    Dim images As String() = data.Rows(i)("Image Src").ToString.Split(",")
+
+                    select_id_design = data.Rows(i)("id_design").ToString
+
+                    Dim get_image As Boolean = False
+
+                    For j = 0 To images.Length - 1
+                        Dim image As String = trimSpace(images(j).ToString)
+
+                        If Not image = "" Then
+                            If select_id_design = data.Rows(i)("id_design").ToString Then
+                                data.Rows(i)("Image Src") = image
+
+                                i = i + 1
+                            Else
+                                Dim row As DataRow = data.NewRow
+
+                                row("Image Src") = image
+
+                                data.Rows.InsertAt(row, i)
+                            End If
+
+                            get_image = True
+                        Else
+                            If j = 0 Then
+                                data.Rows(i)("Image Src") = ""
+                            End If
+                        End If
+                    Next
+
+                    If get_image Then
+                        i = i - 1
+                    End If
+
+                    If i = data.Rows.Count - 1 Then
+                        stop_while = False
+                    End If
+                End While
 
                 data.Columns.Remove(data.Columns("id_design"))
                 data.Columns.Remove(data.Columns("id_product"))
