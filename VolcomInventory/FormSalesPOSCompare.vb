@@ -93,6 +93,8 @@
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
         Cursor = Cursors.WaitCursor
         makeSafeGV(GVData)
+        FormSalesPOSDet.viewDetail()
+        FormSalesPOSDet.viewProb()
         For i As Integer = 0 To GVData.RowCount - 1
             Dim note_price As String = GVData.GetRowCellValue(i, "note_price").ToString
             If note_price = "OK" Then
@@ -179,5 +181,6 @@
         TryCast(FormSalesPOSDet.GCProbList.DataSource, DataTable).Rows.Add(newRow)
         FormSalesPOSDet.GCProbList.RefreshDataSource()
         FormSalesPOSDet.GVProbList.RefreshData()
+        FormSalesPOSDet.GVProbList.BestFitColumns()
     End Sub
 End Class

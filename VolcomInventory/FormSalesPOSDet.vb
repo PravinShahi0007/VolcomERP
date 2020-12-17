@@ -2447,13 +2447,13 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub PriceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PriceToolStripMenuItem.Click
-        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 And action = "ins" Then
-            FormSalesPosPrice.id_design = GVItemList.GetFocusedRowCellValue("id_design").ToString
-            FormSalesPosPrice.ShowDialog()
-            GCItemList.RefreshDataSource()
-            GVItemList.RefreshData()
-            calculate()
-        End If
+        'If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 And action = "ins" Then
+        '    FormSalesPosPrice.id_design = GVItemList.GetFocusedRowCellValue("id_design").ToString
+        '    FormSalesPosPrice.ShowDialog()
+        '    GCItemList.RefreshDataSource()
+        '    GVItemList.RefreshData()
+        '    calculate()
+        'End If
     End Sub
 
     Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnNoStock.Click
@@ -2629,10 +2629,10 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub QtyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QtyToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        FormSalesPOSQty.action = "upd"
-        FormSalesPOSQty.ShowDialog()
-        Cursor = Cursors.Default
+        'Cursor = Cursors.WaitCursor
+        'FormSalesPOSQty.action = "upd"
+        'FormSalesPOSQty.ShowDialog()
+        'Cursor = Cursors.Default
     End Sub
 
     Private Sub Btn_Click(sender As Object, e As EventArgs) Handles BtnImportOLStoreNew.Click
@@ -2828,5 +2828,29 @@ Public Class FormSalesPOSDet
         Cursor = Cursors.WaitCursor
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVProbList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVProbList.RowCellStyle
+        If e.Column.FieldName = "note_price" Then
+            Dim note As String = ""
+            Try
+                note = GVProbList.GetRowCellValue(e.RowHandle, "note_price").ToString
+            Catch ex As Exception
+            End Try
+            If note <> "OK" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.BackColor2 = Color.Salmon
+            End If
+        ElseIf e.Column.FieldName = "no_stock_qty" Then
+            Dim oos As String = ""
+            Try
+                oos = GVProbList.GetRowCellValue(e.RowHandle, "no_stock_qty")
+            Catch ex As Exception
+            End Try
+            If oos > 0 Then
+                e.Appearance.BackColor = Color.Yellow
+                e.Appearance.BackColor2 = Color.Yellow
+            End If
+        End If
     End Sub
 End Class
