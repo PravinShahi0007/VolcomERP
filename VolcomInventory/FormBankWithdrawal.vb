@@ -1399,7 +1399,7 @@ GROUP BY pns.`id_pn_summary`"
         Dim id_coa_tag As String = SLEUnit.EditValue.ToString
         Dim query As String = "SELECT *, 'no' AS `is_check` 
         FROM (
-	        SELECT b.id_sales_branch, b.number, b.id_coa_tag,b.comp_rev_normal_note AS `note`,
+	        SELECT b.transaction_date,b.id_sales_branch, b.number, b.id_coa_tag,b.comp_rev_normal_note AS `note`,
 	        IFNULL(pyd.total_pay,0) AS `total_pay`,b.comp_rev_normal-IFNULL(pyd.total_pay,0)-IFNULL(cn.amount_cn,0.00) AS `amount`, c.id_comp, c.comp_number, c.comp_name,
 	        IFNULL(pyd.on_process,0) AS `on_process`, b.report_mark_type,
             coa.id_acc, coa.acc_name, coa.acc_description
@@ -1425,7 +1425,7 @@ GROUP BY pns.`id_pn_summary`"
 	        WHERE b.id_report_status=6 AND b.id_memo_type=1 AND b.is_close_bbk=2
 	        GROUP BY b.id_sales_branch
 	        UNION ALL
-	        SELECT b.id_sales_branch,b.number, b.id_coa_tag, b.comp_rev_normal_note AS `note`,
+	        SELECT b.transaction_date,b.id_sales_branch,b.number, b.id_coa_tag, b.comp_rev_normal_note AS `note`,
 	        IFNULL(pyd.total_pay,0) AS `total_pay`, b.comp_rev_sale-IFNULL(pyd.total_pay,0)-IFNULL(cn.amount_cn,0.00) AS `amount`, c.id_comp, c.comp_number, c.comp_name,
 	        IFNULL(pyd.on_process,0) AS `on_process`,b.report_mark_type,
             coa.id_acc, coa.acc_name, coa.acc_description
