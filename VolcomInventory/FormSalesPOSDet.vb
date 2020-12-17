@@ -224,6 +224,7 @@ Public Class FormSalesPOSDet
                         SPVat.EditValue = dinv.Rows(0)("sales_pos_vat")
                         calculate()
                         viewDetail()
+                        viewProb()
                         viewDetailCode()
                         BtnLoadFromReturnCentre.Focus()
                     ElseIf dinv.Rows.Count > 1 Then
@@ -250,6 +251,7 @@ Public Class FormSalesPOSDet
                         SPVat.EditValue = vat_def
                         calculate()
                         viewDetail()
+                        viewProb()
                         viewDetailCode()
                     End If
                     Cursor = Cursors.Default
@@ -398,6 +400,7 @@ Public Class FormSalesPOSDet
 
             ''detail2
             viewDetail()
+            viewProb()
             viewDetailCode()
             'viewStockStore()
             check_but()
@@ -452,6 +455,24 @@ Public Class FormSalesPOSDet
         GCItemList.DataSource = data
     End Sub
 
+    Sub viewProb()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT p.id_sales_pos_prob, p.is_invalid_price, p.is_no_stock, 
+        p.id_product, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
+        p.id_design_price_retail, p.design_price_retail, p.design_price_store, p.id_design_price_valid, p.design_price_valid,
+        p.store_qty, p.no_stock_qty,
+        IF(p.is_invalid_price=1,'Not Valid', 'OK') AS `note_price`
+        FROM tb_sales_pos_prob p
+        INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
+        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        WHERE p.id_sales_pos='" + id_sales_pos + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCProbList.DataSource = data
+        GVProbList.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewDetailCode()
         Dim query As String = "SELECT c.id_sales_pos_det_counting, c.id_sales_pos, c.id_product, c.id_pl_prod_order_rec_det_unique, c.counting_code, 
         c.full_code, prod.product_full_code AS `code`, prod.product_display_name AS `name`, cd.code_detail_name AS `size`, c.id_design_price, c.design_price
@@ -483,6 +504,10 @@ Public Class FormSalesPOSDet
 
     Sub viewStockStore()
         If id_menu = "1" Or id_menu = "4" Then
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            End If
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Get stock")
             dt_stock_store.Clear()
 
             Dim end_period As String = "9999-12-01"
@@ -492,6 +517,7 @@ Public Class FormSalesPOSDet
             End Try
             Dim query As String = "CALL view_stock_fg_for_invoice('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', NOW()) "
             dt_stock_store = execute_query(query, -1, True, "", "", "", "")
+            FormMain.SplashScreenManager1.CloseWaitForm()
         End If
     End Sub
 
@@ -1434,6 +1460,10 @@ Public Class FormSalesPOSDet
         Cursor = Cursors.WaitCursor
         'Try
         'get price master
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Get active price")
         Dim price_per_date As String = ""
         If CheckEditInvType.EditValue = True Then
             'missing
@@ -1444,6 +1474,7 @@ Public Class FormSalesPOSDet
         End If
         Dim query_price As String = "call view_product_price('AND d.id_active = 1', '" + price_per_date + "') "
         Dim dt_prc As DataTable = execute_query(query_price, -1, True, "", "", "", "")
+        FormMain.SplashScreenManager1.CloseWaitForm()
 
         Dim tb1 = data_temp.AsEnumerable()
         Dim tb2 = dt_stock_store
@@ -1925,6 +1956,7 @@ Public Class FormSalesPOSDet
 
 
             viewDetail()
+            viewProb()
             viewDetailCode()
             check_but()
             GroupControlList.Enabled = True
@@ -2098,6 +2130,7 @@ Public Class FormSalesPOSDet
             next_control_enter(e)
             If id_do = "-1" Then
                 viewDetail()
+                viewProb()
                 viewDetailCode()
             End If
 
@@ -2206,6 +2239,7 @@ Public Class FormSalesPOSDet
     Private Sub CheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditInvType.CheckedChanged
         If action = "ins" Then
             viewDetail()
+            viewProb()
             viewDetailCode()
             'activate stock take det
             If CheckEditInvType.EditValue = True Then
@@ -2327,6 +2361,7 @@ Public Class FormSalesPOSDet
                     SPVat.EditValue = data.Rows(0)("sales_pos_vat")
                     calculate()
                     viewDetail()
+                    viewProb()
                     viewDetailCode()
                     BtnListProduct.Focus()
                 ElseIf data.Rows.Count > 1 Then
@@ -2353,6 +2388,7 @@ Public Class FormSalesPOSDet
                     SPVat.EditValue = vat_def
                     calculate()
                     viewDetail()
+                    viewProb()
                     viewDetailCode()
                 End If
             Else
@@ -2362,6 +2398,7 @@ Public Class FormSalesPOSDet
                 SPVat.EditValue = vat_def
                 calculate()
                 viewDetail()
+                viewProb()
                 viewDetailCode()
             End If
         End If

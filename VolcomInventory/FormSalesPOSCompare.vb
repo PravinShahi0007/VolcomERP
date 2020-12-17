@@ -36,8 +36,8 @@
                         .id_product = If(rp Is Nothing, "0", rp("id_product").ToString),
                         .is_select = "No",
                         .note = If(rs Is Nothing, "Product not found", If(table1("qty") > If(rs Is Nothing, 0, rs("qty_all_product")), "+" + (table1("qty") - If(rs Is Nothing, 0, rs("qty_all_product"))).ToString, "OK")),
-                        .note_price = If(If(rp Is Nothing, 0, rp("design_price")) = table1("price"), "OK", "Not Match"),
-                        .stt = If(If(If(rp Is Nothing, 0, rp("design_price")) = table1("price"), "OK", "Not Match") = "OK", If(table1("qty") = If(table1("qty") <= If(rs Is Nothing, 0, rs("qty_all_product")), table1("qty"), If(rs Is Nothing, 0, rs("qty_all_product"))), "OK", "No Stock"), "Price not valid"),
+                        .note_price = If(If(rp Is Nothing, 0, rp("design_price")) = table1("price"), "OK", "Not Valid"),
+                        .stt = If(If(If(rp Is Nothing, 0, rp("design_price")) = table1("price"), "OK", "Not Valid") = "OK", If(table1("qty") = If(table1("qty") <= If(rs Is Nothing, 0, rs("qty_all_product")), table1("qty"), If(rs Is Nothing, 0, rs("qty_all_product"))), "OK", "No Stock"), "Price not valid"),
                         .id_sales_pos_det = "0"
                     }
         GCData.DataSource = Nothing
@@ -88,5 +88,94 @@
         Cursor = Cursors.WaitCursor
         print_raw(GCData, "")
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVData)
+        For i As Integer = 0 To GVData.RowCount - 1
+            Dim note_price As String = GVData.GetRowCellValue(i, "note_price").ToString
+            If note_price = "OK" Then
+                If GVData.GetRowCellValue(i, "sales_pos_det_qty") > 0 Then
+                    insertInvoiceList(i)
+                End If
+                If GVData.GetRowCellValue(i, "no_stock_qty") > 0 Then
+                    insertProblemList(i)
+                End If
+            Else
+                'masuk ke problem list
+                insertProblemList(i)
+            End If
+        Next
+        Cursor = Cursors.Default
+
+        'close
+        Close()
+    End Sub
+
+    Sub insertInvoiceList(ByVal rh As Integer)
+        Dim newRow As DataRow = (TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable)).NewRow()
+        newRow("code") = GVData.GetRowCellValue(rh, "code").ToString
+        newRow("name") = GVData.GetRowCellValue(rh, "name").ToString
+        newRow("size") = GVData.GetRowCellValue(rh, "size").ToString
+        newRow("sales_pos_det_qty") = GVData.GetRowCellValue(rh, "sales_pos_det_qty")
+        newRow("limit_qty") = GVData.GetRowCellValue(rh, "limit_qty")
+        newRow("id_design_price") = GVData.GetRowCellValue(rh, "id_design_price").ToString
+        newRow("design_price") = GVData.GetRowCellValue(rh, "design_price")
+        newRow("design_price_type") = GVData.GetRowCellValue(rh, "design_price_type").ToString
+        newRow("id_design_price_retail") = GVData.GetRowCellValue(rh, "id_design_price_retail").ToString
+        newRow("design_price_retail") = GVData.GetRowCellValue(rh, "design_price_retail")
+        newRow("id_design") = GVData.GetRowCellValue(rh, "id_design").ToString
+        newRow("id_product") = GVData.GetRowCellValue(rh, "id_product").ToString
+        newRow("is_select") = "No"
+        newRow("note") = GVData.GetRowCellValue(rh, "note").ToString
+        newRow("id_sales_pos_det") = GVData.GetRowCellValue(rh, "id_sales_pos_det").ToString
+        TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
+        FormSalesPOSDet.GCItemList.RefreshDataSource()
+        FormSalesPOSDet.GVItemList.RefreshData()
+        FormSalesPOSDet.calculate()
+    End Sub
+
+    Sub insertProblemList(ByVal rh As Integer)
+        'check invalid price
+        Dim is_invalid_price As String = ""
+        Dim id_design_price_valid As String = ""
+        Dim design_price_valid As Decimal = 0.00
+        Dim note_price As String = GVData.GetRowCellValue(rh, "note_price").ToString
+        If note_price <> "OK" Then
+            is_invalid_price = "1"
+            id_design_price_valid = "0"
+            design_price_valid = 0.00
+        Else
+            is_invalid_price = "2"
+            id_design_price_valid = GVData.GetRowCellValue(rh, "id_design_price_retail").ToString
+            design_price_valid = GVData.GetRowCellValue(rh, "design_price_retail")
+        End If
+        'check no stock
+        Dim is_no_stock As String = ""
+        If GVData.GetRowCellValue(rh, "no_stock_qty") > 0 Then
+            is_no_stock = "1"
+        Else
+            is_no_stock = "2"
+        End If
+
+        Dim newRow As DataRow = (TryCast(FormSalesPOSDet.GCProbList.DataSource, DataTable)).NewRow()
+        newRow("is_invalid_price") = is_invalid_price
+        newRow("is_no_stock") = is_no_stock
+        newRow("id_product") = GVData.GetRowCellValue(rh, "id_product").ToString
+        newRow("code") = GVData.GetRowCellValue(rh, "code").ToString
+        newRow("name") = GVData.GetRowCellValue(rh, "name").ToString
+        newRow("size") = GVData.GetRowCellValue(rh, "size").ToString
+        newRow("id_design_price_retail") = GVData.GetRowCellValue(rh, "id_design_price_retail").ToString
+        newRow("design_price_retail") = GVData.GetRowCellValue(rh, "design_price_retail")
+        newRow("design_price_store") = GVData.GetRowCellValue(rh, "input_price")
+        newRow("id_design_price_valid") = id_design_price_valid
+        newRow("design_price_valid") = design_price_valid
+        newRow("store_qty") = GVData.GetRowCellValue(rh, "sales_qty")
+        newRow("no_stock_qty") = GVData.GetRowCellValue(rh, "no_stock_qty")
+        newRow("note_price") = note_price
+        TryCast(FormSalesPOSDet.GCProbList.DataSource, DataTable).Rows.Add(newRow)
+        FormSalesPOSDet.GCProbList.RefreshDataSource()
+        FormSalesPOSDet.GVProbList.RefreshData()
     End Sub
 End Class

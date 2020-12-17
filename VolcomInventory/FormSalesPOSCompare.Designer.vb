@@ -21,6 +21,7 @@ Partial Class FormSalesPOSCompare
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOSCompare))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
@@ -45,7 +46,6 @@ Partial Class FormSalesPOSCompare
         Me.gridBandCheck = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnnote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnnote_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,6 +62,16 @@ Partial Class FormSalesPOSCompare
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 47)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(2, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(86, 43)
+        Me.BtnPrint.TabIndex = 2
+        Me.BtnPrint.Text = "Print"
         '
         'BtnDiscard
         '
@@ -287,16 +297,6 @@ Partial Class FormSalesPOSCompare
         Me.GridColumnnote_price.FieldName = "note_price"
         Me.GridColumnnote_price.Name = "GridColumnnote_price"
         Me.GridColumnnote_price.Visible = True
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(2, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(86, 43)
-        Me.BtnPrint.TabIndex = 2
-        Me.BtnPrint.Text = "Print"
         '
         'FormSalesPOSCompare
         '
