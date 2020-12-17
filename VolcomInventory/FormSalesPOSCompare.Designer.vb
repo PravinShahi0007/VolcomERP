@@ -26,7 +26,7 @@ Partial Class FormSalesPOSCompare
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBandSummary = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnstatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnstt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumncode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -45,6 +45,7 @@ Partial Class FormSalesPOSCompare
         Me.gridBandCheck = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnnote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnnote_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,6 +54,7 @@ Partial Class FormSalesPOSCompare
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnDiscard)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -94,30 +96,33 @@ Partial Class FormSalesPOSCompare
         'GVData
         '
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandSummary, Me.GridBand1, Me.gridBandStore, Me.gridBandERP, Me.gridBandCheck})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnno, Me.GridColumncode, Me.GridColumndescription, Me.GridColumnsize, Me.GridColumninput_price, Me.GridColumndesign_price_retail, Me.GridColumnlimit_qty, Me.GridColumnsales_pos_det_qty, Me.GridColumnno_stock_qty, Me.GridColumnsales_qty, Me.GridColumnamount, Me.GridColumnamount_erp, Me.GridColumnnote, Me.GridColumnnote_price, Me.GridColumnstatus})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnno, Me.GridColumncode, Me.GridColumndescription, Me.GridColumnsize, Me.GridColumninput_price, Me.GridColumndesign_price_retail, Me.GridColumnlimit_qty, Me.GridColumnsales_pos_det_qty, Me.GridColumnno_stock_qty, Me.GridColumnsales_qty, Me.GridColumnamount, Me.GridColumnamount_erp, Me.GridColumnnote, Me.GridColumnnote_price, Me.BandedGridColumnstt})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
         Me.GVData.OptionsCustomization.AllowSort = False
         Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'gridBandSummary
         '
-        Me.gridBandSummary.Columns.Add(Me.GridColumnstatus)
+        Me.gridBandSummary.Columns.Add(Me.BandedGridColumnstt)
         Me.gridBandSummary.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gridBandSummary.Name = "gridBandSummary"
         Me.gridBandSummary.VisibleIndex = 0
         Me.gridBandSummary.Width = 75
         '
-        'GridColumnstatus
+        'BandedGridColumnstt
         '
-        Me.GridColumnstatus.Caption = "Status"
-        Me.GridColumnstatus.FieldName = "status"
-        Me.GridColumnstatus.Name = "GridColumnstatus"
-        Me.GridColumnstatus.Visible = True
+        Me.BandedGridColumnstt.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnstt.AppearanceCell.Options.UseFont = True
+        Me.BandedGridColumnstt.Caption = "Status"
+        Me.BandedGridColumnstt.FieldName = "stt"
+        Me.BandedGridColumnstt.Name = "BandedGridColumnstt"
+        Me.BandedGridColumnstt.Visible = True
         '
         'GridBand1
         '
@@ -208,7 +213,7 @@ Partial Class FormSalesPOSCompare
         Me.gridBandERP.Columns.Add(Me.GridColumnamount_erp)
         Me.gridBandERP.Name = "gridBandERP"
         Me.gridBandERP.VisibleIndex = 3
-        Me.gridBandERP.Width = 375
+        Me.gridBandERP.Width = 300
         '
         'GridColumndesign_price_retail
         '
@@ -227,7 +232,6 @@ Partial Class FormSalesPOSCompare
         Me.GridColumnlimit_qty.FieldName = "limit_qty"
         Me.GridColumnlimit_qty.Name = "GridColumnlimit_qty"
         Me.GridColumnlimit_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "limit_qty", "{0:N0}")})
-        Me.GridColumnlimit_qty.Visible = True
         '
         'GridColumnsales_pos_det_qty
         '
@@ -284,6 +288,16 @@ Partial Class FormSalesPOSCompare
         Me.GridColumnnote_price.Name = "GridColumnnote_price"
         Me.GridColumnnote_price.Visible = True
         '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(2, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(86, 43)
+        Me.BtnPrint.TabIndex = 2
+        Me.BtnPrint.Text = "Print"
+        '
         'FormSalesPOSCompare
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -322,10 +336,11 @@ Partial Class FormSalesPOSCompare
     Friend WithEvents GridColumnno_stock_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnnote_price As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnstatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnstt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandSummary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandERP As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandCheck As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
 End Class
