@@ -1151,7 +1151,7 @@ GROUP BY pnd.kurs"
                     newRow("id_acc") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "id_acc").ToString
                     newRow("acc_name") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "acc_name").ToString
                     newRow("acc_description") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "acc_description").ToString
-                    newRow("note") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "note").ToString
+                    newRow("note") = Date.Parse(FormBankWithdrawal.GVSales.GetRowCellValue(i, "transaction_date").ToString).ToString("dd MMMM yyyy") & " - " & FormBankWithdrawal.GVSales.GetRowCellValue(i, "note").ToString
                     newRow("vendor") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "comp_number").ToString
                     newRow("id_dc") = "1"
                     newRow("dc_code") = "D"
@@ -1361,12 +1361,13 @@ WHERE pnd.id_pn='" & id_payment & "'"
 
     Sub load_pay_from()
         Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        If report_mark_type = "157" Or report_mark_type = "159" Then 'expense
-            If id_coa_tag = "1" Then
-                query += " AND id_coa_type='1' "
-            Else
-                query += " AND id_coa_type='2' "
-            End If
+        'If report_mark_type = "157" Or report_mark_type = "159" Then 'expense
+
+        'End If
+        If id_coa_tag = "1" Then
+            query += " AND id_coa_type='1' "
+        Else
+            query += " AND id_coa_type='2' "
         End If
         viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
     End Sub
