@@ -343,4 +343,39 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles BtnViewProb.Click
+        Cursor = Cursors.WaitCursor
+        'type
+        Dim cond_type As String = ""
+        If LETypeProb.EditValue.ToString = "1" Then
+            cond_type = "AND p.is_invalid_price=1 "
+        ElseIf LETypeProb.EditValue.ToString = "2" Then
+            cond_type = "AND p.is_no_stock=1 "
+        Else
+            cond_type = ""
+        End If
+
+        'invoice status
+        Dim cond_status As String = ""
+        If LEInvoiceStt.EditValue.ToString <> "0" Then
+            cond_status = "AND p.is_open_invoice='" + LEInvoiceStt.EditValue.ToString + "' "
+        End If
+
+        Dim query As String = "SELECT p.id_sales_pos_prob, p.is_invalid_price, p.is_no_stock, 
+        p.id_product, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
+        p.id_design_price_retail, p.design_price_retail, p.design_price_store, 
+        IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid,
+        p.store_qty, p.invoice_qty, p.no_stock_qty,(p.invoice_qty+p.no_stock_qty) AS `total_qty`,
+        p.is_open_invoice, IF(p.is_open_invoice=1,'Open', 'Close') AS `is_open_invoice_view`
+        FROM tb_sales_pos_prob p
+        INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
+        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        WHERE 1=1 " + cond_type + cond_status
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCProbList.DataSource = data
+        GVProbList.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
 End Class

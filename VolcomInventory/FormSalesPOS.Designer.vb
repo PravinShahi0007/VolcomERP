@@ -19,7 +19,7 @@ Partial Class FormSalesPOS
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOS))
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -117,7 +117,7 @@ Partial Class FormSalesPOS
         Me.GCProbList = New DevExpress.XtraGrid.GridControl()
         Me.GVProbList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewProb = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LEInvoiceStt = New DevExpress.XtraEditors.LookUpEdit()
         Me.LETypeProb = New DevExpress.XtraEditors.LookUpEdit()
@@ -384,9 +384,9 @@ Partial Class FormSalesPOS
         'GCSalesPOS
         '
         Me.GCSalesPOS.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode2.LevelTemplate = Me.GVSalesPOSDet
-        GridLevelNode2.RelationName = "Detail Transaction"
-        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
+        GridLevelNode1.LevelTemplate = Me.GVSalesPOSDet
+        GridLevelNode1.RelationName = "Detail Transaction"
+        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.GCSalesPOS.Location = New System.Drawing.Point(20, 2)
         Me.GCSalesPOS.MainView = Me.GVSalesPOS
         Me.GCSalesPOS.Name = "GCSalesPOS"
@@ -1106,7 +1106,7 @@ Partial Class FormSalesPOS
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.SimpleButton3)
+        Me.PanelControl2.Controls.Add(Me.BtnViewProb)
         Me.PanelControl2.Controls.Add(Me.LabelControl12)
         Me.PanelControl2.Controls.Add(Me.LEInvoiceStt)
         Me.PanelControl2.Controls.Add(Me.LETypeProb)
@@ -1117,14 +1117,14 @@ Partial Class FormSalesPOS
         Me.PanelControl2.Size = New System.Drawing.Size(1234, 48)
         Me.PanelControl2.TabIndex = 2
         '
-        'SimpleButton3
+        'BtnViewProb
         '
-        Me.SimpleButton3.Image = CType(resources.GetObject("SimpleButton3.Image"), System.Drawing.Image)
-        Me.SimpleButton3.Location = New System.Drawing.Point(427, 12)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(75, 23)
-        Me.SimpleButton3.TabIndex = 4
-        Me.SimpleButton3.Text = "View"
+        Me.BtnViewProb.Image = CType(resources.GetObject("BtnViewProb.Image"), System.Drawing.Image)
+        Me.BtnViewProb.Location = New System.Drawing.Point(427, 12)
+        Me.BtnViewProb.Name = "BtnViewProb"
+        Me.BtnViewProb.Size = New System.Drawing.Size(75, 23)
+        Me.BtnViewProb.TabIndex = 4
+        Me.BtnViewProb.Text = "View"
         '
         'LabelControl12
         '
@@ -1450,7 +1450,7 @@ Partial Class FormSalesPOS
     Friend WithEvents GCProbList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVProbList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnViewProb As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEInvoiceStt As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LETypeProb As DevExpress.XtraEditors.LookUpEdit
