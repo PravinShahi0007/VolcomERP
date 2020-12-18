@@ -362,24 +362,70 @@
             cond_status = "AND p.is_open_invoice='" + LEInvoiceStt.EditValue.ToString + "' "
         End If
 
-        Dim query As String = "SELECT p.id_sales_pos_prob, p.is_invalid_price, p.is_no_stock, 
+        Dim query As String = "SELECT p.id_sales_pos_prob, 
+        p.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, sp.sales_pos_due_date,
+        c.id_comp, cc.id_comp_contact, c.comp_number, c.comp_name, cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,
+        p.is_invalid_price, p.is_no_stock, 
         p.id_product, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
         p.id_design_price_retail, p.design_price_retail, p.design_price_store, 
         IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid,
         p.store_qty, p.invoice_qty, p.no_stock_qty,(p.invoice_qty+p.no_stock_qty) AS `total_qty`,
-        p.is_open_invoice, IF(p.is_open_invoice=1,'Open', 'Close') AS `is_open_invoice_view`
+        p.is_open_invoice, IF(p.is_open_invoice=1,'Open', 'Close') AS `is_open_invoice_view`, 'No' AS `is_select`
         FROM tb_sales_pos_prob p
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
-        WHERE 1=1 " + cond_type + cond_status
+        WHERE 1=1 AND sp.id_report_status=6 " + cond_type + cond_status
+        query += "ORDER BY p.id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProbList.DataSource = data
+        GVProbList.BestFitColumns()
         GVProbList.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
     Private Sub XTCInvoice_Click(sender As Object, e As EventArgs) Handles XTCInvoice.Click
 
+    End Sub
+
+    Private Sub LEInvoiceStt_EditValueChanged(sender As Object, e As EventArgs) Handles LEInvoiceStt.EditValueChanged
+        If LEInvoiceStt.EditValue.ToString = "1" Then
+            BtnCreateInvoice.Visible = True
+            BtnCreatePriceReconcile.Visible = True
+        Else
+            BtnCreateInvoice.Visible = False
+            BtnCreatePriceReconcile.Visible = False
+        End If
+        resetViewProb()
+    End Sub
+
+    Sub resetViewProb()
+        Cursor = Cursors.WaitCursor
+        GCProbList.DataSource = Nothing
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LETypeProb_EditValueChanged(sender As Object, e As EventArgs) Handles LETypeProb.EditValueChanged
+        resetViewProb()
+    End Sub
+
+    Private Sub BtnPrintProb_Click(sender As Object, e As EventArgs) Handles BtnPrintProb.Click
+        Cursor = Cursors.WaitCursor
+        print(GCProbList, "Problem List")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CESelectAll_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAll.EditValueChanged
+        For i As Integer = 0 To GVProbList.RowCount - 1
+            If CESelectAll.EditValue = True Then
+                GVProbList.SetRowCellValue(i, "is_select", "Yes")
+            Else
+                GVProbList.SetRowCellValue(i, "is_select", "No")
+            End If
+        Next
     End Sub
 End Class
