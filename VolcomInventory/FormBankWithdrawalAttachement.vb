@@ -457,7 +457,7 @@ WHERE po.id_purc_order=" & id_purc_order & " AND po.`is_close_rec`=1 AND pod.gro
 GROUP BY po.id_purc_order,dep.id_main_comp"
                         execute_non_query(query, True, "", "", "", "")
                     Else
-                        query = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref)
+                        query = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref, id_coa_tag)
 -- biaya
 SELECT " + id_acc_trans + " AS id_acc_trans, o.id_coa_out AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
 SUM(pod.`gross_up_value`) AS `debit`,
