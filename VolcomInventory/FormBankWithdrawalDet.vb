@@ -24,13 +24,14 @@ SELECT 1 AS id,'Yes' AS auto_debet"
     End Sub
 
     Sub form_load()
+        '
         TETrfFee.EditValue = 0.0
         TEKurs.EditValue = 1.0
         TETotal.EditValue = 0.00
         DEDateCreated.EditValue = Now
         DEPayment.EditValue = Now
         TEPayNumber.Text = "[Auto generate]"
-        TxtTag.EditValue = execute_query("SELECT CONCAT(tag_code, ' - ', tag_description) AS tag FROM tb_coa_tag WHERE id_coa_tag = 1", 0, True, "", "", "", "")
+        TxtTag.EditValue = execute_query("SELECT CONCAT(tag_code, ' - ', tag_description) AS tag FROM tb_coa_tag WHERE id_coa_tag = " & id_coa_tag, 0, True, "", "", "", "")
 
         load_pay_from()
         load_trf_cost()
@@ -47,10 +48,12 @@ SELECT 1 AS id,'Yes' AS auto_debet"
             BtnSave.Visible = True
             '
             If is_book_transfer = True Then
+                FormBankWithdrawalBookTransfer.id_coa_tag = id_coa_tag
                 FormBankWithdrawalBookTransfer.ShowDialog()
             ElseIf report_mark_type = "159" Then 'BBK umum
                 'load header
                 Try
+                    '
                     SLEVendor.EditValue = FormBankWithdrawal.SLEVendorPayment.EditValue
                     SLEPayType.EditValue = "2"
                     '
@@ -1148,7 +1151,7 @@ GROUP BY pnd.kurs"
                     newRow("id_acc") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "id_acc").ToString
                     newRow("acc_name") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "acc_name").ToString
                     newRow("acc_description") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "acc_description").ToString
-                    newRow("note") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "note").ToString
+                    newRow("note") = Date.Parse(FormBankWithdrawal.GVSales.GetRowCellValue(i, "transaction_date").ToString).ToString("dd MMMM yyyy") & " - " & FormBankWithdrawal.GVSales.GetRowCellValue(i, "note").ToString
                     newRow("vendor") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "comp_number").ToString
                     newRow("id_dc") = "1"
                     newRow("dc_code") = "D"
@@ -1185,6 +1188,7 @@ GROUP BY pnd.kurs"
             Dim query As String = "Select * FROM tb_pn WHERE id_pn='" & id_payment & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
+                id_coa_tag = data.Rows(0)("id_coa_tag").ToString
                 TEPayNumber.Text = data.Rows(0)("number").ToString
                 TEKurs.EditValue = data.Rows(0)("kurs")
                 report_mark_type = data.Rows(0)("report_mark_type").ToString
@@ -1357,14 +1361,14 @@ WHERE pnd.id_pn='" & id_payment & "'"
 
     Sub load_pay_from()
         Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        If report_mark_type = "157" Then 'expense
-            If id_coa_tag = "1" Then
-                query += " AND id_coa_type='1' "
-            Else
-                query += " AND id_coa_type='2' "
-            End If
+        'If report_mark_type = "157" Or report_mark_type = "159" Then 'expense
+
+        'End If
+        If id_coa_tag = "1" Then
+            query += " AND id_coa_type='1' "
+        Else
+            query += " AND id_coa_type='2' "
         End If
-        query += " AND id_coa_type='1' "
         viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
     End Sub
 

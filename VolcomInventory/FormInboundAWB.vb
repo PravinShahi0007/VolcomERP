@@ -191,7 +191,10 @@ VALUES('" & SLEVendor.EditValue.ToString & "','" & SLEDelType.EditValue.ToString
         Dim q As String = "SELECT rte.id_3pl_rate,ds.id_sub_district,ds.sub_district,rte.cargo_rate,rte.cargo_lead_time,rte.cargo_min_weight
 FROM `tb_3pl_rate` rte
 INNER JOIN tb_m_sub_district ds ON ds.id_sub_district=rte.id_sub_district
-WHERE rte.is_active=1 AND rte.id_type=2 AND rte.id_del_type='" & SLEDelType.EditValue.ToString & "' AND rte.id_comp='" & SLEVendor.EditValue.ToString & "'"
+WHERE rte.id_type=2 AND rte.id_del_type='" & SLEDelType.EditValue.ToString & "' AND rte.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        If id_awb_inbound = "-1" Then
+            q += " AND rte.is_active=1 "
+        End If
         viewSearchLookupQuery(SLERate, q, "id_3pl_rate", "sub_district", "id_3pl_rate")
     End Sub
 

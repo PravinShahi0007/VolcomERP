@@ -191,14 +191,19 @@
             'remove same
             Dim x As Integer = 0
 
-            For i = 1 To data_tmp.Rows.Count - 1
-                If data_tmp.Rows(i)("id_design").ToString <> data_tmp.Rows(i - 1)("id_design").ToString Then
-                    x = i
+            For i = 0 To data_tmp.Rows.Count - 1
+                data_tmp.Rows(i)("Handle") = data_tmp.Rows(i)("Handle").ToString.ToLower.Replace(" ", "-")
+                data_tmp.Rows(i)("Title") = data_tmp.Rows(i)("Title").ToString
+
+                If i > 0 Then
+                    If data_tmp.Rows(i)("id_design").ToString <> data_tmp.Rows(i - 1)("id_design").ToString Then
+                        x = i
+                    End If
                 End If
 
                 If x <> i Then
                     For j = 0 To data_tmp.Columns.Count - 1
-                        If data_tmp.Columns(j).ColumnName <> "id_design" And data_tmp.Columns(j).ColumnName <> "id_product" Then
+                        If data_tmp.Columns(j).ColumnName <> "id_design" And data_tmp.Columns(j).ColumnName <> "id_product" And data_tmp.Columns(j).ColumnName <> "Handle" Then
                             If data_tmp.Rows(i)("id_design").ToString = data_tmp.Rows(x)("id_design").ToString And data_tmp.Rows(i)(data_tmp.Columns(j)).ToString = data_tmp.Rows(x)(data_tmp.Columns(j)).ToString Then
                                 data_tmp.Rows(i)(data_tmp.Columns(j)) = DBNull.Value
                             End If
@@ -210,6 +215,8 @@
             data.Merge(data_tmp)
 
             If data.Rows.Count > 0 Then
+                Dim i As Integer = 0
+
                 'replace enter with new line
                 For i = 0 To data.Rows.Count - 1
                     For j = 0 To data.Columns.Count - 1
@@ -218,6 +225,58 @@
                         End If
                     Next
                 Next
+
+                'build image
+                Dim select_id_design As String = ""
+
+                Dim stop_while As Boolean = True
+
+                i = 0
+
+                While stop_while
+                    i = i + 1
+
+                    Dim images As String() = data.Rows(i)("Image Src").ToString.Split(",")
+
+                    select_id_design = data.Rows(i)("id_design").ToString
+
+                    Dim get_image As Boolean = False
+
+                    For j = 0 To images.Length - 1
+                        Dim image As String = trimSpace(images(j).ToString)
+
+                        If Not image = "" Then
+                            If select_id_design = data.Rows(i)("id_design").ToString Then
+                                data.Rows(i)("Image Src") = image
+                                data.Rows(i)("Image Position") = image.Split("_")(2).Replace(".jpg", "")
+
+                                i = i + 1
+                            Else
+                                Dim row As DataRow = data.NewRow
+
+                                row("Image Src") = image
+                                row("Image Position") = image.Split("_")(2).Replace(".jpg", "")
+                                row("Handle") = data.Rows(i - 1)("Handle").ToString
+
+                                data.Rows.InsertAt(row, i)
+                            End If
+
+                            get_image = True
+                        Else
+                            If j = 0 Then
+                                data.Rows(i)("Image Src") = ""
+                            End If
+                        End If
+                    Next
+
+                    If get_image Then
+                        i = i - 1
+                    End If
+
+                    If i = data.Rows.Count - 1 Then
+                        stop_while = False
+                    End If
+                End While
 
                 data.Columns.Remove(data.Columns("id_design"))
                 data.Columns.Remove(data.Columns("id_product"))
