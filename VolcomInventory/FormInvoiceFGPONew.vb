@@ -61,9 +61,20 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
+	SELECT wo.`id_prod_order`,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,IFNULL(wo_old.old_kurs,wo.`prod_order_wo_kurs`)) AS kurs,wo.`id_currency`,cur.currency
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+    LEFT JOIN
+	(
+		SELECT id_wo,old_kurs FROM `tb_prod_order_wo_log`
+		WHERE id_wo_log IN (
+			SELECT MIN(id_wo_log)
+			FROM tb_prod_order_wo_log logx
+			INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo=logx.id_wo 
+			WHERE id_prod_order='" & SLEFGPO.EditValue.ToString & "'
+			GROUP BY wo.`id_prod_order_wo`
+		)
+	)wo_old ON wo_old.id_wo=wo.id_prod_order_wo
 	INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
 	INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
 	INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -117,9 +128,20 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
+	SELECT wo.`id_prod_order`,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,IFNULL(wo_old.old_kurs,a.`prod_order_wo_kurs`)) AS kurs,wo.`id_currency`,cur.currency
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+    LEFT JOIN
+    (
+	    SELECT id_wo,old_kurs FROM `tb_prod_order_wo_log`
+	    WHERE id_wo_log IN (
+		    SELECT MIN(id_wo_log)
+		    FROM tb_prod_order_wo_log logx
+		    INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo=logx.id_wo 
+		    WHERE id_prod_order='" & SLEFGPO.EditValue.ToString & "'
+		    GROUP BY wo.`id_prod_order_wo`
+	    )
+    )wo_old ON wo_old.id_wo=wo.id_prod_order_wo
     INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
     INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -219,9 +241,20 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
+	SELECT wo.`id_prod_order`,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,IFNULL(wo_old.old_kurs,a.`prod_order_wo_kurs`)) AS kurs,wo.`id_currency`,cur.currency
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+    LEFT JOIN
+    (
+	    SELECT id_wo,old_kurs FROM `tb_prod_order_wo_log`
+	    WHERE id_wo_log IN (
+		    SELECT MIN(id_wo_log)
+		    FROM tb_prod_order_wo_log logx
+		    INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo=logx.id_wo 
+		    WHERE id_prod_order='" & SLEFGPO.EditValue.ToString & "'
+		    GROUP BY wo.`id_prod_order_wo`
+	    )
+    )wo_old ON wo_old.id_wo=wo.id_prod_order_wo
     INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
     INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -308,9 +341,20 @@ LEFT JOIN
 ) pn ON pn.id_report=rec.id_prod_order_rec
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`) AS kurs,wo.`id_currency`,cur.currency
+	SELECT wo.`id_prod_order`,IF(cou.is_domestic=1,(SELECT id_acc_hpp_dom FROM tb_opt_accounting),(SELECT id_acc_hpp_int FROM tb_opt_accounting)) AS `id_acc`,c.id_comp,wod.`prod_order_wo_det_price`,wo.`prod_order_wo_vat`,IF(wo.`id_currency`=1,1,IFNULL(wo_old.old_kurs,a.`prod_order_wo_kurs`)) AS kurs,wo.`id_currency`,cur.currency
 	FROM tb_prod_order_wo_det wod
 	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+    LEFT JOIN
+    (
+	    SELECT id_wo,old_kurs FROM `tb_prod_order_wo_log`
+	    WHERE id_wo_log IN (
+		    SELECT MIN(id_wo_log)
+		    FROM tb_prod_order_wo_log logx
+		    INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo=logx.id_wo 
+		    WHERE id_prod_order='" & SLEFGPO.EditValue.ToString & "'
+		    GROUP BY wo.`id_prod_order_wo`
+	    )
+    )wo_old ON wo_old.id_wo=wo.id_prod_order_wo
     INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
     INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
