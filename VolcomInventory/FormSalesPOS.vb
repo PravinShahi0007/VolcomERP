@@ -378,4 +378,8 @@
         GVProbList.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub XTCInvoice_Click(sender As Object, e As EventArgs) Handles XTCInvoice.Click
+
+    End Sub
 End Class
