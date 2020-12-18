@@ -149,9 +149,7 @@ Partial Public Class ReportReturnNote
         'LBarcodeLabelNumber
         '
         Me.LBarcodeLabelNumber.AutoModule = True
-        Me.LBarcodeLabelNumber.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.LBarcodeLabelNumber.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LBarcodeLabelNumber.LocationFloat = New DevExpress.Utils.PointFloat(0!, 45.99999!)
         Me.LBarcodeLabelNumber.Name = "LBarcodeLabelNumber"
         Me.LBarcodeLabelNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
