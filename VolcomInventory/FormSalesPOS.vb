@@ -432,6 +432,7 @@
     Private Sub BtnCreatePriceReconcile_Click(sender As Object, e As EventArgs) Handles BtnCreatePriceReconcile.Click
         Cursor = Cursors.WaitCursor
         makeSafeGV(GVProbList)
+        GVProbList.ActiveFilterString = "[is_select]='Yes' "
 
         'check valid
         Dim id_prob_in As String = ""
@@ -467,6 +468,7 @@
             FormSalesPosPriceRecon.action = "ins"
             FormSalesPosPriceRecon.ShowDialog()
         End If
+        makeSafeGV(GVProbList)
         Cursor = Cursors.Default
     End Sub
 End Class
