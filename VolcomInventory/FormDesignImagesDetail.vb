@@ -1,5 +1,5 @@
 ﻿Public Class FormDesignImagesDetail
-    Dim id_design As String = "-1"
+    Public id_design As String = "-1"
 
     Private cloud_image_url As String = get_setup_field("cloud_image_url").ToString
 
@@ -10,6 +10,11 @@
 
     Private Sub FormDesignImagesDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Not id_design = "-1" Then
+            Try
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            Catch ex As Exception
+            End Try
+
             'zalora
             Dim query_z = "
                 SELECT CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.file_name, i.sort
@@ -101,6 +106,11 @@
             GCTH.RefreshDataSource()
 
             GVTH.RefreshData()
+
+            Try
+                FormMain.SplashScreenManager1.CloseWaitForm()
+            Catch ex As Exception
+            End Try
         Else
             stopCustom("Please select design.")
 
