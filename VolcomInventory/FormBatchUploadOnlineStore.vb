@@ -191,14 +191,19 @@
             'remove same
             Dim x As Integer = 0
 
-            For i = 1 To data_tmp.Rows.Count - 1
-                If data_tmp.Rows(i)("id_design").ToString <> data_tmp.Rows(i - 1)("id_design").ToString Then
-                    x = i
+            For i = 0 To data_tmp.Rows.Count - 1
+                data_tmp.Rows(i)("Handle") = data_tmp.Rows(i)("Handle").ToString.ToLower.Replace(" ", "-")
+                data_tmp.Rows(i)("Title") = data_tmp.Rows(i)("Title").ToString
+
+                If i > 0 Then
+                    If data_tmp.Rows(i)("id_design").ToString <> data_tmp.Rows(i - 1)("id_design").ToString Then
+                        x = i
+                    End If
                 End If
 
                 If x <> i Then
                     For j = 0 To data_tmp.Columns.Count - 1
-                        If data_tmp.Columns(j).ColumnName <> "id_design" And data_tmp.Columns(j).ColumnName <> "id_product" Then
+                        If data_tmp.Columns(j).ColumnName <> "id_design" And data_tmp.Columns(j).ColumnName <> "id_product" And data_tmp.Columns(j).ColumnName <> "Handle" Then
                             If data_tmp.Rows(i)("id_design").ToString = data_tmp.Rows(x)("id_design").ToString And data_tmp.Rows(i)(data_tmp.Columns(j)).ToString = data_tmp.Rows(x)(data_tmp.Columns(j)).ToString Then
                                 data_tmp.Rows(i)(data_tmp.Columns(j)) = DBNull.Value
                             End If
@@ -243,7 +248,6 @@
                         If Not image = "" Then
                             If select_id_design = data.Rows(i)("id_design").ToString Then
                                 data.Rows(i)("Image Src") = image
-
                                 data.Rows(i)("Image Position") = image.Split("_")(2).Replace(".jpg", "")
 
                                 i = i + 1
@@ -252,6 +256,7 @@
 
                                 row("Image Src") = image
                                 row("Image Position") = image.Split("_")(2).Replace(".jpg", "")
+                                row("Handle") = data.Rows(i - 1)("Handle").ToString
 
                                 data.Rows.InsertAt(row, i)
                             End If

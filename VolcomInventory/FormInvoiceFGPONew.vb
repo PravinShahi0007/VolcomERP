@@ -566,10 +566,21 @@ WHERE pn.`type`=1 AND pnd.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' A
         FROM tb_prod_order po
         INNER JOIN
         (
-        	SELECT wo.id_prod_order,wod.prod_order_wo_det_price,wo.`prod_order_wo_kurs`
-            FROM `tb_prod_order_wo_det` wod
-        	INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo` AND wo.`is_main_vendor`='1' AND wo.`id_report_status`='6' AND wo.`id_prod_order`=@id_po
-                LIMIT 1
+        	SELECT wo.id_prod_order,wo.`id_prod_order_wo`,wod.prod_order_wo_det_price,wo_old.old_kurs,IFNULL(wo_old.old_kurs,wo.`prod_order_wo_kurs`) AS prod_order_wo_kurs
+	        FROM `tb_prod_order_wo_det` wod
+	        INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo` AND wo.`is_main_vendor`='1' AND wo.`id_report_status`='6' AND wo.`id_prod_order`=@id_po
+	        LEFT JOIN
+	        (
+		        SELECT id_wo,old_kurs FROM `tb_prod_order_wo_log`
+		        WHERE id_wo_log IN (
+			        SELECT MIN(id_wo_log)
+			        FROM tb_prod_order_wo_log logx
+			        INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo=logx.id_wo 
+			        WHERE id_prod_order=@id_po
+			        GROUP BY wo.`id_prod_order_wo`
+		        )
+	        )wo_old ON wo_old.id_wo=wo.id_prod_order_wo
+	        LIMIT 1
         )prc ON prc.id_prod_order=po.id_prod_order
         INNER JOIN 
         (

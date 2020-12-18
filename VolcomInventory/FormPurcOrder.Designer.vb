@@ -213,6 +213,12 @@ Partial Class FormPurcOrder
         Me.RepositoryItemProgressBar3 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.SBReceiveDateCreateNew = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView12 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn229 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn230 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn231 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -279,6 +285,8 @@ Partial Class FormPurcOrder
         CType(Me.RepositoryItemProgressBar3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
+        CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView12, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -696,6 +704,8 @@ Partial Class FormPurcOrder
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.LabelControl22)
+        Me.PanelControl2.Controls.Add(Me.SLEUnit)
         Me.PanelControl2.Controls.Add(Me.LEPOStatus)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.SLEExpenseType)
@@ -715,7 +725,7 @@ Partial Class FormPurcOrder
         '
         'LEPOStatus
         '
-        Me.LEPOStatus.Location = New System.Drawing.Point(818, 11)
+        Me.LEPOStatus.Location = New System.Drawing.Point(832, 11)
         Me.LEPOStatus.Name = "LEPOStatus"
         Me.LEPOStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEPOStatus.Properties.View = Me.GridView5
@@ -746,7 +756,7 @@ Partial Class FormPurcOrder
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(781, 14)
+        Me.LabelControl5.Location = New System.Drawing.Point(795, 14)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl5.TabIndex = 8922
@@ -754,7 +764,7 @@ Partial Class FormPurcOrder
         '
         'SLEExpenseType
         '
-        Me.SLEExpenseType.Location = New System.Drawing.Point(642, 11)
+        Me.SLEExpenseType.Location = New System.Drawing.Point(656, 11)
         Me.SLEExpenseType.Name = "SLEExpenseType"
         Me.SLEExpenseType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEExpenseType.Properties.View = Me.GridView6
@@ -785,7 +795,7 @@ Partial Class FormPurcOrder
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(612, 14)
+        Me.LabelControl6.Location = New System.Drawing.Point(626, 14)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl6.TabIndex = 8920
@@ -793,12 +803,13 @@ Partial Class FormPurcOrder
         '
         'SLEItem
         '
-        Me.SLEItem.Location = New System.Drawing.Point(471, 11)
+        Me.SLEItem.Location = New System.Drawing.Point(1031, 11)
         Me.SLEItem.Name = "SLEItem"
         Me.SLEItem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEItem.Properties.View = Me.GridView4
         Me.SLEItem.Size = New System.Drawing.Size(135, 20)
         Me.SLEItem.TabIndex = 8917
+        Me.SLEItem.Visible = False
         '
         'GridView4
         '
@@ -824,15 +835,16 @@ Partial Class FormPurcOrder
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(443, 14)
+        Me.LabelControl4.Location = New System.Drawing.Point(1003, 14)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl4.TabIndex = 8916
         Me.LabelControl4.Text = "Item"
+        Me.LabelControl4.Visible = False
         '
         'SLEItemCat
         '
-        Me.SLEItemCat.Location = New System.Drawing.Point(302, 11)
+        Me.SLEItemCat.Location = New System.Drawing.Point(485, 11)
         Me.SLEItemCat.Name = "SLEItemCat"
         Me.SLEItemCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEItemCat.Properties.View = Me.GridView3
@@ -863,7 +875,7 @@ Partial Class FormPurcOrder
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(226, 14)
+        Me.LabelControl3.Location = New System.Drawing.Point(409, 14)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(70, 13)
         Me.LabelControl3.TabIndex = 8914
@@ -871,7 +883,7 @@ Partial Class FormPurcOrder
         '
         'BViewReqList
         '
-        Me.BViewReqList.Location = New System.Drawing.Point(926, 9)
+        Me.BViewReqList.Location = New System.Drawing.Point(940, 9)
         Me.BViewReqList.Name = "BViewReqList"
         Me.BViewReqList.Size = New System.Drawing.Size(60, 23)
         Me.BViewReqList.TabIndex = 8913
@@ -879,7 +891,7 @@ Partial Class FormPurcOrder
         '
         'SLEDepartement
         '
-        Me.SLEDepartement.Location = New System.Drawing.Point(80, 11)
+        Me.SLEDepartement.Location = New System.Drawing.Point(263, 11)
         Me.SLEDepartement.Name = "SLEDepartement"
         Me.SLEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDepartement.Properties.View = Me.GridView1
@@ -910,7 +922,7 @@ Partial Class FormPurcOrder
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl1.Location = New System.Drawing.Point(194, 14)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl1.TabIndex = 8911
@@ -2064,6 +2076,60 @@ Partial Class FormPurcOrder
         Me.SBReceiveDateCreateNew.TabIndex = 8914
         Me.SBReceiveDateCreateNew.Text = "create new"
         '
+        'LabelControl22
+        '
+        Me.LabelControl22.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl22.Location = New System.Drawing.Point(9, 14)
+        Me.LabelControl22.Name = "LabelControl22"
+        Me.LabelControl22.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl22.TabIndex = 8935
+        Me.LabelControl22.Text = "Unit"
+        '
+        'SLEUnit
+        '
+        Me.SLEUnit.Location = New System.Drawing.Point(34, 11)
+        Me.SLEUnit.Name = "SLEUnit"
+        Me.SLEUnit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEUnit.Properties.View = Me.GridView12
+        Me.SLEUnit.Size = New System.Drawing.Size(154, 20)
+        Me.SLEUnit.TabIndex = 8934
+        '
+        'GridView12
+        '
+        Me.GridView12.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn229, Me.GridColumn230, Me.GridColumn231})
+        Me.GridView12.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView12.Name = "GridView12"
+        Me.GridView12.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView12.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn229
+        '
+        Me.GridColumn229.Caption = "id_coa_tag"
+        Me.GridColumn229.FieldName = "id_comp"
+        Me.GridColumn229.Name = "GridColumn229"
+        '
+        'GridColumn230
+        '
+        Me.GridColumn230.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn230.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn230.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn230.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn230.Caption = "Number"
+        Me.GridColumn230.FieldName = "tag_code"
+        Me.GridColumn230.Name = "GridColumn230"
+        Me.GridColumn230.Visible = True
+        Me.GridColumn230.VisibleIndex = 0
+        Me.GridColumn230.Width = 281
+        '
+        'GridColumn231
+        '
+        Me.GridColumn231.Caption = "Unit"
+        Me.GridColumn231.FieldName = "tag_description"
+        Me.GridColumn231.Name = "GridColumn231"
+        Me.GridColumn231.Visible = True
+        Me.GridColumn231.VisibleIndex = 1
+        Me.GridColumn231.Width = 1351
+        '
         'FormPurcOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2149,6 +2215,8 @@ Partial Class FormPurcOrder
         CType(Me.RepositoryItemProgressBar3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
+        CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView12, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2346,4 +2414,10 @@ Partial Class FormPurcOrder
     Friend WithEvents RepositoryItemProgressBar3 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBReceiveDateCreateNew As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEUnit As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView12 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn229 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn230 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn231 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
