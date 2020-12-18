@@ -19,7 +19,8 @@ Partial Class FormSalesPOS
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOS))
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -112,6 +113,18 @@ Partial Class FormSalesPOS
         Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPProblemList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCProbList = New DevExpress.XtraGrid.GridControl()
+        Me.GVProbList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEInvoiceStt = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LETypeProb = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
@@ -156,6 +169,15 @@ Partial Class FormSalesPOS
         Me.XTPCNOnlineStore.SuspendLayout()
         CType(Me.GCPendingCN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPendingCN, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPProblemList.SuspendLayout()
+        CType(Me.GCProbList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProbList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.LEInvoiceStt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LETypeProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -362,9 +384,9 @@ Partial Class FormSalesPOS
         'GCSalesPOS
         '
         Me.GCSalesPOS.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode1.LevelTemplate = Me.GVSalesPOSDet
-        GridLevelNode1.RelationName = "Detail Transaction"
-        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        GridLevelNode2.LevelTemplate = Me.GVSalesPOSDet
+        GridLevelNode2.RelationName = "Detail Transaction"
+        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
         Me.GCSalesPOS.Location = New System.Drawing.Point(20, 2)
         Me.GCSalesPOS.MainView = Me.GVSalesPOS
         Me.GCSalesPOS.Name = "GCSalesPOS"
@@ -749,7 +771,7 @@ Partial Class FormSalesPOS
         Me.XTCInvoice.SelectedTabPage = Me.XTPListInv
         Me.XTCInvoice.Size = New System.Drawing.Size(1240, 533)
         Me.XTCInvoice.TabIndex = 3
-        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInv, Me.XTPListWholesale, Me.XTPCNOnlineStore})
+        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInv, Me.XTPListWholesale, Me.XTPCNOnlineStore, Me.XTPProblemList})
         '
         'XTPListInv
         '
@@ -757,7 +779,7 @@ Partial Class FormSalesPOS
         Me.XTPListInv.Controls.Add(Me.GCFilter)
         Me.XTPListInv.Name = "XTPListInv"
         Me.XTPListInv.Size = New System.Drawing.Size(1234, 505)
-        Me.XTPListInv.Text = "List Invoice"
+        Me.XTPListInv.Text = "Invoice List"
         '
         'XTPListWholesale
         '
@@ -1054,6 +1076,138 @@ Partial Class FormSalesPOS
         Me.GridColumncomp_name.Visible = True
         Me.GridColumncomp_name.VisibleIndex = 3
         '
+        'XTPProblemList
+        '
+        Me.XTPProblemList.Controls.Add(Me.GCProbList)
+        Me.XTPProblemList.Controls.Add(Me.PanelControl2)
+        Me.XTPProblemList.Controls.Add(Me.PanelControl1)
+        Me.XTPProblemList.Name = "XTPProblemList"
+        Me.XTPProblemList.Size = New System.Drawing.Size(1234, 505)
+        Me.XTPProblemList.Text = "Problem List"
+        '
+        'GCProbList
+        '
+        Me.GCProbList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCProbList.Location = New System.Drawing.Point(0, 48)
+        Me.GCProbList.MainView = Me.GVProbList
+        Me.GCProbList.Name = "GCProbList"
+        Me.GCProbList.Size = New System.Drawing.Size(1234, 414)
+        Me.GCProbList.TabIndex = 3
+        Me.GCProbList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbList})
+        '
+        'GVProbList
+        '
+        Me.GVProbList.GridControl = Me.GCProbList
+        Me.GVProbList.Name = "GVProbList"
+        Me.GVProbList.OptionsFind.AlwaysVisible = True
+        Me.GVProbList.OptionsView.ColumnAutoWidth = False
+        Me.GVProbList.OptionsView.ShowFooter = True
+        Me.GVProbList.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.SimpleButton3)
+        Me.PanelControl2.Controls.Add(Me.LabelControl12)
+        Me.PanelControl2.Controls.Add(Me.LEInvoiceStt)
+        Me.PanelControl2.Controls.Add(Me.LETypeProb)
+        Me.PanelControl2.Controls.Add(Me.LabelControl5)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1234, 48)
+        Me.PanelControl2.TabIndex = 2
+        '
+        'SimpleButton3
+        '
+        Me.SimpleButton3.Image = CType(resources.GetObject("SimpleButton3.Image"), System.Drawing.Image)
+        Me.SimpleButton3.Location = New System.Drawing.Point(427, 12)
+        Me.SimpleButton3.Name = "SimpleButton3"
+        Me.SimpleButton3.Size = New System.Drawing.Size(75, 23)
+        Me.SimpleButton3.TabIndex = 4
+        Me.SimpleButton3.Text = "View"
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(202, 17)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl12.TabIndex = 3
+        Me.LabelControl12.Text = "Invoice Status"
+        '
+        'LEInvoiceStt
+        '
+        Me.LEInvoiceStt.Location = New System.Drawing.Point(277, 14)
+        Me.LEInvoiceStt.Name = "LEInvoiceStt"
+        Me.LEInvoiceStt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEInvoiceStt.Size = New System.Drawing.Size(144, 20)
+        Me.LEInvoiceStt.TabIndex = 2
+        '
+        'LETypeProb
+        '
+        Me.LETypeProb.Location = New System.Drawing.Point(52, 14)
+        Me.LETypeProb.Name = "LETypeProb"
+        Me.LETypeProb.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LETypeProb.Size = New System.Drawing.Size(144, 20)
+        Me.LETypeProb.TabIndex = 1
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(19, 17)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl5.TabIndex = 0
+        Me.LabelControl5.Text = "Type"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl1.Controls.Add(Me.BCreatePO)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 462)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1234, 43)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Appearance.BackColor = System.Drawing.Color.OrangeRed
+        Me.SimpleButton2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton2.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton2.Appearance.Options.UseBackColor = True
+        Me.SimpleButton2.Appearance.Options.UseFont = True
+        Me.SimpleButton2.Appearance.Options.UseForeColor = True
+        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton2.Location = New System.Drawing.Point(1011, 2)
+        Me.SimpleButton2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton2.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton2.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(112, 39)
+        Me.SimpleButton2.TabIndex = 20
+        Me.SimpleButton2.Text = "Verify Price"
+        Me.SimpleButton2.Visible = False
+        '
+        'BCreatePO
+        '
+        Me.BCreatePO.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreatePO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreatePO.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreatePO.Appearance.Options.UseBackColor = True
+        Me.BCreatePO.Appearance.Options.UseFont = True
+        Me.BCreatePO.Appearance.Options.UseForeColor = True
+        Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCreatePO.Location = New System.Drawing.Point(1123, 2)
+        Me.BCreatePO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreatePO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreatePO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreatePO.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreatePO.Name = "BCreatePO"
+        Me.BCreatePO.Size = New System.Drawing.Size(109, 39)
+        Me.BCreatePO.TabIndex = 19
+        Me.BCreatePO.Text = "Create Invoice"
+        Me.BCreatePO.Visible = False
+        '
         'LookUpEdit1
         '
         Me.LookUpEdit1.Location = New System.Drawing.Point(391, 14)
@@ -1172,6 +1326,16 @@ Partial Class FormSalesPOS
         Me.XTPCNOnlineStore.ResumeLayout(False)
         CType(Me.GCPendingCN, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPendingCN, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPProblemList.ResumeLayout(False)
+        CType(Me.GCProbList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProbList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.LEInvoiceStt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LETypeProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1279,4 +1443,16 @@ Partial Class FormSalesPOS
     Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPProblemList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCreatePO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCProbList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVProbList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEInvoiceStt As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LETypeProb As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -28,6 +28,10 @@
         'General
         'Dim query_curr_year As String = "SELECT YEAR(NOW())"
         'current_year = execute_query(query_curr_year, 0, True, "", "", "", "")
+        For Each t As DevExpress.XtraTab.XtraTabPage In XTCInvoice.TabPages
+            XTCInvoice.SelectedTabPage = t
+        Next t
+        XTCInvoice.SelectedTabPage = XTCInvoice.TabPages(0)
 
         'setting menu
         If id_menu = "1" Then
@@ -48,14 +52,43 @@
         DEFrom.DateTime = Now
         DEUntil.DateTime = Now
         viewSalesPOS()
+        viewTypeProb()
+        viewInvoiceStt()
 
         'pending online store return
         If id_menu = "5" Then
             XTPCNOnlineStore.PageVisible = True
+            XTPProblemList.PageVisible = False
             viewPendingCNOLStore()
+        ElseIf id_menu = "1" Or id_menu = "4" Then
+            XTPCNOnlineStore.PageVisible = False
+            XTPProblemList.PageVisible = True
         Else
             XTPCNOnlineStore.PageVisible = False
+            XTPProblemList.PageVisible = False
         End If
+    End Sub
+
+    Sub viewTypeProb()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '0' AS `id_type`, 'All' AS `type`
+        UNION ALL
+        SELECT '1' AS `id_type`, 'Invalid Price' AS `type`
+        UNION ALL
+        SELECT '2' AS `id_type`, 'No Stock' AS `type` "
+        viewLookupQuery(LETypeProb, query, 0, "type", "id_type")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewInvoiceStt()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '0' AS `id_inv_stt`, 'All' AS `inv_stt`
+        UNION ALL
+        SELECT '1' AS `id_inv_stt`, 'Open' AS `inv_stt`
+        UNION ALL
+        SELECT '2' AS `id_inv_stt`, 'Close' AS `inv_stt` "
+        viewLookupQuery(LEInvoiceStt, query, 1, "inv_stt", "id_inv_stt")
+        Cursor = Cursors.Default
     End Sub
 
     '========= TAB DAILY TRANSACTION==========================================
