@@ -99,6 +99,7 @@ Partial Class FormPurcOrder
         Me.CloseReceivingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn99 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -219,7 +220,6 @@ Partial Class FormPurcOrder
         Me.RepositoryItemProgressBar3 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.SBReceiveDateCreateNew = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn99 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -1032,6 +1032,15 @@ Partial Class FormPurcOrder
         Me.GridColumn7.FieldName = "id_purc_order"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn99
+        '
+        Me.GridColumn99.Caption = "Unit"
+        Me.GridColumn99.FieldName = "tag_description"
+        Me.GridColumn99.Name = "GridColumn99"
+        Me.GridColumn99.Visible = True
+        Me.GridColumn99.VisibleIndex = 0
+        Me.GridColumn99.Width = 94
         '
         'GridColumn1
         '
@@ -2130,15 +2139,6 @@ Partial Class FormPurcOrder
         Me.SBReceiveDateCreateNew.Size = New System.Drawing.Size(87, 23)
         Me.SBReceiveDateCreateNew.TabIndex = 8914
         Me.SBReceiveDateCreateNew.Text = "create new"
-        '
-        'GridColumn99
-        '
-        Me.GridColumn99.Caption = "Unit"
-        Me.GridColumn99.FieldName = "coa_tag"
-        Me.GridColumn99.Name = "GridColumn99"
-        Me.GridColumn99.Visible = True
-        Me.GridColumn99.VisibleIndex = 0
-        Me.GridColumn99.Width = 94
         '
         'FormPurcOrder
         '
