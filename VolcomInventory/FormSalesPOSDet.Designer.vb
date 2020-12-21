@@ -185,10 +185,10 @@ Partial Class FormSalesPOSDet
         Me.GridColumnstore_qtyprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumndesign_price_storeprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumndesign_price_retailprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumninvoice_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnno_stock_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnnote_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumninvoice_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnno_stock_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCode = New DevExpress.XtraGrid.GridControl()
         Me.GVCode = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -1501,14 +1501,14 @@ Partial Class FormSalesPOSDet
         'QtyToolStripMenuItem
         '
         Me.QtyToolStripMenuItem.Name = "QtyToolStripMenuItem"
-        Me.QtyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.QtyToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.QtyToolStripMenuItem.Text = "Set Quantity"
         Me.QtyToolStripMenuItem.Visible = False
         '
         'PriceToolStripMenuItem
         '
         Me.PriceToolStripMenuItem.Name = "PriceToolStripMenuItem"
-        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.PriceToolStripMenuItem.Text = "Price"
         Me.PriceToolStripMenuItem.Visible = False
         '
@@ -2092,24 +2092,22 @@ Partial Class FormSalesPOSDet
         Me.GridColumndesign_price_retailprob.Name = "GridColumndesign_price_retailprob"
         Me.GridColumndesign_price_retailprob.Visible = True
         '
+        'GridColumnnote_price
+        '
+        Me.GridColumnnote_price.Caption = "Note Price"
+        Me.GridColumnnote_price.FieldName = "note_price"
+        Me.GridColumnnote_price.Name = "GridColumnnote_price"
+        Me.GridColumnnote_price.Visible = True
+        '
         'GridColumninvoice_qty
         '
-        Me.GridColumninvoice_qty.Caption = "Invoice Qty"
+        Me.GridColumninvoice_qty.Caption = "Hold Qty"
         Me.GridColumninvoice_qty.DisplayFormat.FormatString = "N0"
         Me.GridColumninvoice_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumninvoice_qty.FieldName = "invoice_qty"
         Me.GridColumninvoice_qty.Name = "GridColumninvoice_qty"
         Me.GridColumninvoice_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "invoice_qty", "{0:N0}")})
-        '
-        'GridColumnno_stock_qty
-        '
-        Me.GridColumnno_stock_qty.Caption = "No Stock Qty"
-        Me.GridColumnno_stock_qty.DisplayFormat.FormatString = "N0"
-        Me.GridColumnno_stock_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnno_stock_qty.FieldName = "no_stock_qty"
-        Me.GridColumnno_stock_qty.Name = "GridColumnno_stock_qty"
-        Me.GridColumnno_stock_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "no_stock_qty", "{0:N0}")})
-        Me.GridColumnno_stock_qty.Visible = True
+        Me.GridColumninvoice_qty.Visible = True
         '
         'GridColumntotal_qty
         '
@@ -2120,12 +2118,15 @@ Partial Class FormSalesPOSDet
         Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
         Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
         '
-        'GridColumnnote_price
+        'GridColumnno_stock_qty
         '
-        Me.GridColumnnote_price.Caption = "Note Price"
-        Me.GridColumnnote_price.FieldName = "note_price"
-        Me.GridColumnnote_price.Name = "GridColumnnote_price"
-        Me.GridColumnnote_price.Visible = True
+        Me.GridColumnno_stock_qty.Caption = "No Stock Qty"
+        Me.GridColumnno_stock_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnno_stock_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnno_stock_qty.FieldName = "no_stock_qty"
+        Me.GridColumnno_stock_qty.Name = "GridColumnno_stock_qty"
+        Me.GridColumnno_stock_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "no_stock_qty", "{0:N0}")})
+        Me.GridColumnno_stock_qty.Visible = True
         '
         'XTPDetail
         '
@@ -2266,14 +2267,14 @@ Partial Class FormSalesPOSDet
         '
         'gridBand3
         '
-        Me.gridBand3.Caption = "Price"
+        Me.gridBand3.Caption = "Price Compare Result"
         Me.gridBand3.Columns.Add(Me.GridColumndesign_price_retailprob)
         Me.gridBand3.Columns.Add(Me.GridColumnnote_price)
         Me.gridBand3.Columns.Add(Me.GridColumninvoice_qty)
         Me.gridBand3.Columns.Add(Me.GridColumntotal_qty)
         Me.gridBand3.Name = "gridBand3"
         Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 150
+        Me.gridBand3.Width = 225
         '
         'gridBand5
         '

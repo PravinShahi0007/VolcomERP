@@ -145,14 +145,17 @@
         Dim id_design_price_valid As String = ""
         Dim design_price_valid As Decimal = 0.00
         Dim note_price As String = GVData.GetRowCellValue(rh, "note_price").ToString
+        Dim hold_qty As Decimal = 0.00
         If note_price <> "OK" Then
             is_invalid_price = "1"
             id_design_price_valid = "0"
             design_price_valid = 0.00
+            hold_qty = GVData.GetRowCellValue(rh, "sales_pos_det_qty")
         Else
             is_invalid_price = "2"
             id_design_price_valid = GVData.GetRowCellValue(rh, "id_design_price_retail").ToString
             design_price_valid = GVData.GetRowCellValue(rh, "design_price_retail")
+            hold_qty = 0.00
         End If
         'check no stock
         Dim is_no_stock As String = ""
@@ -175,7 +178,7 @@
         newRow("id_design_price_valid") = id_design_price_valid
         newRow("design_price_valid") = design_price_valid
         newRow("store_qty") = GVData.GetRowCellValue(rh, "sales_qty")
-        newRow("invoice_qty") = GVData.GetRowCellValue(rh, "sales_pos_det_qty")
+        newRow("invoice_qty") = hold_qty
         newRow("no_stock_qty") = GVData.GetRowCellValue(rh, "no_stock_qty")
         newRow("note_price") = note_price
         TryCast(FormSalesPOSDet.GCProbList.DataSource, DataTable).Rows.Add(newRow)
