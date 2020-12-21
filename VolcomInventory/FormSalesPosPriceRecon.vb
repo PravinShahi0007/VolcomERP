@@ -37,6 +37,7 @@
                 newRow("id_sales_pos_prob") = FormSalesPOS.GVProbList.GetRowCellValue(d, "id_sales_pos_prob").ToString
                 newRow("id_sales_pos") = FormSalesPOS.GVProbList.GetRowCellValue(d, "id_sales_pos").ToString
                 newRow("sales_pos_number") = FormSalesPOS.GVProbList.GetRowCellValue(d, "sales_pos_number").ToString
+                newRow("id_comp") = FormSalesPOS.GVProbList.GetRowCellValue(d, "id_comp").ToString
                 newRow("comp_number") = FormSalesPOS.GVProbList.GetRowCellValue(d, "comp_number").ToString
                 newRow("comp_name") = FormSalesPOS.GVProbList.GetRowCellValue(d, "comp_name").ToString
                 newRow("id_product") = FormSalesPOS.GVProbList.GetRowCellValue(d, "id_product").ToString
@@ -93,7 +94,7 @@
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim query As String = "Select rd.id_sales_pos_recon_det, rd.id_sales_pos_recon,
-        rd.id_sales_pos_prob, rd.id_sales_pos, sp.sales_pos_number, c.comp_number, c.comp_name,
+        rd.id_sales_pos_prob, rd.id_sales_pos, rd.id_comp, sp.sales_pos_number, c.comp_number, c.comp_name,
         rd.id_product, p.product_full_code As `code`, p.product_display_name As `name`, cd.code_detail_name As `size`,
         rd.id_design_price_retail, rd.design_price_retail, rd.design_price_store,
         rd.id_design_price_valid, rd.design_price_valid, rd.note
@@ -116,11 +117,13 @@
             BtnCreate.Visible = True
             BtnConfirm.Visible = True
             BtnMark.Visible = False
+            BtnCancell.Visible = False
         Else
             MENote.Properties.ReadOnly = True
             BtnCreate.Visible = False
             BtnConfirm.Visible = False
             BtnMark.Visible = True
+            BtnCancell.Visible = True
         End If
         BtnAttachment.Visible = True
 
@@ -163,11 +166,33 @@
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     'save
-                    Dim note As String = addSlashes(MENote.ToString)
+                    Dim note As String = addSlashes(MENote.Text.ToString)
                     Dim query As String = "INSERT INTO tb_sales_pos_recon(created_date, note, id_report_status) 
                     VALUES(NOW(), '" + note + "',1); SELECT LAST_INSERT_ID(); "
                     id = execute_query(query, 0, True, "", "", "", "")
                     execute_non_query("CALL gen_number(" + id + ", " + rmt + ");", True, "", "", "", "")
+
+                    'detail
+                    Dim query_det As String = "INSERT INTO tb_sales_pos_recon_det(id_sales_pos_recon, id_sales_pos_prob, id_sales_pos, id_comp, id_product, id_design_price_retail, design_price_retail, design_price_store, id_design_price_valid, design_price_valid, note) VALUES "
+                    For d As Integer = 0 To GVData.RowCount - 1
+                        Dim id_sales_pos_prob As String = GVData.GetRowCellValue(d, "id_sales_pos_prob").ToString
+                        Dim id_sales_pos As String = GVData.GetRowCellValue(d, "id_sales_pos").ToString
+                        Dim id_comp As String = GVData.GetRowCellValue(d, "id_comp").ToString
+                        Dim id_product As String = GVData.GetRowCellValue(d, "id_product").ToString
+                        Dim id_design_price_retail As String = GVData.GetRowCellValue(d, "id_design_price_retail").ToString
+                        Dim design_price_retail As String = decimalSQL(GVData.GetRowCellValue(d, "design_price_retail").ToString)
+                        Dim design_price_store As String = decimalSQL(GVData.GetRowCellValue(d, "design_price_store").ToString)
+                        Dim id_design_price_valid As String = GVData.GetRowCellValue(d, "id_design_price_valid").ToString
+                        Dim design_price_valid As String = decimalSQL(GVData.GetRowCellValue(d, "design_price_valid").ToString)
+                        Dim note_det As String = GVData.GetRowCellValue(d, "note").ToString
+                        If d > 0 Then
+                            query_det += ","
+                        End If
+                        query_det += "('" + id + "', '" + id_sales_pos_prob + "', '" + id_sales_pos + "', '" + id_comp + "', '" + id_product + "', '" + id_design_price_retail + "', '" + design_price_retail + "', '" + design_price_store + "', '" + id_design_price_valid + "', '" + design_price_valid + "', '" + note_det + "') "
+                    Next
+                    If GVData.RowCount > 0 Then
+                        execute_non_query(query_det, True, "", "", "", "")
+                    End If
 
                     'refresh main
                     FormSalesPOS.viewProbList()
@@ -187,13 +212,16 @@
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
-
+        showAttach()
     End Sub
 
     Sub showAttach()
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.id_report = id
+        If is_confirm = "1" Or is_view = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -218,6 +246,9 @@
                 saveChangesHead()
                 Dim query As String = "UPDATE tb_sales_pos_recon SET is_confirm=1 WHERE id_sales_pos_recon='" + id + "'"
                 execute_non_query(query, True, "", "", "", "")
+
+                submit_who_prepared(rmt, id, id_user)
+
                 action = "upd"
                 actionLoad()
                 infoCustom("Propose submitted")
@@ -228,7 +259,7 @@
 
     Sub saveChangesHead()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "UPDATE tb_sales_pos_recon SET note='" + addSlashes(MENote.ToString) + "' WHERE id_sales_pos_recon='" + id + "'"
+        Dim query As String = "UPDATE tb_sales_pos_recon SET note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_pos_recon='" + id + "'"
         execute_non_query(query, True, "", "", "", "")
         Cursor = Cursors.Default
     End Sub

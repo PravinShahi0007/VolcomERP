@@ -21,10 +21,12 @@ Partial Class FormSalesPosPriceRecon
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPosPriceRecon))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreate = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -56,8 +58,7 @@ Partial Class FormSalesPosPriceRecon
         Me.GridColumnid_sales_pos = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,17 +90,6 @@ Partial Class FormSalesPosPriceRecon
         Me.PanelControl1.Size = New System.Drawing.Size(836, 46)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnMark
-        '
-        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
-        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
-        Me.BtnMark.Name = "BtnMark"
-        Me.BtnMark.Size = New System.Drawing.Size(82, 42)
-        Me.BtnMark.TabIndex = 2
-        Me.BtnMark.Text = "Mark"
-        Me.BtnMark.Visible = False
-        '
         'BtnAttachment
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
@@ -111,16 +101,38 @@ Partial Class FormSalesPosPriceRecon
         Me.BtnAttachment.Text = "Attachment"
         Me.BtnAttachment.Visible = False
         '
-        'BtnConfirm
+        'BtnCancell
         '
-        Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(744, 2)
-        Me.BtnConfirm.Name = "BtnConfirm"
-        Me.BtnConfirm.Size = New System.Drawing.Size(90, 42)
-        Me.BtnConfirm.TabIndex = 3
-        Me.BtnConfirm.Text = "Confirm"
-        Me.BtnConfirm.Visible = False
+        Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
+        Me.BtnCancell.Location = New System.Drawing.Point(373, 2)
+        Me.BtnCancell.Name = "BtnCancell"
+        Me.BtnCancell.Size = New System.Drawing.Size(126, 42)
+        Me.BtnCancell.TabIndex = 10
+        Me.BtnCancell.Text = "Cancell Propose"
+        Me.BtnCancell.Visible = False
+        '
+        'BtnResetPropose
+        '
+        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(499, 2)
+        Me.BtnResetPropose.Name = "BtnResetPropose"
+        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 42)
+        Me.BtnResetPropose.TabIndex = 11
+        Me.BtnResetPropose.Text = "Reset Propose"
+        Me.BtnResetPropose.Visible = False
+        '
+        'BtnMark
+        '
+        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
+        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
+        Me.BtnMark.Name = "BtnMark"
+        Me.BtnMark.Size = New System.Drawing.Size(82, 42)
+        Me.BtnMark.TabIndex = 2
+        Me.BtnMark.Text = "Mark"
+        Me.BtnMark.Visible = False
         '
         'BtnCreate
         '
@@ -131,6 +143,17 @@ Partial Class FormSalesPosPriceRecon
         Me.BtnCreate.Size = New System.Drawing.Size(122, 42)
         Me.BtnCreate.TabIndex = 2
         Me.BtnCreate.Text = "Save Changes"
+        '
+        'BtnConfirm
+        '
+        Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
+        Me.BtnConfirm.Location = New System.Drawing.Point(744, 2)
+        Me.BtnConfirm.Name = "BtnConfirm"
+        Me.BtnConfirm.Size = New System.Drawing.Size(90, 42)
+        Me.BtnConfirm.TabIndex = 3
+        Me.BtnConfirm.Text = "Confirm"
+        Me.BtnConfirm.Visible = False
         '
         'PanelControl2
         '
@@ -250,7 +273,7 @@ Partial Class FormSalesPosPriceRecon
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumn, Me.GridColumnid_sales_pos_recon, Me.GridColumnid_sales_pos_prob, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnid_design_price_retail, Me.GridColumndesign_price_retail, Me.GridColumndesign_price_store, Me.GridColumnid_design_price_valid, Me.GridColumndesign_price_valid, Me.GridColumnnote, Me.GridColumnsales_pos_number, Me.GridColumnid_sales_pos, Me.GridColumncomp_number, Me.GridColumncomp_name})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumn, Me.GridColumnid_sales_pos_recon, Me.GridColumnid_sales_pos_prob, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnid_design_price_retail, Me.GridColumndesign_price_retail, Me.GridColumndesign_price_store, Me.GridColumnid_design_price_valid, Me.GridColumndesign_price_valid, Me.GridColumnnote, Me.GridColumnsales_pos_number, Me.GridColumnid_sales_pos, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnid_comp})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -402,26 +425,11 @@ Partial Class FormSalesPosPriceRecon
         Me.GridColumncomp_name.Visible = True
         Me.GridColumncomp_name.VisibleIndex = 3
         '
-        'BtnCancell
+        'GridColumnid_comp
         '
-        Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(373, 2)
-        Me.BtnCancell.Name = "BtnCancell"
-        Me.BtnCancell.Size = New System.Drawing.Size(126, 42)
-        Me.BtnCancell.TabIndex = 10
-        Me.BtnCancell.Text = "Cancell Propose"
-        Me.BtnCancell.Visible = False
-        '
-        'BtnResetPropose
-        '
-        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(499, 2)
-        Me.BtnResetPropose.Name = "BtnResetPropose"
-        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 42)
-        Me.BtnResetPropose.TabIndex = 11
-        Me.BtnResetPropose.Text = "Reset Propose"
+        Me.GridColumnid_comp.Caption = "id_comp"
+        Me.GridColumnid_comp.FieldName = "id_comp"
+        Me.GridColumnid_comp.Name = "GridColumnid_comp"
         '
         'FormSalesPosPriceRecon
         '
@@ -496,4 +504,5 @@ Partial Class FormSalesPosPriceRecon
     Friend WithEvents GridColumncomp_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnCancell As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_comp As DevExpress.XtraGrid.Columns.GridColumn
 End Class

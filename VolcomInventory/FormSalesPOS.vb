@@ -448,7 +448,7 @@
             If GVProbList.GetRowCellValue(c, "id_design_price_valid") > 0 Then
                 err_product += GVProbList.GetRowCellValue(c, "code").ToString + " - " + GVProbList.GetRowCellValue(c, "name").ToString + System.Environment.NewLine
             End If
-            id_prob_in = GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
+            id_prob_in += GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
         Next
 
         'cek on process
@@ -460,13 +460,13 @@
             WHERE r.id_report_status<5 AND rd.id_sales_pos_prob IN(" + id_prob_in + ") "
         Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
         For d As Integer = 0 To dcek.Rows.Count - 1
-            err_on_process += dcek.Rows(d)("code").ToString + " - " + dcek.Rows(d)("code").ToString + System.Environment.NewLine
+            err_on_process += dcek.Rows(d)("code").ToString + "- " + dcek.Rows(d)("name").ToString + System.Environment.NewLine
         Next
 
         If err_product <> "" Then
             stopCustom("These product already reconcile :" + System.Environment.NewLine + err_product)
         ElseIf err_on_process <> "" Then
-            stopCustom("These product on process reconcile :" + System.Environment.NewLine + err_product)
+            stopCustom("These product on process reconcile :" + System.Environment.NewLine + err_on_process)
         Else
             'proses
             FormSalesPosPriceRecon.action = "ins"
