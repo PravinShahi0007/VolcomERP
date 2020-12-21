@@ -54,6 +54,7 @@
         viewSalesPOS()
         viewTypeProb()
         viewInvoiceStt()
+        viewStoreProb()
 
         'pending online store return
         If id_menu = "5" Then
@@ -71,9 +72,7 @@
 
     Sub viewTypeProb()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT '0' AS `id_type`, 'All' AS `type`
-        UNION ALL
-        SELECT '1' AS `id_type`, 'Invalid Price' AS `type`
+        Dim query As String = "SELECT '1' AS `id_type`, 'Invalid Price' AS `type`
         UNION ALL
         SELECT '2' AS `id_type`, 'No Stock' AS `type` "
         viewLookupQuery(LETypeProb, query, 0, "type", "id_type")
@@ -88,6 +87,17 @@
         UNION ALL
         SELECT '2' AS `id_inv_stt`, 'Close' AS `inv_stt` "
         viewLookupQuery(LEInvoiceStt, query, 1, "inv_stt", "id_inv_stt")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewStoreProb()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `id_comp`, 'All' AS `comp`
+        UNION ALL 
+        SELECT c.id_comp, CONCAT(c.comp_number,' - ',c.comp_name) AS `comp` 
+        FROM tb_m_comp c
+        WHERE c.id_comp_cat=6 "
+        viewSearchLookupQuery(SLEStoreProb, query, "id_comp", "comp", "id_comp")
         Cursor = Cursors.Default
     End Sub
 
@@ -366,6 +376,12 @@
             cond_status = "AND p.is_open_invoice='" + LEInvoiceStt.EditValue.ToString + "' "
         End If
 
+        'store
+        Dim cond_store As String = ""
+        If SLEStoreProb.EditValue.ToString <> "0" Then
+            cond_store = "AND c.id_comp='" + SLEStoreProb.EditValue.ToString + "' "
+        End If
+
         Dim query As String = "SELECT p.id_sales_pos_prob, 
         p.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, sp.sales_pos_due_date,
         c.id_comp, cc.id_comp_contact, c.comp_number, c.comp_name, cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,
@@ -373,8 +389,9 @@
         p.id_product, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
         p.id_design_price_retail, p.design_price_retail, p.design_price_store, 
         IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid,
-        p.store_qty, p.invoice_qty, p.no_stock_qty,(p.invoice_qty+p.no_stock_qty) AS `total_qty`,
-        p.is_open_invoice, IF(p.is_open_invoice=1,'Open', 'Close') AS `is_open_invoice_view`, 'No' AS `is_select`
+        p.store_qty, p.invoice_qty, p.no_stock_qty, IFNULL(proc.qty_on_process,0) AS `qty_on_process`, IFNULL(proc.qty_proceed,0) AS `qty_proceed`,
+        (p.invoice_qty+p.no_stock_qty) AS `total_qty`,
+        p.is_open_invoice, IF(p.is_open_invoice=1,'Open', 'Close') AS `is_open_invoice_view`, 'No' AS `is_select`, 0 AS `qty_new`
         FROM tb_sales_pos_prob p
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -383,7 +400,16 @@
         INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
-        WHERE 1=1 AND sp.id_report_status=6 " + cond_type + cond_status
+        LEFT JOIN (
+            SELECT spd.id_sales_pos_prob, 
+            SUM(IF(sp.id_report_status<5,spd.sales_pos_det_qty,0)) AS `qty_on_process`,
+            SUM(IF(sp.id_report_status=6,spd.sales_pos_det_qty,0)) AS `qty_proceed`
+            FROM tb_sales_pos sp
+            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+            WHERE !ISNULL(spd.id_sales_pos_prob)
+            GROUP BY spd.id_sales_pos_prob
+        ) proc ON proc.id_sales_pos_prob = p.id_sales_pos_prob
+        WHERE 1=1 AND sp.id_report_status=6 " + cond_type + cond_status + cond_store
         query += "ORDER BY p.id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProbList.DataSource = data
@@ -414,6 +440,13 @@
     End Sub
 
     Private Sub LETypeProb_EditValueChanged(sender As Object, e As EventArgs) Handles LETypeProb.EditValueChanged
+        If LETypeProb.EditValue.ToString = "2" Then
+            gridBandPrice.Visible = False
+            gridBandNoStock.Visible = True
+        Else
+            gridBandPrice.Visible = True
+            gridBandNoStock.Visible = False
+        End If
         resetViewProb()
     End Sub
 
@@ -480,5 +513,77 @@
         Cursor = Cursors.WaitCursor
         FormSalesProbTransHistory.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEStoreProb_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreProb.EditValueChanged
+        Dim id_store As String = "-1"
+        Try
+            id_store = SLEStoreProb.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        If id_store <> "0" Then
+            BandedGridColumnqty_new.OptionsColumn.ReadOnly = False
+        Else
+            BandedGridColumnqty_new.OptionsColumn.ReadOnly = True
+        End If
+        resetViewProb()
+    End Sub
+
+    Private Sub BtnCreateInvoice_Click(sender As Object, e As EventArgs) Handles BtnCreateInvoice.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVProbList)
+        GVProbList.ActiveFilterString = "[qty_new]>0 "
+        If GVProbList.RowCount > 0 Then
+            Dim err As String = ""
+            'check valid qty
+            For c As Integer = 0 To GVProbList.RowCount - 1
+                Dim id_sales_pos_prob_cek As String = GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
+                Dim qty_input As Decimal = GVProbList.GetRowCellValue(c, "qty_new")
+                Dim qty_no_stock As Decimal = GVProbList.GetRowCellValue(c, "no_stock_qty")
+                Dim code As String = GVProbList.GetRowCellValue(c, "code").ToString
+                Dim qc As String = "SELECT spd.id_sales_pos_prob,  IFNULL(SUM(spd.sales_pos_det_qty),0) AS `total_inv`
+                FROM tb_sales_pos sp
+                INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+                WHERE sp.id_report_status!=5 AND !ISNULL(spd.id_sales_pos_prob) AND spd.id_sales_pos_prob='" + id_sales_pos_prob_cek + "' "
+                Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                Dim qty_limit As Decimal = 0.00
+                Dim qty_inv As Decimal = 0.00
+                If dc.Rows.Count <= 0 Then
+                    qty_inv = 0
+                Else
+                    qty_inv = dc.Rows(0)("total_inv")
+                End If
+                qty_limit = qty_no_stock - qty_inv
+                If qty_input > qty_limit Then
+                    err += code + ", can't exceed " + qty_limit.ToString + System.Environment.NewLine
+                End If
+            Next
+
+            If err <> "" Then
+                stopCustom("Qty not valid : " + System.Environment.NewLine + err)
+            Else
+                FormSalesPOSDet.action = "ins"
+                FormSalesPOSDet.id_menu = id_menu
+                FormSalesPOSDet.ShowDialog()
+            End If
+        End If
+        makeSafeGV(GVProbList)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepositoryItemTextEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemTextEdit1.EditValueChanged
+
+    End Sub
+
+    Private Sub SPQty_EditValueChanged(sender As Object, e As EventArgs) Handles SPQty.EditValueChanged
+        If GVProbList.RowCount > 0 Then
+            Dim qty_limit As Decimal = GVProbList.GetFocusedRowCellValue("no_stock_qty") - (GVProbList.GetFocusedRowCellValue("qty_on_process") + GVProbList.GetFocusedRowCellValue("qty_proceed"))
+            Dim RepoQty As DevExpress.XtraEditors.SpinEdit = CType(sender, DevExpress.XtraEditors.SpinEdit)
+            Dim qty_input As Decimal = RepoQty.EditValue
+            If qty_input > qty_limit Then
+                stopCustom("Can't exceed " + qty_limit.ToString)
+                GVProbList.SetFocusedRowCellValue("qty_new", 0)
+            End If
+        End If
     End Sub
 End Class
