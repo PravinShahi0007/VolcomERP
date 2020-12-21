@@ -49,6 +49,9 @@ Partial Class FormOLStoreRestock
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreateOther = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnPrintWH = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefreshOther = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -58,9 +61,20 @@ Partial Class FormOLStoreRestock
         Me.TxtDescription = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTCOLWH = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPOLWHDirect = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPOLWHSyncSellerCenter = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCWHSync = New DevExpress.XtraGrid.GridControl()
+        Me.GVWHSync = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnPrepareOrder = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPOnlineWH.SuspendLayout()
@@ -75,13 +89,20 @@ Partial Class FormOLStoreRestock
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
+        CType(Me.XTCOLWH, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCOLWH.SuspendLayout()
+        Me.XTPOLWHDirect.SuspendLayout()
+        Me.XTPOLWHSyncSellerCenter.SuspendLayout()
+        CType(Me.GCWHSync, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVWHSync, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCData
@@ -97,9 +118,8 @@ Partial Class FormOLStoreRestock
         '
         'XTPOnlineWH
         '
-        Me.XTPOnlineWH.Controls.Add(Me.GCOnlineWH)
+        Me.XTPOnlineWH.Controls.Add(Me.XTCOLWH)
         Me.XTPOnlineWH.Controls.Add(Me.PanelControl2)
-        Me.XTPOnlineWH.Controls.Add(Me.BCreatePO)
         Me.XTPOnlineWH.Name = "XTPOnlineWH"
         Me.XTPOnlineWH.Size = New System.Drawing.Size(728, 361)
         Me.XTPOnlineWH.Text = "Online WH"
@@ -107,11 +127,11 @@ Partial Class FormOLStoreRestock
         'GCOnlineWH
         '
         Me.GCOnlineWH.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCOnlineWH.Location = New System.Drawing.Point(0, 44)
+        Me.GCOnlineWH.Location = New System.Drawing.Point(0, 0)
         Me.GCOnlineWH.MainView = Me.GVOnlineWH
         Me.GCOnlineWH.Name = "GCOnlineWH"
         Me.GCOnlineWH.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoSP})
-        Me.GCOnlineWH.Size = New System.Drawing.Size(728, 285)
+        Me.GCOnlineWH.Size = New System.Drawing.Size(699, 279)
         Me.GCOnlineWH.TabIndex = 0
         Me.GCOnlineWH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOnlineWH})
         '
@@ -247,13 +267,13 @@ Partial Class FormOLStoreRestock
         Me.BCreatePO.Appearance.Options.UseFont = True
         Me.BCreatePO.Appearance.Options.UseForeColor = True
         Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreatePO.Location = New System.Drawing.Point(0, 329)
+        Me.BCreatePO.Location = New System.Drawing.Point(0, 279)
         Me.BCreatePO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BCreatePO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BCreatePO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCreatePO.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreatePO.Name = "BCreatePO"
-        Me.BCreatePO.Size = New System.Drawing.Size(728, 32)
+        Me.BCreatePO.Size = New System.Drawing.Size(699, 32)
         Me.BCreatePO.TabIndex = 19
         Me.BCreatePO.Text = "Restock"
         '
@@ -400,6 +420,37 @@ Partial Class FormOLStoreRestock
         Me.PanelControl3.Size = New System.Drawing.Size(728, 55)
         Me.PanelControl3.TabIndex = 21
         '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.LabelControl5)
+        Me.PanelControl4.Controls.Add(Me.LabelControl4)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl4.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.PanelControl4.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(413, 51)
+        Me.PanelControl4.TabIndex = 2
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(60, 12)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(316, 26)
+        Me.LabelControl5.TabIndex = 1
+        Me.LabelControl5.Text = "Sebelum melakukan restock harap berkoordinasi dengan WH " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "tentang kondisi produk." &
+    ""
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(10, 16)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(40, 15)
+        Me.LabelControl4.TabIndex = 0
+        Me.LabelControl4.Text = "NOTE : "
+        '
         'BtnPrintWH
         '
         Me.BtnPrintWH.Dock = System.Windows.Forms.DockStyle.Right
@@ -494,36 +545,156 @@ Partial Class FormOLStoreRestock
         Me.LabelControl3.TabIndex = 6
         Me.LabelControl3.Text = "Code"
         '
-        'PanelControl4
+        'XTCOLWH
         '
-        Me.PanelControl4.Controls.Add(Me.LabelControl5)
-        Me.PanelControl4.Controls.Add(Me.LabelControl4)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl4.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.PanelControl4.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(413, 51)
-        Me.PanelControl4.TabIndex = 2
+        Me.XTCOLWH.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCOLWH.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCOLWH.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Vertical
+        Me.XTCOLWH.Location = New System.Drawing.Point(0, 44)
+        Me.XTCOLWH.Name = "XTCOLWH"
+        Me.XTCOLWH.SelectedTabPage = Me.XTPOLWHDirect
+        Me.XTCOLWH.Size = New System.Drawing.Size(728, 317)
+        Me.XTCOLWH.TabIndex = 21
+        Me.XTCOLWH.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOLWHDirect, Me.XTPOLWHSyncSellerCenter})
         '
-        'LabelControl4
+        'XTPOLWHDirect
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(10, 16)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(40, 15)
-        Me.LabelControl4.TabIndex = 0
-        Me.LabelControl4.Text = "NOTE : "
+        Me.XTPOLWHDirect.Controls.Add(Me.GCOnlineWH)
+        Me.XTPOLWHDirect.Controls.Add(Me.BCreatePO)
+        Me.XTPOLWHDirect.Name = "XTPOLWHDirect"
+        Me.XTPOLWHDirect.Size = New System.Drawing.Size(699, 311)
+        Me.XTPOLWHDirect.Text = "Direct"
         '
-        'LabelControl5
+        'XTPOLWHSyncSellerCenter
         '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(60, 12)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(316, 26)
-        Me.LabelControl5.TabIndex = 1
-        Me.LabelControl5.Text = "Sebelum melakukan restock harap berkoordinasi dengan WH " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "tentang kondisi produk." &
-    ""
+        Me.XTPOLWHSyncSellerCenter.Controls.Add(Me.GCWHSync)
+        Me.XTPOLWHSyncSellerCenter.Controls.Add(Me.BtnPrepareOrder)
+        Me.XTPOLWHSyncSellerCenter.Name = "XTPOLWHSyncSellerCenter"
+        Me.XTPOLWHSyncSellerCenter.Size = New System.Drawing.Size(699, 311)
+        Me.XTPOLWHSyncSellerCenter.Text = "Sync to Seller Cent."
+        '
+        'GCWHSync
+        '
+        Me.GCWHSync.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCWHSync.Location = New System.Drawing.Point(0, 0)
+        Me.GCWHSync.MainView = Me.GVWHSync
+        Me.GCWHSync.Name = "GCWHSync"
+        Me.GCWHSync.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2})
+        Me.GCWHSync.Size = New System.Drawing.Size(699, 279)
+        Me.GCWHSync.TabIndex = 1
+        Me.GCWHSync.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWHSync})
+        '
+        'GVWHSync
+        '
+        Me.GVWHSync.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.GVWHSync.GridControl = Me.GCWHSync
+        Me.GVWHSync.Name = "GVWHSync"
+        Me.GVWHSync.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVWHSync.OptionsFind.AlwaysVisible = True
+        Me.GVWHSync.OptionsView.ColumnAutoWidth = False
+        Me.GVWHSync.OptionsView.ShowFooter = True
+        Me.GVWHSync.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "id_wh_drawer"
+        Me.GridColumn8.FieldName = "id_wh_drawer"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "id_comp"
+        Me.GridColumn9.FieldName = "id_comp"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Account"
+        Me.GridColumn10.FieldName = "comp_number"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Acc. Description"
+        Me.GridColumn11.FieldName = "comp_name"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.ReadOnly = True
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 2
+        Me.GridColumn11.Width = 95
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Available Qty"
+        Me.GridColumn12.DisplayFormat.FormatString = "N0"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "total_stock"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.ReadOnly = True
+        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_stock", "{0:N0}")})
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 3
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumn13.AppearanceCell.Options.UseFont = True
+        Me.GridColumn13.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumn13.AppearanceHeader.Options.UseFont = True
+        Me.GridColumn13.Caption = "Qty"
+        Me.GridColumn13.ColumnEdit = Me.RepositoryItemSpinEdit2
+        Me.GridColumn13.DisplayFormat.FormatString = "N0"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn13.FieldName = "total_order"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", "{0:N0}")})
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 4
+        Me.GridColumn13.Width = 106
+        '
+        'RepositoryItemSpinEdit2
+        '
+        Me.RepositoryItemSpinEdit2.AutoHeight = False
+        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit2.DisplayFormat.FormatString = "N0"
+        Me.RepositoryItemSpinEdit2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit2.Mask.EditMask = "N0"
+        Me.RepositoryItemSpinEdit2.MaxValue = New Decimal(New Integer() {-1486618625, 232830643, 0, 0})
+        Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Note"
+        Me.GridColumn14.FieldName = "note"
+        Me.GridColumn14.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.ReadOnly = True
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'BtnPrepareOrder
+        '
+        Me.BtnPrepareOrder.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnPrepareOrder.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnPrepareOrder.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnPrepareOrder.Appearance.Options.UseBackColor = True
+        Me.BtnPrepareOrder.Appearance.Options.UseFont = True
+        Me.BtnPrepareOrder.Appearance.Options.UseForeColor = True
+        Me.BtnPrepareOrder.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnPrepareOrder.Location = New System.Drawing.Point(0, 279)
+        Me.BtnPrepareOrder.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnPrepareOrder.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnPrepareOrder.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnPrepareOrder.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnPrepareOrder.Name = "BtnPrepareOrder"
+        Me.BtnPrepareOrder.Size = New System.Drawing.Size(699, 32)
+        Me.BtnPrepareOrder.TabIndex = 20
+        Me.BtnPrepareOrder.Text = "Transfer to GON/GOS"
         '
         'FormOLStoreRestock
         '
@@ -550,15 +721,22 @@ Partial Class FormOLStoreRestock
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
+        CType(Me.XTCOLWH, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCOLWH.ResumeLayout(False)
+        Me.XTPOLWHDirect.ResumeLayout(False)
+        Me.XTPOLWHSyncSellerCenter.ResumeLayout(False)
+        CType(Me.GCWHSync, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVWHSync, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -604,4 +782,18 @@ Partial Class FormOLStoreRestock
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTCOLWH As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPOLWHDirect As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPOLWHSyncSellerCenter As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCWHSync As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVWHSync As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSpinEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnPrepareOrder As DevExpress.XtraEditors.SimpleButton
 End Class

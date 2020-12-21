@@ -9,6 +9,7 @@
     Public id_comp_group As String = "-1"
     Dim id_gol_use_induk As String = "-1"
     Dim id_gol As String = "-1"
+    Dim id_wh_ol_exclude As String = ""
 
     Private Sub FormOLStoreRestock_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actionLoad()
@@ -37,6 +38,9 @@
             id_gol_use_induk = data_gol.Rows(0)("id_comp_sale_induk").ToString
             id_gol = data_gol.Rows(0)("id_comp_sale").ToString
         End If
+        'exclude gudang vios
+        Dim query_wh_vios As String = "SELECT GROUP_CONCAT(DISTINCT ol.id_comp) AS `id_wh` FROM tb_m_comp_volcom_ol ol "
+        id_wh_ol_exclude = execute_query(query_wh_vios, 0, True, "", "", "", "")
         'gudang omline
         viewStockGOL()
         'gudang lain
@@ -52,6 +56,18 @@
         FormMain.SplashScreenManager1.SetWaitFormDescription("Get stock")
         GCOnlineWH.DataSource = dataStockGOL()
         GVOnlineWH.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewStockVIOS()
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Get stock VIOS")
+        GCWHSync.DataSource = dataStockVIOS()
+        GVWHSync.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
@@ -76,12 +92,29 @@
         INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack 
         INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator 
         INNER JOIN tb_m_comp wh ON wh.id_comp = loc.id_comp AND wh.id_wh_group='" + id_gol_use_induk + "'
-        WHERE fg.id_product='" + id_product + "'
+        WHERE fg.id_product='" + id_product + "' AND wh.id_comp NOT IN(" + id_wh_ol_exclude + ")
         GROUP BY wh.id_comp
         HAVING total_stock>0 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
+
+    Function dataStockVIOS() As DataTable
+        Dim query As String = "SELECT fg.id_wh_drawer, wh.id_comp, wh.comp_number, wh.comp_name, 
+        SUM(IF(fg.id_storage_category='2', CONCAT('-', fg.storage_product_qty), fg.storage_product_qty)) AS `total_stock`, 0 AS `total_order`, 'OK' AS `note`
+        FROM tb_storage_fg fg 
+        INNER JOIN tb_m_wh_drawer drw ON fg.id_wh_drawer = drw.id_wh_drawer 
+        INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack 
+        INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator 
+        INNER JOIN tb_m_comp wh ON wh.id_comp = loc.id_comp AND wh.id_wh_group='" + id_gol_use_induk + "'
+        WHERE fg.id_product='" + id_product + "' AND wh.id_comp IN(" + id_wh_ol_exclude + ")
+        GROUP BY wh.id_comp
+        HAVING total_stock>0 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
+
+
 
     Function dataStockOther() As DataTable
         Dim query As String = "SELECT fg.id_wh_drawer, wh.id_comp, wh.comp_number, wh.comp_name, 
@@ -121,76 +154,89 @@
     End Sub
 
     Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
-        viewStockGOL()
+        If XTCOLWH.SelectedTabPageIndex = 0 Then
+            viewStockGOL()
+        Else
+            viewStockVIOS()
+        End If
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        print(GCOnlineWH, "ONLINE WH STOCK LIST")
+        If XTCOLWH.SelectedTabPageIndex = 0 Then
+            print(GCOnlineWH, "ONLINE WH STOCK LIST")
+        Else
+            print(GCWHSync, "ONLINE VIOS WH STOCK LIST")
+        End If
         Cursor = Cursors.Default
     End Sub
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            makeSafeGV(GVOnlineWH)
-            GCOnlineWH.RefreshDataSource()
-            GVOnlineWH.RefreshData()
-
-
-            If checkValidQtyRestock("1") Then
-                'check stock
-                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
-                    FormMain.SplashScreenManager1.ShowWaitForm()
-                End If
-                FormMain.SplashScreenManager1.SetWaitFormDescription("Checking stock")
-                Dim dts As DataTable = dataStockGOL()
-                For c As Integer = 0 To GVOnlineWH.RowCount - 1
-                    Dim id_drawer_cek As String = GVOnlineWH.GetRowCellValue(c, "id_wh_drawer").ToString
-                    Dim dts_filter As DataRow() = dts.Select("[id_wh_drawer]='" + id_drawer_cek + "' ")
-                    If dts_filter.Length <= 0 Then
-                        GVOnlineWH.SetRowCellValue(c, "total_stock", 0)
-                    Else
-                        GVOnlineWH.SetRowCellValue(c, "total_stock", dts_filter(0)("total_stock"))
-                    End If
-
-                    If GVOnlineWH.GetRowCellValue(c, "total_order") <= GVOnlineWH.GetRowCellValue(c, "total_stock") Then
-                        GVOnlineWH.SetRowCellValue(c, "note", "OK")
-                    Else
-                        GVOnlineWH.SetRowCellValue(c, "note", "Not Valid")
-                    End If
-                Next
-                Dim cond_stock As Boolean = True
-                GVOnlineWH.ActiveFilterString = "[note]<>'OK'"
-                If GVOnlineWH.RowCount > 0 Then
-                    cond_stock = False
-                Else
-                    cond_stock = True
-                End If
-                FormMain.SplashScreenManager1.CloseWaitForm()
+        makeSafeGV(GVOnlineWH)
+        GVOnlineWH.ActiveFilterString = "[total_order]>0"
+        If GVOnlineWH.RowCount > 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
                 makeSafeGV(GVOnlineWH)
+                GCOnlineWH.RefreshDataSource()
+                GVOnlineWH.RefreshData()
 
-                If cond_stock Then
+
+                If checkValidQtyRestock("1") Then
+                    'check stock
                     If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
                         FormMain.SplashScreenManager1.ShowWaitForm()
                     End If
-                    For i As Integer = 0 To GVOnlineWH.RowCount - 1
-                        FormMain.SplashScreenManager1.SetWaitFormDescription("Restock " + (i + 1).ToString + "/" + GVOnlineWH.RowCount.ToString)
-                        Dim id_wh_from As String = GVOnlineWH.GetRowCellValue(i, "id_comp").ToString
-                        Dim qty As String = decimalSQL(GVOnlineWH.GetRowCellValue(i, "total_order").ToString)
-                        execute_non_query_long("CALL create_oos_restock_wh_ol_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol + ", " + id_product + ", '" + qty + "','1');", True, "", "", "", "")
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Checking stock")
+                    Dim dts As DataTable = dataStockGOL()
+                    For c As Integer = 0 To GVOnlineWH.RowCount - 1
+                        Dim id_drawer_cek As String = GVOnlineWH.GetRowCellValue(c, "id_wh_drawer").ToString
+                        Dim dts_filter As DataRow() = dts.Select("[id_wh_drawer]='" + id_drawer_cek + "' ")
+                        If dts_filter.Length <= 0 Then
+                            GVOnlineWH.SetRowCellValue(c, "total_stock", 0)
+                        Else
+                            GVOnlineWH.SetRowCellValue(c, "total_stock", dts_filter(0)("total_stock"))
+                        End If
+
+                        If GVOnlineWH.GetRowCellValue(c, "total_order") <= GVOnlineWH.GetRowCellValue(c, "total_stock") Then
+                            GVOnlineWH.SetRowCellValue(c, "note", "OK")
+                        Else
+                            GVOnlineWH.SetRowCellValue(c, "note", "Not Valid")
+                        End If
                     Next
+                    Dim cond_stock As Boolean = True
+                    GVOnlineWH.ActiveFilterString = "[note]<>'OK'"
+                    If GVOnlineWH.RowCount > 0 Then
+                        cond_stock = False
+                    Else
+                        cond_stock = True
+                    End If
                     FormMain.SplashScreenManager1.CloseWaitForm()
-                    viewStockGOL()
+                    makeSafeGV(GVOnlineWH)
+
+                    If cond_stock Then
+                        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                            FormMain.SplashScreenManager1.ShowWaitForm()
+                        End If
+                        For i As Integer = 0 To GVOnlineWH.RowCount - 1
+                            FormMain.SplashScreenManager1.SetWaitFormDescription("Restock " + (i + 1).ToString + "/" + GVOnlineWH.RowCount.ToString)
+                            Dim id_wh_from As String = GVOnlineWH.GetRowCellValue(i, "id_comp").ToString
+                            Dim qty As String = decimalSQL(GVOnlineWH.GetRowCellValue(i, "total_order").ToString)
+                            execute_non_query_long("CALL create_oos_restock_wh_ol_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol + ", " + id_product + ", '" + qty + "','1');", True, "", "", "", "")
+                        Next
+                        FormMain.SplashScreenManager1.CloseWaitForm()
+                        viewStockGOL()
+                    Else
+                        stopCustom("Qty restock exceed available qty")
+                    End If
                 Else
-                    stopCustom("Qty restock exceed available qty")
+                    stopCustom("Already on process restock")
                 End If
-            Else
-                stopCustom("Already on process restock")
+                Cursor = Cursors.Default
             End If
-            Cursor = Cursors.Default
         End If
+        makeSafeGV(GVOnlineWH)
     End Sub
 
     Function checkValidQtyRestock(ByVal is_gon As String) As Boolean
@@ -231,67 +277,89 @@
     End Function
 
     Private Sub BCreateOther_Click(sender As Object, e As EventArgs) Handles BCreateOther.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            makeSafeGV(GVWH)
-            GCWH.RefreshDataSource()
-            GVWH.RefreshData()
-            If checkValidQtyRestock("2") Then
-                'check stock
-                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
-                    FormMain.SplashScreenManager1.ShowWaitForm()
-                End If
-                FormMain.SplashScreenManager1.SetWaitFormDescription("Checking stock")
-                Dim dts As DataTable = dataStockOther()
-                For c As Integer = 0 To GVWH.RowCount - 1
-                    Dim id_drawer_cek As String = GVWH.GetRowCellValue(c, "id_wh_drawer").ToString
-                    Dim dts_filter As DataRow() = dts.Select("[id_wh_drawer]='" + id_drawer_cek + "' ")
-                    If dts_filter.Length <= 0 Then
-                        GVWH.SetRowCellValue(c, "total_stock", 0)
-                    Else
-                        GVWH.SetRowCellValue(c, "total_stock", dts_filter(0)("total_stock"))
-                    End If
-
-                    If GVWH.GetRowCellValue(c, "total_order") <= GVWH.GetRowCellValue(c, "total_stock") Then
-                        GVWH.SetRowCellValue(c, "note", "OK")
-                    Else
-                        GVWH.SetRowCellValue(c, "note", "Not Valid")
-                    End If
-                Next
-                Dim cond_stock As Boolean = True
-                GVWH.ActiveFilterString = "[note]<>'OK'"
-                If GVWH.RowCount > 0 Then
-                    cond_stock = False
-                Else
-                    cond_stock = True
-                End If
-                FormMain.SplashScreenManager1.CloseWaitForm()
+        makeSafeGV(GVWH)
+        If GVWH.RowCount > 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
                 makeSafeGV(GVWH)
-
-                If cond_stock Then
+                GCWH.RefreshDataSource()
+                GVWH.RefreshData()
+                If checkValidQtyRestock("2") Then
+                    'check stock
                     If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
                         FormMain.SplashScreenManager1.ShowWaitForm()
                     End If
-                    For i As Integer = 0 To GVWH.RowCount - 1
-                        FormMain.SplashScreenManager1.SetWaitFormDescription("Restock " + (i + 1).ToString + "/" + GVWH.RowCount.ToString)
-                        Dim id_wh_from As String = GVWH.GetRowCellValue(i, "id_comp").ToString
-                        Dim qty As String = decimalSQL(GVWH.GetRowCellValue(i, "total_order").ToString)
-                        execute_non_query_long("CALL create_oos_restock_wh_other_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol_use_induk + ", " + id_product + ", '" + qty + "');", True, "", "", "", "")
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Checking stock")
+                    Dim dts As DataTable = dataStockOther()
+                    For c As Integer = 0 To GVWH.RowCount - 1
+                        Dim id_drawer_cek As String = GVWH.GetRowCellValue(c, "id_wh_drawer").ToString
+                        Dim dts_filter As DataRow() = dts.Select("[id_wh_drawer]='" + id_drawer_cek + "' ")
+                        If dts_filter.Length <= 0 Then
+                            GVWH.SetRowCellValue(c, "total_stock", 0)
+                        Else
+                            GVWH.SetRowCellValue(c, "total_stock", dts_filter(0)("total_stock"))
+                        End If
+
+                        If GVWH.GetRowCellValue(c, "total_order") <= GVWH.GetRowCellValue(c, "total_stock") Then
+                            GVWH.SetRowCellValue(c, "note", "OK")
+                        Else
+                            GVWH.SetRowCellValue(c, "note", "Not Valid")
+                        End If
                     Next
+                    Dim cond_stock As Boolean = True
+                    GVWH.ActiveFilterString = "[note]<>'OK'"
+                    If GVWH.RowCount > 0 Then
+                        cond_stock = False
+                    Else
+                        cond_stock = True
+                    End If
                     FormMain.SplashScreenManager1.CloseWaitForm()
-                    viewStockOther()
+                    makeSafeGV(GVWH)
+
+                    If cond_stock Then
+                        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                            FormMain.SplashScreenManager1.ShowWaitForm()
+                        End If
+                        For i As Integer = 0 To GVWH.RowCount - 1
+                            FormMain.SplashScreenManager1.SetWaitFormDescription("Restock " + (i + 1).ToString + "/" + GVWH.RowCount.ToString)
+                            Dim id_wh_from As String = GVWH.GetRowCellValue(i, "id_comp").ToString
+                            Dim qty As String = decimalSQL(GVWH.GetRowCellValue(i, "total_order").ToString)
+                            execute_non_query_long("CALL create_oos_restock_wh_other_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol_use_induk + ", " + id_product + ", '" + qty + "');", True, "", "", "", "")
+                        Next
+                        FormMain.SplashScreenManager1.CloseWaitForm()
+                        viewStockOther()
+                    Else
+                        stopCustom("Qty restock exceed available qty")
+                    End If
                 Else
-                    stopCustom("Qty restock exceed available qty")
+                    stopCustom("Already on process restock")
                 End If
-            Else
-                stopCustom("Already on process restock")
+                Cursor = Cursors.Default
             End If
-            Cursor = Cursors.Default
         End If
+        makeSafeGV(GVWH)
     End Sub
 
     Private Sub LabelControl4_Click(sender As Object, e As EventArgs) Handles LabelControl4.Click
 
+    End Sub
+
+    Private Sub BtnPrepareOrder_Click(sender As Object, e As EventArgs) Handles BtnPrepareOrder.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesOrderDet.action = "ins"
+        FormSalesOrderDet.is_transfer_data = "1"
+        FormSalesOrderDet.id_sales_order = "-1"
+        FormSalesOrderDet.ShowDialog()
+        viewStockVIOS()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCOLWH_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCOLWH.SelectedPageChanged
+        If XTCOLWH.SelectedTabPageIndex = 0 Then
+            viewStockGOL()
+        ElseIf XTCOLWH.SelectedTabPageIndex = 1 Then
+            viewStockVIOS()
+        End If
     End Sub
 End Class
