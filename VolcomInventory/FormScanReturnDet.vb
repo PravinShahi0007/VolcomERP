@@ -12,7 +12,7 @@
 
     Private Sub FormScanReturnDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Not id_scan_return = "-1" Then
-            Dim q As String = "SELECT sr.id_return_note,rn.label_number,rn.`number_return_note`,rn.qty,GROUP_CONCAT(DISTINCT(CONCAT(cst.`comp_number`,' - ',cst.comp_name)) ORDER BY cst.`comp_number` SEPARATOR '\n') AS list_store
+            Dim q As String = "SELECT sr.is_lock,sr.id_return_note,rn.label_number,rn.`number_return_note`,rn.qty,GROUP_CONCAT(DISTINCT(CONCAT(cst.`comp_number`,' - ',cst.comp_name)) ORDER BY cst.`comp_number` SEPARATOR '\n') AS list_store
 FROM tb_scan_return sr 
 INNER JOIN tb_return_note rn ON rn.id_return_note=sr.id_return_note
 LEFT JOIN tb_return_note_store st ON st.`id_return_note`=rn.`id_return_note`
@@ -25,6 +25,10 @@ WHERE sr.id_scan_return='" & id_scan_return & "'"
                 TEQty.EditValue = dt.Rows(0)("qty").ToString
                 MEListStore.Text = dt.Rows(0)("list_store").ToString
                 id_return_note = dt.Rows(0)("id_return_note").ToString
+                If dt.Rows(0)("is_lock").ToString = "1" Then
+                    PCAddDel.Visible = False
+                    PCButton.Visible = False
+                End If
             End If
             TEReturnLabel.Enabled = False
             BReset.Visible = False
