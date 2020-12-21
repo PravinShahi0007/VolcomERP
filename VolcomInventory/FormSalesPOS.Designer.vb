@@ -1545,9 +1545,9 @@ Partial Class FormSalesPOS
         Me.BtnHistProbList.Image = CType(resources.GetObject("BtnHistProbList.Image"), System.Drawing.Image)
         Me.BtnHistProbList.Location = New System.Drawing.Point(619, 2)
         Me.BtnHistProbList.Name = "BtnHistProbList"
-        Me.BtnHistProbList.Size = New System.Drawing.Size(135, 42)
+        Me.BtnHistProbList.Size = New System.Drawing.Size(141, 42)
         Me.BtnHistProbList.TabIndex = 6
-        Me.BtnHistProbList.Text = "Reconcile History"
+        Me.BtnHistProbList.Text = "Transaction History"
         '
         'BtnPrintProb
         '

@@ -475,4 +475,10 @@
         makeSafeGV(GVProbList)
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnHistProbList_Click(sender As Object, e As EventArgs) Handles BtnHistProbList.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesProbTransHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

@@ -5589,6 +5589,12 @@
     <Compile Include="FormSalesPOSQty.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesProbTransHistory.Designer.vb">
+      <DependentUpon>FormSalesProbTransHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesProbTransHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPromo.designer.vb">
       <DependentUpon>FormSalesPromo.vb</DependentUpon>
     </Compile>
@@ -11980,6 +11986,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSQty.resx">
       <DependentUpon>FormSalesPOSQty.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesProbTransHistory.resx">
+      <DependentUpon>FormSalesProbTransHistory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPromo.resx">
       <DependentUpon>FormSalesPromo.vb</DependentUpon>

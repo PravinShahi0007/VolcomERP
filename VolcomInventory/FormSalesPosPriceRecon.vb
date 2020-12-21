@@ -195,7 +195,14 @@
                     End If
 
                     'refresh main
-                    FormSalesPOS.viewProbList()
+                    Try
+                        FormSalesPOS.viewProbList()
+                    Catch ex As Exception
+                    End Try
+                    Try
+                        FormSalesProbTransHistory.viewPriceRecon()
+                    Catch ex As Exception
+                    End Try
                     'refresh det
                     action = "upd"
                     actionLoad()
@@ -278,7 +285,14 @@
                 execute_non_query(query_upd, True, "", "", "", "")
 
                 'refresh
-                FormSalesPOS.viewProbList()
+                Try
+                    FormSalesPOS.viewProbList()
+                Catch ex As Exception
+                End Try
+                Try
+                    FormSalesProbTransHistory.viewPriceRecon()
+                Catch ex As Exception
+                End Try
                 actionLoad()
             End If
         Else
@@ -297,7 +311,14 @@
             Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt, id)
             execute_non_query(queryrm, True, "", "", "", "")
 
-            FormSalesPOS.viewProbList()
+            Try
+                FormSalesPOS.viewProbList()
+            Catch ex As Exception
+            End Try
+            Try
+                FormSalesProbTransHistory.viewPriceRecon()
+            Catch ex As Exception
+            End Try
             actionLoad()
             Cursor = Cursors.Default
         End If
