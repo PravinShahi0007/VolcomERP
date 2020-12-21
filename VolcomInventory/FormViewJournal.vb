@@ -2,9 +2,24 @@
     Public id_trans As String = "-1"
     Public is_enable_view_doc As Boolean = True
     Public show_trans_number As Boolean = False
-
+    '
+    Public is_enable_search As Boolean = False
+    '
     Private Sub FormViewJournal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         load_billing_type(LEBilling)
+
+        If is_enable_search Then
+            PCSearch.Visible = True
+            TEVoucherSearch.Text = "JUR00001"
+        Else
+            PCSearch.Visible = False
+            load_det()
+        End If
+    End Sub
+
+    Sub load_det()
+        PCButton.Visible = True
+
         Dim query As String = "SELECT a.id_user,a.acc_trans_number, a.report_number,DATE_FORMAT(a.date_reference,'%d-%M-%Y') as date_reference,DATE_FORMAT(a.date_created,'%d-%M-%Y') as date_created,a.acc_trans_note,id_report_status, a.id_bill_type FROM tb_a_acc_trans a WHERE a.id_acc_trans='" & id_trans & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -99,5 +114,20 @@
         Dim Report As New ReportAccountingJournal()
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+    End Sub
+
+    Private Sub BViewVoucher_Click(sender As Object, e As EventArgs) Handles BViewVoucher.Click
+        If TEVoucherSearch.Text = "" Then
+            warningCustom("Please put voucher number (JURXXXX)")
+        Else
+            Dim q As String = "SELECT id_acc_trans FROM tb_a_acc_trans WHERE acc_trans_number='" & addSlashes(TEVoucherSearch.Text) & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count = 0 Then
+                warningCustom("Voucher number not found. Please check again your number.")
+            Else
+                id_trans = dt.Rows(0)("id_acc_trans").ToString
+                load_det()
+            End If
+        End If
     End Sub
 End Class
