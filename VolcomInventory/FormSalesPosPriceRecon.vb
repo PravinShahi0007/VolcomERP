@@ -63,6 +63,17 @@
             Next
             FormMain.SplashScreenManager1.CloseWaitForm()
         ElseIf action = "upd" Then
+            Dim query As String = "SELECT r.id_sales_pos_recon, r.number, r.created_date, r.note, r.id_report_status, rs.report_status, r.is_confirm 
+            FROM tb_sales_pos_recon r
+            INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = r.id_report_status
+            WHERE r.id_sales_pos_recon='" + id + "' "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            TxtNumber.Text = data.Rows(0)("number").ToString
+            DECreated.EditValue = data.Rows(0)("created_date")
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            id_report_status = data.Rows(0)("id_report_status").ToString
+            is_confirm = data.Rows(0)("is_confirm").ToString
+            MENote.Text = data.Rows(0)("note").ToString
             viewDetail()
             allowStatus()
         End If
@@ -100,7 +111,33 @@
     End Sub
 
     Sub allowStatus()
+        If is_confirm = "2" And is_view = "-1" Then
+            MENote.Properties.ReadOnly = False
+            BtnCreate.Visible = True
+            BtnConfirm.Visible = True
+            BtnMark.Visible = False
+        Else
+            MENote.Properties.ReadOnly = True
+            BtnCreate.Visible = False
+            BtnConfirm.Visible = False
+            BtnMark.Visible = True
+        End If
+        BtnAttachment.Visible = True
 
+        'reset propose
+        If is_view = "-1" And is_confirm = "1" Then
+            BtnResetPropose.Visible = True
+        Else
+            BtnResetPropose.Visible = False
+        End If
+
+        If id_report_status = "6" Then
+            BtnCancell.Visible = False
+            BtnResetPropose.Visible = False
+        ElseIf id_report_status = "5" Then
+            BtnCancell.Visible = False
+            BtnResetPropose.Visible = False
+        End If
     End Sub
 
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
@@ -124,13 +161,28 @@
             Else
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
                     'save
+                    Dim note As String = addSlashes(MENote.ToString)
+                    Dim query As String = "INSERT INTO tb_sales_pos_recon(created_date, note, id_report_status) 
+                    VALUES(NOW(), '" + note + "',1); SELECT LAST_INSERT_ID(); "
+                    id = execute_query(query, 0, True, "", "", "", "")
+                    execute_non_query("CALL gen_number(" + id + ", " + rmt + ");", True, "", "", "", "")
+
                     'refresh main
+                    FormSalesPOS.viewProbList()
                     'refresh det
+                    action = "upd"
+                    actionLoad()
+                    warningCustom("Please add attachment")
+                    showAttach()
+                    Cursor = Cursors.Default
                 End If
             End If
         Else
-
+            Cursor = Cursors.WaitCursor
+            saveChangesHead()
+            Cursor = Cursors.Default
         End If
     End Sub
 
@@ -143,6 +195,90 @@
         FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.id_report = id
         FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        'chek file
+        Dim cond_file As Boolean = False
+        Dim qf As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type='" + rmt + "' AND d.id_report='" + id + "' "
+        Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
+        If df.Rows.Count > 0 Then
+            cond_file = True
+        Else
+            cond_file = False
+        End If
+
+        If Not cond_file Then
+            stopCustom("Please attach document first")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to propose this document ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                saveChangesHead()
+                Dim query As String = "UPDATE tb_sales_pos_recon SET is_confirm=1 WHERE id_sales_pos_recon='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+                action = "upd"
+                actionLoad()
+                infoCustom("Propose submitted")
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Sub saveChangesHead()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "UPDATE tb_sales_pos_recon SET note='" + addSlashes(MENote.ToString) + "' WHERE id_sales_pos_recon='" + id + "'"
+        execute_non_query(query, True, "", "", "", "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt + " AND rm.id_report_status=3
+        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query_upd As String = "-- delete report mark
+                DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt + " AND id_report=" + id + "; 
+                -- reset confirm
+                UPDATE tb_sales_pos_recon SET is_confirm=2 WHERE id_sales_pos_recon=" + id + "; "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                'refresh
+                FormSalesPOS.viewProbList()
+                actionLoad()
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
+    End Sub
+
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_sales_pos_recon SET id_report_status=5 WHERE id_sales_pos_recon='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt, id)
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            FormSalesPOS.viewProbList()
+            actionLoad()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = rmt
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

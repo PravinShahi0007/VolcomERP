@@ -345,6 +345,10 @@
     End Sub
 
     Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles BtnViewProb.Click
+        viewProbList()
+    End Sub
+
+    Sub viewProbList()
         Cursor = Cursors.WaitCursor
         'type
         Dim cond_type As String = ""
