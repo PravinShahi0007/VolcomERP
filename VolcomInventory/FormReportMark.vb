@@ -630,6 +630,9 @@
         ElseIf report_mark_type = "241" Then
             'adj og
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_adjustment_og WHERE id_adjustment = '{0}'", id_report)
+        ElseIf report_mark_type = "281" Then
+            'price recon
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sales_pos_recon WHERE id_sales_pos_recon = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -9065,6 +9068,23 @@ WHERE pps.id_additional_cost_pps='" & id_report & "'"
 
             'update status
             query = String.Format("UPDATE tb_adjustment_og SET id_report_status='{0}' WHERE id_adjustment ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "281" Then
+            'price recon
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim query_prc_valid As String = "UPDATE tb_sales_pos_prob main
+                INNER JOIN tb_sales_pos_recon_det rd ON rd.id_sales_pos_prob = main.id_sales_pos_prob AND rd.id_sales_pos_recon=" + id_report + "
+                SET main.id_design_price_valid = rd.id_design_price_valid, main.design_price_valid = rd.design_price_valid
+                WHERE main.is_invalid_price=1 "
+                execute_non_query(query_prc_valid, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_sales_pos_recon SET id_report_status='{0}' WHERE id_sales_pos_recon ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

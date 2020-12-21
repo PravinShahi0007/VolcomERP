@@ -4,7 +4,7 @@
     Dim rmt As String = "281"
     Dim id_report_status As String = "-1"
     Dim is_confirm As String = "2"
-    Dim is_view As String = ""
+    Public is_view As String = "-1"
 
     Private Sub FormSalesPosPriceRecon_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
