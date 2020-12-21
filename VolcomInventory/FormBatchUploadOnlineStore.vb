@@ -2,6 +2,8 @@
     Private loaded As Boolean = False
 
     Private Sub FormBatchUploadOnlineStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        view_template()
+
         view_online_store()
         view_season()
         view_division()
@@ -764,6 +766,12 @@
 
     Private Sub SLUEOnlineStore_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEOnlineStore.EditValueChanged
         clear_data()
+
+        If SLUEOnlineStore.EditValue.ToString = "5" Or SLUEOnlineStore.EditValue.ToString = "8" Then
+            SLUETemplate.Visible = True
+        Else
+            SLUETemplate.Visible = False
+        End If
     End Sub
 
     Sub clear_data()
@@ -827,5 +835,15 @@
 
     Private Sub SBSearch_Click(sender As Object, e As EventArgs) Handles SBSearch.Click
         FormBatchUploadOnlineStoreSearch.ShowDialog()
+    End Sub
+
+    Sub view_template()
+        Dim query As String = "
+            SELECT 1 AS id_template, 'New Product' AS template_name
+            UNION ALL
+            SELECT 2 AS id_template, 'Update Product' AS template_name
+        "
+
+        viewSearchLookupQuery(SLUETemplate, query, "id_template", "template_name", "id_template")
     End Sub
 End Class

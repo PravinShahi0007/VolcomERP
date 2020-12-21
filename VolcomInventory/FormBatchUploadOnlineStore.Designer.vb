@@ -46,6 +46,10 @@ Partial Class FormBatchUploadOnlineStore
         Me.GCBatchUpload = New DevExpress.XtraGrid.GridControl()
         Me.GVBatchUpload = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemMemoEdit = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.SLUETemplate = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEProductCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,10 +62,14 @@ Partial Class FormBatchUploadOnlineStore
         CType(Me.GCBatchUpload, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBatchUpload, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUETemplate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.PanelControl1.Controls.Add(Me.SLUETemplate)
         Me.PanelControl1.Controls.Add(Me.SBSearch)
         Me.PanelControl1.Controls.Add(Me.TEProductCode)
         Me.PanelControl1.Controls.Add(Me.SLUEDivision)
@@ -285,6 +293,38 @@ Partial Class FormBatchUploadOnlineStore
         '
         Me.RepositoryItemMemoEdit.Name = "RepositoryItemMemoEdit"
         '
+        'SLUETemplate
+        '
+        Me.SLUETemplate.Location = New System.Drawing.Point(297, 15)
+        Me.SLUETemplate.Name = "SLUETemplate"
+        Me.SLUETemplate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUETemplate.Properties.View = Me.GridView4
+        Me.SLUETemplate.Size = New System.Drawing.Size(107, 20)
+        Me.SLUETemplate.TabIndex = 15
+        Me.SLUETemplate.Visible = False
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "GridColumn1"
+        Me.GridColumn11.FieldName = "id_template"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Template"
+        Me.GridColumn12.FieldName = "template_name"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
+        '
         'FormBatchUploadOnlineStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -307,6 +347,8 @@ Partial Class FormBatchUploadOnlineStore
         CType(Me.GCBatchUpload, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBatchUpload, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUETemplate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -337,4 +379,8 @@ Partial Class FormBatchUploadOnlineStore
     Friend WithEvents RepositoryItemMemoEdit As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents SBSearch As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEProductCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SLUETemplate As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
