@@ -373,7 +373,7 @@
         'invoice status
         Dim cond_status As String = ""
         If LEInvoiceStt.EditValue.ToString <> "0" Then
-            cond_status = "AND p.is_open_invoice='" + LEInvoiceStt.EditValue.ToString + "' "
+            cond_status = "AND is_open_invoice_view='" + LEInvoiceStt.Text + "' "
         End If
 
         'store
@@ -389,9 +389,12 @@
         p.id_product, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
         p.id_design_price_retail, p.design_price_retail, p.design_price_store, 
         IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid,
-        p.store_qty, p.invoice_qty, p.no_stock_qty, IFNULL(proc.qty_on_process,0) AS `qty_on_process`, IFNULL(proc.qty_proceed,0) AS `qty_proceed`,
+        p.store_qty, 
+        p.invoice_qty, IFNULL(proc_prc.qty_on_process,0) AS `qty_on_process_price`, IFNULL(proc_prc.qty_proceed,0) AS `qty_proceed_price`,
+        p.no_stock_qty, IFNULL(proc.qty_on_process,0) AS `qty_on_process`, IFNULL(proc.qty_proceed,0) AS `qty_proceed`,
         (p.invoice_qty+p.no_stock_qty) AS `total_qty`,
-        p.is_open_invoice, IF(p.is_open_invoice=1,'Open', 'Close') AS `is_open_invoice_view`, 'No' AS `is_select`, 0 AS `qty_new`
+        'No' AS `is_select`, 0 AS `qty_new`,
+        IF(p.is_invalid_price=2,IF(p.no_stock_qty=IFNULL(proc.qty_proceed,0),'Close', 'Open'), IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0),'Close','Open')) AS `is_open_invoice_view`
         FROM tb_sales_pos_prob p
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -409,8 +412,18 @@
             WHERE !ISNULL(spd.id_sales_pos_prob)
             GROUP BY spd.id_sales_pos_prob
         ) proc ON proc.id_sales_pos_prob = p.id_sales_pos_prob
-        WHERE 1=1 AND sp.id_report_status=6 " + cond_type + cond_status + cond_store
-        query += "ORDER BY p.id_sales_pos ASC "
+        LEFT JOIN (
+            SELECT spd.id_sales_pos_prob_price, 
+            SUM(IF(sp.id_report_status<5,spd.sales_pos_det_qty,0)) AS `qty_on_process`,
+            SUM(IF(sp.id_report_status=6,spd.sales_pos_det_qty,0)) AS `qty_proceed`
+            FROM tb_sales_pos sp
+            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+            WHERE !ISNULL(spd.id_sales_pos_prob_price)
+            GROUP BY spd.id_sales_pos_prob_price
+        ) proc_prc ON proc.id_sales_pos_prob = p.id_sales_pos_prob
+        WHERE 1=1 AND sp.id_report_status=6 " + cond_type + cond_store
+        query += "HAVING 1=1 " + cond_status
+        query += "ORDER BY id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProbList.DataSource = data
         GVProbList.BestFitColumns()
@@ -530,41 +543,76 @@
     End Sub
 
     Private Sub BtnCreateInvoice_Click(sender As Object, e As EventArgs) Handles BtnCreateInvoice.Click
+        If SLEStoreProb.EditValue.ToString = "0" Then
+            stopCustom("Please select spesific store")
+            Exit Sub
+        End If
+
         Cursor = Cursors.WaitCursor
         makeSafeGV(GVProbList)
-        GVProbList.ActiveFilterString = "[qty_new]>0 "
-        If GVProbList.RowCount > 0 Then
-            Dim err As String = ""
-            'check valid qty
-            For c As Integer = 0 To GVProbList.RowCount - 1
-                Dim id_sales_pos_prob_cek As String = GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
-                Dim qty_input As Decimal = GVProbList.GetRowCellValue(c, "qty_new")
-                Dim qty_no_stock As Decimal = GVProbList.GetRowCellValue(c, "no_stock_qty")
-                Dim code As String = GVProbList.GetRowCellValue(c, "code").ToString
-                Dim qc As String = "SELECT spd.id_sales_pos_prob,  IFNULL(SUM(spd.sales_pos_det_qty),0) AS `total_inv`
-                FROM tb_sales_pos sp
-                INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
-                WHERE sp.id_report_status!=5 AND !ISNULL(spd.id_sales_pos_prob) AND spd.id_sales_pos_prob='" + id_sales_pos_prob_cek + "' "
-                Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-                Dim qty_limit As Decimal = 0.00
-                Dim qty_inv As Decimal = 0.00
-                If dc.Rows.Count <= 0 Then
-                    qty_inv = 0
-                Else
-                    qty_inv = dc.Rows(0)("total_inv")
-                End If
-                qty_limit = qty_no_stock - qty_inv
-                If qty_input > qty_limit Then
-                    err += code + ", can't exceed " + qty_limit.ToString + System.Environment.NewLine
-                End If
-            Next
+        If LETypeProb.EditValue.ToString = "1" Then
+            GVProbList.ActiveFilterString = "[is_select]='Yes' "
+            If GVProbList.RowCount > 0 Then
+                'price
+                Dim err As String = ""
+                For c As Integer = 0 To GVProbList.RowCount - 1
+                    Dim id_sales_pos_prob_cek As String = GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
+                    Dim code As String = GVProbList.GetRowCellValue(c, "code").ToString
+                    Dim qc As String = "SELECT spd.id_sales_pos_prob_price
+                    FROM tb_sales_pos sp
+                    INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+                    WHERE sp.id_report_status!=5 AND !ISNULL(spd.id_sales_pos_prob_price) AND spd.id_sales_pos_prob_price='" + id_sales_pos_prob_cek + "' "
+                    Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
-            If err <> "" Then
-                stopCustom("Qty not valid : " + System.Environment.NewLine + err)
-            Else
-                FormSalesPOSDet.action = "ins"
-                FormSalesPOSDet.id_menu = id_menu
-                FormSalesPOSDet.ShowDialog()
+                    If dc.Rows.Count > 0 Then
+                        err += code + System.Environment.NewLine
+                    End If
+                Next
+
+                If err <> "" Then
+                    stopCustom("Already processed : " + System.Environment.NewLine + err)
+                Else
+                    FormSalesPOSDet.action = "ins"
+                    FormSalesPOSDet.id_menu = id_menu
+                    FormSalesPOSDet.ShowDialog()
+                End If
+            End If
+        ElseIf LETypeProb.EditValue.ToString = "2" Then
+            GVProbList.ActiveFilterString = "[qty_new]>0 "
+            If GVProbList.RowCount > 0 Then
+                'no stock
+                Dim err As String = ""
+                'check valid qty
+                For c As Integer = 0 To GVProbList.RowCount - 1
+                    Dim id_sales_pos_prob_cek As String = GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
+                    Dim qty_input As Decimal = GVProbList.GetRowCellValue(c, "qty_new")
+                    Dim qty_no_stock As Decimal = GVProbList.GetRowCellValue(c, "no_stock_qty")
+                    Dim code As String = GVProbList.GetRowCellValue(c, "code").ToString
+                    Dim qc As String = "SELECT spd.id_sales_pos_prob,  IFNULL(SUM(spd.sales_pos_det_qty),0) AS `total_inv`
+                    FROM tb_sales_pos sp
+                    INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+                    WHERE sp.id_report_status!=5 AND !ISNULL(spd.id_sales_pos_prob) AND spd.id_sales_pos_prob='" + id_sales_pos_prob_cek + "' "
+                    Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    Dim qty_limit As Decimal = 0.00
+                    Dim qty_inv As Decimal = 0.00
+                    If dc.Rows.Count <= 0 Then
+                        qty_inv = 0
+                    Else
+                        qty_inv = dc.Rows(0)("total_inv")
+                    End If
+                    qty_limit = qty_no_stock - qty_inv
+                    If qty_input > qty_limit Then
+                        err += code + ", can't exceed " + qty_limit.ToString + System.Environment.NewLine
+                    End If
+                Next
+
+                If err <> "" Then
+                    stopCustom("Qty not valid : " + System.Environment.NewLine + err)
+                Else
+                    FormSalesPOSDet.action = "ins"
+                    FormSalesPOSDet.id_menu = id_menu
+                    FormSalesPOSDet.ShowDialog()
+                End If
             End If
         End If
         makeSafeGV(GVProbList)
