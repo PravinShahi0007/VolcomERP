@@ -75,6 +75,7 @@ Partial Class FormInboundAWB
         Me.BDelKoli = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddKoli = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BEditAWB = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintAWB = New DevExpress.XtraEditors.SimpleButton()
         Me.BNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BSubmitAwb = New DevExpress.XtraEditors.SimpleButton()
@@ -592,6 +593,7 @@ Partial Class FormInboundAWB
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.BEditAWB)
         Me.PanelControl4.Controls.Add(Me.BPrintAWB)
         Me.PanelControl4.Controls.Add(Me.BNext)
         Me.PanelControl4.Controls.Add(Me.BSubmitAwb)
@@ -603,9 +605,18 @@ Partial Class FormInboundAWB
         Me.PanelControl4.Size = New System.Drawing.Size(990, 43)
         Me.PanelControl4.TabIndex = 3
         '
+        'BEditAWB
+        '
+        Me.BEditAWB.Enabled = False
+        Me.BEditAWB.Location = New System.Drawing.Point(675, 9)
+        Me.BEditAWB.Name = "BEditAWB"
+        Me.BEditAWB.Size = New System.Drawing.Size(107, 23)
+        Me.BEditAWB.TabIndex = 6
+        Me.BEditAWB.Text = "Edit AWB"
+        '
         'BPrintAWB
         '
-        Me.BPrintAWB.Location = New System.Drawing.Point(675, 9)
+        Me.BPrintAWB.Location = New System.Drawing.Point(914, 9)
         Me.BPrintAWB.Name = "BPrintAWB"
         Me.BPrintAWB.Size = New System.Drawing.Size(64, 23)
         Me.BPrintAWB.TabIndex = 5
@@ -732,4 +743,5 @@ Partial Class FormInboundAWB
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrintAWB As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BEditAWB As DevExpress.XtraEditors.SimpleButton
 End Class
