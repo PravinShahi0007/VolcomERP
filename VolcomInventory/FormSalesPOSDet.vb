@@ -55,6 +55,7 @@ Public Class FormSalesPOSDet
     Public order_number As String = ""
     Public cust_name As String = ""
     Public is_from_prob_list As Boolean = False
+    Public id_store_type As String = "-1"
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -1527,16 +1528,28 @@ Public Class FormSalesPOSDet
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
         FormMain.SplashScreenManager1.SetWaitFormDescription("Get active price")
-        Dim price_per_date As String = ""
+        Dim dt_prc As DataTable
         If CheckEditInvType.EditValue = True Then
             'missing
-            price_per_date = DateTime.Parse(DEStocktake.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim price_per_date As String = ""
+            If id_store_type = "1" Then
+                'normal acc
+                Dim query_price As String = "call view_product_price_normal('AND d.id_active = 1') "
+                dt_prc = execute_query(query_price, -1, True, "", "", "", "")
+            Else
+                'sale acc
+                price_per_date = DateTime.Parse(DEStocktake.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim query_price As String = "call view_product_price('AND d.id_active = 1', '" + price_per_date + "') "
+                dt_prc = execute_query(query_price, -1, True, "", "", "", "")
+            End If
         Else
             'sales
-            price_per_date = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim price_per_date As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim query_price As String = "call view_product_price('AND d.id_active = 1', '" + price_per_date + "') "
+            dt_prc = execute_query(query_price, -1, True, "", "", "", "")
         End If
-        Dim query_price As String = "call view_product_price('AND d.id_active = 1', '" + price_per_date + "') "
-        Dim dt_prc As DataTable = execute_query(query_price, -1, True, "", "", "", "")
+
+
         FormMain.SplashScreenManager1.CloseWaitForm()
 
         Dim tb1 = data_temp.AsEnumerable()
@@ -1935,7 +1948,8 @@ Public Class FormSalesPOSDet
         Else
             cond_cat = "And (c.id_comp_cat='5' OR c.id_comp_cat=6) "
         End If
-        Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type, c.is_use_unique_code, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar` "
+        Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type, c.is_use_unique_code, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar`,
+        IF(c.id_comp_cat=5, c.id_wh_type,IF(c.id_comp_cat=6,c.id_store_type,0)) AS `id_account_type` "
         query += " From tb_m_comp_contact cc "
         query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
         query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
@@ -1961,6 +1975,7 @@ Public Class FormSalesPOSDet
                 SPDiscount.EditValue = data.Rows(0)("comp_commission")
             End If
             id_comp = data.Rows(0)("id_comp").ToString
+            id_store_type = data.Rows(0)("id_account_type").ToString
             id_store_contact_from = data.Rows(0)("id_comp_contact").ToString
             TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
             TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
@@ -2286,6 +2301,7 @@ Public Class FormSalesPOSDet
 
     Sub defaultReset()
         id_comp = "-1"
+        id_store_type = "-1"
         id_wh_locator = "-1"
         id_wh_rack = "-1"
         id_wh_drawer = "-1"

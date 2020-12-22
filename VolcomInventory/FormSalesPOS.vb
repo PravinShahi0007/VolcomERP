@@ -612,6 +612,7 @@
                 If err <> "" Then
                     stopCustom("Qty not valid : " + System.Environment.NewLine + err)
                 Else
+                    FormSalesPOSDet.is_from_prob_list = True
                     FormSalesPOSDet.action = "ins"
                     FormSalesPOSDet.id_menu = id_menu
                     FormSalesPOSDet.ShowDialog()
