@@ -1053,6 +1053,9 @@ Public Class FormSalesPOSDet
                     If id_menu = "5" And is_use_return_centre = "1" Then
                         FormSalesPOS.viewPendingCNOLStore()
                     End If
+                    If is_from_prob_list Then
+                        FormSalesPOS.viewProbList()
+                    End If
                     action = "upd"
                     actionLoad()
                     'exportToBOF(False)
@@ -3001,57 +3004,6 @@ Public Class FormSalesPOSDet
                 End If
                 For i As Integer = 0 To FormSalesPOS.GVProbList.RowCount - 1
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Checking item price " + (i + 1).ToString + "/" + FormSalesPOS.GVProbList.RowCount.ToString)
-
-
-                    Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
-                    newRow("code") = FormSalesPOS.GVProbList.GetRowCellValue(i, "code").ToString
-                    newRow("name") = FormSalesPOS.GVProbList.GetRowCellValue(i, "name").ToString
-                    newRow("size") = FormSalesPOS.GVProbList.GetRowCellValue(i, "size").ToString
-                    newRow("sales_pos_det_qty") = FormSalesPOS.GVProbList.GetRowCellValue(i, "qty_new")
-                    newRow("sales_pos_det_amount") = FormSalesPOS.GVProbList.GetRowCellValue(i, "qty_new") * FormSalesPOS.GVProbList.GetRowCellValue(i, "design_price_valid")
-                    newRow("limit_qty") = FormSalesPOS.GVProbList.GetRowCellValue(i, "invoice_qty")
-                    newRow("id_design_price") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design_price_valid").ToString
-                    newRow("design_price") = FormSalesPOS.GVProbList.GetRowCellValue(i, "design_price_valid")
-                    newRow("design_price_type") = FormSalesPOS.GVProbList.GetRowCellValue(i, "design_price_type_valid").ToString
-                    newRow("id_design_price_retail") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design_price_valid").ToString
-                    newRow("design_price_retail") = FormSalesPOS.GVProbList.GetRowCellValue(i, "design_price_valid")
-                    newRow("id_design") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design").ToString
-                    newRow("id_product") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_product").ToString
-                    newRow("is_select") = "No"
-                    newRow("note") = "OK"
-                    newRow("id_sales_pos_det") = "0"
-                    newRow("id_sales_pos_prob") = "0"
-                    newRow("id_sales_pos_prob_price") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_sales_pos_prob").ToString
-                    TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
-                    GCItemList.RefreshDataSource()
-                    GVItemList.RefreshData()
-                    calculate()
-                Next
-
-                '---------------------- old
-                viewStockStore()
-
-                'create dt
-                Dim data_edit As New DataTable
-                Dim col_code As New DataColumn("code")
-                col_code.DataType = System.Type.GetType("System.String")
-                data_edit.Columns.Add(col_code)
-                'col qty
-                Dim col_qty As New DataColumn("qty")
-                col_qty.DataType = System.Type.GetType("System.Decimal")
-                data_edit.Columns.Add(col_qty)
-                'col prc-string supaya ke baca tidak isi di prosedur checkSOH
-                Dim col_prc As New DataColumn("price")
-                col_prc.DataType = System.Type.GetType("System.Decimal")
-                data_edit.Columns.Add(col_prc)
-
-                'proceed dt
-                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
-                    FormMain.SplashScreenManager1.ShowWaitForm()
-                End If
-                For i As Integer = 0 To FormSalesPOS.GVProbList.RowCount - 1
-                    'get price
-                    FormMain.SplashScreenManager1.SetWaitFormDescription("Checking price " + (i + 1).ToString + "/" + FormSalesPOS.GVProbList.RowCount.ToString)
                     Dim id_design As String = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design").ToString
                     Dim dt_prc As DataTable
                     If CheckEditInvType.EditValue = True Then
@@ -3073,16 +3025,32 @@ Public Class FormSalesPOSDet
                         Dim query_price As String = "call view_product_price('AND d.id_active = 1 AND d.id_design=" + id_design + "', '" + price_per_date + "') "
                         dt_prc = execute_query(query_price, -1, True, "", "", "", "")
                     End If
-                    Console.WriteLine(dt_prc.Rows(0)("design_price"))
-                    Dim R As DataRow = data_edit.NewRow
-                    R("code") = FormSalesPOS.GVProbList.GetRowCellValue(i, "code").ToString
-                    R("qty") = FormSalesPOS.GVProbList.GetRowCellValue(i, "qty_new")
-                    R("price") = dt_prc.Rows(0)("design_price")
-                    data_edit.Rows.Add(R)
+
+                    Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+                    newRow("code") = FormSalesPOS.GVProbList.GetRowCellValue(i, "code").ToString
+                    newRow("name") = FormSalesPOS.GVProbList.GetRowCellValue(i, "name").ToString
+                    newRow("size") = FormSalesPOS.GVProbList.GetRowCellValue(i, "size").ToString
+                    newRow("sales_pos_det_qty") = FormSalesPOS.GVProbList.GetRowCellValue(i, "qty_new")
+                    newRow("sales_pos_det_amount") = FormSalesPOS.GVProbList.GetRowCellValue(i, "qty_new") * dt_prc.Rows(0)("design_price")
+                    newRow("limit_qty") = FormSalesPOS.GVProbList.GetRowCellValue(i, "qty_new")
+                    newRow("id_design_price") = dt_prc.Rows(0)("id_design_price").ToString
+                    newRow("design_price") = dt_prc.Rows(0)("design_price")
+                    newRow("design_price_type") = dt_prc.Rows(0)("design_price_type").ToString
+                    newRow("id_design_price_retail") = dt_prc.Rows(0)("id_design_price").ToString
+                    newRow("design_price_retail") = dt_prc.Rows(0)("design_price")
+                    newRow("id_design") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design").ToString
+                    newRow("id_product") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_product").ToString
+                    newRow("is_select") = "No"
+                    newRow("note") = "OK"
+                    newRow("id_sales_pos_det") = "0"
+                    newRow("id_sales_pos_prob") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_sales_pos_prob").ToString
+                    newRow("id_sales_pos_prob_price") = "0"
+                    TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
+                    GCItemList.RefreshDataSource()
+                    GVItemList.RefreshData()
+                    calculate()
                 Next
                 FormMain.SplashScreenManager1.CloseWaitForm()
-
-                checkSOH(data_edit)
             End If
         End If
     End Sub
