@@ -54,6 +54,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,7 +73,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.BExportRaw = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BSearchVoucher = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -399,6 +400,15 @@ Partial Class FormAccountingLedger
         Me.GridColumn17.FieldName = "report_mark_type_ref"
         Me.GridColumn17.Name = "GridColumn17"
         '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Journal Number"
+        Me.GridColumn30.FieldName = "acc_trans_number"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 1
+        Me.GridColumn30.Width = 96
+        '
         'GridColumn28
         '
         Me.GridColumn28.Caption = "Unit"
@@ -541,6 +551,7 @@ Partial Class FormAccountingLedger
         '
         'XtraScrollableControl1
         '
+        Me.XtraScrollableControl1.Controls.Add(Me.BSearchVoucher)
         Me.XtraScrollableControl1.Controls.Add(Me.BExportRaw)
         Me.XtraScrollableControl1.Controls.Add(Me.SLEUnit)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl5)
@@ -568,14 +579,13 @@ Partial Class FormAccountingLedger
         Me.BExportRaw.TabIndex = 11
         Me.BExportRaw.Text = "Export to Excel"
         '
-        'GridColumn30
+        'BSearchVoucher
         '
-        Me.GridColumn30.Caption = "Journal Number"
-        Me.GridColumn30.FieldName = "acc_trans_number"
-        Me.GridColumn30.Name = "GridColumn30"
-        Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 1
-        Me.GridColumn30.Width = 96
+        Me.BSearchVoucher.Location = New System.Drawing.Point(1215, 11)
+        Me.BSearchVoucher.Name = "BSearchVoucher"
+        Me.BSearchVoucher.Size = New System.Drawing.Size(100, 23)
+        Me.BSearchVoucher.TabIndex = 12
+        Me.BSearchVoucher.Text = "Search by number"
         '
         'FormAccountingLedger
         '
@@ -660,4 +670,5 @@ Partial Class FormAccountingLedger
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BExportRaw As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BSearchVoucher As DevExpress.XtraEditors.SimpleButton
 End Class
