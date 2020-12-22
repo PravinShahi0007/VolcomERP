@@ -54,6 +54,7 @@ Public Class FormSalesPOSDet
     Public comp_number As String = ""
     Public order_number As String = ""
     Public cust_name As String = ""
+    Public is_from_prob_list As Boolean = False
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -192,7 +193,6 @@ Public Class FormSalesPOSDet
             DEStocktake.EditValue = Nothing
 
             'credit note ol store base on return centre
-
             If id_menu = "5" And is_use_return_centre = "1" Then
                 If comp_number <> "" And order_number <> "" Then
                     Cursor = Cursors.WaitCursor
@@ -259,6 +259,22 @@ Public Class FormSalesPOSDet
                     stopCustom("Order number not found")
                     Close()
                 End If
+            End If
+
+            'problem list
+            If (id_menu = "1" Or id_menu = "4") And is_from_prob_list Then
+                Dim typ As String = FormSalesPOS.LETypeProb.EditValue.ToString
+                'get comp
+                Dim id_comp_prob As String = FormSalesPOS.SLEStoreProb.EditValue.ToString
+                Dim comp_prob As String = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + id_comp_prob + "' ", 0, True, "", "", "", "")
+                TxtCodeCompFrom.Text = comp_prob
+                TxtCodeCompFrom.Enabled = False
+                actionCompFrom()
+                BtnImport.Visible = False
+                BtnLoadFromProbList.Visible = True
+
+                'default due date, start, end peiod
+                DEDueDate.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_due_date")
             End If
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True
@@ -844,7 +860,7 @@ Public Class FormSalesPOSDet
                     Dim jum_ins_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary, id_ol_store_ret_list) VALUES "
+                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary, id_ol_store_ret_list, id_sales_pos_prob, id_sales_pos_prob_price) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                         Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
@@ -889,12 +905,19 @@ Public Class FormSalesPOSDet
                             End If
                         Catch ex As Exception
                         End Try
-
+                        Dim id_sales_pos_prob As String = GVItemList.GetRowCellValue(i, "id_sales_pos_prob").ToString
+                        If id_sales_pos_prob = "0" Then
+                            id_sales_pos_prob = "NULL"
+                        End If
+                        Dim id_sales_pos_prob_price As String = GVItemList.GetRowCellValue(i, "id_sales_pos_prob_price").ToString
+                        If id_sales_pos_prob_price = "0" Then
+                            id_sales_pos_prob_price = "NULL"
+                        End If
 
                         If jum_ins_i > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ", " + id_ol_store_ret_list + ") "
+                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ", " + id_ol_store_ret_list + "," + id_sales_pos_prob + "," + id_sales_pos_prob_price + ") "
                         jum_ins_i = jum_ins_i + 1
                     Next
                     If jum_ins_i > 0 Then
@@ -1535,7 +1558,9 @@ Public Class FormSalesPOSDet
                             .id_product = If(rp Is Nothing, "0", rp("id_product").ToString),
                             .is_select = "No",
                             .note = If(rp Is Nothing, "Product not found", "OK"),
-                            .id_sales_pos_det = "0"
+                            .id_sales_pos_det = "0",
+                            .id_sales_pos_prob = "0",
+                            .id_sales_pos_prob_price = "0"
                         }
 
             GCItemList.DataSource = Nothing
@@ -2215,6 +2240,7 @@ Public Class FormSalesPOSDet
         'viewDetail()
         If action = "ins" Then
             load_kurs()
+            load_prob_list()
         End If
     End Sub
 
@@ -2883,5 +2909,45 @@ Public Class FormSalesPOSDet
                 e.Appearance.BackColor2 = Color.Yellow
             End If
         End If
+    End Sub
+
+    Sub load_prob_list()
+        If is_from_prob_list Then
+            viewDetail()
+
+            Dim id_type_prob As String = FormSalesPOS.LETypeProb.EditValue.ToString
+            If id_type_prob = "1" Then
+                'price recon
+                For i As Integer = 0 To FormSalesPOS.GVProbList.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+                    newRow("code") = FormSalesPOS.GVProbList.GetRowCellValue(i, "code").ToString
+                    newRow("name") = FormSalesPOS.GVProbList.GetRowCellValue(i, "name").ToString
+                    newRow("size") = FormSalesPOS.GVProbList.GetRowCellValue(i, "size").ToString
+                    newRow("sales_pos_det_qty") = FormSalesPOS.GVProbList.GetRowCellValue(i, "invoice_qty")
+                    newRow("sales_pos_det_amount") = FormSalesPOS.GVProbList.GetRowCellValue(i, "invoice_qty") * FormSalesPOS.GVProbList.GetRowCellValue(i, "design_price_valid")
+                    newRow("limit_qty") = FormSalesPOS.GVProbList.GetRowCellValue(i, "invoice_qty")
+                    newRow("id_design_price") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design_price_valid").ToString
+                    newRow("design_price") = FormSalesPOS.GVProbList.GetRowCellValue(i, "design_price_valid")
+                    newRow("design_price_type") = FormSalesPOS.GVProbList.GetRowCellValue(i, "design_price_type_valid").ToString
+                    newRow("id_design_price_retail") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design_price_valid").ToString
+                    newRow("design_price_retail") = FormSalesPOS.GVProbList.GetRowCellValue(i, "design_price_valid")
+                    newRow("id_design") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design").ToString
+                    newRow("id_product") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_product").ToString
+                    newRow("is_select") = "No"
+                    newRow("note") = "OK"
+                    newRow("id_sales_pos_det") = "0"
+                    newRow("id_sales_pos_prob") = "0"
+                    newRow("id_sales_pos_prob_price") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_sales_pos_prob").ToString
+                    TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
+                    GCItemList.RefreshDataSource()
+                    GVItemList.RefreshData()
+                    calculate()
+                Next
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnLoadFromProbList_Click(sender As Object, e As EventArgs) Handles BtnLoadFromProbList.Click
+        load_prob_list()
     End Sub
 End Class

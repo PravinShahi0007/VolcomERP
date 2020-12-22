@@ -386,9 +386,9 @@
         p.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, sp.sales_pos_due_date,
         c.id_comp, cc.id_comp_contact, c.comp_number, c.comp_name, cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,
         p.is_invalid_price, p.is_no_stock, 
-        p.id_product, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
+        p.id_product, prod.id_design, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
         p.id_design_price_retail, p.design_price_retail, p.design_price_store, 
-        IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid,
+        IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid, dpt.design_price_type AS `design_price_type_valid`,
         p.store_qty, 
         p.invoice_qty, IFNULL(proc_prc.qty_on_process,0) AS `qty_on_process_price`, IFNULL(proc_prc.qty_proceed,0) AS `qty_proceed_price`,
         p.no_stock_qty, IFNULL(proc.qty_on_process,0) AS `qty_on_process`, IFNULL(proc.qty_proceed,0) AS `qty_proceed`,
@@ -403,6 +403,8 @@
         INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        INNER JOIN tb_m_design_price dp ON dp.id_design_price = p.id_design_price_valid
+        INNER JOIN tb_lookup_design_price_type dpt ON dpt.id_design_price_type = dp.id_design_price_type
         LEFT JOIN (
             SELECT spd.id_sales_pos_prob, 
             SUM(IF(sp.id_report_status<5,spd.sales_pos_det_qty,0)) AS `qty_on_process`,
@@ -572,6 +574,7 @@
                 If err <> "" Then
                     stopCustom("Already processed : " + System.Environment.NewLine + err)
                 Else
+                    FormSalesPOSDet.is_from_prob_list = True
                     FormSalesPOSDet.action = "ins"
                     FormSalesPOSDet.id_menu = id_menu
                     FormSalesPOSDet.ShowDialog()

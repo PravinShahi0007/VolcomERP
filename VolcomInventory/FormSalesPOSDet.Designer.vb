@@ -160,7 +160,10 @@ Partial Class FormSalesPOSDet
         Me.GridColumnid_pos_combine_summary = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLimit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_ol_store_ret_list = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_sales_pos_prob_inv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_sales_pos_prob_price_inv = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnLoadFromProbList = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnLoadPOS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToReport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNoStock = New DevExpress.XtraEditors.SimpleButton()
@@ -172,6 +175,7 @@ Partial Class FormSalesPOSDet
         Me.XTPNeedVerify = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProbList = New DevExpress.XtraGrid.GridControl()
         Me.GVProbList = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnid_sales_pos_prob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnis_invalid_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnis_no_stock = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -182,12 +186,15 @@ Partial Class FormSalesPOSDet
         Me.GridColumnid_design_price_retailprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnid_design_price_validprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumndesign_price_valid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnstore_qtyprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumndesign_price_storeprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumndesign_price_retailprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnnote_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumninvoice_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumntotal_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnno_stock_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCode = New DevExpress.XtraGrid.GridControl()
@@ -203,10 +210,6 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1517,10 +1520,11 @@ Partial Class FormSalesPOSDet
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
+        Me.DeleteToolStripMenuItem.Visible = False
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin, Me.GridColumnNote, Me.GridColumnIdref, Me.GridColumnDel, Me.GridColumnOrder, Me.GridColumnIdDelDet, Me.GridColumnNumber, Me.GridColumnAcc, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueDate, Me.GridColumnType, Me.GridColumnIsSelect, Me.GridColumnid_pos_combine_summary, Me.GridColumnLimit, Me.GridColumnid_ol_store_ret_list})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin, Me.GridColumnNote, Me.GridColumnIdref, Me.GridColumnDel, Me.GridColumnOrder, Me.GridColumnIdDelDet, Me.GridColumnNumber, Me.GridColumnAcc, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueDate, Me.GridColumnType, Me.GridColumnIsSelect, Me.GridColumnid_pos_combine_summary, Me.GridColumnLimit, Me.GridColumnid_ol_store_ret_list, Me.GridColumnid_sales_pos_prob_inv, Me.GridColumnid_sales_pos_prob_price_inv})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -1879,9 +1883,22 @@ Partial Class FormSalesPOSDet
         Me.GridColumnid_ol_store_ret_list.Name = "GridColumnid_ol_store_ret_list"
         Me.GridColumnid_ol_store_ret_list.OptionsColumn.AllowEdit = False
         '
+        'GridColumnid_sales_pos_prob_inv
+        '
+        Me.GridColumnid_sales_pos_prob_inv.Caption = "id_sales_pos_prob"
+        Me.GridColumnid_sales_pos_prob_inv.FieldName = "id_sales_pos_prob"
+        Me.GridColumnid_sales_pos_prob_inv.Name = "GridColumnid_sales_pos_prob_inv"
+        '
+        'GridColumnid_sales_pos_prob_price_inv
+        '
+        Me.GridColumnid_sales_pos_prob_price_inv.Caption = "id_sales_pos_prob_price"
+        Me.GridColumnid_sales_pos_prob_price_inv.FieldName = "id_sales_pos_prob_price"
+        Me.GridColumnid_sales_pos_prob_price_inv.Name = "GridColumnid_sales_pos_prob_price_inv"
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.BtnLoadFromProbList)
         Me.PanelControlNav.Controls.Add(Me.BtnLoadPOS)
         Me.PanelControlNav.Controls.Add(Me.BtnExportToReport)
         Me.PanelControlNav.Controls.Add(Me.BtnNoStock)
@@ -1892,6 +1909,19 @@ Partial Class FormSalesPOSDet
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(1160, 36)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'BtnLoadFromProbList
+        '
+        Me.BtnLoadFromProbList.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnLoadFromProbList.Image = CType(resources.GetObject("BtnLoadFromProbList.Image"), System.Drawing.Image)
+        Me.BtnLoadFromProbList.ImageIndex = 3
+        Me.BtnLoadFromProbList.ImageList = Me.LargeImageCollection
+        Me.BtnLoadFromProbList.Location = New System.Drawing.Point(236, 0)
+        Me.BtnLoadFromProbList.Name = "BtnLoadFromProbList"
+        Me.BtnLoadFromProbList.Size = New System.Drawing.Size(109, 36)
+        Me.BtnLoadFromProbList.TabIndex = 29
+        Me.BtnLoadFromProbList.Text = "Load Data"
+        Me.BtnLoadFromProbList.Visible = False
         '
         'BtnLoadPOS
         '
@@ -1999,6 +2029,22 @@ Partial Class FormSalesPOSDet
         Me.GVProbList.OptionsView.ShowFooter = True
         Me.GVProbList.OptionsView.ShowGroupPanel = False
         '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.GridColumnid_sales_pos_prob)
+        Me.GridBand1.Columns.Add(Me.GridColumnis_invalid_price)
+        Me.GridBand1.Columns.Add(Me.GridColumnis_no_stock)
+        Me.GridBand1.Columns.Add(Me.GridColumnid_product)
+        Me.GridBand1.Columns.Add(Me.GridColumncodeprob)
+        Me.GridBand1.Columns.Add(Me.GridColumnnameprob)
+        Me.GridBand1.Columns.Add(Me.GridColumnsizeprob)
+        Me.GridBand1.Columns.Add(Me.GridColumnid_design_price_retailprob)
+        Me.GridBand1.Columns.Add(Me.GridColumnid_design_price_validprob)
+        Me.GridBand1.Columns.Add(Me.GridColumndesign_price_valid)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 225
+        '
         'GridColumnid_sales_pos_prob
         '
         Me.GridColumnid_sales_pos_prob.Caption = "id_sales_pos_prob"
@@ -2064,6 +2110,15 @@ Partial Class FormSalesPOSDet
         Me.GridColumndesign_price_valid.FieldName = "design_price_valid"
         Me.GridColumndesign_price_valid.Name = "GridColumndesign_price_valid"
         '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Store"
+        Me.gridBand2.Columns.Add(Me.GridColumnstore_qtyprob)
+        Me.gridBand2.Columns.Add(Me.GridColumndesign_price_storeprob)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 150
+        '
         'GridColumnstore_qtyprob
         '
         Me.GridColumnstore_qtyprob.Caption = "Store Qty"
@@ -2082,6 +2137,17 @@ Partial Class FormSalesPOSDet
         Me.GridColumndesign_price_storeprob.FieldName = "design_price_store"
         Me.GridColumndesign_price_storeprob.Name = "GridColumndesign_price_storeprob"
         Me.GridColumndesign_price_storeprob.Visible = True
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Price Compare Result"
+        Me.gridBand3.Columns.Add(Me.GridColumndesign_price_retailprob)
+        Me.gridBand3.Columns.Add(Me.GridColumnnote_price)
+        Me.gridBand3.Columns.Add(Me.GridColumninvoice_qty)
+        Me.gridBand3.Columns.Add(Me.GridColumntotal_qty)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 225
         '
         'GridColumndesign_price_retailprob
         '
@@ -2117,6 +2183,14 @@ Partial Class FormSalesPOSDet
         Me.GridColumntotal_qty.FieldName = "total_qty"
         Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
         Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "No Stock"
+        Me.gridBand5.Columns.Add(Me.GridColumnno_stock_qty)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 3
+        Me.gridBand5.Width = 75
         '
         'GridColumnno_stock_qty
         '
@@ -2239,50 +2313,6 @@ Partial Class FormSalesPOSDet
         Me.GridColumnPriceCode.FieldName = "design_price"
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Columns.Add(Me.GridColumnid_sales_pos_prob)
-        Me.GridBand1.Columns.Add(Me.GridColumnis_invalid_price)
-        Me.GridBand1.Columns.Add(Me.GridColumnis_no_stock)
-        Me.GridBand1.Columns.Add(Me.GridColumnid_product)
-        Me.GridBand1.Columns.Add(Me.GridColumncodeprob)
-        Me.GridBand1.Columns.Add(Me.GridColumnnameprob)
-        Me.GridBand1.Columns.Add(Me.GridColumnsizeprob)
-        Me.GridBand1.Columns.Add(Me.GridColumnid_design_price_retailprob)
-        Me.GridBand1.Columns.Add(Me.GridColumnid_design_price_validprob)
-        Me.GridBand1.Columns.Add(Me.GridColumndesign_price_valid)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 225
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "Store"
-        Me.gridBand2.Columns.Add(Me.GridColumnstore_qtyprob)
-        Me.gridBand2.Columns.Add(Me.GridColumndesign_price_storeprob)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 150
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "Price Compare Result"
-        Me.gridBand3.Columns.Add(Me.GridColumndesign_price_retailprob)
-        Me.gridBand3.Columns.Add(Me.GridColumnnote_price)
-        Me.gridBand3.Columns.Add(Me.GridColumninvoice_qty)
-        Me.gridBand3.Columns.Add(Me.GridColumntotal_qty)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 225
-        '
-        'gridBand5
-        '
-        Me.gridBand5.Caption = "No Stock"
-        Me.gridBand5.Columns.Add(Me.GridColumnno_stock_qty)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 3
-        Me.gridBand5.Width = 75
         '
         'FormSalesPOSDet
         '
@@ -2577,4 +2607,7 @@ Partial Class FormSalesPOSDet
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BtnLoadFromProbList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_sales_pos_prob_inv As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_sales_pos_prob_price_inv As DevExpress.XtraGrid.Columns.GridColumn
 End Class
