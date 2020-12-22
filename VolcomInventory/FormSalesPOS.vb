@@ -597,6 +597,11 @@
             If GVProbList.RowCount > 0 Then
                 'no stock
 
+                'initial check stock
+                Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; 
+                            INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES "
+                Dim id_prod As String = ""
+
                 Dim err As String = ""
                 Dim err_price_valid As String = ""
                 'check valid qty
@@ -627,13 +632,28 @@
                     If id_design_price_valid_cek = "0" Then
                         err_price_valid += code + System.Environment.NewLine
                     End If
+
+                    'stock
+                    If c > 0 Then
+                        qs += ","
+                        id_prod += ","
+                    End If
+                    qs += "('" + id_user + "','" + GVProbList.GetRowCellValue(c, "code").ToString + "','" + addSlashes(GVProbList.GetRowCellValue(c, "name").ToString) + "', '" + GVProbList.GetRowCellValue(c, "size").ToString + "', '" + GVProbList.GetRowCellValue(c, "id_product").ToString + "', '" + decimalSQL(GVProbList.GetRowCellValue(c, "qty_new").ToString) + "') "
+                    id_prod += GVProbList.GetRowCellValue(c, "id_product").ToString
                 Next
+                'check stock
+                qs += "; CALL view_validate_stock(" + id_user + ", " + SLEStoreProb.EditValue.ToString + ", '" + id_prod + "',1); "
+                Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
 
 
                 If err <> "" Then
                     stopCustom("Qty not valid : " + System.Environment.NewLine + err)
                 ElseIf err_price_valid <> "" Then
                     stopCustom("Please propose 'Price Reconcile' first for these product : " + System.Environment.NewLine + err_price_valid)
+                ElseIf dts.Rows.Count > 0 Then
+                    stopCustom("No stock available for some items.")
+                    FormValidateStock.dt = dts
+                    FormValidateStock.ShowDialog()
                 Else
                     FormSalesPOSDet.is_from_prob_list = True
                     FormSalesPOSDet.action = "ins"
