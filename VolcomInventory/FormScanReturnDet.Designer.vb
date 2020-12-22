@@ -30,10 +30,10 @@ Partial Class FormScanReturnDet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReturnLabel = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCButton = New DevExpress.XtraEditors.PanelControl()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDeleteScan = New DevExpress.XtraEditors.SimpleButton()
         Me.BInputManual = New DevExpress.XtraEditors.SimpleButton()
         Me.TEScan = New DevExpress.XtraEditors.TextEdit()
@@ -53,10 +53,10 @@ Partial Class FormScanReturnDet
         CType(Me.MEListStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEReturnLabel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCButton, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCButton.SuspendLayout()
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddDel.SuspendLayout()
         CType(Me.TEScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCListProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,15 +151,15 @@ Partial Class FormScanReturnDet
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Return Label Number"
         '
-        'PanelControl2
+        'PCButton
         '
-        Me.PanelControl2.Controls.Add(Me.BClose)
-        Me.PanelControl2.Controls.Add(Me.BSave)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 508)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(821, 45)
-        Me.PanelControl2.TabIndex = 1
+        Me.PCButton.Controls.Add(Me.BClose)
+        Me.PCButton.Controls.Add(Me.BSave)
+        Me.PCButton.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCButton.Location = New System.Drawing.Point(0, 508)
+        Me.PCButton.Name = "PCButton"
+        Me.PCButton.Size = New System.Drawing.Size(821, 45)
+        Me.PCButton.TabIndex = 1
         '
         'BClose
         '
@@ -181,17 +181,17 @@ Partial Class FormScanReturnDet
         Me.BSave.TabIndex = 3
         Me.BSave.Text = "Finish Scan"
         '
-        'PanelControl3
+        'PCAddDel
         '
-        Me.PanelControl3.Controls.Add(Me.BDeleteScan)
-        Me.PanelControl3.Controls.Add(Me.BInputManual)
-        Me.PanelControl3.Controls.Add(Me.TEScan)
-        Me.PanelControl3.Controls.Add(Me.LabelControl3)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 117)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(821, 43)
-        Me.PanelControl3.TabIndex = 2
+        Me.PCAddDel.Controls.Add(Me.BDeleteScan)
+        Me.PCAddDel.Controls.Add(Me.BInputManual)
+        Me.PCAddDel.Controls.Add(Me.TEScan)
+        Me.PCAddDel.Controls.Add(Me.LabelControl3)
+        Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCAddDel.Location = New System.Drawing.Point(0, 117)
+        Me.PCAddDel.Name = "PCAddDel"
+        Me.PCAddDel.Size = New System.Drawing.Size(821, 43)
+        Me.PCAddDel.TabIndex = 2
         '
         'BDeleteScan
         '
@@ -316,8 +316,8 @@ Partial Class FormScanReturnDet
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(821, 553)
         Me.Controls.Add(Me.GCListProduct)
-        Me.Controls.Add(Me.PanelControl3)
-        Me.Controls.Add(Me.PanelControl2)
+        Me.Controls.Add(Me.PCAddDel)
+        Me.Controls.Add(Me.PCButton)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -332,11 +332,11 @@ Partial Class FormScanReturnDet
         CType(Me.MEListStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEReturnLabel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
+        CType(Me.PCButton, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCButton.ResumeLayout(False)
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddDel.ResumeLayout(False)
+        Me.PCAddDel.PerformLayout()
         CType(Me.TEScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCListProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListProduct, System.ComponentModel.ISupportInitialize).EndInit()
@@ -350,9 +350,9 @@ Partial Class FormScanReturnDet
     Friend WithEvents TEReturnLabel As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BReset As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCButton As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCAddDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TEScan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCListProduct As DevExpress.XtraGrid.GridControl

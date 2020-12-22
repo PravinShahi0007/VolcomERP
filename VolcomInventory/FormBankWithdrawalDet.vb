@@ -68,7 +68,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                 Try
                     SLEVendor.EditValue = FormBankWithdrawal.SLEVendor.EditValue
                     SLEPayType.EditValue = id_pay_type
-                    TxtTag.EditValue = execute_query("SELECT CONCAT(tag_code, ' - ', tag_description) AS tag FROM tb_coa_tag WHERE id_coa_tag = " + FormBankWithdrawal.GVPOList.GetRowCellValue(0, "id_coa_tag").ToString, 0, True, "", "", "", "")
+                    TxtTag.EditValue = execute_query("SELECT CONCAT(tag_code, ' - ', tag_description) AS tag FROM tb_coa_tag WHERE id_coa_tag = " + FormBankWithdrawal.GVPOList.GetRowCellValue(0, "po_coa_tag").ToString, 0, True, "", "", "", "")
                     '
                     SLEReportType.EditValue = report_mark_type
                     'load detail
@@ -1319,7 +1319,7 @@ GROUP BY pnd.kurs"
 
     Private Sub FormBankWithdrawalDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If report_mark_type = "139" Or report_mark_type = "202" Then
-            id_coa_tag = FormBankWithdrawal.GVPOList.GetRowCellValue(0, "id_coa_tag").ToString
+            id_coa_tag = FormBankWithdrawal.GVPOList.GetRowCellValue(0, "po_coa_tag").ToString
         ElseIf report_mark_type = "157" Then 'expense
             id_coa_tag = FormBankWithdrawal.GVExpense.GetRowCellValue(0, "id_coa_tag").ToString
         End If
