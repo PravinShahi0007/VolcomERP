@@ -116,6 +116,12 @@ Public Class FormSalesPOSDet
             CheckEditInvType.Visible = False
             TxtCodeCompFrom.Focus()
             print_title = "INVOICE SLIP"
+
+            If action = "ins" Then
+                PriceToolStripMenuItem.Visible = True
+                DeleteToolStripMenuItem.Visible = True
+                QtyToolStripMenuItem.Visible = True
+            End If
         ElseIf id_menu = "4" Then
             Text = "Invoice Different Margin"
             LEInvType.Enabled = False
@@ -275,6 +281,9 @@ Public Class FormSalesPOSDet
 
                 'default due date, start, end peiod
                 DEDueDate.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_due_date")
+                DEStart.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_start_period")
+                DEEnd.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_start_period")
+                DeleteToolStripMenuItem.Visible = False
             End If
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True
@@ -2493,9 +2502,9 @@ Public Class FormSalesPOSDet
 
     Private Sub ContextMenuStrip1_Opened(sender As Object, e As EventArgs) Handles ContextMenuStrip1.Opened
         If action = "ins" Then
-            PriceToolStripMenuItem.Visible = True
-            DeleteToolStripMenuItem.Visible = True
-            QtyToolStripMenuItem.Visible = True
+            'PriceToolStripMenuItem.Visible = False
+            'DeleteToolStripMenuItem.Visible = False
+            'QtyToolStripMenuItem.Visible = False
         Else
             PriceToolStripMenuItem.Visible = False
             DeleteToolStripMenuItem.Visible = False
@@ -2686,10 +2695,10 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub QtyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QtyToolStripMenuItem.Click
-        'Cursor = Cursors.WaitCursor
-        'FormSalesPOSQty.action = "upd"
-        'FormSalesPOSQty.ShowDialog()
-        'Cursor = Cursors.Default
+        Cursor = Cursors.WaitCursor
+        FormSalesPOSQty.action = "upd"
+        FormSalesPOSQty.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub Btn_Click(sender As Object, e As EventArgs) Handles BtnImportOLStoreNew.Click
@@ -2949,5 +2958,29 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnLoadFromProbList_Click(sender As Object, e As EventArgs) Handles BtnLoadFromProbList.Click
         load_prob_list()
+    End Sub
+
+    Private Sub ViewPriceReconcileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewPriceReconcileToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_sales_pos_prob_price As String = "-1"
+        Try
+            id_sales_pos_prob_price = GVItemList.GetFocusedRowCellValue("id_sales_pos_prob_price")
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT IFNULL(r.id_sales_pos_recon,0) AS `id_sales_pos_recon`
+FROM tb_sales_pos_recon_det rd
+INNER JOIN tb_sales_pos_recon r ON r.id_sales_pos_recon = rd.id_sales_pos_recon
+WHERE rd.id_sales_pos_prob=" + id_sales_pos_prob_price + " AND r.id_report_status=6
+GROUP BY r.id_sales_pos_recon "
+        Try
+            Dim id_report As String = execute_query(query, 0, True, "", "", "", "")
+            Dim m As New ClassShowPopUp()
+            m.id_report = id_report
+            m.report_mark_type = "281"
+            m.show()
+        Catch ex As Exception
+            stopCustom("Price recon not found.")
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

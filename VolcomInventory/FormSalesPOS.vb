@@ -422,7 +422,7 @@
             INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
             WHERE !ISNULL(spd.id_sales_pos_prob_price)
             GROUP BY spd.id_sales_pos_prob_price
-        ) proc_prc ON proc.id_sales_pos_prob = p.id_sales_pos_prob
+        ) proc_prc ON proc_prc.id_sales_pos_prob_price = p.id_sales_pos_prob
         WHERE 1=1 AND sp.id_report_status=6 " + cond_type + cond_store
         query += "HAVING 1=1 " + cond_status
         query += "ORDER BY id_sales_pos ASC "

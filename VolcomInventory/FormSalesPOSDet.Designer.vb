@@ -123,6 +123,7 @@ Partial Class FormSalesPOSDet
         Me.QtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewPriceReconcileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -1497,30 +1498,36 @@ Partial Class FormSalesPOSDet
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QtyToolStripMenuItem, Me.PriceToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QtyToolStripMenuItem, Me.PriceToolStripMenuItem, Me.DeleteToolStripMenuItem, Me.ViewPriceReconcileToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(140, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 92)
         '
         'QtyToolStripMenuItem
         '
         Me.QtyToolStripMenuItem.Name = "QtyToolStripMenuItem"
-        Me.QtyToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.QtyToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
         Me.QtyToolStripMenuItem.Text = "Set Quantity"
         Me.QtyToolStripMenuItem.Visible = False
         '
         'PriceToolStripMenuItem
         '
         Me.PriceToolStripMenuItem.Name = "PriceToolStripMenuItem"
-        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
         Me.PriceToolStripMenuItem.Text = "Price"
         Me.PriceToolStripMenuItem.Visible = False
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         Me.DeleteToolStripMenuItem.Visible = False
+        '
+        'ViewPriceReconcileToolStripMenuItem
+        '
+        Me.ViewPriceReconcileToolStripMenuItem.Name = "ViewPriceReconcileToolStripMenuItem"
+        Me.ViewPriceReconcileToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ViewPriceReconcileToolStripMenuItem.Text = "View Price Reconcile"
         '
         'GVItemList
         '
@@ -2610,4 +2617,5 @@ Partial Class FormSalesPOSDet
     Friend WithEvents BtnLoadFromProbList As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnid_sales_pos_prob_inv As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_sales_pos_prob_price_inv As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewPriceReconcileToolStripMenuItem As ToolStripMenuItem
 End Class
