@@ -281,9 +281,12 @@ Public Class FormSalesPOSDet
                 BtnLoadFromProbList.Visible = True
 
                 'default due date, start, end peiod
-                DEDueDate.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_due_date")
-                DEStart.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_start_period")
-                DEEnd.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_start_period")
+                If typ = "1" Then
+                    'from price recon
+                    DEDueDate.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_due_date")
+                    DEStart.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_start_period")
+                    DEEnd.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_start_period")
+                End If
                 DeleteToolStripMenuItem.Visible = False
             End If
         ElseIf action = "upd" Then
@@ -1455,6 +1458,10 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub BtnImport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnImport.Click
+        proceed_data()
+    End Sub
+
+    Sub proceed_data()
         Cursor = Cursors.WaitCursor
         is_load_from_bof = False
         TxtBOF.Text = ""
@@ -1480,7 +1487,11 @@ Public Class FormSalesPOSDet
 
             viewStockStore()
             If is_use_unique_code = "2" Then
-                load_excel_data()
+                If Not is_from_prob_list Then
+                    load_excel_data()
+                Else
+                    load_prob_list()
+                End If
             Else
                 load_excel_data_unique()
             End If
@@ -2264,9 +2275,17 @@ Public Class FormSalesPOSDet
         'viewDetail()
         If action = "ins" Then
             load_kurs()
-            load_prob_list()
+
+            'prob list
+            If is_from_prob_list Then
+                Dim typ As String = FormSalesPOS.LETypeProb.EditValue.ToString
+                If typ = "1" Then
+                    load_prob_list()
+                End If
+            End If
         End If
     End Sub
+
 
     Private Sub LEInvType_KeyDown(sender As Object, e As KeyEventArgs) Handles LEInvType.KeyDown
         If e.KeyCode = Keys.Enter Then
@@ -2968,6 +2987,68 @@ Public Class FormSalesPOSDet
                     GVItemList.RefreshData()
                     calculate()
                 Next
+            ElseIf id_type_prob = "2" Then
+                'check stock take det
+                If CheckEditInvType.EditValue = True And DEStocktake.EditValue = Nothing Then
+                    stopCustom("Please fill stock take date")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+
+                viewStockStore()
+
+                'create dt
+                Dim data_edit As New DataTable
+                Dim col_code As New DataColumn("code")
+                col_code.DataType = System.Type.GetType("System.String")
+                data_edit.Columns.Add(col_code)
+                'col qty
+                Dim col_qty As New DataColumn("qty")
+                col_qty.DataType = System.Type.GetType("System.Decimal")
+                data_edit.Columns.Add(col_qty)
+                'col prc-string supaya ke baca tidak isi di prosedur checkSOH
+                Dim col_prc As New DataColumn("price")
+                col_prc.DataType = System.Type.GetType("System.Decimal")
+                data_edit.Columns.Add(col_prc)
+
+                'proceed dt
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+                For i As Integer = 0 To FormSalesPOS.GVProbList.RowCount - 1
+                    'get price
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Checking price " + (i + 1).ToString + "/" + FormSalesPOS.GVProbList.RowCount.ToString)
+                    Dim id_design As String = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design").ToString
+                    Dim dt_prc As DataTable
+                    If CheckEditInvType.EditValue = True Then
+                        'missing
+                        Dim price_per_date As String = ""
+                        If id_store_type = "1" Then
+                            'normal acc
+                            Dim query_price As String = "call view_product_price_normal('AND d.id_active=1 AND d.id_design=" + id_design + " ') "
+                            dt_prc = execute_query(query_price, -1, True, "", "", "", "")
+                        Else
+                            'sale acc
+                            price_per_date = DateTime.Parse(DEStocktake.EditValue.ToString).ToString("yyyy-MM-dd")
+                            Dim query_price As String = "call view_product_price('AND d.id_active = 1  AND d.id_design=" + id_design + "', '" + price_per_date + "') "
+                            dt_prc = execute_query(query_price, -1, True, "", "", "", "")
+                        End If
+                    Else
+                        'sales
+                        Dim price_per_date As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+                        Dim query_price As String = "call view_product_price('AND d.id_active = 1 AND d.id_design=" + id_design + "', '" + price_per_date + "') "
+                        dt_prc = execute_query(query_price, -1, True, "", "", "", "")
+                    End If
+                    Console.WriteLine(dt_prc.Rows(0)("design_price"))
+                    Dim R As DataRow = data_edit.NewRow
+                    R("code") = FormSalesPOS.GVProbList.GetRowCellValue(i, "code").ToString
+                    R("qty") = FormSalesPOS.GVProbList.GetRowCellValue(i, "qty_new")
+                    R("price") = dt_prc.Rows(0)("design_price")
+                    data_edit.Rows.Add(R)
+                Next
+                FormMain.SplashScreenManager1.CloseWaitForm()
+
+                checkSOH(data_edit)
             End If
         End If
     End Sub
@@ -2999,4 +3080,5 @@ GROUP BY r.id_sales_pos_recon "
         End Try
         Cursor = Cursors.Default
     End Sub
+
 End Class

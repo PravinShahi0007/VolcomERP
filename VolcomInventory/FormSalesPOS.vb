@@ -394,7 +394,7 @@
         p.no_stock_qty, IFNULL(proc.qty_on_process,0) AS `qty_on_process`, IFNULL(proc.qty_proceed,0) AS `qty_proceed`,
         (p.invoice_qty+p.no_stock_qty) AS `total_qty`,
         'No' AS `is_select`, 0 AS `qty_new`,
-        IF(p.is_invalid_price=2,IF(p.no_stock_qty=IFNULL(proc.qty_proceed,0),'Close', 'Open'), IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0),'Close','Open')) AS `is_open_invoice_view`
+        IF(p.is_invalid_price=2,IF(p.no_stock_qty=IFNULL(proc.qty_proceed,0),'Close', 'Open'), IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0) AND p.no_stock_qty=IFNULL(proc.qty_proceed,0),'Close','Open')) AS `is_open_invoice_view`
         FROM tb_sales_pos_prob p
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -403,8 +403,8 @@
         INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
-        INNER JOIN tb_m_design_price dp ON dp.id_design_price = p.id_design_price_valid
-        INNER JOIN tb_lookup_design_price_type dpt ON dpt.id_design_price_type = dp.id_design_price_type
+        LEFT JOIN tb_m_design_price dp ON dp.id_design_price = p.id_design_price_valid
+        LEFT JOIN tb_lookup_design_price_type dpt ON dpt.id_design_price_type = dp.id_design_price_type
         LEFT JOIN (
             SELECT spd.id_sales_pos_prob, 
             SUM(IF(sp.id_report_status<5,spd.sales_pos_det_qty,0)) AS `qty_on_process`,
@@ -425,7 +425,7 @@
         ) proc_prc ON proc_prc.id_sales_pos_prob_price = p.id_sales_pos_prob
         WHERE 1=1 AND sp.id_report_status=6 " + cond_type + cond_store
         query += "HAVING 1=1 " + cond_status
-        query += "ORDER BY id_sales_pos ASC "
+        query += "ORDER BY id_sales_pos ASC,name ASC, code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProbList.DataSource = data
         GVProbList.BestFitColumns()
@@ -486,40 +486,43 @@
         makeSafeGV(GVProbList)
         GVProbList.ActiveFilterString = "[is_select]='Yes' "
 
-        'check valid
-        Dim id_prob_in As String = ""
-        Dim err_product As String = ""
-        For c As Integer = 0 To GVProbList.RowCount - 1
-            If c > 0 Then
-                id_prob_in += ","
-            End If
-            If GVProbList.GetRowCellValue(c, "id_design_price_valid") > 0 Then
-                err_product += GVProbList.GetRowCellValue(c, "code").ToString + " - " + GVProbList.GetRowCellValue(c, "name").ToString + System.Environment.NewLine
-            End If
-            id_prob_in += GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
-        Next
+        If GVProbList.RowCount > 0 Then
+            'check valid
+            Dim id_prob_in As String = ""
+            Dim err_product As String = ""
+            For c As Integer = 0 To GVProbList.RowCount - 1
+                If c > 0 Then
+                    id_prob_in += ","
+                End If
+                If GVProbList.GetRowCellValue(c, "id_design_price_valid") > 0 Then
+                    err_product += GVProbList.GetRowCellValue(c, "code").ToString + " - " + GVProbList.GetRowCellValue(c, "name").ToString + System.Environment.NewLine
+                End If
+                id_prob_in += GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
+            Next
 
-        'cek on process
-        Dim err_on_process As String = ""
-        Dim qcek As String = "SELECT rd.id_sales_pos_recon_det, p.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`
+            'cek on process
+            Dim err_on_process As String = ""
+            Dim qcek As String = "SELECT rd.id_sales_pos_recon_det, p.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`
             FROM tb_sales_pos_recon_det rd
             INNER JOIN tb_sales_pos_recon r ON r.id_sales_pos_recon = rd.id_sales_pos_recon
             INNER JOIN tb_m_product p ON p.id_product = rd.id_product
             WHERE r.id_report_status<5 AND rd.id_sales_pos_prob IN(" + id_prob_in + ") "
-        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
-        For d As Integer = 0 To dcek.Rows.Count - 1
-            err_on_process += dcek.Rows(d)("code").ToString + "- " + dcek.Rows(d)("name").ToString + System.Environment.NewLine
-        Next
+            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+            For d As Integer = 0 To dcek.Rows.Count - 1
+                err_on_process += dcek.Rows(d)("code").ToString + "- " + dcek.Rows(d)("name").ToString + System.Environment.NewLine
+            Next
 
-        If err_product <> "" Then
-            stopCustom("These product already reconcile :" + System.Environment.NewLine + err_product)
-        ElseIf err_on_process <> "" Then
-            stopCustom("These product on process reconcile :" + System.Environment.NewLine + err_on_process)
-        Else
-            'proses
-            FormSalesPosPriceRecon.action = "ins"
-            FormSalesPosPriceRecon.ShowDialog()
+            If err_product <> "" Then
+                stopCustom("These product already reconcile :" + System.Environment.NewLine + err_product)
+            ElseIf err_on_process <> "" Then
+                stopCustom("These product on process reconcile :" + System.Environment.NewLine + err_on_process)
+            Else
+                'proses
+                FormSalesPosPriceRecon.action = "ins"
+                FormSalesPosPriceRecon.ShowDialog()
+            End If
         End If
+
         makeSafeGV(GVProbList)
         Cursor = Cursors.Default
     End Sub
@@ -557,6 +560,7 @@
             If GVProbList.RowCount > 0 Then
                 'price
                 Dim err As String = ""
+                Dim err_price_valid As String = ""
                 For c As Integer = 0 To GVProbList.RowCount - 1
                     Dim id_sales_pos_prob_cek As String = GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
                     Dim code As String = GVProbList.GetRowCellValue(c, "code").ToString
@@ -569,10 +573,18 @@
                     If dc.Rows.Count > 0 Then
                         err += code + System.Environment.NewLine
                     End If
+
+                    'price valid
+                    Dim id_design_price_valid_cek As String = GVProbList.GetRowCellValue(c, "id_design_price_valid").ToString
+                    If id_design_price_valid_cek = "0" Then
+                        err_price_valid += code + System.Environment.NewLine
+                    End If
                 Next
 
                 If err <> "" Then
                     stopCustom("Already processed : " + System.Environment.NewLine + err)
+                ElseIf err_price_valid <> "" Then
+                    stopCustom("Please propose 'Price Reconcile' first for these product : " + System.Environment.NewLine + err_price_valid)
                 Else
                     FormSalesPOSDet.is_from_prob_list = True
                     FormSalesPOSDet.action = "ins"
@@ -584,7 +596,9 @@
             GVProbList.ActiveFilterString = "[qty_new]>0 "
             If GVProbList.RowCount > 0 Then
                 'no stock
+
                 Dim err As String = ""
+                Dim err_price_valid As String = ""
                 'check valid qty
                 For c As Integer = 0 To GVProbList.RowCount - 1
                     Dim id_sales_pos_prob_cek As String = GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
@@ -607,10 +621,19 @@
                     If qty_input > qty_limit Then
                         err += code + ", can't exceed " + qty_limit.ToString + System.Environment.NewLine
                     End If
+
+                    'price valid
+                    Dim id_design_price_valid_cek As String = GVProbList.GetRowCellValue(c, "id_design_price_valid").ToString
+                    If id_design_price_valid_cek = "0" Then
+                        err_price_valid += code + System.Environment.NewLine
+                    End If
                 Next
+
 
                 If err <> "" Then
                     stopCustom("Qty not valid : " + System.Environment.NewLine + err)
+                ElseIf err_price_valid <> "" Then
+                    stopCustom("Please propose 'Price Reconcile' first for these product : " + System.Environment.NewLine + err_price_valid)
                 Else
                     FormSalesPOSDet.is_from_prob_list = True
                     FormSalesPOSDet.action = "ins"
