@@ -91,6 +91,8 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TEUnit = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.RepositoryItemTextEditPph, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,6 +127,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.XTPBPLDP.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemTextEditPph
@@ -197,7 +200,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.TextEditVendor.Location = New System.Drawing.Point(97, 12)
         Me.TextEditVendor.Name = "TextEditVendor"
         Me.TextEditVendor.Properties.ReadOnly = True
-        Me.TextEditVendor.Size = New System.Drawing.Size(359, 20)
+        Me.TextEditVendor.Size = New System.Drawing.Size(435, 20)
         Me.TextEditVendor.TabIndex = 7
         '
         'TextEditPONumber
@@ -205,7 +208,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.TextEditPONumber.Location = New System.Drawing.Point(97, 38)
         Me.TextEditPONumber.Name = "TextEditPONumber"
         Me.TextEditPONumber.Properties.ReadOnly = True
-        Me.TextEditPONumber.Size = New System.Drawing.Size(359, 20)
+        Me.TextEditPONumber.Size = New System.Drawing.Size(159, 20)
         Me.TextEditPONumber.TabIndex = 9
         '
         'LabelControl4
@@ -616,6 +619,8 @@ Partial Class FormBankWithdrawalAttachement
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.TEUnit)
+        Me.PanelControl3.Controls.Add(Me.LabelControl2)
         Me.PanelControl3.Controls.Add(Me.TEInvNumber)
         Me.PanelControl3.Controls.Add(Me.LabelControl10)
         Me.PanelControl3.Controls.Add(Me.TextEditVendor)
@@ -874,6 +879,22 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 453
         '
+        'TEUnit
+        '
+        Me.TEUnit.Location = New System.Drawing.Point(287, 38)
+        Me.TEUnit.Name = "TEUnit"
+        Me.TEUnit.Properties.ReadOnly = True
+        Me.TEUnit.Size = New System.Drawing.Size(245, 20)
+        Me.TEUnit.TabIndex = 8909
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(262, 41)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl2.TabIndex = 8908
+        Me.LabelControl2.Text = "Unit"
+        '
         'FormBankWithdrawalAttachement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -923,6 +944,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.XTPBPLDP.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -997,4 +1019,6 @@ Partial Class FormBankWithdrawalAttachement
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEUnit As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class

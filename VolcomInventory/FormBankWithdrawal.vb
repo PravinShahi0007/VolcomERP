@@ -254,12 +254,12 @@ WHERE py.id_coa_tag='" & SLEUnitBBKList.EditValue.ToString & "' AND DATE(py.date
 
         If SLEPayType.EditValue.ToString = "2" Then 'payment
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
-            q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap "
+            q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=IF(po.id_coa_tag=1,c.id_acc_ap,c.id_acc_cabang_ap) "
             where_string += " AND po.is_close_rec='1'"
             q_dp = "-IFNULL(payment.value,0)"
         ElseIf SLEPayType.EditValue.ToString = "1" Then 'DP
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
-            q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_dp "
+            q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=IF(po.id_coa_tag=1,c.id_acc_dp,c.id_acc_cabang_dp) "
             q_dp = "*(payment_purc.dp_percent/100)"
         End If
 
@@ -304,7 +304,7 @@ WHERE py.id_coa_tag='" & SLEUnitBBKList.EditValue.ToString & "' AND DATE(py.date
 ,IFNULL(payment_pending.jml,0) as total_pending
 ,DATEDIFF(po.`due_date`,NOW()) AS due_days
 ,cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
-,po.report_mark_type,tag.id_coa_tag,tag.tag_code
+,po.report_mark_type,po.id_coa_tag AS po_coa_tag,tag.id_coa_tag,tag.tag_code
 ,SUM(pod.gross_up_value) AS gross_up_value
 " & q_acc & "
 FROM tb_purc_order po
