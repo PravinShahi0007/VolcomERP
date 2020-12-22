@@ -40,4 +40,51 @@
     Private Sub BtnViewPriceRecon_Click(sender As Object, e As EventArgs) Handles BtnViewPriceRecon.Click
         viewPriceRecon()
     End Sub
+
+    Private Sub BtnViewInv_Click(sender As Object, e As EventArgs) Handles BtnViewInv.Click
+        viewInvoice()
+    End Sub
+
+    Sub viewInvoice()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT sp.id_sales_pos, sp.sales_pos_number, sp.sales_pos_date,sp.sales_pos_start_period, sp.sales_pos_end_period, 
+c.id_comp, c.comp_number, c.comp_name, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`, cg.comp_group,
+sp.id_report_status, stt.report_status, 'Price Reconcile' AS `ref_type`, sp.report_mark_type, rmt.report_mark_type_name AS `inv_type`
+FROM tb_sales_pos_det spd
+INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+WHERE 1=1 AND !ISNULL(spd.id_sales_pos_prob_price)
+GROUP BY sp.id_sales_pos
+UNION ALL
+SELECT sp.id_sales_pos, sp.sales_pos_number, sp.sales_pos_date,sp.sales_pos_start_period, sp.sales_pos_end_period, 
+c.id_comp, c.comp_number, c.comp_name, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`, cg.comp_group,
+sp.id_report_status, stt.report_status, 'No Stock' AS `ref_type`, sp.report_mark_type, rmt.report_mark_type_name AS `inv_type`
+FROM tb_sales_pos_det spd
+INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+WHERE 1=1 AND !ISNULL(spd.id_sales_pos_prob)
+GROUP BY sp.id_sales_pos
+ORDER BY id_sales_pos DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCInv.DataSource = data
+        GVInv.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVInv_DoubleClick(sender As Object, e As EventArgs) Handles GVInv.DoubleClick
+        If GVInv.RowCount > 0 And GVInv.FocusedRowHandle >= 0 Then
+            Dim m As New ClassShowPopUp
+            m.id_report = GVInv.GetFocusedRowCellValue("id_sales_pos").ToString
+            m.report_mark_type = GVInv.GetFocusedRowCellValue("report_mark_type").ToString
+            m.show()
+        End If
+    End Sub
 End Class
