@@ -36,6 +36,7 @@
                 Dim newRow As DataRow = (TryCast(GCData.DataSource, DataTable)).NewRow()
                 newRow("id_sales_pos_prob") = FormSalesPOS.GVProbList.GetRowCellValue(d, "id_sales_pos_prob").ToString
                 newRow("id_sales_pos") = FormSalesPOS.GVProbList.GetRowCellValue(d, "id_sales_pos").ToString
+                newRow("rmt_inv") = FormSalesPOS.GVProbList.GetRowCellValue(d, "rmt_inv").ToString
                 newRow("sales_pos_number") = FormSalesPOS.GVProbList.GetRowCellValue(d, "sales_pos_number").ToString
                 newRow("id_comp") = FormSalesPOS.GVProbList.GetRowCellValue(d, "id_comp").ToString
                 newRow("comp_number") = FormSalesPOS.GVProbList.GetRowCellValue(d, "comp_number").ToString
