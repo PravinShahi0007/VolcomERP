@@ -14,6 +14,7 @@
 
     'menu : 1=invoice 2=credit note
     Public id_menu As String = "1"
+    Dim first_load As Boolean = True
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -80,6 +81,7 @@
             LabelName.Visible = False
             TXTName.Visible = False
         End If
+        first_load = False
     End Sub
 
     Sub actionLoad()
@@ -260,6 +262,9 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProbList.DataSource = data
         GVProbList.BestFitColumns()
+        If first_load And GVProbList.RowCount > 0 Then
+            stopCustom("There are some items that can't be invoiced, please see in tab 'Problem List' ")
+        End If
         Cursor = Cursors.Default
     End Sub
 
