@@ -681,4 +681,13 @@
             End If
         End If
     End Sub
+
+    Private Sub RepoBtnTransHist_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnTransHist.ButtonClick
+        If GVProbList.RowCount > 0 And GVProbList.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormSalesProbTransHistory.id_sales_pos_prob = GVProbList.GetFocusedRowCellValue("id_sales_pos_prob").ToString
+            FormSalesProbTransHistory.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
