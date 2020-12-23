@@ -55,10 +55,12 @@ Partial Class FormSalesPosPriceRecon
         Me.GridColumndesign_price_valid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_pos_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoLinkInvoice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumnid_sales_pos = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrmt_inv = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,6 +76,7 @@ Partial Class FormSalesPosPriceRecon
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -267,13 +270,14 @@ Partial Class FormSalesPosPriceRecon
         Me.GCData.Location = New System.Drawing.Point(0, 103)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLinkInvoice})
         Me.GCData.Size = New System.Drawing.Size(836, 232)
         Me.GCData.TabIndex = 3
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumn, Me.GridColumnid_sales_pos_recon, Me.GridColumnid_sales_pos_prob, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnid_design_price_retail, Me.GridColumndesign_price_retail, Me.GridColumndesign_price_store, Me.GridColumnid_design_price_valid, Me.GridColumndesign_price_valid, Me.GridColumnnote, Me.GridColumnsales_pos_number, Me.GridColumnid_sales_pos, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnid_comp})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumn, Me.GridColumnid_sales_pos_recon, Me.GridColumnid_sales_pos_prob, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnid_design_price_retail, Me.GridColumndesign_price_retail, Me.GridColumndesign_price_store, Me.GridColumnid_design_price_valid, Me.GridColumndesign_price_valid, Me.GridColumnnote, Me.GridColumnsales_pos_number, Me.GridColumnid_sales_pos, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnid_comp, Me.GridColumnrmt_inv})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -398,10 +402,16 @@ Partial Class FormSalesPosPriceRecon
         'GridColumnsales_pos_number
         '
         Me.GridColumnsales_pos_number.Caption = "Invoice Ref."
+        Me.GridColumnsales_pos_number.ColumnEdit = Me.RepoLinkInvoice
         Me.GridColumnsales_pos_number.FieldName = "sales_pos_number"
         Me.GridColumnsales_pos_number.Name = "GridColumnsales_pos_number"
         Me.GridColumnsales_pos_number.Visible = True
         Me.GridColumnsales_pos_number.VisibleIndex = 1
+        '
+        'RepoLinkInvoice
+        '
+        Me.RepoLinkInvoice.AutoHeight = False
+        Me.RepoLinkInvoice.Name = "RepoLinkInvoice"
         '
         'GridColumnid_sales_pos
         '
@@ -430,6 +440,12 @@ Partial Class FormSalesPosPriceRecon
         Me.GridColumnid_comp.Caption = "id_comp"
         Me.GridColumnid_comp.FieldName = "id_comp"
         Me.GridColumnid_comp.Name = "GridColumnid_comp"
+        '
+        'GridColumnrmt_inv
+        '
+        Me.GridColumnrmt_inv.Caption = "rmt_inv"
+        Me.GridColumnrmt_inv.FieldName = "rmt_inv"
+        Me.GridColumnrmt_inv.Name = "GridColumnrmt_inv"
         '
         'FormSalesPosPriceRecon
         '
@@ -462,6 +478,7 @@ Partial Class FormSalesPosPriceRecon
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -505,4 +522,6 @@ Partial Class FormSalesPosPriceRecon
     Friend WithEvents BtnCancell As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnid_comp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoLinkInvoice As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents GridColumnrmt_inv As DevExpress.XtraGrid.Columns.GridColumn
 End Class
