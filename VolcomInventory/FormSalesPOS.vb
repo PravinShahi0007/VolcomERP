@@ -383,7 +383,7 @@
         End If
 
         Dim query As String = "SELECT p.id_sales_pos_prob, 
-        p.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, sp.sales_pos_due_date,
+        p.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, sp.sales_pos_due_date, sp.report_mark_type AS `rmt_inv`,
         c.id_comp, cc.id_comp_contact, c.comp_number, c.comp_name, cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,
         p.is_invalid_price, p.is_no_stock, 
         p.id_product, prod.id_design, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
@@ -679,6 +679,26 @@
                 stopCustom("Can't exceed " + qty_limit.ToString)
                 GVProbList.SetFocusedRowCellValue("qty_new", 0)
             End If
+        End If
+    End Sub
+
+    Private Sub RepoBtnTransHist_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnTransHist.ButtonClick
+        If GVProbList.RowCount > 0 And GVProbList.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormSalesProbTransHistory.id_sales_pos_prob = GVProbList.GetFocusedRowCellValue("id_sales_pos_prob").ToString
+            FormSalesProbTransHistory.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkInvoice_Click(sender As Object, e As EventArgs) Handles RepoLinkInvoice.Click
+        If GVProbList.RowCount > 0 And GVProbList.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp()
+            m.id_report = GVProbList.GetFocusedRowCellValue("id_sales_pos").ToString
+            m.report_mark_type = GVProbList.GetFocusedRowCellValue("rmt_inv").ToString
+            m.show()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

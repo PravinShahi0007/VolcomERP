@@ -1962,6 +1962,7 @@ Partial Class FormSalesPOSDet
         Me.BtnNoStock.Size = New System.Drawing.Size(111, 36)
         Me.BtnNoStock.TabIndex = 25
         Me.BtnNoStock.Text = "No Stock List"
+        Me.BtnNoStock.Visible = False
         '
         'BtnImport
         '
