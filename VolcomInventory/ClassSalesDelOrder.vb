@@ -404,8 +404,10 @@
             AND d.is_old_design=2 AND t.is_use_unique_code_wh=1 "
             execute_non_query_long(quniq, True, "", "", "", "")
         End If
+
         Dim query As String = String.Format("UPDATE tb_pl_sales_order_del SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_pl_sales_order_del ='{1}'", id_status_reportx_par, id_report_par)
         execute_non_query(query, True, "", "", "", "")
+
     End Sub
 
     Public Sub changeStatusHead(ByVal id_report_par As String, ByVal id_status_reportx_par As String)
