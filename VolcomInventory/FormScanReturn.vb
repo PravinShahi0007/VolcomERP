@@ -131,9 +131,9 @@ WHERE DATE(bap.`created_date`)>='" & date_start & "' AND DATE(bap.`created_date`
     Private Sub BViewScan_Click(sender As Object, e As EventArgs) Handles BViewScan.Click
         Dim date_start As String = Date.Parse(DEStartScan.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_until As String = Date.Parse(DEUntilScan.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim q As String = "SELECT st_list.store AS list_store,rn.`number_return_note`,rn.`label_number`,scd.id_scan_return_det,scd.id_product,prd.product_full_code,prd.product_display_name,pc.size,scd.`type`,IF(scd.`type`=1,'Ok',IF(scd.`type`=2,'No Tag','Unique Duplicate')) AS notes 
+        Dim q As String = "SELECT st_list.store AS list_store,rn.`number_return_note`,rn.`label_number`,scd.id_scan_return_det,scd.id_product,IFNULL(prd.product_full_code,scd.scanned_code) AS product_full_code,IFNULL(prd.product_display_name,scd.description) AS product_display_name,pc.size,scd.`type`,IF(scd.`type`=1,'Ok',IF(scd.`type`=2,'No Tag','Unique Duplicate')) AS notes 
 FROM `tb_scan_return_det` scd
-INNER JOIN tb_m_product prd ON prd.id_product=scd.id_product
+LEFT JOIN tb_m_product prd ON prd.id_product=scd.id_product
 LEFT JOIN 
 (
 	SELECT pc.id_product,cd.`code_detail_name` AS size
