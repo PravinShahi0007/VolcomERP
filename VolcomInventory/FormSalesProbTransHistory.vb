@@ -98,4 +98,16 @@ ORDER BY id_sales_pos DESC "
             m.show()
         End If
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        print(GCPriceRecon, "Price Reconcile List")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnPrintInvoice.Click
+        Cursor = Cursors.WaitCursor
+        print(GCInv, "Invoice List")
+        Cursor = Cursors.Default
+    End Sub
 End Class
