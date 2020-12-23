@@ -97,7 +97,7 @@
         rd.id_sales_pos_prob, rd.id_sales_pos, rd.id_comp, sp.sales_pos_number, c.comp_number, c.comp_name,
         rd.id_product, p.product_full_code As `code`, p.product_display_name As `name`, cd.code_detail_name As `size`,
         rd.id_design_price_retail, rd.design_price_retail, rd.design_price_store,
-        rd.id_design_price_valid, rd.design_price_valid, rd.note
+        rd.id_design_price_valid, rd.design_price_valid, rd.note, sp.report_mark_type AS `rmt_inv`
         FROM tb_sales_pos_recon_det rd
         INNER JOIN tb_m_product p ON p.id_product = rd.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
@@ -332,5 +332,16 @@
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoLinkInvoice_Click(sender As Object, e As EventArgs) Handles RepoLinkInvoice.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp()
+            m.report_mark_type = GVData.GetFocusedRowCellValue("rmt_inv").ToString
+            m.id_report = GVData.GetFocusedRowCellValue("id_sales_pos").ToString
+            m.show()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
