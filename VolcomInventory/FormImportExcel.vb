@@ -6278,9 +6278,8 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             ); "
                             execute_non_query(query, True, "", "", "", "")
                         Next
-                        FormMain.SplashScreenManager1.SetWaitFormDescription("Compare data")
-                        FormPayoutZaloraDet.validate_payout()
                         FormMain.SplashScreenManager1.CloseWaitForm()
+                        FormPayoutZaloraDet.validate_payout()
                         Close()
                     End If
                 Else

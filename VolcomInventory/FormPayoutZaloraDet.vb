@@ -33,7 +33,14 @@
     End Sub
 
     Sub validate_payout()
+        Cursor = Cursors.WaitCursor
+        viewDetail()
+        Cursor = Cursors.Default
+    End Sub
 
+    Sub viewDetail()
+        Cursor = Cursors.WaitCursor
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub Btnrecalculate_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
