@@ -262,7 +262,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProbList.DataSource = data
         GVProbList.BestFitColumns()
-        If first_load And GVProbList.RowCount > 0 Then
+        If first_load And GVProbList.RowCount > 0 And LEReportStatus.EditValue < 5 Then
             stopCustom("There are some items that can't be invoiced, please see in tab 'Problem List' ")
         End If
         Cursor = Cursors.Default
