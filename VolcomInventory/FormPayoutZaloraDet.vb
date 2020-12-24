@@ -16,6 +16,7 @@
         DESyncDate.EditValue = data.Rows(0)("sync_date")
         TxtCommision.EditValue = data.Rows(0)("default_comm")
         MENote.Text = data.Rows(0)("note").ToString
+        viewDetail()
         Cursor = Cursors.Default
     End Sub
 
@@ -40,6 +41,13 @@
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT d.id_payout_zalora_det, d.id_payout_zalora, d.transaction_date, d.transaction_type,
+d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_id, d.order_status, d.`comment`
+FROM tb_payout_zalora_det d
+WHERE d.id_payout_zalora=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
