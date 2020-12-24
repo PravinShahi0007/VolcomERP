@@ -142,6 +142,12 @@
             BtnCancell.Visible = False
             BtnResetPropose.Visible = False
         End If
+
+        If id_report_status = "-1" Then
+            SBPrint.Visible = False
+        Else
+            SBPrint.Visible = True
+        End If
     End Sub
 
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
@@ -344,5 +350,20 @@
             m.show()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        'overtime
+        Dim report As New ReportSalesPosPriceRecon()
+
+        report.LabelNumber.Text = TxtNumber.Text
+        report.LPODate.Text = DECreated.Text
+        report.GCData.DataSource = GCData.DataSource
+
+        pre_load_mark_horz("281", id, "2", "2", report.XrTable1)
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool.ShowPreviewDialog()
     End Sub
 End Class
