@@ -303,7 +303,7 @@
                 End If
             Next
             '
-            If Not GVJournalDet.Columns("value").SummaryItem.SummaryValue - GVBankWithdrawal.Columns("value").SummaryItem.SummaryValue = TECashInAdvance.EditValue Then
+            If Not TETotal.EditValue - GVBankWithdrawal.Columns("value").SummaryItem.SummaryValue = TECashInAdvance.EditValue Then
                 val_ok = False
             End If
         ElseIf XTPDeposit.PageVisible Then
@@ -313,7 +313,7 @@
                 End If
             Next
             '
-            If Not GVBankDeposit.Columns("value").SummaryItem.SummaryValue + GVJournalDet.Columns("value").SummaryItem.SummaryValue = TECashInAdvance.EditValue Then
+            If Not GVBankDeposit.Columns("value").SummaryItem.SummaryValue + TETotal.EditValue = TECashInAdvance.EditValue Then
                 val_ok = False
             End If
         End If

@@ -356,6 +356,8 @@
                         newRow("id_design_price_retail") = GVItemList.GetRowCellValue(ls, "id_design_price_retail").ToString
                         newRow("id_sales_pos_det_ref") = GVItemList.GetRowCellValue(ls, "id_sales_pos_det").ToString
                         newRow("id_sales_pos_det") = "0"
+                        newRow("id_sales_pos_prob") = "0"
+                        newRow("id_sales_pos_prob_price") = "0"
 
                         TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
                         FormSalesPOSDet.GCItemList.RefreshDataSource()
@@ -397,5 +399,20 @@
 
     Private Sub GVItemList_ColumnFilterChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVItemList.ColumnFilterChanged
 
+    End Sub
+
+    Private Sub CESelAll_EditValueChanged(sender As Object, e As EventArgs) Handles CESelAll.EditValueChanged
+        GVItemList.CloseEditor()
+        If CESelAll.EditValue = True Then
+            For i As Integer = 0 To GVItemList.RowCount - 1
+                GVItemList.SetRowCellValue(i, "sales_pos_det_qty_credit_note", GVItemList.GetRowCellValue(i, "sales_pos_det_qty_limit"))
+            Next
+            GCItemList.Enabled = False
+        Else
+            For i As Integer = 0 To GVItemList.RowCount - 1
+                GVItemList.SetRowCellValue(i, "sales_pos_det_qty_credit_note", 0)
+            Next
+            GCItemList.Enabled = True
+        End If
     End Sub
 End Class

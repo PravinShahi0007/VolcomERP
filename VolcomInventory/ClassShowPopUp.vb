@@ -389,9 +389,21 @@
         ElseIf report_mark_type = "274" Then
             'Propose additional cost
             FormAdditionalCostDet.Close()
-        ElseIf report_mark_type = "275" Then
+        ElseIf report_mark_type = "275" Or report_mark_type = "279" Then
             'propose return mail
             FormSalesReturnOrderMailDet.Close()
+        ElseIf report_mark_type = "278" Then
+            'marketplace oos
+            FormOLStoreOOSDetail.Close()
+        ElseIf report_mark_type = "280" Then
+            'Inv Claim Lain2
+            FormInvoiceClaimOther.Close()
+        ElseIf report_mark_type = "241" Then
+            'adj og
+            FormAdjustmentOGDet.Close()
+        ElseIf report_mark_type = "281" Then
+            'inv price recon
+            FormSalesPosPriceRecon.Close()
         End If
     End Sub
     Sub show()
@@ -1325,10 +1337,28 @@ GROUP BY rec.`id_prod_order`"
             'Propose additional cost
             FormAdditionalCostDet.id_pps = id_report
             FormAdditionalCostDet.ShowDialog()
-        ElseIf report_mark_type = "275" Then
+        ElseIf report_mark_type = "275" Or report_mark_type = "279" Then
             'propose return mail
             FormSalesReturnOrderMailDet.id_mail_3pl = id_report
             FormSalesReturnOrderMailDet.ShowDialog()
+        ElseIf report_mark_type = "278" Then
+            'marketplace oos
+            FormOLStoreOOSDetail.is_view = "1"
+            FormOLStoreOOSDetail.id = id_report
+            FormOLStoreOOSDetail.ShowDialog()
+        ElseIf report_mark_type = "280" Then
+            'Inv Claim Lain2
+            FormInvoiceClaimOther.id_invoice = id_report
+            FormInvoiceClaimOther.ShowDialog()
+        ElseIf report_mark_type = "241" Then
+            FormAdjustmentOGDet.id_adjustment = id_report
+            FormAdjustmentOGDet.ShowDialog()
+        ElseIf report_mark_type = "281" Then
+            'inv price recon
+            FormSalesPosPriceRecon.id = id_report
+            FormSalesPosPriceRecon.action = "upd"
+            FormSalesPosPriceRecon.is_view = "1"
+            FormSalesPosPriceRecon.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2373,12 +2403,27 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_additional_cost_pps"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "275" Then
+        ElseIf report_mark_type = "275" Or report_mark_type = "279" Then
             'propose return mail
             table_name = "tb_sales_return_order_mail_3pl"
             field_id = "id_mail_3pl"
             field_number = "number"
             field_date = "updated_date"
+            If report_mark_type = "279" Then
+                field_date = "created_date"
+            End If
+        ElseIf report_mark_type = "280" Then
+            'Inv Claim Lain-lain
+            table_name = "tb_inv_claim_other"
+            field_id = "id_inv_claim_other"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "241" Then
+            'adj og
+            table_name = "tb_adjustment_og"
+            field_id = "id_adjustment"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

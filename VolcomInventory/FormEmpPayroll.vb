@@ -1059,9 +1059,10 @@
 
             Dim rmt As DataTable = execute_query("SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type = 192 AND rm.id_report = '" + id_payroll + "' AND rm.id_report_status = 1", -1, True, "", "", "", "")
 
-            Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) VALUES ('" + header_number_acc("1") + "', '" + rmt.Rows(0)("report_number").ToString + "', '25', '" + rmt.Rows(0)("id_user").ToString + "', NOW(), (SELECT eff_trans_date FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-
+            Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) VALUES ('', '" + rmt.Rows(0)("report_number").ToString + "', '25', '" + rmt.Rows(0)("id_user").ToString + "', NOW(), (SELECT eff_trans_date FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
             Dim id_acc_trans As String = execute_query(insert_jurnal, 0, True, "", "", "", "")
+
+            execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
             'office
             Dim total_bpjskes As Decimal = 0.00
@@ -1232,9 +1233,10 @@
 
             Dim rmt As DataTable = execute_query("SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type = 192 AND rm.id_report = '" + id_payroll + "' AND rm.id_report_status = 1", -1, True, "", "", "", "")
 
-            Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) VALUES ('" + header_number_acc("1") + "', '" + rmt.Rows(0)("report_number").ToString + "', '25', '" + rmt.Rows(0)("id_user").ToString + "', NOW(), (SELECT eff_trans_date FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-
+            Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) VALUES ('', '" + rmt.Rows(0)("report_number").ToString + "', '25', '" + rmt.Rows(0)("id_user").ToString + "', NOW(), (SELECT eff_trans_date FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
             Dim id_acc_trans As String = execute_query(insert_jurnal, 0, True, "", "", "", "")
+            '
+            execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
             Dim data_map As DataTable = execute_query("
                 SELECT map.id_departement, map.id_departement_sub, map.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, map.id_comp, comp.comp_number
@@ -1336,6 +1338,27 @@
         End If
     End Sub
 
+    Sub remaining_leave(ByVal id_payroll As String)
+        Dim data As DataTable = execute_query("
+            SELECT id_employee
+            FROM tb_emp_payroll_adj
+            WHERE id_salary_adj = 4 AND id_payroll = " + id_payroll + "
+        ", -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim query As String = "
+                INSERT INTO tb_emp_stock_leave(id_emp, qty, plus_minus, date_leave, date_expired, is_process_exp, `type`, note)
+                SELECT id_emp, SUM(IF(plus_minus = 1, qty, -qty)) AS qty, 2 AS plus_minus, NOW() AS date_leave, date_expired, 1 AS is_process_exp, `type`, 'Auto adjustment leave' AS note
+                FROM tb_emp_stock_leave
+                WHERE id_emp = " + data.Rows(i)("id_employee").ToString + "
+                GROUP BY id_emp, `type`, date_expired
+                HAVING SUM(IF(plus_minus = 1, qty, -qty)) > 0
+            "
+
+            execute_non_query(query, True, "", "", "", "")
+        Next
+    End Sub
+
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
         Cursor = Cursors.WaitCursor
         Dim id_acc_trans As String = ""
@@ -1386,6 +1409,15 @@
 
         Dim where_dw As String = If(is_dw = "1", "=", "<>")
 
+        'religion
+        Dim where_employee_religion As String = ""
+
+        If is_thr = "1" Then
+            Dim in_religion As String = execute_query("SELECT id_religion FROM tb_emp_payroll_type WHERE id_payroll_type = " + id_payroll_type, 0, True, "", "", "", "")
+
+            where_employee_religion = "AND e.id_religion IN (" + in_religion + ")"
+        End If
+
         'not active
         Dim where_employee_not_active As String = ""
 
@@ -1416,13 +1448,16 @@
             "
         End If
 
-        'religion
-        Dim where_employee_religion As String = ""
-
         If is_thr = "1" Then
-            Dim in_religion As String = execute_query("SELECT id_religion FROM tb_emp_payroll_type WHERE id_payroll_type = " + id_payroll_type, 0, True, "", "", "", "")
-
-            where_employee_religion = "AND e.id_religion IN (" + in_religion + ")"
+            where_employee_not_active = "
+                UNION
+                -- employee resign <= 30
+                SELECT e.id_employee, e.employee_name
+                FROM tb_m_employee AS e
+                WHERE e.id_employee_active = 3
+                " + where_employee_religion + "
+                AND TIMESTAMPDIFF(DAY, e.employee_last_date, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) <= 30
+            "
         End If
 
         'actual workdays
@@ -1444,7 +1479,7 @@
         If is_thr = "1" Then
             where_actual_workdays = "
                 -- actual workdays
-                SELECT id_employee, ROUND(DATEDIFF((SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), employee_actual_join_date) / 365, 2) AS actual_workdays
+                SELECT id_employee, ROUND(DATEDIFF(IFNULL(employee_last_date, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")), employee_actual_join_date) / 365, 2) AS actual_workdays
                 FROM tb_m_employee
             "
         End If

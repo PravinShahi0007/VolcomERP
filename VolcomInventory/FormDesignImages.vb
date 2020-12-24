@@ -28,6 +28,14 @@
     Sub view_images()
         Dim where_season As String = "AND d.id_season = " + SLUESeason.EditValue.ToString
 
+        If SLUESeason.EditValue.ToString = "ALL" Then
+            where_season = ""
+        End If
+
+        If SLUESeason.EditValue.ToString = "LAST" Then
+            where_season = "AND i.group_upload = (SELECT MAX(group_upload) FROM tb_design_images)"
+        End If
+
         Dim query As String = "
             SELECT i.id_design_images, d.design_code, i.store, d.design_display_name, i.file_name, i.sort, CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.created_at, e.employee_name AS created_by, '' AS image, IF(l.id_design_images IS NULL, 'no', 'yes') AS `log`
             FROM tb_design_images AS i
@@ -69,7 +77,28 @@
     End Sub
 
     Function get_validation(path As String) As DataTable
-        Dim file() As String = IO.Directory.GetFiles(path)
+        'exclude file
+        Dim exclude_file As DataTable = execute_query("SELECT file_exclude FROM tb_design_images_exclude", -1, True, "", "", "", "")
+
+        Dim tmp_file() As String = IO.Directory.GetFiles(path)
+
+        Dim file_list As List(Of String) = New List(Of String)
+
+        For i = 0 To tmp_file.Length - 1
+            Dim skip As Boolean = True
+
+            For j = 0 To exclude_file.Rows.Count - 1
+                If tmp_file(i).Contains(exclude_file.Rows(j)("file_exclude").ToString) Then
+                    skip = False
+                End If
+            Next
+
+            If skip Then
+                file_list.Add(tmp_file(i))
+            End If
+        Next
+
+        Dim file() As String = file_list.ToArray
 
         Array.Sort(file)
 
@@ -471,11 +500,15 @@
 
     Sub view_season()
         Dim query As String = "
-            SELECT a.id_season, b.range, a.season
+            (SELECT 'ALL' AS id_season, 'ALL' AS `range`, 'ALL' AS season)
+            UNION ALL
+            (SELECT 'LAST' AS id_season, 'LAST UPLOAD' AS `range`, 'LAST UPLOAD' AS season)
+            UNION ALL
+            (SELECT a.id_season, b.range, a.season
             FROM tb_season AS a 
             INNER JOIN tb_range b ON a.id_range = b.id_range 
             WHERE b.id_range > 0 AND b.is_md = 1 
-            ORDER BY b.range DESC
+            ORDER BY b.range DESC)
         "
 
         viewSearchLookupQuery(SLUESeason, query, "id_season", "season", "id_season")
