@@ -457,6 +457,7 @@
                     Dim item_id As String = ""
                     Dim sku As String = ""
                     Dim design_price As String = ""
+                    Dim ol_order_qty As String = ""
                     Dim sales_order_det_qty As String = ""
                     Dim grams As String = ""
                     Dim discount_allocations_amo As String = "0"
@@ -465,15 +466,16 @@
                     item_id = dtd.Rows(d)("item_id").ToString
                     sku = dtd.Rows(d)("sku").ToString
                     design_price = decimalSQL(dtd.Rows(d)("design_price").ToString)
+                    ol_order_qty = "1"
                     sales_order_det_qty = "1"
                     grams = "0"
                     discount_allocations_amo = "0"
 
                     'insert
                     Dim qins As String = "INSERT tb_ol_store_order(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address,shipping_address1,shipping_address2, shipping_phone, 
-                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, shipment_provider, ol_store_sku, ol_store_id, item_id, sku, design_price, sales_order_det_qty, grams, financial_status, total_disc_order, discount_allocations_amo,checkout_id, shipping_price, discount_code, id_comp_group,is_rts) VALUES "
+                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, shipment_provider, ol_store_sku, ol_store_id, item_id, sku, design_price, ol_order_qty, sales_order_det_qty, grams, financial_status, total_disc_order, discount_allocations_amo,checkout_id, shipping_price, discount_code, id_comp_group,is_rts) VALUES "
                     qins += "('" + id_order + "', '" + sales_order_ol_shop_number + "', '" + sales_order_ol_shop_date + "', '" + addSlashes(customer_name) + "', '" + addSlashes(shipping_name) + "', '" + addSlashes(shipping_address) + "','" + addSlashes(shipping_address1) + "','" + addSlashes(shipping_address2) + "', '" + addSlashes(shipping_phone) + "', 
-                    '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + shipment_provider + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + item_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_store_group + "','2') "
+                    '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + shipment_provider + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + item_id + "', '" + sku + "', '" + design_price + "','" + ol_order_qty + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_store_group + "','2') "
                     execute_non_query(qins, True, "", "", "", "")
                 Next
             End If
@@ -697,63 +699,32 @@
         Return dt
     End Function
 
-    Sub get_payout()
-        Dim dt_cek As DataTable = execute_query("SELECT DATE_SUB(DATE(NOW()),INTERVAL 3 MONTH) AS cek_date, o.zalora_comm FROM tb_opt_accounting o", -1, True, "", "", "", "")
-        Dim created_after As Date = dt_cek.Rows(0)("cek_date")
-        Dim default_comm As String = decimalSQL(dt_cek.Rows(0)("zalora_comm").ToString)
-
-        Dim parameter_det As DataTable = New DataTable
-        parameter_det.Columns.Add("key", GetType(String))
-        parameter_det.Columns.Add("value", GetType(String))
-        parameter_det.Rows.Add("Action", "GetPayoutStatus")
-        parameter_det.Rows.Add("CreatedAfter", Uri.EscapeDataString(DateTime.Parse(created_after).ToString("yyyy-MM-dd")))
-        parameter_det.Rows.Add("Format", "JSON")
-        parameter_det.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
-        parameter_det.Rows.Add("UserID", Uri.EscapeDataString(user_id))
-        parameter_det.Rows.Add("Version", "1.0")
-        Dim signature_det As String = get_signature(parameter_det)
-        parameter_det.Rows.Add("Signature", signature_det)
-        Dim url_det As String = "https://sellercenter-api.zalora.co.id?"
-        For i = 0 To parameter_det.Rows.Count - 1
-            url_det += parameter_det.Rows(i)("key").ToString + "=" + parameter_det.Rows(i)("value").ToString + "&"
-        Next
-        url_det = url_det.Substring(0, url_det.Length - 1)
-        Dim request_det As Net.HttpWebRequest = Net.WebRequest.Create(url_det)
-        request_det.Method = "GET"
-        Dim response_det As Net.HttpWebResponse = request_det.GetResponse()
-        Using dataStreamDet As IO.Stream = response_det.GetResponseStream()
-            Dim reader_det As IO.StreamReader = New IO.StreamReader(dataStreamDet)
-
-            Dim responseFromServerDet As String = reader_det.ReadToEnd()
-
-            'array
-            Dim json_det As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServerDet)
-            If json_det("SuccessResponse")("Body")("PayoutStatus")("Statement").Count > 0 Then
-                'array
-                For Each row_det In json_det("SuccessResponse")("Body")("PayoutStatus")("Statement").ToList
-                    Dim statement_number As String = row_det("StatementNumber").ToString
-                    Dim query As String = "SELECT * FROM tb_payout_zalora p WHERE p.statement_number='" + statement_number + "' "
-                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                    If data.Rows.Count = 0 Then
-                        Dim zalora_created_at As String = row_det("CreatedAt").ToString
-                        Dim opening_balance As String = decimalSQL(row_det("OpeningBalance").ToString)
-                        Dim sales_revenue As String = decimalSQL(row_det("ItemRevenue").ToString)
-                        Dim other_revenue As String = decimalSQL(row_det("OtherRevenueTotal").ToString)
-                        Dim total_fees As String = decimalSQL(row_det("FeesTotal").ToString)
-                        Dim sales_refund As String = decimalSQL(row_det("Refunds").ToString)
-                        Dim total_refund_fee As String = decimalSQL(row_det("FeesOnRefundsTotal").ToString)
-                        Dim closing_balance As String = decimalSQL(row_det("ClosingBalance").ToString)
-                        Dim guarantee_deposit As String = decimalSQL(row_det("GuaranteeDeposit").ToString)
-                        Dim total_payout As String = decimalSQL(row_det("Payout").ToString.Replace(" IDR", ""))
-                        Dim qins As String = "INSERT INTO tb_payout_zalora(statement_number, zalora_created_at, opening_balance, sales_revenue, other_revenue, 
-                        total_fees, sales_refund, total_refund_fee, closing_balance, guarantee_deposit, total_payout, default_comm, sync_date) VALUES
-                        ('" + statement_number + "', '" + zalora_created_at + "', '" + opening_balance + "', '" + sales_revenue + "', '" + other_revenue + "', 
-                        '" + total_fees + "', '" + sales_refund + "', '" + total_refund_fee + "', '" + closing_balance + "', '" + guarantee_deposit + "', '" + total_payout + "','" + default_comm + "', NOW());"
-                        execute_non_query(qins, True, "", "", "", "")
-                    End If
-                Next
-            End If
-        End Using
-        response_det.Close()
-    End Sub
+    Function setRTSPending()
+        Dim err_other_act As String = ""
+        'ZALORA
+        Dim query_item As String = "SELECT od.id,od.sales_order_ol_shop_number AS `order_number`, GROUP_CONCAT(DISTINCT od.item_id ORDER BY od.item_id ASC) AS `item_id`, od.tracking_code, od.shipment_provider
+        FROM tb_sales_order so
+        INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
+        INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+        INNER JOIN tb_ol_store_order od ON od.id = so.id_sales_order_ol_shop AND od.id_comp_group= s.id_comp_group
+        WHERE so.id_report_status=6 AND s.id_commerce_type=2 AND !ISNULL(od.item_id) AND od.tracking_code!=''
+        AND s.id_comp_group IN (SELECT o.zalora_comp_group FROM tb_opt o)
+        AND od.is_process=1 AND od.is_rts=2
+        GROUP BY od.sales_order_ol_shop_number "
+        Dim data_item As DataTable = execute_query(query_item, -1, True, "", "", "", "")
+        If data_item.Rows.Count > 0 Then
+            For t As Integer = 0 To data_item.Rows.Count - 1
+                Try
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Set status (rts) : #" + data_item.Rows(t)("order_number").ToString)
+                    setReadyToShip(data_item.Rows(t)("item_id").ToString, data_item.Rows(t)("shipment_provider").ToString, data_item.Rows(t)("tracking_code").ToString)
+                    execute_non_query("UPDATE tb_ol_store_order od SET od.is_rts=1 WHERE od.id_comp_group='" + id_store_group + "' AND od.id='" + data_item.Rows(t)("id").ToString + "' ", True, "", "", "", "")
+                Catch ex As Exception
+                    err_other_act += addSlashes(ex.ToString) + ";"
+                    Dim ord As New ClassSalesOrder()
+                    ord.insertLogWebOrder(data_item.Rows(t)("id").ToString, "Error set status rts : " + addSlashes(ex.ToString), id_store_group)
+                End Try
+            Next
+        End If
+        Return err_other_act
+    End Function
 End Class
