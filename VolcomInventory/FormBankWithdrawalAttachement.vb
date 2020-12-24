@@ -202,16 +202,16 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
         DateEditDueDate.EditValue = data.Rows(0)("due_date")
 
         'item
-        Dim query_item As String = "
-            SELECT pod.`id_purc_order_det`, item.`item_desc`,itt.id_item_type,itt.item_type, pod.`qty` AS qty_po, pod.`value` AS val_po, pod.pph_percent, pod.gross_up_value
-            FROM tb_purc_order_det pod
-            INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
-            INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
-            INNER JOIN `tb_item` item ON item.`id_item`=pod.`id_item`
-            INNER JOIN tb_m_uom uom ON uom.`id_uom`=item.`id_uom`
-            INNER JOIN tb_lookup_purc_item_type itt ON itt.id_item_type=item.id_item_type
-            WHERE pod.`id_purc_order`=" + id_purc_order + "
-        "
+        Dim query_item As String = "SELECT pod.`id_purc_order_det`, item.`item_desc`,itt.id_item_type,itt.item_type, SUM(recd.`qty`) AS qty_po, pod.`value` AS val_po, pod.pph_percent, pod.gross_up_value
+FROM tb_purc_rec_det recd 
+INNER JOIN tb_purc_order_det pod ON recd.`id_purc_order_det`=pod.`id_purc_order_det`
+INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
+INNER JOIN `tb_item` item ON item.`id_item`=pod.`id_item`
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=item.`id_uom`
+INNER JOIN tb_lookup_purc_item_type itt ON itt.id_item_type=item.id_item_type
+WHERE pod.`id_purc_order`=" + id_purc_order + "
+GROUP BY pod.id_purc_order_det"
 
         Dim data_item As DataTable = execute_query(query_item, -1, True, "", "", "", "")
 
@@ -416,9 +416,9 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
                     'main journal
                     Dim id_acc_trans As String = ""
                     Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                VALUES ('" + header_number_acc("1") + "','" + addSlashes(TextEditPONumber.Text) + "','24','" + id_user + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                VALUES ('','" + addSlashes(TextEditPONumber.Text) + "','24','" + id_user + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                     id_acc_trans = execute_query(qjm, 0, True, "", "", "", "")
-                    increase_inc_acc("1")
+                    execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
                     If SLEPPHAccount.EditValue.ToString = get_opt_acc_field("id_acc_skbp") Then 'skbp
                         query = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, report_mark_type_ref, id_report_ref, report_number_ref,id_coa_tag)
