@@ -285,7 +285,7 @@ Public Class FormSalesPOSDet
                     'from price recon
                     DEDueDate.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_due_date")
                     DEStart.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_start_period")
-                    DEEnd.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_start_period")
+                    DEEnd.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_end_period")
                 End If
                 DeleteToolStripMenuItem.Visible = False
             End If
