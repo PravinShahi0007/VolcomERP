@@ -35,6 +35,13 @@
 
     Sub validate_payout()
         Cursor = Cursors.WaitCursor
+        Dim qtyp As String = "SELECT t.id_type, t.transaction_type, t.id_payout_zalora_cat 
+        FROM tb_payout_zalora_type t 
+        ORDER BY t.id_type ASC "
+        Dim dtyp As DataTable = execute_query(qtyp, -1, True, "", "", "", "")
+        For i As Integer = 0 To dtyp.Rows.Count - 1
+
+        Next
         viewDetail()
         Cursor = Cursors.Default
     End Sub
