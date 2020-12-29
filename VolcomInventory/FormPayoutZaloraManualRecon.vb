@@ -47,7 +47,8 @@
                     execute_non_query(query, True, "", "", "", "")
                 Next
                 FormMain.SplashScreenManager1.CloseWaitForm()
-                FormPayoutZaloraDet.viewDetail(id_payout_zalora_cat)
+                FormPayoutZaloraDet.viewSummary()
+                FormPayoutZaloraDet.viewDetailRecon(id_payout_zalora_cat)
                 Close()
                 Cursor = Cursors.Default
             End If

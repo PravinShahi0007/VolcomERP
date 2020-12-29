@@ -39,6 +39,7 @@ FROM tb_payout_zalora_cat c"
         TxtShippingFee.EditValue = data.Rows(0)("default_shipping")
         MENote.Text = data.Rows(0)("note").ToString
         is_confirm = data.Rows(0)("is_confirm").ToString
+        viewSummary()
         SLECat.EditValue = "0"
         Cursor = Cursors.Default
     End Sub
@@ -179,10 +180,11 @@ WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
 
     Sub viewDetailAll()
         SLECat.EditValue = "0"
-        viewDetail("0")
+        viewSummary()
+        viewDetailRecon("0")
     End Sub
 
-    Sub viewDetail(ByVal id_cat As String)
+    Sub viewSummary()
         Cursor = Cursors.WaitCursor
         '---- SUMMARY
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
@@ -214,7 +216,12 @@ LEFT JOIN (
         GCSummary.DataSource = data_sum
         GVSummary.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
 
+
+    Sub viewDetailRecon(ByVal id_cat As String)
+        Cursor = Cursors.WaitCursor
         '-----DETAIL
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
@@ -308,6 +315,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
     Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
         If XTCData.SelectedTabPageIndex = 0 Then
             PanelControlDetail.Visible = False
+            makeSafeGV(GVData)
             If SLECat.EditValue.ToString <> "0" Then
                 GCData.DataSource = Nothing
                 CESelectAll.EditValue = False
@@ -328,7 +336,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             id_cat = SLECat.EditValue.ToString
         Catch ex As Exception
         End Try
-        viewDetail(id_cat)
+        viewDetailRecon(id_cat)
     End Sub
 
     Private Sub BtnManualRecon_Click(sender As Object, e As EventArgs) Handles BtnManualRecon.Click
@@ -377,6 +385,14 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
         Else
             e.Appearance.BackColor = Color.Empty
             e.Appearance.BackColor2 = Color.Empty
+        End If
+    End Sub
+
+    Private Sub GVSummary_DoubleClick(sender As Object, e As EventArgs) Handles GVSummary.DoubleClick
+        If GVSummary.RowCount > 0 And GVSummary.FocusedRowHandle >= 0 Then
+            Dim id_cat As String = GVSummary.GetFocusedRowCellValue("id_payout_zalora_cat").ToString
+            SLECat.EditValue = id_cat
+            XTCData.SelectedTabPageIndex = 1
         End If
     End Sub
 End Class
