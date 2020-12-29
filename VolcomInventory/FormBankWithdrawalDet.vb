@@ -5,6 +5,7 @@
     '
     Public is_view As String = "-1"
     Public is_book_transfer As Boolean = False
+    Public is_buy_valas As Boolean = False
     '
     Public id_coa_tag As String = "1"
     Private Sub FormBankWithdrawalDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -1566,7 +1567,13 @@ WHERE py.`id_pn`='" & id_payment & "'"
                     Dim is_book_trf As String = "2"
 
                     If is_book_transfer Then
-                        is_book_transfer = "1"
+                        is_book_trf = "1"
+                    End If
+
+                    Dim is_buy_valas_param As String = "2"
+
+                    If is_buy_valas Then
+                        is_buy_valas_param = "1"
                     End If
 
                     If report_mark_type = "139" Or report_mark_type = "202" Then
