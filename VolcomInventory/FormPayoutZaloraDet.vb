@@ -156,6 +156,7 @@ WHERE d.id_payout_zalora=" + id + " "
     Private Sub BtnUpdateStatus_Click(sender As Object, e As EventArgs) Handles BtnUpdateStatus.Click
         Cursor = Cursors.WaitCursor
         updateStatusOrder()
+        viewDetail()
         Cursor = Cursors.Default
     End Sub
 End Class
