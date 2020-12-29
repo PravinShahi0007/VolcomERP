@@ -159,7 +159,8 @@ WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
 d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_id, d.order_status, d.`comment`,d.erp_status,d.erp_amount,
 IFNULL(d.id_sales_order_det,0) AS `id_sales_order_det`, 
 IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`,
-od.fail_reason AS `note_unfulfilled`, oos.number AS `oos_number`
+od.fail_reason AS `note_unfulfilled`, oos.number AS `oos_number`,
+d.is_manual_recon,IF(d.is_manual_recon=1,'Manual','Auto') AS `recon_type`, d.manual_recon_reason
 FROM tb_payout_zalora_det d
 LEFT JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
 LEFT JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos

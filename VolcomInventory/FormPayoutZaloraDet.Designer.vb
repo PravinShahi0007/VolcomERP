@@ -58,22 +58,26 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnerp_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumninvoice_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnerp_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnnote_unfulfilled = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnoos_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnresult_note = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_payout_zalora_det = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_payout_zalora = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnvat_in_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnwht_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_ol_store_oos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXls = New DevExpress.XtraEditors.SimpleButton()
-        Me.BandedGridColumnnote_unfulfilled = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnid_ol_store_oos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnoos_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnis_manual_recon = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnis_manual_recon_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnmanual_recon_reason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -357,8 +361,8 @@ Partial Class FormPayoutZaloraDet
         '
         'GVData
         '
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.GridBand1, Me.gridBand3, Me.gridBand5, Me.gridBand4})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_payout_zalora_det, Me.BandedGridColumnid_payout_zalora, Me.BandedGridColumntransaction_date, Me.BandedGridColumntransaction_type, Me.BandedGridColumnamount, Me.BandedGridColumnvat_in_amount, Me.BandedGridColumnwht_amount, Me.BandedGridColumnorder_number, Me.BandedGridColumnitem_id, Me.BandedGridColumnol_store_id, Me.BandedGridColumnorder_status, Me.BandedGridColumncomment, Me.BandedGridColumnerp_status, Me.BandedGridColumninvoice_number, Me.BandedGridColumnresult_note, Me.BandedGridColumnerp_amount, Me.BandedGridColumnnote_unfulfilled, Me.BandedGridColumnid_ol_store_oos, Me.BandedGridColumnoos_number})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.GridBand1, Me.gridBand3, Me.gridBand5, Me.gridBand6, Me.gridBand4})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_payout_zalora_det, Me.BandedGridColumnid_payout_zalora, Me.BandedGridColumntransaction_date, Me.BandedGridColumntransaction_type, Me.BandedGridColumnamount, Me.BandedGridColumnvat_in_amount, Me.BandedGridColumnwht_amount, Me.BandedGridColumnorder_number, Me.BandedGridColumnitem_id, Me.BandedGridColumnol_store_id, Me.BandedGridColumnorder_status, Me.BandedGridColumncomment, Me.BandedGridColumnerp_status, Me.BandedGridColumninvoice_number, Me.BandedGridColumnresult_note, Me.BandedGridColumnerp_amount, Me.BandedGridColumnnote_unfulfilled, Me.BandedGridColumnid_ol_store_oos, Me.BandedGridColumnoos_number, Me.BandedGridColumnis_manual_recon, Me.BandedGridColumnis_manual_recon_view, Me.BandedGridColumnmanual_recon_reason})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupCount = 1
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.BandedGridColumnamount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vat_in_amount", Me.BandedGridColumnvat_in_amount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wht_amount", Me.BandedGridColumnwht_amount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "erp_amount", Me.BandedGridColumnerp_amount, "{0:N2}")})
@@ -465,6 +469,20 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnerp_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "erp_amount", "{0:N2}")})
         Me.BandedGridColumnerp_amount.Visible = True
         '
+        'BandedGridColumnnote_unfulfilled
+        '
+        Me.BandedGridColumnnote_unfulfilled.Caption = "Note"
+        Me.BandedGridColumnnote_unfulfilled.FieldName = "note_unfulfilled"
+        Me.BandedGridColumnnote_unfulfilled.Name = "BandedGridColumnnote_unfulfilled"
+        Me.BandedGridColumnnote_unfulfilled.Visible = True
+        '
+        'BandedGridColumnoos_number
+        '
+        Me.BandedGridColumnoos_number.Caption = "OOS No."
+        Me.BandedGridColumnoos_number.FieldName = "oos_number"
+        Me.BandedGridColumnoos_number.Name = "BandedGridColumnoos_number"
+        Me.BandedGridColumnoos_number.Visible = True
+        '
         'BandedGridColumnresult_note
         '
         Me.BandedGridColumnresult_note.Caption = "Note"
@@ -503,6 +521,12 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnwht_amount.FieldName = "wht_amount"
         Me.BandedGridColumnwht_amount.Name = "BandedGridColumnwht_amount"
         Me.BandedGridColumnwht_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wht_amount", "{0:N2}")})
+        '
+        'BandedGridColumnid_ol_store_oos
+        '
+        Me.BandedGridColumnid_ol_store_oos.Caption = "id_ol_store_oos"
+        Me.BandedGridColumnid_ol_store_oos.FieldName = "id_ol_store_oos"
+        Me.BandedGridColumnid_ol_store_oos.Name = "BandedGridColumnid_ol_store_oos"
         '
         'PanelControl3
         '
@@ -548,25 +572,25 @@ Partial Class FormPayoutZaloraDet
         Me.BtnImportXls.TabIndex = 0
         Me.BtnImportXls.Text = "Import XLS File"
         '
-        'BandedGridColumnnote_unfulfilled
+        'BandedGridColumnis_manual_recon
         '
-        Me.BandedGridColumnnote_unfulfilled.Caption = "Note"
-        Me.BandedGridColumnnote_unfulfilled.FieldName = "note_unfulfilled"
-        Me.BandedGridColumnnote_unfulfilled.Name = "BandedGridColumnnote_unfulfilled"
-        Me.BandedGridColumnnote_unfulfilled.Visible = True
+        Me.BandedGridColumnis_manual_recon.Caption = "is_manual_recon"
+        Me.BandedGridColumnis_manual_recon.FieldName = "is_manual_recon"
+        Me.BandedGridColumnis_manual_recon.Name = "BandedGridColumnis_manual_recon"
         '
-        'BandedGridColumnid_ol_store_oos
+        'BandedGridColumnis_manual_recon_view
         '
-        Me.BandedGridColumnid_ol_store_oos.Caption = "id_ol_store_oos"
-        Me.BandedGridColumnid_ol_store_oos.FieldName = "id_ol_store_oos"
-        Me.BandedGridColumnid_ol_store_oos.Name = "BandedGridColumnid_ol_store_oos"
+        Me.BandedGridColumnis_manual_recon_view.Caption = "Type"
+        Me.BandedGridColumnis_manual_recon_view.FieldName = "recon_type"
+        Me.BandedGridColumnis_manual_recon_view.Name = "BandedGridColumnis_manual_recon_view"
+        Me.BandedGridColumnis_manual_recon_view.Visible = True
         '
-        'BandedGridColumnoos_number
+        'BandedGridColumnmanual_recon_reason
         '
-        Me.BandedGridColumnoos_number.Caption = "OOS No."
-        Me.BandedGridColumnoos_number.FieldName = "oos_number"
-        Me.BandedGridColumnoos_number.Name = "BandedGridColumnoos_number"
-        Me.BandedGridColumnoos_number.Visible = True
+        Me.BandedGridColumnmanual_recon_reason.Caption = "Reason"
+        Me.BandedGridColumnmanual_recon_reason.FieldName = "manual_recon_reason"
+        Me.BandedGridColumnmanual_recon_reason.Name = "BandedGridColumnmanual_recon_reason"
+        Me.BandedGridColumnmanual_recon_reason.Visible = True
         '
         'gridBand2
         '
@@ -609,12 +633,21 @@ Partial Class FormPayoutZaloraDet
         Me.gridBand5.VisibleIndex = 3
         Me.gridBand5.Width = 150
         '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "RECONCILE TYPE"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnis_manual_recon_view)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnmanual_recon_reason)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 4
+        Me.gridBand6.Width = 150
+        '
         'gridBand4
         '
         Me.gridBand4.Caption = "RESULT"
         Me.gridBand4.Columns.Add(Me.BandedGridColumnresult_note)
         Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 4
+        Me.gridBand4.VisibleIndex = 5
         Me.gridBand4.Width = 75
         '
         'FormPayoutZaloraDet
@@ -710,12 +743,16 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BandedGridColumnresult_note As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnerp_amount As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnnote_unfulfilled As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnoos_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnid_ol_store_oos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnnote_unfulfilled As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnoos_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnis_manual_recon_view As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnmanual_recon_reason As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnid_ol_store_oos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnis_manual_recon As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
