@@ -16,6 +16,7 @@
         DECreatedAt.EditValue = data.Rows(0)("zalora_created_at")
         DESyncDate.EditValue = data.Rows(0)("sync_date")
         TxtCommision.EditValue = data.Rows(0)("default_comm")
+        TxtShippingFee.EditValue = data.Rows(0)("default_shipping")
         MENote.Text = data.Rows(0)("note").ToString
         viewDetail()
         Cursor = Cursors.Default
@@ -27,14 +28,14 @@
 
     Private Sub BtnCommisionUpd_Click(sender As Object, e As EventArgs) Handles BtnCommisionUpd.Click
         Cursor = Cursors.WaitCursor
-        Dim query As String = "UPDATE tb_payout_zalora SET default_comm='" + decimalSQL(TxtCommision.EditValue.ToString) + "' WHERE id_payout_zalora='" + id + "' "
+        Dim query As String = "UPDATE tb_payout_zalora SET default_comm='" + decimalSQL(TxtCommision.EditValue.ToString) + "', default_shipping='" + decimalSQL(TxtShippingFee.EditValue.ToString) + "' WHERE id_payout_zalora='" + id + "' "
         execute_non_query(query, True, "", "", "", "")
-        validate_payout()
-        infoCustom("Commision updated")
+        infoCustom("Default value updated")
+        validate_payout(True)
         Cursor = Cursors.Default
     End Sub
 
-    Sub validate_payout()
+    Sub validate_payout(ByVal is_update_all As Boolean)
         Cursor = Cursors.WaitCursor
 
 
@@ -75,9 +76,9 @@
         Dim dtyp As DataTable = execute_query(qtyp, -1, True, "", "", "", "")
         Dim ord As New ClassSalesOrder()
         For i As Integer = 0 To dtyp.Rows.Count - 1
-            Dim typ As String = dtyp.Rows(i)("transaction_type").ToString
+            Dim typ As String = dtyp.Rows(i)("id_type").ToString
             FormMain.SplashScreenManager1.SetWaitFormDescription("Checking " + dtyp.Rows(i)("transaction_type").ToString)
-            validate_payout_by_type(typ)
+            validate_payout_by_type(typ, is_update_all)
         Next
         viewDetail()
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -115,21 +116,29 @@
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
 
-    Sub validate_payout_by_type(ByVal typ_par As String)
+    Sub validate_payout_by_type(ByVal typ_par As String, ByVal is_update_all As Boolean)
         If typ_par = "1" Then
             'Item Price Credit
         ElseIf typ_par = "2" Then
             'Commission
         ElseIf typ_par = "3" Then
             'Dropshipping Item Delivery Fee
-
+            Dim query As String = "UPDATE tb_payout_zalora_det d 
+INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+SET d.erp_amount = (m.default_shipping * -1)
+WHERE d.id_payout_zalora=" + id + " AND t.id_type=3 AND !ISNULL(d.id_sales_pos_det)  "
+            If Not is_update_all Then
+                query += "AND d.amount!=d.erp_amount "
+            End If
+            execute_non_query_long(query, True, "", "", "", "")
         End If
     End Sub
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT d.id_payout_zalora_det, d.id_payout_zalora, d.transaction_date, d.transaction_type,
-d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_id, d.order_status, d.`comment`,d.erp_status,
+d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_id, d.order_status, d.`comment`,d.erp_status,d.erp_amount,
 IFNULL(d.id_sales_order_det,0) AS `id_sales_order_det`, 
 IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`
 FROM tb_payout_zalora_det d
@@ -143,7 +152,7 @@ WHERE d.id_payout_zalora=" + id + " "
     End Sub
 
     Private Sub Btnrecalculate_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
-        validate_payout()
+        validate_payout(False)
     End Sub
 
     Private Sub BtnImportXls_Click(sender As Object, e As EventArgs) Handles BtnImportXls.Click
@@ -158,5 +167,25 @@ WHERE d.id_payout_zalora=" + id + " "
         updateStatusOrder()
         viewDetail()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVData.RowStyle
+        Dim amo As String = 0.00
+        Try
+            amo = GVData.GetRowCellValue(e.RowHandle, "amount")
+        Catch ex As Exception
+        End Try
+        Dim erp_amo As String = 0.00
+        Try
+            erp_amo = GVData.GetRowCellValue(e.RowHandle, "erp_amount")
+        Catch ex As Exception
+        End Try
+        If amo <> erp_amo Then
+            e.Appearance.BackColor = Color.Salmon
+            e.Appearance.BackColor2 = Color.Salmon
+        Else
+            e.Appearance.BackColor = Color.Empty
+            e.Appearance.BackColor2 = Color.Empty
+        End If
     End Sub
 End Class
