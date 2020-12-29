@@ -5,6 +5,7 @@
     Private Sub FormPayoutZaloraManualRecon_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCOA()
         TxtAmount.EditValue = 0.00
+        'default coa
         If id_payout_zalora_cat = "3" Then
             'fee
             Dim id_coa_default_fee As String = execute_query("SELECT id_acc_default_fee FROM tb_payout_zalora z WHERE z.id_payout_zalora='" + id + "' ", 0, True, "", "", "", "")
@@ -26,16 +27,26 @@
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
-                Dim erp_amount As String = decimalSQL(TxtAmount.EditValue.ToString)
                 Dim manual_recon_reason As String = addSlashes(MEReason.Text)
                 Dim id_acc As String = SLECOA.EditValue.ToString
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
                 For i As Integer = 0 To FormPayoutZaloraDet.GVData.RowCount - 1
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Updating " + i.ToString + " of " + FormPayoutZaloraDet.GVData.RowCount.ToString)
                     Dim id_det As String = FormPayoutZaloraDet.GVData.GetRowCellValue(i, "id_payout_zalora_det").ToString
+                    Dim erp_amount As String = ""
+                    If CEAmountZalora.EditValue = True Then
+                        erp_amount = decimalSQL(FormPayoutZaloraDet.GVData.GetRowCellValue(i, "amount").ToString)
+                    Else
+                        erp_amount = decimalSQL(TxtAmount.EditValue.ToString)
+                    End If
                     Dim query As String = "UPDATE tb_payout_zalora_det 
                     SET erp_amount='" + erp_amount + "', is_manual_recon=1, manual_recon_reason='" + manual_recon_reason + "', id_acc='" + id_acc + "'
                     WHERE id_payout_zalora_det='" + id_det + "' "
                     execute_non_query(query, True, "", "", "", "")
                 Next
+                FormMain.SplashScreenManager1.CloseWaitForm()
                 FormPayoutZaloraDet.viewDetail(id_payout_zalora_cat)
                 Close()
                 Cursor = Cursors.Default
@@ -49,5 +60,14 @@
 
     Private Sub FormPayoutZaloraManualRecon_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub CEAmountZalora_CheckedChanged(sender As Object, e As EventArgs) Handles CEAmountZalora.CheckedChanged
+        If CEAmountZalora.EditValue = True Then
+            TxtAmount.EditValue = 0.00
+            TxtAmount.Enabled = False
+        Else
+            TxtAmount.Enabled = True
+        End If
     End Sub
 End Class

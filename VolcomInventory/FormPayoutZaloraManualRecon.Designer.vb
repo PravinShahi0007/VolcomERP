@@ -34,12 +34,14 @@ Partial Class FormPayoutZaloraManualRecon
         Me.GridColumnacc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.MEReason = New DevExpress.XtraEditors.MemoEdit()
+        Me.CEAmountZalora = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEAmountZalora.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -164,11 +166,20 @@ Partial Class FormPayoutZaloraManualRecon
         Me.MEReason.Size = New System.Drawing.Size(299, 61)
         Me.MEReason.TabIndex = 38
         '
+        'CEAmountZalora
+        '
+        Me.CEAmountZalora.Location = New System.Drawing.Point(184, 14)
+        Me.CEAmountZalora.Name = "CEAmountZalora"
+        Me.CEAmountZalora.Properties.Caption = "Based on zalora amount"
+        Me.CEAmountZalora.Size = New System.Drawing.Size(137, 19)
+        Me.CEAmountZalora.TabIndex = 2
+        '
         'FormPayoutZaloraManualRecon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(347, 251)
+        Me.Controls.Add(Me.CEAmountZalora)
         Me.Controls.Add(Me.MEReason)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.SLECOA)
@@ -188,6 +199,7 @@ Partial Class FormPayoutZaloraManualRecon
         CType(Me.SLECOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEAmountZalora.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -207,4 +219,5 @@ Partial Class FormPayoutZaloraManualRecon
     Friend WithEvents GridColumnacc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MEReason As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents CEAmountZalora As DevExpress.XtraEditors.CheckEdit
 End Class
