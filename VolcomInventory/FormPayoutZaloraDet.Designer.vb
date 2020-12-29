@@ -91,6 +91,9 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnis_manual_recon = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_acc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_payout_zalora_cat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.PanelControlRecon = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnManualRecon = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.CMSDetail = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ManualReconToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -100,7 +103,6 @@ Partial Class FormPayoutZaloraDet
         Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnManualRecon = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXls = New DevExpress.XtraEditors.SimpleButton()
@@ -131,6 +133,10 @@ Partial Class FormPayoutZaloraDet
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlRecon, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlRecon.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMSDetail.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -446,6 +452,7 @@ Partial Class FormPayoutZaloraDet
         'XTPDetail
         '
         Me.XTPDetail.Controls.Add(Me.GCData)
+        Me.XTPDetail.Controls.Add(Me.PanelControlRecon)
         Me.XTPDetail.Name = "XTPDetail"
         Me.XTPDetail.Size = New System.Drawing.Size(911, 190)
         Me.XTPDetail.Text = "Detail"
@@ -457,7 +464,7 @@ Partial Class FormPayoutZaloraDet
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCData.Size = New System.Drawing.Size(911, 190)
+        Me.GCData.Size = New System.Drawing.Size(911, 151)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -768,12 +775,48 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnid_payout_zalora_cat.FieldName = "id_payout_zalora_cat"
         Me.BandedGridColumnid_payout_zalora_cat.Name = "BandedGridColumnid_payout_zalora_cat"
         '
+        'PanelControlRecon
+        '
+        Me.PanelControlRecon.Controls.Add(Me.BtnManualRecon)
+        Me.PanelControlRecon.Controls.Add(Me.PanelControl2)
+        Me.PanelControlRecon.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControlRecon.Location = New System.Drawing.Point(0, 151)
+        Me.PanelControlRecon.Name = "PanelControlRecon"
+        Me.PanelControlRecon.Size = New System.Drawing.Size(911, 39)
+        Me.PanelControlRecon.TabIndex = 1
+        '
+        'BtnManualRecon
+        '
+        Me.BtnManualRecon.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnManualRecon.Appearance.Options.UseFont = True
+        Me.BtnManualRecon.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnManualRecon.Image = CType(resources.GetObject("BtnManualRecon.Image"), System.Drawing.Image)
+        Me.BtnManualRecon.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnManualRecon.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnManualRecon.Location = New System.Drawing.Point(82, 2)
+        Me.BtnManualRecon.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.BtnManualRecon.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnManualRecon.Name = "BtnManualRecon"
+        Me.BtnManualRecon.Size = New System.Drawing.Size(827, 35)
+        Me.BtnManualRecon.TabIndex = 4
+        Me.BtnManualRecon.Text = "Manual Reconcile"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.CESelectAll)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(80, 35)
+        Me.PanelControl2.TabIndex = 5
+        '
         'CESelectAll
         '
-        Me.CESelectAll.Location = New System.Drawing.Point(10, 9)
+        Me.CESelectAll.Location = New System.Drawing.Point(8, 7)
         Me.CESelectAll.Name = "CESelectAll"
         Me.CESelectAll.Properties.Caption = "Select All"
-        Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
+        Me.CESelectAll.Size = New System.Drawing.Size(66, 19)
         Me.CESelectAll.TabIndex = 4
         '
         'CMSDetail
@@ -803,13 +846,11 @@ Partial Class FormPayoutZaloraDet
         'PanelControlDetail
         '
         Me.PanelControlDetail.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlDetail.Controls.Add(Me.CESelectAll)
         Me.PanelControlDetail.Controls.Add(Me.PanelControl4)
-        Me.PanelControlDetail.Controls.Add(Me.BtnManualRecon)
-        Me.PanelControlDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControlDetail.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControlDetail.Location = New System.Drawing.Point(2, 2)
         Me.PanelControlDetail.Name = "PanelControlDetail"
-        Me.PanelControlDetail.Size = New System.Drawing.Size(565, 37)
+        Me.PanelControlDetail.Size = New System.Drawing.Size(546, 37)
         Me.PanelControlDetail.TabIndex = 3
         Me.PanelControlDetail.Visible = False
         '
@@ -818,19 +859,21 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl4.Controls.Add(Me.SLECat)
         Me.PanelControl4.Controls.Add(Me.LabelControl8)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl4.Location = New System.Drawing.Point(169, 0)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(268, 37)
+        Me.PanelControl4.Size = New System.Drawing.Size(506, 37)
         Me.PanelControl4.TabIndex = 3
         '
         'SLECat
         '
-        Me.SLECat.Location = New System.Drawing.Point(87, 8)
+        Me.SLECat.Location = New System.Drawing.Point(75, 7)
         Me.SLECat.Name = "SLECat"
+        Me.SLECat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLECat.Properties.Appearance.Options.UseFont = True
         Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECat.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLECat.Size = New System.Drawing.Size(174, 20)
+        Me.SLECat.Size = New System.Drawing.Size(327, 22)
         Me.SLECat.TabIndex = 1
         '
         'SearchLookUpEdit1View
@@ -842,23 +885,12 @@ Partial Class FormPayoutZaloraDet
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(9, 11)
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(12, 9)
         Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl8.Size = New System.Drawing.Size(51, 16)
         Me.LabelControl8.TabIndex = 0
-        Me.LabelControl8.Text = "Filter Category"
-        '
-        'BtnManualRecon
-        '
-        Me.BtnManualRecon.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnManualRecon.Appearance.Options.UseFont = True
-        Me.BtnManualRecon.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnManualRecon.Image = CType(resources.GetObject("BtnManualRecon.Image"), System.Drawing.Image)
-        Me.BtnManualRecon.Location = New System.Drawing.Point(437, 0)
-        Me.BtnManualRecon.Name = "BtnManualRecon"
-        Me.BtnManualRecon.Size = New System.Drawing.Size(128, 37)
-        Me.BtnManualRecon.TabIndex = 4
-        Me.BtnManualRecon.Text = "Manual Reconcile"
+        Me.LabelControl8.Text = "Category"
         '
         'BtnUpdateStatus
         '
@@ -936,6 +968,10 @@ Partial Class FormPayoutZaloraDet
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlRecon, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlRecon.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMSDetail.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1034,4 +1070,6 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents PanelControlRecon As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
 End Class

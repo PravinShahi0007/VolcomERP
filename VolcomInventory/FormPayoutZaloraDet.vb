@@ -184,6 +184,11 @@ WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
 
     Sub viewDetail(ByVal id_cat As String)
         Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading trans. detail")
+
         'cat
         Dim cond_cat As String = ""
         If id_cat <> "0" Then
@@ -210,6 +215,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
         GCData.RefreshDataSource()
         GVData.RefreshData()
         GVData.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
 
@@ -271,6 +277,8 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
         If XTCData.SelectedTabPageIndex = 0 Then
             PanelControlDetail.Visible = False
             If SLECat.EditValue.ToString <> "0" Then
+                GCData.DataSource = Nothing
+                CESelectAll.EditValue = False
                 viewDetailAll()
             End If
         ElseIf XTCData.SelectedTabPageIndex = 1 Then
@@ -307,12 +315,20 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
     End Sub
 
     Private Sub CESelectAll_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAll.EditValueChanged
-        For i As Integer = 0 To GVData.RowCount - 1
-            If CESelectAll.EditValue = True Then
-                GVData.SetRowCellValue(i, "is_select", "Yes")
-            Else
-                GVData.SetRowCellValue(i, "is_select", "No")
+        If GVData.RowCount > 0 Then
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
             End If
-        Next
+            For i As Integer = 0 To GVData.RowCount - 1
+                If CESelectAll.EditValue = True Then
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Selected " + i.ToString + " of " + GVData.RowCount.ToString)
+                    GVData.SetRowCellValue(i, "is_select", "Yes")
+                Else
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Unselected " + i.ToString + " of " + GVData.RowCount.ToString)
+                    GVData.SetRowCellValue(i, "is_select", "No")
+                End If
+            Next
+            FormMain.SplashScreenManager1.CloseWaitForm()
+        End If
     End Sub
 End Class
