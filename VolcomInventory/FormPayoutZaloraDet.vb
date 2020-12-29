@@ -67,6 +67,9 @@
         'updateStatus
         updateStatusOrder()
 
+        'check order tidak terpenuhi
+        checkUnfulfilledOrder()
+
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
@@ -83,6 +86,25 @@
         viewDetail()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub validate_payout_by_type(ByVal typ_par As String, ByVal is_update_all As Boolean)
+        If typ_par = "1" Then
+            'Item Price Credit
+        ElseIf typ_par = "2" Then
+            'Commission
+        ElseIf typ_par = "3" Then
+            'Dropshipping Item Delivery Fee
+            Dim query As String = "UPDATE tb_payout_zalora_det d 
+INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+SET d.erp_amount = (m.default_shipping * -1)
+WHERE d.id_payout_zalora=" + id + " AND t.id_type=3 AND (!ISNULL(d.id_sales_pos_det) OR !ISNULL(d.id_ol_store_order))  "
+            If Not is_update_all Then
+                query += "AND d.amount!=d.erp_amount "
+            End If
+            execute_non_query_long(query, True, "", "", "", "")
+        End If
     End Sub
 
     Sub updateStatusOrder()
@@ -116,23 +138,19 @@
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
 
-    Sub validate_payout_by_type(ByVal typ_par As String, ByVal is_update_all As Boolean)
-        If typ_par = "1" Then
-            'Item Price Credit
-        ElseIf typ_par = "2" Then
-            'Commission
-        ElseIf typ_par = "3" Then
-            'Dropshipping Item Delivery Fee
-            Dim query As String = "UPDATE tb_payout_zalora_det d 
-INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
-INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
-SET d.erp_amount = (m.default_shipping * -1)
-WHERE d.id_payout_zalora=" + id + " AND t.id_type=3 AND !ISNULL(d.id_sales_pos_det)  "
-            If Not is_update_all Then
-                query += "AND d.amount!=d.erp_amount "
-            End If
-            execute_non_query_long(query, True, "", "", "", "")
+    Sub checkUnfulfilledOrder()
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
         End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Check unfulfilled order")
+        Dim query As String = "UPDATE tb_payout_zalora_det d
+INNER JOIN tb_ol_store_order od ON od.sales_order_ol_shop_number = d.order_number AND od.item_id = d.item_id AND od.ol_store_id = d.ol_store_id
+SET d.id_ol_store_order = od.id_ol_store_order, d.id_ol_store_oos = od.id_ol_store_oos
+WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
+        execute_non_query_long(query, True, "", "", "", "")
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewDetail()
@@ -140,13 +158,18 @@ WHERE d.id_payout_zalora=" + id + " AND t.id_type=3 AND !ISNULL(d.id_sales_pos_d
         Dim query As String = "SELECT d.id_payout_zalora_det, d.id_payout_zalora, d.transaction_date, d.transaction_type,
 d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_id, d.order_status, d.`comment`,d.erp_status,d.erp_amount,
 IFNULL(d.id_sales_order_det,0) AS `id_sales_order_det`, 
-IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`
+IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`,
+od.fail_reason AS `note_unfulfilled`, oos.number AS `oos_number`
 FROM tb_payout_zalora_det d
 LEFT JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
 LEFT JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+LEFT JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
+LEFT JOIN tb_ol_store_oos oos ON oos.id_ol_store_oos = d.id_ol_store_oos
 WHERE d.id_payout_zalora=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        GCData.RefreshDataSource()
+        GVData.RefreshData()
         GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
