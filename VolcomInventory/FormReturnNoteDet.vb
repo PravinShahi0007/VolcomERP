@@ -78,6 +78,7 @@ WHERE rn.id_return_note='" & id_return_note & "'"
                 If dt.Rows(0)("id_type").ToString = "2" Then
                     id_inbound_awb = dt.Rows(0)("id_inbound_awb").ToString
                 End If
+
                 SLEEmp.EditValue = dt.Rows(0)("id_emp_driver").ToString
                 TEAWB.Text = dt.Rows(0)("awb_number").ToString
                 load_store()
