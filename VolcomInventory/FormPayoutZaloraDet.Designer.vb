@@ -19,6 +19,7 @@ Partial Class FormPayoutZaloraDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPayoutZaloraDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -54,23 +55,33 @@ Partial Class FormPayoutZaloraDet
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBandAction = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnis_select = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnorder_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnol_store_id = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnitem_id = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnorder_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntransaction_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntransaction_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnamount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncomment = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnerp_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumninvoice_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnerp_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnnote_unfulfilled = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnoos_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnis_manual_recon_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnmanual_recon_reason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnacc_name = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnacc_description = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnis_manual_recon_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnmanual_recon_reason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnresult_note = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_payout_zalora_det = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_payout_zalora = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -79,17 +90,20 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnid_ol_store_oos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnis_manual_recon = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_acc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_payout_zalora_cat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.CMSDetail = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ManualReconToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlDetail = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnManualRecon = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXls = New DevExpress.XtraEditors.SimpleButton()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,8 +130,17 @@ Partial Class FormPayoutZaloraDet
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMSDetail.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControlDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlDetail.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -127,14 +150,14 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 504)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(794, 48)
+        Me.PanelControl1.Size = New System.Drawing.Size(917, 48)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(609, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(732, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(83, 44)
         Me.BtnPrint.TabIndex = 2
@@ -144,7 +167,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(692, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(815, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
         Me.BtnConfirm.Size = New System.Drawing.Size(100, 44)
         Me.BtnConfirm.TabIndex = 1
@@ -158,7 +181,7 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlTop.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlTop.Name = "PanelControlTop"
-        Me.PanelControlTop.Size = New System.Drawing.Size(794, 245)
+        Me.PanelControlTop.Size = New System.Drawing.Size(917, 245)
         Me.PanelControlTop.TabIndex = 1
         '
         'GroupControl2
@@ -173,7 +196,7 @@ Partial Class FormPayoutZaloraDet
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 144)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(794, 101)
+        Me.GroupControl2.Size = New System.Drawing.Size(917, 101)
         Me.GroupControl2.TabIndex = 37
         Me.GroupControl2.Text = "Default Setup"
         '
@@ -293,7 +316,7 @@ Partial Class FormPayoutZaloraDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(794, 144)
+        Me.GroupControl1.Size = New System.Drawing.Size(917, 144)
         Me.GroupControl1.TabIndex = 36
         Me.GroupControl1.Text = "Payout Info"
         '
@@ -382,7 +405,7 @@ Partial Class FormPayoutZaloraDet
         Me.XTCData.Location = New System.Drawing.Point(0, 286)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPSummary
-        Me.XTCData.Size = New System.Drawing.Size(794, 218)
+        Me.XTCData.Size = New System.Drawing.Size(917, 218)
         Me.XTCData.TabIndex = 2
         Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
         '
@@ -390,7 +413,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(788, 190)
+        Me.XTPSummary.Size = New System.Drawing.Size(911, 190)
         Me.XTPSummary.Text = "Summary"
         '
         'GCSummary
@@ -399,7 +422,7 @@ Partial Class FormPayoutZaloraDet
         Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(788, 190)
+        Me.GCSummary.Size = New System.Drawing.Size(911, 190)
         Me.GCSummary.TabIndex = 0
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -424,7 +447,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.XTPDetail.Controls.Add(Me.GCData)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(788, 190)
+        Me.XTPDetail.Size = New System.Drawing.Size(911, 190)
         Me.XTPDetail.Text = "Detail"
         '
         'GCData
@@ -433,14 +456,15 @@ Partial Class FormPayoutZaloraDet
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(788, 190)
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCData.Size = New System.Drawing.Size(911, 190)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.GridBand1, Me.gridBand3, Me.gridBand5, Me.gridBand7, Me.gridBand6, Me.gridBand4})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_payout_zalora_det, Me.BandedGridColumnid_payout_zalora, Me.BandedGridColumntransaction_date, Me.BandedGridColumntransaction_type, Me.BandedGridColumnamount, Me.BandedGridColumnvat_in_amount, Me.BandedGridColumnwht_amount, Me.BandedGridColumnorder_number, Me.BandedGridColumnitem_id, Me.BandedGridColumnol_store_id, Me.BandedGridColumnorder_status, Me.BandedGridColumncomment, Me.BandedGridColumnerp_status, Me.BandedGridColumninvoice_number, Me.BandedGridColumnresult_note, Me.BandedGridColumnerp_amount, Me.BandedGridColumnnote_unfulfilled, Me.BandedGridColumnid_ol_store_oos, Me.BandedGridColumnoos_number, Me.BandedGridColumnis_manual_recon, Me.BandedGridColumnis_manual_recon_view, Me.BandedGridColumnmanual_recon_reason, Me.BandedGridColumnid_acc, Me.BandedGridColumnacc_name, Me.BandedGridColumnacc_description})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandAction, Me.gridBand2, Me.GridBand1, Me.gridBand3, Me.gridBand5, Me.gridBand7, Me.gridBand6, Me.gridBand4})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_payout_zalora_det, Me.BandedGridColumnid_payout_zalora, Me.BandedGridColumntransaction_date, Me.BandedGridColumntransaction_type, Me.BandedGridColumnamount, Me.BandedGridColumnvat_in_amount, Me.BandedGridColumnwht_amount, Me.BandedGridColumnorder_number, Me.BandedGridColumnitem_id, Me.BandedGridColumnol_store_id, Me.BandedGridColumnorder_status, Me.BandedGridColumncomment, Me.BandedGridColumnerp_status, Me.BandedGridColumninvoice_number, Me.BandedGridColumnresult_note, Me.BandedGridColumnerp_amount, Me.BandedGridColumnnote_unfulfilled, Me.BandedGridColumnid_ol_store_oos, Me.BandedGridColumnoos_number, Me.BandedGridColumnis_manual_recon, Me.BandedGridColumnis_manual_recon_view, Me.BandedGridColumnmanual_recon_reason, Me.BandedGridColumnid_acc, Me.BandedGridColumnacc_name, Me.BandedGridColumnacc_description, Me.BandedGridColumnid_payout_zalora_cat, Me.BandedGridColumnis_select})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupCount = 1
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.BandedGridColumnamount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vat_in_amount", Me.BandedGridColumnvat_in_amount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wht_amount", Me.BandedGridColumnwht_amount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "erp_amount", Me.BandedGridColumnerp_amount, "{0:N2}")})
@@ -448,11 +472,46 @@ Partial Class FormPayoutZaloraDet
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.ReadOnly = True
         Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumntransaction_type, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'gridBandAction
+        '
+        Me.gridBandAction.Columns.Add(Me.BandedGridColumnis_select)
+        Me.gridBandAction.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBandAction.Name = "gridBandAction"
+        Me.gridBandAction.VisibleIndex = 0
+        Me.gridBandAction.Width = 75
+        '
+        'BandedGridColumnis_select
+        '
+        Me.BandedGridColumnis_select.Caption = "Select"
+        Me.BandedGridColumnis_select.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.BandedGridColumnis_select.FieldName = "is_select"
+        Me.BandedGridColumnis_select.Name = "BandedGridColumnis_select"
+        Me.BandedGridColumnis_select.Visible = True
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "ORDER INFO"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnorder_number)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnol_store_id)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnitem_id)
+        Me.gridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 216
         '
         'BandedGridColumnorder_number
         '
@@ -477,6 +536,18 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnitem_id.Name = "BandedGridColumnitem_id"
         Me.BandedGridColumnitem_id.Visible = True
         Me.BandedGridColumnitem_id.Width = 72
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "ZALORA"
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnorder_status)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumntransaction_date)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumntransaction_type)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnamount)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumncomment)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 2
+        Me.GridBand1.Width = 361
         '
         'BandedGridColumnorder_status
         '
@@ -523,6 +594,16 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumncomment.Visible = True
         Me.BandedGridColumncomment.Width = 73
         '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "ERP - FULFILLED ORDER"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnerp_status)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumninvoice_number)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnerp_amount)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 3
+        Me.gridBand3.Width = 225
+        '
         'BandedGridColumnerp_status
         '
         Me.BandedGridColumnerp_status.Caption = "Order Status"
@@ -547,6 +628,15 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnerp_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "erp_amount", "{0:N2}")})
         Me.BandedGridColumnerp_amount.Visible = True
         '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "ERP - UNFULFILLED ORDER"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnnote_unfulfilled)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnoos_number)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 4
+        Me.gridBand5.Width = 150
+        '
         'BandedGridColumnnote_unfulfilled
         '
         Me.BandedGridColumnnote_unfulfilled.Caption = "Note"
@@ -560,6 +650,38 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnoos_number.FieldName = "oos_number"
         Me.BandedGridColumnoos_number.Name = "BandedGridColumnoos_number"
         Me.BandedGridColumnoos_number.Visible = True
+        '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "COA"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnacc_name)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnacc_description)
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 5
+        Me.gridBand7.Width = 150
+        '
+        'BandedGridColumnacc_name
+        '
+        Me.BandedGridColumnacc_name.Caption = "Account"
+        Me.BandedGridColumnacc_name.FieldName = "acc_name"
+        Me.BandedGridColumnacc_name.Name = "BandedGridColumnacc_name"
+        Me.BandedGridColumnacc_name.Visible = True
+        '
+        'BandedGridColumnacc_description
+        '
+        Me.BandedGridColumnacc_description.Caption = "Description"
+        Me.BandedGridColumnacc_description.FieldName = "acc_description"
+        Me.BandedGridColumnacc_description.Name = "BandedGridColumnacc_description"
+        Me.BandedGridColumnacc_description.Visible = True
+        '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "RECONCILE TYPE"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnis_manual_recon_view)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnmanual_recon_reason)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 6
+        Me.gridBand6.Width = 150
         '
         'BandedGridColumnis_manual_recon_view
         '
@@ -575,19 +697,13 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnmanual_recon_reason.Name = "BandedGridColumnmanual_recon_reason"
         Me.BandedGridColumnmanual_recon_reason.Visible = True
         '
-        'BandedGridColumnacc_name
+        'gridBand4
         '
-        Me.BandedGridColumnacc_name.Caption = "Account"
-        Me.BandedGridColumnacc_name.FieldName = "acc_name"
-        Me.BandedGridColumnacc_name.Name = "BandedGridColumnacc_name"
-        Me.BandedGridColumnacc_name.Visible = True
-        '
-        'BandedGridColumnacc_description
-        '
-        Me.BandedGridColumnacc_description.Caption = "Description"
-        Me.BandedGridColumnacc_description.FieldName = "acc_description"
-        Me.BandedGridColumnacc_description.Name = "BandedGridColumnacc_description"
-        Me.BandedGridColumnacc_description.Visible = True
+        Me.gridBand4.Caption = "RESULT"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnresult_note)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 7
+        Me.gridBand4.Width = 75
         '
         'BandedGridColumnresult_note
         '
@@ -646,22 +762,109 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnid_acc.FieldName = "id_acc"
         Me.BandedGridColumnid_acc.Name = "BandedGridColumnid_acc"
         '
+        'BandedGridColumnid_payout_zalora_cat
+        '
+        Me.BandedGridColumnid_payout_zalora_cat.Caption = "id_payout_zalora_cat"
+        Me.BandedGridColumnid_payout_zalora_cat.FieldName = "id_payout_zalora_cat"
+        Me.BandedGridColumnid_payout_zalora_cat.Name = "BandedGridColumnid_payout_zalora_cat"
+        '
+        'CESelectAll
+        '
+        Me.CESelectAll.Location = New System.Drawing.Point(10, 9)
+        Me.CESelectAll.Name = "CESelectAll"
+        Me.CESelectAll.Properties.Caption = "Select All"
+        Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
+        Me.CESelectAll.TabIndex = 4
+        '
+        'CMSDetail
+        '
+        Me.CMSDetail.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ManualReconToolStripMenuItem})
+        Me.CMSDetail.Name = "CMSDetail"
+        Me.CMSDetail.Size = New System.Drawing.Size(169, 26)
+        '
+        'ManualReconToolStripMenuItem
+        '
+        Me.ManualReconToolStripMenuItem.Name = "ManualReconToolStripMenuItem"
+        Me.ManualReconToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.ManualReconToolStripMenuItem.Text = "Manual Reconcile"
+        '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.PanelControlDetail)
         Me.PanelControl3.Controls.Add(Me.BtnUpdateStatus)
         Me.PanelControl3.Controls.Add(Me.BtnRefresh)
         Me.PanelControl3.Controls.Add(Me.BtnImportXls)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 245)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(794, 41)
+        Me.PanelControl3.Size = New System.Drawing.Size(917, 41)
         Me.PanelControl3.TabIndex = 3
+        '
+        'PanelControlDetail
+        '
+        Me.PanelControlDetail.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlDetail.Controls.Add(Me.CESelectAll)
+        Me.PanelControlDetail.Controls.Add(Me.PanelControl4)
+        Me.PanelControlDetail.Controls.Add(Me.BtnManualRecon)
+        Me.PanelControlDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControlDetail.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControlDetail.Name = "PanelControlDetail"
+        Me.PanelControlDetail.Size = New System.Drawing.Size(565, 37)
+        Me.PanelControlDetail.TabIndex = 3
+        Me.PanelControlDetail.Visible = False
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.SLECat)
+        Me.PanelControl4.Controls.Add(Me.LabelControl8)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl4.Location = New System.Drawing.Point(169, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(268, 37)
+        Me.PanelControl4.TabIndex = 3
+        '
+        'SLECat
+        '
+        Me.SLECat.Location = New System.Drawing.Point(87, 8)
+        Me.SLECat.Name = "SLECat"
+        Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECat.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLECat.Size = New System.Drawing.Size(174, 20)
+        Me.SLECat.TabIndex = 1
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(9, 11)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl8.TabIndex = 0
+        Me.LabelControl8.Text = "Filter Category"
+        '
+        'BtnManualRecon
+        '
+        Me.BtnManualRecon.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnManualRecon.Appearance.Options.UseFont = True
+        Me.BtnManualRecon.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnManualRecon.Image = CType(resources.GetObject("BtnManualRecon.Image"), System.Drawing.Image)
+        Me.BtnManualRecon.Location = New System.Drawing.Point(437, 0)
+        Me.BtnManualRecon.Name = "BtnManualRecon"
+        Me.BtnManualRecon.Size = New System.Drawing.Size(128, 37)
+        Me.BtnManualRecon.TabIndex = 4
+        Me.BtnManualRecon.Text = "Manual Reconcile"
         '
         'BtnUpdateStatus
         '
         Me.BtnUpdateStatus.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnUpdateStatus.Image = CType(resources.GetObject("BtnUpdateStatus.Image"), System.Drawing.Image)
-        Me.BtnUpdateStatus.Location = New System.Drawing.Point(444, 2)
+        Me.BtnUpdateStatus.Location = New System.Drawing.Point(567, 2)
         Me.BtnUpdateStatus.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.BtnUpdateStatus.Name = "BtnUpdateStatus"
         Me.BtnUpdateStatus.Size = New System.Drawing.Size(126, 37)
@@ -672,7 +875,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
-        Me.BtnRefresh.Location = New System.Drawing.Point(570, 2)
+        Me.BtnRefresh.Location = New System.Drawing.Point(693, 2)
         Me.BtnRefresh.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.BtnRefresh.Name = "BtnRefresh"
         Me.BtnRefresh.Size = New System.Drawing.Size(94, 37)
@@ -683,85 +886,18 @@ Partial Class FormPayoutZaloraDet
         '
         Me.BtnImportXls.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImportXls.Image = CType(resources.GetObject("BtnImportXls.Image"), System.Drawing.Image)
-        Me.BtnImportXls.Location = New System.Drawing.Point(664, 2)
+        Me.BtnImportXls.Location = New System.Drawing.Point(787, 2)
         Me.BtnImportXls.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.BtnImportXls.Name = "BtnImportXls"
         Me.BtnImportXls.Size = New System.Drawing.Size(128, 37)
         Me.BtnImportXls.TabIndex = 0
         Me.BtnImportXls.Text = "Import XLS File"
         '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "ORDER INFO"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnorder_number)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnol_store_id)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnitem_id)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 216
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "ZALORA"
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnorder_status)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumntransaction_date)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumntransaction_type)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnamount)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumncomment)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 361
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "ERP - FULFILLED ORDER"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnerp_status)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumninvoice_number)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnerp_amount)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 225
-        '
-        'gridBand5
-        '
-        Me.gridBand5.Caption = "ERP - UNFULFILLED ORDER"
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnnote_unfulfilled)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnoos_number)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 3
-        Me.gridBand5.Width = 150
-        '
-        'gridBand7
-        '
-        Me.gridBand7.Caption = "COA"
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnacc_name)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnacc_description)
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.VisibleIndex = 4
-        Me.gridBand7.Width = 150
-        '
-        'gridBand6
-        '
-        Me.gridBand6.Caption = "RECONCILE TYPE"
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnis_manual_recon_view)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnmanual_recon_reason)
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.VisibleIndex = 5
-        Me.gridBand6.Width = 150
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "RESULT"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnresult_note)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 6
-        Me.gridBand4.Width = 75
-        '
         'FormPayoutZaloraDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(794, 552)
+        Me.ClientSize = New System.Drawing.Size(917, 552)
         Me.Controls.Add(Me.XTCData)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControlTop)
@@ -799,8 +935,18 @@ Partial Class FormPayoutZaloraDet
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMSDetail.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControlDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlDetail.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -868,6 +1014,19 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents BandedGridColumnacc_name As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnacc_description As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_acc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents CMSDetail As ContextMenuStrip
+    Friend WithEvents ManualReconToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BandedGridColumnid_payout_zalora_cat As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControlDetail As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnManualRecon As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLECat As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents gridBandAction As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnis_select As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand

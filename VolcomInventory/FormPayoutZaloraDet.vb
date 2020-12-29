@@ -5,6 +5,7 @@
 
     Private Sub FormPayoutZaloraDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCOA()
+        viewCat()
         actionLoad()
     End Sub
 
@@ -12,7 +13,17 @@
         Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description,CONCAT(a.acc_name,' - ', a.acc_description) AS `acc`, a.id_acc_parent, 
         a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
         FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 AND a.id_coa_type='1' "
-        viewSearchLookupQuery(SLECOAFee, query, "id_acc", "acc_description", "id_acc")
+        viewSearchLookupQuery(SLECOAFee, query, "id_acc", "acc", "id_acc")
+    End Sub
+
+    Sub viewCat()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS id_payout_zalora_cat, 'All' AS payout_zalora_cat 
+UNION ALL
+SELECT c.id_payout_zalora_cat, c.payout_zalora_cat 
+FROM tb_payout_zalora_cat c"
+        viewSearchLookupQuery(SLECat, query, "id_payout_zalora_cat", "payout_zalora_cat", "id_payout_zalora_cat")
+        Cursor = Cursors.Default
     End Sub
 
     Sub actionLoad()
@@ -27,7 +38,8 @@
         TxtCommision.EditValue = data.Rows(0)("default_comm")
         TxtShippingFee.EditValue = data.Rows(0)("default_shipping")
         MENote.Text = data.Rows(0)("note").ToString
-        viewDetail()
+        is_confirm = data.Rows(0)("is_confirm").ToString
+        SLECat.EditValue = "0"
         Cursor = Cursors.Default
     End Sub
 
@@ -95,7 +107,7 @@
             FormMain.SplashScreenManager1.SetWaitFormDescription("Checking " + dtyp.Rows(i)("transaction_type").ToString)
             validate_payout_by_type(typ, is_update_all)
         Next
-        viewDetail()
+        viewDetailAll()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
@@ -165,9 +177,20 @@ WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
         Cursor = Cursors.Default
     End Sub
 
-    Sub viewDetail()
+    Sub viewDetailAll()
+        SLECat.EditValue = "0"
+        viewDetail("0")
+    End Sub
+
+    Sub viewDetail(ByVal id_cat As String)
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT d.id_payout_zalora_det, d.id_payout_zalora, d.transaction_date, d.transaction_type,
+        'cat
+        Dim cond_cat As String = ""
+        If id_cat <> "0" Then
+            cond_cat = "AND typ.id_payout_zalora_cat='" + id_cat + "' "
+        End If
+
+        Dim query As String = "SELECT 'No' AS `is_select`,d.id_payout_zalora_det, d.id_payout_zalora, d.transaction_date, d.transaction_type, typ.id_payout_zalora_cat,
 d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_id, d.order_status, d.`comment`,d.erp_status,d.erp_amount,
 IFNULL(d.id_sales_order_det,0) AS `id_sales_order_det`, 
 IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`,
@@ -175,12 +198,13 @@ od.fail_reason AS `note_unfulfilled`, oos.number AS `oos_number`,
 d.is_manual_recon,IF(d.is_manual_recon=1,'Manual','Auto') AS `recon_type`, d.manual_recon_reason,
 d.id_acc, coa.acc_name, coa.acc_description
 FROM tb_payout_zalora_det d
+INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = d.transaction_type
 LEFT JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
 LEFT JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
 LEFT JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
 LEFT JOIN tb_ol_store_oos oos ON oos.id_ol_store_oos = d.id_ol_store_oos
 LEFT JOIN tb_a_acc coa ON coa.id_acc = d.id_acc
-WHERE d.id_payout_zalora=" + id + " "
+WHERE d.id_payout_zalora=" + id + " " + cond_cat
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GCData.RefreshDataSource()
@@ -203,7 +227,7 @@ WHERE d.id_payout_zalora=" + id + " "
     Private Sub BtnUpdateStatus_Click(sender As Object, e As EventArgs) Handles BtnUpdateStatus.Click
         Cursor = Cursors.WaitCursor
         updateStatusOrder()
-        viewDetail()
+        viewDetailAll()
         Cursor = Cursors.Default
     End Sub
 
@@ -218,12 +242,77 @@ WHERE d.id_payout_zalora=" + id + " "
             erp_amo = GVData.GetRowCellValue(e.RowHandle, "erp_amount")
         Catch ex As Exception
         End Try
+        Dim is_manual_recon As String = "0"
+        Try
+            is_manual_recon = GVData.GetRowCellValue(e.RowHandle, "is_manual_recon").ToString
+        Catch ex As Exception
+        End Try
         If amo <> erp_amo Then
             e.Appearance.BackColor = Color.Salmon
             e.Appearance.BackColor2 = Color.Salmon
         Else
-            e.Appearance.BackColor = Color.Empty
-            e.Appearance.BackColor2 = Color.Empty
+            If is_manual_recon = "1" Then
+                e.Appearance.BackColor = Color.Yellow
+                e.Appearance.BackColor2 = Color.Yellow
+            Else
+                e.Appearance.BackColor = Color.Empty
+                e.Appearance.BackColor2 = Color.Empty
+            End If
         End If
+    End Sub
+
+    Private Sub ManualReconToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManualReconToolStripMenuItem.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+
+        End If
+    End Sub
+
+    Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
+        If XTCData.SelectedTabPageIndex = 0 Then
+            PanelControlDetail.Visible = False
+            If SLECat.EditValue.ToString <> "0" Then
+                viewDetailAll()
+            End If
+        ElseIf XTCData.SelectedTabPageIndex = 1 Then
+            If is_confirm = "2" Then
+                PanelControlDetail.Visible = True
+            Else
+                PanelControlDetail.Visible = False
+            End If
+        End If
+    End Sub
+
+    Private Sub SLECat_EditValueChanged(sender As Object, e As EventArgs) Handles SLECat.EditValueChanged
+        Dim id_cat As String = "-1"
+        Try
+            id_cat = SLECat.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        viewDetail(id_cat)
+    End Sub
+
+    Private Sub BtnManualRecon_Click(sender As Object, e As EventArgs) Handles BtnManualRecon.Click
+        makeSafeGV(GVData)
+        GVData.ActiveFilterString = "[is_select]='Yes'"
+        If GVData.RowCount <= 0 Then
+            warningCustom("Please select item")
+        Else
+            Cursor = Cursors.WaitCursor
+            FormPayoutZaloraManualRecon.id_payout_zalora_cat = SLECat.EditValue.ToString
+            FormPayoutZaloraManualRecon.id = id
+            FormPayoutZaloraManualRecon.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+        makeSafeGV(GVData)
+    End Sub
+
+    Private Sub CESelectAll_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAll.EditValueChanged
+        For i As Integer = 0 To GVData.RowCount - 1
+            If CESelectAll.EditValue = True Then
+                GVData.SetRowCellValue(i, "is_select", "Yes")
+            Else
+                GVData.SetRowCellValue(i, "is_select", "No")
+            End If
+        Next
     End Sub
 End Class
