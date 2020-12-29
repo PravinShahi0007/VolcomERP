@@ -184,6 +184,38 @@ WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
 
     Sub viewDetail(ByVal id_cat As String)
         Cursor = Cursors.WaitCursor
+        '---- SUMMARY
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading trans. summary")
+        Dim query_sum As String = "SELECT z.id_payout_zalora_cat, c.payout_zalora_cat, z.val, IFNULL(e.erp_amount,0.00) AS `erp_val`, 
+(IFNULL(e.erp_amount,0.00)-z.val) AS `diff_val`
+FROM (
+	SELECT 1 AS `id_payout_zalora_cat`,z.opening_balance AS `val` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
+	UNION ALL
+	SELECT 2 AS `id_payout_zalora_cat`,z.sales_revenue AS `val` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
+	UNION ALL
+	SELECT 3 AS `id_payout_zalora_cat`, z.total_fees AS `val` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
+	UNION ALL
+	SELECT 4 AS `id_payout_zalora_cat`, z.sales_refund AS `val` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
+	UNION ALL
+	SELECT 5 AS `id_payout_zalora_cat`, z.total_refund_fee AS `val` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
+) z
+INNER JOIN tb_payout_zalora_cat c ON c.id_payout_zalora_cat = z.id_payout_zalora_cat
+LEFT JOIN (
+	SELECT typ.id_payout_zalora_cat, SUM(d.erp_amount) AS `erp_amount`
+	FROM tb_payout_zalora_det d
+	INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = d.transaction_type
+	WHERE d.id_payout_zalora=" + id + " AND d.amount=d.erp_amount
+	GROUP BY typ.id_payout_zalora_cat
+) e ON e.id_payout_zalora_cat = z.id_payout_zalora_cat "
+        Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
+        GCSummary.DataSource = data_sum
+        GVSummary.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
+
+        '-----DETAIL
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
@@ -329,6 +361,22 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
                 End If
             Next
             FormMain.SplashScreenManager1.CloseWaitForm()
+        End If
+    End Sub
+
+    Private Sub GVSummary_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVSummary.RowStyle
+        Dim diff_val As Decimal = 0.00
+        Try
+            diff_val = GVSummary.GetRowCellValue(e.RowHandle, "diff_val")
+        Catch ex As Exception
+        End Try
+
+        If diff_val <> 0.00 Then
+            e.Appearance.BackColor = Color.Salmon
+            e.Appearance.BackColor2 = Color.Salmon
+        Else
+            e.Appearance.BackColor = Color.Empty
+            e.Appearance.BackColor2 = Color.Empty
         End If
     End Sub
 End Class

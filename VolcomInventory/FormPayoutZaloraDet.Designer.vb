@@ -51,7 +51,12 @@ Partial Class FormPayoutZaloraDet
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_payout_zalora_cat_sum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpayout_zalora_cat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnval = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnerp_val = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiff_val = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnotesum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -434,20 +439,74 @@ Partial Class FormPayoutZaloraDet
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_payout_zalora_cat_sum, Me.GridColumnpayout_zalora_cat, Me.GridColumnval, Me.GridColumnerp_val, Me.GridColumndiff_val, Me.GridColumnnotesum})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.Name = "GVSummary"
         Me.GVSummary.OptionsBehavior.ReadOnly = True
+        Me.GVSummary.OptionsCustomization.AllowFilter = False
+        Me.GVSummary.OptionsCustomization.AllowGroup = False
+        Me.GVSummary.OptionsCustomization.AllowSort = False
+        Me.GVSummary.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVSummary.OptionsView.ColumnAutoWidth = False
         Me.GVSummary.OptionsView.ShowFooter = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
+        'GridColumnid_payout_zalora_cat_sum
         '
-        Me.GridColumn1.Caption = "GridColumn1"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumnid_payout_zalora_cat_sum.Caption = "id_payout_zalora_cat"
+        Me.GridColumnid_payout_zalora_cat_sum.FieldName = "id_payout_zalora_cat"
+        Me.GridColumnid_payout_zalora_cat_sum.Name = "GridColumnid_payout_zalora_cat_sum"
+        '
+        'GridColumnpayout_zalora_cat
+        '
+        Me.GridColumnpayout_zalora_cat.Caption = "Category"
+        Me.GridColumnpayout_zalora_cat.FieldName = "payout_zalora_cat"
+        Me.GridColumnpayout_zalora_cat.Name = "GridColumnpayout_zalora_cat"
+        Me.GridColumnpayout_zalora_cat.Visible = True
+        Me.GridColumnpayout_zalora_cat.VisibleIndex = 0
+        '
+        'GridColumnval
+        '
+        Me.GridColumnval.Caption = "Zalora"
+        Me.GridColumnval.DisplayFormat.FormatString = "N0"
+        Me.GridColumnval.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnval.FieldName = "val"
+        Me.GridColumnval.Name = "GridColumnval"
+        Me.GridColumnval.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val", "{0:N0}")})
+        Me.GridColumnval.Visible = True
+        Me.GridColumnval.VisibleIndex = 1
+        '
+        'GridColumnerp_val
+        '
+        Me.GridColumnerp_val.Caption = "ERP"
+        Me.GridColumnerp_val.DisplayFormat.FormatString = "N2"
+        Me.GridColumnerp_val.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnerp_val.FieldName = "erp_val"
+        Me.GridColumnerp_val.Name = "GridColumnerp_val"
+        Me.GridColumnerp_val.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "erp_val", "{0:N2}")})
+        Me.GridColumnerp_val.Visible = True
+        Me.GridColumnerp_val.VisibleIndex = 2
+        '
+        'GridColumndiff_val
+        '
+        Me.GridColumndiff_val.Caption = "Diff"
+        Me.GridColumndiff_val.DisplayFormat.FormatString = "N2"
+        Me.GridColumndiff_val.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiff_val.FieldName = "diff_val"
+        Me.GridColumndiff_val.Name = "GridColumndiff_val"
+        Me.GridColumndiff_val.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_val", "{0:N2}")})
+        Me.GridColumndiff_val.Visible = True
+        Me.GridColumndiff_val.VisibleIndex = 3
+        '
+        'GridColumnnotesum
+        '
+        Me.GridColumnnotesum.Caption = "Note"
+        Me.GridColumnnotesum.FieldName = "note"
+        Me.GridColumnnotesum.Name = "GridColumnnotesum"
+        Me.GridColumnnotesum.UnboundExpression = "Iif([diff_val] = 0, 'OK', 'Not Valid')"
+        Me.GridColumnnotesum.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnnotesum.Visible = True
+        Me.GridColumnnotesum.VisibleIndex = 4
         '
         'XTPDetail
         '
@@ -1025,7 +1084,7 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents BandedGridColumnvat_in_amount As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnwht_amount As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnerp_status As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_payout_zalora_cat_sum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BandedGridColumninvoice_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BtnUpdateStatus As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
@@ -1072,4 +1131,9 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents PanelControlRecon As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridColumnpayout_zalora_cat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnval As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnerp_val As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndiff_val As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnotesum As DevExpress.XtraGrid.Columns.GridColumn
 End Class
