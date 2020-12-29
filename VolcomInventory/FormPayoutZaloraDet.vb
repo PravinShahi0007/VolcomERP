@@ -4,7 +4,15 @@
     Dim id_comp_group As String = get_setup_field("zalora_comp_group")
 
     Private Sub FormPayoutZaloraDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewCOA()
         actionLoad()
+    End Sub
+
+    Sub viewCOA()
+        Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description,CONCAT(a.acc_name,' - ', a.acc_description) AS `acc`, a.id_acc_parent, 
+        a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
+        FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 AND a.id_coa_type='1' "
+        viewSearchLookupQuery(SLECOAFee, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
     Sub actionLoad()
@@ -15,6 +23,7 @@
         TxtStatementNumber.Text = data.Rows(0)("statement_number").ToString
         DECreatedAt.EditValue = data.Rows(0)("zalora_created_at")
         DESyncDate.EditValue = data.Rows(0)("sync_date")
+        SLECOAFee.EditValue = data.Rows(0)("id_acc_default_fee")
         TxtCommision.EditValue = data.Rows(0)("default_comm")
         TxtShippingFee.EditValue = data.Rows(0)("default_shipping")
         MENote.Text = data.Rows(0)("note").ToString
@@ -28,7 +37,10 @@
 
     Private Sub BtnCommisionUpd_Click(sender As Object, e As EventArgs) Handles BtnCommisionUpd.Click
         Cursor = Cursors.WaitCursor
-        Dim query As String = "UPDATE tb_payout_zalora SET default_comm='" + decimalSQL(TxtCommision.EditValue.ToString) + "', default_shipping='" + decimalSQL(TxtShippingFee.EditValue.ToString) + "' WHERE id_payout_zalora='" + id + "' "
+        Dim query As String = "UPDATE tb_payout_zalora 
+        SET default_comm='" + decimalSQL(TxtCommision.EditValue.ToString) + "', default_shipping='" + decimalSQL(TxtShippingFee.EditValue.ToString) + "',
+        id_acc_default_fee='" + SLECOAFee.EditValue.ToString + "'
+        WHERE id_payout_zalora='" + id + "' "
         execute_non_query(query, True, "", "", "", "")
         infoCustom("Default value updated")
         validate_payout(True)
@@ -98,7 +110,7 @@
             Dim query As String = "UPDATE tb_payout_zalora_det d 
 INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
 INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
-SET d.erp_amount = (m.default_shipping * -1)
+SET d.erp_amount = (m.default_shipping * -1), d.id_acc = m.id_acc_default_fee
 WHERE d.id_payout_zalora=" + id + " AND t.id_type=3 AND (!ISNULL(d.id_sales_pos_det) OR !ISNULL(d.id_ol_store_order))  "
             If Not is_update_all Then
                 query += "AND d.amount!=d.erp_amount "
@@ -160,12 +172,14 @@ d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_i
 IFNULL(d.id_sales_order_det,0) AS `id_sales_order_det`, 
 IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`,
 od.fail_reason AS `note_unfulfilled`, oos.number AS `oos_number`,
-d.is_manual_recon,IF(d.is_manual_recon=1,'Manual','Auto') AS `recon_type`, d.manual_recon_reason
+d.is_manual_recon,IF(d.is_manual_recon=1,'Manual','Auto') AS `recon_type`, d.manual_recon_reason,
+d.id_acc, coa.acc_name, coa.acc_description
 FROM tb_payout_zalora_det d
 LEFT JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
 LEFT JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
 LEFT JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
 LEFT JOIN tb_ol_store_oos oos ON oos.id_ol_store_oos = d.id_ol_store_oos
+LEFT JOIN tb_a_acc coa ON coa.id_acc = d.id_acc
 WHERE d.id_payout_zalora=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
