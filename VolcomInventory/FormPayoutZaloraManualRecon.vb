@@ -8,7 +8,7 @@
         'default coa
         If id_payout_zalora_cat = "3" Then
             'fee
-            Dim id_coa_default_fee As String = execute_query("SELECT id_acc_default_fee FROM tb_payout_zalora z WHERE z.id_payout_zalora='" + id + "' ", 0, True, "", "", "", "")
+            Dim id_coa_default_fee As String = execute_query("SELECT id_acc_default_fee_zalora FROM tb_opt_sales ", 0, True, "", "", "", "")
             SLECOA.EditValue = id_coa_default_fee
         End If
     End Sub

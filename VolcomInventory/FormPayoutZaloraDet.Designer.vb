@@ -25,7 +25,7 @@ Partial Class FormPayoutZaloraDet
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlTop = New DevExpress.XtraEditors.PanelControl()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.SLECOAFee = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -33,18 +33,17 @@ Partial Class FormPayoutZaloraDet
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnacc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtShippingFee = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtCommision = New DevExpress.XtraEditors.TextEdit()
-        Me.BtnCommisionUpd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.TxtShippingFee = New DevExpress.XtraEditors.TextEdit()
         Me.DESyncDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreatedAt = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtCommision = New DevExpress.XtraEditors.TextEdit()
         Me.TxtStatementNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnCommisionUpd = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
@@ -80,8 +79,8 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnnote_unfulfilled = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnoos_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnerp_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnacc_description = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnacc_name = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnacc_description = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnis_manual_recon_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmanual_recon_reason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -114,19 +113,17 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
-        CType(Me.SLECOAFee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtShippingFee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCommision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.SLECOAFee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtShippingFee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESyncDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESyncDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedAt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedAt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCommision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStatementNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
@@ -161,14 +158,14 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 504)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(917, 48)
+        Me.PanelControl1.Size = New System.Drawing.Size(1205, 48)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(732, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(1020, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(83, 44)
         Me.BtnPrint.TabIndex = 2
@@ -178,7 +175,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(815, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(1103, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
         Me.BtnConfirm.Size = New System.Drawing.Size(100, 44)
         Me.BtnConfirm.TabIndex = 1
@@ -187,33 +184,40 @@ Partial Class FormPayoutZaloraDet
         'PanelControlTop
         '
         Me.PanelControlTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTop.Controls.Add(Me.GroupControl2)
         Me.PanelControlTop.Controls.Add(Me.GroupControl1)
         Me.PanelControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlTop.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlTop.Name = "PanelControlTop"
-        Me.PanelControlTop.Size = New System.Drawing.Size(917, 245)
+        Me.PanelControlTop.Size = New System.Drawing.Size(1205, 149)
         Me.PanelControlTop.TabIndex = 1
         '
-        'GroupControl2
+        'GroupControl1
         '
-        Me.GroupControl2.Controls.Add(Me.SLECOAFee)
-        Me.GroupControl2.Controls.Add(Me.LabelControl7)
-        Me.GroupControl2.Controls.Add(Me.TxtShippingFee)
-        Me.GroupControl2.Controls.Add(Me.LabelControl3)
-        Me.GroupControl2.Controls.Add(Me.LabelControl5)
-        Me.GroupControl2.Controls.Add(Me.TxtCommision)
-        Me.GroupControl2.Controls.Add(Me.BtnCommisionUpd)
-        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 144)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(917, 101)
-        Me.GroupControl2.TabIndex = 37
-        Me.GroupControl2.Text = "Default Setup"
+        Me.GroupControl1.Controls.Add(Me.SLECOAFee)
+        Me.GroupControl1.Controls.Add(Me.LabelControl7)
+        Me.GroupControl1.Controls.Add(Me.MENote)
+        Me.GroupControl1.Controls.Add(Me.TxtShippingFee)
+        Me.GroupControl1.Controls.Add(Me.DESyncDate)
+        Me.GroupControl1.Controls.Add(Me.LabelControl3)
+        Me.GroupControl1.Controls.Add(Me.LabelControl1)
+        Me.GroupControl1.Controls.Add(Me.LabelControl5)
+        Me.GroupControl1.Controls.Add(Me.DECreatedAt)
+        Me.GroupControl1.Controls.Add(Me.TxtCommision)
+        Me.GroupControl1.Controls.Add(Me.TxtStatementNumber)
+        Me.GroupControl1.Controls.Add(Me.LabelControl6)
+        Me.GroupControl1.Controls.Add(Me.BtnCommisionUpd)
+        Me.GroupControl1.Controls.Add(Me.LabelControl2)
+        Me.GroupControl1.Controls.Add(Me.LabelControl4)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(1205, 149)
+        Me.GroupControl1.TabIndex = 36
+        Me.GroupControl1.Text = "Payout Info"
         '
         'SLECOAFee
         '
-        Me.SLECOAFee.Location = New System.Drawing.Point(129, 58)
+        Me.SLECOAFee.Location = New System.Drawing.Point(128, 201)
         Me.SLECOAFee.Name = "SLECOAFee"
         Me.SLECOAFee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECOAFee.Properties.NullText = ""
@@ -260,76 +264,11 @@ Partial Class FormPayoutZaloraDet
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(13, 61)
+        Me.LabelControl7.Location = New System.Drawing.Point(12, 204)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(43, 13)
         Me.LabelControl7.TabIndex = 34
         Me.LabelControl7.Text = "COA Fee"
-        '
-        'TxtShippingFee
-        '
-        Me.TxtShippingFee.Location = New System.Drawing.Point(129, 32)
-        Me.TxtShippingFee.Name = "TxtShippingFee"
-        Me.TxtShippingFee.Properties.DisplayFormat.FormatString = "N2"
-        Me.TxtShippingFee.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtShippingFee.Properties.Mask.EditMask = "N2"
-        Me.TxtShippingFee.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtShippingFee.Size = New System.Drawing.Size(191, 20)
-        Me.TxtShippingFee.TabIndex = 33
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(13, 35)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(61, 13)
-        Me.LabelControl3.TabIndex = 32
-        Me.LabelControl3.Text = "Shipping Fee"
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(327, 35)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(71, 13)
-        Me.LabelControl5.TabIndex = 29
-        Me.LabelControl5.Text = "Commision Fee"
-        '
-        'TxtCommision
-        '
-        Me.TxtCommision.Location = New System.Drawing.Point(418, 32)
-        Me.TxtCommision.Name = "TxtCommision"
-        Me.TxtCommision.Properties.DisplayFormat.FormatString = "N2"
-        Me.TxtCommision.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtCommision.Properties.Mask.EditMask = "N2"
-        Me.TxtCommision.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtCommision.Size = New System.Drawing.Size(191, 20)
-        Me.TxtCommision.TabIndex = 30
-        '
-        'BtnCommisionUpd
-        '
-        Me.BtnCommisionUpd.Location = New System.Drawing.Point(618, 42)
-        Me.BtnCommisionUpd.Name = "BtnCommisionUpd"
-        Me.BtnCommisionUpd.Size = New System.Drawing.Size(74, 23)
-        Me.BtnCommisionUpd.TabIndex = 31
-        Me.BtnCommisionUpd.Text = "update"
-        '
-        'GroupControl1
-        '
-        Me.GroupControl1.Controls.Add(Me.MENote)
-        Me.GroupControl1.Controls.Add(Me.DESyncDate)
-        Me.GroupControl1.Controls.Add(Me.LabelControl1)
-        Me.GroupControl1.Controls.Add(Me.DECreatedAt)
-        Me.GroupControl1.Controls.Add(Me.TxtStatementNumber)
-        Me.GroupControl1.Controls.Add(Me.LabelControl6)
-        Me.GroupControl1.Controls.Add(Me.LabelControl2)
-        Me.GroupControl1.Controls.Add(Me.LabelControl4)
-        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(917, 144)
-        Me.GroupControl1.TabIndex = 36
-        Me.GroupControl1.Text = "Payout Info"
         '
         'MENote
         '
@@ -337,6 +276,17 @@ Partial Class FormPayoutZaloraDet
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(480, 46)
         Me.MENote.TabIndex = 32
+        '
+        'TxtShippingFee
+        '
+        Me.TxtShippingFee.Location = New System.Drawing.Point(128, 175)
+        Me.TxtShippingFee.Name = "TxtShippingFee"
+        Me.TxtShippingFee.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtShippingFee.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtShippingFee.Properties.Mask.EditMask = "N2"
+        Me.TxtShippingFee.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtShippingFee.Size = New System.Drawing.Size(191, 20)
+        Me.TxtShippingFee.TabIndex = 33
         '
         'DESyncDate
         '
@@ -351,6 +301,15 @@ Partial Class FormPayoutZaloraDet
         Me.DESyncDate.Size = New System.Drawing.Size(480, 20)
         Me.DESyncDate.TabIndex = 35
         '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 178)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl3.TabIndex = 32
+        Me.LabelControl3.Text = "Shipping Fee"
+        '
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -359,6 +318,15 @@ Partial Class FormPayoutZaloraDet
         Me.LabelControl1.Size = New System.Drawing.Size(108, 13)
         Me.LabelControl1.TabIndex = 23
         Me.LabelControl1.Text = "Statement Number"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(326, 178)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl5.TabIndex = 29
+        Me.LabelControl5.Text = "Commision Fee"
         '
         'DECreatedAt
         '
@@ -372,6 +340,17 @@ Partial Class FormPayoutZaloraDet
         Me.DECreatedAt.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DECreatedAt.Size = New System.Drawing.Size(206, 20)
         Me.DECreatedAt.TabIndex = 34
+        '
+        'TxtCommision
+        '
+        Me.TxtCommision.Location = New System.Drawing.Point(417, 175)
+        Me.TxtCommision.Name = "TxtCommision"
+        Me.TxtCommision.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtCommision.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtCommision.Properties.Mask.EditMask = "N2"
+        Me.TxtCommision.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtCommision.Size = New System.Drawing.Size(191, 20)
+        Me.TxtCommision.TabIndex = 30
         '
         'TxtStatementNumber
         '
@@ -391,6 +370,15 @@ Partial Class FormPayoutZaloraDet
         Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl6.TabIndex = 33
         Me.LabelControl6.Text = "Note"
+        '
+        'BtnCommisionUpd
+        '
+        Me.BtnCommisionUpd.Location = New System.Drawing.Point(617, 185)
+        Me.BtnCommisionUpd.Name = "BtnCommisionUpd"
+        Me.BtnCommisionUpd.Size = New System.Drawing.Size(74, 23)
+        Me.BtnCommisionUpd.TabIndex = 31
+        Me.BtnCommisionUpd.Text = "update"
+        Me.BtnCommisionUpd.Visible = False
         '
         'LabelControl2
         '
@@ -413,10 +401,10 @@ Partial Class FormPayoutZaloraDet
         'XTCData
         '
         Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCData.Location = New System.Drawing.Point(0, 286)
+        Me.XTCData.Location = New System.Drawing.Point(0, 190)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPSummary
-        Me.XTCData.Size = New System.Drawing.Size(917, 218)
+        Me.XTCData.Size = New System.Drawing.Size(1205, 314)
         Me.XTCData.TabIndex = 2
         Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
         '
@@ -424,7 +412,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(911, 190)
+        Me.XTPSummary.Size = New System.Drawing.Size(1199, 286)
         Me.XTPSummary.Text = "Summary"
         '
         'GCSummary
@@ -433,7 +421,7 @@ Partial Class FormPayoutZaloraDet
         Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(911, 190)
+        Me.GCSummary.Size = New System.Drawing.Size(1199, 286)
         Me.GCSummary.TabIndex = 0
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -513,7 +501,7 @@ Partial Class FormPayoutZaloraDet
         Me.XTPDetail.Controls.Add(Me.GCData)
         Me.XTPDetail.Controls.Add(Me.PanelControlRecon)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(911, 190)
+        Me.XTPDetail.Size = New System.Drawing.Size(1199, 286)
         Me.XTPDetail.Text = "Detail"
         '
         'GCData
@@ -523,7 +511,7 @@ Partial Class FormPayoutZaloraDet
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepoLinkInvoice})
-        Me.GCData.Size = New System.Drawing.Size(911, 151)
+        Me.GCData.Size = New System.Drawing.Size(1199, 247)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -675,8 +663,8 @@ Partial Class FormPayoutZaloraDet
         Me.gridBand3.Columns.Add(Me.BandedGridColumnnote_unfulfilled)
         Me.gridBand3.Columns.Add(Me.BandedGridColumnoos_number)
         Me.gridBand3.Columns.Add(Me.BandedGridColumnerp_amount)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnacc_description)
         Me.gridBand3.Columns.Add(Me.BandedGridColumnacc_name)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnacc_description)
         Me.gridBand3.Columns.Add(Me.BandedGridColumnis_manual_recon_view)
         Me.gridBand3.Columns.Add(Me.BandedGridColumnmanual_recon_reason)
         Me.gridBand3.Name = "gridBand3"
@@ -737,15 +725,6 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnerp_amount.Visible = True
         Me.BandedGridColumnerp_amount.Width = 87
         '
-        'BandedGridColumnacc_description
-        '
-        Me.BandedGridColumnacc_description.Caption = "COA Desc."
-        Me.BandedGridColumnacc_description.FieldName = "acc_description"
-        Me.BandedGridColumnacc_description.Name = "BandedGridColumnacc_description"
-        Me.BandedGridColumnacc_description.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnacc_description.Visible = True
-        Me.BandedGridColumnacc_description.Width = 87
-        '
         'BandedGridColumnacc_name
         '
         Me.BandedGridColumnacc_name.Caption = "COA Acc."
@@ -754,6 +733,15 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnacc_name.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnacc_name.Visible = True
         Me.BandedGridColumnacc_name.Width = 87
+        '
+        'BandedGridColumnacc_description
+        '
+        Me.BandedGridColumnacc_description.Caption = "COA Desc."
+        Me.BandedGridColumnacc_description.FieldName = "acc_description"
+        Me.BandedGridColumnacc_description.Name = "BandedGridColumnacc_description"
+        Me.BandedGridColumnacc_description.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnacc_description.Visible = True
+        Me.BandedGridColumnacc_description.Width = 87
         '
         'BandedGridColumnis_manual_recon_view
         '
@@ -866,9 +854,9 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlRecon.Controls.Add(Me.BtnManualRecon)
         Me.PanelControlRecon.Controls.Add(Me.PanelControl2)
         Me.PanelControlRecon.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlRecon.Location = New System.Drawing.Point(0, 151)
+        Me.PanelControlRecon.Location = New System.Drawing.Point(0, 247)
         Me.PanelControlRecon.Name = "PanelControlRecon"
-        Me.PanelControlRecon.Size = New System.Drawing.Size(911, 39)
+        Me.PanelControlRecon.Size = New System.Drawing.Size(1199, 39)
         Me.PanelControlRecon.TabIndex = 1
         '
         'BtnManualRecon
@@ -883,7 +871,7 @@ Partial Class FormPayoutZaloraDet
         Me.BtnManualRecon.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.BtnManualRecon.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnManualRecon.Name = "BtnManualRecon"
-        Me.BtnManualRecon.Size = New System.Drawing.Size(827, 35)
+        Me.BtnManualRecon.Size = New System.Drawing.Size(1115, 35)
         Me.BtnManualRecon.TabIndex = 4
         Me.BtnManualRecon.Text = "Manual Reconcile"
         '
@@ -924,9 +912,9 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl3.Controls.Add(Me.BtnRefresh)
         Me.PanelControl3.Controls.Add(Me.BtnImportXls)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 245)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 149)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(917, 41)
+        Me.PanelControl3.Size = New System.Drawing.Size(1205, 41)
         Me.PanelControl3.TabIndex = 3
         '
         'PanelControlDetail
@@ -982,7 +970,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.BtnUpdateStatus.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnUpdateStatus.Image = CType(resources.GetObject("BtnUpdateStatus.Image"), System.Drawing.Image)
-        Me.BtnUpdateStatus.Location = New System.Drawing.Point(567, 2)
+        Me.BtnUpdateStatus.Location = New System.Drawing.Point(855, 2)
         Me.BtnUpdateStatus.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.BtnUpdateStatus.Name = "BtnUpdateStatus"
         Me.BtnUpdateStatus.Size = New System.Drawing.Size(126, 37)
@@ -993,7 +981,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
-        Me.BtnRefresh.Location = New System.Drawing.Point(693, 2)
+        Me.BtnRefresh.Location = New System.Drawing.Point(981, 2)
         Me.BtnRefresh.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.BtnRefresh.Name = "BtnRefresh"
         Me.BtnRefresh.Size = New System.Drawing.Size(94, 37)
@@ -1004,7 +992,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.BtnImportXls.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImportXls.Image = CType(resources.GetObject("BtnImportXls.Image"), System.Drawing.Image)
-        Me.BtnImportXls.Location = New System.Drawing.Point(787, 2)
+        Me.BtnImportXls.Location = New System.Drawing.Point(1075, 2)
         Me.BtnImportXls.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.BtnImportXls.Name = "BtnImportXls"
         Me.BtnImportXls.Size = New System.Drawing.Size(128, 37)
@@ -1015,7 +1003,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(917, 552)
+        Me.ClientSize = New System.Drawing.Size(1205, 552)
         Me.Controls.Add(Me.XTCData)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControlTop)
@@ -1029,21 +1017,18 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTop.ResumeLayout(False)
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl2.ResumeLayout(False)
-        Me.GroupControl2.PerformLayout()
-        CType(Me.SLECOAFee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtShippingFee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCommision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.SLECOAFee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtShippingFee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DESyncDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DESyncDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedAt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedAt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCommision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStatementNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
@@ -1115,7 +1100,6 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents GridColumnid_payout_zalora_cat_sum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BandedGridColumninvoice_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BtnUpdateStatus As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents TxtShippingFee As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
@@ -1156,11 +1140,11 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents GridColumnerp_val As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndiff_val As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnotesum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoLinkInvoice As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents BandedGridColumnid_sales_pos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandAction As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents RepoLinkInvoice As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
-    Friend WithEvents BandedGridColumnid_sales_pos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
