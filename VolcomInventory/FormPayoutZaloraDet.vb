@@ -232,10 +232,18 @@ FROM (
 ) z
 INNER JOIN tb_payout_zalora_cat c ON c.id_payout_zalora_cat = z.id_payout_zalora_cat
 LEFT JOIN (
-	SELECT typ.id_payout_zalora_cat, SUM(d.erp_amount) AS `erp_amount`
+	SELECT typ.id_payout_zalora_cat, SUM(d.erp_amount + IFNULL(a.erp_amount_add,0.00)) AS `erp_amount`
 	FROM tb_payout_zalora_det d
 	INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = d.transaction_type
-	WHERE d.id_payout_zalora=" + id + " AND d.amount=d.erp_amount
+    LEFT JOIN (
+        SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`
+        FROM tb_payout_zalora_det_addition d
+        INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
+        INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = pd.transaction_type
+        WHERE pd.id_payout_zalora=11
+        GROUP BY typ.id_payout_zalora_cat
+    ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
+	WHERE d.id_payout_zalora=" + id + " AND d.amount=(d.erp_amount+IFNULL(a.erp_amount_add,0.00))
 	GROUP BY typ.id_payout_zalora_cat
 ) e ON e.id_payout_zalora_cat = z.id_payout_zalora_cat "
         Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
@@ -261,12 +269,12 @@ LEFT JOIN (
         End If
 
         Dim query As String = "SELECT 'No' AS `is_select`,d.id_payout_zalora_det, d.id_payout_zalora, d.transaction_date, d.transaction_type, typ.id_payout_zalora_cat,
-d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_id, d.order_status, d.`comment`,d.erp_status,d.erp_amount,
+d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_id, d.order_status, d.`comment`,d.erp_status,(d.erp_amount + IFNULL(a.erp_amount_add,0.00)) AS `erp_amount`,
 IFNULL(d.id_sales_order_det,0) AS `id_sales_order_det`, 
 IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`, sp.id_sales_pos,
 od.fail_reason AS `note_unfulfilled`, oos.number AS `oos_number`,
 d.is_manual_recon,IF(d.is_manual_recon=1,'Manual','Auto') AS `recon_type`, d.manual_recon_reason,
-IFNULL(d.id_acc,0) AS `id_acc`, coa.acc_name, coa.acc_description
+IFNULL(d.id_acc,0) AS `id_acc`, CONCAT(coa.acc_name, IF(ISNULL(a.acc_name),'',CONCAT(',',a.acc_name))) AS `acc_name`, CONCAT(coa.acc_description, IF(ISNULL(a.acc_description),'',CONCAT(',',a.acc_description))) AS `acc_description`
 FROM tb_payout_zalora_det d
 INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = d.transaction_type
 LEFT JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
@@ -274,6 +282,15 @@ LEFT JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
 LEFT JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
 LEFT JOIN tb_ol_store_oos oos ON oos.id_ol_store_oos = d.id_ol_store_oos
 LEFT JOIN tb_a_acc coa ON coa.id_acc = d.id_acc
+LEFT JOIN (
+    SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`, 
+    GROUP_CONCAT(DISTINCT coa.acc_name) AS `acc_name`, GROUP_CONCAT(DISTINCT coa.acc_description) AS `acc_description`
+    FROM tb_payout_zalora_det_addition d
+    INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
+    INNER JOIN tb_a_acc coa ON coa.id_acc = d.id_acc
+    WHERE pd.id_payout_zalora=" + id + "
+    GROUP BY d.id_payout_zalora_det
+) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
 WHERE d.id_payout_zalora=" + id + " " + cond_cat
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
@@ -335,7 +352,11 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
 
     Private Sub ManualReconToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManualReconToolStripMenuItem.Click
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
-
+            Cursor = Cursors.WaitCursor
+            FormPayoutZaloraManualReconSingle.id_payout_zalora_cat = SLECat.EditValue.ToString
+            FormPayoutZaloraManualReconSingle.id_det = GVData.GetFocusedRowCellValue("id_payout_zalora_det").ToString
+            FormPayoutZaloraManualReconSingle.ShowDialog()
+            Cursor = Cursors.Default
         End If
     End Sub
 
