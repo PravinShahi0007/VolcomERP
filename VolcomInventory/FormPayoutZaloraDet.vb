@@ -429,6 +429,7 @@ LEFT JOIN (
 d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_id, d.order_status, d.`comment`,d.erp_status,(d.erp_amount + IFNULL(a.erp_amount_add,0.00)) AS `erp_amount`,
 IFNULL(d.id_sales_order_det,0) AS `id_sales_order_det`, 
 IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`, sp.id_sales_pos,
+IFNULL(d.id_sales_pos_cn_det, 0) AS `id_sales_pos_cn_det`, cn.sales_pos_number AS `cn_number`, cn.id_sales_pos AS `id_cn`,
 od.fail_reason AS `note_unfulfilled`, oos.number AS `oos_number`,
 d.is_manual_recon,IF(d.is_manual_recon=1,'Manual','Auto') AS `recon_type`, d.manual_recon_reason,
 IFNULL(d.id_acc,0) AS `id_acc`, CONCAT(coa.acc_name, IF(ISNULL(a.acc_name),'',CONCAT(',',a.acc_name))) AS `acc_name`, CONCAT(coa.acc_description, IF(ISNULL(a.acc_description),'',CONCAT(',',a.acc_description))) AS `acc_description`
@@ -436,6 +437,8 @@ FROM tb_payout_zalora_det d
 INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = d.transaction_type
 LEFT JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
 LEFT JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+LEFT JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos_det = d.id_sales_pos_cn_det
+LEFT JOIN tb_sales_pos cn ON cn.id_sales_pos = cnd.id_sales_pos
 LEFT JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
 LEFT JOIN tb_ol_store_oos oos ON oos.id_ol_store_oos = d.id_ol_store_oos
 LEFT JOIN tb_a_acc coa ON coa.id_acc = d.id_acc
