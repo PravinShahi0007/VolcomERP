@@ -4,7 +4,6 @@
     Dim id_comp_group As String = get_setup_field("zalora_comp_group")
 
     Private Sub FormPayoutZaloraDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewCOA()
         viewCat()
         actionLoad()
     End Sub
@@ -34,9 +33,6 @@ FROM tb_payout_zalora_cat c"
         TxtStatementNumber.Text = data.Rows(0)("statement_number").ToString
         DECreatedAt.EditValue = data.Rows(0)("zalora_created_at")
         DESyncDate.EditValue = data.Rows(0)("sync_date")
-        SLECOAFee.EditValue = data.Rows(0)("id_acc_default_fee")
-        TxtCommision.EditValue = data.Rows(0)("default_comm")
-        TxtShippingFee.EditValue = data.Rows(0)("default_shipping")
         MENote.Text = data.Rows(0)("note").ToString
         is_confirm = data.Rows(0)("is_confirm").ToString
         viewSummary()
@@ -116,6 +112,12 @@ FROM tb_payout_zalora_cat c"
     Sub validate_payout_by_type(ByVal typ_par As String, ByVal is_update_all As Boolean)
         If typ_par = "1" Then
             'Item Price Credit
+            Dim cond As String = ""
+            If Not is_update_all Then
+                cond += "AND d.amount!=d.erp_amount "
+            End If
+            Dim query As String = ""
+            'execute_non_query_long(query, True, "", "", "", "")
         ElseIf typ_par = "2" Then
             'Commission
             Dim cond As String = ""
@@ -129,14 +131,16 @@ INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
 INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
 INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
 INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
-SET d.erp_amount = ((spd.design_price_retail - sod.discount) * m.default_comm * -1), d.id_acc = sp.id_acc_ar
+JOIN tb_opt_sales os
+SET d.erp_amount = ((spd.design_price_retail - sod.discount) * os.default_comm_zalora * -1), d.id_acc =  os.id_acc_default_fee_zalora
 WHERE d.id_payout_zalora=" + id + " AND t.id_type=2 AND !ISNULL(d.id_sales_pos_det) " + cond + " ;
 -- get komisi yang tidak ada invoice
 UPDATE tb_payout_zalora_det d 
 INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
 INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
 INNER JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
-SET d.erp_amount = ((od.design_price - od.discount_allocations_amo) * m.default_comm * -1)
+JOIN tb_opt_sales os
+SET d.erp_amount = ((od.design_price - od.discount_allocations_amo) * os.default_comm_zalora * -1), d.id_acc =  os.id_acc_default_fee_zalora
 WHERE d.id_payout_zalora=" + id + " AND t.id_type=2 AND !ISNULL(d.id_ol_store_order) " + cond + " ; "
             execute_non_query_long(query, True, "", "", "", "")
         ElseIf typ_par = "3" Then
@@ -144,7 +148,8 @@ WHERE d.id_payout_zalora=" + id + " AND t.id_type=2 AND !ISNULL(d.id_ol_store_or
             Dim query As String = "UPDATE tb_payout_zalora_det d 
 INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
 INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
-SET d.erp_amount = (m.default_shipping * -1), d.id_acc = m.id_acc_default_fee
+JOIN tb_opt_sales os
+SET d.erp_amount = (os.default_shipping_zalora * -1), d.id_acc = os.id_acc_default_fee_zalora
 WHERE d.id_payout_zalora=" + id + " AND t.id_type=3 AND (!ISNULL(d.id_sales_pos_det) OR !ISNULL(d.id_ol_store_order))  "
             If Not is_update_all Then
                 query += "AND d.amount!=d.erp_amount "
@@ -200,9 +205,9 @@ WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
     End Sub
 
     Sub viewDetailAll()
+        SLECat.EditValue = Nothing
         SLECat.EditValue = "0"
         viewSummary()
-        viewDetailRecon("0")
     End Sub
 
     Sub viewSummary()
@@ -373,7 +378,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             FormPayoutZaloraManualRecon.ShowDialog()
             Cursor = Cursors.Default
         End If
-        makeSafeGV(GVData)
+        GVData.ActiveFilterString = ""
     End Sub
 
     Private Sub CESelectAll_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAll.EditValueChanged
