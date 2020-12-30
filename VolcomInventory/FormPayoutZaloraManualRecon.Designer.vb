@@ -28,13 +28,13 @@ Partial Class FormPayoutZaloraManualRecon
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECOA = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEReason = New DevExpress.XtraEditors.MemoEdit()
+        Me.CEAmountZalora = New DevExpress.XtraEditors.CheckEdit()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnacc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.MEReason = New DevExpress.XtraEditors.MemoEdit()
-        Me.CEAmountZalora = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,6 +124,29 @@ Partial Class FormPayoutZaloraManualRecon
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(22, 107)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl3.TabIndex = 37
+        Me.LabelControl3.Text = "Reason"
+        '
+        'MEReason
+        '
+        Me.MEReason.Location = New System.Drawing.Point(22, 126)
+        Me.MEReason.Name = "MEReason"
+        Me.MEReason.Size = New System.Drawing.Size(299, 61)
+        Me.MEReason.TabIndex = 38
+        '
+        'CEAmountZalora
+        '
+        Me.CEAmountZalora.Location = New System.Drawing.Point(184, 14)
+        Me.CEAmountZalora.Name = "CEAmountZalora"
+        Me.CEAmountZalora.Properties.Caption = "Based on zalora amount"
+        Me.CEAmountZalora.Size = New System.Drawing.Size(137, 19)
+        Me.CEAmountZalora.TabIndex = 2
+        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Id"
@@ -151,29 +174,6 @@ Partial Class FormPayoutZaloraManualRecon
         Me.GridColumnacc.Visible = True
         Me.GridColumnacc.VisibleIndex = 0
         '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(22, 107)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(36, 13)
-        Me.LabelControl3.TabIndex = 37
-        Me.LabelControl3.Text = "Reason"
-        '
-        'MEReason
-        '
-        Me.MEReason.Location = New System.Drawing.Point(22, 126)
-        Me.MEReason.Name = "MEReason"
-        Me.MEReason.Size = New System.Drawing.Size(299, 61)
-        Me.MEReason.TabIndex = 38
-        '
-        'CEAmountZalora
-        '
-        Me.CEAmountZalora.Location = New System.Drawing.Point(184, 14)
-        Me.CEAmountZalora.Name = "CEAmountZalora"
-        Me.CEAmountZalora.Properties.Caption = "Based on zalora amount"
-        Me.CEAmountZalora.Size = New System.Drawing.Size(137, 19)
-        Me.CEAmountZalora.TabIndex = 2
-        '
         'FormPayoutZaloraManualRecon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -192,7 +192,7 @@ Partial Class FormPayoutZaloraManualRecon
         Me.MinimizeBox = False
         Me.Name = "FormPayoutZaloraManualRecon"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Manual Reconcile"
+        Me.Text = "Bulk Manual Reconcile"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.TxtAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()

@@ -41,9 +41,10 @@
                     Else
                         erp_amount = decimalSQL(TxtAmount.EditValue.ToString)
                     End If
-                    Dim query As String = "UPDATE tb_payout_zalora_det 
+                    Dim query As String = "DELETE FROM tb_payout_zalora_det_addition WHERE id_payout_zalora_det='" + id_det + "' ;
+                    UPDATE tb_payout_zalora_det 
                     SET erp_amount='" + erp_amount + "', is_manual_recon=1, manual_recon_reason='" + manual_recon_reason + "', id_acc='" + id_acc + "'
-                    WHERE id_payout_zalora_det='" + id_det + "' "
+                    WHERE id_payout_zalora_det='" + id_det + "'; "
                     execute_non_query(query, True, "", "", "", "")
                 Next
                 FormMain.SplashScreenManager1.CloseWaitForm()

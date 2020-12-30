@@ -506,6 +506,7 @@ Partial Class FormPayoutZaloraDet
         '
         'GCData
         '
+        Me.GCData.ContextMenuStrip = Me.CMSDetail
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
@@ -873,7 +874,7 @@ Partial Class FormPayoutZaloraDet
         Me.BtnManualRecon.Name = "BtnManualRecon"
         Me.BtnManualRecon.Size = New System.Drawing.Size(1115, 35)
         Me.BtnManualRecon.TabIndex = 4
-        Me.BtnManualRecon.Text = "Manual Reconcile"
+        Me.BtnManualRecon.Text = "Bulk Manual Reconcile"
         '
         'PanelControl2
         '
@@ -897,7 +898,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.CMSDetail.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ManualReconToolStripMenuItem})
         Me.CMSDetail.Name = "CMSDetail"
-        Me.CMSDetail.Size = New System.Drawing.Size(169, 26)
+        Me.CMSDetail.Size = New System.Drawing.Size(169, 48)
         '
         'ManualReconToolStripMenuItem
         '
