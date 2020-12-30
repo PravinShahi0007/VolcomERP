@@ -81,8 +81,28 @@ FROM tb_payout_zalora_cat c"
             GROUP BY spd.id_sales_pos_det
         ) src ON src.order_number = main.order_number AND src.item_id = main.item_id AND src.ol_store_id = main.ol_store_id
         SET main.id_sales_order_det = src.id_sales_order_det,
-        main.id_sales_pos_det = src.id_sales_pos_det "
+        main.id_sales_pos_det = src.id_sales_pos_det 
+        WHERE main.id_payout_zalora=" + id + " "
         execute_non_query_long(qon, True, "", "", "", "")
+        FormMain.SplashScreenManager1.CloseWaitForm()
+
+        'check cn
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Checking credit note")
+        Dim qcn As String = "UPDATE tb_payout_zalora_det main
+        INNER JOIN (
+	        SELECT d.id_payout_zalora_det, cnd.id_sales_pos_det AS `id_sales_pos_cn_det` 
+	        FROM tb_payout_zalora_det d
+	        INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
+	        INNER JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos_det_ref = spd.id_sales_pos_det
+	        INNER JOIN tb_sales_pos cn ON cn.id_sales_pos = cnd.id_sales_pos 
+	        WHERE d.id_payout_zalora=" + id + " AND !ISNULL(d.id_sales_pos_det) AND cn.id_report_status=6
+        ) src ON src.id_payout_zalora_det = main.id_payout_zalora_det
+        SET main.id_sales_pos_cn_det = src.id_sales_pos_cn_det
+        WHERE main.id_payout_zalora=" + id + " "
+        execute_non_query_long(qcn, True, "", "", "", "")
         FormMain.SplashScreenManager1.CloseWaitForm()
 
         'updateStatus
@@ -207,6 +227,90 @@ FROM tb_payout_zalora_cat c"
                 query += "AND d.amount!=(d.erp_amount+IFNULL(a.erp_amount_add,0.00)) "
             End If
             execute_non_query_long(query, True, "", "", "", "")
+        ElseIf typ_par = "4" Then
+            'Down Payment : manual
+        ElseIf typ_par = "5" Then
+            'Defective Penalty : Manual
+        ElseIf typ_par = "6" Then
+            ' item price aka refund
+            Dim cond As String = ""
+            If Not is_update_all Then
+                cond += "AND d.amount!=(d.erp_amount+IFNULL(a.erp_amount_add,0.00)) "
+            End If
+            Dim query As String = "-- get komisi yang ada invoice
+            UPDATE tb_payout_zalora_det d 
+            LEFT JOIN (
+                SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`
+                FROM tb_payout_zalora_det_addition d
+                INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
+                WHERE pd.id_payout_zalora=" + id + "
+                GROUP BY d.id_payout_zalora_det
+            ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
+            INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+            INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_cn_det
+            INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+            JOIN tb_opt_sales os
+            SET d.erp_amount = ((spd.design_price_retail*-1) - (sod.discount*-1)), d.id_acc = sp.id_acc_ar
+            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND !ISNULL(d.id_sales_pos_det) " + cond + " ;
+            -- get komisi yang tidak ada invoice
+            UPDATE tb_payout_zalora_det d 
+            LEFT JOIN (
+                SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`
+                FROM tb_payout_zalora_det_addition d
+                INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
+                WHERE pd.id_payout_zalora=" + id + "
+                GROUP BY d.id_payout_zalora_det
+            ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
+            INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+            INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+            INNER JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
+            JOIN tb_opt_sales os
+            SET d.erp_amount = ((od.design_price*-1) - (od.discount_allocations_amo*-1))
+            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND !ISNULL(d.id_ol_store_order) " + cond + " ; "
+            execute_non_query_long(query, True, "", "", "", "")
+        ElseIf typ_par = "7" Then
+            'commision credit aka refund komisi
+            Dim cond As String = ""
+            If Not is_update_all Then
+                cond += "AND d.amount!=(d.erp_amount+IFNULL(a.erp_amount_add,0.00)) "
+            End If
+            Dim query As String = "-- get komisi yang ada invoice
+            UPDATE tb_payout_zalora_det d 
+            LEFT JOIN (
+                SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`
+                FROM tb_payout_zalora_det_addition d
+                INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
+                WHERE pd.id_payout_zalora=" + id + "
+                GROUP BY d.id_payout_zalora_det
+            ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
+            INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+            INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_cn_det
+            INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+            JOIN tb_opt_sales os
+            SET d.erp_amount = ((spd.design_price_retail - sod.discount) * os.default_comm_zalora), d.id_acc =  os.id_acc_default_fee_zalora
+            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND !ISNULL(d.id_sales_pos_det) " + cond + " ;
+            -- get komisi yang tidak ada invoice
+            UPDATE tb_payout_zalora_det d 
+            LEFT JOIN (
+                SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`
+                FROM tb_payout_zalora_det_addition d
+                INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
+                WHERE pd.id_payout_zalora=" + id + "
+                GROUP BY d.id_payout_zalora_det
+            ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
+            INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+            INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+            INNER JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
+            JOIN tb_opt_sales os
+            SET d.erp_amount = ((od.design_price - od.discount_allocations_amo) * os.default_comm_zalora), d.id_acc =  os.id_acc_default_fee_zalora
+            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND !ISNULL(d.id_ol_store_order) " + cond + " ; "
+            execute_non_query_long(query, True, "", "", "", "")
+        ElseIf typ_par = "8" Then
+            'Down Payment Credit aka adjusment refund : manual
         End If
     End Sub
 
@@ -236,7 +340,8 @@ FROM tb_payout_zalora_cat c"
             WHERE so.id_report_status=6 AND c.id_comp_group=" + id_comp_group + "
             GROUP BY stt.id_sales_order_det
         ) src ON src.id_sales_order_det = main.id_sales_order_det
-        SET main.`erp_status`= src.`status` "
+        SET main.`erp_status`= src.`status` 
+        WHERE main.id_payout_zalora=" + id + " "
         execute_non_query_long(query, True, "", "", "", "")
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
