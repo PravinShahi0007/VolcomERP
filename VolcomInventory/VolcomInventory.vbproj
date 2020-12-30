@@ -6819,6 +6819,18 @@
     <Compile Include="FormVerificationMasterOLDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVerificationMasterPrice.Designer.vb">
+      <DependentUpon>FormVerificationMasterPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerificationMasterPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerificationMasterPriceDet.Designer.vb">
+      <DependentUpon>FormVerificationMasterPriceDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerificationMasterPriceDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVerifyECOP.Designer.vb">
       <DependentUpon>FormVerifyECOP.vb</DependentUpon>
     </Compile>
@@ -12720,6 +12732,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormValidateStock.resx">
       <DependentUpon>FormValidateStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerificationMasterPrice.resx">
+      <DependentUpon>FormVerificationMasterPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerificationMasterPriceDet.resx">
+      <DependentUpon>FormVerificationMasterPriceDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVerifyECOP.resx">
       <DependentUpon>FormVerifyECOP.vb</DependentUpon>
