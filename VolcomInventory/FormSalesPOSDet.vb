@@ -650,7 +650,7 @@ Public Class FormSalesPOSDet
         ValidateChildren()
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMiddle) Then
             errorInput()
-        ElseIf GVItemList.RowCount <= 0 Then
+        ElseIf GVItemList.RowCount <= 0 And GVProbList.RowCount <= 0 Then
             stopCustom("Item list can't blank ")
         ElseIf start_period_cek = "0000-01-01" Or end_period_cek = "9999-12-01" Or due_date_cek = "-1" Then
             stopCustom("Please fill period and due date!")
@@ -754,7 +754,7 @@ Public Class FormSalesPOSDet
             End If
 
             'cek same invoice
-            If is_block_same_invoice = 1 And (id_menu = "1" Or id_menu = "4") Then
+            If is_block_same_invoice = 1 And (id_menu = "1" Or id_menu = "4") And GVItemList.RowCount > 0 Then
                 Cursor = Cursors.WaitCursor
                 Dim qry As String = ""
                 For f As Integer = 0 To GVItemList.RowCount - 1
