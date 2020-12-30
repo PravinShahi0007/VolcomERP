@@ -114,10 +114,41 @@ FROM tb_payout_zalora_cat c"
             'Item Price Credit
             Dim cond As String = ""
             If Not is_update_all Then
-                cond += "AND d.amount!=d.erp_amount "
+                cond += "AND d.amount!=(d.erp_amount+IFNULL(a.erp_amount_add,0.00)) "
             End If
-            Dim query As String = ""
-            'execute_non_query_long(query, True, "", "", "", "")
+            Dim query As String = "-- get komisi yang ada invoice
+            UPDATE tb_payout_zalora_det d 
+            LEFT JOIN (
+                SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`
+                FROM tb_payout_zalora_det_addition d
+                INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
+                WHERE pd.id_payout_zalora=" + id + "
+                GROUP BY d.id_payout_zalora_det
+            ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
+            INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+            INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
+            INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+            JOIN tb_opt_sales os
+            SET d.erp_amount = (spd.design_price_retail - sod.discount), d.id_acc = sp.id_acc_ar
+            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND !ISNULL(d.id_sales_pos_det) " + cond + " ;
+            -- get komisi yang tidak ada invoice
+            UPDATE tb_payout_zalora_det d 
+            LEFT JOIN (
+                SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`
+                FROM tb_payout_zalora_det_addition d
+                INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
+                WHERE pd.id_payout_zalora=" + id + "
+                GROUP BY d.id_payout_zalora_det
+            ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
+            INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+            INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+            INNER JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
+            JOIN tb_opt_sales os
+            SET d.erp_amount = (od.design_price - od.discount_allocations_amo)
+            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND !ISNULL(d.id_ol_store_order) " + cond + " ; "
+            execute_non_query_long(query, True, "", "", "", "")
         ElseIf typ_par = "2" Then
             'Commission
             Dim cond As String = ""
@@ -140,7 +171,7 @@ FROM tb_payout_zalora_cat c"
             INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
             JOIN tb_opt_sales os
             SET d.erp_amount = ((spd.design_price_retail - sod.discount) * os.default_comm_zalora * -1), d.id_acc =  os.id_acc_default_fee_zalora
-            WHERE d.id_payout_zalora=" + id + " AND t.id_type=2 AND !ISNULL(d.id_sales_pos_det) " + cond + " ;
+            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND !ISNULL(d.id_sales_pos_det) " + cond + " ;
             -- get komisi yang tidak ada invoice
             UPDATE tb_payout_zalora_det d 
             LEFT JOIN (
@@ -155,7 +186,7 @@ FROM tb_payout_zalora_cat c"
             INNER JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
             JOIN tb_opt_sales os
             SET d.erp_amount = ((od.design_price - od.discount_allocations_amo) * os.default_comm_zalora * -1), d.id_acc =  os.id_acc_default_fee_zalora
-            WHERE d.id_payout_zalora=" + id + " AND t.id_type=2 AND !ISNULL(d.id_ol_store_order) " + cond + " ; "
+            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND !ISNULL(d.id_ol_store_order) " + cond + " ; "
             execute_non_query_long(query, True, "", "", "", "")
         ElseIf typ_par = "3" Then
             'Dropshipping Item Delivery Fee
@@ -171,7 +202,7 @@ FROM tb_payout_zalora_cat c"
             INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
             JOIN tb_opt_sales os
             SET d.erp_amount = (os.default_shipping_zalora * -1), d.id_acc = os.id_acc_default_fee_zalora
-            WHERE d.id_payout_zalora=" + id + " AND t.id_type=3 AND (!ISNULL(d.id_sales_pos_det) OR !ISNULL(d.id_ol_store_order))  "
+            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND (!ISNULL(d.id_sales_pos_det) OR !ISNULL(d.id_ol_store_order))  "
             If Not is_update_all Then
                 query += "AND d.amount!=(d.erp_amount+IFNULL(a.erp_amount_add,0.00)) "
             End If
