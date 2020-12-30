@@ -6350,7 +6350,6 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                             execute_non_query(qc, True, "", "", "", "")
                         End If
                     Next
-                    '
                     'FormBankWithdrawal.load_fgpo()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "223" Then
                     'close bpjs
