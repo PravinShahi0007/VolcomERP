@@ -47,6 +47,7 @@
                     execute_non_query(query, True, "", "", "", "")
                 Next
                 FormMain.SplashScreenManager1.CloseWaitForm()
+                FormPayoutZaloraDet.CESelectAll.EditValue = False
                 FormPayoutZaloraDet.viewSummary()
                 FormPayoutZaloraDet.viewDetailRecon(id_payout_zalora_cat)
                 Close()

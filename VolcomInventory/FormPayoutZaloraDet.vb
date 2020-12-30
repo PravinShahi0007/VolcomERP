@@ -83,7 +83,7 @@ FROM tb_payout_zalora_cat c"
             AND !ISNULL(sod.item_id) AND !ISNULL(sod.ol_store_id)
             -- AND sp.is_close_rec_payment=2
             GROUP BY spd.id_sales_pos_det
-        ) src ON src.order_number = main.order_number 
+        ) src ON src.order_number = main.order_number AND src.item_id = main.item_id AND src.ol_store_id = main.ol_store_id
         SET main.id_sales_order_det = src.id_sales_order_det,
         main.id_sales_pos_det = src.id_sales_pos_det "
         execute_non_query_long(qon, True, "", "", "", "")
@@ -108,8 +108,8 @@ FROM tb_payout_zalora_cat c"
             FormMain.SplashScreenManager1.SetWaitFormDescription("Checking " + dtyp.Rows(i)("transaction_type").ToString)
             validate_payout_by_type(typ, is_update_all)
         Next
-        viewDetailAll()
         FormMain.SplashScreenManager1.CloseWaitForm()
+        viewDetailAll()
         Cursor = Cursors.Default
     End Sub
 
@@ -118,6 +118,27 @@ FROM tb_payout_zalora_cat c"
             'Item Price Credit
         ElseIf typ_par = "2" Then
             'Commission
+            Dim cond As String = ""
+            If Not is_update_all Then
+                cond += "AND d.amount!=d.erp_amount "
+            End If
+            Dim query As String = "-- get komisi yang ada invoice
+UPDATE tb_payout_zalora_det d 
+INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
+INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+SET d.erp_amount = ((spd.design_price_retail - sod.discount) * m.default_comm * -1), d.id_acc = sp.id_acc_ar
+WHERE d.id_payout_zalora=" + id + " AND t.id_type=2 AND !ISNULL(d.id_sales_pos_det) " + cond + " ;
+-- get komisi yang tidak ada invoice
+UPDATE tb_payout_zalora_det d 
+INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+INNER JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
+SET d.erp_amount = ((od.design_price - od.discount_allocations_amo) * m.default_comm * -1)
+WHERE d.id_payout_zalora=" + id + " AND t.id_type=2 AND !ISNULL(d.id_ol_store_order) " + cond + " ; "
+            execute_non_query_long(query, True, "", "", "", "")
         ElseIf typ_par = "3" Then
             'Dropshipping Item Delivery Fee
             Dim query As String = "UPDATE tb_payout_zalora_det d 
@@ -237,10 +258,10 @@ LEFT JOIN (
         Dim query As String = "SELECT 'No' AS `is_select`,d.id_payout_zalora_det, d.id_payout_zalora, d.transaction_date, d.transaction_type, typ.id_payout_zalora_cat,
 d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_id, d.order_status, d.`comment`,d.erp_status,d.erp_amount,
 IFNULL(d.id_sales_order_det,0) AS `id_sales_order_det`, 
-IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`,
+IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`, sp.id_sales_pos,
 od.fail_reason AS `note_unfulfilled`, oos.number AS `oos_number`,
 d.is_manual_recon,IF(d.is_manual_recon=1,'Manual','Auto') AS `recon_type`, d.manual_recon_reason,
-d.id_acc, coa.acc_name, coa.acc_description
+IFNULL(d.id_acc,0) AS `id_acc`, coa.acc_name, coa.acc_description
 FROM tb_payout_zalora_det d
 INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = d.transaction_type
 LEFT JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
@@ -253,6 +274,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
         GCData.DataSource = data
         GCData.RefreshDataSource()
         GVData.RefreshData()
+        BandedGridColumntransaction_type.GroupIndex = 0
         GVData.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
@@ -395,4 +417,14 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             XTCData.SelectedTabPageIndex = 1
         End If
     End Sub
+
+    Private Sub RepoLinkInvoice_Click(sender As Object, e As EventArgs) Handles RepoLinkInvoice.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim inv As New FormViewSalesPOS()
+            inv.id_sales_pos = GVData.GetFocusedRowCellValue("id_sales_pos").ToString
+            inv.ShowDialog()
+        End If
+    End Sub
+
+
 End Class
