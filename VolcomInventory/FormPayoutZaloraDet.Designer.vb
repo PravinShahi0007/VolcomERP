@@ -48,6 +48,10 @@ Partial Class FormPayoutZaloraDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.XtraScrollableControl2 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_payout_zalora_cat_sum = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -79,6 +83,7 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumninvoice_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoLinkInvoice = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumncn_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLinkCN = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnnote_unfulfilled = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnoos_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnerp_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -105,14 +110,12 @@ Partial Class FormPayoutZaloraDet
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlDetail = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXls = New DevExpress.XtraEditors.SimpleButton()
-        Me.RepoLinkCN = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,6 +135,11 @@ Partial Class FormPayoutZaloraDet
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
+        Me.XtraScrollableControl1.SuspendLayout()
+        Me.XtraScrollableControl2.SuspendLayout()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDetail.SuspendLayout()
@@ -140,6 +148,7 @@ Partial Class FormPayoutZaloraDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkCN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlRecon, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlRecon.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,11 +158,8 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControlDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlDetail.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoLinkCN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -161,7 +167,7 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 504)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 415)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1205, 48)
         Me.PanelControl1.TabIndex = 0
@@ -222,7 +228,7 @@ Partial Class FormPayoutZaloraDet
         '
         'SLECOAFee
         '
-        Me.SLECOAFee.Location = New System.Drawing.Point(128, 201)
+        Me.SLECOAFee.Location = New System.Drawing.Point(128, 159)
         Me.SLECOAFee.Name = "SLECOAFee"
         Me.SLECOAFee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECOAFee.Properties.NullText = ""
@@ -409,24 +415,66 @@ Partial Class FormPayoutZaloraDet
         Me.XTCData.Location = New System.Drawing.Point(0, 190)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPSummary
-        Me.XTCData.Size = New System.Drawing.Size(1205, 314)
+        Me.XTCData.Size = New System.Drawing.Size(1205, 225)
         Me.XTCData.TabIndex = 2
         Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
         '
         'XTPSummary
         '
-        Me.XTPSummary.Controls.Add(Me.GCSummary)
+        Me.XTPSummary.Controls.Add(Me.XtraScrollableControl1)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1199, 286)
+        Me.XTPSummary.Size = New System.Drawing.Size(1199, 197)
         Me.XTPSummary.Text = "Summary"
+        '
+        'XtraScrollableControl1
+        '
+        Me.XtraScrollableControl1.Controls.Add(Me.XtraScrollableControl2)
+        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1199, 197)
+        Me.XtraScrollableControl1.TabIndex = 2
+        '
+        'XtraScrollableControl2
+        '
+        Me.XtraScrollableControl2.Controls.Add(Me.GroupControl3)
+        Me.XtraScrollableControl2.Controls.Add(Me.GroupControl2)
+        Me.XtraScrollableControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraScrollableControl2.Location = New System.Drawing.Point(0, 0)
+        Me.XtraScrollableControl2.Name = "XtraScrollableControl2"
+        Me.XtraScrollableControl2.Size = New System.Drawing.Size(1199, 197)
+        Me.XtraScrollableControl2.TabIndex = 8914
+        '
+        'GroupControl3
+        '
+        Me.GroupControl3.AppearanceCaption.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControl3.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 239)
+        Me.GroupControl3.Name = "GroupControl3"
+        Me.GroupControl3.Size = New System.Drawing.Size(1182, 184)
+        Me.GroupControl3.TabIndex = 2
+        Me.GroupControl3.Text = "ERP Payout Detail"
+        '
+        'GroupControl2
+        '
+        Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControl2.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl2.Controls.Add(Me.GCSummary)
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(1182, 239)
+        Me.GroupControl2.TabIndex = 1
+        Me.GroupControl2.Text = "Payout Comparison"
         '
         'GCSummary
         '
         Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSummary.Location = New System.Drawing.Point(0, 0)
+        Me.GCSummary.Location = New System.Drawing.Point(2, 28)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(1199, 286)
+        Me.GCSummary.Size = New System.Drawing.Size(1178, 209)
         Me.GCSummary.TabIndex = 0
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -506,7 +554,7 @@ Partial Class FormPayoutZaloraDet
         Me.XTPDetail.Controls.Add(Me.GCData)
         Me.XTPDetail.Controls.Add(Me.PanelControlRecon)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(1199, 286)
+        Me.XTPDetail.Size = New System.Drawing.Size(1199, 226)
         Me.XTPDetail.Text = "Detail"
         '
         'GCData
@@ -517,7 +565,7 @@ Partial Class FormPayoutZaloraDet
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepoLinkInvoice, Me.RepoLinkCN})
-        Me.GCData.Size = New System.Drawing.Size(1199, 247)
+        Me.GCData.Size = New System.Drawing.Size(1199, 187)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -720,6 +768,11 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumncn_number.Name = "BandedGridColumncn_number"
         Me.BandedGridColumncn_number.Visible = True
         '
+        'RepoLinkCN
+        '
+        Me.RepoLinkCN.AutoHeight = False
+        Me.RepoLinkCN.Name = "RepoLinkCN"
+        '
         'BandedGridColumnnote_unfulfilled
         '
         Me.BandedGridColumnnote_unfulfilled.Caption = "Unfulfilled Note"
@@ -891,7 +944,7 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlRecon.Controls.Add(Me.BtnManualRecon)
         Me.PanelControlRecon.Controls.Add(Me.PanelControl2)
         Me.PanelControlRecon.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlRecon.Location = New System.Drawing.Point(0, 247)
+        Me.PanelControlRecon.Location = New System.Drawing.Point(0, 187)
         Me.PanelControlRecon.Name = "PanelControlRecon"
         Me.PanelControlRecon.Size = New System.Drawing.Size(1199, 39)
         Me.PanelControlRecon.TabIndex = 1
@@ -945,34 +998,24 @@ Partial Class FormPayoutZaloraDet
         'PanelControlDetail
         '
         Me.PanelControlDetail.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlDetail.Controls.Add(Me.PanelControl4)
-        Me.PanelControlDetail.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControlDetail.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControlDetail.Controls.Add(Me.SLECat)
+        Me.PanelControlDetail.Controls.Add(Me.LabelControl8)
+        Me.PanelControlDetail.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlDetail.Location = New System.Drawing.Point(581, 2)
         Me.PanelControlDetail.Name = "PanelControlDetail"
-        Me.PanelControlDetail.Size = New System.Drawing.Size(546, 37)
+        Me.PanelControlDetail.Size = New System.Drawing.Size(274, 37)
         Me.PanelControlDetail.TabIndex = 3
         Me.PanelControlDetail.Visible = False
         '
-        'PanelControl4
-        '
-        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.SLECat)
-        Me.PanelControl4.Controls.Add(Me.LabelControl8)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(506, 37)
-        Me.PanelControl4.TabIndex = 3
-        '
         'SLECat
         '
-        Me.SLECat.Location = New System.Drawing.Point(75, 7)
+        Me.SLECat.Location = New System.Drawing.Point(68, 7)
         Me.SLECat.Name = "SLECat"
         Me.SLECat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLECat.Properties.Appearance.Options.UseFont = True
         Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECat.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLECat.Size = New System.Drawing.Size(327, 22)
+        Me.SLECat.Size = New System.Drawing.Size(200, 22)
         Me.SLECat.TabIndex = 1
         '
         'SearchLookUpEdit1View
@@ -985,7 +1028,7 @@ Partial Class FormPayoutZaloraDet
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(12, 9)
+        Me.LabelControl8.Location = New System.Drawing.Point(11, 10)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(51, 16)
         Me.LabelControl8.TabIndex = 0
@@ -1024,16 +1067,11 @@ Partial Class FormPayoutZaloraDet
         Me.BtnImportXls.TabIndex = 0
         Me.BtnImportXls.Text = "Import XLS File"
         '
-        'RepoLinkCN
-        '
-        Me.RepoLinkCN.AutoHeight = False
-        Me.RepoLinkCN.Name = "RepoLinkCN"
-        '
         'FormPayoutZaloraDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1205, 552)
+        Me.ClientSize = New System.Drawing.Size(1205, 463)
         Me.Controls.Add(Me.XTCData)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControlTop)
@@ -1063,6 +1101,11 @@ Partial Class FormPayoutZaloraDet
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
+        Me.XtraScrollableControl1.ResumeLayout(False)
+        Me.XtraScrollableControl2.ResumeLayout(False)
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDetail.ResumeLayout(False)
@@ -1071,6 +1114,7 @@ Partial Class FormPayoutZaloraDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkCN, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlRecon, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlRecon.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1080,12 +1124,9 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControlDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlDetail.ResumeLayout(False)
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
+        Me.PanelControlDetail.PerformLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoLinkCN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1156,9 +1197,7 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents ManualReconToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BandedGridColumnid_payout_zalora_cat As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents PanelControlDetail As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnManualRecon As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLECat As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
@@ -1182,4 +1221,9 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents BandedGridColumnid_sales_pos_cn_det As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_cn As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepoLinkCN As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
+    Friend WithEvents XtraScrollableControl2 As DevExpress.XtraEditors.XtraScrollableControl
+    Friend WithEvents PanelControlDetail As DevExpress.XtraEditors.PanelControl
 End Class
