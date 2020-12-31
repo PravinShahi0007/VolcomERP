@@ -452,11 +452,12 @@ LEFT JOIN (
     GROUP BY d.id_payout_zalora_det
 ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
 WHERE d.id_payout_zalora=" + id + " " + cond_cat
+        query += "ORDER BY d.order_number ASC, d.item_id ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GCData.RefreshDataSource()
         GVData.RefreshData()
-        BandedGridColumntransaction_type.GroupIndex = 0
+        'BandedGridColumntransaction_type.GroupIndex = 0
         GVData.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
@@ -612,5 +613,11 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
         End If
     End Sub
 
-
+    Private Sub RepoLinkCN_Click(sender As Object, e As EventArgs) Handles RepoLinkCN.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim inv As New FormViewSalesPOS()
+            inv.id_sales_pos = GVData.GetFocusedRowCellValue("id_cn").ToString
+            inv.ShowDialog()
+        End If
+    End Sub
 End Class
