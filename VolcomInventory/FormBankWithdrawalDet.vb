@@ -1176,6 +1176,7 @@ GROUP BY pnd.kurs"
             BtnAdd.Visible = False
             BtnDelete.Visible = False
             BPickDP.Visible = False
+            BCompen.Visible = False
             '
             SLEACCTrfFee.ReadOnly = True
             TETrfFee.Enabled = False
@@ -1190,6 +1191,7 @@ GROUP BY pnd.kurs"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 id_coa_tag = data.Rows(0)("id_coa_tag").ToString
+                load_pay_from()
                 TEPayNumber.Text = data.Rows(0)("number").ToString
                 TEKurs.EditValue = data.Rows(0)("kurs")
                 report_mark_type = data.Rows(0)("report_mark_type").ToString
