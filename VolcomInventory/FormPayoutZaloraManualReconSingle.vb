@@ -24,6 +24,7 @@ FROM tb_payout_zalora_det d WHERE d.id_payout_zalora_det=" + id_det + " "
             SLECOA.EditValue = id_acc
         End If
         viewDetail()
+        getTotal()
         Cursor = Cursors.Default
     End Sub
 
@@ -63,6 +64,7 @@ WHERE d.id_payout_zalora_det=" + id_det + " "
                 Dim query As String = "DELETE FROM tb_payout_zalora_det_addition WHERE id_payout_zalora_det_addition='" + GVData.GetFocusedRowCellValue("id_payout_zalora_det_addition").ToString + "' "
                 execute_non_query(query, True, "", "", "", "")
                 viewDetail()
+                getTotal()
             End If
         End If
     End Sub
