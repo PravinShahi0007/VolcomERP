@@ -6819,6 +6819,18 @@
     <Compile Include="FormVerificationMasterOLDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVerificationMasterPrice.Designer.vb">
+      <DependentUpon>FormVerificationMasterPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerificationMasterPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerificationMasterPriceDet.Designer.vb">
+      <DependentUpon>FormVerificationMasterPriceDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerificationMasterPriceDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVerifyECOP.Designer.vb">
       <DependentUpon>FormVerifyECOP.vb</DependentUpon>
     </Compile>
@@ -8708,6 +8720,12 @@
       <DependentUpon>ReportSalesInvoiceNew.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSalesInvoiceNew.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalesInvoiceProblemList.Designer.vb">
+      <DependentUpon>ReportSalesInvoiceProblemList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesInvoiceProblemList.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSalesInvReport.Designer.vb">
@@ -12721,6 +12739,12 @@
     <EmbeddedResource Include="FormValidateStock.resx">
       <DependentUpon>FormValidateStock.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormVerificationMasterPrice.resx">
+      <DependentUpon>FormVerificationMasterPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerificationMasterPriceDet.resx">
+      <DependentUpon>FormVerificationMasterPriceDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormVerifyECOP.resx">
       <DependentUpon>FormVerifyECOP.vb</DependentUpon>
     </EmbeddedResource>
@@ -13790,6 +13814,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesInvoiceNew.resx">
       <DependentUpon>ReportSalesInvoiceNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesInvoiceProblemList.resx">
+      <DependentUpon>ReportSalesInvoiceProblemList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesInvReport.resx">
       <DependentUpon>ReportSalesInvReport.vb</DependentUpon>
