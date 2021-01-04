@@ -36,6 +36,7 @@ FROM tb_payout_zalora_cat c"
         MENote.Text = data.Rows(0)("note").ToString
         is_confirm = data.Rows(0)("is_confirm").ToString
         viewSummary()
+        viewERPPayout()
         SLECat.EditValue = "0"
         Cursor = Cursors.Default
     End Sub
@@ -111,6 +112,9 @@ FROM tb_payout_zalora_cat c"
         'check order tidak terpenuhi
         checkUnfulfilledOrder()
 
+        'update komisi
+        execute_non_query("UPDATE tb_payout_zalora SET comm=0, comm_tax=0 WHERE id_payout_zalora='" + id + "' ", True, "", "", "", "")
+
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
@@ -126,6 +130,7 @@ FROM tb_payout_zalora_cat c"
         Next
         FormMain.SplashScreenManager1.CloseWaitForm()
         viewDetailAll()
+
         Cursor = Cursors.Default
     End Sub
 
@@ -365,6 +370,7 @@ WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
         SLECat.EditValue = Nothing
         SLECat.EditValue = "0"
         viewSummary()
+        viewERPPayout()
     End Sub
 
     Sub viewSummary()
@@ -397,7 +403,7 @@ LEFT JOIN (
         FROM tb_payout_zalora_det_addition d
         INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
         INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = pd.transaction_type
-        WHERE pd.id_payout_zalora=11
+        WHERE pd.id_payout_zalora=" + id + "
         GROUP BY typ.id_payout_zalora_cat
     ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
 	WHERE d.id_payout_zalora=" + id + " AND d.amount=(d.erp_amount+IFNULL(a.erp_amount_add,0.00))
@@ -406,6 +412,100 @@ LEFT JOIN (
         Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
         GCSummary.DataSource = data_sum
         GVSummary.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewERPPayout()
+        Cursor = Cursors.WaitCursor
+        '---- SUMMARY
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading ERP Payout")
+        Dim query As String = "SELECT a.`name`, a.id_group,a.`group`, a.id_ref, a.`rmt_ref`, a.ref, a.amo,a.id_acc, coa.acc_name, coa.acc_description, a.recon_type
+FROM ( 
+	-- SALES REVENUE
+	(SELECT  CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y'))  AS `name`, 1 AS `id_group`,'Sales Revenue' AS `group`, sp.id_sales_pos AS `id_ref`, sp.report_mark_type AS `rmt_ref`,sp.sales_pos_number AS `ref`, SUM(d.erp_amount) AS `amo`, d.id_acc, 'Auto' AS `recon_type`, d.manual_recon_reason, 0 AS `id_payout_zalora_det_adj`
+	FROM tb_payout_zalora_det d 
+	INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+	INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
+	INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+	INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+	INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` 
+	WHERE d.id_payout_zalora=" + id + " AND t.id_payout_zalora_cat=2 AND d.is_manual_recon=2
+	GROUP BY d.id_acc, sp.id_sales_pos )
+	UNION ALL
+	(SELECT cd.manual_recon_reason AS `name`, 1 AS `id_group`, 'Sales Revenue' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`,'' AS `ref`, SUM(cd.erp_amount) AS `amo`, cd.id_acc, 'Manual' AS `recon_type`, cd.manual_recon_reason, 0 AS `id_payout_zalora_det_adj`
+	FROM (
+		SELECT d.id_payout_zalora_det,d.erp_amount, d.id_acc, d.manual_recon_reason
+		FROM tb_payout_zalora_det d 
+		INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+		WHERE d.id_payout_zalora=" + id + " AND (t.id_payout_zalora_cat=2) AND d.is_manual_recon=1
+		UNION ALL 
+		SELECT a.id_payout_zalora_det,a.erp_amount, a.id_acc, d.manual_recon_reason
+		FROM tb_payout_zalora_det_addition a 
+		INNER JOIN tb_payout_zalora_det d ON d.id_payout_zalora_det = a.id_payout_zalora_det 
+		INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+		WHERE d.id_payout_zalora=" + id + " AND (t.id_payout_zalora_cat=2) AND d.is_manual_recon=1
+	) cd
+	GROUP BY cd.id_acc, cd.manual_recon_reason)
+	UNION ALL
+	-- komisi
+	(SELECT 'Komisi penjualan Zalora' AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, m.comm AS `amo`, d.id_acc, d.recon_type AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`
+	FROM tb_payout_zalora m
+	LEFT JOIN (
+		SELECT  d.id_payout_zalora, GROUP_CONCAT(DISTINCT IF(d.is_manual_recon=2,'Auto', 'Manual')) AS `recon_type`, GROUP_CONCAT(DISTINCT d.id_acc) AS `id_acc`
+		FROM tb_payout_zalora_det d
+		INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+		INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+		WHERE d.id_payout_zalora=" + id + " AND (t.id_payout_zalora_cat=3 OR t.id_payout_zalora_cat=5)
+		GROUP BY d.id_payout_zalora
+	) d ON d.id_payout_zalora = m.id_payout_zalora
+	WHERE m.id_payout_zalora=" + id + ")
+	UNION ALL
+	(SELECT 'Komisi penjualan Zalora' AS `name`, 3 AS `id_group`, 'Commision Tax' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, m.comm_tax AS `amo`, os.id_acc_default_comm_tax_zalora, 'Manual' AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`
+	FROM tb_payout_zalora m
+	JOIN tb_opt_sales os 
+	WHERE m.id_payout_zalora=" + id + ")
+	UNION ALL
+	-- REFUND
+	(SELECT  CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y'))  AS `name`, 4 AS `id_group`, 'Refund' AS `group`, sp.id_sales_pos AS `id_ref`, sp.report_mark_type AS `rmt_ref`, sp.sales_pos_number AS `ref`, SUM(d.erp_amount) AS `amo`, d.id_acc, 'Auto' AS `recon_type`, d.manual_recon_reason, ) AS `id_payout_zalora_det_adj`
+	FROM tb_payout_zalora_det d 
+	INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+	INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_cn_det
+	INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+	INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+	INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` 
+	WHERE d.id_payout_zalora=" + id + " AND t.id_payout_zalora_cat=4 AND d.is_manual_recon=2
+	GROUP BY d.id_acc, sp.id_sales_pos )
+	UNION ALL
+	(SELECT cd.manual_recon_reason AS `name`, 4 AS `id_group`, 'Refund' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, SUM(cd.erp_amount) AS `amo`, cd.id_acc, 'Manual' AS `recon_type`, cd.manual_recon_reason, 0 AS `id_payout_zalora_det_adj`
+	FROM (
+		SELECT d.id_payout_zalora_det,d.erp_amount, d.id_acc, d.manual_recon_reason
+		FROM tb_payout_zalora_det d 
+		INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+		WHERE d.id_payout_zalora=" + id + " AND (t.id_payout_zalora_cat=4) AND d.is_manual_recon=1
+		UNION ALL 
+		SELECT a.id_payout_zalora_det,a.erp_amount, a.id_acc, d.manual_recon_reason
+		FROM tb_payout_zalora_det_addition a 
+		INNER JOIN tb_payout_zalora_det d ON d.id_payout_zalora_det = a.id_payout_zalora_det 
+		INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+		WHERE d.id_payout_zalora=" + id + " AND (t.id_payout_zalora_cat=4) AND d.is_manual_recon=1
+	) cd
+	GROUP BY cd.id_acc, cd.manual_recon_reason)
+	UNION ALL
+	(SELECT a.note AS `name`, 5 AS `id_group`, 'Adjustment' AS `group`, IFNULL(a.id_report,0) AS `id_ref`, IFNULL(a.report_mark_type,0) AS `rmt_ref`, IFNULL(a.report_number,'')  AS `ref`, a.adj_value AS `amo`, a.id_acc, 'Manual' AS `recon_type`, '' AS `manual_recon_reason`, a.id_payout_zalora_det_adj
+	FROM tb_payout_zalora_det_adj a
+	WHERE a.id_payout_zalora=" + id + " AND a.adj_value>0)
+)a
+INNER JOIN tb_a_acc coa ON coa.id_acc = a.id_acc
+ORDER BY a.id_group ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCERPPay.DataSource = data
+        GCERPPay.RefreshDataSource()
+        GVERPPay.RefreshData()
+        GVERPPay.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
@@ -422,7 +522,7 @@ LEFT JOIN (
         'cat
         Dim cond_cat As String = ""
         If id_cat <> "0" Then
-            cond_cat = "AND typ.id_payout_zalora_cat='" + id_cat + "' "
+            cond_cat = "And typ.id_payout_zalora_cat='" + id_cat + "' "
         End If
 
         Dim query As String = "SELECT 'No' AS `is_select`,d.id_payout_zalora_det, d.id_payout_zalora, d.transaction_date, d.transaction_type, typ.id_payout_zalora_cat,
@@ -464,7 +564,10 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
     End Sub
 
     Private Sub Btnrecalculate_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
-        validate_payout(False)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("this action will be update the data. Are you sure you want to validate these data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            validate_payout(False)
+        End If
     End Sub
 
     Private Sub BtnImportXls_Click(sender As Object, e As EventArgs) Handles BtnImportXls.Click
@@ -618,6 +721,45 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             Dim inv As New FormViewSalesPOS()
             inv.id_sales_pos = GVData.GetFocusedRowCellValue("id_cn").ToString
             inv.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        If GVERPPay.RowCount > 0 And GVERPPay.FocusedRowHandle >= 0 And is_confirm = 2 Then
+            If GVERPPay.GetFocusedRowCellValue("id_group").ToString <> "5" Then
+                stopCustom("Can't delete, this item is mandatory")
+            Else
+                Dim id_payout_zalora_det_adj As String = GVERPPay.GetFocusedRowCellValue("id_payout_zalora_det_adj").ToString
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete these data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim query As String = "DELETE FROM tb_tb_payout_zalora_det_adj WHERE id_payout_zalora_det_adj='" + id_payout_zalora_det_adj + "' "
+                    execute_non_query(query, True, "", "", "", "")
+                    viewERPPayout()
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub GVERPPay_DoubleClick(sender As Object, e As EventArgs) Handles GVERPPay.DoubleClick
+        If GVERPPay.RowCount > 0 And GVERPPay.FocusedRowHandle >= 0 And is_confirm = 2 Then
+            Dim id_group As String = GVERPPay.GetFocusedRowCellValue("id_group").ToString
+            If id_group = "2" Or id_group = "3" Then
+                'komisi
+            ElseIf id_group = "5" Then
+                'adjustment
+            Else
+                'sales & refund
+                Dim id_cat As String = ""
+                If id_group = "1" Then
+                    'sales
+                    id_cat = "2"
+                Else
+                    'refund
+                    id_cat = "4"
+                End If
+                SLECat.EditValue = id_cat
+                XTCData.SelectedTabPageIndex = 1
+            End If
         End If
     End Sub
 End Class

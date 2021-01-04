@@ -48,8 +48,6 @@ Partial Class FormPayoutZaloraDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
-        Me.XtraScrollableControl2 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
@@ -116,6 +114,23 @@ Partial Class FormPayoutZaloraDet
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXls = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCERPPay = New DevExpress.XtraGrid.GridControl()
+        Me.GVERPPay = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumngroup = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrmt_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_acc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumacc_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnacc_description = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrecon_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GridColumnid_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMSERPPay = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddAdjustmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,9 +150,8 @@ Partial Class FormPayoutZaloraDet
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
-        Me.XtraScrollableControl1.SuspendLayout()
-        Me.XtraScrollableControl2.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -160,6 +174,11 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlDetail.SuspendLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCERPPay, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVERPPay, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerControl1.SuspendLayout()
+        Me.CMSERPPay.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -167,7 +186,7 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 415)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 613)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1205, 48)
         Me.PanelControl1.TabIndex = 0
@@ -415,44 +434,26 @@ Partial Class FormPayoutZaloraDet
         Me.XTCData.Location = New System.Drawing.Point(0, 190)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPSummary
-        Me.XTCData.Size = New System.Drawing.Size(1205, 225)
+        Me.XTCData.Size = New System.Drawing.Size(1205, 423)
         Me.XTCData.TabIndex = 2
         Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
         '
         'XTPSummary
         '
-        Me.XTPSummary.Controls.Add(Me.XtraScrollableControl1)
+        Me.XTPSummary.Controls.Add(Me.SplitContainerControl1)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1199, 197)
+        Me.XTPSummary.Size = New System.Drawing.Size(1199, 395)
         Me.XTPSummary.Text = "Summary"
-        '
-        'XtraScrollableControl1
-        '
-        Me.XtraScrollableControl1.Controls.Add(Me.XtraScrollableControl2)
-        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1199, 197)
-        Me.XtraScrollableControl1.TabIndex = 2
-        '
-        'XtraScrollableControl2
-        '
-        Me.XtraScrollableControl2.Controls.Add(Me.GroupControl3)
-        Me.XtraScrollableControl2.Controls.Add(Me.GroupControl2)
-        Me.XtraScrollableControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraScrollableControl2.Location = New System.Drawing.Point(0, 0)
-        Me.XtraScrollableControl2.Name = "XtraScrollableControl2"
-        Me.XtraScrollableControl2.Size = New System.Drawing.Size(1199, 197)
-        Me.XtraScrollableControl2.TabIndex = 8914
         '
         'GroupControl3
         '
         Me.GroupControl3.AppearanceCaption.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupControl3.AppearanceCaption.Options.UseFont = True
-        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 239)
+        Me.GroupControl3.Controls.Add(Me.GCERPPay)
+        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1182, 184)
+        Me.GroupControl3.Size = New System.Drawing.Size(1199, 201)
         Me.GroupControl3.TabIndex = 2
         Me.GroupControl3.Text = "ERP Payout Detail"
         '
@@ -461,10 +462,10 @@ Partial Class FormPayoutZaloraDet
         Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupControl2.AppearanceCaption.Options.UseFont = True
         Me.GroupControl2.Controls.Add(Me.GCSummary)
-        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1182, 239)
+        Me.GroupControl2.Size = New System.Drawing.Size(1199, 189)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Payout Comparison"
         '
@@ -474,7 +475,7 @@ Partial Class FormPayoutZaloraDet
         Me.GCSummary.Location = New System.Drawing.Point(2, 28)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(1178, 209)
+        Me.GCSummary.Size = New System.Drawing.Size(1195, 159)
         Me.GCSummary.TabIndex = 0
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -554,7 +555,7 @@ Partial Class FormPayoutZaloraDet
         Me.XTPDetail.Controls.Add(Me.GCData)
         Me.XTPDetail.Controls.Add(Me.PanelControlRecon)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(1199, 226)
+        Me.XTPDetail.Size = New System.Drawing.Size(1199, 395)
         Me.XTPDetail.Text = "Detail"
         '
         'GCData
@@ -565,7 +566,7 @@ Partial Class FormPayoutZaloraDet
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepoLinkInvoice, Me.RepoLinkCN})
-        Me.GCData.Size = New System.Drawing.Size(1199, 187)
+        Me.GCData.Size = New System.Drawing.Size(1199, 356)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -944,7 +945,7 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlRecon.Controls.Add(Me.BtnManualRecon)
         Me.PanelControlRecon.Controls.Add(Me.PanelControl2)
         Me.PanelControlRecon.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlRecon.Location = New System.Drawing.Point(0, 187)
+        Me.PanelControlRecon.Location = New System.Drawing.Point(0, 356)
         Me.PanelControlRecon.Name = "PanelControlRecon"
         Me.PanelControlRecon.Size = New System.Drawing.Size(1199, 39)
         Me.PanelControlRecon.TabIndex = 1
@@ -1067,11 +1068,159 @@ Partial Class FormPayoutZaloraDet
         Me.BtnImportXls.TabIndex = 0
         Me.BtnImportXls.Text = "Import XLS File"
         '
+        'GCERPPay
+        '
+        Me.GCERPPay.ContextMenuStrip = Me.CMSERPPay
+        Me.GCERPPay.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCERPPay.Location = New System.Drawing.Point(2, 28)
+        Me.GCERPPay.MainView = Me.GVERPPay
+        Me.GCERPPay.Name = "GCERPPay"
+        Me.GCERPPay.Size = New System.Drawing.Size(1195, 171)
+        Me.GCERPPay.TabIndex = 1
+        Me.GCERPPay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVERPPay})
+        '
+        'GVERPPay
+        '
+        Me.GVERPPay.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnname, Me.GridColumngroup, Me.GridColumnid_group, Me.GridColumnid_ref, Me.GridColumnrmt_ref, Me.GridColumnref, Me.GridColumnamo, Me.GridColumnid_acc, Me.GridColumacc_name, Me.GridColumnacc_description, Me.GridColumnrecon_type})
+        Me.GVERPPay.GridControl = Me.GCERPPay
+        Me.GVERPPay.GroupCount = 1
+        Me.GVERPPay.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amo", Me.GridColumnamo, "{0:N2}")})
+        Me.GVERPPay.Name = "GVERPPay"
+        Me.GVERPPay.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVERPPay.OptionsBehavior.ReadOnly = True
+        Me.GVERPPay.OptionsCustomization.AllowFilter = False
+        Me.GVERPPay.OptionsCustomization.AllowGroup = False
+        Me.GVERPPay.OptionsCustomization.AllowSort = False
+        Me.GVERPPay.OptionsSelection.EnableAppearanceFocusedRow = False
+        Me.GVERPPay.OptionsView.ColumnAutoWidth = False
+        Me.GVERPPay.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVERPPay.OptionsView.ShowFooter = True
+        Me.GVERPPay.OptionsView.ShowGroupedColumns = True
+        Me.GVERPPay.OptionsView.ShowGroupPanel = False
+        Me.GVERPPay.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumngroup, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 0
+        '
+        'GridColumngroup
+        '
+        Me.GridColumngroup.Caption = "Type"
+        Me.GridColumngroup.FieldName = "group"
+        Me.GridColumngroup.FieldNameSortGroup = "id_group"
+        Me.GridColumngroup.Name = "GridColumngroup"
+        Me.GridColumngroup.Visible = True
+        Me.GridColumngroup.VisibleIndex = 1
+        '
+        'GridColumnid_ref
+        '
+        Me.GridColumnid_ref.Caption = "id_ref"
+        Me.GridColumnid_ref.FieldName = "id_ref"
+        Me.GridColumnid_ref.Name = "GridColumnid_ref"
+        '
+        'GridColumnrmt_ref
+        '
+        Me.GridColumnrmt_ref.Caption = "rmt_ref"
+        Me.GridColumnrmt_ref.FieldName = "rmt_ref"
+        Me.GridColumnrmt_ref.Name = "GridColumnrmt_ref"
+        '
+        'GridColumnref
+        '
+        Me.GridColumnref.Caption = "Ref."
+        Me.GridColumnref.FieldName = "ref"
+        Me.GridColumnref.Name = "GridColumnref"
+        Me.GridColumnref.Visible = True
+        Me.GridColumnref.VisibleIndex = 2
+        '
+        'GridColumnamo
+        '
+        Me.GridColumnamo.Caption = "Amount"
+        Me.GridColumnamo.DisplayFormat.FormatString = "N2"
+        Me.GridColumnamo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamo.FieldName = "amo"
+        Me.GridColumnamo.Name = "GridColumnamo"
+        Me.GridColumnamo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amo", "{0:N2}")})
+        Me.GridColumnamo.Visible = True
+        Me.GridColumnamo.VisibleIndex = 4
+        '
+        'GridColumnid_acc
+        '
+        Me.GridColumnid_acc.Caption = "id_acc"
+        Me.GridColumnid_acc.FieldName = "id_acc"
+        Me.GridColumnid_acc.Name = "GridColumnid_acc"
+        '
+        'GridColumacc_name
+        '
+        Me.GridColumacc_name.Caption = "COA Account"
+        Me.GridColumacc_name.FieldName = "acc_name"
+        Me.GridColumacc_name.Name = "GridColumacc_name"
+        Me.GridColumacc_name.Visible = True
+        Me.GridColumacc_name.VisibleIndex = 5
+        '
+        'GridColumnacc_description
+        '
+        Me.GridColumnacc_description.Caption = "COA Acc. Desc."
+        Me.GridColumnacc_description.FieldName = "acc_description"
+        Me.GridColumnacc_description.Name = "GridColumnacc_description"
+        Me.GridColumnacc_description.Visible = True
+        Me.GridColumnacc_description.VisibleIndex = 6
+        '
+        'GridColumnrecon_type
+        '
+        Me.GridColumnrecon_type.Caption = "Recon. Type"
+        Me.GridColumnrecon_type.FieldName = "recon_type"
+        Me.GridColumnrecon_type.Name = "GridColumnrecon_type"
+        Me.GridColumnrecon_type.Visible = True
+        Me.GridColumnrecon_type.VisibleIndex = 3
+        '
+        'SplitContainerControl1
+        '
+        Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainerControl1.Horizontal = False
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainerControl1.Name = "SplitContainerControl1"
+        Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControl2)
+        Me.SplitContainerControl1.Panel1.Text = "Panel1"
+        Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl3)
+        Me.SplitContainerControl1.Panel2.Text = "Panel2"
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1199, 395)
+        Me.SplitContainerControl1.SplitterPosition = 189
+        Me.SplitContainerControl1.TabIndex = 0
+        Me.SplitContainerControl1.Text = "SplitContainerControl1"
+        '
+        'GridColumnid_group
+        '
+        Me.GridColumnid_group.Caption = "id_group"
+        Me.GridColumnid_group.FieldName = "id_group"
+        Me.GridColumnid_group.Name = "GridColumnid_group"
+        '
+        'CMSERPPay
+        '
+        Me.CMSERPPay.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddAdjustmentToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.CMSERPPay.Name = "CMSERPPay"
+        Me.CMSERPPay.Size = New System.Drawing.Size(162, 48)
+        '
+        'AddAdjustmentToolStripMenuItem
+        '
+        Me.AddAdjustmentToolStripMenuItem.Name = "AddAdjustmentToolStripMenuItem"
+        Me.AddAdjustmentToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.AddAdjustmentToolStripMenuItem.Text = "Add Adjustment"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
+        '
         'FormPayoutZaloraDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1205, 463)
+        Me.ClientSize = New System.Drawing.Size(1205, 661)
         Me.Controls.Add(Me.XTCData)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControlTop)
@@ -1101,9 +1250,8 @@ Partial Class FormPayoutZaloraDet
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
-        Me.XtraScrollableControl1.ResumeLayout(False)
-        Me.XtraScrollableControl2.ResumeLayout(False)
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl3.ResumeLayout(False)
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1127,6 +1275,11 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlDetail.PerformLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCERPPay, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVERPPay, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerControl1.ResumeLayout(False)
+        Me.CMSERPPay.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1223,7 +1376,22 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents RepoLinkCN As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
-    Friend WithEvents XtraScrollableControl2 As DevExpress.XtraEditors.XtraScrollableControl
     Friend WithEvents PanelControlDetail As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GCERPPay As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVERPPay As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumngroup As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_ref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnrmt_ref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_acc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumacc_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnacc_description As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnrecon_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
+    Friend WithEvents GridColumnid_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMSERPPay As ContextMenuStrip
+    Friend WithEvents AddAdjustmentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
 End Class
