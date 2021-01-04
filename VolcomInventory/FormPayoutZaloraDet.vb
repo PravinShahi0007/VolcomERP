@@ -620,11 +620,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
                 viewDetailAll()
             End If
         ElseIf XTCData.SelectedTabPageIndex = 1 Then
-            If is_confirm = "2" Then
-                PanelControlDetail.Visible = True
-            Else
-                PanelControlDetail.Visible = False
-            End If
+            PanelControlDetail.Visible = True
         End If
     End Sub
 
@@ -824,5 +820,36 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
         Dim query As String = "UPDATE tb_payout_zalora SET note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_payout_zalora='" + id + "'"
         execute_non_query(query, True, "", "", "", "")
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        'check comparation
+        Dim cond_compare As Boolean = True
+        GVSummary.ActiveFilterString = ""
+        GVSummary.ActiveFilterString = "[note]<>'OK'"
+        If GVSummary.RowCount > 0 Then
+            cond_compare = False
+        End If
+        GVSummary.ActiveFilterString = ""
+
+        If Not cond_compare Then
+            stopCustom("Payout not valid, please check 'Payout Comparison'")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to propose this document ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                saveChangesHead()
+                Dim query As String = "UPDATE tb_payout_zalora SET is_confirm=1 WHERE id_payout_zalora='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                submit_who_prepared(rmt, id, id_user)
+
+                actionLoad(False)
+                FormPayoutZalora.viewData()
+                FormPayoutZalora.GVData.FocusedRowHandle = find_row(FormPayoutZalora.GVData, "id_payout_zalora", id)
+                infoCustom("Propose submitted")
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 End Class
