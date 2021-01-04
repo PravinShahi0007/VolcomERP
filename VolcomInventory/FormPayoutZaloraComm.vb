@@ -1,5 +1,6 @@
 ﻿Public Class FormPayoutZaloraComm
     Public id As String = "-1"
+    Public is_view As String = "-1"
     Private Sub FormPayoutZaloraComm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
         'get commision
@@ -17,6 +18,12 @@
         TxtCommTax.EditValue = data.Rows(0)("comm_tax")
         'get total
         getTotal()
+
+        If is_view = "1" Then
+            TxtComm.Enabled = False
+            TxtCommTax.Enabled = False
+            PanelControl1.Visible = False
+        End If
         Cursor = Cursors.Default
     End Sub
 

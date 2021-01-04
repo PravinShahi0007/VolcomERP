@@ -125,6 +125,7 @@ Partial Class FormPayoutZaloraComm
         '
         'TxtTotalCommInput
         '
+        Me.TxtTotalCommInput.Enabled = False
         Me.TxtTotalCommInput.Location = New System.Drawing.Point(12, 166)
         Me.TxtTotalCommInput.Name = "TxtTotalCommInput"
         Me.TxtTotalCommInput.Properties.DisplayFormat.FormatString = "N2"

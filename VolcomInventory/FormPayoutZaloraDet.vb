@@ -725,18 +725,24 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
     End Sub
 
     Private Sub GVERPPay_DoubleClick(sender As Object, e As EventArgs) Handles GVERPPay.DoubleClick
-        If GVERPPay.RowCount > 0 And GVERPPay.FocusedRowHandle >= 0 And is_confirm = 2 Then
+        If GVERPPay.RowCount > 0 And GVERPPay.FocusedRowHandle >= 0 Then
             Dim id_group As String = GVERPPay.GetFocusedRowCellValue("id_group").ToString
             If id_group = "2" Or id_group = "3" Then
                 'komisi
                 Cursor = Cursors.WaitCursor
                 FormPayoutZaloraComm.id = id
+                If is_view = "1" Or is_confirm = "1" Then
+                    FormPayoutZaloraComm.is_view = "1"
+                End If
                 FormPayoutZaloraComm.ShowDialog()
                 Cursor = Cursors.Default
             ElseIf id_group = "5" Then
                 'adjustment
                 Cursor = Cursors.WaitCursor
                 FormPayoutZaloraAdj.id_payout = id
+                If is_view = "1" Or is_confirm = "1" Then
+                    FormPayoutZaloraAdj.is_view = "1"
+                End If
                 FormPayoutZaloraAdj.id_adj = GVERPPay.GetFocusedRowCellValue("id_payout_zalora_det_adj").ToString
                 FormPayoutZaloraAdj.ShowDialog()
                 Cursor = Cursors.Default

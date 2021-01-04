@@ -633,6 +633,9 @@
         ElseIf report_mark_type = "281" Then
             'price recon
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sales_pos_recon WHERE id_sales_pos_recon = '{0}'", id_report)
+        ElseIf report_mark_type = "282" Then
+            'payout zalora
+            query = String.Format("SELECT id_report_status, statement_number as report_number FROM tb_payout_zalora WHERE id_payout_zalora = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -9103,6 +9106,15 @@ WHERE pps.id_additional_cost_pps='" & id_report & "'"
 
             'update status
             query = String.Format("UPDATE tb_sales_pos_recon SET id_report_status='{0}' WHERE id_sales_pos_recon ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "282" Then
+            'payout zalora
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_payout_zalora SET id_report_status='{0}' WHERE id_payout_zalora ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

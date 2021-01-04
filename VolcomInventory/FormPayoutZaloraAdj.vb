@@ -1,6 +1,7 @@
 ﻿Public Class FormPayoutZaloraAdj
     Public id_payout As String = "-1"
     Public id_adj As String = "-1"
+    Public is_view As String = "-1"
 
     Sub viewCOA()
         Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description,CONCAT(a.acc_name,' - ', a.acc_description) AS `acc`, a.id_acc_parent, 
@@ -30,6 +31,14 @@
             SLECOA.EditValue = data.Rows(0)("id_acc").ToString
             TxtAmount.EditValue = data.Rows(0)("adj_value")
             TxtRef.Text = data.Rows(0)("report_number")
+
+            If is_view = "1" Then
+                MENote.Enabled = False
+                SLECOA.Enabled = False
+                TxtAmount.Enabled = False
+                TxtRef.Enabled = False
+                PanelControl1.Visible = False
+            End If
         End If
         Cursor = Cursors.Default
     End Sub

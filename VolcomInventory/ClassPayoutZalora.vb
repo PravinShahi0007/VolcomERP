@@ -67,7 +67,7 @@ FROM (
 	) d ON d.id_payout_zalora = m.id_payout_zalora
 	WHERE m.id_payout_zalora=" + id + ")
 	UNION ALL
-	(SELECT 'Komisi penjualan Zalora' AS `name`, 3 AS `id_group`, 'Commision Tax' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, m.comm_tax AS `amo`, os.id_acc_default_comm_tax_zalora, 'Manual' AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`
+	(SELECT 'PPN atas komisi penjualan Zalora' AS `name`, 3 AS `id_group`, 'Commision Tax' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, m.comm_tax AS `amo`, os.id_acc_default_comm_tax_zalora, 'Manual' AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`
 	FROM tb_payout_zalora m
 	JOIN tb_opt_sales os 
 	WHERE m.id_payout_zalora=" + id + ")
