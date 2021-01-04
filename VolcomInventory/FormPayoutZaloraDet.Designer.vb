@@ -22,10 +22,16 @@ Partial Class FormPayoutZaloraDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPayoutZaloraDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlTop = New DevExpress.XtraEditors.PanelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.SLECOAFee = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -126,6 +132,7 @@ Partial Class FormPayoutZaloraDet
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlDetail = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -138,6 +145,7 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlTop.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECOAFee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -184,7 +192,11 @@ Partial Class FormPayoutZaloraDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnMark)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
+        Me.PanelControl1.Controls.Add(Me.BtnResetPropose)
+        Me.PanelControl1.Controls.Add(Me.BtnAttachment)
+        Me.PanelControl1.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 613)
@@ -192,15 +204,58 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControl1.Size = New System.Drawing.Size(1205, 48)
         Me.PanelControl1.TabIndex = 0
         '
+        'BtnMark
+        '
+        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
+        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
+        Me.BtnMark.Name = "BtnMark"
+        Me.BtnMark.Size = New System.Drawing.Size(82, 44)
+        Me.BtnMark.TabIndex = 15
+        Me.BtnMark.Text = "Mark"
+        Me.BtnMark.Visible = False
+        '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(1020, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(631, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(83, 44)
+        Me.BtnPrint.Size = New System.Drawing.Size(122, 44)
         Me.BtnPrint.TabIndex = 2
-        Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Text = "Print Summary"
+        Me.BtnPrint.Visible = False
+        '
+        'BtnResetPropose
+        '
+        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(753, 2)
+        Me.BtnResetPropose.Name = "BtnResetPropose"
+        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 44)
+        Me.BtnResetPropose.TabIndex = 14
+        Me.BtnResetPropose.Text = "Reset Propose"
+        Me.BtnResetPropose.Visible = False
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
+        Me.BtnAttachment.Location = New System.Drawing.Point(876, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(107, 44)
+        Me.BtnAttachment.TabIndex = 12
+        Me.BtnAttachment.Text = "Attachment"
+        '
+        'BtnSaveChanges
+        '
+        Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(983, 2)
+        Me.BtnSaveChanges.Name = "BtnSaveChanges"
+        Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 44)
+        Me.BtnSaveChanges.TabIndex = 3
+        Me.BtnSaveChanges.Text = "Save Changes"
         '
         'BtnConfirm
         '
@@ -224,6 +279,8 @@ Partial Class FormPayoutZaloraDet
         '
         'GroupControl1
         '
+        Me.GroupControl1.Controls.Add(Me.LabelControl9)
+        Me.GroupControl1.Controls.Add(Me.LEReportStatus)
         Me.GroupControl1.Controls.Add(Me.SLECOAFee)
         Me.GroupControl1.Controls.Add(Me.LabelControl7)
         Me.GroupControl1.Controls.Add(Me.MENote)
@@ -245,6 +302,23 @@ Partial Class FormPayoutZaloraDet
         Me.GroupControl1.Size = New System.Drawing.Size(1205, 149)
         Me.GroupControl1.TabIndex = 36
         Me.GroupControl1.Text = "Payout Info"
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(324, 61)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl9.TabIndex = 37
+        Me.LabelControl9.Text = "Status"
+        '
+        'LEReportStatus
+        '
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(403, 58)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Size = New System.Drawing.Size(205, 20)
+        Me.LEReportStatus.TabIndex = 36
         '
         'SLECOAFee
         '
@@ -329,7 +403,7 @@ Partial Class FormPayoutZaloraDet
         Me.DESyncDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DESyncDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
         Me.DESyncDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DESyncDate.Size = New System.Drawing.Size(480, 20)
+        Me.DESyncDate.Size = New System.Drawing.Size(190, 20)
         Me.DESyncDate.TabIndex = 35
         '
         'LabelControl3
@@ -581,7 +655,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.CMSERPPay.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddAdjustmentToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.CMSERPPay.Name = "CMSERPPay"
-        Me.CMSERPPay.Size = New System.Drawing.Size(162, 70)
+        Me.CMSERPPay.Size = New System.Drawing.Size(162, 48)
         '
         'AddAdjustmentToolStripMenuItem
         '
@@ -1154,14 +1228,26 @@ Partial Class FormPayoutZaloraDet
         'PanelControlDetail
         '
         Me.PanelControlDetail.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlDetail.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControlDetail.Controls.Add(Me.SLECat)
         Me.PanelControlDetail.Controls.Add(Me.LabelControl8)
         Me.PanelControlDetail.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlDetail.Location = New System.Drawing.Point(581, 2)
+        Me.PanelControlDetail.Location = New System.Drawing.Point(452, 2)
         Me.PanelControlDetail.Name = "PanelControlDetail"
-        Me.PanelControlDetail.Size = New System.Drawing.Size(274, 37)
+        Me.PanelControlDetail.Size = New System.Drawing.Size(403, 37)
         Me.PanelControlDetail.TabIndex = 3
         Me.PanelControlDetail.Visible = False
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(277, 0)
+        Me.BtnExportToXLS.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(126, 37)
+        Me.BtnExportToXLS.TabIndex = 3
+        Me.BtnExportToXLS.Text = "Export to XLS"
         '
         'SLECat
         '
@@ -1244,6 +1330,7 @@ Partial Class FormPayoutZaloraDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECOAFee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1402,4 +1489,11 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents AddAdjustmentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumnid_payout_zalora_det_adj As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
 End Class

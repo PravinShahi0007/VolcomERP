@@ -2,10 +2,20 @@
     Public id As String = "-1"
     Dim is_confirm As String = "-1"
     Dim id_comp_group As String = get_setup_field("zalora_comp_group")
+    Public is_view As String = "-1"
+    Public rmt As String = "282"
+    Dim id_report_status As String = "-1"
 
     Private Sub FormPayoutZaloraDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewReportStatus()
         viewCat()
         actionLoad(True)
+    End Sub
+
+    Sub viewReportStatus()
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
 
     Sub viewCOA()
@@ -35,12 +45,57 @@ FROM tb_payout_zalora_cat c"
         DESyncDate.EditValue = data.Rows(0)("sync_date")
         MENote.Text = data.Rows(0)("note").ToString
         is_confirm = data.Rows(0)("is_confirm").ToString
+        LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+        id_report_status = data.Rows(0)("id_report_status").ToString
         If is_load_all Then
             viewSummary()
             viewERPPayout()
             SLECat.EditValue = "0"
         End If
+        allow_status()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub allow_status()
+        If is_confirm = "2" And is_view = "-1" Then
+            MENote.Properties.ReadOnly = False
+            BtnSaveChanges.Visible = True
+            BtnConfirm.Visible = True
+            BtnMark.Visible = False
+            BtnPrint.Visible = False
+            BtnImportXls.Visible = True
+            BtnRefresh.Visible = True
+            BtnUpdateStatus.Visible = True
+            BtnManualRecon.Visible = True
+            GCERPPay.ContextMenuStrip = CMSERPPay
+            GCData.ContextMenuStrip = CMSDetail
+        Else
+            MENote.Properties.ReadOnly = True
+            BtnSaveChanges.Visible = False
+            BtnConfirm.Visible = False
+            BtnMark.Visible = True
+            BtnPrint.Visible = True
+            BtnImportXls.Visible = False
+            BtnRefresh.Visible = False
+            BtnUpdateStatus.Visible = False
+            BtnManualRecon.Visible = False
+            GCERPPay.ContextMenuStrip = Nothing
+            GCData.ContextMenuStrip = Nothing
+        End If
+        BtnAttachment.Visible = True
+
+        'reset propose
+        If is_view = "-1" And is_confirm = "1" Then
+            BtnResetPropose.Visible = True
+        Else
+            BtnResetPropose.Visible = False
+        End If
+
+        If id_report_status = "6" Then
+            BtnResetPropose.Visible = False
+        ElseIf id_report_status = "5" Then
+            BtnResetPropose.Visible = False
+        End If
     End Sub
 
     Private Sub FormPayoutZaloraDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -489,24 +544,30 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
     End Sub
 
     Private Sub Btnrecalculate_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("this action will be update the data. Are you sure you want to validate these data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            validate_payout(False)
+        If is_confirm = "2" Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("this action will be update the data. Are you sure you want to validate these data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                validate_payout(False)
+            End If
         End If
     End Sub
 
     Private Sub BtnImportXls_Click(sender As Object, e As EventArgs) Handles BtnImportXls.Click
-        Cursor = Cursors.WaitCursor
-        FormImportExcel.id_pop_up = "55"
-        FormImportExcel.ShowDialog()
-        Cursor = Cursors.Default
+        If is_confirm = "2" Then
+            Cursor = Cursors.WaitCursor
+            FormImportExcel.id_pop_up = "55"
+            FormImportExcel.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Private Sub BtnUpdateStatus_Click(sender As Object, e As EventArgs) Handles BtnUpdateStatus.Click
-        Cursor = Cursors.WaitCursor
-        updateStatusOrder()
-        viewDetailAll()
-        Cursor = Cursors.Default
+        If is_confirm = "2" Then
+            Cursor = Cursors.WaitCursor
+            updateStatusOrder()
+            viewDetailAll()
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Private Sub GVData_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVData.RowStyle
@@ -540,7 +601,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
     End Sub
 
     Private Sub ManualReconToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManualReconToolStripMenuItem.Click
-        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And is_confirm = "2" Then
             Cursor = Cursors.WaitCursor
             FormPayoutZaloraManualReconSingle.id_payout_zalora_cat = SLECat.EditValue.ToString
             FormPayoutZaloraManualReconSingle.id_det = GVData.GetFocusedRowCellValue("id_payout_zalora_det").ToString
@@ -577,18 +638,20 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
     End Sub
 
     Private Sub BtnManualRecon_Click(sender As Object, e As EventArgs) Handles BtnManualRecon.Click
-        makeSafeGV(GVData)
-        GVData.ActiveFilterString = "[is_select]='Yes'"
-        If GVData.RowCount <= 0 Then
-            warningCustom("Please select item")
-        Else
-            Cursor = Cursors.WaitCursor
-            FormPayoutZaloraManualRecon.id_payout_zalora_cat = SLECat.EditValue.ToString
-            FormPayoutZaloraManualRecon.id = id
-            FormPayoutZaloraManualRecon.ShowDialog()
-            Cursor = Cursors.Default
+        If is_confirm = "2" Then
+            makeSafeGV(GVData)
+            GVData.ActiveFilterString = "[is_select]='Yes'"
+            If GVData.RowCount <= 0 Then
+                warningCustom("Please select item")
+            Else
+                Cursor = Cursors.WaitCursor
+                FormPayoutZaloraManualRecon.id_payout_zalora_cat = SLECat.EditValue.ToString
+                FormPayoutZaloraManualRecon.id = id
+                FormPayoutZaloraManualRecon.ShowDialog()
+                Cursor = Cursors.Default
+            End If
+            GVData.ActiveFilterString = ""
         End If
-        GVData.ActiveFilterString = ""
     End Sub
 
     Private Sub CESelectAll_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAll.EditValueChanged
@@ -698,9 +761,68 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
     End Sub
 
     Private Sub AddAdjustmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddAdjustmentToolStripMenuItem.Click
+        If is_confirm = "2" Then
+            Cursor = Cursors.WaitCursor
+            FormPayoutZaloraAdj.id_payout = id
+            FormPayoutZaloraAdj.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
-        FormPayoutZaloraAdj.id_payout = id
-        FormPayoutZaloraAdj.ShowDialog()
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.id_report = id
+        If is_confirm = "1" Or is_view = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = rmt
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt + " AND rm.id_report_status=3
+        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query_upd As String = "-- delete report mark
+                DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt + " AND id_report=" + id + "; 
+                -- reset confirm
+                UPDATE tb_payout_zalora SET is_confirm=2 WHERE id_payout_zalora=" + id + "; "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                'refresh
+                actionLoad(False)
+                FormPayoutZalora.viewData()
+                FormPayoutZalora.GVData.FocusedRowHandle = find_row(FormPayoutZalora.GVData, "id_payout_zalora", id)
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
+    End Sub
+
+    Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
+        Cursor = Cursors.WaitCursor
+        saveChangesHead()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub saveChangesHead()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "UPDATE tb_payout_zalora SET note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_payout_zalora='" + id + "'"
+        execute_non_query(query, True, "", "", "", "")
         Cursor = Cursors.Default
     End Sub
 End Class
