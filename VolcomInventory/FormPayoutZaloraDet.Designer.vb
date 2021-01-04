@@ -75,6 +75,7 @@ Partial Class FormPayoutZaloraDet
         Me.GridColumacc_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnacc_description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrecon_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_payout_zalora_det_adj = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.CMSDetail = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -131,7 +132,6 @@ Partial Class FormPayoutZaloraDet
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXls = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnid_payout_zalora_det_adj = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -581,7 +581,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.CMSERPPay.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddAdjustmentToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.CMSERPPay.Name = "CMSERPPay"
-        Me.CMSERPPay.Size = New System.Drawing.Size(162, 48)
+        Me.CMSERPPay.Size = New System.Drawing.Size(162, 70)
         '
         'AddAdjustmentToolStripMenuItem
         '
@@ -698,6 +698,12 @@ Partial Class FormPayoutZaloraDet
         Me.GridColumnrecon_type.Name = "GridColumnrecon_type"
         Me.GridColumnrecon_type.Visible = True
         Me.GridColumnrecon_type.VisibleIndex = 3
+        '
+        'GridColumnid_payout_zalora_det_adj
+        '
+        Me.GridColumnid_payout_zalora_det_adj.Caption = "id_payout_zalora_det_adj"
+        Me.GridColumnid_payout_zalora_det_adj.FieldName = "id_payout_zalora_det_adj"
+        Me.GridColumnid_payout_zalora_det_adj.Name = "GridColumnid_payout_zalora_det_adj"
         '
         'XTPDetail
         '
@@ -1216,12 +1222,6 @@ Partial Class FormPayoutZaloraDet
         Me.BtnImportXls.Size = New System.Drawing.Size(128, 37)
         Me.BtnImportXls.TabIndex = 0
         Me.BtnImportXls.Text = "Import XLS File"
-        '
-        'GridColumnid_payout_zalora_det_adj
-        '
-        Me.GridColumnid_payout_zalora_det_adj.Caption = "id_payout_zalora_det_adj"
-        Me.GridColumnid_payout_zalora_det_adj.FieldName = "id_payout_zalora_det_adj"
-        Me.GridColumnid_payout_zalora_det_adj.Name = "GridColumnid_payout_zalora_det_adj"
         '
         'FormPayoutZaloraDet
         '

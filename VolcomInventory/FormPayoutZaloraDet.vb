@@ -657,7 +657,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
                 Dim id_payout_zalora_det_adj As String = GVERPPay.GetFocusedRowCellValue("id_payout_zalora_det_adj").ToString
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete these data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
-                    Dim query As String = "DELETE FROM tb_tb_payout_zalora_det_adj WHERE id_payout_zalora_det_adj='" + id_payout_zalora_det_adj + "' "
+                    Dim query As String = "DELETE FROM tb_payout_zalora_det_adj WHERE id_payout_zalora_det_adj='" + id_payout_zalora_det_adj + "' "
                     execute_non_query(query, True, "", "", "", "")
                     viewERPPayout()
                 End If
@@ -676,6 +676,11 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
                 Cursor = Cursors.Default
             ElseIf id_group = "5" Then
                 'adjustment
+                Cursor = Cursors.WaitCursor
+                FormPayoutZaloraAdj.id_payout = id
+                FormPayoutZaloraAdj.id_adj = GVERPPay.GetFocusedRowCellValue("id_payout_zalora_det_adj").ToString
+                FormPayoutZaloraAdj.ShowDialog()
+                Cursor = Cursors.Default
             Else
                 'sales & refund
                 Dim id_cat As String = ""
@@ -690,5 +695,12 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
                 XTCData.SelectedTabPageIndex = 1
             End If
         End If
+    End Sub
+
+    Private Sub AddAdjustmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddAdjustmentToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        FormPayoutZaloraAdj.id_payout = id
+        FormPayoutZaloraAdj.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

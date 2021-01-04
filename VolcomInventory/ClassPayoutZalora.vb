@@ -26,7 +26,7 @@
     End Function
 
     Public Function viewERPPayout(ByVal id As String) As DataTable
-        Dim query As String = "SELECT a.`name`, a.id_group,a.`group`, a.id_ref, a.`rmt_ref`, a.ref, a.amo,a.id_acc, coa.acc_name, coa.acc_description, a.recon_type
+        Dim query As String = "SELECT a.`name`, a.id_group,a.`group`, a.id_ref, a.`rmt_ref`, a.ref, a.amo,a.id_acc, coa.acc_name, coa.acc_description, a.recon_type, a.id_payout_zalora_det_adj
 FROM ( 
 	-- SALES REVENUE
 	(SELECT  CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y'))  AS `name`, 1 AS `id_group`,'Sales Revenue' AS `group`, sp.id_sales_pos AS `id_ref`, sp.report_mark_type AS `rmt_ref`,sp.sales_pos_number AS `ref`, SUM(d.erp_amount) AS `amo`, d.id_acc, 'Auto' AS `recon_type`, d.manual_recon_reason, 0 AS `id_payout_zalora_det_adj`
