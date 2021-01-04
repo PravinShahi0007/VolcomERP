@@ -5,7 +5,7 @@
 
     Private Sub FormPayoutZaloraDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCat()
-        actionLoad()
+        actionLoad(True)
     End Sub
 
     Sub viewCOA()
@@ -25,7 +25,7 @@ FROM tb_payout_zalora_cat c"
         Cursor = Cursors.Default
     End Sub
 
-    Sub actionLoad()
+    Sub actionLoad(ByVal is_load_all As Boolean)
         Cursor = Cursors.WaitCursor
         Dim pz As New ClassPayoutZalora()
         Dim query As String = pz.queryMain("AND z.id_payout_zalora='" + id + "' ", "1")
@@ -35,9 +35,11 @@ FROM tb_payout_zalora_cat c"
         DESyncDate.EditValue = data.Rows(0)("sync_date")
         MENote.Text = data.Rows(0)("note").ToString
         is_confirm = data.Rows(0)("is_confirm").ToString
-        viewSummary()
-        viewERPPayout()
-        SLECat.EditValue = "0"
+        If is_load_all Then
+            viewSummary()
+            viewERPPayout()
+            SLECat.EditValue = "0"
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -470,7 +472,7 @@ FROM (
 	WHERE m.id_payout_zalora=" + id + ")
 	UNION ALL
 	-- REFUND
-	(SELECT  CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y'))  AS `name`, 4 AS `id_group`, 'Refund' AS `group`, sp.id_sales_pos AS `id_ref`, sp.report_mark_type AS `rmt_ref`, sp.sales_pos_number AS `ref`, SUM(d.erp_amount) AS `amo`, d.id_acc, 'Auto' AS `recon_type`, d.manual_recon_reason, ) AS `id_payout_zalora_det_adj`
+	(SELECT  CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y'))  AS `name`, 4 AS `id_group`, 'Refund' AS `group`, sp.id_sales_pos AS `id_ref`, sp.report_mark_type AS `rmt_ref`, sp.sales_pos_number AS `ref`, SUM(d.erp_amount) AS `amo`, d.id_acc, 'Auto' AS `recon_type`, d.manual_recon_reason, 0 AS `id_payout_zalora_det_adj`
 	FROM tb_payout_zalora_det d 
 	INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
 	INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_cn_det
