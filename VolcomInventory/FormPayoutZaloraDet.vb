@@ -747,6 +747,10 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             Dim id_group As String = GVERPPay.GetFocusedRowCellValue("id_group").ToString
             If id_group = "2" Or id_group = "3" Then
                 'komisi
+                Cursor = Cursors.WaitCursor
+                FormPayoutZaloraComm.id = id
+                FormPayoutZaloraComm.ShowDialog()
+                Cursor = Cursors.Default
             ElseIf id_group = "5" Then
                 'adjustment
             Else

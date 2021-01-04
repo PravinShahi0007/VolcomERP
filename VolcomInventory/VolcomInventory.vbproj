@@ -3304,6 +3304,12 @@
     <Compile Include="FormPayoutZaloraAddCoa.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPayoutZaloraComm.Designer.vb">
+      <DependentUpon>FormPayoutZaloraComm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPayoutZaloraComm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPayoutZaloraDet.Designer.vb">
       <DependentUpon>FormPayoutZaloraDet.vb</DependentUpon>
     </Compile>
@@ -10669,6 +10675,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutZaloraAddCoa.resx">
       <DependentUpon>FormPayoutZaloraAddCoa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPayoutZaloraComm.resx">
+      <DependentUpon>FormPayoutZaloraComm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutZaloraDet.resx">
       <DependentUpon>FormPayoutZaloraDet.vb</DependentUpon>
