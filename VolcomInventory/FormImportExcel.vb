@@ -6230,10 +6230,27 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             FormMain.SplashScreenManager1.ShowWaitForm()
                         End If
                         Dim id_payout_zalora As String = FormPayoutZaloraDet.id
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Build query")
                         Dim query_del As String = "DELETE FROM tb_payout_zalora_det WHERE  id_payout_zalora='" + id_payout_zalora + "'; "
                         execute_non_query(query_del, True, "", "", "", "")
+                        Dim query As String = "SET GLOBAL max_allowed_packet=100M; INSERT INTO tb_payout_zalora_det(
+                        id_payout_zalora, 
+                        transaction_date, 
+                        transaction_type, 
+                        transaction_number, 
+                        amount, 
+                        vat_in_amount, 
+                        wht_amount, 
+                        order_number, 
+                        item_id, 
+                        ol_store_id, 
+                        order_status,
+                        reference,
+                        comment,
+                        zalora_sku,
+                        zalora_product_name
+                        ) VALUES "
                         For i As Integer = 0 To GVData.RowCount - 1
-                            FormMain.SplashScreenManager1.SetWaitFormDescription("Importing data (" + (i + 1).ToString + "/" + GVData.RowCount.ToString + ")")
                             Dim transaction_date As String = DateTime.Parse(GVData.GetRowCellValue(i, "Transaction Date").ToString).ToString("yyyy-MM-dd")
                             Dim transaction_type As String = addSlashes(GVData.GetRowCellValue(i, "Transaction Type").ToString)
                             Dim transaction_number As String = addSlashes(GVData.GetRowCellValue(i, "Transaction Number").ToString)
@@ -6249,23 +6266,11 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             Dim zalora_sku As String = addSlashes(GVData.GetRowCellValue(i, "Seller SKU").ToString)
                             Dim zalora_product_name As String = addSlashes(GVData.GetRowCellValue(i, "Details").ToString)
 
-                            Dim query As String = "INSERT INTO tb_payout_zalora_det(
-                            id_payout_zalora, 
-                            transaction_date, 
-                            transaction_type, 
-                            transaction_number, 
-                            amount, 
-                            vat_in_amount, 
-                            wht_amount, 
-                            order_number, 
-                            item_id, 
-                            ol_store_id, 
-                            order_status,
-                            reference,
-                            comment,
-                            zalora_sku,
-                            zalora_product_name
-                            ) VALUES(
+                            If i > 0 Then
+                                query += ", "
+                            End If
+
+                            query += "(
                             '" + id_payout_zalora + "',
                             '" + transaction_date + "',
                             '" + transaction_type + "',
@@ -6281,9 +6286,15 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             '" + comment + "',
                             '" + zalora_sku + "',
                             '" + zalora_product_name + "'
-                            ); "
-                            execute_non_query(query, True, "", "", "", "")
+                            ) "
+
+                            PBC.PerformStep()
+                            PBC.Update()
                         Next
+                        If GVData.RowCount > 0 Then
+                            FormMain.SplashScreenManager1.SetWaitFormDescription("Importing data")
+                            execute_non_query_long(query, True, "", "", "", "")
+                        End If
                         FormMain.SplashScreenManager1.CloseWaitForm()
                         FormPayoutZaloraDet.validate_payout(True)
                         Close()
