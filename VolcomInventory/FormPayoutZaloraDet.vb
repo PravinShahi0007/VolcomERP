@@ -125,7 +125,7 @@ FROM tb_payout_zalora_cat c"
         FormMain.SplashScreenManager1.SetWaitFormDescription("Checking order number")
         Dim qon As String = "UPDATE tb_payout_zalora_det main
         INNER JOIN (
-            SELECT sod.id_sales_order_det, spd.id_sales_pos_det,so.sales_order_ol_shop_number AS `order_number`, sod.item_id, sod.ol_store_id
+            SELECT sod.id_sales_order_det, spd.id_sales_pos_det,so.sales_order_ol_shop_number AS `order_number`, sod.item_id, sod.ol_store_id, spd.id_product
             FROM tb_sales_pos_det spd
             INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
             INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = spd.id_pl_sales_order_del_det
@@ -139,7 +139,8 @@ FROM tb_payout_zalora_cat c"
             GROUP BY spd.id_sales_pos_det
         ) src ON src.order_number = main.order_number AND src.item_id = main.item_id AND src.ol_store_id = main.ol_store_id
         SET main.id_sales_order_det = src.id_sales_order_det,
-        main.id_sales_pos_det = src.id_sales_pos_det 
+        main.id_sales_pos_det = src.id_sales_pos_det,
+        main.id_product = src.id_product
         WHERE main.id_payout_zalora=" + id + " "
         execute_non_query_long(qon, True, "", "", "", "")
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -416,7 +417,7 @@ FROM tb_payout_zalora_cat c"
         FormMain.SplashScreenManager1.SetWaitFormDescription("Check unfulfilled order")
         Dim query As String = "UPDATE tb_payout_zalora_det d
 INNER JOIN tb_ol_store_order od ON od.sales_order_ol_shop_number = d.order_number AND od.item_id = d.item_id AND od.ol_store_id = d.ol_store_id
-SET d.id_ol_store_order = od.id_ol_store_order, d.id_ol_store_oos = od.id_ol_store_oos
+SET d.id_ol_store_order = od.id_ol_store_order, d.id_ol_store_oos = od.id_ol_store_oos, d.id_product = od.id_product
 WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
         execute_non_query_long(query, True, "", "", "", "")
         FormMain.SplashScreenManager1.CloseWaitForm()
