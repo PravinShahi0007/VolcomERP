@@ -7,6 +7,7 @@ Public Class FormBankDepositDet
     Public type_rec As String = "1" '1 = invoice
     Public id_list_payout_trans As String = "-1"
     Public id_virtual_acc_trans As String = "-1"
+    Public id_payout_zalora As String = "-1"
     Public id_coa_tag As String = "1"
     Public id_coa_type As String = "1"
 
@@ -291,6 +292,36 @@ Public Class FormBankDepositDet
                     Dim dv As DataTable = execute_query(qv, -1, True, "", "", "", "")
                     MENote.Text = "Virtual Acc " + dv.Rows(0)("bank").ToString + " : " + dv.Rows(0)("trans_date_view").ToString
                     DERecDate.EditValue = dv.Rows(0)("trans_date")
+                ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 5 Then
+                    'zalora payout
+                    Dim pz As New ClassPayoutZalora()
+                    Dim data As DataTable = pz.viewERPPayout(id_payout_zalora)
+                    For i As Integer = 0 To data.Rows.Count - 1
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_report") = data.Rows(i)("id_ref").ToString
+                        newRow("id_report_det") = "0"
+                        newRow("report_mark_type") = data.Rows(i)("rmt_ref").ToString
+                        newRow("report_mark_type_name") = data.Rows(i)("rmt_name_ref").ToString
+                        newRow("number") = data.Rows(i)("ref").ToString
+                        newRow("id_comp") = data.Rows(i)("id_comp").ToString
+                        newRow("id_acc") = data.Rows(i)("id_acc").ToString
+                        newRow("acc_name") = data.Rows(i)("acc_name").ToString
+                        newRow("acc_description") = data.Rows(i)("acc_description").ToString
+                        newRow("comp_number") = data.Rows(i)("comp_number").ToString
+                        If data.Rows(i)("recon_type").ToString.Contains("Manual") Then
+                            newRow("vendor") = "Zalora"
+                        Else
+                            newRow("vendor") = data.Rows(i)("comp_number").ToString
+                        End If
+                        newRow("total_rec") = 0
+                        newRow("value") = data.Rows(i)("amo")
+                        newRow("balance_due") = data.Rows(i)("amo")
+                        newRow("note") = data.Rows(i)("name").ToString
+                        newRow("id_dc") = If(data.Rows(i)("amo") < 0, "1", "2")
+                        newRow("dc_code") = If(data.Rows(i)("amo") < 0, "D", "K")
+                        newRow("value_view") = Math.Abs(data.Rows(i)("amo"))
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                    Next
                 End If
             ElseIf type_rec = "3" Then
                 SLEUnit.EditValue = id_coa_tag
@@ -671,6 +702,9 @@ Public Class FormBankDepositDet
                     End If
                     If id_virtual_acc_trans <> "-1" Then
                         FormBankDeposit.load_vacc()
+                    End If
+                    If id_payout_zalora <> "-1" Then
+                        FormBankDeposit.view_zalora_payout()
                     End If
                     FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankDeposit.GVList, "id_rec_payment", id_deposit)
                     FormBankDeposit.XTCPO.SelectedTabPageIndex = 0

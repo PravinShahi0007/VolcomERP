@@ -139,6 +139,7 @@ Partial Class FormPayoutZaloraDet
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXls = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnindeks = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -671,7 +672,7 @@ Partial Class FormPayoutZaloraDet
         '
         'GVERPPay
         '
-        Me.GVERPPay.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnname, Me.GridColumngroup, Me.GridColumnid_group, Me.GridColumnid_ref, Me.GridColumnrmt_ref, Me.GridColumnref, Me.GridColumnamo, Me.GridColumnid_acc, Me.GridColumacc_name, Me.GridColumnacc_description, Me.GridColumnrecon_type, Me.GridColumnid_payout_zalora_det_adj})
+        Me.GVERPPay.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnname, Me.GridColumngroup, Me.GridColumnid_group, Me.GridColumnid_ref, Me.GridColumnrmt_ref, Me.GridColumnref, Me.GridColumnamo, Me.GridColumnid_acc, Me.GridColumacc_name, Me.GridColumnacc_description, Me.GridColumnrecon_type, Me.GridColumnid_payout_zalora_det_adj, Me.GridColumnindeks})
         Me.GVERPPay.GridControl = Me.GCERPPay
         Me.GVERPPay.GroupCount = 1
         Me.GVERPPay.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amo", Me.GridColumnamo, "{0:N2}")})
@@ -701,7 +702,7 @@ Partial Class FormPayoutZaloraDet
         '
         Me.GridColumngroup.Caption = "Type"
         Me.GridColumngroup.FieldName = "group"
-        Me.GridColumngroup.FieldNameSortGroup = "id_group"
+        Me.GridColumngroup.FieldNameSortGroup = "indeks"
         Me.GridColumngroup.Name = "GridColumngroup"
         Me.GridColumngroup.Visible = True
         Me.GridColumngroup.VisibleIndex = 1
@@ -1309,6 +1310,12 @@ Partial Class FormPayoutZaloraDet
         Me.BtnImportXls.TabIndex = 0
         Me.BtnImportXls.Text = "Import XLS File"
         '
+        'GridColumnindeks
+        '
+        Me.GridColumnindeks.Caption = "indeks"
+        Me.GridColumnindeks.FieldName = "indeks"
+        Me.GridColumnindeks.Name = "GridColumnindeks"
+        '
         'FormPayoutZaloraDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1496,4 +1503,5 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnindeks As DevExpress.XtraGrid.Columns.GridColumn
 End Class

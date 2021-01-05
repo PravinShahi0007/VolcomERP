@@ -177,6 +177,11 @@ Partial Class FormBankDeposit
         Me.XTPZalora = New DevExpress.XtraTab.XtraTabPage()
         Me.GCZalora = New DevExpress.XtraGrid.GridControl()
         Me.GVZalora = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_payout_zalora = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstatement_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnzalora_created_at = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsync_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamountpayzalora = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnCreateBBMZalora = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlZalora = New DevExpress.XtraEditors.PanelControl()
         Me.BtnZaloraPayoutList = New DevExpress.XtraEditors.SimpleButton()
@@ -1708,6 +1713,7 @@ Partial Class FormBankDeposit
         '
         'GVZalora
         '
+        Me.GVZalora.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_payout_zalora, Me.GridColumnstatement_number, Me.GridColumnzalora_created_at, Me.GridColumnsync_date, Me.GridColumnamountpayzalora})
         Me.GVZalora.GridControl = Me.GCZalora
         Me.GVZalora.Name = "GVZalora"
         Me.GVZalora.OptionsBehavior.AutoExpandAllGroups = True
@@ -1716,6 +1722,50 @@ Partial Class FormBankDeposit
         Me.GVZalora.OptionsView.ColumnAutoWidth = False
         Me.GVZalora.OptionsView.ShowFooter = True
         Me.GVZalora.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_payout_zalora
+        '
+        Me.GridColumnid_payout_zalora.Caption = "id_payout_zalora"
+        Me.GridColumnid_payout_zalora.FieldName = "id_payout_zalora"
+        Me.GridColumnid_payout_zalora.Name = "GridColumnid_payout_zalora"
+        '
+        'GridColumnstatement_number
+        '
+        Me.GridColumnstatement_number.Caption = "Number"
+        Me.GridColumnstatement_number.FieldName = "statement_number"
+        Me.GridColumnstatement_number.Name = "GridColumnstatement_number"
+        Me.GridColumnstatement_number.Visible = True
+        Me.GridColumnstatement_number.VisibleIndex = 0
+        '
+        'GridColumnzalora_created_at
+        '
+        Me.GridColumnzalora_created_at.Caption = "Zalora Created at"
+        Me.GridColumnzalora_created_at.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnzalora_created_at.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnzalora_created_at.FieldName = "zalora_created_at"
+        Me.GridColumnzalora_created_at.Name = "GridColumnzalora_created_at"
+        Me.GridColumnzalora_created_at.Visible = True
+        Me.GridColumnzalora_created_at.VisibleIndex = 1
+        '
+        'GridColumnsync_date
+        '
+        Me.GridColumnsync_date.Caption = "Sync Date"
+        Me.GridColumnsync_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnsync_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsync_date.FieldName = "sync_date"
+        Me.GridColumnsync_date.Name = "GridColumnsync_date"
+        Me.GridColumnsync_date.Visible = True
+        Me.GridColumnsync_date.VisibleIndex = 2
+        '
+        'GridColumnamountpayzalora
+        '
+        Me.GridColumnamountpayzalora.Caption = "Amount"
+        Me.GridColumnamountpayzalora.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamountpayzalora.FieldName = "amount"
+        Me.GridColumnamountpayzalora.Name = "GridColumnamountpayzalora"
+        Me.GridColumnamountpayzalora.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnamountpayzalora.Visible = True
+        Me.GridColumnamountpayzalora.VisibleIndex = 3
         '
         'BtnCreateBBMZalora
         '
@@ -1993,4 +2043,9 @@ Partial Class FormBankDeposit
     Friend WithEvents PanelControlZalora As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnCreateBBMZalora As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnZaloraPayoutList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_payout_zalora As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstatement_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnzalora_created_at As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsync_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamountpayzalora As DevExpress.XtraGrid.Columns.GridColumn
 End Class
