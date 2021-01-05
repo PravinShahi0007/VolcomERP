@@ -39,14 +39,16 @@ FROM (
 	WHERE d.id_payout_zalora=" + id + " AND t.id_payout_zalora_cat=2 AND d.is_manual_recon=2
 	GROUP BY d.id_acc, sp.id_sales_pos )
 	UNION ALL
-	(SELECT cd.manual_recon_reason AS `name`, 1 AS `id_group`, 'Sales Revenue' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`,'' AS `ref`, SUM(cd.erp_amount) AS `amo`, cd.id_acc, 'Manual' AS `recon_type`, cd.manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp, cf.comp_number, 1 AS `indeks`
+	(SELECT cd.manual_recon_reason AS `name`, 1 AS `id_group`, 'Sales Revenue' AS `group`, cd.`id_ref`, cd.`rmt_ref`,cd.`ref`, SUM(cd.erp_amount) AS `amo`, cd.id_acc, 'Manual' AS `recon_type`, cd.manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp, cf.comp_number, 1 AS `indeks`
 	FROM (
-		SELECT d.id_payout_zalora_det,d.erp_amount, d.id_acc, d.manual_recon_reason
+		SELECT d.id_payout_zalora_det,d.erp_amount, d.id_acc, d.manual_recon_reason, IFNULL(sp.id_sales_pos,0) AS `id_ref`, IFNULL(sp.report_mark_type,0) AS `rmt_ref`, IFNULL(sp.sales_pos_number,'') AS `ref`
 		FROM tb_payout_zalora_det d 
 		INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+        LEFT JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
+        LEFT JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
 		WHERE d.id_payout_zalora=" + id + " AND (t.id_payout_zalora_cat=2) AND d.is_manual_recon=1
 		UNION ALL 
-		SELECT a.id_payout_zalora_det,a.erp_amount, a.id_acc, d.manual_recon_reason
+		SELECT a.id_payout_zalora_det,a.erp_amount, a.id_acc, d.manual_recon_reason, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`
 		FROM tb_payout_zalora_det_addition a 
 		INNER JOIN tb_payout_zalora_det d ON d.id_payout_zalora_det = a.id_payout_zalora_det 
 		INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
@@ -86,14 +88,16 @@ FROM (
 	WHERE d.id_payout_zalora=" + id + " AND t.id_payout_zalora_cat=4 AND d.is_manual_recon=2
 	GROUP BY d.id_acc, sp.id_sales_pos )
 	UNION ALL
-	(SELECT cd.manual_recon_reason AS `name`, 4 AS `id_group`, 'Refund' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, SUM(cd.erp_amount) AS `amo`, cd.id_acc, 'Manual' AS `recon_type`, cd.manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 2 AS `indeks`
+	(SELECT cd.manual_recon_reason AS `name`, 4 AS `id_group`, 'Refund' AS `group`, cd.`id_ref`, cd.`rmt_ref`, cd.`ref`, SUM(cd.erp_amount) AS `amo`, cd.id_acc, 'Manual' AS `recon_type`, cd.manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 2 AS `indeks`
 	FROM (
-		SELECT d.id_payout_zalora_det,d.erp_amount, d.id_acc, d.manual_recon_reason
+		SELECT d.id_payout_zalora_det,d.erp_amount, d.id_acc, d.manual_recon_reason, IFNULL(sp.id_sales_pos,0) AS `id_ref`, IFNULL(sp.report_mark_type,0) AS `rmt_ref`, IFNULL(sp.sales_pos_number,'') AS `ref`
 		FROM tb_payout_zalora_det d 
 		INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+        LEFT JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_cn_det
+        LEFT JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
 		WHERE d.id_payout_zalora=" + id + " AND (t.id_payout_zalora_cat=4) AND d.is_manual_recon=1
 		UNION ALL 
-		SELECT a.id_payout_zalora_det,a.erp_amount, a.id_acc, d.manual_recon_reason
+		SELECT a.id_payout_zalora_det,a.erp_amount, a.id_acc, d.manual_recon_reason, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`
 		FROM tb_payout_zalora_det_addition a 
 		INNER JOIN tb_payout_zalora_det d ON d.id_payout_zalora_det = a.id_payout_zalora_det 
 		INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type

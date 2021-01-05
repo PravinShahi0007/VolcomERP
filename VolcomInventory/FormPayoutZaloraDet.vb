@@ -464,7 +464,7 @@ LEFT JOIN (
         WHERE pd.id_payout_zalora=" + id + "
         GROUP BY typ.id_payout_zalora_cat
     ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
-	WHERE d.id_payout_zalora=" + id + " AND d.amount=(d.erp_amount+IFNULL(a.erp_amount_add,0.00))
+	WHERE d.id_payout_zalora=" + id + " AND d.amount=(d.erp_amount+IFNULL(a.erp_amount_add,0.00)) AND !ISNULL(d.id_acc)
 	GROUP BY typ.id_payout_zalora_cat
 ) e ON e.id_payout_zalora_cat = z.id_payout_zalora_cat "
         Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
@@ -591,7 +591,12 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             is_manual_recon = GVData.GetRowCellValue(e.RowHandle, "is_manual_recon").ToString
         Catch ex As Exception
         End Try
-        If amo <> erp_amo Then
+        Dim id_acc As String = "0"
+        Try
+            id_acc = GVData.GetRowCellValue(e.RowHandle, "id_acc").ToString
+        Catch ex As Exception
+        End Try
+        If amo <> erp_amo Or id_acc = "0" Then
             e.Appearance.BackColor = Color.Salmon
             e.Appearance.BackColor2 = Color.Salmon
         Else
@@ -608,7 +613,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
     Private Sub ManualReconToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManualReconToolStripMenuItem.Click
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And is_confirm = "2" Then
             Cursor = Cursors.WaitCursor
-            FormPayoutZaloraManualReconSingle.id_payout_zalora_cat = SLECat.EditValue.ToString
+            FormPayoutZaloraManualReconSingle.id_payout_zalora_cat = GVData.GetFocusedRowCellValue("id_payout_zalora_cat").ToString
             FormPayoutZaloraManualReconSingle.id_det = GVData.GetFocusedRowCellValue("id_payout_zalora_det").ToString
             FormPayoutZaloraManualReconSingle.ShowDialog()
             Cursor = Cursors.Default
@@ -636,6 +641,13 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
         Catch ex As Exception
         End Try
         viewDetailRecon(id_cat)
+
+        'bulk recon
+        'If SLECat.EditValue.ToString = "3" Or SLECat.EditValue.ToString = "5" Then
+        '    PanelControlRecon.Visible = False
+        'Else
+        '    PanelControlRecon.Visible = False
+        'End If
     End Sub
 
     Private Sub BtnManualRecon_Click(sender As Object, e As EventArgs) Handles BtnManualRecon.Click
@@ -644,6 +656,8 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             GVData.ActiveFilterString = "[is_select]='Yes'"
             If GVData.RowCount <= 0 Then
                 warningCustom("Please select item")
+            ElseIf SLECat.EditValue.ToString = "2" Or SLECat.EditValue.ToString = "4" Then
+                warningCustom("Only for reconcile commision")
             Else
                 Cursor = Cursors.WaitCursor
                 FormPayoutZaloraManualRecon.id_payout_zalora_cat = SLECat.EditValue.ToString
@@ -753,16 +767,32 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
                 Cursor = Cursors.Default
             Else
                 'sales & refund
+                Dim id_ref As String = GVERPPay.GetFocusedRowCellValue("id_ref").ToString
+                Dim filter As String = ""
                 Dim id_cat As String = ""
                 If id_group = "1" Then
                     'sales
                     id_cat = "2"
+                    filter = "[id_payout_zalora_cat]=" + id_cat
+                    If id_ref <> "0" Then
+                        filter += "AND [invoice_number]='" + GVERPPay.GetFocusedRowCellValue("ref").ToString + "' "
+                    Else
+                        filter += "AND [manual_recon_reason]='" + GVERPPay.GetFocusedRowCellValue("name").ToString + "' "
+                    End If
                 Else
                     'refund
                     id_cat = "4"
+                    filter = "[id_payout_zalora_cat]=" + id_cat
+                    If id_ref <> "0" Then
+                        filter += "AND [cn_number]='" + GVERPPay.GetFocusedRowCellValue("ref").ToString + "' "
+                    Else
+                        filter += "AND [manual_recon_reason]='" + GVERPPay.GetFocusedRowCellValue("name").ToString + "' "
+                    End If
                 End If
-                SLECat.EditValue = id_cat
                 XTCData.SelectedTabPageIndex = 1
+                If filter <> "" Then
+                    GVData.ActiveFilterString = filter
+                End If
             End If
         End If
     End Sub

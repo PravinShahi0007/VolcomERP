@@ -8,7 +8,7 @@
         viewCOA()
         TxtAmount.EditValue = 0.00
         'default coa
-        If id_payout_zalora_cat = "3" Then
+        If id_payout_zalora_cat = "3" Or id_payout_zalora_cat = "5" Then
             'fee
             Dim id_coa_default_fee As String = execute_query("SELECT id_acc_default_fee_zalora FROM tb_opt_sales ", 0, True, "", "", "", "")
             SLECOA.EditValue = id_coa_default_fee
@@ -23,8 +23,18 @@ FROM tb_payout_zalora_det d WHERE d.id_payout_zalora_det=" + id_det + " "
         If id_acc <> "0" Then
             SLECOA.EditValue = id_acc
         End If
+        MEReason.Text = data.Rows(0)("manual_recon_reason").ToString
         viewDetail()
         getTotal()
+
+        'check jika ada referensi khusus sales rev 
+        If id_payout_zalora_cat = "2" And FormPayoutZaloraDet.GVData.GetFocusedRowCellValue("id_sales_pos_det") <> "0" Then
+            TxtAmount.Enabled = False
+        End If
+        'check jika ada referensi khusus refund
+        If id_payout_zalora_cat = "4" And FormPayoutZaloraDet.GVData.GetFocusedRowCellValue("id_sales_pos_cn_det") <> "0" Then
+            TxtAmount.Enabled = False
+        End If
         Cursor = Cursors.Default
     End Sub
 
