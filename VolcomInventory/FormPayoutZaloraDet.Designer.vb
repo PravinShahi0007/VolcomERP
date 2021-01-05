@@ -146,6 +146,7 @@ Partial Class FormPayoutZaloraDet
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.RepoLinkReference = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,6 +196,7 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlDetail.SuspendLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkReference, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -698,6 +700,7 @@ Partial Class FormPayoutZaloraDet
         Me.GCERPPay.Location = New System.Drawing.Point(2, 28)
         Me.GCERPPay.MainView = Me.GVERPPay
         Me.GCERPPay.Name = "GCERPPay"
+        Me.GCERPPay.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLinkReference})
         Me.GCERPPay.Size = New System.Drawing.Size(1195, 167)
         Me.GCERPPay.TabIndex = 1
         Me.GCERPPay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVERPPay})
@@ -778,6 +781,7 @@ Partial Class FormPayoutZaloraDet
         'GridColumnref
         '
         Me.GridColumnref.Caption = "Ref."
+        Me.GridColumnref.ColumnEdit = Me.RepoLinkReference
         Me.GridColumnref.FieldName = "ref"
         Me.GridColumnref.Name = "GridColumnref"
         Me.GridColumnref.Visible = True
@@ -1370,6 +1374,11 @@ Partial Class FormPayoutZaloraDet
         Me.gridBand4.VisibleIndex = 3
         Me.gridBand4.Width = 75
         '
+        'RepoLinkReference
+        '
+        Me.RepoLinkReference.AutoHeight = False
+        Me.RepoLinkReference.Name = "RepoLinkReference"
+        '
         'FormPayoutZaloraDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1435,6 +1444,7 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlDetail.PerformLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkReference, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1564,4 +1574,5 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents BandedGridColumnpayout_zalora_cat As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents RepoLinkReference As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class

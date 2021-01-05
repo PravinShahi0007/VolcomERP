@@ -931,4 +931,15 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             infoCustom("File exported.")
         End If
     End Sub
+
+    Private Sub RepoLinkReference_Click(sender As Object, e As EventArgs) Handles RepoLinkReference.Click
+        If GVERPPay.RowCount > 0 And GVERPPay.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp()
+            m.id_report = GVERPPay.GetFocusedRowCellValue("id_ref").ToString
+            m.report_mark_type = GVERPPay.GetFocusedRowCellValue("rmt_ref").ToString
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
