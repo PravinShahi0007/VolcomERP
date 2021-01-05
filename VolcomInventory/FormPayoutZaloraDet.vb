@@ -506,7 +506,7 @@ LEFT JOIN (
             cond_cat = "And typ.id_payout_zalora_cat='" + id_cat + "' "
         End If
 
-        Dim query As String = "SELECT 'No' AS `is_select`,d.id_payout_zalora_det, d.id_payout_zalora, d.transaction_date, d.transaction_type, typ.id_payout_zalora_cat,
+        Dim query As String = "SELECT 'No' AS `is_select`,d.id_payout_zalora_det, d.id_payout_zalora, d.transaction_date, d.transaction_type, typ.id_payout_zalora_cat,cat.payout_zalora_cat,
 d.amount, d.vat_in_amount, d.wht_amount, d.order_number, d.item_id, d.ol_store_id, d.order_status, d.`comment`,d.erp_status,(d.erp_amount + IFNULL(a.erp_amount_add,0.00)) AS `erp_amount`,
 IFNULL(d.id_sales_order_det,0) AS `id_sales_order_det`, 
 IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`, sp.id_sales_pos,
@@ -517,6 +517,7 @@ d.is_manual_recon,IF(d.is_manual_recon=1,'Manual','Auto') AS `recon_type`, d.man
 IFNULL(d.id_acc,0) AS `id_acc`, CONCAT(coa.acc_name, IF(ISNULL(a.acc_name),'',CONCAT(',',a.acc_name))) AS `acc_name`, CONCAT(coa.acc_description, IF(ISNULL(a.acc_description),'',CONCAT(',',a.acc_description))) AS `acc_description`
 FROM tb_payout_zalora_det d
 INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = d.transaction_type
+INNER JOIN tb_payout_zalora_cat cat ON typ.id_payout_zalora_cat = cat.id_payout_zalora_cat
 LEFT JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
 LEFT JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
 LEFT JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos_det = d.id_sales_pos_cn_det
