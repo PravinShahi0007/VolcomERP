@@ -8425,6 +8425,12 @@
     <Compile Include="ReportPayout.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPayoutZalora.Designer.vb">
+      <DependentUpon>ReportPayoutZalora.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPayoutZalora.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPayrollAll.Designer.vb">
       <DependentUpon>ReportPayrollAll.vb</DependentUpon>
     </Compile>
@@ -13694,6 +13700,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPayout.resx">
       <DependentUpon>ReportPayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPayoutZalora.resx">
+      <DependentUpon>ReportPayoutZalora.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPayrollAll.resx">
       <DependentUpon>ReportPayrollAll.vb</DependentUpon>

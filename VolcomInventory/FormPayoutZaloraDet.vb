@@ -858,4 +858,24 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             End If
         End If
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim Report As New ReportPayoutZalora()
+
+        Report.id = id
+        Report.report_mark_type = rmt
+
+        Report.XLNumber.Text = TxtStatementNumber.Text
+        Report.XLDate.Text = DESyncDate.Text
+        Report.XLNote.Text = MENote.Text
+        Report.XLCreatedAt.Text = DECreatedAt.Text
+        Report.XLStatus.Text = LEReportStatus.Text
+
+        Report.GCSummary.DataSource = GCSummary.DataSource
+        Report.GCERPPay.DataSource = GCERPPay.DataSource
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+
+        tool.ShowPreviewDialog()
+    End Sub
 End Class
