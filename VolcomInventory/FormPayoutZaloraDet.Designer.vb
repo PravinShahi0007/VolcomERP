@@ -82,6 +82,7 @@ Partial Class FormPayoutZaloraDet
         Me.GridColumnacc_description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrecon_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_payout_zalora_det_adj = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnindeks = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.CMSDetail = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -139,7 +140,6 @@ Partial Class FormPayoutZaloraDet
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXls = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnindeks = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -780,6 +780,12 @@ Partial Class FormPayoutZaloraDet
         Me.GridColumnid_payout_zalora_det_adj.FieldName = "id_payout_zalora_det_adj"
         Me.GridColumnid_payout_zalora_det_adj.Name = "GridColumnid_payout_zalora_det_adj"
         '
+        'GridColumnindeks
+        '
+        Me.GridColumnindeks.Caption = "indeks"
+        Me.GridColumnindeks.FieldName = "indeks"
+        Me.GridColumnindeks.Name = "GridColumnindeks"
+        '
         'XTPDetail
         '
         Me.XTPDetail.Controls.Add(Me.GCData)
@@ -1309,12 +1315,6 @@ Partial Class FormPayoutZaloraDet
         Me.BtnImportXls.Size = New System.Drawing.Size(128, 37)
         Me.BtnImportXls.TabIndex = 0
         Me.BtnImportXls.Text = "Import XLS File"
-        '
-        'GridColumnindeks
-        '
-        Me.GridColumnindeks.Caption = "indeks"
-        Me.GridColumnindeks.FieldName = "indeks"
-        Me.GridColumnindeks.Name = "GridColumnindeks"
         '
         'FormPayoutZaloraDet
         '
