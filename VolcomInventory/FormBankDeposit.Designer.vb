@@ -1760,6 +1760,7 @@ Partial Class FormBankDeposit
         'GridColumnamountpayzalora
         '
         Me.GridColumnamountpayzalora.Caption = "Amount"
+        Me.GridColumnamountpayzalora.DisplayFormat.FormatString = "N2"
         Me.GridColumnamountpayzalora.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnamountpayzalora.FieldName = "amount"
         Me.GridColumnamountpayzalora.Name = "GridColumnamountpayzalora"

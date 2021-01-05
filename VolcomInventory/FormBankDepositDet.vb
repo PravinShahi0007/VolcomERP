@@ -651,9 +651,12 @@ Public Class FormBankDepositDet
                     If id_virtual_acc_trans = "-1" Then
                         id_virtual_acc_trans = "NULL"
                     End If
+                    If id_payout_zalora = "-1" Then
+                        id_payout_zalora = "NULL"
+                    End If
 
-                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`, `date_received`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`, type_rec, id_list_payout_trans, id_virtual_acc_trans, id_coa_tag)
-                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" + date_received + "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1', '" + type_rec + "', " + id_list_payout_trans + ", " + id_virtual_acc_trans + ",'" + SLEUnit.EditValue.ToString + "'); SELECT LAST_INSERT_ID();"
+                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`, `date_received`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`, type_rec, id_list_payout_trans, id_virtual_acc_trans, id_coa_tag, id_payout_zalora)
+                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" + date_received + "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1', '" + type_rec + "', " + id_list_payout_trans + ", " + id_virtual_acc_trans + ",'" + SLEUnit.EditValue.ToString + "'," + id_payout_zalora + "); SELECT LAST_INSERT_ID();"
                     id_deposit = execute_query(query, 0, True, "", "", "", "")
 
                     'detail
