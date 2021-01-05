@@ -8653,6 +8653,12 @@
     <Compile Include="ReportProposeEmpSalary.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProposeEmpSalaryCompare.Designer.vb">
+      <DependentUpon>ReportProposeEmpSalaryCompare.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProposeEmpSalaryCompare.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPurcOrder.Designer.vb">
       <DependentUpon>ReportPurcOrder.vb</DependentUpon>
     </Compile>
@@ -13830,6 +13836,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProposeEmpSalary.resx">
       <DependentUpon>ReportProposeEmpSalary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProposeEmpSalaryCompare.resx">
+      <DependentUpon>ReportProposeEmpSalaryCompare.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcOrder.resx">
       <DependentUpon>ReportPurcOrder.vb</DependentUpon>
