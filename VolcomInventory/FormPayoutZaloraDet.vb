@@ -883,4 +883,21 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
 
         tool.ShowPreviewDialog()
     End Sub
+
+    Private Sub BtnExportToXLS_Click(sender As Object, e As EventArgs) Handles BtnExportToXLS.Click
+        Dim save As SaveFileDialog = New SaveFileDialog
+
+        save.Filter = "Excel File | *.xls"
+        save.ShowDialog()
+
+        If Not save.FileName = "" Then
+            Dim op As DevExpress.XtraPrinting.XlsExportOptionsEx = New DevExpress.XtraPrinting.XlsExportOptionsEx
+
+            op.ExportType = DevExpress.Export.ExportType.WYSIWYG
+
+            GVData.ExportToXls(save.FileName, op)
+
+            infoCustom("File exported.")
+        End If
+    End Sub
 End Class
