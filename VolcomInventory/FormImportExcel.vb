@@ -6246,6 +6246,8 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             Dim order_status As String = addSlashes(GVData.GetRowCellValue(i, "Order Item Status").ToString)
                             Dim reference As String = addSlashes(GVData.GetRowCellValue(i, "Reference").ToString)
                             Dim comment As String = addSlashes(GVData.GetRowCellValue(i, "Comment").ToString)
+                            Dim zalora_sku As String = addSlashes(GVData.GetRowCellValue(i, "Seller SKU").ToString)
+                            Dim zalora_product_name As String = addSlashes(GVData.GetRowCellValue(i, "Details").ToString)
 
                             Dim query As String = "INSERT INTO tb_payout_zalora_det(
                             id_payout_zalora, 
@@ -6260,7 +6262,9 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             ol_store_id, 
                             order_status,
                             reference,
-                            comment
+                            comment,
+                            zalora_sku,
+                            zalora_product_name
                             ) VALUES(
                             '" + id_payout_zalora + "',
                             '" + transaction_date + "',
@@ -6274,7 +6278,9 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                             '" + ol_store_id + "',
                             '" + order_status + "',
                             '" + reference + "',
-                            '" + comment + "'
+                            '" + comment + "',
+                            '" + zalora_sku + "',
+                            '" + zalora_product_name + "'
                             ); "
                             execute_non_query(query, True, "", "", "", "")
                         Next

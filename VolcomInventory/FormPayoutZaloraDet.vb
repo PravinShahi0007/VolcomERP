@@ -512,6 +512,7 @@ IFNULL(d.id_sales_order_det,0) AS `id_sales_order_det`,
 IFNULL(d.id_sales_pos_det, 0) AS `id_sales_pos_det`, sp.sales_pos_number AS `invoice_number`, sp.id_sales_pos,
 IFNULL(d.id_sales_pos_cn_det, 0) AS `id_sales_pos_cn_det`, cn.sales_pos_number AS `cn_number`, cn.id_sales_pos AS `id_cn`,
 od.fail_reason AS `note_unfulfilled`, oos.number AS `oos_number`,
+d.zalora_sku, d.zalora_product_name, prod.product_full_code AS `code`, prod.product_name AS `product_name`, cd.display_name AS `size`, 
 d.is_manual_recon,IF(d.is_manual_recon=1,'Manual','Auto') AS `recon_type`, d.manual_recon_reason,
 IFNULL(d.id_acc,0) AS `id_acc`, CONCAT(coa.acc_name, IF(ISNULL(a.acc_name),'',CONCAT(',',a.acc_name))) AS `acc_name`, CONCAT(coa.acc_description, IF(ISNULL(a.acc_description),'',CONCAT(',',a.acc_description))) AS `acc_description`
 FROM tb_payout_zalora_det d
@@ -523,6 +524,9 @@ LEFT JOIN tb_sales_pos cn ON cn.id_sales_pos = cnd.id_sales_pos
 LEFT JOIN tb_ol_store_order od ON od.id_ol_store_order = d.id_ol_store_order
 LEFT JOIN tb_ol_store_oos oos ON oos.id_ol_store_oos = d.id_ol_store_oos
 LEFT JOIN tb_a_acc coa ON coa.id_acc = d.id_acc
+LEFT JOIN tb_m_product prod ON prod.id_product = d.id_product
+LEFT JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
 LEFT JOIN (
     SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`, 
     GROUP_CONCAT(DISTINCT coa.acc_name) AS `acc_name`, GROUP_CONCAT(DISTINCT coa.acc_description) AS `acc_description`
