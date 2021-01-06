@@ -7,6 +7,19 @@
 
     Private Sub FormPromoCollectionNew_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewPromoType()
+        viewStore()
+    End Sub
+
+    Sub viewStore()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT cg.id_comp_group, cg.description
+        FROM tb_m_comp c
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        WHERE c.id_commerce_type=2
+        GROUP BY cg.id_comp_group "
+        viewSearchLookupQuery(SLEStore, query, "id_comp_group", "description", "id_comp_group")
+        SLEStore.EditValue = Nothing
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormPromoCollectionNew_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -38,9 +51,10 @@
                 Dim end_period As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
                 Dim note As String = addSlashes(MENote.Text)
                 Dim promo_name As String = addSlashes(TxtPromoName.Text)
+                Dim id_comp_group As String = SLEStore.EditValue.ToString
 
-                Dim query As String = "INSERT INTO tb_ol_promo_collection(id_promo, tag, created_date, created_by, start_period, end_period, id_report_status, note, promo_name)
-                VALUES('" + id_promo + "','" + tag + "', NOW(), '" + id_user + "', '" + start_period + "', '" + end_period + "',1, '" + note + "', '" + promo_name + "');SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_ol_promo_collection(id_promo, tag, created_date, created_by, start_period, end_period, id_report_status, note, promo_name,id_comp_group)
+                VALUES('" + id_promo + "','" + tag + "', NOW(), '" + id_user + "', '" + start_period + "', '" + end_period + "',1, '" + note + "', '" + promo_name + "','" + id_comp_group + "');SELECT LAST_INSERT_ID(); "
                 Dim id As String = execute_query(query, 0, True, "", "", "", "")
                 Dim rmt As String = "250"
                 execute_non_query("CALL gen_number(" + id + ", " + rmt + ")", True, "", "", "", "")
