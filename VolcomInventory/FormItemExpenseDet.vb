@@ -93,6 +93,19 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         Else
             query += " AND id_coa_type='2' "
         End If
+
+        If Not action = "ins" Then
+            'update 
+            If check_edit_report_status(id_report_status, "157", id) And Not is_view = "1" Then
+                'msh bisa edit
+                query += " AND id_acc_cat='4' "
+            Else
+                'tidak bisa edit
+            End If
+        Else
+            query += " AND id_acc_cat='4' "
+        End If
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         RepositoryItemSearchLookUpEdit1.DataSource = Nothing
         RepositoryItemSearchLookUpEdit1.DataSource = data
@@ -219,8 +232,9 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
+        Dim q_year As String = ""
         Dim query As String = "SELECT ed.id_currency,cur.currency,ed.amount_before,ed.kurs,ed.id_item_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_item_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
-        ed.id_acc,pphacc.acc_description AS coa_desc_pph, a.acc_description AS `coa_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
+        ed.id_acc,pphacc.acc_description AS coa_desc_pph,a.id_acc_cat, a.acc_description AS `coa_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
 
         If action = "ins" Then
             query += "0.00 AS tax_percent,0.00 AS `amount` "
@@ -228,7 +242,12 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
             query += "ed.tax_percent,ed.amount "
         End If
 
+        If action = "ins" Then
+            q_year = " WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1' "
+        End If
+
         query += "FROM tb_item_expense_det ed
+        INNER JOIN tb_item_expense e ON e.id_item_expense=ed.id_item_expense
         LEFT JOIN tb_a_acc pphacc ON pphacc.id_acc = ed.id_acc_pph
         INNER JOIN tb_a_acc a ON a.id_acc = ed.id_acc
         INNER JOIN tb_lookup_expense_type typ ON typ.id_expense_type=ed.id_expense_type
@@ -236,17 +255,17 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
         INNER JOIN tb_lookup_currency cur ON cur.id_currency=ed.id_currency
         INNER JOIN 
         (
-	        SELECT bo.`id_b_expense_opex` AS id_b_expense,icm.`id_item_cat_main`,icm.`item_cat_main`,icm.`id_expense_type`
+	        SELECT bo.`year`,bo.`id_b_expense_opex` AS id_b_expense,icm.`id_item_cat_main`,icm.`item_cat_main`,icm.`id_expense_type`
 	        FROM tb_b_expense_opex bo
 	        INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=bo.`id_item_cat_main`
-	        WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'
+	        " & q_year & "
 	        UNION ALL
-	        SELECT bo.`id_b_expense` AS id_b_expense,icm.`id_item_cat_main`,CONCAT('[',dep.departement,']',icm.`item_cat_main`) AS item_cat_main,icm.`id_expense_type`
+	        SELECT bo.`year`,bo.`id_b_expense` AS id_b_expense,icm.`id_item_cat_main`,CONCAT('[',dep.departement,']',icm.`item_cat_main`) AS item_cat_main,icm.`id_expense_type`
 	        FROM tb_b_expense bo
 	        INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=bo.`id_item_cat_main`
 	        INNER JOIN tb_m_departement dep ON dep.id_departement=bo.id_departement
-	        WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'
-        ) bex ON bex.id_b_expense=ed.id_b_expense AND ed.id_expense_type=bex.id_expense_type
+	        " & q_year & "
+        ) bex ON bex.id_b_expense=ed.id_b_expense AND ed.id_expense_type=bex.id_expense_type AND bex.year=YEAR(e.date_reff)
         WHERE ed.id_item_expense=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
@@ -529,6 +548,19 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
         Cursor = Cursors.WaitCursor
+
+        'warning system
+        Dim is_not_expense As Boolean = False
+        For i As Integer = 0 To GVData.RowCount - 1
+            If Not GVData.GetRowCellValue(i, "id_acc_cat").ToString = "4" Then
+                is_not_expense = True
+            End If
+        Next
+
+        If is_not_expense Then
+            warningCustom("Warning : This expense contain COA that not expense.")
+        End If
+
         FormReportMark.report_mark_type = "157"
         FormReportMark.id_report = id
         FormReportMark.is_view = is_view
@@ -908,7 +940,7 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
             jum_row += 1
             Dim qh As String = "SELECT acc.acc_name,acc.acc_description
 FROM tb_m_comp c 
-INNER JOIN tb_a_acc acc ON acc.id_acc=id_acc_ap
+INNER JOIN tb_a_acc acc ON acc.id_acc=" & If(id_coa_tag = "1", "c.id_acc_ap", "c.id_acc_cabang_ap") & "
 WHERE c.id_comp='" + id_comp + "' "
             Dim dh As DataTable = execute_query(qh, -1, True, "", "", "", "")
             If dh.Rows.Count > 0 Then

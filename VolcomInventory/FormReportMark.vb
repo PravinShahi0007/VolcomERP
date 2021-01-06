@@ -633,6 +633,9 @@
         ElseIf report_mark_type = "281" Then
             'price recon
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sales_pos_recon WHERE id_sales_pos_recon = '{0}'", id_report)
+        ElseIf report_mark_type = "282" Then
+            'payout zalora
+            query = String.Format("SELECT id_report_status, statement_number as report_number FROM tb_payout_zalora WHERE id_payout_zalora = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -6160,7 +6163,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     JOIN tb_opt_purchasing o
                     WHERE e.id_item_expense=" + id_report + " AND e.vat_total>0
                     UNION ALL
-                    SELECT " + id_acc_trans + ", c.id_acc_ap, e.id_comp  AS id_vendor, 0 AS `debit`, e.`total` AS `credit`, e.note AS description, 157, e.id_item_expense, e.`number`,1
+                    SELECT " + id_acc_trans + ",  IF(e.id_coa_tag=1,c.id_acc_ap,c.id_acc_cabang_ap) AS `id_acc`, e.id_comp  AS id_vendor, 0 AS `debit`, e.`total` AS `credit`, e.note AS description, 157, e.id_item_expense, e.`number`,1
                     ,e.inv_number,e.id_coa_tag
                     FROM tb_item_expense e
                     INNER JOIN tb_m_comp c ON c.id_comp = e.id_comp
@@ -6218,7 +6221,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             'id_status_reportx = "6"
             'End If
             'select header
-            Dim qu_payment As String = "SELECT id_pay_type,report_mark_type,date_created,date_payment,is_auto_debet FROM tb_pn py WHERE py.id_pn='" & id_report & "'"
+            Dim qu_payment As String = "SELECT id_pay_type,report_mark_type,date_created,date_payment,is_auto_debet,is_buy_valas,kurs FROM tb_pn py WHERE py.id_pn='" & id_report & "'"
             Dim data_payment As DataTable = execute_query(qu_payment, -1, True, "", "", "", "")
 
             If data_payment.Rows(0)("is_auto_debet").ToString = "1" Then
@@ -6229,7 +6232,6 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
 
             'completed
             If id_status_reportx = "6" Then
-
                 'auto journal
                 Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -6351,7 +6353,6 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                             execute_non_query(qc, True, "", "", "", "")
                         End If
                     Next
-                    '
                     'FormBankWithdrawal.load_fgpo()
                 ElseIf data_payment.Rows(0)("report_mark_type").ToString = "223" Then
                     'close bpjs
@@ -6416,6 +6417,20 @@ WHERE id_sales_branch IN (SELECT id_report FROM tb_pn_det WHERE id_pn='" & id_re
                     execute_non_query(qe, True, "", "", "", "")
                 Next
                 '
+                If data_payment.Rows(0)("is_buy_valas").ToString = "1" Then
+                    'insert to stok valas
+                    Dim qi As String = "INSERT INTO tb_stock_valas(`id_report`,`report_mark_type`,`id_currency`,`amount`,`trans_datetime`,`kurs_transaksi`)
+SELECT pnd.`id_pn`,'189',pnd.id_currency,pnd.val_bef_kurs,NOW(),pnd.kurs
+FROM tb_pn_det pnd
+WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
+                    execute_non_query(qi, True, "", "", "", "")
+                Else
+                    Dim qi As String = "INSERT INTO tb_stock_valas(`id_report`,`report_mark_type`,`id_currency`,`amount`,`trans_datetime`)
+SELECT pnd.`id_pn`,'189',pnd.id_currency,-pnd.val_bef_kurs,NOW()
+FROM tb_pn_det pnd
+WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
+                    execute_non_query(qi, True, "", "", "", "")
+                End If
             End If
 
             'update
@@ -9091,6 +9106,15 @@ WHERE pps.id_additional_cost_pps='" & id_report & "'"
 
             'update status
             query = String.Format("UPDATE tb_sales_pos_recon SET id_report_status='{0}' WHERE id_sales_pos_recon ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "282" Then
+            'payout zalora
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_payout_zalora SET id_report_status='{0}' WHERE id_payout_zalora ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
