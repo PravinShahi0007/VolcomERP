@@ -6409,6 +6409,14 @@
         tBJtVdr/w7nq1Us0Amj4CwyayyuLHmfeAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="NBPolis.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAPdEVYdFRpdGxlAEJvb2s7UmVhZMvDJr0AAABmSURBVDhP
+        pZJBDoAwCAT7J97ha30gKpGDdTbppoehyQLDpSMzt8DQoUpEpOB4od69+hU870wPY48E50QPU44CBxTQ
+        JZWjwAEFdEnlKHBAAV1SOQocfgJi+Scqeph6tVtlBwzXyXEBZEew1onRfJ8AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="NBABGRoyaltyZone.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABZ0RVh0VGl0
@@ -8896,6 +8904,6 @@
     <value>1150, 17</value>
   </metadata>
   <metadata name="AdornerUIManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1260, 17</value>
+    <value>17, 56</value>
   </metadata>
 </root>

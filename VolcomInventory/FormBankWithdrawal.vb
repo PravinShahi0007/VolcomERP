@@ -255,11 +255,12 @@ WHERE py.id_coa_tag='" & SLEUnitBBKList.EditValue.ToString & "' AND DATE(py.date
         If SLEPayType.EditValue.ToString = "2" Then 'payment
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
             q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=IF(po.id_coa_tag=1,c.id_acc_ap,c.id_acc_cabang_ap) "
-            where_string += " AND po.is_close_rec='1'"
+            where_string += " AND po.is_close_rec='1' AND po.id_report_status=6 AND po.is_cash_purchase=2 "
             q_dp = "-IFNULL(payment.value,0)"
         ElseIf SLEPayType.EditValue.ToString = "1" Then 'DP
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
             q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=IF(po.id_coa_tag=1,c.id_acc_dp,c.id_acc_cabang_dp) "
+            where_string += " AND po.is_close_rec!='1' AND po.id_report_status=6 AND po.is_cash_purchase=2 "
             q_dp = "*(payment_purc.dp_percent/100)"
         End If
 
@@ -1289,7 +1290,7 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.`id_employee`
 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
 INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
-WHERE po.`is_active_payment`=2 AND po.`is_close_pay`=2 AND po.is_close_rec='1'
+WHERE po.`is_active_payment`=2 AND po.`is_close_pay`=2 AND po.is_close_rec='1' AND po.is_cash_purchase=2
 GROUP BY pod.`id_purc_order`
 ORDER BY pod.id_purc_order DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")

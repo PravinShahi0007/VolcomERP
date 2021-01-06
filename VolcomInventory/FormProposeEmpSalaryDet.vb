@@ -617,8 +617,22 @@
 
         Dim report As ReportProposeEmpSalaryCompare = New ReportProposeEmpSalaryCompare
 
+        Dim query_detail As String = "
+            SELECT det.id_employee, emp.employee_code, emp.employee_name, det.id_departement, dp.departement, dp.total_workdays, det.employee_position, IF(emp.id_employee_active = 1, TIMESTAMPDIFF(MONTH, emp.employee_actual_join_date, DATE(NOW())), TIMESTAMPDIFF(MONTH, emp.employee_actual_join_date, emp.employee_last_date)) AS tmp_length_work, IF((SELECT tmp_length_work) < 12, CONCAT((SELECT tmp_length_work), ' month'), CONCAT(FLOOR((SELECT tmp_length_work) / 12), ' year')) AS length_work, det.id_employee_level, lv.employee_level, det.id_employee_status, sts.employee_status, IFNULL(det.id_employee_salary, 0) AS id_employee_salary, ROUND(IFNULL(sal.basic_salary, 0), 0) AS basic_salary_current, ROUND(IFNULL(sal.allow_job, 0), 0) AS allow_job_current, ROUND(IFNULL(sal.allow_meal, 0), 0) AS allow_meal_current, ROUND(IFNULL(sal.allow_trans, 0), 0) AS allow_trans_current, ROUND(IFNULL(sal.allow_house, 0), 0) AS allow_house_current, ROUND(IFNULL(sal.allow_car, 0), 0) AS allow_car_current, ((SELECT basic_salary_current) + (SELECT allow_job_current) + (SELECT allow_meal_current) + (SELECT allow_trans_current) + (SELECT allow_house_current) + (SELECT allow_car_current)) AS total_salary_current, ROUND(IFNULL(det.basic_salary, 0), 0) AS basic_salary, ROUND(det.allow_job, 0) AS allow_job, ROUND(det.allow_meal, 0) AS allow_meal, ROUND(det.allow_trans, 0) AS allow_trans, ROUND(det.allow_house, 0) AS allow_house, ROUND(det.allow_car, 0) AS allow_car, CONCAT(ROUND(((det.basic_salary + det.allow_job + det.allow_meal + det.allow_trans + det.allow_house + det.allow_car) - (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0))) / (IFNULL(sal.basic_salary, 0) + IFNULL(sal.allow_job, 0) + IFNULL(sal.allow_meal, 0) + IFNULL(sal.allow_trans, 0) + IFNULL(sal.allow_house, 0) + IFNULL(sal.allow_car, 0)) * 100, 2), '%') AS increase, CONCAT(ROUND(((ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS fixed_salary, CONCAT(ROUND(((ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) / (ROUND(det.basic_salary, 0) + ROUND(det.allow_job, 0) + ROUND(det.allow_meal, 0) + ROUND(det.allow_trans, 0) + ROUND(det.allow_house, 0) + ROUND(det.allow_car, 0)) * 100), 2), '%') AS non_fixed_salary, det.id_employee_status_det, det.reason, det.id_employee_sal_pps_det
+            FROM tb_employee_sal_pps_det AS det
+            LEFT JOIN tb_m_employee AS emp ON det.id_employee = emp.id_employee
+            LEFT JOIN tb_m_departement AS dp ON det.id_departement = dp.id_departement
+            LEFT JOIN tb_lookup_employee_level AS lv ON det.id_employee_level = lv.id_employee_level
+            LEFT JOIN tb_lookup_employee_status AS sts ON det.id_employee_status = sts.id_employee_status
+            LEFT JOIN tb_m_employee_salary AS sal ON det.id_employee_salary = sal.id_employee_salary
+            WHERE det.id_employee_sal_pps = " + id_employee_sal_pps + "
+            ORDER BY det.id_employee_level ASC, emp.employee_code ASC
+        "
+
+        Dim data_detail As DataTable = execute_query(query_detail, -1, True, "", "", "", "")
+
         report.id_employee_sal_pps = id_employee_sal_pps
-        report.data = GCEmployee.DataSource
+        report.data = data_detail
         report.is_pre = If(id_report_status = "6", "-1", "1")
         report.category = LUECategory.EditValue.ToString
 

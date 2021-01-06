@@ -63,6 +63,8 @@ Partial Public Class ReportProposeEmpSalaryCompare
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.GCIdEmployeeSalPpsDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITESalary, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,31 +137,34 @@ Partial Public Class ReportProposeEmpSalaryCompare
         Me.GVEmployee.AppearancePrint.Row.Options.UseTextOptions = True
         Me.GVEmployee.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVEmployee.ColumnPanelRowHeight = 32
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCNIP, Me.GCName, Me.GCDepartement, Me.GCType, Me.GCBasicSalary, Me.GCJobAllowance, Me.GCMealAllowance, Me.GCTransportAllowance, Me.GCHouseAllowance, Me.GCAttendanceAllowance, Me.GCTotalSalary})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCNo, Me.GCNIP, Me.GCName, Me.GCDepartement, Me.GCType, Me.GCBasicSalary, Me.GCJobAllowance, Me.GCMealAllowance, Me.GCTransportAllowance, Me.GCHouseAllowance, Me.GCAttendanceAllowance, Me.GCTotalSalary, Me.GCIdEmployeeSalPpsDet})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
+        Me.GVEmployee.GroupFormat = "{1} {2}"
         Me.GVEmployee.LevelIndent = 0
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVEmployee.OptionsFind.AlwaysVisible = True
         Me.GVEmployee.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVEmployee.OptionsPrint.PrintFooter = False
+        Me.GVEmployee.OptionsPrint.PrintGroupFooter = False
         Me.GVEmployee.OptionsView.AllowCellMerge = True
         Me.GVEmployee.OptionsView.ColumnAutoWidth = False
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
-        Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCIdEmployeeSalPpsDet, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GCNIP
         '
         Me.GCNIP.Caption = "NIP"
         Me.GCNIP.FieldName = "employee_code"
-        Me.GCNIP.MaxWidth = 100
-        Me.GCNIP.MinWidth = 100
+        Me.GCNIP.MaxWidth = 80
+        Me.GCNIP.MinWidth = 80
         Me.GCNIP.Name = "GCNIP"
         Me.GCNIP.OptionsColumn.AllowEdit = False
         Me.GCNIP.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GCNIP.Visible = True
-        Me.GCNIP.VisibleIndex = 0
-        Me.GCNIP.Width = 100
+        Me.GCNIP.VisibleIndex = 1
+        Me.GCNIP.Width = 80
         '
         'GCName
         '
@@ -171,7 +176,7 @@ Partial Public Class ReportProposeEmpSalaryCompare
         Me.GCName.OptionsColumn.AllowEdit = False
         Me.GCName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GCName.Visible = True
-        Me.GCName.VisibleIndex = 1
+        Me.GCName.VisibleIndex = 2
         '
         'GCDepartement
         '
@@ -193,7 +198,7 @@ Partial Public Class ReportProposeEmpSalaryCompare
         Me.GCType.OptionsColumn.AllowEdit = False
         Me.GCType.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCType.Visible = True
-        Me.GCType.VisibleIndex = 2
+        Me.GCType.VisibleIndex = 3
         Me.GCType.Width = 100
         '
         'GCBasicSalary
@@ -209,7 +214,7 @@ Partial Public Class ReportProposeEmpSalaryCompare
         Me.GCBasicSalary.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCBasicSalary.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary", "{0:N0}")})
         Me.GCBasicSalary.Visible = True
-        Me.GCBasicSalary.VisibleIndex = 3
+        Me.GCBasicSalary.VisibleIndex = 4
         Me.GCBasicSalary.Width = 100
         '
         'GCJobAllowance
@@ -225,7 +230,7 @@ Partial Public Class ReportProposeEmpSalaryCompare
         Me.GCJobAllowance.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCJobAllowance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job", "{0:N0}")})
         Me.GCJobAllowance.Visible = True
-        Me.GCJobAllowance.VisibleIndex = 4
+        Me.GCJobAllowance.VisibleIndex = 5
         Me.GCJobAllowance.Width = 100
         '
         'GCMealAllowance
@@ -241,7 +246,7 @@ Partial Public Class ReportProposeEmpSalaryCompare
         Me.GCMealAllowance.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCMealAllowance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal", "{0:N0}")})
         Me.GCMealAllowance.Visible = True
-        Me.GCMealAllowance.VisibleIndex = 5
+        Me.GCMealAllowance.VisibleIndex = 6
         Me.GCMealAllowance.Width = 100
         '
         'GCTransportAllowance
@@ -257,7 +262,7 @@ Partial Public Class ReportProposeEmpSalaryCompare
         Me.GCTransportAllowance.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCTransportAllowance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans", "{0:N0}")})
         Me.GCTransportAllowance.Visible = True
-        Me.GCTransportAllowance.VisibleIndex = 6
+        Me.GCTransportAllowance.VisibleIndex = 7
         Me.GCTransportAllowance.Width = 100
         '
         'GCHouseAllowance
@@ -273,7 +278,7 @@ Partial Public Class ReportProposeEmpSalaryCompare
         Me.GCHouseAllowance.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCHouseAllowance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_house", "{0:N0}")})
         Me.GCHouseAllowance.Visible = True
-        Me.GCHouseAllowance.VisibleIndex = 7
+        Me.GCHouseAllowance.VisibleIndex = 8
         Me.GCHouseAllowance.Width = 100
         '
         'GCAttendanceAllowance
@@ -289,7 +294,7 @@ Partial Public Class ReportProposeEmpSalaryCompare
         Me.GCAttendanceAllowance.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GCAttendanceAllowance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car", "{0:N0}")})
         Me.GCAttendanceAllowance.Visible = True
-        Me.GCAttendanceAllowance.VisibleIndex = 8
+        Me.GCAttendanceAllowance.VisibleIndex = 9
         Me.GCAttendanceAllowance.Width = 100
         '
         'GCTotalSalary
@@ -308,7 +313,7 @@ Partial Public Class ReportProposeEmpSalaryCompare
     "low_car]"
         Me.GCTotalSalary.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GCTotalSalary.Visible = True
-        Me.GCTotalSalary.VisibleIndex = 9
+        Me.GCTotalSalary.VisibleIndex = 10
         Me.GCTotalSalary.Width = 100
         '
         'RITESalary
@@ -573,6 +578,22 @@ Partial Public Class ReportProposeEmpSalaryCompare
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
+        'GCIdEmployeeSalPpsDet
+        '
+        Me.GCIdEmployeeSalPpsDet.FieldName = "id_employee_sal_pps_det"
+        Me.GCIdEmployeeSalPpsDet.Name = "GCIdEmployeeSalPpsDet"
+        '
+        'GCNo
+        '
+        Me.GCNo.Caption = "No"
+        Me.GCNo.FieldName = "no"
+        Me.GCNo.MaxWidth = 30
+        Me.GCNo.MinWidth = 30
+        Me.GCNo.Name = "GCNo"
+        Me.GCNo.Visible = True
+        Me.GCNo.VisibleIndex = 0
+        Me.GCNo.Width = 30
+        '
         'ReportProposeEmpSalaryCompare
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
@@ -637,4 +658,6 @@ Partial Public Class ReportProposeEmpSalaryCompare
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
+    Friend WithEvents GCIdEmployeeSalPpsDet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCNo As DevExpress.XtraGrid.Columns.GridColumn
 End Class

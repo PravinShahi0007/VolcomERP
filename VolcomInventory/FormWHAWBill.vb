@@ -965,14 +965,14 @@ WHERE c.id_commerce_type='1' AND c.id_comp_cat='6'"
     End Sub
 
     Private Sub BExportToCS3_Click(sender As Object, e As EventArgs) Handles BExportToCS3.Click
-        GVSalesOrder.ActiveFilterString = "[is_check] = 'yes'"
+        GVOnlineOrder.ActiveFilterString = "[is_check] = 'yes'"
 
-        If GVSalesOrder.RowCount > 0 Then
+        If GVOnlineOrder.RowCount > 0 Then
             Dim q_in As String = ""
 
-            For i = 0 To GVSalesOrder.RowCount - 1
-                If GVSalesOrder.IsValidRowHandle(i) Then
-                    q_in += "'" + GVSalesOrder.GetRowCellValue(i, "stru").ToString + "', "
+            For i = 0 To GVOnlineOrder.RowCount - 1
+                If GVOnlineOrder.IsValidRowHandle(i) Then
+                    q_in += "'" + GVOnlineOrder.GetRowCellValue(i, "stru").ToString + "', "
                 End If
             Next
 
@@ -1042,7 +1042,7 @@ SET so.is_export_awb = 1 WHERE CONCAT(cg.`comp_group`,'-',so.`sales_order_ol_sho
             errorCustom("No AWB selected.")
         End If
 
-        GVSalesOrder.ActiveFilterString = ""
+        GVOnlineOrder.ActiveFilterString = ""
         load_outbound_from_olstore()
     End Sub
 
@@ -1098,8 +1098,8 @@ WHERE (a.id_report_status=6) AND a.is_export_awb=2 " & q_where & "
 GROUP BY CONCAT(cg.`comp_group`,'-',a.`sales_order_ol_shop_number`) 
 ORDER BY a.id_sales_order DESC "
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-        GCSalesOrder.DataSource = dt
-        GVSalesOrder.BestFitColumns()
+        GCOnlineOrder.DataSource = dt
+        GVOnlineOrder.BestFitColumns()
     End Sub
 
     Private Sub BBAwbCS3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBAwbCS3.ItemClick
@@ -1590,7 +1590,33 @@ WHERE CONCAT('RET-',cg.`comp_group`,'-',so.`sales_order_ol_shop_number`) IN (" +
             errorCustom("No AWB selected.")
         End If
 
-        GVSalesOrder.ActiveFilterString = ""
+        GVOnlineOrder.ActiveFilterString = ""
         load_outbound_from_olstore()
+    End Sub
+
+    Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
+        If GVOnlineOrder.RowCount > 0 Then
+            Dim cek As String = CheckEditSelAll.EditValue.ToString
+            For i As Integer = 0 To ((GVOnlineOrder.RowCount - 1) - GetGroupRowCount(GVOnlineOrder))
+                If cek Then
+                    GVOnlineOrder.SetRowCellValue(i, "is_check", "yes")
+                Else
+                    GVOnlineOrder.SetRowCellValue(i, "is_check", "no")
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub CESelAllDO_CheckedChanged(sender As Object, e As EventArgs) Handles CESelAllDO.CheckedChanged
+        If GVDOERP.RowCount > 0 Then
+            Dim cek As String = CESelAllDO.EditValue.ToString
+            For i As Integer = 0 To ((GVDOERP.RowCount - 1) - GetGroupRowCount(GVDOERP))
+                If cek Then
+                    GVDOERP.SetRowCellValue(i, "is_check", "yes")
+                Else
+                    GVDOERP.SetRowCellValue(i, "is_check", "no")
+                End If
+            Next
+        End If
     End Sub
 End Class
