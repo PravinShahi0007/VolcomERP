@@ -57,6 +57,7 @@
             DEEnd.EditValue = data.Rows(0)("end_period")
             MENote.Text = data.Rows(0)("note").ToString
             TxtNumber.Text = data.Rows(0)("number").ToString
+            TxtStore.Text = data.Rows(0)("comp_group").ToString
             DECreated.EditValue = data.Rows(0)("created_date")
             TxtCreatedBy.Text = data.Rows(0)("created_by_name").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
@@ -477,6 +478,7 @@
             Report.LabelStartPeriod.Text = DEStart.Text.ToUpper
             Report.LabelEndPeriod.Text = DEEnd.Text.ToUpper
             Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+            Report.LabelStore.Text = TxtStore.Text.ToUpper
             Report.LabelDate.Text = DECreated.Text.ToUpper
             Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
             Report.LNote.Text = MENote.Text.ToUpper
