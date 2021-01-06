@@ -3340,6 +3340,12 @@
     <Compile Include="FormPolis.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPolisDet.Designer.vb">
+      <DependentUpon>FormPolisDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPolisDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpDept.Designer.vb">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>
     </Compile>
@@ -10717,6 +10723,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPolis.resx">
       <DependentUpon>FormPolis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPolisDet.resx">
+      <DependentUpon>FormPolisDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpDept.resx">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>

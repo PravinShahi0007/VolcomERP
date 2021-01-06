@@ -137,6 +137,8 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnis_additional_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BtnSync = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtStore = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtDiscountTitle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,6 +181,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.GCDiscountCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -350,6 +353,8 @@ Partial Class FormPromoCollectionDet
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LabelControl10)
+        Me.PanelControl1.Controls.Add(Me.TxtStore)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.TxtCreatedBy)
         Me.PanelControl1.Controls.Add(Me.LabelControl21)
@@ -367,7 +372,7 @@ Partial Class FormPromoCollectionDet
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 67)
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 93)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl1.TabIndex = 149
@@ -376,7 +381,7 @@ Partial Class FormPromoCollectionDet
         'TxtCreatedBy
         '
         Me.TxtCreatedBy.Enabled = False
-        Me.TxtCreatedBy.Location = New System.Drawing.Point(82, 64)
+        Me.TxtCreatedBy.Location = New System.Drawing.Point(82, 90)
         Me.TxtCreatedBy.Name = "TxtCreatedBy"
         Me.TxtCreatedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCreatedBy.Properties.Appearance.Options.UseFont = True
@@ -386,7 +391,7 @@ Partial Class FormPromoCollectionDet
         'LabelControl21
         '
         Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl21.Location = New System.Drawing.Point(11, 93)
+        Me.LabelControl21.Location = New System.Drawing.Point(11, 119)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
@@ -395,7 +400,7 @@ Partial Class FormPromoCollectionDet
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(11, 41)
+        Me.LabelControl4.Location = New System.Drawing.Point(11, 67)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl4.TabIndex = 7
@@ -404,7 +409,7 @@ Partial Class FormPromoCollectionDet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(82, 90)
+        Me.LEReportStatus.Location = New System.Drawing.Point(82, 116)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
@@ -440,7 +445,7 @@ Partial Class FormPromoCollectionDet
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(82, 38)
+        Me.DECreated.Location = New System.Drawing.Point(82, 64)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DECreated.Properties.Appearance.Options.UseFont = True
@@ -1322,6 +1327,25 @@ Partial Class FormPromoCollectionDet
         Me.BtnSync.TabIndex = 19
         Me.BtnSync.Text = "Sync Discount Code"
         '
+        'TxtStore
+        '
+        Me.TxtStore.Location = New System.Drawing.Point(82, 38)
+        Me.TxtStore.Name = "TxtStore"
+        Me.TxtStore.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtStore.Properties.Appearance.Options.UseFont = True
+        Me.TxtStore.Properties.ReadOnly = True
+        Me.TxtStore.Size = New System.Drawing.Size(154, 20)
+        Me.TxtStore.TabIndex = 150
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(11, 41)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl10.TabIndex = 151
+        Me.LabelControl10.Text = "Store"
+        '
         'FormPromoCollectionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1380,6 +1404,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.GCDiscountCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1501,4 +1526,6 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents GridColumnsync_by_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_additional As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_additional_view As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtStore As DevExpress.XtraEditors.TextEdit
 End Class

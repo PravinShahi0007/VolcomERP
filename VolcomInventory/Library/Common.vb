@@ -5844,6 +5844,11 @@ SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
         FormMain.AlertControlNotif.Show(FormMain, title, content, "", FormMain.LargeImageCollection.Images.Item(25), id_type)
     End Sub
 
+    Sub pushNotifFromDb()
+        Dim q As String = ""
+        'Dim dt As DataTable = execute_query(q)
+    End Sub
+
     Sub pushNotif(ByVal notif_title As String, ByVal notif_content As String, ByVal notif_frm_to As String, ByVal id_user_par As String, ByVal id_sender_par As String, ByVal id_report As String, ByVal report_number As String, ByVal notif_tag As String, rmt As String)
         If id_sender_par = "-1" Then
             id_sender_par = "NULL"
