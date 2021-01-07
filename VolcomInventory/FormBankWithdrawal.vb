@@ -156,6 +156,9 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
         viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
         SLEPayType.EditValue = "2"
+        '
+        query += " WHERE id_pay_type=2 "
+        '
         viewSearchLookupQuery(SLEPayTypeExpense, query, "id_pay_type", "pay_type", "id_pay_type")
         SLEPayTypeExpense.EditValue = "2"
     End Sub
@@ -482,10 +485,10 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
         If SLEPayTypeExpense.EditValue.ToString = "2" Then 'payment
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
-            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap "
+            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=IF(e.id_coa_tag=1,c.id_acc_ap,c.id_acc_cabang_ap) "
         ElseIf SLEPayTypeExpense.EditValue.ToString = "1" Then 'DP
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
-            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_dp "
+            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=IF(e.id_coa_tag=1,c.id_acc_dp,c.id_acc_cabang_dp) "
         End If
 
         If SLEStatusPaymentExpense.EditValue.ToString = "0" Then 'open include overdue and only dp
