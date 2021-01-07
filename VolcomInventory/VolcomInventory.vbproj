@@ -5590,6 +5590,12 @@
     <Compile Include="FormSalesPOSCheckXLS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesPOSClosingNoStock.Designer.vb">
+      <DependentUpon>FormSalesPOSClosingNoStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSClosingNoStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPOSCompare.Designer.vb">
       <DependentUpon>FormSalesPOSCompare.vb</DependentUpon>
     </Compile>
@@ -12083,6 +12089,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSCheckXLS.resx">
       <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSClosingNoStock.resx">
+      <DependentUpon>FormSalesPOSClosingNoStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSCompare.resx">
       <DependentUpon>FormSalesPOSCompare.vb</DependentUpon>
