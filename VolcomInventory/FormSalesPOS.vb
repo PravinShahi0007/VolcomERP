@@ -54,6 +54,7 @@
         DEUntil.DateTime = Now
         viewSalesPOS()
         viewTypeProb()
+        viewReconStt()
         viewInvoiceStt()
         viewStoreProb()
 
@@ -80,6 +81,17 @@
         UNION ALL
         SELECT '2' AS `id_type`, 'No Stock' AS `type` "
         viewLookupQuery(LETypeProb, query, 0, "type", "id_type")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewReconStt()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '0' AS `id_recon_stt`, 'All' AS `recon_stt`
+        UNION ALL
+        SELECT '1' AS `id_recon_stt`, 'Open' AS `recon_stt`
+        UNION ALL
+        SELECT '2' AS `id_recon_stt`, 'Close' AS `recon_stt` "
+        viewLookupQuery(LEReconStatus, query, 0, "recon_stt", "id_recon_stt")
         Cursor = Cursors.Default
     End Sub
 
@@ -374,10 +386,24 @@
             cond_type = ""
         End If
 
+        'recon status
+        Dim cond_recon As String = ""
+        If LEReconStatus.EditValue.ToString = "1" Then
+            cond_recon = "AND ISNULL(id_design_price_valid) "
+        ElseIf LEReconStatus.EditValue.ToString = "2" Then
+            cond_recon = "AND !ISNULL(id_design_price_valid) "
+        Else
+            cond_recon = ""
+        End If
+
         'invoice status
         Dim cond_status As String = ""
-        If LEInvoiceStt.EditValue.ToString <> "0" Then
-            cond_status = "AND is_open_invoice_view='" + LEInvoiceStt.Text + "' "
+        If LEInvoiceStt.EditValue.ToString = "1" Then
+            cond_status = "AND p.invoice_qty!=IFNULL(proc_prc.qty_proceed,0) "
+        ElseIf LEInvoiceStt.EditValue.ToString = "2" Then
+            cond_status = "AND p.invoice_qty=IFNULL(proc_prc.qty_proceed,0) "
+        Else
+            cond_status = ""
         End If
 
         'store
@@ -412,11 +438,11 @@
         IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid, dpt.design_price_type AS `design_price_type_valid`,
         p.store_qty, 
         p.invoice_qty, IFNULL(proc_prc.qty_on_process,0) AS `qty_on_process_price`, IFNULL(proc_prc.qty_proceed,0) AS `qty_proceed_price`,
-        p.no_stock_qty, IFNULL(proc.qty_on_process,0) AS `qty_on_process`, IFNULL(proc.qty_proceed,0) AS `qty_proceed`,
+        p.no_stock_qty, 0 AS `qty_on_process`, 0 AS `qty_proceed`,
         (p.invoice_qty+p.no_stock_qty) AS `total_qty`,
         'No' AS `is_select`, 0 AS `qty_new`,
-        IF(p.is_invalid_price=2,IF(p.no_stock_qty=IFNULL(proc.qty_proceed,0),'Close', 'Open'), IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0) AND p.no_stock_qty=IFNULL(proc.qty_proceed,0),'Close','Open')) AS `is_open_invoice_view`
-        FROM tb_sales_pos_prob p
+        IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0),'Close','Open') AS `is_open_invoice_view`
+        From tb_sales_pos_prob p
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -427,15 +453,6 @@
         LEFT JOIN tb_m_design_price dp ON dp.id_design_price = p.id_design_price_valid
         LEFT JOIN tb_lookup_design_price_type dpt ON dpt.id_design_price_type = dp.id_design_price_type
         LEFT JOIN (
-            SELECT spd.id_sales_pos_prob, 
-            SUM(IF(sp.id_report_status<5,spd.sales_pos_det_qty,0)) AS `qty_on_process`,
-            SUM(IF(sp.id_report_status=6,spd.sales_pos_det_qty,0)) AS `qty_proceed`
-            FROM tb_sales_pos sp
-            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
-            WHERE !ISNULL(spd.id_sales_pos_prob)
-            GROUP BY spd.id_sales_pos_prob
-        ) proc ON proc.id_sales_pos_prob = p.id_sales_pos_prob
-        LEFT JOIN (
             SELECT spd.id_sales_pos_prob_price, 
             SUM(IF(sp.id_report_status<5,spd.sales_pos_det_qty,0)) AS `qty_on_process`,
             SUM(IF(sp.id_report_status=6,spd.sales_pos_det_qty,0)) AS `qty_proceed`
@@ -444,8 +461,8 @@
             WHERE !ISNULL(spd.id_sales_pos_prob_price)
             GROUP BY spd.id_sales_pos_prob_price
         ) proc_prc ON proc_prc.id_sales_pos_prob_price = p.id_sales_pos_prob
-        WHERE 1=1 AND sp.id_report_status=6 " + cond_period + cond_type + cond_store
-        query += "HAVING 1=1 " + cond_status
+        WHERE 1=1 AND sp.id_report_status=6 " + cond_recon + cond_status + cond_period + cond_type + cond_store
+        query += "HAVING 1=1 "
         query += "ORDER BY id_sales_pos ASC,name ASC, code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProbList.DataSource = data

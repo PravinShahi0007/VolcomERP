@@ -19,8 +19,8 @@ Partial Class FormSalesPOS
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOS))
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -197,6 +197,11 @@ Partial Class FormSalesPOS
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReconStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.XTCProblemList = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPInvalidPrice = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPNoStock = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -263,6 +268,10 @@ Partial Class FormSalesPOS
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEReconStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCProblemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCProblemList.SuspendLayout()
+        Me.XTPInvalidPrice.SuspendLayout()
         Me.SuspendLayout()
         '
         'GVSalesPOSDet
@@ -464,9 +473,9 @@ Partial Class FormSalesPOS
         'GCSalesPOS
         '
         Me.GCSalesPOS.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode2.LevelTemplate = Me.GVSalesPOSDet
-        GridLevelNode2.RelationName = "Detail Transaction"
-        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
+        GridLevelNode1.LevelTemplate = Me.GVSalesPOSDet
+        GridLevelNode1.RelationName = "Detail Transaction"
+        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.GCSalesPOS.Location = New System.Drawing.Point(20, 2)
         Me.GCSalesPOS.MainView = Me.GVSalesPOS
         Me.GCSalesPOS.Name = "GCSalesPOS"
@@ -1158,9 +1167,7 @@ Partial Class FormSalesPOS
         '
         'XTPProblemList
         '
-        Me.XTPProblemList.Controls.Add(Me.GCProbList)
-        Me.XTPProblemList.Controls.Add(Me.PanelControl1)
-        Me.XTPProblemList.Controls.Add(Me.PanelControl2)
+        Me.XTPProblemList.Controls.Add(Me.XTCProblemList)
         Me.XTPProblemList.Name = "XTPProblemList"
         Me.XTPProblemList.Size = New System.Drawing.Size(1234, 505)
         Me.XTPProblemList.Text = "Problem List"
@@ -1168,11 +1175,11 @@ Partial Class FormSalesPOS
         'GCProbList
         '
         Me.GCProbList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProbList.Location = New System.Drawing.Point(0, 113)
+        Me.GCProbList.Location = New System.Drawing.Point(0, 117)
         Me.GCProbList.MainView = Me.GVProbList
         Me.GCProbList.Name = "GCProbList"
         Me.GCProbList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemTextEdit1, Me.SPQty, Me.RepoBtnTransHist, Me.RepoLinkInvoice})
-        Me.GCProbList.Size = New System.Drawing.Size(1234, 348)
+        Me.GCProbList.Size = New System.Drawing.Size(1187, 337)
         Me.GCProbList.TabIndex = 3
         Me.GCProbList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbList})
         '
@@ -1221,13 +1228,13 @@ Partial Class FormSalesPOS
         'RepoBtnTransHist
         '
         Me.RepoBtnTransHist.AutoHeight = False
-        SerializableAppearanceObject2.BackColor = System.Drawing.Color.MediumSlateBlue
-        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject2.Options.UseBackColor = True
-        SerializableAppearanceObject2.Options.UseFont = True
-        SerializableAppearanceObject2.Options.UseForeColor = True
-        Me.RepoBtnTransHist.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "History", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject1.BackColor = System.Drawing.Color.MediumSlateBlue
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject1.Options.UseBackColor = True
+        SerializableAppearanceObject1.Options.UseFont = True
+        SerializableAppearanceObject1.Options.UseForeColor = True
+        Me.RepoBtnTransHist.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "History", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.RepoBtnTransHist.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnTransHist.Name = "RepoBtnTransHist"
         Me.RepoBtnTransHist.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -1663,9 +1670,9 @@ Partial Class FormSalesPOS
         Me.PanelControl1.Controls.Add(Me.BtnCreatePriceReconcile)
         Me.PanelControl1.Controls.Add(Me.BtnCreateInvoice)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 461)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 454)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1234, 44)
+        Me.PanelControl1.Size = New System.Drawing.Size(1187, 45)
         Me.PanelControl1.TabIndex = 4
         '
         'CESelectAll
@@ -1682,11 +1689,11 @@ Partial Class FormSalesPOS
         Me.BtnCreatePriceReconcile.Appearance.Options.UseFont = True
         Me.BtnCreatePriceReconcile.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCreatePriceReconcile.Image = CType(resources.GetObject("BtnCreatePriceReconcile.Image"), System.Drawing.Image)
-        Me.BtnCreatePriceReconcile.Location = New System.Drawing.Point(962, 2)
+        Me.BtnCreatePriceReconcile.Location = New System.Drawing.Point(921, 2)
         Me.BtnCreatePriceReconcile.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.BtnCreatePriceReconcile.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnCreatePriceReconcile.Name = "BtnCreatePriceReconcile"
-        Me.BtnCreatePriceReconcile.Size = New System.Drawing.Size(135, 40)
+        Me.BtnCreatePriceReconcile.Size = New System.Drawing.Size(135, 41)
         Me.BtnCreatePriceReconcile.TabIndex = 11
         Me.BtnCreatePriceReconcile.Text = "Price Reconcile"
         Me.BtnCreatePriceReconcile.Visible = False
@@ -1697,11 +1704,11 @@ Partial Class FormSalesPOS
         Me.BtnCreateInvoice.Appearance.Options.UseFont = True
         Me.BtnCreateInvoice.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCreateInvoice.Image = CType(resources.GetObject("BtnCreateInvoice.Image"), System.Drawing.Image)
-        Me.BtnCreateInvoice.Location = New System.Drawing.Point(1097, 2)
+        Me.BtnCreateInvoice.Location = New System.Drawing.Point(1056, 2)
         Me.BtnCreateInvoice.LookAndFeel.SkinMaskColor = System.Drawing.Color.LightSkyBlue
         Me.BtnCreateInvoice.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnCreateInvoice.Name = "BtnCreateInvoice"
-        Me.BtnCreateInvoice.Size = New System.Drawing.Size(135, 40)
+        Me.BtnCreateInvoice.Size = New System.Drawing.Size(129, 41)
         Me.BtnCreateInvoice.TabIndex = 10
         Me.BtnCreateInvoice.Text = "Create Invoice"
         Me.BtnCreateInvoice.Visible = False
@@ -1715,13 +1722,13 @@ Partial Class FormSalesPOS
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1234, 113)
+        Me.PanelControl2.Size = New System.Drawing.Size(1187, 117)
         Me.PanelControl2.TabIndex = 2
         '
         'BtnHistProbList
         '
         Me.BtnHistProbList.Image = CType(resources.GetObject("BtnHistProbList.Image"), System.Drawing.Image)
-        Me.BtnHistProbList.Location = New System.Drawing.Point(625, 40)
+        Me.BtnHistProbList.Location = New System.Drawing.Point(628, 46)
         Me.BtnHistProbList.Name = "BtnHistProbList"
         Me.BtnHistProbList.Size = New System.Drawing.Size(77, 28)
         Me.BtnHistProbList.TabIndex = 6
@@ -1730,7 +1737,7 @@ Partial Class FormSalesPOS
         'BtnPrintProb
         '
         Me.BtnPrintProb.Image = CType(resources.GetObject("BtnPrintProb.Image"), System.Drawing.Image)
-        Me.BtnPrintProb.Location = New System.Drawing.Point(541, 40)
+        Me.BtnPrintProb.Location = New System.Drawing.Point(544, 46)
         Me.BtnPrintProb.Name = "BtnPrintProb"
         Me.BtnPrintProb.Size = New System.Drawing.Size(78, 28)
         Me.BtnPrintProb.TabIndex = 7
@@ -1739,7 +1746,7 @@ Partial Class FormSalesPOS
         'BtnViewProb
         '
         Me.BtnViewProb.Image = CType(resources.GetObject("BtnViewProb.Image"), System.Drawing.Image)
-        Me.BtnViewProb.Location = New System.Drawing.Point(456, 40)
+        Me.BtnViewProb.Location = New System.Drawing.Point(459, 46)
         Me.BtnViewProb.Name = "BtnViewProb"
         Me.BtnViewProb.Size = New System.Drawing.Size(79, 28)
         Me.BtnViewProb.TabIndex = 4
@@ -1748,6 +1755,8 @@ Partial Class FormSalesPOS
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.LEReconStatus)
+        Me.PanelControl3.Controls.Add(Me.LabelControl15)
         Me.PanelControl3.Controls.Add(Me.DEPeriodUntil)
         Me.PanelControl3.Controls.Add(Me.LabelControl14)
         Me.PanelControl3.Controls.Add(Me.DEPeriodFrom)
@@ -1761,14 +1770,14 @@ Partial Class FormSalesPOS
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(447, 109)
+        Me.PanelControl3.Size = New System.Drawing.Size(450, 113)
         Me.PanelControl3.TabIndex = 5
         '
         'DEPeriodUntil
         '
         Me.DEPeriodUntil.EditValue = Nothing
         Me.DEPeriodUntil.Enabled = False
-        Me.DEPeriodUntil.Location = New System.Drawing.Point(262, 68)
+        Me.DEPeriodUntil.Location = New System.Drawing.Point(262, 74)
         Me.DEPeriodUntil.Name = "DEPeriodUntil"
         Me.DEPeriodUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPeriodUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1780,7 +1789,7 @@ Partial Class FormSalesPOS
         '
         'LabelControl14
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(235, 71)
+        Me.LabelControl14.Location = New System.Drawing.Point(235, 77)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl14.TabIndex = 8933
@@ -1790,20 +1799,20 @@ Partial Class FormSalesPOS
         '
         Me.DEPeriodFrom.EditValue = Nothing
         Me.DEPeriodFrom.Enabled = False
-        Me.DEPeriodFrom.Location = New System.Drawing.Point(84, 68)
+        Me.DEPeriodFrom.Location = New System.Drawing.Point(97, 74)
         Me.DEPeriodFrom.Name = "DEPeriodFrom"
         Me.DEPeriodFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPeriodFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPeriodFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEPeriodFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEPeriodFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEPeriodFrom.Size = New System.Drawing.Size(145, 20)
+        Me.DEPeriodFrom.Size = New System.Drawing.Size(132, 20)
         Me.DEPeriodFrom.TabIndex = 8932
         '
         'CEPeriod
         '
         Me.CEPeriod.EditValue = True
-        Me.CEPeriod.Location = New System.Drawing.Point(17, 69)
+        Me.CEPeriod.Location = New System.Drawing.Point(17, 75)
         Me.CEPeriod.Name = "CEPeriod"
         Me.CEPeriod.Properties.Caption = "All Period"
         Me.CEPeriod.Size = New System.Drawing.Size(63, 19)
@@ -1811,11 +1820,11 @@ Partial Class FormSalesPOS
         '
         'SLEStoreProb
         '
-        Me.SLEStoreProb.Location = New System.Drawing.Point(84, 42)
+        Me.SLEStoreProb.Location = New System.Drawing.Point(97, 48)
         Me.SLEStoreProb.Name = "SLEStoreProb"
         Me.SLEStoreProb.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStoreProb.Properties.View = Me.GridView2
-        Me.SLEStoreProb.Size = New System.Drawing.Size(355, 20)
+        Me.SLEStoreProb.Size = New System.Drawing.Size(342, 20)
         Me.SLEStoreProb.TabIndex = 5
         '
         'GridView2
@@ -1842,7 +1851,7 @@ Partial Class FormSalesPOS
         '
         'LabelControl13
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(17, 45)
+        Me.LabelControl13.Location = New System.Drawing.Point(17, 51)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(26, 13)
         Me.LabelControl13.TabIndex = 4
@@ -1850,15 +1859,15 @@ Partial Class FormSalesPOS
         '
         'LEInvoiceStt
         '
-        Me.LEInvoiceStt.Location = New System.Drawing.Point(310, 16)
+        Me.LEInvoiceStt.Location = New System.Drawing.Point(295, 18)
         Me.LEInvoiceStt.Name = "LEInvoiceStt"
         Me.LEInvoiceStt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEInvoiceStt.Size = New System.Drawing.Size(129, 20)
+        Me.LEInvoiceStt.Size = New System.Drawing.Size(144, 20)
         Me.LEInvoiceStt.TabIndex = 2
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(17, 19)
+        Me.LabelControl5.Location = New System.Drawing.Point(17, 231)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl5.TabIndex = 0
@@ -1866,18 +1875,18 @@ Partial Class FormSalesPOS
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(235, 19)
+        Me.LabelControl12.Location = New System.Drawing.Point(235, 21)
         Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl12.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl12.TabIndex = 3
-        Me.LabelControl12.Text = "Invoice Status"
+        Me.LabelControl12.Text = "Inv. Status"
         '
         'LETypeProb
         '
-        Me.LETypeProb.Location = New System.Drawing.Point(84, 16)
+        Me.LETypeProb.Location = New System.Drawing.Point(97, 228)
         Me.LETypeProb.Name = "LETypeProb"
         Me.LETypeProb.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LETypeProb.Size = New System.Drawing.Size(144, 20)
+        Me.LETypeProb.Size = New System.Drawing.Size(342, 20)
         Me.LETypeProb.TabIndex = 1
         '
         'LookUpEdit1
@@ -1945,6 +1954,51 @@ Partial Class FormSalesPOS
         Me.LabelControl10.Size = New System.Drawing.Size(0, 13)
         Me.LabelControl10.TabIndex = 8892
         Me.LabelControl10.Text = "From"
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(17, 21)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl15.TabIndex = 8935
+        Me.LabelControl15.Text = "Recon. Status"
+        '
+        'LEReconStatus
+        '
+        Me.LEReconStatus.Location = New System.Drawing.Point(97, 18)
+        Me.LEReconStatus.Name = "LEReconStatus"
+        Me.LEReconStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReconStatus.Size = New System.Drawing.Size(131, 20)
+        Me.LEReconStatus.TabIndex = 8936
+        '
+        'XTCProblemList
+        '
+        Me.XTCProblemList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCProblemList.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCProblemList.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Vertical
+        Me.XTCProblemList.Location = New System.Drawing.Point(0, 0)
+        Me.XTCProblemList.Name = "XTCProblemList"
+        Me.XTCProblemList.SelectedTabPage = Me.XTPInvalidPrice
+        Me.XTCProblemList.Size = New System.Drawing.Size(1234, 505)
+        Me.XTCProblemList.TabIndex = 5
+        Me.XTCProblemList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPInvalidPrice, Me.XTPNoStock})
+        '
+        'XTPInvalidPrice
+        '
+        Me.XTPInvalidPrice.Controls.Add(Me.GCProbList)
+        Me.XTPInvalidPrice.Controls.Add(Me.PanelControl1)
+        Me.XTPInvalidPrice.Controls.Add(Me.PanelControl2)
+        Me.XTPInvalidPrice.Image = CType(resources.GetObject("XTPInvalidPrice.Image"), System.Drawing.Image)
+        Me.XTPInvalidPrice.Name = "XTPInvalidPrice"
+        Me.XTPInvalidPrice.Size = New System.Drawing.Size(1187, 499)
+        Me.XTPInvalidPrice.Text = "Invalid Price"
+        '
+        'XTPNoStock
+        '
+        Me.XTPNoStock.Image = CType(resources.GetObject("XTPNoStock.Image"), System.Drawing.Image)
+        Me.XTPNoStock.Name = "XTPNoStock"
+        Me.XTPNoStock.Size = New System.Drawing.Size(1121, 499)
+        Me.XTPNoStock.Text = "No Stock"
         '
         'FormSalesPOS
         '
@@ -2028,6 +2082,10 @@ Partial Class FormSalesPOS
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEReconStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCProblemList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCProblemList.ResumeLayout(False)
+        Me.XTPInvalidPrice.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -2206,4 +2264,9 @@ Partial Class FormSalesPOS
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEPeriodFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents CEPeriod As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LEReconStatus As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTCProblemList As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPInvalidPrice As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPNoStock As DevExpress.XtraTab.XtraTabPage
 End Class
