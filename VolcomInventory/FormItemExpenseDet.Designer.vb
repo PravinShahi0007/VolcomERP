@@ -139,6 +139,7 @@ Partial Class FormItemExpenseDet
         Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GCCCDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCurrView = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.XTPDraftJournal = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
@@ -153,7 +154,6 @@ Partial Class FormItemExpenseDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LEPaymentMethod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1399,6 +1399,12 @@ Partial Class FormItemExpenseDet
         Me.GridColumnCurrView.Name = "GridColumnCurrView"
         Me.GridColumnCurrView.Width = 30
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Id acc cat"
+        Me.GridColumn7.FieldName = "id_acc_cat"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
@@ -1533,12 +1539,6 @@ Partial Class FormItemExpenseDet
         Me.GridColumncc.Name = "GridColumncc"
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Id acc cat"
-        Me.GridColumn7.FieldName = "id_acc_cat"
-        Me.GridColumn7.Name = "GridColumn7"
         '
         'FormItemExpenseDet
         '
