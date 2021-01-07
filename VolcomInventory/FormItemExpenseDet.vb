@@ -62,13 +62,13 @@
         Dim q As String = "SELECT bo.`id_b_expense_opex` AS id_b_expense,icm.`id_item_cat_main`,icm.`item_cat_main`,icm.`id_expense_type`
 FROM tb_b_expense_opex bo
 INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=bo.`id_item_cat_main`
-WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'
+WHERE bo.`year`=YEAR('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND bo.is_active='1'
 UNION ALL
 SELECT bo.`id_b_expense` AS id_b_expense,icm.`id_item_cat_main`,CONCAT('[',dep.departement,']',icm.`item_cat_main`) AS item_cat_main,icm.`id_expense_type`
 FROM tb_b_expense bo
 INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=bo.`id_item_cat_main`
 INNER JOIN tb_m_departement dep ON dep.id_departement=bo.id_departement
-WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
+WHERE bo.`year`=YEAR('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND bo.is_active='1'"
         viewSearchLookupRepositoryQuery(RISLECatExpense, q, 0, "item_cat_main", "id_b_expense")
     End Sub
 
@@ -1148,5 +1148,13 @@ WHERE c.id_comp='" + id_comp + "' "
         viewCOA()
         viewCOARepo()
         viewCOAPPH()
+    End Sub
+
+    Private Sub DEDateReff_EditValueChanged(sender As Object, e As EventArgs) Handles DEDateReff.EditValueChanged
+        Try
+            view_repo_cat()
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
