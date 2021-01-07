@@ -2637,9 +2637,9 @@ Partial Class FormSalesPOS
         Me.BtnHistoryNoStock.Image = CType(resources.GetObject("BtnHistoryNoStock.Image"), System.Drawing.Image)
         Me.BtnHistoryNoStock.Location = New System.Drawing.Point(628, 46)
         Me.BtnHistoryNoStock.Name = "BtnHistoryNoStock"
-        Me.BtnHistoryNoStock.Size = New System.Drawing.Size(102, 28)
+        Me.BtnHistoryNoStock.Size = New System.Drawing.Size(77, 28)
         Me.BtnHistoryNoStock.TabIndex = 8
-        Me.BtnHistoryNoStock.Text = "Reconcile List"
+        Me.BtnHistoryNoStock.Text = "History"
         '
         'BtnPrintNoStock
         '

@@ -924,10 +924,11 @@
 
             'cek on process
             Dim err_on_process As String = ""
-            Dim qcek As String = "SELECT rd.id_sales_pos_oos_recon_det, p.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`
-            FROM tb_sales_pos_oos_recon_det rd
+            Dim qcek As String = "SELECT p.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`
+            FROM tb_sales_pos_oos_recon_prob rd
+            INNER JOIN tb_sales_pos_prob prob ON prob.id_sales_pos_prob = rd.id_sales_pos_prob
             INNER JOIN tb_sales_pos_oos_recon r ON r.id_sales_pos_oos_recon = rd.id_sales_pos_oos_recon
-            INNER JOIN tb_m_product p ON p.id_product = rd.id_product
+            INNER JOIN tb_m_product p ON p.id_product = prob.id_product
             WHERE r.id_report_status<5 AND rd.id_sales_pos_prob IN(" + id_prob_in + ") "
             Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
             For d As Integer = 0 To dcek.Rows.Count - 1
@@ -968,6 +969,12 @@
         End If
 
         makeSafeGV(GVNoStock)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnHistoryNoStock_Click(sender As Object, e As EventArgs) Handles BtnHistoryNoStock.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesProbTransHistory.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

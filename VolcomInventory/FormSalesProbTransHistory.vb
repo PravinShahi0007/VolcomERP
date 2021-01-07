@@ -110,4 +110,41 @@ ORDER BY id_sales_pos DESC "
         print(GCInv, "Invoice List")
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnPrintClosingNoStock_Click(sender As Object, e As EventArgs) Handles BtnPrintClosingNoStock.Click
+        Cursor = Cursors.WaitCursor
+        print(GCCLosing, "Closing No Stock List")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewCLosingNoStock_Click(sender As Object, e As EventArgs) Handles BtnViewCLosingNoStock.Click
+        viewClosingNoStock
+    End Sub
+
+    Sub viewClosingNoStock()
+        Cursor = Cursors.WaitCursor
+        Dim cond_det As String = ""
+        If id_sales_pos_prob <> "-1" Then
+            cond_det = "AND rd.id_sales_pos_prob='" + id_sales_pos_prob + "' "
+        End If
+        Dim query As String = "SELECT r.id_sales_pos_oos_recon, r.number, r.created_date, r.note, r.id_report_status, stt.report_status, r.is_confirm
+        FROM tb_sales_pos_oos_recon r
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
+        WHERE r.id_sales_pos_oos_recon>0 " + cond_det + "
+        GROUP BY r.id_sales_pos_oos_recon
+        ORDER BY r.id_sales_pos_oos_recon DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCLosing.DataSource = data
+        GVCLosing.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVCLosing_DoubleClick(sender As Object, e As EventArgs) Handles GVCLosing.DoubleClick
+        If GVCLosing.RowCount > 0 And GVCLosing.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormSalesPOSClosingNoStock.id = GVCLosing.GetFocusedRowCellValue("id_sales_pos_oos_recon").ToString
+            FormSalesPOSClosingNoStock.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class

@@ -33,6 +33,7 @@ Partial Class FormSalesProbTransHistory
         Me.GridColumnis_confirm = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewPriceRecon = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
         Me.GCInv = New DevExpress.XtraGrid.GridControl()
         Me.GVInv = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -53,8 +54,20 @@ Partial Class FormSalesProbTransHistory
         Me.GridColumnreport_mark_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewInv = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintInvoice = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPClosingNoStock = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewCLosingNoStock = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrintClosingNoStock = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCCLosing = New DevExpress.XtraGrid.GridControl()
+        Me.GVCLosing = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPPriceRecon.SuspendLayout()
@@ -67,6 +80,11 @@ Partial Class FormSalesProbTransHistory
         CType(Me.GVInv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        Me.XTPClosingNoStock.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.GCCLosing, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVCLosing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCData
@@ -77,7 +95,7 @@ Partial Class FormSalesProbTransHistory
         Me.XTCData.SelectedTabPage = Me.XTPPriceRecon
         Me.XTCData.Size = New System.Drawing.Size(657, 348)
         Me.XTCData.TabIndex = 0
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPriceRecon, Me.XTPInvoice})
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPriceRecon, Me.XTPInvoice, Me.XTPClosingNoStock})
         '
         'XTPPriceRecon
         '
@@ -178,6 +196,16 @@ Partial Class FormSalesProbTransHistory
         Me.BtnViewPriceRecon.Size = New System.Drawing.Size(82, 39)
         Me.BtnViewPriceRecon.TabIndex = 0
         Me.BtnViewPriceRecon.Text = "View"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(567, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(82, 39)
+        Me.BtnPrint.TabIndex = 1
+        Me.BtnPrint.Text = "Print"
         '
         'XTPInvoice
         '
@@ -342,16 +370,6 @@ Partial Class FormSalesProbTransHistory
         Me.BtnViewInv.TabIndex = 1
         Me.BtnViewInv.Text = "View"
         '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(567, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(82, 39)
-        Me.BtnPrint.TabIndex = 1
-        Me.BtnPrint.Text = "Print"
-        '
         'BtnPrintInvoice
         '
         Me.BtnPrintInvoice.Dock = System.Windows.Forms.DockStyle.Right
@@ -361,6 +379,116 @@ Partial Class FormSalesProbTransHistory
         Me.BtnPrintInvoice.Size = New System.Drawing.Size(82, 39)
         Me.BtnPrintInvoice.TabIndex = 2
         Me.BtnPrintInvoice.Text = "Print"
+        '
+        'XTPClosingNoStock
+        '
+        Me.XTPClosingNoStock.Controls.Add(Me.GCCLosing)
+        Me.XTPClosingNoStock.Controls.Add(Me.PanelControl3)
+        Me.XTPClosingNoStock.Name = "XTPClosingNoStock"
+        Me.XTPClosingNoStock.Size = New System.Drawing.Size(651, 320)
+        Me.XTPClosingNoStock.Text = "Closing No Stock"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BtnViewCLosingNoStock)
+        Me.PanelControl3.Controls.Add(Me.BtnPrintClosingNoStock)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(651, 43)
+        Me.PanelControl3.TabIndex = 1
+        '
+        'BtnViewCLosingNoStock
+        '
+        Me.BtnViewCLosingNoStock.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewCLosingNoStock.Image = CType(resources.GetObject("BtnViewCLosingNoStock.Image"), System.Drawing.Image)
+        Me.BtnViewCLosingNoStock.Location = New System.Drawing.Point(485, 2)
+        Me.BtnViewCLosingNoStock.Name = "BtnViewCLosingNoStock"
+        Me.BtnViewCLosingNoStock.Size = New System.Drawing.Size(82, 39)
+        Me.BtnViewCLosingNoStock.TabIndex = 0
+        Me.BtnViewCLosingNoStock.Text = "View"
+        '
+        'BtnPrintClosingNoStock
+        '
+        Me.BtnPrintClosingNoStock.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrintClosingNoStock.Image = CType(resources.GetObject("BtnPrintClosingNoStock.Image"), System.Drawing.Image)
+        Me.BtnPrintClosingNoStock.Location = New System.Drawing.Point(567, 2)
+        Me.BtnPrintClosingNoStock.Name = "BtnPrintClosingNoStock"
+        Me.BtnPrintClosingNoStock.Size = New System.Drawing.Size(82, 39)
+        Me.BtnPrintClosingNoStock.TabIndex = 1
+        Me.BtnPrintClosingNoStock.Text = "Print"
+        '
+        'GCCLosing
+        '
+        Me.GCCLosing.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCCLosing.Location = New System.Drawing.Point(0, 43)
+        Me.GCCLosing.MainView = Me.GVCLosing
+        Me.GCCLosing.Name = "GCCLosing"
+        Me.GCCLosing.Size = New System.Drawing.Size(651, 277)
+        Me.GCCLosing.TabIndex = 2
+        Me.GCCLosing.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCLosing})
+        '
+        'GVCLosing
+        '
+        Me.GVCLosing.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVCLosing.GridControl = Me.GCCLosing
+        Me.GVCLosing.Name = "GVCLosing"
+        Me.GVCLosing.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVCLosing.OptionsBehavior.ReadOnly = True
+        Me.GVCLosing.OptionsFind.AlwaysVisible = True
+        Me.GVCLosing.OptionsView.ColumnAutoWidth = False
+        Me.GVCLosing.OptionsView.ShowFooter = True
+        Me.GVCLosing.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "id_sales_pos_recon"
+        Me.GridColumn1.FieldName = "id_sales_pos_recon"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Number"
+        Me.GridColumn2.FieldName = "number"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Created Date"
+        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn3.FieldName = "created_date"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Note"
+        Me.GridColumn4.FieldName = "note"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "id_report_status"
+        Me.GridColumn5.FieldName = "id_report_status"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Status"
+        Me.GridColumn6.FieldName = "report_status"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 2
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "is_confirm"
+        Me.GridColumn7.FieldName = "is_confirm"
+        Me.GridColumn7.Name = "GridColumn7"
         '
         'FormSalesProbTransHistory
         '
@@ -384,6 +512,11 @@ Partial Class FormSalesProbTransHistory
         CType(Me.GVInv, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        Me.XTPClosingNoStock.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.GCCLosing, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVCLosing, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -423,4 +556,17 @@ Partial Class FormSalesProbTransHistory
     Friend WithEvents GridColumnreport_mark_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrintInvoice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPClosingNoStock As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCCLosing As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVCLosing As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnViewCLosingNoStock As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPrintClosingNoStock As DevExpress.XtraEditors.SimpleButton
 End Class
