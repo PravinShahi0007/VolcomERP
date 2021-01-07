@@ -950,7 +950,6 @@ Partial Class FormMatPurchaseDet
         'BAdd
         '
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAdd.Enabled = False
         Me.BAdd.ImageIndex = 0
         Me.BAdd.ImageList = Me.LargeImageCollection
         Me.BAdd.Location = New System.Drawing.Point(796, 0)

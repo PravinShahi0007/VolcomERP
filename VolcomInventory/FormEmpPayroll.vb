@@ -1314,49 +1314,60 @@
     Sub insert_jurnal_toko(ByVal id_payroll As String)
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
-        If is_thr = "2" Then
-            Dim data_comp As DataTable = execute_query("SELECT id_comp, comp_number FROM tb_m_comp WHERE id_comp = 1", -1, True, "", "", "", "")
+        Dim payroll_type As String = execute_query("SELECT payroll_type FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
-            Dim data_sum As DataTable = execute_query("CALL view_payroll_sum(" + id_payroll + ")", -1, True, "", "", "", "")
+        Dim data_comp As DataTable = execute_query("SELECT id_comp, comp_number FROM tb_m_comp WHERE id_comp = 1", -1, True, "", "", "", "")
 
-            Dim payroll_det As DataTable = execute_query("SELECT DATE_FORMAT(periode_end, '%M %Y') AS periode, report_number FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, -1, True, "", "", "", "")
+        Dim data_sum As DataTable = execute_query("CALL view_payroll_sum(" + id_payroll + ")", -1, True, "", "", "", "")
 
-            Dim rmt As DataTable = execute_query("SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type = 192 AND rm.id_report = '" + id_payroll + "' AND rm.id_report_status = 1", -1, True, "", "", "", "")
+        Dim payroll_det As DataTable = execute_query("SELECT DATE_FORMAT(periode_end, '%M %Y') AS periode, report_number FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, -1, True, "", "", "", "")
 
-            For i = 0 To data_sum.Rows.Count - 1
-                If data_sum.Rows(i)("is_office_payroll").ToString = "2" And Not data_sum.Rows(i)("id_departement").ToString = "17" Then
-                    Dim salary As Decimal = data_sum.Rows(i)("salary")
-                    Dim bpjskes As Decimal = data_sum.Rows(i)("d_bpjskes")
-                    Dim bpjstk As Decimal = data_sum.Rows(i)("d_bpjstk")
-                    Dim jp As Decimal = data_sum.Rows(i)("d_jaminan_pensiun")
-                    Dim balance As Decimal = data_sum.Rows(i)("salary") - data_sum.Rows(i)("d_bpjskes") - data_sum.Rows(i)("d_bpjstk") - data_sum.Rows(i)("d_jaminan_pensiun")
+        Dim rmt As DataTable = execute_query("SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type = 192 AND rm.id_report = '" + id_payroll + "' AND rm.id_report_status = 1", -1, True, "", "", "", "")
 
-                    Dim id_coa_tag As String = execute_query("SELECT id_coa_tag FROM tb_coa_tag WHERE id_departement = " + data_sum.Rows(i)("id_departement").ToString, 0, True, "", "", "", "")
+        'description
+        Dim desc As String = ""
 
-                    'header
-                    Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) VALUES ('', '" + rmt.Rows(0)("report_number").ToString + "', '25', '" + rmt.Rows(0)("id_user").ToString + "', NOW(), (SELECT eff_trans_date FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+        If is_thr = "1" Then
+            desc = payroll_type + " " + payroll_det.Rows(0)("periode").ToString
+        Else
+            desc = "Gaji staff toko " + payroll_det.Rows(0)("periode").ToString
+        End If
 
-                    Dim id_acc_trans As String = execute_query(insert_jurnal, 0, True, "", "", "", "")
+        For i = 0 To data_sum.Rows.Count - 1
+            If data_sum.Rows(i)("is_office_payroll").ToString = "2" And Not data_sum.Rows(i)("id_departement").ToString = "17" Then
+                Dim salary As Decimal = data_sum.Rows(i)("salary")
+                Dim bpjskes As Decimal = data_sum.Rows(i)("d_bpjskes")
+                Dim bpjstk As Decimal = data_sum.Rows(i)("d_bpjstk")
+                Dim jp As Decimal = data_sum.Rows(i)("d_jaminan_pensiun")
+                Dim balance As Decimal = data_sum.Rows(i)("salary") - data_sum.Rows(i)("d_bpjskes") - data_sum.Rows(i)("d_bpjstk") - data_sum.Rows(i)("d_jaminan_pensiun")
 
-                    execute_non_query("CALL gen_number(" + id_acc_trans + ", 36)", True, "", "", "", "")
+                Dim id_coa_tag As String = execute_query("SELECT id_coa_tag FROM tb_coa_tag WHERE id_departement = " + data_sum.Rows(i)("id_departement").ToString, 0, True, "", "", "", "")
 
-                    'detail
-                    Dim insert_detail As String = "INSERT INTO tb_a_acc_trans_det (id_acc_trans, id_acc, id_comp, vendor, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number, id_coa_tag) VALUES "
+                'header
+                Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) VALUES ('', '" + rmt.Rows(0)("report_number").ToString + "', '25', '" + rmt.Rows(0)("id_user").ToString + "', NOW(), (SELECT eff_trans_date FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
 
-                    insert_detail = insert_detail + "('" + id_acc_trans + "', '3809', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', 0, " + decimalSQL(salary) + ", 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
+                Dim id_acc_trans As String = execute_query(insert_jurnal, 0, True, "", "", "", "")
 
+                execute_non_query("CALL gen_number(" + id_acc_trans + ", 36)", True, "", "", "", "")
+
+                'detail
+                Dim insert_detail As String = "INSERT INTO tb_a_acc_trans_det (id_acc_trans, id_acc, id_comp, vendor, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number, id_coa_tag) VALUES "
+
+                insert_detail = insert_detail + "('" + id_acc_trans + "', '3809', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', 0, " + decimalSQL(salary) + ", '" + desc + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
+
+                If is_thr = "2" Then
                     insert_detail = insert_detail + "('" + id_acc_trans + "', '3669', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(bpjskes) + ", 0, 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + " - pot. BPJS', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
 
                     insert_detail = insert_detail + "('" + id_acc_trans + "', '3669', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(jp) + ", 0, 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + " - pot. JP', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
 
                     insert_detail = insert_detail + "('" + id_acc_trans + "', '3669', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(bpjstk) + ", 0, 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + " - pot. BPJST', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
-
-                    insert_detail = insert_detail + "('" + id_acc_trans + "', '3680', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(balance) + ", 0, 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "')"
-
-                    execute_non_query(insert_detail, True, "", "", "", "")
                 End If
-            Next
-        End If
+
+                insert_detail = insert_detail + "('" + id_acc_trans + "', '3680', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(balance) + ", 0, '" + desc + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "')"
+
+                execute_non_query(insert_detail, True, "", "", "", "")
+            End If
+        Next
     End Sub
 
     Sub insert_expense(ByVal id_payroll As String)
