@@ -476,6 +476,7 @@ Partial Class FormMain
         Me.NBSalesBranch = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCNSalesBranch = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPayoutReport = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPolis = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBABGRoyaltyZone = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
@@ -511,7 +512,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBPolis = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3671,6 +3671,12 @@ Partial Class FormMain
         Me.NBPayoutReport.Name = "NBPayoutReport"
         Me.NBPayoutReport.SmallImage = CType(resources.GetObject("NBPayoutReport.SmallImage"), System.Drawing.Image)
         '
+        'NBPolis
+        '
+        Me.NBPolis.Caption = "Polis"
+        Me.NBPolis.Name = "NBPolis"
+        Me.NBPolis.SmallImage = CType(resources.GetObject("NBPolis.SmallImage"), System.Drawing.Image)
+        '
         'NBABGRoyaltyZone
         '
         Me.NBABGRoyaltyZone.Caption = "ABG Royalty Zone"
@@ -3952,12 +3958,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBPolis
-        '
-        Me.NBPolis.Caption = "Polis"
-        Me.NBPolis.Name = "NBPolis"
-        Me.NBPolis.SmallImage = CType(resources.GetObject("NBPolis.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
