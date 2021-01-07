@@ -32,16 +32,52 @@
         id_report_status = data.Rows(0)("id_report_status").ToString
         is_confirm = data.Rows(0)("is_confirm").ToString
         MENote.Text = data.Rows(0)("note").ToString
+        viewSummary()
         viewDetail()
         allowStatus()
     End Sub
 
+    Sub viewSummary()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT rd.id_sales_pos_oos_recon,rd.id_sales_pos_prob, rd.id_sales_pos, rd.id_comp, sp.sales_pos_number, c.comp_number, c.comp_name,
+        rd.id_product, p.product_full_code As `code`, p.product_display_name As `name`, cd.code_detail_name As `size`,
+        rd.id_design_price, rd.design_price,sp.report_mark_type AS `rmt_inv`
+        FROM tb_sales_pos_oos_recon_det rd
+        INNER JOIN tb_m_product p ON p.id_product = rd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_m_comp c ON c.id_comp = rd.id_comp
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = rd.id_sales_pos
+        WHERE rd.id_sales_pos_oos_recon='" + id + "'
+        GROUP BY rd.id_sales_pos_prob "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSummary.DataSource = data
+        GVSummary.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = " "
+        Dim query As String = "Select rd.id_sales_pos_oos_recon_det, rd.id_sales_pos_oos_recon,
+rd.id_sales_pos_prob, rd.id_sales_pos, rd.id_comp, sp.sales_pos_number, c.comp_number, c.comp_name,
+rd.id_product, p.product_full_code As `code`, p.product_display_name As `name`, cd.code_detail_name As `size`, rd.qty,
+rd.id_design_price, rd.design_price,
+rd.id_product_valid, pv.product_full_code As `code_valid`, pv.product_display_name As `name_valid`, cdv.code_detail_name As `size_valid`, rd.qty_valid,
+rd.id_design_price_valid, rd.design_price_valid, rd.note, 
+sp.report_mark_type AS `rmt_inv`
+FROM tb_sales_pos_oos_recon_det rd
+INNER JOIN tb_m_product p ON p.id_product = rd.id_product
+INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+INNER JOIN tb_m_product pv ON pv.id_product = rd.id_product_valid
+INNER JOIN tb_m_product_code pcv ON pcv.id_product = pv.id_product
+INNER JOIN tb_m_code_detail cdv ON cdv.id_code_detail = pcv.id_code_detail
+INNER JOIN tb_m_comp c ON c.id_comp = rd.id_comp
+INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = rd.id_sales_pos
+WHERE rd.id_sales_pos_oos_recon='" + id + "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        XTCData.DataSource = data
-        GVData.BestFitColumns()
+        GCDetail.DataSource = data
+        GVDetail.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -51,15 +87,14 @@
             BtnCreate.Visible = True
             BtnConfirm.Visible = True
             BtnMark.Visible = False
-            BtnCancell.Visible = False
         Else
             MENote.Properties.ReadOnly = True
             BtnCreate.Visible = False
             BtnConfirm.Visible = False
             BtnMark.Visible = True
-            BtnCancell.Visible = True
         End If
         BtnAttachment.Visible = True
+        BtnCancell.Visible = True
 
         'reset propose
         If is_view = "-1" And is_confirm = "1" Then
@@ -83,7 +118,7 @@
         End If
     End Sub
 
-    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDetail.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
