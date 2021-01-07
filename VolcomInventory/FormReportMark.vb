@@ -6157,7 +6157,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     INNER JOIN  tb_item_expense_det ed ON ed.id_item_expense = e.id_item_expense
                     WHERE e.id_item_expense=" + id_report + "
                     UNION ALL
-                    SELECT " + id_acc_trans + ", o.acc_coa_vat_in, e.id_comp  AS id_vendor, e.vat_total AS `debit`, 0 AS `credit`, e.note AS description, 157, e.id_item_expense, e.`number`,1
+                    SELECT " + id_acc_trans + ", IF(e.id_coa_tag=1,o.acc_coa_vat_in,o.acc_coa_vat_in_cabang), e.id_comp  AS id_vendor, e.vat_total AS `debit`, 0 AS `credit`, e.note AS description, 157, e.id_item_expense, e.`number`,1
                     ,e.inv_number,e.id_coa_tag
                     FROM tb_item_expense e
                     JOIN tb_opt_purchasing o

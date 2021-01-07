@@ -1078,8 +1078,13 @@ WHERE c.id_comp='" + id_comp + "' "
                     jum_row += 1
                     Dim newRowvat As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
                     newRowvat("no") = jum_row
-                    newRowvat("acc_name") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "1")
-                    newRowvat("acc_description") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "2")
+                    If id_coa_tag = "1" Then
+                        newRowvat("acc_name") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "1")
+                        newRowvat("acc_description") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "2")
+                    Else
+                        newRowvat("acc_name") = get_acc(get_opt_purchasing_field("acc_coa_vat_in_cabang"), "1")
+                        newRowvat("acc_description") = get_acc(get_opt_purchasing_field("acc_coa_vat_in_cabang"), "2")
+                    End If
                     newRowvat("cc") = "000"
                     newRowvat("report_number") = ""
                     newRowvat("note") = MENote.Text
