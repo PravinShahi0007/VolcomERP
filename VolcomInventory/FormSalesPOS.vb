@@ -840,7 +840,66 @@
 
     Sub viewNoStockList()
         Cursor = Cursors.WaitCursor
+        'status
+        Dim cond_status As String = ""
+        If LENoStockStatus.EditValue.ToString = "1" Then
+            cond_status = "AND (p.no_stock_qty<>IFNULL(rcn.qty_proceed,0)) "
+        ElseIf LENoStockStatus.EditValue.ToString = "2" Then
+            cond_status = "AND (p.no_stock_qty=IFNULL(rcn.qty_proceed,0)) "
+        End If
+        'store
+        Dim cond_store As String = ""
+        If SLEStoreProb.EditValue.ToString <> "0" Then
+            cond_store = "AND c.id_comp='" + SLEStoreProb.EditValue.ToString + "' "
+        End If
+        'period
+        Dim cond_period As String = ""
+        If CEAllPeriodNoStock.EditValue = False Then
+            Dim date_from_selected As String = "0000-01-01"
+            Dim date_until_selected As String = "9999-01-01"
+            Try
+                date_from_selected = DateTime.Parse(DEFromNoStock.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Try
+                date_until_selected = DateTime.Parse(DEUntilNoStock.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            cond_period = "AND (sp.sales_pos_end_period>='" + date_from_selected + "' AND sp.sales_pos_end_period<='" + date_until_selected + "') "
+        End If
 
+        Dim query As String = "SELECT p.id_sales_pos_prob, 
+        p.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, sp.sales_pos_due_date, sp.report_mark_type AS `rmt_inv`,
+        c.id_comp, cc.id_comp_contact, c.comp_number, c.comp_name, cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,
+        p.is_invalid_price, p.is_no_stock, 
+        p.id_product, prod.id_design, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
+        p.id_design_price_retail, p.design_price_retail, p.design_price_store, 
+        IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid, dpt.design_price_type AS `design_price_type_valid`,
+        p.no_stock_qty, IFNULL(rcn.qty_on_process,0) AS `qty_recon_on_process`,IFNULL(rcn.qty_proceed,0) AS `qty_recon_proceed`, 'No' AS `is_select`,
+        IF(p.no_stock_qty=IFNULL(rcn.qty_proceed,0),'Close','Open') AS `recon_status`
+        From tb_sales_pos_prob p
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
+        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        LEFT JOIN tb_m_design_price dp ON dp.id_design_price = p.id_design_price_valid
+        LEFT JOIN tb_lookup_design_price_type dpt ON dpt.id_design_price_type = dp.id_design_price_type
+        LEFT JOIN (
+	        SELECT rd.id_sales_pos_prob, 
+	        SUM(IF(r.id_report_status<5,rd.qty,0)) AS `qty_on_process`,
+	        SUM(IF(r.id_report_status=6,rd.qty,0)) AS `qty_proceed` 
+	        FROM tb_sales_pos_oos_recon_det rd
+	        INNER JOIN tb_sales_pos_oos_recon r ON r.id_sales_pos_oos_recon = rd.id_sales_pos_oos_recon
+	        WHERE r.id_report_status!=5
+	        GROUP BY rd.id_sales_pos_prob
+        ) rcn ON rcn.id_sales_pos_prob = p.id_sales_pos_prob
+        WHERE 1=1 AND sp.id_report_status=6 AND p.is_no_stock=1 " + cond_status + cond_store + cond_period
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCNoStock.DataSource = data
+        GVNoStock.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 End Class
