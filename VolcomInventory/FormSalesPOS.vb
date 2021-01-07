@@ -56,6 +56,7 @@
         viewTypeProb()
         viewReconStt()
         viewInvoiceStt()
+        viewNoStockStt()
         viewStoreProb()
 
         'pending online store return
@@ -106,6 +107,17 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewNoStockStt()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '0' AS `id_stt`, 'All' AS `stt`
+        UNION ALL
+        SELECT '1' AS `id_stt`, 'Open' AS `stt`
+        UNION ALL
+        SELECT '2' AS `id_stt`, 'Close' AS `stt` "
+        viewLookupQuery(LENoStockStatus, query, 0, "stt", "id_stt")
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewStoreProb()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT 0 AS `id_comp`, 'All' AS `comp`
@@ -114,6 +126,7 @@
         FROM tb_m_comp c
         WHERE c.id_comp_cat=6 "
         viewSearchLookupQuery(SLEStoreProb, query, "id_comp", "comp", "id_comp")
+        viewSearchLookupQuery(SLEStoreNoStock, query, "id_comp", "comp", "id_comp")
         Cursor = Cursors.Default
     End Sub
 
@@ -492,6 +505,12 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub resetViewNoStockList()
+        Cursor = Cursors.WaitCursor
+        GCProbList.DataSource = Nothing
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub LETypeProb_EditValueChanged(sender As Object, e As EventArgs) Handles LETypeProb.EditValueChanged
         If LETypeProb.EditValue.ToString = "2" Then
             gridBandPrice.Visible = False
@@ -762,5 +781,66 @@
             DEPeriodUntil.Enabled = True
             DEPeriodFrom.Focus()
         End If
+    End Sub
+
+    Private Sub SimpleButton3_Click_1(sender As Object, e As EventArgs) Handles BtnPrintNoStock.Click
+        Cursor = Cursors.WaitCursor
+        print(GCNoStock, "No Stock List")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CEAllPeriodNoStock_EditValueChanged(sender As Object, e As EventArgs) Handles CEAllPeriodNoStock.EditValueChanged
+        If CEAllPeriodNoStock.EditValue = True Then
+            DEFromNoStock.EditValue = Nothing
+            DEUntilNoStock.EditValue = Nothing
+            DEFromNoStock.Enabled = False
+            DEUntilNoStock.Enabled = False
+        Else
+            DEFromNoStock.EditValue = tgl_sekarang
+            DEUntilNoStock.EditValue = tgl_sekarang
+            DEFromNoStock.Enabled = True
+            DEUntilNoStock.Enabled = True
+            DEFromNoStock.Focus()
+        End If
+    End Sub
+
+    Private Sub LEReconStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LEReconStatus.EditValueChanged
+        resetViewProb()
+    End Sub
+
+    Private Sub XTCInvoice_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCInvoice.SelectedPageChanged
+
+    End Sub
+
+    Private Sub XTCProblemList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCProblemList.SelectedPageChanged
+        If XTCProblemList.SelectedTabPageIndex = 1 Then
+            LENoStockStatus.ItemIndex = LENoStockStatus.Properties.GetDataSourceRowIndex("id_stt", "0")
+        End If
+    End Sub
+
+    Private Sub LENoStockStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LENoStockStatus.EditValueChanged
+        resetViewNoStockList()
+    End Sub
+
+    Private Sub SLEStoreNoStock_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreNoStock.EditValueChanged
+        resetViewNoStockList()
+    End Sub
+
+    Private Sub DEFromNoStock_EditValueChanged(sender As Object, e As EventArgs) Handles DEFromNoStock.EditValueChanged
+        resetViewNoStockList()
+    End Sub
+
+    Private Sub DEUntilNoStock_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilNoStock.EditValueChanged
+        resetViewNoStockList()
+    End Sub
+
+    Private Sub BtnViewNoStock_Click(sender As Object, e As EventArgs) Handles BtnViewNoStock.Click
+        viewNoStockList
+    End Sub
+
+    Sub viewNoStockList()
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
     End Sub
 End Class
