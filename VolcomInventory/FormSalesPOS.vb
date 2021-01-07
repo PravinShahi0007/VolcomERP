@@ -902,4 +902,50 @@
         GVNoStock.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnReconNoStock.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVNoStock)
+        GVNoStock.ActiveFilterString = "[is_select]='Yes' "
+
+        If GVNoStock.RowCount > 0 Then
+            'check valid
+            Dim id_prob_in As String = ""
+            Dim err_product As String = ""
+            For c As Integer = 0 To GVProbList.RowCount - 1
+                If c > 0 Then
+                    id_prob_in += ","
+                End If
+                If GVProbList.GetRowCellValue(c, "id_design_price_valid") <= 0 Then
+                    err_product += GVProbList.GetRowCellValue(c, "code").ToString + " - " + GVProbList.GetRowCellValue(c, "name").ToString + System.Environment.NewLine
+                End If
+                id_prob_in += GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
+            Next
+
+            'cek on process
+            Dim err_on_process As String = ""
+            Dim qcek As String = "SELECT rd.id_sales_pos_oos_recon_det, p.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`
+            FROM tb_sales_pos_oos_recon_det rd
+            INNER JOIN tb_sales_pos_oos_recon r ON r.id_sales_pos_oos_recon = rd.id_sales_pos_oos_recon
+            INNER JOIN tb_m_product p ON p.id_product = rd.id_product
+            WHERE r.id_report_status<5 AND rd.id_sales_pos_prob IN(" + id_prob_in + ") "
+            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+            For d As Integer = 0 To dcek.Rows.Count - 1
+                err_on_process += dcek.Rows(d)("code").ToString + "- " + dcek.Rows(d)("name").ToString + System.Environment.NewLine
+            Next
+
+            If err_product <> "" Then
+                stopCustom("Invalid price for these products :" + System.Environment.NewLine + err_product)
+            ElseIf err_on_process <> "" Then
+                stopCustom("These product on process reconcile :" + System.Environment.NewLine + err_on_process)
+            Else
+                'proses
+                'FormSalesPosPriceRecon.action = "ins"
+                'FormSalesPosPriceRecon.ShowDialog()
+            End If
+        End If
+
+        makeSafeGV(GVNoStock)
+        Cursor = Cursors.Default
+    End Sub
 End Class

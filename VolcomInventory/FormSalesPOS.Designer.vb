@@ -19,10 +19,10 @@ Partial Class FormSalesPOS
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOS))
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -207,6 +207,7 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -217,8 +218,9 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_recon_on_process = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_proceed_oos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -247,7 +249,7 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn41 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnReconNoStock = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelectAllNoStock = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
@@ -276,8 +278,6 @@ Partial Class FormSalesPOS
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.BandedGridColumnqty_proceed_oos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnqty_recon_on_process = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -583,9 +583,9 @@ Partial Class FormSalesPOS
         'GCSalesPOS
         '
         Me.GCSalesPOS.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode1.LevelTemplate = Me.GVSalesPOSDet
-        GridLevelNode1.RelationName = "Detail Transaction"
-        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        GridLevelNode2.LevelTemplate = Me.GVSalesPOSDet
+        GridLevelNode2.RelationName = "Detail Transaction"
+        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
         Me.GCSalesPOS.Location = New System.Drawing.Point(20, 2)
         Me.GCSalesPOS.MainView = Me.GVSalesPOS
         Me.GCSalesPOS.Name = "GCSalesPOS"
@@ -1361,13 +1361,13 @@ Partial Class FormSalesPOS
         'RepoBtnTransHist
         '
         Me.RepoBtnTransHist.AutoHeight = False
-        SerializableAppearanceObject1.BackColor = System.Drawing.Color.MediumSlateBlue
-        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject1.Options.UseBackColor = True
-        SerializableAppearanceObject1.Options.UseFont = True
-        SerializableAppearanceObject1.Options.UseForeColor = True
-        Me.RepoBtnTransHist.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "History", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject4.BackColor = System.Drawing.Color.MediumSlateBlue
+        SerializableAppearanceObject4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject4.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject4.Options.UseBackColor = True
+        SerializableAppearanceObject4.Options.UseFont = True
+        SerializableAppearanceObject4.Options.UseForeColor = True
+        Me.RepoBtnTransHist.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "History", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
         Me.RepoBtnTransHist.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnTransHist.Name = "RepoBtnTransHist"
         Me.RepoBtnTransHist.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2114,13 +2114,13 @@ Partial Class FormSalesPOS
         'RepositoryItemButtonEdit1
         '
         Me.RepositoryItemButtonEdit1.AutoHeight = False
-        SerializableAppearanceObject2.BackColor = System.Drawing.Color.MediumSlateBlue
-        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject2.Options.UseBackColor = True
-        SerializableAppearanceObject2.Options.UseFont = True
-        SerializableAppearanceObject2.Options.UseForeColor = True
-        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "History", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject3.BackColor = System.Drawing.Color.MediumSlateBlue
+        SerializableAppearanceObject3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject3.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject3.Options.UseBackColor = True
+        SerializableAppearanceObject3.Options.UseFont = True
+        SerializableAppearanceObject3.Options.UseForeColor = True
+        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "History", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEdit1.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
         Me.RepositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2148,6 +2148,17 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
         Me.BandedGridColumn5.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn5.Visible = True
+        '
+        'BandedGridColumn17
+        '
+        Me.BandedGridColumn17.Caption = "Used Price"
+        Me.BandedGridColumn17.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn17.FieldName = "design_price_valid"
+        Me.BandedGridColumn17.Name = "BandedGridColumn17"
+        Me.BandedGridColumn17.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumn17.Visible = True
+        Me.BandedGridColumn17.Width = 86
         '
         'BandedGridColumn6
         '
@@ -2226,22 +2237,12 @@ Partial Class FormSalesPOS
         '
         'BandedGridColumn14
         '
-        Me.BandedGridColumn14.Caption = "Inv. Status"
-        Me.BandedGridColumn14.FieldName = "is_open_invoice_view"
+        Me.BandedGridColumn14.Caption = "Recon. Status"
+        Me.BandedGridColumn14.FieldName = "recon_status"
         Me.BandedGridColumn14.Name = "BandedGridColumn14"
         Me.BandedGridColumn14.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn14.Visible = True
-        '
-        'BandedGridColumn17
-        '
-        Me.BandedGridColumn17.Caption = "Used Price"
-        Me.BandedGridColumn17.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn17.FieldName = "design_price_valid"
-        Me.BandedGridColumn17.Name = "BandedGridColumn17"
-        Me.BandedGridColumn17.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumn17.Visible = True
-        Me.BandedGridColumn17.Width = 86
+        Me.BandedGridColumn14.Width = 111
         '
         'BandedGridColumn21
         '
@@ -2254,6 +2255,26 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "no_stock_qty", "{0:N0}")})
         Me.BandedGridColumn21.Visible = True
         Me.BandedGridColumn21.Width = 101
+        '
+        'BandedGridColumnqty_recon_on_process
+        '
+        Me.BandedGridColumnqty_recon_on_process.Caption = "On Process Recon."
+        Me.BandedGridColumnqty_recon_on_process.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnqty_recon_on_process.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_recon_on_process.FieldName = "qty_recon_on_process"
+        Me.BandedGridColumnqty_recon_on_process.Name = "BandedGridColumnqty_recon_on_process"
+        Me.BandedGridColumnqty_recon_on_process.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_recon_on_process", "{0:N0}")})
+        Me.BandedGridColumnqty_recon_on_process.Visible = True
+        '
+        'BandedGridColumnqty_proceed_oos
+        '
+        Me.BandedGridColumnqty_proceed_oos.Caption = "Reconciled"
+        Me.BandedGridColumnqty_proceed_oos.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnqty_proceed_oos.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_proceed_oos.FieldName = "qty_recon_proceed"
+        Me.BandedGridColumnqty_proceed_oos.Name = "BandedGridColumnqty_proceed_oos"
+        Me.BandedGridColumnqty_proceed_oos.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_recon_proceed", "{0:N0}")})
+        Me.BandedGridColumnqty_proceed_oos.Visible = True
         '
         'BandedGridColumn22
         '
@@ -2496,7 +2517,7 @@ Partial Class FormSalesPOS
         '
         'PanelControl6
         '
-        Me.PanelControl6.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl6.Controls.Add(Me.BtnReconNoStock)
         Me.PanelControl6.Controls.Add(Me.PanelControl8)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl6.Location = New System.Drawing.Point(0, 407)
@@ -2504,21 +2525,21 @@ Partial Class FormSalesPOS
         Me.PanelControl6.Size = New System.Drawing.Size(1197, 45)
         Me.PanelControl6.TabIndex = 5
         '
-        'SimpleButton2
+        'BtnReconNoStock
         '
-        Me.SimpleButton2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SimpleButton2.Appearance.Options.UseFont = True
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
-        Me.SimpleButton2.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.SimpleButton2.Location = New System.Drawing.Point(82, 2)
-        Me.SimpleButton2.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.SimpleButton2.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(1113, 41)
-        Me.SimpleButton2.TabIndex = 11
-        Me.SimpleButton2.Text = "Reconcile"
-        Me.SimpleButton2.Visible = False
+        Me.BtnReconNoStock.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnReconNoStock.Appearance.Options.UseFont = True
+        Me.BtnReconNoStock.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnReconNoStock.Image = CType(resources.GetObject("BtnReconNoStock.Image"), System.Drawing.Image)
+        Me.BtnReconNoStock.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnReconNoStock.Location = New System.Drawing.Point(82, 2)
+        Me.BtnReconNoStock.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnReconNoStock.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnReconNoStock.Name = "BtnReconNoStock"
+        Me.BtnReconNoStock.Size = New System.Drawing.Size(1113, 41)
+        Me.BtnReconNoStock.TabIndex = 11
+        Me.BtnReconNoStock.Text = "Reconcile"
+        Me.BtnReconNoStock.Visible = False
         '
         'PanelControl8
         '
@@ -2785,26 +2806,6 @@ Partial Class FormSalesPOS
         Me.LabelControl10.TabIndex = 8892
         Me.LabelControl10.Text = "From"
         '
-        'BandedGridColumnqty_proceed_oos
-        '
-        Me.BandedGridColumnqty_proceed_oos.Caption = "Reconciled"
-        Me.BandedGridColumnqty_proceed_oos.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnqty_proceed_oos.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnqty_proceed_oos.FieldName = "qty_recon_proceed"
-        Me.BandedGridColumnqty_proceed_oos.Name = "BandedGridColumnqty_proceed_oos"
-        Me.BandedGridColumnqty_proceed_oos.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_recon_proceed", "{0:N0}")})
-        Me.BandedGridColumnqty_proceed_oos.Visible = True
-        '
-        'BandedGridColumnqty_recon_on_process
-        '
-        Me.BandedGridColumnqty_recon_on_process.Caption = "On Process Recon."
-        Me.BandedGridColumnqty_recon_on_process.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnqty_recon_on_process.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnqty_recon_on_process.FieldName = "qty_recon_on_process"
-        Me.BandedGridColumnqty_recon_on_process.Name = "BandedGridColumnqty_recon_on_process"
-        Me.BandedGridColumnqty_recon_on_process.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_recon_on_process", "{0:N0}")})
-        Me.BandedGridColumnqty_recon_on_process.Visible = True
-        '
         'GridBand1
         '
         Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
@@ -2835,10 +2836,9 @@ Partial Class FormSalesPOS
         Me.GridBand5.Columns.Add(Me.BandedGridColumn11)
         Me.GridBand5.Columns.Add(Me.BandedGridColumn12)
         Me.GridBand5.Columns.Add(Me.BandedGridColumn13)
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn14)
         Me.GridBand5.Name = "GridBand5"
         Me.GridBand5.VisibleIndex = 2
-        Me.GridBand5.Width = 600
+        Me.GridBand5.Width = 525
         '
         'GridBand7
         '
@@ -2846,13 +2846,14 @@ Partial Class FormSalesPOS
         Me.GridBand7.Columns.Add(Me.BandedGridColumn21)
         Me.GridBand7.Columns.Add(Me.BandedGridColumnqty_recon_on_process)
         Me.GridBand7.Columns.Add(Me.BandedGridColumnqty_proceed_oos)
+        Me.GridBand7.Columns.Add(Me.BandedGridColumn14)
         Me.GridBand7.Columns.Add(Me.BandedGridColumn22)
         Me.GridBand7.Columns.Add(Me.BandedGridColumn23)
         Me.GridBand7.Columns.Add(Me.BandedGridColumn24)
         Me.GridBand7.Columns.Add(Me.BandedGridColumn25)
         Me.GridBand7.Name = "GridBand7"
         Me.GridBand7.VisibleIndex = 3
-        Me.GridBand7.Width = 251
+        Me.GridBand7.Width = 362
         '
         'GridBand6
         '
@@ -3170,7 +3171,7 @@ Partial Class FormSalesPOS
     Friend WithEvents XTPNoStockList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CESelectAllNoStock As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnReconNoStock As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnPrintNoStock As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnViewNoStock As DevExpress.XtraEditors.SimpleButton
@@ -3239,11 +3240,11 @@ Partial Class FormSalesPOS
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnHistoryNoStock As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BandedGridColumnqty_recon_on_process As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnqty_proceed_oos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnqty_recon_on_process As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnqty_proceed_oos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
