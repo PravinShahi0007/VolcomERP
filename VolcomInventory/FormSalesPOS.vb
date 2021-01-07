@@ -814,7 +814,7 @@
 
     Private Sub XTCProblemList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCProblemList.SelectedPageChanged
         If XTCProblemList.SelectedTabPageIndex = 1 Then
-            LENoStockStatus.ItemIndex = LENoStockStatus.Properties.GetDataSourceRowIndex("id_stt", "0")
+            LENoStockStatus.ItemIndex = LENoStockStatus.Properties.GetDataSourceRowIndex("id_stt", "1")
         End If
     End Sub
 
@@ -912,14 +912,14 @@
             'check valid
             Dim id_prob_in As String = ""
             Dim err_product As String = ""
-            For c As Integer = 0 To GVProbList.RowCount - 1
+            For c As Integer = 0 To GVNoStock.RowCount - 1
                 If c > 0 Then
                     id_prob_in += ","
                 End If
-                If GVProbList.GetRowCellValue(c, "id_design_price_valid") <= 0 Then
-                    err_product += GVProbList.GetRowCellValue(c, "code").ToString + " - " + GVProbList.GetRowCellValue(c, "name").ToString + System.Environment.NewLine
+                If GVNoStock.GetRowCellValue(c, "id_design_price_valid") <= 0 Then
+                    err_product += GVNoStock.GetRowCellValue(c, "code").ToString + " - " + GVNoStock.GetRowCellValue(c, "name").ToString + System.Environment.NewLine
                 End If
-                id_prob_in += GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
+                id_prob_in += GVNoStock.GetRowCellValue(c, "id_sales_pos_prob").ToString
             Next
 
             'cek on process
@@ -940,8 +940,30 @@
                 stopCustom("These product on process reconcile :" + System.Environment.NewLine + err_on_process)
             Else
                 'proses
-                'FormSalesPosPriceRecon.action = "ins"
-                'FormSalesPosPriceRecon.ShowDialog()
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to close this no stock item ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    'head
+                    Dim note As String = ""
+                    Dim query As String = "INSERT INTO tb_sales_pos_oos_recon(created_date, note, id_report_status) 
+                    VALUES(NOW(), '" + note + "',1); SELECT LAST_INSERT_ID(); "
+                    Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
+                    execute_non_query("CALL gen_number(" + id_new + ", 283);", True, "", "", "", "")
+                    'detail
+                    Dim qd As String = "INSERT INTO tb_sales_pos_oos_recon_prob(id_sales_pos_oos_recon,id_sales_pos_prob) VALUES "
+                    For i As Integer = 0 To GVNoStock.RowCount - 1
+                        Dim id_sales_pos_prob As String = GVNoStock.GetRowCellValue(i, "id_sales_pos_prob").ToString
+                        If i > 0 Then
+                            qd += ","
+                        End If
+                        qd += "('" + id_new + "', '" + id_sales_pos_prob + "') "
+                    Next
+                    execute_non_query(qd, True, "", "", "", "")
+                    'open
+                    FormSalesPOSClosingNoStock.id = id_new
+                    FormSalesPOSClosingNoStock.ShowDialog()
+                    Cursor = Cursors.Default
+                End If
             End If
         End If
 

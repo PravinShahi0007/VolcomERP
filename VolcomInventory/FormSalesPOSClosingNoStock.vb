@@ -39,17 +39,20 @@
 
     Sub viewSummary()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT rd.id_sales_pos_oos_recon,rd.id_sales_pos_prob, rd.id_sales_pos, rd.id_comp, sp.sales_pos_number, c.comp_number, c.comp_name,
-        rd.id_product, p.product_full_code As `code`, p.product_display_name As `name`, cd.code_detail_name As `size`,
-        rd.id_design_price, rd.design_price,sp.report_mark_type AS `rmt_inv`
-        FROM tb_sales_pos_oos_recon_det rd
-        INNER JOIN tb_m_product p ON p.id_product = rd.id_product
-        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
-        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
-        INNER JOIN tb_m_comp c ON c.id_comp = rd.id_comp
-        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = rd.id_sales_pos
-        WHERE rd.id_sales_pos_oos_recon='" + id + "'
-        GROUP BY rd.id_sales_pos_prob "
+        Dim query As String = "SELECT prd.id_sales_pos_oos_recon,p.id_sales_pos_prob, sp.id_sales_pos, c.id_comp, sp.sales_pos_number, c.comp_number, c.comp_name,
+        prod.id_product, prod.product_full_code As `code`, prod.product_display_name As `name`, cd.code_detail_name As `size`,
+        p.id_design_price_valid AS `id_design_price`, p.design_price_valid AS `design_price`,sp.report_mark_type AS `rmt_inv`
+        FROM tb_sales_pos_oos_recon_prob prd
+        INNER JOIN tb_sales_pos_prob p ON p.id_sales_pos_prob = prd.id_sales_pos_prob
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
+        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        WHERE prd.id_sales_pos_oos_recon='" + id + "'
+        GROUP BY prd.id_sales_pos_prob "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummary.DataSource = data
         GVSummary.BestFitColumns()
@@ -119,6 +122,12 @@ WHERE rd.id_sales_pos_oos_recon='" + id + "'"
     End Sub
 
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDetail.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVSummary_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSummary.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If

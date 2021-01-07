@@ -2601,7 +2601,6 @@ Partial Class FormSalesPOS
         Me.BtnReconNoStock.Size = New System.Drawing.Size(1113, 41)
         Me.BtnReconNoStock.TabIndex = 11
         Me.BtnReconNoStock.Text = "Closing No Stock"
-        Me.BtnReconNoStock.Visible = False
         '
         'PanelControl8
         '
