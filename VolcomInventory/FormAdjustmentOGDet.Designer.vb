@@ -21,6 +21,8 @@ Partial Class FormAdjustmentOGDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAdjustmentOGDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -50,8 +52,9 @@ Partial Class FormAdjustmentOGDet
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
@@ -62,11 +65,10 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
-        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBViewJournal = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,7 +84,6 @@ Partial Class FormAdjustmentOGDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -110,6 +111,22 @@ Partial Class FormAdjustmentOGDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 173)
         Me.PanelControl1.TabIndex = 0
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(118, 109)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(250, 54)
+        Me.MENote.TabIndex = 17
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(22, 111)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(30, 13)
+        Me.Label8.TabIndex = 16
+        Me.Label8.Text = "Note"
         '
         'TENumber
         '
@@ -349,6 +366,7 @@ Partial Class FormAdjustmentOGDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SBViewJournal)
         Me.PanelControl2.Controls.Add(Me.SBAttachment)
         Me.PanelControl2.Controls.Add(Me.SBPrint)
         Me.PanelControl2.Controls.Add(Me.SBMark)
@@ -360,16 +378,6 @@ Partial Class FormAdjustmentOGDet
         Me.PanelControl2.Size = New System.Drawing.Size(784, 45)
         Me.PanelControl2.TabIndex = 3
         '
-        'SBMark
-        '
-        Me.SBMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SBMark.Image = CType(resources.GetObject("SBMark.Image"), System.Drawing.Image)
-        Me.SBMark.Location = New System.Drawing.Point(2, 2)
-        Me.SBMark.Name = "SBMark"
-        Me.SBMark.Size = New System.Drawing.Size(100, 41)
-        Me.SBMark.TabIndex = 3
-        Me.SBMark.Text = "Mark"
-        '
         'SBAttachment
         '
         Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
@@ -379,6 +387,26 @@ Partial Class FormAdjustmentOGDet
         Me.SBAttachment.Size = New System.Drawing.Size(115, 41)
         Me.SBAttachment.TabIndex = 2
         Me.SBAttachment.Text = "Attachment"
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
+        Me.SBPrint.Location = New System.Drawing.Point(495, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(87, 41)
+        Me.SBPrint.TabIndex = 4
+        Me.SBPrint.Text = "Print"
+        '
+        'SBMark
+        '
+        Me.SBMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBMark.Image = CType(resources.GetObject("SBMark.Image"), System.Drawing.Image)
+        Me.SBMark.Location = New System.Drawing.Point(2, 2)
+        Me.SBMark.Name = "SBMark"
+        Me.SBMark.Size = New System.Drawing.Size(100, 41)
+        Me.SBMark.TabIndex = 3
+        Me.SBMark.Text = "Mark"
         '
         'SBClose
         '
@@ -474,31 +502,15 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 5
         '
-        'Label8
+        'SBViewJournal
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(22, 111)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(30, 13)
-        Me.Label8.TabIndex = 16
-        Me.Label8.Text = "Note"
-        '
-        'MENote
-        '
-        Me.MENote.Location = New System.Drawing.Point(118, 109)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(250, 54)
-        Me.MENote.TabIndex = 17
-        '
-        'SBPrint
-        '
-        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
-        Me.SBPrint.Location = New System.Drawing.Point(495, 2)
-        Me.SBPrint.Name = "SBPrint"
-        Me.SBPrint.Size = New System.Drawing.Size(87, 41)
-        Me.SBPrint.TabIndex = 4
-        Me.SBPrint.Text = "Print"
+        Me.SBViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBViewJournal.Image = CType(resources.GetObject("SBViewJournal.Image"), System.Drawing.Image)
+        Me.SBViewJournal.Location = New System.Drawing.Point(265, 2)
+        Me.SBViewJournal.Name = "SBViewJournal"
+        Me.SBViewJournal.Size = New System.Drawing.Size(115, 41)
+        Me.SBViewJournal.TabIndex = 5
+        Me.SBViewJournal.Text = "View Journal"
         '
         'FormAdjustmentOGDet
         '
@@ -516,6 +528,7 @@ Partial Class FormAdjustmentOGDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -531,7 +544,6 @@ Partial Class FormAdjustmentOGDet
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -581,4 +593,5 @@ Partial Class FormAdjustmentOGDet
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents Label8 As Label
     Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBViewJournal As DevExpress.XtraEditors.SimpleButton
 End Class

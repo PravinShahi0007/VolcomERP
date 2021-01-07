@@ -84,6 +84,12 @@
         If data.Rows(0)("id_report_status").ToString = "5" Then
             SBPrint.Enabled = False
         End If
+
+        SBViewJournal.Visible = False
+
+        If data.Rows(0)("id_report_status").ToString = "6" Then
+            SBViewJournal.Visible = True
+        End If
     End Sub
 
     Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click
@@ -265,6 +271,38 @@
                 WHERE d.id_adjustment = " + id_adjustment
 
             execute_non_query(query, True, "", "", "", "")
+
+            'jurnal
+            'header
+            Dim id_user As String = execute_query("SELECT rm.id_user FROM tb_report_mark rm WHERE rm.report_mark_type = 241 AND rm.id_report = '" + id_adjustment + "' AND rm.id_report_status = 1", 0, True, "", "", "", "")
+
+            Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) VALUES ('', '" + TENumber.EditValue.ToString + "', '0', '" + id_user + "', NOW(), NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+
+            Dim id_acc_trans As String = execute_query(insert_jurnal, 0, True, "", "", "", "")
+
+            execute_non_query("CALL gen_number(" + id_acc_trans + ", 36)", True, "", "", "", "")
+
+            'detail
+            Dim balance_debit As Decimal = 0.00
+            Dim balance_credit As Decimal = 0.00
+
+            For i = 0 To GVList.RowCount - 1
+                If SLUEType.EditValue.ToString = "1" Then
+                    balance_debit += GVList.GetRowCellValue(i, "value")
+                    balance_credit = 0.00
+                Else
+                    balance_debit = 0.00
+                    balance_credit += GVList.GetRowCellValue(i, "value")
+                End If
+            Next
+
+            Dim insert_detail As String = "INSERT INTO tb_a_acc_trans_det (id_acc_trans, id_acc, id_comp, vendor, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number) VALUES "
+
+            insert_detail = insert_detail + "('" + id_acc_trans + "', '3508', '1', '000', " + decimalSQL(balance_credit) + ", " + decimalSQL(balance_debit) + ", '" + SLUEType.Text + " OG', 241, '" + id_adjustment + "', '" + TENumber.EditValue.ToString + "'), "
+
+            insert_detail = insert_detail + "('" + id_acc_trans + "', '475', '1', '000', " + decimalSQL(balance_debit) + ", " + decimalSQL(balance_credit) + ", '" + SLUEType.Text + " OG', 241, '" + id_adjustment + "', '" + TENumber.EditValue.ToString + "')"
+
+            execute_non_query(insert_detail, True, "", "", "", "")
         End If
     End Sub
 
@@ -340,5 +378,28 @@
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
         tool.ShowPreviewDialog()
+    End Sub
+
+    Private Sub SBViewJournal_Click(sender As Object, e As EventArgs) Handles SBViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type = 241 AND ad.id_report = " + id_adjustment + " GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
