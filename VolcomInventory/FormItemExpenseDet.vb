@@ -185,6 +185,9 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
             Dim query As String = e.queryMain("AND e.id_item_expense ='" + id + "' ", "1", False)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+            id_coa_tag = data.Rows(0)("id_coa_tag").ToString
+            SLEUnit.EditValue = id_coa_tag
+
             SLEPayFrom.EditValue = data.Rows(0)("id_acc_from").ToString
             Dim is_pay_later As String = data.Rows(0)("is_pay_later").ToString
             If is_pay_later = "1" Then
