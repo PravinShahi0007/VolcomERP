@@ -5844,9 +5844,21 @@ SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
         FormMain.AlertControlNotif.Show(FormMain, title, content, "", FormMain.LargeImageCollection.Images.Item(25), id_type)
     End Sub
 
-    Sub pushNotifFromDb()
+    Sub pushNotifFromDb(ByVal id_report As String, ByVal rmt As String)
         Dim q As String = ""
-        'Dim dt As DataTable = execute_query(q)
+
+        If rmt = "222" Then
+            q = "SELECT 'Need Debit Note, QC Report Completed' AS title,'FormDebitNote' AS form_name,CONCAT('Need Debit Note, QC Report ',fcs.`number`,' Completed') AS description, nu.id_user , fcs.`number` AS report_number
+FROM tb_notif_user nu
+INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`='" & id_report & "' AND nu.`report_mark_type`='222'"
+        End If
+
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            For i As Integer = 0 To dt.Rows.Count - 1
+                pushNotif(dt.Rows(i)("title").ToString, dt.Rows(i)("description").ToString, dt.Rows(i)("form_name").ToString, dt.Rows(i)("id_user"), id_user, id_report, dt.Rows(i)("report_number").ToString, "1", rmt)
+            Next
+        End If
     End Sub
 
     Sub pushNotif(ByVal notif_title As String, ByVal notif_content As String, ByVal notif_frm_to As String, ByVal id_user_par As String, ByVal id_sender_par As String, ByVal id_report As String, ByVal report_number As String, ByVal notif_tag As String, rmt As String)
@@ -7104,6 +7116,16 @@ SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
             p.id_report = id_report_par
             FormItemCatMappingDet.show_mark = True
             p.show()
+        ElseIf form_par = "FormDebitNote" Then
+            'Debit Note
+            Try
+                FormDebitNote.MdiParent = FormMain
+                FormDebitNote.Show()
+                FormDebitNote.WindowState = FormWindowState.Maximized
+                FormDebitNote.Focus()
+            Catch ex As Exception
+                errorProcess()
+            End Try
         Else
             found = False
             stopCustom("Not found")

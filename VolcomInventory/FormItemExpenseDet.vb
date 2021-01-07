@@ -116,11 +116,13 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
     Sub viewCOAPPH()
         Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, 
         a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
-        FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 AND LEFT(a.acc_name,4)='2111' "
+        FROM tb_a_acc a 
+INNER JOIN `tb_lookup_tax_report` tr ON tr.id_tax_report=a.id_tax_report AND tr.id_type=1
+WHERE a.id_status=1 AND a.id_is_det=2 "
         If id_coa_tag = "1" Then
-            query += " AND id_coa_type='1' "
+            query += " AND a.id_coa_type='1' "
         Else
-            query += " AND id_coa_type='2' "
+            query += " AND a.id_coa_type='2' "
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         RISLECOAPPH.DataSource = Nothing
