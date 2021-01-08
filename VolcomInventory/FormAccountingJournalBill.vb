@@ -394,6 +394,7 @@ WHERE a.id_acc_trans='" & id_trans & "'"
                             Else
                                 report_mark_type_ref = addSlashes(GVJournalDet.GetRowCellValue(i, "report_mark_type_ref").ToString)
                             End If
+                            id_coa_tag = SLEUnit.EditValue.ToString
                             '
                             If Not GVJournalDet.GetRowCellValue(i, "id_acc").ToString = "" Then
                                 If GVJournalDet.GetRowCellValue(i, "id_acc_trans_det").ToString = "" Then
