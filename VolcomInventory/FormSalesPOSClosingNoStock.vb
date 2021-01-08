@@ -64,7 +64,7 @@
         Dim query As String = "Select rd.id_sales_pos_oos_recon_det, rd.id_sales_pos_oos_recon,
 rd.id_sales_pos_prob, rd.id_sales_pos, rd.id_comp, sp.sales_pos_number, c.comp_number, c.comp_name,
 rd.id_product, p.product_full_code As `code`, p.product_display_name As `name`, cd.code_detail_name As `size`, rd.qty,
-rd.id_design_price, rd.design_price,
+rd.id_design_price, rd.design_price, rd.id_oos_final_cat, cat.oos_final_cat,
 rd.id_product_valid, pv.product_full_code As `code_valid`, pv.product_display_name As `name_valid`, cdv.code_detail_name As `size_valid`, rd.qty_valid,
 rd.id_design_price_valid, rd.design_price_valid, rd.note, 
 sp.report_mark_type AS `rmt_inv`
@@ -77,7 +77,8 @@ INNER JOIN tb_m_product_code pcv ON pcv.id_product = pv.id_product
 INNER JOIN tb_m_code_detail cdv ON cdv.id_code_detail = pcv.id_code_detail
 INNER JOIN tb_m_comp c ON c.id_comp = rd.id_comp
 INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = rd.id_sales_pos
-WHERE rd.id_sales_pos_oos_recon='" + id + "'"
+INNER JOIN tb_oos_final_cat cat ON cat.id_oos_final_cat = rd.id_oos_final_cat
+WHERE rd.id_sales_pos_oos_recon='" + id + "' ORDER BY rd.id_sales_pos_oos_recon_det ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
         GVDetail.BestFitColumns()
@@ -168,6 +169,18 @@ WHERE rd.id_sales_pos_oos_recon='" + id + "'"
             FormSalesPOSClosingNoStockDetail.TxtPrice.EditValue = GVSummary.GetFocusedRowCellValue("design_price")
             FormSalesPOSClosingNoStockDetail.ShowDialog()
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub DeleteDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteDetailToolStripMenuItem.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id_det As String = GVDetail.GetFocusedRowCellValue("id_sales_pos_oos_recon_det").ToString
+                Dim query As String = "DELETE FROM tb_sales_pos_oos_recon_det WHERE id_sales_pos_oos_recon_det='" + id_det + "' "
+                execute_non_query(query, True, "", "", "", "")
+                viewDetail()
+            End If
         End If
     End Sub
 End Class
