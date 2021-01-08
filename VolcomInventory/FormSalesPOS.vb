@@ -507,7 +507,7 @@
 
     Sub resetViewNoStockList()
         Cursor = Cursors.WaitCursor
-        GCProbList.DataSource = Nothing
+        GCNoStock.DataSource = Nothing
         Cursor = Cursors.Default
     End Sub
 
@@ -819,6 +819,11 @@
     End Sub
 
     Private Sub LENoStockStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LENoStockStatus.EditValueChanged
+        If LENoStockStatus.EditValue = "1" Then
+            PanelControlClosingNoStock.Visible = True
+        Else
+            PanelControlClosingNoStock.Visible = False
+        End If
         resetViewNoStockList()
     End Sub
 
@@ -976,5 +981,15 @@
         Cursor = Cursors.WaitCursor
         FormSalesProbTransHistory.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CESelectAllNoStock_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAllNoStock.EditValueChanged
+        For i As Integer = 0 To GVNoStock.RowCount - 1
+            If CESelectAllNoStock.EditValue = True Then
+                GVNoStock.SetRowCellValue(i, "is_select", "Yes")
+            Else
+                GVNoStock.SetRowCellValue(i, "is_select", "No")
+            End If
+        Next
     End Sub
 End Class

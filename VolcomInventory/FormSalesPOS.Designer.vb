@@ -253,7 +253,7 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn40 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn41 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlClosingNoStock = New DevExpress.XtraEditors.PanelControl()
         Me.BtnReconNoStock = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelectAllNoStock = New DevExpress.XtraEditors.CheckEdit()
@@ -359,8 +359,8 @@ Partial Class FormSalesPOS
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl6.SuspendLayout()
+        CType(Me.PanelControlClosingNoStock, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlClosingNoStock.SuspendLayout()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl8.SuspendLayout()
         CType(Me.CESelectAllNoStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2060,7 +2060,7 @@ Partial Class FormSalesPOS
         'XTPNoStockList
         '
         Me.XTPNoStockList.Controls.Add(Me.GCNoStock)
-        Me.XTPNoStockList.Controls.Add(Me.PanelControl6)
+        Me.XTPNoStockList.Controls.Add(Me.PanelControlClosingNoStock)
         Me.XTPNoStockList.Controls.Add(Me.PanelControl4)
         Me.XTPNoStockList.Image = CType(resources.GetObject("XTPNoStockList.Image"), System.Drawing.Image)
         Me.XTPNoStockList.Name = "XTPNoStockList"
@@ -2577,15 +2577,16 @@ Partial Class FormSalesPOS
         Me.RepositoryItemTextEdit2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         '
-        'PanelControl6
+        'PanelControlClosingNoStock
         '
-        Me.PanelControl6.Controls.Add(Me.BtnReconNoStock)
-        Me.PanelControl6.Controls.Add(Me.PanelControl8)
-        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl6.Location = New System.Drawing.Point(0, 407)
-        Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(1197, 45)
-        Me.PanelControl6.TabIndex = 5
+        Me.PanelControlClosingNoStock.Controls.Add(Me.BtnReconNoStock)
+        Me.PanelControlClosingNoStock.Controls.Add(Me.PanelControl8)
+        Me.PanelControlClosingNoStock.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControlClosingNoStock.Location = New System.Drawing.Point(0, 407)
+        Me.PanelControlClosingNoStock.Name = "PanelControlClosingNoStock"
+        Me.PanelControlClosingNoStock.Size = New System.Drawing.Size(1197, 45)
+        Me.PanelControlClosingNoStock.TabIndex = 5
+        Me.PanelControlClosingNoStock.Visible = False
         '
         'BtnReconNoStock
         '
@@ -2959,8 +2960,8 @@ Partial Class FormSalesPOS
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl6.ResumeLayout(False)
+        CType(Me.PanelControlClosingNoStock, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlClosingNoStock.ResumeLayout(False)
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl8.ResumeLayout(False)
         CType(Me.CESelectAllNoStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3168,7 +3169,7 @@ Partial Class FormSalesPOS
     Friend WithEvents XTPNoStock As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTCNoStock As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPNoStockList As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControlClosingNoStock As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CESelectAllNoStock As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents BtnReconNoStock As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
