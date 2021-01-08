@@ -420,7 +420,7 @@ LEFT JOIN
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-        print(GCPemakaian, "Report Pemakaian " & "(" & SLEUnit.EditValue.ToString & ")")
+        print(GCPemakaian, "Report Pemakaian " & "(" & SLEUnit.Text & ")")
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
