@@ -19,6 +19,7 @@ Partial Class FormSalesPOSClosingNoStock
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOSClosingNoStock))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
@@ -31,9 +32,9 @@ Partial Class FormSalesPOSClosingNoStock
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreate = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -92,6 +93,9 @@ Partial Class FormSalesPOSClosingNoStock
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.CMSSummary = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,6 +119,7 @@ Partial Class FormSalesPOSClosingNoStock
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDetail.SuspendLayout()
+        Me.CMSSummary.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -232,17 +237,6 @@ Partial Class FormSalesPOSClosingNoStock
         Me.BtnAttachment.Text = "Attachment"
         Me.BtnAttachment.Visible = False
         '
-        'BtnCancell
-        '
-        Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(496, 2)
-        Me.BtnCancell.Name = "BtnCancell"
-        Me.BtnCancell.Size = New System.Drawing.Size(126, 42)
-        Me.BtnCancell.TabIndex = 10
-        Me.BtnCancell.Text = "Cancell Propose"
-        Me.BtnCancell.Visible = False
-        '
         'BtnResetPropose
         '
         Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
@@ -264,6 +258,17 @@ Partial Class FormSalesPOSClosingNoStock
         Me.BtnMark.TabIndex = 2
         Me.BtnMark.Text = "Mark"
         Me.BtnMark.Visible = False
+        '
+        'BtnCancell
+        '
+        Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
+        Me.BtnCancell.Location = New System.Drawing.Point(496, 2)
+        Me.BtnCancell.Name = "BtnCancell"
+        Me.BtnCancell.Size = New System.Drawing.Size(126, 42)
+        Me.BtnCancell.TabIndex = 10
+        Me.BtnCancell.Text = "Cancell Propose"
+        Me.BtnCancell.Visible = False
         '
         'BtnCreate
         '
@@ -593,7 +598,7 @@ Partial Class FormSalesPOSClosingNoStock
         Me.XTPSumary.Controls.Add(Me.GCSummary)
         Me.XTPSumary.Name = "XTPSumary"
         Me.XTPSumary.Size = New System.Drawing.Size(830, 204)
-        Me.XTPSumary.Text = "Selected List"
+        Me.XTPSumary.Text = "No Stock Selected List"
         '
         'GCSummary
         '
@@ -737,6 +742,24 @@ Partial Class FormSalesPOSClosingNoStock
         Me.XTPDetail.Size = New System.Drawing.Size(830, 204)
         Me.XTPDetail.Text = "Closing Detail"
         '
+        'CMSSummary
+        '
+        Me.CMSSummary.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddDetailToolStripMenuItem, Me.DeleteDetailToolStripMenuItem})
+        Me.CMSSummary.Name = "CMSSummary"
+        Me.CMSSummary.Size = New System.Drawing.Size(153, 70)
+        '
+        'AddDetailToolStripMenuItem
+        '
+        Me.AddDetailToolStripMenuItem.Name = "AddDetailToolStripMenuItem"
+        Me.AddDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AddDetailToolStripMenuItem.Text = "Add detail"
+        '
+        'DeleteDetailToolStripMenuItem
+        '
+        Me.DeleteDetailToolStripMenuItem.Name = "DeleteDetailToolStripMenuItem"
+        Me.DeleteDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteDetailToolStripMenuItem.Text = "Delete detail"
+        '
         'FormSalesPOSClosingNoStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -775,6 +798,7 @@ Partial Class FormSalesPOSClosingNoStock
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDetail.ResumeLayout(False)
+        Me.CMSSummary.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -851,4 +875,7 @@ Partial Class FormSalesPOSClosingNoStock
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMSSummary As ContextMenuStrip
+    Friend WithEvents AddDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteDetailToolStripMenuItem As ToolStripMenuItem
 End Class

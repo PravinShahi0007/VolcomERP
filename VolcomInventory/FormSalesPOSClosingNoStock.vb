@@ -90,11 +90,15 @@ WHERE rd.id_sales_pos_oos_recon='" + id + "'"
             BtnCreate.Visible = True
             BtnConfirm.Visible = True
             BtnMark.Visible = False
+            GCSummary.ContextMenuStrip = CMSSummary
+            GCDetail.ContextMenuStrip = CMSSummary
         Else
             MENote.Properties.ReadOnly = True
             BtnCreate.Visible = False
             BtnConfirm.Visible = False
             BtnMark.Visible = True
+            GCSummary.ContextMenuStrip = Nothing
+            GCDetail.ContextMenuStrip = Nothing
         End If
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
@@ -112,6 +116,9 @@ WHERE rd.id_sales_pos_oos_recon='" + id + "'"
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
             BtnResetPropose.Visible = False
+
+            GCSummary.ContextMenuStrip = Nothing
+            GCDetail.ContextMenuStrip = Nothing
         End If
 
         If id_report_status = "-1" Then
@@ -130,6 +137,34 @@ WHERE rd.id_sales_pos_oos_recon='" + id + "'"
     Private Sub GVSummary_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSummary.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub CMSSummary_Opened(sender As Object, e As EventArgs) Handles CMSSummary.Opened
+        If XTCClosing.SelectedTabPageIndex = 0 Then
+            AddDetailToolStripMenuItem.Visible = True
+            DeleteDetailToolStripMenuItem.Visible = False
+        ElseIf XTCClosing.SelectedTabPageIndex = 1 Then
+            AddDetailToolStripMenuItem.Visible = False
+            DeleteDetailToolStripMenuItem.Visible = True
+        End If
+    End Sub
+
+    Private Sub AddDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddDetailToolStripMenuItem.Click
+        If GVSummary.RowCount > 0 And GVSummary.FocusedRowHandle >= 0 And is_confirm = 2 Then
+            Cursor = Cursors.WaitCursor
+            FormSalesPOSClosingNoStockDetail.id = id
+            FormSalesPOSClosingNoStockDetail.id_sales_pos_prob = GVSummary.GetFocusedRowCellValue("id_sales_pos_prob").ToString
+            FormSalesPOSClosingNoStockDetail.id_sales_pos = GVSummary.GetFocusedRowCellValue("id_sales_pos").ToString
+            FormSalesPOSClosingNoStockDetail.LinkInvoice.Text = GVSummary.GetFocusedRowCellValue("sales_pos_number").ToString
+            FormSalesPOSClosingNoStockDetail.id_product = GVSummary.GetFocusedRowCellValue("id_product").ToString
+            FormSalesPOSClosingNoStockDetail.TxtSKU.Text = GVSummary.GetFocusedRowCellValue("code").ToString
+            FormSalesPOSClosingNoStockDetail.TxtName.Text = GVSummary.GetFocusedRowCellValue("name").ToString
+            FormSalesPOSClosingNoStockDetail.TxtSize.Text = GVSummary.GetFocusedRowCellValue("size").ToString
+            FormSalesPOSClosingNoStockDetail.id_design_price = GVSummary.GetFocusedRowCellValue("id_design_price").ToString
+            FormSalesPOSClosingNoStockDetail.TxtPrice.EditValue = GVSummary.GetFocusedRowCellValue("design_price")
+            FormSalesPOSClosingNoStockDetail.ShowDialog()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class
