@@ -746,18 +746,18 @@ Partial Class FormSalesPOSClosingNoStock
         '
         Me.CMSSummary.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddDetailToolStripMenuItem, Me.DeleteDetailToolStripMenuItem})
         Me.CMSSummary.Name = "CMSSummary"
-        Me.CMSSummary.Size = New System.Drawing.Size(153, 70)
+        Me.CMSSummary.Size = New System.Drawing.Size(140, 48)
         '
         'AddDetailToolStripMenuItem
         '
         Me.AddDetailToolStripMenuItem.Name = "AddDetailToolStripMenuItem"
-        Me.AddDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AddDetailToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.AddDetailToolStripMenuItem.Text = "Add detail"
         '
         'DeleteDetailToolStripMenuItem
         '
         Me.DeleteDetailToolStripMenuItem.Name = "DeleteDetailToolStripMenuItem"
-        Me.DeleteDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteDetailToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.DeleteDetailToolStripMenuItem.Text = "Delete detail"
         '
         'FormSalesPOSClosingNoStock
@@ -773,6 +773,7 @@ Partial Class FormSalesPOSClosingNoStock
         Me.Name = "FormSalesPOSClosingNoStock"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Closing No Stock"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()

@@ -27,7 +27,7 @@ Partial Class FormSalesPOSClosingNoStockDetail
         Me.LinkInvoice = New DevExpress.XtraEditors.HyperLinkEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtStore = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtStoreName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtSKU = New DevExpress.XtraEditors.TextEdit()
         Me.TxtName = New DevExpress.XtraEditors.TextEdit()
@@ -57,7 +57,7 @@ Partial Class FormSalesPOSClosingNoStockDetail
         Me.GroupControl2.SuspendLayout()
         CType(Me.LinkInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtStoreName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSKU.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,7 +90,7 @@ Partial Class FormSalesPOSClosingNoStockDetail
         Me.GroupControl1.Controls.Add(Me.TxtName)
         Me.GroupControl1.Controls.Add(Me.LabelControl3)
         Me.GroupControl1.Controls.Add(Me.TxtSKU)
-        Me.GroupControl1.Controls.Add(Me.TextEdit1)
+        Me.GroupControl1.Controls.Add(Me.TxtStoreName)
         Me.GroupControl1.Controls.Add(Me.TxtStore)
         Me.GroupControl1.Controls.Add(Me.LabelControl2)
         Me.GroupControl1.Controls.Add(Me.LinkInvoice)
@@ -155,13 +155,13 @@ Partial Class FormSalesPOSClosingNoStockDetail
         Me.TxtStore.Size = New System.Drawing.Size(61, 20)
         Me.TxtStore.TabIndex = 0
         '
-        'TextEdit1
+        'TxtStoreName
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(293, 29)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(240, 20)
-        Me.TextEdit1.TabIndex = 2
+        Me.TxtStoreName.Location = New System.Drawing.Point(293, 29)
+        Me.TxtStoreName.Name = "TxtStoreName"
+        Me.TxtStoreName.Properties.ReadOnly = True
+        Me.TxtStoreName.Size = New System.Drawing.Size(240, 20)
+        Me.TxtStoreName.TabIndex = 2
         '
         'LabelControl3
         '
@@ -309,7 +309,7 @@ Partial Class FormSalesPOSClosingNoStockDetail
         Me.BtnDiscard.Name = "BtnDiscard"
         Me.BtnDiscard.Size = New System.Drawing.Size(96, 45)
         Me.BtnDiscard.TabIndex = 1
-        Me.BtnDiscard.Text = "Discard"
+        Me.BtnDiscard.Text = "Close"
         '
         'TxtPriceValid
         '
@@ -379,7 +379,7 @@ Partial Class FormSalesPOSClosingNoStockDetail
         Me.GroupControl2.PerformLayout()
         CType(Me.LinkInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtStoreName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSKU.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -405,7 +405,7 @@ Partial Class FormSalesPOSClosingNoStockDetail
     Friend WithEvents TxtName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtSKU As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtStoreName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtStore As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LinkInvoice As DevExpress.XtraEditors.HyperLinkEdit
