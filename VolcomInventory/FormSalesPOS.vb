@@ -115,6 +115,7 @@
         UNION ALL
         SELECT '2' AS `id_stt`, 'Close' AS `stt` "
         viewLookupQuery(LENoStockStatus, query, 0, "stt", "id_stt")
+        viewLookupQuery(LESttNewItem, query, 0, "stt", "id_stt")
         Cursor = Cursors.Default
     End Sub
 
@@ -127,6 +128,7 @@
         WHERE c.id_comp_cat=6 "
         viewSearchLookupQuery(SLEStoreProb, query, "id_comp", "comp", "id_comp")
         viewSearchLookupQuery(SLEStoreNoStock, query, "id_comp", "comp", "id_comp")
+        viewSearchLookupQuery(SLEStoreNewItem, query, "id_comp", "comp", "id_comp")
         Cursor = Cursors.Default
     End Sub
 
@@ -854,8 +856,8 @@
         End If
         'store
         Dim cond_store As String = ""
-        If SLEStoreProb.EditValue.ToString <> "0" Then
-            cond_store = "AND c.id_comp='" + SLEStoreProb.EditValue.ToString + "' "
+        If SLEStoreNoStock.EditValue.ToString <> "0" Then
+            cond_store = "AND c.id_comp='" + SLEStoreNoStock.EditValue.ToString + "' "
         End If
         'period
         Dim cond_period As String = ""
@@ -999,7 +1001,135 @@
 
     Sub viewNewItem()
         Cursor = Cursors.WaitCursor
-
+        'status
+        Dim cond_status As String = ""
+        If LESttNewItem.EditValue.ToString = "1" Then
+            cond_status = "AND (nd.qty_valid<>IFNULL(proc.qty_proceed,0)) "
+        ElseIf LESttNewItem.EditValue.ToString = "2" Then
+            cond_status = "AND (nd.qty_valid=IFNULL(proc.qty_proceed,0)) "
+        End If
+        'store
+        Dim cond_store As String = ""
+        If SLEStoreNoStock.EditValue.ToString <> "0" Then
+            cond_store = "AND c.id_comp='" + SLEStoreNoStock.EditValue.ToString + "' "
+        End If
+        'period
+        Dim cond_period As String = ""
+        If CEPeriodNewItem.EditValue = False Then
+            Dim date_from_selected As String = "0000-01-01"
+            Dim date_until_selected As String = "9999-01-01"
+            Try
+                date_from_selected = DateTime.Parse(DEFromNewItem.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Try
+                date_until_selected = DateTime.Parse(DEUntilNewitem.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            cond_period = "AND (sp.sales_pos_end_period>='" + date_from_selected + "' AND sp.sales_pos_end_period<='" + date_until_selected + "') "
+        End If
+        Dim query As String = "SELECT 'No' AS `is_select`,nd.id_sales_pos_oos_recon_det, nd.id_sales_pos_oos_recon, n.number AS `closing_number`, n.created_date AS `closing_date`,
+        nd.id_product_valid , prod.product_full_code AS `code_valid`,prod.product_name AS `name_valid`, cd.code_detail_name AS `size_valid`, nd.qty_valid,
+        nd.id_design_price_valid, nd.design_price_valid,
+        nd.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, c.comp_number, c.comp_name, cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,
+        nd.id_product, oos_prod.product_full_code AS `code`,oos_prod.product_name AS `name`, oos_cd.code_detail_name AS `size`, nd.qty AS `no_stock_qty`, IFNULL(proc.qty_on_process,0) AS `qty_on_process`,  IFNULL(proc.qty_proceed,0) AS `qty_proceed`
+        FROM tb_sales_pos_oos_recon_det nd
+        INNER JOIN tb_sales_pos_oos_recon n ON n.id_sales_pos_oos_recon = nd.id_sales_pos_oos_recon
+        INNER JOIN tb_m_product prod ON prod.id_product = nd.id_product_valid
+        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        INNER JOIN tb_m_product oos_prod ON oos_prod.id_product = nd.id_product
+        INNER JOIN tb_m_product_code oos_prod_code ON oos_prod_code.id_product = oos_prod.id_product
+        INNER JOIN tb_m_code_detail oos_cd ON oos_cd.id_code_detail = oos_prod_code.id_code_detail
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = nd.id_sales_pos
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        LEFT JOIN (
+	        SELECT spd.id_sales_pos_oos_recon_det,
+	        SUM(IF(sp.id_report_status<5,spd.sales_pos_det_qty,0)) AS `qty_on_process`,
+	        SUM(IF(sp.id_report_status=6,spd.sales_pos_det_qty,0)) AS `qty_proceed` 
+	        FROM tb_sales_pos_det spd
+	        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+	        WHERE !ISNULL(spd.id_sales_pos_oos_recon_det) AND sp.id_report_status!=5
+	        GROUP BY spd.id_sales_pos_oos_recon_det
+        ) proc ON proc.id_sales_pos_oos_recon_det = nd.id_sales_pos_oos_recon_det
+        WHERE n.id_report_status=6 AND nd.id_oos_final_cat=2 " + cond_status + " " + cond_store + " " + cond_period + "
+        ORDER BY nd.id_sales_pos_oos_recon_det ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCNewItem.DataSource = data
+        GVNewItem.BestFitColumns()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CEPeriodNewItem_EditValueChanged(sender As Object, e As EventArgs) Handles CEPeriodNewItem.EditValueChanged
+        If CEPeriodNewItem.EditValue = True Then
+            DEFromNewItem.EditValue = Nothing
+            DEUntilNewitem.EditValue = Nothing
+            DEFromNewItem.Enabled = False
+            DEUntilNewitem.Enabled = False
+        Else
+            DEFromNewItem.EditValue = tgl_sekarang
+            DEUntilNewitem.EditValue = tgl_sekarang
+            DEFromNewItem.Enabled = True
+            DEUntilNewitem.Enabled = True
+            DEFromNewItem.Focus()
+        End If
+    End Sub
+
+    Private Sub BtnPrintNewItem_Click(sender As Object, e As EventArgs) Handles BtnPrintNewItem.Click
+        Cursor = Cursors.WaitCursor
+        print(GCNewItem, LESttNewItem.Text + " Invoice List (Changes Item)")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnHistNewItem_Click(sender As Object, e As EventArgs) Handles BtnHistNewItem.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesProbTransHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub resetViewNewItem()
+        Cursor = Cursors.WaitCursor
+        GCNewItem.DataSource = Nothing
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LENoStockStatus_DragOver(sender As Object, e As DragEventArgs) Handles LENoStockStatus.DragOver
+
+    End Sub
+
+    Sub showCreateInvNewItem()
+        If LESttNewItem.EditValue = "1" And SLEStoreNewItem.EditValue <> "0" Then
+            BtnInvoiceNewitem.Visible = True
+        Else
+            BtnInvoiceNewitem.Visible = False
+        End If
+    End Sub
+
+    Private Sub LESttNewItem_EditValueChanged(sender As Object, e As EventArgs) Handles LESttNewItem.EditValueChanged
+        showCreateInvNewItem()
+        resetViewNewItem()
+    End Sub
+
+    Private Sub SLEStoreNewItem_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreNewItem.EditValueChanged
+        showCreateInvNewItem()
+        resetViewNewItem()
+    End Sub
+
+    Private Sub DEFromNewItem_EditValueChanged(sender As Object, e As EventArgs) Handles DEFromNewItem.EditValueChanged
+        resetViewNewItem()
+    End Sub
+
+    Private Sub DEUntilNewitem_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilNewitem.EditValueChanged
+        resetViewNewItem()
+    End Sub
+
+    Private Sub XTCNoStock_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCNoStock.SelectedPageChanged
+        If XTCNoStock.SelectedTabPageIndex = 1 Then
+            If LESttNewItem.EditValue = Nothing Then
+                LESttNewItem.ItemIndex = LESttNewItem.Properties.GetDataSourceRowIndex("id_stt", "1")
+            End If
+        End If
     End Sub
 End Class
