@@ -992,4 +992,14 @@
             End If
         Next
     End Sub
+
+    Private Sub BtnViewNewItem_Click(sender As Object, e As EventArgs) Handles BtnViewNewItem.Click
+        viewNewItem()
+    End Sub
+
+    Sub viewNewItem()
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
+    End Sub
 End Class
