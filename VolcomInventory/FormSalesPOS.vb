@@ -1101,9 +1101,9 @@
 
     Sub showCreateInvNewItem()
         If LESttNewItem.EditValue = "1" And SLEStoreNewItem.EditValue <> "0" Then
-            BtnInvoiceNewitem.Visible = True
+            PanelControlNewItem.Visible = True
         Else
-            BtnInvoiceNewitem.Visible = False
+            PanelControlNewItem.Visible = False
         End If
     End Sub
 
@@ -1131,5 +1131,15 @@
                 LESttNewItem.ItemIndex = LESttNewItem.Properties.GetDataSourceRowIndex("id_stt", "1")
             End If
         End If
+    End Sub
+
+    Private Sub CESelAllNewItem_EditValueChanged(sender As Object, e As EventArgs) Handles CESelAllNewItem.EditValueChanged
+        For i As Integer = 0 To GVNewItem.RowCount - 1
+            If CESelAllNewItem.EditValue = True Then
+                GVNewItem.SetRowCellValue(i, "is_select", "Yes")
+            Else
+                GVNewItem.SetRowCellValue(i, "is_select", "No")
+            End If
+        Next
     End Sub
 End Class
