@@ -183,4 +183,122 @@ WHERE rd.id_sales_pos_oos_recon='" + id + "' ORDER BY rd.id_sales_pos_oos_recon_
             End If
         End If
     End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        'chek file
+        Dim cond_file As Boolean = False
+        Dim qf As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type='" + rmt + "' AND d.id_report='" + id + "' "
+        Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
+        If df.Rows.Count > 0 Then
+            cond_file = True
+        Else
+            cond_file = False
+        End If
+
+        If Not cond_file Then
+            stopCustom("Please attach document first")
+            showAttach()
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to propose this document ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                saveChangesHead()
+                Dim query As String = "UPDATE tb_sales_pos_oos_recon SET is_confirm=1 WHERE id_sales_pos_oos_recon='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                submit_who_prepared(rmt, id, id_user)
+
+                actionLoad()
+                infoCustom("Propose submitted")
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnCreate_Click(sender As Object, e As EventArgs) Handles BtnCreate.Click
+        Cursor = Cursors.WaitCursor
+        saveChangesHead()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub saveChangesHead()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "UPDATE tb_sales_pos_oos_recon SET note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_pos_oos_recon='" + id + "'"
+        execute_non_query(query, True, "", "", "", "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_sales_pos_oos_recon SET id_report_status=5 WHERE id_sales_pos_oos_recon='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt, id)
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            Try
+                FormSalesProbTransHistory.viewClosingNoStock()
+            Catch ex As Exception
+            End Try
+            actionLoad()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt + " AND rm.id_report_status=3
+        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query_upd As String = "-- delete report mark
+                DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt + " AND id_report=" + id + "; 
+                -- reset confirm
+                UPDATE tb_sales_pos_oos_recon SET is_confirm=2 WHERE id_sales_pos_oos_recon=" + id + "; "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                'refresh
+                Try
+                    FormSalesProbTransHistory.viewClosingNoStock()
+                Catch ex As Exception
+                End Try
+                actionLoad()
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        showAttach()
+    End Sub
+
+    Sub showAttach()
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.id_report = id
+        If is_confirm = "1" Or is_view = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = rmt
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
