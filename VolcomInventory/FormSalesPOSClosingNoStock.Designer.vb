@@ -82,7 +82,7 @@ Partial Class FormSalesPOSClosingNoStock
         Me.GridColumnid_design_price_sum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price_sum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.RepoLinkInvSummary = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -118,7 +118,7 @@ Partial Class FormSalesPOSClosingNoStock
         Me.XTPSumary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkInvSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDetail.SuspendLayout()
         Me.CMSSummary.SuspendLayout()
         Me.SuspendLayout()
@@ -557,7 +557,7 @@ Partial Class FormSalesPOSClosingNoStock
         Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1})
+        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLinkInvSummary})
         Me.GCSummary.Size = New System.Drawing.Size(830, 204)
         Me.GCSummary.TabIndex = 4
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
@@ -641,16 +641,16 @@ Partial Class FormSalesPOSClosingNoStock
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Invoice Ref."
-        Me.GridColumn10.ColumnEdit = Me.RepositoryItemHyperLinkEdit1
+        Me.GridColumn10.ColumnEdit = Me.RepoLinkInvSummary
         Me.GridColumn10.FieldName = "sales_pos_number"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 1
         '
-        'RepositoryItemHyperLinkEdit1
+        'RepoLinkInvSummary
         '
-        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
+        Me.RepoLinkInvSummary.AutoHeight = False
+        Me.RepoLinkInvSummary.Name = "RepoLinkInvSummary"
         '
         'GridColumn11
         '
@@ -806,7 +806,7 @@ Partial Class FormSalesPOSClosingNoStock
         Me.XTPSumary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkInvSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDetail.ResumeLayout(False)
         Me.CMSSummary.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -875,7 +875,7 @@ Partial Class FormSalesPOSClosingNoStock
     Friend WithEvents GridColumnid_design_price_sum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndesign_price_sum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents RepoLinkInvSummary As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn

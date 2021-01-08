@@ -118,6 +118,11 @@ WHERE rd.id_sales_pos_oos_recon='" + id + "' ORDER BY rd.id_sales_pos_oos_recon_
             BtnCancell.Visible = False
             BtnResetPropose.Visible = False
 
+            'non aktif
+            MENote.Properties.ReadOnly = True
+            BtnCreate.Visible = False
+            BtnConfirm.Visible = False
+            BtnMark.Visible = True
             GCSummary.ContextMenuStrip = Nothing
             GCDetail.ContextMenuStrip = Nothing
         End If
@@ -281,7 +286,7 @@ WHERE rd.id_sales_pos_oos_recon='" + id + "' ORDER BY rd.id_sales_pos_oos_recon_
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.id_report = id
-        If is_confirm = "1" Or is_view = "1" Then
+        If is_confirm = "1" Or is_view = "1" Or id_report_status = 5 Then
             FormDocumentUpload.is_view = "1"
         End If
         FormDocumentUpload.ShowDialog()
@@ -300,5 +305,25 @@ WHERE rd.id_sales_pos_oos_recon='" + id + "' ORDER BY rd.id_sales_pos_oos_recon_
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoLinkInvoice_Click(sender As Object, e As EventArgs) Handles RepoLinkInvoice.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
+            showRef(GVDetail.GetFocusedRowCellValue("id_sales_pos").ToString)
+        End If
+    End Sub
+
+    Sub showRef(ByVal id_inv As String)
+        Cursor = Cursors.WaitCursor
+        Dim inv As New FormViewSalesPOS()
+        inv.id_sales_pos = id_inv
+        inv.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoLinkInvSummary_Click(sender As Object, e As EventArgs) Handles RepoLinkInvSummary.Click
+        If GVSummary.RowCount > 0 And GVSummary.FocusedRowHandle >= 0 Then
+            showRef(GVSummary.GetFocusedRowCellValue("id_sales_pos").ToString)
+        End If
     End Sub
 End Class
