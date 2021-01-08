@@ -6157,7 +6157,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     INNER JOIN  tb_item_expense_det ed ON ed.id_item_expense = e.id_item_expense
                     WHERE e.id_item_expense=" + id_report + "
                     UNION ALL
-                    SELECT " + id_acc_trans + ", o.acc_coa_vat_in, e.id_comp  AS id_vendor, e.vat_total AS `debit`, 0 AS `credit`, e.note AS description, 157, e.id_item_expense, e.`number`,1
+                    SELECT " + id_acc_trans + ", IF(e.id_coa_tag=1,o.acc_coa_vat_in,o.acc_coa_vat_in_cabang), e.id_comp  AS id_vendor, e.vat_total AS `debit`, 0 AS `credit`, e.note AS description, 157, e.id_item_expense, e.`number`,1
                     ,e.inv_number,e.id_coa_tag
                     FROM tb_item_expense e
                     JOIN tb_opt_purchasing o
@@ -7651,6 +7651,7 @@ GROUP BY pn.id_pn_fgpo"
             If id_status_reportx = "6" Then
                 FormEmpPayroll.insert_expense(id_report)
                 FormEmpPayroll.insert_jurnal(id_report)
+                FormEmpPayroll.insert_jurnal_toko(id_report)
                 FormEmpPayroll.remaining_leave(id_report)
             End If
 
@@ -7988,6 +7989,7 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
             'summary qc report
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+                pushNotifFromDb(id_report, report_mark_type)
             End If
 
             'update
@@ -9950,28 +9952,28 @@ WHERE pps.id_additional_cost_pps='" & id_report & "'"
         Dim dt As DataTable = get_who_prepared(report_mark_type, id_report)
         If report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Or report_mark_type = "206" Then
             pushNotif("Production Demand", "Document #" + report_number + " is " + type, "FormProdDemand", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
-        ElseIf report_mark_type = "11" Then
-            pushNotif("Sample Requisition", "Document #" + report_number + " is " + type + " by " + get_user_identify(dt.Rows(0)("id_user"), "1") + ".", "FormSampleReq", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
-        ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
-            pushNotif("Receiving QC", "Document #" + report_number + " is " + type + " by " + get_user_identify(id_user, "1") + ".", "FormProductionRec", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
-        ElseIf report_mark_type = "31" Then
-            pushNotif("Return Out", "Document #" + report_number + " is " + type, "FormProductionRet", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
-        ElseIf report_mark_type = "32" Then
-            pushNotif("Return In", "Document #" + report_number + " is " + type, "FormProductionRet", dt.Rows(0)("id_user"), id_user, id_report, report_number, "2", report_mark_type)
-        ElseIf report_mark_type = "33" Then
-            pushNotif("Packing List", "Document #" + report_number + " is " + type, "FormProductionPLToWH", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
-        ElseIf report_mark_type = "37" Then
-            pushNotif("Received FG in Warehouse", "Document #" + report_number + " is " + type, "FormProductionPLToWHRec", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
-        ElseIf report_mark_type = "45" Then
-            pushNotif("Return Order", "Document #" + report_number + " is " + type, "FormSalesReturnOrder", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
-        ElseIf report_mark_type = "46" Then
-            pushNotif("Return", "Document #" + report_number + " is " + type, "FormSalesReturn", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
-        ElseIf report_mark_type = "49" Or report_mark_type = "106" Then
-            pushNotif("Return QC", "Document #" + report_number + " is " + type, "FormSalesReturnQC", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
+            'ElseIf report_mark_type = "11" Then
+            '    pushNotif("Sample Requisition", "Document #" + report_number + " is " + type + " by " + get_user_identify(dt.Rows(0)("id_user"), "1") + ".", "FormSampleReq", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
+            'ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
+            '    pushNotif("Receiving QC", "Document #" + report_number + " is " + type + " by " + get_user_identify(id_user, "1") + ".", "FormProductionRec", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
+            'ElseIf report_mark_type = "31" Then
+            '    pushNotif("Return Out", "Document #" + report_number + " is " + type, "FormProductionRet", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
+            'ElseIf report_mark_type = "32" Then
+            '    pushNotif("Return In", "Document #" + report_number + " is " + type, "FormProductionRet", dt.Rows(0)("id_user"), id_user, id_report, report_number, "2", report_mark_type)
+            'ElseIf report_mark_type = "33" Then
+            '    pushNotif("Packing List", "Document #" + report_number + " is " + type, "FormProductionPLToWH", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
+            'ElseIf report_mark_type = "37" Then
+            '    pushNotif("Received FG in Warehouse", "Document #" + report_number + " is " + type, "FormProductionPLToWHRec", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
+            'ElseIf report_mark_type = "45" Then
+            '    pushNotif("Return Order", "Document #" + report_number + " is " + type, "FormSalesReturnOrder", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
+            'ElseIf report_mark_type = "46" Then
+            '    pushNotif("Return", "Document #" + report_number + " is " + type, "FormSalesReturn", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
+            'ElseIf report_mark_type = "49" Or report_mark_type = "106" Then
+            '    pushNotif("Return QC", "Document #" + report_number + " is " + type, "FormSalesReturnQC", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "82" Then
             pushNotif("Product Price From Excel", "Document #" + report_number + " is " + type, "FormMasterPrice", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
-        ElseIf report_mark_type = "85" Then
-            pushNotif("Packing List Sampple", "Document #" + report_number + " " + type, "FormSamplePLToWH", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
+            'ElseIf report_mark_type = "85" Then
+            '    pushNotif("Packing List Sampple", "Document #" + report_number + " " + type, "FormSamplePLToWH", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "86" Then
             pushNotif("Sample Price From Excel", "Document #" + report_number + " is " + type, "FormMasterPriceSample", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "87" Then
