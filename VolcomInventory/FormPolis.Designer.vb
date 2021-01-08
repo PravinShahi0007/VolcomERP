@@ -25,13 +25,13 @@ Partial Class FormPolis
         Me.GCPolis = New DevExpress.XtraGrid.GridControl()
         Me.GVPolis = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCPolis, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,6 +82,19 @@ Partial Class FormPolis
         Me.GridColumn1.FieldName = "id_polis"
         Me.GridColumn1.Name = "GridColumn1"
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.Caption = "Category"
+        Me.GridColumn9.FieldName = "polis_cat"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        Me.GridColumn9.Width = 129
+        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Store / Entity"
@@ -118,28 +131,6 @@ Partial Class FormPolis
         Me.GridColumn5.VisibleIndex = 4
         Me.GridColumn5.Width = 142
         '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Status"
-        Me.GridColumn8.FieldName = "status"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
-        Me.GridColumn8.Width = 152
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn9.Caption = "Category"
-        Me.GridColumn9.FieldName = "polis_cat"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 0
-        Me.GridColumn9.Width = 129
-        '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Polis By"
@@ -148,6 +139,15 @@ Partial Class FormPolis
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
         Me.GridColumn6.Width = 142
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Status"
+        Me.GridColumn8.FieldName = "status"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.Width = 152
         '
         'FormPolis
         '
