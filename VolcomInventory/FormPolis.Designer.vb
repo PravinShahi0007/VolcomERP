@@ -159,7 +159,7 @@ Partial Class FormPolis
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPolis"
-        Me.Text = "Polis Asuransi"
+        Me.Text = "List Polis"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCPolis, System.ComponentModel.ISupportInitialize).EndInit()

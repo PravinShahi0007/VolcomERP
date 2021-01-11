@@ -30,10 +30,10 @@ Partial Class FormPolisDet
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
-        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XBefore = New DevExpress.XtraTab.XtraTabPage()
+        Me.XAfter = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -160,35 +160,35 @@ Partial Class FormPolisDet
         Me.PanelControl2.Size = New System.Drawing.Size(915, 114)
         Me.PanelControl2.TabIndex = 8
         '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(32, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Object"
+        '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 114)
         Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
+        Me.XtraTabControl1.SelectedTabPage = Me.XBefore
         Me.XtraTabControl1.Size = New System.Drawing.Size(915, 373)
         Me.XtraTabControl1.TabIndex = 9
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XBefore, Me.XAfter})
         '
-        'XtraTabPage1
+        'XBefore
         '
-        Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(909, 345)
-        Me.XtraTabPage1.Text = "XtraTabPage1"
+        Me.XBefore.Name = "XBefore"
+        Me.XBefore.Size = New System.Drawing.Size(909, 345)
+        Me.XBefore.Text = "Before"
         '
-        'XtraTabPage2
+        'XAfter
         '
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(294, 272)
-        Me.XtraTabPage2.Text = "XtraTabPage2"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 12)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(66, 13)
-        Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "LabelControl1"
+        Me.XAfter.Name = "XAfter"
+        Me.XAfter.Size = New System.Drawing.Size(909, 345)
+        Me.XAfter.Text = "After"
         '
         'FormPolisDet
         '
@@ -224,7 +224,7 @@ Partial Class FormPolisDet
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XBefore As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XAfter As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class
