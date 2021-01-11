@@ -1,5 +1,6 @@
 ﻿Public Class FormCompareStockWebsite
     Public id_last_sync As String = "-1"
+    Dim id_log_selected As String = "-1"
     Private Sub FormCompareStockWebsite_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
         getLastSync()
@@ -26,10 +27,6 @@ FROM tb_log_compare_shopify c ORDER BY c.sync_date DESC LIMIT 1 "
 
     Private Sub FormCompareStockWebsite_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
-    End Sub
-
-    Sub print()
-        print_raw(GridControlStock, "")
     End Sub
 
     Private Sub SBSync_Click(sender As Object, e As EventArgs) Handles SBSync.Click
@@ -59,12 +56,18 @@ FROM tb_log_compare_shopify c ORDER BY c.sync_date DESC LIMIT 1 "
 
     Sub viewCompare(ByVal id_log As String)
         Cursor = Cursors.WaitCursor
+        id_log_selected = id_log
         Dim query As String = "CALL view_stock_compare_erp_shopify(" + id_log + ")"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GridControlStock.DataSource = data
         GridViewStock.BestFitColumns()
+        If data.Rows.Count > 0 Then
+            GroupControlView.Text = "Sync Date : " + DateTime.Parse(data.Rows(0)("sync_date")).ToString("dd MMMM yyyy HH:mm:ss")
+        Else
+            GroupControlView.Text = "Sync Date : -"
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -131,6 +134,23 @@ FROM tb_log_compare_shopify c ORDER BY c.sync_date DESC LIMIT 1 "
     Private Sub BtnHistory_Click(sender As Object, e As EventArgs) Handles BtnHistory.Click
         Cursor = Cursors.WaitCursor
         FormCompareStockWebHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewBook_Click(sender As Object, e As EventArgs) Handles BtnViewBook.Click
+        Cursor = Cursors.Default
+        FormCompareStockWebsiteDetailBook.id_log = id_log_selected
+        FormCompareStockWebsiteDetailBook.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+        print_compare()
+    End Sub
+
+    Sub print_compare()
+        Cursor = Cursors.WaitCursor
+        print(GridControlStock, "Compare Stock ERP & Shopify - " + GroupControlView.Text)
         Cursor = Cursors.Default
     End Sub
 End Class

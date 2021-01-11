@@ -25,8 +25,9 @@ Partial Class FormCompareStockWebsite
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SBExport = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewBook = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControlStock = New DevExpress.XtraGrid.GridControl()
         Me.GridViewStock = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -44,7 +45,7 @@ Partial Class FormCompareStockWebsite
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControlView = New DevExpress.XtraEditors.GroupControl()
-        Me.BtnViewBook = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GridControlStock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,12 +56,14 @@ Partial Class FormCompareStockWebsite
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
         Me.PanelControl1.Controls.Add(Me.LabelLast)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.SBExport)
-        Me.PanelControl1.Controls.Add(Me.SBSync)
         Me.PanelControl1.Controls.Add(Me.BtnHistory)
+        Me.PanelControl1.Controls.Add(Me.BtnViewBook)
+        Me.PanelControl1.Controls.Add(Me.SBSync)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
@@ -99,21 +102,11 @@ Partial Class FormCompareStockWebsite
         '
         Me.SBExport.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBExport.Image = CType(resources.GetObject("SBExport.Image"), System.Drawing.Image)
-        Me.SBExport.Location = New System.Drawing.Point(551, 2)
+        Me.SBExport.Location = New System.Drawing.Point(444, 2)
         Me.SBExport.Name = "SBExport"
         Me.SBExport.Size = New System.Drawing.Size(94, 36)
         Me.SBExport.TabIndex = 1
         Me.SBExport.Text = "Export XLS"
-        '
-        'SBSync
-        '
-        Me.SBSync.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBSync.Image = CType(resources.GetObject("SBSync.Image"), System.Drawing.Image)
-        Me.SBSync.Location = New System.Drawing.Point(645, 2)
-        Me.SBSync.Name = "SBSync"
-        Me.SBSync.Size = New System.Drawing.Size(137, 36)
-        Me.SBSync.TabIndex = 0
-        Me.SBSync.Text = "Sync From Website"
         '
         'BtnHistory
         '
@@ -125,13 +118,36 @@ Partial Class FormCompareStockWebsite
         Me.BtnHistory.TabIndex = 5
         Me.BtnHistory.Text = "History"
         '
+        'BtnViewBook
+        '
+        Me.BtnViewBook.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnViewBook.Appearance.Options.UseFont = True
+        Me.BtnViewBook.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewBook.Image = CType(resources.GetObject("BtnViewBook.Image"), System.Drawing.Image)
+        Me.BtnViewBook.Location = New System.Drawing.Point(538, 2)
+        Me.BtnViewBook.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.BtnViewBook.Name = "BtnViewBook"
+        Me.BtnViewBook.Size = New System.Drawing.Size(107, 36)
+        Me.BtnViewBook.TabIndex = 2
+        Me.BtnViewBook.Text = "Booked Detail"
+        '
+        'SBSync
+        '
+        Me.SBSync.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSync.Image = CType(resources.GetObject("SBSync.Image"), System.Drawing.Image)
+        Me.SBSync.Location = New System.Drawing.Point(645, 2)
+        Me.SBSync.Name = "SBSync"
+        Me.SBSync.Size = New System.Drawing.Size(137, 36)
+        Me.SBSync.TabIndex = 0
+        Me.SBSync.Text = "Sync From Website"
+        '
         'GridControlStock
         '
         Me.GridControlStock.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GridControlStock.Location = New System.Drawing.Point(2, 24)
         Me.GridControlStock.MainView = Me.GridViewStock
         Me.GridControlStock.Name = "GridControlStock"
-        Me.GridControlStock.Size = New System.Drawing.Size(780, 472)
+        Me.GridControlStock.Size = New System.Drawing.Size(780, 495)
         Me.GridControlStock.TabIndex = 1
         Me.GridControlStock.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewStock})
         '
@@ -276,22 +292,22 @@ Partial Class FormCompareStockWebsite
         Me.GroupControlView.AppearanceCaption.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupControlView.AppearanceCaption.Options.UseFont = True
         Me.GroupControlView.Controls.Add(Me.GridControlStock)
-        Me.GroupControlView.Controls.Add(Me.BtnViewBook)
         Me.GroupControlView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlView.Location = New System.Drawing.Point(0, 40)
         Me.GroupControlView.Name = "GroupControlView"
         Me.GroupControlView.Size = New System.Drawing.Size(784, 521)
         Me.GroupControlView.TabIndex = 2
-        Me.GroupControlView.Text = "Sync Date : 11 Januari 2021 "
+        Me.GroupControlView.Text = "Sync Date : -"
         '
-        'BtnViewBook
+        'SimpleButton2
         '
-        Me.BtnViewBook.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnViewBook.Location = New System.Drawing.Point(2, 496)
-        Me.BtnViewBook.Name = "BtnViewBook"
-        Me.BtnViewBook.Size = New System.Drawing.Size(780, 23)
-        Me.BtnViewBook.TabIndex = 2
-        Me.BtnViewBook.Text = "View Detail Booked Stock"
+        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
+        Me.SimpleButton2.Location = New System.Drawing.Point(381, 2)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(63, 36)
+        Me.SimpleButton2.TabIndex = 6
+        Me.SimpleButton2.Text = "Print"
         '
         'FormCompareStockWebsite
         '
@@ -339,4 +355,5 @@ Partial Class FormCompareStockWebsite
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GroupControlView As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BtnViewBook As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
 End Class

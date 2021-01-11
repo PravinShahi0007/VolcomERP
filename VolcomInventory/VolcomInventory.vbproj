@@ -1043,6 +1043,12 @@
     <Compile Include="FormCompareStockWebsite.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCompareStockWebsiteDetailBook.Designer.vb">
+      <DependentUpon>FormCompareStockWebsiteDetailBook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompareStockWebsiteDetailBook.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCustomDialog.Designer.vb">
       <DependentUpon>FormCustomDialog.vb</DependentUpon>
     </Compile>
@@ -9567,6 +9573,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCompareStockWebsite.resx">
       <DependentUpon>FormCompareStockWebsite.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCompareStockWebsiteDetailBook.resx">
+      <DependentUpon>FormCompareStockWebsiteDetailBook.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCustomDialog.resx">
       <DependentUpon>FormCustomDialog.vb</DependentUpon>
