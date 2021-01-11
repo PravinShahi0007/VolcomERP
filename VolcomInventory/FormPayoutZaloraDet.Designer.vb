@@ -80,6 +80,7 @@ Partial Class FormPayoutZaloraDet
         Me.GridColumnid_ref = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrmt_ref = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoLinkReference = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumnamo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_acc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumacc_name = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -92,18 +93,23 @@ Partial Class FormPayoutZaloraDet
         Me.CMSDetail = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ManualReconToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBandAction = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnis_select = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnorder_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnol_store_id = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnitem_id = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnzalora_sku = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnzalora_product_name = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnorder_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntransaction_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntransaction_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnpayout_zalora_cat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnamount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncomment = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnproduct_name = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsize = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -119,6 +125,7 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnacc_description = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnis_manual_recon_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmanual_recon_reason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnresult_note = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_payout_zalora_det = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_payout_zalora = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -140,13 +147,6 @@ Partial Class FormPayoutZaloraDet
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXls = New DevExpress.XtraEditors.SimpleButton()
-        Me.BandedGridColumnpayout_zalora_cat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandAction = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.RepoLinkReference = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,6 +183,7 @@ Partial Class FormPayoutZaloraDet
         CType(Me.GCERPPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMSERPPay.SuspendLayout()
         CType(Me.GVERPPay, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkReference, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMSDetail.SuspendLayout()
@@ -196,7 +197,6 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlDetail.SuspendLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoLinkReference, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -732,7 +732,6 @@ Partial Class FormPayoutZaloraDet
         Me.GVERPPay.Name = "GVERPPay"
         Me.GVERPPay.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVERPPay.OptionsBehavior.ReadOnly = True
-        Me.GVERPPay.OptionsCustomization.AllowFilter = False
         Me.GVERPPay.OptionsCustomization.AllowGroup = False
         Me.GVERPPay.OptionsCustomization.AllowSort = False
         Me.GVERPPay.OptionsSelection.EnableAppearanceFocusedRow = False
@@ -786,6 +785,11 @@ Partial Class FormPayoutZaloraDet
         Me.GridColumnref.Name = "GridColumnref"
         Me.GridColumnref.Visible = True
         Me.GridColumnref.VisibleIndex = 2
+        '
+        'RepoLinkReference
+        '
+        Me.RepoLinkReference.AutoHeight = False
+        Me.RepoLinkReference.Name = "RepoLinkReference"
         '
         'GridColumnamo
         '
@@ -886,6 +890,15 @@ Partial Class FormPayoutZaloraDet
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
+        'gridBandAction
+        '
+        Me.gridBandAction.Columns.Add(Me.BandedGridColumnis_select)
+        Me.gridBandAction.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBandAction.Name = "gridBandAction"
+        Me.gridBandAction.Visible = False
+        Me.gridBandAction.VisibleIndex = -1
+        Me.gridBandAction.Width = 75
+        '
         'BandedGridColumnis_select
         '
         Me.BandedGridColumnis_select.Caption = "Select"
@@ -900,6 +913,17 @@ Partial Class FormPayoutZaloraDet
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "ORDER INFO"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnorder_number)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnol_store_id)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnitem_id)
+        Me.gridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 0
+        Me.gridBand2.Width = 216
         '
         'BandedGridColumnorder_number
         '
@@ -927,6 +951,21 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnitem_id.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnitem_id.Visible = True
         Me.BandedGridColumnitem_id.Width = 72
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "ZALORA"
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnzalora_sku)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnzalora_product_name)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnorder_status)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumntransaction_date)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumntransaction_type)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnpayout_zalora_cat)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnamount)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumncomment)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 1
+        Me.GridBand1.Width = 586
         '
         'BandedGridColumnzalora_sku
         '
@@ -971,6 +1010,13 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumntransaction_type.Visible = True
         Me.BandedGridColumntransaction_type.Width = 72
         '
+        'BandedGridColumnpayout_zalora_cat
+        '
+        Me.BandedGridColumnpayout_zalora_cat.Caption = "Trans. Category"
+        Me.BandedGridColumnpayout_zalora_cat.FieldName = "payout_zalora_cat"
+        Me.BandedGridColumnpayout_zalora_cat.Name = "BandedGridColumnpayout_zalora_cat"
+        Me.BandedGridColumnpayout_zalora_cat.Visible = True
+        '
         'BandedGridColumnamount
         '
         Me.BandedGridColumnamount.Caption = "Amount"
@@ -991,6 +1037,26 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumncomment.OptionsColumn.ReadOnly = True
         Me.BandedGridColumncomment.Visible = True
         Me.BandedGridColumncomment.Width = 73
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "ERP"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumncode)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnproduct_name)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnsize)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnerp_status)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumninvoice_number)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumncn_number)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnnote_unfulfilled)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnoos_number)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnerp_amount)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnacc_name)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnacc_description)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnis_manual_recon_view)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnmanual_recon_reason)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 1166
         '
         'BandedGridColumncode
         '
@@ -1115,6 +1181,14 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnmanual_recon_reason.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnmanual_recon_reason.Visible = True
         Me.BandedGridColumnmanual_recon_reason.Width = 99
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "RESULT"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnresult_note)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 75
         '
         'BandedGridColumnresult_note
         '
@@ -1304,81 +1378,6 @@ Partial Class FormPayoutZaloraDet
         Me.BtnImportXls.TabIndex = 0
         Me.BtnImportXls.Text = "Import XLS File"
         '
-        'BandedGridColumnpayout_zalora_cat
-        '
-        Me.BandedGridColumnpayout_zalora_cat.Caption = "Trans. Category"
-        Me.BandedGridColumnpayout_zalora_cat.FieldName = "payout_zalora_cat"
-        Me.BandedGridColumnpayout_zalora_cat.Name = "BandedGridColumnpayout_zalora_cat"
-        Me.BandedGridColumnpayout_zalora_cat.Visible = True
-        '
-        'gridBandAction
-        '
-        Me.gridBandAction.Columns.Add(Me.BandedGridColumnis_select)
-        Me.gridBandAction.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.gridBandAction.Name = "gridBandAction"
-        Me.gridBandAction.Visible = False
-        Me.gridBandAction.VisibleIndex = -1
-        Me.gridBandAction.Width = 75
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "ORDER INFO"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnorder_number)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnol_store_id)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnitem_id)
-        Me.gridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 216
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "ZALORA"
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnzalora_sku)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnzalora_product_name)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnorder_status)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumntransaction_date)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumntransaction_type)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnpayout_zalora_cat)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnamount)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumncomment)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 586
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "ERP"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumncode)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnproduct_name)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnsize)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnerp_status)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumninvoice_number)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumncn_number)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnnote_unfulfilled)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnoos_number)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnerp_amount)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnacc_name)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnacc_description)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnis_manual_recon_view)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnmanual_recon_reason)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 1166
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "RESULT"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnresult_note)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
-        Me.gridBand4.Width = 75
-        '
-        'RepoLinkReference
-        '
-        Me.RepoLinkReference.AutoHeight = False
-        Me.RepoLinkReference.Name = "RepoLinkReference"
-        '
         'FormPayoutZaloraDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1430,6 +1429,7 @@ Partial Class FormPayoutZaloraDet
         CType(Me.GCERPPay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMSERPPay.ResumeLayout(False)
         CType(Me.GVERPPay, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkReference, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMSDetail.ResumeLayout(False)
@@ -1444,7 +1444,6 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlDetail.PerformLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoLinkReference, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
