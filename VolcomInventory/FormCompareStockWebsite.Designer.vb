@@ -21,33 +21,49 @@ Partial Class FormCompareStockWebsite
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormCompareStockWebsite))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelLast = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SBExport = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewBook = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControlStock = New DevExpress.XtraGrid.GridControl()
-        Me.GridViewStock = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridViewStock = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_web_open = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_web_all = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GroupControlView = New DevExpress.XtraEditors.GroupControl()
+        Me.BandedGridColumndiff_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GridControlStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewStock, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControlView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControlView.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
         Me.PanelControl1.Controls.Add(Me.LabelLast)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.SBExport)
+        Me.PanelControl1.Controls.Add(Me.BtnHistory)
+        Me.PanelControl1.Controls.Add(Me.BtnViewBook)
         Me.PanelControl1.Controls.Add(Me.SBSync)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -55,10 +71,20 @@ Partial Class FormCompareStockWebsite
         Me.PanelControl1.Size = New System.Drawing.Size(784, 40)
         Me.PanelControl1.TabIndex = 0
         '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
+        Me.SimpleButton2.Location = New System.Drawing.Point(381, 2)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(63, 36)
+        Me.SimpleButton2.TabIndex = 6
+        Me.SimpleButton2.Text = "Print"
+        '
         'LabelLast
         '
         Me.LabelLast.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelLast.Location = New System.Drawing.Point(197, 13)
+        Me.LabelLast.Location = New System.Drawing.Point(287, 12)
         Me.LabelLast.Name = "LabelLast"
         Me.LabelLast.Size = New System.Drawing.Size(5, 13)
         Me.LabelLast.TabIndex = 4
@@ -67,7 +93,7 @@ Partial Class FormCompareStockWebsite
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(135, 13)
+        Me.LabelControl1.Location = New System.Drawing.Point(227, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(56, 13)
         Me.LabelControl1.TabIndex = 3
@@ -77,7 +103,7 @@ Partial Class FormCompareStockWebsite
         '
         Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
         Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(2, 2)
+        Me.SimpleButton1.Location = New System.Drawing.Point(94, 2)
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(127, 36)
         Me.SimpleButton1.TabIndex = 2
@@ -87,11 +113,34 @@ Partial Class FormCompareStockWebsite
         '
         Me.SBExport.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBExport.Image = CType(resources.GetObject("SBExport.Image"), System.Drawing.Image)
-        Me.SBExport.Location = New System.Drawing.Point(551, 2)
+        Me.SBExport.Location = New System.Drawing.Point(444, 2)
         Me.SBExport.Name = "SBExport"
         Me.SBExport.Size = New System.Drawing.Size(94, 36)
         Me.SBExport.TabIndex = 1
         Me.SBExport.Text = "Export XLS"
+        '
+        'BtnHistory
+        '
+        Me.BtnHistory.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnHistory.Image = CType(resources.GetObject("BtnHistory.Image"), System.Drawing.Image)
+        Me.BtnHistory.Location = New System.Drawing.Point(2, 2)
+        Me.BtnHistory.Name = "BtnHistory"
+        Me.BtnHistory.Size = New System.Drawing.Size(92, 36)
+        Me.BtnHistory.TabIndex = 5
+        Me.BtnHistory.Text = "History"
+        '
+        'BtnViewBook
+        '
+        Me.BtnViewBook.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnViewBook.Appearance.Options.UseFont = True
+        Me.BtnViewBook.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewBook.Image = CType(resources.GetObject("BtnViewBook.Image"), System.Drawing.Image)
+        Me.BtnViewBook.Location = New System.Drawing.Point(538, 2)
+        Me.BtnViewBook.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.BtnViewBook.Name = "BtnViewBook"
+        Me.BtnViewBook.Size = New System.Drawing.Size(107, 36)
+        Me.BtnViewBook.TabIndex = 2
+        Me.BtnViewBook.Text = "Booked Detail"
         '
         'SBSync
         '
@@ -106,16 +155,17 @@ Partial Class FormCompareStockWebsite
         'GridControlStock
         '
         Me.GridControlStock.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControlStock.Location = New System.Drawing.Point(0, 40)
+        Me.GridControlStock.Location = New System.Drawing.Point(2, 24)
         Me.GridControlStock.MainView = Me.GridViewStock
         Me.GridControlStock.Name = "GridControlStock"
-        Me.GridControlStock.Size = New System.Drawing.Size(784, 521)
+        Me.GridControlStock.Size = New System.Drawing.Size(780, 495)
         Me.GridControlStock.TabIndex = 1
         Me.GridControlStock.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewStock})
         '
         'GridViewStock
         '
-        Me.GridViewStock.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
+        Me.GridViewStock.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4})
+        Me.GridViewStock.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.BandedGridColumnqty_web_open, Me.BandedGridColumnqty_web_all, Me.BandedGridColumndiff_qty})
         Me.GridViewStock.GridControl = Me.GridControlStock
         Me.GridViewStock.Name = "GridViewStock"
         Me.GridViewStock.OptionsBehavior.ReadOnly = True
@@ -129,7 +179,6 @@ Partial Class FormCompareStockWebsite
         Me.GridColumn1.FieldName = "product_full_code"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
         '
         'GridColumn2
         '
@@ -137,7 +186,6 @@ Partial Class FormCompareStockWebsite
         Me.GridColumn2.FieldName = "name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
         '
         'GridColumn3
         '
@@ -145,51 +193,66 @@ Partial Class FormCompareStockWebsite
         Me.GridColumn3.FieldName = "size"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Qty (normal)"
+        Me.GridColumn4.Caption = "Normal"
         Me.GridColumn4.DisplayFormat.FormatString = "N0"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "qty_acc_normal"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_acc_normal", "{0:N0}")})
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "Qty (sale)"
+        Me.GridColumn5.Caption = "Sale"
         Me.GridColumn5.DisplayFormat.FormatString = "N0"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "qty_acc_sale"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_acc_sale", "{0:N0}")})
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "Qty (total)"
+        Me.GridColumn6.Caption = "Total"
         Me.GridColumn6.DisplayFormat.FormatString = "N0"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "qty_acc_total"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_acc_total", "{0:N0}")})
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Qty (web)"
+        Me.GridColumn7.Caption = "Available"
         Me.GridColumn7.DisplayFormat.FormatString = "N0"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "qty_web"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_web", "{0:N0}")})
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
+        '
+        'BandedGridColumnqty_web_open
+        '
+        Me.BandedGridColumnqty_web_open.Caption = "Booked"
+        Me.BandedGridColumnqty_web_open.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnqty_web_open.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_web_open.FieldName = "qty_web_open"
+        Me.BandedGridColumnqty_web_open.Name = "BandedGridColumnqty_web_open"
+        Me.BandedGridColumnqty_web_open.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_web_open", "{0:N0}")})
+        Me.BandedGridColumnqty_web_open.Visible = True
+        '
+        'BandedGridColumnqty_web_all
+        '
+        Me.BandedGridColumnqty_web_all.Caption = "Total"
+        Me.BandedGridColumnqty_web_all.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnqty_web_all.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_web_all.FieldName = "qty_web_all"
+        Me.BandedGridColumnqty_web_all.Name = "BandedGridColumnqty_web_all"
+        Me.BandedGridColumnqty_web_all.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_web_all", "{0:N0}")})
+        Me.BandedGridColumnqty_web_all.Visible = True
         '
         'GridColumn8
         '
@@ -197,14 +260,73 @@ Partial Class FormCompareStockWebsite
         Me.GridColumn8.FieldName = "match"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
+        '
+        'GroupControlView
+        '
+        Me.GroupControlView.AppearanceCaption.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControlView.AppearanceCaption.Options.UseFont = True
+        Me.GroupControlView.Controls.Add(Me.GridControlStock)
+        Me.GroupControlView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControlView.Location = New System.Drawing.Point(0, 40)
+        Me.GroupControlView.Name = "GroupControlView"
+        Me.GroupControlView.Size = New System.Drawing.Size(784, 521)
+        Me.GroupControlView.TabIndex = 2
+        Me.GroupControlView.Text = "Sync Date : -"
+        '
+        'BandedGridColumndiff_qty
+        '
+        Me.BandedGridColumndiff_qty.Caption = "Diff"
+        Me.BandedGridColumndiff_qty.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumndiff_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumndiff_qty.FieldName = "diff_qty"
+        Me.BandedGridColumndiff_qty.Name = "BandedGridColumndiff_qty"
+        Me.BandedGridColumndiff_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", "{0:N0}")})
+        Me.BandedGridColumndiff_qty.Visible = True
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Product"
+        Me.GridBand1.Columns.Add(Me.GridColumn1)
+        Me.GridBand1.Columns.Add(Me.GridColumn2)
+        Me.GridBand1.Columns.Add(Me.GridColumn3)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 225
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "ERP"
+        Me.gridBand2.Columns.Add(Me.GridColumn4)
+        Me.gridBand2.Columns.Add(Me.GridColumn5)
+        Me.gridBand2.Columns.Add(Me.GridColumn6)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 225
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "SHOPIFY"
+        Me.gridBand3.Columns.Add(Me.GridColumn7)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnqty_web_open)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnqty_web_all)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 225
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Columns.Add(Me.BandedGridColumndiff_qty)
+        Me.gridBand4.Columns.Add(Me.GridColumn8)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 150
         '
         'FormCompareStockWebsite
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
-        Me.Controls.Add(Me.GridControlStock)
+        Me.Controls.Add(Me.GroupControlView)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormCompareStockWebsite"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -214,24 +336,37 @@ Partial Class FormCompareStockWebsite
         Me.PanelControl1.PerformLayout()
         CType(Me.GridControlStock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewStock, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControlView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControlView.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridControlStock As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridViewStock As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents SBSync As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SBExport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelLast As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnHistory As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridViewStock As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnqty_web_open As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnqty_web_all As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GroupControlView As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents BtnViewBook As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumndiff_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

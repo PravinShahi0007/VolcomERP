@@ -1031,10 +1031,22 @@
     <Compile Include="FormCompanyEmailMappingDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCompareStockWebHistory.Designer.vb">
+      <DependentUpon>FormCompareStockWebHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompareStockWebHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCompareStockWebsite.Designer.vb">
       <DependentUpon>FormCompareStockWebsite.vb</DependentUpon>
     </Compile>
     <Compile Include="FormCompareStockWebsite.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCompareStockWebsiteDetailBook.Designer.vb">
+      <DependentUpon>FormCompareStockWebsiteDetailBook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompareStockWebsiteDetailBook.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCustomDialog.Designer.vb">
@@ -9556,8 +9568,14 @@
     <EmbeddedResource Include="FormCompanyEmailMappingDet.resx">
       <DependentUpon>FormCompanyEmailMappingDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCompareStockWebHistory.resx">
+      <DependentUpon>FormCompareStockWebHistory.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCompareStockWebsite.resx">
       <DependentUpon>FormCompareStockWebsite.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCompareStockWebsiteDetailBook.resx">
+      <DependentUpon>FormCompareStockWebsiteDetailBook.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCustomDialog.resx">
       <DependentUpon>FormCustomDialog.vb</DependentUpon>
