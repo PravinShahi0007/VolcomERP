@@ -22,7 +22,6 @@ Partial Class FormCompareStockWebsiteDetailBook
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormCompareStockWebsiteDetailBook))
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BtnViewBook = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnid_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_number = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -30,6 +29,7 @@ Partial Class FormCompareStockWebsiteDetailBook
         Me.GridColumnsku = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_log_compare_shopify = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnViewBook = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -40,7 +40,7 @@ Partial Class FormCompareStockWebsiteDetailBook
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(472, 271)
+        Me.GCData.Size = New System.Drawing.Size(784, 438)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -60,20 +60,6 @@ Partial Class FormCompareStockWebsiteDetailBook
         Me.GVData.OptionsView.ShowGroupedColumns = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnorder_number, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'BtnViewBook
-        '
-        Me.BtnViewBook.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnViewBook.Appearance.Options.UseFont = True
-        Me.BtnViewBook.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnViewBook.Image = CType(resources.GetObject("BtnViewBook.Image"), System.Drawing.Image)
-        Me.BtnViewBook.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.BtnViewBook.Location = New System.Drawing.Point(0, 271)
-        Me.BtnViewBook.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.BtnViewBook.Name = "BtnViewBook"
-        Me.BtnViewBook.Size = New System.Drawing.Size(472, 23)
-        Me.BtnViewBook.TabIndex = 3
-        Me.BtnViewBook.Text = "Print"
         '
         'GridColumnid_order
         '
@@ -132,11 +118,25 @@ Partial Class FormCompareStockWebsiteDetailBook
         Me.GridColumnid_log_compare_shopify.FieldName = "id_log_compare_shopify"
         Me.GridColumnid_log_compare_shopify.Name = "GridColumnid_log_compare_shopify"
         '
+        'BtnViewBook
+        '
+        Me.BtnViewBook.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnViewBook.Appearance.Options.UseFont = True
+        Me.BtnViewBook.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnViewBook.Image = CType(resources.GetObject("BtnViewBook.Image"), System.Drawing.Image)
+        Me.BtnViewBook.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnViewBook.Location = New System.Drawing.Point(0, 438)
+        Me.BtnViewBook.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.BtnViewBook.Name = "BtnViewBook"
+        Me.BtnViewBook.Size = New System.Drawing.Size(784, 23)
+        Me.BtnViewBook.TabIndex = 3
+        Me.BtnViewBook.Text = "Print"
+        '
         'FormCompareStockWebsiteDetailBook
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(472, 294)
+        Me.ClientSize = New System.Drawing.Size(784, 461)
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.BtnViewBook)
         Me.MinimizeBox = False

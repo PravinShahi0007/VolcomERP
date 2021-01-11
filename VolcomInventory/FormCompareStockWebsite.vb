@@ -48,6 +48,7 @@ FROM tb_log_compare_shopify c ORDER BY c.sync_date DESC LIMIT 1 "
 
             FormMain.SplashScreenManager1.SetWaitFormDescription("Compare stock with ERP")
             viewCompare(id_new)
+            getLastSync()
             FormMain.SplashScreenManager1.CloseWaitForm()
             Cursor = Cursors.Default
         End If
