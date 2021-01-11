@@ -29,24 +29,28 @@ Partial Class FormCompareStockWebsite
         Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControlStock = New DevExpress.XtraGrid.GridControl()
         Me.GridViewStock = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnqty_web_open = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnqty_web_all = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GroupControlView = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnViewBook = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GridControlStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewStock, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControlView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControlView.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -124,10 +128,10 @@ Partial Class FormCompareStockWebsite
         'GridControlStock
         '
         Me.GridControlStock.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControlStock.Location = New System.Drawing.Point(0, 40)
+        Me.GridControlStock.Location = New System.Drawing.Point(2, 24)
         Me.GridControlStock.MainView = Me.GridViewStock
         Me.GridControlStock.Name = "GridControlStock"
-        Me.GridControlStock.Size = New System.Drawing.Size(784, 521)
+        Me.GridControlStock.Size = New System.Drawing.Size(780, 472)
         Me.GridControlStock.TabIndex = 1
         Me.GridControlStock.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewStock})
         '
@@ -141,6 +145,16 @@ Partial Class FormCompareStockWebsite
         Me.GridViewStock.OptionsFind.AlwaysVisible = True
         Me.GridViewStock.OptionsView.ShowFooter = True
         Me.GridViewStock.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Product"
+        Me.GridBand1.Columns.Add(Me.GridColumn1)
+        Me.GridBand1.Columns.Add(Me.GridColumn2)
+        Me.GridBand1.Columns.Add(Me.GridColumn3)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 225
         '
         'GridColumn1
         '
@@ -162,6 +176,16 @@ Partial Class FormCompareStockWebsite
         Me.GridColumn3.FieldName = "size"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "ERP"
+        Me.gridBand2.Columns.Add(Me.GridColumn4)
+        Me.gridBand2.Columns.Add(Me.GridColumn5)
+        Me.gridBand2.Columns.Add(Me.GridColumn6)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 225
         '
         'GridColumn4
         '
@@ -193,6 +217,16 @@ Partial Class FormCompareStockWebsite
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_acc_total", "{0:N0}")})
         Me.GridColumn6.Visible = True
         '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "SHOPIFY"
+        Me.gridBand3.Columns.Add(Me.GridColumn7)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnqty_web_open)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnqty_web_all)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 225
+        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Available"
@@ -202,13 +236,6 @@ Partial Class FormCompareStockWebsite
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_web", "{0:N0}")})
         Me.GridColumn7.Visible = True
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Match"
-        Me.GridColumn8.FieldName = "match"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
         '
         'BandedGridColumnqty_web_open
         '
@@ -230,36 +257,6 @@ Partial Class FormCompareStockWebsite
         Me.BandedGridColumnqty_web_all.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_web_all", "{0:N0}")})
         Me.BandedGridColumnqty_web_all.Visible = True
         '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Product"
-        Me.GridBand1.Columns.Add(Me.GridColumn1)
-        Me.GridBand1.Columns.Add(Me.GridColumn2)
-        Me.GridBand1.Columns.Add(Me.GridColumn3)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 225
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "ERP"
-        Me.gridBand2.Columns.Add(Me.GridColumn4)
-        Me.gridBand2.Columns.Add(Me.GridColumn5)
-        Me.gridBand2.Columns.Add(Me.GridColumn6)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 225
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "SHOPIFY"
-        Me.gridBand3.Columns.Add(Me.GridColumn7)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnqty_web_open)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnqty_web_all)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 225
-        '
         'gridBand4
         '
         Me.gridBand4.Columns.Add(Me.GridColumn8)
@@ -267,12 +264,41 @@ Partial Class FormCompareStockWebsite
         Me.gridBand4.VisibleIndex = 3
         Me.gridBand4.Width = 75
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Match"
+        Me.GridColumn8.FieldName = "match"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        '
+        'GroupControlView
+        '
+        Me.GroupControlView.AppearanceCaption.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControlView.AppearanceCaption.Options.UseFont = True
+        Me.GroupControlView.Controls.Add(Me.GridControlStock)
+        Me.GroupControlView.Controls.Add(Me.BtnViewBook)
+        Me.GroupControlView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControlView.Location = New System.Drawing.Point(0, 40)
+        Me.GroupControlView.Name = "GroupControlView"
+        Me.GroupControlView.Size = New System.Drawing.Size(784, 521)
+        Me.GroupControlView.TabIndex = 2
+        Me.GroupControlView.Text = "Sync Date : 11 Januari 2021 "
+        '
+        'BtnViewBook
+        '
+        Me.BtnViewBook.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnViewBook.Location = New System.Drawing.Point(2, 496)
+        Me.BtnViewBook.Name = "BtnViewBook"
+        Me.BtnViewBook.Size = New System.Drawing.Size(780, 23)
+        Me.BtnViewBook.TabIndex = 2
+        Me.BtnViewBook.Text = "View Detail Booked Stock"
+        '
         'FormCompareStockWebsite
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
-        Me.Controls.Add(Me.GridControlStock)
+        Me.Controls.Add(Me.GroupControlView)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormCompareStockWebsite"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -282,6 +308,8 @@ Partial Class FormCompareStockWebsite
         Me.PanelControl1.PerformLayout()
         CType(Me.GridControlStock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewStock, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControlView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControlView.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -309,4 +337,6 @@ Partial Class FormCompareStockWebsite
     Friend WithEvents BandedGridColumnqty_web_all As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GroupControlView As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents BtnViewBook As DevExpress.XtraEditors.SimpleButton
 End Class

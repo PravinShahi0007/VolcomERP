@@ -69,20 +69,59 @@ FROM tb_log_compare_shopify c ORDER BY c.sync_date DESC LIMIT 1 "
     End Sub
 
     Private Sub SBExport_Click(sender As Object, e As EventArgs) Handles SBExport.Click
-        Dim save As SaveFileDialog = New SaveFileDialog
+        If GridViewStock.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            'column option creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GridViewStock.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            For i As Integer = 0 To GridViewStock.Columns.Count - 1
+                Try
+                    If GridViewStock.Columns(i).OwnerBand.Caption = "ERP" Or GridViewStock.Columns(i).OwnerBand.Caption = "SHOPIFY" Then
+                        GridViewStock.Columns(i).Caption = GridViewStock.Columns(i).OwnerBand.Caption + " " + GridViewStock.Columns(i).Caption
+                    End If
+                Catch ex As Exception
+                End Try
+            Next
 
-        save.Filter = "Excel File | *.xls"
-        save.ShowDialog()
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "compare_erp_shopify.xlsx"
+            exportToXLS(path, "compare", GridControlStock)
 
-        If Not save.FileName = "" Then
-            Dim op As DevExpress.XtraPrinting.XlsExportOptionsEx = New DevExpress.XtraPrinting.XlsExportOptionsEx
-
-            op.ExportType = DevExpress.Export.ExportType.WYSIWYG
-
-            GridViewStock.ExportToXls(save.FileName, op)
-
-            infoCustom("File exported.")
+            'restore column opt
+            GridViewStock.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Cursor = Cursors.Default
         End If
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
