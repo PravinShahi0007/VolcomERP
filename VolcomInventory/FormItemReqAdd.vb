@@ -69,7 +69,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         'data
-        If data_par.Rows.Count = 0 Then
+        If data_par.Rows.Count = 0 Or data.Rows.Count = 0 Then
             GCSOH.DataSource = data
         Else
             Dim t1 = data.AsEnumerable()
