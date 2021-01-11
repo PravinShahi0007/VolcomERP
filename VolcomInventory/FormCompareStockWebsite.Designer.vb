@@ -263,7 +263,7 @@ Partial Class FormCompareStockWebsite
         '
         'GroupControlView
         '
-        Me.GroupControlView.AppearanceCaption.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControlView.AppearanceCaption.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupControlView.AppearanceCaption.Options.UseFont = True
         Me.GroupControlView.Controls.Add(Me.GridControlStock)
         Me.GroupControlView.Dock = System.Windows.Forms.DockStyle.Fill
