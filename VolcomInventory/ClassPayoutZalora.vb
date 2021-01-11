@@ -16,9 +16,22 @@
         Dim query As String = ""
         query += "SELECT z.id_payout_zalora, z.statement_number, z.zalora_created_at, z.opening_balance, 
         z.sales_revenue, z.other_revenue, z.total_fees, z.sales_refund, z.total_refund_fee, z.closing_balance, 
-        z.closing_balance, z.guarantee_deposit, z.total_payout,z.sync_date, z.note, z.is_confirm, IF(z.is_confirm=1,'Confirmed', 'Not Confirmed') AS `is_confirm_view`, z.id_report_status, rs.report_status
+        z.closing_balance, z.guarantee_deposit, z.total_payout,z.sync_date, z.note, z.is_confirm, IF(z.is_confirm=1,'Confirmed', 'Not Confirmed') AS `is_confirm_view`, z.id_report_status, rs.report_status,
+        la.employee_name AS `employee_name`
         FROM tb_payout_zalora z 
         INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = z.id_report_status
+        LEFT JOIN (
+	        SELECT a.id_report, a.id_user, a.username, a.employee_name 
+	        FROM (
+		        SELECT rm.id_report, rm.id_user, u.username, e.employee_name
+		        FROM tb_report_mark rm 
+		        INNER JOIN tb_m_user u ON u.id_user = rm.id_user
+		        INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+		        WHERE (rm.report_mark_type=282) AND rm.id_report_status>1 AND rm.id_mark=2
+		        ORDER BY rm.report_mark_datetime DESC
+	        ) a
+	        GROUP BY a.id_report
+        ) la ON la.id_report = z.`id_payout_zalora`
         WHERE z.id_payout_zalora>0 "
         query += condition + " "
         query += "ORDER BY z.zalora_created_at DESC "
