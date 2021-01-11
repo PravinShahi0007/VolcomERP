@@ -156,6 +156,9 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
         viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
         SLEPayType.EditValue = "2"
+        '
+        query += " WHERE id_pay_type=2 "
+        '
         viewSearchLookupQuery(SLEPayTypeExpense, query, "id_pay_type", "pay_type", "id_pay_type")
         SLEPayTypeExpense.EditValue = "2"
     End Sub
@@ -255,11 +258,12 @@ WHERE py.id_coa_tag='" & SLEUnitBBKList.EditValue.ToString & "' AND DATE(py.date
         If SLEPayType.EditValue.ToString = "2" Then 'payment
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
             q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=IF(po.id_coa_tag=1,c.id_acc_ap,c.id_acc_cabang_ap) "
-            where_string += " AND po.is_close_rec='1'"
+            where_string += " AND po.is_close_rec='1' AND po.id_report_status=6 AND po.is_cash_purchase=2 "
             q_dp = "-IFNULL(payment.value,0)"
         ElseIf SLEPayType.EditValue.ToString = "1" Then 'DP
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
             q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=IF(po.id_coa_tag=1,c.id_acc_dp,c.id_acc_cabang_dp) "
+            where_string += " AND po.is_close_rec!='1' AND po.id_report_status=6 AND po.is_cash_purchase=2 "
             q_dp = "*(payment_purc.dp_percent/100)"
         End If
 
@@ -481,10 +485,10 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
         If SLEPayTypeExpense.EditValue.ToString = "2" Then 'payment
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
-            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap "
+            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=IF(e.id_coa_tag=1,c.id_acc_ap,c.id_acc_cabang_ap) "
         ElseIf SLEPayTypeExpense.EditValue.ToString = "1" Then 'DP
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
-            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_dp "
+            q_join_acc = " LEFT JOIN tb_a_acc acc ON acc.id_acc=IF(e.id_coa_tag=1,c.id_acc_dp,c.id_acc_cabang_dp) "
         End If
 
         If SLEStatusPaymentExpense.EditValue.ToString = "0" Then 'open include overdue and only dp
@@ -705,7 +709,7 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
     Sub view_thr()
         Dim query As String = "
-            SELECT 'no' AS is_check, p.id_payroll, p.report_number, DATE_FORMAT(p.periode_end, '%M %Y') AS payroll_periode, t.payroll_type, 0 AS amount
+            SELECT 'no' AS is_check, p.id_payroll, p.report_number, DATE_FORMAT(p.periode_end, '%M %Y') AS payroll_periode, t.payroll_type, 0 AS amount, 1 AS id_coa_tag
             FROM tb_emp_payroll AS p
             LEFT JOIN tb_emp_payroll_type AS t ON p.id_payroll_type = t.id_payroll_type
             WHERE p.id_report_status = 6 AND p.is_close_pay = 2
@@ -733,7 +737,7 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
                 FROM tb_a_acc_trans_det a 
                 INNER JOIN tb_a_acc b ON a.id_acc = b.id_acc 
                 LEFT JOIN tb_m_comp c ON c.id_comp = a.id_comp
-                WHERE a.id_acc_trans = (SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad WHERE ad.report_mark_type = 192 AND ad.id_report = " + data.Rows(i)("id_payroll").ToString + " GROUP BY ad.id_acc_trans) AND a.id_acc = (" + id_acc + ")
+                WHERE a.id_acc_trans = (SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad WHERE ad.report_mark_type = 192 AND ad.id_report = " + data.Rows(i)("id_payroll").ToString + " AND ad.id_coa_tag = 1 GROUP BY ad.id_acc_trans) AND a.id_acc = (" + id_acc + ") AND a.id_coa_tag = 1
             "
 
             Dim data_a As DataTable = execute_query(query_a, -1, True, "", "", "", "")
@@ -774,6 +778,7 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
                 row_cooperative("payroll_periode") = data.Rows(i)("payroll_periode").ToString
                 row_cooperative("payroll_type") = data.Rows(i)("payroll_type").ToString + " (Cooperative)"
                 row_cooperative("amount") = total_cooperative
+                row_cooperative("id_coa_tag") = "1"
 
                 data.Rows.Add(row_cooperative)
             End If
@@ -803,9 +808,41 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
                 row_cash("payroll_periode") = data.Rows(i)("payroll_periode").ToString
                 row_cash("payroll_type") = data.Rows(i)("payroll_type").ToString + " (Cash)"
                 row_cash("amount") = total_cash
+                row_cash("id_coa_tag") = "1"
 
                 data.Rows.Add(row_cash)
             End If
+
+            'store
+            Dim coa_tag() As String = {"2", "3", "4"}
+
+            For k = 0 To coa_tag.Length - 1
+                Dim store_tag As String = execute_query("SELECT tag_code FROM tb_coa_tag WHERE id_coa_tag = " + coa_tag(k), 0, True, "", "", "", "")
+
+                Dim query_s As String = "
+                    SELECT SUM(CAST(a.credit AS DECIMAL(13, 2))) AS credit
+                    FROM tb_a_acc_trans_det a 
+                    INNER JOIN tb_a_acc b ON a.id_acc = b.id_acc 
+                    LEFT JOIN tb_m_comp c ON c.id_comp = a.id_comp
+                    WHERE a.id_acc_trans = (SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad WHERE ad.report_mark_type = 192 AND ad.id_report = " + data.Rows(i)("id_payroll").ToString + " AND ad.id_coa_tag = " + coa_tag(k) + " GROUP BY ad.id_acc_trans) AND a.id_acc = 3680 AND a.id_coa_tag = " + coa_tag(k) + "
+                "
+
+                Dim data_s As DataTable = execute_query(query_s, -1, True, "", "", "", "")
+
+                If Not data_s.Rows(0)("credit").ToString = "" Then
+                    Dim row_store As DataRow = data.NewRow
+
+                    row_store("is_check") = "no"
+                    row_store("id_payroll") = data.Rows(i)("id_payroll")
+                    row_store("report_number") = data.Rows(i)("report_number").ToString
+                    row_store("payroll_periode") = data.Rows(i)("payroll_periode").ToString
+                    row_store("payroll_type") = data.Rows(i)("payroll_type").ToString + " (" + store_tag + ")"
+                    row_store("amount") = data_s.Rows(0)("credit")
+                    row_store("id_coa_tag") = coa_tag(k)
+
+                    data.Rows.Add(row_store)
+                End If
+            Next
 
             i += 1
         End While
@@ -1289,7 +1326,7 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.`id_employee`
 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
 INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
-WHERE po.`is_active_payment`=2 AND po.`is_close_pay`=2 AND po.is_close_rec='1'
+WHERE po.`is_active_payment`=2 AND po.`is_close_pay`=2 AND po.is_close_rec='1' AND po.is_cash_purchase=2
 GROUP BY pod.`id_purc_order`
 ORDER BY pod.id_purc_order DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")

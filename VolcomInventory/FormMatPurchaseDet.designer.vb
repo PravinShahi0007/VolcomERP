@@ -916,7 +916,6 @@ Partial Class FormMatPurchaseDet
         Me.PCButton.Controls.Add(Me.BEdit)
         Me.PCButton.Controls.Add(Me.BAdd)
         Me.PCButton.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCButton.Enabled = False
         Me.PCButton.Location = New System.Drawing.Point(20, 2)
         Me.PCButton.Name = "PCButton"
         Me.PCButton.Size = New System.Drawing.Size(887, 38)
@@ -950,7 +949,6 @@ Partial Class FormMatPurchaseDet
         'BAdd
         '
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAdd.Enabled = False
         Me.BAdd.ImageIndex = 0
         Me.BAdd.ImageList = Me.LargeImageCollection
         Me.BAdd.Location = New System.Drawing.Point(796, 0)

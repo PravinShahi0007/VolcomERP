@@ -62,13 +62,13 @@
         Dim q As String = "SELECT bo.`id_b_expense_opex` AS id_b_expense,icm.`id_item_cat_main`,icm.`item_cat_main`,icm.`id_expense_type`
 FROM tb_b_expense_opex bo
 INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=bo.`id_item_cat_main`
-WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'
+WHERE bo.`year`=YEAR('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND bo.is_active='1'
 UNION ALL
 SELECT bo.`id_b_expense` AS id_b_expense,icm.`id_item_cat_main`,CONCAT('[',dep.departement,']',icm.`item_cat_main`) AS item_cat_main,icm.`id_expense_type`
 FROM tb_b_expense bo
 INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=bo.`id_item_cat_main`
 INNER JOIN tb_m_departement dep ON dep.id_departement=bo.id_departement
-WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
+WHERE bo.`year`=YEAR('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND bo.is_active='1'"
         viewSearchLookupRepositoryQuery(RISLECatExpense, q, 0, "item_cat_main", "id_b_expense")
     End Sub
 
@@ -116,11 +116,13 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
     Sub viewCOAPPH()
         Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, 
         a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
-        FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 AND LEFT(a.acc_name,4)='2111' "
+        FROM tb_a_acc a 
+INNER JOIN `tb_lookup_tax_report` tr ON tr.id_tax_report=a.id_tax_report AND tr.id_type=1
+WHERE a.id_status=1 AND a.id_is_det=2 "
         If id_coa_tag = "1" Then
-            query += " AND id_coa_type='1' "
+            query += " AND a.id_coa_type='1' "
         Else
-            query += " AND id_coa_type='2' "
+            query += " AND a.id_coa_type='2' "
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         RISLECOAPPH.DataSource = Nothing
@@ -182,6 +184,9 @@ WHERE bo.`year`=YEAR(NOW()) AND bo.is_active='1'"
             Dim e As New ClassItemExpense()
             Dim query As String = e.queryMain("AND e.id_item_expense ='" + id + "' ", "1", False)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            id_coa_tag = data.Rows(0)("id_coa_tag").ToString
+            SLEUnit.EditValue = id_coa_tag
 
             SLEPayFrom.EditValue = data.Rows(0)("id_acc_from").ToString
             Dim is_pay_later As String = data.Rows(0)("is_pay_later").ToString
@@ -1076,8 +1081,13 @@ WHERE c.id_comp='" + id_comp + "' "
                     jum_row += 1
                     Dim newRowvat As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
                     newRowvat("no") = jum_row
-                    newRowvat("acc_name") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "1")
-                    newRowvat("acc_description") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "2")
+                    If id_coa_tag = "1" Then
+                        newRowvat("acc_name") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "1")
+                        newRowvat("acc_description") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "2")
+                    Else
+                        newRowvat("acc_name") = get_acc(get_opt_purchasing_field("acc_coa_vat_in_cabang"), "1")
+                        newRowvat("acc_description") = get_acc(get_opt_purchasing_field("acc_coa_vat_in_cabang"), "2")
+                    End If
                     newRowvat("cc") = "000"
                     newRowvat("report_number") = ""
                     newRowvat("note") = MENote.Text
@@ -1138,5 +1148,13 @@ WHERE c.id_comp='" + id_comp + "' "
         viewCOA()
         viewCOARepo()
         viewCOAPPH()
+    End Sub
+
+    Private Sub DEDateReff_EditValueChanged(sender As Object, e As EventArgs) Handles DEDateReff.EditValueChanged
+        Try
+            view_repo_cat()
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

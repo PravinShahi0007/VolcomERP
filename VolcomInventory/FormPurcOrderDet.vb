@@ -407,6 +407,8 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                 warningCustom("Please input vendor")
             ElseIf TEVATPercent.EditValue = 0 And TEVATPercent.Properties.ReadOnly = False Then
                 warningCustom("Please input tax percent")
+            ElseIf id_vendor_contact = "1352" And is_cash_purchase = "2" Then
+                warningCustom("Cash purchase need to be checked.")
             Else
                 'header
                 Dim is_check As String = "1"

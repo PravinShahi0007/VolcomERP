@@ -601,13 +601,27 @@ GROUP BY pnd.kurs"
 
                 Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + FormBankWithdrawal.GVTHR.GetRowCellValue(0, "id_payroll").ToString + ")", 0, True, "", "", "", "")
 
-                Dim data_map As DataTable = execute_query("
+                Dim query_map As String = "
                     SELECT map.id_departement, map.id_departement_sub, map.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, map.id_comp, comp.comp_number
                     FROM tb_coa_map_departement AS map
                     LEFT JOIN tb_a_acc AS acc ON map.id_acc = acc.id_acc
                     LEFT JOIN tb_m_comp AS comp ON map.id_comp = comp.id_comp
                     WHERE type = 6
-                ", -1, True, "", "", "", "")
+                "
+
+                If FormBankWithdrawal.GVTHR.GetRowCellValue(0, "id_coa_tag").ToString <> "1" Then
+                    TxtTag.EditValue = execute_query("SELECT CONCAT(tag_code, ' - ', tag_description) AS tag FROM tb_coa_tag WHERE id_coa_tag = " + FormBankWithdrawal.GVTHR.GetRowCellValue(0, "id_coa_tag").ToString, 0, True, "", "", "", "")
+
+                    query_map = "
+                        SELECT NULL AS id_departement, NULL AS id_departement_sub, acc.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, tag.id_comp, comp.comp_number
+                        FROM tb_coa_tag AS tag
+                        LEFT JOIN tb_a_acc AS acc ON acc.id_acc = 3680
+                        LEFT JOIN tb_m_comp AS comp ON tag.id_comp = comp.id_comp
+                        WHERE tag.id_coa_tag = " + FormBankWithdrawal.GVTHR.GetRowCellValue(0, "id_coa_tag").ToString + "
+                    "
+                End If
+
+                Dim data_map As DataTable = execute_query(query_map, -1, True, "", "", "", "")
 
                 Dim id_acc As Integer = data_map.Rows(0)("id_acc")
                 Dim acc_name As String = data_map.Rows(0)("acc_name").ToString
@@ -617,7 +631,7 @@ GROUP BY pnd.kurs"
                 Dim comp_number As String = data_map.Rows(0)("comp_number").ToString
                 Dim balance As Decimal = FormBankWithdrawal.GVTHR.Columns("amount").SummaryItem.SummaryValue
 
-                Dim note As String = execute_query("SELECT CONCAT('Gaji ', DATE_FORMAT(periode_end, '%M %Y')) AS note FROM tb_emp_payroll WHERE id_payroll = " + FormBankWithdrawal.GVTHR.GetRowCellValue(0, "id_payroll").ToString, 0, True, "", "", "", "")
+                Dim note As String = execute_query("SELECT CONCAT('Gaji " + If(Not FormBankWithdrawal.GVTHR.GetRowCellValue(0, "id_payroll").ToString = "1", "staff toko ", "") + "', DATE_FORMAT(periode_end, '%M %Y')) AS note FROM tb_emp_payroll WHERE id_payroll = " + FormBankWithdrawal.GVTHR.GetRowCellValue(0, "id_payroll").ToString, 0, True, "", "", "", "")
 
                 If is_thr = "1" Then
                     note = execute_query("SELECT CONCAT((SELECT payroll_type FROM tb_emp_payroll_type WHERE id_payroll_type = tb_emp_payroll.id_payroll_type), DATE_FORMAT(periode_end, ' %Y')) AS note FROM tb_emp_payroll WHERE id_payroll = " + FormBankWithdrawal.GVTHR.GetRowCellValue(0, "id_payroll").ToString, 0, True, "", "", "", "")
@@ -1607,6 +1621,8 @@ WHERE py.`id_pn`='" & id_payment & "'"
                         id_coa_tag = FormBankWithdrawal.GVPOList.GetRowCellValue(0, "id_coa_tag").ToString
                     ElseIf report_mark_type = "157" Then 'expense
                         id_coa_tag = FormBankWithdrawal.GVExpense.GetRowCellValue(0, "id_coa_tag").ToString
+                    ElseIf report_mark_type = "192" Then 'payroll
+                        id_coa_tag = FormBankWithdrawal.GVTHR.GetRowCellValue(0, "id_coa_tag").ToString
                     End If
 
                     Dim query As String = "INSERT INTO tb_pn(report_mark_type,kurs,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,date_payment,value,note,is_book_transfer,id_report_status,id_coa_tag,id_acc_trf_fee,trf_fee,is_auto_debet,is_buy_valas) 
