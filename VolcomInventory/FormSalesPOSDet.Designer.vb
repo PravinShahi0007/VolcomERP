@@ -163,6 +163,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnid_ol_store_ret_list = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_sales_pos_prob_inv = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_sales_pos_prob_price_inv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_sales_pos_oos_recon_det = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnLoadFromProbList = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnLoadPOS = New DevExpress.XtraEditors.SimpleButton()
@@ -217,7 +218,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.GridColumnid_sales_pos_oos_recon_det = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewClosingNoStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1507,35 +1508,35 @@ Partial Class FormSalesPOSDet
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QtyToolStripMenuItem, Me.PriceToolStripMenuItem, Me.DeleteToolStripMenuItem, Me.ViewPriceReconcileToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QtyToolStripMenuItem, Me.PriceToolStripMenuItem, Me.DeleteToolStripMenuItem, Me.ViewPriceReconcileToolStripMenuItem, Me.ViewClosingNoStockToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 92)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(194, 136)
         '
         'QtyToolStripMenuItem
         '
         Me.QtyToolStripMenuItem.Name = "QtyToolStripMenuItem"
-        Me.QtyToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.QtyToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.QtyToolStripMenuItem.Text = "Set Quantity"
         Me.QtyToolStripMenuItem.Visible = False
         '
         'PriceToolStripMenuItem
         '
         Me.PriceToolStripMenuItem.Name = "PriceToolStripMenuItem"
-        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.PriceToolStripMenuItem.Text = "Price"
         Me.PriceToolStripMenuItem.Visible = False
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         Me.DeleteToolStripMenuItem.Visible = False
         '
         'ViewPriceReconcileToolStripMenuItem
         '
         Me.ViewPriceReconcileToolStripMenuItem.Name = "ViewPriceReconcileToolStripMenuItem"
-        Me.ViewPriceReconcileToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ViewPriceReconcileToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.ViewPriceReconcileToolStripMenuItem.Text = "View Price Reconcile"
         '
         'GVItemList
@@ -1910,6 +1911,12 @@ Partial Class FormSalesPOSDet
         Me.GridColumnid_sales_pos_prob_price_inv.Caption = "id_sales_pos_prob_price"
         Me.GridColumnid_sales_pos_prob_price_inv.FieldName = "id_sales_pos_prob_price"
         Me.GridColumnid_sales_pos_prob_price_inv.Name = "GridColumnid_sales_pos_prob_price_inv"
+        '
+        'GridColumnid_sales_pos_oos_recon_det
+        '
+        Me.GridColumnid_sales_pos_oos_recon_det.Caption = "id_sales_pos_oos_recon_det"
+        Me.GridColumnid_sales_pos_oos_recon_det.FieldName = "id_sales_pos_oos_recon_det"
+        Me.GridColumnid_sales_pos_oos_recon_det.Name = "GridColumnid_sales_pos_oos_recon_det"
         '
         'PanelControlNav
         '
@@ -2396,11 +2403,11 @@ Partial Class FormSalesPOSDet
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
-        'GridColumnid_sales_pos_oos_recon_det
+        'ViewClosingNoStockToolStripMenuItem
         '
-        Me.GridColumnid_sales_pos_oos_recon_det.Caption = "id_sales_pos_oos_recon_det"
-        Me.GridColumnid_sales_pos_oos_recon_det.FieldName = "id_sales_pos_oos_recon_det"
-        Me.GridColumnid_sales_pos_oos_recon_det.Name = "GridColumnid_sales_pos_oos_recon_det"
+        Me.ViewClosingNoStockToolStripMenuItem.Name = "ViewClosingNoStockToolStripMenuItem"
+        Me.ViewClosingNoStockToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ViewClosingNoStockToolStripMenuItem.Text = "View Closing No Stock"
         '
         'FormSalesPOSDet
         '
@@ -2708,4 +2715,5 @@ Partial Class FormSalesPOSDet
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnid_sales_pos_oos_recon_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewClosingNoStockToolStripMenuItem As ToolStripMenuItem
 End Class

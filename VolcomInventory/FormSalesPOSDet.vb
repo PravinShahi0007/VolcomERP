@@ -3177,4 +3177,28 @@ GROUP BY r.id_sales_pos_recon "
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
+
+    Private Sub ViewClosingNoStockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewClosingNoStockToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_sales_pos_oos_recon_det As String = "-1"
+        Try
+            id_sales_pos_oos_recon_det = GVItemList.GetFocusedRowCellValue("id_sales_pos_oos_recon_det").ToString
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT IFNULL(r.id_sales_pos_oos_recon,0) AS `id_sales_pos_oos_recon`
+        FROM tb_sales_pos_oos_recon_det rd
+        INNER JOIN tb_sales_pos_oos_recon r ON r.id_sales_pos_oos_recon = rd.id_sales_pos_oos_recon
+        WHERE rd.id_sales_pos_oos_recon_det=" + id_sales_pos_oos_recon_det + " AND r.id_report_status=6
+        GROUP BY r.id_sales_pos_oos_recon "
+        Try
+            Dim id_report As String = execute_query(query, 0, True, "", "", "", "")
+            Dim m As New ClassShowPopUp()
+            m.id_report = id_report
+            m.report_mark_type = "283"
+            m.show()
+        Catch ex As Exception
+            stopCustom("Closing no stock not found.")
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
