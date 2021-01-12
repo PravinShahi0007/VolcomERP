@@ -1142,4 +1142,56 @@
             End If
         Next
     End Sub
+
+    Private Sub BtnInvoiceNewitem_Click(sender As Object, e As EventArgs) Handles BtnInvoiceNewitem.Click
+        makeSafeGV(GVNewItem)
+        If GVNewItem.RowCount > 0 Then
+            'initial check stock
+            Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; 
+            INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES "
+            Dim id_prod As String = ""
+
+            Dim err_op As String = ""
+            For c As Integer = 0 To GVNewItem.RowCount - 1
+                Dim id_sales_pos_oos_recon_det_cek As String = GVNewItem.GetRowCellValue(c, "id_sales_pos_oos_recon_det").ToString
+                Dim qty_valid_cek As Decimal = GVNewItem.GetRowCellValue(c, "qty_valid")
+                Dim code As String = GVNewItem.GetRowCellValue(c, "code_valid").ToString
+
+                'cek on process
+                Dim qop As String = "SELECT spd.id_sales_pos_oos_recon_det
+                FROM tb_sales_pos_det spd
+                INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+                WHERE sp.id_report_status<5 AND spd.id_sales_pos_oos_recon_det='" + id_sales_pos_oos_recon_det_cek + "' "
+                Dim dop As DataTable = execute_query(qop, -1, True, "", "", "", "")
+                If dop.Rows.Count > 0 Then
+                    err_op += code + System.Environment.NewLine
+                End If
+
+                'stock
+                If c > 0 Then
+                    qs += ","
+                    id_prod += ","
+                End If
+                qs += "('" + id_user + "','" + GVNewItem.GetRowCellValue(c, "code_valid").ToString + "','" + addSlashes(GVNewItem.GetRowCellValue(c, "name_valid").ToString) + "', '" + GVNewItem.GetRowCellValue(c, "size_valid").ToString + "', '" + GVNewItem.GetRowCellValue(c, "id_product_valid").ToString + "', '" + decimalSQL(GVNewItem.GetRowCellValue(c, "qty_valid").ToString) + "') "
+                id_prod += GVNewItem.GetRowCellValue(c, "id_product").ToString
+            Next
+            'check stock
+            qs += "; CALL view_validate_stock(" + id_user + ", " + SLEStoreNewItem.EditValue.ToString + ", '" + id_prod + "',1); "
+            Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+
+            If err_op <> "" Then
+                stopCustom("On process invoice for these product : " + System.Environment.NewLine + err_op)
+            ElseIf dts.Rows.Count > 0 Then
+                stopCustom("No stock available for some items.")
+                FormValidateStock.dt = dts
+                FormValidateStock.ShowDialog()
+            Else
+                FormSalesPOSDet.is_from_prob_list_no_stock = True
+                FormSalesPOSDet.action = "ins"
+                FormSalesPOSDet.id_menu = id_menu
+                FormSalesPOSDet.ShowDialog()
+            End If
+        End If
+        makeSafeGV(GVNewItem)
+    End Sub
 End Class

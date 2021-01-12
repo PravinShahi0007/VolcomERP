@@ -276,6 +276,10 @@ Partial Class FormSalesPOS
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.LookUpEdit4 = New DevExpress.XtraEditors.LookUpEdit()
         Me.XTPInvoiceList = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControlNewItem = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelAllNewItem = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnInvoiceNewitem = New DevExpress.XtraEditors.SimpleButton()
         Me.GCNewItem = New DevExpress.XtraGrid.GridControl()
         Me.GVNewItem = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -313,7 +317,6 @@ Partial Class FormSalesPOS
         Me.BandedGridColumnid_sales_pos_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_comp_groupnew = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_productnew = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BtnInvoiceNewitem = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnHistNewItem = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintNewItem = New DevExpress.XtraEditors.SimpleButton()
@@ -339,9 +342,6 @@ Partial Class FormSalesPOS
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControlNewItem = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
-        Me.CESelAllNewItem = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -437,6 +437,11 @@ Partial Class FormSalesPOS
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LookUpEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPInvoiceList.SuspendLayout()
+        CType(Me.PanelControlNewItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlNewItem.SuspendLayout()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl9.SuspendLayout()
+        CType(Me.CESelAllNewItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCNewItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVNewItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoCESelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -458,11 +463,6 @@ Partial Class FormSalesPOS
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlNewItem, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlNewItem.SuspendLayout()
-        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl9.SuspendLayout()
-        CType(Me.CESelAllNewItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GVSalesPOSDet
@@ -2878,21 +2878,65 @@ Partial Class FormSalesPOS
         '
         'XTPInvoiceList
         '
-        Me.XTPInvoiceList.Controls.Add(Me.PanelControlNewItem)
         Me.XTPInvoiceList.Controls.Add(Me.GCNewItem)
+        Me.XTPInvoiceList.Controls.Add(Me.PanelControlNewItem)
         Me.XTPInvoiceList.Controls.Add(Me.PanelControl6)
         Me.XTPInvoiceList.Image = CType(resources.GetObject("XTPInvoiceList.Image"), System.Drawing.Image)
         Me.XTPInvoiceList.Name = "XTPInvoiceList"
         Me.XTPInvoiceList.Size = New System.Drawing.Size(1197, 452)
         Me.XTPInvoiceList.Text = "Invoice List"
         '
+        'PanelControlNewItem
+        '
+        Me.PanelControlNewItem.Controls.Add(Me.PanelControl9)
+        Me.PanelControlNewItem.Controls.Add(Me.BtnInvoiceNewitem)
+        Me.PanelControlNewItem.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControlNewItem.Location = New System.Drawing.Point(0, 406)
+        Me.PanelControlNewItem.Name = "PanelControlNewItem"
+        Me.PanelControlNewItem.Size = New System.Drawing.Size(1197, 46)
+        Me.PanelControlNewItem.TabIndex = 14
+        '
+        'PanelControl9
+        '
+        Me.PanelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl9.Controls.Add(Me.CESelAllNewItem)
+        Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl9.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl9.Name = "PanelControl9"
+        Me.PanelControl9.Size = New System.Drawing.Size(80, 42)
+        Me.PanelControl9.TabIndex = 13
+        '
+        'CESelAllNewItem
+        '
+        Me.CESelAllNewItem.Location = New System.Drawing.Point(5, 11)
+        Me.CESelAllNewItem.Name = "CESelAllNewItem"
+        Me.CESelAllNewItem.Properties.Caption = "Select All"
+        Me.CESelAllNewItem.Size = New System.Drawing.Size(75, 19)
+        Me.CESelAllNewItem.TabIndex = 12
+        '
+        'BtnInvoiceNewitem
+        '
+        Me.BtnInvoiceNewitem.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnInvoiceNewitem.Appearance.Options.UseFont = True
+        Me.BtnInvoiceNewitem.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnInvoiceNewitem.Image = CType(resources.GetObject("BtnInvoiceNewitem.Image"), System.Drawing.Image)
+        Me.BtnInvoiceNewitem.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnInvoiceNewitem.Location = New System.Drawing.Point(2, 2)
+        Me.BtnInvoiceNewitem.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.BtnInvoiceNewitem.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnInvoiceNewitem.Name = "BtnInvoiceNewitem"
+        Me.BtnInvoiceNewitem.Size = New System.Drawing.Size(1193, 42)
+        Me.BtnInvoiceNewitem.TabIndex = 12
+        Me.BtnInvoiceNewitem.Text = "Create Invoice"
+        '
         'GCNewItem
         '
+        Me.GCNewItem.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCNewItem.Location = New System.Drawing.Point(0, 117)
         Me.GCNewItem.MainView = Me.GVNewItem
         Me.GCNewItem.Name = "GCNewItem"
         Me.GCNewItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoCESelect})
-        Me.GCNewItem.Size = New System.Drawing.Size(1197, 230)
+        Me.GCNewItem.Size = New System.Drawing.Size(1197, 289)
         Me.GCNewItem.TabIndex = 13
         Me.GCNewItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVNewItem})
         '
@@ -3185,21 +3229,6 @@ Partial Class FormSalesPOS
         Me.BandedGridColumnid_productnew.FieldName = "id_product"
         Me.BandedGridColumnid_productnew.Name = "BandedGridColumnid_productnew"
         '
-        'BtnInvoiceNewitem
-        '
-        Me.BtnInvoiceNewitem.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnInvoiceNewitem.Appearance.Options.UseFont = True
-        Me.BtnInvoiceNewitem.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BtnInvoiceNewitem.Image = CType(resources.GetObject("BtnInvoiceNewitem.Image"), System.Drawing.Image)
-        Me.BtnInvoiceNewitem.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.BtnInvoiceNewitem.Location = New System.Drawing.Point(2, 2)
-        Me.BtnInvoiceNewitem.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.BtnInvoiceNewitem.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnInvoiceNewitem.Name = "BtnInvoiceNewitem"
-        Me.BtnInvoiceNewitem.Size = New System.Drawing.Size(1193, 42)
-        Me.BtnInvoiceNewitem.TabIndex = 12
-        Me.BtnInvoiceNewitem.Text = "Create Invoice"
-        '
         'PanelControl6
         '
         Me.PanelControl6.Controls.Add(Me.BtnHistNewItem)
@@ -3440,34 +3469,6 @@ Partial Class FormSalesPOS
         Me.LabelControl10.TabIndex = 8892
         Me.LabelControl10.Text = "From"
         '
-        'PanelControlNewItem
-        '
-        Me.PanelControlNewItem.Controls.Add(Me.PanelControl9)
-        Me.PanelControlNewItem.Controls.Add(Me.BtnInvoiceNewitem)
-        Me.PanelControlNewItem.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlNewItem.Location = New System.Drawing.Point(0, 406)
-        Me.PanelControlNewItem.Name = "PanelControlNewItem"
-        Me.PanelControlNewItem.Size = New System.Drawing.Size(1197, 46)
-        Me.PanelControlNewItem.TabIndex = 14
-        '
-        'PanelControl9
-        '
-        Me.PanelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl9.Controls.Add(Me.CESelAllNewItem)
-        Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl9.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl9.Name = "PanelControl9"
-        Me.PanelControl9.Size = New System.Drawing.Size(80, 42)
-        Me.PanelControl9.TabIndex = 13
-        '
-        'CESelAllNewItem
-        '
-        Me.CESelAllNewItem.Location = New System.Drawing.Point(5, 11)
-        Me.CESelAllNewItem.Name = "CESelAllNewItem"
-        Me.CESelAllNewItem.Properties.Caption = "Select All"
-        Me.CESelAllNewItem.Size = New System.Drawing.Size(75, 19)
-        Me.CESelAllNewItem.TabIndex = 12
-        '
         'FormSalesPOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3580,6 +3581,11 @@ Partial Class FormSalesPOS
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LookUpEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPInvoiceList.ResumeLayout(False)
+        CType(Me.PanelControlNewItem, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlNewItem.ResumeLayout(False)
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl9.ResumeLayout(False)
+        CType(Me.CESelAllNewItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCNewItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVNewItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoCESelect, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3602,11 +3608,6 @@ Partial Class FormSalesPOS
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlNewItem, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlNewItem.ResumeLayout(False)
-        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl9.ResumeLayout(False)
-        CType(Me.CESelAllNewItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

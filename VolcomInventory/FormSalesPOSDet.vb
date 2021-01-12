@@ -55,6 +55,7 @@ Public Class FormSalesPOSDet
     Public order_number As String = ""
     Public cust_name As String = ""
     Public is_from_prob_list As Boolean = False
+    Public is_from_prob_list_no_stock As Boolean = False
     Public id_store_type As String = "-1"
 
 
@@ -268,7 +269,7 @@ Public Class FormSalesPOSDet
                 End If
             End If
 
-            'problem list
+            'problem list price
             If (id_menu = "1" Or id_menu = "4") And is_from_prob_list Then
                 Dim typ As String = FormSalesPOS.LETypeProb.EditValue.ToString
                 'get comp
@@ -287,6 +288,18 @@ Public Class FormSalesPOSDet
                     DEStart.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_start_period")
                     DEEnd.EditValue = FormSalesPOS.GVProbList.GetFocusedRowCellValue("sales_pos_end_period")
                 End If
+                DeleteToolStripMenuItem.Visible = False
+            End If
+
+            'problem list no stock
+            If (id_menu = "1" Or id_menu = "4") And is_from_prob_list_no_stock Then
+                Dim id_comp_prob As String = FormSalesPOS.SLEStoreNewItem.EditValue.ToString
+                Dim comp_prob As String = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + id_comp_prob + "' ", 0, True, "", "", "", "")
+                TxtCodeCompFrom.Text = comp_prob
+                TxtCodeCompFrom.Enabled = False
+                actionCompFrom()
+                BtnImport.Visible = False
+                BtnLoadFromProbList.Visible = True
                 DeleteToolStripMenuItem.Visible = False
             End If
         ElseIf action = "upd" Then
@@ -873,7 +886,7 @@ Public Class FormSalesPOSDet
                     Dim jum_ins_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary, id_ol_store_ret_list, id_sales_pos_prob, id_sales_pos_prob_price) VALUES "
+                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary, id_ol_store_ret_list, id_sales_pos_prob, id_sales_pos_prob_price,id_sales_pos_oos_recon_det) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                         Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
@@ -926,11 +939,15 @@ Public Class FormSalesPOSDet
                         If id_sales_pos_prob_price = "0" Then
                             id_sales_pos_prob_price = "NULL"
                         End If
+                        Dim id_sales_pos_oos_recon_det As String = GVItemList.GetRowCellValue(i, "id_sales_pos_oos_recon_det").ToString
+                        If id_sales_pos_oos_recon_det = "0" Then
+                            id_sales_pos_oos_recon_det = "NULL"
+                        End If
 
                         If jum_ins_i > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ", " + id_ol_store_ret_list + "," + id_sales_pos_prob + "," + id_sales_pos_prob_price + ") "
+                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ", " + id_ol_store_ret_list + "," + id_sales_pos_prob + "," + id_sales_pos_prob_price + "," + id_sales_pos_oos_recon_det + ") "
                         jum_ins_i = jum_ins_i + 1
                     Next
                     If jum_ins_i > 0 Then
@@ -1055,6 +1072,9 @@ Public Class FormSalesPOSDet
                     End If
                     If is_from_prob_list Then
                         FormSalesPOS.viewProbList()
+                    End If
+                    If is_from_prob_list_no_stock Then
+                        FormSalesPOS.viewNewItem()
                     End If
                     action = "upd"
                     actionLoad()
@@ -1490,7 +1510,7 @@ Public Class FormSalesPOSDet
 
             viewStockStore()
             If is_use_unique_code = "2" Then
-                If Not is_from_prob_list Then
+                If Not is_from_prob_list And Not is_from_prob_list_no_stock Then
                     load_excel_data()
                 Else
                     load_prob_list()
@@ -1596,7 +1616,8 @@ Public Class FormSalesPOSDet
                             .note = If(rp Is Nothing, "Product not found", "OK"),
                             .id_sales_pos_det = "0",
                             .id_sales_pos_prob = "0",
-                            .id_sales_pos_prob_price = "0"
+                            .id_sales_pos_prob_price = "0",
+                            .id_sales_pos_oos_recon_det = "0"
                         }
 
             GCItemList.DataSource = Nothing
@@ -2285,6 +2306,9 @@ Public Class FormSalesPOSDet
                 If typ = "1" Then
                     load_prob_list()
                 End If
+            End If
+            If is_from_prob_list_no_stock Then
+                load_prob_list()
             End If
         End If
     End Sub
@@ -2985,6 +3009,7 @@ Public Class FormSalesPOSDet
                     newRow("id_sales_pos_det") = "0"
                     newRow("id_sales_pos_prob") = "0"
                     newRow("id_sales_pos_prob_price") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_sales_pos_prob").ToString
+                    newRow("id_sales_pos_oos_recon_det") = "0"
                     TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()
@@ -3045,6 +3070,7 @@ Public Class FormSalesPOSDet
                     newRow("id_sales_pos_det") = "0"
                     newRow("id_sales_pos_prob") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_sales_pos_prob").ToString
                     newRow("id_sales_pos_prob_price") = "0"
+                    newRow("id_sales_pos_oos_recon_det") = "0"
                     TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()
@@ -3052,6 +3078,10 @@ Public Class FormSalesPOSDet
                 Next
                 FormMain.SplashScreenManager1.CloseWaitForm()
             End If
+        End If
+        If is_from_prob_list_no_stock Then
+            viewDetail()
+
         End If
     End Sub
 
