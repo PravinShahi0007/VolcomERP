@@ -503,7 +503,7 @@ GROUP BY r.id_sales_pos_recon "
     End Sub
 
     Private Sub RepoLinkInvRef_Click(sender As Object, e As EventArgs) Handles RepoLinkInvRef.Click
-        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 And GVItemList.GetFocusedRowCellValue("sales_pos_number_err_prc_ref").ToString <> "" Then
             Cursor = Cursors.WaitCursor
             Dim rmt As String = GVItemList.GetFocusedRowCellValue("rmt_err_prc_ref").ToString
             Dim id As String = GVItemList.GetFocusedRowCellValue("id_sales_pos_err_prc_ref").ToString
