@@ -3079,11 +3079,12 @@ Public Class FormSalesPOSDet
                 FormMain.SplashScreenManager1.CloseWaitForm()
             End If
         End If
+
         If is_from_prob_list_no_stock Then
             ' new item from no stock
             viewDetail()
             For i As Integer = 0 To FormSalesPOS.GVNewItem.RowCount - 1
-                Dim newRow As DataRow = (TryCast(GVItemList.DataSource, DataTable)).NewRow()
+                Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
                 newRow("code") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "code").ToString
                 newRow("name") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "name").ToString
                 newRow("size") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "size").ToString
