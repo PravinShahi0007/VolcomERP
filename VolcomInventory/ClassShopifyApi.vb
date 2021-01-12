@@ -896,11 +896,13 @@ GROUP BY p.sku"
         data_out.Columns.Add("qty_erp", GetType(Integer))
 
         'product erp
+        Dim yr As String = execute_query("SELECT YEAR(DATE_SUB(CONCAT(YEAR(NOW()), '-', MONTH(NOW()), '-', '01'), INTERVAL 1 DAY))", 0, True, "", "", "", "")
+
         Dim q_erp As String = "
             SELECT p.product_full_code, SUM(a.qty_avl) AS qty_avl
             FROM (
                 (SELECT f.id_wh_drawer, f.id_product, f.qty_avl
-                FROM tb_storage_fg_2020 f
+                FROM tb_storage_fg_" + yr + " f
                 WHERE f.month = MONTH(DATE_SUB(CONCAT(YEAR(NOW()), '-', MONTH(NOW()), '-', '01'), INTERVAL 1 DAY)))
                 UNION ALL
                 (SELECT f.id_wh_drawer, f.id_product, SUM(IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS qty_avl
