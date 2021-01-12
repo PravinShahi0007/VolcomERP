@@ -608,11 +608,17 @@ GROUP BY p.sku"
         Next
     End Sub
 
-    Sub sync_stock()
+    Sub sync_stock(ByVal id_log As String)
+        'get sync date
+        Dim query As String = "SELECT DATE_FORMAT(l.sync_date, '%Y-%m-%d %H:%i:%s') AS `sync_date_ins`
+        FROM tb_log_compare_shopify l WHERE l.id_log_compare_shopify='" + id_log + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim sync_date As String = data.Rows(0)("sync_date_ins").ToString
+
         Dim product As DataTable = get_product()
 
         For i = 0 To product.Rows.Count - 1
-            Dim q_price As String = "INSERT INTO tb_m_stock_shopify (sku, stock, date) VALUES ('" + product.Rows(i)("sku").ToString + "', '" + product.Rows(i)("inventory_quantity").ToString + "', NOW())"
+            Dim q_price As String = "INSERT INTO tb_m_stock_shopify (sku, stock, date,id_log_compare_shopify) VALUES ('" + product.Rows(i)("sku").ToString + "', '" + product.Rows(i)("inventory_quantity").ToString + "', '" + sync_date + "','" + id_log + "')"
 
             execute_non_query(q_price, True, "", "", "", "")
         Next
@@ -831,5 +837,54 @@ GROUP BY p.sku"
 
             response.Close()
         End While
+    End Sub
+
+    Sub get_open_order(ByVal id_log As String)
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/orders.json?status=opened&limit=250"
+        Dim request As Net.WebRequest = Net.WebRequest.Create(url)
+        request.Method = "GET"
+        request.Credentials = New Net.NetworkCredential(username, password)
+        Dim response As Net.WebResponse = request.GetResponse()
+        Using dataStream As IO.Stream = response.GetResponseStream()
+            Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+
+            Dim responseFromServer As String = reader.ReadToEnd()
+
+            Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+
+            If json("orders").Count > 0 Then
+                For Each row In json("orders").ToList
+                    'cek di ol store order
+                    Dim qc As String = "SELECT * FROM tb_ol_store_order od WHERE od.id_comp_group=76 AND od.is_process=1 AND od.sales_order_ol_shop_number='" + row("order_number").ToString + "' "
+                    Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    If dc.Rows.Count <= 0 Then
+                        'yang blm trproses masuk sini
+                        Dim order_number As String = row("order_number").ToString
+                        Dim order_date As String = DateTime.Parse(row("created_at").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                        Dim customer_name As String = row("customer")("first_name").ToString + " " + row("customer")("last_name").ToString
+
+                        Dim query_ins As String = "INSERT INTO tb_shopify_open_order(order_number, order_date, customer_name, sku, qty, id_log_compare_shopify) VALUES "
+                        Dim i As Integer = 0
+                        For Each row_item In row("line_items").ToList
+                            Dim sku As String = row_item("sku").ToString.Replace("-GWP", "").Trim
+                            Dim qty As String = decimalSQL(row_item("quantity").ToString)
+
+                            If i > 0 Then
+                                query_ins += ","
+                            End If
+                            query_ins += "('" + order_number + "', '" + order_date + "', '" + addSlashes(customer_name) + "', '" + sku + "', '" + qty + "', '" + id_log + "') "
+                            i += 1
+                        Next
+                        'insert ortder
+                        If i > 0 Then
+                            execute_non_query(query_ins, True, "", "", "", "")
+                        End If
+                    End If
+                Next
+            End If
+        End Using
+        response.Close()
     End Sub
 End Class

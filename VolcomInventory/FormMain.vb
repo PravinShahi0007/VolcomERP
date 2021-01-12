@@ -8440,7 +8440,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormTabunganMissing" Then
             FormTabunganMissing.print()
         ElseIf formName = "FormCompareStockWebsite" Then
-            FormCompareStockWebsite.print()
+            FormCompareStockWebsite.print_compare()
         ElseIf formName = "FormRetOlStore" Then
             print(FormRetOlStore.GCData, "Pre Return List")
         ElseIf formName = "FormRefundOLStore" Then
