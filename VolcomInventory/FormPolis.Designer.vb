@@ -32,6 +32,7 @@ Partial Class FormPolis
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BObject = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCPolis, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -40,6 +41,7 @@ Partial Class FormPolis
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BObject)
         Me.PanelControl1.Controls.Add(Me.BRefresh)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -149,6 +151,18 @@ Partial Class FormPolis
         Me.GridColumn8.VisibleIndex = 6
         Me.GridColumn8.Width = 152
         '
+        'BObject
+        '
+        Me.BObject.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BObject.Image = CType(resources.GetObject("BObject.Image"), System.Drawing.Image)
+        Me.BObject.ImageIndex = 13
+        Me.BObject.Location = New System.Drawing.Point(2, 2)
+        Me.BObject.Name = "BObject"
+        Me.BObject.Size = New System.Drawing.Size(111, 42)
+        Me.BObject.TabIndex = 19
+        Me.BObject.TabStop = False
+        Me.BObject.Text = "Object"
+        '
         'FormPolis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -180,4 +194,5 @@ Partial Class FormPolis
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BObject As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -34,6 +34,12 @@ Partial Class FormPolisDet
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XBefore = New DevExpress.XtraTab.XtraTabPage()
         Me.XAfter = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPolisBefore = New DevExpress.XtraGrid.GridControl()
+        Me.GVPolisBefore = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -41,6 +47,9 @@ Partial Class FormPolisDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
+        Me.XBefore.SuspendLayout()
+        CType(Me.GCPolisBefore, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPolisBefore, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -180,6 +189,7 @@ Partial Class FormPolisDet
         '
         'XBefore
         '
+        Me.XBefore.Controls.Add(Me.GCPolisBefore)
         Me.XBefore.Name = "XBefore"
         Me.XBefore.Size = New System.Drawing.Size(909, 345)
         Me.XBefore.Text = "Before"
@@ -189,6 +199,50 @@ Partial Class FormPolisDet
         Me.XAfter.Name = "XAfter"
         Me.XAfter.Size = New System.Drawing.Size(909, 345)
         Me.XAfter.Text = "After"
+        '
+        'GCPolisBefore
+        '
+        Me.GCPolisBefore.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPolisBefore.Location = New System.Drawing.Point(0, 0)
+        Me.GCPolisBefore.MainView = Me.GVPolisBefore
+        Me.GCPolisBefore.Name = "GCPolisBefore"
+        Me.GCPolisBefore.Size = New System.Drawing.Size(909, 345)
+        Me.GCPolisBefore.TabIndex = 0
+        Me.GCPolisBefore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPolisBefore})
+        '
+        'GVPolisBefore
+        '
+        Me.GVPolisBefore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVPolisBefore.GridControl = Me.GCPolisBefore
+        Me.GVPolisBefore.Name = "GVPolisBefore"
+        Me.GVPolisBefore.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id_polis"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "GridColumn3"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "GridColumn4"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
         '
         'FormPolisDet
         '
@@ -210,6 +264,9 @@ Partial Class FormPolisDet
         Me.PanelControl2.PerformLayout()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
+        Me.XBefore.ResumeLayout(False)
+        CType(Me.GCPolisBefore, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPolisBefore, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -227,4 +284,10 @@ Partial Class FormPolisDet
     Friend WithEvents XBefore As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XAfter As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCPolisBefore As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPolisBefore As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
