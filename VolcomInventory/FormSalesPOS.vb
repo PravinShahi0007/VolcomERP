@@ -1029,8 +1029,8 @@
             cond_period = "AND (sp.sales_pos_end_period>='" + date_from_selected + "' AND sp.sales_pos_end_period<='" + date_until_selected + "') "
         End If
         Dim query As String = "SELECT 'No' AS `is_select`,nd.id_sales_pos_oos_recon_det, nd.id_sales_pos_oos_recon, n.number AS `closing_number`, n.created_date AS `closing_date`,
-        nd.id_product_valid , prod.product_full_code AS `code_valid`,prod.product_name AS `name_valid`, cd.code_detail_name AS `size_valid`, nd.qty_valid,
-        nd.id_design_price_valid, nd.design_price_valid,
+        prod.id_design AS `id_design_valid`,nd.id_product_valid , prod.product_full_code AS `code_valid`,prod.product_name AS `name_valid`, cd.code_detail_name AS `size_valid`, nd.qty_valid,
+        nd.id_design_price_valid, nd.design_price_valid, pt.design_price_type AS `design_price_type_valid`,
         nd.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, c.comp_number, c.comp_name, cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,
         nd.id_product, oos_prod.product_full_code AS `code`,oos_prod.product_name AS `name`, oos_cd.code_detail_name AS `size`, nd.qty AS `no_stock_qty`, IFNULL(proc.qty_on_process,0) AS `qty_on_process`,  IFNULL(proc.qty_proceed,0) AS `qty_proceed`
         FROM tb_sales_pos_oos_recon_det nd
@@ -1038,6 +1038,8 @@
         INNER JOIN tb_m_product prod ON prod.id_product = nd.id_product_valid
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = nd.id_design_price_valid
+        INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
         INNER JOIN tb_m_product oos_prod ON oos_prod.id_product = nd.id_product
         INNER JOIN tb_m_product_code oos_prod_code ON oos_prod_code.id_product = oos_prod.id_product
         INNER JOIN tb_m_code_detail oos_cd ON oos_cd.id_code_detail = oos_prod_code.id_code_detail
@@ -1186,10 +1188,12 @@
                 FormValidateStock.dt = dts
                 FormValidateStock.ShowDialog()
             Else
+                Cursor = Cursors.WaitCursor
                 FormSalesPOSDet.is_from_prob_list_no_stock = True
                 FormSalesPOSDet.action = "ins"
                 FormSalesPOSDet.id_menu = id_menu
                 FormSalesPOSDet.ShowDialog()
+                Cursor = Cursors.Default
             End If
         End If
         makeSafeGV(GVNewItem)

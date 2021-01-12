@@ -2242,13 +2242,6 @@ Public Class FormSalesPOSDet
 
     Private Sub DEEnd_KeyDown(sender As Object, e As KeyEventArgs) Handles DEEnd.KeyDown
         If action = "ins" Then
-            next_control_enter(e)
-            If id_do = "-1" Then
-                viewDetail()
-                viewProb()
-                viewDetailCode()
-            End If
-
             If e.KeyCode = Keys.Enter Then
                 If id_menu = "5" Then
                     TxtOLStoreNumber.Focus()
@@ -2299,6 +2292,12 @@ Public Class FormSalesPOSDet
         'viewDetail()
         If action = "ins" Then
             load_kurs()
+
+            If id_do = "-1" Then
+                viewDetail()
+                viewProb()
+                viewDetailCode()
+            End If
 
             'prob list
             If is_from_prob_list Then
@@ -3085,19 +3084,19 @@ Public Class FormSalesPOSDet
             viewDetail()
             For i As Integer = 0 To FormSalesPOS.GVNewItem.RowCount - 1
                 Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
-                newRow("code") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "code").ToString
-                newRow("name") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "name").ToString
-                newRow("size") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "size").ToString
-                newRow("sales_pos_det_qty") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "invoice_qty")
-                newRow("sales_pos_det_amount") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "invoice_qty") * FormSalesPOS.GVNewItem.GetRowCellValue(i, "design_price_valid")
-                newRow("limit_qty") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "invoice_qty")
+                newRow("code") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "code_valid").ToString
+                newRow("name") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "name_valid").ToString
+                newRow("size") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "size_valid").ToString
+                newRow("sales_pos_det_qty") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "qty_valid")
+                newRow("sales_pos_det_amount") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "qty_valid") * FormSalesPOS.GVNewItem.GetRowCellValue(i, "design_price_valid")
+                newRow("limit_qty") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "qty_valid")
                 newRow("id_design_price") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_design_price_valid").ToString
                 newRow("design_price") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "design_price_valid")
                 newRow("design_price_type") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "design_price_type_valid").ToString
                 newRow("id_design_price_retail") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_design_price_valid").ToString
                 newRow("design_price_retail") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "design_price_valid")
-                newRow("id_design") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_design").ToString
-                newRow("id_product") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_product").ToString
+                newRow("id_design") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_design_valid").ToString
+                newRow("id_product") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_product_valid").ToString
                 newRow("is_select") = "No"
                 newRow("note") = "OK"
                 newRow("id_sales_pos_det") = "0"
