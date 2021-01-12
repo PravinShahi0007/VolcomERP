@@ -3080,8 +3080,34 @@ Public Class FormSalesPOSDet
             End If
         End If
         If is_from_prob_list_no_stock Then
+            ' new item from no stock
             viewDetail()
-
+            For i As Integer = 0 To FormSalesPOS.GVNewItem.RowCount - 1
+                Dim newRow As DataRow = (TryCast(GVItemList.DataSource, DataTable)).NewRow()
+                newRow("code") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "code").ToString
+                newRow("name") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "name").ToString
+                newRow("size") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "size").ToString
+                newRow("sales_pos_det_qty") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "invoice_qty")
+                newRow("sales_pos_det_amount") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "invoice_qty") * FormSalesPOS.GVNewItem.GetRowCellValue(i, "design_price_valid")
+                newRow("limit_qty") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "invoice_qty")
+                newRow("id_design_price") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_design_price_valid").ToString
+                newRow("design_price") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "design_price_valid")
+                newRow("design_price_type") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "design_price_type_valid").ToString
+                newRow("id_design_price_retail") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_design_price_valid").ToString
+                newRow("design_price_retail") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "design_price_valid")
+                newRow("id_design") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_design").ToString
+                newRow("id_product") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_product").ToString
+                newRow("is_select") = "No"
+                newRow("note") = "OK"
+                newRow("id_sales_pos_det") = "0"
+                newRow("id_sales_pos_prob") = "0"
+                newRow("id_sales_pos_prob_price") = "0"
+                newRow("id_sales_pos_oos_recon_det") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_sales_pos_oos_recon_det").ToString
+                TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                calculate()
+            Next
         End If
     End Sub
 

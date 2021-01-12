@@ -1173,7 +1173,7 @@
                     id_prod += ","
                 End If
                 qs += "('" + id_user + "','" + GVNewItem.GetRowCellValue(c, "code_valid").ToString + "','" + addSlashes(GVNewItem.GetRowCellValue(c, "name_valid").ToString) + "', '" + GVNewItem.GetRowCellValue(c, "size_valid").ToString + "', '" + GVNewItem.GetRowCellValue(c, "id_product_valid").ToString + "', '" + decimalSQL(GVNewItem.GetRowCellValue(c, "qty_valid").ToString) + "') "
-                id_prod += GVNewItem.GetRowCellValue(c, "id_product").ToString
+                id_prod += GVNewItem.GetRowCellValue(c, "id_product_valid").ToString
             Next
             'check stock
             qs += "; CALL view_validate_stock(" + id_user + ", " + SLEStoreNewItem.EditValue.ToString + ", '" + id_prod + "',1); "

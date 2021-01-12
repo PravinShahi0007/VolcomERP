@@ -158,7 +158,7 @@
                     Dim cond_stock As Boolean = True
                     Dim qst As String = "SELECT IFNULL(SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0) AS `qty_avail`
                     FROM tb_storage_fg f
-                    WHERE f.id_product='" + id_product + "' AND f.id_wh_drawer=(SELECT c.id_drawer_def FROM tb_m_comp c WHERE c.id_comp=" + id_comp + ") "
+                    WHERE f.id_product='" + id_product_found + "' AND f.id_wh_drawer=(SELECT c.id_drawer_def FROM tb_m_comp c WHERE c.id_comp=" + id_comp + ") "
                     Dim dst As DataTable = execute_query(qst, -1, True, "", "", "", "")
                     Dim qty_avail As Integer = 0
                     If dst.Rows.Count <= 0 Then
