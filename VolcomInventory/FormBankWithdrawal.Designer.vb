@@ -41,7 +41,6 @@ Partial Class FormBankWithdrawal
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn100 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BBeliValas = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEUnitBBKList = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView16 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -499,6 +498,7 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
+        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
@@ -509,8 +509,6 @@ Partial Class FormBankWithdrawal
         Me.CMBBKList.SuspendLayout()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
         CType(Me.SLEUnitBBKList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEBBKTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -659,6 +657,7 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewBPL.SuspendLayout()
+        Me.XtraScrollableControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -693,8 +692,8 @@ Partial Class FormBankWithdrawal
         'XTPBBKList
         '
         Me.XTPBBKList.Controls.Add(Me.GCList)
-        Me.XTPBBKList.Controls.Add(Me.PanelControl2)
         Me.XTPBBKList.Controls.Add(Me.BCreatePay)
+        Me.XTPBBKList.Controls.Add(Me.XtraScrollableControl1)
         Me.XTPBBKList.Name = "XTPBBKList"
         Me.XTPBBKList.Size = New System.Drawing.Size(1218, 485)
         Me.XTPBBKList.Text = "List"
@@ -703,11 +702,11 @@ Partial Class FormBankWithdrawal
         '
         Me.GCList.ContextMenuStrip = Me.CMBBKList
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCList.Location = New System.Drawing.Point(0, 44)
+        Me.GCList.Location = New System.Drawing.Point(0, 63)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCList.Size = New System.Drawing.Size(1218, 409)
+        Me.GCList.Size = New System.Drawing.Size(1218, 390)
         Me.GCList.TabIndex = 18
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -853,39 +852,19 @@ Partial Class FormBankWithdrawal
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.BBeliValas)
-        Me.PanelControl2.Controls.Add(Me.SLEUnitBBKList)
-        Me.PanelControl2.Controls.Add(Me.DEBBKTo)
-        Me.PanelControl2.Controls.Add(Me.LabelControl19)
-        Me.PanelControl2.Controls.Add(Me.LabelControl18)
-        Me.PanelControl2.Controls.Add(Me.DEBBKFrom)
-        Me.PanelControl2.Controls.Add(Me.BCreateBookTrf)
-        Me.PanelControl2.Controls.Add(Me.SLEPayTypePayment)
-        Me.PanelControl2.Controls.Add(Me.LabelControl4)
-        Me.PanelControl2.Controls.Add(Me.SLEVendorPayment)
-        Me.PanelControl2.Controls.Add(Me.LabelControl1)
-        Me.PanelControl2.Controls.Add(Me.BViewPayment)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1218, 44)
-        Me.PanelControl2.TabIndex = 14
-        '
         'BBeliValas
         '
         Me.BBeliValas.Dock = System.Windows.Forms.DockStyle.Right
         Me.BBeliValas.Image = CType(resources.GetObject("BBeliValas.Image"), System.Drawing.Image)
-        Me.BBeliValas.Location = New System.Drawing.Point(975, 2)
+        Me.BBeliValas.Location = New System.Drawing.Point(1097, 5)
         Me.BBeliValas.Name = "BBeliValas"
-        Me.BBeliValas.Size = New System.Drawing.Size(116, 40)
+        Me.BBeliValas.Size = New System.Drawing.Size(116, 53)
         Me.BBeliValas.TabIndex = 8933
         Me.BBeliValas.Text = "Beli Valas"
         '
         'SLEUnitBBKList
         '
-        Me.SLEUnitBBKList.Location = New System.Drawing.Point(777, 13)
+        Me.SLEUnitBBKList.Location = New System.Drawing.Point(778, 9)
         Me.SLEUnitBBKList.Name = "SLEUnitBBKList"
         Me.SLEUnitBBKList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEUnitBBKList.Properties.View = Me.GridView16
@@ -931,7 +910,7 @@ Partial Class FormBankWithdrawal
         'DEBBKTo
         '
         Me.DEBBKTo.EditValue = Nothing
-        Me.DEBBKTo.Location = New System.Drawing.Point(613, 13)
+        Me.DEBBKTo.Location = New System.Drawing.Point(614, 9)
         Me.DEBBKTo.Name = "DEBBKTo"
         Me.DEBBKTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEBBKTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -942,7 +921,7 @@ Partial Class FormBankWithdrawal
         '
         'LabelControl19
         '
-        Me.LabelControl19.Location = New System.Drawing.Point(595, 15)
+        Me.LabelControl19.Location = New System.Drawing.Point(596, 11)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(12, 13)
         Me.LabelControl19.TabIndex = 8924
@@ -950,7 +929,7 @@ Partial Class FormBankWithdrawal
         '
         'LabelControl18
         '
-        Me.LabelControl18.Location = New System.Drawing.Point(356, 16)
+        Me.LabelControl18.Location = New System.Drawing.Point(357, 12)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(69, 13)
         Me.LabelControl18.TabIndex = 8923
@@ -959,7 +938,7 @@ Partial Class FormBankWithdrawal
         'DEBBKFrom
         '
         Me.DEBBKFrom.EditValue = Nothing
-        Me.DEBBKFrom.Location = New System.Drawing.Point(431, 12)
+        Me.DEBBKFrom.Location = New System.Drawing.Point(432, 8)
         Me.DEBBKFrom.Name = "DEBBKFrom"
         Me.DEBBKFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEBBKFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -972,15 +951,15 @@ Partial Class FormBankWithdrawal
         '
         Me.BCreateBookTrf.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCreateBookTrf.Image = CType(resources.GetObject("BCreateBookTrf.Image"), System.Drawing.Image)
-        Me.BCreateBookTrf.Location = New System.Drawing.Point(1091, 2)
+        Me.BCreateBookTrf.Location = New System.Drawing.Point(972, 5)
         Me.BCreateBookTrf.Name = "BCreateBookTrf"
-        Me.BCreateBookTrf.Size = New System.Drawing.Size(125, 40)
+        Me.BCreateBookTrf.Size = New System.Drawing.Size(125, 53)
         Me.BCreateBookTrf.TabIndex = 8921
         Me.BCreateBookTrf.Text = "Book Transfer"
         '
         'SLEPayTypePayment
         '
-        Me.SLEPayTypePayment.Location = New System.Drawing.Point(41, 12)
+        Me.SLEPayTypePayment.Location = New System.Drawing.Point(42, 8)
         Me.SLEPayTypePayment.Name = "SLEPayTypePayment"
         Me.SLEPayTypePayment.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPayTypePayment.Properties.View = Me.GridView4
@@ -1011,7 +990,7 @@ Partial Class FormBankWithdrawal
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(11, 16)
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 12)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl4.TabIndex = 8919
@@ -1019,7 +998,7 @@ Partial Class FormBankWithdrawal
         '
         'SLEVendorPayment
         '
-        Me.SLEVendorPayment.Location = New System.Drawing.Point(173, 13)
+        Me.SLEVendorPayment.Location = New System.Drawing.Point(174, 9)
         Me.SLEVendorPayment.Name = "SLEVendorPayment"
         Me.SLEVendorPayment.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEVendorPayment.Properties.View = Me.GridView1
@@ -1050,7 +1029,7 @@ Partial Class FormBankWithdrawal
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(133, 16)
+        Me.LabelControl1.Location = New System.Drawing.Point(134, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl1.TabIndex = 8917
@@ -1058,7 +1037,7 @@ Partial Class FormBankWithdrawal
         '
         'BViewPayment
         '
-        Me.BViewPayment.Location = New System.Drawing.Point(891, 11)
+        Me.BViewPayment.Location = New System.Drawing.Point(892, 7)
         Me.BViewPayment.Name = "BViewPayment"
         Me.BViewPayment.Size = New System.Drawing.Size(60, 23)
         Me.BViewPayment.TabIndex = 8916
@@ -5420,6 +5399,27 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
+        'XtraScrollableControl1
+        '
+        Me.XtraScrollableControl1.Controls.Add(Me.BCreateBookTrf)
+        Me.XtraScrollableControl1.Controls.Add(Me.BBeliValas)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl4)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLEUnitBBKList)
+        Me.XtraScrollableControl1.Controls.Add(Me.BViewPayment)
+        Me.XtraScrollableControl1.Controls.Add(Me.DEBBKTo)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl1)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl19)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLEVendorPayment)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl18)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLEPayTypePayment)
+        Me.XtraScrollableControl1.Controls.Add(Me.DEBBKFrom)
+        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
+        Me.XtraScrollableControl1.Padding = New System.Windows.Forms.Padding(5)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1218, 63)
+        Me.XtraScrollableControl1.TabIndex = 5
+        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -5442,9 +5442,6 @@ Partial Class FormBankWithdrawal
         Me.CMBBKList.ResumeLayout(False)
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
         CType(Me.SLEUnitBBKList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEBBKTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -5601,6 +5598,8 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewBPL.ResumeLayout(False)
+        Me.XtraScrollableControl1.ResumeLayout(False)
+        Me.XtraScrollableControl1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -5616,7 +5615,6 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BViewPayment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
@@ -6083,4 +6081,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridView18 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn209 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn210 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
 End Class

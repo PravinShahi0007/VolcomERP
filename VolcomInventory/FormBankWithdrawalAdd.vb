@@ -212,6 +212,54 @@
                     selisih = Math.Round((FormBankWithdrawalDet.TEKurs.EditValue * FormBankWithdrawalDet.GVList.GetRowCellValue(i, "val_bef_kurs")), 2) - Math.Round((FormBankWithdrawalDet.GVList.GetRowCellValue(i, "kurs") * FormBankWithdrawalDet.GVList.GetRowCellValue(i, "val_bef_kurs")), 2)
                 End If
             Next
+
+            If Not selisih = 0 Then
+                Dim newRow As DataRow = (TryCast(FormBankWithdrawalDet.GCList.DataSource, DataTable)).NewRow()
+                newRow("id_report") = 0
+                newRow("report_mark_type") = 0
+                Dim q_acc As String = ""
+                If selisih > 0 Then
+                    'kerugian kurs
+                    q_acc = "SELECT id_acc,acc_name,acc_description FROM tb_a_acc WHERE id_acc=(SELECT id_acc_rugi_kurs FROM tb_opt_accounting LIMIT 1)"
+                Else
+                    'keuntungan kurs
+                    q_acc = "SELECT id_acc,acc_name,acc_description FROM tb_a_acc WHERE id_acc=(SELECT id_acc_untung_kurs FROM tb_opt_accounting LIMIT 1)"
+                End If
+                Dim dt_acc As DataTable = execute_query(q_acc, -1, True, "", "", "", "")
+
+                newRow("id_acc") = dt_acc.Rows(0)("id_acc").ToString
+                newRow("acc_name") = dt_acc.Rows(0)("acc_name").ToString
+                newRow("acc_description") = dt_acc.Rows(0)("acc_description").ToString
+                newRow("note") = dt_acc.Rows(0)("acc_description").ToString
+
+                newRow("vendor") = get_company_x(get_company_contact_x(FormBankWithdrawalDet.SLEVendor.EditValue.ToString, "3"), "2")
+
+                newRow("id_comp") = "1"
+                newRow("comp_number") = "000"
+                newRow("total_pay") = 0
+                newRow("kurs") = 1
+                newRow("id_currency") = "1"
+                newRow("currency") = "Rp"
+                newRow("val_bef_kurs") = selisih
+                newRow("value") = selisih
+                newRow("value_view") = selisih
+                If selisih > 0 Then 'kerugian kurs
+                    newRow("id_dc") = 1
+                    newRow("dc_code") = "D"
+                    newRow("balance_due") = selisih
+                Else 'keuntungan kurs
+                    newRow("id_dc") = 2
+                    newRow("dc_code") = "K"
+                    newRow("balance_due") = -selisih
+                End If
+
+                TryCast(FormBankWithdrawalDet.GCList.DataSource, DataTable).Rows.Add(newRow)
+
+                FormBankWithdrawalDet.GCList.RefreshDataSource()
+                FormBankWithdrawalDet.GVList.RefreshData()
+                FormBankWithdrawalDet.calculate_amount()
+                Close()
+            End If
         End If
     End Sub
 End Class
