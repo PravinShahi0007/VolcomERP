@@ -1,5 +1,7 @@
 ﻿Public Class FormSalesProbTransHistory
     Public id_sales_pos_prob As String = "-1"
+    Public id_sales_pos_oos_recon_det As String = "-1"
+
     Private Sub FormSalesProbTransHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_sales_pos_prob <> "-1" Then
             viewPriceRecon()
@@ -58,6 +60,10 @@
         If id_sales_pos_prob <> "-1" Then
             cond_det = "AND spd.id_sales_pos_prob='" + id_sales_pos_prob + "' "
         End If
+        Dim cond_recon_oos As String = ""
+        If id_sales_pos_oos_recon_det <> "-1" Then
+            cond_recon_oos = "AND spd.id_sales_pos_oos_recon_det='" + id_sales_pos_oos_recon_det + "' "
+        End If
         Dim query As String = "SELECT sp.id_sales_pos, sp.sales_pos_number, sp.sales_pos_date,sp.sales_pos_start_period, sp.sales_pos_end_period, 
 c.id_comp, c.comp_number, c.comp_name, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`, cg.comp_group,
 sp.id_report_status, stt.report_status, 'Price Reconcile' AS `ref_type`, sp.report_mark_type, rmt.report_mark_type_name AS `inv_type`
@@ -82,6 +88,19 @@ INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
 WHERE 1=1 AND !ISNULL(spd.id_sales_pos_prob) " + cond_det + "
+GROUP BY sp.id_sales_pos
+UNION ALL
+SELECT sp.id_sales_pos, sp.sales_pos_number, sp.sales_pos_date,sp.sales_pos_start_period, sp.sales_pos_end_period, 
+c.id_comp, c.comp_number, c.comp_name, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`, cg.comp_group,
+sp.id_report_status, stt.report_status, 'No Stock' AS `ref_type`, sp.report_mark_type, rmt.report_mark_type_name AS `inv_type`
+FROM tb_sales_pos_det spd
+INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+WHERE 1=1 " + cond_recon_oos + "
 GROUP BY sp.id_sales_pos
 ORDER BY id_sales_pos DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -109,5 +128,42 @@ ORDER BY id_sales_pos DESC "
         Cursor = Cursors.WaitCursor
         print(GCInv, "Invoice List")
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrintClosingNoStock_Click(sender As Object, e As EventArgs) Handles BtnPrintClosingNoStock.Click
+        Cursor = Cursors.WaitCursor
+        print(GCCLosing, "Closing No Stock List")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewCLosingNoStock_Click(sender As Object, e As EventArgs) Handles BtnViewCLosingNoStock.Click
+        viewClosingNoStock
+    End Sub
+
+    Sub viewClosingNoStock()
+        Cursor = Cursors.WaitCursor
+        Dim cond_det As String = ""
+        If id_sales_pos_prob <> "-1" Then
+            cond_det = "AND rd.id_sales_pos_prob='" + id_sales_pos_prob + "' "
+        End If
+        Dim query As String = "SELECT r.id_sales_pos_oos_recon, r.number, r.created_date, r.note, r.id_report_status, stt.report_status, r.is_confirm
+        FROM tb_sales_pos_oos_recon r
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
+        WHERE r.id_sales_pos_oos_recon>0 " + cond_det + "
+        GROUP BY r.id_sales_pos_oos_recon
+        ORDER BY r.id_sales_pos_oos_recon DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCLosing.DataSource = data
+        GVCLosing.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVCLosing_DoubleClick(sender As Object, e As EventArgs) Handles GVCLosing.DoubleClick
+        If GVCLosing.RowCount > 0 And GVCLosing.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormSalesPOSClosingNoStock.id = GVCLosing.GetFocusedRowCellValue("id_sales_pos_oos_recon").ToString
+            FormSalesPOSClosingNoStock.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

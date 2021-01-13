@@ -887,4 +887,96 @@ GROUP BY p.sku"
         End Using
         response.Close()
     End Sub
+
+    Function compare_qty_sku(sku() As String) As DataTable
+        Dim data_out As DataTable = New DataTable
+
+        data_out.Columns.Add("sku", GetType(String))
+        data_out.Columns.Add("qty_shopify", GetType(Integer))
+        data_out.Columns.Add("qty_erp", GetType(Integer))
+
+        'product erp
+        Dim yr As String = execute_query("SELECT YEAR(DATE_SUB(CONCAT(YEAR(NOW()), '-', MONTH(NOW()), '-', '01'), INTERVAL 1 DAY))", 0, True, "", "", "", "")
+
+        Dim q_erp As String = "
+            SELECT p.product_full_code, SUM(a.qty_avl) AS qty_avl
+            FROM (
+                (SELECT f.id_wh_drawer, f.id_product, f.qty_avl
+                FROM tb_storage_fg_" + yr + " f
+                WHERE f.month = MONTH(DATE_SUB(CONCAT(YEAR(NOW()), '-', MONTH(NOW()), '-', '01'), INTERVAL 1 DAY)))
+                UNION ALL
+                (SELECT f.id_wh_drawer, f.id_product, SUM(IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS qty_avl
+                FROM tb_storage_fg f
+                WHERE f.storage_product_datetime >= CONCAT(YEAR(NOW()), '-', MONTH(NOW()), '-', '01 00:00:00') AND f.storage_product_datetime <= CONCAT(DATE(NOW()), ' 23:59:59')
+                GROUP BY f.id_wh_drawer, f.id_product)
+            ) a
+            INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = a.id_wh_drawer
+            INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack
+            INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator AND loc.id_comp IN (1252, 1256)
+            INNER JOIN tb_m_product p ON p.id_product = a.id_product
+            WHERE p.product_full_code IN (" + String.Join(",", sku) + ")
+            GROUP BY a.id_product
+        "
+
+        Dim d_erp As DataTable = execute_query(q_erp, -1, True, "", "", "", "")
+
+        'from product
+        Dim product As DataTable = get_product()
+
+        For i = 0 To product.Rows.Count - 1
+            If sku.Contains(product.Rows(i)("sku").ToString) Then
+                Dim row As DataRow = data_out.NewRow
+
+                row("sku") = product.Rows(i)("sku").ToString
+                row("qty_shopify") = CType(product.Rows(i)("inventory_quantity").ToString, Integer)
+
+                For j = 0 To d_erp.Rows.Count - 1
+                    If d_erp.Rows(j)("product_full_code").ToString = product.Rows(i)("sku").ToString Then
+                        row("qty_erp") = d_erp.Rows(j)("qty_avl")
+                    End If
+                Next
+
+                data_out.Rows.Add(row)
+            End If
+        Next
+
+        'from order
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/orders.json?status=opened&limit=250"
+        Dim request As Net.WebRequest = Net.WebRequest.Create(url)
+        request.Method = "GET"
+        request.Credentials = New Net.NetworkCredential(username, password)
+        Dim response As Net.WebResponse = request.GetResponse()
+        Using dataStream As IO.Stream = response.GetResponseStream()
+            Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+
+            Dim responseFromServer As String = reader.ReadToEnd()
+
+            Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+
+            If json("orders").Count > 0 Then
+                For Each row In json("orders").ToList
+                    'cek di ol store order
+                    Dim qc As String = "SELECT * FROM tb_ol_store_order od WHERE od.id_comp_group=76 AND od.is_process=1 AND od.sales_order_ol_shop_number='" + row("order_number").ToString + "' "
+                    Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    If dc.Rows.Count <= 0 Then
+                        'yang blm trproses masuk sini
+                        For Each item In row("line_items").ToList
+                            If sku.Contains(item("sku").ToString) Then
+                                For i = 0 To data_out.Rows.Count - 1
+                                    If data_out.Rows(i)("sku").ToString = item("sku").ToString Then
+                                        data_out.Rows(i)("qty_shopify") = data_out.Rows(i)("qty_shopify") + item("quantity")
+                                    End If
+                                Next
+                            End If
+                        Next
+                    End If
+                Next
+            End If
+        End Using
+        response.Close()
+
+        Return data_out
+    End Function
 End Class

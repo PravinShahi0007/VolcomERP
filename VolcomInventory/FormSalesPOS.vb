@@ -54,7 +54,9 @@
         DEUntil.DateTime = Now
         viewSalesPOS()
         viewTypeProb()
+        viewReconStt()
         viewInvoiceStt()
+        viewNoStockStt()
         viewStoreProb()
 
         'pending online store return
@@ -83,6 +85,17 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewReconStt()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '0' AS `id_recon_stt`, 'All' AS `recon_stt`
+        UNION ALL
+        SELECT '1' AS `id_recon_stt`, 'Open' AS `recon_stt`
+        UNION ALL
+        SELECT '2' AS `id_recon_stt`, 'Close' AS `recon_stt` "
+        viewLookupQuery(LEReconStatus, query, 0, "recon_stt", "id_recon_stt")
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewInvoiceStt()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT '0' AS `id_inv_stt`, 'All' AS `inv_stt`
@@ -94,6 +107,18 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewNoStockStt()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '0' AS `id_stt`, 'All' AS `stt`
+        UNION ALL
+        SELECT '1' AS `id_stt`, 'Open' AS `stt`
+        UNION ALL
+        SELECT '2' AS `id_stt`, 'Close' AS `stt` "
+        viewLookupQuery(LENoStockStatus, query, 0, "stt", "id_stt")
+        viewLookupQuery(LESttNewItem, query, 0, "stt", "id_stt")
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewStoreProb()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT 0 AS `id_comp`, 'All' AS `comp`
@@ -102,6 +127,8 @@
         FROM tb_m_comp c
         WHERE c.id_comp_cat=6 "
         viewSearchLookupQuery(SLEStoreProb, query, "id_comp", "comp", "id_comp")
+        viewSearchLookupQuery(SLEStoreNoStock, query, "id_comp", "comp", "id_comp")
+        viewSearchLookupQuery(SLEStoreNewItem, query, "id_comp", "comp", "id_comp")
         Cursor = Cursors.Default
     End Sub
 
@@ -374,10 +401,24 @@
             cond_type = ""
         End If
 
+        'recon status
+        Dim cond_recon As String = ""
+        If LEReconStatus.EditValue.ToString = "1" Then
+            cond_recon = "AND ISNULL(id_design_price_valid) "
+        ElseIf LEReconStatus.EditValue.ToString = "2" Then
+            cond_recon = "AND !ISNULL(id_design_price_valid) "
+        Else
+            cond_recon = ""
+        End If
+
         'invoice status
         Dim cond_status As String = ""
-        If LEInvoiceStt.EditValue.ToString <> "0" Then
-            cond_status = "AND is_open_invoice_view='" + LEInvoiceStt.Text + "' "
+        If LEInvoiceStt.EditValue.ToString = "1" Then
+            cond_status = "AND p.invoice_qty!=IFNULL(proc_prc.qty_proceed,0) "
+        ElseIf LEInvoiceStt.EditValue.ToString = "2" Then
+            cond_status = "AND p.invoice_qty=IFNULL(proc_prc.qty_proceed,0) "
+        Else
+            cond_status = ""
         End If
 
         'store
@@ -412,11 +453,11 @@
         IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid, dpt.design_price_type AS `design_price_type_valid`,
         p.store_qty, 
         p.invoice_qty, IFNULL(proc_prc.qty_on_process,0) AS `qty_on_process_price`, IFNULL(proc_prc.qty_proceed,0) AS `qty_proceed_price`,
-        p.no_stock_qty, IFNULL(proc.qty_on_process,0) AS `qty_on_process`, IFNULL(proc.qty_proceed,0) AS `qty_proceed`,
+        p.no_stock_qty, 0 AS `qty_on_process`, 0 AS `qty_proceed`,
         (p.invoice_qty+p.no_stock_qty) AS `total_qty`,
         'No' AS `is_select`, 0 AS `qty_new`,
-        IF(p.is_invalid_price=2,IF(p.no_stock_qty=IFNULL(proc.qty_proceed,0),'Close', 'Open'), IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0) AND p.no_stock_qty=IFNULL(proc.qty_proceed,0),'Close','Open')) AS `is_open_invoice_view`
-        FROM tb_sales_pos_prob p
+        IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0),'Close','Open') AS `is_open_invoice_view`
+        From tb_sales_pos_prob p
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -427,15 +468,6 @@
         LEFT JOIN tb_m_design_price dp ON dp.id_design_price = p.id_design_price_valid
         LEFT JOIN tb_lookup_design_price_type dpt ON dpt.id_design_price_type = dp.id_design_price_type
         LEFT JOIN (
-            SELECT spd.id_sales_pos_prob, 
-            SUM(IF(sp.id_report_status<5,spd.sales_pos_det_qty,0)) AS `qty_on_process`,
-            SUM(IF(sp.id_report_status=6,spd.sales_pos_det_qty,0)) AS `qty_proceed`
-            FROM tb_sales_pos sp
-            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
-            WHERE !ISNULL(spd.id_sales_pos_prob)
-            GROUP BY spd.id_sales_pos_prob
-        ) proc ON proc.id_sales_pos_prob = p.id_sales_pos_prob
-        LEFT JOIN (
             SELECT spd.id_sales_pos_prob_price, 
             SUM(IF(sp.id_report_status<5,spd.sales_pos_det_qty,0)) AS `qty_on_process`,
             SUM(IF(sp.id_report_status=6,spd.sales_pos_det_qty,0)) AS `qty_proceed`
@@ -444,8 +476,8 @@
             WHERE !ISNULL(spd.id_sales_pos_prob_price)
             GROUP BY spd.id_sales_pos_prob_price
         ) proc_prc ON proc_prc.id_sales_pos_prob_price = p.id_sales_pos_prob
-        WHERE 1=1 AND sp.id_report_status=6 " + cond_period + cond_type + cond_store
-        query += "HAVING 1=1 " + cond_status
+        WHERE 1=1 AND sp.id_report_status=6 " + cond_recon + cond_status + cond_period + cond_type + cond_store
+        query += "HAVING 1=1 "
         query += "ORDER BY id_sales_pos ASC,name ASC, code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProbList.DataSource = data
@@ -472,6 +504,12 @@
     Sub resetViewProb()
         Cursor = Cursors.WaitCursor
         GCProbList.DataSource = Nothing
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub resetViewNoStockList()
+        Cursor = Cursors.WaitCursor
+        GCNoStock.DataSource = Nothing
         Cursor = Cursors.Default
     End Sub
 
@@ -745,5 +783,419 @@
             DEPeriodUntil.Enabled = True
             DEPeriodFrom.Focus()
         End If
+    End Sub
+
+    Private Sub SimpleButton3_Click_1(sender As Object, e As EventArgs) Handles BtnPrintNoStock.Click
+        Cursor = Cursors.WaitCursor
+        print(GCNoStock, "No Stock List")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CEAllPeriodNoStock_EditValueChanged(sender As Object, e As EventArgs) Handles CEAllPeriodNoStock.EditValueChanged
+        If CEAllPeriodNoStock.EditValue = True Then
+            DEFromNoStock.EditValue = Nothing
+            DEUntilNoStock.EditValue = Nothing
+            DEFromNoStock.Enabled = False
+            DEUntilNoStock.Enabled = False
+        Else
+            DEFromNoStock.EditValue = tgl_sekarang
+            DEUntilNoStock.EditValue = tgl_sekarang
+            DEFromNoStock.Enabled = True
+            DEUntilNoStock.Enabled = True
+            DEFromNoStock.Focus()
+        End If
+    End Sub
+
+    Private Sub LEReconStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LEReconStatus.EditValueChanged
+        resetViewProb()
+    End Sub
+
+    Private Sub XTCInvoice_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCInvoice.SelectedPageChanged
+
+    End Sub
+
+    Private Sub XTCProblemList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCProblemList.SelectedPageChanged
+        If XTCProblemList.SelectedTabPageIndex = 1 Then
+            LENoStockStatus.ItemIndex = LENoStockStatus.Properties.GetDataSourceRowIndex("id_stt", "1")
+        End If
+    End Sub
+
+    Private Sub LENoStockStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LENoStockStatus.EditValueChanged
+        If LENoStockStatus.EditValue = "1" Then
+            PanelControlClosingNoStock.Visible = True
+        Else
+            PanelControlClosingNoStock.Visible = False
+        End If
+        resetViewNoStockList()
+    End Sub
+
+    Private Sub SLEStoreNoStock_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreNoStock.EditValueChanged
+        resetViewNoStockList()
+    End Sub
+
+    Private Sub DEFromNoStock_EditValueChanged(sender As Object, e As EventArgs) Handles DEFromNoStock.EditValueChanged
+        resetViewNoStockList()
+    End Sub
+
+    Private Sub DEUntilNoStock_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilNoStock.EditValueChanged
+        resetViewNoStockList()
+    End Sub
+
+    Private Sub BtnViewNoStock_Click(sender As Object, e As EventArgs) Handles BtnViewNoStock.Click
+        viewNoStockList
+    End Sub
+
+    Sub viewNoStockList()
+        Cursor = Cursors.WaitCursor
+        'status
+        Dim cond_status As String = ""
+        If LENoStockStatus.EditValue.ToString = "1" Then
+            cond_status = "AND (p.no_stock_qty<>IFNULL(rcn.qty_proceed,0)) "
+        ElseIf LENoStockStatus.EditValue.ToString = "2" Then
+            cond_status = "AND (p.no_stock_qty=IFNULL(rcn.qty_proceed,0)) "
+        End If
+        'store
+        Dim cond_store As String = ""
+        If SLEStoreNoStock.EditValue.ToString <> "0" Then
+            cond_store = "AND c.id_comp='" + SLEStoreNoStock.EditValue.ToString + "' "
+        End If
+        'period
+        Dim cond_period As String = ""
+        If CEAllPeriodNoStock.EditValue = False Then
+            Dim date_from_selected As String = "0000-01-01"
+            Dim date_until_selected As String = "9999-01-01"
+            Try
+                date_from_selected = DateTime.Parse(DEFromNoStock.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Try
+                date_until_selected = DateTime.Parse(DEUntilNoStock.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            cond_period = "AND (sp.sales_pos_end_period>='" + date_from_selected + "' AND sp.sales_pos_end_period<='" + date_until_selected + "') "
+        End If
+
+        Dim query As String = "SELECT p.id_sales_pos_prob, 
+        p.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, sp.sales_pos_due_date, sp.report_mark_type AS `rmt_inv`,
+        c.id_comp, cc.id_comp_contact, c.comp_number, c.comp_name, cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,
+        p.is_invalid_price, p.is_no_stock, 
+        p.id_product, prod.id_design, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
+        p.id_design_price_retail, p.design_price_retail, p.design_price_store, 
+        IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid, dpt.design_price_type AS `design_price_type_valid`,
+        p.no_stock_qty, IFNULL(rcn.qty_on_process,0) AS `qty_recon_on_process`,IFNULL(rcn.qty_proceed,0) AS `qty_recon_proceed`, 'No' AS `is_select`,
+        IF(p.no_stock_qty=IFNULL(rcn.qty_proceed,0),'Close','Open') AS `recon_status`
+        From tb_sales_pos_prob p
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
+        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        LEFT JOIN tb_m_design_price dp ON dp.id_design_price = p.id_design_price_valid
+        LEFT JOIN tb_lookup_design_price_type dpt ON dpt.id_design_price_type = dp.id_design_price_type
+        LEFT JOIN (
+	        SELECT rd.id_sales_pos_prob, 
+	        SUM(IF(r.id_report_status<5,rd.qty,0)) AS `qty_on_process`,
+	        SUM(IF(r.id_report_status=6,rd.qty,0)) AS `qty_proceed` 
+	        FROM tb_sales_pos_oos_recon_det rd
+	        INNER JOIN tb_sales_pos_oos_recon r ON r.id_sales_pos_oos_recon = rd.id_sales_pos_oos_recon
+	        WHERE r.id_report_status!=5
+	        GROUP BY rd.id_sales_pos_prob
+        ) rcn ON rcn.id_sales_pos_prob = p.id_sales_pos_prob
+        WHERE 1=1 AND sp.id_report_status=6 AND p.is_no_stock=1 " + cond_status + cond_store + cond_period
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCNoStock.DataSource = data
+        GVNoStock.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnReconNoStock.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVNoStock)
+        GVNoStock.ActiveFilterString = "[is_select]='Yes' "
+
+        If GVNoStock.RowCount > 0 Then
+            'check valid
+            Dim id_prob_in As String = ""
+            Dim err_product As String = ""
+            For c As Integer = 0 To GVNoStock.RowCount - 1
+                If c > 0 Then
+                    id_prob_in += ","
+                End If
+                If GVNoStock.GetRowCellValue(c, "id_design_price_valid") <= 0 Then
+                    err_product += GVNoStock.GetRowCellValue(c, "code").ToString + " - " + GVNoStock.GetRowCellValue(c, "name").ToString + System.Environment.NewLine
+                End If
+                id_prob_in += GVNoStock.GetRowCellValue(c, "id_sales_pos_prob").ToString
+            Next
+
+            'cek on process
+            Dim err_on_process As String = ""
+            Dim qcek As String = "SELECT p.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`
+            FROM tb_sales_pos_oos_recon_prob rd
+            INNER JOIN tb_sales_pos_prob prob ON prob.id_sales_pos_prob = rd.id_sales_pos_prob
+            INNER JOIN tb_sales_pos_oos_recon r ON r.id_sales_pos_oos_recon = rd.id_sales_pos_oos_recon
+            INNER JOIN tb_m_product p ON p.id_product = prob.id_product
+            WHERE r.id_report_status<5 AND rd.id_sales_pos_prob IN(" + id_prob_in + ") "
+            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+            For d As Integer = 0 To dcek.Rows.Count - 1
+                err_on_process += dcek.Rows(d)("code").ToString + "- " + dcek.Rows(d)("name").ToString + System.Environment.NewLine
+            Next
+
+            If err_product <> "" Then
+                stopCustom("Invalid price for these products :" + System.Environment.NewLine + err_product)
+            ElseIf err_on_process <> "" Then
+                stopCustom("These product on process reconcile :" + System.Environment.NewLine + err_on_process)
+            Else
+                'proses
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to close this no stock item ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    'head
+                    Dim note As String = ""
+                    Dim query As String = "INSERT INTO tb_sales_pos_oos_recon(created_date, note, id_report_status) 
+                    VALUES(NOW(), '" + note + "',1); SELECT LAST_INSERT_ID(); "
+                    Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
+                    execute_non_query("CALL gen_number(" + id_new + ", 283);", True, "", "", "", "")
+                    'detail
+                    Dim qd As String = "INSERT INTO tb_sales_pos_oos_recon_prob(id_sales_pos_oos_recon,id_sales_pos_prob) VALUES "
+                    For i As Integer = 0 To GVNoStock.RowCount - 1
+                        Dim id_sales_pos_prob As String = GVNoStock.GetRowCellValue(i, "id_sales_pos_prob").ToString
+                        If i > 0 Then
+                            qd += ","
+                        End If
+                        qd += "('" + id_new + "', '" + id_sales_pos_prob + "') "
+                    Next
+                    execute_non_query(qd, True, "", "", "", "")
+                    'open
+                    FormSalesPOSClosingNoStock.id = id_new
+                    FormSalesPOSClosingNoStock.ShowDialog()
+                    Cursor = Cursors.Default
+                End If
+            End If
+        End If
+
+        makeSafeGV(GVNoStock)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnHistoryNoStock_Click(sender As Object, e As EventArgs) Handles BtnHistoryNoStock.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesProbTransHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CESelectAllNoStock_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAllNoStock.EditValueChanged
+        For i As Integer = 0 To GVNoStock.RowCount - 1
+            If CESelectAllNoStock.EditValue = True Then
+                GVNoStock.SetRowCellValue(i, "is_select", "Yes")
+            Else
+                GVNoStock.SetRowCellValue(i, "is_select", "No")
+            End If
+        Next
+    End Sub
+
+    Private Sub BtnViewNewItem_Click(sender As Object, e As EventArgs) Handles BtnViewNewItem.Click
+        viewNewItem()
+    End Sub
+
+    Sub viewNewItem()
+        Cursor = Cursors.WaitCursor
+        'status
+        Dim cond_status As String = ""
+        If LESttNewItem.EditValue.ToString = "1" Then
+            cond_status = "AND (nd.qty_valid<>IFNULL(proc.qty_proceed,0)) "
+        ElseIf LESttNewItem.EditValue.ToString = "2" Then
+            cond_status = "AND (nd.qty_valid=IFNULL(proc.qty_proceed,0)) "
+        End If
+        'store
+        Dim cond_store As String = ""
+        If SLEStoreNoStock.EditValue.ToString <> "0" Then
+            cond_store = "AND c.id_comp='" + SLEStoreNoStock.EditValue.ToString + "' "
+        End If
+        'period
+        Dim cond_period As String = ""
+        If CEPeriodNewItem.EditValue = False Then
+            Dim date_from_selected As String = "0000-01-01"
+            Dim date_until_selected As String = "9999-01-01"
+            Try
+                date_from_selected = DateTime.Parse(DEFromNewItem.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Try
+                date_until_selected = DateTime.Parse(DEUntilNewitem.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            cond_period = "AND (sp.sales_pos_end_period>='" + date_from_selected + "' AND sp.sales_pos_end_period<='" + date_until_selected + "') "
+        End If
+        Dim query As String = "SELECT 'No' AS `is_select`,nd.id_sales_pos_oos_recon_det, nd.id_sales_pos_oos_recon, n.number AS `closing_number`, n.created_date AS `closing_date`,
+        prod.id_design AS `id_design_valid`,nd.id_product_valid , prod.product_full_code AS `code_valid`,prod.product_name AS `name_valid`, cd.code_detail_name AS `size_valid`, nd.qty_valid,
+        nd.id_design_price_valid, nd.design_price_valid, pt.design_price_type AS `design_price_type_valid`,
+        nd.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, c.comp_number, c.comp_name, cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,
+        nd.id_product, oos_prod.product_full_code AS `code`,oos_prod.product_name AS `name`, oos_cd.code_detail_name AS `size`, nd.qty AS `no_stock_qty`, IFNULL(proc.qty_on_process,0) AS `qty_on_process`,  IFNULL(proc.qty_proceed,0) AS `qty_proceed`
+        FROM tb_sales_pos_oos_recon_det nd
+        INNER JOIN tb_sales_pos_oos_recon n ON n.id_sales_pos_oos_recon = nd.id_sales_pos_oos_recon
+        INNER JOIN tb_m_product prod ON prod.id_product = nd.id_product_valid
+        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = nd.id_design_price_valid
+        INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
+        INNER JOIN tb_m_product oos_prod ON oos_prod.id_product = nd.id_product
+        INNER JOIN tb_m_product_code oos_prod_code ON oos_prod_code.id_product = oos_prod.id_product
+        INNER JOIN tb_m_code_detail oos_cd ON oos_cd.id_code_detail = oos_prod_code.id_code_detail
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = nd.id_sales_pos
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        LEFT JOIN (
+	        SELECT spd.id_sales_pos_oos_recon_det,
+	        SUM(IF(sp.id_report_status<5,spd.sales_pos_det_qty,0)) AS `qty_on_process`,
+	        SUM(IF(sp.id_report_status=6,spd.sales_pos_det_qty,0)) AS `qty_proceed` 
+	        FROM tb_sales_pos_det spd
+	        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+	        WHERE !ISNULL(spd.id_sales_pos_oos_recon_det) AND sp.id_report_status!=5
+	        GROUP BY spd.id_sales_pos_oos_recon_det
+        ) proc ON proc.id_sales_pos_oos_recon_det = nd.id_sales_pos_oos_recon_det
+        WHERE n.id_report_status=6 AND nd.id_oos_final_cat=2 " + cond_status + " " + cond_store + " " + cond_period + "
+        ORDER BY nd.id_sales_pos_oos_recon_det ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCNewItem.DataSource = data
+        GVNewItem.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CEPeriodNewItem_EditValueChanged(sender As Object, e As EventArgs) Handles CEPeriodNewItem.EditValueChanged
+        If CEPeriodNewItem.EditValue = True Then
+            DEFromNewItem.EditValue = Nothing
+            DEUntilNewitem.EditValue = Nothing
+            DEFromNewItem.Enabled = False
+            DEUntilNewitem.Enabled = False
+        Else
+            DEFromNewItem.EditValue = tgl_sekarang
+            DEUntilNewitem.EditValue = tgl_sekarang
+            DEFromNewItem.Enabled = True
+            DEUntilNewitem.Enabled = True
+            DEFromNewItem.Focus()
+        End If
+    End Sub
+
+    Private Sub BtnPrintNewItem_Click(sender As Object, e As EventArgs) Handles BtnPrintNewItem.Click
+        Cursor = Cursors.WaitCursor
+        print(GCNewItem, LESttNewItem.Text + " Invoice List (Changes Item)")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnHistNewItem_Click(sender As Object, e As EventArgs) Handles BtnHistNewItem.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesProbTransHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub resetViewNewItem()
+        Cursor = Cursors.WaitCursor
+        GCNewItem.DataSource = Nothing
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LENoStockStatus_DragOver(sender As Object, e As DragEventArgs) Handles LENoStockStatus.DragOver
+
+    End Sub
+
+    Sub showCreateInvNewItem()
+        If LESttNewItem.EditValue = "1" And SLEStoreNewItem.EditValue <> "0" Then
+            PanelControlNewItem.Visible = True
+        Else
+            PanelControlNewItem.Visible = False
+        End If
+    End Sub
+
+    Private Sub LESttNewItem_EditValueChanged(sender As Object, e As EventArgs) Handles LESttNewItem.EditValueChanged
+        showCreateInvNewItem()
+        resetViewNewItem()
+    End Sub
+
+    Private Sub SLEStoreNewItem_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreNewItem.EditValueChanged
+        showCreateInvNewItem()
+        resetViewNewItem()
+    End Sub
+
+    Private Sub DEFromNewItem_EditValueChanged(sender As Object, e As EventArgs) Handles DEFromNewItem.EditValueChanged
+        resetViewNewItem()
+    End Sub
+
+    Private Sub DEUntilNewitem_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilNewitem.EditValueChanged
+        resetViewNewItem()
+    End Sub
+
+    Private Sub XTCNoStock_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCNoStock.SelectedPageChanged
+        If XTCNoStock.SelectedTabPageIndex = 1 Then
+            If LESttNewItem.EditValue = Nothing Then
+                LESttNewItem.ItemIndex = LESttNewItem.Properties.GetDataSourceRowIndex("id_stt", "1")
+            End If
+        End If
+    End Sub
+
+    Private Sub CESelAllNewItem_EditValueChanged(sender As Object, e As EventArgs) Handles CESelAllNewItem.EditValueChanged
+        For i As Integer = 0 To GVNewItem.RowCount - 1
+            If CESelAllNewItem.EditValue = True Then
+                GVNewItem.SetRowCellValue(i, "is_select", "Yes")
+            Else
+                GVNewItem.SetRowCellValue(i, "is_select", "No")
+            End If
+        Next
+    End Sub
+
+    Private Sub BtnInvoiceNewitem_Click(sender As Object, e As EventArgs) Handles BtnInvoiceNewitem.Click
+        makeSafeGV(GVNewItem)
+        If GVNewItem.RowCount > 0 Then
+            'initial check stock
+            Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; 
+            INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES "
+            Dim id_prod As String = ""
+
+            Dim err_op As String = ""
+            For c As Integer = 0 To GVNewItem.RowCount - 1
+                Dim id_sales_pos_oos_recon_det_cek As String = GVNewItem.GetRowCellValue(c, "id_sales_pos_oos_recon_det").ToString
+                Dim qty_valid_cek As Decimal = GVNewItem.GetRowCellValue(c, "qty_valid")
+                Dim code As String = GVNewItem.GetRowCellValue(c, "code_valid").ToString
+
+                'cek on process
+                Dim qop As String = "SELECT spd.id_sales_pos_oos_recon_det
+                FROM tb_sales_pos_det spd
+                INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+                WHERE sp.id_report_status<5 AND spd.id_sales_pos_oos_recon_det='" + id_sales_pos_oos_recon_det_cek + "' "
+                Dim dop As DataTable = execute_query(qop, -1, True, "", "", "", "")
+                If dop.Rows.Count > 0 Then
+                    err_op += code + System.Environment.NewLine
+                End If
+
+                'stock
+                If c > 0 Then
+                    qs += ","
+                    id_prod += ","
+                End If
+                qs += "('" + id_user + "','" + GVNewItem.GetRowCellValue(c, "code_valid").ToString + "','" + addSlashes(GVNewItem.GetRowCellValue(c, "name_valid").ToString) + "', '" + GVNewItem.GetRowCellValue(c, "size_valid").ToString + "', '" + GVNewItem.GetRowCellValue(c, "id_product_valid").ToString + "', '" + decimalSQL(GVNewItem.GetRowCellValue(c, "qty_valid").ToString) + "') "
+                id_prod += GVNewItem.GetRowCellValue(c, "id_product_valid").ToString
+            Next
+            'check stock
+            qs += "; CALL view_validate_stock(" + id_user + ", " + SLEStoreNewItem.EditValue.ToString + ", '" + id_prod + "',1); "
+            Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+
+            If err_op <> "" Then
+                stopCustom("On process invoice for these product : " + System.Environment.NewLine + err_op)
+            ElseIf dts.Rows.Count > 0 Then
+                stopCustom("No stock available for some items.")
+                FormValidateStock.dt = dts
+                FormValidateStock.ShowDialog()
+            Else
+                Cursor = Cursors.WaitCursor
+                FormSalesPOSDet.is_from_prob_list_no_stock = True
+                FormSalesPOSDet.action = "ins"
+                FormSalesPOSDet.id_menu = id_menu
+                FormSalesPOSDet.ShowDialog()
+                Cursor = Cursors.Default
+            End If
+        End If
+        makeSafeGV(GVNewItem)
     End Sub
 End Class
