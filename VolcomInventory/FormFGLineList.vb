@@ -1355,4 +1355,21 @@ Public Class FormFGLineList
             Next
         End If
     End Sub
+
+    Private Sub BBRateManagementToday_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBRateManagementToday.ItemClick
+        Cursor = Cursors.WaitCursor
+        'check kurs first
+        Dim query_kurs As String = "SELECT * FROM tb_kurs_trans a WHERE DATE(a.created_date) <= DATE(NOW()) ORDER BY a.created_date DESC LIMIT 1"
+        Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
+
+        Dim rate As Decimal = 0.00
+        If Not data_kurs.Rows.Count > 0 Then
+            warningCustom("Get kurs error.")
+            rate = 0.00
+        Else
+            rate = data_kurs.Rows(0)("kurs_trans") + data_kurs.Rows(0)("fixed_floating")
+        End If
+        infoCustom("Today Rate : " + System.Environment.NewLine + Decimal.Parse(rate.ToString).ToString("N2"))
+        Cursor = Cursors.Default
+    End Sub
 End Class
