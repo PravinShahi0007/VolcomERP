@@ -1,11 +1,11 @@
 ﻿Public Class FormSalesProbTransHistory
     Public id_sales_pos_prob As String = "-1"
-    Public id_sales_pos_oos_recon_det As String = "-1"
 
     Private Sub FormSalesProbTransHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_sales_pos_prob <> "-1" Then
             viewPriceRecon()
             viewInvoice()
+            viewClosingNoStock()
         End If
     End Sub
 
@@ -61,8 +61,8 @@
             cond_det = "AND spd.id_sales_pos_prob='" + id_sales_pos_prob + "' "
         End If
         Dim cond_recon_oos As String = ""
-        If id_sales_pos_oos_recon_det <> "-1" Then
-            cond_recon_oos = "AND spd.id_sales_pos_oos_recon_det='" + id_sales_pos_oos_recon_det + "' "
+        If id_sales_pos_prob <> "-1" Then
+            cond_recon_oos = "AND oosd.id_sales_pos_prob='" + id_sales_pos_prob + "' "
         End If
         Dim query As String = "SELECT sp.id_sales_pos, sp.sales_pos_number, sp.sales_pos_date,sp.sales_pos_start_period, sp.sales_pos_end_period, 
 c.id_comp, c.comp_number, c.comp_name, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`, cg.comp_group,
@@ -100,7 +100,8 @@ INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR
 INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-WHERE 1=1 " + cond_recon_oos + "
+INNER JOIN tb_sales_pos_oos_recon_det oosd ON oosd.id_sales_pos_oos_recon_det = spd.id_sales_pos_oos_recon_det
+WHERE 1=1 AND !ISNULL(spd.id_sales_pos_oos_recon_det) " + cond_recon_oos + "
 GROUP BY sp.id_sales_pos
 ORDER BY id_sales_pos DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -148,6 +149,7 @@ ORDER BY id_sales_pos DESC "
         End If
         Dim query As String = "SELECT r.id_sales_pos_oos_recon, r.number, r.created_date, r.note, r.id_report_status, stt.report_status, r.is_confirm
         FROM tb_sales_pos_oos_recon r
+        INNER JOIN tb_sales_pos_oos_recon_det rd ON rd.id_sales_pos_oos_recon = r.id_sales_pos_oos_recon
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
         WHERE r.id_sales_pos_oos_recon>0 " + cond_det + "
         GROUP BY r.id_sales_pos_oos_recon
