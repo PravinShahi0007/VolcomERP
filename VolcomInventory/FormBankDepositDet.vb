@@ -321,6 +321,10 @@ Public Class FormBankDepositDet
                         newRow("dc_code") = If(data.Rows(i)("amo") < 0, "D", "K")
                         newRow("value_view") = Math.Abs(data.Rows(i)("amo"))
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                        'set note 
+                        MENote.Text = "Zalora"
+                        'set default rec acc
+                        SLEPayRecTo.EditValue = get_opt_acc_field("id_acc_rec_bbm_zalora")
                     Next
                 End If
             ElseIf type_rec = "3" Then
