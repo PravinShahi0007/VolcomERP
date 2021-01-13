@@ -597,7 +597,7 @@ Partial Class FormSalesPOSClosingNoStock
         Me.XTCClosing.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCClosing.Location = New System.Drawing.Point(0, 103)
         Me.XTCClosing.Name = "XTCClosing"
-        Me.XTCClosing.SelectedTabPage = Me.XTPSumary
+        Me.XTCClosing.SelectedTabPage = Me.XTPDetail
         Me.XTCClosing.Size = New System.Drawing.Size(836, 232)
         Me.XTCClosing.TabIndex = 6
         Me.XTCClosing.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSumary, Me.XTPDetail})

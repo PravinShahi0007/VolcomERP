@@ -882,8 +882,10 @@
         p.id_product, prod.id_design, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
         p.id_design_price_retail, p.design_price_retail, p.design_price_store, 
         IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid, dpt.design_price_type AS `design_price_type_valid`,
-        p.no_stock_qty, IFNULL(rcn.qty_on_process,0) AS `qty_recon_on_process`,IFNULL(rcn.qty_proceed,0) AS `qty_recon_proceed`, 'No' AS `is_select`,
-        IF(p.no_stock_qty=IFNULL(rcn.qty_proceed,0),'Close','Open') AS `recon_status`
+        p.no_stock_qty, IFNULL(rcn.qty_on_process,0) AS `qty_recon_on_process`,
+        IFNULL(rcn.qty_proceed,0) AS `qty_recon_proceed`, IFNULL(rcn.qty_proceed_cancel,0) AS `qty_proceed_cancel`, IFNULL(rcn.qty_proceed_changes,0) AS `qty_proceed_changes`,
+        'No' AS `is_select`,
+        (p.no_stock_qty-IFNULL(rcn.qty_proceed,0)) AS `diff_qty`,IF(p.no_stock_qty=IFNULL(rcn.qty_proceed,0),'Close','Open') AS `recon_status`
         From tb_sales_pos_prob p
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -896,8 +898,10 @@
         LEFT JOIN tb_lookup_design_price_type dpt ON dpt.id_design_price_type = dp.id_design_price_type
         LEFT JOIN (
 	        SELECT rd.id_sales_pos_prob, 
-	        SUM(IF(r.id_report_status<5,rd.qty,0)) AS `qty_on_process`,
-	        SUM(IF(r.id_report_status=6,rd.qty,0)) AS `qty_proceed` 
+	        SUM(IF(r.id_report_status<5,rd.qty_valid,0)) AS `qty_on_process`,
+	        SUM(IF(r.id_report_status=6,rd.qty_valid,0)) AS `qty_proceed`,
+            SUM(IF(r.id_report_status=6 AND rd.id_oos_final_cat=1,rd.qty_valid,0)) AS `qty_proceed_cancel`,
+            SUM(IF(r.id_report_status=6 AND rd.id_oos_final_cat=2,rd.qty_valid,0)) AS `qty_proceed_changes`
 	        FROM tb_sales_pos_oos_recon_det rd
 	        INNER JOIN tb_sales_pos_oos_recon r ON r.id_sales_pos_oos_recon = rd.id_sales_pos_oos_recon
 	        WHERE r.id_report_status!=5
@@ -1032,7 +1036,8 @@
         prod.id_design AS `id_design_valid`,nd.id_product_valid , prod.product_full_code AS `code_valid`,prod.product_name AS `name_valid`, cd.code_detail_name AS `size_valid`, nd.qty_valid,
         nd.id_design_price_valid, nd.design_price_valid, pt.design_price_type AS `design_price_type_valid`,
         nd.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, c.comp_number, c.comp_name, cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,
-        nd.id_product, oos_prod.product_full_code AS `code`,oos_prod.product_name AS `name`, oos_cd.code_detail_name AS `size`, nd.qty AS `no_stock_qty`, IFNULL(proc.qty_on_process,0) AS `qty_on_process`,  IFNULL(proc.qty_proceed,0) AS `qty_proceed`
+        nd.id_product, oos_prod.product_full_code AS `code`,oos_prod.product_name AS `name`, oos_cd.code_detail_name AS `size`, nd.qty AS `no_stock_qty`, IFNULL(proc.qty_on_process,0) AS `qty_on_process`,  IFNULL(proc.qty_proceed,0) AS `qty_proceed`,
+        proc.id_sales_pos AS `id_sales_pos_proc`, proc.sales_pos_number AS `sales_pos_number_proc`
         FROM tb_sales_pos_oos_recon_det nd
         INNER JOIN tb_sales_pos_oos_recon n ON n.id_sales_pos_oos_recon = nd.id_sales_pos_oos_recon
         INNER JOIN tb_m_product prod ON prod.id_product = nd.id_product_valid
@@ -1050,7 +1055,8 @@
         LEFT JOIN (
 	        SELECT spd.id_sales_pos_oos_recon_det,
 	        SUM(IF(sp.id_report_status<5,spd.sales_pos_det_qty,0)) AS `qty_on_process`,
-	        SUM(IF(sp.id_report_status=6,spd.sales_pos_det_qty,0)) AS `qty_proceed` 
+	        SUM(IF(sp.id_report_status=6,spd.sales_pos_det_qty,0)) AS `qty_proceed`,
+            sp.id_sales_pos, sp.sales_pos_number 
 	        FROM tb_sales_pos_det spd
 	        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
 	        WHERE !ISNULL(spd.id_sales_pos_oos_recon_det) AND sp.id_report_status!=5
@@ -1197,5 +1203,24 @@
             End If
         End If
         makeSafeGV(GVNewItem)
+    End Sub
+
+    Private Sub RepoBtnHistNoStockProb_Click(sender As Object, e As EventArgs) Handles RepoBtnHistNoStockProb.Click
+        If GVNoStock.RowCount > 0 And GVNoStock.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormSalesProbTransHistory.id_sales_pos_prob = GVNoStock.GetFocusedRowCellValue("id_sales_pos_prob").ToString
+            FormSalesProbTransHistory.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkInvoiceNewItem_Click(sender As Object, e As EventArgs) Handles RepoLinkInvoiceNewItem.Click
+        If GVNewItem.RowCount > 0 And GVNewItem.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim inv As New FormViewSalesPOS()
+            inv.id_sales_pos = GVNewItem.GetFocusedRowCellValue("id_sales_pos_proc")
+            inv.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

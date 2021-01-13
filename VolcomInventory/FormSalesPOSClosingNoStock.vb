@@ -294,7 +294,73 @@ WHERE rd.id_sales_pos_oos_recon='" + id + "' ORDER BY rd.id_sales_pos_oos_recon_
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Cursor = Cursors.WaitCursor
+        RepoLinkInvoice.LinkColor = Color.Black
+        Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+        gv = GVDetail
+        ReportPOSClosingNoStock.dt = GCDetail.DataSource
+        ReportPOSClosingNoStock.id = id
+        ReportPOSClosingNoStock.is_pre = "-1"
+        ReportPOSClosingNoStock.id_report_status = LEReportStatus.EditValue.ToString
+        ReportPOSClosingNoStock.rmt = rmt
+        Dim Report As New ReportPOSClosingNoStock()
 
+        '... 
+        ' creating And saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'style
+        Report.GVDetail.AppearancePrint.BandPanel.BorderColor = Color.Black
+        Report.GVDetail.AppearancePrint.BandPanel.BackColor = Color.Transparent
+        Report.GVDetail.AppearancePrint.BandPanel.ForeColor = Color.Black
+        Report.GVDetail.AppearancePrint.BandPanel.Font = New Font("Tahoma", 7, FontStyle.Bold)
+
+        Report.GVDetail.OptionsPrint.UsePrintStyles = True
+        Report.GVDetail.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        Report.GVDetail.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        Report.GVDetail.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+
+        Report.GVDetail.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+        Report.GVDetail.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        Report.GVDetail.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 7, FontStyle.Bold)
+
+        Report.GVDetail.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        Report.GVDetail.AppearancePrint.GroupRow.ForeColor = Color.Black
+        Report.GVDetail.AppearancePrint.GroupRow.Font = New Font("Tahoma", 7, FontStyle.Bold)
+
+        Report.GVDetail.AppearancePrint.HeaderPanel.BorderColor = Color.Black
+        Report.GVDetail.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        Report.GVDetail.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        Report.GVDetail.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Bold)
+
+        Report.GVDetail.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+        Report.GVDetail.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        Report.GVDetail.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7.3, FontStyle.Bold)
+
+        Report.GVDetail.AppearancePrint.Row.ForeColor = Color.Black
+        Report.GVDetail.AppearancePrint.Row.Font = New Font("Tahoma", 7.3, FontStyle.Regular)
+
+        Report.GVDetail.AppearancePrint.Lines.BackColor = Color.Black
+
+        Report.GVDetail.OptionsPrint.ExpandAllDetails = True
+        Report.GVDetail.OptionsPrint.UsePrintStyles = True
+        Report.GVDetail.OptionsPrint.PrintDetails = True
+        Report.GVDetail.OptionsPrint.PrintFooter = True
+
+        Report.LabelNumber.Text = TxtNumber.Text
+        Report.LabelDate.Text = DECreated.Text.ToUpper
+        Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        Report.LNote.Text = MENote.Text
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
