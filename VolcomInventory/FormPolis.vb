@@ -10,4 +10,8 @@
     Private Sub FormPolis_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub BObject_Click(sender As Object, e As EventArgs) Handles BObject.Click
+
+    End Sub
 End Class

@@ -32,6 +32,7 @@ Partial Class FormPayoutZalora
         Me.GridColumntotal_payout = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_confirm_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnemployee_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,7 +81,7 @@ Partial Class FormPayoutZalora
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_payout_zalora, Me.GridColumnstatement_number, Me.GridColumn1, Me.GridColumnsync_date, Me.GridColumntotal_payout, Me.GridColumnis_confirm_view, Me.GridColumnreport_status})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_payout_zalora, Me.GridColumnstatement_number, Me.GridColumn1, Me.GridColumnsync_date, Me.GridColumntotal_payout, Me.GridColumnis_confirm_view, Me.GridColumnreport_status, Me.GridColumnemployee_name})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -151,6 +152,14 @@ Partial Class FormPayoutZalora
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 5
         '
+        'GridColumnemployee_name
+        '
+        Me.GridColumnemployee_name.Caption = "Last Approved"
+        Me.GridColumnemployee_name.FieldName = "employee_name"
+        Me.GridColumnemployee_name.Name = "GridColumnemployee_name"
+        Me.GridColumnemployee_name.Visible = True
+        Me.GridColumnemployee_name.VisibleIndex = 6
+        '
         'FormPayoutZalora
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -182,4 +191,5 @@ Partial Class FormPayoutZalora
     Friend WithEvents GridColumntotal_payout As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_confirm_view As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnemployee_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -135,6 +135,7 @@
         newRow("id_sales_pos_det") = GVData.GetRowCellValue(rh, "id_sales_pos_det").ToString
         newRow("id_sales_pos_prob") = "0"
         newRow("id_sales_pos_prob_price") = "0"
+        newRow("id_sales_pos_oos_recon_det") = "0"
         TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
         FormSalesPOSDet.GCItemList.RefreshDataSource()
         FormSalesPOSDet.GVItemList.RefreshData()

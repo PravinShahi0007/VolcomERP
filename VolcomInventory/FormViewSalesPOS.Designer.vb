@@ -106,6 +106,10 @@ Partial Class FormViewSalesPOS
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_pos_number_err_prc_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoLinkInvRef = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.GridColumnid_sales_pos_err_prc_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrmt_err_prc_ref = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCInvoice = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPProbList = New DevExpress.XtraTab.XtraTabPage()
@@ -145,10 +149,7 @@ Partial Class FormViewSalesPOS
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsales_pos_number_err_prc_ref = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepoLinkInvRef = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.GridColumnid_sales_pos_err_prc_ref = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnrmt_err_prc_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewClosingNoStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TXTName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,6 +196,7 @@ Partial Class FormViewSalesPOS
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkInvRef, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoice.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -204,7 +206,6 @@ Partial Class FormViewSalesPOS
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoLinkInvRef, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -961,14 +962,14 @@ Partial Class FormViewSalesPOS
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewPriceReconcileToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewPriceReconcileToolStripMenuItem, Me.ViewClosingNoStockToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(194, 70)
         '
         'ViewPriceReconcileToolStripMenuItem
         '
         Me.ViewPriceReconcileToolStripMenuItem.Name = "ViewPriceReconcileToolStripMenuItem"
-        Me.ViewPriceReconcileToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ViewPriceReconcileToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.ViewPriceReconcileToolStripMenuItem.Text = "View Price Reconcile"
         '
         'GVItemList
@@ -1176,6 +1177,32 @@ Partial Class FormViewSalesPOS
         Me.GridColumnOLOrder.Name = "GridColumnOLOrder"
         Me.GridColumnOLOrder.Visible = True
         Me.GridColumnOLOrder.VisibleIndex = 10
+        '
+        'GridColumnsales_pos_number_err_prc_ref
+        '
+        Me.GridColumnsales_pos_number_err_prc_ref.Caption = "Invoice Ref."
+        Me.GridColumnsales_pos_number_err_prc_ref.ColumnEdit = Me.RepoLinkInvRef
+        Me.GridColumnsales_pos_number_err_prc_ref.FieldName = "sales_pos_number_err_prc_ref"
+        Me.GridColumnsales_pos_number_err_prc_ref.Name = "GridColumnsales_pos_number_err_prc_ref"
+        Me.GridColumnsales_pos_number_err_prc_ref.Visible = True
+        Me.GridColumnsales_pos_number_err_prc_ref.VisibleIndex = 11
+        '
+        'RepoLinkInvRef
+        '
+        Me.RepoLinkInvRef.AutoHeight = False
+        Me.RepoLinkInvRef.Name = "RepoLinkInvRef"
+        '
+        'GridColumnid_sales_pos_err_prc_ref
+        '
+        Me.GridColumnid_sales_pos_err_prc_ref.Caption = "id_sales_pos_err_prc_ref"
+        Me.GridColumnid_sales_pos_err_prc_ref.FieldName = "id_sales_pos_err_prc_ref"
+        Me.GridColumnid_sales_pos_err_prc_ref.Name = "GridColumnid_sales_pos_err_prc_ref"
+        '
+        'GridColumnrmt_err_prc_ref
+        '
+        Me.GridColumnrmt_err_prc_ref.Caption = "rmt_err_prc_ref"
+        Me.GridColumnrmt_err_prc_ref.FieldName = "rmt_err_prc_ref"
+        Me.GridColumnrmt_err_prc_ref.Name = "GridColumnrmt_err_prc_ref"
         '
         'XTCInvoice
         '
@@ -1507,31 +1534,11 @@ Partial Class FormViewSalesPOS
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
-        'GridColumnsales_pos_number_err_prc_ref
+        'ViewClosingNoStockToolStripMenuItem
         '
-        Me.GridColumnsales_pos_number_err_prc_ref.Caption = "Invoice Ref."
-        Me.GridColumnsales_pos_number_err_prc_ref.ColumnEdit = Me.RepoLinkInvRef
-        Me.GridColumnsales_pos_number_err_prc_ref.FieldName = "sales_pos_number_err_prc_ref"
-        Me.GridColumnsales_pos_number_err_prc_ref.Name = "GridColumnsales_pos_number_err_prc_ref"
-        Me.GridColumnsales_pos_number_err_prc_ref.Visible = True
-        Me.GridColumnsales_pos_number_err_prc_ref.VisibleIndex = 11
-        '
-        'RepoLinkInvRef
-        '
-        Me.RepoLinkInvRef.AutoHeight = False
-        Me.RepoLinkInvRef.Name = "RepoLinkInvRef"
-        '
-        'GridColumnid_sales_pos_err_prc_ref
-        '
-        Me.GridColumnid_sales_pos_err_prc_ref.Caption = "id_sales_pos_err_prc_ref"
-        Me.GridColumnid_sales_pos_err_prc_ref.FieldName = "id_sales_pos_err_prc_ref"
-        Me.GridColumnid_sales_pos_err_prc_ref.Name = "GridColumnid_sales_pos_err_prc_ref"
-        '
-        'GridColumnrmt_err_prc_ref
-        '
-        Me.GridColumnrmt_err_prc_ref.Caption = "rmt_err_prc_ref"
-        Me.GridColumnrmt_err_prc_ref.FieldName = "rmt_err_prc_ref"
-        Me.GridColumnrmt_err_prc_ref.Name = "GridColumnrmt_err_prc_ref"
+        Me.ViewClosingNoStockToolStripMenuItem.Name = "ViewClosingNoStockToolStripMenuItem"
+        Me.ViewClosingNoStockToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ViewClosingNoStockToolStripMenuItem.Text = "View Closing No Stock"
         '
         'FormViewSalesPOS
         '
@@ -1599,6 +1606,7 @@ Partial Class FormViewSalesPOS
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkInvRef, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCInvoice.ResumeLayout(False)
         Me.XTPInvoice.ResumeLayout(False)
@@ -1608,7 +1616,6 @@ Partial Class FormViewSalesPOS
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoLinkInvRef, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1741,4 +1748,5 @@ Partial Class FormViewSalesPOS
     Friend WithEvents RepoLinkInvRef As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents GridColumnid_sales_pos_err_prc_ref As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrmt_err_prc_ref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewClosingNoStockToolStripMenuItem As ToolStripMenuItem
 End Class
