@@ -1198,4 +1198,13 @@
         End If
         makeSafeGV(GVNewItem)
     End Sub
+
+    Private Sub RepoBtnHistNoStockProb_Click(sender As Object, e As EventArgs) Handles RepoBtnHistNoStockProb.Click
+        If GVNoStock.RowCount > 0 And GVNoStock.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormSalesProbTransHistory.id_sales_pos_prob = GVNoStock.GetFocusedRowCellValue("id_sales_pos_prob").ToString
+            FormSalesProbTransHistory.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
