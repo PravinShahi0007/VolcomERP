@@ -27,12 +27,17 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEAkunValas = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEACCTrfFee = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TETrfFee = New DevExpress.XtraEditors.TextEdit()
+        Me.LValas = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEPayFrom = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit2View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -134,17 +139,15 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LValas = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEAkunValas = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CEPembelianValas = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEACCTrfFee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETrfFee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,8 +200,7 @@ Partial Class FormBankWithdrawalDet
         Me.XTPJournal.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEPembelianValas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -249,6 +251,7 @@ Partial Class FormBankWithdrawalDet
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.CEPembelianValas)
         Me.PanelControl4.Controls.Add(Me.SLEAkunValas)
         Me.PanelControl4.Controls.Add(Me.SLEACCTrfFee)
         Me.PanelControl4.Controls.Add(Me.TETrfFee)
@@ -261,6 +264,39 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(768, 98)
         Me.PanelControl4.TabIndex = 166
+        '
+        'SLEAkunValas
+        '
+        Me.SLEAkunValas.Location = New System.Drawing.Point(88, 72)
+        Me.SLEAkunValas.Name = "SLEAkunValas"
+        Me.SLEAkunValas.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.SLEAkunValas.Properties.Appearance.Options.UseFont = True
+        Me.SLEAkunValas.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAkunValas.Properties.View = Me.GridView6
+        Me.SLEAkunValas.Size = New System.Drawing.Size(234, 22)
+        Me.SLEAkunValas.TabIndex = 8920
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn16})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID "
+        Me.GridColumn12.FieldName = "id_valas_bank"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Description"
+        Me.GridColumn16.FieldName = "valas_bank"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
         '
         'SLEACCTrfFee
         '
@@ -321,6 +357,14 @@ Partial Class FormBankWithdrawalDet
         Me.TETrfFee.Size = New System.Drawing.Size(207, 22)
         Me.TETrfFee.TabIndex = 8910
         Me.TETrfFee.TabStop = False
+        '
+        'LValas
+        '
+        Me.LValas.Location = New System.Drawing.Point(10, 76)
+        Me.LValas.Name = "LValas"
+        Me.LValas.Size = New System.Drawing.Size(52, 13)
+        Me.LValas.TabIndex = 8919
+        Me.LValas.Text = "Akun Valas"
         '
         'LabelControl10
         '
@@ -1253,7 +1297,7 @@ Partial Class FormBankWithdrawalDet
         '
         Me.XTPJournal.Controls.Add(Me.GCDraft)
         Me.XTPJournal.Name = "XTPJournal"
-        Me.XTPJournal.Size = New System.Drawing.Size(939, 196)
+        Me.XTPJournal.Size = New System.Drawing.Size(1138, 177)
         Me.XTPJournal.Text = "Draft Journal"
         '
         'GCDraft
@@ -1262,7 +1306,7 @@ Partial Class FormBankWithdrawalDet
         Me.GCDraft.Location = New System.Drawing.Point(0, 0)
         Me.GCDraft.MainView = Me.GVDraft
         Me.GCDraft.Name = "GCDraft"
-        Me.GCDraft.Size = New System.Drawing.Size(939, 196)
+        Me.GCDraft.Size = New System.Drawing.Size(1138, 177)
         Me.GCDraft.TabIndex = 1
         Me.GCDraft.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDraft})
         '
@@ -1368,48 +1412,15 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
         '
-        'LValas
+        'CEPembelianValas
         '
-        Me.LValas.Location = New System.Drawing.Point(10, 76)
-        Me.LValas.Name = "LValas"
-        Me.LValas.Size = New System.Drawing.Size(52, 13)
-        Me.LValas.TabIndex = 8919
-        Me.LValas.Text = "Akun Valas"
-        Me.LValas.Visible = False
-        '
-        'SLEAkunValas
-        '
-        Me.SLEAkunValas.Location = New System.Drawing.Point(88, 72)
-        Me.SLEAkunValas.Name = "SLEAkunValas"
-        Me.SLEAkunValas.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.SLEAkunValas.Properties.Appearance.Options.UseFont = True
-        Me.SLEAkunValas.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEAkunValas.Properties.View = Me.GridView6
-        Me.SLEAkunValas.Size = New System.Drawing.Size(234, 22)
-        Me.SLEAkunValas.TabIndex = 8920
-        Me.SLEAkunValas.Visible = False
-        '
-        'GridView6
-        '
-        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn16})
-        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView6.Name = "GridView6"
-        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView6.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "ID "
-        Me.GridColumn12.FieldName = "id_valas_bank"
-        Me.GridColumn12.Name = "GridColumn12"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Description"
-        Me.GridColumn16.FieldName = "valas_bank"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 0
+        Me.CEPembelianValas.EditValue = True
+        Me.CEPembelianValas.Location = New System.Drawing.Point(328, 73)
+        Me.CEPembelianValas.Name = "CEPembelianValas"
+        Me.CEPembelianValas.Properties.Caption = "Pembelian valas"
+        Me.CEPembelianValas.Size = New System.Drawing.Size(110, 19)
+        Me.CEPembelianValas.TabIndex = 8921
+        Me.CEPembelianValas.Visible = False
         '
         'FormBankWithdrawalDet
         '
@@ -1435,6 +1446,8 @@ Partial Class FormBankWithdrawalDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEACCTrfFee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETrfFee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1492,8 +1505,7 @@ Partial Class FormBankWithdrawalDet
         Me.XTPJournal.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEPembelianValas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1616,4 +1628,5 @@ Partial Class FormBankWithdrawalDet
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LValas As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents CEPembelianValas As DevExpress.XtraEditors.CheckEdit
 End Class
