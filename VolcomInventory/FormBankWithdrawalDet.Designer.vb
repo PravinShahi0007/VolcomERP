@@ -134,6 +134,11 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LValas = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEAkunValas = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -192,6 +197,8 @@ Partial Class FormBankWithdrawalDet
         Me.XTPJournal.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -203,12 +210,12 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(945, 83)
+        Me.PanelControl1.Size = New System.Drawing.Size(1144, 102)
         Me.PanelControl1.TabIndex = 0
         '
         'SLEReportType
         '
-        Me.SLEReportType.Location = New System.Drawing.Point(624, 19)
+        Me.SLEReportType.Location = New System.Drawing.Point(818, 19)
         Me.SLEReportType.Name = "SLEReportType"
         Me.SLEReportType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEReportType.Properties.ReadOnly = True
@@ -242,15 +249,17 @@ Partial Class FormBankWithdrawalDet
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.SLEAkunValas)
         Me.PanelControl4.Controls.Add(Me.SLEACCTrfFee)
         Me.PanelControl4.Controls.Add(Me.TETrfFee)
+        Me.PanelControl4.Controls.Add(Me.LValas)
         Me.PanelControl4.Controls.Add(Me.LabelControl10)
         Me.PanelControl4.Controls.Add(Me.SLEPayFrom)
         Me.PanelControl4.Controls.Add(Me.Label1)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(470, 79)
+        Me.PanelControl4.Size = New System.Drawing.Size(768, 98)
         Me.PanelControl4.TabIndex = 166
         '
         'SLEACCTrfFee
@@ -374,7 +383,7 @@ Partial Class FormBankWithdrawalDet
         '
         'SLEPayType
         '
-        Me.SLEPayType.Location = New System.Drawing.Point(827, 19)
+        Me.SLEPayType.Location = New System.Drawing.Point(1021, 19)
         Me.SLEPayType.Name = "SLEPayType"
         Me.SLEPayType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPayType.Properties.ReadOnly = True
@@ -407,7 +416,7 @@ Partial Class FormBankWithdrawalDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(582, 22)
+        Me.LabelControl3.Location = New System.Drawing.Point(776, 22)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl3.TabIndex = 8915
@@ -419,9 +428,9 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl2.Controls.Add(Me.PanelControl6)
         Me.PanelControl2.Controls.Add(Me.PanelControl3)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 83)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 102)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(945, 100)
+        Me.PanelControl2.Size = New System.Drawing.Size(1144, 100)
         Me.PanelControl2.TabIndex = 1
         '
         'PanelControl6
@@ -434,7 +443,7 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl6.Controls.Add(Me.DEDateCreated)
         Me.PanelControl6.Controls.Add(Me.LabelControl7)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl6.Location = New System.Drawing.Point(529, 2)
+        Me.PanelControl6.Location = New System.Drawing.Point(728, 2)
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(414, 96)
         Me.PanelControl6.TabIndex = 166
@@ -626,14 +635,14 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl7.Location = New System.Drawing.Point(0, 503)
         Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(945, 40)
+        Me.PanelControl7.Size = New System.Drawing.Size(1144, 40)
         Me.PanelControl7.TabIndex = 2
         '
         'BtnViewJournal
         '
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(613, 2)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(812, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 36)
         Me.BtnViewJournal.TabIndex = 20
@@ -645,7 +654,7 @@ Partial Class FormBankWithdrawalDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(718, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(917, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 36)
         Me.BtnPrint.TabIndex = 17
@@ -690,7 +699,7 @@ Partial Class FormBankWithdrawalDet
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(793, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(992, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 36)
         Me.BtnCancel.TabIndex = 18
@@ -702,7 +711,7 @@ Partial Class FormBankWithdrawalDet
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(868, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(1067, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 36)
         Me.BtnSave.TabIndex = 16
@@ -716,7 +725,7 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl8.Location = New System.Drawing.Point(0, 407)
         Me.PanelControl8.Name = "PanelControl8"
-        Me.PanelControl8.Size = New System.Drawing.Size(945, 96)
+        Me.PanelControl8.Size = New System.Drawing.Size(1144, 96)
         Me.PanelControl8.TabIndex = 3
         '
         'PanelControl9
@@ -725,7 +734,7 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl9.Controls.Add(Me.TETotal)
         Me.PanelControl9.Controls.Add(Me.LabelControl6)
         Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl9.Location = New System.Drawing.Point(594, 2)
+        Me.PanelControl9.Location = New System.Drawing.Point(793, 2)
         Me.PanelControl9.Name = "PanelControl9"
         Me.PanelControl9.Size = New System.Drawing.Size(349, 92)
         Me.PanelControl9.TabIndex = 166
@@ -789,7 +798,7 @@ Partial Class FormBankWithdrawalDet
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal, Me.RepositoryItemTextEdit1, Me.SLECurrency, Me.RepositoryItemMemoEdit1})
-        Me.GCList.Size = New System.Drawing.Size(939, 149)
+        Me.GCList.Size = New System.Drawing.Size(1138, 130)
         Me.GCList.TabIndex = 18
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -1142,10 +1151,10 @@ Partial Class FormBankWithdrawalDet
         'XTCBBK
         '
         Me.XTCBBK.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCBBK.Location = New System.Drawing.Point(0, 183)
+        Me.XTCBBK.Location = New System.Drawing.Point(0, 202)
         Me.XTCBBK.Name = "XTCBBK"
         Me.XTCBBK.SelectedTabPage = Me.XTPPayment
-        Me.XTCBBK.Size = New System.Drawing.Size(945, 224)
+        Me.XTCBBK.Size = New System.Drawing.Size(1144, 205)
         Me.XTCBBK.TabIndex = 19
         Me.XTCBBK.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPayment, Me.XTPJournal})
         '
@@ -1154,7 +1163,7 @@ Partial Class FormBankWithdrawalDet
         Me.XTPPayment.Controls.Add(Me.GCList)
         Me.XTPPayment.Controls.Add(Me.PCAddDel)
         Me.XTPPayment.Name = "XTPPayment"
-        Me.XTPPayment.Size = New System.Drawing.Size(939, 196)
+        Me.XTPPayment.Size = New System.Drawing.Size(1138, 177)
         Me.XTPPayment.Text = "Payment"
         '
         'PCAddDel
@@ -1168,25 +1177,26 @@ Partial Class FormBankWithdrawalDet
         Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCAddDel.Location = New System.Drawing.Point(0, 0)
         Me.PCAddDel.Name = "PCAddDel"
-        Me.PCAddDel.Size = New System.Drawing.Size(939, 47)
+        Me.PCAddDel.Size = New System.Drawing.Size(1138, 47)
         Me.PCAddDel.TabIndex = 19
         '
         'BCompen
         '
         Me.BCompen.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCompen.Image = CType(resources.GetObject("BCompen.Image"), System.Drawing.Image)
-        Me.BCompen.Location = New System.Drawing.Point(523, 2)
+        Me.BCompen.Location = New System.Drawing.Point(722, 2)
         Me.BCompen.Name = "BCompen"
         Me.BCompen.Size = New System.Drawing.Size(141, 43)
         Me.BCompen.TabIndex = 8910
         Me.BCompen.Text = "Pick Sales Invoice"
+        Me.BCompen.Visible = False
         '
         'BPickDP
         '
         Me.BPickDP.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPickDP.Enabled = False
         Me.BPickDP.Image = CType(resources.GetObject("BPickDP.Image"), System.Drawing.Image)
-        Me.BPickDP.Location = New System.Drawing.Point(664, 2)
+        Me.BPickDP.Location = New System.Drawing.Point(863, 2)
         Me.BPickDP.Name = "BPickDP"
         Me.BPickDP.Size = New System.Drawing.Size(91, 43)
         Me.BPickDP.TabIndex = 8909
@@ -1223,7 +1233,7 @@ Partial Class FormBankWithdrawalDet
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(755, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(954, 2)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(91, 43)
         Me.BtnDelete.TabIndex = 3
@@ -1233,7 +1243,7 @@ Partial Class FormBankWithdrawalDet
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(846, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(1045, 2)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(91, 43)
         Me.BtnAdd.TabIndex = 2
@@ -1358,11 +1368,54 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
         '
+        'LValas
+        '
+        Me.LValas.Location = New System.Drawing.Point(10, 76)
+        Me.LValas.Name = "LValas"
+        Me.LValas.Size = New System.Drawing.Size(52, 13)
+        Me.LValas.TabIndex = 8919
+        Me.LValas.Text = "Akun Valas"
+        Me.LValas.Visible = False
+        '
+        'SLEAkunValas
+        '
+        Me.SLEAkunValas.Location = New System.Drawing.Point(88, 72)
+        Me.SLEAkunValas.Name = "SLEAkunValas"
+        Me.SLEAkunValas.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.SLEAkunValas.Properties.Appearance.Options.UseFont = True
+        Me.SLEAkunValas.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAkunValas.Properties.View = Me.GridView6
+        Me.SLEAkunValas.Size = New System.Drawing.Size(234, 22)
+        Me.SLEAkunValas.TabIndex = 8920
+        Me.SLEAkunValas.Visible = False
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn16})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID "
+        Me.GridColumn12.FieldName = "id_valas_bank"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Description"
+        Me.GridColumn16.FieldName = "valas_bank"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
         'FormBankWithdrawalDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(945, 543)
+        Me.ClientSize = New System.Drawing.Size(1144, 543)
         Me.Controls.Add(Me.XTCBBK)
         Me.Controls.Add(Me.PanelControl8)
         Me.Controls.Add(Me.PanelControl7)
@@ -1439,6 +1492,8 @@ Partial Class FormBankWithdrawalDet
         Me.XTPJournal.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1556,4 +1611,9 @@ Partial Class FormBankWithdrawalDet
     Friend WithEvents CMViewDetail As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents SLEAkunValas As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LValas As DevExpress.XtraEditors.LabelControl
 End Class
