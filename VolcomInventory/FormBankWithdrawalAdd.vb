@@ -203,4 +203,15 @@
     Private Sub TEBeforeKurs_EditValueChanged(sender As Object, e As EventArgs) Handles TEBeforeKurs.EditValueChanged
         calculate()
     End Sub
+
+    Private Sub BCalculateKurs_Click(sender As Object, e As EventArgs) Handles BCalculateKurs.Click
+        If FormBankWithdrawalDet.GVList.RowCount > 0 Then
+            Dim selisih As Decimal = 0.00
+            For i = 0 To FormBankWithdrawalDet.GVList.RowCount - 1
+                If Not FormBankWithdrawalDet.GVList.GetRowCellValue(i, "id_currency").ToString = "1" Then
+                    selisih = Math.Round((FormBankWithdrawalDet.TEKurs.EditValue * FormBankWithdrawalDet.GVList.GetRowCellValue(i, "val_bef_kurs")), 2) - Math.Round((FormBankWithdrawalDet.GVList.GetRowCellValue(i, "kurs") * FormBankWithdrawalDet.GVList.GetRowCellValue(i, "val_bef_kurs")), 2)
+                End If
+            Next
+        End If
+    End Sub
 End Class

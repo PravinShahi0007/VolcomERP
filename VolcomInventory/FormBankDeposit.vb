@@ -606,4 +606,16 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnRefreshVIOSPayout_Click(sender As Object, e As EventArgs) Handles BtnRefreshVIOSPayout.Click
+        load_payout()
+    End Sub
+
+    Private Sub BtnRefreshVIOSVAcc_Click(sender As Object, e As EventArgs) Handles BtnRefreshVIOSVAcc.Click
+        load_vacc()
+    End Sub
+
+    Private Sub BtnRefreshZaloraPayout_Click(sender As Object, e As EventArgs) Handles BtnRefreshZaloraPayout.Click
+        view_zalora_payout()
+    End Sub
 End Class

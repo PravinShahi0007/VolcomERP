@@ -111,6 +111,7 @@ Partial Class FormBankDeposit
         Me.GridColumntrans_fee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnett = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnRefreshVIOSPayout = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnHistoryPayout = New DevExpress.XtraEditors.SimpleButton()
         Me.TEPayoutNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
@@ -128,6 +129,7 @@ Partial Class FormBankDeposit
         Me.GridColumnnettva = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnBBMVA = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnRefreshVIOSVAcc = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEBank = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -185,6 +187,7 @@ Partial Class FormBankDeposit
         Me.BtnCreateBBMZalora = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlZalora = New DevExpress.XtraEditors.PanelControl()
         Me.BtnZaloraPayoutList = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRefreshZaloraPayout = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -1086,6 +1089,7 @@ Partial Class FormBankDeposit
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnRefreshVIOSPayout)
         Me.PanelControl3.Controls.Add(Me.BtnHistoryPayout)
         Me.PanelControl3.Controls.Add(Me.TEPayoutNumber)
         Me.PanelControl3.Controls.Add(Me.LabelControl10)
@@ -1095,6 +1099,16 @@ Partial Class FormBankDeposit
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1186, 43)
         Me.PanelControl3.TabIndex = 20
+        '
+        'BtnRefreshVIOSPayout
+        '
+        Me.BtnRefreshVIOSPayout.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefreshVIOSPayout.Image = CType(resources.GetObject("BtnRefreshVIOSPayout.Image"), System.Drawing.Image)
+        Me.BtnRefreshVIOSPayout.Location = New System.Drawing.Point(940, 2)
+        Me.BtnRefreshVIOSPayout.Name = "BtnRefreshVIOSPayout"
+        Me.BtnRefreshVIOSPayout.Size = New System.Drawing.Size(114, 39)
+        Me.BtnRefreshVIOSPayout.TabIndex = 8928
+        Me.BtnRefreshVIOSPayout.Text = "Refresh List"
         '
         'BtnHistoryPayout
         '
@@ -1263,6 +1277,7 @@ Partial Class FormBankDeposit
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.BtnRefreshVIOSVAcc)
         Me.PanelControl4.Controls.Add(Me.SLEBank)
         Me.PanelControl4.Controls.Add(Me.LabelControl8)
         Me.PanelControl4.Controls.Add(Me.BtnImport)
@@ -1274,6 +1289,16 @@ Partial Class FormBankDeposit
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(1186, 47)
         Me.PanelControl4.TabIndex = 0
+        '
+        'BtnRefreshVIOSVAcc
+        '
+        Me.BtnRefreshVIOSVAcc.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefreshVIOSVAcc.Image = CType(resources.GetObject("BtnRefreshVIOSVAcc.Image"), System.Drawing.Image)
+        Me.BtnRefreshVIOSVAcc.Location = New System.Drawing.Point(940, 2)
+        Me.BtnRefreshVIOSVAcc.Name = "BtnRefreshVIOSVAcc"
+        Me.BtnRefreshVIOSVAcc.Size = New System.Drawing.Size(114, 43)
+        Me.BtnRefreshVIOSVAcc.TabIndex = 8932
+        Me.BtnRefreshVIOSVAcc.Text = "Refresh List"
         '
         'SLEBank
         '
@@ -1789,6 +1814,7 @@ Partial Class FormBankDeposit
         '
         'PanelControlZalora
         '
+        Me.PanelControlZalora.Controls.Add(Me.BtnRefreshZaloraPayout)
         Me.PanelControlZalora.Controls.Add(Me.BtnZaloraPayoutList)
         Me.PanelControlZalora.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlZalora.Location = New System.Drawing.Point(0, 0)
@@ -1805,6 +1831,16 @@ Partial Class FormBankDeposit
         Me.BtnZaloraPayoutList.Size = New System.Drawing.Size(118, 46)
         Me.BtnZaloraPayoutList.TabIndex = 8930
         Me.BtnZaloraPayoutList.Text = "Payout List"
+        '
+        'BtnRefreshZaloraPayout
+        '
+        Me.BtnRefreshZaloraPayout.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefreshZaloraPayout.Image = CType(resources.GetObject("BtnRefreshZaloraPayout.Image"), System.Drawing.Image)
+        Me.BtnRefreshZaloraPayout.Location = New System.Drawing.Point(952, 2)
+        Me.BtnRefreshZaloraPayout.Name = "BtnRefreshZaloraPayout"
+        Me.BtnRefreshZaloraPayout.Size = New System.Drawing.Size(114, 46)
+        Me.BtnRefreshZaloraPayout.TabIndex = 8933
+        Me.BtnRefreshZaloraPayout.Text = "Refresh List"
         '
         'FormBankDeposit
         '
@@ -2049,4 +2085,7 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumnzalora_created_at As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsync_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnamountpayzalora As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnRefreshVIOSPayout As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnRefreshVIOSVAcc As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnRefreshZaloraPayout As DevExpress.XtraEditors.SimpleButton
 End Class
