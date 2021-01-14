@@ -5856,7 +5856,7 @@ INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`='" & id_report & "' AND nu
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
             For i As Integer = 0 To dt.Rows.Count - 1
-                pushNotif(dt.Rows(i)("title").ToString, dt.Rows(i)("description").ToString, dt.Rows(i)("form_name").ToString, dt.Rows(i)("id_user"), id_user, id_report, dt.Rows(i)("report_number").ToString, "1", rmt)
+                pushNotif(dt.Rows(i)("title").ToString, dt.Rows(i)("description").ToString, dt.Rows(i)("form_name").ToString, dt.Rows(i)("id_user"), id_user, id_report, dt.Rows(i)("report_number").ToString, "2", rmt)
             Next
         End If
     End Sub

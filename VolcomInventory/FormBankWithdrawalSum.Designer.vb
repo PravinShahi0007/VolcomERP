@@ -22,6 +22,8 @@ Partial Class FormBankWithdrawalSum
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankWithdrawalSum))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TECOAType = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.DEChangeDate = New DevExpress.XtraEditors.DateEdit()
         Me.LChangeTo = New DevExpress.XtraEditors.LabelControl()
         Me.BChangeDate = New DevExpress.XtraEditors.SimpleButton()
@@ -66,12 +68,12 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn100 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
-        Me.TECOAType = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TECOAType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEChangeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEChangeDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,7 +97,6 @@ Partial Class FormBankWithdrawalSum
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TECOAType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -128,6 +129,26 @@ Partial Class FormBankWithdrawalSum
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(798, 118)
         Me.PanelControl3.TabIndex = 165
+        '
+        'TECOAType
+        '
+        Me.TECOAType.EditValue = ""
+        Me.TECOAType.Location = New System.Drawing.Point(438, 12)
+        Me.TECOAType.Name = "TECOAType"
+        Me.TECOAType.Properties.EditValueChangedDelay = 1
+        Me.TECOAType.Properties.ReadOnly = True
+        Me.TECOAType.Size = New System.Drawing.Size(227, 20)
+        Me.TECOAType.TabIndex = 172
+        Me.TECOAType.TabStop = False
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(408, 15)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl3.TabIndex = 173
+        Me.LabelControl3.Text = "Type"
         '
         'DEChangeDate
         '
@@ -453,7 +474,7 @@ Partial Class FormBankWithdrawalSum
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10, Me.GridColumn4, Me.GridColumn100})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10, Me.GridColumn4, Me.GridColumn100, Me.GridColumn5})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -586,25 +607,11 @@ Partial Class FormBankWithdrawalSum
         Me.BGenerate.TabStop = False
         Me.BGenerate.Text = "Generate"
         '
-        'TECOAType
+        'GridColumn5
         '
-        Me.TECOAType.EditValue = ""
-        Me.TECOAType.Location = New System.Drawing.Point(438, 12)
-        Me.TECOAType.Name = "TECOAType"
-        Me.TECOAType.Properties.EditValueChangedDelay = 1
-        Me.TECOAType.Properties.ReadOnly = True
-        Me.TECOAType.Size = New System.Drawing.Size(227, 20)
-        Me.TECOAType.TabIndex = 172
-        Me.TECOAType.TabStop = False
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(408, 15)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl3.TabIndex = 173
-        Me.LabelControl3.Text = "Type"
+        Me.GridColumn5.Caption = "Is Buy Valas"
+        Me.GridColumn5.FieldName = "is_buy_valas"
+        Me.GridColumn5.Name = "GridColumn5"
         '
         'FormBankWithdrawalSum
         '
@@ -626,6 +633,7 @@ Partial Class FormBankWithdrawalSum
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TECOAType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEChangeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEChangeDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -651,7 +659,6 @@ Partial Class FormBankWithdrawalSum
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TECOAType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -704,4 +711,5 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TECOAType As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
