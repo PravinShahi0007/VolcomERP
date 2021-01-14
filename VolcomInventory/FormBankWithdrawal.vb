@@ -37,6 +37,8 @@
         TEKurs.EditValue = 1.0
         TEKursDPKhusus.EditValue = 1.0
         '
+        view_valas()
+        '
         load_coa_type()
         load_vendor()
         load_trans_type()
@@ -1419,10 +1421,6 @@ GROUP BY pns.`id_pn_summary`"
         DEBBKTo.Properties.MinValue = DEBBKFrom.EditValue
     End Sub
 
-    Private Sub BBuyValas_Click(sender As Object, e As EventArgs) Handles BBuyValas.Click
-
-    End Sub
-
     Private Sub BInfoFGPO_Click(sender As Object, e As EventArgs) Handles BInfoFGPO.Click
         FormFGPOPaymentTracking.ShowDialog()
     End Sub
@@ -1509,5 +1507,41 @@ GROUP BY pns.`id_pn_summary`"
         End If
 
         GVSales.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BBeliValas_Click(sender As Object, e As EventArgs) Handles BBeliValas.Click
+        FormBankWithdrawalDet.report_mark_type = "159"
+        FormBankWithdrawalDet.id_coa_tag = SLEUnitBBKList.EditValue.ToString
+        FormBankWithdrawalDet.is_buy_valas = "1"
+        FormBankWithdrawalDet.ShowDialog()
+    End Sub
+
+    Private Sub SLEAkunValas_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAkunValas.EditValueChanged
+        'search kurs rata2
+        Try
+            Dim q As String = "SELECT * FROM `tb_stock_valas` 
+WHERE id_valas_bank=" & SLEAkunValas.EditValue.ToString & " AND id_currency=2
+ORDER BY id_stock_valas DESC LIMIT 1"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                TEKurs.EditValue = dt.Rows(0)("kurs_rata_rata")
+            Else
+                TEKurs.EditValue = 1
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Sub view_valas()
+        Dim query As String = "SELECT 0 AS id_valas_bank,'No Valas' AS valas_bank
+UNION ALL
+SELECT id_valas_bank,valas_bank FROM tb_valas_bank
+WHERE is_active=1"
+        viewSearchLookupQuery(SLEAkunValas, query, "id_valas_bank", "valas_bank", "id_valas_bank")
+    End Sub
+
+    Private Sub BMutasiValas_Click(sender As Object, e As EventArgs) Handles BMutasiValas.Click
+        FormStockValas.ShowDialog()
     End Sub
 End Class

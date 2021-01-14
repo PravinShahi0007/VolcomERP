@@ -6421,16 +6421,18 @@ WHERE id_sales_branch IN (SELECT id_report FROM tb_pn_det WHERE id_pn='" & id_re
                 Next
                 '
                 If data_payment.Rows(0)("is_buy_valas").ToString = "1" Then
-                    'insert to stok valas
-                    Dim qi As String = "INSERT INTO tb_stock_valas(`id_report`,`report_mark_type`,`id_currency`,`amount`,`trans_datetime`,`kurs_transaksi`)
-SELECT pnd.`id_pn`,'189',pnd.id_currency,pnd.val_bef_kurs,NOW(),pnd.kurs
+                    'insert to stok valas/beli valas
+                    Dim qi As String = "INSERT INTO tb_stock_valas(`id_report`,`report_mark_type`,id_valas_bank,`id_currency`,`amount`,`trans_datetime`,`kurs_transaksi`)
+SELECT pnd.`id_pn`,'159',pn.id_valas_bank,pnd.id_currency,pnd.val_bef_kurs,NOW(),pnd.kurs
 FROM tb_pn_det pnd
+INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn
 WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
                     execute_non_query(qi, True, "", "", "", "")
                 Else
-                    Dim qi As String = "INSERT INTO tb_stock_valas(`id_report`,`report_mark_type`,`id_currency`,`amount`,`trans_datetime`)
-SELECT pnd.`id_pn`,'189',pnd.id_currency,-pnd.val_bef_kurs,NOW()
+                    Dim qi As String = "INSERT INTO tb_stock_valas(`id_report`,`report_mark_type`,id_valas_bank,`id_currency`,`amount`,`trans_datetime`,`kurs_transaksi`)
+SELECT pnd.`id_pn`,'159',pn.id_valas_bank,pnd.id_currency,-pnd.val_bef_kurs,NOW(),pn.kurs
 FROM tb_pn_det pnd
+INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn
 WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
                     execute_non_query(qi, True, "", "", "", "")
                 End If

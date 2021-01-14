@@ -52,6 +52,7 @@ Partial Class FormBankWithdrawalAdd
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
+        Me.BCalculateKurs = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TxtSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,14 +73,14 @@ Partial Class FormBankWithdrawalAdd
         '
         'TxtSupplier
         '
-        Me.TxtSupplier.Location = New System.Drawing.Point(19, 209)
+        Me.TxtSupplier.Location = New System.Drawing.Point(19, 256)
         Me.TxtSupplier.Name = "TxtSupplier"
         Me.TxtSupplier.Size = New System.Drawing.Size(360, 20)
         Me.TxtSupplier.TabIndex = 8925
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(19, 51)
+        Me.LabelControl7.Location = New System.Drawing.Point(19, 98)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(14, 13)
         Me.LabelControl7.TabIndex = 8935
@@ -88,7 +89,7 @@ Partial Class FormBankWithdrawalAdd
         'TxtAmount
         '
         Me.TxtAmount.Enabled = False
-        Me.TxtAmount.Location = New System.Drawing.Point(122, 347)
+        Me.TxtAmount.Location = New System.Drawing.Point(122, 394)
         Me.TxtAmount.Name = "TxtAmount"
         Me.TxtAmount.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -99,7 +100,7 @@ Partial Class FormBankWithdrawalAdd
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(122, 328)
+        Me.LabelControl6.Location = New System.Drawing.Point(122, 375)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(64, 13)
         Me.LabelControl6.TabIndex = 8934
@@ -108,7 +109,7 @@ Partial Class FormBankWithdrawalAdd
         'TxtComp
         '
         Me.TxtComp.Enabled = False
-        Me.TxtComp.Location = New System.Drawing.Point(19, 70)
+        Me.TxtComp.Location = New System.Drawing.Point(19, 117)
         Me.TxtComp.Name = "TxtComp"
         Me.TxtComp.Size = New System.Drawing.Size(100, 20)
         Me.TxtComp.TabIndex = 8924
@@ -116,7 +117,7 @@ Partial Class FormBankWithdrawalAdd
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(19, 328)
+        Me.LabelControl5.Location = New System.Drawing.Point(19, 375)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(17, 13)
         Me.LabelControl5.TabIndex = 8933
@@ -124,7 +125,7 @@ Partial Class FormBankWithdrawalAdd
         '
         'LEDK
         '
-        Me.LEDK.Location = New System.Drawing.Point(19, 347)
+        Me.LEDK.Location = New System.Drawing.Point(19, 394)
         Me.LEDK.Name = "LEDK"
         Me.LEDK.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEDK.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_dc", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dc_code", "D/K"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dc", "Description")})
@@ -133,7 +134,7 @@ Partial Class FormBankWithdrawalAdd
         '
         'SLEComp
         '
-        Me.SLEComp.Location = New System.Drawing.Point(122, 70)
+        Me.SLEComp.Location = New System.Drawing.Point(122, 117)
         Me.SLEComp.Name = "SLEComp"
         Me.SLEComp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEComp.Properties.NullText = ""
@@ -173,7 +174,7 @@ Partial Class FormBankWithdrawalAdd
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(19, 190)
+        Me.LabelControl4.Location = New System.Drawing.Point(19, 237)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl4.TabIndex = 8931
@@ -181,7 +182,7 @@ Partial Class FormBankWithdrawalAdd
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(19, 145)
+        Me.LabelControl3.Location = New System.Drawing.Point(19, 192)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl3.TabIndex = 8930
@@ -189,21 +190,21 @@ Partial Class FormBankWithdrawalAdd
         '
         'TxtDescription
         '
-        Me.TxtDescription.Location = New System.Drawing.Point(19, 164)
+        Me.TxtDescription.Location = New System.Drawing.Point(19, 211)
         Me.TxtDescription.Name = "TxtDescription"
         Me.TxtDescription.Size = New System.Drawing.Size(360, 20)
         Me.TxtDescription.TabIndex = 8923
         '
         'TxtReff
         '
-        Me.TxtReff.Location = New System.Drawing.Point(19, 119)
+        Me.TxtReff.Location = New System.Drawing.Point(19, 166)
         Me.TxtReff.Name = "TxtReff"
         Me.TxtReff.Size = New System.Drawing.Size(360, 20)
         Me.TxtReff.TabIndex = 8922
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(19, 100)
+        Me.LabelControl2.Location = New System.Drawing.Point(19, 147)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl2.TabIndex = 8929
@@ -214,18 +215,18 @@ Partial Class FormBankWithdrawalAdd
         Me.PanelControl1.Controls.Add(Me.BtnClose)
         Me.PanelControl1.Controls.Add(Me.BtnAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 382)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 429)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(403, 45)
+        Me.PanelControl1.Size = New System.Drawing.Size(399, 45)
         Me.PanelControl1.TabIndex = 8932
         '
         'BtnClose
         '
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(244, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(218, 2)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(82, 41)
+        Me.BtnClose.Size = New System.Drawing.Size(91, 41)
         Me.BtnClose.TabIndex = 8
         Me.BtnClose.Text = "Close"
         '
@@ -233,15 +234,15 @@ Partial Class FormBankWithdrawalAdd
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(326, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(309, 2)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(75, 41)
+        Me.BtnAdd.Size = New System.Drawing.Size(88, 41)
         Me.BtnAdd.TabIndex = 7
         Me.BtnAdd.Text = "OK"
         '
         'SLECOA
         '
-        Me.SLECOA.Location = New System.Drawing.Point(122, 25)
+        Me.SLECOA.Location = New System.Drawing.Point(122, 72)
         Me.SLECOA.Name = "SLECOA"
         Me.SLECOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECOA.Properties.NullText = ""
@@ -284,14 +285,14 @@ Partial Class FormBankWithdrawalAdd
         'TxtCOA
         '
         Me.TxtCOA.Enabled = False
-        Me.TxtCOA.Location = New System.Drawing.Point(19, 25)
+        Me.TxtCOA.Location = New System.Drawing.Point(19, 72)
         Me.TxtCOA.Name = "TxtCOA"
         Me.TxtCOA.Size = New System.Drawing.Size(100, 20)
         Me.TxtCOA.TabIndex = 8928
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(19, 6)
+        Me.LabelControl1.Location = New System.Drawing.Point(19, 53)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl1.TabIndex = 8919
@@ -300,7 +301,7 @@ Partial Class FormBankWithdrawalAdd
         'TEBeforeKurs
         '
         Me.TEBeforeKurs.EditValue = ""
-        Me.TEBeforeKurs.Location = New System.Drawing.Point(90, 254)
+        Me.TEBeforeKurs.Location = New System.Drawing.Point(90, 301)
         Me.TEBeforeKurs.Name = "TEBeforeKurs"
         Me.TEBeforeKurs.Properties.Appearance.Options.UseTextOptions = True
         Me.TEBeforeKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -317,7 +318,7 @@ Partial Class FormBankWithdrawalAdd
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(19, 235)
+        Me.LabelControl8.Location = New System.Drawing.Point(19, 282)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(56, 13)
         Me.LabelControl8.TabIndex = 8940
@@ -325,7 +326,7 @@ Partial Class FormBankWithdrawalAdd
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(19, 280)
+        Me.LabelControl21.Location = New System.Drawing.Point(19, 327)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl21.TabIndex = 8939
@@ -333,7 +334,7 @@ Partial Class FormBankWithdrawalAdd
         '
         'TEKurs
         '
-        Me.TEKurs.Location = New System.Drawing.Point(18, 299)
+        Me.TEKurs.Location = New System.Drawing.Point(18, 346)
         Me.TEKurs.Name = "TEKurs"
         Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
         Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -347,7 +348,7 @@ Partial Class FormBankWithdrawalAdd
         '
         'LECurrency
         '
-        Me.LECurrency.Location = New System.Drawing.Point(19, 254)
+        Me.LECurrency.Location = New System.Drawing.Point(19, 301)
         Me.LECurrency.Name = "LECurrency"
         Me.LECurrency.Properties.Appearance.Options.UseTextOptions = True
         Me.LECurrency.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -362,11 +363,22 @@ Partial Class FormBankWithdrawalAdd
         Me.LECurrency.Size = New System.Drawing.Size(64, 20)
         Me.LECurrency.TabIndex = 8936
         '
+        'BCalculateKurs
+        '
+        Me.BCalculateKurs.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BCalculateKurs.Image = CType(resources.GetObject("BCalculateKurs.Image"), System.Drawing.Image)
+        Me.BCalculateKurs.Location = New System.Drawing.Point(0, 0)
+        Me.BCalculateKurs.Name = "BCalculateKurs"
+        Me.BCalculateKurs.Size = New System.Drawing.Size(399, 41)
+        Me.BCalculateKurs.TabIndex = 8941
+        Me.BCalculateKurs.Text = "Auto (Selisih Kurs)"
+        '
         'FormBankWithdrawalAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(403, 427)
+        Me.ClientSize = New System.Drawing.Size(399, 474)
+        Me.Controls.Add(Me.BCalculateKurs)
         Me.Controls.Add(Me.TEBeforeKurs)
         Me.Controls.Add(Me.LabelControl8)
         Me.Controls.Add(Me.LabelControl21)
@@ -447,4 +459,5 @@ Partial Class FormBankWithdrawalAdd
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LECurrency As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents BCalculateKurs As DevExpress.XtraEditors.SimpleButton
 End Class
