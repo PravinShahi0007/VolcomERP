@@ -34,6 +34,9 @@ Partial Class FormRangeSingle
         Me.TxtSeasonPrintedName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtYear = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUESeasonType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.EPRange, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -42,6 +45,8 @@ Partial Class FormRangeSingle
         CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSeasonPrintedName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUESeasonType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelRange
@@ -58,7 +63,7 @@ Partial Class FormRangeSingle
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 203)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 239)
         Me.PanelControl1.LookAndFeel.SkinName = "Blue"
         Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Name = "PanelControl1"
@@ -170,13 +175,40 @@ Partial Class FormRangeSingle
         Me.TxtYear.Size = New System.Drawing.Size(274, 20)
         Me.TxtYear.TabIndex = 1
         '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(12, 189)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(67, 15)
+        Me.LabelControl5.TabIndex = 10
+        Me.LabelControl5.Text = "Season Type"
+        '
+        'SLUESeasonType
+        '
+        Me.SLUESeasonType.Location = New System.Drawing.Point(140, 187)
+        Me.SLUESeasonType.Name = "SLUESeasonType"
+        Me.SLUESeasonType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUESeasonType.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUESeasonType.Size = New System.Drawing.Size(274, 20)
+        Me.SLUESeasonType.TabIndex = 11
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
         'FormRangeSingle
         '
         Me.AcceptButton = Me.BtnSave
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnCancel
-        Me.ClientSize = New System.Drawing.Size(441, 239)
+        Me.ClientSize = New System.Drawing.Size(441, 275)
+        Me.Controls.Add(Me.SLUESeasonType)
+        Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.TxtYear)
         Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.TxtSeasonPrintedName)
@@ -193,7 +225,6 @@ Partial Class FormRangeSingle
         Me.MinimizeBox = False
         Me.Name = "FormRangeSingle"
         Me.ShowInTaskbar = False
-        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Range"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -204,6 +235,8 @@ Partial Class FormRangeSingle
         CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSeasonPrintedName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtYear.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUESeasonType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -222,4 +255,7 @@ Partial Class FormRangeSingle
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtYear As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLUESeasonType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class

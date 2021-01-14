@@ -1540,4 +1540,8 @@ SELECT id_valas_bank,valas_bank FROM tb_valas_bank
 WHERE is_active=1"
         viewSearchLookupQuery(SLEAkunValas, query, "id_valas_bank", "valas_bank", "id_valas_bank")
     End Sub
+
+    Private Sub BMutasiValas_Click(sender As Object, e As EventArgs) Handles BMutasiValas.Click
+        FormStockValas.ShowDialog()
+    End Sub
 End Class
