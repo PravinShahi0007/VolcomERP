@@ -27,6 +27,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEPembelianValas = New DevExpress.XtraEditors.CheckEdit()
         Me.SLEAkunValas = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -139,13 +140,13 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CEPembelianValas = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.CEPembelianValas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEACCTrfFee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -200,7 +201,6 @@ Partial Class FormBankWithdrawalDet
         Me.XTPJournal.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEPembelianValas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -264,6 +264,17 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(768, 98)
         Me.PanelControl4.TabIndex = 166
+        '
+        'CEPembelianValas
+        '
+        Me.CEPembelianValas.EditValue = True
+        Me.CEPembelianValas.Enabled = False
+        Me.CEPembelianValas.Location = New System.Drawing.Point(328, 73)
+        Me.CEPembelianValas.Name = "CEPembelianValas"
+        Me.CEPembelianValas.Properties.Caption = "Pembelian valas"
+        Me.CEPembelianValas.Size = New System.Drawing.Size(110, 19)
+        Me.CEPembelianValas.TabIndex = 8921
+        Me.CEPembelianValas.Visible = False
         '
         'SLEAkunValas
         '
@@ -1412,16 +1423,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
         '
-        'CEPembelianValas
-        '
-        Me.CEPembelianValas.EditValue = True
-        Me.CEPembelianValas.Location = New System.Drawing.Point(328, 73)
-        Me.CEPembelianValas.Name = "CEPembelianValas"
-        Me.CEPembelianValas.Properties.Caption = "Pembelian valas"
-        Me.CEPembelianValas.Size = New System.Drawing.Size(110, 19)
-        Me.CEPembelianValas.TabIndex = 8921
-        Me.CEPembelianValas.Visible = False
-        '
         'FormBankWithdrawalDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1446,6 +1447,7 @@ Partial Class FormBankWithdrawalDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.CEPembelianValas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEACCTrfFee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1505,7 +1507,6 @@ Partial Class FormBankWithdrawalDet
         Me.XTPJournal.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEPembelianValas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

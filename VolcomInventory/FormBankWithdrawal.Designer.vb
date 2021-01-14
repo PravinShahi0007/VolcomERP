@@ -65,6 +65,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DEBBKFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.BMutasiValas = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPBBKSUmmary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBBKSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVBBKSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -499,7 +500,6 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BMutasiValas = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
@@ -1086,13 +1086,23 @@ Partial Class FormBankWithdrawal
         Me.DEBBKFrom.Size = New System.Drawing.Size(158, 20)
         Me.DEBBKFrom.TabIndex = 8922
         '
+        'BMutasiValas
+        '
+        Me.BMutasiValas.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BMutasiValas.Image = CType(resources.GetObject("BMutasiValas.Image"), System.Drawing.Image)
+        Me.BMutasiValas.Location = New System.Drawing.Point(1225, 5)
+        Me.BMutasiValas.Name = "BMutasiValas"
+        Me.BMutasiValas.Size = New System.Drawing.Size(116, 53)
+        Me.BMutasiValas.TabIndex = 8934
+        Me.BMutasiValas.Text = "Mutasi Valas"
+        '
         'XTPBBKSUmmary
         '
         Me.XTPBBKSUmmary.Controls.Add(Me.GCBBKSummary)
         Me.XTPBBKSUmmary.Controls.Add(Me.PanelControl9)
         Me.XTPBBKSUmmary.Controls.Add(Me.BCreateToday)
         Me.XTPBBKSUmmary.Name = "XTPBBKSUmmary"
-        Me.XTPBBKSUmmary.Size = New System.Drawing.Size(1218, 485)
+        Me.XTPBBKSUmmary.Size = New System.Drawing.Size(1346, 485)
         Me.XTPBBKSUmmary.Text = "Summary"
         '
         'GCBBKSummary
@@ -1102,7 +1112,7 @@ Partial Class FormBankWithdrawal
         Me.GCBBKSummary.MainView = Me.GVBBKSummary
         Me.GCBBKSummary.Name = "GCBBKSummary"
         Me.GCBBKSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit12})
-        Me.GCBBKSummary.Size = New System.Drawing.Size(1218, 409)
+        Me.GCBBKSummary.Size = New System.Drawing.Size(1346, 409)
         Me.GCBBKSummary.TabIndex = 21
         Me.GCBBKSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBBKSummary})
         '
@@ -1237,7 +1247,7 @@ Partial Class FormBankWithdrawal
         Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl9.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl9.Name = "PanelControl9"
-        Me.PanelControl9.Size = New System.Drawing.Size(1218, 44)
+        Me.PanelControl9.Size = New System.Drawing.Size(1346, 44)
         Me.PanelControl9.TabIndex = 22
         '
         'SLECOAType
@@ -1337,7 +1347,7 @@ Partial Class FormBankWithdrawal
         Me.BCreateToday.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCreateToday.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreateToday.Name = "BCreateToday"
-        Me.BCreateToday.Size = New System.Drawing.Size(1218, 32)
+        Me.BCreateToday.Size = New System.Drawing.Size(1346, 32)
         Me.BCreateToday.TabIndex = 20
         Me.BCreateToday.Text = "Create Summary"
         '
@@ -1347,7 +1357,7 @@ Partial Class FormBankWithdrawal
         Me.XTPPO.Controls.Add(Me.BCreatePO)
         Me.XTPPO.Controls.Add(Me.PanelControl1)
         Me.XTPPO.Name = "XTPPO"
-        Me.XTPPO.Size = New System.Drawing.Size(1224, 513)
+        Me.XTPPO.Size = New System.Drawing.Size(1352, 513)
         Me.XTPPO.Text = "PO Operational Goods"
         '
         'XTPPOList
@@ -1356,7 +1366,7 @@ Partial Class FormBankWithdrawal
         Me.XTPPOList.Location = New System.Drawing.Point(0, 42)
         Me.XTPPOList.Name = "XTPPOList"
         Me.XTPPOList.SelectedTabPage = Me.XPOListActive
-        Me.XTPPOList.Size = New System.Drawing.Size(1224, 439)
+        Me.XTPPOList.Size = New System.Drawing.Size(1352, 439)
         Me.XTPPOList.TabIndex = 19
         Me.XTPPOList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XPOListActive, Me.XPOListNonActive, Me.XTPOGJasa})
         '
@@ -1364,7 +1374,7 @@ Partial Class FormBankWithdrawal
         '
         Me.XPOListActive.Controls.Add(Me.GCPOList)
         Me.XPOListActive.Name = "XPOListActive"
-        Me.XPOListActive.Size = New System.Drawing.Size(1218, 411)
+        Me.XPOListActive.Size = New System.Drawing.Size(1346, 411)
         Me.XPOListActive.Text = "Active"
         '
         'GCPOList
@@ -1375,7 +1385,7 @@ Partial Class FormBankWithdrawal
         Me.GCPOList.MainView = Me.GVPOList
         Me.GCPOList.Name = "GCPOList"
         Me.GCPOList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RICEAttachment})
-        Me.GCPOList.Size = New System.Drawing.Size(1218, 411)
+        Me.GCPOList.Size = New System.Drawing.Size(1346, 411)
         Me.GCPOList.TabIndex = 17
         Me.GCPOList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPOList})
         '
@@ -1732,7 +1742,7 @@ Partial Class FormBankWithdrawal
         Me.XPOListNonActive.Controls.Add(Me.GCPOListNonActive)
         Me.XPOListNonActive.Name = "XPOListNonActive"
         Me.XPOListNonActive.PageVisible = False
-        Me.XPOListNonActive.Size = New System.Drawing.Size(1218, 411)
+        Me.XPOListNonActive.Size = New System.Drawing.Size(1346, 411)
         Me.XPOListNonActive.Text = "Non Active"
         '
         'GCPOListNonActive
@@ -1743,7 +1753,7 @@ Partial Class FormBankWithdrawal
         Me.GCPOListNonActive.MainView = Me.GVPOListNonActive
         Me.GCPOListNonActive.Name = "GCPOListNonActive"
         Me.GCPOListNonActive.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GCPOListNonActive.Size = New System.Drawing.Size(1218, 411)
+        Me.GCPOListNonActive.Size = New System.Drawing.Size(1346, 411)
         Me.GCPOListNonActive.TabIndex = 18
         Me.GCPOListNonActive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPOListNonActive})
         '
@@ -2018,7 +2028,7 @@ Partial Class FormBankWithdrawal
         Me.XTPOGJasa.Controls.Add(Me.GCPO)
         Me.XTPOGJasa.Controls.Add(Me.BViewPOOG)
         Me.XTPOGJasa.Name = "XTPOGJasa"
-        Me.XTPOGJasa.Size = New System.Drawing.Size(1218, 411)
+        Me.XTPOGJasa.Size = New System.Drawing.Size(1346, 411)
         Me.XTPOGJasa.Text = "Set PPH"
         '
         'GCPO
@@ -2028,7 +2038,7 @@ Partial Class FormBankWithdrawal
         Me.GCPO.Location = New System.Drawing.Point(0, 26)
         Me.GCPO.MainView = Me.GVPO
         Me.GCPO.Name = "GCPO"
-        Me.GCPO.Size = New System.Drawing.Size(1218, 385)
+        Me.GCPO.Size = New System.Drawing.Size(1346, 385)
         Me.GCPO.TabIndex = 8915
         Me.GCPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPO})
         '
@@ -2125,7 +2135,7 @@ Partial Class FormBankWithdrawal
         Me.BViewPOOG.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BViewPOOG.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BViewPOOG.Name = "BViewPOOG"
-        Me.BViewPOOG.Size = New System.Drawing.Size(1218, 26)
+        Me.BViewPOOG.Size = New System.Drawing.Size(1346, 26)
         Me.BViewPOOG.TabIndex = 8914
         Me.BViewPOOG.Text = "View PO List"
         '
@@ -2144,7 +2154,7 @@ Partial Class FormBankWithdrawal
         Me.BCreatePO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCreatePO.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreatePO.Name = "BCreatePO"
-        Me.BCreatePO.Size = New System.Drawing.Size(1224, 32)
+        Me.BCreatePO.Size = New System.Drawing.Size(1352, 32)
         Me.BCreatePO.TabIndex = 18
         Me.BCreatePO.Text = "Create Payment"
         '
@@ -2160,7 +2170,7 @@ Partial Class FormBankWithdrawal
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1224, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(1352, 42)
         Me.PanelControl1.TabIndex = 2
         '
         'SLEStatusPayment
@@ -2304,7 +2314,7 @@ Partial Class FormBankWithdrawal
         Me.XTPExpense.Controls.Add(Me.PanelControl4)
         Me.XTPExpense.Controls.Add(Me.PanelControl3)
         Me.XTPExpense.Name = "XTPExpense"
-        Me.XTPExpense.Size = New System.Drawing.Size(1224, 513)
+        Me.XTPExpense.Size = New System.Drawing.Size(1352, 513)
         Me.XTPExpense.Text = "Expense List"
         '
         'GCExpense
@@ -2314,7 +2324,7 @@ Partial Class FormBankWithdrawal
         Me.GCExpense.MainView = Me.GVExpense
         Me.GCExpense.Name = "GCExpense"
         Me.GCExpense.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.CESelectExpense, Me.RISLECurrency})
-        Me.GCExpense.Size = New System.Drawing.Size(1224, 428)
+        Me.GCExpense.Size = New System.Drawing.Size(1352, 428)
         Me.GCExpense.TabIndex = 20
         Me.GCExpense.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVExpense})
         '
@@ -2594,7 +2604,7 @@ Partial Class FormBankWithdrawal
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl4.Location = New System.Drawing.Point(0, 470)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(1224, 43)
+        Me.PanelControl4.Size = New System.Drawing.Size(1352, 43)
         Me.PanelControl4.TabIndex = 21
         '
         'BCreateExpense
@@ -2606,7 +2616,7 @@ Partial Class FormBankWithdrawal
         Me.BCreateExpense.Appearance.Options.UseFont = True
         Me.BCreateExpense.Appearance.Options.UseForeColor = True
         Me.BCreateExpense.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCreateExpense.Location = New System.Drawing.Point(1084, 2)
+        Me.BCreateExpense.Location = New System.Drawing.Point(1212, 2)
         Me.BCreateExpense.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BCreateExpense.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BCreateExpense.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -2630,7 +2640,7 @@ Partial Class FormBankWithdrawal
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1224, 42)
+        Me.PanelControl3.Size = New System.Drawing.Size(1352, 42)
         Me.PanelControl3.TabIndex = 3
         '
         'LabelControl22
@@ -2821,7 +2831,7 @@ Partial Class FormBankWithdrawal
         Me.XTPFGPO.Controls.Add(Me.BCreatePaymentFGPO)
         Me.XTPFGPO.Controls.Add(Me.PanelControl6)
         Me.XTPFGPO.Name = "XTPFGPO"
-        Me.XTPFGPO.Size = New System.Drawing.Size(1224, 513)
+        Me.XTPFGPO.Size = New System.Drawing.Size(1352, 513)
         Me.XTPFGPO.Text = "Bukti Pembelian"
         '
         'GCFGPO
@@ -2832,7 +2842,7 @@ Partial Class FormBankWithdrawal
         Me.GCFGPO.MainView = Me.GVFGPO
         Me.GCFGPO.Name = "GCFGPO"
         Me.GCFGPO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEFGPOPayment})
-        Me.GCFGPO.Size = New System.Drawing.Size(1224, 437)
+        Me.GCFGPO.Size = New System.Drawing.Size(1352, 437)
         Me.GCFGPO.TabIndex = 20
         Me.GCFGPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGPO})
         '
@@ -3156,7 +3166,7 @@ Partial Class FormBankWithdrawal
         Me.BCreatePaymentFGPO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCreatePaymentFGPO.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreatePaymentFGPO.Name = "BCreatePaymentFGPO"
-        Me.BCreatePaymentFGPO.Size = New System.Drawing.Size(1224, 32)
+        Me.BCreatePaymentFGPO.Size = New System.Drawing.Size(1352, 32)
         Me.BCreatePaymentFGPO.TabIndex = 19
         Me.BCreatePaymentFGPO.Text = "Create Payment"
         '
@@ -3172,7 +3182,7 @@ Partial Class FormBankWithdrawal
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl6.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(1224, 44)
+        Me.PanelControl6.Size = New System.Drawing.Size(1352, 44)
         Me.PanelControl6.TabIndex = 15
         '
         'SLEAkunValas
@@ -3212,7 +3222,7 @@ Partial Class FormBankWithdrawal
         '
         Me.BInfoFGPO.Dock = System.Windows.Forms.DockStyle.Right
         Me.BInfoFGPO.Image = CType(resources.GetObject("BInfoFGPO.Image"), System.Drawing.Image)
-        Me.BInfoFGPO.Location = New System.Drawing.Point(1063, 2)
+        Me.BInfoFGPO.Location = New System.Drawing.Point(1191, 2)
         Me.BInfoFGPO.Name = "BInfoFGPO"
         Me.BInfoFGPO.Size = New System.Drawing.Size(159, 40)
         Me.BInfoFGPO.TabIndex = 8921
@@ -3306,7 +3316,7 @@ Partial Class FormBankWithdrawal
         Me.XTPBPJSKesehatan.Controls.Add(Me.GCBPJSKesehatan)
         Me.XTPBPJSKesehatan.Controls.Add(Me.SBPayBPJSKesehatan)
         Me.XTPBPJSKesehatan.Name = "XTPBPJSKesehatan"
-        Me.XTPBPJSKesehatan.Size = New System.Drawing.Size(1224, 513)
+        Me.XTPBPJSKesehatan.Size = New System.Drawing.Size(1352, 513)
         Me.XTPBPJSKesehatan.Text = "BPJS Kesehatan"
         '
         'GCBPJSKesehatan
@@ -3317,7 +3327,7 @@ Partial Class FormBankWithdrawal
         Me.GCBPJSKesehatan.MainView = Me.GVBPJSKesehatan
         Me.GCBPJSKesehatan.Name = "GCBPJSKesehatan"
         Me.GCBPJSKesehatan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3})
-        Me.GCBPJSKesehatan.Size = New System.Drawing.Size(1224, 481)
+        Me.GCBPJSKesehatan.Size = New System.Drawing.Size(1352, 481)
         Me.GCBPJSKesehatan.TabIndex = 21
         Me.GCBPJSKesehatan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBPJSKesehatan})
         '
@@ -3427,7 +3437,7 @@ Partial Class FormBankWithdrawal
         Me.SBPayBPJSKesehatan.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.SBPayBPJSKesehatan.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBPayBPJSKesehatan.Name = "SBPayBPJSKesehatan"
-        Me.SBPayBPJSKesehatan.Size = New System.Drawing.Size(1224, 32)
+        Me.SBPayBPJSKesehatan.Size = New System.Drawing.Size(1352, 32)
         Me.SBPayBPJSKesehatan.TabIndex = 22
         Me.SBPayBPJSKesehatan.Text = "Create Payment"
         '
@@ -3436,7 +3446,7 @@ Partial Class FormBankWithdrawal
         Me.XTPJamsostek.Controls.Add(Me.GCJamsostek)
         Me.XTPJamsostek.Controls.Add(Me.SBPayJamsostek)
         Me.XTPJamsostek.Name = "XTPJamsostek"
-        Me.XTPJamsostek.Size = New System.Drawing.Size(1224, 513)
+        Me.XTPJamsostek.Size = New System.Drawing.Size(1352, 513)
         Me.XTPJamsostek.Text = "Jamsostek"
         '
         'GCJamsostek
@@ -3447,7 +3457,7 @@ Partial Class FormBankWithdrawal
         Me.GCJamsostek.MainView = Me.GVJamsostek
         Me.GCJamsostek.Name = "GCJamsostek"
         Me.GCJamsostek.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit7})
-        Me.GCJamsostek.Size = New System.Drawing.Size(1224, 481)
+        Me.GCJamsostek.Size = New System.Drawing.Size(1352, 481)
         Me.GCJamsostek.TabIndex = 24
         Me.GCJamsostek.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJamsostek})
         '
@@ -3574,7 +3584,7 @@ Partial Class FormBankWithdrawal
         Me.SBPayJamsostek.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.SBPayJamsostek.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBPayJamsostek.Name = "SBPayJamsostek"
-        Me.SBPayJamsostek.Size = New System.Drawing.Size(1224, 32)
+        Me.SBPayJamsostek.Size = New System.Drawing.Size(1352, 32)
         Me.SBPayJamsostek.TabIndex = 23
         Me.SBPayJamsostek.Text = "Create Payment"
         '
@@ -3583,7 +3593,7 @@ Partial Class FormBankWithdrawal
         Me.XTPTHR.Controls.Add(Me.GCTHR)
         Me.XTPTHR.Controls.Add(Me.SBPayTHR)
         Me.XTPTHR.Name = "XTPTHR"
-        Me.XTPTHR.Size = New System.Drawing.Size(1224, 513)
+        Me.XTPTHR.Size = New System.Drawing.Size(1352, 513)
         Me.XTPTHR.Text = "Payroll/THR"
         '
         'GCTHR
@@ -3594,7 +3604,7 @@ Partial Class FormBankWithdrawal
         Me.GCTHR.MainView = Me.GVTHR
         Me.GCTHR.Name = "GCTHR"
         Me.GCTHR.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit4})
-        Me.GCTHR.Size = New System.Drawing.Size(1224, 481)
+        Me.GCTHR.Size = New System.Drawing.Size(1352, 481)
         Me.GCTHR.TabIndex = 22
         Me.GCTHR.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTHR})
         '
@@ -3704,7 +3714,7 @@ Partial Class FormBankWithdrawal
         Me.SBPayTHR.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.SBPayTHR.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBPayTHR.Name = "SBPayTHR"
-        Me.SBPayTHR.Size = New System.Drawing.Size(1224, 32)
+        Me.SBPayTHR.Size = New System.Drawing.Size(1352, 32)
         Me.SBPayTHR.TabIndex = 23
         Me.SBPayTHR.Text = "Create Payment"
         '
@@ -3712,7 +3722,7 @@ Partial Class FormBankWithdrawal
         '
         Me.XTPRefund.Controls.Add(Me.XTCCN)
         Me.XTPRefund.Name = "XTPRefund"
-        Me.XTPRefund.Size = New System.Drawing.Size(1224, 513)
+        Me.XTPRefund.Size = New System.Drawing.Size(1352, 513)
         Me.XTPRefund.Text = "Refund/CN"
         '
         'XTCCN
@@ -3722,7 +3732,7 @@ Partial Class FormBankWithdrawal
         Me.XTCCN.Location = New System.Drawing.Point(0, 0)
         Me.XTCCN.Name = "XTCCN"
         Me.XTCCN.SelectedTabPage = Me.XTPRefundOLStore
-        Me.XTCCN.Size = New System.Drawing.Size(1224, 513)
+        Me.XTCCN.Size = New System.Drawing.Size(1352, 513)
         Me.XTCCN.TabIndex = 27
         Me.XTCCN.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRefundOLStore, Me.XTPClosingCN})
         '
@@ -3732,7 +3742,7 @@ Partial Class FormBankWithdrawal
         Me.XTPRefundOLStore.Controls.Add(Me.GCRefund)
         Me.XTPRefundOLStore.Controls.Add(Me.PanelControl5)
         Me.XTPRefundOLStore.Name = "XTPRefundOLStore"
-        Me.XTPRefundOLStore.Size = New System.Drawing.Size(1195, 507)
+        Me.XTPRefundOLStore.Size = New System.Drawing.Size(1323, 507)
         Me.XTPRefundOLStore.Text = "Refund Online Store"
         '
         'BCreateRefund
@@ -3750,7 +3760,7 @@ Partial Class FormBankWithdrawal
         Me.BCreateRefund.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCreateRefund.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreateRefund.Name = "BCreateRefund"
-        Me.BCreateRefund.Size = New System.Drawing.Size(1195, 27)
+        Me.BCreateRefund.Size = New System.Drawing.Size(1323, 27)
         Me.BCreateRefund.TabIndex = 24
         Me.BCreateRefund.Text = "Create Payment"
         '
@@ -3761,7 +3771,7 @@ Partial Class FormBankWithdrawal
         Me.GCRefund.MainView = Me.GVRefund
         Me.GCRefund.Name = "GCRefund"
         Me.GCRefund.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit5})
-        Me.GCRefund.Size = New System.Drawing.Size(1195, 463)
+        Me.GCRefund.Size = New System.Drawing.Size(1323, 463)
         Me.GCRefund.TabIndex = 25
         Me.GCRefund.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRefund})
         '
@@ -3967,7 +3977,7 @@ Partial Class FormBankWithdrawal
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(1195, 44)
+        Me.PanelControl5.Size = New System.Drawing.Size(1323, 44)
         Me.PanelControl5.TabIndex = 26
         '
         'SLEVendorRefund
@@ -4023,7 +4033,7 @@ Partial Class FormBankWithdrawal
         Me.XTPClosingCN.Controls.Add(Me.BtnCN)
         Me.XTPClosingCN.Controls.Add(Me.PanelControlCN)
         Me.XTPClosingCN.Name = "XTPClosingCN"
-        Me.XTPClosingCN.Size = New System.Drawing.Size(1195, 507)
+        Me.XTPClosingCN.Size = New System.Drawing.Size(1323, 507)
         Me.XTPClosingCN.Text = "Closing Credit Note"
         '
         'GCCN
@@ -4033,7 +4043,7 @@ Partial Class FormBankWithdrawal
         Me.GCCN.MainView = Me.GVCN
         Me.GCCN.Name = "GCCN"
         Me.GCCN.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit9, Me.RepositoryItemCheckEdit10})
-        Me.GCCN.Size = New System.Drawing.Size(1195, 437)
+        Me.GCCN.Size = New System.Drawing.Size(1323, 437)
         Me.GCCN.TabIndex = 18
         Me.GCCN.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCN})
         '
@@ -4336,7 +4346,7 @@ Partial Class FormBankWithdrawal
         Me.BtnCN.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnCN.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnCN.Name = "BtnCN"
-        Me.BtnCN.Size = New System.Drawing.Size(1195, 27)
+        Me.BtnCN.Size = New System.Drawing.Size(1323, 27)
         Me.BtnCN.TabIndex = 25
         Me.BtnCN.Text = "Create Payment"
         '
@@ -4350,7 +4360,7 @@ Partial Class FormBankWithdrawal
         Me.PanelControlCN.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlCN.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlCN.Name = "PanelControlCN"
-        Me.PanelControlCN.Size = New System.Drawing.Size(1195, 43)
+        Me.PanelControlCN.Size = New System.Drawing.Size(1323, 43)
         Me.PanelControlCN.TabIndex = 3
         '
         'SLEStoreGroup
@@ -4453,7 +4463,7 @@ Partial Class FormBankWithdrawal
         Me.XTPCashAdvance.Controls.Add(Me.PanelControl7)
         Me.XTPCashAdvance.Controls.Add(Me.SBPayCashAdvance)
         Me.XTPCashAdvance.Name = "XTPCashAdvance"
-        Me.XTPCashAdvance.Size = New System.Drawing.Size(1224, 513)
+        Me.XTPCashAdvance.Size = New System.Drawing.Size(1352, 513)
         Me.XTPCashAdvance.Text = "Cash Advance"
         '
         'GCCashAdvance
@@ -4463,7 +4473,7 @@ Partial Class FormBankWithdrawal
         Me.GCCashAdvance.MainView = Me.GVCashAdvance
         Me.GCCashAdvance.Name = "GCCashAdvance"
         Me.GCCashAdvance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit4, Me.RepositoryItemCheckEdit8})
-        Me.GCCashAdvance.Size = New System.Drawing.Size(1224, 437)
+        Me.GCCashAdvance.Size = New System.Drawing.Size(1352, 437)
         Me.GCCashAdvance.TabIndex = 28
         Me.GCCashAdvance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCashAdvance})
         '
@@ -4579,7 +4589,7 @@ Partial Class FormBankWithdrawal
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl7.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(1224, 44)
+        Me.PanelControl7.Size = New System.Drawing.Size(1352, 44)
         Me.PanelControl7.TabIndex = 29
         '
         'CESelectAllCA
@@ -4645,7 +4655,7 @@ Partial Class FormBankWithdrawal
         Me.SBPayCashAdvance.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.SBPayCashAdvance.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBPayCashAdvance.Name = "SBPayCashAdvance"
-        Me.SBPayCashAdvance.Size = New System.Drawing.Size(1224, 32)
+        Me.SBPayCashAdvance.Size = New System.Drawing.Size(1352, 32)
         Me.SBPayCashAdvance.TabIndex = 27
         Me.SBPayCashAdvance.Text = "Create Payment"
         '
@@ -4655,7 +4665,7 @@ Partial Class FormBankWithdrawal
         Me.XTPDPKhusus.Controls.Add(Me.BCreatePaymentDPKhusus)
         Me.XTPDPKhusus.Controls.Add(Me.PanelControl8)
         Me.XTPDPKhusus.Name = "XTPDPKhusus"
-        Me.XTPDPKhusus.Size = New System.Drawing.Size(1224, 513)
+        Me.XTPDPKhusus.Size = New System.Drawing.Size(1352, 513)
         Me.XTPDPKhusus.Text = "DP Khusus"
         '
         'GCDPKhusus
@@ -4665,7 +4675,7 @@ Partial Class FormBankWithdrawal
         Me.GCDPKhusus.MainView = Me.GVDPKhusus
         Me.GCDPKhusus.Name = "GCDPKhusus"
         Me.GCDPKhusus.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit11})
-        Me.GCDPKhusus.Size = New System.Drawing.Size(1224, 437)
+        Me.GCDPKhusus.Size = New System.Drawing.Size(1352, 437)
         Me.GCDPKhusus.TabIndex = 23
         Me.GCDPKhusus.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDPKhusus})
         '
@@ -4957,7 +4967,7 @@ Partial Class FormBankWithdrawal
         Me.BCreatePaymentDPKhusus.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCreatePaymentDPKhusus.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreatePaymentDPKhusus.Name = "BCreatePaymentDPKhusus"
-        Me.BCreatePaymentDPKhusus.Size = New System.Drawing.Size(1224, 32)
+        Me.BCreatePaymentDPKhusus.Size = New System.Drawing.Size(1352, 32)
         Me.BCreatePaymentDPKhusus.TabIndex = 22
         Me.BCreatePaymentDPKhusus.Text = "Create Payment"
         '
@@ -4971,7 +4981,7 @@ Partial Class FormBankWithdrawal
         Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl8.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl8.Name = "PanelControl8"
-        Me.PanelControl8.Size = New System.Drawing.Size(1224, 44)
+        Me.PanelControl8.Size = New System.Drawing.Size(1352, 44)
         Me.PanelControl8.TabIndex = 21
         '
         'TEKursDPKhusus
@@ -5054,7 +5064,7 @@ Partial Class FormBankWithdrawal
         Me.XTPVS.Controls.Add(Me.PanelControl11)
         Me.XTPVS.Controls.Add(Me.BtnCreateBBKVS)
         Me.XTPVS.Name = "XTPVS"
-        Me.XTPVS.Size = New System.Drawing.Size(1224, 513)
+        Me.XTPVS.Size = New System.Drawing.Size(1352, 513)
         Me.XTPVS.Text = "Volcom Stores"
         '
         'GCSales
@@ -5064,7 +5074,7 @@ Partial Class FormBankWithdrawal
         Me.GCSales.MainView = Me.GVSales
         Me.GCSales.Name = "GCSales"
         Me.GCSales.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit14, Me.RepositoryItemCheckEdit15})
-        Me.GCSales.Size = New System.Drawing.Size(1224, 432)
+        Me.GCSales.Size = New System.Drawing.Size(1352, 432)
         Me.GCSales.TabIndex = 25
         Me.GCSales.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSales})
         '
@@ -5195,7 +5205,7 @@ Partial Class FormBankWithdrawal
         Me.PanelControl11.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl11.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl11.Name = "PanelControl11"
-        Me.PanelControl11.Size = New System.Drawing.Size(1224, 49)
+        Me.PanelControl11.Size = New System.Drawing.Size(1352, 49)
         Me.PanelControl11.TabIndex = 24
         '
         'BtnViewSales
@@ -5260,7 +5270,7 @@ Partial Class FormBankWithdrawal
         Me.BtnCreateBBKVS.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnCreateBBKVS.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnCreateBBKVS.Name = "BtnCreateBBKVS"
-        Me.BtnCreateBBKVS.Size = New System.Drawing.Size(1224, 32)
+        Me.BtnCreateBBKVS.Size = New System.Drawing.Size(1352, 32)
         Me.BtnCreateBBKVS.TabIndex = 23
         Me.BtnCreateBBKVS.Text = "Create Payment"
         '
@@ -5421,16 +5431,6 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Name = "VDItemList"
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
-        '
-        'BMutasiValas
-        '
-        Me.BMutasiValas.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BMutasiValas.Image = CType(resources.GetObject("BMutasiValas.Image"), System.Drawing.Image)
-        Me.BMutasiValas.Location = New System.Drawing.Point(1225, 5)
-        Me.BMutasiValas.Name = "BMutasiValas"
-        Me.BMutasiValas.Size = New System.Drawing.Size(116, 53)
-        Me.BMutasiValas.TabIndex = 8934
-        Me.BMutasiValas.Text = "Mutasi Valas"
         '
         'FormBankWithdrawal
         '

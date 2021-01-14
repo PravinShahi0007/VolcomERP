@@ -209,7 +209,7 @@
             Dim selisih As Decimal = 0.00
             For i = 0 To FormBankWithdrawalDet.GVList.RowCount - 1
                 If Not FormBankWithdrawalDet.GVList.GetRowCellValue(i, "id_currency").ToString = "1" Then
-                    selisih = Math.Round((FormBankWithdrawalDet.TEKurs.EditValue * FormBankWithdrawalDet.GVList.GetRowCellValue(i, "val_bef_kurs")), 2) - Math.Round((FormBankWithdrawalDet.GVList.GetRowCellValue(i, "kurs") * FormBankWithdrawalDet.GVList.GetRowCellValue(i, "val_bef_kurs")), 2)
+                    selisih += Math.Round((FormBankWithdrawalDet.TEKurs.EditValue * FormBankWithdrawalDet.GVList.GetRowCellValue(i, "val_bef_kurs")), 2) - Math.Round((FormBankWithdrawalDet.GVList.GetRowCellValue(i, "kurs") * FormBankWithdrawalDet.GVList.GetRowCellValue(i, "val_bef_kurs")), 2)
                 End If
             Next
 
