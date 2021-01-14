@@ -758,7 +758,33 @@
         save.ShowDialog()
 
         If Not save.FileName = "" Then
-            GVBatchUpload.ExportToXlsx(save.FileName)
+            Dim opt As DevExpress.XtraPrinting.XlsxExportOptions = New DevExpress.XtraPrinting.XlsxExportOptions
+
+            'zalora
+            If SLUEOnlineStore.EditValue.ToString = "4" Then
+                opt.SheetName = "Upload Template"
+            End If
+
+            'blibli
+            If SLUEOnlineStore.EditValue.ToString = "5" Then
+                opt.SheetName = "Data"
+            End If
+
+            'shopee
+            If SLUEOnlineStore.EditValue.ToString = "8" Then
+                If SLUETemplate.EditValue.ToString = "1" Then
+                    opt.SheetName = "Template"
+                ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                    opt.SheetName = "Sheet"
+                End If
+            End If
+
+            'volcom
+            If SLUEOnlineStore.EditValue.ToString = "3" Then
+                opt.SheetName = "Sheet2"
+            End If
+
+            GVBatchUpload.ExportToXlsx(save.FileName, opt)
 
             infoCustom("File saved.")
         End If
@@ -845,5 +871,11 @@
         "
 
         viewSearchLookupQuery(SLUETemplate, query, "id_template", "template_name", "id_template")
+    End Sub
+
+    Private Sub SBClear_Click(sender As Object, e As EventArgs) Handles SBClear.Click
+        clear_data()
+
+        TEProductCode.EditValue = ""
     End Sub
 End Class

@@ -21,6 +21,10 @@ Partial Class FormBatchUploadOnlineStore
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBatchUploadOnlineStore))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUETemplate = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SBSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.TEProductCode = New DevExpress.XtraEditors.TextEdit()
         Me.SLUEDivision = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -46,12 +50,11 @@ Partial Class FormBatchUploadOnlineStore
         Me.GCBatchUpload = New DevExpress.XtraGrid.GridControl()
         Me.GVBatchUpload = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemMemoEdit = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.SLUETemplate = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SBClear = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLUETemplate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEProductCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,13 +65,12 @@ Partial Class FormBatchUploadOnlineStore
         CType(Me.GCBatchUpload, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBatchUpload, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUETemplate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.PanelControl1.Controls.Add(Me.SBClear)
         Me.PanelControl1.Controls.Add(Me.SLUETemplate)
         Me.PanelControl1.Controls.Add(Me.SBSearch)
         Me.PanelControl1.Controls.Add(Me.TEProductCode)
@@ -86,6 +88,38 @@ Partial Class FormBatchUploadOnlineStore
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 124)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SLUETemplate
+        '
+        Me.SLUETemplate.Location = New System.Drawing.Point(297, 15)
+        Me.SLUETemplate.Name = "SLUETemplate"
+        Me.SLUETemplate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUETemplate.Properties.View = Me.GridView4
+        Me.SLUETemplate.Size = New System.Drawing.Size(107, 20)
+        Me.SLUETemplate.TabIndex = 15
+        Me.SLUETemplate.Visible = False
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "GridColumn1"
+        Me.GridColumn11.FieldName = "id_template"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Template"
+        Me.GridColumn12.FieldName = "template_name"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
         '
         'SBSearch
         '
@@ -293,37 +327,14 @@ Partial Class FormBatchUploadOnlineStore
         '
         Me.RepositoryItemMemoEdit.Name = "RepositoryItemMemoEdit"
         '
-        'SLUETemplate
+        'SBClear
         '
-        Me.SLUETemplate.Location = New System.Drawing.Point(297, 15)
-        Me.SLUETemplate.Name = "SLUETemplate"
-        Me.SLUETemplate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUETemplate.Properties.View = Me.GridView4
-        Me.SLUETemplate.Size = New System.Drawing.Size(107, 20)
-        Me.SLUETemplate.TabIndex = 15
-        Me.SLUETemplate.Visible = False
-        '
-        'GridView4
-        '
-        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12})
-        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView4.Name = "GridView4"
-        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView4.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "GridColumn1"
-        Me.GridColumn11.FieldName = "id_template"
-        Me.GridColumn11.Name = "GridColumn11"
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Template"
-        Me.GridColumn12.FieldName = "template_name"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 0
+        Me.SBClear.Image = CType(resources.GetObject("SBClear.Image"), System.Drawing.Image)
+        Me.SBClear.Location = New System.Drawing.Point(410, 91)
+        Me.SBClear.Name = "SBClear"
+        Me.SBClear.Size = New System.Drawing.Size(75, 23)
+        Me.SBClear.TabIndex = 16
+        Me.SBClear.Text = "Clear"
         '
         'FormBatchUploadOnlineStore
         '
@@ -337,6 +348,8 @@ Partial Class FormBatchUploadOnlineStore
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLUETemplate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEProductCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -347,8 +360,6 @@ Partial Class FormBatchUploadOnlineStore
         CType(Me.GCBatchUpload, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBatchUpload, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUETemplate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -383,4 +394,5 @@ Partial Class FormBatchUploadOnlineStore
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBClear As DevExpress.XtraEditors.SimpleButton
 End Class
