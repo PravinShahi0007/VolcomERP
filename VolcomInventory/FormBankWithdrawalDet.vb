@@ -1628,30 +1628,32 @@ WHERE py.`id_pn`='" & id_payment & "'"
                 Next
 
                 'cek jika beli valas ada transaksi USD pending
-                Dim using_valas_pend As Boolean = False
-                If is_buy_valas Then
-                    Dim qusing_valas_pend As String = "SELECT * 
-FROM tb_pn_det pnd
-INNER JOIN tb_pn pn ON pn.id_pn=pnd.`id_pn`
-WHERE pn.id_report_status!=6 AND pn.`id_report_status`!=5 AND pn.`kurs`>1"
-                    Dim dt As DataTable = execute_query(qusing_valas_pend, -1, True, "", "", "", "")
-                    If dt.Rows.Count > 0 Then
-                        using_valas_pend = True
-                    End If
-                End If
+                'bisa overlap per tanggal 14 januari
 
-                'cek jika pakai valas ada pembelian USD
-                Dim buy_valas_pend As Boolean = False
-                If is_buy_valas Then
-                    Dim qbuy_valas_pend As String = "SELECT * 
-FROM tb_pn_det pnd
-INNER JOIN tb_pn pn ON pn.id_pn=pnd.`id_pn`
-WHERE pn.id_report_status!=6 AND pn.`id_report_status`!=5 AND pn.is_buy_valas=1"
-                    Dim dt As DataTable = execute_query(qbuy_valas_pend, -1, True, "", "", "", "")
-                    If dt.Rows.Count > 0 Then
-                        buy_valas_pend = True
-                    End If
-                End If
+                '                Dim using_valas_pend As Boolean = False
+                '                If is_buy_valas Then
+                '                    Dim qusing_valas_pend As String = "SELECT * 
+                'FROM tb_pn_det pnd
+                'INNER JOIN tb_pn pn ON pn.id_pn=pnd.`id_pn`
+                'WHERE pn.id_report_status!=6 AND pn.`id_report_status`!=5 AND pn.`kurs`>1"
+                '                    Dim dt As DataTable = execute_query(qusing_valas_pend, -1, True, "", "", "", "")
+                '                    If dt.Rows.Count > 0 Then
+                '                        using_valas_pend = True
+                '                    End If
+                '                End If
+
+                '                'cek jika pakai valas ada pembelian USD
+                '                Dim buy_valas_pend As Boolean = False
+                '                If is_buy_valas Then
+                '                    Dim qbuy_valas_pend As String = "SELECT * 
+                'FROM tb_pn_det pnd
+                'INNER JOIN tb_pn pn ON pn.id_pn=pnd.`id_pn`
+                'WHERE pn.id_report_status!=6 AND pn.`id_report_status`!=5 AND pn.is_buy_valas=1"
+                '                    Dim dt As DataTable = execute_query(qbuy_valas_pend, -1, True, "", "", "", "")
+                '                    If dt.Rows.Count > 0 Then
+                '                        buy_valas_pend = True
+                '                    End If
+                '                End If
 
                 If GVList.RowCount = 0 Then
                     warningCustom("No item listed.")
@@ -1667,10 +1669,10 @@ WHERE pn.id_report_status!=6 AND pn.`id_report_status`!=5 AND pn.is_buy_valas=1"
                     warningCustom("Please put some note")
                 ElseIf value_is_wrong Then
                     warningCustom("Make sure debit is positive value, credit is negative value")
-                ElseIf using_valas_pend Then
-                    warningCustom("Please complete BBK using valas")
-                ElseIf buy_valas_pend Then
-                    warningCustom("Please complete BBK buying valas")
+                    'ElseIf using_valas_pend Then
+                    '    warningCustom("Please complete BBK using valas")
+                    'ElseIf buy_valas_pend Then
+                    '    warningCustom("Please complete BBK buying valas")
                 ElseIf TETotal.EditValue < 0 Then
                     warningCustom("Amount paid is negative")
                 Else
