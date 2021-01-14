@@ -6116,6 +6116,33 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             query = String.Format("UPDATE tb_item_expense SET id_report_status='{0}' WHERE id_item_expense ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
 
+            If id_status_reportx = "5" And id_report_status_report = "6" Then 'cancel form
+                Dim old_id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+                WHERE ad.report_mark_type=157 AND ad.id_report=" + id_report + "
+                GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+                '
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                Dim qe As String = "SELECT created_date,date_reff FROM tb_item_expense WHERE id_item_expense='" & id_report & "'"
+                Dim de As DataTable = execute_query(qe, -1, True, "", "", "", "")
+                Dim date_reff As String = Date.Parse(de.Rows(0)("date_reff").ToString).ToString("yyyy-MM-dd")
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                VALUES ('','" + report_number + "','0','" + id_user_prepared + "', NOW(), NOW(), 'Cancel Expense', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
+                '
+                Dim q_balik = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref)
+SELECT id_acc_trans, id_acc, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref
+FROM tb_a_acc_trans_det
+WHERE id_acc_trans='" & old_id_acc_trans & "'"
+                execute_non_query(q_balik, True, "", "", "", "")
+            End If
+
             If id_status_reportx = "6" Then
                 ' select user prepared
                 Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
