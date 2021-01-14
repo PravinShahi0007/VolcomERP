@@ -48,4 +48,20 @@ WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45"
             e.Handled = True
         End If
     End Sub
+
+    Private Sub GVPolisToko_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVPolisToko.RowStyle
+        If GVPolisToko.GetRowCellValue(e.RowHandle, "expired_in") < 0 Then
+            e.Appearance.BackColor = Color.Salmon
+            e.Appearance.BackColor2 = Color.Salmon
+            e.Appearance.ForeColor = Color.Black
+        ElseIf GVPolisToko.GetRowCellValue(e.RowHandle, "expired_in") < 45 Then
+            e.Appearance.BackColor = Color.LightYellow
+            e.Appearance.BackColor2 = Color.LightYellow
+            e.Appearance.ForeColor = Color.Black
+        Else
+            e.Appearance.BackColor = Color.White
+            e.Appearance.BackColor2 = Color.White
+            e.Appearance.ForeColor = Color.Black
+        End If
+    End Sub
 End Class

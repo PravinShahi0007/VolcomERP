@@ -84,6 +84,7 @@ Partial Class FormPolis
         Me.GVPolisToko.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn10, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
         Me.GVPolisToko.GridControl = Me.GCPolisToko
         Me.GVPolisToko.Name = "GVPolisToko"
+        Me.GVPolisToko.OptionsView.AllowCellMerge = True
         Me.GVPolisToko.OptionsView.ShowGroupPanel = False
         Me.GVPolisToko.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn10, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
