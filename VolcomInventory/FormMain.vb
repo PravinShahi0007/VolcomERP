@@ -15718,10 +15718,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
 
     Private Sub NBPolis_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPolis.LinkClicked
         Try
-            FormVerificationMasterPrice.MdiParent = Me
-            FormVerificationMasterPrice.Show()
-            FormVerificationMasterPrice.WindowState = FormWindowState.Maximized
-            FormVerificationMasterPrice.Focus()
+            FormPolis.MdiParent = Me
+            FormPolis.Show()
+            FormPolis.WindowState = FormWindowState.Maximized
+            FormPolis.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

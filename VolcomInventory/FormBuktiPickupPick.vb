@@ -127,4 +127,14 @@
 
         viewSearchLookupQuery(SLUECompany, query, "id_comp", "comp_name", "id_comp")
     End Sub
+
+    Private Sub CESelectAll_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAll.CheckedChanged
+        For i = 0 To GVList.RowCount - 1
+            If CESelectAll.EditValue Then
+                GVList.SetRowCellValue(i, "is_select", "yes")
+            Else
+                GVList.SetRowCellValue(i, "is_select", "no")
+            End If
+        Next
+    End Sub
 End Class
