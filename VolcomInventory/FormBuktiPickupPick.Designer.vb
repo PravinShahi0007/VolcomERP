@@ -48,9 +48,14 @@ Partial Class FormBuktiPickupPick
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTrackingCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.SLUEGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUECompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,10 +70,14 @@ Partial Class FormBuktiPickupPick
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.Label3)
+        Me.PanelControl1.Controls.Add(Me.SLUEGroup)
         Me.PanelControl1.Controls.Add(Me.SLUECompany)
         Me.PanelControl1.Controls.Add(Me.Label2)
         Me.PanelControl1.Controls.Add(Me.SBView)
@@ -84,11 +93,11 @@ Partial Class FormBuktiPickupPick
         '
         'SLUECompany
         '
-        Me.SLUECompany.Location = New System.Drawing.Point(56, 12)
+        Me.SLUECompany.Location = New System.Drawing.Point(271, 12)
         Me.SLUECompany.Name = "SLUECompany"
         Me.SLUECompany.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUECompany.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLUECompany.Size = New System.Drawing.Size(200, 20)
+        Me.SLUECompany.Size = New System.Drawing.Size(150, 20)
         Me.SLUECompany.TabIndex = 17
         '
         'SearchLookUpEdit1View
@@ -115,7 +124,7 @@ Partial Class FormBuktiPickupPick
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 15)
+        Me.Label2.Location = New System.Drawing.Point(227, 15)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(33, 13)
         Me.Label2.TabIndex = 16
@@ -123,7 +132,7 @@ Partial Class FormBuktiPickupPick
         '
         'SBView
         '
-        Me.SBView.Location = New System.Drawing.Point(780, 10)
+        Me.SBView.Location = New System.Drawing.Point(846, 10)
         Me.SBView.Name = "SBView"
         Me.SBView.Size = New System.Drawing.Size(75, 23)
         Me.SBView.TabIndex = 15
@@ -132,7 +141,7 @@ Partial Class FormBuktiPickupPick
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(569, 12)
+        Me.DEUntil.Location = New System.Drawing.Point(690, 12)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -142,13 +151,13 @@ Partial Class FormBuktiPickupPick
         Me.DEUntil.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEUntil.Properties.Mask.EditMask = "dd MMMM yyyy"
         Me.DEUntil.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEUntil.Size = New System.Drawing.Size(200, 20)
+        Me.DEUntil.Size = New System.Drawing.Size(150, 20)
         Me.DEUntil.TabIndex = 14
         '
         'DEFrom
         '
         Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(314, 12)
+        Me.DEFrom.Location = New System.Drawing.Point(484, 12)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -158,13 +167,13 @@ Partial Class FormBuktiPickupPick
         Me.DEFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
         Me.DEFrom.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEFrom.Size = New System.Drawing.Size(200, 20)
+        Me.DEFrom.Size = New System.Drawing.Size(150, 20)
         Me.DEFrom.TabIndex = 13
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(530, 15)
+        Me.Label1.Location = New System.Drawing.Point(651, 15)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(28, 13)
         Me.Label1.TabIndex = 12
@@ -173,7 +182,7 @@ Partial Class FormBuktiPickupPick
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(272, 15)
+        Me.Label6.Location = New System.Drawing.Point(442, 15)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(31, 13)
         Me.Label6.TabIndex = 11
@@ -344,6 +353,14 @@ Partial Class FormBuktiPickupPick
         Me.PanelControl2.Size = New System.Drawing.Size(1008, 49)
         Me.PanelControl2.TabIndex = 12
         '
+        'CESelectAll
+        '
+        Me.CESelectAll.Location = New System.Drawing.Point(15, 15)
+        Me.CESelectAll.Name = "CESelectAll"
+        Me.CESelectAll.Properties.Caption = "Select All"
+        Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
+        Me.CESelectAll.TabIndex = 5
+        '
         'SBClose
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
@@ -364,13 +381,44 @@ Partial Class FormBuktiPickupPick
         Me.SBAdd.TabIndex = 3
         Me.SBAdd.Text = "Add"
         '
-        'CESelectAll
+        'SLUEGroup
         '
-        Me.CESelectAll.Location = New System.Drawing.Point(15, 15)
-        Me.CESelectAll.Name = "CESelectAll"
-        Me.CESelectAll.Properties.Caption = "Select All"
-        Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
-        Me.CESelectAll.TabIndex = 5
+        Me.SLUEGroup.Location = New System.Drawing.Point(56, 12)
+        Me.SLUEGroup.Name = "SLUEGroup"
+        Me.SLUEGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEGroup.Properties.View = Me.GridView1
+        Me.SLUEGroup.Size = New System.Drawing.Size(150, 20)
+        Me.SLUEGroup.TabIndex = 18
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.FieldName = "id_comp_group"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Group"
+        Me.GridColumn2.FieldName = "comp_group"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(14, 15)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(36, 13)
+        Me.Label3.TabIndex = 19
+        Me.Label3.Text = "Group"
         '
         'FormBuktiPickupPick
         '
@@ -399,6 +447,8 @@ Partial Class FormBuktiPickupPick
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -434,4 +484,9 @@ Partial Class FormBuktiPickupPick
     Friend WithEvents GCCompany As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTrackingCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents Label3 As Label
+    Friend WithEvents SLUEGroup As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

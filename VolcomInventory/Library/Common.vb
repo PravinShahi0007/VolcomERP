@@ -1249,6 +1249,12 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
         '    execute_non_query(query, True, "", "", "", "")
         'End If
     End Sub
+
+    Sub log_error(ByVal err As String)
+        Dim query As String = ""
+        query = String.Format("INSERT INTO tb_log_error(err,id_user,datetime) VALUES('{0}', '{1}', NOW())", addSlashes(err), id_user)
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
     Public Sub enableDMLMenu()
         FormMain.BBEdit.Enabled = True
         FormMain.BBDelete.Enabled = True
