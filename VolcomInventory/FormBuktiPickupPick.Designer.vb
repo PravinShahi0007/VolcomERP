@@ -46,10 +46,11 @@ Partial Class FormBuktiPickupPick
         Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalDelivery = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTrackingCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnTrackingCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUECompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,6 +64,7 @@ Partial Class FormBuktiPickupPick
         CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -321,8 +323,19 @@ Partial Class FormBuktiPickupPick
         Me.GridColumnCreatedDate.Visible = True
         Me.GridColumnCreatedDate.VisibleIndex = 11
         '
+        'GridColumnTrackingCode
+        '
+        Me.GridColumnTrackingCode.Caption = "Tracking Code"
+        Me.GridColumnTrackingCode.FieldName = "tracking_code"
+        Me.GridColumnTrackingCode.Name = "GridColumnTrackingCode"
+        Me.GridColumnTrackingCode.OptionsColumn.AllowEdit = False
+        Me.GridColumnTrackingCode.Visible = True
+        Me.GridColumnTrackingCode.VisibleIndex = 3
+        Me.GridColumnTrackingCode.Width = 78
+        '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.CESelectAll)
         Me.PanelControl2.Controls.Add(Me.SBClose)
         Me.PanelControl2.Controls.Add(Me.SBAdd)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -351,15 +364,13 @@ Partial Class FormBuktiPickupPick
         Me.SBAdd.TabIndex = 3
         Me.SBAdd.Text = "Add"
         '
-        'GridColumnTrackingCode
+        'CESelectAll
         '
-        Me.GridColumnTrackingCode.Caption = "Tracking Code"
-        Me.GridColumnTrackingCode.FieldName = "tracking_code"
-        Me.GridColumnTrackingCode.Name = "GridColumnTrackingCode"
-        Me.GridColumnTrackingCode.OptionsColumn.AllowEdit = False
-        Me.GridColumnTrackingCode.Visible = True
-        Me.GridColumnTrackingCode.VisibleIndex = 3
-        Me.GridColumnTrackingCode.Width = 78
+        Me.CESelectAll.Location = New System.Drawing.Point(15, 15)
+        Me.CESelectAll.Name = "CESelectAll"
+        Me.CESelectAll.Properties.Caption = "Select All"
+        Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
+        Me.CESelectAll.TabIndex = 5
         '
         'FormBuktiPickupPick
         '
@@ -387,6 +398,7 @@ Partial Class FormBuktiPickupPick
         CType(Me.RICESelect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -421,4 +433,5 @@ Partial Class FormBuktiPickupPick
     Friend WithEvents GCIdComp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCompany As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTrackingCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
 End Class
