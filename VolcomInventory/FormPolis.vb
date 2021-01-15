@@ -36,7 +36,7 @@ WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45"
     End Sub
 
     Private Sub GVPolisToko_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVPolisToko.CellMerge
-        If (e.Column.FieldName = "polis_object" Or e.Column.FieldName = "polis_location" Or e.Column.FieldName = "expired_in" Or e.Column.FieldName = "comp_name_polis" Or e.Column.FieldName = "start_date" Or e.Column.FieldName = "end_date") Then
+        If (e.Column.FieldName = "polis_object" Or e.Column.FieldName = "nilai_total" Or e.Column.FieldName = "polis_object_location" Or e.Column.FieldName = "expired_in" Or e.Column.FieldName = "comp_name_polis" Or e.Column.FieldName = "start_date" Or e.Column.FieldName = "end_date") Then
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             Dim val1 As String = view.GetRowCellValue(e.RowHandle1, "id_polis")
             Dim val2 As String = view.GetRowCellValue(e.RowHandle2, "id_polis")

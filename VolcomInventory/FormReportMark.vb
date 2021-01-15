@@ -6303,6 +6303,9 @@ WHERE id_acc_trans='" & old_id_acc_trans & "'"
                 '
                 If data_payment.Rows(0)("report_mark_type").ToString = "139" Or data_payment.Rows(0)("report_mark_type").ToString = "202" Then
                     'check total
+                    query = String.Format("UPDATE tb_pn SET id_report_status='{0}' WHERE id_pn ='{1}'", id_status_reportx, id_report)
+                    execute_non_query(query, True, "", "", "", "")
+
                     Dim id_po As String = execute_query("SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + " LIMIT 1", 0, True, "", "", "", "")
 
                     Dim value_pn As String = execute_query("
