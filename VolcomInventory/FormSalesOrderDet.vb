@@ -182,7 +182,7 @@ Public Class FormSalesOrderDet
                 End Try
 
                 Try
-                    Dim ql As String = "SELECT * FROM tb_shopify_api_log a WHERE a.report_mark_type=57 AND a.id_report=" + id_trf + " AND a.message<>'OK' "
+                    Dim ql As String = "SELECT * FROM tb_shopify_api_log a WHERE a.report_mark_type=57 AND a.id_report=" + id_trf + " AND a.is_verify<>1 "
                     Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
                     If dl.Rows.Count > 0 Then
                         stopCustom("Some product failed to sync")

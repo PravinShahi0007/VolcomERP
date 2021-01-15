@@ -73,7 +73,7 @@ GROUP BY pns.`id_pn_summary`"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT 'no' AS is_check,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+        Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -124,7 +124,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
         Dim qc As String = "SELECT id_pn_summary FROM tb_pn_summary WHERE id_pn_summary!='" & id_sum & "' AND id_coa_type='" & id_coa_type & "' AND id_currency='" & SLEType.EditValue.ToString & "' AND id_report_status!=5 AND id_report_status!=6 AND DATE(date_payment)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count = 0 Then
-            Dim q As String = "SELECT 'no' AS is_check,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+            Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -162,7 +162,7 @@ WHERE py.`id_report_status`!='5' AND py.is_auto_debet='2' AND py.`id_report_stat
     End Sub
 
     Sub unlock()
-        Dim q As String = "SELECT 'no' AS is_check,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+        Dim q As String = "SELECT 'no' AS is_check,pn.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -265,6 +265,36 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
         If dt.Rows.Count > 0 Then
             warningCustom("BBK need to be approved.")
         Else
+            'check jika ada pembelian valas, release BBK yang valas dulu
+            'Dim is_buy_valas As Boolean = False
+            'Dim is_pending_valas As Boolean = False
+            'For i As Integer = 0 To GVList.RowCount - 1
+            '    If GVList.GetRowCellValue(i, "is_buy_valas").ToString = "1" Then
+            '        is_buy_valas = True
+            '    End If
+            'Next
+
+            'If is_buy_valas Then
+            '    If is_buy_valas Then
+            '        Dim qusing_valas_pend As String = "SELECT * 
+            '    FROM tb_pn_det pnd
+            '    INNER JOIN tb_pn pn ON pn.id_pn=pnd.`id_pn`
+            '    WHERE pn.id_report_status!=6 AND pn.`id_report_status`!=5 AND pn.`kurs`>1"
+            '        Dim dtc As DataTable = execute_query(qusing_valas_pend, -1, True, "", "", "", "")
+            '        If dtc.Rows.Count > 0 Then
+            '            is_pending_valas = True
+            '        End If
+            '    End If
+            'End If
+
+            'If is_pending_valas Then
+            '    warningCustom("Release BBK dengan valas terlebih dahulu.")
+            'Else
+            '    FormReportMark.id_report = id_sum
+            '    FormReportMark.report_mark_type = "251"
+            '    FormReportMark.form_origin = Name
+            '    FormReportMark.ShowDialog()
+            'End If
             FormReportMark.id_report = id_sum
             FormReportMark.report_mark_type = "251"
             FormReportMark.form_origin = Name
