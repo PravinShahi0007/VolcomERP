@@ -149,7 +149,7 @@ ORDER BY id_sales_pos DESC "
         End If
         Dim query As String = "SELECT r.id_sales_pos_oos_recon, r.number, r.created_date, r.note, r.id_report_status, stt.report_status, r.is_confirm
         FROM tb_sales_pos_oos_recon r
-        INNER JOIN tb_sales_pos_oos_recon_det rd ON rd.id_sales_pos_oos_recon = r.id_sales_pos_oos_recon
+        INNER JOIN tb_sales_pos_oos_recon_prob rd ON rd.id_sales_pos_oos_recon = r.id_sales_pos_oos_recon
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
         WHERE r.id_sales_pos_oos_recon>0 " + cond_det + "
         GROUP BY r.id_sales_pos_oos_recon
