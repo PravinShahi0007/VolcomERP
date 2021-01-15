@@ -1230,4 +1230,8 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
     Private Sub DETaxUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DETaxUntil.EditValueChanged
         DETaxFrom.Properties.MaxValue = DETaxUntil.EditValue
     End Sub
+
+    Private Sub SBSummary_Click(sender As Object, e As EventArgs) Handles SBSummary.Click
+        FormReportBalanceTaxSummary.ShowDialog()
+    End Sub
 End Class

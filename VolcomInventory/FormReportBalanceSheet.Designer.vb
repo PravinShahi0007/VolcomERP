@@ -200,23 +200,25 @@ Partial Class FormReportBalanceSheet
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelAllActiveTax = New DevExpress.XtraEditors.CheckEdit()
         Me.PCPajak = New DevExpress.XtraEditors.PanelControl()
+        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.SBSummary = New DevExpress.XtraEditors.SimpleButton()
+        Me.DETaxFrom = New DevExpress.XtraEditors.DateEdit()
         Me.SLETaxCat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BViewPajak = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.BPrintPajak = New DevExpress.XtraEditors.SimpleButton()
         Me.SLETaxTagCOA = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.DETaxUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.BPrintPajak = New DevExpress.XtraEditors.SimpleButton()
-        Me.BViewPajak = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.DETaxFrom = New DevExpress.XtraEditors.DateEdit()
         CType(Me.PCFilterUpper, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterUpper.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -278,14 +280,15 @@ Partial Class FormReportBalanceSheet
         CType(Me.CESelAllActiveTax.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCPajak, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCPajak.SuspendLayout()
+        Me.XtraScrollableControl1.SuspendLayout()
+        CType(Me.DETaxFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETaxFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLETaxCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLETaxTagCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETaxUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETaxUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DETaxFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DETaxFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCFilterUpper
@@ -299,7 +302,7 @@ Partial Class FormReportBalanceSheet
         Me.PCFilterUpper.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCFilterUpper.Location = New System.Drawing.Point(0, 0)
         Me.PCFilterUpper.Name = "PCFilterUpper"
-        Me.PCFilterUpper.Size = New System.Drawing.Size(900, 48)
+        Me.PCFilterUpper.Size = New System.Drawing.Size(1021, 48)
         Me.PCFilterUpper.TabIndex = 0
         '
         'BPrint
@@ -404,7 +407,7 @@ Partial Class FormReportBalanceSheet
         Me.TLBalanceSheet.OptionsFilter.ShowAllValuesInFilterPopup = True
         Me.TLBalanceSheet.OptionsFind.AllowFindPanel = True
         Me.TLBalanceSheet.OptionsView.ShowBandsMode = DevExpress.Utils.DefaultBoolean.[True]
-        Me.TLBalanceSheet.Size = New System.Drawing.Size(888, 416)
+        Me.TLBalanceSheet.Size = New System.Drawing.Size(1009, 416)
         Me.TLBalanceSheet.TabIndex = 1
         '
         'treeListBand3
@@ -510,7 +513,7 @@ Partial Class FormReportBalanceSheet
         Me.XTCBalanceSheet.Location = New System.Drawing.Point(0, 48)
         Me.XTCBalanceSheet.Name = "XTCBalanceSheet"
         Me.XTCBalanceSheet.SelectedTabPage = Me.XTPGeneralLedger
-        Me.XTCBalanceSheet.Size = New System.Drawing.Size(900, 472)
+        Me.XTCBalanceSheet.Size = New System.Drawing.Size(1021, 472)
         Me.XTCBalanceSheet.TabIndex = 2
         Me.XTCBalanceSheet.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPGeneralLedger, Me.XTPBalanceSheet, Me.XTPProfitAndLoss, Me.XTPPajak})
         '
@@ -518,7 +521,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.XTPGeneralLedger.Controls.Add(Me.TLLedger)
         Me.XTPGeneralLedger.Name = "XTPGeneralLedger"
-        Me.XTPGeneralLedger.Size = New System.Drawing.Size(894, 444)
+        Me.XTPGeneralLedger.Size = New System.Drawing.Size(1015, 444)
         Me.XTPGeneralLedger.Text = "Ledger"
         '
         'TLLedger
@@ -530,7 +533,7 @@ Partial Class FormReportBalanceSheet
         Me.TLLedger.Name = "TLLedger"
         Me.TLLedger.OptionsBehavior.EnableFiltering = True
         Me.TLLedger.OptionsFind.AllowFindPanel = True
-        Me.TLLedger.Size = New System.Drawing.Size(894, 444)
+        Me.TLLedger.Size = New System.Drawing.Size(1015, 444)
         Me.TLLedger.TabIndex = 0
         '
         'treeListBand5
@@ -611,7 +614,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.XTPBalanceSheet.Controls.Add(Me.XTCBS)
         Me.XTPBalanceSheet.Name = "XTPBalanceSheet"
-        Me.XTPBalanceSheet.Size = New System.Drawing.Size(894, 444)
+        Me.XTPBalanceSheet.Size = New System.Drawing.Size(1015, 444)
         Me.XTPBalanceSheet.Text = "Balance Sheet"
         '
         'XTCBS
@@ -621,7 +624,7 @@ Partial Class FormReportBalanceSheet
         Me.XTCBS.Location = New System.Drawing.Point(0, 0)
         Me.XTCBS.Name = "XTCBS"
         Me.XTCBS.SelectedTabPage = Me.XTPBSLedger
-        Me.XTCBS.Size = New System.Drawing.Size(894, 444)
+        Me.XTCBS.Size = New System.Drawing.Size(1015, 444)
         Me.XTCBS.TabIndex = 2
         Me.XTCBS.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBSLedger, Me.XTPBSReport})
         '
@@ -629,14 +632,14 @@ Partial Class FormReportBalanceSheet
         '
         Me.XTPBSLedger.Controls.Add(Me.TLBalanceSheet)
         Me.XTPBSLedger.Name = "XTPBSLedger"
-        Me.XTPBSLedger.Size = New System.Drawing.Size(888, 416)
+        Me.XTPBSLedger.Size = New System.Drawing.Size(1009, 416)
         Me.XTPBSLedger.Text = "Tree View"
         '
         'XTPBSReport
         '
         Me.XTPBSReport.Controls.Add(Me.SplitterBS)
         Me.XTPBSReport.Name = "XTPBSReport"
-        Me.XTPBSReport.Size = New System.Drawing.Size(888, 416)
+        Me.XTPBSReport.Size = New System.Drawing.Size(1009, 416)
         Me.XTPBSReport.Text = "Report View"
         '
         'SplitterBS
@@ -648,7 +651,7 @@ Partial Class FormReportBalanceSheet
         Me.SplitterBS.Panel1.Text = "Panel1"
         Me.SplitterBS.Panel2.Controls.Add(Me.GroupControl2)
         Me.SplitterBS.Panel2.Text = "Panel2"
-        Me.SplitterBS.Size = New System.Drawing.Size(888, 416)
+        Me.SplitterBS.Size = New System.Drawing.Size(1009, 416)
         Me.SplitterBS.SplitterPosition = 422
         Me.SplitterBS.TabIndex = 0
         Me.SplitterBS.Text = "SplitContainerControl1"
@@ -787,7 +790,7 @@ Partial Class FormReportBalanceSheet
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(461, 416)
+        Me.GroupControl2.Size = New System.Drawing.Size(582, 416)
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Liability And Equity"
         '
@@ -797,7 +800,7 @@ Partial Class FormReportBalanceSheet
         Me.GCPasiva.Location = New System.Drawing.Point(2, 20)
         Me.GCPasiva.MainView = Me.GVPasiva
         Me.GCPasiva.Name = "GCPasiva"
-        Me.GCPasiva.Size = New System.Drawing.Size(457, 394)
+        Me.GCPasiva.Size = New System.Drawing.Size(578, 394)
         Me.GCPasiva.TabIndex = 1
         Me.GCPasiva.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPasiva})
         '
@@ -913,7 +916,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.XTPProfitAndLoss.Controls.Add(Me.XTCProfitAndLoss)
         Me.XTPProfitAndLoss.Name = "XTPProfitAndLoss"
-        Me.XTPProfitAndLoss.Size = New System.Drawing.Size(894, 444)
+        Me.XTPProfitAndLoss.Size = New System.Drawing.Size(1015, 444)
         Me.XTPProfitAndLoss.Text = "Profit And Loss"
         '
         'XTCProfitAndLoss
@@ -923,7 +926,7 @@ Partial Class FormReportBalanceSheet
         Me.XTCProfitAndLoss.Location = New System.Drawing.Point(0, 0)
         Me.XTCProfitAndLoss.Name = "XTCProfitAndLoss"
         Me.XTCProfitAndLoss.SelectedTabPage = Me.XTPPATreeView
-        Me.XTCProfitAndLoss.Size = New System.Drawing.Size(894, 444)
+        Me.XTCProfitAndLoss.Size = New System.Drawing.Size(1015, 444)
         Me.XTCProfitAndLoss.TabIndex = 0
         Me.XTCProfitAndLoss.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPATreeView, Me.XTPPLReportView})
         '
@@ -931,7 +934,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.XTPPATreeView.Controls.Add(Me.TLProfitAndLoss)
         Me.XTPPATreeView.Name = "XTPPATreeView"
-        Me.XTPPATreeView.Size = New System.Drawing.Size(888, 416)
+        Me.XTPPATreeView.Size = New System.Drawing.Size(1009, 416)
         Me.XTPPATreeView.Text = "Tree View"
         '
         'TLProfitAndLoss
@@ -941,7 +944,7 @@ Partial Class FormReportBalanceSheet
         Me.TLProfitAndLoss.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TLProfitAndLoss.Location = New System.Drawing.Point(0, 0)
         Me.TLProfitAndLoss.Name = "TLProfitAndLoss"
-        Me.TLProfitAndLoss.Size = New System.Drawing.Size(888, 416)
+        Me.TLProfitAndLoss.Size = New System.Drawing.Size(1009, 416)
         Me.TLProfitAndLoss.TabIndex = 0
         '
         'treeListBand7
@@ -1038,7 +1041,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.XTPPLReportView.Controls.Add(Me.GCProfitAndLoss)
         Me.XTPPLReportView.Name = "XTPPLReportView"
-        Me.XTPPLReportView.Size = New System.Drawing.Size(888, 416)
+        Me.XTPPLReportView.Size = New System.Drawing.Size(1009, 416)
         Me.XTPPLReportView.Text = "Report View"
         '
         'GCProfitAndLoss
@@ -1047,7 +1050,7 @@ Partial Class FormReportBalanceSheet
         Me.GCProfitAndLoss.Location = New System.Drawing.Point(0, 0)
         Me.GCProfitAndLoss.MainView = Me.GVProfitAndLoss
         Me.GCProfitAndLoss.Name = "GCProfitAndLoss"
-        Me.GCProfitAndLoss.Size = New System.Drawing.Size(888, 416)
+        Me.GCProfitAndLoss.Size = New System.Drawing.Size(1009, 416)
         Me.GCProfitAndLoss.TabIndex = 1
         Me.GCProfitAndLoss.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProfitAndLoss})
         '
@@ -1222,17 +1225,17 @@ Partial Class FormReportBalanceSheet
         Me.XTPPajak.Controls.Add(Me.XTPTaxDetail)
         Me.XTPPajak.Controls.Add(Me.PCPajak)
         Me.XTPPajak.Name = "XTPPajak"
-        Me.XTPPajak.Size = New System.Drawing.Size(894, 444)
+        Me.XTPPajak.Size = New System.Drawing.Size(1015, 444)
         Me.XTPPajak.Text = "Tax Report"
         '
         'XTPTaxDetail
         '
         Me.XTPTaxDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTPTaxDetail.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTPTaxDetail.Location = New System.Drawing.Point(0, 48)
+        Me.XTPTaxDetail.Location = New System.Drawing.Point(0, 78)
         Me.XTPTaxDetail.Name = "XTPTaxDetail"
         Me.XTPTaxDetail.SelectedTabPage = Me.XTPPendingLapor
-        Me.XTPTaxDetail.Size = New System.Drawing.Size(894, 396)
+        Me.XTPTaxDetail.Size = New System.Drawing.Size(1015, 366)
         Me.XTPTaxDetail.TabIndex = 3
         Me.XTPTaxDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPendingLapor, Me.XTPPendingTransaction, Me.XTPLapor})
         '
@@ -1241,7 +1244,7 @@ Partial Class FormReportBalanceSheet
         Me.XTPPendingLapor.Controls.Add(Me.GCTaxReport)
         Me.XTPPendingLapor.Controls.Add(Me.PanelControl1)
         Me.XTPPendingLapor.Name = "XTPPendingLapor"
-        Me.XTPPendingLapor.Size = New System.Drawing.Size(888, 368)
+        Me.XTPPendingLapor.Size = New System.Drawing.Size(1009, 338)
         Me.XTPPendingLapor.Text = "Pending Lapor"
         '
         'GCTaxReport
@@ -1252,7 +1255,7 @@ Partial Class FormReportBalanceSheet
         Me.GCTaxReport.MainView = Me.GVTaxReport
         Me.GCTaxReport.Name = "GCTaxReport"
         Me.GCTaxReport.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICETaxReport})
-        Me.GCTaxReport.Size = New System.Drawing.Size(888, 328)
+        Me.GCTaxReport.Size = New System.Drawing.Size(1009, 298)
         Me.GCTaxReport.TabIndex = 2
         Me.GCTaxReport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTaxReport})
         '
@@ -1501,9 +1504,9 @@ Partial Class FormReportBalanceSheet
         Me.PanelControl1.Controls.Add(Me.BReported)
         Me.PanelControl1.Controls.Add(Me.PanelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 328)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 298)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(888, 40)
+        Me.PanelControl1.Size = New System.Drawing.Size(1009, 40)
         Me.PanelControl1.TabIndex = 5
         '
         'BReported
@@ -1516,7 +1519,7 @@ Partial Class FormReportBalanceSheet
         Me.BReported.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BReported.Location = New System.Drawing.Point(118, 2)
         Me.BReported.Name = "BReported"
-        Me.BReported.Size = New System.Drawing.Size(768, 36)
+        Me.BReported.Size = New System.Drawing.Size(889, 36)
         Me.BReported.TabIndex = 4
         Me.BReported.Text = "Rekap"
         '
@@ -1541,7 +1544,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.XTPPendingTransaction.Controls.Add(Me.GCTaxPending)
         Me.XTPPendingTransaction.Name = "XTPPendingTransaction"
-        Me.XTPPendingTransaction.Size = New System.Drawing.Size(888, 368)
+        Me.XTPPendingTransaction.Size = New System.Drawing.Size(1009, 338)
         Me.XTPPendingTransaction.Text = "Pending Tax Transaction"
         '
         'GCTaxPending
@@ -1551,7 +1554,7 @@ Partial Class FormReportBalanceSheet
         Me.GCTaxPending.Location = New System.Drawing.Point(0, 0)
         Me.GCTaxPending.MainView = Me.GVTaxPending
         Me.GCTaxPending.Name = "GCTaxPending"
-        Me.GCTaxPending.Size = New System.Drawing.Size(888, 368)
+        Me.GCTaxPending.Size = New System.Drawing.Size(1009, 338)
         Me.GCTaxPending.TabIndex = 3
         Me.GCTaxPending.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTaxPending})
         '
@@ -1751,7 +1754,7 @@ Partial Class FormReportBalanceSheet
         Me.XTPLapor.Controls.Add(Me.GCActiveTax)
         Me.XTPLapor.Controls.Add(Me.PanelControl3)
         Me.XTPLapor.Name = "XTPLapor"
-        Me.XTPLapor.Size = New System.Drawing.Size(888, 368)
+        Me.XTPLapor.Size = New System.Drawing.Size(1009, 338)
         Me.XTPLapor.Text = "Rekap Tax"
         '
         'GCActiveTax
@@ -1762,7 +1765,7 @@ Partial Class FormReportBalanceSheet
         Me.GCActiveTax.MainView = Me.GVActiveTax
         Me.GCActiveTax.Name = "GCActiveTax"
         Me.GCActiveTax.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEActiveTax})
-        Me.GCActiveTax.Size = New System.Drawing.Size(888, 328)
+        Me.GCActiveTax.Size = New System.Drawing.Size(1009, 298)
         Me.GCActiveTax.TabIndex = 3
         Me.GCActiveTax.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVActiveTax})
         '
@@ -1992,9 +1995,9 @@ Partial Class FormReportBalanceSheet
         Me.PanelControl3.Controls.Add(Me.BMoveActiveTax)
         Me.PanelControl3.Controls.Add(Me.PanelControl4)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 328)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 298)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(888, 40)
+        Me.PanelControl3.Size = New System.Drawing.Size(1009, 40)
         Me.PanelControl3.TabIndex = 6
         '
         'BMoveActiveTax
@@ -2007,7 +2010,7 @@ Partial Class FormReportBalanceSheet
         Me.BMoveActiveTax.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BMoveActiveTax.Location = New System.Drawing.Point(118, 2)
         Me.BMoveActiveTax.Name = "BMoveActiveTax"
-        Me.BMoveActiveTax.Size = New System.Drawing.Size(768, 36)
+        Me.BMoveActiveTax.Size = New System.Drawing.Size(889, 36)
         Me.BMoveActiveTax.TabIndex = 4
         Me.BMoveActiveTax.Text = "Move"
         '
@@ -2030,25 +2033,64 @@ Partial Class FormReportBalanceSheet
         '
         'PCPajak
         '
-        Me.PCPajak.Controls.Add(Me.SLETaxCat)
-        Me.PCPajak.Controls.Add(Me.LabelControl6)
-        Me.PCPajak.Controls.Add(Me.SLETaxTagCOA)
-        Me.PCPajak.Controls.Add(Me.LabelControl5)
-        Me.PCPajak.Controls.Add(Me.DETaxUntil)
-        Me.PCPajak.Controls.Add(Me.LabelControl3)
-        Me.PCPajak.Controls.Add(Me.BPrintPajak)
-        Me.PCPajak.Controls.Add(Me.BViewPajak)
-        Me.PCPajak.Controls.Add(Me.LabelControl4)
-        Me.PCPajak.Controls.Add(Me.DETaxFrom)
+        Me.PCPajak.Controls.Add(Me.XtraScrollableControl1)
         Me.PCPajak.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCPajak.Location = New System.Drawing.Point(0, 0)
         Me.PCPajak.Name = "PCPajak"
-        Me.PCPajak.Size = New System.Drawing.Size(894, 48)
+        Me.PCPajak.Size = New System.Drawing.Size(1015, 78)
         Me.PCPajak.TabIndex = 1
+        '
+        'XtraScrollableControl1
+        '
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl4)
+        Me.XtraScrollableControl1.Controls.Add(Me.SBSummary)
+        Me.XtraScrollableControl1.Controls.Add(Me.DETaxFrom)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLETaxCat)
+        Me.XtraScrollableControl1.Controls.Add(Me.BViewPajak)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl6)
+        Me.XtraScrollableControl1.Controls.Add(Me.BPrintPajak)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLETaxTagCOA)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl3)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl5)
+        Me.XtraScrollableControl1.Controls.Add(Me.DETaxUntil)
+        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraScrollableControl1.Location = New System.Drawing.Point(2, 2)
+        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1011, 74)
+        Me.XtraScrollableControl1.TabIndex = 14
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(11, 17)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl4.TabIndex = 2
+        Me.LabelControl4.Text = "Date"
+        '
+        'SBSummary
+        '
+        Me.SBSummary.Location = New System.Drawing.Point(894, 12)
+        Me.SBSummary.Name = "SBSummary"
+        Me.SBSummary.Size = New System.Drawing.Size(105, 23)
+        Me.SBSummary.TabIndex = 13
+        Me.SBSummary.Text = "summary"
+        Me.SBSummary.Visible = False
+        '
+        'DETaxFrom
+        '
+        Me.DETaxFrom.EditValue = Nothing
+        Me.DETaxFrom.Location = New System.Drawing.Point(40, 14)
+        Me.DETaxFrom.Name = "DETaxFrom"
+        Me.DETaxFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETaxFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETaxFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DETaxFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETaxFrom.Size = New System.Drawing.Size(173, 20)
+        Me.DETaxFrom.TabIndex = 1
         '
         'SLETaxCat
         '
-        Me.SLETaxCat.Location = New System.Drawing.Point(653, 16)
+        Me.SLETaxCat.Location = New System.Drawing.Point(653, 14)
         Me.SLETaxCat.Name = "SLETaxCat"
         Me.SLETaxCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLETaxCat.Properties.View = Me.GridView2
@@ -2082,17 +2124,33 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn22.VisibleIndex = 0
         Me.GridColumn22.Width = 281
         '
+        'BViewPajak
+        '
+        Me.BViewPajak.Location = New System.Drawing.Point(782, 12)
+        Me.BViewPajak.Name = "BViewPajak"
+        Me.BViewPajak.Size = New System.Drawing.Size(50, 23)
+        Me.BViewPajak.TabIndex = 3
+        Me.BViewPajak.Text = "view"
+        '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(623, 19)
+        Me.LabelControl6.Location = New System.Drawing.Point(623, 17)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl6.TabIndex = 11
         Me.LabelControl6.Text = "Type"
         '
+        'BPrintPajak
+        '
+        Me.BPrintPajak.Location = New System.Drawing.Point(838, 12)
+        Me.BPrintPajak.Name = "BPrintPajak"
+        Me.BPrintPajak.Size = New System.Drawing.Size(50, 23)
+        Me.BPrintPajak.TabIndex = 6
+        Me.BPrintPajak.Text = "print"
+        '
         'SLETaxTagCOA
         '
-        Me.SLETaxTagCOA.Location = New System.Drawing.Point(449, 16)
+        Me.SLETaxTagCOA.Location = New System.Drawing.Point(449, 14)
         Me.SLETaxTagCOA.Name = "SLETaxTagCOA"
         Me.SLETaxTagCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLETaxTagCOA.Properties.View = Me.GridView1
@@ -2135,9 +2193,17 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn20.VisibleIndex = 1
         Me.GridColumn20.Width = 1351
         '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(219, 17)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(20, 13)
+        Me.LabelControl3.TabIndex = 7
+        Me.LabelControl3.Text = "until"
+        '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(424, 19)
+        Me.LabelControl5.Location = New System.Drawing.Point(424, 17)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl5.TabIndex = 9
@@ -2146,7 +2212,7 @@ Partial Class FormReportBalanceSheet
         'DETaxUntil
         '
         Me.DETaxUntil.EditValue = Nothing
-        Me.DETaxUntil.Location = New System.Drawing.Point(245, 16)
+        Me.DETaxUntil.Location = New System.Drawing.Point(245, 14)
         Me.DETaxUntil.Name = "DETaxUntil"
         Me.DETaxUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DETaxUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -2155,55 +2221,11 @@ Partial Class FormReportBalanceSheet
         Me.DETaxUntil.Size = New System.Drawing.Size(173, 20)
         Me.DETaxUntil.TabIndex = 8
         '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(219, 19)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(20, 13)
-        Me.LabelControl3.TabIndex = 7
-        Me.LabelControl3.Text = "until"
-        '
-        'BPrintPajak
-        '
-        Me.BPrintPajak.Location = New System.Drawing.Point(838, 14)
-        Me.BPrintPajak.Name = "BPrintPajak"
-        Me.BPrintPajak.Size = New System.Drawing.Size(50, 23)
-        Me.BPrintPajak.TabIndex = 6
-        Me.BPrintPajak.Text = "print"
-        '
-        'BViewPajak
-        '
-        Me.BViewPajak.Location = New System.Drawing.Point(782, 14)
-        Me.BViewPajak.Name = "BViewPajak"
-        Me.BViewPajak.Size = New System.Drawing.Size(50, 23)
-        Me.BViewPajak.TabIndex = 3
-        Me.BViewPajak.Text = "view"
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(11, 19)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl4.TabIndex = 2
-        Me.LabelControl4.Text = "Date"
-        '
-        'DETaxFrom
-        '
-        Me.DETaxFrom.EditValue = Nothing
-        Me.DETaxFrom.Location = New System.Drawing.Point(40, 16)
-        Me.DETaxFrom.Name = "DETaxFrom"
-        Me.DETaxFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DETaxFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DETaxFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DETaxFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DETaxFrom.Size = New System.Drawing.Size(173, 20)
-        Me.DETaxFrom.TabIndex = 1
-        '
         'FormReportBalanceSheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(900, 520)
+        Me.ClientSize = New System.Drawing.Size(1021, 520)
         Me.Controls.Add(Me.XTCBalanceSheet)
         Me.Controls.Add(Me.PCFilterUpper)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -2274,15 +2296,16 @@ Partial Class FormReportBalanceSheet
         CType(Me.CESelAllActiveTax.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCPajak, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCPajak.ResumeLayout(False)
-        Me.PCPajak.PerformLayout()
+        Me.XtraScrollableControl1.ResumeLayout(False)
+        Me.XtraScrollableControl1.PerformLayout()
+        CType(Me.DETaxFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETaxFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLETaxCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLETaxTagCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETaxUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETaxUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DETaxFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DETaxFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2484,4 +2507,6 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents CESelAllActiveTax As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEActiveTax As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents SBSummary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
 End Class
