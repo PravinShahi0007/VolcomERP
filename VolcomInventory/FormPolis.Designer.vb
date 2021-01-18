@@ -21,27 +21,30 @@ Partial Class FormPolis
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPolis))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BExpiredSoon = New DevExpress.XtraEditors.SimpleButton()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPolisToko = New DevExpress.XtraGrid.GridControl()
         Me.GVPolisToko = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIMemoLocation = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTCPolis = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPToko = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPFixedAsset = New DevExpress.XtraTab.XtraTabPage()
-        Me.BExpiredSoon = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTCPolis = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPToko = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPFixedAsset = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCPolisToko, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPolisToko, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIMemoLocation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPolis, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPolis.SuspendLayout()
         Me.XTPToko.SuspendLayout()
@@ -56,6 +59,18 @@ Partial Class FormPolis
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1009, 46)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BExpiredSoon
+        '
+        Me.BExpiredSoon.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BExpiredSoon.Image = CType(resources.GetObject("BExpiredSoon.Image"), System.Drawing.Image)
+        Me.BExpiredSoon.ImageIndex = 13
+        Me.BExpiredSoon.Location = New System.Drawing.Point(769, 2)
+        Me.BExpiredSoon.Name = "BExpiredSoon"
+        Me.BExpiredSoon.Size = New System.Drawing.Size(116, 42)
+        Me.BExpiredSoon.TabIndex = 19
+        Me.BExpiredSoon.TabStop = False
+        Me.BExpiredSoon.Text = "Expired Soon"
         '
         'BRefresh
         '
@@ -75,13 +90,14 @@ Partial Class FormPolis
         Me.GCPolisToko.Location = New System.Drawing.Point(0, 0)
         Me.GCPolisToko.MainView = Me.GVPolisToko
         Me.GCPolisToko.Name = "GCPolisToko"
+        Me.GCPolisToko.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIMemoLocation})
         Me.GCPolisToko.Size = New System.Drawing.Size(1003, 417)
         Me.GCPolisToko.TabIndex = 1
         Me.GCPolisToko.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPolisToko})
         '
         'GVPolisToko
         '
-        Me.GVPolisToko.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn10, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.GVPolisToko.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn10, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11})
         Me.GVPolisToko.GridControl = Me.GCPolisToko
         Me.GVPolisToko.Name = "GVPolisToko"
         Me.GVPolisToko.OptionsView.AllowCellMerge = True
@@ -107,12 +123,17 @@ Partial Class FormPolis
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Location"
+        Me.GridColumn3.ColumnEdit = Me.RIMemoLocation
         Me.GridColumn3.FieldName = "polis_object_location"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 142
+        '
+        'RIMemoLocation
+        '
+        Me.RIMemoLocation.Name = "RIMemoLocation"
         '
         'GridColumn4
         '
@@ -148,6 +169,43 @@ Partial Class FormPolis
         Me.GridColumn6.VisibleIndex = 2
         Me.GridColumn6.Width = 142
         '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Expired In (days)"
+        Me.GridColumn10.DisplayFormat.FormatString = "N0"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "expired_in"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 6
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Polis Number"
+        Me.GridColumn7.FieldName = "polis_number"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Polis Untuk"
+        Me.GridColumn8.FieldName = "polis_untuk"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 8
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Premi"
+        Me.GridColumn9.DisplayFormat.FormatString = "N2"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "premi"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 9
+        '
         'XTCPolis
         '
         Me.XTCPolis.Dock = System.Windows.Forms.DockStyle.Fill
@@ -172,54 +230,14 @@ Partial Class FormPolis
         Me.XTPFixedAsset.Size = New System.Drawing.Size(1003, 417)
         Me.XTPFixedAsset.Text = "Fixed Asset"
         '
-        'BExpiredSoon
+        'GridColumn11
         '
-        Me.BExpiredSoon.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BExpiredSoon.Image = CType(resources.GetObject("BExpiredSoon.Image"), System.Drawing.Image)
-        Me.BExpiredSoon.ImageIndex = 13
-        Me.BExpiredSoon.Location = New System.Drawing.Point(769, 2)
-        Me.BExpiredSoon.Name = "BExpiredSoon"
-        Me.BExpiredSoon.Size = New System.Drawing.Size(116, 42)
-        Me.BExpiredSoon.TabIndex = 19
-        Me.BExpiredSoon.TabStop = False
-        Me.BExpiredSoon.Text = "Expired Soon"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Polis Number"
-        Me.GridColumn7.FieldName = "polis_number"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Polis Untuk"
-        Me.GridColumn8.FieldName = "polis_untuk"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Premi"
-        Me.GridColumn9.DisplayFormat.FormatString = "N2"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "premi"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Expired In (days)"
-        Me.GridColumn10.DisplayFormat.FormatString = "N0"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "expired_in"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 6
+        Me.GridColumn11.Caption = "Total Nilai Pertanggungan"
+        Me.GridColumn11.FieldName = "nilai_total"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 7
         '
         'FormPolis
         '
@@ -236,6 +254,7 @@ Partial Class FormPolis
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCPolisToko, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPolisToko, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIMemoLocation, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCPolis, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPolis.ResumeLayout(False)
         Me.XTPToko.ResumeLayout(False)
@@ -261,4 +280,6 @@ Partial Class FormPolis
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RIMemoLocation As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
