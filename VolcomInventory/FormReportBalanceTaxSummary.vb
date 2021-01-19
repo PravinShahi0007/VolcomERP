@@ -8,6 +8,7 @@
     End Sub
 
     Private Sub SBNewSummary_Click(sender As Object, e As EventArgs) Handles SBNewSummary.Click
+        FormReportBalanceTaxSummaryDet.id_summary = "-1"
         FormReportBalanceTaxSummaryDet.ShowDialog()
     End Sub
 End Class
