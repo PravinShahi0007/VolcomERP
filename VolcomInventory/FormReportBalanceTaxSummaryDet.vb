@@ -67,13 +67,27 @@
             Dim period_from As String = Date.Parse(DEDateFrom.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim period_to As String = Date.Parse(DEDateTo.EditValue.ToString).ToString("yyyy-MM-dd")
 
-            Dim query As String = "INSERT INTO tb_tax_pph_summary (period_from, period_to, id_report_status, created_at, created_by) VALUES ('', '', 1, NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
+            Dim query As String = "INSERT INTO tb_tax_pph_summary (period_from, period_to, id_report_status, created_at, created_by) VALUES ('" + period_from + "', '" + period_to + "', 1, NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
 
             id_summary = execute_query(query, 0, True, "", "", "", "")
 
-            Dim query_detail As String = "INSERT INTO tb_tax_pph_summary () VALUES ()"
+            Dim query_detail As String = "INSERT INTO tb_tax_pph_summary_det (id_summary, tag_description, id_tax_report, tax_report, balance) VALUES "
+
+            For i = 0 To GVSummary.RowCount - 1
+                If GVSummary.IsValidRowHandle(i) Then
+                    query_detail = query_detail + "(" + id_summary + ", '" + GVSummary.GetRowCellValue(i, "tag_description").ToString + "', '" + GVSummary.GetRowCellValue(i, "id_tax_report").ToString + "', '" + GVSummary.GetRowCellValue(i, "tax_report").ToString + "', '" + GVSummary.GetRowCellValue(i, "balance").ToString + "'), "
+                End If
+            Next
+
+            query_detail = query_detail.Substring(0, query_detail.Length - 2)
 
             execute_non_query(query_detail, True, "", "", "", "")
+
+            execute_non_query("UPDATE tb_tax_pph_summary SET `number` = CONCAT('SUMPPH', LPAD(" + id_summary + ", 7, '0'))  WHERE id_summary = " + id_summary + ";", True, "", "", "", "")
+
+            submit_who_prepared("284", id_summary, id_user)
+
+            infoCustom("Saved.")
 
             form_load()
         End If
@@ -107,8 +121,8 @@
             SLUEReportStatus.EditValue = data.Rows(0)("id_report_status").ToString
 
             Dim query_detail As String = "
-                SELECT tag_description, id_tax_report, tax_report, balance
-                FROM tb_tax_pph_summary
+                SELECT 0 AS `no`, tag_description, id_tax_report, tax_report, balance
+                FROM tb_tax_pph_summary_det
                 WHERE id_summary = " + id_summary + "
             "
 
@@ -130,6 +144,8 @@
 
                 last_tag_description = data_detail.Rows(i)("tag_description").ToString
             Next
+
+            GCSummary.DataSource = data_detail
         End If
 
         'controls
@@ -150,5 +166,9 @@
             DEDateTo.ReadOnly = True
             SBGenerateSummary.Enabled = False
         End If
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+
     End Sub
 End Class
