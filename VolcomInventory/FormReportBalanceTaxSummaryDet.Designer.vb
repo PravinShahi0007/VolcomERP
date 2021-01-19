@@ -21,6 +21,8 @@ Partial Class FormReportBalanceTaxSummaryDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormReportBalanceTaxSummaryDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.DEDateTo = New DevExpress.XtraEditors.DateEdit()
         Me.DEDateFrom = New DevExpress.XtraEditors.DateEdit()
         Me.SBGenerateSummary = New DevExpress.XtraEditors.SimpleButton()
@@ -36,6 +38,7 @@ Partial Class FormReportBalanceTaxSummaryDet
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -44,6 +47,7 @@ Partial Class FormReportBalanceTaxSummaryDet
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,6 +64,8 @@ Partial Class FormReportBalanceTaxSummaryDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TENumber)
+        Me.PanelControl1.Controls.Add(Me.Label5)
         Me.PanelControl1.Controls.Add(Me.DEDateTo)
         Me.PanelControl1.Controls.Add(Me.DEDateFrom)
         Me.PanelControl1.Controls.Add(Me.SBGenerateSummary)
@@ -73,13 +79,32 @@ Partial Class FormReportBalanceTaxSummaryDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 75)
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 102)
         Me.PanelControl1.TabIndex = 0
+        '
+        'TENumber
+        '
+        Me.TENumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TENumber.Location = New System.Drawing.Point(103, 14)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(246, 20)
+        Me.TENumber.TabIndex = 12
+        '
+        'Label5
+        '
+        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(14, 17)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(44, 13)
+        Me.Label5.TabIndex = 11
+        Me.Label5.Text = "Number"
         '
         'DEDateTo
         '
         Me.DEDateTo.EditValue = Nothing
-        Me.DEDateTo.Location = New System.Drawing.Point(232, 14)
+        Me.DEDateTo.Location = New System.Drawing.Point(229, 40)
         Me.DEDateTo.Name = "DEDateTo"
         Me.DEDateTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDateTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -91,7 +116,7 @@ Partial Class FormReportBalanceTaxSummaryDet
         'DEDateFrom
         '
         Me.DEDateFrom.EditValue = Nothing
-        Me.DEDateFrom.Location = New System.Drawing.Point(106, 14)
+        Me.DEDateFrom.Location = New System.Drawing.Point(103, 40)
         Me.DEDateFrom.Name = "DEDateFrom"
         Me.DEDateFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -102,7 +127,7 @@ Partial Class FormReportBalanceTaxSummaryDet
         '
         'SBGenerateSummary
         '
-        Me.SBGenerateSummary.Location = New System.Drawing.Point(358, 12)
+        Me.SBGenerateSummary.Location = New System.Drawing.Point(355, 38)
         Me.SBGenerateSummary.Name = "SBGenerateSummary"
         Me.SBGenerateSummary.Size = New System.Drawing.Size(114, 23)
         Me.SBGenerateSummary.TabIndex = 8
@@ -128,12 +153,12 @@ Partial Class FormReportBalanceTaxSummaryDet
         '
         'SLUEReportStatus
         '
-        Me.SLUEReportStatus.Location = New System.Drawing.Point(106, 40)
+        Me.SLUEReportStatus.Location = New System.Drawing.Point(617, 66)
         Me.SLUEReportStatus.Name = "SLUEReportStatus"
         Me.SLUEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEReportStatus.Properties.ReadOnly = True
         Me.SLUEReportStatus.Properties.View = Me.GridView1
-        Me.SLUEReportStatus.Size = New System.Drawing.Size(246, 20)
+        Me.SLUEReportStatus.Size = New System.Drawing.Size(150, 20)
         Me.SLUEReportStatus.TabIndex = 5
         '
         'GridView1
@@ -146,7 +171,7 @@ Partial Class FormReportBalanceTaxSummaryDet
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(17, 43)
+        Me.Label4.Location = New System.Drawing.Point(537, 69)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(74, 13)
         Me.Label4.TabIndex = 4
@@ -175,7 +200,7 @@ Partial Class FormReportBalanceTaxSummaryDet
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(17, 17)
+        Me.Label1.Location = New System.Drawing.Point(14, 43)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(37, 13)
         Me.Label1.TabIndex = 1
@@ -184,20 +209,21 @@ Partial Class FormReportBalanceTaxSummaryDet
         'GCSummary
         '
         Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSummary.Location = New System.Drawing.Point(0, 75)
+        Me.GCSummary.Location = New System.Drawing.Point(0, 102)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(784, 437)
+        Me.GCSummary.Size = New System.Drawing.Size(784, 410)
         Me.GCSummary.TabIndex = 1
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn3, Me.GridColumn4})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupCount = 1
         Me.GVSummary.Name = "GVSummary"
         Me.GVSummary.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSummary.OptionsBehavior.ReadOnly = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
         Me.GVSummary.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -216,6 +242,11 @@ Partial Class FormReportBalanceTaxSummaryDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.FieldName = "id_tax_report"
+        Me.GridColumn5.Name = "GridColumn5"
         '
         'GridColumn3
         '
@@ -291,6 +322,7 @@ Partial Class FormReportBalanceTaxSummaryDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -329,4 +361,7 @@ Partial Class FormReportBalanceTaxSummaryDet
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DEDateTo As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEDateFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label5 As Label
 End Class
