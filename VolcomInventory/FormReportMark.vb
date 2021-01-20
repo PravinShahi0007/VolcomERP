@@ -6112,11 +6112,13 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 id_status_reportx = "6"
             End If
 
+            Dim id_report_now As String = execute_query("SELECT id_report_status FROM id_item_expense='" & id_report & "'", 0, True, "", "", "", "")
+
             'update
             query = String.Format("UPDATE tb_item_expense SET id_report_status='{0}' WHERE id_item_expense ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
 
-            If id_status_reportx = "5" And id_report_status_report = "6" Then 'cancel form
+            If id_status_reportx = "5" And id_report_now = "6" Then 'cancel form
                 Dim old_id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
                 WHERE ad.report_mark_type=157 AND ad.id_report=" + id_report + "
                 GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
@@ -6136,8 +6138,8 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
                 '
-                Dim q_balik = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref)
-SELECT id_acc_trans, id_acc, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref
+                Dim q_balik = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor)
+SELECT id_acc_trans, id_acc, credit, debit, CONCAT('Cancel Form - ',acc_trans_det_note) AS acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor
 FROM tb_a_acc_trans_det
 WHERE id_acc_trans='" & old_id_acc_trans & "'"
                 execute_non_query(q_balik, True, "", "", "", "")
