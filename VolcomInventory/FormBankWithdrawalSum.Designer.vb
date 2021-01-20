@@ -631,6 +631,8 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn6.ColumnEdit = Me.RISLEStatusRelease
         Me.GridColumn6.FieldName = "id_pn_summary_type"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 8
         Me.GridColumn6.Width = 153

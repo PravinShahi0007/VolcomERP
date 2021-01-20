@@ -1581,7 +1581,7 @@ WHERE py.`id_pn`='" & id_payment & "'"
                 'cek valas tidak mencantumkan kurs
                 Dim kurs_is_blank As Boolean = False
                 For i As Integer = 0 To GVList.RowCount - 1
-                    If Not GVList.GetRowCellValue(i, "id_currency").ToString = 1 And SLEAkunValas.EditValue.ToString = "0" Then
+                    If Not GVList.GetRowCellValue(i, "id_currency").ToString = "1" And SLEAkunValas.EditValue.ToString = "0" Then
                         kurs_is_blank = True
                     End If
                 Next
