@@ -1909,15 +1909,20 @@ VALUES('" & report_mark_type & "','" & decimalSQL(Decimal.Parse(TEKurs.EditValue
     Private Sub SLEAkunValas_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAkunValas.EditValueChanged
         'search kurs rata2
         Try
-            Dim q As String = "SELECT * FROM `tb_stock_valas` 
+            If SLEAkunValas.EditValue.ToString = "0" Then
+                TEKurs.EditValue = 1
+            Else
+                Dim q As String = "SELECT * FROM `tb_stock_valas` 
 WHERE id_valas_bank=" & SLEAkunValas.EditValue.ToString & " AND id_currency=2
 ORDER BY id_stock_valas DESC LIMIT 1"
-            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-            If dt.Rows.Count > 0 Then
-                TEKurs.EditValue = dt.Rows(0)("kurs_rata_rata")
-            Else
-                TEKurs.EditValue = 1
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    TEKurs.EditValue = dt.Rows(0)("kurs_rata_rata")
+                Else
+                    TEKurs.EditValue = 1
+                End If
             End If
+
         Catch ex As Exception
 
         End Try
