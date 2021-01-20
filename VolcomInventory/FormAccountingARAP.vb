@@ -72,7 +72,7 @@
         End If
 
         Dim id_ar_cabang As String = FormAccounting.GVCompany.GetFocusedRowCellValue("id_acc_cabang_ar").ToString
-        If id_ar = "0" Then
+        If id_ar_cabang = "0" Then
             SLEARCabang.EditValue = Nothing
             TxtARCodeCabang.Text = ""
         Else

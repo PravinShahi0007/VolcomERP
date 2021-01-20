@@ -376,7 +376,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
             execute_non_query(queryrm, True, "", "", "", "")
 
             FormItemExpense.viewData()
-            FormItemExpense.GVData.FocusedRowHandle = find_row(FormItemExpense.GVData, "id_item_expense", id)
+            'FormItemExpense.GVData.FocusedRowHandle = find_row(FormItemExpense.GVData, "id_item_expense", id)
             actionLoad()
             Cursor = Cursors.Default
         End If
