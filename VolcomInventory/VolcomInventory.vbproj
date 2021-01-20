@@ -499,6 +499,12 @@
     <Compile Include="FormBankWithdrawalSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBankWithdrawalSumDate.Designer.vb">
+      <DependentUpon>FormBankWithdrawalSumDate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawalSumDate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBatchUploadOnlineStore.Designer.vb">
       <DependentUpon>FormBatchUploadOnlineStore.vb</DependentUpon>
     </Compile>
@@ -9315,6 +9321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalSum.resx">
       <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawalSumDate.resx">
+      <DependentUpon>FormBankWithdrawalSumDate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBatchUploadOnlineStore.resx">
       <DependentUpon>FormBatchUploadOnlineStore.vb</DependentUpon>

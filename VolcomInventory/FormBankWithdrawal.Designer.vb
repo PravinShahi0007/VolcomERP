@@ -500,6 +500,7 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BMutasiValasBPL = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
@@ -3172,6 +3173,7 @@ Partial Class FormBankWithdrawal
         '
         'PanelControl6
         '
+        Me.PanelControl6.Controls.Add(Me.BMutasiValasBPL)
         Me.PanelControl6.Controls.Add(Me.SLEAkunValas)
         Me.PanelControl6.Controls.Add(Me.BInfoFGPO)
         Me.PanelControl6.Controls.Add(Me.TEKurs)
@@ -5432,6 +5434,14 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
         '
+        'BMutasiValasBPL
+        '
+        Me.BMutasiValasBPL.Location = New System.Drawing.Point(739, 9)
+        Me.BMutasiValasBPL.Name = "BMutasiValasBPL"
+        Me.BMutasiValasBPL.Size = New System.Drawing.Size(75, 23)
+        Me.BMutasiValasBPL.TabIndex = 8923
+        Me.BMutasiValasBPL.Text = "Mutasi Valas"
+        '
         'FormBankWithdrawal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -6095,4 +6105,5 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn210 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
     Friend WithEvents BMutasiValas As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BMutasiValasBPL As DevExpress.XtraEditors.SimpleButton
 End Class

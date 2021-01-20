@@ -140,6 +140,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BMutasiValas = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1223,6 +1224,7 @@ Partial Class FormBankWithdrawalDet
         '
         'PCAddDel
         '
+        Me.PCAddDel.Controls.Add(Me.BMutasiValas)
         Me.PCAddDel.Controls.Add(Me.BCompen)
         Me.PCAddDel.Controls.Add(Me.BPickDP)
         Me.PCAddDel.Controls.Add(Me.TEKurs)
@@ -1422,6 +1424,14 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
+        '
+        'BMutasiValas
+        '
+        Me.BMutasiValas.Location = New System.Drawing.Point(207, 12)
+        Me.BMutasiValas.Name = "BMutasiValas"
+        Me.BMutasiValas.Size = New System.Drawing.Size(75, 23)
+        Me.BMutasiValas.TabIndex = 8911
+        Me.BMutasiValas.Text = "Mutasi Valas"
         '
         'FormBankWithdrawalDet
         '
@@ -1630,4 +1640,5 @@ Partial Class FormBankWithdrawalDet
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LValas As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CEPembelianValas As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BMutasiValas As DevExpress.XtraEditors.SimpleButton
 End Class

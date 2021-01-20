@@ -9,7 +9,6 @@
         viewSearchLookupRepositoryQuery(RISLEStatusRelease, q, 0, "pn_summary_type", "id_pn_summary_type")
     End Sub
 
-
     Private Sub FormBankWithdrawalSum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TETotal.EditValue = 0.0
         load_type()
@@ -77,12 +76,18 @@ GROUP BY pns.`id_pn_summary`"
                 End If
                 load_det()
             End If
+            '
+            LChangeTo.Visible = False
+            DEChangeDate.Visible = False
+            BChangeDate.Visible = False
+            '
+            GCCheck.Visible = False
         End If
     End Sub
 
     Sub load_det()
         Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
-,pnsd.id_pn_summary_type
+,pnsd.id_pn_summary_det,pnsd.id_pn_summary_type
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -364,5 +369,12 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
         End If
 
         GVList.ActiveFilterString = ""
+    End Sub
+
+    Private Sub CMChangeDate_Click(sender As Object, e As EventArgs) Handles CMChangeDate.Click
+        If GVList.RowCount > 0 Then
+            FormBankWithdrawalSumDate.id_pn_sum_det = GVList.GetFocusedRowCellValue("id_pn_summary_det").ToString
+            FormBankWithdrawalSumDate.ShowDialog()
+        End If
     End Sub
 End Class

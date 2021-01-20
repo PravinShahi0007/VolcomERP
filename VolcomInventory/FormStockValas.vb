@@ -1,12 +1,22 @@
 ﻿Public Class FormStockValas
+    Public id_valas_bank As String = ""
     Private Sub FormStockValas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_valas()
 
         DEFrom.EditValue = Now
         DETo.EditValue = Now
+        '
+        If Not id_valas_bank = "" Then
+            SLEAkunValas.EditValue = id_valas_bank
+            view_mutasi_valas()
+        End If
     End Sub
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
+        view_mutasi_valas()
+    End Sub
+
+    Sub view_mutasi_valas()
         Dim q As String = "
 (SELECT sv.id_stock_valas,cur.currency,CONCAT('Last Transaction : ',IFNULL(pn.number,'Input manual')) AS number,sv.id_report,sv.report_mark_type,sv.amount,sv.kurs_transaksi,sv.balance,sv.kurs_rata_rata,sv.trans_datetime
 FROM `tb_stock_valas` sv
