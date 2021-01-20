@@ -218,6 +218,32 @@ Partial Class FormReportBalanceTaxSummaryDet
         '
         'GVSummary
         '
+        Me.GVSummary.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVSummary.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVSummary.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVSummary.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVSummary.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVSummary.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVSummary.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVSummary.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.GVSummary.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVSummary.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVSummary.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVSummary.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVSummary.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVSummary.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn3, Me.GridColumn4})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupCount = 1
