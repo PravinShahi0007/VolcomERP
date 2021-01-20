@@ -1152,7 +1152,9 @@
             XTPSize.Visible = False
             XTPLineList.Visible = False
             XTPPrice.Visible = False
-
+            '
+            LCoolStorage.Visible = False
+            SLUECoolStorage.Visible = False
             'comment
             PanelControlComment.Visible = False
 

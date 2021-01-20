@@ -420,7 +420,7 @@ LEFT JOIN
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-        print(GCPemakaian, "Report Pemakaian " & "(" & SLEUnit.Text & ")")
+        print(GCPemakaian, "Report Pemakaian " & SLEUnit.Text & " " & "(Periode " & Date.Parse(DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DEUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
