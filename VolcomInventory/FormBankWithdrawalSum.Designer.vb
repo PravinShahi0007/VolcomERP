@@ -19,6 +19,7 @@ Partial Class FormBankWithdrawalSum
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankWithdrawalSum))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -54,6 +55,8 @@ Partial Class FormBankWithdrawalSum
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CMChangeDate = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -66,9 +69,17 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn100 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLEStatusRelease = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RIGVSummaryType = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTCBBKSummary = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPChangeDate = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,9 +105,15 @@ Partial Class FormBankWithdrawalSum
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLEStatusRelease, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIGVSummaryType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCBBKSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCBBKSummary.SuspendLayout()
+        Me.XTPSummary.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -463,18 +480,31 @@ Partial Class FormBankWithdrawalSum
         '
         'GCList
         '
+        Me.GCList.ContextMenuStrip = Me.ViewMenu
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCList.Location = New System.Drawing.Point(0, 122)
+        Me.GCList.Location = New System.Drawing.Point(0, 0)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RICECheck})
-        Me.GCList.Size = New System.Drawing.Size(936, 294)
+        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RICECheck, Me.RISLEStatusRelease})
+        Me.GCList.Size = New System.Drawing.Size(930, 266)
         Me.GCList.TabIndex = 19
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMChangeDate})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(143, 26)
+        '
+        'CMChangeDate
+        '
+        Me.CMChangeDate.Name = "CMChangeDate"
+        Me.CMChangeDate.Size = New System.Drawing.Size(142, 22)
+        Me.CMChangeDate.Text = "Change Date"
+        '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10, Me.GridColumn4, Me.GridColumn100, Me.GridColumn5})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10, Me.GridColumn4, Me.GridColumn100, Me.GridColumn5, Me.GridColumn6})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -589,6 +619,51 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn100.OptionsColumn.AllowEdit = False
         Me.GridColumn100.Width = 78
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Is Buy Valas"
+        Me.GridColumn5.FieldName = "is_buy_valas"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Status Release"
+        Me.GridColumn6.ColumnEdit = Me.RISLEStatusRelease
+        Me.GridColumn6.FieldName = "id_pn_summary_type"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 8
+        Me.GridColumn6.Width = 153
+        '
+        'RISLEStatusRelease
+        '
+        Me.RISLEStatusRelease.AutoHeight = False
+        Me.RISLEStatusRelease.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLEStatusRelease.Name = "RISLEStatusRelease"
+        Me.RISLEStatusRelease.View = Me.RIGVSummaryType
+        '
+        'RIGVSummaryType
+        '
+        Me.RIGVSummaryType.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12})
+        Me.RIGVSummaryType.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RIGVSummaryType.Name = "RIGVSummaryType"
+        Me.RIGVSummaryType.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RIGVSummaryType.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID"
+        Me.GridColumn11.FieldName = "id_pn_summary_type"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Type"
+        Me.GridColumn12.FieldName = "pn_summary_type"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -600,26 +675,45 @@ Partial Class FormBankWithdrawalSum
         '
         Me.BGenerate.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BGenerate.ImageIndex = 7
-        Me.BGenerate.Location = New System.Drawing.Point(0, 416)
+        Me.BGenerate.Location = New System.Drawing.Point(0, 266)
         Me.BGenerate.Name = "BGenerate"
-        Me.BGenerate.Size = New System.Drawing.Size(936, 38)
+        Me.BGenerate.Size = New System.Drawing.Size(930, 38)
         Me.BGenerate.TabIndex = 20
         Me.BGenerate.TabStop = False
         Me.BGenerate.Text = "Generate"
         '
-        'GridColumn5
+        'XTCBBKSummary
         '
-        Me.GridColumn5.Caption = "Is Buy Valas"
-        Me.GridColumn5.FieldName = "is_buy_valas"
-        Me.GridColumn5.Name = "GridColumn5"
+        Me.XTCBBKSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCBBKSummary.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCBBKSummary.Location = New System.Drawing.Point(0, 122)
+        Me.XTCBBKSummary.Name = "XTCBBKSummary"
+        Me.XTCBBKSummary.SelectedTabPage = Me.XTPChangeDate
+        Me.XTCBBKSummary.Size = New System.Drawing.Size(936, 332)
+        Me.XTCBBKSummary.TabIndex = 22
+        Me.XTCBBKSummary.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPChangeDate})
+        '
+        'XTPChangeDate
+        '
+        Me.XTPChangeDate.Name = "XTPChangeDate"
+        Me.XTPChangeDate.PageVisible = False
+        Me.XTPChangeDate.Size = New System.Drawing.Size(930, 304)
+        Me.XTPChangeDate.Text = "Change Date"
+        '
+        'XTPSummary
+        '
+        Me.XTPSummary.Controls.Add(Me.GCList)
+        Me.XTPSummary.Controls.Add(Me.BGenerate)
+        Me.XTPSummary.Name = "XTPSummary"
+        Me.XTPSummary.Size = New System.Drawing.Size(930, 304)
+        Me.XTPSummary.Text = "Summary"
         '
         'FormBankWithdrawalSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(936, 598)
-        Me.Controls.Add(Me.GCList)
-        Me.Controls.Add(Me.BGenerate)
+        Me.Controls.Add(Me.XTCBBKSummary)
         Me.Controls.Add(Me.PanelControl8)
         Me.Controls.Add(Me.PanelControl7)
         Me.Controls.Add(Me.PanelControl2)
@@ -656,9 +750,15 @@ Partial Class FormBankWithdrawalSum
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl7.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLEStatusRelease, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIGVSummaryType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCBBKSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCBBKSummary.ResumeLayout(False)
+        Me.XTPSummary.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -712,4 +812,14 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents TECOAType As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents CMChangeDate As ToolStripMenuItem
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RISLEStatusRelease As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RIGVSummaryType As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCBBKSummary As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPChangeDate As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
 End Class
