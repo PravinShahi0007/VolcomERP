@@ -2074,7 +2074,6 @@ Partial Class FormReportBalanceSheet
         Me.SBSummary.Size = New System.Drawing.Size(105, 23)
         Me.SBSummary.TabIndex = 13
         Me.SBSummary.Text = "summary"
-        Me.SBSummary.Visible = False
         '
         'DETaxFrom
         '
