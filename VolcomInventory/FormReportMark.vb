@@ -6112,7 +6112,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 id_status_reportx = "6"
             End If
 
-            Dim id_report_now As String = execute_query("SELECT id_report_status FROM id_item_expense='" & id_report & "'", 0, True, "", "", "", "")
+            Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_item_expense WHERE id_item_expense='" & id_report & "'", 0, True, "", "", "", "")
 
             'update
             query = String.Format("UPDATE tb_item_expense SET id_report_status='{0}' WHERE id_item_expense ='{1}'", id_status_reportx, id_report)
@@ -8621,8 +8621,22 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
 
             If id_status_reportx = "6" Then
                 'complete all BBK
-                Dim q As String = "SELECT id_pn FROM tb_pn_summary_det WHERE id_pn_summary='" & id_report & "'"
+                'yang bukan beli dolar dulu
+                Dim q As String = "SELECT pnsd.id_pn FROM tb_pn_summary_det pnsd 
+INNER JOIN tb_pn pn ON pn.id_pn=pnsd.id_pn
+WHERE pnsd.id_pn_summary='" & id_report & "' AND pn.is_buy_valas='2'"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                For i = 0 To dt.Rows.Count - 1
+                    Dim rm As FormReportMark = New FormReportMark
+                    rm.id_report = dt.Rows(i)("id_pn").ToString
+                    rm.report_mark_type = "159"
+                    rm.change_status("6")
+                Next
+                'beli dolar terakhir
+                q = "SELECT pnsd.id_pn FROM tb_pn_summary_det pnsd 
+INNER JOIN tb_pn pn ON pn.id_pn=pnsd.id_pn
+WHERE pnsd.id_pn_summary='" & id_report & "' AND pn.is_buy_valas='1'"
+                dt = execute_query(q, -1, True, "", "", "", "")
                 For i = 0 To dt.Rows.Count - 1
                     Dim rm As FormReportMark = New FormReportMark
                     rm.id_report = dt.Rows(i)("id_pn").ToString

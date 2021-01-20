@@ -58,7 +58,7 @@ Partial Class FormBankWithdrawalSum
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CMChangeDate = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCheck = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -144,7 +144,7 @@ Partial Class FormBankWithdrawalSum
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(798, 118)
+        Me.PanelControl3.Size = New System.Drawing.Size(803, 118)
         Me.PanelControl3.TabIndex = 165
         '
         'TECOAType
@@ -504,7 +504,7 @@ Partial Class FormBankWithdrawalSum
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10, Me.GridColumn4, Me.GridColumn100, Me.GridColumn5, Me.GridColumn6})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCCheck, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn18, Me.GridColumn21, Me.GridColumn7, Me.GridColumn10, Me.GridColumn4, Me.GridColumn100, Me.GridColumn5, Me.GridColumn6})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -512,16 +512,16 @@ Partial Class FormBankWithdrawalSum
         Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
+        'GCCheck
         '
-        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn1.Caption = "*"
-        Me.GridColumn1.ColumnEdit = Me.RICECheck
-        Me.GridColumn1.FieldName = "is_check"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
+        Me.GCCheck.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCCheck.Caption = "*"
+        Me.GCCheck.ColumnEdit = Me.RICECheck
+        Me.GCCheck.FieldName = "is_check"
+        Me.GCCheck.Name = "GCCheck"
+        Me.GCCheck.Visible = True
+        Me.GCCheck.VisibleIndex = 0
         '
         'RICECheck
         '
@@ -632,6 +632,7 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn6.FieldName = "id_pn_summary_type"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.AllowFocus = False
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 8
@@ -798,7 +799,7 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents GridColumn100 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BGenerate As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCCheck As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BRelease As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
