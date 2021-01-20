@@ -75,6 +75,7 @@
             stopCustom("Can't exceed " + qty_max.ToString)
             TxtQty.EditValue = old_value
         End If
+        SLEType.EditValue = 0
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
@@ -166,9 +167,11 @@
                     Else
                         qty_avail = dst.Rows(0)("qty_avail")
                     End If
-                    If qty_avail > qty_max Then
+                    If TxtQty.EditValue > qty_avail Then
                         cond_stock = False
                     End If
+                    'MsgBox(qty_avail.ToString)
+                    'MsgBox(qty_max.ToString)
 
                     If Not cond_price Then
                         stopCustom("Price not found")
