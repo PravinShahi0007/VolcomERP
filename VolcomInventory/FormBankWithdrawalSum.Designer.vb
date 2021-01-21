@@ -78,7 +78,6 @@ Partial Class FormBankWithdrawalSum
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCBBKSummary = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPChangeDate = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -691,17 +690,10 @@ Partial Class FormBankWithdrawalSum
         Me.XTCBBKSummary.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XTCBBKSummary.Location = New System.Drawing.Point(0, 122)
         Me.XTCBBKSummary.Name = "XTCBBKSummary"
-        Me.XTCBBKSummary.SelectedTabPage = Me.XTPChangeDate
+        Me.XTCBBKSummary.SelectedTabPage = Me.XTPSummary
         Me.XTCBBKSummary.Size = New System.Drawing.Size(936, 332)
         Me.XTCBBKSummary.TabIndex = 22
-        Me.XTCBBKSummary.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPChangeDate})
-        '
-        'XTPChangeDate
-        '
-        Me.XTPChangeDate.Name = "XTPChangeDate"
-        Me.XTPChangeDate.PageVisible = False
-        Me.XTPChangeDate.Size = New System.Drawing.Size(930, 304)
-        Me.XTPChangeDate.Text = "Change Date"
+        Me.XTCBBKSummary.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary})
         '
         'XTPSummary
         '
@@ -823,6 +815,5 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTCBBKSummary As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPChangeDate As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
 End Class

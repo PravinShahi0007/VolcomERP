@@ -8624,7 +8624,7 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                 'yang bukan beli dolar dulu
                 Dim q As String = "SELECT pnsd.id_pn FROM tb_pn_summary_det pnsd 
 INNER JOIN tb_pn pn ON pn.id_pn=pnsd.id_pn
-WHERE pnsd.id_pn_summary='" & id_report & "' AND pn.is_buy_valas='2'"
+WHERE pnsd.id_pn_summary_type=1 AND pnsd.id_pn_summary='" & id_report & "' AND pn.is_buy_valas='2'"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
                 For i = 0 To dt.Rows.Count - 1
                     Dim rm As FormReportMark = New FormReportMark
@@ -8635,7 +8635,7 @@ WHERE pnsd.id_pn_summary='" & id_report & "' AND pn.is_buy_valas='2'"
                 'beli dolar terakhir
                 q = "SELECT pnsd.id_pn FROM tb_pn_summary_det pnsd 
 INNER JOIN tb_pn pn ON pn.id_pn=pnsd.id_pn
-WHERE pnsd.id_pn_summary='" & id_report & "' AND pn.is_buy_valas='1'"
+WHERE pnsd.id_pn_summary_type=1 AND pnsd.id_pn_summary='" & id_report & "' AND pn.is_buy_valas='1'"
                 dt = execute_query(q, -1, True, "", "", "", "")
                 For i = 0 To dt.Rows.Count - 1
                     Dim rm As FormReportMark = New FormReportMark

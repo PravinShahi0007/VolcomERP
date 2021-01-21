@@ -409,6 +409,8 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                 warningCustom("Please input tax percent")
             ElseIf id_vendor_contact = "1352" And is_cash_purchase = "2" Then
                 warningCustom("Cash purchase need to be checked.")
+            ElseIf is_cash_purchase = "1" And Not id_vendor_contact = "1352" Then
+                warningCustom("Please use vendor cash purchase.")
             Else
                 'header
                 Dim is_check As String = "1"

@@ -56,23 +56,9 @@ GROUP BY pns.`id_pn_summary`"
                 If id_report_status = "5" Or id_report_status = "6" Then
                     BRelease.Visible = False
                     BCancel.Visible = False
-                    '
-                    LChangeTo.Visible = False
-                    DEChangeDate.Visible = False
-                    BChangeDate.Visible = False
                 Else
                     BCancel.Visible = True
                     BRelease.Visible = True
-                    '
-                    If Not is_view = "1" Then
-                        LChangeTo.Visible = True
-                        DEChangeDate.Visible = True
-                        BChangeDate.Visible = True
-                    Else
-                        LChangeTo.Visible = False
-                        DEChangeDate.Visible = False
-                        BChangeDate.Visible = False
-                    End If
                 End If
                 load_det()
             End If
@@ -80,13 +66,11 @@ GROUP BY pns.`id_pn_summary`"
             LChangeTo.Visible = False
             DEChangeDate.Visible = False
             BChangeDate.Visible = False
-            '
-            GCCheck.Visible = False
         End If
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+        Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,IF(pnsd.id_pn_summary_type=1,SUM(pyd.`val_bef_kurs`),0) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 ,pnsd.id_pn_summary_det,pnsd.id_pn_summary_type
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
@@ -158,6 +142,7 @@ WHERE py.`id_report_status`!='5' AND py.is_auto_debet='2' AND py.`id_report_stat
             'Else
             '    q += " GROUP BY pyd.id_pn_det "
             'End If
+
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCList.DataSource = dt
             GVList.BestFitColumns()
@@ -372,9 +357,16 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
     End Sub
 
     Private Sub CMChangeDate_Click(sender As Object, e As EventArgs) Handles CMChangeDate.Click
-        If GVList.RowCount > 0 Then
-            FormBankWithdrawalSumDate.id_pn_sum_det = GVList.GetFocusedRowCellValue("id_pn_summary_det").ToString
-            FormBankWithdrawalSumDate.ShowDialog()
+        If id_report_status = "5" Or id_report_status = "6" Then
+            warningCustom("This summary is already locked")
+        Else
+            GVList.ActiveFilterString = "[is_check]='yes'"
+            If GVList.RowCount > 0 Then
+                FormBankWithdrawalSumDate.ShowDialog()
+            Else
+                warningCustom("Please select data first.")
+            End If
+            GVList.ActiveFilterString = ""
         End If
     End Sub
 End Class
