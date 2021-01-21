@@ -758,35 +758,87 @@
         save.ShowDialog()
 
         If Not save.FileName = "" Then
-            Dim opt As DevExpress.XtraPrinting.XlsxExportOptions = New DevExpress.XtraPrinting.XlsxExportOptions
-
             'zalora
             If SLUEOnlineStore.EditValue.ToString = "4" Then
-                opt.SheetName = "Upload Template"
-            End If
+                Dim opt As DevExpress.XtraPrinting.XlsxExportOptions = New DevExpress.XtraPrinting.XlsxExportOptions
 
-            'blibli
-            If SLUEOnlineStore.EditValue.ToString = "5" Then
-                opt.SheetName = "Data"
+                opt.SheetName = "Upload Template"
+
+                GVBatchUpload.ExportToXlsx(save.FileName, opt)
+
+                infoCustom("File saved.")
             End If
 
             'shopee
             If SLUEOnlineStore.EditValue.ToString = "8" Then
-                If SLUETemplate.EditValue.ToString = "1" Then
-                    opt.SheetName = "Template"
-                ElseIf SLUETemplate.EditValue.ToString = "2" Then
-                    opt.SheetName = "Sheet"
-                End If
+                'If SLUETemplate.EditValue.ToString = "1" Then
+
+                'ElseIf SLUETemplate.EditValue.ToString = "2" Then
+
+                'End If
+
+                Dim xlsWorkBook As Microsoft.Office.Interop.Excel.Workbook
+                Dim xlsWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
+                Dim xls As New Microsoft.Office.Interop.Excel.Application
+
+                xlsWorkBook = xls.Workbooks.Open("\\192.168.1.2\dataapp$\batchupload\template-shopee.xlsx")
+                xlsWorkSheet = xlsWorkBook.Sheets("Template")
+
+                Dim x As Integer = 5
+                Dim row As Integer = 6
+
+                For i = 0 To GVBatchUpload.Columns.Count - 1
+                    For j = 0 To GVBatchUpload.RowCount - 1
+                        xlsWorkSheet.Cells(row + j, i + 1) = GVBatchUpload.GetRowCellValue(j + x, GVBatchUpload.Columns(i).FieldName)
+                    Next
+                Next
+
+                xlsWorkBook.SaveAs(save.FileName)
+
+                xlsWorkBook.Close(False)
+
+                xls.Quit()
+
+                infoCustom("File saved.")
+            End If
+
+            'blibli
+            If SLUEOnlineStore.EditValue.ToString = "5" Then
+                Dim xlsWorkBook As Microsoft.Office.Interop.Excel.Workbook
+                Dim xlsWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
+                Dim xls As New Microsoft.Office.Interop.Excel.Application
+
+                xlsWorkBook = xls.Workbooks.Open("\\192.168.1.2\dataapp$\batchupload\template-blibli.xlsx")
+                xlsWorkSheet = xlsWorkBook.Sheets("Data")
+
+                Dim x As Integer = 2
+                Dim row As Integer = 3
+
+                For i = 0 To GVBatchUpload.Columns.Count - 1
+                    For j = 0 To GVBatchUpload.RowCount - 1
+                        xlsWorkSheet.Cells(row + j, i + 1) = GVBatchUpload.GetRowCellValue(j + x, GVBatchUpload.Columns(i).FieldName)
+                    Next
+                Next
+
+                xlsWorkBook.SaveAs(save.FileName)
+
+                xlsWorkBook.Close(False)
+
+                xls.Quit()
+
+                infoCustom("File saved.")
             End If
 
             'volcom
             If SLUEOnlineStore.EditValue.ToString = "3" Then
+                Dim opt As DevExpress.XtraPrinting.XlsxExportOptions = New DevExpress.XtraPrinting.XlsxExportOptions
+
                 opt.SheetName = "Sheet2"
+
+                GVBatchUpload.ExportToXlsx(save.FileName, opt)
+
+                infoCustom("File saved.")
             End If
-
-            GVBatchUpload.ExportToXlsx(save.FileName, opt)
-
-            infoCustom("File saved.")
         End If
     End Sub
 
