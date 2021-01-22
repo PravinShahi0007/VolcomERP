@@ -1391,7 +1391,7 @@ GROUP BY pnd.kurs"
 
         form_load()
         '
-        If is_print Then
+        If is_print = "1" Then
             print(True)
         End If
     End Sub
@@ -1846,7 +1846,7 @@ VALUES('" & report_mark_type & "','" & decimalSQL(Decimal.Parse(TEKurs.EditValue
         Dim id_acc_trans As String = ""
         Try
             id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
-            INNER JOIN tb_a_acc_trans a ON a.id_acc_trans='ad.id_acc_trans AND a.id_bill_type='22'
+            INNER JOIN tb_a_acc_trans a ON a.id_acc_trans=ad.id_acc_trans AND a.id_bill_type='22'
             WHERE ad.report_mark_type=159 AND ad.id_report=" + id_payment + "
             GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
         Catch ex As Exception
@@ -2016,7 +2016,7 @@ ORDER BY id_stock_valas DESC LIMIT 1"
         Dim id_acc_trans As String = ""
         Try
             id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
-            INNER JOIN tb_a_acc_trans a ON a.id_acc_trans='ad.id_acc_trans AND a.id_bill_type='25'
+            INNER JOIN tb_a_acc_trans a ON a.id_acc_trans=ad.id_acc_trans AND a.id_bill_type='25'
             WHERE ad.report_mark_type=159 AND ad.id_report=" + id_payment + "
             GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
         Catch ex As Exception
