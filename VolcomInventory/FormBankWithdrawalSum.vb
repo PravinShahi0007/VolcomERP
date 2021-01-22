@@ -79,6 +79,10 @@ GROUP BY pns.`id_pn_summary`"
                 If dtc.Rows.Count > 0 Then
                     is_submit = True
                 End If
+
+                If is_submit Then
+                    GCCheck.Visible = False
+                End If
             End If
             '
             LChangeTo.Visible = False
@@ -240,8 +244,19 @@ VALUES('" & id_coa_type & "','" & SLEType.EditValue.ToString & "','" & Date.Pars
             execute_non_query(query, True, "", "", "", "")
 
             'nonaktif mark
-            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "251", id_sum)
-            execute_non_query(queryrm, True, "", "", "", "")
+            Dim queryrm = ""
+            Try
+                queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "251", id_sum)
+                execute_non_query(queryrm, True, "", "", "", "")
+            Catch ex As Exception
+            End Try
+
+            'nonaktif mark
+            Try
+                queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "285", id_sum)
+                execute_non_query(queryrm, True, "", "", "", "")
+            Catch ex As Exception
+            End Try
 
             FormBankWithdrawal.view_sum()
             FormBankWithdrawal.GVBBKSummary.FocusedRowHandle = find_row(FormBankWithdrawal.GVBBKSummary, "id_pn_summary", id_sum)
@@ -437,5 +452,18 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
             End If
             GVList.ActiveFilterString = ""
         End If
+    End Sub
+
+    Private Sub GVList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVList.RowCellStyle
+        Try
+            If GVList.GetRowCellValue(e.RowHandle, "id_pn_summary_type").ToString = "3" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            ElseIf GVList.GetRowCellValue(e.RowHandle, "id_pn_summary_type").ToString = "2" Then
+                e.Appearance.BackColor = Color.LightYellow
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

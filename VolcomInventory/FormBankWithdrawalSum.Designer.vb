@@ -58,6 +58,7 @@ Partial Class FormBankWithdrawalSum
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CMChangeDate = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TolakToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCCheck = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -80,7 +81,6 @@ Partial Class FormBankWithdrawalSum
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCBBKSummary = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
-        Me.TolakToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -508,13 +508,19 @@ Partial Class FormBankWithdrawalSum
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMChangeDate, Me.TolakToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 70)
+        Me.ViewMenu.Size = New System.Drawing.Size(143, 48)
         '
         'CMChangeDate
         '
         Me.CMChangeDate.Name = "CMChangeDate"
-        Me.CMChangeDate.Size = New System.Drawing.Size(152, 22)
+        Me.CMChangeDate.Size = New System.Drawing.Size(142, 22)
         Me.CMChangeDate.Text = "Change Date"
+        '
+        'TolakToolStripMenuItem
+        '
+        Me.TolakToolStripMenuItem.Name = "TolakToolStripMenuItem"
+        Me.TolakToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
+        Me.TolakToolStripMenuItem.Text = "Tolakan"
         '
         'GVList
         '
@@ -522,6 +528,7 @@ Partial Class FormBankWithdrawalSum
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVList.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVList.OptionsView.ColumnAutoWidth = False
         Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -620,6 +627,8 @@ Partial Class FormBankWithdrawalSum
         Me.GridColumn4.Caption = "Status"
         Me.GridColumn4.FieldName = "report_status"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 7
         '
@@ -717,12 +726,6 @@ Partial Class FormBankWithdrawalSum
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(930, 304)
         Me.XTPSummary.Text = "Summary"
-        '
-        'TolakToolStripMenuItem
-        '
-        Me.TolakToolStripMenuItem.Name = "TolakToolStripMenuItem"
-        Me.TolakToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.TolakToolStripMenuItem.Text = "Tolakan"
         '
         'FormBankWithdrawalSum
         '
