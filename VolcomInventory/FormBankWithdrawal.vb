@@ -1544,4 +1544,9 @@ WHERE is_active=1"
     Private Sub BMutasiValas_Click(sender As Object, e As EventArgs) Handles BMutasiValas.Click
         FormStockValas.ShowDialog()
     End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BMutasiValasBPL.Click
+        FormStockValas.id_valas_bank = SLEAkunValas.EditValue.ToString
+        FormStockValas.ShowDialog()
+    End Sub
 End Class
