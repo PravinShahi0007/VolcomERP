@@ -1,4 +1,6 @@
-﻿Public Class FormBankWithdrawalDet
+﻿Imports DevExpress.XtraReports.UI
+
+Public Class FormBankWithdrawalDet
     Public report_mark_type As String = "-1"
     Public id_pay_type As String = "-1"
     Public id_payment As String = "-1"
@@ -8,6 +10,10 @@
     Public is_buy_valas As Boolean = False
     '
     Public id_coa_tag As String = "1"
+
+    Public is_print As String = "2"
+    Public is_print_preview As Boolean = True
+
     Private Sub FormBankWithdrawalDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -1380,6 +1386,10 @@ GROUP BY pnd.kurs"
         End If
 
         form_load()
+        '
+        If is_print Then
+            print(True)
+        End If
     End Sub
 
     Sub view_valas()
@@ -1447,6 +1457,10 @@ WHERE pnd.id_pn='" & id_payment & "'"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        print(False)
+    End Sub
+
+    Sub print(ByVal is_close As Boolean)
         Cursor = Cursors.WaitCursor
         ReportBankWithdrawal.id_withdrawal = id_payment
         ReportBankWithdrawal.dt = GCList.DataSource
@@ -1524,10 +1538,26 @@ WHERE py.`id_pn`='" & id_payment & "'"
             Report.LKursTitik.Visible = True
         End If
         '
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+        If is_print_preview = True Then
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        Else
+            Dim instance As New Printing.PrinterSettings
+            Dim DefaultPrinter As String = instance.PrinterName
+
+            ' THIS IS TO PRINT THE REPORT
+            Report.PrinterName = DefaultPrinter
+            Report.CreateDocument()
+            Report.PrintingSystem.ShowMarginsWarning = False
+            Report.Print()
+        End If
+
         Cursor = Cursors.Default
+
+        If is_close Then
+            Close()
+        End If
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
@@ -1580,11 +1610,52 @@ WHERE py.`id_pn`='" & id_payment & "'"
             If id_payment = "-1" Then
                 'cek valas tidak mencantumkan kurs
                 Dim kurs_is_blank As Boolean = False
+                Dim is_use_valas As Boolean = False
+                Dim is_oos_valas As Boolean = False
+                Dim oos_message As String = ""
+
                 For i As Integer = 0 To GVList.RowCount - 1
                     If Not GVList.GetRowCellValue(i, "id_currency").ToString = "1" And SLEAkunValas.EditValue.ToString = "0" Then
                         kurs_is_blank = True
                     End If
+                    If Not GVList.GetRowCellValue(i, "id_currency").ToString = "1" Then
+                        is_use_valas = True
+                    End If
                 Next
+
+
+                If is_use_valas And Not kurs_is_blank And Not is_buy_valas = "1" Then
+                    'cek ada stok valas tidak
+                    Dim id_cur_check As String = ""
+                    Dim jml_valas As Decimal = 0.00
+                    For i As Integer = 0 To GVList.RowCount - 1
+                        If Not GVList.GetRowCellValue(i, "id_currency").ToString = "1" Then
+                            id_cur_check = GVList.GetRowCellValue(i, "id_currency").ToString
+                            '
+                            If GVList.GetRowCellValue(i, "id_dc").ToString = "1" Then
+                                jml_valas += GVList.GetRowCellValue(i, "val_bef_kurs")
+                            Else
+                                jml_valas -= GVList.GetRowCellValue(i, "val_bef_kurs")
+                            End If
+                        End If
+                    Next
+
+                    'cek di stock_valas
+                    Dim qcv As String = "SELECT balance
+FROM `tb_stock_valas`
+WHERE id_stock_valas = (SELECT MAX(id_stock_valas) FROM `tb_stock_valas` WHERE id_valas_bank='" & SLEAkunValas.EditValue.ToString & "' AND id_currency='" & id_cur_check & "')"
+                    Dim dtcv As DataTable = execute_query(qcv, -1, True, "", "", "", "")
+                    If dtcv.Rows.Count > 0 Then
+                        Console.WriteLine(dtcv.Rows(0)("balance").ToString & " - " & jml_valas.ToString)
+                        If dtcv.Rows(0)("balance") - jml_valas < 0 Then
+                            is_oos_valas = True
+                            oos_message = "Stok valas hanya tersisa " & Decimal.Parse(dtcv.Rows(0)("balance").ToString).ToString("N2") & " pada " & SLEAkunValas.Text & "."
+                        End If
+                    Else
+                        is_oos_valas = True
+                        oos_message = "Stok valas tidak tersedia pada " & SLEAkunValas.Text & "."
+                    End If
+                End If
 
                 'cek value 0
                 Dim value_is_zero As Boolean = False
@@ -1660,7 +1731,7 @@ WHERE py.`id_pn`='" & id_payment & "'"
                 ElseIf desc_blank Then
                     warningCustom("Please fill the description.")
                 ElseIf kurs_is_blank Then
-                    warningCustom("Please fill kurs.")
+                    warningCustom("Please select valas.")
                 ElseIf value_is_zero = True Then
                     warningCustom("You must fill value.")
                 ElseIf paid_more = True Then
@@ -1673,6 +1744,8 @@ WHERE py.`id_pn`='" & id_payment & "'"
                     '    warningCustom("Please complete BBK using valas")
                     'ElseIf buy_valas_pend Then
                     '    warningCustom("Please complete BBK buying valas")
+                ElseIf is_oos_valas Then
+                    warningCustom(oos_message)
                 ElseIf TETotal.EditValue < 0 Then
                     warningCustom("Amount paid is negative")
                 Else

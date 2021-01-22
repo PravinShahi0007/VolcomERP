@@ -25,14 +25,17 @@ Partial Class FormBankWithdrawalSumDate
         Me.BPick = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.DEReleaseDate = New DevExpress.XtraEditors.DateEdit()
+        Me.CEPrintPreview = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEReleaseDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEReleaseDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.CEPrintPreview)
         Me.PanelControl1.Controls.Add(Me.BClose)
         Me.PanelControl1.Controls.Add(Me.BPick)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -45,7 +48,7 @@ Partial Class FormBankWithdrawalSumDate
         '
         Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BClose.Image = CType(resources.GetObject("BClose.Image"), System.Drawing.Image)
-        Me.BClose.Location = New System.Drawing.Point(263, 2)
+        Me.BClose.Location = New System.Drawing.Point(236, 2)
         Me.BClose.Name = "BClose"
         Me.BClose.Size = New System.Drawing.Size(90, 37)
         Me.BClose.TabIndex = 1
@@ -55,11 +58,11 @@ Partial Class FormBankWithdrawalSumDate
         '
         Me.BPick.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPick.Image = CType(resources.GetObject("BPick.Image"), System.Drawing.Image)
-        Me.BPick.Location = New System.Drawing.Point(353, 2)
+        Me.BPick.Location = New System.Drawing.Point(326, 2)
         Me.BPick.Name = "BPick"
-        Me.BPick.Size = New System.Drawing.Size(93, 37)
+        Me.BPick.Size = New System.Drawing.Size(120, 37)
         Me.BPick.TabIndex = 0
-        Me.BPick.Text = "Save"
+        Me.BPick.Text = "Save && Print"
         '
         'LabelControl1
         '
@@ -81,6 +84,14 @@ Partial Class FormBankWithdrawalSumDate
         Me.DEReleaseDate.Size = New System.Drawing.Size(324, 20)
         Me.DEReleaseDate.TabIndex = 2
         '
+        'CEPrintPreview
+        '
+        Me.CEPrintPreview.Location = New System.Drawing.Point(12, 11)
+        Me.CEPrintPreview.Name = "CEPrintPreview"
+        Me.CEPrintPreview.Properties.Caption = "Show Preview Before Print"
+        Me.CEPrintPreview.Size = New System.Drawing.Size(172, 19)
+        Me.CEPrintPreview.TabIndex = 2
+        '
         'FormBankWithdrawalSumDate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -99,6 +110,7 @@ Partial Class FormBankWithdrawalSumDate
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.DEReleaseDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEReleaseDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEPrintPreview.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -109,4 +121,5 @@ Partial Class FormBankWithdrawalSumDate
     Friend WithEvents BPick As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEReleaseDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents CEPrintPreview As DevExpress.XtraEditors.CheckEdit
 End Class

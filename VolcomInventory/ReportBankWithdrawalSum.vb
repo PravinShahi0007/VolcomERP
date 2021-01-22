@@ -5,7 +5,7 @@
         Dim query_head As String = "SELECT ct.coa_type,pns.`id_pn_summary`,kb.nama_bank,bnk.bank_no,bnk.bank_attn,pns.number,DATE_FORMAT(pns.`date_payment`,'%d %M %Y') as date_payment,DATE_FORMAT(pns.`created_date`,'%d %M %Y') AS created_date,emp.`employee_name`, cur.`id_currency`,cur.`currency`,SUM(pnd.`val_bef_kurs`) AS val_bef_kurs, pns.note
 FROM tb_pn_summary pns
 INNER JOIN tb_coa_type ct ON ct.id_coa_type=pns.id_coa_type
-INNER JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
+INNER JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary AND pnsd.id_pn_summary_type=1
 INNER JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
 INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pns.`id_currency`
 INNER JOIN tb_m_user usr ON usr.`id_user`=pns.`created_by`
@@ -42,7 +42,7 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=pyd.id_acc AND acc.is_no_summary=2
 LEFT JOIN 
 ( SELECT id_pn,SUM(val_bef_kurs) as val_total FROM tb_pn_det WHERE `id_currency`='" & data_head.Rows(0)("id_currency").ToString & "' AND `is_include_total`=1 GROUP BY id_pn)
 tot ON tot.id_pn=py.id_pn
-INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_summary`='" & id_sum & "'"
+INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_summary`='" & id_sum & "' AND pnsd.id_pn_summary_type='1'"
 
         q += " GROUP BY py.id_pn "
 

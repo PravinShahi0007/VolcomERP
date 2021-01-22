@@ -322,7 +322,7 @@ Public Class FormSalesPOSDet
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_st_date, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number,so.customer_name,a.kurs_trans "
+            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_st_date, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number,so.customer_name,a.kurs_trans, a.report_mark_type "
             If id_menu = "5" Then
                 query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref`, sor.customer_name AS `customer_name_ref` "
             End If
@@ -408,25 +408,26 @@ Public Class FormSalesPOSDet
 
             'updated 04 ocktobertr 2017
             id_memo_type = data.Rows(0)("id_memo_type").ToString
-            If id_memo_type = "1" Then 'sales invoice
-                report_mark_type = "48"
-            ElseIf id_memo_type = "2" Then 'sales cn
-                If id_menu = "2" Then
-                    report_mark_type = "66"
-                ElseIf id_menu = "5" Then
-                    report_mark_type = "118"
-                End If
-            ElseIf id_memo_type = "3" Then 'missing invoice
-                report_mark_type = "54"
-            ElseIf id_memo_type = "4" Then 'missing cn
-                report_mark_type = "67"
-            ElseIf id_memo_type = "5" Then 'missing promo
-                report_mark_type = "116"
-            ElseIf id_memo_type = "8" Then ' missing different margin
-                report_mark_type = "117"
-            ElseIf id_memo_type = "9" Then ' invoice different margin
-                report_mark_type = "183"
-            End If
+            report_mark_type = data.Rows(0)("report_mark_type").ToString
+            'If id_memo_type = "1" Then 'sales invoice
+            '    report_mark_type = "48"
+            'ElseIf id_memo_type = "2" Then 'sales cn
+            '    If id_menu = "2" Then
+            '        report_mark_type = "66"
+            '    ElseIf id_menu = "5" Then
+            '        report_mark_type = "118"
+            '    End If
+            'ElseIf id_memo_type = "3" Then 'missing invoice
+            '    report_mark_type = "54"
+            'ElseIf id_memo_type = "4" Then 'missing cn
+            '    report_mark_type = "67"
+            'ElseIf id_memo_type = "5" Then 'missing promo
+            '    report_mark_type = "116"
+            'ElseIf id_memo_type = "8" Then ' missing different margin
+            '    report_mark_type = "117"
+            'ElseIf id_memo_type = "9" Then ' invoice different margin
+            '    report_mark_type = "183"
+            'End If
             LEInvType.ItemIndex = LEInvType.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
             TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
             If id_memo_type = "1" Or id_memo_type = "2" Or id_memo_type = "5" Or id_memo_type = "9" Then
