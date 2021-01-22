@@ -47,6 +47,7 @@ Partial Class FormBankWithdrawalSum
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAttachmentMutasi = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BRelease = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
@@ -79,6 +80,7 @@ Partial Class FormBankWithdrawalSum
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCBBKSummary = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.TolakToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -379,6 +381,7 @@ Partial Class FormBankWithdrawalSum
         '
         'PanelControl7
         '
+        Me.PanelControl7.Controls.Add(Me.BAttachmentMutasi)
         Me.PanelControl7.Controls.Add(Me.BtnAttachment)
         Me.PanelControl7.Controls.Add(Me.BRelease)
         Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
@@ -391,6 +394,18 @@ Partial Class FormBankWithdrawalSum
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(936, 48)
         Me.PanelControl7.TabIndex = 4
+        '
+        'BAttachmentMutasi
+        '
+        Me.BAttachmentMutasi.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachmentMutasi.Image = CType(resources.GetObject("BAttachmentMutasi.Image"), System.Drawing.Image)
+        Me.BAttachmentMutasi.ImageIndex = 16
+        Me.BAttachmentMutasi.Location = New System.Drawing.Point(298, 2)
+        Me.BAttachmentMutasi.Name = "BAttachmentMutasi"
+        Me.BAttachmentMutasi.Size = New System.Drawing.Size(142, 44)
+        Me.BAttachmentMutasi.TabIndex = 23
+        Me.BAttachmentMutasi.TabStop = False
+        Me.BAttachmentMutasi.Text = "Attachment Mutasi"
         '
         'BtnAttachment
         '
@@ -411,10 +426,10 @@ Partial Class FormBankWithdrawalSum
         Me.BRelease.ImageIndex = 4
         Me.BRelease.Location = New System.Drawing.Point(127, 2)
         Me.BRelease.Name = "BRelease"
-        Me.BRelease.Size = New System.Drawing.Size(125, 44)
+        Me.BRelease.Size = New System.Drawing.Size(145, 44)
         Me.BRelease.TabIndex = 21
         Me.BRelease.TabStop = False
-        Me.BRelease.Text = "Release"
+        Me.BRelease.Text = "Complete Summary"
         Me.BRelease.Visible = False
         '
         'BtnViewJournal
@@ -491,14 +506,14 @@ Partial Class FormBankWithdrawalSum
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMChangeDate})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMChangeDate, Me.TolakToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(143, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 70)
         '
         'CMChangeDate
         '
         Me.CMChangeDate.Name = "CMChangeDate"
-        Me.CMChangeDate.Size = New System.Drawing.Size(142, 22)
+        Me.CMChangeDate.Size = New System.Drawing.Size(152, 22)
         Me.CMChangeDate.Text = "Change Date"
         '
         'GVList
@@ -703,6 +718,12 @@ Partial Class FormBankWithdrawalSum
         Me.XTPSummary.Size = New System.Drawing.Size(930, 304)
         Me.XTPSummary.Text = "Summary"
         '
+        'TolakToolStripMenuItem
+        '
+        Me.TolakToolStripMenuItem.Name = "TolakToolStripMenuItem"
+        Me.TolakToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.TolakToolStripMenuItem.Text = "Tolakan"
+        '
         'FormBankWithdrawalSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -816,4 +837,6 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTCBBKSummary As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents BAttachmentMutasi As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TolakToolStripMenuItem As ToolStripMenuItem
 End Class
