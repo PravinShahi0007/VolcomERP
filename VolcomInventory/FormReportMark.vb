@@ -596,7 +596,7 @@
         ElseIf report_mark_type = "250" Then
             'propose promo collection
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_ol_promo_collection WHERE id_ol_promo_collection = '{0}'", id_report)
-        ElseIf report_mark_type = "251" Then
+        ElseIf report_mark_type = "251" Or report_mark_type = "285" Then
             'bbk summary
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_pn_summary WHERE id_pn_summary = '{0}'", id_report)
         ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
@@ -8654,7 +8654,7 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
             Catch ex As Exception
 
             End Try
-        ElseIf report_mark_type = "251" Then
+        ElseIf report_mark_type = "251" Or report_mark_type = "285" Then
             'bbk summary
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
