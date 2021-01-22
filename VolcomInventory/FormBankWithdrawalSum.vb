@@ -88,7 +88,7 @@ GROUP BY pns.`id_pn_summary`"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,IF(pnsd.id_pn_summary_type=1,SUM(pyd.`val_bef_kurs`),0) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+        Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,IF(pnsd.id_pn_summary_type=1 OR pnsd.id_pn_summary_type=3,SUM(pyd.`val_bef_kurs`),0) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 ,pnsd.id_pn_summary_det,pnsd.id_pn_summary_type
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
@@ -315,13 +315,13 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
             '    FormReportMark.ShowDialog()
             'End If
             'check kalau ada tolak
-            Dim qc As String = "SELECT * FROM tb_pn_summary_det WHERE id_pn_summary_type='3'"
+            Dim qc As String = "SELECT * FROM tb_pn_summary_det WHERE id_pn_summary_type='3' AND id_pn_summary='" & id_sum & "'"
             Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
             '
             If dtc.Rows.Count > 0 Then
                 'ada yang tolak
                 'check dulu attachment mutasi
-                Dim qcu As String = ""
+                Dim qcu As String = "SELECT * FROM tb_doc WHERE id_report='" & id_sum & "' AND report_mark_Type='285'"
                 Dim dtcu As DataTable = execute_query(qcu, -1, True, "", "", "", "")
                 If dtcu.Rows.Count > 0 Then
                     FormReportMark.id_report = id_sum
