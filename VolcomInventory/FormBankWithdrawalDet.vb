@@ -1391,7 +1391,7 @@ GROUP BY pnd.kurs"
 
         form_load()
         '
-        If is_print Then
+        If is_print = "1" Then
             print(True)
         End If
     End Sub
