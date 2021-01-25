@@ -5862,7 +5862,7 @@ HAVING debit!=credit"
                 'complete
                 query = "UPDATE tb_m_design dsg
 INNER JOIN `tb_design_cop_propose_det` copd ON copd.id_design=dsg.id_design AND copd.`id_design_cop_propose`='" & id_report & "'
-SET dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd`=copd.`kurs`,dsg.`prod_order_cop_pd`=copd.`design_cop`,dsg.`prod_order_cop_pd_vendor`=copd.`id_comp_contact`,dsg.`prod_order_cop_pd_addcost`=copd.`add_cost` ;
+SET dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd`=copd.`kurs`,dsg.`prod_order_cop_pd`=copd.`design_cop`,dsg.`prod_order_cop_pd_vendor`=copd.`id_comp_contact`,dsg.`prod_order_cop_pd_addcost`=copd.`add_cost`,dsg.is_cold_storage=copd.is_cold_storage ;
 UPDATE tb_m_design_cop SET is_active='2' WHERE id_design IN (SELECT id_design FROM tb_design_cop_propose_det WHERE id_design_cop_propose='" & id_report & "') AND is_production_dept=1;
 INSERT INTO `tb_m_design_cop`(description,id_design,date_created,id_currency,kurs,before_kurs,additional,is_active,is_production_dept)
 SELECT cmp.description,copd.id_design,NOW(),cmp.id_currency,cmp.kurs,cmp.before_kurs,cmp.additional,1,1 FROM tb_design_cop_propose_comp cmp
@@ -6492,14 +6492,14 @@ WHERE id_sales_branch IN (SELECT id_report FROM tb_pn_det WHERE id_pn='" & id_re
                     If data_payment.Rows(0)("is_buy_valas").ToString = "1" Then
                         'insert to stok valas/beli valas
                         Dim qi As String = "INSERT INTO tb_stock_valas(`id_report`,`report_mark_type`,id_valas_bank,`id_currency`,`amount`,`trans_datetime`,`kurs_transaksi`)
-SELECT pnd.`id_pn`,'159',pn.id_valas_bank,pnd.id_currency,pnd.val_bef_kurs,NOW(),pnd.kurs
+SELECT pnd.`id_pn`,'159',pn.id_valas_bank,pnd.id_currency,pnd.val_bef_kurs,pn.date_payment,pnd.kurs
 FROM tb_pn_det pnd
 INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn
 WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
                         execute_non_query(qi, True, "", "", "", "")
                     Else
                         Dim qi As String = "INSERT INTO tb_stock_valas(`id_report`,`report_mark_type`,id_valas_bank,`id_currency`,`amount`,`trans_datetime`,`kurs_transaksi`)
-SELECT pnd.`id_pn`,'159',pn.id_valas_bank,pnd.id_currency,-pnd.val_bef_kurs,NOW(),pn.kurs
+SELECT pnd.`id_pn`,'159',pn.id_valas_bank,pnd.id_currency,-pnd.val_bef_kurs,pn.date_payment,pn.kurs
 FROM tb_pn_det pnd
 INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn
 WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
