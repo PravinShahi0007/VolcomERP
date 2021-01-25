@@ -23,8 +23,10 @@
         load_cool_storage()
 
         If is_insert_cool_storage = "1" Then
+            LStorage.Visible = True
             SLECoolStorage.Visible = True
         Else
+            LStorage.Visible = False
             SLECoolStorage.Visible = False
         End If
 
