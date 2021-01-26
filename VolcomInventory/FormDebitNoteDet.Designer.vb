@@ -71,18 +71,18 @@ Partial Class FormDebitNoteDet
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIMDescription = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GCKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCClaimPercent = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPriceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCClaimUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCAmoUSD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCPriceUnit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCClaimPcs = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCAmo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -594,7 +594,7 @@ Partial Class FormDebitNoteDet
         Me.GVItemList.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVItemList.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVItemList.ColumnPanelRowHeight = 50
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn13, Me.GridColumn12, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GCClaimPercent, Me.GridColumn10, Me.GridColumn8, Me.GridColumn15, Me.GridColumn14, Me.GridColumn2, Me.GCPriceUnit, Me.GridColumn9, Me.GCClaimPcs, Me.GridColumn11})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn13, Me.GridColumn12, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GCKurs, Me.GCClaimPercent, Me.GridColumn10, Me.GridColumn8, Me.GCPriceUSD, Me.GCClaimUSD, Me.GCAmoUSD, Me.GCPriceUnit, Me.GridColumn9, Me.GCClaimPcs, Me.GCAmo})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -668,6 +668,21 @@ Partial Class FormDebitNoteDet
         '
         Me.RIMDescription.Name = "RIMDescription"
         '
+        'GCKurs
+        '
+        Me.GCKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GCKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCKurs.Caption = "Kurs"
+        Me.GCKurs.DisplayFormat.FormatString = "N2"
+        Me.GCKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCKurs.FieldName = "kurs"
+        Me.GCKurs.Name = "GCKurs"
+        Me.GCKurs.Visible = True
+        Me.GCKurs.VisibleIndex = 8
+        Me.GCKurs.Width = 90
+        '
         'GCClaimPercent
         '
         Me.GCClaimPercent.AppearanceCell.Options.UseTextOptions = True
@@ -683,6 +698,67 @@ Partial Class FormDebitNoteDet
         Me.GCClaimPercent.Visible = True
         Me.GCClaimPercent.VisibleIndex = 4
         Me.GCClaimPercent.Width = 99
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "ID Currency"
+        Me.GridColumn10.FieldName = "id_currency"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Currency"
+        Me.GridColumn8.FieldName = "currency"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 5
+        Me.GridColumn8.Width = 90
+        '
+        'GCPriceUSD
+        '
+        Me.GCPriceUSD.AppearanceCell.Options.UseTextOptions = True
+        Me.GCPriceUSD.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCPriceUSD.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCPriceUSD.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCPriceUSD.Caption = "Price / Unit <br> (USD)"
+        Me.GCPriceUSD.DisplayFormat.FormatString = "N2"
+        Me.GCPriceUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCPriceUSD.FieldName = "unit_price_usd"
+        Me.GCPriceUSD.Name = "GCPriceUSD"
+        Me.GCPriceUSD.Visible = True
+        Me.GCPriceUSD.VisibleIndex = 6
+        Me.GCPriceUSD.Width = 90
+        '
+        'GCClaimUSD
+        '
+        Me.GCClaimUSD.AppearanceCell.Options.UseTextOptions = True
+        Me.GCClaimUSD.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCClaimUSD.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCClaimUSD.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCClaimUSD.Caption = "Claim / Pcs <br> (USD)"
+        Me.GCClaimUSD.DisplayFormat.FormatString = "N2"
+        Me.GCClaimUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCClaimUSD.FieldName = "claim_pcs_usd"
+        Me.GCClaimUSD.Name = "GCClaimUSD"
+        Me.GCClaimUSD.Visible = True
+        Me.GCClaimUSD.VisibleIndex = 7
+        Me.GCClaimUSD.Width = 90
+        '
+        'GCAmoUSD
+        '
+        Me.GCAmoUSD.AppearanceCell.Options.UseTextOptions = True
+        Me.GCAmoUSD.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCAmoUSD.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCAmoUSD.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCAmoUSD.Caption = "Total Amount <br> (USD)"
+        Me.GCAmoUSD.DisplayFormat.FormatString = "N2"
+        Me.GCAmoUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCAmoUSD.FieldName = "claim_amo_usd"
+        Me.GCAmoUSD.Name = "GCAmoUSD"
+        Me.GCAmoUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_amo_usd", "{0:N2}")})
+        Me.GCAmoUSD.Visible = True
+        Me.GCAmoUSD.VisibleIndex = 12
+        Me.GCAmoUSD.Width = 122
         '
         'GCPriceUnit
         '
@@ -732,22 +808,22 @@ Partial Class FormDebitNoteDet
         Me.GCClaimPcs.VisibleIndex = 10
         Me.GCClaimPcs.Width = 143
         '
-        'GridColumn11
+        'GCAmo
         '
-        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumn11.Caption = "Total Amount <br> (Rp)"
-        Me.GridColumn11.DisplayFormat.FormatString = "N2"
-        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn11.FieldName = "claim_amo"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_amo", "{0:N2}")})
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 13
-        Me.GridColumn11.Width = 141
+        Me.GCAmo.AppearanceCell.Options.UseTextOptions = True
+        Me.GCAmo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCAmo.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCAmo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCAmo.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCAmo.Caption = "Total Amount <br> (Rp)"
+        Me.GCAmo.DisplayFormat.FormatString = "N2"
+        Me.GCAmo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCAmo.FieldName = "claim_amo"
+        Me.GCAmo.Name = "GCAmo"
+        Me.GCAmo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_amo", "{0:N2}")})
+        Me.GCAmo.Visible = True
+        Me.GCAmo.VisibleIndex = 13
+        Me.GCAmo.Width = 141
         '
         'RepositoryItemSpinEdit1
         '
@@ -756,82 +832,6 @@ Partial Class FormDebitNoteDet
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn7.Caption = "Kurs"
-        Me.GridColumn7.DisplayFormat.FormatString = "N2"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "kurs"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 8
-        Me.GridColumn7.Width = 90
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Currency"
-        Me.GridColumn8.FieldName = "currency"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 5
-        Me.GridColumn8.Width = 90
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "ID Currency"
-        Me.GridColumn10.FieldName = "id_currency"
-        Me.GridColumn10.Name = "GridColumn10"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.Caption = "Total Amount <br> (USD)"
-        Me.GridColumn2.DisplayFormat.FormatString = "N2"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "claim_amo_usd"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_amo_usd", "{0:N2}")})
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 12
-        Me.GridColumn2.Width = 122
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn14.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn14.Caption = "Claim / Pcs <br> (USD)"
-        Me.GridColumn14.DisplayFormat.FormatString = "N2"
-        Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn14.FieldName = "claim_pcs_usd"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 7
-        Me.GridColumn14.Width = 90
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn15.Caption = "Price / Unit <br> (USD)"
-        Me.GridColumn15.DisplayFormat.FormatString = "N2"
-        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn15.FieldName = "unit_price_usd"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 6
-        Me.GridColumn15.Width = 90
         '
         'FormDebitNoteDet
         '
@@ -933,7 +933,7 @@ Partial Class FormDebitNoteDet
     Friend WithEvents GCPriceUnit As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCClaimPcs As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCAmo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIMDescription As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
@@ -947,10 +947,10 @@ Partial Class FormDebitNoteDet
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEDueDateInv As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCKurs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPriceUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCClaimUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCAmoUSD As DevExpress.XtraGrid.Columns.GridColumn
 End Class

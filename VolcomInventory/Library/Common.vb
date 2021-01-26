@@ -2510,13 +2510,13 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
         'else dollars
 
         If opt = "1" Then
-            ' Clean up dollars.
+            ' Clean up rp.
             Select Case Dollars
                 Case "" : Dollars = "Nol Rupiah"
                 Case Else : Dollars = Dollars & " Rupiah"
             End Select
         ElseIf opt = "6" Then
-            ' Clean up dollars.
+            ' Clean up euro.
             Select Case Dollars
                 Case "" : Dollars = "No euro"
                 Case "One" : Dollars = "One euro"
