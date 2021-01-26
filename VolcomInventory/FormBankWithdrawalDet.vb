@@ -217,7 +217,6 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                     'load detail
                     For i As Integer = 0 To FormBankWithdrawal.GVFGPO.RowCount - 1
                         'id_report, number, total, balance due
-
                         If FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "report_mark_type").ToString = "189" Then
                             Dim qd As String = "SELECT IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS `type`,pnd.id_pn_fgpo,1 AS is_dc,'189' AS report_mark_type,GROUP_CONCAT(DISTINCT(po.prod_order_number)) AS po_number,GROUP_CONCAT(DISTINCT(pnd.inv_number)) AS inv_number
 ,SUM(pnd.`value`+pnd.`vat`-IF(pnd.id_currency=2,0,pnd.`pph`)) AS amount
@@ -265,10 +264,58 @@ GROUP BY pnd.kurs"
                                 newRow("note") = dtd.Rows(k)("type").ToString & " - " & dtd.Rows(k)("inv_number").ToString
                                 TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                             Next
+                        ElseIf FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "report_mark_type").ToString = "221" Then 'debit note
+                            Dim qd As String = "SELECT 'Debit Note' AS `type`,dnd.id_debit_note,2 AS is_dc,'221' AS report_mark_type,GROUP_CONCAT(DISTINCT(dnd.report_number)) AS po_number,GROUP_CONCAT(DISTINCT(dn.number)) AS inv_number
+,-SUM(ROUND(dnd.`unit_price`*((dnd.claim_percent)/100),2)*dnd.`qty`) AS amount 
+,0 AS vat
+,-IF(dn.id_dn_type=4,SUM(ROUND((dnd.`claim_percent`/100)*dnd.`unit_price_usd`,2) * dnd.`qty`),SUM(ROUND(dnd.`unit_price`*((dnd.claim_percent)/100),2)*dnd.`qty`)) AS value_bef_kurs
+,-CAST(SUM(IF(dnd.id_currency=2,(ROUND((dnd.`claim_percent`/100)*dnd.`unit_price`,2) * dnd.`qty`)-((ROUND((dnd.`claim_percent`/100)*dnd.`unit_price_usd`,2) * dnd.`qty`)*" & decimalSQL(FormBankWithdrawal.TEKurs.EditValue.ToString) & "),0)) AS DECIMAL(13,2)) AS amount_selisih_kurs 		
+,-CAST(IF(dn.id_dn_type=4,SUM(dnd.`unit_price_usd`*dnd.`qty`*((dnd.claim_percent)/100))*" & decimalSQL(FormBankWithdrawal.TEKurs.EditValue.ToString) & ",SUM(dnd.`unit_price`*dnd.`qty`*((dnd.claim_percent)/100))) AS DECIMAL(13,2)) AS amount_now_kurs
+,cur.`id_currency`,cur.`currency`,dnd.`kurs`
+,acc.id_acc,acc.acc_name,acc.acc_description
+,c.`comp_number`,dn.number
+,0 AS total_paid,cur.currency
+,-SUM(ROUND(dnd.`unit_price`*((dnd.claim_percent)/100),2)*dnd.`qty`) AS total_pending
+,-SUM(ROUND(dnd.`unit_price`*((dnd.claim_percent)/100),2)*dnd.`qty`) AS balance
+,cf.id_comp AS `id_comp_default`, cf.comp_number AS `comp_number_default`
+FROM tb_debit_note_det dnd
+INNER JOIN tb_debit_note dn ON dn.`id_debit_note`=dnd.`id_debit_note` AND dn.`is_open`='1' AND dn.`id_report_status`=6 AND dn.`id_debit_note`='" & FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_report").ToString & "'
+INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=dnd.`id_currency`
+INNER JOIN tb_m_comp c ON c.id_comp=dn.id_comp 
+INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ar
+INNER JOIN tb_m_comp cf ON cf.id_comp=1
+GROUP BY dnd.id_report"
+                            Dim dtd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+                            For k = 0 To dtd.Rows.Count - 1
+                                Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                                newRow("id_report") = dtd.Rows(k)("id_debit_note").ToString
+                                newRow("report_mark_type") = dtd.Rows(k)("report_mark_type").ToString
+                                newRow("id_acc") = dtd.Rows(k)("id_acc").ToString
+                                newRow("acc_name") = dtd.Rows(k)("acc_name").ToString
+                                newRow("acc_description") = dtd.Rows(k)("acc_description").ToString
+                                newRow("vendor") = dtd.Rows(k)("comp_number").ToString
+                                newRow("id_dc") = dtd.Rows(k)("is_dc").ToString
+                                newRow("dc_code") = If(dtd.Rows(k)("is_dc").ToString = "1", "D", "K")
+                                newRow("id_comp") = dtd.Rows(k)("id_comp_default").ToString
+                                newRow("comp_number") = dtd.Rows(k)("comp_number_default").ToString
+                                newRow("number") = dtd.Rows(k)("number").ToString
+                                newRow("total_pay") = dtd.Rows(k)("total_paid")
+                                newRow("value") = dtd.Rows(k)("balance")
+                                newRow("kurs") = dtd.Rows(k)("kurs")
+                                newRow("id_currency") = dtd.Rows(k)("id_currency").ToString
+                                newRow("currency") = dtd.Rows(k)("currency").ToString
+                                newRow("val_bef_kurs") = If(dtd.Rows(k)("id_currency").ToString = "1", dtd.Rows(k)("balance"), dtd.Rows(k)("value_bef_kurs"))
+                                newRow("value_view") = dtd.Rows(k)("balance")
+                                newRow("balance_due") = dtd.Rows(k)("balance")
+                                newRow("note") = dtd.Rows(k)("type").ToString & " - " & dtd.Rows(k)("inv_number").ToString
+                                TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                            Next
                         Else
                             Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                             newRow("id_report") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_report").ToString
                             newRow("report_mark_type") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "report_mark_type").ToString
+                            newRow("id_report_reff") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_report_reff").ToString
+                            newRow("report_mark_type_reff") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "report_mark_type_reff").ToString
                             newRow("id_acc") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_acc").ToString
                             newRow("acc_name") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "acc_name").ToString
                             newRow("acc_description") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "acc_description").ToString
