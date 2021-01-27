@@ -7991,10 +7991,10 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
                 execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
                 'det journal
-                If FormDebitNoteDet.id_dn_type = "1" Then 'claim reject
+                If FormDebitNoteDet.id_dn_type = "1" Or FormDebitNoteDet.id_dn_type = "4" Then 'claim reject
                     Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_vendor, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_mark_type_ref,id_report_ref,report_number_ref)
                     -- klaim reject nya dulu
-                    SELECT " + id_acc_trans + " AS `id_trans`, (SELECT acc_coa_claim FROM tb_opt_purchasing) AS `id_acc`, dn.id_comp  AS id_vendor, dnd.qty, 0 AS `debit`, CAST(((dnd.claim_percent/100)*dnd.unit_price)*dnd.qty AS DECIMAL(13,2)) AS `credit`
+                    SELECT " + id_acc_trans + " AS `id_trans`, IF(dn.id_dn_type=1,(SELECT acc_coa_claim FROM tb_opt_purchasing),(SELECT acc_coa_claim_int FROM tb_opt_purchasing)) AS `id_acc`, dn.id_comp  AS id_vendor, dnd.qty, 0 AS `debit`, CAST(((dnd.claim_percent/100)*dnd.unit_price)*dnd.qty AS DECIMAL(13,2)) AS `credit`
                     ,CONCAT('KLAIM ',dnd.description,' - ',dnd.info_design) AS `note`, " + report_mark_type + " AS `rmt`, dnd.id_debit_note, dn.`number`, 1 AS id_comp, dnd.report_mark_type AS rmt_ref, dnd.id_report AS id_ref, dnd.report_number AS number_ref
                     FROM tb_debit_note_det dnd
                     INNER JOIN tb_debit_note dn ON dn.id_debit_note=dnd.id_debit_note

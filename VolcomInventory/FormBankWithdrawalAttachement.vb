@@ -202,7 +202,7 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
         DateEditDueDate.EditValue = data.Rows(0)("due_date")
 
         'item
-        Dim query_item As String = "SELECT pod.`id_purc_order_det`, item.`item_desc`,itt.id_item_type,itt.item_type, SUM(recd.`qty`) AS qty_po, pod.`value` AS val_po, pod.pph_percent, pod.gross_up_value
+        Dim query_item As String = "SELECT pod.`id_purc_order_det`, item.`item_desc`,itt.id_item_type,itt.item_type, SUM(recd.`qty`) AS qty_po, pod.`value` AS val_po, pod.pph_percent, pod.gross_up_value , IFNULL(pod.discount_for_pph,0.00) AS discount_for_pph
 FROM tb_purc_rec_det recd 
 INNER JOIN tb_purc_order_det pod ON recd.`id_purc_order_det`=pod.`id_purc_order_det`
 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
@@ -218,7 +218,6 @@ GROUP BY pod.id_purc_order_det"
         GCPurcReq.DataSource = data_item
 
         GVPurcReq.BestFitColumns()
-
 
         'summary
         TETotal.EditValue = GVPurcReq.Columns("amount").SummaryItem.SummaryValue
@@ -237,7 +236,12 @@ GROUP BY pod.id_purc_order_det"
         TEPPH.EditValue = 0.00
 
         TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue + TEVATValue.EditValue - TEPPH.EditValue
-
+        '
+        For i As Integer = 0 To GVPurcReq.RowCount - 1
+            If GVPurcReq.GetRowCellValue(i, "discount_for_pph") = 0 And TEDiscTotal.EditValue > 0 Then
+                GVPurcReq.SetRowCellValue(i, "discount_for_pph", TEDiscTotal.EditValue * (GVPurcReq.GetRowCellValue(i, "amount") / TETotal.EditValue))
+            End If
+        Next
         '
         If is_lock = "1" Then
             BSaveLock.Visible = False
@@ -304,7 +308,7 @@ GROUP BY pod.id_purc_order_det"
             warningCustom("Please input invoice number")
         Else
             For i = 0 To GVPurcReq.RowCount - 1
-                execute_non_query("UPDATE tb_purc_order_det SET pph_percent='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "pph_percent").ToString) & "',pph='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "pph").ToString) & "',gross_up_value='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "gross_up_value").ToString) & "' WHERE id_purc_order_det='" & GVPurcReq.GetRowCellValue(i, "id_purc_order_det").ToString & "'", True, "", "", "", "")
+                execute_non_query("UPDATE tb_purc_order_det SET pph_percent='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "pph_percent").ToString) & "',pph='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "pph").ToString) & "',discount_for_pph='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount_for_pph").ToString) & "',gross_up_value='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "gross_up_value").ToString) & "' WHERE id_purc_order_det='" & GVPurcReq.GetRowCellValue(i, "id_purc_order_det").ToString & "'", True, "", "", "", "")
             Next
 
             Dim query As String = "UPDATE tb_purc_order SET pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ",due_date = '" + Date.Parse(DateEditDueDate.EditValue.ToString).ToString("yyyy-MM-dd") + "',pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ", pph_account = " + If(SLEPPHAccount.EditValue.ToString = "0", "NULL", SLEPPHAccount.EditValue.ToString) + ",inv_number='" & addSlashes(TEInvNumber.Text) & "' WHERE id_purc_order = " + id_purc_order
@@ -330,7 +334,7 @@ GROUP BY pod.id_purc_order_det"
 
         For i = 0 To GVPurcReq.RowCount - 1
             If GVPurcReq.IsValidRowHandle(i) Then
-                pph += Math.Floor(GVPurcReq.GetRowCellValue(i, "pph_percent") * (GVPurcReq.GetRowCellValue(i, "amount") + GVPurcReq.GetRowCellValue(i, "gross_up_value")) / 100)
+                pph += Math.Floor(GVPurcReq.GetRowCellValue(i, "pph_percent") * (GVPurcReq.GetRowCellValue(i, "amount") + GVPurcReq.GetRowCellValue(i, "gross_up_value") - GVPurcReq.GetRowCellValue(i, "discount_for_pph")) / 100)
             End If
         Next
 
@@ -349,7 +353,7 @@ GROUP BY pod.id_purc_order_det"
     Private Sub GrossUpPPHToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GrossUpPPHToolStripMenuItem.Click
         If GVPurcReq.RowCount > 0 Then
             Try
-                Dim dpp As Decimal = Decimal.Parse(GVPurcReq.GetFocusedRowCellValue("amount").ToString)
+                Dim dpp As Decimal = Decimal.Parse(GVPurcReq.GetFocusedRowCellValue("amount").ToString) - Decimal.Parse(GVPurcReq.GetFocusedRowCellValue("discount_for_pph").ToString)
                 Dim pph As Decimal = Decimal.Parse(GVPurcReq.GetFocusedRowCellValue("pph_percent").ToString)
                 '
                 Dim grossup_val As Decimal = 0.00
