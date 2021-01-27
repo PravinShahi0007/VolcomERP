@@ -93,6 +93,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemTextEditPph, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -499,7 +500,7 @@ Partial Class FormBankWithdrawalAttachement
         '
         'GVPurcReq
         '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn21, Me.GridColumn10, Me.GridColumn33, Me.GridColumn4, Me.GridColumn2, Me.GridColumn1, Me.GridColumn7, Me.GridColumn9})
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn21, Me.GridColumn10, Me.GridColumn33, Me.GridColumn4, Me.GridColumn2, Me.GridColumn16, Me.GridColumn1, Me.GridColumn7, Me.GridColumn9})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsFind.AllowFindPanel = False
@@ -598,7 +599,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gross_up_value", "{0:N2}")})
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.VisibleIndex = 8
         '
         'RITEGrossupValue
         '
@@ -616,7 +617,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn9.UnboundExpression = "Floor(([amount] + [gross_up_value]) * ([pph_percent] / 100))"
         Me.GridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 6
+        Me.GridColumn9.VisibleIndex = 7
         '
         'PanelControl3
         '
@@ -896,6 +897,13 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 453
         '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Discount"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 6
+        '
         'FormBankWithdrawalAttachement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1022,4 +1030,5 @@ Partial Class FormBankWithdrawalAttachement
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TEUnit As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
