@@ -314,8 +314,6 @@ GROUP BY dnd.id_report"
                             Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                             newRow("id_report") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_report").ToString
                             newRow("report_mark_type") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "report_mark_type").ToString
-                            newRow("id_report_reff") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_report_reff").ToString
-                            newRow("report_mark_type_reff") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "report_mark_type_reff").ToString
                             newRow("id_acc") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_acc").ToString
                             newRow("acc_name") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "acc_name").ToString
                             newRow("acc_description") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "acc_description").ToString
