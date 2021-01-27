@@ -314,6 +314,7 @@ VALUES"
 
     Private Sub SLEDelType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEDelType.EditValueChanged
         load_3pl()
+        load_rate()
     End Sub
 
     Private Sub BAddStore_Click(sender As Object, e As EventArgs) Handles BAddStore.Click

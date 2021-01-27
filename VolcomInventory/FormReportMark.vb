@@ -6381,7 +6381,7 @@ WHERE id_acc_trans='" & old_id_acc_trans & "'"
                         'FormBankWithdrawal.load_expense()
                     ElseIf data_payment.Rows(0)("report_mark_type").ToString = "189" Then
                         'Close FGPO
-                        Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type` 
+                        Dim qry As String = "SELECT pd.`id_report`,pd.`report_mark_type`
 FROM tb_pn_det pd
 WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                         Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")

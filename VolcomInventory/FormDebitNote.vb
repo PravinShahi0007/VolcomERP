@@ -149,13 +149,20 @@ WHERE ld.`claim_percent` > 0  AND ISNULL(dn.id_report) " & q_where & " GROUP BY 
     End Sub
 
     Sub load_claim_reject()
-        Dim q_where As String = ""
-        '
-        If Not SLEVendor.EditValue.ToString = "0" Then
-            q_where = " AND wo_price.id_comp='" & SLEVendor.EditValue.ToString & "'"
-        End If
+        'check AR first
+        Dim query_check As String = "SELECT IFNULL(id_acc_ar,0) AS id_acc_ar FROM tb_m_comp c
+WHERE c.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        If data_check.Rows(0)("id_acc_ar").ToString = "0" Then
+            warningCustom("Please check AR mapping !")
+        Else
+            Dim q_where As String = ""
+            '
+            If Not SLEVendor.EditValue.ToString = "0" Then
+                q_where = " AND wo_price.id_comp='" & SLEVendor.EditValue.ToString & "'"
+            End If
 
-        Dim query As String = "SELECT 'no' AS is_check,fcs.id_prod_fc_sum,'22' AS report_mark_type,fc.`id_prod_fc`,fc.`prod_fc_number`,po.`id_prod_order`,dsg.`design_code`,dsg.`design_name`,po.`prod_order_number`,plc.`pl_category_sub`,fcd.*,
+            Dim query As String = "SELECT 'no' AS is_check,fcs.id_prod_fc_sum,'22' AS report_mark_type,fc.`id_prod_fc`,fc.`prod_fc_number`,po.`id_prod_order`,dsg.`design_code`,dsg.`design_name`,po.`prod_order_number`,plc.`pl_category_sub`,fcd.*,
                                 SUM(IF(fc.id_pl_category_sub=1,fcd.prod_fc_det_qty,0)) AS qc_normal,
                                 get_claim_reject_percent(ko.`id_claim_reject`,1) AS p_normal,
                                 SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0)) AS qc_normal_minor,
@@ -215,7 +222,7 @@ WHERE ld.`claim_percent` > 0  AND ISNULL(dn.id_report) " & q_where & " GROUP BY 
                                 ) ko ON ko.id_prod_order=po.id_prod_order 
                                 INNER JOIN tb_m_claim_reject_det crd ON crd.`id_claim_reject`=ko.`id_claim_reject` AND crd.`id_pl_category_sub`=fc.`id_pl_category_sub`
                                 LEFT JOIN (
-	                                SELECT comp.id_comp, comp.comp_name,wo.id_prod_order, wo.prod_order_wo_del_date,wo.id_ovh_price, cur.id_currency, cur.currency, wo.prod_order_wo_vat, wod.prod_order_wo_det_price, wo.`prod_order_wo_kurs`, SUM(pod.prod_order_qty) AS qty_order
+	                                SELECT comp.id_comp, comp.comp_name,wo.id_prod_order, wo.prod_order_wo_del_date,wo.id_ovh_price, cur.id_currency, cur.currency, wo.prod_order_wo_vat, wod.prod_order_wo_det_price, IFNULL(wo_old.old_kurs,wo.`prod_order_wo_kurs`) AS prod_order_wo_kurs, SUM(pod.prod_order_qty) AS qty_order
 	                                FROM tb_prod_order_wo wo
 	                                INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo AND wo.id_report_status!='5'
 	                                INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det
@@ -223,6 +230,17 @@ WHERE ld.`claim_percent` > 0  AND ISNULL(dn.id_report) " & q_where & " GROUP BY 
 	                                LEFT JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
 	                                LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
 	                                LEFT JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+                                    LEFT JOIN
+	                                (
+		                                SELECT id_wo,old_kurs FROM `tb_prod_order_wo_log`
+		                                WHERE id_wo_log IN (
+			                                SELECT MIN(id_wo_log)
+			                                FROM tb_prod_order_wo_log logx
+			                                INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo=logx.id_wo 
+			                                WHERE id_prod_order=@id_po
+			                                GROUP BY wo.`id_prod_order_wo`
+		                                )
+	                                )wo_old ON wo_old.id_wo=wo.id_prod_order_wo
 	                                WHERE wo.is_main_vendor=1 
 	                                GROUP BY wo.id_prod_order_wo
                                 ) wo_price ON wo_price.id_prod_order=po.id_prod_order
@@ -240,13 +258,14 @@ WHERE ld.`claim_percent` > 0  AND ISNULL(dn.id_report) " & q_where & " GROUP BY 
                                 WHERE fc.id_report_status = '6' AND ISNULL(dn.id_reff) " & q_where & "
                                 GROUP BY fc.`id_prod_fc`
                                 HAVING (amo_claim_minor + amo_claim_major + amo_claim_afkir) >= 0"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCSumClaimReject.DataSource = data
-        GVSumClaimReject.BestFitColumns()
-        If SLEVendor.EditValue.ToString = "0" Then
-            PCDebitNote.Visible = False
-        Else
-            PCDebitNote.Visible = True
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCSumClaimReject.DataSource = data
+            GVSumClaimReject.BestFitColumns()
+            If SLEVendor.EditValue.ToString = "0" Then
+                PCDebitNote.Visible = False
+            Else
+                PCDebitNote.Visible = True
+            End If
         End If
     End Sub
 

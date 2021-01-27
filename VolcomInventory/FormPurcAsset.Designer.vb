@@ -39,6 +39,7 @@ Partial Class FormPurcAsset
         Me.RecordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ValueaddedAssetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InputEmployeeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InputDescriptionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveLocationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewMoveHistoryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVActive = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -89,7 +90,22 @@ Partial Class FormPurcAsset
         Me.PanelNavDep = New DevExpress.XtraEditors.PanelControl()
         Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.InputDescriptionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.XTPNewDepreciation = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.BRefreshDepreciation = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BAddDepreciation = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -110,6 +126,12 @@ Partial Class FormPurcAsset
         CType(Me.BtnDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavDep, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavDep.SuspendLayout()
+        Me.XTPNewDepreciation.SuspendLayout()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCAsset
@@ -126,7 +148,7 @@ Partial Class FormPurcAsset
         Me.XTCAsset.SelectedTabPage = Me.XTPPending
         Me.XTCAsset.Size = New System.Drawing.Size(777, 471)
         Me.XTCAsset.TabIndex = 0
-        Me.XTCAsset.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPending, Me.XTPActive, Me.XTPSold, Me.XTPDepresiasi})
+        Me.XTCAsset.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPending, Me.XTPActive, Me.XTPSold, Me.XTPDepresiasi, Me.XTPNewDepreciation})
         '
         'XTPPending
         '
@@ -248,6 +270,12 @@ Partial Class FormPurcAsset
         Me.InputEmployeeToolStripMenuItem.Name = "InputEmployeeToolStripMenuItem"
         Me.InputEmployeeToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.InputEmployeeToolStripMenuItem.Text = "Input Employee"
+        '
+        'InputDescriptionToolStripMenuItem
+        '
+        Me.InputDescriptionToolStripMenuItem.Name = "InputDescriptionToolStripMenuItem"
+        Me.InputDescriptionToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.InputDescriptionToolStripMenuItem.Text = "Input Description"
         '
         'MoveLocationToolStripMenuItem
         '
@@ -456,6 +484,7 @@ Partial Class FormPurcAsset
         Me.XTPDepresiasi.Controls.Add(Me.BtnApplyAll)
         Me.XTPDepresiasi.Controls.Add(Me.PanelNavDep)
         Me.XTPDepresiasi.Name = "XTPDepresiasi"
+        Me.XTPDepresiasi.PageVisible = False
         Me.XTPDepresiasi.Size = New System.Drawing.Size(775, 443)
         Me.XTPDepresiasi.Text = "Depreciation"
         '
@@ -751,11 +780,141 @@ Partial Class FormPurcAsset
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Depreciation Schedule"
         '
-        'InputDescriptionToolStripMenuItem
+        'XTPNewDepreciation
         '
-        Me.InputDescriptionToolStripMenuItem.Name = "InputDescriptionToolStripMenuItem"
-        Me.InputDescriptionToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.InputDescriptionToolStripMenuItem.Text = "Input Description"
+        Me.XTPNewDepreciation.Controls.Add(Me.GridControl1)
+        Me.XTPNewDepreciation.Controls.Add(Me.PanelControl1)
+        Me.XTPNewDepreciation.Name = "XTPNewDepreciation"
+        Me.XTPNewDepreciation.Size = New System.Drawing.Size(775, 443)
+        Me.XTPNewDepreciation.Text = "Depreciation"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BAddDepreciation)
+        Me.PanelControl1.Controls.Add(Me.BRefreshDepreciation)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.LookAndFeel.SkinName = "Office 2010 Blue"
+        Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(775, 48)
+        Me.PanelControl1.TabIndex = 3
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.DarkSlateBlue
+        Me.LabelControl2.Location = New System.Drawing.Point(14, 13)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(104, 19)
+        Me.LabelControl2.TabIndex = 0
+        Me.LabelControl2.Text = "Depreciation"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl1.Location = New System.Drawing.Point(0, 48)
+        Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2})
+        Me.GridControl1.Size = New System.Drawing.Size(775, 395)
+        Me.GridControl1.TabIndex = 4
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn15, Me.GridColumn13, Me.GridColumn14})
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsFind.AlwaysVisible = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'RepositoryItemButtonEdit2
+        '
+        Me.RepositoryItemButtonEdit2.AutoHeight = False
+        Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
+        '
+        'BRefreshDepreciation
+        '
+        Me.BRefreshDepreciation.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefreshDepreciation.Image = CType(resources.GetObject("BRefreshDepreciation.Image"), System.Drawing.Image)
+        Me.BRefreshDepreciation.Location = New System.Drawing.Point(660, 2)
+        Me.BRefreshDepreciation.Name = "BRefreshDepreciation"
+        Me.BRefreshDepreciation.Size = New System.Drawing.Size(113, 44)
+        Me.BRefreshDepreciation.TabIndex = 1
+        Me.BRefreshDepreciation.Text = "Refresh"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID Depreciation"
+        Me.GridColumn9.FieldName = "id_asset_dep_pps"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Number"
+        Me.GridColumn10.FieldName = "number"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Total Depreciation"
+        Me.GridColumn11.FieldName = "dep_value_tot"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 1
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Date Created"
+        Me.GridColumn12.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn12.FieldName = "created_date"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 2
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Reff Date"
+        Me.GridColumn13.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn13.FieldName = "reff_date"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 3
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Status"
+        Me.GridColumn14.FieldName = "report_status"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 5
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Created by"
+        Me.GridColumn15.FieldName = "created_by"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 4
+        '
+        'BAddDepreciation
+        '
+        Me.BAddDepreciation.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddDepreciation.Image = CType(resources.GetObject("BAddDepreciation.Image"), System.Drawing.Image)
+        Me.BAddDepreciation.Location = New System.Drawing.Point(524, 2)
+        Me.BAddDepreciation.Name = "BAddDepreciation"
+        Me.BAddDepreciation.Size = New System.Drawing.Size(136, 44)
+        Me.BAddDepreciation.TabIndex = 2
+        Me.BAddDepreciation.Text = "New Depreciation"
         '
         'FormPurcAsset
         '
@@ -788,6 +947,13 @@ Partial Class FormPurcAsset
         CType(Me.PanelNavDep, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavDep.ResumeLayout(False)
         Me.PanelNavDep.PerformLayout()
+        Me.XTPNewDepreciation.ResumeLayout(False)
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -859,4 +1025,20 @@ Partial Class FormPurcAsset
     Friend WithEvents ViewMoveHistoryToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents InputDescriptionToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents XTPNewDepreciation As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemButtonEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents BRefreshDepreciation As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BAddDepreciation As DevExpress.XtraEditors.SimpleButton
 End Class
