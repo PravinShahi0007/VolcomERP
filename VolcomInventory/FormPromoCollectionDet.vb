@@ -8,6 +8,7 @@
     Public dt As DataTable
     Dim is_use_discount_code As String = "-1"
     Dim id_price_rule As String = "-1"
+    Dim id_comp_group As String = "-1"
 
     Private Sub FormPromoCollectionDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
