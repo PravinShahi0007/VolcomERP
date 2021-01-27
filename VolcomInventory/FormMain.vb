@@ -15734,8 +15734,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     End Sub
 
     Private Sub NBPromoCollectionMarketplace_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPromoCollectionMarketplace.LinkClicked
+        'close
+        Try
+            FormPromoCollection.Close()
+            FormPromoCollection.Dispose()
+        Catch ex As Exception
+        End Try
         Try
             FormPromoCollection.MdiParent = Me
+            FormPromoCollection.rmt = "286"
             FormPromoCollection.Show()
             FormPromoCollection.WindowState = FormWindowState.Maximized
             FormPromoCollection.Focus()
