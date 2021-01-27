@@ -68,6 +68,8 @@
             TxtDiscountTitle.Text = data.Rows(0)("discount_title").ToString
             is_use_discount_code = data.Rows(0)("is_use_discount_code").ToString
             id_price_rule = data.Rows(0)("price_rule_id").ToString
+            rmt = data.Rows(0)("report_mark_type").ToString
+            '
 
             'properti
             If is_confirm = "2" Then
