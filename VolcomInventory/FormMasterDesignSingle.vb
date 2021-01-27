@@ -1168,7 +1168,6 @@
                 LESampleOrign.Enabled = True
                 'TxtFabrication.Enabled = True
                 SBFabricationBrowse.Enabled = True
-                SLUECoolStorage.Enabled = True
                 GVAdditional.OptionsBehavior.Editable = True
                 TEPrimaryName.Enabled = True
                 SLEDesign.Enabled = True
@@ -1187,7 +1186,6 @@
                 LESampleOrign.Enabled = False
                 'TxtFabrication.Enabled = False
                 SBFabricationBrowse.Enabled = False
-                SLUECoolStorage.Enabled = False
                 'GVAdditional.OptionsBehavior.Editable = False
                 'TEPrimaryName.Enabled = False
                 SLEDesign.Enabled = False
@@ -1221,6 +1219,7 @@
             DEInStoreDet.Enabled = False
             BtnAddRetCode.Enabled = False
             SLELinePlan.Enabled = False
+            SLUECoolStorage.Enabled = False
 
             'comment
             PanelControlComment.Visible = True
