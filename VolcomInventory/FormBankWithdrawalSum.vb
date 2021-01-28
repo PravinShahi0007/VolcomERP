@@ -156,7 +156,7 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_stat
 INNER JOIN tb_pn_det pyd ON pyd.id_pn=py.id_pn AND pyd.`id_currency`='" & SLEType.EditValue.ToString & "' AND pyd.`is_include_total`=1
 INNER JOIN tb_a_acc acc ON acc.id_acc=pyd.id_acc AND acc.is_no_summary=2
 INNER JOIN tb_coa_tag ct ON ct.id_coa_tag=py.id_coa_tag AND ct.id_coa_type='" & id_coa_type & "'
-WHERE py.`id_report_status`!='5' AND py.is_auto_debet='2' AND py.`id_report_status`!='6' AND  DATE(py.`date_payment`)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+WHERE py.`id_report_status`!='5' AND py.`id_report_status`='3' AND py.is_auto_debet='2' AND py.`id_report_status`!='6' AND  DATE(py.`date_payment`)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
             q += " GROUP BY py.id_pn "
 
             'If SLEType.EditValue.ToString = "1" Then

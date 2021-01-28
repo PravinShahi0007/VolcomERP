@@ -61,6 +61,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEGrossupValue = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -93,7 +94,6 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemTextEditPph, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -575,6 +575,18 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 4
         '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Discount"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "discount_for_pph"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.AllowEdit = False
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 6
+        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Pph (%)"
@@ -614,7 +626,8 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn9.FieldName = "pph"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph", "{0:N2}")})
-        Me.GridColumn9.UnboundExpression = "Floor(([amount] + [gross_up_value]) * ([pph_percent] / 100))"
+        Me.GridColumn9.UnboundExpression = "Floor(([amount] + [gross_up_value] - [discount_for_pph]) * ([pph_percent] / 100))" &
+    ""
         Me.GridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 7
@@ -896,13 +909,6 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 453
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Discount"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 6
         '
         'FormBankWithdrawalAttachement
         '

@@ -330,4 +330,8 @@
             viewDetail(GVActive.GetFocusedRowCellValue("id_purc_rec_asset").ToString, "-1", False, False, False, True)
         End If
     End Sub
+
+    Private Sub BAddDepreciation_Click(sender As Object, e As EventArgs) Handles BAddDepreciation.Click
+        FormPurcAssetDep.ShowDialog()
+    End Sub
 End Class
