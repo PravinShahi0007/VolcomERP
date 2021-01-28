@@ -320,6 +320,7 @@ Partial Class FormPurcAssetDep
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Remaining Life (Month)"
+        Me.GridColumn10.FieldName = "rem_life"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 4
