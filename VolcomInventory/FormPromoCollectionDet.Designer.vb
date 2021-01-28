@@ -140,7 +140,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnis_additional_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BtnSync = New DevExpress.XtraEditors.SimpleButton()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CMSDiscCode = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -186,7 +186,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.GCDiscountCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
+        Me.CMSDiscCode.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -1351,22 +1351,22 @@ Partial Class FormPromoCollectionDet
         Me.BtnSync.TabIndex = 19
         Me.BtnSync.Text = "Sync Discount Code"
         '
-        'ContextMenuStrip1
+        'CMSDiscCode
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(108, 48)
+        Me.CMSDiscCode.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.CMSDiscCode.Name = "ContextMenuStrip1"
+        Me.CMSDiscCode.Size = New System.Drawing.Size(153, 70)
         '
         'AddToolStripMenuItem
         '
         Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
-        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AddToolStripMenuItem.Text = "Add"
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'FormPromoCollectionDet
@@ -1428,7 +1428,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.GCDiscountCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
+        Me.CMSDiscCode.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1552,7 +1552,7 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents GridColumnis_additional_view As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtStore As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents CMSDiscCode As ContextMenuStrip
     Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
 End Class
