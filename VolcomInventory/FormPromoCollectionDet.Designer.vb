@@ -19,6 +19,7 @@ Partial Class FormPromoCollectionDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPromoCollectionDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
         Me.TxtDiscountTitle = New DevExpress.XtraEditors.TextEdit()
@@ -37,6 +38,8 @@ Partial Class FormPromoCollectionDet
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtStore = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
@@ -137,8 +140,9 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnis_additional_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BtnSync = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtStore = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.CMSDiscCode = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtDiscountTitle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,6 +158,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -181,7 +186,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.GCDiscountCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMSDiscCode.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -368,6 +373,25 @@ Partial Class FormPromoCollectionDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(251, 200)
         Me.PanelControl1.TabIndex = 4
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(11, 41)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl10.TabIndex = 151
+        Me.LabelControl10.Text = "Store"
+        '
+        'TxtStore
+        '
+        Me.TxtStore.Location = New System.Drawing.Point(82, 38)
+        Me.TxtStore.Name = "TxtStore"
+        Me.TxtStore.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtStore.Properties.Appearance.Options.UseFont = True
+        Me.TxtStore.Properties.ReadOnly = True
+        Me.TxtStore.Size = New System.Drawing.Size(154, 20)
+        Me.TxtStore.TabIndex = 150
         '
         'LabelControl1
         '
@@ -1327,24 +1351,23 @@ Partial Class FormPromoCollectionDet
         Me.BtnSync.TabIndex = 19
         Me.BtnSync.Text = "Sync Discount Code"
         '
-        'TxtStore
+        'CMSDiscCode
         '
-        Me.TxtStore.Location = New System.Drawing.Point(82, 38)
-        Me.TxtStore.Name = "TxtStore"
-        Me.TxtStore.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtStore.Properties.Appearance.Options.UseFont = True
-        Me.TxtStore.Properties.ReadOnly = True
-        Me.TxtStore.Size = New System.Drawing.Size(154, 20)
-        Me.TxtStore.TabIndex = 150
+        Me.CMSDiscCode.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.CMSDiscCode.Name = "ContextMenuStrip1"
+        Me.CMSDiscCode.Size = New System.Drawing.Size(153, 70)
         '
-        'LabelControl10
+        'AddToolStripMenuItem
         '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(11, 41)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(26, 13)
-        Me.LabelControl10.TabIndex = 151
-        Me.LabelControl10.Text = "Store"
+        Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
+        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AddToolStripMenuItem.Text = "Add"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'FormPromoCollectionDet
         '
@@ -1377,6 +1400,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1404,7 +1428,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.GCDiscountCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMSDiscCode.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1528,4 +1552,7 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents GridColumnis_additional_view As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtStore As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CMSDiscCode As ContextMenuStrip
+    Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
 End Class

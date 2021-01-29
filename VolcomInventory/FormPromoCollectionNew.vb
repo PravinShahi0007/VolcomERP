@@ -1,4 +1,5 @@
 ﻿Public Class FormPromoCollectionNew
+    Dim rmt As String = FormPromoCollection.rmt
 
     Sub viewPromoType()
         Dim query As String = "SELECT p.id_promo, p.promo FROM tb_promo p ORDER BY p.id_promo ASC "
@@ -12,13 +13,25 @@
 
     Sub viewStore()
         Cursor = Cursors.WaitCursor
+        'filter
+        Dim cond As String = ""
+        Dim id_vios As String = get_setup_field("shopify_comp_group")
+        If rmt = "250" Then
+            cond = "AND c.id_comp_group='" + id_vios + "' "
+        Else
+            cond = "AND c.id_comp_group!='" + id_vios + "' "
+        End If
         Dim query As String = "SELECT cg.id_comp_group, cg.description
         FROM tb_m_comp c
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        WHERE c.id_commerce_type=2
+        WHERE c.id_commerce_type=2 " + cond + "
         GROUP BY cg.id_comp_group "
         viewSearchLookupQuery(SLEStore, query, "id_comp_group", "description", "id_comp_group")
-        SLEStore.EditValue = Nothing
+        If rmt <> "250" Then
+            SLEStore.EditValue = Nothing
+        Else
+            SLEStore.Enabled = False
+        End If
         Cursor = Cursors.Default
     End Sub
 
