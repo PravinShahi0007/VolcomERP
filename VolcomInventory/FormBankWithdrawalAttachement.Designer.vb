@@ -61,6 +61,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEGrossupValue = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -499,7 +500,7 @@ Partial Class FormBankWithdrawalAttachement
         '
         'GVPurcReq
         '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn21, Me.GridColumn10, Me.GridColumn33, Me.GridColumn4, Me.GridColumn2, Me.GridColumn1, Me.GridColumn7, Me.GridColumn9})
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn21, Me.GridColumn10, Me.GridColumn33, Me.GridColumn4, Me.GridColumn2, Me.GridColumn16, Me.GridColumn1, Me.GridColumn7, Me.GridColumn9})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsFind.AllowFindPanel = False
@@ -574,6 +575,18 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 4
         '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Discount"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "discount_for_pph"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.AllowEdit = False
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 6
+        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Pph (%)"
@@ -598,7 +611,7 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gross_up_value", "{0:N2}")})
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.VisibleIndex = 8
         '
         'RITEGrossupValue
         '
@@ -613,10 +626,11 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn9.FieldName = "pph"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph", "{0:N2}")})
-        Me.GridColumn9.UnboundExpression = "Floor(([amount] + [gross_up_value]) * ([pph_percent] / 100))"
+        Me.GridColumn9.UnboundExpression = "Floor(([amount] + [gross_up_value] - [discount_for_pph]) * ([pph_percent] / 100))" &
+    ""
         Me.GridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 6
+        Me.GridColumn9.VisibleIndex = 7
         '
         'PanelControl3
         '
@@ -1022,4 +1036,5 @@ Partial Class FormBankWithdrawalAttachement
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TEUnit As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

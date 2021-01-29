@@ -85,7 +85,7 @@ Partial Class FormMasterDesignSingle
         Me.GridView17 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.LCoolStorage = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControlUpdateName = New DevExpress.XtraEditors.LabelControl()
         Me.SLELinePlan = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView16 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -290,10 +290,10 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlComment = New DevExpress.XtraEditors.PanelControl()
         Me.BDelComment = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddComment = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPImages = New DevExpress.XtraTab.XtraTabPage()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.XTPImages = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1012,7 +1012,7 @@ Partial Class FormMasterDesignSingle
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl22)
         Me.XtraScrollableControl1.Controls.Add(Me.TEPrimaryName)
         Me.XtraScrollableControl1.Controls.Add(Me.SLUECoolStorage)
-        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl21)
+        Me.XtraScrollableControl1.Controls.Add(Me.LCoolStorage)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControlUpdateName)
         Me.XtraScrollableControl1.Controls.Add(Me.SLELinePlan)
         Me.XtraScrollableControl1.Controls.Add(Me.TELifetime)
@@ -1121,14 +1121,14 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn59.Visible = True
         Me.GridColumn59.VisibleIndex = 0
         '
-        'LabelControl21
+        'LCoolStorage
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(10, 651)
-        Me.LabelControl21.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(62, 13)
-        Me.LabelControl21.TabIndex = 141
-        Me.LabelControl21.Text = "Cool Storage"
+        Me.LCoolStorage.Location = New System.Drawing.Point(10, 651)
+        Me.LCoolStorage.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.LCoolStorage.Name = "LCoolStorage"
+        Me.LCoolStorage.Size = New System.Drawing.Size(62, 13)
+        Me.LCoolStorage.TabIndex = 141
+        Me.LCoolStorage.Text = "Cool Storage"
         '
         'LabelControlUpdateName
         '
@@ -3107,6 +3107,13 @@ Partial Class FormMasterDesignSingle
         Me.BAddComment.TabIndex = 16
         Me.BAddComment.Text = "Add"
         '
+        'XTPImages
+        '
+        Me.XTPImages.Image = CType(resources.GetObject("XTPImages.Image"), System.Drawing.Image)
+        Me.XTPImages.Name = "XTPImages"
+        Me.XTPImages.Size = New System.Drawing.Size(907, 756)
+        Me.XTPImages.Text = "Images"
+        '
         'ViewMenu
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewDel})
@@ -3124,13 +3131,6 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
-        '
-        'XTPImages
-        '
-        Me.XTPImages.Image = CType(resources.GetObject("XTPImages.Image"), System.Drawing.Image)
-        Me.XTPImages.Name = "XTPImages"
-        Me.XTPImages.Size = New System.Drawing.Size(907, 756)
-        Me.XTPImages.Text = "Images"
         '
         'FormMasterDesignSingle
         '
@@ -3559,7 +3559,7 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents GridView17 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LCoolStorage As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPrimaryName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SBFabricationBrowse As DevExpress.XtraEditors.SimpleButton

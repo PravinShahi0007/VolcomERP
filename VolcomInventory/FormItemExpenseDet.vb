@@ -95,15 +95,15 @@ WHERE bo.`year`=YEAR('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yy
         End If
 
         If Not action = "ins" Then
-            'update 
+            'update
             If check_edit_report_status(id_report_status, "157", id) And Not is_view = "1" Then
                 'msh bisa edit
-                query += " AND id_acc_cat='4' "
+                query += " AND (id_acc_cat='4' OR a.id_acc IN (SELECT id_acc FROM tb_item_expense_acc)) "
             Else
                 'tidak bisa edit
             End If
         Else
-            query += " AND id_acc_cat='4' "
+            query += " AND (id_acc_cat='4' OR a.id_acc IN (SELECT id_acc FROM tb_item_expense_acc)) "
         End If
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -376,7 +376,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
             execute_non_query(queryrm, True, "", "", "", "")
 
             FormItemExpense.viewData()
-            FormItemExpense.GVData.FocusedRowHandle = find_row(FormItemExpense.GVData, "id_item_expense", id)
+            'FormItemExpense.GVData.FocusedRowHandle = find_row(FormItemExpense.GVData, "id_item_expense", id)
             actionLoad()
             Cursor = Cursors.Default
         End If

@@ -15330,6 +15330,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
 
     Private Sub NBPromoCollection_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPromoCollection.LinkClicked
         Cursor = Cursors.WaitCursor
+        'close
+        Try
+            FormPromoCollection.Close()
+            FormPromoCollection.Dispose()
+        Catch ex As Exception
+        End Try
         Try
             FormPromoCollection.MdiParent = Me
             FormPromoCollection.Show()
@@ -15722,6 +15728,24 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPolis.Show()
             FormPolis.WindowState = FormWindowState.Maximized
             FormPolis.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBPromoCollectionMarketplace_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPromoCollectionMarketplace.LinkClicked
+        'close
+        Try
+            FormPromoCollection.Close()
+            FormPromoCollection.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormPromoCollection.MdiParent = Me
+            FormPromoCollection.rmt = "286"
+            FormPromoCollection.Show()
+            FormPromoCollection.WindowState = FormWindowState.Maximized
+            FormPromoCollection.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

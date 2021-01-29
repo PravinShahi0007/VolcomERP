@@ -122,6 +122,7 @@ Partial Class FormBankWithdrawalDet
         Me.XTCBBK = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
+        Me.BMutasiValas = New DevExpress.XtraEditors.SimpleButton()
         Me.BCompen = New DevExpress.XtraEditors.SimpleButton()
         Me.BPickDP = New DevExpress.XtraEditors.SimpleButton()
         Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
@@ -140,6 +141,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BViewJurnalBUM = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -682,6 +684,7 @@ Partial Class FormBankWithdrawalDet
         '
         'PanelControl7
         '
+        Me.PanelControl7.Controls.Add(Me.BViewJurnalBUM)
         Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl7.Controls.Add(Me.BtnPrint)
         Me.PanelControl7.Controls.Add(Me.BMark)
@@ -1223,6 +1226,7 @@ Partial Class FormBankWithdrawalDet
         '
         'PCAddDel
         '
+        Me.PCAddDel.Controls.Add(Me.BMutasiValas)
         Me.PCAddDel.Controls.Add(Me.BCompen)
         Me.PCAddDel.Controls.Add(Me.BPickDP)
         Me.PCAddDel.Controls.Add(Me.TEKurs)
@@ -1234,6 +1238,14 @@ Partial Class FormBankWithdrawalDet
         Me.PCAddDel.Name = "PCAddDel"
         Me.PCAddDel.Size = New System.Drawing.Size(1138, 47)
         Me.PCAddDel.TabIndex = 19
+        '
+        'BMutasiValas
+        '
+        Me.BMutasiValas.Location = New System.Drawing.Point(207, 12)
+        Me.BMutasiValas.Name = "BMutasiValas"
+        Me.BMutasiValas.Size = New System.Drawing.Size(75, 23)
+        Me.BMutasiValas.TabIndex = 8911
+        Me.BMutasiValas.Text = "Mutasi Valas"
         '
         'BCompen
         '
@@ -1422,6 +1434,17 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
+        '
+        'BViewJurnalBUM
+        '
+        Me.BViewJurnalBUM.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BViewJurnalBUM.Image = CType(resources.GetObject("BViewJurnalBUM.Image"), System.Drawing.Image)
+        Me.BViewJurnalBUM.Location = New System.Drawing.Point(663, 2)
+        Me.BViewJurnalBUM.Name = "BViewJurnalBUM"
+        Me.BViewJurnalBUM.Size = New System.Drawing.Size(149, 36)
+        Me.BViewJurnalBUM.TabIndex = 21
+        Me.BViewJurnalBUM.Text = "Journal Penyesuaian"
+        Me.BViewJurnalBUM.Visible = False
         '
         'FormBankWithdrawalDet
         '
@@ -1630,4 +1653,6 @@ Partial Class FormBankWithdrawalDet
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LValas As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CEPembelianValas As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BMutasiValas As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BViewJurnalBUM As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -3,9 +3,18 @@
     Public id_report_status As String = "-1"
     Public is_view As String = "-1"
     Public id_coa_type As String = "-1"
+    '
+    Dim is_submit As Boolean = False
+
+    Sub load_summary_type()
+        Dim q As String = "SELECT id_pn_summary_type,pn_summary_type FROM tb_pn_summary_type"
+        viewSearchLookupRepositoryQuery(RISLEStatusRelease, q, 0, "pn_summary_type", "id_pn_summary_type")
+    End Sub
+
     Private Sub FormBankWithdrawalSum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TETotal.EditValue = 0.0
         load_type()
+        load_summary_type()
         DEDateCreated.EditValue = Now
         DEPayment.EditValue = Now
         DEChangeDate.EditValue = Now
@@ -49,31 +58,42 @@ GROUP BY pns.`id_pn_summary`"
                 If id_report_status = "5" Or id_report_status = "6" Then
                     BRelease.Visible = False
                     BCancel.Visible = False
-                    '
-                    LChangeTo.Visible = False
-                    DEChangeDate.Visible = False
-                    BChangeDate.Visible = False
                 Else
                     BCancel.Visible = True
                     BRelease.Visible = True
-                    '
-                    If Not is_view = "1" Then
-                        LChangeTo.Visible = True
-                        DEChangeDate.Visible = True
-                        BChangeDate.Visible = True
-                    Else
-                        LChangeTo.Visible = False
-                        DEChangeDate.Visible = False
-                        BChangeDate.Visible = False
-                    End If
                 End If
                 load_det()
+
+                Dim is_ada_tolakan As Boolean = False
+                For i As Integer = 0 To GVList.RowCount - 1
+                    If GVList.GetRowCellValue(i, "id_pn_summary_type").ToString = "1" Then
+                        'ada tolakan
+                        is_ada_tolakan = True
+                        Exit For
+                    End If
+                Next
+
+                'check submit
+                Dim qc As String = "SELECT * FROM tb_report_mark WHERE id_report='" & id_sum & "' AND report_mark_type='" & If(is_ada_tolakan, "285", "251") & "'"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "'")
+                If dtc.Rows.Count > 0 Then
+                    is_submit = True
+                End If
+
+                If is_submit Then
+                    GCCheck.Visible = False
+                End If
             End If
+            '
+            LChangeTo.Visible = False
+            DEChangeDate.Visible = False
+            BChangeDate.Visible = False
         End If
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+        Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,IF(pnsd.id_pn_summary_type=1 OR pnsd.id_pn_summary_type=3,SUM(pyd.`val_bef_kurs`),0) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+,pnsd.id_pn_summary_det,pnsd.id_pn_summary_type
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -124,7 +144,7 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
         Dim qc As String = "SELECT id_pn_summary FROM tb_pn_summary WHERE id_pn_summary!='" & id_sum & "' AND id_coa_type='" & id_coa_type & "' AND id_currency='" & SLEType.EditValue.ToString & "' AND id_report_status!=5 AND id_report_status!=6 AND DATE(date_payment)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count = 0 Then
-            Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+            Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment,1 AS id_pn_summary_type
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -136,7 +156,7 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_stat
 INNER JOIN tb_pn_det pyd ON pyd.id_pn=py.id_pn AND pyd.`id_currency`='" & SLEType.EditValue.ToString & "' AND pyd.`is_include_total`=1
 INNER JOIN tb_a_acc acc ON acc.id_acc=pyd.id_acc AND acc.is_no_summary=2
 INNER JOIN tb_coa_tag ct ON ct.id_coa_tag=py.id_coa_tag AND ct.id_coa_type='" & id_coa_type & "'
-WHERE py.`id_report_status`!='5' AND py.is_auto_debet='2' AND py.`id_report_status`!='6' AND  DATE(py.`date_payment`)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+WHERE py.`id_report_status`!='5' AND py.`id_report_status`='3' AND py.is_auto_debet='2' AND py.`id_report_status`!='6' AND  DATE(py.`date_payment`)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
             q += " GROUP BY py.id_pn "
 
             'If SLEType.EditValue.ToString = "1" Then
@@ -144,6 +164,7 @@ WHERE py.`id_report_status`!='5' AND py.is_auto_debet='2' AND py.`id_report_stat
             'Else
             '    q += " GROUP BY pyd.id_pn_det "
             'End If
+
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCList.DataSource = dt
             GVList.BestFitColumns()
@@ -162,7 +183,7 @@ WHERE py.`id_report_status`!='5' AND py.is_auto_debet='2' AND py.`id_report_stat
     End Sub
 
     Sub unlock()
-        Dim q As String = "SELECT 'no' AS is_check,pn.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+        Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment, 1 AS id_pn_summary_type
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -206,7 +227,8 @@ VALUES('" & id_coa_type & "','" & SLEType.EditValue.ToString & "','" & Date.Pars
                 q = "CALL gen_number('" & id_sum & "','251')"
                 execute_non_query(q, True, "", "", "", "")
 
-                submit_who_prepared("251", id_sum, id_user)
+                'pindah
+                'submit_who_prepared("251", id_sum, id_user)
 
                 FormBankWithdrawal.view_sum()
                 Close()
@@ -222,8 +244,19 @@ VALUES('" & id_coa_type & "','" & SLEType.EditValue.ToString & "','" & Date.Pars
             execute_non_query(query, True, "", "", "", "")
 
             'nonaktif mark
-            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "251", id_sum)
-            execute_non_query(queryrm, True, "", "", "", "")
+            Dim queryrm = ""
+            Try
+                queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "251", id_sum)
+                execute_non_query(queryrm, True, "", "", "", "")
+            Catch ex As Exception
+            End Try
+
+            'nonaktif mark
+            Try
+                queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "285", id_sum)
+                execute_non_query(queryrm, True, "", "", "", "")
+            Catch ex As Exception
+            End Try
 
             FormBankWithdrawal.view_sum()
             FormBankWithdrawal.GVBBKSummary.FocusedRowHandle = find_row(FormBankWithdrawal.GVBBKSummary, "id_pn_summary", id_sum)
@@ -258,10 +291,11 @@ VALUES('" & id_coa_type & "','" & SLEType.EditValue.ToString & "','" & Date.Pars
 
     Private Sub BRelease_Click(sender As Object, e As EventArgs) Handles BRelease.Click
         'check first
-        Dim qc As String = "SELECT pnsd.id_pn FROM tb_pn_summary_det pnsd 
+        Dim q As String = "SELECT pnsd.id_pn 
+FROM tb_pn_summary_det pnsd 
 INNER JOIN tb_pn pn ON pn.id_pn=pnsd.id_pn
 WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
-        Dim dt As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
             warningCustom("BBK need to be approved.")
         Else
@@ -295,10 +329,29 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
             '    FormReportMark.form_origin = Name
             '    FormReportMark.ShowDialog()
             'End If
-            FormReportMark.id_report = id_sum
-            FormReportMark.report_mark_type = "251"
-            FormReportMark.form_origin = Name
-            FormReportMark.ShowDialog()
+            'check kalau ada tolak
+            Dim qc As String = "SELECT * FROM tb_pn_summary_det WHERE id_pn_summary_type='3' AND id_pn_summary='" & id_sum & "'"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            '
+            If dtc.Rows.Count > 0 Then
+                'ada yang tolak
+                'check dulu attachment mutasi
+                Dim qcu As String = "SELECT * FROM tb_doc WHERE id_report='" & id_sum & "' AND report_mark_Type='285'"
+                Dim dtcu As DataTable = execute_query(qcu, -1, True, "", "", "", "")
+                If dtcu.Rows.Count > 0 Then
+                    FormReportMark.id_report = id_sum
+                    FormReportMark.report_mark_type = "285"
+                    FormReportMark.form_origin = Name
+                    FormReportMark.ShowDialog()
+                Else
+                    warningCustom("Please attach mutasi.")
+                End If
+            Else
+                FormReportMark.id_report = id_sum
+                FormReportMark.report_mark_type = "251"
+                FormReportMark.form_origin = Name
+                FormReportMark.ShowDialog()
+            End If
         End If
     End Sub
 
@@ -355,5 +408,62 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
         End If
 
         GVList.ActiveFilterString = ""
+    End Sub
+
+    Private Sub CMChangeDate_Click(sender As Object, e As EventArgs) Handles CMChangeDate.Click
+        If is_submit Then
+            warningCustom("This summary is already locked")
+        Else
+            GVList.ActiveFilterString = "[is_check]='yes'"
+            If GVList.RowCount > 0 Then
+                FormBankWithdrawalSumDate.ShowDialog()
+            Else
+                warningCustom("Please select data first.")
+            End If
+            GVList.ActiveFilterString = ""
+        End If
+    End Sub
+
+    Private Sub BAttachmentMutasi_Click(sender As Object, e As EventArgs) Handles BAttachmentMutasi.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id_sum
+        FormDocumentUpload.report_mark_type = "285"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TolakToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TolakToolStripMenuItem.Click
+        If is_submit Then
+            warningCustom("This summary is already locked")
+        Else
+            GVList.ActiveFilterString = "[is_check]='yes'"
+            If GVList.RowCount > 0 Then
+                'status tolakan
+                Try
+                    For i = 0 To GVList.RowCount - 1
+                        Dim q As String = "UPDATE tb_pn_summary_det SET id_pn_summary_type='3' WHERE id_pn_summary_det='" & GVList.GetFocusedRowCellValue("id_pn_summary_det").ToString & "'"
+                        execute_non_query(q, True, "", "", "", "")
+                    Next
+                Catch ex As Exception
+                End Try
+                load_det()
+            Else
+                warningCustom("Please select data first.")
+            End If
+            GVList.ActiveFilterString = ""
+        End If
+    End Sub
+
+    Private Sub GVList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVList.RowCellStyle
+        Try
+            If GVList.GetRowCellValue(e.RowHandle, "id_pn_summary_type").ToString = "3" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            ElseIf GVList.GetRowCellValue(e.RowHandle, "id_pn_summary_type").ToString = "2" Then
+                e.Appearance.BackColor = Color.LightYellow
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

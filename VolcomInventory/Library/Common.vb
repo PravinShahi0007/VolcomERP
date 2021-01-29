@@ -1477,6 +1477,20 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
             Return False
         End If
     End Function
+
+    Public Function formIsValidInScroll(ByVal EPNameHere As ErrorProvider, ByVal Scroll As XtraScrollableControl) As Boolean
+        Dim count_error As Integer = 0
+        For Each c As Windows.Forms.Control In Scroll.Controls
+            If Not EPNameHere.GetError(c) = "" Then
+                count_error += 1
+            End If
+        Next
+        If count_error < 1 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
     '==== Validate function
     Public Function isPhoneNumber(ByVal phoneNumber As String)
         Dim pattern As String = "^([\+][0-9]{1,3}[ \.\-])?([\(]{1}[0-9]{2,6}[\)])?([0-9 \.\-\/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$"
@@ -2510,13 +2524,13 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
         'else dollars
 
         If opt = "1" Then
-            ' Clean up dollars.
+            ' Clean up rp.
             Select Case Dollars
                 Case "" : Dollars = "Nol Rupiah"
                 Case Else : Dollars = Dollars & " Rupiah"
             End Select
         ElseIf opt = "6" Then
-            ' Clean up dollars.
+            ' Clean up euro.
             Select Case Dollars
                 Case "" : Dollars = "No euro"
                 Case "One" : Dollars = "One euro"

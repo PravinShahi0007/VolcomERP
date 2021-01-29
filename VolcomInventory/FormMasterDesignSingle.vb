@@ -1152,7 +1152,9 @@
             XTPSize.Visible = False
             XTPLineList.Visible = False
             XTPPrice.Visible = False
-
+            '
+            LCoolStorage.Visible = False
+            SLUECoolStorage.Visible = False
             'comment
             PanelControlComment.Visible = False
 
@@ -1166,7 +1168,6 @@
                 LESampleOrign.Enabled = True
                 'TxtFabrication.Enabled = True
                 SBFabricationBrowse.Enabled = True
-                SLUECoolStorage.Enabled = True
                 GVAdditional.OptionsBehavior.Editable = True
                 TEPrimaryName.Enabled = True
                 SLEDesign.Enabled = True
@@ -1185,7 +1186,6 @@
                 LESampleOrign.Enabled = False
                 'TxtFabrication.Enabled = False
                 SBFabricationBrowse.Enabled = False
-                SLUECoolStorage.Enabled = False
                 'GVAdditional.OptionsBehavior.Editable = False
                 'TEPrimaryName.Enabled = False
                 SLEDesign.Enabled = False
@@ -1219,6 +1219,7 @@
             DEInStoreDet.Enabled = False
             BtnAddRetCode.Enabled = False
             SLELinePlan.Enabled = False
+            SLUECoolStorage.Enabled = False
 
             'comment
             PanelControlComment.Visible = True
@@ -1852,7 +1853,7 @@
             If id_design <> "-1" Then
                 If dupe <> "-1" Then
                     'insert
-                    If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
+                    If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Or Not formIsValidInScroll(EPMasterDesign, XtraScrollableControl1) Then
                         errorInput()
                     Else
                         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -1982,7 +1983,7 @@
                     End If
                 Else
                     'edit
-                    If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
+                    If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Or Not formIsValidInScroll(EPMasterDesign, XtraScrollableControl1) Then
                         errorInput()
                     Else
                         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -2095,7 +2096,7 @@
                 End If
             Else
                 'insert
-                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
+                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Or Not formIsValidInScroll(EPMasterDesign, XtraScrollableControl1) Then
                     errorInput()
                 Else
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
