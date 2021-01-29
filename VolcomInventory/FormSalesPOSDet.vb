@@ -440,6 +440,9 @@ Public Class FormSalesPOSDet
             TxtCodeBillTo.Text = data.Rows(0)("comp_number_bill").ToString
             TxtNameBillTo.Text = data.Rows(0)("comp_name_bill").ToString
             TEKurs.EditValue = data.Rows(0)("kurs_trans")
+            If Not IsDBNull(data.Rows(0)("sales_pos_st_date")) Then
+                DEStocktake.EditValue = data.Rows(0)("sales_pos_st_date")
+            End If
 
             ''detail2
             viewDetail()

@@ -1853,7 +1853,7 @@
             If id_design <> "-1" Then
                 If dupe <> "-1" Then
                     'insert
-                    If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
+                    If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Or Not formIsValidInScroll(EPMasterDesign, XtraScrollableControl1) Then
                         errorInput()
                     Else
                         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -1983,7 +1983,7 @@
                     End If
                 Else
                     'edit
-                    If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
+                    If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Or Not formIsValidInScroll(EPMasterDesign, XtraScrollableControl1) Then
                         errorInput()
                     Else
                         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -2096,7 +2096,7 @@
                 End If
             Else
                 'insert
-                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
+                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Or Not formIsValidInScroll(EPMasterDesign, XtraScrollableControl1) Then
                     errorInput()
                 Else
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
