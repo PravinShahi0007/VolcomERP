@@ -1493,7 +1493,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGRepairReturn" Then
             'Return Repair
             If FormFGRepairReturn.XTCData.SelectedTabPageIndex = 0 Then
-                If FormFGRepairReturn.is_from_vendor = "2" Then
+                If FormFGRepairReturn.is_from_vendor = False Then
                     FormFGRepairReturnDet.action = "ins"
                     FormFGRepairReturnDet.ShowDialog()
                 End If
