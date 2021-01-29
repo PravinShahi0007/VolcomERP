@@ -12,7 +12,39 @@
 
         If is_from_vendor = True Then
             Text = "Receive Repair from Vendor"
+            XTPRepairList.PageVisible = True
+            viewRepairList()
+        Else
+            XTPRepairList.PageVisible = False
         End If
+    End Sub
+
+    Sub viewRepairList()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT a.id_fg_repair, rep.fg_repair_number, rep.fg_repair_date, 
+        CONCAT(v.comp_number, ' - ',v.comp_name) AS `vendor`
+        FROM (	
+	        SELECT rd.id_fg_repair_det, rd.id_fg_repair, COUNT(rd.id_fg_repair_det) AS `qty_repair`, IFNULL(ret.qty,0) AS `qty_return`
+	        FROM tb_fg_repair_det rd
+	        INNER JOIN tb_fg_repair r ON r.id_fg_repair = rd.id_fg_repair
+	        LEFT JOIN (
+		        SELECT retd.id_fg_repair_det, COUNT(retd.id_fg_repair_det) AS `qty` 
+		        FROM tb_fg_repair_return ret
+		        INNER JOIN tb_fg_repair_return_det retd ON retd.id_fg_repair_return = ret.id_fg_repair_return
+		        WHERE ret.id_report_status!=5 AND ret.is_from_vendor=1
+		        GROUP BY retd.id_fg_repair_det
+	        ) ret ON ret.id_fg_repair_det = rd.id_fg_repair_det
+	        WHERE r.id_report_status=6 AND r.is_to_vendor=1
+	        GROUP BY rd.id_fg_repair_det
+	        HAVING qty_repair<>qty_return
+        ) a 
+        INNER JOIN tb_fg_repair rep ON rep.id_fg_repair = a.id_fg_repair
+        INNER JOIN tb_m_comp v ON v.id_drawer_def = rep.id_wh_drawer_to
+        GROUP BY rep.id_fg_repair "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRepairList.DataSource = data
+        GVRepairList.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormFGRepairReturn_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated

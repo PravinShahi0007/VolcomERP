@@ -21,6 +21,7 @@ Public Class FormFGRepairReturnDet
     Public bof_xls_repair As String = get_setup_field("bof_xls_repair_return")
     Dim rmt As String = ""
     Dim is_from_vendor As String = ""
+    Public id_fg_repair As String = "-1"
 
     Dim is_use_unique_code_wh As String = get_setup_field("is_use_unique_code_all")
 

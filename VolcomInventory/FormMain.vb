@@ -1492,8 +1492,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormFGRepairReturn" Then
             'Return Repair
-            FormFGRepairReturnDet.action = "ins"
-            FormFGRepairReturnDet.ShowDialog()
+            If FormFGRepairReturn.XTCData.SelectedTabPageIndex = 0 Then
+                If FormFGRepairReturn.is_from_vendor = "2" Then
+                    FormFGRepairReturnDet.action = "ins"
+                    FormFGRepairReturnDet.ShowDialog()
+                End If
+            Else
+                FormFGRepairReturnDet.id_fg_repair = FormFGRepairReturn.GVRepairList.GetFocusedRowCellValue("id_fg_repair").ToString
+                FormFGRepairReturnDet.action = "ins"
+                FormFGRepairReturnDet.ShowDialog()
+            End If
         ElseIf formName = "FormFGRepairReturnRec" Then
             ''Repair return receive
             If FormFGRepairReturnRec.XTCRepairRec.SelectedTabPageIndex = 1 Then
