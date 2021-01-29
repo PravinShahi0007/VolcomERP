@@ -86,6 +86,7 @@ Partial Class FormViewSalesPOS
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewPriceReconcileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewClosingNoStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -149,7 +150,8 @@ Partial Class FormViewSalesPOS
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ViewClosingNoStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEStocktake = New DevExpress.XtraEditors.DateEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TXTName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -206,11 +208,15 @@ Partial Class FormViewSalesPOS
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStocktake.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStocktake.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl23)
+        Me.GroupGeneralHeader.Controls.Add(Me.DEStocktake)
         Me.GroupGeneralHeader.Controls.Add(Me.TXTName)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelName)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl16)
@@ -345,7 +351,7 @@ Partial Class FormViewSalesPOS
         Me.TxtInvoice.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtInvoice.EditValue = ""
-        Me.TxtInvoice.Location = New System.Drawing.Point(467, 69)
+        Me.TxtInvoice.Location = New System.Drawing.Point(467, 94)
         Me.TxtInvoice.Name = "TxtInvoice"
         Me.TxtInvoice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtInvoice.Properties.Appearance.Options.UseFont = True
@@ -359,7 +365,7 @@ Partial Class FormViewSalesPOS
         'LabelInvoice
         '
         Me.LabelInvoice.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelInvoice.Location = New System.Drawing.Point(416, 72)
+        Me.LabelInvoice.Location = New System.Drawing.Point(416, 97)
         Me.LabelInvoice.Name = "LabelInvoice"
         Me.LabelInvoice.Size = New System.Drawing.Size(35, 13)
         Me.LabelInvoice.TabIndex = 8948
@@ -964,13 +970,19 @@ Partial Class FormViewSalesPOS
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewPriceReconcileToolStripMenuItem, Me.ViewClosingNoStockToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(194, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(194, 48)
         '
         'ViewPriceReconcileToolStripMenuItem
         '
         Me.ViewPriceReconcileToolStripMenuItem.Name = "ViewPriceReconcileToolStripMenuItem"
         Me.ViewPriceReconcileToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.ViewPriceReconcileToolStripMenuItem.Text = "View Price Reconcile"
+        '
+        'ViewClosingNoStockToolStripMenuItem
+        '
+        Me.ViewClosingNoStockToolStripMenuItem.Name = "ViewClosingNoStockToolStripMenuItem"
+        Me.ViewClosingNoStockToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ViewClosingNoStockToolStripMenuItem.Text = "View Closing No Stock"
         '
         'GVItemList
         '
@@ -1534,11 +1546,29 @@ Partial Class FormViewSalesPOS
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
-        'ViewClosingNoStockToolStripMenuItem
+        'LabelControl23
         '
-        Me.ViewClosingNoStockToolStripMenuItem.Name = "ViewClosingNoStockToolStripMenuItem"
-        Me.ViewClosingNoStockToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.ViewClosingNoStockToolStripMenuItem.Text = "View Closing No Stock"
+        Me.LabelControl23.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl23.Location = New System.Drawing.Point(416, 71)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(42, 13)
+        Me.LabelControl23.TabIndex = 8960
+        Me.LabelControl23.Text = "Stoctake"
+        '
+        'DEStocktake
+        '
+        Me.DEStocktake.EditValue = Nothing
+        Me.DEStocktake.Enabled = False
+        Me.DEStocktake.Location = New System.Drawing.Point(467, 67)
+        Me.DEStocktake.Name = "DEStocktake"
+        Me.DEStocktake.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEStocktake.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStocktake.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEStocktake.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStocktake.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStocktake.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEStocktake.Size = New System.Drawing.Size(218, 20)
+        Me.DEStocktake.TabIndex = 8959
         '
         'FormViewSalesPOS
         '
@@ -1616,6 +1646,8 @@ Partial Class FormViewSalesPOS
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStocktake.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStocktake.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1749,4 +1781,6 @@ Partial Class FormViewSalesPOS
     Friend WithEvents GridColumnid_sales_pos_err_prc_ref As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrmt_err_prc_ref As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ViewClosingNoStockToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEStocktake As DevExpress.XtraEditors.DateEdit
 End Class
