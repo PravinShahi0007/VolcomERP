@@ -29,7 +29,7 @@ Partial Class FormPurcAssetDep
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.TECreatedDate = New DevExpress.XtraEditors.TextEdit()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
         Me.DEReffDate = New DevExpress.XtraEditors.DateEdit()
@@ -52,12 +52,17 @@ Partial Class FormPurcAssetDep
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLEDepCoa = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.TECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +70,8 @@ Partial Class FormPurcAssetDep
         CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDepreciation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDepreciation, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLEDepCoa, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -162,7 +169,7 @@ Partial Class FormPurcAssetDep
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.TECreatedDate)
+        Me.PanelControl2.Controls.Add(Me.TECreatedBy)
         Me.PanelControl2.Controls.Add(Me.TENumber)
         Me.PanelControl2.Controls.Add(Me.DECreatedDate)
         Me.PanelControl2.Controls.Add(Me.DEReffDate)
@@ -176,13 +183,13 @@ Partial Class FormPurcAssetDep
         Me.PanelControl2.Size = New System.Drawing.Size(1024, 132)
         Me.PanelControl2.TabIndex = 1
         '
-        'TECreatedDate
+        'TECreatedBy
         '
-        Me.TECreatedDate.Location = New System.Drawing.Point(132, 42)
-        Me.TECreatedDate.Name = "TECreatedDate"
-        Me.TECreatedDate.Properties.ReadOnly = True
-        Me.TECreatedDate.Size = New System.Drawing.Size(293, 20)
-        Me.TECreatedDate.TabIndex = 170
+        Me.TECreatedBy.Location = New System.Drawing.Point(132, 42)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.ReadOnly = True
+        Me.TECreatedBy.Size = New System.Drawing.Size(293, 20)
+        Me.TECreatedBy.TabIndex = 170
         '
         'TENumber
         '
@@ -201,6 +208,7 @@ Partial Class FormPurcAssetDep
         Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DECreatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreatedDate.Properties.ReadOnly = True
         Me.DECreatedDate.Size = New System.Drawing.Size(293, 20)
         Me.DECreatedDate.TabIndex = 169
         '
@@ -268,7 +276,6 @@ Partial Class FormPurcAssetDep
         Me.BLoadAsset.Size = New System.Drawing.Size(1024, 38)
         Me.BLoadAsset.TabIndex = 141
         Me.BLoadAsset.Text = "Load Asset"
-        Me.BLoadAsset.Visible = False
         '
         'GCDepreciation
         '
@@ -276,6 +283,7 @@ Partial Class FormPurcAssetDep
         Me.GCDepreciation.Location = New System.Drawing.Point(0, 132)
         Me.GCDepreciation.MainView = Me.GVDepreciation
         Me.GCDepreciation.Name = "GCDepreciation"
+        Me.GCDepreciation.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEDepCoa})
         Me.GCDepreciation.Size = New System.Drawing.Size(1024, 318)
         Me.GCDepreciation.TabIndex = 142
         Me.GCDepreciation.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDepreciation})
@@ -330,20 +338,21 @@ Partial Class FormPurcAssetDep
         Me.GridColumn3.Caption = "Depreciation COA"
         Me.GridColumn3.DisplayFormat.FormatString = "N0"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "id_acc_dep"
+        Me.GridColumn3.FieldName = "acc_dep"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 5
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "Depreciation COA"
+        Me.GridColumn5.Caption = "ID Depreciation COA"
+        Me.GridColumn5.FieldName = "id_acc_dep"
         Me.GridColumn5.Name = "GridColumn5"
         '
         'GridColumn11
         '
-        Me.GridColumn11.Caption = "Fixed Asset Cost"
-        Me.GridColumn11.FieldName = "total_cost"
+        Me.GridColumn11.Caption = "Acq Cost"
+        Me.GridColumn11.FieldName = "acq_cost"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 2
@@ -359,14 +368,15 @@ Partial Class FormPurcAssetDep
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Accum. Depreciation COA"
-        Me.GridColumn4.FieldName = "id_acc_dep_accum"
+        Me.GridColumn4.FieldName = "acc_dep_accum"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 6
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "Accum. Depreciation COA"
+        Me.GridColumn6.Caption = "ID Accum. Depreciation COA"
+        Me.GridColumn6.FieldName = "id_acc_dep_accum"
         Me.GridColumn6.Name = "GridColumn6"
         '
         'GridColumn7
@@ -378,6 +388,45 @@ Partial Class FormPurcAssetDep
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 7
+        '
+        'RISLEDepCoa
+        '
+        Me.RISLEDepCoa.AutoHeight = False
+        Me.RISLEDepCoa.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLEDepCoa.Name = "RISLEDepCoa"
+        Me.RISLEDepCoa.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Id Coa"
+        Me.GridColumn13.FieldName = "id_acc"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "GridColumn14"
+        Me.GridColumn14.FieldName = "acc_name"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Description"
+        Me.GridColumn15.FieldName = "acc_description"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 2
         '
         'FormPurcAssetDep
         '
@@ -400,7 +449,7 @@ Partial Class FormPurcAssetDep
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.TECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -408,6 +457,8 @@ Partial Class FormPurcAssetDep
         CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDepreciation, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDepreciation, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLEDepCoa, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -438,9 +489,14 @@ Partial Class FormPurcAssetDep
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TECreatedDate As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents DECreatedDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEReffDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents RISLEDepCoa As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
