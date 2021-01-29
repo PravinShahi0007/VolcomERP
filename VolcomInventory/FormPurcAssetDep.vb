@@ -1,6 +1,7 @@
 ﻿Public Class FormPurcAssetDep
     Public id_dep As String = "-1"
     Dim id_report_status As String = "1"
+    Public is_view As String = "-1"
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
@@ -24,6 +25,7 @@
             BMark.Visible = True
             BtnPrint.Visible = True
             DEReffDate.Properties.ReadOnly = True
+            BLoadAsset.Visible = False
             '
             Dim q As String = "SELECT pps.*,emp.employee_name FROM `tb_asset_dep_pps` pps
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
@@ -35,6 +37,9 @@ WHERE id_asset_dep_pps='" & id_dep & "'"
                 DECreatedDate.EditValue = dt.Rows(0)("created_date")
                 DEReffDate.EditValue = dt.Rows(0)("reff_date")
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
+                If dt.Rows(0)("id_report_status").ToString = "6" Then
+                    BtnViewJournal.Visible = True
+                End If
             End If
         End If
 
@@ -169,7 +174,6 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
         If GVDepreciation.RowCount > 0 Then
             makeSafeGV(GVDepreciation)
             Dim jum_row As Integer = 0
-
             'detil
             For i As Integer = 0 To GVDepreciation.RowCount - 1
                 'dep
@@ -181,11 +185,14 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
                 newRow("cc") = "000"
                 newRow("report_number") = TENumber.Text
                 newRow("note") = "Depreciation " & GVDepreciation.GetRowCellValue(i, "asset_name").ToString & "(" & Date.Parse(DEReffDate.EditValue.ToString).ToString("MMMM yyyy") & ")"
-                newRow("debit") = 0
-                newRow("credit") = GVDepreciation.GetRowCellValue(i, "dep_value")
+                newRow("debit") = GVDepreciation.GetRowCellValue(i, "dep_value")
+                newRow("credit") = 0
                 TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
                 GCDraft.RefreshDataSource()
                 GVDraft.RefreshData()
+                GVDraft.BestFitColumns()
+            Next
+            For i As Integer = 0 To GVDepreciation.RowCount - 1
                 'accum
                 jum_row += 1
                 Dim newRow_accum As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
@@ -195,13 +202,12 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
                 newRow_accum("cc") = "000"
                 newRow_accum("report_number") = TENumber.Text
                 newRow_accum("note") = "Accumulation depreciation " & GVDepreciation.GetRowCellValue(i, "asset_name").ToString & "(" & Date.Parse(DEReffDate.EditValue.ToString).ToString("MMMM yyyy") & ")"
-                newRow_accum("debit") = GVDepreciation.GetRowCellValue(i, "dep_value")
-                newRow_accum("credit") = 0
+                newRow_accum("debit") = 0
+                newRow_accum("credit") = GVDepreciation.GetRowCellValue(i, "dep_value")
                 TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow_accum)
                 GCDraft.RefreshDataSource()
                 GVDraft.RefreshData()
             Next
-            GVDraft.BestFitColumns()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -211,5 +217,37 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
             viewBlankJournal()
             viewDraftJournal()
         End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "287"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_dep
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            INNER JOIN tb_a_acc_trans a ON a.id_acc_trans=ad.id_acc_trans 
+            WHERE ad.report_mark_type=287 AND ad.id_report=" + id_dep + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
