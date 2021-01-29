@@ -45,7 +45,7 @@ WHERE id_asset_dep_pps='" & id_dep & "'"
         Dim q As String = "SELECT ass.useful_life,ass.useful_life,ppsd.remaining_life AS life,ppsd.remaining_life, ass.id_acc_dep, ass.id_acc_dep_accum,accdep.acc_description AS acc_dep,accacum.acc_description AS acc_dep_accum,accdep.acc_name AS acc_dep_name,accacum.acc_name AS acc_dep_accum_name
 ,ass.`asset_name`,ass.acq_date,ppsd.remaining_life
 ,ass.id_acc_dep
-,ass.acq_cost,ppsd.dep_value,ppsd.accum_dep_value
+,ass.acq_cost,ppsd.dep_value,ppsd.accum_dep
 FROM `tb_asset_dep_pps_det` ppsd
 INNER JOIN tb_a_acc accdep ON accdep.id_acc=ppsd.id_acc_dep
 INNER JOIN tb_a_acc accacum ON accacum.id_acc=ppsd.id_acc_dep_accum
