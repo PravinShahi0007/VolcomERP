@@ -3718,6 +3718,12 @@
     <Compile Include="FormPromoCollection.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPromoCollectionAddDisc.Designer.vb">
+      <DependentUpon>FormPromoCollectionAddDisc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoCollectionAddDisc.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPromoCollectionDet.Designer.vb">
       <DependentUpon>FormPromoCollectionDet.vb</DependentUpon>
     </Compile>
@@ -3788,6 +3794,12 @@
       <DependentUpon>FormPurcAsset.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcAsset.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcAssetDep.Designer.vb">
+      <DependentUpon>FormPurcAssetDep.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetDep.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurcAssetDepDetail.Designer.vb">
@@ -10980,6 +10992,9 @@
     <EmbeddedResource Include="FormPromoCollection.resx">
       <DependentUpon>FormPromoCollection.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoCollectionAddDisc.resx">
+      <DependentUpon>FormPromoCollectionAddDisc.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPromoCollectionDet.resx">
       <DependentUpon>FormPromoCollectionDet.vb</DependentUpon>
     </EmbeddedResource>
@@ -11015,6 +11030,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAsset.resx">
       <DependentUpon>FormPurcAsset.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetDep.resx">
+      <DependentUpon>FormPurcAssetDep.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAssetDepDetail.resx">
       <DependentUpon>FormPurcAssetDepDetail.vb</DependentUpon>

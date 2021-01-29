@@ -8,6 +8,8 @@
         view_season()
         view_division()
 
+        TEProductCode.EditValue = ""
+
         loaded = True
     End Sub
 
@@ -207,7 +209,19 @@
 
                 If x <> i Then
                     For j = 0 To data_tmp.Columns.Count - 1
-                        If data_tmp.Columns(j).ColumnName <> "id_design" And data_tmp.Columns(j).ColumnName <> "id_product" And data_tmp.Columns(j).ColumnName <> "Handle" Then
+                        If data_tmp.Columns(j).ColumnName <> "id_design" And
+                            data_tmp.Columns(j).ColumnName <> "id_product" And
+                            data_tmp.Columns(j).ColumnName <> "Handle" And
+                            data_tmp.Columns(j).ColumnName <> "Variant Grams" And
+                            data_tmp.Columns(j).ColumnName <> "Variant Inventory Qty" And
+                            data_tmp.Columns(j).ColumnName <> "Variant Fulfillment Service" And
+                            data_tmp.Columns(j).ColumnName <> "Variant Price" And
+                            data_tmp.Columns(j).ColumnName <> "Variant Compare At Price" And
+                            data_tmp.Columns(j).ColumnName <> "Variant Requires Shipping" And
+                            data_tmp.Columns(j).ColumnName <> "Variant Taxable" And
+                            data_tmp.Columns(j).ColumnName <> "Variant Weight Unit" And
+                            data_tmp.Columns(j).ColumnName <> "Variant Inventory Tracker" And
+                            data_tmp.Columns(j).ColumnName <> "Variant Inventory Policy" Then
                             If data_tmp.Rows(i)("id_design").ToString = data_tmp.Rows(x)("id_design").ToString And data_tmp.Rows(i)(data_tmp.Columns(j)).ToString = data_tmp.Rows(x)(data_tmp.Columns(j)).ToString Then
                                 data_tmp.Rows(i)(data_tmp.Columns(j)) = DBNull.Value
                             End If
@@ -250,7 +264,14 @@
                         Dim image As String = trimSpace(images(j).ToString)
 
                         If Not image = "" Then
-                            If select_id_design = data.Rows(i)("id_design").ToString Then
+                            Dim tmp_id_design As String = ""
+
+                            Try
+                                tmp_id_design = data.Rows(i)("id_design").ToString
+                            Catch ex As Exception
+                            End Try
+
+                            If select_id_design = tmp_id_design Then
                                 data.Rows(i)("Image Src") = image
                                 data.Rows(i)("Image Position") = image.Split("_")(2).Replace(".jpg", "")
 
@@ -357,7 +378,7 @@
                     'build concat
                     For k = 0 To l_list_all.Count - 1
                         If l_list_all(k).Contains("`") Then
-                            q_concat += "IFNULL(" + l_list_all(k) + ", ''), "
+                            q_concat += "IFNULL(CAST(" + l_list_all(k) + " AS CHAR CHARACTER SET utf8), ''), "
                         Else
                             q_concat += "'" + l_list_all(k) + "', "
                         End If
@@ -1009,7 +1030,7 @@
         clear_data()
 
         If SLUEOnlineStore.EditValue.ToString = "5" Or SLUEOnlineStore.EditValue.ToString = "8" Then
-            SLUETemplate.Visible = True
+            'SLUETemplate.Visible = True
         Else
             SLUETemplate.Visible = False
         End If

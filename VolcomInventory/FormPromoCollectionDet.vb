@@ -8,6 +8,8 @@
     Public dt As DataTable
     Dim is_use_discount_code As String = "-1"
     Dim id_price_rule As String = "-1"
+    Dim id_comp_group As String = "-1"
+    Dim id_api_type As String = "-1"
 
     Private Sub FormPromoCollectionDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -68,6 +70,9 @@
             TxtDiscountTitle.Text = data.Rows(0)("discount_title").ToString
             is_use_discount_code = data.Rows(0)("is_use_discount_code").ToString
             id_price_rule = data.Rows(0)("price_rule_id").ToString
+            rmt = data.Rows(0)("report_mark_type").ToString
+            id_api_type = data.Rows(0)("id_api_type").ToString
+            '
 
             'properti
             If is_confirm = "2" Then
@@ -217,6 +222,7 @@
                 DEEnd.Enabled = True
             End If
             TxtPromoName.Enabled = True
+            GCDiscountCode.ContextMenuStrip = CMSDiscCode
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -231,6 +237,7 @@
             DEStart.Enabled = False
             DEEnd.Enabled = False
             TxtPromoName.Enabled = False
+            GCDiscountCode.ContextMenuStrip = Nothing
         End If
 
         'reset propose
@@ -611,17 +618,33 @@ WHERE c.id_ol_promo_collection = '" + id + "' "
     End Sub
 
     Private Sub BtnSync_Click(sender As Object, e As EventArgs) Handles BtnSync.Click
-        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
-            FormMain.SplashScreenManager1.ShowWaitForm()
+        If id_api_type = "1" Then
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            End If
+            FormMain.SplashScreenManager1.SetWaitFormCaption("Sync Discount Code")
+            Try
+                Dim vios As New ClassShopifyApi()
+                vios.get_discount_code_addition(id, id_price_rule)
+            Catch ex As Exception
+                stopCustom("Error sync : " + ex.ToString)
+            End Try
+            viewDiscountCodeList()
+            FormMain.SplashScreenManager1.CloseWaitForm()
+        Else
+            stopCustom("Sync code is not available for this store")
         End If
-        FormMain.SplashScreenManager1.SetWaitFormCaption("Sync Discount Code")
-        Try
-            Dim vios As New ClassShopifyApi()
-            vios.get_discount_code_addition(id, id_price_rule)
-        Catch ex As Exception
-            stopCustom("Error sync : " + ex.ToString)
-        End Try
-        viewDiscountCodeList()
-        FormMain.SplashScreenManager1.CloseWaitForm()
+    End Sub
+
+    Private Sub AddToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddToolStripMenuItem.Click
+        If id_api_type = "2" Then
+
+        End If
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        If id_api_type = "2" Then
+
+        End If
     End Sub
 End Class
