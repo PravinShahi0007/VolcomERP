@@ -49,6 +49,15 @@ Public Class FormFGRepairReturnDet
             DDBPrint.Enabled = False
             DEForm.Text = view_date(0)
             TxtCodeCompFrom.Focus()
+
+            'receive repair from vendor
+            If id_fg_repair <> "-1" Then
+                BtnBrowseFrom.Enabled = False
+                BtnBrowseTo.Enabled = False
+                TxtCodeCompFrom.Enabled = False
+                TxtCodeCompTo.Enabled = False
+
+            End If
         ElseIf action = "upd" Then
             XTPSummary.PageVisible = True
             XtraTabControl1.SelectedTabPageIndex = 1
@@ -706,9 +715,12 @@ Public Class FormFGRepairReturnDet
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     BtnSave.Enabled = False
+                    If id_fg_repair = "-1" Then
+                        id_fg_repair = "NULL"
+                    End If
                     'main query
-                    Dim query As String = "INSERT INTO tb_fg_repair_return(id_wh_drawer_from, id_wh_drawer_to, fg_repair_return_number, fg_repair_return_date, fg_repair_return_note, id_report_status, is_from_vendor, is_use_unique_code) 
-                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("29") + "', NOW(), '" + fg_repair_return_note + "', '1', " + is_from_vendor + ", '" + is_use_unique_code_wh + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_fg_repair_return(id_wh_drawer_from, id_wh_drawer_to, fg_repair_return_number, fg_repair_return_date, fg_repair_return_note, id_report_status, is_from_vendor, is_use_unique_code, id_fg_repair) 
+                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("29") + "', NOW(), '" + fg_repair_return_note + "', '1', " + is_from_vendor + ", '" + is_use_unique_code_wh + "'," + id_fg_repair + "); SELECT LAST_INSERT_ID(); "
                     id_fg_repair_return = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_sales("29")
 
