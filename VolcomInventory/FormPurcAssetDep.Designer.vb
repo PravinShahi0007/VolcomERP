@@ -381,6 +381,8 @@ Partial Class FormPurcAssetDep
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Accum. Depreciation Value"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn12.FieldName = "accum_dep"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
