@@ -918,6 +918,7 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         If GVTHR.RowCount > 0 Then
             FormBankWithdrawalDet.id_pay_type = "2"
             FormBankWithdrawalDet.report_mark_type = "192"
+            FormBankWithdrawalDet.id_coa_tag = GVTHR.GetRowCellValue(0, "id_coa_tag").ToString
             FormBankWithdrawalDet.ShowDialog()
         Else
             warningCustom("Please select item first.")
