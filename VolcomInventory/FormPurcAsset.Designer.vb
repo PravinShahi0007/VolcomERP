@@ -91,10 +91,11 @@ Partial Class FormPurcAsset
         Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPNewDepreciation = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCDepPPS = New DevExpress.XtraGrid.GridControl()
+        Me.GVDepPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -127,8 +128,8 @@ Partial Class FormPurcAsset
         CType(Me.PanelNavDep, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavDep.SuspendLayout()
         Me.XTPNewDepreciation.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCDepPPS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDepPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -782,32 +783,32 @@ Partial Class FormPurcAsset
         '
         'XTPNewDepreciation
         '
-        Me.XTPNewDepreciation.Controls.Add(Me.GridControl1)
+        Me.XTPNewDepreciation.Controls.Add(Me.GCDepPPS)
         Me.XTPNewDepreciation.Controls.Add(Me.PanelControl1)
         Me.XTPNewDepreciation.Name = "XTPNewDepreciation"
         Me.XTPNewDepreciation.Size = New System.Drawing.Size(775, 443)
         Me.XTPNewDepreciation.Text = "Depreciation"
         '
-        'GridControl1
+        'GCDepPPS
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 48)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2})
-        Me.GridControl1.Size = New System.Drawing.Size(775, 395)
-        Me.GridControl1.TabIndex = 4
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GCDepPPS.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDepPPS.Location = New System.Drawing.Point(0, 48)
+        Me.GCDepPPS.MainView = Me.GVDepPPS
+        Me.GCDepPPS.Name = "GCDepPPS"
+        Me.GCDepPPS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2})
+        Me.GCDepPPS.Size = New System.Drawing.Size(775, 395)
+        Me.GCDepPPS.TabIndex = 4
+        Me.GCDepPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDepPPS})
         '
-        'GridView1
+        'GVDepPPS
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn15, Me.GridColumn13, Me.GridColumn14})
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsFind.AlwaysVisible = True
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GVDepPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn16, Me.GridColumn11, Me.GridColumn12, Me.GridColumn15, Me.GridColumn13, Me.GridColumn14})
+        Me.GVDepPPS.GridControl = Me.GCDepPPS
+        Me.GVDepPPS.Name = "GVDepPPS"
+        Me.GVDepPPS.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDepPPS.OptionsBehavior.Editable = False
+        Me.GVDepPPS.OptionsFind.AlwaysVisible = True
+        Me.GVDepPPS.OptionsView.ShowGroupPanel = False
         '
         'GridColumn9
         '
@@ -823,13 +824,23 @@ Partial Class FormPurcAsset
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
         '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Created By"
+        Me.GridColumn16.FieldName = "employee_name"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 1
+        '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Total Depreciation"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "dep_value_tot"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 1
+        Me.GridColumn11.VisibleIndex = 4
         '
         'GridColumn12
         '
@@ -847,7 +858,7 @@ Partial Class FormPurcAsset
         Me.GridColumn15.FieldName = "created_by"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 4
+        Me.GridColumn15.VisibleIndex = 5
         '
         'GridColumn13
         '
@@ -865,7 +876,7 @@ Partial Class FormPurcAsset
         Me.GridColumn14.FieldName = "report_status"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 5
+        Me.GridColumn14.VisibleIndex = 6
         '
         'RepositoryItemButtonEdit2
         '
@@ -948,8 +959,8 @@ Partial Class FormPurcAsset
         Me.PanelNavDep.ResumeLayout(False)
         Me.PanelNavDep.PerformLayout()
         Me.XTPNewDepreciation.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCDepPPS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDepPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -1028,8 +1039,8 @@ Partial Class FormPurcAsset
     Friend WithEvents XTPNewDepreciation As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCDepPPS As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDepPPS As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents RepositoryItemButtonEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents BRefreshDepreciation As DevExpress.XtraEditors.SimpleButton
@@ -1041,4 +1052,5 @@ Partial Class FormPurcAsset
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BAddDepreciation As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

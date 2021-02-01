@@ -176,6 +176,7 @@
         report.id_pre = If(SLUEReportStatus.EditValue.ToString = "6", "-1", "1")
 
         report.XLNumber.Text = TENumber.Text
+        report.XLDate.Text = report.XLDate.Text.Replace("[date]", TECreatedAt.Text)
         report.XLPeriod.Text = report.XLPeriod.Text.Replace("[period_from]", DEDateFrom.Text)
         report.XLPeriod.Text = report.XLPeriod.Text.Replace("[period_to]", DEDateTo.Text)
 

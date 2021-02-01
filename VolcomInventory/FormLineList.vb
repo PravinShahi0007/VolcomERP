@@ -7,7 +7,7 @@
     Dim str As System.IO.Stream
 
     Private Sub FormLineList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewSeason()
+        viewType()
 
         'col
         Dim qry As String = "SELECT * FROM tb_col_line_list l "
@@ -52,12 +52,33 @@
 
     'view season
     Sub viewSeason()
+        Dim id_type As String = "-1"
+        Try
+            id_type = SLEMechType.EditValue.ToString
+        Catch ex As Exception
+            id_type = "-1"
+        End Try
+        Dim cond As String = ""
+        If id_type = "1" Then
+            'merch
+            cond += "AND b.is_md=1 "
+        Else
+            'non md
+            cond += "AND b.is_md=2 "
+        End If
         Dim query As String = "SELECT * FROM tb_season a "
         query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
         query += "WHERE b.id_range >0 "
-        query += "AND b.is_md='1' "
+        query += cond
         query += "ORDER BY b.range DESC"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
+    End Sub
+
+    Sub viewType()
+        Dim query As String = "SELECT 1 AS `id_type`, 'Merch.' AS `type`
+UNION ALL
+SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
+        viewSearchLookupQuery(SLEMechType, query, "id_type", "type", "id_type")
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
@@ -537,5 +558,9 @@
 
     Private Sub CEBreakSize_EditValueChanged(sender As Object, e As EventArgs) Handles CEBreakSize.EditValueChanged
         resetview()
+    End Sub
+
+    Private Sub SLEMechType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEMechType.EditValueChanged
+        viewSeason()
     End Sub
 End Class
