@@ -100,7 +100,7 @@ CEIL(TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) +
   )) AS life
 ,ass.`asset_name`,ass.acq_date,ass.`useful_life`-(SELECT life) AS rem_life
 ,id_acc_dep
-,ass.acq_cost,ass.acq_cost/ass.useful_life AS dep_value,IFNULL(accum_dep.accum_dep,0.00) AS accum_dep
+,ass.acq_cost,ROUND(ass.acq_cost/ass.useful_life,2) AS dep_value,IFNULL(accum_dep.accum_dep,0.00) AS accum_dep
 FROM tb_purc_rec_asset ass
 INNER JOIN tb_a_acc accdep ON accdep.id_acc=ass.id_acc_dep
 INNER JOIN tb_a_acc accacum ON accacum.id_acc=ass.id_acc_dep_accum
