@@ -88,6 +88,8 @@ Partial Class FormFGRepairReturnDet
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
+        Me.TxtRefNo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,6 +125,7 @@ Partial Class FormFGRepairReturnDet
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtRefNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -366,7 +369,7 @@ Partial Class FormFGRepairReturnDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 74)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 97)
         Me.GroupGeneralHeader.TabIndex = 301
         '
         'TxtNameCompTo
@@ -468,6 +471,8 @@ Partial Class FormFGRepairReturnDet
         'PanelHeaderLeft
         '
         Me.PanelHeaderLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelHeaderLeft.Controls.Add(Me.LabelControl3)
+        Me.PanelHeaderLeft.Controls.Add(Me.TxtRefNo)
         Me.PanelHeaderLeft.Controls.Add(Me.TxtNumber)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl5)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl7)
@@ -475,14 +480,14 @@ Partial Class FormFGRepairReturnDet
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelHeaderLeft.Location = New System.Drawing.Point(606, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
-        Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 70)
+        Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 93)
         Me.PanelHeaderLeft.TabIndex = 8899
         '
         'TxtNumber
         '
         Me.TxtNumber.EditValue = ""
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(73, 31)
+        Me.TxtNumber.Location = New System.Drawing.Point(73, 59)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.EditValueChangedDelay = 1
         Me.TxtNumber.Properties.ReadOnly = True
@@ -492,7 +497,7 @@ Partial Class FormFGRepairReturnDet
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(21, 34)
+        Me.LabelControl5.Location = New System.Drawing.Point(21, 62)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl5.TabIndex = 155
@@ -523,9 +528,9 @@ Partial Class FormFGRepairReturnDet
         Me.GroupControlItemList.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlItemList.Controls.Add(Me.XtraTabControl1)
         Me.GroupControlItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 74)
+        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 97)
         Me.GroupControlItemList.Name = "GroupControlItemList"
-        Me.GroupControlItemList.Size = New System.Drawing.Size(859, 277)
+        Me.GroupControlItemList.Size = New System.Drawing.Size(859, 254)
         Me.GroupControlItemList.TabIndex = 302
         '
         'XtraTabControl1
@@ -534,7 +539,7 @@ Partial Class FormFGRepairReturnDet
         Me.XtraTabControl1.Location = New System.Drawing.Point(20, 2)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPScan
-        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 273)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 250)
         Me.XtraTabControl1.TabIndex = 3
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary})
         '
@@ -543,7 +548,7 @@ Partial Class FormFGRepairReturnDet
         Me.XTPScan.Controls.Add(Me.GCScan)
         Me.XTPScan.Controls.Add(Me.PanelNavBarcode)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(831, 245)
+        Me.XTPScan.Size = New System.Drawing.Size(831, 222)
         Me.XTPScan.Text = "Scan Product"
         '
         'GCScan
@@ -552,7 +557,7 @@ Partial Class FormFGRepairReturnDet
         Me.GCScan.Location = New System.Drawing.Point(0, 33)
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
-        Me.GCScan.Size = New System.Drawing.Size(831, 212)
+        Me.GCScan.Size = New System.Drawing.Size(831, 189)
         Me.GCScan.TabIndex = 3
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
@@ -811,6 +816,26 @@ Partial Class FormFGRepairReturnDet
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'TxtRefNo
+        '
+        Me.TxtRefNo.EditValue = ""
+        Me.TxtRefNo.Enabled = False
+        Me.TxtRefNo.Location = New System.Drawing.Point(73, 33)
+        Me.TxtRefNo.Name = "TxtRefNo"
+        Me.TxtRefNo.Properties.EditValueChangedDelay = 1
+        Me.TxtRefNo.Properties.ReadOnly = True
+        Me.TxtRefNo.Size = New System.Drawing.Size(172, 20)
+        Me.TxtRefNo.TabIndex = 163
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(21, 36)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(41, 13)
+        Me.LabelControl3.TabIndex = 164
+        Me.LabelControl3.Text = "Ref. No."
+        '
         'FormFGRepairReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -868,6 +893,7 @@ Partial Class FormFGRepairReturnDet
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtRefNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -940,4 +966,6 @@ Partial Class FormFGRepairReturnDet
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
     Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtRefNo As DevExpress.XtraEditors.TextEdit
 End Class
