@@ -8749,6 +8749,12 @@
     <Compile Include="ReportProposeEmpSalaryCompare.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPurcAssetDep.Designer.vb">
+      <DependentUpon>ReportPurcAssetDep.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPurcAssetDep.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPurcOrder.Designer.vb">
       <DependentUpon>ReportPurcOrder.vb</DependentUpon>
     </Compile>
