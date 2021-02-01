@@ -1492,8 +1492,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormFGRepairReturn" Then
             'Return Repair
-            FormFGRepairReturnDet.action = "ins"
-            FormFGRepairReturnDet.ShowDialog()
+            If FormFGRepairReturn.XTCData.SelectedTabPageIndex = 0 Then
+                If FormFGRepairReturn.is_from_vendor = False Then
+                    FormFGRepairReturnDet.action = "ins"
+                    FormFGRepairReturnDet.ShowDialog()
+                End If
+            Else
+                FormFGRepairReturnDet.id_fg_repair = FormFGRepairReturn.GVRepairList.GetFocusedRowCellValue("id_fg_repair").ToString
+                FormFGRepairReturnDet.action = "ins"
+                FormFGRepairReturnDet.ShowDialog()
+            End If
         ElseIf formName = "FormFGRepairReturnRec" Then
             ''Repair return receive
             If FormFGRepairReturnRec.XTCRepairRec.SelectedTabPageIndex = 1 Then
@@ -7905,7 +7913,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGRepairRec" Then
             print(FormFGRepairRec.GCRepairRec, "Receive Repair Product")
         ElseIf formName = "FormFGRepairReturn" Then
-            print(FormFGRepairReturn.GCRepairReturn, "Return Repair Product")
+            If FormFGRepairReturn.XTCData.SelectedTabPageIndex = 0 Then
+                print(FormFGRepairReturn.GCRepairReturn, "Return Repair Product")
+            Else
+                print(FormFGRepairReturn.GCRepairList, "Repair List")
+            End If
         ElseIf formName = "FormFGRepairReturnRec" Then
             print(FormFGRepairReturnRec.GCRepairRec, "Receive Repair Product (WH)")
         ElseIf formName = "FormEmpEmail" Then
@@ -10122,7 +10134,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormFGRepairRec.viewRepairList()
             End If
         ElseIf formName = "FormFGRepairReturn" Then
-            FormFGRepairReturn.viewData()
+            If FormFGRepairReturn.XTCData.SelectedTabPageIndex = 0 Then
+                FormFGRepairReturn.viewData()
+            Else
+                FormFGRepairReturn.viewRepairList()
+            End If
         ElseIf formName = "FormEmpEmail" Then
             FormEmpEmail.viewEmployee("-1")
         ElseIf formName = "FormFGRepairReturnRec" Then

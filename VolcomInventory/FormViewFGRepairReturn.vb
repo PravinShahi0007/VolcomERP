@@ -47,6 +47,7 @@
         TxtCodeCompTo.Text = data.Rows(0)("comp_number_to").ToString
         TxtNameCompTo.Text = data.Rows(0)("comp_name_to").ToString
         is_from_vendor = data.Rows(0)("is_from_vendor").ToString
+        TxtRefNo.Text = data.Rows(0)("fg_repair_number").ToString
         If is_from_vendor = "1" Then
             rmt = "141"
         Else
@@ -367,5 +368,7 @@
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub TxtNumber_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNumber.EditValueChanged
 
+    End Sub
 End Class
