@@ -24,19 +24,19 @@
         Dim query As String = "SELECT a.id_fg_repair, rep.fg_repair_number, rep.fg_repair_date, 
         CONCAT(v.comp_number, ' - ',v.comp_name) AS `vendor`
         FROM (	
-	        SELECT rd.id_fg_repair_det, rd.id_fg_repair, COUNT(rd.id_fg_repair_det) AS `qty_repair`, IFNULL(ret.qty,0) AS `qty_return`
-	        FROM tb_fg_repair_det rd
-	        INNER JOIN tb_fg_repair r ON r.id_fg_repair = rd.id_fg_repair
-	        LEFT JOIN (
-		        SELECT retd.id_fg_repair_det, COUNT(retd.id_fg_repair_det) AS `qty` 
-		        FROM tb_fg_repair_return ret
-		        INNER JOIN tb_fg_repair_return_det retd ON retd.id_fg_repair_return = ret.id_fg_repair_return
-		        WHERE ret.id_report_status!=5 AND ret.is_from_vendor=1
-		        GROUP BY retd.id_fg_repair_det
-	        ) ret ON ret.id_fg_repair_det = rd.id_fg_repair_det
-	        WHERE r.id_report_status=6 AND r.is_to_vendor=1
-	        GROUP BY rd.id_fg_repair_det
-	        HAVING qty_repair<>qty_return
+          SELECT rd.id_product, rd.id_fg_repair, COUNT(rd.id_fg_repair_det) AS `qty_repair`, IFNULL(ret.qty,0) AS `qty_return`
+          FROM tb_fg_repair_det rd
+          INNER JOIN tb_fg_repair r ON r.id_fg_repair = rd.id_fg_repair
+          LEFT JOIN (
+             SELECT retd.id_product, ret.id_fg_repair, COUNT(retd.id_product) AS `qty` 
+             FROM tb_fg_repair_return ret
+             INNER JOIN tb_fg_repair_return_det retd ON retd.id_fg_repair_return = ret.id_fg_repair_return
+             WHERE ret.id_report_status!=5 AND ret.is_from_vendor=1
+             GROUP BY retd.id_product, ret.id_fg_repair
+          ) ret ON ret.id_product = rd.id_product AND ret.id_fg_repair = r.id_fg_repair
+          WHERE r.id_report_status=6 AND r.is_to_vendor=1 AND r.fg_repair_date>='2021-01-29'
+          GROUP BY rd.id_product, rd.id_fg_repair
+          HAVING qty_repair<>qty_return
         ) a 
         INNER JOIN tb_fg_repair rep ON rep.id_fg_repair = a.id_fg_repair
         INNER JOIN tb_m_comp v ON v.id_drawer_def = rep.id_wh_drawer_to
@@ -153,5 +153,9 @@
         If GVRepairReturn.RowCount > 0 And GVRepairReturn.FocusedRowHandle >= 0 Then
             FormMain.but_edit()
         End If
+    End Sub
+
+    Private Sub XTCData_Click(sender As Object, e As EventArgs) Handles XTCData.Click
+
     End Sub
 End Class

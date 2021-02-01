@@ -56,7 +56,19 @@ Public Class FormFGRepairReturnDet
                 BtnBrowseTo.Enabled = False
                 TxtCodeCompFrom.Enabled = False
                 TxtCodeCompTo.Enabled = False
-
+                'repair data
+                Dim rep As New ClassFGRepair()
+                Dim qry_rep As String = rep.queryMain("AND r.id_fg_repair='" + id_fg_repair + "' ", "2")
+                Dim data_rep As DataTable = execute_query(qry_rep, -1, True, "", "", "", "")
+                id_wh_drawer_from = data_rep.Rows(0)("id_wh_drawer_to").ToString
+                id_wh_drawer_to = data_rep.Rows(0)("id_wh_drawer_from").ToString
+                TxtCodeCompFrom.Text = data_rep.Rows(0)("comp_number_to").ToString
+                TxtNameCompFrom.Text = data_rep.Rows(0)("comp_name_to").ToString
+                TxtCodeCompTo.Text = data_rep.Rows(0)("comp_number_from").ToString
+                TxtNameCompTo.Text = data_rep.Rows(0)("comp_name_from").ToString
+                TxtRefNo.Text = data_rep.Rows(0)("fg_repair_number").ToString
+                viewDetail()
+                codeAvailableIns()
             End If
         ElseIf action = "upd" Then
             XTPSummary.PageVisible = True
@@ -83,6 +95,7 @@ Public Class FormFGRepairReturnDet
             TxtNameCompTo.Text = data.Rows(0)("comp_name_to").ToString
             is_from_vendor = data.Rows(0)("is_from_vendor").ToString
             is_use_unique_code_wh = data.Rows(0)("is_use_unique_code").ToString
+            TxtRefNo.Text = data.Rows(0)("fg_repair_number").ToString
 
             If is_from_vendor = "1" Then
                 rmt = "141"
@@ -270,13 +283,41 @@ Public Class FormFGRepairReturnDet
         SplashScreenManager1.ShowWaitForm()
         dt.Clear()
 
+        'unique
         Dim query As String = ""
-        If is_use_unique_code_wh = "1" Then
-            query = "CALL view_stock_fg_unique_with_table('0', '" + id_comp_from + "', '" + id_wh_drawer_from + "')"
+        If id_fg_repair = "-1" Then
+            If is_use_unique_code_wh = "1" Then
+                query = "CALL view_stock_fg_unique_with_table('0', '" + id_comp_from + "', '" + id_wh_drawer_from + "')"
+            Else
+                query = "CALL view_stock_fg_unique_repair() "
+            End If
         Else
-            query = "CALL view_stock_fg_unique_repair() "
+            query = "SELECT rd.`id_pl_prod_order_rec_det_unique`,rd.id_product, prod.product_full_code AS `product_code`, u.pl_prod_order_det_counting AS `counting_code`, u.pl_prod_order_det_counting AS `product_counting_code`, 
+            CONCAT(prod.product_full_code, u.pl_prod_order_det_counting) AS `product_full_code`, (SELECT product_full_code) AS `code`,
+            d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.design_cop AS `bom_unit_price`,
+            0 AS qty, 2 AS `is_rec`, d.is_old_design,
+            prc.id_design_price, prc.design_price, prc.id_design_price_type, prc.design_price_type, prc.id_design_cat, prc.design_cat 
+            FROM tb_fg_repair_det rd
+            INNER JOIN tb_pl_prod_order_det_counting u ON u.id_pl_prod_order_det_unique = rd.id_pl_prod_order_rec_det_unique
+            INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
+            INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+            INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+            LEFT JOIN( 
+             Select * FROM ( 
+                Select price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                price.id_design_price_type, price_type.design_price_type,
+                cat.id_design_cat, cat.design_cat
+                From tb_m_design_price price 
+                INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
+                WHERE price.is_active_wh=1 AND price.design_price_start_date <= NOW() 
+              ORDER BY price.design_price_start_date DESC, price.id_design_price DESC 
+             ) a 
+             GROUP BY a.id_design 
+            ) prc ON prc.id_design = prod.id_design 
+            WHERE rd.id_fg_repair=" + id_fg_repair + " AND d.is_old_design=2 "
         End If
-
         dt = execute_query(query, -1, True, "", "", "", "")
 
         'not unique 
@@ -523,6 +564,7 @@ Public Class FormFGRepairReturnDet
             Report.LRecNumber.Text = TxtNumber.Text
             Report.LRecDate.Text = DEForm.Text
             Report.LabelNote.Text = MENote.Text
+            Report.LabelRefNo.Text = TxtRefNo.Text
             If id_type = "1" Then
                 Report.XrPanel2.Visible = False
             End If
@@ -655,7 +697,7 @@ Public Class FormFGRepairReturnDet
 	                SELECT rd.id_product, COUNT(rd.id_product) AS `qty_in`
 	                FROM tb_fg_repair_return r 
 	                INNER JOIN tb_fg_repair_return_det rd ON rd.id_fg_repair_return = r.id_fg_repair_return
-	                WHERE r.is_from_vendor=1 AND r.id_wh_drawer_from=" + id_wh_drawer_from + " AND r.id_report_status=6
+	                WHERE r.is_from_vendor=1 AND r.id_fg_repair=" + id_fg_repair + " AND r.id_report_status!=5
 	                GROUP BY rd.id_product
                 ) rin ON rin.id_product = rd.id_product
                 LEFT JOIN (
@@ -664,10 +706,10 @@ Public Class FormFGRepairReturnDet
 	                ORDER BY design_price_start_date DESC) prc
 	                GROUP BY id_design
                 ) prc ON prc.id_design = p.id_design
-                WHERE r.is_to_vendor=1 AND r.id_wh_drawer_to=" + id_wh_drawer_from + " AND r.id_report_status=6
+                WHERE r.is_to_vendor=1 AND r.id_fg_repair=" + id_fg_repair + "
                 GROUP BY rd.id_product "
             Else
-                query_stock = "call view_stock_fg('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
+                query_stock = "call view_stock_fg_for_invoice('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
             End If
             Dim data_stock As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
             Dim tb1 = data_view.AsEnumerable()
@@ -791,6 +833,9 @@ Public Class FormFGRepairReturnDet
                     'refresh data
                     FormFGRepairReturn.viewData()
                     FormFGRepairReturn.GVRepairReturn.FocusedRowHandle = find_row(FormFGRepairReturn.GVRepairReturn, "id_fg_repair_return", id_fg_repair_return)
+                    If id_fg_repair <> "-1" Then
+                        FormFGRepairReturn.viewRepairList()
+                    End If
                     action = "upd"
                     actionLoad()
 
