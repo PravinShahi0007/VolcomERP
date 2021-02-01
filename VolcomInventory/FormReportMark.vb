@@ -9233,9 +9233,17 @@ WHERE pps.id_additional_cost_pps='" & id_report & "'"
             End If
 
             If id_status_reportx = "6" Then
+                'masukkan ke tabel depresiasi
+                Dim qi As String = "INSERT INTO `tb_purc_rec_asset_dep`(`id_purc_rec_asset`,`id_asset_dep_pps`,`period`,`amount`)
+SELECT psd.id_purc_rec_asset,psd.id_asset_dep_pps,ps.`reff_date`,psd.dep_value
+FROM `tb_asset_dep_pps_det` psd
+INNER JOIN tb_asset_dep_pps ps ON ps.`id_asset_dep_pps`=psd.`id_asset_dep_pps`
+WHERE psd.id_asset_dep_pps='" & id_report & "'"
+                execute_non_query(qi, True, "", "", "", "")
+
                 'main journal
-                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) 
-                VALUES ('','" + report_number + "','0','" + id_user + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status,date_reference) 
+                VALUES ('','" + report_number + "','0','" + id_user + "', NOW(), 'Auto Posting', '6', (SELECT reff_date FROM tb_asset_dep_pps WHERE id_asset_dep_pps='" & id_report & "')); SELECT LAST_INSERT_ID(); "
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
@@ -9252,7 +9260,8 @@ FROM tb_asset_dep_pps_det dep
 INNER JOIN tb_asset_dep_pps dep_head ON dep_head.id_asset_dep_pps=dep.id_asset_dep_pps
 INNER JOIN tb_purc_rec_asset a ON a.id_purc_rec_asset = dep.id_purc_rec_asset
 WHERE dep.id_asset_dep_pps='" + id_report + "'"
-                execute_non_query(qjd, True, "", "", "", "")
+                Console.WriteLine("Insert jurnal")
+                'execute_non_query(qjd, True, "", "", "", "")
             End If
 
             'update status

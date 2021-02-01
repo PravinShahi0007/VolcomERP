@@ -48,7 +48,7 @@ WHERE id_asset_dep_pps='" & id_dep & "'"
 
     Sub load_det()
         Dim q As String = "SELECT ass.useful_life,ass.useful_life,ppsd.remaining_life AS life,ppsd.remaining_life, ass.id_acc_dep, ass.id_acc_dep_accum,accdep.acc_description AS acc_dep,accacum.acc_description AS acc_dep_accum,accdep.acc_name AS acc_dep_name,accacum.acc_name AS acc_dep_accum_name
-,ass.`asset_name`,ass.acq_date,ppsd.remaining_life
+,ass.`asset_name`,ass.acq_date,ppsd.remaining_life AS rem_life
 ,ass.id_acc_dep
 ,ass.acq_cost,ppsd.dep_value,ppsd.accum_dep
 FROM `tb_asset_dep_pps_det` ppsd
@@ -70,7 +70,7 @@ WHERE ppsd.id_asset_dep_pps='" & id_dep & "'"
 
     Private Sub BLoadAsset_Click(sender As Object, e As EventArgs) Handles BLoadAsset.Click
         Dim qc As String = "SELECT * FROM `tb_asset_dep_pps`
-WHERE DATE_FORMAT(NOW(),'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%m%Y') AND id_report_status=6"
+WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%m%Y') AND id_report_status=6"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
         If dtc.Rows.Count > 0 Or Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") = "2020-01-31" Then
@@ -100,7 +100,7 @@ CEIL(TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) +
   )) AS life
 ,ass.`asset_name`,ass.acq_date,ass.`useful_life`-(SELECT life) AS rem_life
 ,id_acc_dep
-,ass.acq_cost,ass.acq_cost/ass.useful_life AS dep_value,IFNULL(accum_dep.accum_dep,0.00) AS accum_dep_value
+,ass.acq_cost,ass.acq_cost/ass.useful_life AS dep_value,IFNULL(accum_dep.accum_dep,0.00) AS accum_dep
 FROM tb_purc_rec_asset ass
 INNER JOIN tb_a_acc accdep ON accdep.id_acc=ass.id_acc_dep
 INNER JOIN tb_a_acc accacum ON accacum.id_acc=ass.id_acc_dep_accum
@@ -127,7 +127,7 @@ CEIL(TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) + DATEDIFF(@end_date,ass.`a
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         'check bulan sebelumnya udh belum or ada pending (pending waktu teken add)
         Dim qc As String = "SELECT * FROM `tb_asset_dep_pps`
-WHERE DATE_FORMAT(NOW(),'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%m%Y') AND id_report_status=6"
+WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%m%Y') AND id_report_status=6"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count > 0 Or Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") = "2020-01-31" Then
             If GVDepreciation.RowCount = 0 Then
@@ -143,7 +143,7 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
                         If Not i = 0 Then
                             q += ","
                         End If
-                        q += "('" & id_dep & "','" & GVDepreciation.GetRowCellValue(i, "id_purc_rec_asset").ToString & "','" & GVDepreciation.GetRowCellValue(i, "id_acc_dep").ToString & "','" & GVDepreciation.GetRowCellValue(i, "id_acc_dep_accum").ToString & "','" & decimalSQL(GVDepreciation.GetRowCellValue(i, "id_acc_dep_accum").ToString) & "','" & GVDepreciation.GetRowCellValue(i, "rem_life").ToString & "','" & decimalSQL(GVDepreciation.GetRowCellValue(i, "dep_value").ToString) & "')"
+                        q += "('" & id_dep & "','" & GVDepreciation.GetRowCellValue(i, "id_purc_rec_asset").ToString & "','" & GVDepreciation.GetRowCellValue(i, "id_acc_dep").ToString & "','" & GVDepreciation.GetRowCellValue(i, "id_acc_dep_accum").ToString & "','" & decimalSQL(GVDepreciation.GetRowCellValue(i, "accum_dep").ToString) & "','" & GVDepreciation.GetRowCellValue(i, "rem_life").ToString & "','" & decimalSQL(GVDepreciation.GetRowCellValue(i, "dep_value").ToString) & "')"
                     Next
                     execute_non_query(q, True, "", "", "", "")
                     '
