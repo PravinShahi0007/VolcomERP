@@ -598,6 +598,7 @@ Public Class FormFGRepairReturnDet
             Report.LRecNumber.Text = TxtNumber.Text
             Report.LRecDate.Text = DEForm.Text
             Report.LabelNote.Text = MENote.Text
+            Report.LabelRefNo.Text = TxtRefNo.Text
             If id_type = "1" Then
                 Report.XrPanel2.Visible = False
             End If
