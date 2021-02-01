@@ -82,8 +82,10 @@ WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffD
                 warningCustom("Depreciation for this month already created")
             Else
                 Dim q As String = "SET @end_date='" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "';
-SELECT ass.useful_life,0 AS id_asset_dep_pps_det, ass.id_purc_rec_asset, ass.id_acc_dep, ass.id_acc_dep_accum,accdep.acc_description AS acc_dep,accacum.acc_description AS acc_dep_accum,accdep.acc_name AS acc_dep_name,accacum.acc_name AS acc_dep_accum_name,
-CEIL(TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) +
+SELECT ass.useful_life,0 AS id_asset_dep_pps_det, ass.id_purc_rec_asset, ass.id_acc_dep, ass.id_acc_dep_accum
+,accdep.acc_description AS acc_dep,accacum.acc_description AS acc_dep_accum
+,accdep.acc_name AS acc_dep_name,accacum.acc_name AS acc_dep_accum_name
+,CEIL(TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) +
   DATEDIFF(
     @end_date,
     ass.`acq_date` + INTERVAL
@@ -100,7 +102,9 @@ CEIL(TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) +
   )) AS life
 ,ass.`asset_name`,ass.acq_date,ass.`useful_life`-(SELECT life) AS rem_life
 ,id_acc_dep
-,ass.acq_cost,ROUND(ass.acq_cost/ass.useful_life,2) AS dep_value,IFNULL(accum_dep.accum_dep,0.00) AS accum_dep
+,IFNULL(accum_dep.accum_dep,0.00) AS accum_dep
+,ass.acq_cost
+,IF((SELECT rem_life)=0,(ass.acq_cost-IFNULL(accum_dep.accum_dep,0.00)),ROUND(ass.acq_cost/ass.useful_life,2)) AS dep_value
 FROM tb_purc_rec_asset ass
 INNER JOIN tb_a_acc accdep ON accdep.id_acc=ass.id_acc_dep
 INNER JOIN tb_a_acc accacum ON accacum.id_acc=ass.id_acc_dep_accum
@@ -249,5 +253,9 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
             warningCustom("Auto journal not found.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
     End Sub
 End Class
