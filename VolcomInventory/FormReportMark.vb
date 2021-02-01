@@ -9260,8 +9260,8 @@ FROM tb_asset_dep_pps_det dep
 INNER JOIN tb_asset_dep_pps dep_head ON dep_head.id_asset_dep_pps=dep.id_asset_dep_pps
 INNER JOIN tb_purc_rec_asset a ON a.id_purc_rec_asset = dep.id_purc_rec_asset
 WHERE dep.id_asset_dep_pps='" + id_report + "'"
-                Console.WriteLine("Insert jurnal")
-                'execute_non_query(qjd, True, "", "", "", "")
+                'Console.WriteLine("Insert jurnal")
+                execute_non_query(qjd, True, "", "", "", "")
             End If
 
             'update status

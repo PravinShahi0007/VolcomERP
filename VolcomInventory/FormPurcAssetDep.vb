@@ -256,6 +256,29 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        ReportPurcAssetDep.id_dep = id_dep
+        ReportPurcAssetDep.dt = GCDepreciation.DataSource
+        Dim Report As New ReportPurcAssetDep()
 
+
+        'creating And saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVDepreciation.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVDepreciation.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVDepreciation)
+
+        'Parse Val
+        Report.LNumber.Text = TENumber.Text.ToUpper
+        Report.LDateCreated.Text = DECreatedDate.Text.ToUpper
+        Report.LENDPeriod.Text = DEReffDate.Text.ToUpper
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
     End Sub
 End Class

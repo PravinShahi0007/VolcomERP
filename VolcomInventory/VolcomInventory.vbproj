@@ -13981,6 +13981,9 @@
     <EmbeddedResource Include="ReportProposeEmpSalaryCompare.resx">
       <DependentUpon>ReportProposeEmpSalaryCompare.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportPurcAssetDep.resx">
+      <DependentUpon>ReportPurcAssetDep.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcOrder.resx">
       <DependentUpon>ReportPurcOrder.vb</DependentUpon>
     </EmbeddedResource>
