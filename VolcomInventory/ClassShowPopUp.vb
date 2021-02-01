@@ -410,6 +410,9 @@
         ElseIf report_mark_type = "283" Then
             ' closing no stock
             FormSalesPOSClosingNoStock.Close()
+        ElseIf report_mark_type = "287" Then
+            ' depresiasi
+            FormPurcAssetDep.Close()
         End If
     End Sub
     Sub show()
@@ -1375,6 +1378,11 @@ GROUP BY rec.`id_prod_order`"
             FormSalesPOSClosingNoStock.id = id_report
             FormSalesPOSClosingNoStock.is_view = "1"
             FormSalesPOSClosingNoStock.ShowDialog()
+        ElseIf report_mark_type = "287" Then
+            'depresiasi
+            FormPurcAssetDep.is_view = "1"
+            FormPurcAssetDep.id_dep = id_report
+            FormPurcAssetDep.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2456,6 +2464,12 @@ GROUP BY rec.`id_prod_order`"
             'closing no stok
             table_name = "tb_sales_pos_oos_recon"
             field_id = "id_sales_pos_oos_recon"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "287" Then
+            'depresiasi
+            table_name = "tb_asset_dep_pps"
+            field_id = "id_asset_dep_pps"
             field_number = "number"
             field_date = "created_date"
         Else
