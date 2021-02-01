@@ -381,7 +381,7 @@ Partial Class FormPurcAssetDep
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Accum. Depreciation Value"
-        Me.GridColumn12.FieldName = "accum_dep_value"
+        Me.GridColumn12.FieldName = "accum_dep"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 3
