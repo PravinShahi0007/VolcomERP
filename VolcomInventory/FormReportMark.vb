@@ -8791,7 +8791,7 @@ WHERE (pnsd.id_pn_summary_type=1 OR pnsd.id_pn_summary_type=3) AND pnsd.id_pn_su
                 Dim date_reference As String = DateTime.Parse(FormSalesBranchDet.DESalesDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim date_created As String = DateTime.Parse(FormSalesBranchDet.DECreatedDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
-                VALUES ('','" + report_number + "','13','" + id_user_prepared + "', '" + date_created + "','" + date_reference + "',  'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                VALUES ('','" + report_number + "','25','" + id_user_prepared + "', '" + date_created + "','" + date_reference + "',  'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
