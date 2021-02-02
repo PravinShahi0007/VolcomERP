@@ -7150,6 +7150,16 @@ INNER JOIN tb_purc_req fcs ON fcs.`id_purc_req`='" & id_report & "' AND nu.`repo
             Catch ex As Exception
                 errorProcess()
             End Try
+        ElseIf form_par = "FormPurcReqList" Then
+            'Purc Request fix Asset
+            Try
+                FormPurcReqList.MdiParent = FormMain
+                FormPurcReqList.Show()
+                FormPurcReqList.WindowState = FormWindowState.Maximized
+                FormPurcReqList.Focus()
+            Catch ex As Exception
+                errorProcess()
+            End Try
         Else
             found = False
             stopCustom("Not found")
