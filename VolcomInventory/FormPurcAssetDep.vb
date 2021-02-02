@@ -3,6 +3,17 @@
     Dim id_report_status As String = "1"
     Public is_view As String = "-1"
 
+    Sub load_unit()
+        Dim query As String = "SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
+        '        query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
+        'UNION ALL
+        'SELECT ad.`id_comp`,c.`comp_number`,c.`comp_name` FROM `tb_a_acc_trans_det` ad
+        'INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
+        'GROUP BY ad.id_comp"
+        viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
+        SLEUnit.EditValue = "1"
+    End Sub
+
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
     End Sub
@@ -12,6 +23,7 @@
     End Sub
 
     Private Sub FormPurcAssetDep_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_unit()
         DEReffDate.EditValue = Now
         DECreatedDate.EditValue = Now
         '
@@ -25,6 +37,7 @@
             BMark.Visible = True
             BtnPrint.Visible = True
             DEReffDate.Properties.ReadOnly = True
+            SLEUnit.Properties.ReadOnly = True
             BLoadAsset.Visible = False
             '
             Dim q As String = "SELECT pps.*,emp.employee_name FROM `tb_asset_dep_pps` pps
@@ -37,6 +50,7 @@ WHERE id_asset_dep_pps='" & id_dep & "'"
                 DECreatedDate.EditValue = dt.Rows(0)("created_date")
                 DEReffDate.EditValue = dt.Rows(0)("reff_date")
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
+                SLEUnit.EditValue = dt.Rows(0)("id_coa_tag").ToString
                 If dt.Rows(0)("id_report_status").ToString = "6" Then
                     BtnViewJournal.Visible = True
                 End If
@@ -73,7 +87,7 @@ WHERE ppsd.id_asset_dep_pps='" & id_dep & "'"
 WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%m%Y') AND id_report_status=6"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
-        If dtc.Rows.Count > 0 Or Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") = "2020-01-31" Then
+        If dtc.Rows.Count > 0 Or Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") = "2021-01-31" Then
             'check dulu sudah input belum
             qc = "SELECT * FROM tb_asset_dep_pps WHERE reff_date='" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND id_report_status!=5"
             Dim dtd As DataTable = execute_query(qc, -1, True, "", "", "", "")
@@ -116,12 +130,14 @@ LEFT JOIN
     GROUP BY id_purc_rec_asset
 )accum_dep ON accum_dep.id_purc_rec_asset=ass.id_purc_rec_asset
 WHERE 
+ass.is_active=1 AND ass.id_coa_tag='" & SLEUnit.EditValue.ToString & "' AND
 CEIL(TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) + DATEDIFF(@end_date,ass.`acq_date` + INTERVAL TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) MONTH) / DATEDIFF(ass.`acq_date` + INTERVAL TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) + 1 MONTH,ass.`acq_date` + INTERVAL TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) MONTH)) 
 <=ass.`useful_life` AND ass.acq_date<=@end_date AND ass.acq_date>='2020-01-01'"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
                 GCDepreciation.DataSource = dt
                 GVDepreciation.BestFitColumns()
                 DEReffDate.Properties.ReadOnly = True
+                SLEUnit.Properties.ReadOnly = True
             End If
         Else
             warningCustom("Last month depreciation is not posted yet.")
@@ -133,13 +149,13 @@ CEIL(TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) + DATEDIFF(@end_date,ass.`a
         Dim qc As String = "SELECT * FROM `tb_asset_dep_pps`
 WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%m%Y') AND id_report_status=6"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-        If dtc.Rows.Count > 0 Or Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") = "2020-01-31" Then
+        If dtc.Rows.Count > 0 Or Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") = "2021-01-31" Then
             If GVDepreciation.RowCount = 0 Then
                 warningCustom("Please load depreciation first")
             Else
                 If id_dep = "-1" Then 'new
-                    Dim q As String = "INSERT INTO `tb_asset_dep_pps`(created_date,created_by,reff_date)
-VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'); SELECT LAST_INSERT_ID(); "
+                    Dim q As String = "INSERT INTO `tb_asset_dep_pps`(created_date,created_by,reff_date,id_coa_tag)
+VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEUnit.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                     id_dep = execute_query(q, 0, True, "", "", "", "")
                     'det
                     q = "INSERT INTO tb_asset_dep_pps_det(`id_asset_dep_pps`,`id_purc_rec_asset`,`id_acc_dep`,`id_acc_dep_accum`,`accum_dep`,`remaining_life`,`dep_value`) VALUES"
@@ -276,6 +292,7 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
         Report.LNumber.Text = TENumber.Text.ToUpper
         Report.LDateCreated.Text = DECreatedDate.Text.ToUpper
         Report.LENDPeriod.Text = DEReffDate.Text.ToUpper
+        Report.Lunit.Text = SLEUnit.Text.ToUpper
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
