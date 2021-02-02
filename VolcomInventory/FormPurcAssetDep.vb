@@ -84,7 +84,7 @@ WHERE ppsd.id_asset_dep_pps='" & id_dep & "'"
 
     Private Sub BLoadAsset_Click(sender As Object, e As EventArgs) Handles BLoadAsset.Click
         Dim qc As String = "SELECT * FROM `tb_asset_dep_pps`
-WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%m%Y') AND id_report_status=6"
+WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%m%Y') AND id_report_status=6 AND id_coa_tag='" & SLEUnit.EditValue.ToString & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
         If dtc.Rows.Count > 0 Or Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") = "2021-01-31" Then
@@ -147,7 +147,7 @@ CEIL(TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) + DATEDIFF(@end_date,ass.`a
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         'check bulan sebelumnya udh belum or ada pending (pending waktu teken add)
         Dim qc As String = "SELECT * FROM `tb_asset_dep_pps`
-WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%m%Y') AND id_report_status=6"
+WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%m%Y') AND id_report_status=6 AND id_coa_tag='" & SLEUnit.EditValue.ToString & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count > 0 Or Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") = "2021-01-31" Then
             If GVDepreciation.RowCount = 0 Then
