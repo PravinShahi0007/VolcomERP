@@ -40,6 +40,8 @@
         FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 "
         If Not SLEUnit.EditValue.ToString = "1" Then
             query += " AND a.id_coa_type=2 "
+        Else
+            query += " AND a.id_coa_type=1 "
         End If
         viewSearchLookupQuery(SLEAccountFixedAsset, query, "id_acc", "acc_description", "id_acc")
         viewSearchLookupQuery(SLEDep, query, "id_acc", "acc_description", "id_acc")
