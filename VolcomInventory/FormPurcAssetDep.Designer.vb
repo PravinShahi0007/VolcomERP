@@ -312,6 +312,7 @@ Partial Class FormPurcAssetDep
         Me.GVDepreciation.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn3, Me.GridColumn5, Me.GridColumn11, Me.GridColumn12, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7})
         Me.GVDepreciation.GridControl = Me.GCDepreciation
         Me.GVDepreciation.Name = "GVDepreciation"
+        Me.GVDepreciation.OptionsView.ShowFooter = True
         Me.GVDepreciation.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -381,6 +382,8 @@ Partial Class FormPurcAssetDep
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Accum. Depreciation Value"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn12.FieldName = "accum_dep"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
@@ -407,6 +410,7 @@ Partial Class FormPurcAssetDep
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "dep_value"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dep_value", "{0:N2}")})
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 7
         '
