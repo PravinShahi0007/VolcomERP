@@ -641,6 +641,9 @@
         ElseIf report_mark_type = "283" Then
             'closing no stok
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sales_pos_oos_recon WHERE id_sales_pos_oos_recon = '{0}'", id_report)
+        ElseIf report_mark_type = "287" Then
+            'Depresiasi
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_asset_dep_pps WHERE id_asset_dep_pps = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -7568,7 +7571,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 SELECT * FROM
                 (
 	                /* Per row */
-	                SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`,pn.id_comp AS id_vendor, cf.id_comp,SUM(pnd.`qty`) AS `qty`,IF(SUM(pnd.value)<0,0,SUM(pnd.value)) AS `debit`,IF(SUM(pnd.value)>0,0,-SUM(pnd.value)) AS `credit`,pnd.id_currency,pnd.kurs,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs)<0,0,SUM(pnd.value_bef_kurs))) AS `debit_valas`,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs)>0,0,-SUM(pnd.value_bef_kurs))) AS `credit_valas`,pnd.`info_design` AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
+	                SELECT '" & id_acc_trans & "' AS id_acc_trans,pnd.id_acc AS `id_acc`,pn.id_comp AS id_vendor, cf.id_comp,SUM(pnd.`qty`) AS `qty`,IF(SUM(pnd.value)<0,0,SUM(pnd.value)) AS `debit`,IF(SUM(pnd.value)>0,0,-SUM(pnd.value)) AS `credit`,pnd.id_currency,pnd.kurs,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs)<0,0,SUM(pnd.value_bef_kurs))) AS `debit_valas`,IF(pnd.id_currency=1,0,IF(SUM(pnd.value_bef_kurs)>0,0,-SUM(pnd.value_bef_kurs))) AS `credit_valas`,CONCAT(pnd.`info_design`,' (Invoice no : ',pnd.inv_number,')') AS `note`,189,pn.id_pn_fgpo, pn.number, pnd.report_mark_type, pnd.id_report, pnd.report_number, comp.comp_number
 	                FROM tb_pn_fgpo_det pnd
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
 	                INNER JOIN tb_pn_fgpo pn ON pnd.id_pn_fgpo=pn.id_pn_fgpo
@@ -9222,6 +9225,47 @@ WHERE pps.id_additional_cost_pps='" & id_report & "'"
 
             'update status
             query = String.Format("UPDATE tb_sales_pos_oos_recon SET id_report_status='{0}' WHERE id_sales_pos_oos_recon ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "287" Then
+            'depresiasi
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'masukkan ke tabel depresiasi
+                Dim qi As String = "INSERT INTO `tb_purc_rec_asset_dep`(`id_purc_rec_asset`,`id_asset_dep_pps`,`period`,`amount`)
+SELECT psd.id_purc_rec_asset,psd.id_asset_dep_pps,ps.`reff_date`,psd.dep_value
+FROM `tb_asset_dep_pps_det` psd
+INNER JOIN tb_asset_dep_pps ps ON ps.`id_asset_dep_pps`=psd.`id_asset_dep_pps`
+WHERE psd.id_asset_dep_pps='" & id_report & "'"
+                execute_non_query(qi, True, "", "", "", "")
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status,date_reference) 
+                VALUES ('','" + report_number + "','0','" + id_user + "', NOW(), 'Auto Posting', '6', (SELECT reff_date FROM tb_asset_dep_pps WHERE id_asset_dep_pps='" & id_report & "')); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+            SELECT '" + id_acc_trans + "', dep.id_acc_dep, dep.dep_value, 0, CONCAT('DEPRECIATION - ',a.asset_name,'(',DATE_FORMAT(dep_head.reff_date,'%M %Y'),')'), 287, dep_head.id_asset_dep_pps, dep_head.number
+FROM tb_asset_dep_pps_det dep
+INNER JOIN tb_asset_dep_pps dep_head ON dep_head.id_asset_dep_pps=dep.id_asset_dep_pps
+INNER JOIN tb_purc_rec_asset a ON a.id_purc_rec_asset = dep.id_purc_rec_asset
+WHERE dep.id_asset_dep_pps='" + id_report + "'
+UNION ALL
+SELECT '" + id_acc_trans + "', dep.id_acc_dep_accum, 0, dep.dep_value,  CONCAT('ACCUM. DEPRECIATION - ',a.asset_name,'(',DATE_FORMAT(dep_head.reff_date,'%M %Y'),')'), 287, dep_head.id_asset_dep_pps, dep_head.number
+FROM tb_asset_dep_pps_det dep
+INNER JOIN tb_asset_dep_pps dep_head ON dep_head.id_asset_dep_pps=dep.id_asset_dep_pps
+INNER JOIN tb_purc_rec_asset a ON a.id_purc_rec_asset = dep.id_purc_rec_asset
+WHERE dep.id_asset_dep_pps='" + id_report + "'"
+                'Console.WriteLine("Insert jurnal")
+                execute_non_query(qjd, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_asset_dep_pps SET id_report_status='{0}' WHERE id_asset_dep_pps ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

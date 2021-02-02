@@ -1492,8 +1492,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormFGRepairReturn" Then
             'Return Repair
-            FormFGRepairReturnDet.action = "ins"
-            FormFGRepairReturnDet.ShowDialog()
+            If FormFGRepairReturn.XTCData.SelectedTabPageIndex = 0 Then
+                If FormFGRepairReturn.is_from_vendor = False Then
+                    FormFGRepairReturnDet.action = "ins"
+                    FormFGRepairReturnDet.ShowDialog()
+                End If
+            Else
+                FormFGRepairReturnDet.id_fg_repair = FormFGRepairReturn.GVRepairList.GetFocusedRowCellValue("id_fg_repair").ToString
+                FormFGRepairReturnDet.action = "ins"
+                FormFGRepairReturnDet.ShowDialog()
+            End If
         ElseIf formName = "FormFGRepairReturnRec" Then
             ''Repair return receive
             If FormFGRepairReturnRec.XTCRepairRec.SelectedTabPageIndex = 1 Then
@@ -1643,6 +1651,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             If FormPurcReceive.GVPO.RowCount > 0 And FormPurcReceive.GVPO.FocusedRowHandle >= 0 Then
                 Dim id_purc_order As String = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_purc_order").ToString
                 FormPurcReceiveDet.id_purc_order = id_purc_order
+                FormPurcReceiveDet.id_coa_tag = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_coa_tag").ToString
                 FormPurcReceiveDet.id_comp = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_comp").ToString
                 FormPurcReceiveDet.action = "ins"
                 FormPurcReceiveDet.TxtOrderNumber.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("purc_order_number").ToString
@@ -7905,7 +7914,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormFGRepairRec" Then
             print(FormFGRepairRec.GCRepairRec, "Receive Repair Product")
         ElseIf formName = "FormFGRepairReturn" Then
-            print(FormFGRepairReturn.GCRepairReturn, "Return Repair Product")
+            If FormFGRepairReturn.XTCData.SelectedTabPageIndex = 0 Then
+                print(FormFGRepairReturn.GCRepairReturn, "Return Repair Product")
+            Else
+                print(FormFGRepairReturn.GCRepairList, "Repair List")
+            End If
         ElseIf formName = "FormFGRepairReturnRec" Then
             print(FormFGRepairReturnRec.GCRepairRec, "Receive Repair Product (WH)")
         ElseIf formName = "FormEmpEmail" Then
@@ -10122,7 +10135,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormFGRepairRec.viewRepairList()
             End If
         ElseIf formName = "FormFGRepairReturn" Then
-            FormFGRepairReturn.viewData()
+            If FormFGRepairReturn.XTCData.SelectedTabPageIndex = 0 Then
+                FormFGRepairReturn.viewData()
+            Else
+                FormFGRepairReturn.viewRepairList()
+            End If
         ElseIf formName = "FormEmpEmail" Then
             FormEmpEmail.viewEmployee("-1")
         ElseIf formName = "FormFGRepairReturnRec" Then

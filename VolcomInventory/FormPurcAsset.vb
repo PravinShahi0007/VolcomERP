@@ -332,6 +332,38 @@
     End Sub
 
     Private Sub BAddDepreciation_Click(sender As Object, e As EventArgs) Handles BAddDepreciation.Click
-        FormPurcAssetDep.ShowDialog()
+        'check ada yang blm completed
+        Dim qc As String = "SELECT * FROM tb_asset_dep_pps WHERE id_report_status!=6 AND id_report_status!=5"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            warningCustom("There is pending document need to complete first")
+        Else
+            FormPurcAssetDep.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BRefreshDepreciation_Click(sender As Object, e As EventArgs) Handles BRefreshDepreciation.Click
+        load_dep_pps()
+    End Sub
+
+    Sub load_dep_pps()
+        Dim q As String = "SELECT SUM(ppsd.dep_value) AS dep_value_tot,pps.*,emp.employee_name,sts.report_status 
+FROM tb_asset_dep_pps_det ppsd
+INNER JOIN `tb_asset_dep_pps` pps ON pps.id_asset_dep_pps=ppsd.id_asset_dep_pps
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON pps.id_report_status=sts.id_report_status
+GROUP by ppsd.id_asset_dep_pps
+ORDER BY ppsd.id_asset_dep_pps DESC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCDepPPS.DataSource = dt
+        GVDepPPS.BestFitColumns()
+    End Sub
+
+    Private Sub GVDepPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVDepPPS.DoubleClick
+        If GVDepPPS.RowCount > 0 Then
+            FormPurcAssetDep.id_dep = GVDepPPS.GetFocusedRowCellValue("id_asset_dep_pps").ToString
+            FormPurcAssetDep.ShowDialog()
+        End If
     End Sub
 End Class
