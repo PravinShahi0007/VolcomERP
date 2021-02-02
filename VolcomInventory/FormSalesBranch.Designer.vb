@@ -31,6 +31,7 @@ Partial Class FormSalesBranch
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnvalue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndue_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.DEUntilList = New DevExpress.XtraEditors.DateEdit()
         Me.DEFromList = New DevExpress.XtraEditors.DateEdit()
@@ -58,7 +59,6 @@ Partial Class FormSalesBranch
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncoa_tag = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumndue_date = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,6 +183,16 @@ Partial Class FormSalesBranch
         Me.GridColumnnumber.Name = "GridColumnnumber"
         Me.GridColumnnumber.Visible = True
         Me.GridColumnnumber.VisibleIndex = 0
+        '
+        'GridColumndue_date
+        '
+        Me.GridColumndue_date.Caption = "Due Date"
+        Me.GridColumndue_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumndue_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumndue_date.FieldName = "due_date"
+        Me.GridColumndue_date.Name = "GridColumndue_date"
+        Me.GridColumndue_date.Visible = True
+        Me.GridColumndue_date.VisibleIndex = 4
         '
         'PanelControl2
         '
@@ -383,7 +393,7 @@ Partial Class FormSalesBranch
         Me.BCreateCN.Name = "BCreateCN"
         Me.BCreateCN.Size = New System.Drawing.Size(782, 32)
         Me.BCreateCN.TabIndex = 19
-        Me.BCreateCN.Text = "Create Credit Note"
+        Me.BCreateCN.Text = "Create Cancel Sales"
         Me.BCreateCN.Visible = False
         '
         'PanelControl1
@@ -443,16 +453,6 @@ Partial Class FormSalesBranch
         Me.LabelControl2.Size = New System.Drawing.Size(19, 13)
         Me.LabelControl2.TabIndex = 8915
         Me.LabelControl2.Text = "Unit"
-        '
-        'GridColumndue_date
-        '
-        Me.GridColumndue_date.Caption = "Due Date"
-        Me.GridColumndue_date.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumndue_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumndue_date.FieldName = "due_date"
-        Me.GridColumndue_date.Name = "GridColumndue_date"
-        Me.GridColumndue_date.Visible = True
-        Me.GridColumndue_date.VisibleIndex = 4
         '
         'FormSalesBranch
         '
