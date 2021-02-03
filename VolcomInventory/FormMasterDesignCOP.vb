@@ -20,7 +20,7 @@
         Dim query_where As String = ""
 
         If Not SLESeason.EditValue.ToString = "-1" Then
-            query_where += " AND season.id_season='" & SLESeason.EditValue.ToString & "'"
+            query_where += " AND f1.id_season='" & SLESeason.EditValue.ToString & "'"
         End If
 
         Try
