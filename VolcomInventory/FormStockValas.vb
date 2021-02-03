@@ -18,7 +18,7 @@
 
     Sub view_mutasi_valas()
         Dim q As String = "
-(SELECT sv.id_stock_valas,cur.currency,CONCAT('Last Transaction : ',IFNULL(pn.number,'Input manual')) AS number,sv.id_report,sv.report_mark_type,sv.amount,sv.kurs_transaksi,sv.balance,sv.kurs_rata_rata,sv.trans_datetime
+(SELECT sv.id_stock_valas,cur.currency,CONCAT('Last Transaction : ',IFNULL(pn.number,'Input manual')) AS number,sv.id_report,sv.report_mark_type,sv.amount,sv.kurs_transaksi,sv.balance,sv.kurs_rata_rata,sv.trans_datetime,sv.insert_datetime
 FROM `tb_stock_valas` sv
 INNER JOIN tb_lookup_currency cur ON sv.id_currency=cur.id_currency
 LEFT JOIN tb_pn pn ON pn.id_pn=sv.id_report AND sv.report_mark_type=159
@@ -26,7 +26,7 @@ WHERE sv.id_valas_bank='" & SLEAkunValas.EditValue.ToString & "' AND DATE(sv.tra
 ORDER BY sv.`id_stock_valas` DESC
 LIMIT 1)
 UNION ALL
-(SELECT sv.id_stock_valas,cur.currency,IFNULL(pn.number,'Input manual') AS number,sv.id_report,sv.report_mark_type,sv.amount,sv.kurs_transaksi,sv.balance,sv.kurs_rata_rata,sv.trans_datetime
+(SELECT sv.id_stock_valas,cur.currency,IFNULL(pn.number,'Input manual') AS number,sv.id_report,sv.report_mark_type,sv.amount,sv.kurs_transaksi,sv.balance,sv.kurs_rata_rata,sv.trans_datetime,sv.insert_datetime
 FROM `tb_stock_valas` sv
 INNER JOIN tb_lookup_currency cur ON sv.id_currency=cur.id_currency
 LEFT JOIN tb_pn pn ON pn.id_pn=sv.id_report AND sv.report_mark_type=159
