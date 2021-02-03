@@ -21,6 +21,9 @@ Partial Class FormPurcAssetValueAdded
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcAssetValueAdded))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlStt = New DevExpress.XtraEditors.PanelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
@@ -32,22 +35,22 @@ Partial Class FormPurcAssetValueAdded
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.HyperLinkEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.PanelControlStt = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControlStt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlStt.SuspendLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAssetName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtValueAdded.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlStt, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlStt.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -57,10 +60,49 @@ Partial Class FormPurcAssetValueAdded
         Me.PanelControl1.Controls.Add(Me.BtnMark)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 219)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 238)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(489, 47)
         Me.PanelControl1.TabIndex = 301
+        '
+        'PanelControlStt
+        '
+        Me.PanelControlStt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlStt.Controls.Add(Me.LEReportStatus)
+        Me.PanelControlStt.Controls.Add(Me.LabelControl7)
+        Me.PanelControlStt.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlStt.Location = New System.Drawing.Point(226, 2)
+        Me.PanelControlStt.Name = "PanelControlStt"
+        Me.PanelControlStt.Size = New System.Drawing.Size(178, 43)
+        Me.PanelControlStt.TabIndex = 17
+        Me.PanelControlStt.Visible = False
+        '
+        'LEReportStatus
+        '
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(45, 12)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
+        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.LEReportStatus.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEReportStatus.Properties.NullText = ""
+        Me.LEReportStatus.Properties.ShowFooter = False
+        Me.LEReportStatus.Size = New System.Drawing.Size(127, 20)
+        Me.LEReportStatus.TabIndex = 316
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(8, 15)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl7.TabIndex = 317
+        Me.LabelControl7.Text = "Status"
         '
         'BtnCancell
         '
@@ -168,65 +210,47 @@ Partial Class FormPurcAssetValueAdded
         Me.TxtNumber.Size = New System.Drawing.Size(349, 20)
         Me.TxtNumber.TabIndex = 315
         '
-        'LabelControl7
-        '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(8, 15)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl7.TabIndex = 317
-        Me.LabelControl7.Text = "Status"
-        '
-        'LEReportStatus
-        '
-        Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(45, 12)
-        Me.LEReportStatus.Name = "LEReportStatus"
-        Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
-        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEReportStatus.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.LEReportStatus.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
-        Me.LEReportStatus.Properties.NullText = ""
-        Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(127, 20)
-        Me.LEReportStatus.TabIndex = 316
-        '
-        'PanelControlStt
-        '
-        Me.PanelControlStt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlStt.Controls.Add(Me.LEReportStatus)
-        Me.PanelControlStt.Controls.Add(Me.LabelControl7)
-        Me.PanelControlStt.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlStt.Location = New System.Drawing.Point(226, 2)
-        Me.PanelControlStt.Name = "PanelControlStt"
-        Me.PanelControlStt.Size = New System.Drawing.Size(178, 43)
-        Me.PanelControlStt.TabIndex = 17
-        Me.PanelControlStt.Visible = False
-        '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(122, 126)
+        Me.MENote.Location = New System.Drawing.Point(122, 152)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(349, 59)
         Me.MENote.TabIndex = 316
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(19, 128)
+        Me.LabelControl3.Location = New System.Drawing.Point(19, 154)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl3.TabIndex = 317
         Me.LabelControl3.Text = "Note"
         '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(19, 129)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl5.TabIndex = 319
+        Me.LabelControl5.Text = "Life - added"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.Location = New System.Drawing.Point(122, 126)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.DisplayFormat.FormatString = "N2"
+        Me.TextEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TextEdit1.Properties.Mask.EditMask = "N2"
+        Me.TextEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TextEdit1.Size = New System.Drawing.Size(349, 20)
+        Me.TextEdit1.TabIndex = 318
+        '
         'FormPurcAssetValueAdded
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(489, 266)
+        Me.ClientSize = New System.Drawing.Size(489, 285)
+        Me.Controls.Add(Me.LabelControl5)
+        Me.Controls.Add(Me.TextEdit1)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.MENote)
         Me.Controls.Add(Me.TxtNumber)
@@ -246,16 +270,17 @@ Partial Class FormPurcAssetValueAdded
         Me.Text = "Value-Added Asset Detail"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PanelControlStt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlStt.ResumeLayout(False)
+        Me.PanelControlStt.PerformLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAssetName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtValueAdded.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlStt, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlStt.ResumeLayout(False)
-        Me.PanelControlStt.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -278,4 +303,6 @@ Partial Class FormPurcAssetValueAdded
     Friend WithEvents PanelControlStt As DevExpress.XtraEditors.PanelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
 End Class

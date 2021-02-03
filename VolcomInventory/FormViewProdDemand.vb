@@ -234,7 +234,7 @@
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_prod_demand
         FormDocumentUpload.report_mark_type = report_mark_type
-        FormDocumentUpload.is_view = "1"
+        FormDocumentUpload.is_no_delete = "1"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub

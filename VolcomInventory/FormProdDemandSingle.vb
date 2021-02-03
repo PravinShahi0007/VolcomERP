@@ -595,7 +595,7 @@
 
         'cek ud submit ato blm
         If id_report_status = "6" Or id_report_status = "5" Then
-            FormDocumentUpload.is_view = "1"
+            FormDocumentUpload.is_no_delete = "1"
         End If
 
         FormDocumentUpload.ShowDialog()
