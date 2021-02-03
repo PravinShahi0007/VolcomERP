@@ -32,6 +32,7 @@ Partial Public Class ReportBalanceTaxSummary
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XLDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XLPeriod = New DevExpress.XtraReports.UI.XRLabel()
@@ -170,21 +171,34 @@ Partial Public Class ReportBalanceTaxSummary
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLNumber, Me.XrPictureBox1, Me.XLPeriod, Me.XrLine1, Me.XLTitle})
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLDate, Me.XLNumber, Me.XrPictureBox1, Me.XLPeriod, Me.XrLine1, Me.XLTitle})
         Me.ReportHeader.HeightF = 156.2083!
         Me.ReportHeader.Name = "ReportHeader"
+        '
+        'XLDate
+        '
+        Me.XLDate.Font = New System.Drawing.Font("Tahoma", 8.25!)
+        Me.XLDate.LocationFloat = New DevExpress.Utils.PointFloat(458.3333!, 23.0!)
+        Me.XLDate.Multiline = True
+        Me.XLDate.Name = "XLDate"
+        Me.XLDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLDate.SizeF = New System.Drawing.SizeF(297.6667!, 23.0!)
+        Me.XLDate.StylePriority.UseFont = False
+        Me.XLDate.StylePriority.UseTextAlignment = False
+        Me.XLDate.Text = "Created At: [date]"
+        Me.XLDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
         'XLNumber
         '
         Me.XLNumber.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XLNumber.LocationFloat = New DevExpress.Utils.PointFloat(605.9999!, 0!)
+        Me.XLNumber.LocationFloat = New DevExpress.Utils.PointFloat(458.3333!, 0!)
         Me.XLNumber.Multiline = True
         Me.XLNumber.Name = "XLNumber"
         Me.XLNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLNumber.SizeF = New System.Drawing.SizeF(150.0!, 23.0!)
+        Me.XLNumber.SizeF = New System.Drawing.SizeF(297.6665!, 23.0!)
         Me.XLNumber.StylePriority.UseFont = False
         Me.XLNumber.StylePriority.UseTextAlignment = False
-        Me.XLNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.XLNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
         'XrPictureBox1
         '
@@ -224,7 +238,8 @@ Partial Public Class ReportBalanceTaxSummary
         Me.XLTitle.SizeF = New System.Drawing.SizeF(756.0!, 23.0!)
         Me.XLTitle.StylePriority.UseFont = False
         Me.XLTitle.StylePriority.UseTextAlignment = False
-        Me.XLTitle.Text = "REKAP PPH: FINAL, PASAL 23/26, PASAL 21 PROFESI, PPH DEVIDEN,  PPN LUAR NEGERI"
+        Me.XLTitle.Text = "REKAP PPH : PASAL 21, PASAL 23/26, PASAL 25, PPH FINAL, PPN LUAR NEGERI, PPH DEVI" &
+    "DEN"
         Me.XLTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'ReportFooter
@@ -291,4 +306,5 @@ Partial Public Class ReportBalanceTaxSummary
     Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XLNumber As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents XLDate As DevExpress.XtraReports.UI.XRLabel
 End Class

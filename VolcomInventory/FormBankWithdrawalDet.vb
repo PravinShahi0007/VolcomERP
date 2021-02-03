@@ -1811,6 +1811,8 @@ WHERE id_stock_valas = (SELECT MAX(id_stock_valas) FROM `tb_stock_valas` WHERE i
                     If is_buy_valas Then
                         is_buy_valas_param = "1"
                         valas_bank_param = "'" & SLEAkunValas.EditValue.ToString & "'"
+                    ElseIf Not SLEAkunValas.EditValue.ToString = "0" Then
+                        valas_bank_param = "'" & SLEAkunValas.EditValue.ToString & "'"
                     End If
 
                     If report_mark_type = "139" Or report_mark_type = "202" Then

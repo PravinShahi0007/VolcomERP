@@ -89,6 +89,7 @@ Partial Class FormFGRepairDet
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -555,7 +556,7 @@ Partial Class FormFGRepairDet
         '
         'GVScan
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize, Me.GridColumnIsOldDesign})
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize, Me.GridColumnIsOldDesign, Me.GridColumnid_product})
         Me.GVScan.GridControl = Me.GCScan
         Me.GVScan.Name = "GVScan"
         Me.GVScan.OptionsView.ShowGroupPanel = False
@@ -819,6 +820,13 @@ Partial Class FormFGRepairDet
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        Me.GridColumnid_product.OptionsColumn.AllowEdit = False
+        '
         'FormFGRepairDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -950,4 +958,5 @@ Partial Class FormFGRepairDet
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnIsOldDesign As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_product As DevExpress.XtraGrid.Columns.GridColumn
 End Class

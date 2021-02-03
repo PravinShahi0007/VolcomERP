@@ -707,6 +707,10 @@ Partial Class FormDebitNoteDet
         '
         'GridColumn8
         '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn8.Caption = "Currency"
         Me.GridColumn8.FieldName = "currency"
         Me.GridColumn8.Name = "GridColumn8"

@@ -406,11 +406,13 @@ WHERE dnd.id_debit_note='" & id_dn & "'"
 ,dnd.`unit_price_usd`,dnd.kurs
 ,ROUND((dnd.`claim_percent`/100)*dnd.`unit_price_usd`,2) AS claim_pcs_usd
 ,ROUND((dnd.`claim_percent`/100)*dnd.`unit_price_usd`,2) * dnd.`qty` AS claim_amo_usd
+,dnd.currency
 ,@curRow := @curRow + 1 AS `number`
 FROM 
 (
-	SELECT dnd.`report_number`,dnd.`info_design`,dnd.`description`,dnd.kurs,dnd.`claim_percent`,dnd.`unit_price`,dnd.`unit_price_usd`,SUM(dnd.`qty`) AS qty,dnd.`id_report`,dnd.`report_mark_type`,SUM((dnd.`claim_percent`/100)*dnd.`unit_price`) AS claim_pcs, SUM(((dnd.`claim_percent`/100)*dnd.`unit_price`) * dnd.`qty`) AS claim_amo
+	SELECT dnd.`report_number`,cur.currency,dnd.`info_design`,dnd.`description`,dnd.kurs,dnd.`claim_percent`,dnd.`unit_price`,dnd.`unit_price_usd`,SUM(dnd.`qty`) AS qty,dnd.`id_report`,dnd.`report_mark_type`,SUM((dnd.`claim_percent`/100)*dnd.`unit_price`) AS claim_pcs, SUM(((dnd.`claim_percent`/100)*dnd.`unit_price`) * dnd.`qty`) AS claim_amo
 	FROM tb_debit_note_det dnd
+    INNER JOIN tb_lookup_currency cur ON cur.id_currency=dnd.id_currency
 	WHERE dnd.id_debit_note='" & id_dn & "'
 	GROUP BY dnd.id_report,dnd.`unit_price`,dnd.description
 ) dnd
@@ -426,6 +428,7 @@ JOIN (SELECT @curRow := 0) r"
             GCClaimPcs.Visible = False
             GCPriceUnit.Visible = False
             GCAmo.Visible = False
+            GCKurs.Visible = False
         End If
         '
         Dim str As System.IO.Stream
@@ -436,6 +439,7 @@ JOIN (SELECT @curRow := 0) r"
         str.Seek(0, System.IO.SeekOrigin.Begin)
         '
         If id_dn_type = "4" Then
+            GCKurs.VisibleIndex = 8
             GCClaimPcs.VisibleIndex = 9
             GCPriceUnit.VisibleIndex = 10
             GCAmo.VisibleIndex = 13
@@ -457,6 +461,12 @@ WHERE dn.id_debit_note='" & id_dn & "'"
         Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
         Report.DataSource = dt
         '
+        If id_dn_type = "4" Then
+            Report.LKepada.Text = "To"
+            Report.LTanggal.Text = "Date"
+            Report.LDengan.Text = "deduct from invoice"
+            Report.LTerbilang.Text = "Say"
+        End If
         '' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()

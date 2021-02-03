@@ -8,7 +8,7 @@
     Dim is_confirm As String = "2"
     Dim created_date As String = ""
 
-    Dim id_coa_tag As String = "1"
+    Public id_coa_tag As String = "1"
 
     Private Sub FormPurcReceiveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -115,7 +115,7 @@ WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
             AND !ISNULL(ap.id_acc) "
                 Dim dcoa_vendor As DataTable = execute_query(qcoa_vendor, -1, True, "", "", "", "")
                 If dcoa_vendor.Rows.Count <= 0 Then
-                    err_coa += "- COA : Account Payable Vendor " + System.Environment.NewLine
+                    err_coa += "- COA : Account Payable Vendor Cabang " + System.Environment.NewLine
                     cond_coa_vendor = False
                 End If
 
