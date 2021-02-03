@@ -30,7 +30,7 @@
             ) ap ON ap.id_parent = a.id_parent "
         End If
 
-        Dim query As String = "SELECT a.id_comp_tag,a.id_purc_rec_asset, a.id_item, a.id_purc_rec_det, r.id_purc_rec, r.purc_rec_number, 
+        Dim query As String = "SELECT po.id_coa_tag AS po_tag,ct.tag_description,a.id_comp_tag,a.id_coa_tag,a.id_purc_rec_asset, a.id_item, a.id_purc_rec_det, r.id_purc_rec, r.purc_rec_number, 
         po.id_purc_order, po.purc_order_number,
         a.id_departement, d.departement, a.id_acc_fa, fa.acc_name AS `acc_fa`,fa.acc_description AS `acc_fa_name`, 
         a.asset_number, a.asset_name, a.asset_note, a.acq_date, 
@@ -40,6 +40,7 @@
         IFNULL(a.id_acc_dep_accum,0) AS id_acc_dep_accum,adep.acc_name AS `accum_dep_acc`, adep.acc_description AS `accum_dep_acc_name`, a.accum_dep, a.is_active, IFNULL(a.is_active,0) AS `is_active_v`, IFNULL(a.id_report_status,0) AS `id_report_status`, stt.report_status, a.is_confirm, a.id_employee_current, e_current.employee_name AS employee_name_current, a.id_departement_current, d_current.departement AS departement_current, a.location_current, a.location_date
         " + col_add + "
         FROM tb_purc_rec_asset a
+        INNER JOIN tb_coa_tag ct ON ct.id_coa_tag=a.id_coa_tag
         INNER JOIN tb_purc_rec_det rd ON rd.id_purc_rec_det = a.id_purc_rec_det
         INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
         INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det

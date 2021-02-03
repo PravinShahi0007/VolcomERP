@@ -130,6 +130,7 @@
 	        SELECT d.id_sales_branch_det, d.value-IFNULL(cn.amount_cn,0.00) AS `amount_limit`, m.id_sales_branch, m.number, m.transaction_date, m.id_coa_tag
 	        FROM tb_sales_branch_det d
 	        INNER JOIN tb_sales_branch m ON m.id_sales_branch = d.id_sales_branch
+            INNER JOIN tb_sales_branch_coa_exclude_bbm ex ON ex.id_acc = d.id_acc
 	        LEFT JOIN (
 		        SELECT d.id_sales_branch_ref_det, SUM(d.value) AS `amount_cn`
 		        FROM tb_sales_branch_det d
@@ -137,10 +138,10 @@
 		        WHERE m.id_report_status!=5 
 		        GROUP BY d.id_sales_branch_ref_det
 	        ) cn ON cn.id_sales_branch_ref_det = d.id_sales_branch_det
-	        WHERE m.id_report_status=6 AND m.report_mark_type=254 AND d.is_close=2 
+	        WHERE m.id_report_status=6 AND m.report_mark_type=254 AND d.is_close=2 AND ex.is_show_cancel_sales=1 
 	        HAVING amount_limit>0
         ) m
-        WHERE m.transaction_date>'" + closing_date + "' AND m.id_coa_tag='" + SLEUnit.EditValue.ToString + "'
+        WHERE m.id_coa_tag='" + SLEUnit.EditValue.ToString + "'
         GROUP BY m.id_sales_branch "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSales.DataSource = data
