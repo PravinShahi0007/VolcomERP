@@ -443,4 +443,21 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
             End If
         End If
     End Sub
+
+    Private Sub BTemplate_Click(sender As Object, e As EventArgs) Handles BTemplate.Click
+        Dim q As String = "SELECT id_list_ecop,list_ecop FROM tb_lookup_list_ecop"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        For i = 0 To dt.Rows.Count - 1
+            Dim newRow As DataRow = (TryCast(GCCOPComponent.DataSource, DataTable)).NewRow()
+            newRow("description") = dt.Rows(i)("list_ecop").ToString
+            newRow("id_currency") = 1
+            newRow("kurs") = TETodayKurs.EditValue
+            newRow("before_kurs") = 1.0
+            newRow("additional") = 0.00
+            TryCast(GCCOPComponent.DataSource, DataTable).Rows.Add(newRow)
+            GCCOPComponent.RefreshDataSource()
+        Next
+
+        show_but()
+    End Sub
 End Class
