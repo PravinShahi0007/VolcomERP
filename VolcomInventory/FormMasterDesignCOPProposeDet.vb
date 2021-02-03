@@ -119,7 +119,7 @@
             End If
 
             Try
-                Dim query As String = "CALL view_all_design_param(""" + query_where + """)"
+                Dim query As String = "CALL view_all_design_cop(""" + query_where + """)"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCItemList.DataSource = data
                 BGVItemList.BestFitColumns()
@@ -132,7 +132,7 @@
             End If
 
             Try
-                Dim query As String = "CALL view_all_design_param(""" + query_where + """)"
+                Dim query As String = "CALL view_all_design_cop(""" + query_where + """)"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCItemList.DataSource = data
                 BGVItemList.BestFitColumns()
