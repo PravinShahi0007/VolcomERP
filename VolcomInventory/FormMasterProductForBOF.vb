@@ -26,7 +26,7 @@ Public Class FormMasterProductForBOF
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "CALL view_master_for_bof(" + SLESeason.EditValue.ToString + ") "
+        Dim query As String = "CALL view_master_for_bof_product(" + SLESeason.EditValue.ToString + ") "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         If GVData.RowCount > 0 Then
