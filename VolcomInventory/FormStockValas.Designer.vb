@@ -20,36 +20,37 @@ Partial Class FormStockValas
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCStock = New DevExpress.XtraGrid.GridControl()
-        Me.GVStock = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SBView = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.DETo = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEAkunValas = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LValas = New DevExpress.XtraEditors.LabelControl()
-        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.DETo = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.SBView = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCStock = New DevExpress.XtraGrid.GridControl()
+        Me.GVStock = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GCStock, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVStock, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCStock, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -66,79 +67,53 @@ Partial Class FormStockValas
         Me.PanelControl1.Size = New System.Drawing.Size(923, 42)
         Me.PanelControl1.TabIndex = 0
         '
-        'SimpleButton1
+        'SBView
         '
-        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.Blue
-        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton1.Appearance.Options.UseBackColor = True
-        Me.SimpleButton1.Appearance.Options.UseForeColor = True
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SimpleButton1.Location = New System.Drawing.Point(0, 496)
-        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
-        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(923, 38)
-        Me.SimpleButton1.TabIndex = 1
-        Me.SimpleButton1.Text = "Print"
+        Me.SBView.Location = New System.Drawing.Point(632, 8)
+        Me.SBView.Name = "SBView"
+        Me.SBView.Size = New System.Drawing.Size(75, 23)
+        Me.SBView.TabIndex = 8926
+        Me.SBView.Text = "View"
         '
-        'GCStock
+        'DEFrom
         '
-        Me.GCStock.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCStock.Location = New System.Drawing.Point(0, 42)
-        Me.GCStock.MainView = Me.GVStock
-        Me.GCStock.Name = "GCStock"
-        Me.GCStock.Size = New System.Drawing.Size(923, 454)
-        Me.GCStock.TabIndex = 2
-        Me.GCStock.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStock})
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(310, 10)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEFrom.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEFrom.Size = New System.Drawing.Size(150, 20)
+        Me.DEFrom.TabIndex = 8923
         '
-        'GVStock
+        'DETo
         '
-        Me.GVStock.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn7, Me.GridColumn8, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
-        Me.GVStock.GridControl = Me.GCStock
-        Me.GVStock.Name = "GVStock"
-        Me.GVStock.OptionsView.ShowGroupPanel = False
+        Me.DETo.EditValue = Nothing
+        Me.DETo.Location = New System.Drawing.Point(476, 10)
+        Me.DETo.Name = "DETo"
+        Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DETo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETo.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DETo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETo.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DETo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DETo.Size = New System.Drawing.Size(150, 20)
+        Me.DETo.TabIndex = 8924
         '
-        'GridColumn1
+        'LabelControl1
         '
-        Me.GridColumn1.Caption = "ID Stock"
-        Me.GridColumn1.FieldName = "id_stock_valas"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Description"
-        Me.GridColumn2.FieldName = "number"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.Caption = "Amount"
-        Me.GridColumn3.DisplayFormat.FormatString = "N2"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "amount"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.Caption = "Kurs Transaction"
-        Me.GridColumn4.DisplayFormat.FormatString = "N2"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "kurs_transaksi"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.LabelControl1.Location = New System.Drawing.Point(466, 13)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl1.TabIndex = 8925
+        Me.LabelControl1.Text = "-"
         '
         'SLEAkunValas
         '
@@ -181,53 +156,101 @@ Partial Class FormStockValas
         Me.LValas.TabIndex = 8921
         Me.LValas.Text = "Akun Valas"
         '
-        'DEFrom
+        'SimpleButton1
         '
-        Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(310, 10)
-        Me.DEFrom.Name = "DEFrom"
-        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFrom.Properties.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.DEFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEFrom.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEFrom.Size = New System.Drawing.Size(150, 20)
-        Me.DEFrom.TabIndex = 8923
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SimpleButton1.Location = New System.Drawing.Point(0, 496)
+        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(923, 38)
+        Me.SimpleButton1.TabIndex = 1
+        Me.SimpleButton1.Text = "Print"
         '
-        'DETo
+        'GCStock
         '
-        Me.DETo.EditValue = Nothing
-        Me.DETo.Location = New System.Drawing.Point(476, 10)
-        Me.DETo.Name = "DETo"
-        Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DETo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DETo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DETo.Properties.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.DETo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DETo.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DETo.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DETo.Size = New System.Drawing.Size(150, 20)
-        Me.DETo.TabIndex = 8924
+        Me.GCStock.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCStock.Location = New System.Drawing.Point(0, 42)
+        Me.GCStock.MainView = Me.GVStock
+        Me.GCStock.Name = "GCStock"
+        Me.GCStock.Size = New System.Drawing.Size(923, 454)
+        Me.GCStock.TabIndex = 2
+        Me.GCStock.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStock})
         '
-        'LabelControl1
+        'GVStock
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(466, 13)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl1.TabIndex = 8925
-        Me.LabelControl1.Text = "-"
+        Me.GVStock.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn9, Me.GridColumn7, Me.GridColumn8, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVStock.GridControl = Me.GCStock
+        Me.GVStock.Name = "GVStock"
+        Me.GVStock.OptionsView.ShowGroupPanel = False
         '
-        'SBView
+        'GridColumn1
         '
-        Me.SBView.Location = New System.Drawing.Point(632, 8)
-        Me.SBView.Name = "SBView"
-        Me.SBView.Size = New System.Drawing.Size(75, 23)
-        Me.SBView.TabIndex = 8926
-        Me.SBView.Text = "View"
+        Me.GridColumn1.Caption = "ID Stock"
+        Me.GridColumn1.FieldName = "id_stock_valas"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Date Payment"
+        Me.GridColumn7.DisplayFormat.FormatString = "dd MMMM yyyy H:mm"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn7.FieldName = "trans_datetime"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 1
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.Caption = "Currency"
+        Me.GridColumn8.FieldName = "currency"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 3
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Description"
+        Me.GridColumn2.FieldName = "number"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 2
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.Caption = "Amount"
+        Me.GridColumn3.DisplayFormat.FormatString = "N2"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn3.FieldName = "amount"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 4
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.Caption = "Kurs Transaction"
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "kurs_transaksi"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 5
         '
         'GridColumn5
         '
@@ -241,7 +264,7 @@ Partial Class FormStockValas
         Me.GridColumn5.FieldName = "balance"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 6
         '
         'GridColumn6
         '
@@ -255,29 +278,17 @@ Partial Class FormStockValas
         Me.GridColumn6.FieldName = "kurs_rata_rata"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.VisibleIndex = 7
         '
-        'GridColumn7
+        'GridColumn9
         '
-        Me.GridColumn7.Caption = "Date Transaction"
-        Me.GridColumn7.DisplayFormat.FormatString = "dd MMMM yyyy H:mm"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn7.FieldName = "trans_datetime"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 0
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn8.Caption = "Currency"
-        Me.GridColumn8.FieldName = "currency"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
+        Me.GridColumn9.Caption = "Completed Date"
+        Me.GridColumn9.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn9.FieldName = "insert_datetime"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
         '
         'FormStockValas
         '
@@ -295,14 +306,14 @@ Partial Class FormStockValas
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.GCStock, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVStock, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCStock, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVStock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -328,4 +339,5 @@ Partial Class FormStockValas
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
