@@ -225,7 +225,7 @@ Public Class FormSalesBranchDet
             GVData.RefreshData()
             GVData.ActiveFilterString = "[id_dc]=2"
             Dim jum_credit As Decimal = 0.00
-            If GVData.RowCount > 0 Then
+            If GVData.RowCount > 0 And rmt = "254" Then
                 jum_credit = GVData.Columns("value").SummaryItem.SummaryValue
             End If
             GVData.ActiveFilterString = ""
@@ -276,8 +276,9 @@ Public Class FormSalesBranchDet
 	        GROUP BY d.id_report_det
         ) rec ON rec.id_report_det = d.id_sales_branch_det
         INNER JOIN tb_a_acc coa ON coa.id_acc = d.id_acc
+        INNER JOIN tb_sales_branch_coa_exclude_bbm ex ON ex.id_acc = coa.id_acc
         INNER JOIN tb_m_comp c ON c.id_comp = d.id_comp
-        WHERE d.id_sales_branch=" + id_sales_branch_ref + " AND d.is_close=2 "
+        WHERE d.id_sales_branch=" + id_sales_branch_ref + " AND d.is_close=2 AND ex.is_show_cancel_sales=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()

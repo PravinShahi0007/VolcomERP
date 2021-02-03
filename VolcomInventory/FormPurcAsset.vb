@@ -2,16 +2,31 @@
     Public is_view As String = "2"
 
     Private Sub FormPurcAsset_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_unit()
+
         If is_view = "1" Then
             XTPPending.PageVisible = False
-            XTPDepresiasi.PageVisible = False
+            XTPNewDepreciation.PageVisible = False
             XTCAsset.SelectedTabPageIndex = 1
             viewActive()
         Else
             XTPPending.PageVisible = True
-            XTPDepresiasi.PageVisible = True
+            XTPNewDepreciation.PageVisible = True
             viewPending()
         End If
+    End Sub
+
+    Sub load_unit()
+        Dim query As String = "SELECT 0 AS id_coa_tag,'ALL' AS tag_code,'ALL' AS tag_description 
+UNION ALL
+SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
+        '        query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
+        'UNION ALL
+        'SELECT ad.`id_comp`,c.`comp_number`,c.`comp_name` FROM `tb_a_acc_trans_det` ad
+        'INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
+        'GROUP BY ad.id_comp"
+        viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
+        SLEUnit.EditValue = "1"
     End Sub
 
     Sub viewPending()
@@ -27,7 +42,11 @@
     Sub viewActive()
         Cursor = Cursors.WaitCursor
         Dim a As New ClassPurcAsset()
-        Dim query As String = a.queryMain("AND a.id_report_status=6 AND a.is_active=1 AND a.is_value_added=2 ", "1", True)
+        Dim qw As String = ""
+        If Not SLEUnit.EditValue.ToString = "0" Then
+            qw = " AND a.id_coa_tag='" & SLEUnit.EditValue.ToString & "' "
+        End If
+        Dim query As String = a.queryMain(qw & "AND a.id_report_status=6 AND a.is_active=1 AND a.is_value_added=2 ", "1", True)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCActive.DataSource = data
         GVActive.BestFitColumns()
@@ -96,7 +115,7 @@
         If XTCAsset.SelectedTabPageIndex = 0 Then
             viewPending()
         ElseIf XTCAsset.SelectedTabPageIndex = 1 Then
-            viewActive()
+            'viewActive()
         ElseIf XTCAsset.SelectedTabPageIndex = 2 Then
         ElseIf XTCAsset.SelectedTabPageIndex = 3 Then
             viewDep()
@@ -347,9 +366,10 @@
     End Sub
 
     Sub load_dep_pps()
-        Dim q As String = "SELECT SUM(ppsd.dep_value) AS dep_value_tot,pps.*,emp.employee_name,sts.report_status 
+        Dim q As String = "SELECT ct.tag_description,SUM(ppsd.dep_value) AS dep_value_tot,pps.*,emp.employee_name,sts.report_status 
 FROM tb_asset_dep_pps_det ppsd
 INNER JOIN `tb_asset_dep_pps` pps ON pps.id_asset_dep_pps=ppsd.id_asset_dep_pps
+INNER JOIN tb_coa_tag ct ON ct.id_coa_tag=pps.id_coa_tag
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON pps.id_report_status=sts.id_report_status
@@ -365,5 +385,9 @@ ORDER BY ppsd.id_asset_dep_pps DESC"
             FormPurcAssetDep.id_dep = GVDepPPS.GetFocusedRowCellValue("id_asset_dep_pps").ToString
             FormPurcAssetDep.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        viewActive()
     End Sub
 End Class
