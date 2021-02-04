@@ -182,6 +182,7 @@
         'controls
         If SLUEReportStatus.EditValue.ToString = "0" Then
             SBPrint.Visible = False
+            SBAttachment.Visible = False
             SBMark.Visible = False
             SBSubmit.Visible = True
 
@@ -192,6 +193,7 @@
             SBGenerateSetupTax.Enabled = True
         Else
             SBPrint.Visible = True
+            SBAttachment.Visible = True
             SBMark.Visible = True
             SBSubmit.Visible = False
 
@@ -219,5 +221,16 @@
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
         tool.ShowPreviewDialog()
+    End Sub
+
+    Private Sub SBAttachment_Click(sender As Object, e As EventArgs) Handles SBAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = id_setup_tax
+        FormDocumentUpload.report_mark_type = "288"
+        FormDocumentUpload.ShowDialog()
+
+        Cursor = Cursors.Default
     End Sub
 End Class
