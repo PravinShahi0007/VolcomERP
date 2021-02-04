@@ -7696,6 +7696,12 @@
     <Compile Include="ReportBalanceSheet.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBalanceTaxSetup.Designer.vb">
+      <DependentUpon>ReportBalanceTaxSetup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBalanceTaxSetup.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBalanceTaxSummary.Designer.vb">
       <DependentUpon>ReportBalanceTaxSummary.vb</DependentUpon>
     </Compile>
@@ -13416,6 +13422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBalanceSheet.resx">
       <DependentUpon>ReportBalanceSheet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBalanceTaxSetup.resx">
+      <DependentUpon>ReportBalanceTaxSetup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBalanceTaxSummary.resx">
       <DependentUpon>ReportBalanceTaxSummary.vb</DependentUpon>

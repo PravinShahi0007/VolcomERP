@@ -202,4 +202,22 @@
             SBGenerateSetupTax.Enabled = False
         End If
     End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim report As New ReportBalanceTaxSetup()
+
+        report.id_setup_tax = id_setup_tax
+        report.data = GCSetupTax.DataSource
+        report.id_pre = If(SLUEReportStatus.EditValue.ToString = "6", "-1", "1")
+
+        report.XLNumber.Text = TENumber.Text
+        report.XLDate.Text = report.XLDate.Text.Replace("[date]", TECreatedAt.Text)
+        report.XLPeriod.Text = report.XLPeriod.Text.Replace("[period_from]", DEDateFrom.Text)
+        report.XLPeriod.Text = report.XLPeriod.Text.Replace("[period_to]", DEDateTo.Text)
+        report.XLTaxReport.Text = report.XLTaxReport.Text.Replace("[tax_report]", SLUETax.Text)
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool.ShowPreviewDialog()
+    End Sub
 End Class
