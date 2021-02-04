@@ -20,12 +20,12 @@
         Dim query_where As String = ""
 
         If Not SLESeason.EditValue.ToString = "-1" Then
-            query_where += " AND season.id_season='" & SLESeason.EditValue.ToString & "'"
+            query_where += " AND f1.id_season='" & SLESeason.EditValue.ToString & "'"
         End If
 
         Try
             query_where += " AND f1.is_approved='1'"
-            Dim query As String = "CALL view_all_design_param(""" + query_where + """)"
+            Dim query As String = "CALL view_all_design_cop(""" + query_where + """)"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDesign.DataSource = data
             BGVDesign.BestFitColumns()
@@ -214,7 +214,7 @@ WHERE pdd.`id_design`='" & BGVDesign.GetFocusedRowCellValue("id_design").ToStrin
 
         Try
             query_where += " AND f1.is_approved='1'"
-            Dim query As String = "CALL view_all_design_param(""" + query_where + """)"
+            Dim query As String = "CALL view_all_design_cop(""" + query_where + """)"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDesign.DataSource = data
             BGVDesign.BestFitColumns()

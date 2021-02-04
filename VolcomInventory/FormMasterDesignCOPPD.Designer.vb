@@ -88,6 +88,7 @@ Partial Class FormMasterDesignCOPPD
         Me.TETodayKurs = New DevExpress.XtraEditors.TextEdit()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BTemplate = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -863,6 +864,7 @@ Partial Class FormMasterDesignCOPPD
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.BTemplate)
         Me.PanelControl4.Controls.Add(Me.LabelControl8)
         Me.PanelControl4.Controls.Add(Me.TETodayKurs)
         Me.PanelControl4.Controls.Add(Me.BDelete)
@@ -916,6 +918,16 @@ Partial Class FormMasterDesignCOPPD
         Me.BAdd.Size = New System.Drawing.Size(75, 36)
         Me.BAdd.TabIndex = 0
         Me.BAdd.Text = "Add"
+        '
+        'BTemplate
+        '
+        Me.BTemplate.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BTemplate.Image = CType(resources.GetObject("BTemplate.Image"), System.Drawing.Image)
+        Me.BTemplate.Location = New System.Drawing.Point(533, 2)
+        Me.BTemplate.Name = "BTemplate"
+        Me.BTemplate.Size = New System.Drawing.Size(126, 36)
+        Me.BTemplate.TabIndex = 8904
+        Me.BTemplate.Text = "Load Template"
         '
         'FormMasterDesignCOPPD
         '
@@ -1038,4 +1050,5 @@ Partial Class FormMasterDesignCOPPD
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BTemplate As DevExpress.XtraEditors.SimpleButton
 End Class
