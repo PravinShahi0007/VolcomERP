@@ -201,6 +201,7 @@ Partial Class FormReportBalanceSheet
         Me.CESelAllActiveTax = New DevExpress.XtraEditors.CheckEdit()
         Me.PCPajak = New DevExpress.XtraEditors.PanelControl()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.SBSetup = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SBSummary = New DevExpress.XtraEditors.SimpleButton()
         Me.DETaxFrom = New DevExpress.XtraEditors.DateEdit()
@@ -2042,6 +2043,7 @@ Partial Class FormReportBalanceSheet
         '
         'XtraScrollableControl1
         '
+        Me.XtraScrollableControl1.Controls.Add(Me.SBSetup)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl4)
         Me.XtraScrollableControl1.Controls.Add(Me.SBSummary)
         Me.XtraScrollableControl1.Controls.Add(Me.DETaxFrom)
@@ -2059,6 +2061,14 @@ Partial Class FormReportBalanceSheet
         Me.XtraScrollableControl1.Size = New System.Drawing.Size(1011, 74)
         Me.XtraScrollableControl1.TabIndex = 14
         '
+        'SBSetup
+        '
+        Me.SBSetup.Location = New System.Drawing.Point(894, 12)
+        Me.SBSetup.Name = "SBSetup"
+        Me.SBSetup.Size = New System.Drawing.Size(79, 23)
+        Me.SBSetup.TabIndex = 14
+        Me.SBSetup.Text = "setup tax"
+        '
         'LabelControl4
         '
         Me.LabelControl4.Location = New System.Drawing.Point(11, 17)
@@ -2069,9 +2079,9 @@ Partial Class FormReportBalanceSheet
         '
         'SBSummary
         '
-        Me.SBSummary.Location = New System.Drawing.Point(894, 12)
+        Me.SBSummary.Location = New System.Drawing.Point(979, 12)
         Me.SBSummary.Name = "SBSummary"
-        Me.SBSummary.Size = New System.Drawing.Size(105, 23)
+        Me.SBSummary.Size = New System.Drawing.Size(79, 23)
         Me.SBSummary.TabIndex = 13
         Me.SBSummary.Text = "summary"
         '
@@ -2508,4 +2518,5 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents RICEActiveTax As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents SBSummary As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
+    Friend WithEvents SBSetup As DevExpress.XtraEditors.SimpleButton
 End Class

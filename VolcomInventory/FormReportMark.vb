@@ -644,6 +644,12 @@
         ElseIf report_mark_type = "287" Then
             'Depresiasi
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_asset_dep_pps WHERE id_asset_dep_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "284" Then
+            'Summary Tax Report
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_tax_pph_summary WHERE id_summary = '{0}'", id_report)
+        ElseIf report_mark_type = "287" Then
+            'Setup Tax
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_setup_tax_installment WHERE id_setup_tax = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -9266,6 +9272,36 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
 
             'update status
             query = String.Format("UPDATE tb_asset_dep_pps SET id_report_status='{0}' WHERE id_asset_dep_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "284" Then
+            'summary tax
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_tax_pph_summary SET id_report_status='{0}' WHERE id_summary ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "288" Then
+            'setup tax
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                execute_non_query("UPDATE tb_tax_report_monthly SET is_active = 2 WHERE date_start IN (SELECT month_year FROM tb_setup_tax_installment_det WHERE id_setup_tax = " + id_report + ")", True, "", "", "", "")
+
+                execute_non_query("
+                    INSERT INTO tb_tax_report_monthly (id_coa_tag, id_tax_report, tax_value, date_start, date_end, is_active)
+                    SELECT 1 AS id_coa_tag, s.id_tax_report, t.balance AS tax_value, t.month_year AS date_start, LAST_DAY(t.month_year) AS date_end, 1 AS is_active
+                    FROM tb_setup_tax_installment_det AS t
+                    LEFT JOIN tb_setup_tax_installment AS s ON t.id_setup_tax = s.id_setup_tax
+                    WHERE t.id_setup_tax = " + id_report + "
+                ", True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_setup_tax_installment SET id_report_status='{0}' WHERE id_setup_tax ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
