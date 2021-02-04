@@ -39,6 +39,7 @@ Partial Class FormPurcAssetValueAdded
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlStt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -241,14 +242,23 @@ Partial Class FormPurcAssetValueAdded
         Me.TextEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TextEdit1.Properties.Mask.EditMask = "N2"
         Me.TextEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TextEdit1.Size = New System.Drawing.Size(349, 20)
+        Me.TextEdit1.Size = New System.Drawing.Size(97, 20)
         Me.TextEdit1.TabIndex = 318
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(225, 129)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(43, 13)
+        Me.LabelControl8.TabIndex = 320
+        Me.LabelControl8.Text = "month(s)"
         '
         'FormPurcAssetValueAdded
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(489, 285)
+        Me.Controls.Add(Me.LabelControl8)
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.TextEdit1)
         Me.Controls.Add(Me.LabelControl3)
@@ -305,4 +315,5 @@ Partial Class FormPurcAssetValueAdded
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
 End Class
