@@ -3994,6 +3994,18 @@
     <Compile Include="FormReportBalanceSheetTax.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormReportBalanceTaxSetup.Designer.vb">
+      <DependentUpon>FormReportBalanceTaxSetup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportBalanceTaxSetup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportBalanceTaxSetupDet.Designer.vb">
+      <DependentUpon>FormReportBalanceTaxSetupDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportBalanceTaxSetupDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormReportBalanceTaxSummary.Designer.vb">
       <DependentUpon>FormReportBalanceTaxSummary.vb</DependentUpon>
     </Compile>
@@ -11135,6 +11147,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportBalanceSheetTax.resx">
       <DependentUpon>FormReportBalanceSheetTax.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportBalanceTaxSetup.resx">
+      <DependentUpon>FormReportBalanceTaxSetup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportBalanceTaxSetupDet.resx">
+      <DependentUpon>FormReportBalanceTaxSetupDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportBalanceTaxSummary.resx">
       <DependentUpon>FormReportBalanceTaxSummary.vb</DependentUpon>
