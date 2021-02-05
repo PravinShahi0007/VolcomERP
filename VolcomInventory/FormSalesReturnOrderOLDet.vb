@@ -387,11 +387,23 @@
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
+                    'number 
+                    sales_return_order_number = header_number_sales("4")
+                    increase_inc_sales("4")
+
+                    'cek number
+                    Dim roc As New ClassSalesReturnOrder()
+                    Dim is_no_dupe As Boolean = roc.isNotDuplicateROR(sales_return_order_number)
+                    If Not is_no_dupe Then
+                        warningCustom("ROR number already used, please try again to save changes this transaction")
+                        Cursor = Cursors.Default
+                        Exit Sub
+                    End If
+
                     'Main tbale
                     Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, id_wh_contact_to, id_sales_order, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date, id_order_type) "
-                    query += "VALUES('" + id_store_contact_to + "','" + id_wh_contact_to + "', '" + id_sales_order + "', '" + header_number_sales("4") + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', '" + sales_return_order_est_date + "', '2'); SELECT LAST_INSERT_ID(); "
+                    query += "VALUES('" + id_store_contact_to + "','" + id_wh_contact_to + "', '" + id_sales_order + "', '" + sales_return_order_number + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', '" + sales_return_order_est_date + "', '2'); SELECT LAST_INSERT_ID(); "
                     id_sales_return_order = execute_query(query, 0, True, "", "", "", "")
-                    increase_inc_sales("4")
 
                     'insert who prepared
                     insert_who_prepared("119", id_sales_return_order, id_user)
