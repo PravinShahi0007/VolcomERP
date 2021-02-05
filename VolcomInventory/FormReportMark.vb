@@ -9293,7 +9293,7 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
 
                 execute_non_query("
                     INSERT INTO tb_tax_report_monthly (id_coa_tag, id_tax_report, tax_value, date_start, date_end, is_active)
-                    SELECT 1 AS id_coa_tag, s.id_tax_report, t.balance AS tax_value, t.month_year AS date_start, LAST_DAY(t.month_year) AS date_end, 1 AS is_active
+                    SELECT s.id_coa_tag, s.id_tax_report, t.balance AS tax_value, t.month_year AS date_start, LAST_DAY(t.month_year) AS date_end, 1 AS is_active
                     FROM tb_setup_tax_installment_det AS t
                     LEFT JOIN tb_setup_tax_installment AS s ON t.id_setup_tax = s.id_setup_tax
                     WHERE t.id_setup_tax = " + id_report + "
