@@ -120,6 +120,7 @@
             errorConnection()
         End Try
     End Sub
+
     Sub view_ovh_price(ByVal id_ovhx As String)
         Dim query As String = "SELECT tb_m_comp_contact.contact_person AS cp,tb_lookup_currency.currency,tb_m_ovh_price.id_ovh_price,tb_m_ovh_price.ovh_price_name,tb_m_ovh_price.ovh_price,tb_m_ovh_price.ovh_price_date,tb_m_comp.comp_name,tb_m_ovh_price.id_currency,tb_m_comp.id_comp_cat 
 FROM 
@@ -137,6 +138,7 @@ WHERE tb_m_ovh_price.id_ovh = '" & id_ovhx & "' ORDER BY tb_m_ovh_price.id_ovh_p
             BSave.Enabled = False
         End If
     End Sub
+
     Sub load_ovh_price()
         TEVendCur.Text = GVOVHPrice.GetFocusedRowCellDisplayText("currency").ToString
         TEVendPrice.EditValue = GVOVHPrice.GetFocusedRowCellValue("ovh_price")
@@ -261,7 +263,7 @@ WHERE tb_m_ovh_price.id_ovh = '" & id_ovhx & "' ORDER BY tb_m_ovh_price.id_ovh_p
             stopCustom("Please choose overhead with proper price.")
         ElseIf Not TEQty.EditValue > 0 Then
             stopCustom("Please insert qty of overhead.")
-        ElseIf Not GVOVHPrice.GetFocusedRowCellvalue("id_comp_cat").ToString = "1" And CEOVHMain.Checked = True Then
+        ElseIf Not GVOVHPrice.GetFocusedRowCellvalue("id_comp_cat").ToString = "1" And Not GVOVHPrice.GetFocusedRowCellvalue("id_comp_cat").ToString = "8" And CEOVHMain.Checked = True Then
             stopCustom("Only production vendor can be used")
         Else
             Dim is_ovh_main As Integer
