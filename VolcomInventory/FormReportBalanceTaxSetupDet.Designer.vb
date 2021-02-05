@@ -48,6 +48,7 @@ Partial Class FormReportBalanceTaxSetupDet
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TETotal = New DevExpress.XtraEditors.TextEdit()
+        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,6 +176,7 @@ Partial Class FormReportBalanceTaxSetupDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SBAttachment)
         Me.PanelControl2.Controls.Add(Me.SBMark)
         Me.PanelControl2.Controls.Add(Me.SBPrint)
         Me.PanelControl2.Controls.Add(Me.SBSubmit)
@@ -381,6 +383,16 @@ Partial Class FormReportBalanceTaxSetupDet
         Me.TETotal.Size = New System.Drawing.Size(246, 20)
         Me.TETotal.TabIndex = 14
         '
+        'SBAttachment
+        '
+        Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
+        Me.SBAttachment.Location = New System.Drawing.Point(483, 2)
+        Me.SBAttachment.Name = "SBAttachment"
+        Me.SBAttachment.Size = New System.Drawing.Size(119, 45)
+        Me.SBAttachment.TabIndex = 3
+        Me.SBAttachment.Text = "Attachment"
+        '
         'FormReportBalanceTaxSetupDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -445,4 +457,5 @@ Partial Class FormReportBalanceTaxSetupDet
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents TETotal As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
 End Class

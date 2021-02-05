@@ -176,6 +176,10 @@
             MENote.ReadOnly = True
         End If
 
+        set_data_code()
+    End Sub
+
+    Sub set_data_code()
         data_code = execute_query("
             SELECT shift_code
             FROM tb_emp_shift
@@ -334,6 +338,8 @@
     Private Sub GVScheduleAfter_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVScheduleAfter.CellValueChanged
         If Not e.Value.ToString = "" Then
             Dim already As Boolean = False
+
+            set_data_code()
 
             For i = 0 To data_code.Rows.Count - 1
                 If data_code.Rows(i)("shift_code").ToString = e.Value.ToString Then

@@ -182,6 +182,7 @@
         'controls
         If SLUEReportStatus.EditValue.ToString = "0" Then
             SBPrint.Visible = False
+            SBAttachment.Visible = False
             SBMark.Visible = False
             SBSubmit.Visible = True
 
@@ -192,6 +193,7 @@
             SBGenerateSetupTax.Enabled = True
         Else
             SBPrint.Visible = True
+            SBAttachment.Visible = True
             SBMark.Visible = True
             SBSubmit.Visible = False
 
@@ -201,5 +203,34 @@
             TETotal.ReadOnly = True
             SBGenerateSetupTax.Enabled = False
         End If
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim report As New ReportBalanceTaxSetup()
+
+        report.id_setup_tax = id_setup_tax
+        report.data = GCSetupTax.DataSource
+        report.id_pre = If(SLUEReportStatus.EditValue.ToString = "6", "-1", "1")
+
+        report.XLNumber.Text = TENumber.Text
+        report.XLDate.Text = report.XLDate.Text.Replace("[date]", TECreatedAt.Text)
+        report.XLPeriod.Text = report.XLPeriod.Text.Replace("[period_from]", DEDateFrom.Text)
+        report.XLPeriod.Text = report.XLPeriod.Text.Replace("[period_to]", DEDateTo.Text)
+        report.XLTaxReport.Text = report.XLTaxReport.Text.Replace("[tax_report]", SLUETax.Text)
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool.ShowPreviewDialog()
+    End Sub
+
+    Private Sub SBAttachment_Click(sender As Object, e As EventArgs) Handles SBAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = id_setup_tax
+        FormDocumentUpload.report_mark_type = "288"
+        FormDocumentUpload.ShowDialog()
+
+        Cursor = Cursors.Default
     End Sub
 End Class

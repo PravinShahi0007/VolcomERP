@@ -253,9 +253,11 @@ LEFT JOIN
 (
 	-- begining
 	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_begs,MIN(storage_item_datetime) as min_date
-	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`) AS amount_begs
-	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`)/SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS harga_satuan_begs
-	FROM `tb_storage_item` 
+	-- ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`) AS amount_begs
+    ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty))*getAvgCostDate(`id_item`,DATE_SUB(@start_date, INTERVAL 1 DAY)) AS amount_begs
+	-- ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`)/SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS harga_satuan_begs
+	,getAvgCostDate(`id_item`,DATE_SUB(@start_date, INTERVAL 1 DAY)) AS harga_satuan_begs
+    FROM `tb_storage_item` 
      " & q_unit & "
 	WHERE DATE(storage_item_datetime)<@start_date AND NOT report_mark_type='154' AND NOT report_mark_type='163' " & q_where_unit & "
 	GROUP BY `id_item`
@@ -286,9 +288,11 @@ LEFT JOIN
 (
 	-- ending
 	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_ending
-	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`) AS amount_ending
-	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`)/SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS harga_satuan_ending
-	FROM `tb_storage_item` 
+	-- ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`) AS amount_ending
+	-- ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`)/SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS harga_satuan_ending
+	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty))*getAvgCostDate(`id_item`,@end_date) AS amount_ending
+    ,getAvgCostDate(`id_item`,@end_date) AS harga_satuan_ending
+    FROM `tb_storage_item` 
      " & q_unit & "
 	WHERE DATE(storage_item_datetime)<=@end_date AND NOT report_mark_type='154' AND NOT report_mark_type='163' " & q_where_unit & "
 	GROUP BY `id_item`
@@ -307,9 +311,11 @@ LEFT JOIN
 (
 	-- real ending
 	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_rem_book
-	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`) AS amount_rem_book
-	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`)/SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS harga_satuan_rem_book
-	FROM `tb_storage_item` 
+	-- ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`) AS amount_rem_book
+	-- ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`)/SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS harga_satuan_rem_book
+	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty))*getAvgCostDate(`id_item`,@end_date) AS amount_rem_book
+    ,getAvgCostDate(`id_item`,@end_date) AS harga_satuan_rem_book
+    FROM `tb_storage_item` 
     " & q_unit & "
 	WHERE DATE(storage_item_datetime)<=@end_date " & q_where_unit & "
 	GROUP BY `id_item`

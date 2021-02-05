@@ -150,10 +150,19 @@ WHERE ld.`claim_percent` > 0  AND ISNULL(dn.id_report) " & q_where & " GROUP BY 
 
     Sub load_claim_reject()
         'check AR first
-        Dim query_check As String = "SELECT IFNULL(id_acc_ar,0) AS id_acc_ar FROM tb_m_comp c
+        Dim is_no_ar As Boolean = False
+
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            Dim query_check As String = "SELECT IFNULL(id_acc_ar,0) AS id_acc_ar FROM tb_m_comp c
 WHERE c.id_comp='" & SLEVendor.EditValue.ToString & "'"
-        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-        If data_check.Rows(0)("id_acc_ar").ToString = "0" Then
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+
+            If data_check.Rows(0)("id_acc_ar").ToString = "0" Then
+                is_no_ar = True
+            End If
+        End If
+
+        If is_no_ar Then
             warningCustom("Please check AR mapping !")
         Else
             Dim q_where As String = ""
