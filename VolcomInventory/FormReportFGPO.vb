@@ -18,22 +18,26 @@
     End Sub
 
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
-        view_production_order()
+        view_production_order("")
     End Sub
 
-    Sub view_production_order()
+    Sub view_production_order(ByVal opt As String)
         Dim query_where As String = ""
 
-        If Not SLEDesignStockStore.EditValue.ToString = "0" Then
-            query_where += " AND b.id_design='" & SLEDesignStockStore.EditValue.ToString & "'"
-        End If
+        If opt = "date" Then
+            query_where += " AND DATE(rec.prod_order_rec_date)>='" & Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(rec.prod_order_rec_date)<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+        Else
+            If Not SLEDesignStockStore.EditValue.ToString = "0" Then
+                query_where += " AND b.id_design='" & SLEDesignStockStore.EditValue.ToString & "'"
+            End If
 
-        If Not SLESeason.EditValue.ToString = "-1" Then
-            query_where += " AND e.id_season='" & SLESeason.EditValue.ToString & "'"
-        End If
+            If Not SLESeason.EditValue.ToString = "-1" Then
+                query_where += " AND e.id_season='" & SLESeason.EditValue.ToString & "'"
+            End If
 
-        If Not SLEVendor.EditValue.ToString = "0" Then
-            query_where += " AND cc.id_comp='" & SLEVendor.EditValue.ToString & "'"
+            If Not SLEVendor.EditValue.ToString = "0" Then
+                query_where += " AND cc.id_comp='" & SLEVendor.EditValue.ToString & "'"
+            End If
         End If
 
         Dim query = "SELECT a.id_prod_order,a.`prod_order_number`,a.prod_order_date,g.po_type
@@ -46,7 +50,12 @@ IFNULL(SUM(qty_plwh.qty),0) AS qty_plwh,
 IFNULL(SUM(qty_rec_plwh.qty),0) AS qty_rec_plwh, 
 IFNULL(SUM(qty_retin.qty),0) AS qty_ret_in, 
 IFNULL(SUM(qty_retout.qty),0) AS qty_ret_out, 
-IFNULL(SUM(qty_claim.qty),0) AS qty_ret_claim 
+IFNULL(SUM(qty_claim.qty),0) AS qty_ret_claim ,
+IFNULL(qr.qty_qr,0) AS qty_qr, 
+IFNULL(qr.qty_normal,0) AS qty_normal, 
+IFNULL(qr.qty_minor,0) AS qty_minor, 
+IFNULL(qr.qty_major,0) AS qty_major, 
+IFNULL(qr.qty_afkir,0) AS qty_afkir
 FROM tb_prod_order a 
 INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order AND a.`id_report_status`=6
 INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
@@ -113,7 +122,14 @@ LEFT JOIN (
 	    SELECT * FROM tb_prod_order_ko_det
 	    ORDER BY id_prod_order_ko_det DESC
 	)ko GROUP BY ko.id_prod_order
-) ko ON ko.id_prod_order=a.id_prod_order "
+) ko ON ko.id_prod_order=a.id_prod_order 
+LEFT JOIN
+(
+    SELECT fc.`id_prod_order`,SUM(fcd.`prod_fc_det_qty`) AS qty_qr,SUM(IF(fc.`id_pl_category`=1,fcd.`prod_fc_det_qty`,0)) AS qty_normal,SUM(IF(fc.`id_pl_category`=2,fcd.`prod_fc_det_qty`,0)) AS qty_minor,SUM(IF(fc.`id_pl_category`=3,fcd.`prod_fc_det_qty`,0)) AS qty_major,SUM(IF(fc.`id_pl_category`=4,fcd.`prod_fc_det_qty`,0)) AS qty_afkir
+    FROM tb_prod_fc_det fcd
+    INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcd.`id_prod_fc` AND fc.`id_report_status`!=5
+    GROUP BY fc.`id_prod_order`
+)qr ON qr.id_prod_order=a.id_prod_order "
         query += "WHERE 1=1 " & query_where
         query += "GROUP BY a.id_prod_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -142,6 +158,8 @@ LEFT JOIN (
     End Sub
 
     Private Sub FormReportFGPO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEFrom.EditValue = Now
+        DEUntil.EditValue = Now
         viewDesign()
         viewSeason()
         viewVendor()
@@ -190,5 +208,9 @@ LEFT JOIN (
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         print_raw(GCProd, "PO List")
+    End Sub
+
+    Private Sub BSearchTanggal_Click(sender As Object, e As EventArgs) Handles BSearchTanggal.Click
+        view_production_order("date")
     End Sub
 End Class

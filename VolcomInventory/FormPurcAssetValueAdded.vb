@@ -7,7 +7,13 @@
 
     Private Sub FormPurcAssetValueAdded_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
+        view_fgpo()
         actionLoad()
+    End Sub
+
+    Sub view_fgpo()
+        Dim query As String = ""
+        viewSearchLookupQuery(SLEPurcOrder, query, "id_purc_order", "purc_order_number", "id_purc_order")
     End Sub
 
     Sub viewReportStatus()
