@@ -418,6 +418,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
         '
         GVData.BestFitColumns()
         '
+        GridColumnBudgetDesc.MinWidth = 100
         GridColumnNo.MaxWidth = 30
         GridColumnCurrView.MaxWidth = 30
         GridColumnBefKurs.MaxWidth = 70
