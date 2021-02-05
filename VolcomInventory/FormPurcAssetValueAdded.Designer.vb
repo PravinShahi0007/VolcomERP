@@ -40,6 +40,9 @@ Partial Class FormPurcAssetValueAdded
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlStt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,6 +55,8 @@ Partial Class FormPurcAssetValueAdded
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -61,7 +66,7 @@ Partial Class FormPurcAssetValueAdded
         Me.PanelControl1.Controls.Add(Me.BtnMark)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 238)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 252)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(489, 47)
         Me.PanelControl1.TabIndex = 301
@@ -163,7 +168,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'TxtValueAdded
         '
-        Me.TxtValueAdded.Location = New System.Drawing.Point(122, 100)
+        Me.TxtValueAdded.Location = New System.Drawing.Point(122, 126)
         Me.TxtValueAdded.Name = "TxtValueAdded"
         Me.TxtValueAdded.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtValueAdded.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -174,11 +179,11 @@ Partial Class FormPurcAssetValueAdded
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(19, 103)
+        Me.LabelControl4.Location = New System.Drawing.Point(19, 129)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(66, 13)
         Me.LabelControl4.TabIndex = 310
-        Me.LabelControl4.Text = "Value-added"
+        Me.LabelControl4.Text = "Value - added"
         '
         'DECreated
         '
@@ -213,14 +218,14 @@ Partial Class FormPurcAssetValueAdded
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(122, 152)
+        Me.MENote.Location = New System.Drawing.Point(122, 178)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(349, 59)
         Me.MENote.TabIndex = 316
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(19, 154)
+        Me.LabelControl3.Location = New System.Drawing.Point(19, 180)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl3.TabIndex = 317
@@ -228,7 +233,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(19, 129)
+        Me.LabelControl5.Location = New System.Drawing.Point(19, 155)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl5.TabIndex = 319
@@ -236,7 +241,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'TextEdit1
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(122, 126)
+        Me.TextEdit1.Location = New System.Drawing.Point(122, 152)
         Me.TextEdit1.Name = "TextEdit1"
         Me.TextEdit1.Properties.DisplayFormat.FormatString = "N2"
         Me.TextEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -247,17 +252,43 @@ Partial Class FormPurcAssetValueAdded
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(225, 129)
+        Me.LabelControl8.Location = New System.Drawing.Point(225, 159)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(43, 13)
         Me.LabelControl8.TabIndex = 320
         Me.LabelControl8.Text = "month(s)"
         '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(19, 103)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl9.TabIndex = 321
+        Me.LabelControl9.Text = "Purchase Order"
+        '
+        'SearchLookUpEdit1
+        '
+        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(122, 100)
+        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
+        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SearchLookUpEdit1.Properties.View = Me.SearchLookUpEdit1View
+        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(349, 20)
+        Me.SearchLookUpEdit1.TabIndex = 322
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
         'FormPurcAssetValueAdded
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(489, 285)
+        Me.ClientSize = New System.Drawing.Size(489, 299)
+        Me.Controls.Add(Me.SearchLookUpEdit1)
+        Me.Controls.Add(Me.LabelControl9)
         Me.Controls.Add(Me.LabelControl8)
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.TextEdit1)
@@ -291,6 +322,8 @@ Partial Class FormPurcAssetValueAdded
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -316,4 +349,7 @@ Partial Class FormPurcAssetValueAdded
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
