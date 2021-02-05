@@ -349,7 +349,6 @@
         FormPurcAssetValueAddedList.LabelAssetName.Text = TxtAssetName.Text
         FormPurcAssetValueAddedList.LabelLinkAssetNumber.Text = TxtAssetNumber.Text
         FormPurcAssetValueAddedList.LabelLinkAssetNumber.Enabled = False
-        FormPurcAssetValueAddedList.BtnAdd.Visible = False
         FormPurcAssetValueAddedList.ShowDialog()
         Cursor = Cursors.Default
     End Sub

@@ -103,6 +103,7 @@ Partial Class FormPurcAsset
         Me.GCDepPPS = New DevExpress.XtraGrid.GridControl()
         Me.GVDepPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -116,7 +117,6 @@ Partial Class FormPurcAsset
         Me.BRefreshDepreciation = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -279,7 +279,6 @@ Partial Class FormPurcAsset
         Me.ValueaddedAssetToolStripMenuItem.Name = "ValueaddedAssetToolStripMenuItem"
         Me.ValueaddedAssetToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.ValueaddedAssetToolStripMenuItem.Text = "Value-added asset"
-        Me.ValueaddedAssetToolStripMenuItem.Visible = False
         '
         'InputEmployeeToolStripMenuItem
         '
@@ -912,6 +911,14 @@ Partial Class FormPurcAsset
         Me.GridColumn9.FieldName = "id_asset_dep_pps"
         Me.GridColumn9.Name = "GridColumn9"
         '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Unit"
+        Me.GridColumn18.FieldName = "tag_description"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 1
+        '
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Number"
@@ -1022,14 +1029,6 @@ Partial Class FormPurcAsset
         Me.LabelControl2.Size = New System.Drawing.Size(104, 19)
         Me.LabelControl2.TabIndex = 0
         Me.LabelControl2.Text = "Depreciation"
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Unit"
-        Me.GridColumn18.FieldName = "tag_description"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 1
         '
         'FormPurcAsset
         '

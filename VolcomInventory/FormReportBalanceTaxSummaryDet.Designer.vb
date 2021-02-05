@@ -84,7 +84,6 @@ Partial Class FormReportBalanceTaxSummaryDet
         '
         'TENumber
         '
-        Me.TENumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TENumber.Location = New System.Drawing.Point(103, 14)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.ReadOnly = True
@@ -93,7 +92,6 @@ Partial Class FormReportBalanceTaxSummaryDet
         '
         'Label5
         '
-        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(14, 17)
         Me.Label5.Name = "Label5"
@@ -153,6 +151,7 @@ Partial Class FormReportBalanceTaxSummaryDet
         '
         'SLUEReportStatus
         '
+        Me.SLUEReportStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SLUEReportStatus.Location = New System.Drawing.Point(617, 66)
         Me.SLUEReportStatus.Name = "SLUEReportStatus"
         Me.SLUEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -170,6 +169,7 @@ Partial Class FormReportBalanceTaxSummaryDet
         '
         'Label4
         '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(537, 69)
         Me.Label4.Name = "Label4"
