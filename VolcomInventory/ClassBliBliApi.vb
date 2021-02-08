@@ -10,6 +10,9 @@
 
 
     Function download_shipping_label(ByVal order_item_id As String) As String
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+
         Dim out As String = ""
 
         Dim auth As String = Convert.ToBase64String(Text.Encoding.UTF8.GetBytes(username + ":" + password))
@@ -45,6 +48,8 @@
     End Function
 
     Sub get_order_list()
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
         'delete is_process =2
         'execute_non_query_long("DELETE FROM tb_ol_store_order WHERE id_comp_group='" + id_store_group + "' AND is_process=2", True, "", "", "", "")
 
@@ -87,6 +92,9 @@
     End Sub
 
     Sub get_order_detail(ByVal order_par As String, ByVal order_item_par As String)
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+
         Dim auth As String = Convert.ToBase64String(Text.Encoding.UTF8.GetBytes(username + ":" + password))
         Dim request As Net.HttpWebRequest = Net.WebRequest.Create("https://api.blibli.com/v2/proxy/mta/api/businesspartner/v1/order/orderDetail?storeId=" + store_id + "&requestId=" + request_id + "&businessPartnerCode=" + business_partner + "&channelId=" + channel_id + "&orderNo=" + order_par + "&orderItemNo=" + order_item_par)
         request.Method = "GET"
@@ -228,6 +236,9 @@
     End Sub
 
     Function get_page() As Integer
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+
         Dim auth As String = Convert.ToBase64String(Text.Encoding.UTF8.GetBytes(username + ":" + password))
         Dim request As Net.HttpWebRequest = Net.WebRequest.Create("https://api.blibli.com/v2/proxy/mta/api/businesspartner/v1/order/orderList?storeId=" + store_id + "&requestId=" + request_id + "&businessPartnerCode=" + business_partner + "&channelId=" + channel_id + "&status=FP")
         request.Method = "GET"
@@ -254,6 +265,9 @@
     End Function
 
     Function get_status(ByVal order_no_par As String, ByVal ol_store_id_par As String) As DataTable
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+
         Dim dt As DataTable = New DataTable
         dt.Columns.Add("order_status", GetType(String))
         dt.Columns.Add("order_status_date", GetType(DateTime))

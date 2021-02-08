@@ -4102,6 +4102,12 @@
     <Compile Include="FormRetOLStoreDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormReturnForBOF.Designer.vb">
+      <DependentUpon>FormReturnForBOF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReturnForBOF.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormReturnNote.Designer.vb">
       <DependentUpon>FormReturnNote.vb</DependentUpon>
     </Compile>
@@ -11207,6 +11213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRetOLStoreDet.resx">
       <DependentUpon>FormRetOLStoreDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReturnForBOF.resx">
+      <DependentUpon>FormReturnForBOF.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReturnNote.resx">
       <DependentUpon>FormReturnNote.vb</DependentUpon>

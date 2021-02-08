@@ -100,7 +100,8 @@
             '
             If data.Rows(0)("id_report_status") = "6" And data.Rows(0)("is_active_v") = "1" Then
                 PanelControlVA.Visible = True
-                TxtVA.EditValue = data.Rows(0)("acq_cost_va")
+                TxtVA.EditValue = data.Rows(0)("value_added")
+                TEMonthAdded.EditValue = data.Rows(0)("month_added")
                 TxtTotalCost.EditValue = TxtCost.EditValue + TxtVA.EditValue
             Else
                 PanelControlVA.Visible = False
@@ -345,6 +346,7 @@
 
     Private Sub HLCDetailVA_Click(sender As Object, e As EventArgs) Handles HLCDetailVA.Click
         Cursor = Cursors.WaitCursor
+        FormPurcAssetValueAddedList.id_coa_tag = SLEUnit.EditValue.ToString
         FormPurcAssetValueAddedList.id_parent = id
         FormPurcAssetValueAddedList.LabelAssetName.Text = TxtAssetName.Text
         FormPurcAssetValueAddedList.LabelLinkAssetNumber.Text = TxtAssetNumber.Text
