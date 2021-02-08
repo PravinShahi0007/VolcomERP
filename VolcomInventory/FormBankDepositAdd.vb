@@ -116,6 +116,19 @@
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        'cek value pph
+        Dim qph As String = "SELECT * 
+        FROM tb_a_acc a
+        INNER JOIN tb_lookup_tax_report tr ON tr.id_tax_report = a.id_tax_report
+        WHERE tr.id_type=1 AND a.id_acc='" + SLECOA.EditValue.ToString + "' "
+        Dim dph As DataTable = execute_query(qph, -1, True, "", "", "", "")
+        Dim amo As Decimal = 0.00
+        If dph.Rows.Count > 0 Then
+            amo = Math.Floor(TxtAmount.EditValue)
+        Else
+            amo = TxtAmount.EditValue
+        End If
+
         If id_pop_up = "-1" Then
             'BBM
             If action = "ins" Then
@@ -137,16 +150,16 @@
                 newRow("comp_number") = TxtComp.Text
                 newRow("total_rec") = 0
                 If LEDK.EditValue.ToString = "1" Then
-                    newRow("value") = TxtAmount.EditValue * -1
-                    newRow("balance_due") = TxtAmount.EditValue * -1
+                    newRow("value") = amo * -1
+                    newRow("balance_due") = amo * -1
                 Else
-                    newRow("value") = TxtAmount.EditValue
-                    newRow("balance_due") = TxtAmount.EditValue
+                    newRow("value") = amo
+                    newRow("balance_due") = amo
                 End If
                 newRow("note") = addSlashes(TxtDescription.Text)
                 newRow("id_dc") = LEDK.EditValue.ToString
                 newRow("dc_code") = LEDK.Text
-                newRow("value_view") = TxtAmount.EditValue
+                newRow("value_view") = amo
                 TryCast(FormBankDepositDet.GCList.DataSource, DataTable).Rows.Add(newRow)
                 FormBankDepositDet.GCList.RefreshDataSource()
                 FormBankDepositDet.GVList.RefreshData()
@@ -167,16 +180,16 @@
                 FormBankDepositDet.GVList.SetFocusedRowCellValue("comp_number", TxtComp.Text)
                 FormBankDepositDet.GVList.SetFocusedRowCellValue("total_rec", 0)
                 If LEDK.EditValue.ToString = "1" Then
-                    FormBankDepositDet.GVList.SetFocusedRowCellValue("value", TxtAmount.EditValue * -1)
-                    FormBankDepositDet.GVList.SetFocusedRowCellValue("balance_due", TxtAmount.EditValue * -1)
+                    FormBankDepositDet.GVList.SetFocusedRowCellValue("value", amo * -1)
+                    FormBankDepositDet.GVList.SetFocusedRowCellValue("balance_due", amo * -1)
                 Else
-                    FormBankDepositDet.GVList.SetFocusedRowCellValue("value", TxtAmount.EditValue)
-                    FormBankDepositDet.GVList.SetFocusedRowCellValue("balance_due", TxtAmount.EditValue)
+                    FormBankDepositDet.GVList.SetFocusedRowCellValue("value", amo)
+                    FormBankDepositDet.GVList.SetFocusedRowCellValue("balance_due", amo)
                 End If
                 FormBankDepositDet.GVList.SetFocusedRowCellValue("note", addSlashes(TxtDescription.Text))
                 FormBankDepositDet.GVList.SetFocusedRowCellValue("id_dc", LEDK.EditValue.ToString)
                 FormBankDepositDet.GVList.SetFocusedRowCellValue("dc_code", LEDK.Text)
-                FormBankDepositDet.GVList.SetFocusedRowCellValue("value_view", TxtAmount.EditValue)
+                FormBankDepositDet.GVList.SetFocusedRowCellValue("value_view", amo)
                 FormBankDepositDet.GCList.RefreshDataSource()
                 FormBankDepositDet.GVList.RefreshData()
                 FormBankDepositDet.calculate_amount()
@@ -201,7 +214,7 @@
                 End If
                 newRow("comp_number") = TxtComp.Text
                 newRow("note") = TxtDescription.Text
-                newRow("value") = TxtAmount.EditValue
+                newRow("value") = amo
                 newRow("id_report") = "0"
                 newRow("number") = TxtReff.Text
                 newRow("report_mark_type") = "0"
@@ -224,7 +237,7 @@
                 End If
                 FormSalesBranchDet.GVData.SetFocusedRowCellValue("comp_number", TxtComp.Text)
                 FormSalesBranchDet.GVData.SetFocusedRowCellValue("note", TxtDescription.Text)
-                FormSalesBranchDet.GVData.SetFocusedRowCellValue("value", TxtAmount.EditValue)
+                FormSalesBranchDet.GVData.SetFocusedRowCellValue("value", amo)
                 FormSalesBranchDet.GVData.SetFocusedRowCellValue("id_report", "0")
                 FormSalesBranchDet.GVData.SetFocusedRowCellValue("number", TxtReff.Text)
                 FormSalesBranchDet.GVData.SetFocusedRowCellValue("report_mark_type", "0")
