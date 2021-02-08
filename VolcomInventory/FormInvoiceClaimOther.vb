@@ -295,7 +295,7 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
         Dim id_acc_trans As String = ""
         Try
             id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
-            WHERE ad.report_mark_type=189 AND ad.id_report=" + id_invoice + "
+            WHERE ad.report_mark_type=280 AND ad.id_report=" + id_invoice + "
             GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
         Catch ex As Exception
             id_acc_trans = ""

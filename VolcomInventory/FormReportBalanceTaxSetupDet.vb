@@ -2,6 +2,7 @@
     Public id_setup_tax As String = "-1"
 
     Private Sub FormReportBalanceTaxSetupDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        view_coa_tag()
         view_setup_tax()
         view_report_status()
 
@@ -54,11 +55,29 @@
         End If
     End Sub
 
+    Sub view_coa_tag()
+        Dim query As String = "
+            SELECT id_coa_tag, tag_description
+            FROM tb_coa_tag
+        "
+
+        viewSearchLookupQuery(SLUETag, query, "id_coa_tag", "tag_description", "id_coa_tag")
+    End Sub
+
     Sub view_setup_tax()
+        Dim where As String = ""
+
+        If SLUETag.EditValue.ToString = "1" Then
+            where = "available_in_office_tag = 1"
+        Else
+            where = "available_in_store_tag = 1"
+        End If
+
         Dim query As String = "
             SELECT id_tax_report, tax_report
             FROM tb_lookup_tax_report
-            WHERE id_type = 1
+            WHERE id_type = 1 AND " + where + "
+            ORDER BY sorting
         "
 
         viewSearchLookupQuery(SLUETax, query, "id_tax_report", "tax_report", "id_tax_report")
@@ -95,7 +114,7 @@
             Dim period_from As String = Date.Parse("1 " + DEDateFrom.Text).ToString("yyyy-MM-dd")
             Dim period_to As String = Date.Parse("1 " + DEDateTo.Text).ToString("yyyy-MM-dd")
 
-            Dim query As String = "INSERT INTO tb_setup_tax_installment (id_tax_report, period_from, period_to, id_report_status, created_at, created_by) VALUES (" + SLUETax.EditValue.ToString + ", '" + period_from + "', '" + period_to + "', 1, NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
+            Dim query As String = "INSERT INTO tb_setup_tax_installment (id_coa_tag, id_tax_report, period_from, period_to, id_report_status, created_at, created_by) VALUES (" + SLUETag.EditValue.ToString + ", " + SLUETax.EditValue.ToString + ", '" + period_from + "', '" + period_to + "', 1, NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
 
             id_setup_tax = execute_query(query, 0, True, "", "", "", "")
 
@@ -135,7 +154,7 @@
 
         If Not id_setup_tax = "-1" Then
             Dim query As String = "
-                SELECT s.id_tax_report, s.number, DATE_FORMAT(s.period_from, '%d %M %Y') AS period_from, DATE_FORMAT(s.period_to, '%d %M %Y') AS period_to, s.id_report_status, e.employee_name AS created_by, DATE_FORMAT(s.created_at, '%d %M %Y %H:%i:%s') AS created_at, p.total
+                SELECT s.id_coa_tag, s.id_tax_report, s.number, DATE_FORMAT(s.period_from, '%d %M %Y') AS period_from, DATE_FORMAT(s.period_to, '%d %M %Y') AS period_to, s.id_report_status, e.employee_name AS created_by, DATE_FORMAT(s.created_at, '%d %M %Y %H:%i:%s') AS created_at, p.total
                 FROM tb_setup_tax_installment AS s
                 LEFT JOIN (
 	                SELECT id_setup_tax, SUM(balance) AS total
@@ -148,6 +167,7 @@
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+            SLUETag.EditValue = data.Rows(0)("id_coa_tag").ToString
             SLUETax.EditValue = data.Rows(0)("id_tax_report").ToString
             TETotal.EditValue = data.Rows(0)("total")
             TENumber.EditValue = data.Rows(0)("number").ToString
@@ -189,6 +209,7 @@
             DEDateFrom.ReadOnly = False
             DEDateTo.ReadOnly = False
             SLUETax.ReadOnly = False
+            SLUETag.ReadOnly = False
             TETotal.ReadOnly = False
             SBGenerateSetupTax.Enabled = True
         Else
@@ -200,6 +221,7 @@
             DEDateFrom.ReadOnly = True
             DEDateTo.ReadOnly = True
             SLUETax.ReadOnly = True
+            SLUETag.ReadOnly = True
             TETotal.ReadOnly = True
             SBGenerateSetupTax.Enabled = False
         End If
@@ -217,6 +239,7 @@
         report.XLPeriod.Text = report.XLPeriod.Text.Replace("[period_from]", DEDateFrom.Text)
         report.XLPeriod.Text = report.XLPeriod.Text.Replace("[period_to]", DEDateTo.Text)
         report.XLTaxReport.Text = report.XLTaxReport.Text.Replace("[tax_report]", SLUETax.Text)
+        report.XLTag.Text = report.XLTag.Text.Replace("[tag]", SLUETag.Text)
 
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
@@ -232,5 +255,9 @@
         FormDocumentUpload.ShowDialog()
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLUETag_EditValueChanged(sender As Object, e As EventArgs) Handles SLUETag.EditValueChanged
+        view_setup_tax()
     End Sub
 End Class

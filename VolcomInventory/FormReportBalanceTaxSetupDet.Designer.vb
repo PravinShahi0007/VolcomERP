@@ -32,6 +32,7 @@ Partial Class FormReportBalanceTaxSetupDet
         Me.SLUEReportStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,7 +49,9 @@ Partial Class FormReportBalanceTaxSetupDet
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TETotal = New DevExpress.XtraEditors.TextEdit()
-        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.SLUETag = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,6 +70,8 @@ Partial Class FormReportBalanceTaxSetupDet
         CType(Me.SLUETax.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUETag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SBMark
@@ -132,7 +137,7 @@ Partial Class FormReportBalanceTaxSetupDet
         '
         'SBGenerateSetupTax
         '
-        Me.SBGenerateSetupTax.Location = New System.Drawing.Point(355, 90)
+        Me.SBGenerateSetupTax.Location = New System.Drawing.Point(355, 116)
         Me.SBGenerateSetupTax.Name = "SBGenerateSetupTax"
         Me.SBGenerateSetupTax.Size = New System.Drawing.Size(114, 23)
         Me.SBGenerateSetupTax.TabIndex = 8
@@ -185,6 +190,16 @@ Partial Class FormReportBalanceTaxSetupDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(784, 49)
         Me.PanelControl2.TabIndex = 5
+        '
+        'SBAttachment
+        '
+        Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
+        Me.SBAttachment.Location = New System.Drawing.Point(483, 2)
+        Me.SBAttachment.Name = "SBAttachment"
+        Me.SBAttachment.Size = New System.Drawing.Size(119, 45)
+        Me.SBAttachment.TabIndex = 3
+        Me.SBAttachment.Text = "Attachment"
         '
         'SBPrint
         '
@@ -285,10 +300,10 @@ Partial Class FormReportBalanceTaxSetupDet
         'GCSetupTax
         '
         Me.GCSetupTax.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSetupTax.Location = New System.Drawing.Point(0, 125)
+        Me.GCSetupTax.Location = New System.Drawing.Point(0, 154)
         Me.GCSetupTax.MainView = Me.GVSetupTax
         Me.GCSetupTax.Name = "GCSetupTax"
-        Me.GCSetupTax.Size = New System.Drawing.Size(784, 387)
+        Me.GCSetupTax.Size = New System.Drawing.Size(784, 358)
         Me.GCSetupTax.TabIndex = 4
         Me.GCSetupTax.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSetupTax})
         '
@@ -313,6 +328,8 @@ Partial Class FormReportBalanceTaxSetupDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLUETag)
+        Me.PanelControl1.Controls.Add(Me.Label8)
         Me.PanelControl1.Controls.Add(Me.SLUETax)
         Me.PanelControl1.Controls.Add(Me.Label7)
         Me.PanelControl1.Controls.Add(Me.Label6)
@@ -332,12 +349,12 @@ Partial Class FormReportBalanceTaxSetupDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 125)
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 154)
         Me.PanelControl1.TabIndex = 3
         '
         'SLUETax
         '
-        Me.SLUETax.Location = New System.Drawing.Point(103, 66)
+        Me.SLUETax.Location = New System.Drawing.Point(103, 92)
         Me.SLUETax.Name = "SLUETax"
         Me.SLUETax.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUETax.Properties.View = Me.GridView2
@@ -354,7 +371,7 @@ Partial Class FormReportBalanceTaxSetupDet
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(14, 95)
+        Me.Label7.Location = New System.Drawing.Point(14, 121)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(31, 13)
         Me.Label7.TabIndex = 16
@@ -363,7 +380,7 @@ Partial Class FormReportBalanceTaxSetupDet
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(14, 69)
+        Me.Label6.Location = New System.Drawing.Point(14, 95)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(25, 13)
         Me.Label6.TabIndex = 15
@@ -371,7 +388,7 @@ Partial Class FormReportBalanceTaxSetupDet
         '
         'TETotal
         '
-        Me.TETotal.Location = New System.Drawing.Point(103, 92)
+        Me.TETotal.Location = New System.Drawing.Point(103, 118)
         Me.TETotal.Name = "TETotal"
         Me.TETotal.Properties.DisplayFormat.FormatString = "N2"
         Me.TETotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -383,15 +400,30 @@ Partial Class FormReportBalanceTaxSetupDet
         Me.TETotal.Size = New System.Drawing.Size(246, 20)
         Me.TETotal.TabIndex = 14
         '
-        'SBAttachment
+        'Label8
         '
-        Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
-        Me.SBAttachment.Location = New System.Drawing.Point(483, 2)
-        Me.SBAttachment.Name = "SBAttachment"
-        Me.SBAttachment.Size = New System.Drawing.Size(119, 45)
-        Me.SBAttachment.TabIndex = 3
-        Me.SBAttachment.Text = "Attachment"
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(14, 69)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(25, 13)
+        Me.Label8.TabIndex = 18
+        Me.Label8.Text = "Tag"
+        '
+        'SLUETag
+        '
+        Me.SLUETag.Location = New System.Drawing.Point(103, 66)
+        Me.SLUETag.Name = "SLUETag"
+        Me.SLUETag.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUETag.Properties.View = Me.GridView3
+        Me.SLUETag.Size = New System.Drawing.Size(246, 20)
+        Me.SLUETag.TabIndex = 19
+        '
+        'GridView3
+        '
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
         '
         'FormReportBalanceTaxSetupDet
         '
@@ -425,6 +457,8 @@ Partial Class FormReportBalanceTaxSetupDet
         CType(Me.SLUETax.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUETag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -458,4 +492,7 @@ Partial Class FormReportBalanceTaxSetupDet
     Friend WithEvents Label6 As Label
     Friend WithEvents TETotal As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLUETag As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents Label8 As Label
 End Class

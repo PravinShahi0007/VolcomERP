@@ -6962,8 +6962,25 @@ WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
+            'value added
+            If id_status_reportx = "6" Then
+                Dim id_asset As String = ""
+                Dim val_added As String = ""
+                Dim val_added_month As String = ""
+
+                Dim qs As String = "SELECT added_month,added_value,id_purc_rec_asset FROM id_purc_rec_asset_kap='" & id_report & "'"
+                Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+                If dts.Rows.Count > 0 Then
+                    id_asset = dts.Rows(0)("id_purc_rec_asset").ToString
+                    val_added = decimalSQL(dts.Rows(0)("added_value").ToString)
+                    val_added_month = decimalSQL(dts.Rows(0)("added_month").ToString)
+                End If
+
+                execute_non_query("UPDATE tb_purc_rec_asset SET value_added=(value_added+" & val_added & "),month_added=(month_added+" & val_added_month & ") WHERE id_purc_rec_asset='" & id_asset & "'", True, "", "", "", "")
+            End If
+
             'update
-            query = String.Format("UPDATE tb_purc_rec_asset SET is_active=1,id_report_status='{0}' WHERE id_purc_rec_asset ='{1}'", id_status_reportx, id_report)
+            query = String.Format("UPDATE tb_purc_rec_asset_kap SET id_report_status='{0}' WHERE id_purc_rec_asset ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
@@ -9293,7 +9310,7 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
 
                 execute_non_query("
                     INSERT INTO tb_tax_report_monthly (id_coa_tag, id_tax_report, tax_value, date_start, date_end, is_active)
-                    SELECT 1 AS id_coa_tag, s.id_tax_report, t.balance AS tax_value, t.month_year AS date_start, LAST_DAY(t.month_year) AS date_end, 1 AS is_active
+                    SELECT s.id_coa_tag, s.id_tax_report, t.balance AS tax_value, t.month_year AS date_start, LAST_DAY(t.month_year) AS date_end, 1 AS is_active
                     FROM tb_setup_tax_installment_det AS t
                     LEFT JOIN tb_setup_tax_installment AS s ON t.id_setup_tax = s.id_setup_tax
                     WHERE t.id_setup_tax = " + id_report + "
