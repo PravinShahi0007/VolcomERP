@@ -2244,6 +2244,23 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
         componentLink.ShowPreview()
     End Sub
 
+    Sub print_no_footer_custom(ByVal GridControlHere As DevExpress.XtraGrid.GridControl, ByVal title_here As String)
+        title_print = ""
+        title_print = title_here
+        Dim componentLink As New PrintableComponentLink(New PrintingSystem())
+        componentLink.Component = GridControlHere
+        componentLink.Landscape = True
+        AddHandler componentLink.CreateMarginalHeaderArea, AddressOf CreateMarginalHeaderArea
+        AddHandler componentLink.CreateReportHeaderArea, AddressOf CreateReportHeaderAreaCustom2
+        Dim phf As PageHeaderFooter = TryCast(componentLink.PageHeaderFooter, PageHeaderFooter)
+
+        ' Clear the PageHeaderFooter's contents.
+        phf.Header.Content.Clear()
+
+        componentLink.CreateDocument()
+        componentLink.ShowPreview()
+    End Sub
+
     Sub print_raw(ByVal GridControlHere As DevExpress.XtraGrid.GridControl, ByVal title_here As String)
         title_print = ""
         title_print = title_here
@@ -2300,6 +2317,13 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
         e.Graph.StringFormat = New BrickStringFormat(StringAlignment.Near)
         e.Graph.Font = New Font("Tahoma", 9, FontStyle.Bold)
         Dim rec As RectangleF = New RectangleF(0, 20, e.Graph.ClientPageSize.Width, 50)
+        e.Graph.DrawString(reportHeader, Color.Black, rec, BorderSide.None)
+    End Sub
+    Sub CreateReportHeaderAreaCustom2(ByVal sender As System.Object, ByVal e As CreateAreaEventArgs)
+        Dim reportHeader As String = title_print
+        e.Graph.StringFormat = New BrickStringFormat(StringAlignment.Near)
+        e.Graph.Font = New Font("Tahoma", 9, FontStyle.Bold)
+        Dim rec As RectangleF = New RectangleF(0, 20, e.Graph.ClientPageSize.Width, 70)
         e.Graph.DrawString(reportHeader, Color.Black, rec, BorderSide.None)
     End Sub
     '==== end of print ===

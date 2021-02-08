@@ -357,7 +357,7 @@ GROUP BY pod.id_purc_order_det"
                 Dim pph As Decimal = Decimal.Parse(GVPurcReq.GetFocusedRowCellValue("pph_percent").ToString)
                 '
                 Dim grossup_val As Decimal = 0.00
-                grossup_val = ((100 / (100 - pph)) * dpp) - dpp
+                grossup_val = Math.Floor(((100 / (100 - pph)) * dpp) - dpp)
                 GVPurcReq.SetFocusedRowCellValue("gross_up_value", grossup_val)
                 calculate()
             Catch ex As Exception
