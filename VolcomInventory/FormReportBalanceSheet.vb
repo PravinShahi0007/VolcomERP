@@ -1113,7 +1113,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             GVTaxReport.Columns("comp_name").AppearanceCell.Font = font_row_name
             GVTaxReport.Columns("npwp_name").AppearanceCell.Font = font_row_name
             '
-            print_raw(GCTaxReport, SLETaxCat.Text & " (" & Date.Parse(DETaxFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DETaxUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
+            print_no_footer_custom(GCTaxReport, "TAX REPORT" & vbNewLine & SLETaxCat.Text & vbNewLine & "Periode : (" & Date.Parse(DETaxFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DETaxUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ")" & vbNewLine & "Unit : " & SLETaxTagCOA.Text)
             '
             GVTaxReport.AppearancePrint.Row.Font = font_row_default
             GVTaxReport.AppearancePrint.HeaderPanel.Font = font_row_default
@@ -1139,7 +1139,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             GVActiveTax.Columns("comp_name").AppearanceCell.Font = font_row_name
             GVActiveTax.Columns("npwp_name").AppearanceCell.Font = font_row_name
             '
-            print_raw(GCActiveTax, SLETaxCat.Text & " (" & Date.Parse(DETaxFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DETaxUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
+            print_no_footer_custom(GCActiveTax, "TAX REPORT" & vbNewLine & SLETaxCat.Text & vbNewLine & "Periode : (" & Date.Parse(DETaxFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DETaxUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ")" & vbNewLine & "Unit : " & SLETaxTagCOA.Text & vbNewLine & vbNewLine)
             '
             GVActiveTax.AppearancePrint.Row.Font = font_row_default
             GVActiveTax.AppearancePrint.HeaderPanel.Font = font_row_default
