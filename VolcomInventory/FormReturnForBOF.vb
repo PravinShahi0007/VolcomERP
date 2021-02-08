@@ -37,7 +37,7 @@
 
         If data_check.Rows.Count = 0 Then
             Dim query As String = "
-                SELECT 'DEL' AS `Type`,  d.pl_sales_order_del_number AS `Reff Number`, DATE_FORMAT(d.pl_sales_order_del_date, '%d %M %Y') AS `Tanggal`, w.comp_number AS `Asal`, s.comp_number AS `Tujuan`,p.product_full_code AS `Kode` ,dd.pl_sales_order_del_det_qty AS `Qty`, dd.design_price AS `Harga`
+                SELECT 'DEL' AS `type`,  d.pl_sales_order_del_number AS `no_reff`, d.pl_sales_order_del_date AS `tanggal`,  w.comp_number AS `asal`, s.comp_number AS `tujuan`,p.product_full_code AS `kode` , ROUND(dd.pl_sales_order_del_det_qty, 0) AS `qty`, ROUND(dd.design_price, 0) AS `harga`
                 FROM tb_pl_sales_order_del d
                 INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
                 INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = d.id_comp_contact_from
@@ -48,7 +48,7 @@
                 WHERE d.pl_sales_order_del_date>='" + date_from + "' AND d.pl_sales_order_del_date<='" + date_to + "' 
                 AND s.id_comp_group='" + id_comp_group + "' AND d.id_report_status=6 
                 UNION ALL 
-                SELECT 'RTS' AS `Type`, r.sales_return_number AS `Reff Number`, r.sales_return_date AS `Tanggal`,s.comp_number AS `Asal`, w.comp_number AS `Tujuan`, p.product_full_code AS `Kode` ,rd.sales_return_det_qty AS `Qty`, rd.design_price AS `Harga`
+                SELECT 'RTS' AS `type`, r.sales_return_number AS `no_reff`, r.sales_return_date AS `tanggal`, s.comp_number AS `asal`, w.comp_number AS `tujuan`, p.product_full_code AS `kode` , ROUND(rd.sales_return_det_qty, 0) AS `qty`, ROUND(rd.design_price, 0) AS `harga`
                 FROM tb_sales_return r
                 INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return
                 INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = r.id_comp_contact_to

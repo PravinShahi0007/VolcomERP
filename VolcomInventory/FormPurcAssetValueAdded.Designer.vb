@@ -30,7 +30,7 @@ Partial Class FormPurcAssetValueAdded
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAssetName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtValueAdded = New DevExpress.XtraEditors.TextEdit()
+        Me.TEAddedValue = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -43,6 +43,14 @@ Partial Class FormPurcAssetValueAdded
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEPurcOrder = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLECOABiaya = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEKapitalisasiNo = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,7 +60,7 @@ Partial Class FormPurcAssetValueAdded
         Me.PanelControlStt.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAssetName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtValueAdded.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEAddedValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,6 +68,9 @@ Partial Class FormPurcAssetValueAdded
         CType(Me.TEaddedMonths.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPurcOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLECOABiaya.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKapitalisasiNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -69,7 +80,7 @@ Partial Class FormPurcAssetValueAdded
         Me.PanelControl1.Controls.Add(Me.BtnMark)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 252)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 318)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(489, 47)
         Me.PanelControl1.TabIndex = 301
@@ -147,7 +158,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(19, 25)
+        Me.LabelControl2.Location = New System.Drawing.Point(15, 50)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(67, 13)
         Me.LabelControl2.TabIndex = 305
@@ -156,33 +167,33 @@ Partial Class FormPurcAssetValueAdded
         'TxtAssetName
         '
         Me.TxtAssetName.Enabled = False
-        Me.TxtAssetName.Location = New System.Drawing.Point(122, 48)
+        Me.TxtAssetName.Location = New System.Drawing.Point(118, 73)
         Me.TxtAssetName.Name = "TxtAssetName"
         Me.TxtAssetName.Size = New System.Drawing.Size(349, 20)
         Me.TxtAssetName.TabIndex = 303
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(19, 51)
+        Me.LabelControl1.Location = New System.Drawing.Point(15, 76)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl1.TabIndex = 302
         Me.LabelControl1.Text = "Asset Name"
         '
-        'TxtValueAdded
+        'TEAddedValue
         '
-        Me.TxtValueAdded.Location = New System.Drawing.Point(122, 126)
-        Me.TxtValueAdded.Name = "TxtValueAdded"
-        Me.TxtValueAdded.Properties.DisplayFormat.FormatString = "N2"
-        Me.TxtValueAdded.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtValueAdded.Properties.Mask.EditMask = "N2"
-        Me.TxtValueAdded.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtValueAdded.Size = New System.Drawing.Size(349, 20)
-        Me.TxtValueAdded.TabIndex = 309
+        Me.TEAddedValue.Location = New System.Drawing.Point(118, 179)
+        Me.TEAddedValue.Name = "TEAddedValue"
+        Me.TEAddedValue.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEAddedValue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEAddedValue.Properties.Mask.EditMask = "N2"
+        Me.TEAddedValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEAddedValue.Size = New System.Drawing.Size(349, 20)
+        Me.TEAddedValue.TabIndex = 309
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(19, 129)
+        Me.LabelControl4.Location = New System.Drawing.Point(15, 182)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(66, 13)
         Me.LabelControl4.TabIndex = 310
@@ -191,7 +202,7 @@ Partial Class FormPurcAssetValueAdded
         'DECreated
         '
         Me.DECreated.EditValue = Nothing
-        Me.DECreated.Location = New System.Drawing.Point(122, 74)
+        Me.DECreated.Location = New System.Drawing.Point(118, 99)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -206,7 +217,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(19, 77)
+        Me.LabelControl6.Location = New System.Drawing.Point(15, 102)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(87, 13)
         Me.LabelControl6.TabIndex = 314
@@ -214,21 +225,21 @@ Partial Class FormPurcAssetValueAdded
         '
         'TxtNumber
         '
-        Me.TxtNumber.Location = New System.Drawing.Point(122, 22)
+        Me.TxtNumber.Location = New System.Drawing.Point(118, 47)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Size = New System.Drawing.Size(349, 20)
         Me.TxtNumber.TabIndex = 315
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(122, 178)
+        Me.MENote.Location = New System.Drawing.Point(118, 231)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(349, 59)
         Me.MENote.TabIndex = 316
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(19, 180)
+        Me.LabelControl3.Location = New System.Drawing.Point(15, 233)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl3.TabIndex = 317
@@ -236,7 +247,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(19, 155)
+        Me.LabelControl5.Location = New System.Drawing.Point(15, 208)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl5.TabIndex = 319
@@ -244,7 +255,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'TEaddedMonths
         '
-        Me.TEaddedMonths.Location = New System.Drawing.Point(122, 152)
+        Me.TEaddedMonths.Location = New System.Drawing.Point(118, 205)
         Me.TEaddedMonths.Name = "TEaddedMonths"
         Me.TEaddedMonths.Properties.DisplayFormat.FormatString = "N2"
         Me.TEaddedMonths.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -255,7 +266,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(225, 155)
+        Me.LabelControl8.Location = New System.Drawing.Point(221, 208)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(43, 13)
         Me.LabelControl8.TabIndex = 320
@@ -263,7 +274,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(19, 103)
+        Me.LabelControl9.Location = New System.Drawing.Point(15, 128)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(75, 13)
         Me.LabelControl9.TabIndex = 321
@@ -271,7 +282,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'SLEPurcOrder
         '
-        Me.SLEPurcOrder.Location = New System.Drawing.Point(122, 100)
+        Me.SLEPurcOrder.Location = New System.Drawing.Point(118, 125)
         Me.SLEPurcOrder.Name = "SLEPurcOrder"
         Me.SLEPurcOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPurcOrder.Properties.View = Me.SearchLookUpEdit1View
@@ -285,6 +296,72 @@ Partial Class FormPurcAssetValueAdded
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(15, 154)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(51, 13)
+        Me.LabelControl10.TabIndex = 323
+        Me.LabelControl10.Text = "COA Biaya"
+        '
+        'SLECOABiaya
+        '
+        Me.SLECOABiaya.Location = New System.Drawing.Point(118, 151)
+        Me.SLECOABiaya.Name = "SLECOABiaya"
+        Me.SLECOABiaya.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECOABiaya.Properties.NullText = ""
+        Me.SLECOABiaya.Properties.ShowClearButton = False
+        Me.SLECOABiaya.Properties.View = Me.GridView1
+        Me.SLECOABiaya.Size = New System.Drawing.Size(349, 20)
+        Me.SLECOABiaya.TabIndex = 324
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(15, 24)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl11.TabIndex = 325
+        Me.LabelControl11.Text = "Kapitalisasi No."
+        '
+        'TEKapitalisasiNo
+        '
+        Me.TEKapitalisasiNo.Enabled = False
+        Me.TEKapitalisasiNo.Location = New System.Drawing.Point(118, 21)
+        Me.TEKapitalisasiNo.Name = "TEKapitalisasiNo"
+        Me.TEKapitalisasiNo.Size = New System.Drawing.Size(349, 20)
+        Me.TEKapitalisasiNo.TabIndex = 326
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Id"
+        Me.GridColumn4.FieldName = "id_acc"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Account"
+        Me.GridColumn5.FieldName = "acc_name"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Description"
+        Me.GridColumn6.FieldName = "acc_description"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
         '
         'GridColumn1
         '
@@ -307,10 +384,10 @@ Partial Class FormPurcAssetValueAdded
         Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.Caption = "Value Receiving"
+        Me.GridColumn3.Caption = "Value"
         Me.GridColumn3.DisplayFormat.FormatString = "N2"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "value_rec"
+        Me.GridColumn3.FieldName = "val_po"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
@@ -320,7 +397,11 @@ Partial Class FormPurcAssetValueAdded
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(489, 299)
+        Me.ClientSize = New System.Drawing.Size(489, 365)
+        Me.Controls.Add(Me.TEKapitalisasiNo)
+        Me.Controls.Add(Me.LabelControl11)
+        Me.Controls.Add(Me.SLECOABiaya)
+        Me.Controls.Add(Me.LabelControl10)
         Me.Controls.Add(Me.SLEPurcOrder)
         Me.Controls.Add(Me.LabelControl9)
         Me.Controls.Add(Me.LabelControl8)
@@ -332,7 +413,7 @@ Partial Class FormPurcAssetValueAdded
         Me.Controls.Add(Me.LabelControl6)
         Me.Controls.Add(Me.DECreated)
         Me.Controls.Add(Me.LabelControl4)
-        Me.Controls.Add(Me.TxtValueAdded)
+        Me.Controls.Add(Me.TEAddedValue)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.TxtAssetName)
         Me.Controls.Add(Me.LabelControl1)
@@ -350,7 +431,7 @@ Partial Class FormPurcAssetValueAdded
         Me.PanelControlStt.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAssetName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtValueAdded.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEAddedValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -358,6 +439,9 @@ Partial Class FormPurcAssetValueAdded
         CType(Me.TEaddedMonths.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPurcOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLECOABiaya.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKapitalisasiNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -370,7 +454,7 @@ Partial Class FormPurcAssetValueAdded
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtAssetName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtValueAdded As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEAddedValue As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
@@ -389,4 +473,12 @@ Partial Class FormPurcAssetValueAdded
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLECOABiaya As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEKapitalisasiNo As DevExpress.XtraEditors.TextEdit
 End Class
