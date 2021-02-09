@@ -117,6 +117,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnCostDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand15 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnacc_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.LEAmoType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -263,7 +264,7 @@ Partial Class FormFGTransSummary
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumnCompNumber, Me.GridColumnCompName, Me.GridColumnBegin, Me.GridColumn4, Me.GridColumnDel, Me.GridColumnSal, Me.GridColumnRet, Me.GridColumnretTrf, Me.GridColumnTrf, Me.GridColumnRepair, Me.GridColumnRetRep, Me.GridColumnAdjIn, Me.GridColumnAdjOut, Me.GridColumnEnd, Me.GridColumnType, Me.GridColumnPrice, Me.GridColumnCost, Me.GridColumnqty_exp, Me.GridColumnpros})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumnCompNumber, Me.GridColumnCompName, Me.GridColumnBegin, Me.GridColumn4, Me.GridColumnDel, Me.GridColumnSal, Me.GridColumnRet, Me.GridColumnretTrf, Me.GridColumnTrf, Me.GridColumnRepair, Me.GridColumnRetRep, Me.GridColumnAdjIn, Me.GridColumnAdjOut, Me.GridColumnEnd, Me.GridColumnType, Me.GridColumnPrice, Me.GridColumnCost, Me.GridColumnqty_exp, Me.GridColumnpros, Me.GridColumnacc_type})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupCount = 1
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_beg", Me.GridColumnBegin, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumn4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_del", Me.GridColumnDel, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ret", Me.GridColumnRet, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ret_trf", Me.GridColumnretTrf, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_trf", Me.GridColumnTrf, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rep", Me.GridColumnRepair, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rep_ret", Me.GridColumnRetRep, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sal", Me.GridColumnSal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_adj_in", Me.GridColumnAdjIn, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_adj_out", Me.GridColumnAdjOut, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_end", Me.GridColumnEnd, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_price", Me.GridColumnPrice, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_cost", Me.GridColumnCost, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_exp", Me.GridColumnqty_exp, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "pros", Me.GridColumnpros, "{0:N2}", "b")})
@@ -300,7 +301,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnCompName.FieldName = "comp_name"
         Me.GridColumnCompName.Name = "GridColumnCompName"
         Me.GridColumnCompName.Visible = True
-        Me.GridColumnCompName.VisibleIndex = 2
+        Me.GridColumnCompName.VisibleIndex = 3
         Me.GridColumnCompName.Width = 115
         '
         'GridColumnBegin
@@ -312,7 +313,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnBegin.Name = "GridColumnBegin"
         Me.GridColumnBegin.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_beg", "{0:N0}")})
         Me.GridColumnBegin.Visible = True
-        Me.GridColumnBegin.VisibleIndex = 3
+        Me.GridColumnBegin.VisibleIndex = 4
         Me.GridColumnBegin.Width = 100
         '
         'GridColumn4
@@ -324,7 +325,7 @@ Partial Class FormFGTransSummary
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 5
         Me.GridColumn4.Width = 86
         '
         'GridColumnDel
@@ -336,7 +337,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnDel.Name = "GridColumnDel"
         Me.GridColumnDel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_del", "{0:N0}")})
         Me.GridColumnDel.Visible = True
-        Me.GridColumnDel.VisibleIndex = 5
+        Me.GridColumnDel.VisibleIndex = 6
         Me.GridColumnDel.Width = 89
         '
         'GridColumnSal
@@ -348,7 +349,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnSal.Name = "GridColumnSal"
         Me.GridColumnSal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sal", "{0:N0}")})
         Me.GridColumnSal.Visible = True
-        Me.GridColumnSal.VisibleIndex = 7
+        Me.GridColumnSal.VisibleIndex = 8
         Me.GridColumnSal.Width = 92
         '
         'GridColumnRet
@@ -360,7 +361,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnRet.Name = "GridColumnRet"
         Me.GridColumnRet.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ret", "{0:N0}")})
         Me.GridColumnRet.Visible = True
-        Me.GridColumnRet.VisibleIndex = 8
+        Me.GridColumnRet.VisibleIndex = 9
         Me.GridColumnRet.Width = 91
         '
         'GridColumnretTrf
@@ -372,7 +373,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnretTrf.Name = "GridColumnretTrf"
         Me.GridColumnretTrf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ret_trf", "{0:N0}")})
         Me.GridColumnretTrf.Visible = True
-        Me.GridColumnretTrf.VisibleIndex = 9
+        Me.GridColumnretTrf.VisibleIndex = 10
         Me.GridColumnretTrf.Width = 97
         '
         'GridColumnTrf
@@ -384,7 +385,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnTrf.Name = "GridColumnTrf"
         Me.GridColumnTrf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_trf", "{0:N0}")})
         Me.GridColumnTrf.Visible = True
-        Me.GridColumnTrf.VisibleIndex = 10
+        Me.GridColumnTrf.VisibleIndex = 11
         Me.GridColumnTrf.Width = 99
         '
         'GridColumnRepair
@@ -396,7 +397,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnRepair.Name = "GridColumnRepair"
         Me.GridColumnRepair.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rep", "{0:N0}")})
         Me.GridColumnRepair.Visible = True
-        Me.GridColumnRepair.VisibleIndex = 11
+        Me.GridColumnRepair.VisibleIndex = 12
         Me.GridColumnRepair.Width = 96
         '
         'GridColumnRetRep
@@ -410,7 +411,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnRetRep.Name = "GridColumnRetRep"
         Me.GridColumnRetRep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rep_ret", "{0:N0}")})
         Me.GridColumnRetRep.Visible = True
-        Me.GridColumnRetRep.VisibleIndex = 12
+        Me.GridColumnRetRep.VisibleIndex = 13
         Me.GridColumnRetRep.Width = 88
         '
         'GridColumnAdjIn
@@ -422,7 +423,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnAdjIn.Name = "GridColumnAdjIn"
         Me.GridColumnAdjIn.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_adj_in", "{0:N0}")})
         Me.GridColumnAdjIn.Visible = True
-        Me.GridColumnAdjIn.VisibleIndex = 13
+        Me.GridColumnAdjIn.VisibleIndex = 14
         Me.GridColumnAdjIn.Width = 103
         '
         'GridColumnAdjOut
@@ -434,7 +435,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnAdjOut.Name = "GridColumnAdjOut"
         Me.GridColumnAdjOut.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_adj_out", "{0:N0}")})
         Me.GridColumnAdjOut.Visible = True
-        Me.GridColumnAdjOut.VisibleIndex = 14
+        Me.GridColumnAdjOut.VisibleIndex = 15
         Me.GridColumnAdjOut.Width = 106
         '
         'GridColumnEnd
@@ -446,7 +447,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnEnd.Name = "GridColumnEnd"
         Me.GridColumnEnd.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_end", "{0:N0}")})
         Me.GridColumnEnd.Visible = True
-        Me.GridColumnEnd.VisibleIndex = 15
+        Me.GridColumnEnd.VisibleIndex = 16
         Me.GridColumnEnd.Width = 88
         '
         'GridColumnType
@@ -486,7 +487,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnqty_exp.Name = "GridColumnqty_exp"
         Me.GridColumnqty_exp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_exp", "{0:N0}")})
         Me.GridColumnqty_exp.Visible = True
-        Me.GridColumnqty_exp.VisibleIndex = 6
+        Me.GridColumnqty_exp.VisibleIndex = 7
         '
         'GridColumnpros
         '
@@ -498,7 +499,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnpros.OptionsColumn.ReadOnly = True
         Me.GridColumnpros.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "pros", "{0:N2}", "a")})
         Me.GridColumnpros.Visible = True
-        Me.GridColumnpros.VisibleIndex = 16
+        Me.GridColumnpros.VisibleIndex = 17
         '
         'XtraTabControl
         '
@@ -1164,6 +1165,14 @@ Partial Class FormFGTransSummary
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         '
+        'GridColumnacc_type
+        '
+        Me.GridColumnacc_type.Caption = "ACC TYPE"
+        Me.GridColumnacc_type.FieldName = "acc_type"
+        Me.GridColumnacc_type.Name = "GridColumnacc_type"
+        Me.GridColumnacc_type.Visible = True
+        Me.GridColumnacc_type.VisibleIndex = 2
+        '
         'FormFGTransSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1291,4 +1300,5 @@ Partial Class FormFGTransSummary
     Friend WithEvents gridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand14 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand15 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridColumnacc_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class
