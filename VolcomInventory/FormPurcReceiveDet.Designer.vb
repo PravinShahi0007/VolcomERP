@@ -109,6 +109,9 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CEAlreadyDeliver.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,6 +149,9 @@ Partial Class FormPurcReceiveDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -427,7 +433,7 @@ Partial Class FormPurcReceiveDet
         Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
+        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemMemoEdit1})
         Me.GCSummary.Size = New System.Drawing.Size(904, 301)
         Me.GCSummary.TabIndex = 0
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
@@ -438,6 +444,7 @@ Partial Class FormPurcReceiveDet
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:N2}")})
         Me.GVSummary.Name = "GVSummary"
+        Me.GVSummary.OptionsView.RowAutoHeight = True
         Me.GVSummary.OptionsView.ShowFooter = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
         '
@@ -482,7 +489,9 @@ Partial Class FormPurcReceiveDet
         'GridColumnDesc
         '
         Me.GridColumnDesc.Caption = "Description"
+        Me.GridColumnDesc.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumnDesc.FieldName = "item_detail"
+        Me.GridColumnDesc.MaxWidth = 300
         Me.GridColumnDesc.Name = "GridColumnDesc"
         Me.GridColumnDesc.OptionsColumn.AllowEdit = False
         Me.GridColumnDesc.OptionsColumn.ShowInCustomizationForm = False
@@ -625,7 +634,7 @@ Partial Class FormPurcReceiveDet
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEDelivered})
+        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEDelivered, Me.RepositoryItemMemoEdit2})
         Me.GCDetail.Size = New System.Drawing.Size(904, 301)
         Me.GCDetail.TabIndex = 0
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
@@ -640,6 +649,7 @@ Partial Class FormPurcReceiveDet
         Me.GVDetail.OptionsCustomization.AllowSort = False
         Me.GVDetail.OptionsFind.AllowFindPanel = False
         Me.GVDetail.OptionsView.ColumnAutoWidth = False
+        Me.GVDetail.OptionsView.RowAutoHeight = True
         Me.GVDetail.OptionsView.ShowFooter = True
         Me.GVDetail.OptionsView.ShowGroupPanel = False
         '
@@ -706,7 +716,9 @@ Partial Class FormPurcReceiveDet
         'GridColumnDetDescription
         '
         Me.GridColumnDetDescription.Caption = "Description"
+        Me.GridColumnDetDescription.ColumnEdit = Me.RepositoryItemMemoEdit2
         Me.GridColumnDetDescription.FieldName = "item_detail"
+        Me.GridColumnDetDescription.MaxWidth = 300
         Me.GridColumnDetDescription.Name = "GridColumnDetDescription"
         Me.GridColumnDetDescription.OptionsColumn.AllowEdit = False
         Me.GridColumnDetDescription.Visible = True
@@ -825,6 +837,7 @@ Partial Class FormPurcReceiveDet
         Me.GCOrderDetail.Location = New System.Drawing.Point(0, 38)
         Me.GCOrderDetail.MainView = Me.GVOrderDetail
         Me.GCOrderDetail.Name = "GCOrderDetail"
+        Me.GCOrderDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit3})
         Me.GCOrderDetail.Size = New System.Drawing.Size(904, 263)
         Me.GCOrderDetail.TabIndex = 1
         Me.GCOrderDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOrderDetail})
@@ -840,6 +853,7 @@ Partial Class FormPurcReceiveDet
         Me.GVOrderDetail.OptionsCustomization.AllowSort = False
         Me.GVOrderDetail.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVOrderDetail.OptionsView.ColumnAutoWidth = False
+        Me.GVOrderDetail.OptionsView.RowAutoHeight = True
         Me.GVOrderDetail.OptionsView.ShowFooter = True
         Me.GVOrderDetail.OptionsView.ShowGroupPanel = False
         '
@@ -889,7 +903,9 @@ Partial Class FormPurcReceiveDet
         'GridColumnOrdDesc
         '
         Me.GridColumnOrdDesc.Caption = "Description"
+        Me.GridColumnOrdDesc.ColumnEdit = Me.RepositoryItemMemoEdit3
         Me.GridColumnOrdDesc.FieldName = "item_detail"
+        Me.GridColumnOrdDesc.MaxWidth = 300
         Me.GridColumnOrdDesc.Name = "GridColumnOrdDesc"
         Me.GridColumnOrdDesc.OptionsColumn.AllowEdit = False
         Me.GridColumnOrdDesc.Visible = True
@@ -1081,6 +1097,18 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl5.TabIndex = 144
         Me.LabelControl5.Text = "Status"
         '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        '
+        'RepositoryItemMemoEdit3
+        '
+        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
+        '
         'FormPurcReceiveDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1136,6 +1164,9 @@ Partial Class FormPurcReceiveDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1229,4 +1260,7 @@ Partial Class FormPurcReceiveDet
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents RepositoryItemMemoEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class
