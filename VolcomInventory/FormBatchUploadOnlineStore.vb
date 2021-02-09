@@ -944,6 +944,8 @@
 
             'shopee
             If SLUEOnlineStore.EditValue.ToString = "8" Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+
                 'If SLUETemplate.EditValue.ToString = "1" Then
 
                 'ElseIf SLUETemplate.EditValue.ToString = "2" Then
@@ -960,8 +962,15 @@
                 Dim x As Integer = 5
                 Dim row As Integer = 6
 
+                Dim d_total As Integer = (GVBatchUpload.Columns.Count) * (GVBatchUpload.RowCount)
+                Dim d_current As Integer = 1
+
                 For i = 0 To GVBatchUpload.Columns.Count - 1
                     For j = 0 To GVBatchUpload.RowCount - 1
+                        d_current = d_current + 1
+
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading " + (Math.Round(100 / d_total * d_current, 0)).ToString + "%")
+
                         xlsWorkSheet.Cells(row + j, i + 1) = GVBatchUpload.GetRowCellValue(j + x, GVBatchUpload.Columns(i).FieldName)
                     Next
                 Next
@@ -972,11 +981,15 @@
 
                 xls.Quit()
 
+                FormMain.SplashScreenManager1.CloseWaitForm()
+
                 infoCustom("File saved.")
             End If
 
             'blibli
             If SLUEOnlineStore.EditValue.ToString = "5" Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+
                 Dim xlsWorkBook As Microsoft.Office.Interop.Excel.Workbook
                 Dim xlsWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
                 Dim xls As New Microsoft.Office.Interop.Excel.Application
@@ -987,8 +1000,15 @@
                 Dim x As Integer = 2
                 Dim row As Integer = 3
 
+                Dim d_total As Integer = (GVBatchUpload.Columns.Count) * (GVBatchUpload.RowCount)
+                Dim d_current As Integer = 1
+
                 For i = 0 To GVBatchUpload.Columns.Count - 1
                     For j = 0 To GVBatchUpload.RowCount - 1
+                        d_current = d_current + 1
+
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading " + (Math.Round(100 / d_total * d_current, 0)).ToString + "%")
+
                         xlsWorkSheet.Cells(row + j, i + 1) = GVBatchUpload.GetRowCellValue(j + x, GVBatchUpload.Columns(i).FieldName)
                     Next
                 Next
@@ -998,6 +1018,8 @@
                 xlsWorkBook.Close(False)
 
                 xls.Quit()
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
 
                 infoCustom("File saved.")
             End If
