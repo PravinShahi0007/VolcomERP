@@ -222,7 +222,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT reqd.*,uom.uom,cat.`item_cat`,itm.item_desc,itm.`id_item_type`,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,itt.item_type
+        Dim query As String = "SELECT reqd.*,CONCAT(reqd.item_detail,'\r\n',reqd.remark) AS full_desc,uom.uom,cat.`item_cat`,itm.item_desc,itm.`id_item_type`,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,itt.item_type
                                 FROM tb_purc_req_det reqd 
                                 INNER JOIN tb_item itm ON reqd.`id_item`=itm.`id_item`
                                 INNER JOIN tb_lookup_purc_item_type itt ON itt.id_item_type=itm.id_item_type
@@ -252,7 +252,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
     Sub load_item_pil()
         Dim query As String = ""
 
-        query = "SELECT it.id_item,itt.item_type,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,used.id_b_expense,used_opex.id_b_expense_opex,cat.`id_expense_type`,it.`id_item_cat`,it.item_desc,uom.uom,cat.item_cat,IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) AS budget,IFNULL(IF(cat.`id_expense_type`='2',used.val,used_opex.val),0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` 
+        query = "SELECT it.id_item,it.def_desc,itt.item_type,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,used.id_b_expense,used_opex.id_b_expense_opex,cat.`id_expense_type`,it.`id_item_cat`,it.item_desc,uom.uom,cat.item_cat,IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) AS budget,IFNULL(IF(cat.`id_expense_type`='2',used.val,used_opex.val),0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` 
                     FROM tb_item it
                      INNER JOIN tb_lookup_purc_item_type itt ON itt.id_item_type=it.id_item_type
                     INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
@@ -356,7 +356,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
             'End If
 
             GVItemList.SetFocusedRowCellValue("item_type", sle.Properties.View.GetFocusedRowCellValue("item_type").ToString())
-            GVItemList.SetFocusedRowCellValue("item_detail", sle.Properties.View.GetFocusedRowCellValue("item_desc").ToString())
+            GVItemList.SetFocusedRowCellValue("item_detail", sle.Properties.View.GetFocusedRowCellValue("def_desc").ToString())
             GVItemList.SetFocusedRowCellValue("uom", sle.Properties.View.GetFocusedRowCellValue("uom").ToString())
             GVItemList.SetFocusedRowCellValue("item_cat", sle.Properties.View.GetFocusedRowCellValue("item_cat").ToString())
             GVItemList.SetFocusedRowCellValue("budget", sle.Properties.View.GetFocusedRowCellValue("budget").ToString())
@@ -444,10 +444,10 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
                         If Not query_det = "" Then
                             query_det += ","
                         End If
-                        query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense_opex").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','0.00','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "note").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_to").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_destination").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_address").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "item_detail").ToString) & "')"
+                        query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense_opex").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','0.00','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "note").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_to").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_destination").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_address").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "item_detail").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "remark").ToString) & "')"
                     Next
                     '
-                    query_det = "INSERT INTO `tb_purc_req_det`(id_purc_req,id_item,id_b_expense_opex,id_b_expense,qty,value,budget,budget_remaining,note,ship_to,ship_destination,ship_address,item_detail)
+                    query_det = "INSERT INTO `tb_purc_req_det`(id_purc_req,id_item,id_b_expense_opex,id_b_expense,qty,value,budget,budget_remaining,note,ship_to,ship_destination,ship_address,item_detail,remark)
                                                 VALUES" & query_det
                     '
                     execute_non_query(query_det, True, "", "", "", "")
