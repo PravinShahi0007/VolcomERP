@@ -357,7 +357,14 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         If dtc.Rows.Count > 0 Then
             warningCustom("There is pending document need to complete first")
         Else
-            FormPurcAssetDep.ShowDialog()
+            Dim a As New ClassPurcAsset()
+            Dim query As String = a.queryMain("AND a.id_report_status=1 AND ISNULL(a.is_active) AND a.is_value_added=2 ", "1", False)
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                warningCustom("There is pending asset.")
+            Else
+                FormPurcAssetDep.ShowDialog()
+            End If
         End If
     End Sub
 

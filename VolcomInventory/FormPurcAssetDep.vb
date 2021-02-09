@@ -61,10 +61,10 @@ WHERE id_asset_dep_pps='" & id_dep & "'"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT ass.useful_life,ass.useful_life,ppsd.remaining_life AS life,ppsd.remaining_life, ass.id_acc_dep, ass.id_acc_dep_accum,accdep.acc_description AS acc_dep,accacum.acc_description AS acc_dep_accum,accdep.acc_name AS acc_dep_name,accacum.acc_name AS acc_dep_accum_name
+        Dim q As String = "SELECT ass.useful_life+ass.month_added AS useful_life,ppsd.remaining_life AS life,ppsd.remaining_life, ass.id_acc_dep, ass.id_acc_dep_accum,accdep.acc_description AS acc_dep,accacum.acc_description AS acc_dep_accum,accdep.acc_name AS acc_dep_name,accacum.acc_name AS acc_dep_accum_name
 ,ass.`asset_name`,ass.acq_date,ppsd.remaining_life AS rem_life
 ,ass.id_acc_dep
-,ass.acq_cost,ppsd.dep_value,ppsd.accum_dep
+,ass.acq_cost + ass.value_added AS acq_cost,ppsd.dep_value,ppsd.accum_dep
 FROM `tb_asset_dep_pps_det` ppsd
 INNER JOIN tb_a_acc accdep ON accdep.id_acc=ppsd.id_acc_dep
 INNER JOIN tb_a_acc accacum ON accacum.id_acc=ppsd.id_acc_dep_accum
@@ -96,7 +96,7 @@ WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEReffD
                 warningCustom("Depreciation for this month already created")
             Else
                 Dim q As String = "SET @end_date='" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "';
-SELECT ass.useful_life,0 AS id_asset_dep_pps_det, ass.id_purc_rec_asset, ass.id_acc_dep, ass.id_acc_dep_accum
+SELECT ass.useful_life+ass.month_added AS useful_life,0 AS id_asset_dep_pps_det, ass.id_purc_rec_asset, ass.id_acc_dep, ass.id_acc_dep_accum
 ,accdep.acc_description AS acc_dep,accacum.acc_description AS acc_dep_accum
 ,accdep.acc_name AS acc_dep_name,accacum.acc_name AS acc_dep_accum_name
 ,CEIL(TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date) +
@@ -114,11 +114,11 @@ SELECT ass.useful_life,0 AS id_asset_dep_pps_det, ass.id_purc_rec_asset, ass.id_
       TIMESTAMPDIFF(MONTH, ass.`acq_date`, @end_date)
     MONTH
   )) AS life
-,ass.`asset_name`,ass.acq_date,ass.`useful_life`-(SELECT life) AS rem_life
+,ass.`asset_name`,ass.acq_date,ass.`useful_life`+ass.`month_added`-(SELECT life) AS rem_life
 ,id_acc_dep
 ,IFNULL(accum_dep.accum_dep,0.00) AS accum_dep
-,ass.acq_cost
-,IF((SELECT rem_life)=0,(ass.acq_cost-IFNULL(accum_dep.accum_dep,0.00)),ROUND(ass.acq_cost/ass.useful_life,2)) AS dep_value
+,(ass.acq_cost+ass.value_added) AS acq_cost
+,IF((SELECT rem_life)=0,((ass.acq_cost+ass.value_added)-IFNULL(accum_dep.accum_dep,0.00)),ROUND((ass.acq_cost+ass.value_added)/(ass.useful_life+ass.`month_added`),2)) AS dep_value
 FROM tb_purc_rec_asset ass
 INNER JOIN tb_a_acc accdep ON accdep.id_acc=ass.id_acc_dep
 INNER JOIN tb_a_acc accacum ON accacum.id_acc=ass.id_acc_dep_accum
