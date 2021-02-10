@@ -158,6 +158,7 @@ Partial Class FormMain
         Me.NBOpt = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBMTC = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBWorkOrder = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBStockCardAsset = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBMappingStore = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGHRD = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEmployee = New DevExpress.XtraNavBar.NavBarItem()
@@ -514,7 +515,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBStockCardAsset = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1682,6 +1682,12 @@ Partial Class FormMain
         Me.NBWorkOrder.Caption = "Work Order List"
         Me.NBWorkOrder.Name = "NBWorkOrder"
         Me.NBWorkOrder.SmallImage = CType(resources.GetObject("NBWorkOrder.SmallImage"), System.Drawing.Image)
+        '
+        'NBStockCardAsset
+        '
+        Me.NBStockCardAsset.Caption = "Stock Card Asset"
+        Me.NBStockCardAsset.Name = "NBStockCardAsset"
+        Me.NBStockCardAsset.SmallImage = CType(resources.GetObject("NBStockCardAsset.SmallImage"), System.Drawing.Image)
         '
         'NBMappingStore
         '
@@ -3973,11 +3979,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBStockCardAsset
-        '
-        Me.NBStockCardAsset.Caption = "Stock Card Asset"
-        Me.NBStockCardAsset.Name = "NBStockCardAsset"
         '
         'FormMain
         '
