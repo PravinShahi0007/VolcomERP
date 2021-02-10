@@ -5774,6 +5774,19 @@ FROM
 GROUP BY ttl.id_acc
 HAVING debit!=credit"
                 execute_non_query(qjd, True, "", "", "", "")
+
+                'stock card for listed
+                Dim qi As String = "INSERT INTO `tb_stock_card_dep`(`id_departement`,`id_item`,`item_detail`,`remark`,`qty`)
+SELECT req.id_departement,reqd.id_item,reqd.item_detail,reqd.remark,SUM(prd.qty) AS qty,reqd.id_item
+FROM tb_purc_rec_det prd
+INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=prd.`id_purc_order_det`
+INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req_det`=pod.`id_purc_req_det`
+INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req`
+INNER JOIN tb_item it ON it.id_item=reqd.id_item AND it.is_dep_stock_card=1
+WHERE prd.`id_purc_rec`='" & id_report & "'
+GROUP BY reqd.`id_item`,CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark)))"
+                execute_non_query(qi, True, "", "", "", "")
+
             End If
             'jurnal PPH pindah
             'UNION ALL - -PPH
