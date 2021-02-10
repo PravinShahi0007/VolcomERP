@@ -49,6 +49,8 @@ Partial Class FormBankDepositAdd
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtSupplier = New DevExpress.XtraEditors.TextEdit()
         Me.TxtAutoFill = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtBefKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.SLECOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,6 +64,7 @@ Partial Class FormBankDepositAdd
         CType(Me.TxtComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtBefKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -258,7 +261,7 @@ Partial Class FormBankDepositAdd
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(122, 242)
+        Me.LabelControl6.Location = New System.Drawing.Point(209, 242)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl6.TabIndex = 8917
@@ -266,13 +269,13 @@ Partial Class FormBankDepositAdd
         '
         'TxtAmount
         '
-        Me.TxtAmount.Location = New System.Drawing.Point(122, 261)
+        Me.TxtAmount.Location = New System.Drawing.Point(209, 261)
         Me.TxtAmount.Name = "TxtAmount"
         Me.TxtAmount.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtAmount.Properties.Mask.EditMask = "N2"
         Me.TxtAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtAmount.Size = New System.Drawing.Size(257, 20)
+        Me.TxtAmount.Size = New System.Drawing.Size(170, 20)
         Me.TxtAmount.TabIndex = 29
         '
         'BtnClearComp
@@ -307,12 +310,33 @@ Partial Class FormBankDepositAdd
         Me.TxtAutoFill.TabIndex = 26
         Me.TxtAutoFill.Text = "auto"
         '
+        'TxtBefKurs
+        '
+        Me.TxtBefKurs.Location = New System.Drawing.Point(122, 261)
+        Me.TxtBefKurs.Name = "TxtBefKurs"
+        Me.TxtBefKurs.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtBefKurs.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtBefKurs.Properties.Mask.EditMask = "N2"
+        Me.TxtBefKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtBefKurs.Size = New System.Drawing.Size(81, 20)
+        Me.TxtBefKurs.TabIndex = 8919
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(122, 242)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(55, 13)
+        Me.LabelControl8.TabIndex = 8920
+        Me.LabelControl8.Text = "Before kurs"
+        '
         'FormBankDepositAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnClose
         Me.ClientSize = New System.Drawing.Size(403, 355)
+        Me.Controls.Add(Me.LabelControl8)
+        Me.Controls.Add(Me.TxtBefKurs)
         Me.Controls.Add(Me.TxtAutoFill)
         Me.Controls.Add(Me.TxtSupplier)
         Me.Controls.Add(Me.LabelControl7)
@@ -350,6 +374,7 @@ Partial Class FormBankDepositAdd
         CType(Me.TxtComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtBefKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -384,4 +409,6 @@ Partial Class FormBankDepositAdd
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtSupplier As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtAutoFill As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtBefKurs As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
 End Class

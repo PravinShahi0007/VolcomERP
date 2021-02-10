@@ -13,7 +13,7 @@
         query += "SELECT ('0') AS id_comp, ('-') AS comp_number, ('All Vendor') AS comp_name, ('ALL Vendor') AS comp_name_label 
         UNION "
         query += "SELECT comp.id_comp,comp.comp_number, comp.comp_name, CONCAT_WS(' - ', comp.comp_number,comp.comp_name) AS comp_name_label FROM tb_m_comp comp "
-        query += "WHERE comp.id_comp_cat='1'"
+        query += "WHERE (comp.id_comp_cat='1' OR comp.id_comp_cat=8) AND comp.is_active=1"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         SLEVendor.Properties.DataSource = Nothing
         SLEVendor.Properties.DataSource = data
@@ -28,15 +28,25 @@
 
     Sub view_bom_mat()
         Try
-            Dim query As String
-            query = "CALL view_mat_design('" & GVProd.GetFocusedRowCellValue("id_prod_demand_design").ToString & "')"
+            If GVProd.RowCount > 0 Then
+                Dim query As String
+                query = "CALL view_mat_design('" & GVProd.GetFocusedRowCellValue("id_prod_demand_design").ToString & "')"
 
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCBomDetMat.DataSource = data
-            GVBomDetMat.BestFitColumns()
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                GCBomDetMat.DataSource = data
+                GVBomDetMat.BestFitColumns()
+            Else
+                del_row()
+            End If
         Catch ex As Exception
             errorConnection()
         End Try
+    End Sub
+
+    Sub del_row()
+        For i = GVBomDetMat.RowCount - 1 To 0 Step -1
+            GVBomDetMat.DeleteRow(i)
+        Next
     End Sub
 
     Private Sub FormInfoBOMMat_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
