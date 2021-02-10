@@ -43,6 +43,13 @@ Partial Class FormBankDepositDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.SLEAkunValas = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LValas = New DevExpress.XtraEditors.LabelControl()
         Me.SLEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -111,6 +118,7 @@ Partial Class FormBankDepositDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnvalue_bef_kurs = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,6 +138,9 @@ Partial Class FormBankDepositDet
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPayNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -374,6 +385,10 @@ Partial Class FormBankDepositDet
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.LabelControl4)
+        Me.PanelControl3.Controls.Add(Me.TEKurs)
+        Me.PanelControl3.Controls.Add(Me.SLEAkunValas)
+        Me.PanelControl3.Controls.Add(Me.LValas)
         Me.PanelControl3.Controls.Add(Me.SLEStore)
         Me.PanelControl3.Controls.Add(Me.TEPayNumber)
         Me.PanelControl3.Controls.Add(Me.LabelControl2)
@@ -383,6 +398,73 @@ Partial Class FormBankDepositDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(375, 97)
         Me.PanelControl3.TabIndex = 165
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(10, 67)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl4.TabIndex = 8909
+        Me.LabelControl4.Text = "Kurs"
+        '
+        'TEKurs
+        '
+        Me.TEKurs.EditValue = ""
+        Me.TEKurs.Location = New System.Drawing.Point(74, 64)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEKurs.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEKurs.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEKurs.Properties.EditValueChangedDelay = 1
+        Me.TEKurs.Properties.Mask.EditMask = "N2"
+        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKurs.Properties.ReadOnly = True
+        Me.TEKurs.Size = New System.Drawing.Size(287, 20)
+        Me.TEKurs.TabIndex = 8910
+        Me.TEKurs.TabStop = False
+        '
+        'SLEAkunValas
+        '
+        Me.SLEAkunValas.Location = New System.Drawing.Point(74, 38)
+        Me.SLEAkunValas.Name = "SLEAkunValas"
+        Me.SLEAkunValas.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEAkunValas.Properties.Appearance.Options.UseFont = True
+        Me.SLEAkunValas.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAkunValas.Properties.View = Me.GridView6
+        Me.SLEAkunValas.Size = New System.Drawing.Size(287, 20)
+        Me.SLEAkunValas.TabIndex = 8922
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn16})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID "
+        Me.GridColumn12.FieldName = "id_valas_bank"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Description"
+        Me.GridColumn16.FieldName = "valas_bank"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'LValas
+        '
+        Me.LValas.Location = New System.Drawing.Point(10, 41)
+        Me.LValas.Name = "LValas"
+        Me.LValas.Size = New System.Drawing.Size(52, 13)
+        Me.LValas.TabIndex = 8921
+        Me.LValas.Text = "Akun Valas"
         '
         'SLEStore
         '
@@ -717,7 +799,7 @@ Partial Class FormBankDepositDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnNumber, Me.GridColumn1, Me.GridColumnNote, Me.GridColumnAlreadyReceived, Me.GridColumnReceive, Me.GridColumnReceiveView, Me.GridColumnBBaldue, Me.GridColumnno, Me.GridColumnCOA, Me.GridColumncomp_number, Me.GridColumnid_comp, Me.GridColumnid_acc, Me.GridColumndc_code, Me.GridColumnid_dc, Me.GridColumnacc_description, Me.GridColumnvendor})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnNumber, Me.GridColumn1, Me.GridColumnNote, Me.GridColumnAlreadyReceived, Me.GridColumnReceive, Me.GridColumnReceiveView, Me.GridColumnBBaldue, Me.GridColumnno, Me.GridColumnCOA, Me.GridColumncomp_number, Me.GridColumnid_comp, Me.GridColumnid_acc, Me.GridColumndc_code, Me.GridColumnid_dc, Me.GridColumnacc_description, Me.GridColumnvendor, Me.GridColumnvalue_bef_kurs})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -1070,6 +1152,15 @@ Partial Class FormBankDepositDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
+        'GridColumnvalue_bef_kurs
+        '
+        Me.GridColumnvalue_bef_kurs.Caption = "Amount bef. kurs"
+        Me.GridColumnvalue_bef_kurs.DisplayFormat.FormatString = "N2"
+        Me.GridColumnvalue_bef_kurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnvalue_bef_kurs.FieldName = "value_bef_kurs"
+        Me.GridColumnvalue_bef_kurs.Name = "GridColumnvalue_bef_kurs"
+        Me.GridColumnvalue_bef_kurs.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_bef_kurs", "{0:N2}")})
+        '
         'FormBankDepositDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1107,6 +1198,9 @@ Partial Class FormBankDepositDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEAkunValas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPayNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1235,4 +1329,12 @@ Partial Class FormBankDepositDet
     Friend WithEvents GridColumnid_coa_tag As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncoa_tag As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label2 As Label
+    Friend WithEvents SLEAkunValas As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LValas As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumnvalue_bef_kurs As DevExpress.XtraGrid.Columns.GridColumn
 End Class
