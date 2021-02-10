@@ -56,7 +56,7 @@
     End Function
 
     Public Function queryOrderDetails(ByVal id_purc_order As String, ByVal condition As String)
-        Dim query = "SELECT pod.is_drop,pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, CONCAT(reqd.item_detail,'\r\n',IFNULL(reqd.remark,'')) AS item_detail, i.item_desc, i.id_uom, u.uom, pod.`value`, 
+        Dim query = "SELECT pod.is_drop,pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) AS item_detail, i.item_desc, i.id_uom, u.uom, pod.`value`, 
         reqd.qty AS `qty_req`, pod.qty AS `qty_order`,reqd.ship_destination,reqd.ship_address, IFNULL(rd.qty,0.00) AS `qty_rec`, IFNULL(retd.qty,0.00) AS `qty_ret`, (pod.qty-IFNULL(rd.qty,0.00)+IFNULL(retd.qty,0.00)) AS `qty_remaining`, 0.00 AS `qty`
         ,i.stock_convertion,CONCAT('1:',i.stock_convertion) AS stock_convertion_view, 0.00 AS `qty_stock`,u_st.uom AS uom_stock
         FROM tb_purc_order_det pod

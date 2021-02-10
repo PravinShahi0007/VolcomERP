@@ -222,7 +222,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT reqd.*,CONCAT(reqd.item_detail,'\r\n',reqd.remark) AS full_desc,uom.uom,cat.`item_cat`,itm.item_desc,itm.`id_item_type`,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,itt.item_type
+        Dim query As String = "SELECT reqd.*,CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) AS full_desc,uom.uom,cat.`item_cat`,itm.item_desc,itm.`id_item_type`,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,itt.item_type
                                 FROM tb_purc_req_det reqd 
                                 INNER JOIN tb_item itm ON reqd.`id_item`=itm.`id_item`
                                 INNER JOIN tb_lookup_purc_item_type itt ON itt.id_item_type=itm.id_item_type
