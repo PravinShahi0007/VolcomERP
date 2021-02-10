@@ -6,6 +6,7 @@
         DETo.Properties.MinValue = Now
 
         load_unit()
+        load_cc()
 
         view_acc_from()
         view_acc_to()
@@ -36,6 +37,12 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         'GROUP BY ad.id_comp"
         viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
         SLEUnit.EditValue = "1"
+    End Sub
+
+    Sub load_cc()
+        Dim query As String = "SELECT 0 AS id_comp, 'All' AS comp_number UNION ALL SELECT id_comp, CONCAT(comp_number, ' - ', comp_name) AS comp_number FROM tb_m_comp"
+
+        viewSearchLookupQuery(SLUECC, query, "id_comp", "comp_number", "id_comp")
     End Sub
 
     Private Sub FormAccountingLedger_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -80,7 +87,7 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             acc_name = "(" + acc_name.Substring(0, acc_name.Length - 4) + ")"
         End If
 
-        Dim query As String = "CALL view_acc_ledger('" + Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + acc_name + "','" & SLEUnit.EditValue.ToString & "')"
+        Dim query As String = "CALL view_acc_ledger('" + Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + acc_name + "','" & SLEUnit.EditValue.ToString & "', '" & SLUECC.EditValue.ToString & "')"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
