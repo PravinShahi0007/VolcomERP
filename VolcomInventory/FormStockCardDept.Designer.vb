@@ -116,7 +116,7 @@ Partial Class FormStockCardDept
         Me.XTCStockCard.Location = New System.Drawing.Point(0, 0)
         Me.XTCStockCard.Name = "XTCStockCard"
         Me.XTCStockCard.SelectedTabPage = Me.XTPStockCard
-        Me.XTCStockCard.Size = New System.Drawing.Size(1077, 539)
+        Me.XTCStockCard.Size = New System.Drawing.Size(898, 539)
         Me.XTCStockCard.TabIndex = 0
         Me.XTCStockCard.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPStockOnHand, Me.XTPStockCard, Me.XTPStockInOut})
         '
@@ -353,7 +353,7 @@ Partial Class FormStockCardDept
         Me.XTPStockOnHand.Controls.Add(Me.GCSOH)
         Me.XTPStockOnHand.Controls.Add(Me.PanelControl2)
         Me.XTPStockOnHand.Name = "XTPStockOnHand"
-        Me.XTPStockOnHand.Size = New System.Drawing.Size(1071, 511)
+        Me.XTPStockOnHand.Size = New System.Drawing.Size(892, 511)
         Me.XTPStockOnHand.Text = "Stock On Hand"
         '
         'GCSOH
@@ -362,7 +362,7 @@ Partial Class FormStockCardDept
         Me.GCSOH.Location = New System.Drawing.Point(0, 46)
         Me.GCSOH.MainView = Me.GVSOH
         Me.GCSOH.Name = "GCSOH"
-        Me.GCSOH.Size = New System.Drawing.Size(1071, 465)
+        Me.GCSOH.Size = New System.Drawing.Size(892, 465)
         Me.GCSOH.TabIndex = 2
         Me.GCSOH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOH})
         '
@@ -392,7 +392,7 @@ Partial Class FormStockCardDept
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 0
-        Me.GridColumn12.Width = 117
+        Me.GridColumn12.Width = 111
         '
         'GridColumnItemDesc
         '
@@ -401,7 +401,7 @@ Partial Class FormStockCardDept
         Me.GridColumnItemDesc.Name = "GridColumnItemDesc"
         Me.GridColumnItemDesc.Visible = True
         Me.GridColumnItemDesc.VisibleIndex = 1
-        Me.GridColumnItemDesc.Width = 505
+        Me.GridColumnItemDesc.Width = 241
         '
         'GridColumnIdItemCat
         '
@@ -416,7 +416,7 @@ Partial Class FormStockCardDept
         Me.GridColumnItemCat.Name = "GridColumnItemCat"
         Me.GridColumnItemCat.Visible = True
         Me.GridColumnItemCat.VisibleIndex = 2
-        Me.GridColumnItemCat.Width = 505
+        Me.GridColumnItemCat.Width = 241
         '
         'GridColumnQty
         '
@@ -428,7 +428,7 @@ Partial Class FormStockCardDept
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 3
-        Me.GridColumnQty.Width = 505
+        Me.GridColumnQty.Width = 170
         '
         'GridColumnAmount
         '
@@ -474,6 +474,7 @@ Partial Class FormStockCardDept
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.Width = 111
         '
         'PanelControl2
         '
@@ -483,7 +484,7 @@ Partial Class FormStockCardDept
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1071, 46)
+        Me.PanelControl2.Size = New System.Drawing.Size(892, 46)
         Me.PanelControl2.TabIndex = 1
         '
         'BtnView
@@ -662,7 +663,7 @@ Partial Class FormStockCardDept
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1077, 539)
+        Me.ClientSize = New System.Drawing.Size(898, 539)
         Me.Controls.Add(Me.XTCStockCard)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
