@@ -20,6 +20,8 @@
         DEUntilDetail.EditValue = data_dt.Rows(0)("dt")
         DEUpdatedFrom.EditValue = data_dt.Rows(0)("dt")
         DEUpdatedUntil.EditValue = data_dt.Rows(0)("dt")
+        DEExFrom.EditValue = data_dt.Rows(0)("dt")
+        DEExUntil.EditValue = data_dt.Rows(0)("dt")
         viewComp()
         viewCompGroup()
         viewCompDetail()
@@ -118,8 +120,10 @@
         INNER JOIN tb_promo prm ON prm.id_promo = p.id_promo
         WHERE p.id_report_status=6
         ORDER BY id_ol_promo_collection DESC "
-        viewSearchLookupQuery(SLEPromo, query, "id_ol_promo_collection", "promo", "id_ol_promo_collection")
+        viewSearchLookupQuery(SLEPromo, query, "id_ol_promo_collection", "promo", "id_ol_promo_collection") '
+        viewSearchLookupQuery(SLEPromoSummary, query, "id_ol_promo_collection", "promo", "id_ol_promo_collection") '
         SLEPromo.EditValue = 0
+        SLEPromoSummary.EditValue = 0
         Cursor = Cursors.Default
     End Sub
 
@@ -1151,7 +1155,7 @@
 
         If id_cg = "75" Then
             FormSalesOrderShippingLabelPdf.ol_store = "blibli"
-            FormSalesOrderShippingLabelPdf.order_id = GVDetail.GetFocusedRowCellValue("item_id").ToString
+            FormSalesOrderShippingLabelPdf.order_id = GVDetail.GetFocusedRowCellValue("ol_store_id").ToString
 
             FormSalesOrderShippingLabelPdf.ShowDialog()
         ElseIf id_cg = "64" Then
@@ -1164,5 +1168,141 @@
         End If
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewExpiredOrder_Click(sender As Object, e As EventArgs) Handles BtnViewExpiredOrder.Click
+        viewExpiredOrder(1)
+    End Sub
+
+    Sub viewExpiredOrder(ByVal id_type As String)
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater date
+        Dim cond_date As String = ""
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEExFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEExUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim par_date As String = ""
+        If id_type = "1" Then
+            par_date = "f.order_date>='" + date_from_selected + "' AND f.order_date<='" + date_until_selected + "'"
+        Else
+            par_date = "DATE(f.input_date)>='" + date_from_selected + "' AND DATE(f.input_date)<='" + date_until_selected + "'"
+        End If
+        Dim query As String = "SELECT f.id, f.schedule_time, f.checkout_id, f.order_date, f.order_number, f.customer_name, SUM(f.quantity) AS `total_qty_order`,
+        f.input_date, f.process_date, f.error_process,TIMESTAMPDIFF(MINUTE,f.order_date,f.schedule_time) AS `diff`
+        FROM tb_ol_store_order_fail f 
+        WHERE (" + par_date + ")
+        GROUP BY f.id
+        ORDER BY f.id ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCExpiredOrder.DataSource = data
+        GVExpiredOrder.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExpiredExportToXLS_Click(sender As Object, e As EventArgs) Handles BtnExpiredExportToXLS.Click
+        If GVExpiredOrder.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "expired_vios_order.xlsx"
+            exportToXLS(path, "expired order", GCExpiredOrder)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnViewExpiredOrderBySyncDate_Click(sender As Object, e As EventArgs) Handles BtnViewExpiredOrderBySyncDate.Click
+        viewExpiredOrder(2)
+    End Sub
+
+    Private Sub GVExpiredOrder_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVExpiredOrder.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub BtnViewPromoSummary_Click(sender As Object, e As EventArgs) Handles BtnViewPromoSummary.Click
+        viewPromoSummary()
+    End Sub
+
+    Sub viewPromoSummary()
+        Cursor = Cursors.WaitCursor
+        Dim id As String = SLEPromoSummary.EditValue.ToString
+        Dim cond As String = ""
+        If id <> "0" Then
+            cond = "AND c.id_ol_promo_collection='" + id + "' "
+        End If
+        Dim query As String = "SELECT c.id_ol_promo_collection, c.number,c.promo_name, c.is_use_discount_code, IF(c.is_use_discount_code=1,'Active', 'Not Active') AS `is_use_discount_code_view`, 
+        IFNULL(tc.total_code,0) AS `dc_propose`,IFNULL(o.order_used,0) AS `order_used`, IFNULL(o.total_qty,0) AS `total_qty`
+        FROM tb_ol_promo_collection c
+        LEFT JOIN (
+	        SELECT od.id_ol_promo_collection, COUNT(DISTINCT od.id) AS `order_used`, 
+	        SUM(od.sales_order_det_qty) AS `total_qty`
+	        FROM tb_ol_store_order od 
+	        WHERE !ISNULL(od.id_ol_promo_collection)
+	        GROUP BY od.id_ol_promo_collection
+        ) o ON o.id_ol_promo_collection = c.id_ol_promo_collection
+        LEFT JOIN (
+            SELECT dc.id_ol_promo_collection, COUNT(dc.id_ol_promo_collection_disc_code) AS `total_code`
+            FROM tb_ol_promo_collection_disc_code dc
+            GROUP BY dc.id_ol_promo_collection
+        ) tc ON tc.id_ol_promo_collection = c.id_ol_promo_collection
+        LEFT JOIN tb_ol_promo_collection_disc_code dc ON dc.id_ol_promo_collection = c.id_ol_promo_collection
+        WHERE c.id_report_status=6 " + cond + "
+        GROUP BY c.id_ol_promo_collection
+        ORDER BY c.id_ol_promo_collection DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPromoSummary.DataSource = data
+        GVPromoSummary.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVPromoSummary_DoubleClick(sender As Object, e As EventArgs) Handles GVPromoSummary.DoubleClick
+        If GVPromoSummary.RowCount > 0 And GVPromoSummary.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            SLEPromo.EditValue = GVPromoSummary.GetFocusedRowCellValue("id_ol_promo_collection").ToString
+            viewPromoList()
+            XTCPromo.SelectedTabPageIndex = 1
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkPromoSummary_Click(sender As Object, e As EventArgs) Handles RepoLinkPromoSummary.Click
+        If GVPromoSummary.RowCount > 0 And GVPromoSummary.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_ol_promo_collection As String = ""
+            Try
+                id_ol_promo_collection = GVPromoSummary.GetFocusedRowCellValue("id_ol_promo_collection").ToString
+            Catch ex As Exception
+            End Try
+            Dim s As New ClassShowPopUp
+            s.id_report = id_ol_promo_collection
+            s.report_mark_type = "250"
+            s.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnXLSPromoSummary_Click(sender As Object, e As EventArgs) Handles BtnXLSPromoSummary.Click
+        If GVPromoSummary.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "ol_store_report_prm_summ.xlsx"
+            exportToXLS(path, "ol_store_report_prm_summ", GCPromoSummary)
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

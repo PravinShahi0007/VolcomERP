@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormViewSalesPOS
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,8 +17,9 @@ Partial Class FormViewSalesPOS
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.TXTName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelName = New System.Windows.Forms.Label()
@@ -57,6 +58,7 @@ Partial Class FormViewSalesPOS
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDraft = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -82,6 +84,9 @@ Partial Class FormViewSalesPOS
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlList = New DevExpress.XtraEditors.GroupControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewPriceReconcileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewClosingNoStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -102,8 +107,36 @@ Partial Class FormViewSalesPOS
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_pos_number_err_prc_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoLinkInvRef = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.GridColumnid_sales_pos_err_prc_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrmt_err_prc_ref = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCInvoice = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPProbList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCProbList = New DevExpress.XtraGrid.GridControl()
+        Me.GVProbList = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumnid_sales_pos_prob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnis_invalid_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnis_no_stock = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnid_product = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumncodeprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnnameprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnsizeprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnid_design_price_retailprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnid_design_price_validprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumndesign_price_valid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumnstore_qtyprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumndesign_price_storeprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumndesign_price_retailprob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnnote_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumninvoice_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumnno_stock_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCode = New DevExpress.XtraGrid.GridControl()
         Me.GVCode = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -117,7 +150,8 @@ Partial Class FormViewSalesPOS
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEStocktake = New DevExpress.XtraEditors.DateEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TXTName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,19 +195,28 @@ Partial Class FormViewSalesPOS
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlList.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkInvRef, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoice.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
+        Me.XTPProbList.SuspendLayout()
+        CType(Me.GCProbList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProbList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStocktake.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStocktake.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl23)
+        Me.GroupGeneralHeader.Controls.Add(Me.DEStocktake)
         Me.GroupGeneralHeader.Controls.Add(Me.TXTName)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelName)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl16)
@@ -308,7 +351,7 @@ Partial Class FormViewSalesPOS
         Me.TxtInvoice.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtInvoice.EditValue = ""
-        Me.TxtInvoice.Location = New System.Drawing.Point(467, 69)
+        Me.TxtInvoice.Location = New System.Drawing.Point(467, 94)
         Me.TxtInvoice.Name = "TxtInvoice"
         Me.TxtInvoice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtInvoice.Properties.Appearance.Options.UseFont = True
@@ -322,7 +365,7 @@ Partial Class FormViewSalesPOS
         'LabelInvoice
         '
         Me.LabelInvoice.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelInvoice.Location = New System.Drawing.Point(416, 72)
+        Me.LabelInvoice.Location = New System.Drawing.Point(416, 97)
         Me.LabelInvoice.Name = "LabelInvoice"
         Me.LabelInvoice.Size = New System.Drawing.Size(35, 13)
         Me.LabelInvoice.TabIndex = 8948
@@ -627,6 +670,15 @@ Partial Class FormViewSalesPOS
         Me.BtnAttachment.TabIndex = 5
         Me.BtnAttachment.Text = "Attachment"
         '
+        'BtnViewJournal
+        '
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnViewJournal.Location = New System.Drawing.Point(465, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(205, 32)
+        Me.BtnViewJournal.TabIndex = 7
+        Me.BtnViewJournal.Text = "Posted Journal"
+        '
         'BtnDraft
         '
         Me.BtnDraft.Dock = System.Windows.Forms.DockStyle.Left
@@ -903,19 +955,38 @@ Partial Class FormViewSalesPOS
         '
         'GCItemList
         '
+        Me.GCItemList.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCItemList.Location = New System.Drawing.Point(21, 2)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
-        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepoLinkInvRef})
         Me.GCItemList.Size = New System.Drawing.Size(925, 194)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewPriceReconcileToolStripMenuItem, Me.ViewClosingNoStockToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(194, 48)
+        '
+        'ViewPriceReconcileToolStripMenuItem
+        '
+        Me.ViewPriceReconcileToolStripMenuItem.Name = "ViewPriceReconcileToolStripMenuItem"
+        Me.ViewPriceReconcileToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ViewPriceReconcileToolStripMenuItem.Text = "View Price Reconcile"
+        '
+        'ViewClosingNoStockToolStripMenuItem
+        '
+        Me.ViewClosingNoStockToolStripMenuItem.Name = "ViewClosingNoStockToolStripMenuItem"
+        Me.ViewClosingNoStockToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ViewClosingNoStockToolStripMenuItem.Text = "View Closing No Stock"
+        '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnDesignPriceType, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnNote, Me.GridColumnDel, Me.GridColumnOLOrder})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnDesignPriceType, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnNote, Me.GridColumnDel, Me.GridColumnOLOrder, Me.GridColumnsales_pos_number_err_prc_ref, Me.GridColumnid_sales_pos_err_prc_ref, Me.GridColumnrmt_err_prc_ref})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -923,6 +994,7 @@ Partial Class FormViewSalesPOS
         Me.GVItemList.OptionsBehavior.ReadOnly = True
         Me.GVItemList.OptionsCustomization.AllowGroup = False
         Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVItemList.OptionsView.ColumnAutoWidth = False
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
@@ -930,6 +1002,7 @@ Partial Class FormViewSalesPOS
         '
         Me.GridColumnNo.Caption = "No"
         Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnNo.Name = "GridColumnNo"
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
@@ -940,6 +1013,7 @@ Partial Class FormViewSalesPOS
         '
         Me.GridColumnCode.Caption = "Code"
         Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
@@ -951,6 +1025,7 @@ Partial Class FormViewSalesPOS
         Me.GridColumnName.Caption = "Name"
         Me.GridColumnName.FieldName = "name"
         Me.GridColumnName.FieldNameSortGroup = "id_design"
+        Me.GridColumnName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.AllowEdit = False
         Me.GridColumnName.Visible = True
@@ -1115,6 +1190,32 @@ Partial Class FormViewSalesPOS
         Me.GridColumnOLOrder.Visible = True
         Me.GridColumnOLOrder.VisibleIndex = 10
         '
+        'GridColumnsales_pos_number_err_prc_ref
+        '
+        Me.GridColumnsales_pos_number_err_prc_ref.Caption = "Invoice Ref."
+        Me.GridColumnsales_pos_number_err_prc_ref.ColumnEdit = Me.RepoLinkInvRef
+        Me.GridColumnsales_pos_number_err_prc_ref.FieldName = "sales_pos_number_err_prc_ref"
+        Me.GridColumnsales_pos_number_err_prc_ref.Name = "GridColumnsales_pos_number_err_prc_ref"
+        Me.GridColumnsales_pos_number_err_prc_ref.Visible = True
+        Me.GridColumnsales_pos_number_err_prc_ref.VisibleIndex = 11
+        '
+        'RepoLinkInvRef
+        '
+        Me.RepoLinkInvRef.AutoHeight = False
+        Me.RepoLinkInvRef.Name = "RepoLinkInvRef"
+        '
+        'GridColumnid_sales_pos_err_prc_ref
+        '
+        Me.GridColumnid_sales_pos_err_prc_ref.Caption = "id_sales_pos_err_prc_ref"
+        Me.GridColumnid_sales_pos_err_prc_ref.FieldName = "id_sales_pos_err_prc_ref"
+        Me.GridColumnid_sales_pos_err_prc_ref.Name = "GridColumnid_sales_pos_err_prc_ref"
+        '
+        'GridColumnrmt_err_prc_ref
+        '
+        Me.GridColumnrmt_err_prc_ref.Caption = "rmt_err_prc_ref"
+        Me.GridColumnrmt_err_prc_ref.FieldName = "rmt_err_prc_ref"
+        Me.GridColumnrmt_err_prc_ref.Name = "GridColumnrmt_err_prc_ref"
+        '
         'XTCInvoice
         '
         Me.XTCInvoice.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1123,7 +1224,7 @@ Partial Class FormViewSalesPOS
         Me.XTCInvoice.SelectedTabPage = Me.XTPInvoice
         Me.XTCInvoice.Size = New System.Drawing.Size(954, 226)
         Me.XTCInvoice.TabIndex = 190
-        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPInvoice, Me.XTPDetail})
+        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPInvoice, Me.XTPProbList, Me.XTPDetail})
         '
         'XTPInvoice
         '
@@ -1131,6 +1232,207 @@ Partial Class FormViewSalesPOS
         Me.XTPInvoice.Name = "XTPInvoice"
         Me.XTPInvoice.Size = New System.Drawing.Size(948, 198)
         Me.XTPInvoice.Text = "Invoice"
+        '
+        'XTPProbList
+        '
+        Me.XTPProbList.Controls.Add(Me.GCProbList)
+        Me.XTPProbList.Name = "XTPProbList"
+        Me.XTPProbList.Size = New System.Drawing.Size(948, 198)
+        Me.XTPProbList.Text = "Problem List"
+        '
+        'GCProbList
+        '
+        Me.GCProbList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCProbList.Location = New System.Drawing.Point(0, 0)
+        Me.GCProbList.MainView = Me.GVProbList
+        Me.GCProbList.Name = "GCProbList"
+        Me.GCProbList.Size = New System.Drawing.Size(948, 198)
+        Me.GCProbList.TabIndex = 1
+        Me.GCProbList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbList})
+        '
+        'GVProbList
+        '
+        Me.GVProbList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand5})
+        Me.GVProbList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnid_sales_pos_prob, Me.GridColumnis_invalid_price, Me.GridColumnis_no_stock, Me.GridColumnid_product, Me.GridColumncodeprob, Me.GridColumnnameprob, Me.GridColumnsizeprob, Me.GridColumnid_design_price_retailprob, Me.GridColumndesign_price_retailprob, Me.GridColumndesign_price_storeprob, Me.GridColumnid_design_price_validprob, Me.GridColumndesign_price_valid, Me.GridColumnstore_qtyprob, Me.GridColumnno_stock_qty, Me.GridColumnnote_price, Me.GridColumninvoice_qty, Me.GridColumntotal_qty})
+        Me.GVProbList.GridControl = Me.GCProbList
+        Me.GVProbList.Name = "GVProbList"
+        Me.GVProbList.OptionsBehavior.ReadOnly = True
+        Me.GVProbList.OptionsView.ColumnAutoWidth = False
+        Me.GVProbList.OptionsView.ShowFooter = True
+        Me.GVProbList.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.GridColumnid_sales_pos_prob)
+        Me.GridBand1.Columns.Add(Me.GridColumnis_invalid_price)
+        Me.GridBand1.Columns.Add(Me.GridColumnis_no_stock)
+        Me.GridBand1.Columns.Add(Me.GridColumnid_product)
+        Me.GridBand1.Columns.Add(Me.GridColumncodeprob)
+        Me.GridBand1.Columns.Add(Me.GridColumnnameprob)
+        Me.GridBand1.Columns.Add(Me.GridColumnsizeprob)
+        Me.GridBand1.Columns.Add(Me.GridColumnid_design_price_retailprob)
+        Me.GridBand1.Columns.Add(Me.GridColumnid_design_price_validprob)
+        Me.GridBand1.Columns.Add(Me.GridColumndesign_price_valid)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 225
+        '
+        'GridColumnid_sales_pos_prob
+        '
+        Me.GridColumnid_sales_pos_prob.Caption = "id_sales_pos_prob"
+        Me.GridColumnid_sales_pos_prob.FieldName = "id_sales_pos_prob"
+        Me.GridColumnid_sales_pos_prob.Name = "GridColumnid_sales_pos_prob"
+        '
+        'GridColumnis_invalid_price
+        '
+        Me.GridColumnis_invalid_price.Caption = "is_invalid_price"
+        Me.GridColumnis_invalid_price.FieldName = "is_invalid_price"
+        Me.GridColumnis_invalid_price.Name = "GridColumnis_invalid_price"
+        '
+        'GridColumnis_no_stock
+        '
+        Me.GridColumnis_no_stock.Caption = "is_no_stock"
+        Me.GridColumnis_no_stock.FieldName = "is_no_stock"
+        Me.GridColumnis_no_stock.Name = "GridColumnis_no_stock"
+        '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        '
+        'GridColumncodeprob
+        '
+        Me.GridColumncodeprob.Caption = "Code"
+        Me.GridColumncodeprob.FieldName = "code"
+        Me.GridColumncodeprob.Name = "GridColumncodeprob"
+        Me.GridColumncodeprob.Visible = True
+        '
+        'GridColumnnameprob
+        '
+        Me.GridColumnnameprob.Caption = "Description"
+        Me.GridColumnnameprob.FieldName = "name"
+        Me.GridColumnnameprob.Name = "GridColumnnameprob"
+        Me.GridColumnnameprob.Visible = True
+        '
+        'GridColumnsizeprob
+        '
+        Me.GridColumnsizeprob.Caption = "Size"
+        Me.GridColumnsizeprob.FieldName = "size"
+        Me.GridColumnsizeprob.Name = "GridColumnsizeprob"
+        Me.GridColumnsizeprob.Visible = True
+        '
+        'GridColumnid_design_price_retailprob
+        '
+        Me.GridColumnid_design_price_retailprob.Caption = "id_design_price_retail"
+        Me.GridColumnid_design_price_retailprob.FieldName = "id_design_price_retail"
+        Me.GridColumnid_design_price_retailprob.Name = "GridColumnid_design_price_retailprob"
+        '
+        'GridColumnid_design_price_validprob
+        '
+        Me.GridColumnid_design_price_validprob.Caption = "id_design_price_valid"
+        Me.GridColumnid_design_price_validprob.FieldName = "id_design_price_valid"
+        Me.GridColumnid_design_price_validprob.Name = "GridColumnid_design_price_validprob"
+        '
+        'GridColumndesign_price_valid
+        '
+        Me.GridColumndesign_price_valid.Caption = "Valid Price"
+        Me.GridColumndesign_price_valid.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price_valid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price_valid.FieldName = "design_price_valid"
+        Me.GridColumndesign_price_valid.Name = "GridColumndesign_price_valid"
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Store"
+        Me.gridBand2.Columns.Add(Me.GridColumnstore_qtyprob)
+        Me.gridBand2.Columns.Add(Me.GridColumndesign_price_storeprob)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 150
+        '
+        'GridColumnstore_qtyprob
+        '
+        Me.GridColumnstore_qtyprob.Caption = "Store Qty"
+        Me.GridColumnstore_qtyprob.DisplayFormat.FormatString = "N0"
+        Me.GridColumnstore_qtyprob.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnstore_qtyprob.FieldName = "store_qty"
+        Me.GridColumnstore_qtyprob.Name = "GridColumnstore_qtyprob"
+        Me.GridColumnstore_qtyprob.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "store_qty", "{0:N0}")})
+        Me.GridColumnstore_qtyprob.Visible = True
+        '
+        'GridColumndesign_price_storeprob
+        '
+        Me.GridColumndesign_price_storeprob.Caption = "Store Price"
+        Me.GridColumndesign_price_storeprob.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price_storeprob.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price_storeprob.FieldName = "design_price_store"
+        Me.GridColumndesign_price_storeprob.Name = "GridColumndesign_price_storeprob"
+        Me.GridColumndesign_price_storeprob.Visible = True
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Price Compare Result"
+        Me.gridBand3.Columns.Add(Me.GridColumndesign_price_retailprob)
+        Me.gridBand3.Columns.Add(Me.GridColumnnote_price)
+        Me.gridBand3.Columns.Add(Me.GridColumninvoice_qty)
+        Me.gridBand3.Columns.Add(Me.GridColumntotal_qty)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 225
+        '
+        'GridColumndesign_price_retailprob
+        '
+        Me.GridColumndesign_price_retailprob.Caption = "ERP Price"
+        Me.GridColumndesign_price_retailprob.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price_retailprob.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price_retailprob.FieldName = "design_price_retail"
+        Me.GridColumndesign_price_retailprob.Name = "GridColumndesign_price_retailprob"
+        Me.GridColumndesign_price_retailprob.Visible = True
+        '
+        'GridColumnnote_price
+        '
+        Me.GridColumnnote_price.Caption = "Note Price"
+        Me.GridColumnnote_price.FieldName = "note_price"
+        Me.GridColumnnote_price.Name = "GridColumnnote_price"
+        Me.GridColumnnote_price.Visible = True
+        '
+        'GridColumninvoice_qty
+        '
+        Me.GridColumninvoice_qty.Caption = "Hold Qty"
+        Me.GridColumninvoice_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumninvoice_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumninvoice_qty.FieldName = "invoice_qty"
+        Me.GridColumninvoice_qty.Name = "GridColumninvoice_qty"
+        Me.GridColumninvoice_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "invoice_qty", "{0:N0}")})
+        Me.GridColumninvoice_qty.Visible = True
+        '
+        'GridColumntotal_qty
+        '
+        Me.GridColumntotal_qty.Caption = "Total Qty"
+        Me.GridColumntotal_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_qty.FieldName = "total_qty"
+        Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
+        Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "No Stock"
+        Me.gridBand5.Columns.Add(Me.GridColumnno_stock_qty)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 3
+        Me.gridBand5.Width = 75
+        '
+        'GridColumnno_stock_qty
+        '
+        Me.GridColumnno_stock_qty.Caption = "No Stock Qty"
+        Me.GridColumnno_stock_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnno_stock_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnno_stock_qty.FieldName = "no_stock_qty"
+        Me.GridColumnno_stock_qty.Name = "GridColumnno_stock_qty"
+        Me.GridColumnno_stock_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "no_stock_qty", "{0:N0}")})
+        Me.GridColumnno_stock_qty.Visible = True
         '
         'XTPDetail
         '
@@ -1244,14 +1546,29 @@ Partial Class FormViewSalesPOS
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
-        'BtnViewJournal
+        'LabelControl23
         '
-        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnViewJournal.Location = New System.Drawing.Point(465, 2)
-        Me.BtnViewJournal.Name = "BtnViewJournal"
-        Me.BtnViewJournal.Size = New System.Drawing.Size(205, 32)
-        Me.BtnViewJournal.TabIndex = 7
-        Me.BtnViewJournal.Text = "Posted Journal"
+        Me.LabelControl23.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl23.Location = New System.Drawing.Point(416, 71)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(42, 13)
+        Me.LabelControl23.TabIndex = 8960
+        Me.LabelControl23.Text = "Stoctake"
+        '
+        'DEStocktake
+        '
+        Me.DEStocktake.EditValue = Nothing
+        Me.DEStocktake.Enabled = False
+        Me.DEStocktake.Location = New System.Drawing.Point(467, 67)
+        Me.DEStocktake.Name = "DEStocktake"
+        Me.DEStocktake.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEStocktake.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStocktake.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEStocktake.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStocktake.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStocktake.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEStocktake.Size = New System.Drawing.Size(218, 20)
+        Me.DEStocktake.TabIndex = 8959
         '
         'FormViewSalesPOS
         '
@@ -1316,14 +1633,21 @@ Partial Class FormViewSalesPOS
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlList.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkInvRef, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCInvoice.ResumeLayout(False)
         Me.XTPInvoice.ResumeLayout(False)
+        Me.XTPProbList.ResumeLayout(False)
+        CType(Me.GCProbList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProbList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStocktake.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStocktake.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1426,4 +1750,37 @@ Partial Class FormViewSalesPOS
     Friend WithEvents TXTName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelName As Label
     Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPProbList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCProbList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVProbList As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridColumnid_sales_pos_prob As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnis_invalid_price As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnis_no_stock As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnid_product As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumncodeprob As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnnameprob As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnsizeprob As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnid_design_price_retailprob As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnid_design_price_validprob As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumndesign_price_valid As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnstore_qtyprob As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumndesign_price_storeprob As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumndesign_price_retailprob As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnnote_price As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumninvoice_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumntotal_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnno_stock_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewPriceReconcileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumnsales_pos_number_err_prc_ref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoLinkInvRef As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents GridColumnid_sales_pos_err_prc_ref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnrmt_err_prc_ref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewClosingNoStockToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEStocktake As DevExpress.XtraEditors.DateEdit
 End Class

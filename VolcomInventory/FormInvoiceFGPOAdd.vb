@@ -24,7 +24,7 @@
         '
         newRow("qty") = TEQty.EditValue
         newRow("id_currency") = LECurrency.EditValue.ToString
-        newRow("kurs") = TEKurs.EditValue
+        newRow("kurs") = Decimal.Parse(TEKurs.EditValue.ToString)
         newRow("value_bef_kurs") = TEBeforeKurs.EditValue
         '
         newRow("pph_percent") = 0
@@ -101,9 +101,9 @@ INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 WHERE po.`id_report_status`='6'
 GROUP BY po.`id_prod_order`"
-        ElseIf SLEReportType.EditValue.ToString = "13" Then 'material
+        ElseIf SLEReportType.EditValue.ToString = "13" Then 'material dibulatkan ke atas (Alit 11 Januari 2021)
             query = "SELECT po.`id_mat_purc` AS id_report,0 AS id_prod_order,po.`mat_purc_number` AS report_number,GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description,c.comp_name AS info
-,po.id_currency,po.mat_purc_kurs as kurs,po.mat_purc_vat as vat,SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty) as po_val
+,po.id_currency,po.mat_purc_kurs as kurs,po.mat_purc_vat as vat,CEIL(SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty)*100)/100 as po_val
 FROM tb_mat_purc_det pod 
 INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pod.id_mat_det_price
 INNER JOIN tb_m_mat_det md ON md.id_mat_det=mdp.id_mat_det

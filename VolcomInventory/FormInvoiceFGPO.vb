@@ -54,7 +54,7 @@
             '
             If XTCInvoiceFGPO.SelectedTabPageIndex = 0 Then
                 'list payment
-                Dim query As String = "SELECT pn.*,pnt.pn_type,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount 
+                Dim query As String = "SELECT pn.*,CONCAT((IF(pn.doc_type=2,'FGPO','Umum')),' - ',pnt.pn_type) AS pn_type,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount 
 ,det.report_number,det.inv_number
 FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
@@ -68,7 +68,7 @@ INNER JOIN (
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
 INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE 1=1 AND pn.doc_type <> 4 " & query_where
+WHERE 1=1 AND pn.doc_type <> 4 " & query_where & " ORDER BY pn.created_date DESC"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCBPL.DataSource = data
                 GVBPL.BestFitColumns()
@@ -106,6 +106,7 @@ WHERE pnt.is_payment=2 AND pn.doc_type <> 4 " & query_where
 ,CAST((py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS dp_amount_vat_bef_kurs
 ,CAST((py.`dp_amount`/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS dp_amount 
 ,CAST((py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS dp_amount_vat
+,IFNULL(dp_paid.val_dp,0) AS val_dp
 FROM tb_prod_order_wo_det wod
 INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
@@ -118,13 +119,16 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_lookup_payment py ON py.`id_payment`=wo.`id_payment` AND py.`dp_amount` > 0
 LEFT JOIN 
 (
-	SELECT id_prod_order FROM `tb_pn_fgpo_det` pnd
+	SELECT id_prod_order,SUM(pnd.value_bef_kurs) as val_dp
+    FROM `tb_pn_fgpo_det` pnd
 	INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
 	WHERE pn.id_report_status !=5 AND pn.doc_type=2 AND pn.type=1
 	GROUP BY id_prod_order
 )dp_paid ON dp_paid.id_prod_order=po.id_prod_order
-WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' AND ISNULL(dp_paid.id_prod_order) " & query_where & "
-GROUP BY wo.`id_prod_order_wo`"
+WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_where & "
+-- AND ISNULL(dp_paid.id_prod_order) 
+GROUP BY wo.`id_prod_order_wo`
+HAVING dp_amount_bef_kurs-val_dp>0"
                     Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                     GCDPFGPO.DataSource = data
                     GVDPFGPO.BestFitColumns()
@@ -170,10 +174,29 @@ INNER JOIN (
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
 INNER JOIN tb_pn_type pnt ON pnt.id_type=pn.type
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
-WHERE 1=1 AND pn.doc_type = 4 " & query_where
+WHERE 1=1 AND pn.doc_type = 4 " & query_where & " ORDER BY pn.created_date DESC"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCDPKhusus.DataSource = data
                 GVDPKhusus.BestFitColumns()
+            ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 4 Then
+                'list invoice claim lain-lain
+                Dim query As String = "SELECT pn.*,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount 
+,det.report_number
+FROM tb_inv_claim_other pn
+INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+INNER JOIN (
+	SELECT id_inv_claim_other,SUM(`value`) AS amount,SUM(`vat`) AS amount_vat,SUM(`value`+`vat`) AS total_amount 
+        ,GROUP_CONCAT(pnd.report_number) AS report_number
+	FROM tb_inv_claim_other_det pnd 
+	GROUP BY pnd.`id_inv_claim_other`
+) det ON det.id_inv_claim_other=pn.`id_inv_claim_other`
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
+WHERE 1=1  " & query_where & " ORDER BY pn.created_date DESC"
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                GCInvoiceLain.DataSource = data
+                GVInvoiceLain.BestFitColumns()
             End If
         End If
     End Sub
@@ -286,6 +309,18 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
             FormInvoiceFGPODP.id_invoice = GVDPKhusus.GetFocusedRowCellValue("id_pn_fgpo").ToString
             FormInvoiceFGPODP.doc_type = GVDPKhusus.GetFocusedRowCellValue("doc_type").ToString
             FormInvoiceFGPODP.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BCreateInvoiceLain_Click(sender As Object, e As EventArgs) Handles BCreateInvoiceLain.Click
+        FormInvoiceClaimOther.id_invoice = "-1"
+        FormInvoiceClaimOther.ShowDialog()
+    End Sub
+
+    Private Sub GVInvoiceLain_DoubleClick(sender As Object, e As EventArgs) Handles GVInvoiceLain.DoubleClick
+        If GVInvoiceLain.RowCount > 0 Then
+            FormInvoiceClaimOther.id_invoice = GVInvoiceLain.GetFocusedRowCellValue("id_inv_claim_other").ToString
+            FormInvoiceClaimOther.ShowDialog()
         End If
     End Sub
 End Class

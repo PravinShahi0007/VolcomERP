@@ -32,6 +32,7 @@ Partial Public Class ReportAccountingLedger
         Me.XrTableCellNo = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCellReportNumber = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCellCompany = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCellVendor = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCellJournalDate = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCellReff = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCellDescription = New DevExpress.XtraReports.UI.XRTableCell()
@@ -46,13 +47,16 @@ Partial Public Class ReportAccountingLedger
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LUnit = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLAccount, Me.XrLabel4, Me.XrLabel2, Me.XrLabel1, Me.XrLabel3, Me.XLPeriod, Me.XrTable})
-        Me.Detail.HeightF = 106.0!
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel5, Me.XrLabel6, Me.LUnit, Me.XLAccount, Me.XrLabel4, Me.XrLabel2, Me.XrLabel1, Me.XrLabel3, Me.XLPeriod, Me.XrTable})
+        Me.Detail.HeightF = 121.625!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -60,7 +64,7 @@ Partial Public Class ReportAccountingLedger
         'XLAccount
         '
         Me.XLAccount.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XLAccount.LocationFloat = New DevExpress.Utils.PointFloat(75.00003!, 28.00001!)
+        Me.XLAccount.LocationFloat = New DevExpress.Utils.PointFloat(75.0!, 50.99997!)
         Me.XLAccount.Name = "XLAccount"
         Me.XLAccount.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLAccount.SizeF = New System.Drawing.SizeF(1000.0!, 23.0!)
@@ -71,7 +75,7 @@ Partial Public Class ReportAccountingLedger
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(60.00001!, 27.99999!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(59.99997!, 50.99997!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
@@ -83,7 +87,7 @@ Partial Public Class ReportAccountingLedger
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 27.99999!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 50.99997!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
@@ -129,14 +133,14 @@ Partial Public Class ReportAccountingLedger
         '
         'XrTable
         '
-        Me.XrTable.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 66.00002!)
+        Me.XrTable.LocationFloat = New DevExpress.Utils.PointFloat(0!, 81.62501!)
         Me.XrTable.Name = "XrTable"
         Me.XrTable.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow})
         Me.XrTable.SizeF = New System.Drawing.SizeF(1075.0!, 40.0!)
         '
         'XrTableRow
         '
-        Me.XrTableRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCellNo, Me.XrTableCellReportNumber, Me.XrTableCellCompany, Me.XrTableCellJournalDate, Me.XrTableCellReff, Me.XrTableCellDescription, Me.XrTableCellQty, Me.XrTableCellDebit, Me.XrTableCellCredit, Me.XrTableCellBalance})
+        Me.XrTableRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCellNo, Me.XrTableCellReportNumber, Me.XrTableCellCompany, Me.XrTableCellVendor, Me.XrTableCellJournalDate, Me.XrTableCellReff, Me.XrTableCellDescription, Me.XrTableCellQty, Me.XrTableCellDebit, Me.XrTableCellCredit, Me.XrTableCellBalance})
         Me.XrTableRow.Font = New System.Drawing.Font("Tahoma", 8.75!, System.Drawing.FontStyle.Bold)
         Me.XrTableRow.Name = "XrTableRow"
         Me.XrTableRow.StylePriority.UseFont = False
@@ -163,7 +167,7 @@ Partial Public Class ReportAccountingLedger
         Me.XrTableCellReportNumber.StylePriority.UseBorders = False
         Me.XrTableCellReportNumber.StylePriority.UsePadding = False
         Me.XrTableCellReportNumber.Text = "Report Number"
-        Me.XrTableCellReportNumber.Weight = 0.5086092298378081R
+        Me.XrTableCellReportNumber.Weight = 0.55494216032102861R
         '
         'XrTableCellCompany
         '
@@ -172,8 +176,17 @@ Partial Public Class ReportAccountingLedger
         Me.XrTableCellCompany.Name = "XrTableCellCompany"
         Me.XrTableCellCompany.StylePriority.UseBorders = False
         Me.XrTableCellCompany.StylePriority.UsePadding = False
-        Me.XrTableCellCompany.Text = "Company"
-        Me.XrTableCellCompany.Weight = 0.57218540140857588R
+        Me.XrTableCellCompany.Text = "CC"
+        Me.XrTableCellCompany.Weight = 0.28420767267469471R
+        '
+        'XrTableCellVendor
+        '
+        Me.XrTableCellVendor.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCellVendor.Name = "XrTableCellVendor"
+        Me.XrTableCellVendor.StylePriority.UseBorders = False
+        Me.XrTableCellVendor.Text = "Vendor"
+        Me.XrTableCellVendor.Weight = 0.81383019965923642R
         '
         'XrTableCellJournalDate
         '
@@ -193,7 +206,7 @@ Partial Public Class ReportAccountingLedger
         Me.XrTableCellReff.StylePriority.UseBorders = False
         Me.XrTableCellReff.StylePriority.UsePadding = False
         Me.XrTableCellReff.Text = "Reff"
-        Me.XrTableCellReff.Weight = 0.508609245749683R
+        Me.XrTableCellReff.Weight = 0.4026488569653312R
         '
         'XrTableCellDescription
         '
@@ -203,7 +216,7 @@ Partial Public Class ReportAccountingLedger
         Me.XrTableCellDescription.StylePriority.UseBorders = False
         Me.XrTableCellDescription.StylePriority.UsePadding = False
         Me.XrTableCellDescription.Text = "Description"
-        Me.XrTableCellDescription.Weight = 2.2887416041986457R
+        Me.XrTableCellDescription.Weight = 2.0563374574540449R
         '
         'XrTableCellQty
         '
@@ -213,7 +226,7 @@ Partial Public Class ReportAccountingLedger
         Me.XrTableCellQty.StylePriority.UseBorders = False
         Me.XrTableCellQty.StylePriority.UsePadding = False
         Me.XrTableCellQty.Text = "Qty"
-        Me.XrTableCellQty.Weight = 0.317880778773009R
+        Me.XrTableCellQty.Weight = 0.34449408851993568R
         '
         'XrTableCellDebit
         '
@@ -223,7 +236,7 @@ Partial Public Class ReportAccountingLedger
         Me.XrTableCellDebit.StylePriority.UseBorders = False
         Me.XrTableCellDebit.StylePriority.UsePadding = False
         Me.XrTableCellDebit.Text = "Debit"
-        Me.XrTableCellDebit.Weight = 0.6357615570674674R
+        Me.XrTableCellDebit.Weight = 0.7578870150194732R
         '
         'XrTableCellCredit
         '
@@ -233,7 +246,7 @@ Partial Public Class ReportAccountingLedger
         Me.XrTableCellCredit.StylePriority.UseBorders = False
         Me.XrTableCellCredit.StylePriority.UsePadding = False
         Me.XrTableCellCredit.Text = "Credit"
-        Me.XrTableCellCredit.Weight = 0.63576155706746751R
+        Me.XrTableCellCredit.Weight = 0.75788701501947342R
         '
         'XrTableCellBalance
         '
@@ -243,7 +256,7 @@ Partial Public Class ReportAccountingLedger
         Me.XrTableCellBalance.StylePriority.UseBorders = False
         Me.XrTableCellBalance.StylePriority.UsePadding = False
         Me.XrTableCellBalance.Text = "Balance"
-        Me.XrTableCellBalance.Weight = 0.6357615570674664R
+        Me.XrTableCellBalance.Weight = 0.72490965364309146R
         '
         'TopMargin
         '
@@ -308,6 +321,41 @@ Partial Public Class ReportAccountingLedger
         Me.XrLine1.Name = "XrLine1"
         Me.XrLine1.SizeF = New System.Drawing.SizeF(1075.0!, 20.00001!)
         '
+        'XrLabel5
+        '
+        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 27.99997!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseTextAlignment = False
+        Me.XrLabel5.Text = "Unit"
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(59.99985!, 27.99997!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
+        Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UseTextAlignment = False
+        Me.XrLabel6.Text = ":"
+        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'LUnit
+        '
+        Me.LUnit.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.LUnit.LocationFloat = New DevExpress.Utils.PointFloat(74.99987!, 27.99997!)
+        Me.LUnit.Name = "LUnit"
+        Me.LUnit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LUnit.SizeF = New System.Drawing.SizeF(1000.0!, 23.0!)
+        Me.LUnit.StylePriority.UseFont = False
+        Me.LUnit.StylePriority.UseTextAlignment = False
+        Me.LUnit.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
         'ReportAccountingLedger
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
@@ -348,4 +396,8 @@ Partial Public Class ReportAccountingLedger
     Friend WithEvents XrTableCellDebit As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCellCredit As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCellBalance As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCellVendor As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LUnit As DevExpress.XtraReports.UI.XRLabel
 End Class

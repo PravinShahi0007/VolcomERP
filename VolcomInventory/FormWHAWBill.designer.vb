@@ -148,8 +148,8 @@ Partial Class FormWHAWBill
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BLock = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCSalesOrder = New DevExpress.XtraGrid.GridControl()
-        Me.GVSalesOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCOnlineOrder = New DevExpress.XtraGrid.GridControl()
+        Me.GVOnlineOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnSalesTargetNumb = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -297,6 +297,12 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelAllDO = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -327,8 +333,8 @@ Partial Class FormWHAWBill
         Me.PCLock.SuspendLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOrder.SuspendLayout()
-        CType(Me.GCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCOnlineOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVOnlineOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPickSOR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -370,6 +376,16 @@ Partial Class FormWHAWBill
         CType(Me.DEInStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEInNoEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEInNoStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCSelAll.SuspendLayout()
+        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.CESelAllDO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCAWBill
@@ -1596,33 +1612,34 @@ Partial Class FormWHAWBill
         '
         'XTPOrder
         '
-        Me.XTPOrder.Controls.Add(Me.GCSalesOrder)
+        Me.XTPOrder.Controls.Add(Me.GCOnlineOrder)
+        Me.XTPOrder.Controls.Add(Me.PanelControl3)
         Me.XTPOrder.Controls.Add(Me.PanelControl1)
         Me.XTPOrder.Name = "XTPOrder"
         Me.XTPOrder.Size = New System.Drawing.Size(1267, 450)
         Me.XTPOrder.Text = "From Order Online"
         '
-        'GCSalesOrder
+        'GCOnlineOrder
         '
-        Me.GCSalesOrder.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSalesOrder.Location = New System.Drawing.Point(0, 47)
-        Me.GCSalesOrder.MainView = Me.GVSalesOrder
-        Me.GCSalesOrder.Name = "GCSalesOrder"
-        Me.GCSalesOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1, Me.RICEPickSOR})
-        Me.GCSalesOrder.Size = New System.Drawing.Size(1267, 403)
-        Me.GCSalesOrder.TabIndex = 2
-        Me.GCSalesOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesOrder, Me.GridView2})
+        Me.GCOnlineOrder.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCOnlineOrder.Location = New System.Drawing.Point(0, 47)
+        Me.GCOnlineOrder.MainView = Me.GVOnlineOrder
+        Me.GCOnlineOrder.Name = "GCOnlineOrder"
+        Me.GCOnlineOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1, Me.RICEPickSOR})
+        Me.GCOnlineOrder.Size = New System.Drawing.Size(1267, 364)
+        Me.GCOnlineOrder.TabIndex = 2
+        Me.GCOnlineOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOnlineOrder, Me.GridView2})
         '
-        'GVSalesOrder
+        'GVOnlineOrder
         '
-        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTotalOrder, Me.GridColumnOLStoreOrder, Me.GridColumn58, Me.GridColumn57, Me.GridColumn55, Me.GridColumn56, Me.GridColumn54, Me.GridColumn30, Me.GridColumn31, Me.GridColumn53})
-        Me.GVSalesOrder.GridControl = Me.GCSalesOrder
-        Me.GVSalesOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", Me.GridColumnTotalOrder, "{0:n0}")})
-        Me.GVSalesOrder.Name = "GVSalesOrder"
-        Me.GVSalesOrder.OptionsFind.AlwaysVisible = True
-        Me.GVSalesOrder.OptionsView.ColumnAutoWidth = False
-        Me.GVSalesOrder.OptionsView.ShowFooter = True
-        Me.GVSalesOrder.OptionsView.ShowGroupPanel = False
+        Me.GVOnlineOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTotalOrder, Me.GridColumnOLStoreOrder, Me.GridColumn58, Me.GridColumn57, Me.GridColumn55, Me.GridColumn56, Me.GridColumn54, Me.GridColumn30, Me.GridColumn31, Me.GridColumn53})
+        Me.GVOnlineOrder.GridControl = Me.GCOnlineOrder
+        Me.GVOnlineOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", Me.GridColumnTotalOrder, "{0:n0}")})
+        Me.GVOnlineOrder.Name = "GVOnlineOrder"
+        Me.GVOnlineOrder.OptionsFind.AlwaysVisible = True
+        Me.GVOnlineOrder.OptionsView.ColumnAutoWidth = False
+        Me.GVOnlineOrder.OptionsView.ShowFooter = True
+        Me.GVOnlineOrder.OptionsView.ShowGroupPanel = False
         '
         'GridColumnSalesTargetNumb
         '
@@ -1776,7 +1793,7 @@ Partial Class FormWHAWBill
         '
         'GridView2
         '
-        Me.GridView2.GridControl = Me.GCSalesOrder
+        Me.GridView2.GridControl = Me.GCOnlineOrder
         Me.GridView2.Name = "GridView2"
         '
         'PanelControl1
@@ -1866,6 +1883,7 @@ Partial Class FormWHAWBill
         'XTPDO
         '
         Me.XTPDO.Controls.Add(Me.GCDOERP)
+        Me.XTPDO.Controls.Add(Me.PanelControl6)
         Me.XTPDO.Controls.Add(Me.PanelControl4)
         Me.XTPDO.Name = "XTPDO"
         Me.XTPDO.Size = New System.Drawing.Size(1267, 450)
@@ -1878,7 +1896,7 @@ Partial Class FormWHAWBill
         Me.GCDOERP.MainView = Me.GVDOERP
         Me.GCDOERP.Name = "GCDOERP"
         Me.GCDOERP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCDOERP.Size = New System.Drawing.Size(1267, 403)
+        Me.GCDOERP.Size = New System.Drawing.Size(1267, 364)
         Me.GCDOERP.TabIndex = 4
         Me.GCDOERP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDOERP})
         '
@@ -3132,6 +3150,60 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.PCSelAll)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 411)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1267, 39)
+        Me.PanelControl3.TabIndex = 3
+        '
+        'PCSelAll
+        '
+        Me.PCSelAll.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCSelAll.Controls.Add(Me.CheckEditSelAll)
+        Me.PCSelAll.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCSelAll.Location = New System.Drawing.Point(2, 2)
+        Me.PCSelAll.Name = "PCSelAll"
+        Me.PCSelAll.Size = New System.Drawing.Size(104, 35)
+        Me.PCSelAll.TabIndex = 104
+        '
+        'CheckEditSelAll
+        '
+        Me.CheckEditSelAll.Location = New System.Drawing.Point(8, 9)
+        Me.CheckEditSelAll.Name = "CheckEditSelAll"
+        Me.CheckEditSelAll.Properties.Caption = "Select All Item"
+        Me.CheckEditSelAll.Size = New System.Drawing.Size(92, 19)
+        Me.CheckEditSelAll.TabIndex = 102
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.Controls.Add(Me.PanelControl7)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 411)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(1267, 39)
+        Me.PanelControl6.TabIndex = 5
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Controls.Add(Me.CESelAllDO)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl7.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(99, 35)
+        Me.PanelControl7.TabIndex = 104
+        '
+        'CESelAllDO
+        '
+        Me.CESelAllDO.Location = New System.Drawing.Point(5, 7)
+        Me.CESelAllDO.Name = "CESelAllDO"
+        Me.CESelAllDO.Properties.Caption = "Select All Item"
+        Me.CESelAllDO.Size = New System.Drawing.Size(92, 19)
+        Me.CESelAllDO.TabIndex = 102
+        '
         'FormWHAWBill
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3180,8 +3252,8 @@ Partial Class FormWHAWBill
         Me.PCLock.ResumeLayout(False)
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOrder.ResumeLayout(False)
-        CType(Me.GCSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCOnlineOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVOnlineOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEPickSOR, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3227,6 +3299,16 @@ Partial Class FormWHAWBill
         CType(Me.DEInStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEInNoEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEInNoStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCSelAll.ResumeLayout(False)
+        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        CType(Me.CESelAllDO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3426,8 +3508,8 @@ Partial Class FormWHAWBill
     Friend WithEvents XTPOrder As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPListOut As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents GCSalesOrder As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVSalesOrder As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCOnlineOrder As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVOnlineOrder As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnSalesTargetNumb As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemProgressBar1 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
     Friend WithEvents GridColumnTotalOrder As DevExpress.XtraGrid.Columns.GridColumn
@@ -3508,4 +3590,10 @@ Partial Class FormWHAWBill
     Friend WithEvents GridColumn57 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BExportCS3Return As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCSelAll As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CheckEditSelAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CESelAllDO As DevExpress.XtraEditors.CheckEdit
 End Class

@@ -19,6 +19,47 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        'gen stiker
+        '        Dim q As String = "SELECT so.sales_order_ol_shop_number 
+        'FROM tb_sales_order so 
+        'INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+        'INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        'WHERE c.id_comp_group=76 AND so.sales_order_date='2021-01-04'
+        'GROUP BY so.id_sales_order_ol_shop
+        'ORDER BY so.id_sales_order_ol_shop ASC"
+        '        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        '        For i As Integer = 0 To dt.Rows.Count - 1
+        '            execute_non_query_long("CALL create_ol_gwp_order(76,'" + dt.Rows(i)("sales_order_ol_shop_number").ToString + "');", True, "", "", "", "")
+        '        Next
+        '        Dim q As String = "SELECT pos.`id_sales_pos`,pos.`report_mark_type`,pos.`sales_pos_total`,a.id_acc_trans FROM `tb_a_acc_trans` a
+        'LEFT JOIN tb_a_acc_trans_det ad ON ad.`id_acc_trans`=a.`id_acc_trans`
+        'INNER JOIN tb_sales_pos pos ON pos.`sales_pos_number`=a.`report_number`
+        'WHERE a.`id_acc_trans`>=40855 AND ISNULL(ad.`id_acc_trans_det`)
+        'AND pos.`sales_pos_total`>0"
+        '        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        '        For i As Integer = 0 To dt.Rows.Count - 1
+        '            q = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_status_open) 
+        '	SELECT '" & dt.Rows(i)("id_acc_trans").ToString & "', d.id_acc, d.id_comp, d.qty, d.debit, d.credit, d.acc_trans_det_note, d.report_mark_type, d.id_report, d.report_number, '1'
+        '	FROM tb_a_acc_trans_draft d
+        '	WHERE d.report_mark_type='" & dt.Rows(i)("report_mark_type").ToString & "' AND d.id_report='" & dt.Rows(i)("id_sales_pos").ToString & "';
+        '	UPDATE tb_a_acc_trans_draft SET id_status_open=2 WHERE report_mark_type='" & dt.Rows(i)("report_mark_type").ToString & "' AND id_report='" & dt.Rows(i)("id_sales_pos").ToString & "';"
+        '            execute_non_query(q, True, "", "", "", "")
+        '        Next
+
+        'cek api
+        'Dim bli As New ClassBliBliApi()
+        'bli.get_order_list()
+        'Dim za As New ClassZaloraApi()
+        'Dim dt As DataTable = za.get_order_detail("3742719")
+        'For d As Integer = 0 To dt.Rows.Count - 1
+        '    Console.WriteLine("Item id : " + dt.Rows(d)("item_id").ToString + "; Status : " + dt.Rows(d)("status").ToString + "; Updated At : " + dt.Rows(d)("updated_at").ToString)
+        'Next
+        'za.getOrder2020()
+        'za.setTrackingNumber("3727702")
+        'za.setInvoiceNumber("3727702", "218433179")
+        'za.setReadyToShip("6214692", "RPX - MARKETPLACE", "799938234220")
+
+
         'manual fullfilled
         'Dim q As String = "SELECT d.id_pl_sales_order_del AS `id_report`,c.id_commerce_type, c.id_comp AS `id_store`, so.id_sales_order_ol_shop AS `id_web_order`
         'FROM tb_pl_sales_order_del d 
@@ -34,9 +75,12 @@
         'f.id_volcomstore_normal = id_volcomstore_normal
         'f.id_volcomstore_sale = id_volcomstore_sale
         'f.updateStatusOnlineStore(data.Rows(0)("id_commerce_type").ToString, data.Rows(0)("id_store").ToString, data.Rows(0)("id_report").ToString, data.Rows(0)("id_web_order").ToString)
+
+        'create ship invoice
         'Dim shp As New ClassShipInvoice()
         'shp.id_invoice_ship = "-1"
         'shp.create("25081")
+
         'Dim a As New ClassShopifyApi()
         'a.get_product()
 

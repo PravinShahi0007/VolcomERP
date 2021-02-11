@@ -297,14 +297,43 @@
                     If confirm = Windows.Forms.DialogResult.Yes Then
                         Cursor = Cursors.WaitCursor
                         BtnUpdateRec.Enabled = False
-                        For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVFGTrf.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVFGTrf))
-                            Dim stt As ClassFGTrf = New ClassFGTrf()
-                            stt.changeStatus(FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, SLEStatusRec.EditValue.ToString)
-                            removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, id_status_reportx)
-                            insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, id_status_reportx, note)
-                            PBC.PerformStep()
-                            PBC.Update()
-                        Next
+                        Dim type_restock As String = FormSalesOrderSvcLevel.LETypeRestock.EditValue.ToString
+                        If type_restock = "1" Then
+                            'reguler
+                            For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVFGTrf.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVFGTrf))
+                                Dim stt As ClassFGTrf = New ClassFGTrf()
+                                stt.changeStatus(FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, SLEStatusRec.EditValue.ToString)
+                                removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, id_status_reportx)
+                                insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, id_status_reportx, note)
+                                PBC.PerformStep()
+                                PBC.Update()
+                            Next
+                        ElseIf type_restock = "2" Then
+                            'oos
+                            Dim is_processed_order As String = get_setup_field("is_processed_order")
+                            If is_processed_order = "1" Then
+                                stopCustom("Sync still running")
+                                Cursor = Cursors.Default
+                            Else
+                                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                                    FormMain.SplashScreenManager1.ShowWaitForm()
+                                End If
+                                Dim ord As New ClassSalesOrder()
+                                ord.setProceccedWebOrder("1")
+                                For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVFGTrf.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVFGTrf))
+                                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing " + (i + 1).ToString + " of " + FormSalesOrderSvcLevel.GVFGTrf.RowCount.ToString)
+                                    Dim stt As ClassFGTrf = New ClassFGTrf()
+                                    stt.changeStatus(FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, SLEStatusRec.EditValue.ToString)
+                                    stt.processRestockOnline(FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString)
+                                    removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, id_status_reportx)
+                                    insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, id_status_reportx, note)
+                                    PBC.PerformStep()
+                                    PBC.Update()
+                                Next
+                                ord.setProceccedWebOrder("2")
+                                FormMain.SplashScreenManager1.CloseWaitForm()
+                            End If
+                        End If
                         Cursor = Cursors.Default
                     End If
                 End If
@@ -441,17 +470,19 @@
     End Sub
 
     Sub sendEmailConfirmationforConceptStore(ByVal is_use_unique_code As String, ByVal id_report As String, ByVal rmt As String)
-        If id_pop_up = "2" Then
-            If is_use_unique_code = "1" And SLEStatusRec.EditValue.ToString = "6" Then
-                Dim d As New ClassSalesDelOrder()
-                d.sendDeliveryConfirmationOfflineStore(id_report, rmt)
-            End If
-        End If
+        'sementara belum dipake
+        'If id_pop_up = "2" Then
+        '    If is_use_unique_code = "1" And SLEStatusRec.EditValue.ToString = "6" Then
+        '        Dim d As New ClassSalesDelOrder()
+        '        d.sendDeliveryConfirmationOfflineStore(id_report, rmt)
+        '    End If
+        'End If
     End Sub
 
     Sub updateStatusOnlineStore(ByVal id_commerce_type As String, ByVal id_store As String, ByVal id_report As String, ByVal id_web_order As String)
         If id_pop_up = "2" And id_commerce_type = "2" And (id_store = id_volcomstore_normal Or id_store = id_volcomstore_sale) Then
             Dim so As New ClassSalesOrder
+            Dim shopify_comp_group As String = get_setup_field("shopify_comp_group")
             Try
                 Dim shopify_tracking_comp As String = get_setup_field("shopify_tracking_comp")
                 Dim shopify_tracking_url As String = get_setup_field("shopify_tracking_url")
@@ -481,12 +512,12 @@
                     shop.set_fullfill(id_web_order, location_id, track_number, val, shopify_tracking_comp, shopify_tracking_url)
                 End If
             Catch ex As Exception
-                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Fullfillment:" + ex.ToString)
+                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Fullfillment:" + ex.ToString, shopify_comp_group)
             End Try
 
             Try
                 'insert status 
-                Dim qstt As String = "INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, status_date, input_status_date)
+                Dim qstt As String = "INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, `status`, status_date, input_status_date)
                 SELECT sod.id_sales_order_det, 'shipped', NOW(), NOW()
                 FROM tb_pl_sales_order_del_det d
                 INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
@@ -495,7 +526,7 @@
                 WHERE d.id_pl_sales_order_del=" + id_report + " AND sod.is_additional=2 "
                 execute_non_query(qstt, True, "", "", "", "")
             Catch ex As Exception
-                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Status:" + ex.ToString)
+                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Status:" + ex.ToString, shopify_comp_group)
             End Try
         End If
     End Sub

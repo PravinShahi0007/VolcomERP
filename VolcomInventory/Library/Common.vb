@@ -41,11 +41,14 @@ Module Common
         emp_image_path = get_setup_field("pic_path_emp") & "\"
     End Sub
 
-    Sub set_min_date_reference(ByRef date_edit As DateEdit, ByVal coa_type As String)
+    Sub set_min_date_reference(ByRef date_edit As DateEdit, ByVal id_coa_tag As String)
         Dim q As String = "SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) AS min_date FROM `tb_closing_log` 
-WHERE note='Closing End' AND id_coa_type='" & coa_type & "'"
-        Dim min_date As Date = Date.Parse(execute_query(q, 0, True, "", "", "", "").ToString)
-        date_edit.Properties.MinValue = min_date
+WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
+        Try
+            Dim min_date As Date = Date.Parse(execute_query(q, 0, True, "", "", "", "").ToString)
+            date_edit.Properties.MinValue = min_date
+        Catch ex As Exception
+        End Try
     End Sub
 
     '============ = OPT CODE HEAD ======================================
@@ -548,51 +551,54 @@ WHERE note='Closing End' AND id_coa_type='" & coa_type & "'"
 
         Return ret_var
     End Function
-    Function header_number_acc(ByVal opt As String)
-        'opt
-        '1 = acc trans
 
-        Dim header_number_x As String
-        header_number_x = ""
+    'ganti gen_number
+    'Function header_number_acc(ByVal opt As String)
+    '    'opt
+    '    '1 = acc trans
 
-        If opt = "1" Then
-            header_number_x = combine_header_number(get_opt_acc_field("acc_trans_code_head"), Integer.Parse(get_opt_acc_field("acc_trans_code_inc")), Integer.Parse(get_opt_acc_field("acc_trans_code_digit")))
-        ElseIf opt = "2" Then
-            header_number_x = combine_header_number(get_opt_acc_field("acc_trans_adj_code_head"), Integer.Parse(get_opt_acc_field("acc_trans_adj_code_inc")), Integer.Parse(get_opt_acc_field("acc_trans_adj_code_digit")))
-        ElseIf opt = "3" Then 'BPJ
-            header_number_x = combine_header_number(get_opt_acc_field("bpj_code_head"), Integer.Parse(get_opt_acc_field("bpj_code_inc")), Integer.Parse(get_opt_acc_field("bpj_code_digit")))
-        ElseIf opt = "4" Then 'BPL
-            header_number_x = combine_header_number(get_opt_acc_field("bpl_code_head"), Integer.Parse(get_opt_acc_field("bpl_code_inc")), Integer.Parse(get_opt_acc_field("bpl_code_digit")))
-        ElseIf opt = "5" Then 'PRM
-            header_number_x = combine_header_number(get_opt_acc_field("prm_code_head"), Integer.Parse(get_opt_acc_field("prm_code_inc")), Integer.Parse(get_opt_acc_field("prm_code_digit")))
-        End If
+    '    Dim header_number_x As String
+    '    header_number_x = ""
 
-        Return header_number_x
-    End Function
-    Sub increase_inc_acc(ByVal opt As String)
-        'opt
-        '1 = acc trans
+    '    If opt = "1" Then
+    '        header_number_x = combine_header_number(get_opt_acc_field("acc_trans_code_head"), Integer.Parse(get_opt_acc_field("acc_trans_code_inc")), Integer.Parse(get_opt_acc_field("acc_trans_code_digit")))
+    '    ElseIf opt = "2" Then
+    '        header_number_x = combine_header_number(get_opt_acc_field("acc_trans_adj_code_head"), Integer.Parse(get_opt_acc_field("acc_trans_adj_code_inc")), Integer.Parse(get_opt_acc_field("acc_trans_adj_code_digit")))
+    '    ElseIf opt = "3" Then 'BPJ
+    '        header_number_x = combine_header_number(get_opt_acc_field("bpj_code_head"), Integer.Parse(get_opt_acc_field("bpj_code_inc")), Integer.Parse(get_opt_acc_field("bpj_code_digit")))
+    '    ElseIf opt = "4" Then 'BPL
+    '        header_number_x = combine_header_number(get_opt_acc_field("bpl_code_head"), Integer.Parse(get_opt_acc_field("bpl_code_inc")), Integer.Parse(get_opt_acc_field("bpl_code_digit")))
+    '    ElseIf opt = "5" Then 'PRM
+    '        header_number_x = combine_header_number(get_opt_acc_field("prm_code_head"), Integer.Parse(get_opt_acc_field("prm_code_inc")), Integer.Parse(get_opt_acc_field("prm_code_digit")))
+    '    End If
 
-        Dim query As String
-        query = ""
+    '    Return header_number_x
+    'End Function
 
-        If opt = "1" Then
-            query = "UPDATE tb_opt_accounting SET acc_trans_code_inc=(tb_opt_accounting.acc_trans_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "2" Then
-            query = "UPDATE tb_opt_accounting SET acc_trans_adj_code_inc=(tb_opt_accounting.acc_trans_adj_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "3" Then ' BPJ
-            query = "UPDATE tb_opt_accounting SET bpj_code_inc=(tb_opt_accounting.bpj_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "4" Then ' BPL
-            query = "UPDATE tb_opt_accounting SET bpl_code_inc=(tb_opt_accounting.bpl_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "5" Then ' PRM
-            query = "UPDATE tb_opt_accounting SET prm_code_inc=(tb_opt_accounting.prm_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        End If
-    End Sub
+    'Sub increase_inc_acc(ByVal opt As String)
+    '    'opt
+    '    '1 = acc trans
+
+    '    Dim query As String
+    '    query = ""
+
+    '    If opt = "1" Then
+    '        query = "UPDATE tb_opt_accounting SET acc_trans_code_inc=(tb_opt_accounting.acc_trans_code_inc+1)"
+    '        execute_non_query(query, True, "", "", "", "")
+    '    ElseIf opt = "2" Then
+    '        query = "UPDATE tb_opt_accounting SET acc_trans_adj_code_inc=(tb_opt_accounting.acc_trans_adj_code_inc+1)"
+    '        execute_non_query(query, True, "", "", "", "")
+    '    ElseIf opt = "3" Then ' BPJ
+    '        query = "UPDATE tb_opt_accounting SET bpj_code_inc=(tb_opt_accounting.bpj_code_inc+1)"
+    '        execute_non_query(query, True, "", "", "", "")
+    '    ElseIf opt = "4" Then ' BPL
+    '        query = "UPDATE tb_opt_accounting SET bpl_code_inc=(tb_opt_accounting.bpl_code_inc+1)"
+    '        execute_non_query(query, True, "", "", "", "")
+    '    ElseIf opt = "5" Then ' PRM
+    '        query = "UPDATE tb_opt_accounting SET prm_code_inc=(tb_opt_accounting.prm_code_inc+1)"
+    '        execute_non_query(query, True, "", "", "", "")
+    '    End If
+    'End Sub
 
     '=>=========== opt code header purchasing =====================
     Function get_opt_purchasing_field(ByVal field As String)
@@ -1243,6 +1249,12 @@ WHERE note='Closing End' AND id_coa_type='" & coa_type & "'"
         '    execute_non_query(query, True, "", "", "", "")
         'End If
     End Sub
+
+    Sub log_error(ByVal err As String)
+        Dim query As String = ""
+        query = String.Format("INSERT INTO tb_log_error(err,id_user,datetime) VALUES('{0}', '{1}', NOW())", addSlashes(err), id_user)
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
     Public Sub enableDMLMenu()
         FormMain.BBEdit.Enabled = True
         FormMain.BBDelete.Enabled = True
@@ -1455,6 +1467,20 @@ WHERE note='Closing End' AND id_coa_type='" & coa_type & "'"
     Public Function formIsValidInXTP(ByVal EPNameHere As ErrorProvider, ByVal Page As DevExpress.XtraTab.XtraTabPage) As Boolean
         Dim count_error As Integer = 0
         For Each c As Windows.Forms.Control In Page.Controls
+            If Not EPNameHere.GetError(c) = "" Then
+                count_error += 1
+            End If
+        Next
+        If count_error < 1 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Public Function formIsValidInScroll(ByVal EPNameHere As ErrorProvider, ByVal Scroll As XtraScrollableControl) As Boolean
+        Dim count_error As Integer = 0
+        For Each c As Windows.Forms.Control In Scroll.Controls
             If Not EPNameHere.GetError(c) = "" Then
                 count_error += 1
             End If
@@ -2218,6 +2244,23 @@ WHERE note='Closing End' AND id_coa_type='" & coa_type & "'"
         componentLink.ShowPreview()
     End Sub
 
+    Sub print_no_footer_custom(ByVal GridControlHere As DevExpress.XtraGrid.GridControl, ByVal title_here As String)
+        title_print = ""
+        title_print = title_here
+        Dim componentLink As New PrintableComponentLink(New PrintingSystem())
+        componentLink.Component = GridControlHere
+        componentLink.Landscape = True
+        AddHandler componentLink.CreateMarginalHeaderArea, AddressOf CreateMarginalHeaderArea
+        AddHandler componentLink.CreateReportHeaderArea, AddressOf CreateReportHeaderAreaCustom2
+        Dim phf As PageHeaderFooter = TryCast(componentLink.PageHeaderFooter, PageHeaderFooter)
+
+        ' Clear the PageHeaderFooter's contents.
+        phf.Header.Content.Clear()
+
+        componentLink.CreateDocument()
+        componentLink.ShowPreview()
+    End Sub
+
     Sub print_raw(ByVal GridControlHere As DevExpress.XtraGrid.GridControl, ByVal title_here As String)
         title_print = ""
         title_print = title_here
@@ -2274,6 +2317,13 @@ WHERE note='Closing End' AND id_coa_type='" & coa_type & "'"
         e.Graph.StringFormat = New BrickStringFormat(StringAlignment.Near)
         e.Graph.Font = New Font("Tahoma", 9, FontStyle.Bold)
         Dim rec As RectangleF = New RectangleF(0, 20, e.Graph.ClientPageSize.Width, 50)
+        e.Graph.DrawString(reportHeader, Color.Black, rec, BorderSide.None)
+    End Sub
+    Sub CreateReportHeaderAreaCustom2(ByVal sender As System.Object, ByVal e As CreateAreaEventArgs)
+        Dim reportHeader As String = title_print
+        e.Graph.StringFormat = New BrickStringFormat(StringAlignment.Near)
+        e.Graph.Font = New Font("Tahoma", 9, FontStyle.Bold)
+        Dim rec As RectangleF = New RectangleF(0, 20, e.Graph.ClientPageSize.Width, 70)
         e.Graph.DrawString(reportHeader, Color.Black, rec, BorderSide.None)
     End Sub
     '==== end of print ===
@@ -2498,13 +2548,13 @@ WHERE note='Closing End' AND id_coa_type='" & coa_type & "'"
         'else dollars
 
         If opt = "1" Then
-            ' Clean up dollars.
+            ' Clean up rp.
             Select Case Dollars
                 Case "" : Dollars = "Nol Rupiah"
                 Case Else : Dollars = Dollars & " Rupiah"
             End Select
         ElseIf opt = "6" Then
-            ' Clean up dollars.
+            ' Clean up euro.
             Select Case Dollars
                 Case "" : Dollars = "No euro"
                 Case "One" : Dollars = "One euro"
@@ -3120,7 +3170,7 @@ WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,
                 id_user_mark = data.Rows(i)("id_user").ToString
             End If
             '
-            If Not id_user_mark = "" Then
+            If Not id_user_mark = "" And Not id_user_mark = "0" Then
                 If data.Rows(i)("id_report_status").ToString() = data.Rows(0)("id_report_status").ToString() Then
                     'set lead time
                     If data.Rows(i)("level").ToString() = "1" Then
@@ -3316,6 +3366,21 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
         Return status
     End Function
+
+    Function check_already_submit(ByVal report_mark_type As String, ByVal id_report As String)
+        Dim status As Boolean = True
+
+        Dim query As String = ""
+        query = String.Format("SELECT id_report_mark FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' ", report_mark_type, id_report)
+        Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        If dt.Rows.Count > 0 Then
+            status = False
+        End If
+
+        Return status
+    End Function
+
     Function check_edit_report_status(ByVal id_report_status As String, ByVal report_mark_type As String, ByVal id_report As String)
         Dim status As Boolean = True
 
@@ -5823,6 +5888,27 @@ SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
         FormMain.AlertControlNotif.Show(FormMain, title, content, "", FormMain.LargeImageCollection.Images.Item(25), id_type)
     End Sub
 
+    Sub pushNotifFromDb(ByVal id_report As String, ByVal rmt As String)
+        Dim q As String = ""
+
+        If rmt = "222" Then 'debit note
+            q = "SELECT 'Need Debit Note, QC Report Completed' AS title,'FormDebitNote' AS form_name,CONCAT('Need Debit Note, QC Report ',fcs.`number`,' Completed') AS description, nu.id_user , fcs.`number` AS report_number
+FROM tb_notif_user nu
+INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`='" & id_report & "' AND nu.`report_mark_type`='222'"
+        ElseIf rmt = "201" Then 'PR Fixed Asset
+            q = "SELECT 'Need PR Fixed Asset to Verify by IC' AS title,'FormPurcReqList' AS form_name,CONCAT('Need PR Fixed Asset (',fcs.`purc_req_number`,') to Verify by IC ') AS description, nu.id_user , fcs.`purc_req_number` AS report_number
+FROM tb_notif_user nu
+INNER JOIN tb_purc_req fcs ON fcs.`id_purc_req`='" & id_report & "' AND nu.`report_mark_type`='201'"
+        End If
+
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            For i As Integer = 0 To dt.Rows.Count - 1
+                pushNotif(dt.Rows(i)("title").ToString, dt.Rows(i)("description").ToString, dt.Rows(i)("form_name").ToString, dt.Rows(i)("id_user"), id_user, id_report, dt.Rows(i)("report_number").ToString, "2", rmt)
+            Next
+        End If
+    End Sub
+
     Sub pushNotif(ByVal notif_title As String, ByVal notif_content As String, ByVal notif_frm_to As String, ByVal id_user_par As String, ByVal id_sender_par As String, ByVal id_report As String, ByVal report_number As String, ByVal notif_tag As String, rmt As String)
         If id_sender_par = "-1" Then
             id_sender_par = "NULL"
@@ -7078,6 +7164,26 @@ SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
             p.id_report = id_report_par
             FormItemCatMappingDet.show_mark = True
             p.show()
+        ElseIf form_par = "FormDebitNote" Then
+            'Debit Note
+            Try
+                FormDebitNote.MdiParent = FormMain
+                FormDebitNote.Show()
+                FormDebitNote.WindowState = FormWindowState.Maximized
+                FormDebitNote.Focus()
+            Catch ex As Exception
+                errorProcess()
+            End Try
+        ElseIf form_par = "FormPurcReqList" Then
+            'Purc Request fix Asset
+            Try
+                FormPurcReqList.MdiParent = FormMain
+                FormPurcReqList.Show()
+                FormPurcReqList.WindowState = FormWindowState.Maximized
+                FormPurcReqList.Focus()
+            Catch ex As Exception
+                errorProcess()
+            End Try
         Else
             found = False
             stopCustom("Not found")
@@ -7287,5 +7393,11 @@ SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
             res = True
         End If
         Return res
+    End Function
+
+    Function unixMiliSecondsToDatetime(ByVal unix_time As Double) As DateTime
+        Dim dt As DateTime = New DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+        dt = dt.AddMilliseconds(unix_time).AddHours(8)
+        Return dt
     End Function
 End Module

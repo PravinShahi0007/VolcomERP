@@ -19,8 +19,13 @@ Partial Class FormPromoCollectionDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPromoCollectionDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtDiscountTitle = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtUseDiscountCode = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtPromoName = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTag = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -33,6 +38,8 @@ Partial Class FormPromoCollectionDet
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtStore = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
@@ -121,9 +128,26 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnqty0 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsize_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_block_view_stp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TxtPromoName = New DevExpress.XtraEditors.TextEdit()
+        Me.XTPDiscountCode = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDiscountCode = New DevExpress.XtraGrid.GridControl()
+        Me.GVDiscountCode = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsync_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsync_by = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsync_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_additional = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_additional_view = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BtnSync = New DevExpress.XtraEditors.SimpleButton()
+        Me.CMSDiscCode = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
+        CType(Me.TxtDiscountTitle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtUseDiscountCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,6 +158,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -157,12 +182,19 @@ Partial Class FormPromoCollectionDet
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.GCBySizeType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBySizeType, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPDiscountCode.SuspendLayout()
+        CType(Me.GCDiscountCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMSDiscCode.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlHead.Controls.Add(Me.TxtDiscountTitle)
+        Me.GroupControlHead.Controls.Add(Me.LabelControl9)
+        Me.GroupControlHead.Controls.Add(Me.TxtUseDiscountCode)
         Me.GroupControlHead.Controls.Add(Me.TxtPromoName)
         Me.GroupControlHead.Controls.Add(Me.TxtTag)
         Me.GroupControlHead.Controls.Add(Me.LabelControl8)
@@ -178,12 +210,44 @@ Partial Class FormPromoCollectionDet
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(915, 188)
+        Me.GroupControlHead.Size = New System.Drawing.Size(915, 204)
         Me.GroupControlHead.TabIndex = 10
+        '
+        'TxtDiscountTitle
+        '
+        Me.TxtDiscountTitle.Enabled = False
+        Me.TxtDiscountTitle.Location = New System.Drawing.Point(200, 14)
+        Me.TxtDiscountTitle.Name = "TxtDiscountTitle"
+        Me.TxtDiscountTitle.Size = New System.Drawing.Size(216, 20)
+        Me.TxtDiscountTitle.TabIndex = 163
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(32, 17)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl9.TabIndex = 162
+        Me.LabelControl9.Text = "Discount Code"
+        '
+        'TxtUseDiscountCode
+        '
+        Me.TxtUseDiscountCode.Enabled = False
+        Me.TxtUseDiscountCode.Location = New System.Drawing.Point(115, 14)
+        Me.TxtUseDiscountCode.Name = "TxtUseDiscountCode"
+        Me.TxtUseDiscountCode.Size = New System.Drawing.Size(79, 20)
+        Me.TxtUseDiscountCode.TabIndex = 161
+        '
+        'TxtPromoName
+        '
+        Me.TxtPromoName.Location = New System.Drawing.Point(115, 40)
+        Me.TxtPromoName.Name = "TxtPromoName"
+        Me.TxtPromoName.Size = New System.Drawing.Size(301, 20)
+        Me.TxtPromoName.TabIndex = 160
         '
         'TxtTag
         '
-        Me.TxtTag.Location = New System.Drawing.Point(111, 40)
+        Me.TxtTag.Location = New System.Drawing.Point(115, 66)
         Me.TxtTag.Name = "TxtTag"
         Me.TxtTag.Size = New System.Drawing.Size(301, 20)
         Me.TxtTag.TabIndex = 159
@@ -191,7 +255,7 @@ Partial Class FormPromoCollectionDet
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(33, 43)
+        Me.LabelControl8.Location = New System.Drawing.Point(32, 69)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl8.TabIndex = 158
@@ -200,7 +264,7 @@ Partial Class FormPromoCollectionDet
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(33, 95)
+        Me.LabelControl6.Location = New System.Drawing.Point(32, 121)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(51, 13)
         Me.LabelControl6.TabIndex = 157
@@ -209,7 +273,7 @@ Partial Class FormPromoCollectionDet
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(33, 120)
+        Me.LabelControl7.Location = New System.Drawing.Point(32, 146)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 150
@@ -218,7 +282,7 @@ Partial Class FormPromoCollectionDet
         'DEEnd
         '
         Me.DEEnd.EditValue = Nothing
-        Me.DEEnd.Location = New System.Drawing.Point(111, 92)
+        Me.DEEnd.Location = New System.Drawing.Point(115, 118)
         Me.DEEnd.Name = "DEEnd"
         Me.DEEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -234,7 +298,7 @@ Partial Class FormPromoCollectionDet
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(111, 66)
+        Me.DEStart.Location = New System.Drawing.Point(115, 92)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -250,7 +314,7 @@ Partial Class FormPromoCollectionDet
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(33, 69)
+        Me.LabelControl5.Location = New System.Drawing.Point(32, 95)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl5.TabIndex = 154
@@ -259,7 +323,7 @@ Partial Class FormPromoCollectionDet
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(33, 17)
+        Me.LabelControl3.Location = New System.Drawing.Point(32, 43)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(30, 13)
         Me.LabelControl3.TabIndex = 153
@@ -268,7 +332,7 @@ Partial Class FormPromoCollectionDet
         'SLEPromoType
         '
         Me.SLEPromoType.Enabled = False
-        Me.SLEPromoType.Location = New System.Drawing.Point(111, 14)
+        Me.SLEPromoType.Location = New System.Drawing.Point(33, 250)
         Me.SLEPromoType.Name = "SLEPromoType"
         Me.SLEPromoType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPromoType.Properties.ShowClearButton = False
@@ -285,7 +349,7 @@ Partial Class FormPromoCollectionDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(111, 118)
+        Me.MENote.Location = New System.Drawing.Point(115, 144)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(301, 41)
         Me.MENote.TabIndex = 151
@@ -294,6 +358,8 @@ Partial Class FormPromoCollectionDet
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LabelControl10)
+        Me.PanelControl1.Controls.Add(Me.TxtStore)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.TxtCreatedBy)
         Me.PanelControl1.Controls.Add(Me.LabelControl21)
@@ -305,13 +371,32 @@ Partial Class FormPromoCollectionDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(662, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(251, 184)
+        Me.PanelControl1.Size = New System.Drawing.Size(251, 200)
         Me.PanelControl1.TabIndex = 4
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(11, 41)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl10.TabIndex = 151
+        Me.LabelControl10.Text = "Store"
+        '
+        'TxtStore
+        '
+        Me.TxtStore.Location = New System.Drawing.Point(82, 38)
+        Me.TxtStore.Name = "TxtStore"
+        Me.TxtStore.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtStore.Properties.Appearance.Options.UseFont = True
+        Me.TxtStore.Properties.ReadOnly = True
+        Me.TxtStore.Size = New System.Drawing.Size(154, 20)
+        Me.TxtStore.TabIndex = 150
         '
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 67)
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 93)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl1.TabIndex = 149
@@ -320,7 +405,7 @@ Partial Class FormPromoCollectionDet
         'TxtCreatedBy
         '
         Me.TxtCreatedBy.Enabled = False
-        Me.TxtCreatedBy.Location = New System.Drawing.Point(82, 64)
+        Me.TxtCreatedBy.Location = New System.Drawing.Point(82, 90)
         Me.TxtCreatedBy.Name = "TxtCreatedBy"
         Me.TxtCreatedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCreatedBy.Properties.Appearance.Options.UseFont = True
@@ -330,7 +415,7 @@ Partial Class FormPromoCollectionDet
         'LabelControl21
         '
         Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl21.Location = New System.Drawing.Point(11, 93)
+        Me.LabelControl21.Location = New System.Drawing.Point(11, 119)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
@@ -339,7 +424,7 @@ Partial Class FormPromoCollectionDet
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(11, 41)
+        Me.LabelControl4.Location = New System.Drawing.Point(11, 67)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl4.TabIndex = 7
@@ -348,7 +433,7 @@ Partial Class FormPromoCollectionDet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(82, 90)
+        Me.LEReportStatus.Location = New System.Drawing.Point(82, 116)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
@@ -384,7 +469,7 @@ Partial Class FormPromoCollectionDet
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(82, 38)
+        Me.DECreated.Location = New System.Drawing.Point(82, 64)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DECreated.Properties.Appearance.Options.UseFont = True
@@ -503,7 +588,7 @@ Partial Class FormPromoCollectionDet
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICReplace})
-        Me.GCData.Size = New System.Drawing.Size(886, 328)
+        Me.GCData.Size = New System.Drawing.Size(909, 290)
         Me.GCData.TabIndex = 16
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -653,7 +738,7 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControlNav.Controls.Add(Me.PanelControlAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(0, 188)
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 204)
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(915, 39)
         Me.PanelControlNav.TabIndex = 17
@@ -692,26 +777,25 @@ Partial Class FormPromoCollectionDet
         'XTCData
         '
         Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCData.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
-        Me.XTCData.Location = New System.Drawing.Point(0, 227)
+        Me.XTCData.Location = New System.Drawing.Point(0, 243)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPDesign
-        Me.XTCData.Size = New System.Drawing.Size(915, 334)
+        Me.XTCData.Size = New System.Drawing.Size(915, 318)
         Me.XTCData.TabIndex = 18
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPProduct, Me.XtraTabPage1})
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPProduct, Me.XtraTabPage1, Me.XTPDiscountCode})
         '
         'XTPDesign
         '
         Me.XTPDesign.Controls.Add(Me.GCData)
         Me.XTPDesign.Name = "XTPDesign"
-        Me.XTPDesign.Size = New System.Drawing.Size(886, 328)
+        Me.XTPDesign.Size = New System.Drawing.Size(909, 290)
         Me.XTPDesign.Text = "Product List"
         '
         'XTPProduct
         '
         Me.XTPProduct.Controls.Add(Me.GCProduct)
         Me.XTPProduct.Name = "XTPProduct"
-        Me.XTPProduct.Size = New System.Drawing.Size(886, 328)
+        Me.XTPProduct.Size = New System.Drawing.Size(909, 290)
         Me.XTPProduct.Text = "Product List by SKU"
         '
         'GCProduct
@@ -720,7 +804,7 @@ Partial Class FormPromoCollectionDet
         Me.GCProduct.Location = New System.Drawing.Point(0, 0)
         Me.GCProduct.MainView = Me.GVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(886, 328)
+        Me.GCProduct.Size = New System.Drawing.Size(909, 290)
         Me.GCProduct.TabIndex = 0
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProduct})
         '
@@ -869,7 +953,7 @@ Partial Class FormPromoCollectionDet
         '
         Me.XtraTabPage1.Controls.Add(Me.GCBySizeType)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(886, 328)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(909, 290)
         Me.XtraTabPage1.Text = "Product List By Sizetype"
         '
         'GCBySizeType
@@ -878,7 +962,7 @@ Partial Class FormPromoCollectionDet
         Me.GCBySizeType.Location = New System.Drawing.Point(0, 0)
         Me.GCBySizeType.MainView = Me.GVBySizeType
         Me.GCBySizeType.Name = "GCBySizeType"
-        Me.GCBySizeType.Size = New System.Drawing.Size(886, 328)
+        Me.GCBySizeType.Size = New System.Drawing.Size(909, 290)
         Me.GCBySizeType.TabIndex = 17
         Me.GCBySizeType.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBySizeType})
         '
@@ -1048,6 +1132,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnqty3.FieldName = "qty3"
         Me.GridColumnqty3.Name = "GridColumnqty3"
         Me.GridColumnqty3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty3", "{0:N0}")})
         Me.GridColumnqty3.Visible = True
         Me.GridColumnqty3.VisibleIndex = 6
         '
@@ -1095,6 +1180,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnqty7.FieldName = "qty7"
         Me.GridColumnqty7.Name = "GridColumnqty7"
         Me.GridColumnqty7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty7", "{0:N0}")})
         Me.GridColumnqty7.Visible = True
         Me.GridColumnqty7.VisibleIndex = 10
         '
@@ -1106,6 +1192,7 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnqty8.FieldName = "qty8"
         Me.GridColumnqty8.Name = "GridColumnqty8"
         Me.GridColumnqty8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnqty8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty8", "{0:N0}")})
         Me.GridColumnqty8.Visible = True
         Me.GridColumnqty8.VisibleIndex = 11
         '
@@ -1151,12 +1238,136 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnis_block_view_stp.Visible = True
         Me.GridColumnis_block_view_stp.VisibleIndex = 18
         '
-        'TxtPromoName
+        'XTPDiscountCode
         '
-        Me.TxtPromoName.Location = New System.Drawing.Point(178, 14)
-        Me.TxtPromoName.Name = "TxtPromoName"
-        Me.TxtPromoName.Size = New System.Drawing.Size(234, 20)
-        Me.TxtPromoName.TabIndex = 160
+        Me.XTPDiscountCode.Controls.Add(Me.GCDiscountCode)
+        Me.XTPDiscountCode.Controls.Add(Me.BtnSync)
+        Me.XTPDiscountCode.Name = "XTPDiscountCode"
+        Me.XTPDiscountCode.Size = New System.Drawing.Size(909, 290)
+        Me.XTPDiscountCode.Text = "Discount Code List"
+        '
+        'GCDiscountCode
+        '
+        Me.GCDiscountCode.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDiscountCode.Location = New System.Drawing.Point(0, 0)
+        Me.GCDiscountCode.MainView = Me.GVDiscountCode
+        Me.GCDiscountCode.Name = "GCDiscountCode"
+        Me.GCDiscountCode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCDiscountCode.Size = New System.Drawing.Size(909, 258)
+        Me.GCDiscountCode.TabIndex = 17
+        Me.GCDiscountCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDiscountCode})
+        '
+        'GVDiscountCode
+        '
+        Me.GVDiscountCode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn14, Me.GridColumnsync_date, Me.GridColumnsync_by, Me.GridColumnsync_by_name, Me.GridColumnis_additional, Me.GridColumnis_additional_view})
+        Me.GVDiscountCode.GridControl = Me.GCDiscountCode
+        Me.GVDiscountCode.Name = "GVDiscountCode"
+        Me.GVDiscountCode.OptionsBehavior.ReadOnly = True
+        Me.GVDiscountCode.OptionsCustomization.AllowSort = False
+        Me.GVDiscountCode.OptionsFind.AlwaysVisible = True
+        Me.GVDiscountCode.OptionsView.ColumnAutoWidth = False
+        Me.GVDiscountCode.OptionsView.ShowFooter = True
+        Me.GVDiscountCode.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "No"
+        Me.GridColumn15.FieldName = "no"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 0
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Discount Code"
+        Me.GridColumn14.FieldName = "disc_code"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.ReadOnly = True
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
+        Me.GridColumn14.Width = 79
+        '
+        'GridColumnsync_date
+        '
+        Me.GridColumnsync_date.Caption = "Sync Date"
+        Me.GridColumnsync_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnsync_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsync_date.FieldName = "sync_date"
+        Me.GridColumnsync_date.Name = "GridColumnsync_date"
+        Me.GridColumnsync_date.Visible = True
+        Me.GridColumnsync_date.VisibleIndex = 2
+        '
+        'GridColumnsync_by
+        '
+        Me.GridColumnsync_by.Caption = "sync_by"
+        Me.GridColumnsync_by.FieldName = "sync_by"
+        Me.GridColumnsync_by.Name = "GridColumnsync_by"
+        '
+        'GridColumnsync_by_name
+        '
+        Me.GridColumnsync_by_name.Caption = "Sync by"
+        Me.GridColumnsync_by_name.FieldName = "sync_by_name"
+        Me.GridColumnsync_by_name.Name = "GridColumnsync_by_name"
+        Me.GridColumnsync_by_name.Visible = True
+        Me.GridColumnsync_by_name.VisibleIndex = 3
+        '
+        'GridColumnis_additional
+        '
+        Me.GridColumnis_additional.Caption = "is_additional"
+        Me.GridColumnis_additional.FieldName = "is_additional"
+        Me.GridColumnis_additional.Name = "GridColumnis_additional"
+        '
+        'GridColumnis_additional_view
+        '
+        Me.GridColumnis_additional_view.Caption = "Additional"
+        Me.GridColumnis_additional_view.FieldName = "is_additional_view"
+        Me.GridColumnis_additional_view.Name = "GridColumnis_additional_view"
+        Me.GridColumnis_additional_view.Visible = True
+        Me.GridColumnis_additional_view.VisibleIndex = 4
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
+        'BtnSync
+        '
+        Me.BtnSync.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnSync.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnSync.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnSync.Appearance.Options.UseBackColor = True
+        Me.BtnSync.Appearance.Options.UseFont = True
+        Me.BtnSync.Appearance.Options.UseForeColor = True
+        Me.BtnSync.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnSync.Location = New System.Drawing.Point(0, 258)
+        Me.BtnSync.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnSync.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnSync.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnSync.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnSync.Name = "BtnSync"
+        Me.BtnSync.Size = New System.Drawing.Size(909, 32)
+        Me.BtnSync.TabIndex = 19
+        Me.BtnSync.Text = "Sync Discount Code"
+        '
+        'CMSDiscCode
+        '
+        Me.CMSDiscCode.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.CMSDiscCode.Name = "ContextMenuStrip1"
+        Me.CMSDiscCode.Size = New System.Drawing.Size(153, 70)
+        '
+        'AddToolStripMenuItem
+        '
+        Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
+        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AddToolStripMenuItem.Text = "Add"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'FormPromoCollectionDet
         '
@@ -1175,6 +1386,9 @@ Partial Class FormPromoCollectionDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
+        CType(Me.TxtDiscountTitle.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtUseDiscountCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1186,6 +1400,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1209,7 +1424,11 @@ Partial Class FormPromoCollectionDet
         Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.GCBySizeType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBySizeType, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPDiscountCode.ResumeLayout(False)
+        CType(Me.GCDiscountCode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMSDiscCode.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1316,4 +1535,24 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents GridColumnis_block_view_sku As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_block_view_stp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TxtPromoName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtUseDiscountCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtDiscountTitle As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents XTPDiscountCode As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCDiscountCode As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDiscountCode As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnSync As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnsync_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsync_by As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsync_by_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_additional As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_additional_view As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtStore As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CMSDiscCode As ContextMenuStrip
+    Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -182,7 +182,7 @@ Public Class FormSalesOrderDet
                 End Try
 
                 Try
-                    Dim ql As String = "SELECT * FROM tb_shopify_api_log a WHERE a.report_mark_type=57 AND a.id_report=" + id_trf + " AND a.message<>'OK' "
+                    Dim ql As String = "SELECT * FROM tb_shopify_api_log a WHERE a.report_mark_type=57 AND a.id_report=" + id_trf + " AND a.is_verify<>1 "
                     Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
                     If dl.Rows.Count > 0 Then
                         stopCustom("Some product failed to sync")
@@ -318,7 +318,9 @@ Public Class FormSalesOrderDet
         delNotFoundMyRow()
 
         'check stock
-        FormMain.SplashScreenManager1.ShowWaitForm()
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
         FormMain.SplashScreenManager1.SetWaitFormDescription("Checking stock")
         Dim dts As DataTable
         Dim cond_data As Boolean = True
@@ -434,7 +436,10 @@ Public Class FormSalesOrderDet
 
         'check sku shopify
         If CESync.Checked Then
-            FormMain.SplashScreenManager1.ShowWaitForm()
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            End If
+
             'get shopify product
             FormMain.SplashScreenManager1.SetWaitFormDescription("Get shopify product")
             Dim found_sku As Boolean = True
@@ -1733,7 +1738,10 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
 
     Private Sub SBSyncShopify_Click(sender As Object, e As EventArgs) Handles SBSyncShopify.Click
         Cursor = Cursors.WaitCursor
-        FormMain.SplashScreenManager1.ShowWaitForm()
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+
         FormMain.SplashScreenManager1.SetWaitFormDescription("Please wait")
         Dim cls As ClassShopifyApi = New ClassShopifyApi
 

@@ -30,6 +30,8 @@ Partial Class FormDebitNoteDet
         Me.TEVendor = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.DEDueDateInv = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DERefDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
@@ -69,14 +71,18 @@ Partial Class FormDebitNoteDet
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIMDescription = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GCKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCClaimPercent = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPriceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCClaimUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCAmoUSD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCPriceUnit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCClaimPcs = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCAmo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.DEDueDateInv = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,6 +92,8 @@ Partial Class FormDebitNoteDet
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.DEDueDateInv.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDateInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERefDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERefDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,8 +119,6 @@ Partial Class FormDebitNoteDet
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDueDateInv.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDueDateInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -228,6 +234,27 @@ Partial Class FormDebitNoteDet
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(360, 159)
         Me.PanelControlTopRight.TabIndex = 8941
+        '
+        'DEDueDateInv
+        '
+        Me.DEDueDateInv.EditValue = Nothing
+        Me.DEDueDateInv.Location = New System.Drawing.Point(109, 135)
+        Me.DEDueDateInv.Name = "DEDueDateInv"
+        Me.DEDueDateInv.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDateInv.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDateInv.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDueDateInv.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDueDateInv.Size = New System.Drawing.Size(241, 20)
+        Me.DEDueDateInv.TabIndex = 174
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(13, 138)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(83, 13)
+        Me.LabelControl4.TabIndex = 173
+        Me.LabelControl4.Text = "Due Date Invoice"
         '
         'DERefDate
         '
@@ -567,7 +594,7 @@ Partial Class FormDebitNoteDet
         Me.GVItemList.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVItemList.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVItemList.ColumnPanelRowHeight = 50
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn13, Me.GridColumn12, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GCClaimPercent, Me.GCPriceUnit, Me.GridColumn9, Me.GCClaimPcs, Me.GridColumn11})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn13, Me.GridColumn12, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GCKurs, Me.GCClaimPercent, Me.GridColumn10, Me.GridColumn8, Me.GCPriceUSD, Me.GCClaimUSD, Me.GCAmoUSD, Me.GCPriceUnit, Me.GridColumn9, Me.GCClaimPcs, Me.GCAmo})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -607,7 +634,7 @@ Partial Class FormDebitNoteDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
-        Me.GridColumn3.Width = 44
+        Me.GridColumn3.Width = 51
         '
         'GridColumn4
         '
@@ -616,7 +643,7 @@ Partial Class FormDebitNoteDet
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 118
+        Me.GridColumn4.Width = 138
         '
         'GridColumn5
         '
@@ -625,7 +652,7 @@ Partial Class FormDebitNoteDet
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
-        Me.GridColumn5.Width = 118
+        Me.GridColumn5.Width = 138
         '
         'GridColumn6
         '
@@ -635,11 +662,26 @@ Partial Class FormDebitNoteDet
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
-        Me.GridColumn6.Width = 118
+        Me.GridColumn6.Width = 138
         '
         'RIMDescription
         '
         Me.RIMDescription.Name = "RIMDescription"
+        '
+        'GCKurs
+        '
+        Me.GCKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GCKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCKurs.Caption = "Kurs"
+        Me.GCKurs.DisplayFormat.FormatString = "N2"
+        Me.GCKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCKurs.FieldName = "kurs"
+        Me.GCKurs.Name = "GCKurs"
+        Me.GCKurs.Visible = True
+        Me.GCKurs.VisibleIndex = 8
+        Me.GCKurs.Width = 90
         '
         'GCClaimPercent
         '
@@ -655,7 +697,72 @@ Partial Class FormDebitNoteDet
         Me.GCClaimPercent.Name = "GCClaimPercent"
         Me.GCClaimPercent.Visible = True
         Me.GCClaimPercent.VisibleIndex = 4
-        Me.GCClaimPercent.Width = 118
+        Me.GCClaimPercent.Width = 99
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "ID Currency"
+        Me.GridColumn10.FieldName = "id_currency"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.Caption = "Currency"
+        Me.GridColumn8.FieldName = "currency"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 5
+        Me.GridColumn8.Width = 90
+        '
+        'GCPriceUSD
+        '
+        Me.GCPriceUSD.AppearanceCell.Options.UseTextOptions = True
+        Me.GCPriceUSD.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCPriceUSD.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCPriceUSD.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCPriceUSD.Caption = "Price / Unit <br> (USD)"
+        Me.GCPriceUSD.DisplayFormat.FormatString = "N2"
+        Me.GCPriceUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCPriceUSD.FieldName = "unit_price_usd"
+        Me.GCPriceUSD.Name = "GCPriceUSD"
+        Me.GCPriceUSD.Visible = True
+        Me.GCPriceUSD.VisibleIndex = 6
+        Me.GCPriceUSD.Width = 90
+        '
+        'GCClaimUSD
+        '
+        Me.GCClaimUSD.AppearanceCell.Options.UseTextOptions = True
+        Me.GCClaimUSD.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCClaimUSD.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCClaimUSD.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCClaimUSD.Caption = "Claim / Pcs <br> (USD)"
+        Me.GCClaimUSD.DisplayFormat.FormatString = "N2"
+        Me.GCClaimUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCClaimUSD.FieldName = "claim_pcs_usd"
+        Me.GCClaimUSD.Name = "GCClaimUSD"
+        Me.GCClaimUSD.Visible = True
+        Me.GCClaimUSD.VisibleIndex = 7
+        Me.GCClaimUSD.Width = 90
+        '
+        'GCAmoUSD
+        '
+        Me.GCAmoUSD.AppearanceCell.Options.UseTextOptions = True
+        Me.GCAmoUSD.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCAmoUSD.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCAmoUSD.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCAmoUSD.Caption = "Total Amount <br> (USD)"
+        Me.GCAmoUSD.DisplayFormat.FormatString = "N2"
+        Me.GCAmoUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCAmoUSD.FieldName = "claim_amo_usd"
+        Me.GCAmoUSD.Name = "GCAmoUSD"
+        Me.GCAmoUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_amo_usd", "{0:N2}")})
+        Me.GCAmoUSD.Visible = True
+        Me.GCAmoUSD.VisibleIndex = 12
+        Me.GCAmoUSD.Width = 122
         '
         'GCPriceUnit
         '
@@ -670,8 +777,8 @@ Partial Class FormDebitNoteDet
         Me.GCPriceUnit.FieldName = "unit_price"
         Me.GCPriceUnit.Name = "GCPriceUnit"
         Me.GCPriceUnit.Visible = True
-        Me.GCPriceUnit.VisibleIndex = 5
-        Me.GCPriceUnit.Width = 118
+        Me.GCPriceUnit.VisibleIndex = 9
+        Me.GCPriceUnit.Width = 143
         '
         'GridColumn9
         '
@@ -686,8 +793,8 @@ Partial Class FormDebitNoteDet
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 6
-        Me.GridColumn9.Width = 118
+        Me.GridColumn9.VisibleIndex = 11
+        Me.GridColumn9.Width = 143
         '
         'GCClaimPcs
         '
@@ -702,25 +809,25 @@ Partial Class FormDebitNoteDet
         Me.GCClaimPcs.FieldName = "claim_pcs"
         Me.GCClaimPcs.Name = "GCClaimPcs"
         Me.GCClaimPcs.Visible = True
-        Me.GCClaimPcs.VisibleIndex = 7
-        Me.GCClaimPcs.Width = 118
+        Me.GCClaimPcs.VisibleIndex = 10
+        Me.GCClaimPcs.Width = 143
         '
-        'GridColumn11
+        'GCAmo
         '
-        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumn11.Caption = "Total Amount <br> (Rp)"
-        Me.GridColumn11.DisplayFormat.FormatString = "N2"
-        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn11.FieldName = "claim_amo"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_amo", "{0:N2}")})
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 8
-        Me.GridColumn11.Width = 136
+        Me.GCAmo.AppearanceCell.Options.UseTextOptions = True
+        Me.GCAmo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCAmo.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCAmo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCAmo.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCAmo.Caption = "Total Amount <br> (Rp)"
+        Me.GCAmo.DisplayFormat.FormatString = "N2"
+        Me.GCAmo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCAmo.FieldName = "claim_amo"
+        Me.GCAmo.Name = "GCAmo"
+        Me.GCAmo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_amo", "{0:N2}")})
+        Me.GCAmo.Visible = True
+        Me.GCAmo.VisibleIndex = 13
+        Me.GCAmo.Width = 141
         '
         'RepositoryItemSpinEdit1
         '
@@ -729,27 +836,6 @@ Partial Class FormDebitNoteDet
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'DEDueDateInv
-        '
-        Me.DEDueDateInv.EditValue = Nothing
-        Me.DEDueDateInv.Location = New System.Drawing.Point(109, 135)
-        Me.DEDueDateInv.Name = "DEDueDateInv"
-        Me.DEDueDateInv.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDueDateInv.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDueDateInv.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEDueDateInv.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDueDateInv.Size = New System.Drawing.Size(241, 20)
-        Me.DEDueDateInv.TabIndex = 174
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(13, 138)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(83, 13)
-        Me.LabelControl4.TabIndex = 173
-        Me.LabelControl4.Text = "Due Date Invoice"
         '
         'FormDebitNoteDet
         '
@@ -776,6 +862,8 @@ Partial Class FormDebitNoteDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.DEDueDateInv.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDateInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERefDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERefDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -803,8 +891,6 @@ Partial Class FormDebitNoteDet
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDueDateInv.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDueDateInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -851,7 +937,7 @@ Partial Class FormDebitNoteDet
     Friend WithEvents GCPriceUnit As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCClaimPcs As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCAmo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIMDescription As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
@@ -865,4 +951,10 @@ Partial Class FormDebitNoteDet
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEDueDateInv As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCKurs As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPriceUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCClaimUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCAmoUSD As DevExpress.XtraGrid.Columns.GridColumn
 End Class

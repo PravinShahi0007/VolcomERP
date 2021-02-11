@@ -11,15 +11,19 @@
         Dim query_in As String = ""
 
         If id_departement_user = "11" Then
-            query_in = "653, 1177"
+            query_in = "653, 1177, 1286"
         ElseIf id_departement_user = "9" Then
             query_in = "1212"
         Else
             query_in = "0"
         End If
 
+        If id_role_login = "1" Then
+            query_in = "653, 1177, 1286, 1212"
+        End If
+
         Dim query As String = "
-            SELECT vm.id_verification_master, c.comp_name, cd.display_name, vm.file_name, IF(m.is_match = 0, 'Not Matched', 'Matched') AS is_match, vm.created_date, e.employee_name AS created_by
+            SELECT vm.id_verification_master, REPLACE(REPLACE(c.comp_name, 'NORMAL', ''), '()', '') AS comp_name, cd.display_name, vm.file_name, IF(m.is_match = 0, 'Not Matched', 'Matched') AS is_match, vm.created_date, e.employee_name AS created_by
             FROM tb_verification_master AS vm
             LEFT JOIN tb_m_comp AS c ON vm.id_comp = c.id_comp
             LEFT JOIN tb_m_code_detail AS cd ON vm.id_code_detail = cd.id_code_detail

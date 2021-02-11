@@ -1,7 +1,9 @@
 ﻿Public Class FormOLStore
     Private Sub FormOLStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         setDateNow()
-        viewComp()
+        'viewComp()
+        viewOLStoreGroup()
+        viewOLStore()
     End Sub
 
     Sub setDateNow()
@@ -10,14 +12,46 @@
         DEUntil.EditValue = data_dt.Rows(0)("dt")
     End Sub
 
+    Sub viewOLStore()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT cg.id_comp_group, cg.description 
+        FROM tb_m_comp_group cg WHERE cg.is_use_api=1
+        ORDER BY cg.idx_prior_order ASC "
+        viewSearchLookupQuery(SLEOLStore, query, "id_comp_group", "description", "id_comp_group")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewOLStoreGroup()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '0' AS `id_comp_group`, 'All Group' AS `description`
+        UNION ALL
+        SELECT cg.id_comp_group, cg.description 
+        FROM tb_m_comp_group cg 
+        INNER JOIN tb_m_comp c ON c.id_comp_group = cg.id_comp_group
+        WHERE c.id_commerce_type=2
+        GROUP BY cg.id_comp_group "
+        viewSearchLookupQuery(SLEGroup, query, "id_comp_group", "description", "id_comp_group")
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewComp()
+        Dim id_comp_group As String = "-1"
+        Try
+            id_comp_group = SLEGroup.EditValue.ToString
+        Catch ex As Exception
+            id_comp_group = "-1"
+        End Try
+        Dim cond_comp As String = ""
+        If id_comp_group <> "0" Then
+            cond_comp = "AND c.id_comp_group='" + id_comp_group + "' "
+        End If
         Dim query As String = "
         SELECT 0 AS `id_comp`, 0 AS `id_comp_contact`, 'ALL' AS `comp_number`, 'All Store' AS `comp_name`
         UNION ALL
         SELECT c.id_comp,cc.id_comp_contact, c.comp_number,c.comp_name 
         FROM tb_m_comp c 
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1 
-        WHERE c.id_commerce_type=2 AND c.is_active=1 "
+        WHERE c.id_commerce_type=2 AND c.is_active=1 " + cond_comp
         viewSearchLookupQuery(SLECompDetail, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
@@ -84,6 +118,13 @@
             comp = "AND c.id_comp='" + id_comp + "' "
         End If
 
+        'group
+        Dim id_comp_group As String = SLEGroup.EditValue.ToString
+        Dim comp_grp As String = ""
+        If id_comp_group <> "0" Then
+            comp_grp = "AND c.id_comp_group ='" + id_comp_group + "' "
+        End If
+
         Dim query As String = "SELECT 'No' AS `is_select`,c.id_comp, c.comp_number, c.comp_name,
         CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`,
         CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`,
@@ -110,7 +151,7 @@
             GROUP BY d.id_report
         ) doc ON doc.id_report = so.id_sales_order
         WHERE so.id_sales_order>0 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
-        " + comp + " AND c.id_commerce_type=2
+        " + comp + " AND c.id_commerce_type=2 " + comp_grp + "
         GROUP BY so.id_sales_order 
         ORDER BY so.sales_order_ol_shop_date ASC, so.sales_order_ol_shop_number ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -141,6 +182,13 @@
             comp = "AND c.id_comp='" + id_comp + "' "
         End If
 
+        'group
+        Dim id_comp_group As String = SLEGroup.EditValue.ToString
+        Dim comp_grp As String = ""
+        If id_comp_group <> "0" Then
+            comp_grp = "AND c.id_comp_group ='" + id_comp_group + "' "
+        End If
+
         Dim query As String = "SELECT 'No' AS `is_select`,c.id_comp, c.comp_number, c.comp_name,
         so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
         sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, cd.code_detail_name AS `size`,
@@ -166,7 +214,7 @@
             GROUP BY a.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status = so.id_prepare_status
-        WHERE so.id_report_status=6 " + comp + " AND c.id_commerce_type=2
+        WHERE so.id_report_status=6 " + comp + " AND c.id_commerce_type=2 " + comp_grp + "
         AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
         If is_show_cancell Then
             query += "AND so.id_prepare_status=2 AND ISNULL(d.id_pl_sales_order_del) "
@@ -428,11 +476,12 @@
         vo.note_price, vo.id_design_cat, vo.id_design_price, vo.id_product, vo.note_stock, vo.note_promo,
         vo.id_report_trf_order, vo.rmt_trf_order, trf_order.sales_order_number AS `trf_order_number`,
         vo.id_report_trf, vo.rmt_trf, trf.fg_trf_number AS `trf_number`,
-        vo.id_report_order, vo.rmt_order , actual_order.sales_order_number, vo.fail_reason
+        vo.id_report_order, vo.rmt_order , actual_order.sales_order_number, vo.fail_reason, vo.id_comp_group, cg.comp_group, cg.description AS `comp_group_name`
         FROM tb_ol_store_order vo
         LEFT JOIN tb_sales_order trf_order ON trf_order.id_sales_order = vo.id_report_trf_order
         LEFT JOIN tb_sales_order actual_order ON actual_order.id_sales_order = vo.id_report_order
         LEFT JOIN tb_fg_trf trf ON trf.id_fg_trf = vo.id_report_trf
+        LEFT JOIN tb_m_comp_group cg ON cg.id_comp_group = vo.id_comp_group
         WHERE 1=1 " + cond
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCVolcom.DataSource = data
@@ -450,7 +499,7 @@
 
     Sub viewPendingOrders()
         Cursor = Cursors.WaitCursor
-        viewVolcomOrder("AND vo.is_process=2")
+        viewVolcomOrder("AND vo.is_process=2 AND ISNULL(vo.id_ol_store_oos) ")
         Cursor = Cursors.Default
     End Sub
 
@@ -460,14 +509,24 @@
         Cursor = Cursors.Default
     End Sub
 
+
     Private Sub BtnSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnSyncOrder.Click
+        syncOrder()
+    End Sub
+
+    Sub syncOrder()
         Cursor = Cursors.WaitCursor
+        'initial general
+        Dim err As String = ""
 
         'cek freeze
-        Dim qf As String = "SELECT c.id_comp ,cm.comp_number, cm.comp_name
-        FROM tb_m_comp_volcom_ol c
-        INNER JOIN tb_m_comp cm ON cm.id_comp = c.id_comp
-        WHERE cm.is_active=2 "
+        Dim id_comp_group As String = SLEOLStore.EditValue.ToString
+        Dim id_comp_in As String = execute_query("SELECT CONCAT(cc1.id_comp, ',',cc2.id_comp) AS `id_comp_all` 
+        FROM tb_m_comp_group c 
+        INNER JOIN tb_m_comp_contact cc1 ON cc1.id_comp_contact = c.id_wh_order_contact_normal
+        INNER JOIN tb_m_comp_contact cc2 ON cc2.id_comp_contact = c.id_wh_order_contact_sale
+        WHERE c.id_comp_group='" + id_comp_group + "'", 0, True, "", "", "", "")
+        Dim qf As String = "SELECT * FROM tb_m_comp c WHERE c.id_comp IN (" + id_comp_in + ") AND c.is_active=2 "
         Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
         If df.Rows.Count > 0 Then
             Cursor = Cursors.Default
@@ -479,7 +538,12 @@
         If is_processed_order = "1" Then
             stopCustom("Sync still running")
         Else
-            SplashScreenManager1.ShowWaitForm()
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            End If
+            Dim ord As New ClassSalesOrder()
+            ord.setProceccedWebOrder("1")
+            ord.insertLogWebOrder("0", "Start", "0")
 
             'cek allow
             Dim is_must_ok_stock As String = "2"
@@ -489,52 +553,135 @@
                 is_must_ok_stock = "2"
             End If
 
-            Dim ord As New ClassSalesOrder()
-            ord.setProceccedWebOrder("1")
-            ord.insertLogWebOrder("0", "Start")
+            'get api type
+            Dim dt_grp As DataTable = execute_query("SELECT cg.id_api_type, cg.comp_group FROM tb_m_comp_group cg WHERE cg.id_comp_group='" + id_comp_group + "' ", -1, True, "", "", "", "")
+            Dim id_api_type As String = dt_grp.Rows(0)("id_api_type").ToString
+            Dim comp_group As String = dt_grp.Rows(0)("comp_group").ToString.ToUpper
 
             'get order from web
-            Dim err As String = ""
-            Try
-                Dim shop As New ClassShopifyApi()
-                shop.get_order_erp()
-            Catch ex As Exception
-                err = ex.ToString
-            End Try
-            ord.insertLogWebOrder("0", "Get order from website. " + err)
+            'hide when developed
+            ord.insertLogWebOrder("0", "Get order from website. " + err, id_comp_group)
+            If id_api_type = "1" Then
+                'SHOPIFY
+                Try
+                    Dim shop As New ClassShopifyApi()
+                    shop.get_order_erp()
+                Catch ex As Exception
+                    err = ex.ToString
+                End Try
+            ElseIf id_api_type = "2" Then
+                'ZALORA
+                Try
+                    Dim shop As New ClassZaloraApi()
+                    shop.get_order_list()
+                Catch ex As Exception
+                    err = ex.ToString
+                End Try
+            ElseIf id_api_type = "3" Then
+                'BLIBLI
+                Try
+                    Dim shop As New ClassBliBliApi()
+                    shop.get_order_list()
+                Catch ex As Exception
+                    err = ex.ToString
+                End Try
+            End If
 
             'get order yg belum diproses
             Dim qord As String = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
-            WHERE o.is_process=2
+            WHERE o.is_process=2 AND o.id_comp_group='" + id_comp_group + "' AND ISNULL(o.id_ol_store_oos)
             GROUP BY o.id "
             Dim dord As DataTable = execute_query(qord, -1, True, "", "", "", "")
+            Dim id_order_in As String = ""
             If dord.Rows.Count > 0 Then
                 Try
                     For i As Integer = 0 To dord.Rows.Count - 1
-                        SplashScreenManager1.SetWaitFormDescription("Checking order #" + dord.Rows(i)("sales_order_ol_shop_number").ToString)
-                        execute_non_query_long("CALL create_web_order(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ");", True, "", "", "", "")
+                        FormMain.SplashScreenManager1.SetWaitFormDescription(comp_group + " ORDER : " + (i + 1).ToString + "/" + dord.Rows.Count.ToString)
+                        execute_non_query_long("CALL create_web_order_grp(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ",'" + id_comp_group + "');", True, "", "", "", "")
+                        If i > 0 Then
+                            id_order_in += ","
+                        End If
+                        id_order_in += dord.Rows(i)("id").ToString
                     Next
                 Catch ex As Exception
-                    ord.insertLogWebOrder("0", ex.ToString)
+                    ord.insertLogWebOrder("0", ex.ToString, id_comp_group)
                     stopCustom(ex.ToString)
                 End Try
-                ord.setProceccedWebOrder("2")
-                ord.insertLogWebOrder("0", "End")
-            Else
-                ord.setProceccedWebOrder("2")
-                ord.insertLogWebOrder("0", "End")
             End If
 
-            SplashScreenManager1.CloseWaitForm()
-            If err = "" Then
+            'other action after created order
+            Dim err_other_act As String = ""
+            If id_api_type = "2" Then
+                'ZALORA
+                Dim zal As New ClassZaloraApi()
+                err_other_act = zal.setRTSPending()
+            End If
+
+            'evaluasi
+            Dim jum_eval As Integer = 0
+            If id_api_type <> "1" Then 'selain VIOS
+                Dim query_eval As String = "SELECT od.id, od.sales_order_ol_shop_number AS `order_number`
+                FROM tb_ol_store_order od 
+                WHERE od.id_comp_group='" + id_comp_group + "'  AND od.note_price='OK' AND od.note_promo='OK' AND od.note_stock<>'OK' AND od.is_process=2 AND ISNULL(od.id_ol_store_oos)
+                GROUP BY od.id "
+                Dim data_eval As DataTable = execute_query(query_eval, -1, True, "", "", "", "")
+                If data_eval.Rows.Count > 0 Then
+                    For e As Integer = 0 To data_eval.Rows.Count - 1
+                        jum_eval += 1
+                        Dim id_order_eval As String = data_eval.Rows(e)("id").ToString
+                        Dim no_eval As String = data_eval.Rows(e)("order_number").ToString
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Evaluate order : " + (e + 1).ToString + "/" + data_eval.Rows.Count.ToString)
+                        'evaluate oos
+                        Dim oos As New ClassOLStore()
+                        oos.evaluateOOS(id_order_eval, id_comp_group)
+                        ord.insertLogWebOrder(id_order_eval, "Evaluate OOS", id_comp_group)
+
+                        'cek apa ada yang bisa restok
+                        Dim is_restock As Boolean = oos.checkOOSRestockOrder(id_order_eval, id_comp_group)
+                        ord.insertLogWebOrder(id_order_eval, "Evaluating restock", id_comp_group)
+                        If Not is_restock Then
+                            'jika ndak ada yang bisa direstock langsung kirim email
+                            Try
+                                oos.sendEmailOOS(id_order_eval, id_comp_group)
+                                Dim id_oos As String = execute_query("SELECT id_ol_store_oos FROM tb_ol_store_oos WHERE id_comp_group='" + id_comp_group + "' AND id_order='" + id_order_eval + "' ", 0, True, "", "", "", "")
+                                execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id_oos + "' ", True, "", "", "", "")
+                                ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
+                            Catch ex As Exception
+                                ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock & Send Email OOS failed", id_comp_group)
+                            End Try
+
+                            'check jika kosong langsung di closed
+                            oos.checkOOSEmptyOrder(id_order_eval, id_comp_group)
+
+                            'other action
+                            If id_api_type = "2" Then
+                                'ZALORA
+                                Dim zal As New ClassZaloraApi()
+                                err_other_act = zal.setRTSPending()
+                            End If
+                        Else
+                            ord.insertLogWebOrder(id_order_eval, "Evaluate result : Restock process", id_comp_group)
+                        End If
+                    Next
+                End If
+            End If
+
+            ord.insertLogWebOrder("0", "End", "0")
+            ord.setProceccedWebOrder("2")
+            FormMain.SplashScreenManager1.CloseWaitForm()
+            If err = "" And err_other_act = "" Then
                 infoCustom("Sync completed.")
             Else
-                infoCustom("Problem get order from web. " + err)
+                infoCustom("Problem get order from web : " + System.Environment.NewLine + "- " + err + System.Environment.NewLine + "- " + err_other_act)
             End If
             GCVolcom.DataSource = Nothing
             If orderNotProcessed() Then
                 stopCustom("Some orders cannot be processed")
                 viewPendingOrders()
+            End If
+            If jum_eval > 0 Then
+                stopCustom("Some orders out of stock.")
+                viewOOSList()
             End If
         End If
         CEAllow.EditValue = False
@@ -542,7 +689,7 @@
     End Sub
 
     Function orderNotProcessed()
-        Dim query As String="SELECT * FROM tb_ol_store_order od WHERE od.is_process=2 "
+        Dim query As String = "SELECT * FROM tb_ol_store_order od WHERE od.is_process=2 AND ISNULL(od.id_ol_store_oos) "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             Return True
@@ -611,5 +758,43 @@
         Else
             EditToolStripMenuItem.Visible = False
         End If
+    End Sub
+
+    Private Sub BtnUpdateStatusVIAAPI_Click(sender As Object, e As EventArgs) Handles BtnUpdateStatusVIAAPI.Click
+        Cursor = Cursors.WaitCursor
+        FormOLStoreUpdateStatus.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnXLSSyncOrder_Click(sender As Object, e As EventArgs) Handles BtnXLSSyncOrder.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.is_save_as = True
+        FormImportExcel.id_pop_up = "54"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEGroup.EditValueChanged
+        viewComp()
+        GCSummary.DataSource = Nothing
+        GCDetail.DataSource = Nothing
+        GCCancellOrder.DataSource = Nothing
+    End Sub
+
+    Private Sub BtnFollowUp_Click(sender As Object, e As EventArgs)
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnOOS_Click(sender As Object, e As EventArgs) Handles BtnOOS.Click
+        viewOOSList()
+    End Sub
+
+    Sub viewOOSList()
+        Cursor = Cursors.WaitCursor
+        FormOLStoreOOS.id_type = "2"
+        FormOLStoreOOS.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

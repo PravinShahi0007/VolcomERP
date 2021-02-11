@@ -75,8 +75,8 @@ SELECT id_employee,employee_name FROM tb_m_employee"
         Dim date_to As String = ""
 
         Try
-            date_from = DateTime.Parse(DateFrom.EditValue.ToString).ToString("yyyy-MM-dd")
-            date_to = DateTime.Parse(DateTo.EditValue.ToString).ToString("yyyy-MM-dd")
+            date_from = DateTime.Parse(DateFrom.EditValue.ToString).ToString("yyyy-MM-dd 00:00:00")
+            date_to = DateTime.Parse(DateTo.EditValue.ToString).ToString("yyyy-MM-dd 23:59:59")
         Catch ex As Exception
         End Try
 
@@ -138,7 +138,7 @@ LEFT JOIN
 ( 
     SELECT id_cash_advance, count(jml) as jml, SUM(recon_value) as recon_value
     FROM (
-        SELECT id_cash_advance,count(id_cash_advance) as jml,SUM(`value`) AS recon_value FROM tb_cash_advance_report GROUP BY id_cash_advance
+        SELECT id_cash_advance,count(id_cash_advance) as jml,SUM(`value` - `pph_amount` + `ppn_amount`) AS recon_value FROM tb_cash_advance_report GROUP BY id_cash_advance
         UNION
         SELECT id_cash_advance,count(id_cash_advance) as jml,0 AS recon_value FROM tb_cash_advance_report_det GROUP BY id_cash_advance
     ) AS tb

@@ -538,6 +538,9 @@ Public Class FormFGRepairDet
             XTPSummary.PageVisible = True
             XtraTabControl1.SelectedTabPageIndex = 1
 
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                SplashScreenManager1.ShowWaitForm()
+            End If
             Dim data_temp As DataTable = GCScan.DataSource
             Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
             Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
@@ -545,6 +548,7 @@ Public Class FormFGRepairDet
             Dim command As MySql.Data.MySqlClient.MySqlCommand = connection.CreateCommand()
             Dim qry As String = "DROP TABLE IF EXISTS tb_fg_repair_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_fg_repair_temp AS ( SELECT * FROM ("
             For d As Integer = 0 To data_temp.Rows.Count - 1
+                SplashScreenManager1.SetWaitFormDescription("Groupping product " + (d + 1).ToString + "/" + data_temp.Rows.Count.ToString)
                 Dim id_product As String = data_temp.Rows(d)("id_product").ToString
                 Dim id_pl_prod_order_rec_det_unique As String = data_temp.Rows(d)("id_pl_prod_order_rec_det_unique").ToString
                 Dim code As String = data_temp.Rows(d)("product_code").ToString
@@ -574,7 +578,8 @@ Public Class FormFGRepairDet
             connection.Dispose()
 
             'get data stock
-            Dim query_stock As String = "call view_stock_fg('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
+            SplashScreenManager1.SetWaitFormDescription("Checking stock")
+            Dim query_stock As String = "call view_stock_fg_for_invoice('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
             Dim data_stock As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
             Dim tb1 = data_view.AsEnumerable()
             Dim tb2 = data_stock.AsEnumerable()
@@ -596,6 +601,8 @@ Public Class FormFGRepairDet
             GCScanSum.DataSource = Nothing
             GCScanSum.DataSource = query.ToList()
             GCScanSum.RefreshDataSource()
+
+            SplashScreenManager1.CloseWaitForm()
 
 
             'find not ok

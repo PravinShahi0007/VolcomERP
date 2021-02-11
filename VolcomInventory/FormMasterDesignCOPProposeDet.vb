@@ -4,13 +4,14 @@
     Public id_det As String = "-1"
     Public is_view As String = "2"
 
-    Sub load_cold_storage()
-        Dim q As String = "SELECT id_cool_storage AS id,cool_storage AS cold_desc FROM tb_lookup_cool_storage ORDER BY id_cool_storage DESC"
-        viewSearchLookupQuery(SLEColdStorage, q, "id", "cold_desc", "id")
+    Public is_insert_cool_storage As String = get_opt_prod_field("is_insert_cool_storage_ecop")
+
+    Sub load_cool_storage()
+        Dim q As String = "SELECT id_cool_storage,cool_storage FROM tb_lookup_cool_storage"
+        viewSearchLookupQuery(SLECoolStorage, q, "id_cool_storage", "cool_storage", "id_cool_storage")
     End Sub
 
     Private Sub FormMasterDesignCOPProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        load_cold_storage()
         'check kurs first
         Dim query_kurs As String = "SELECT * FROM tb_kurs_trans WHERE DATE(DATE_ADD(created_date, INTERVAL 6 DAY)) >= DATE(NOW()) ORDER BY id_kurs_trans DESC LIMIT 1"
         Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
@@ -22,14 +23,24 @@
             TETodayKurs.EditValue = data_kurs.Rows(0)("kurs_trans") + data_kurs.Rows(0)("fixed_floating")
         End If
         '
+        load_cool_storage()
         viewSeason()
         view_currency_grid()
         '
         load_det_input()
         '
+        If is_insert_cool_storage = "1" Then
+            LStorage.Visible = True
+            SLECoolStorage.Visible = True
+        Else
+            LStorage.Visible = False
+            SLECoolStorage.Visible = False
+        End If
+        '
         If is_view = "1" Then
             TEVendor.Text = FormMasterDesignCOPPropose.BGVItemList.GetFocusedRowCellValue("comp_number").ToString
             TEVendorName.Text = FormMasterDesignCOPPropose.BGVItemList.GetFocusedRowCellValue("comp_name").ToString
+            SLECoolStorage.EditValue = FormMasterDesignCOPPropose.BGVItemList.GetFocusedRowCellValue("is_cold_storage").ToString
             '
             TEVendor.Properties.ReadOnly = True
             BtnBrowseContactFrom.Visible = False
@@ -108,7 +119,7 @@
             End If
 
             Try
-                Dim query As String = "CALL view_all_design_param(""" + query_where + """)"
+                Dim query As String = "CALL view_all_design_cop(""" + query_where + """)"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCItemList.DataSource = data
                 BGVItemList.BestFitColumns()
@@ -121,7 +132,7 @@
             End If
 
             Try
-                Dim query As String = "CALL view_all_design_param(""" + query_where + """)"
+                Dim query As String = "CALL view_all_design_cop(""" + query_where + """)"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCItemList.DataSource = data
                 BGVItemList.BestFitColumns()
@@ -262,14 +273,14 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & BGVItemList.GetFocus
                         Dim cop_before As String = ""
                         Dim id_contact_before As String = ""
                         Dim add_cost_before As String = ""
-                        Dim is_cold_storage_before As String = ""
+                        Dim storage_before As String = ""
                         '
                         Dim id_cur_after As String = ""
                         Dim kurs_after As String = ""
                         Dim cop_after As String = ""
                         Dim id_contact_after As String = ""
                         Dim add_cost_after As String = ""
-                        Dim is_cold_storage_after As String = ""
+                        Dim storage_after As String = ""
 
                         'before
                         If FormMasterDesignCOPPropose.LECOPType.EditValue.ToString = "1" Then
@@ -278,14 +289,14 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & BGVItemList.GetFocus
                             kurs_before = "'" & decimalSQL(BGVItemList.GetFocusedRowCellValue("prod_order_cop_kurs_pd").ToString) & "'"
                             cop_before = "'" & decimalSQL(BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd").ToString) & "'"
                             add_cost_before = "'" & decimalSQL(BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_addcost").ToString) & "'"
-                            is_cold_storage_before = "'" & decimalSQL(BGVItemList.GetFocusedRowCellValue("is_cold_storage").ToString) & "'"
+                            storage_before = "'" & decimalSQL(BGVItemList.GetFocusedRowCellValue("is_cold_storage").ToString) & "'"
                         Else
                             id_contact_before = "NULL"
                             id_cur_before = "NULL"
                             kurs_before = "NULL"
                             cop_before = "NULL"
                             add_cost_before = "NULL"
-                            is_cold_storage_before = "NULL"
+                            storage_before = "NULL"
                         End If
 
                         'after
@@ -307,11 +318,11 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & BGVItemList.GetFocus
                         End If
                         add_cost_after = decimalSQL(TEAdditionalCost.EditValue.ToString)
 
-                        is_cold_storage_after = SLEColdStorage.EditValue.ToString
+                        storage_after = SLECoolStorage.EditValue.ToString
 
                         Dim query As String = ""
-                        query = "INSERT INTO tb_design_cop_propose_det(id_design_cop_propose,target_cost,id_design,id_currency_before,kurs_before,design_cop_before,id_comp_contact_before,add_cost_before,is_cold_storage_before,id_currency,kurs,design_cop,id_comp_contact,add_cost,is_cold_storage) VALUES"
-                        query += "('" & id_propose & "','" & target_cost & "','" & id_design & "'," & id_cur_before & "," & kurs_before & "," & cop_before & "," & id_contact_before & "," & add_cost_before & "," & is_cold_storage_before & ",'" & id_cur_after & "','" & kurs_after & "','" & cop_after & "', " & id_contact_after & " ,'" & add_cost_after & "','" & is_cold_storage_after & "'); SELECT LAST_INSERT_ID(); "
+                        query = "INSERT INTO tb_design_cop_propose_det(id_design_cop_propose,target_cost,id_design,id_currency_before,kurs_before,design_cop_before,id_comp_contact_before,add_cost_before,id_currency,kurs,design_cop,id_comp_contact,add_cost,is_cold_storage_before,is_cold_storage) VALUES"
+                        query += "('" & id_propose & "','" & target_cost & "','" & id_design & "'," & id_cur_before & "," & kurs_before & "," & cop_before & "," & id_contact_before & "," & add_cost_before & ",'" & id_cur_after & "','" & kurs_after & "','" & cop_after & "', " & id_contact_after & " ,'" & add_cost_after & "'," & storage_before & ",'" & storage_after & "'); SELECT LAST_INSERT_ID(); "
                         id_det = execute_query(query, 0, True, "", "", "", "")
 
                         'insert component
@@ -354,5 +365,12 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & BGVItemList.GetFocus
 
     Private Sub GVCOPComponent_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVCOPComponent.CellValueChanged
         calculate()
+    End Sub
+
+    Private Sub BGVItemList_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles BGVItemList.FocusedRowChanged
+        Try
+            SLECoolStorage.EditValue = BGVItemList.GetFocusedRowCellValue("is_cold_storage").ToString
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

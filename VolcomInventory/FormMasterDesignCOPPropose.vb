@@ -2,6 +2,8 @@
     Public id_propose As String = "-1"
     Public is_view As String = "-1"
 
+    Public is_insert_cool_storage As String = get_opt_prod_field("is_insert_cool_storage_ecop")
+
     Private Sub FormMasterDesignCOPPropose_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -9,6 +11,14 @@
     Sub load_head()
         viewReportStatus()
         viewCOPType()
+
+        If is_insert_cool_storage Then
+            BGCStorageAfter.Visible = True
+            BGCStorageBefore.Visible = True
+        Else
+            BGCStorageAfter.Visible = False
+            BGCStorageBefore.Visible = False
+        End If
 
         If id_propose = "-1" Then
             'new
@@ -61,7 +71,7 @@
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT cs_after.cool_storage AS cold_storage_after,cs_before.cool_storage AS cold_storage_before,pd.target_cost,pd.`id_design_cop_propose_det`,pd.`id_design`,dsg.`design_code`,dsg.`design_display_name`
+        Dim query As String = "SELECT pd.target_cost,pd.`id_design_cop_propose_det`,pd.`id_design`,dsg.`design_code`,dsg.`design_display_name`
 ,pd.`id_currency_before`,cur_before.`currency` AS currency_before,pd.`id_comp_contact_before`,c_before.`comp_number` AS comp_number_before,c_before.`comp_name` AS comp_name_before,pd.`kurs_before`,pd.`design_cop_before`,pd.`add_cost_before`,(pd.`design_cop_before`-pd.`add_cost_before`) AS design_cop_ex_before
 ,pd.`id_currency`,cur.`currency`,pd.`id_comp_contact`,c.`comp_number`,c.`comp_name`,pd.`kurs`,pd.`design_cop`,pd.`add_cost`,(pd.`design_cop`-pd.`add_cost`) AS design_cop_ex
 FROM `tb_design_cop_propose_det` pd

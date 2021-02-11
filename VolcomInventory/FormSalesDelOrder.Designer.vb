@@ -57,7 +57,7 @@ Partial Class FormSalesDelOrder
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPSOList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesOrder = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
@@ -103,7 +103,7 @@ Partial Class FormSalesDelOrder
         Me.TxtNoParam = New DevExpress.XtraEditors.ButtonEdit()
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TimerMonitor = New System.Windows.Forms.Timer()
+        Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
         Me.ServiceController1 = New System.ServiceProcess.ServiceController()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
@@ -531,7 +531,6 @@ Partial Class FormSalesDelOrder
         Me.DownloadShippingLabelToolStripMenuItem.Name = "DownloadShippingLabelToolStripMenuItem"
         Me.DownloadShippingLabelToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
         Me.DownloadShippingLabelToolStripMenuItem.Text = "Download Shipping Label"
-        Me.DownloadShippingLabelToolStripMenuItem.Visible = False
         '
         'GVSalesOrder
         '

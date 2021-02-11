@@ -247,6 +247,8 @@
                 query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
                 query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0; "
                 execute_non_query(query_complete, True, "", "", "", "")
+                'create invoice langsung jika online
+                execute_non_query_long("CALL create_inv_ol_store('" + id_report_par + "')", True, "", "", "", "")
             Else
                 'pure wholesale
                 Dim query_complete As String = "
@@ -322,35 +324,41 @@
                 ) src ON src.id_sales_pos = main.id_sales_pos
                 SET main.sales_pos_total_qty = src.total, main.sales_pos_total=src.total_amount; "
                 execute_non_query(query_detail_inv, True, "", "", "", "")
+                'get total
+                Dim dst As DataTable = execute_query("SELECT sales_pos_total FROM tb_sales_pos WHERE id_sales_pos='" + id_sales_pos + "' ", -1, True, "", "", "", "")
+                Dim total_inv As Decimal = dst.Rows(0)("sales_pos_total")
                 'submit prepared
                 Dim id_user_prepared_inv As String = get_opt_acc_field("invoice_prepared_by")
                 submit_who_prepared("48", id_sales_pos, id_user_prepared_inv)
                 'nonaktif mark
                 Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "48", id_sales_pos)
                 execute_non_query(queryrm, True, "", "", "", "")
-                'journal draft
-                Dim acc As New ClassAccounting()
-                Try
-                    acc.generateJournalSalesDraftWithMapping(id_sales_pos, "48")
-                Catch ex As Exception
-                    stopCustom("Automatic draft journal failed. Please contact administrator. " + System.Environment.NewLine + ex.ToString)
-                End Try
-                'journal
-                Dim gl As New ClassSalesInv()
-                Try
-                    gl.postingJournal(id_sales_pos, "48")
-                Catch ex As Exception
-                    stopCustom("Automatic journal failed. Please contact administrator. " + System.Environment.NewLine + ex.ToString)
-                End Try
-                'shipping invoice
-                If id_so_status = "14" Then
-                    Try
-                        Dim shp As New ClassShipInvoice()
-                        shp.id_invoice_ship = "-1"
-                        shp.create(id_report_par)
-                    Catch ex As Exception
 
+                If total_inv > 0 Then
+                    'journal draft
+                    Dim acc As New ClassAccounting()
+                    Try
+                        acc.generateJournalSalesDraftWithMapping(id_sales_pos, "48")
+                    Catch ex As Exception
+                        stopCustom("Automatic draft journal failed. Please contact administrator. " + System.Environment.NewLine + ex.ToString)
                     End Try
+                    'journal
+                    Dim gl As New ClassSalesInv()
+                    Try
+                        gl.postingJournal(id_sales_pos, "48")
+                    Catch ex As Exception
+                        stopCustom("Automatic journal failed. Please contact administrator. " + System.Environment.NewLine + ex.ToString)
+                    End Try
+                    'shipping invoice
+                    If id_so_status = "14" Then
+                        Try
+                            Dim shp As New ClassShipInvoice()
+                            shp.id_invoice_ship = "-1"
+                            shp.create(id_report_par)
+                        Catch ex As Exception
+
+                        End Try
+                    End If
                 End If
             End If
 
@@ -381,7 +389,7 @@
                     ) u ON u.id_product = p.id_product
                     WHERE t.id_pl_sales_order_del=" + id_report_par + "
                     AND d.is_old_design=2 AND t.is_use_unique_code=1 "
-                execute_non_query(quniq, True, "", "", "", "")
+                execute_non_query_long(quniq, True, "", "", "", "")
             Catch ex As Exception
                 stopCustom("failed insert unique :" + ex.ToString)
             End Try
@@ -403,7 +411,7 @@
             INNER JOIN tb_m_design d ON d.id_design = p.id_design
             WHERE t.id_pl_sales_order_del=" + id_report_par + "
             AND d.is_old_design=2 AND t.is_use_unique_code_wh=1 "
-            execute_non_query(quniq, True, "", "", "", "")
+            execute_non_query_long(quniq, True, "", "", "", "")
         End If
         '
         Dim qs As String = "SELECT c.id_comp,pl.`id_pl_sales_order_del`,so.`id_sales_order_ol_shop`,c.`id_commerce_type`,c.`is_use_unique_code` FROM tb_pl_sales_order_del pl
@@ -413,6 +421,7 @@ INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
         Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
 
+        'ini harus di uncomment nanti
         'removeAppList("43", id_report_par, id_status_reportx_par)
         'insertFinalComment("43", id_report_par, id_status_reportx_par, "Complete by scan")
         'sendEmailConfirmation(dts.Rows(0)("id_commerce_type").ToString, id_report_par, id_status_reportx_par)
@@ -422,6 +431,7 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
         '
         Dim query As String = String.Format("UPDATE tb_pl_sales_order_del SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_pl_sales_order_del ='{1}'", id_status_reportx_par, id_report_par)
         execute_non_query(query, True, "", "", "", "")
+
     End Sub
 
     Private Sub removeAppList(ByVal report_mark_type As String, ByVal id_report As String, ByVal id_status_reportx As String)
@@ -493,10 +503,9 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
     End Sub
 
     Sub updateStatusOnlineStore(ByVal id_commerce_type As String, ByVal id_store As String, ByVal id_report As String, ByVal id_web_order As String)
-        getOnlineStoreVolcom()
-
         If id_commerce_type = "2" And (id_store = id_volcomstore_normal Or id_store = id_volcomstore_sale) Then
             Dim so As New ClassSalesOrder
+            Dim shopify_comp_group As String = get_setup_field("shopify_comp_group")
             Try
                 Dim shopify_tracking_comp As String = get_setup_field("shopify_tracking_comp")
                 Dim shopify_tracking_url As String = get_setup_field("shopify_tracking_url")
@@ -526,12 +535,12 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
                     shop.set_fullfill(id_web_order, location_id, track_number, val, shopify_tracking_comp, shopify_tracking_url)
                 End If
             Catch ex As Exception
-                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Fullfillment:" + ex.ToString)
+                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Fullfillment:" + ex.ToString, shopify_comp_group)
             End Try
 
             Try
                 'insert status 
-                Dim qstt As String = "INSERT INTO tb_sales_order_det_status(id_sales_order_det, `status`, status_date, input_status_date)
+                Dim qstt As String = "INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, `status`, status_date, input_status_date)
                 SELECT sod.id_sales_order_det, 'shipped', NOW(), NOW()
                 FROM tb_pl_sales_order_del_det d
                 INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
@@ -540,7 +549,7 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
                 WHERE d.id_pl_sales_order_del=" + id_report + " AND sod.is_additional=2 "
                 execute_non_query(qstt, True, "", "", "", "")
             Catch ex As Exception
-                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Status:" + ex.ToString)
+                so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Status:" + ex.ToString, shopify_comp_group)
             End Try
         End If
     End Sub
@@ -611,7 +620,7 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
                 ) u ON u.id_product = p.id_product
                 WHERE t.id_combine=" + id_report_par + "
                 AND d.is_old_design=2 AND t.is_use_unique_code=1 "
-                execute_non_query(quniq, True, "", "", "", "")
+                execute_non_query_long(quniq, True, "", "", "", "")
             Catch ex As Exception
                 stopCustom("failed insert unique :" + ex.ToString)
             End Try
@@ -631,7 +640,7 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
             INNER JOIN tb_m_design d ON d.id_design = p.id_design
             WHERE t.id_combine=" + id_report_par + "
             AND d.is_old_design=2 AND t.is_use_unique_code_wh=1 "
-            execute_non_query(quniq, True, "", "", "", "")
+            execute_non_query_long(quniq, True, "", "", "", "")
         End If
 
         'update pre delivery

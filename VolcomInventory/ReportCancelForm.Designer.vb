@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Public Class ReportCancelForm
     Inherits DevExpress.XtraReports.UI.XtraReport
 
     'XtraReport overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Public Class ReportCancelForm
     'NOTE: The following procedure is required by the Designer
     'It can be modified using the Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportCancelForm))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
@@ -152,7 +152,7 @@ Partial Public Class ReportCancelForm
         Me.LDate.LocationFloat = New DevExpress.Utils.PointFloat(490.5418!, 17.0!)
         Me.LDate.Name = "LDate"
         Me.LDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LDate.SizeF = New System.Drawing.SizeF(136.4582!, 12.58332!)
+        Me.LDate.SizeF = New System.Drawing.SizeF(136.4582!, 25.16663!)
         Me.LDate.StylePriority.UseFont = False
         Me.LDate.StylePriority.UseTextAlignment = False
         Me.LDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -163,7 +163,7 @@ Partial Public Class ReportCancelForm
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(471.792!, 17.0!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel13.SizeF = New System.Drawing.SizeF(18.74997!, 12.58332!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(18.74997!, 25.16663!)
         Me.XrLabel13.StylePriority.UseFont = False
         Me.XrLabel13.StylePriority.UseTextAlignment = False
         Me.XrLabel13.Text = ":"
@@ -175,7 +175,7 @@ Partial Public Class ReportCancelForm
         Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(414.5002!, 17.0!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(57.2916!, 12.58332!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(57.2916!, 25.16663!)
         Me.XrLabel14.StylePriority.UseFont = False
         Me.XrLabel14.StylePriority.UseTextAlignment = False
         Me.XrLabel14.Text = "Tanggal"
@@ -350,13 +350,13 @@ Partial Public Class ReportCancelForm
         'ReportHeader
         '
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrRichText2, Me.XrLabel6, Me.XrLabel2, Me.LabelPeriode, Me.XrLabel1, Me.XrLabel3, Me.XrLabel4, Me.XrLabel5, Me.LDirector, Me.LCC, Me.XrLabel8, Me.XrLabel9, Me.XrLabel10, Me.LNumber, Me.XrLabel14, Me.XrLabel13, Me.LDate})
-        Me.ReportHeader.HeightF = 159.875!
+        Me.ReportHeader.HeightF = 163.0192!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'XrRichText2
         '
         Me.XrRichText2.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(0.000222524!, 82.29164!)
+        Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(0.000222524!, 81.25!)
         Me.XrRichText2.Name = "XrRichText2"
         Me.XrRichText2.SerializableRtfString = resources.GetString("XrRichText2.SerializableRtfString")
         Me.XrRichText2.SizeF = New System.Drawing.SizeF(626.9997!, 63.0!)

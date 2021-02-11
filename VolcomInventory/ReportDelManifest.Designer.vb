@@ -110,10 +110,10 @@ Partial Public Class ReportDelManifest
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
-        Me.XrLabelDraft = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabelAWB = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabelDraft = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -301,7 +301,7 @@ Partial Public Class ReportDelManifest
         Me.XrTableCell14.StylePriority.UseBorders = False
         Me.XrTableCell14.StylePriority.UsePadding = False
         Me.XrTableCell14.Text = "REMARK"
-        Me.XrTableCell14.Weight = 0.71678932412784313R
+        Me.XrTableCell14.Weight = 0.716789324127843R
         '
         'XrTableRowTotal
         '
@@ -957,17 +957,6 @@ Partial Public Class ReportDelManifest
         Me.PageHeader.HeightF = 124.9166!
         Me.PageHeader.Name = "PageHeader"
         '
-        'XrLabelDraft
-        '
-        Me.XrLabelDraft.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabelDraft.LocationFloat = New DevExpress.Utils.PointFloat(277.4877!, 25.08334!)
-        Me.XrLabelDraft.Name = "XrLabelDraft"
-        Me.XrLabelDraft.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabelDraft.SizeF = New System.Drawing.SizeF(537.0249!, 32.79166!)
-        Me.XrLabelDraft.StylePriority.UseFont = False
-        Me.XrLabelDraft.StylePriority.UseTextAlignment = False
-        Me.XrLabelDraft.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        '
         'XrLabelAWB
         '
         Me.XrLabelAWB.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1002,6 +991,17 @@ Partial Public Class ReportDelManifest
         Me.XrLabel13.StylePriority.UseTextAlignment = False
         Me.XrLabel13.Text = "AWB/Resi"
         Me.XrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
+        '
+        'XrLabelDraft
+        '
+        Me.XrLabelDraft.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabelDraft.LocationFloat = New DevExpress.Utils.PointFloat(298.0001!, 0!)
+        Me.XrLabelDraft.Name = "XrLabelDraft"
+        Me.XrLabelDraft.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabelDraft.SizeF = New System.Drawing.SizeF(537.0249!, 32.79166!)
+        Me.XrLabelDraft.StylePriority.UseFont = False
+        Me.XrLabelDraft.StylePriority.UseTextAlignment = False
+        Me.XrLabelDraft.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'ReportDelManifest
         '

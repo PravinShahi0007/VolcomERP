@@ -59,6 +59,9 @@ Partial Class FormProductionMRS
         Me.BEditMat = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.BPickPO = New DevExpress.XtraEditors.SimpleButton()
         Me.BReqFrom = New DevExpress.XtraEditors.SimpleButton()
         Me.TEDesignCode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -80,7 +83,6 @@ Partial Class FormProductionMRS
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEMRSNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.BPickPO = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPProdOrderMRS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +102,7 @@ Partial Class FormProductionMRS
         Me.PCAddDel.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompToName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompToCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -222,7 +225,7 @@ Partial Class FormProductionMRS
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(86, 34)
         Me.BSave.TabIndex = 1
-        Me.BSave.Text = "Save"
+        Me.BSave.Text = "Submit"
         '
         'GroupGeneralFooter
         '
@@ -356,7 +359,7 @@ Partial Class FormProductionMRS
         Me.ColQty.FieldName = "qty"
         Me.ColQty.Name = "ColQty"
         Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 6
+        Me.ColQty.VisibleIndex = 5
         Me.ColQty.Width = 69
         '
         'SEQty
@@ -440,8 +443,6 @@ Partial Class FormProductionMRS
         Me.GridColumnPrice.FieldName = "mat_det_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
-        Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 5
         Me.GridColumnPrice.Width = 150
         '
         'GridColumn2
@@ -469,8 +470,6 @@ Partial Class FormProductionMRS
         Me.GridColumn3.FieldName = "qty_left"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.ReadOnly = True
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 8
         '
         'PCAddDel
         '
@@ -504,7 +503,7 @@ Partial Class FormProductionMRS
         Me.BShowBOM.Name = "BShowBOM"
         Me.BShowBOM.Size = New System.Drawing.Size(98, 34)
         Me.BShowBOM.TabIndex = 23
-        Me.BShowBOM.Text = "View BOM"
+        Me.BShowBOM.Text = "View FGPO"
         '
         'BEditMat
         '
@@ -531,6 +530,8 @@ Partial Class FormProductionMRS
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.TECreatedBy)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl7)
         Me.GroupGeneralHeader.Controls.Add(Me.BPickPO)
         Me.GroupGeneralHeader.Controls.Add(Me.BReqFrom)
         Me.GroupGeneralHeader.Controls.Add(Me.TEDesignCode)
@@ -558,6 +559,34 @@ Partial Class FormProductionMRS
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 100)
         Me.GroupGeneralHeader.TabIndex = 57
+        '
+        'TECreatedBy
+        '
+        Me.TECreatedBy.EditValue = ""
+        Me.TECreatedBy.Location = New System.Drawing.Point(726, 61)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.EditValueChangedDelay = 1
+        Me.TECreatedBy.Properties.ReadOnly = True
+        Me.TECreatedBy.Size = New System.Drawing.Size(173, 20)
+        Me.TECreatedBy.TabIndex = 178
+        Me.TECreatedBy.TabStop = False
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(654, 64)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl7.TabIndex = 179
+        Me.LabelControl7.Text = "Created By"
+        '
+        'BPickPO
+        '
+        Me.BPickPO.Location = New System.Drawing.Point(82, 61)
+        Me.BPickPO.Name = "BPickPO"
+        Me.BPickPO.Size = New System.Drawing.Size(23, 20)
+        Me.BPickPO.TabIndex = 177
+        Me.BPickPO.Text = "..."
+        Me.BPickPO.Visible = False
         '
         'BReqFrom
         '
@@ -630,7 +659,7 @@ Partial Class FormProductionMRS
         Me.TEPONumber.Name = "TEPONumber"
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(215, 20)
+        Me.TEPONumber.Size = New System.Drawing.Size(244, 20)
         Me.TEPONumber.TabIndex = 167
         '
         'LabelControl16
@@ -756,14 +785,6 @@ Partial Class FormProductionMRS
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "MRS Number"
         '
-        'BPickPO
-        '
-        Me.BPickPO.Location = New System.Drawing.Point(327, 61)
-        Me.BPickPO.Name = "BPickPO"
-        Me.BPickPO.Size = New System.Drawing.Size(23, 20)
-        Me.BPickPO.TabIndex = 177
-        Me.BPickPO.Text = "..."
-        '
         'FormProductionMRS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -801,6 +822,7 @@ Partial Class FormProductionMRS
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompToName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompToCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -874,4 +896,6 @@ Partial Class FormProductionMRS
     Friend WithEvents BReqFrom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BCancelReport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPickPO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
 End Class

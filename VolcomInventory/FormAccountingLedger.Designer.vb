@@ -19,6 +19,7 @@ Partial Class FormAccountingLedger
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -43,7 +44,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAccountingLedger = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewReffToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewJournalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -53,6 +54,8 @@ Partial Class FormAccountingLedger
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -67,8 +70,15 @@ Partial Class FormAccountingLedger
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BSearchVoucher = New DevExpress.XtraEditors.SimpleButton()
+        Me.BExportRaw = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLUECC = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,6 +93,8 @@ Partial Class FormAccountingLedger
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVAccountingLedger, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraScrollableControl1.SuspendLayout()
+        CType(Me.SLUECC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SLEUnit
@@ -140,7 +152,7 @@ Partial Class FormAccountingLedger
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(804, 16)
+        Me.LabelControl4.Location = New System.Drawing.Point(993, 16)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl4.TabIndex = 8
@@ -148,7 +160,7 @@ Partial Class FormAccountingLedger
         '
         'SLUETo
         '
-        Me.SLUETo.Location = New System.Drawing.Point(814, 13)
+        Me.SLUETo.Location = New System.Drawing.Point(1003, 13)
         Me.SLUETo.Name = "SLUETo"
         Me.SLUETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUETo.Properties.View = Me.GridView1
@@ -186,7 +198,7 @@ Partial Class FormAccountingLedger
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(548, 16)
+        Me.LabelControl3.Location = New System.Drawing.Point(737, 16)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl3.TabIndex = 6
@@ -194,7 +206,7 @@ Partial Class FormAccountingLedger
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(185, 16)
+        Me.LabelControl2.Location = New System.Drawing.Point(374, 16)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(30, 13)
         Me.LabelControl2.TabIndex = 5
@@ -202,7 +214,7 @@ Partial Class FormAccountingLedger
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(382, 16)
+        Me.LabelControl1.Location = New System.Drawing.Point(571, 16)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl1.TabIndex = 4
@@ -211,7 +223,7 @@ Partial Class FormAccountingLedger
         'DETo
         '
         Me.DETo.EditValue = Nothing
-        Me.DETo.Location = New System.Drawing.Point(392, 13)
+        Me.DETo.Location = New System.Drawing.Point(581, 13)
         Me.DETo.Name = "DETo"
         Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -227,7 +239,7 @@ Partial Class FormAccountingLedger
         'DEFrom
         '
         Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(226, 13)
+        Me.DEFrom.Location = New System.Drawing.Point(415, 13)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -242,7 +254,7 @@ Partial Class FormAccountingLedger
         '
         'SBView
         '
-        Me.SBView.Location = New System.Drawing.Point(1025, 11)
+        Me.SBView.Location = New System.Drawing.Point(1214, 11)
         Me.SBView.Name = "SBView"
         Me.SBView.Size = New System.Drawing.Size(75, 23)
         Me.SBView.TabIndex = 1
@@ -250,7 +262,7 @@ Partial Class FormAccountingLedger
         '
         'SLUEFrom
         '
-        Me.SLUEFrom.Location = New System.Drawing.Point(598, 13)
+        Me.SLUEFrom.Location = New System.Drawing.Point(787, 13)
         Me.SLUEFrom.Name = "SLUEFrom"
         Me.SLUEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEFrom.Properties.View = Me.SearchLookUpEdit1View
@@ -293,7 +305,7 @@ Partial Class FormAccountingLedger
         Me.GCAccountingLedger.Location = New System.Drawing.Point(0, 69)
         Me.GCAccountingLedger.MainView = Me.GVAccountingLedger
         Me.GCAccountingLedger.Name = "GCAccountingLedger"
-        Me.GCAccountingLedger.Size = New System.Drawing.Size(1128, 660)
+        Me.GCAccountingLedger.Size = New System.Drawing.Size(1259, 660)
         Me.GCAccountingLedger.TabIndex = 1
         Me.GCAccountingLedger.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAccountingLedger})
         '
@@ -355,7 +367,7 @@ Partial Class FormAccountingLedger
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseFont = True
-        Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn28, Me.GridColumn16, Me.GridColumn23, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn22, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21, Me.GridColumncomp_group})
+        Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn30, Me.GridColumn28, Me.GridColumn16, Me.GridColumn23, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn22, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21, Me.GridColumncomp_group, Me.GridColumn29})
         Me.GVAccountingLedger.GridControl = Me.GCAccountingLedger
         Me.GVAccountingLedger.GroupCount = 3
         Me.GVAccountingLedger.GroupFormat = "[#image]{1} {2}"
@@ -395,6 +407,23 @@ Partial Class FormAccountingLedger
         Me.GridColumn17.FieldName = "report_mark_type_ref"
         Me.GridColumn17.Name = "GridColumn17"
         '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Journal Number"
+        Me.GridColumn30.FieldName = "acc_trans_number"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 1
+        Me.GridColumn30.Width = 96
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Unit"
+        Me.GridColumn28.FieldName = "tag_description"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 5
+        '
         'GridColumn16
         '
         Me.GridColumn16.Caption = "No"
@@ -425,7 +454,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn2.FieldName = "report_number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 2
         '
         'GridColumn3
         '
@@ -433,7 +462,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn3.FieldName = "comp_number"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 3
         '
         'GridColumn4
         '
@@ -443,7 +472,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn4.FieldName = "date_created"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 6
         '
         'GridColumn5
         '
@@ -451,7 +480,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn5.FieldName = "report_number_ref"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 7
         '
         'GridColumn6
         '
@@ -459,7 +488,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn6.FieldName = "acc_trans_note"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.VisibleIndex = 8
         '
         'GridColumn22
         '
@@ -469,7 +498,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn22.FieldName = "qty"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 7
+        Me.GridColumn22.VisibleIndex = 9
         '
         'GridColumn7
         '
@@ -480,7 +509,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 8
+        Me.GridColumn7.VisibleIndex = 10
         '
         'GridColumn8
         '
@@ -491,7 +520,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 9
+        Me.GridColumn8.VisibleIndex = 11
         '
         'GridColumn9
         '
@@ -502,7 +531,7 @@ Partial Class FormAccountingLedger
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_balance", "{0:N2}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 10
+        Me.GridColumn9.VisibleIndex = 12
         '
         'GridColumn21
         '
@@ -517,10 +546,22 @@ Partial Class FormAccountingLedger
         Me.GridColumncomp_group.FieldName = "comp_group"
         Me.GridColumncomp_group.Name = "GridColumncomp_group"
         Me.GridColumncomp_group.Visible = True
-        Me.GridColumncomp_group.VisibleIndex = 3
+        Me.GridColumncomp_group.VisibleIndex = 4
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Vendor"
+        Me.GridColumn29.FieldName = "vendor_name"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 5
         '
         'XtraScrollableControl1
         '
+        Me.XtraScrollableControl1.Controls.Add(Me.SLUECC)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl6)
+        Me.XtraScrollableControl1.Controls.Add(Me.BSearchVoucher)
+        Me.XtraScrollableControl1.Controls.Add(Me.BExportRaw)
         Me.XtraScrollableControl1.Controls.Add(Me.SLEUnit)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl5)
         Me.XtraScrollableControl1.Controls.Add(Me.SLUEFrom)
@@ -536,22 +577,73 @@ Partial Class FormAccountingLedger
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
         Me.XtraScrollableControl1.Padding = New System.Windows.Forms.Padding(5)
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1128, 69)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1259, 69)
         Me.XtraScrollableControl1.TabIndex = 4
         '
-        'GridColumn28
+        'BSearchVoucher
         '
-        Me.GridColumn28.Caption = "Unit"
-        Me.GridColumn28.FieldName = "tag_description"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 5
+        Me.BSearchVoucher.Location = New System.Drawing.Point(1404, 11)
+        Me.BSearchVoucher.Name = "BSearchVoucher"
+        Me.BSearchVoucher.Size = New System.Drawing.Size(100, 23)
+        Me.BSearchVoucher.TabIndex = 12
+        Me.BSearchVoucher.Text = "Search by number"
+        '
+        'BExportRaw
+        '
+        Me.BExportRaw.Location = New System.Drawing.Point(1295, 11)
+        Me.BExportRaw.Name = "BExportRaw"
+        Me.BExportRaw.Size = New System.Drawing.Size(103, 23)
+        Me.BExportRaw.TabIndex = 11
+        Me.BExportRaw.Text = "Export to Excel"
+        '
+        'SLUECC
+        '
+        Me.SLUECC.Location = New System.Drawing.Point(220, 13)
+        Me.SLUECC.Name = "SLUECC"
+        Me.SLUECC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUECC.Properties.View = Me.GridView3
+        Me.SLUECC.Size = New System.Drawing.Size(138, 20)
+        Me.SLUECC.TabIndex = 14
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn31, Me.GridColumn32})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.FieldName = "id_comp"
+        Me.GridColumn31.Name = "GridColumn31"
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn32.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn32.Caption = "CC"
+        Me.GridColumn32.FieldName = "comp_number"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 0
+        Me.GridColumn32.Width = 281
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(196, 16)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(14, 13)
+        Me.LabelControl6.TabIndex = 13
+        Me.LabelControl6.Text = "CC"
         '
         'FormAccountingLedger
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1128, 729)
+        Me.ClientSize = New System.Drawing.Size(1259, 729)
         Me.Controls.Add(Me.GCAccountingLedger)
         Me.Controls.Add(Me.XtraScrollableControl1)
         Me.MaximizeBox = False
@@ -574,6 +666,8 @@ Partial Class FormAccountingLedger
         CType(Me.GVAccountingLedger, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraScrollableControl1.ResumeLayout(False)
         Me.XtraScrollableControl1.PerformLayout()
+        CType(Me.SLUECC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -627,4 +721,13 @@ Partial Class FormAccountingLedger
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BExportRaw As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BSearchVoucher As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLUECC As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class

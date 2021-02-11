@@ -22,6 +22,13 @@
             cond_status = "AND a.id_prepare_status='" + SLEPackingStatus.EditValue.ToString + "' "
         End If
 
+        'oos
+        If LETypeRestockTOO.EditValue.ToString = "1" Then
+            cond_status += "AND ISNULL(a.id_ol_store_oos) "
+        ElseIf LETypeRestockTOO.EditValue.ToString = "2" Then
+            cond_status += "AND !ISNULL(a.id_ol_store_oos) "
+        End If
+
         'prepare query
         Dim query_c As ClassSalesOrder = New ClassSalesOrder()
         Dim query As String = query_c.queryMain("AND a.id_report_status='6' AND (a.sales_order_date>='" + date_from_selected + "' AND a.sales_order_date<='" + date_until_selected + "') " + cond_status, "1")
@@ -52,8 +59,14 @@
         End If
 
         'return query
+        Dim where_id_comp As String = ""
+
+        If Not SLUEStore.EditValue.ToString = "0" Then
+            where_id_comp = " AND d.id_comp = " + SLUEStore.EditValue.ToString + " "
+        End If
+
         Dim query_c As ClassReturn = New ClassReturn()
-        Dim query As String = query_c.queryMain("AND a.id_report_status='6' AND (a.sales_return_order_date>='" + date_from_selected + "' AND a.sales_return_order_date<='" + date_until_selected + "') " + cond_status, "1")
+        Dim query As String = query_c.queryMain("AND a.id_report_status='6' AND (a.sales_return_order_date>='" + date_from_selected + "' AND a.sales_return_order_date<='" + date_until_selected + "') " + cond_status + where_id_comp, "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesReturnOrder.DataSource = data
         GVSalesReturnOrder.BestFitColumns()
@@ -192,6 +205,14 @@
             cond_status = "AND trf.id_report_status=" + SLEStatusTrf.EditValue.ToString + " "
         End If
 
+        'type restock
+        Dim id_type_restock As String = LETypeRestock.EditValue.ToString
+        If id_type_restock = "1" Then
+            cond_status += "AND ISNULL(so.id_ol_store_oos)"
+        ElseIf id_type_restock = "2" Then
+            cond_status += "AND !ISNULL(so.id_ol_store_oos)"
+        End If
+
         'prepare query
         Dim query_c As ClassFGTrf = New ClassFGTrf()
         Dim query As String = query_c.queryMain("AND (trf.fg_trf_date>=''" + date_from_selected + "'' AND trf.fg_trf_date<=''" + date_until_selected + "'') " + cond_status, "1")
@@ -238,13 +259,19 @@
     Private Sub BtnViewRet_Click(sender As Object, e As EventArgs) Handles BtnViewRet.Click
         Cursor = Cursors.WaitCursor
         viewReturnOrder()
-        noEdit(8)
+        'noEdit(8)
         Cursor = Cursors.Default
     End Sub
 
     Private Sub FormSalesOrderSvcLevel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        For Each t As DevExpress.XtraTab.XtraTabPage In XTCSvcLevel.TabPages
+            XTCSvcLevel.SelectedTabPage = t
+        Next t
+        XTCSvcLevel.SelectedTabPage = XTCSvcLevel.TabPages(0)
         viewPackingStatus()
         viewReportStatus()
+        view_store()
+        view_type_restock()
 
         'date now
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
@@ -266,6 +293,16 @@
         DEUntilNonStock.EditValue = data_dt.Rows(0)("dt")
 
         load_surat_jalan()
+    End Sub
+
+    Sub view_type_restock()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 1 AS `id_type`, 'Reguler' AS `type`
+        UNION ALL
+        SELECT 2 AS `id_type`, 'Restock Online Order' AS `type` "
+        viewLookupQuery(LETypeRestock, query, 0, "type", "id_type")
+        viewLookupQuery(LETypeRestockTOO, query, 0, "type", "id_type")
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewPackingStatus()
@@ -837,11 +874,11 @@
     End Sub
 
     Private Sub GVSalesReturnOrder_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVSalesReturnOrder.ColumnFilterChanged
-        noEdit(8)
+        'noEdit(8)
     End Sub
 
     Private Sub GVSalesReturnOrder_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVSalesReturnOrder.FocusedRowChanged
-        noEdit(8)
+        'noEdit(8)
     End Sub
 
     Private Sub CheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEdit1.CheckedChanged
@@ -867,8 +904,27 @@
             stopCustom("Please select order first.")
             GVSalesReturnOrder.ActiveFilterString = ""
         Else
-            FormSalesOrderPacking.id_pop_up = "5"
-            FormSalesOrderPacking.ShowDialog()
+            'check
+            Dim is_valid As Boolean = True
+
+            For i = 0 To GVSalesReturnOrder.RowCount - 1
+                Dim alloc_cek As String = GVSalesReturnOrder.GetRowCellValue(i, "id_prepare_status").ToString
+                Dim ots As Integer = GVSalesReturnOrder.GetRowCellValue(i, "outstanding").ToString
+                If alloc_cek = "2" Then
+                    is_valid = False
+                Else
+                    If Not ots = 0 Then
+                        is_valid = False
+                    End If
+                End If
+            Next
+
+            If is_valid Then
+                FormSalesOrderPacking.id_pop_up = "5"
+                FormSalesOrderPacking.ShowDialog()
+            Else
+                stopCustom("Some order can't close.")
+            End If
         End If
         GVSalesReturnOrder.ActiveFilterString = ""
         Cursor = Cursors.Default
@@ -1106,5 +1162,115 @@
     Private Sub FormSalesOrderSvcLevel_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
         FormTrackingReturn.Close()
+    End Sub
+
+    Private Sub SBInputTanggalPickup_Click(sender As Object, e As EventArgs) Handles SBInputTanggalPickup.Click
+        Cursor = Cursors.WaitCursor
+        GVSalesReturnOrder.ActiveFilterString = ""
+        GVSalesReturnOrder.ActiveFilterString = "[is_select]='Yes' "
+        If GVSalesReturnOrder.RowCount = 0 Then
+            stopCustom("Please select order first.")
+            GVSalesReturnOrder.ActiveFilterString = ""
+        Else
+            'check
+            Dim is_valid As Boolean = True
+
+            For i = 0 To GVSalesReturnOrder.RowCount - 1
+                Dim pickup_date As String = GVSalesReturnOrder.GetRowCellValue(i, "pickup_date").ToString
+                Dim pickup_date_updated_by As String = GVSalesReturnOrder.GetRowCellValue(i, "pickup_date_updated_by").ToString
+                Dim pickup_date_updated_at As String = GVSalesReturnOrder.GetRowCellValue(i, "pickup_date_updated_at").ToString
+
+                If Not pickup_date = "-" Or Not pickup_date_updated_by = "-" Or Not pickup_date_updated_at = "-" Then
+                    is_valid = False
+                End If
+            Next
+
+            If is_valid Then
+                FormSalesReturnInputTanggalPickup.ShowDialog()
+            Else
+                stopCustom("Some order can't input store pick up date.")
+            End If
+        End If
+        GVSalesReturnOrder.ActiveFilterString = ""
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBViewAllPickupDate_Click(sender As Object, e As EventArgs) Handles SBViewAllPickupDate.Click
+        Cursor = Cursors.WaitCursor
+        viewReturnOrderPickupDate()
+        'noEdit(8)
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewReturnOrderPickupDate()
+        'return query
+        Dim query_c As ClassReturn = New ClassReturn()
+        Dim query As String = query_c.queryMain("AND a.id_report_status='6' AND mail.id_report IS NOT NULL AND a.pickup_date IS NULL ", "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSalesReturnOrder.DataSource = data
+        GVSalesReturnOrder.BestFitColumns()
+    End Sub
+
+    Sub view_store()
+        Dim query As String = "
+            (SELECT 0 AS id_comp, 'ALL' AS comp_name)
+            UNION ALL
+            (SELECT id_comp, CONCAT(comp_number, ' - ', comp_name) AS comp_name
+            FROM tb_m_comp
+            WHERE id_comp_cat = 6)
+        "
+
+        viewSearchLookupQuery(SLUEStore, query, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Private Sub SLUEStore_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEStore.EditValueChanged
+        GCSalesReturnOrder.DataSource = Nothing
+    End Sub
+
+    Private Sub BarButtonItem1_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem1.ItemClick
+        If Not SLUEStore.EditValue.ToString = "0" Then
+            GVSalesReturnOrder.ActiveFilterString = "[is_select]='Yes' "
+
+            If GVSalesReturnOrder.RowCount > 0 Then
+                Dim already_pickup_date As Boolean = True
+                Dim empty_3pl As Boolean = True
+
+                For i = 0 To GVSalesReturnOrder.RowCount - 1
+                    If GVSalesReturnOrder.GetRowCellValue(i, "pickup_date").ToString = "-" Then
+                        already_pickup_date = False
+                    End If
+
+                    If GVSalesReturnOrder.GetRowCellValue(i, "id_3pl_status").ToString = "2" Or GVSalesReturnOrder.GetRowCellValue(i, "id_3pl_status").ToString = "3" Then
+                        empty_3pl = False
+                    End If
+                Next
+
+                If already_pickup_date Then
+                    If empty_3pl Then
+                        FormSalesReturnOrderMailDet.id_mail_3pl = "-1"
+                        'FormSalesReturnOrderMailDet.id_store = SLUEStore.EditValue.ToString
+                        FormSalesReturnOrderMailDet.ShowDialog()
+                    Else
+                        stopCustom("Some order already have 3pl or still waiting.")
+                    End If
+                Else
+                    stopCustom("Some order have empty pick up date.")
+                End If
+            Else
+                stopCustom("Please select order.")
+            End If
+
+            GVSalesReturnOrder.ActiveFilterString = ""
+        Else
+            stopCustom("Please select specific store.")
+        End If
+    End Sub
+
+    Private Sub BarButtonItem2_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem2.ItemClick
+        FormSalesReturnOrderMail.ShowDialog()
+    End Sub
+
+    Private Sub GroupControl4_Paint(sender As Object, e As PaintEventArgs) Handles GroupControl4.Paint
+
     End Sub
 End Class

@@ -361,7 +361,7 @@
             FormShipInvoiceDet.Close()
         ElseIf report_mark_type = "250" Then
             FormPromoCollectionDet.Close()
-        ElseIf report_mark_type = "251" Then
+        ElseIf report_mark_type = "251" Or report_mark_type = "285" Then
             FormBankWithdrawalSum.Close()
         ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
             FormSalesBranchDet.Close()
@@ -377,6 +377,48 @@
         ElseIf report_mark_type = "265" Then
             'payout VA
             FormVAHistoryDetail.Close()
+        ElseIf report_mark_type = "268" Then
+            'WIP Stock Summary Report
+            FormStockQCStockReportSummary.Close()
+        ElseIf report_mark_type = "269" Then
+            'Material & Trims Stock Summary Report
+            FormMatStockSummary.Close()
+        ElseIf report_mark_type = "273" Then
+            'Propose raw material
+            FormMasterRawMatPps.Close()
+        ElseIf report_mark_type = "274" Then
+            'Propose additional cost
+            FormAdditionalCostDet.Close()
+        ElseIf report_mark_type = "275" Or report_mark_type = "279" Then
+            'propose return mail
+            FormSalesReturnOrderMailDet.Close()
+        ElseIf report_mark_type = "278" Then
+            'marketplace oos
+            FormOLStoreOOSDetail.Close()
+        ElseIf report_mark_type = "280" Then
+            'Inv Claim Lain2
+            FormInvoiceClaimOther.Close()
+        ElseIf report_mark_type = "241" Then
+            'adj og
+            FormAdjustmentOGDet.Close()
+        ElseIf report_mark_type = "281" Then
+            'inv price recon
+            FormSalesPosPriceRecon.Close()
+        ElseIf report_mark_type = "282" Then
+            'payout zalora
+            FormPayoutZaloraDet.Close()
+        ElseIf report_mark_type = "283" Then
+            ' closing no stock
+            FormSalesPOSClosingNoStock.Close()
+        ElseIf report_mark_type = "287" Then
+            ' depresiasi
+            FormPurcAssetDep.Close()
+        ElseIf report_mark_type = "284" Then
+            ' summary tax
+            FormReportBalanceTaxSummaryDet.Close()
+        ElseIf report_mark_type = "288" Then
+            ' setup tax
+            FormReportBalanceTaxSetupDet.Close()
         End If
     End Sub
     Sub show()
@@ -1266,7 +1308,7 @@ GROUP BY rec.`id_prod_order`"
             FormPromoCollectionDet.id = id_report
             FormPromoCollectionDet.is_view = "1"
             FormPromoCollectionDet.ShowDialog()
-        ElseIf report_mark_type = "251" Then
+        ElseIf report_mark_type = "251" Or report_mark_type = "285" Then
             FormBankWithdrawalSum.id_sum = id_report
             FormBankWithdrawalSum.is_view = "1"
             FormBankWithdrawalSum.ShowDialog()
@@ -1292,6 +1334,69 @@ GROUP BY rec.`id_prod_order`"
             'payout VA
             FormVAHistoryDetail.id = id_report
             FormVAHistoryDetail.ShowDialog()
+        ElseIf report_mark_type = "268" Then
+            'WIP Stock Summary Report
+            FormStockQCStockReportSummary.id_wip_summary = id_report
+            FormStockQCStockReportSummary.ShowDialog()
+        ElseIf report_mark_type = "269" Then
+            'Material & Trims Stock Summary Report
+            FormMatStockSummary.id_mat_summary = id_report
+            FormMatStockSummary.ShowDialog()
+        ElseIf report_mark_type = "273" Then
+            'raw material propose
+            FormMasterRawMatPps.action = "upd"
+            FormMasterRawMatPps.id_pps = id_report
+            FormMasterRawMatPps.is_view = "1"
+            FormMasterRawMatPps.ShowDialog()
+        ElseIf report_mark_type = "274" Then
+            'Propose additional cost
+            FormAdditionalCostDet.id_pps = id_report
+            FormAdditionalCostDet.ShowDialog()
+        ElseIf report_mark_type = "275" Or report_mark_type = "279" Then
+            'propose return mail
+            FormSalesReturnOrderMailDet.id_mail_3pl = id_report
+            FormSalesReturnOrderMailDet.ShowDialog()
+        ElseIf report_mark_type = "278" Then
+            'marketplace oos
+            FormOLStoreOOSDetail.is_view = "1"
+            FormOLStoreOOSDetail.id = id_report
+            FormOLStoreOOSDetail.ShowDialog()
+        ElseIf report_mark_type = "280" Then
+            'Inv Claim Lain2
+            FormInvoiceClaimOther.id_invoice = id_report
+            FormInvoiceClaimOther.ShowDialog()
+        ElseIf report_mark_type = "241" Then
+            FormAdjustmentOGDet.id_adjustment = id_report
+            FormAdjustmentOGDet.ShowDialog()
+        ElseIf report_mark_type = "281" Then
+            'inv price recon
+            FormSalesPosPriceRecon.id = id_report
+            FormSalesPosPriceRecon.action = "upd"
+            FormSalesPosPriceRecon.is_view = "1"
+            FormSalesPosPriceRecon.ShowDialog()
+        ElseIf report_mark_type = "282" Then
+            'payout zalora
+            FormPayoutZaloraDet.id = id_report
+            FormPayoutZaloraDet.is_view = "1"
+            FormPayoutZaloraDet.ShowDialog()
+        ElseIf report_mark_type = "283" Then
+            'closing no stock
+            FormSalesPOSClosingNoStock.id = id_report
+            FormSalesPOSClosingNoStock.is_view = "1"
+            FormSalesPOSClosingNoStock.ShowDialog()
+        ElseIf report_mark_type = "287" Then
+            'depresiasi
+            FormPurcAssetDep.is_view = "1"
+            FormPurcAssetDep.id_dep = id_report
+            FormPurcAssetDep.ShowDialog()
+        ElseIf report_mark_type = "284" Then
+            'summary tax
+            FormReportBalanceTaxSummaryDet.id_summary = id_report
+            FormReportBalanceTaxSummaryDet.ShowDialog()
+        ElseIf report_mark_type = "288" Then
+            'setup tax
+            FormReportBalanceTaxSetupDet.id_setup_tax = id_report
+            FormReportBalanceTaxSetupDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2281,7 +2386,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_ol_store_ret_req"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "251" Then
+        ElseIf report_mark_type = "251" Or report_mark_type = "285" Then
             'bbk sumamry
             table_name = "tb_pn_summary"
             field_id = "id_pn_summary"
@@ -2315,6 +2420,84 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_virtual_acc_trans"
             field_number = "number"
             field_date = "generate_date"
+        ElseIf report_mark_type = "268" Then
+            table_name = "tb_wip_summary"
+            field_id = "id_wip_summary"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "269" Then
+            table_name = "tb_mat_summary"
+            field_id = "id_mat_summary"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "273" Then
+            table_name = "tb_m_mat_det_pps"
+            field_id = "id_mat_det_pps"
+            field_number = "mat_det_code"
+            field_date = "mat_det_date"
+        ElseIf report_mark_type = "274" Then
+            'Propose additional cost
+            table_name = "tb_additional_cost_pps"
+            field_id = "id_additional_cost_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "275" Or report_mark_type = "279" Then
+            'propose return mail
+            table_name = "tb_sales_return_order_mail_3pl"
+            field_id = "id_mail_3pl"
+            field_number = "number"
+            field_date = "updated_date"
+            If report_mark_type = "279" Then
+                field_date = "created_date"
+            End If
+        ElseIf report_mark_type = "280" Then
+            'Inv Claim Lain-lain
+            table_name = "tb_inv_claim_other"
+            field_id = "id_inv_claim_other"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "241" Then
+            'adj og
+            table_name = "tb_adjustment_og"
+            field_id = "id_adjustment"
+            field_number = "number"
+            field_date = "created_at"
+        ElseIf report_mark_type = "281" Then
+            'recon price
+            table_name = "tb_sales_pos_recon"
+            field_id = "id_sales_pos_recon"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "282" Then
+            'payout zalora
+            table_name = "tb_payout_zalora"
+            field_id = "id_payout_zalora"
+            field_number = "statement_number"
+            field_date = "sync_date"
+        ElseIf report_mark_type = "283" Then
+            'closing no stok
+            table_name = "tb_sales_pos_oos_recon"
+            field_id = "id_sales_pos_oos_recon"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "287" Then
+            'depresiasi
+            table_name = "tb_asset_dep_pps"
+            field_id = "id_asset_dep_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "288" Then
+            'setup tax
+            table_name = "tb_setup_tax_installment"
+            field_id = "id_setup_tax"
+            field_number = "number"
+            field_date = "created_at"
+        ElseIf report_mark_type = "284" Then
+            'summary tax
+            table_name = "tb_tax_pph_summary"
+            field_id = "id_summary"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

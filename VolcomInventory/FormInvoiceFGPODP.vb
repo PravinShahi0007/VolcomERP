@@ -102,7 +102,14 @@
 
                     SLEPayType.Properties.ReadOnly = True
                 End If
+                If doc_type = "4" Then
+                    TEDocType.Text = "Khusus"
+                Else
+                    TEDocType.Text = "Umum"
+                End If
             Else
+                TEDocType.Text = "FGPO"
+
                 GCReff.OptionsColumn.AllowFocus = False
                 GCDescription.OptionsColumn.AllowFocus = False
                 GCQty.OptionsColumn.AllowFocus = False
@@ -202,6 +209,13 @@ INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
+                If data.Rows(0)("doc_type").ToString = "2" Then
+                    TEDocType.Text = "FGPO"
+                ElseIf data.Rows(0)("doc_type").ToString = "4" Then
+                    TEDocType.Text = "Khusus"
+                Else
+                    TEDocType.Text = "Umum"
+                End If
                 TENumber.Text = data.Rows(0)("number").ToString
                 DEDateCreated.EditValue = data.Rows(0)("created_date")
                 DEDueDate.EditValue = data.Rows(0)("due_date")
@@ -413,7 +427,14 @@ WHERE c.id_comp='" + SLEVendor.EditValue.ToString + "' "
                 is_ok = False
                 Exit For
             End If
-            If Not GVList.GetRowCellValue(i, "id_currency").ToString = GVList.GetRowCellValue(0, "id_currency").ToString Or Not GVList.GetRowCellValue(i, "kurs").ToString = GVList.GetRowCellValue(0, "kurs").ToString Then
+
+            If GVList.GetRowCellValue(i, "pph_percent") > 0 And GVList.GetRowCellValue(i, "id_acc_pph").ToString = "" Then
+                is_ok = False
+                Exit For
+            End If
+
+            If Not GVList.GetRowCellValue(i, "id_currency").ToString = GVList.GetRowCellValue(0, "id_currency").ToString Then
+                'Or Not GVList.GetRowCellValue(i, "kurs").ToString = GVList.GetRowCellValue(0, "kurs").ToString
                 is_cur_ok = False
                 Exit For
             End If
@@ -467,7 +488,9 @@ WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_
         ElseIf is_not_mapping Then
             warningCustom("This vendor AP account is not set.")
         ElseIf Not is_cur_ok Then
-            warningCustom("Make sure currency and kurs is same")
+            warningCustom("Make sure currency is same")
+        ElseIf TETotal.EditValue < 0 Then
+            warningCustom("Value cant be negative.")
         Else
             If id_invoice = "-1" Then
                 'header
@@ -562,7 +585,7 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToSt
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         ReportFGPODP.id_pn_fgpo = id_invoice
-        Dim q_print As String = "Select pnd.`id_prod_order`,po.prod_order_number,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note`
+        Dim q_print As String = "Select pnd.`id_prod_order`,IFNULL(po.prod_order_number,pnd.report_number) AS prod_order_number,pnd.id_acc,pnd.`id_report` As id_report,pnd.report_mark_type, pnd.`report_number`, pnd.`info_design`, pnd.`id_pn_fgpo_det`, pnd.`qty`,pnd.`vat`, pnd.`inv_number`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency, pnd.`note`
 ,accpph.acc_description AS coa_desc_pph,pnd.pph_percent
 FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
@@ -630,7 +653,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
             dp = Decimal.Parse(dt_dp.Rows(0)("tot_dp").ToString).ToString("N2")
         End If
         'Parse val
-        Dim query As String = "SELECT '" & TENumber.Text & "' AS number,'" & addSlashes(MENote.Text) & "' AS note,'" & ConvertCurrencyToIndonesian(TEGrandTotal.EditValue) & "' AS tot_say,'" & SLEPayType.Text & "' AS type,'" & SLEVendor.Text & "' AS comp_name,'" & DERefDate.Text & "' AS ref_date,'" & DEDueDate.Text & "' AS due_date,'" & DEDueDateInv.Text & "' AS due_date_inv,'" & tot & "' AS total_amount,'" & tot_vat & "' AS total_vat,'" & dp & "' AS tot_dp,'" & TEGrandTotal.Text & "' AS total_after_vat,'" & DEDateCreated.Text & "' AS date_created,DATE_FORMAT(NOW(),'%d %M %Y') AS printed_date"
+        Dim query As String = "SELECT '" & TENumber.Text & "' AS number,'" & addSlashes(MENote.Text) & "' AS note,'" & ConvertCurrencyToIndonesian(TEGrandTotal.EditValue) & "' AS tot_say,'" & If(doc_type = 2, "FGPO", If(doc_type = 4, "Khusus", "Umum")) & " - " & SLEPayType.Text & "' AS type,'" & SLEVendor.Text & "' AS comp_name,'" & DERefDate.Text & "' AS ref_date,'" & DEDueDate.Text & "' AS due_date,'" & DEDueDateInv.Text & "' AS due_date_inv,'" & tot & "' AS total_amount,'" & tot_vat & "' AS total_vat,'" & dp & "' AS tot_dp,'" & TEGrandTotal.Text & "' AS total_after_vat,'" & DEDateCreated.Text & "' AS date_created,DATE_FORMAT(NOW(),'%d %M %Y') AS printed_date"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Report.DataSource = data
 
@@ -682,6 +705,10 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
 
     Private Sub GVList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVList.CellValueChanged
         If e.Column.FieldName = "value_bef_kurs" Or e.Column.FieldName = "kurs" Or e.Column.FieldName = "vat" Or e.Column.FieldName = "pph_percent" Then
+            If doc_type = "4" And e.Column.FieldName = "value_bef_kurs" Then
+                GVList.SetFocusedRowCellValue("vat", Decimal.Round(GVList.GetFocusedRowCellValue("valuex") * (Decimal.Parse(get_setup_field("vat_inv_default")) / 100)))
+            End If
+
             calculate()
         End If
     End Sub

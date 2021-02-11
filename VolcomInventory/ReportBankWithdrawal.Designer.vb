@@ -24,10 +24,31 @@ Partial Public Class ReportBankWithdrawal
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCOA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCCDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumnCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLECurrency = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCurrencyHide = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnBBaldue = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,6 +97,10 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLECurrency, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,27 +118,50 @@ Partial Public Class ReportBankWithdrawal
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(772.9999!, 162.6667!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(772.9997!, 162.6667!)
         Me.WinControlContainer1.WinControl = Me.GCList
         '
         'GCList
         '
-        Me.GCList.Location = New System.Drawing.Point(0, 129)
+        Me.GCList.Location = New System.Drawing.Point(0, 47)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal})
+        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal, Me.RepositoryItemTextEdit1, Me.SLECurrency, Me.RepositoryItemMemoEdit1})
         Me.GCList.Size = New System.Drawing.Size(742, 156)
         Me.GCList.TabIndex = 18
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnNumber, Me.GridColumnNote, Me.GridColumn2, Me.GridColumnPayment, Me.GridColumnBBaldue})
+        Me.GVList.AppearancePrint.Row.Options.UseTextOptions = True
+        Me.GVList.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn28, Me.GridColumn4, Me.GridColumnIdRec, Me.GridColumn3, Me.GridColumn29, Me.GridColumn11, Me.GridColumnCOA, Me.GridColumnCCDesc, Me.GridColumn19, Me.GridColumnNumber, Me.GridColumnNote, Me.GridColumnCurrency, Me.GridColumnCurrencyHide, Me.GridColumn22, Me.GridColumn21, Me.GridColumn2, Me.GridColumnVendor, Me.GridColumn18, Me.GridColumnPayment, Me.GridColumnBBaldue})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVList.OptionsView.RowAutoHeight = True
         Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Acc Name"
+        Me.GridColumn20.FieldName = "acc_name"
+        Me.GridColumn20.Name = "GridColumn20"
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "ID acc"
+        Me.GridColumn28.FieldName = "id_acc"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID Det"
+        Me.GridColumn4.FieldName = "id_pn_det"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.AllowFocus = False
         '
         'GridColumnIdRec
         '
@@ -121,23 +169,191 @@ Partial Public Class ReportBankWithdrawal
         Me.GridColumnIdRec.FieldName = "id_report"
         Me.GridColumnIdRec.Name = "GridColumnIdRec"
         Me.GridColumnIdRec.OptionsColumn.AllowEdit = False
+        Me.GridColumnIdRec.OptionsColumn.AllowFocus = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Report Mark Type"
+        Me.GridColumn3.FieldName = "report_mark_type"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.AllowFocus = False
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Acc Description"
+        Me.GridColumn29.FieldName = "acc_description"
+        Me.GridColumn29.Name = "GridColumn29"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn11.Caption = "No"
+        Me.GridColumn11.FieldName = "no"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.AllowFocus = False
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 91
+        '
+        'GridColumnCOA
+        '
+        Me.GridColumnCOA.Caption = "COA"
+        Me.GridColumnCOA.FieldName = "acc_name"
+        Me.GridColumnCOA.Name = "GridColumnCOA"
+        Me.GridColumnCOA.OptionsColumn.AllowEdit = False
+        Me.GridColumnCOA.OptionsColumn.AllowFocus = False
+        Me.GridColumnCOA.Visible = True
+        Me.GridColumnCOA.VisibleIndex = 1
+        Me.GridColumnCOA.Width = 81
+        '
+        'GridColumnCCDesc
+        '
+        Me.GridColumnCCDesc.Caption = "CC"
+        Me.GridColumnCCDesc.FieldName = "comp_number"
+        Me.GridColumnCCDesc.Name = "GridColumnCCDesc"
+        Me.GridColumnCCDesc.OptionsColumn.AllowEdit = False
+        Me.GridColumnCCDesc.OptionsColumn.AllowFocus = False
+        Me.GridColumnCCDesc.Visible = True
+        Me.GridColumnCCDesc.VisibleIndex = 2
+        Me.GridColumnCCDesc.Width = 74
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn19.Caption = "D/K"
+        Me.GridColumn19.FieldName = "dc_code"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
+        Me.GridColumn19.OptionsColumn.AllowFocus = False
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 6
+        Me.GridColumn19.Width = 86
         '
         'GridColumnNumber
         '
-        Me.GridColumnNumber.Caption = "Number"
+        Me.GridColumnNumber.Caption = "Reff"
         Me.GridColumnNumber.FieldName = "number"
         Me.GridColumnNumber.Name = "GridColumnNumber"
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
+        Me.GridColumnNumber.OptionsColumn.AllowFocus = False
         Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 0
+        Me.GridColumnNumber.VisibleIndex = 3
+        Me.GridColumnNumber.Width = 135
         '
         'GridColumnNote
         '
-        Me.GridColumnNote.Caption = "Note"
+        Me.GridColumnNote.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnNote.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.GridColumnNote.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnNote.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnNote.Caption = "Description"
+        Me.GridColumnNote.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 4
+        Me.GridColumnNote.VisibleIndex = 5
+        Me.GridColumnNote.Width = 328
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Appearance.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'GridColumnCurrency
+        '
+        Me.GridColumnCurrency.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCurrency.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurrency.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCurrency.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurrency.Caption = "Curr"
+        Me.GridColumnCurrency.ColumnEdit = Me.SLECurrency
+        Me.GridColumnCurrency.FieldName = "id_currency"
+        Me.GridColumnCurrency.MinWidth = 50
+        Me.GridColumnCurrency.Name = "GridColumnCurrency"
+        Me.GridColumnCurrency.Visible = True
+        Me.GridColumnCurrency.VisibleIndex = 9
+        Me.GridColumnCurrency.Width = 150
+        '
+        'SLECurrency
+        '
+        Me.SLECurrency.AutoHeight = False
+        Me.SLECurrency.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECurrency.Name = "SLECurrency"
+        Me.SLECurrency.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn25})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "ID Currency"
+        Me.GridColumn24.FieldName = "id_currency"
+        Me.GridColumn24.Name = "GridColumn24"
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Currency"
+        Me.GridColumn25.FieldName = "currency"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 0
+        '
+        'GridColumnCurrencyHide
+        '
+        Me.GridColumnCurrencyHide.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCurrencyHide.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurrencyHide.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCurrencyHide.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurrencyHide.Caption = "Curr"
+        Me.GridColumnCurrencyHide.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCurrencyHide.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCurrencyHide.FieldName = "currency"
+        Me.GridColumnCurrencyHide.Name = "GridColumnCurrencyHide"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.Caption = "Kurs"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "kurs"
+        Me.GridColumn22.MinWidth = 60
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 11
+        Me.GridColumn22.Width = 100
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.Caption = "Amount"
+        Me.GridColumn21.DisplayFormat.FormatString = "N2"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "val_bef_kurs"
+        Me.GridColumn21.MinWidth = 80
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_bef_kurs", "{0:N2}")})
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 10
+        Me.GridColumn21.Width = 150
         '
         'GridColumn2
         '
@@ -145,15 +361,57 @@ Partial Public Class ReportBankWithdrawal
         Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.Caption = "DP Already Paid"
+        Me.GridColumn2.Caption = "Already Paid"
         Me.GridColumn2.DisplayFormat.FormatString = "N2"
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "total_dp"
+        Me.GridColumn2.FieldName = "total_pay"
+        Me.GridColumn2.MinWidth = 80
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
-        Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_dp", "{0:N2}")})
+        Me.GridColumn2.OptionsColumn.AllowFocus = False
+        Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_pay", "{0:N2}")})
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 7
+        Me.GridColumn2.Width = 191
+        '
+        'GridColumnVendor
+        '
+        Me.GridColumnVendor.Caption = "Vendor"
+        Me.GridColumnVendor.FieldName = "vendor"
+        Me.GridColumnVendor.Name = "GridColumnVendor"
+        Me.GridColumnVendor.OptionsColumn.AllowEdit = False
+        Me.GridColumnVendor.OptionsColumn.AllowFocus = False
+        Me.GridColumnVendor.Visible = True
+        Me.GridColumnVendor.VisibleIndex = 4
+        Me.GridColumnVendor.Width = 91
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.Caption = "Amount in Rp"
+        Me.GridColumn18.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn18.DisplayFormat.FormatString = "N2"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn18.FieldName = "value_view"
+        Me.GridColumn18.MinWidth = 80
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
+        Me.GridColumn18.OptionsColumn.AllowFocus = False
+        Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_view", "{0:N2}")})
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 12
+        Me.GridColumn18.Width = 500
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'GridColumnPayment
         '
@@ -167,9 +425,9 @@ Partial Public Class ReportBankWithdrawal
         Me.GridColumnPayment.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPayment.FieldName = "value"
         Me.GridColumnPayment.Name = "GridColumnPayment"
+        Me.GridColumnPayment.OptionsColumn.AllowEdit = False
+        Me.GridColumnPayment.OptionsColumn.AllowFocus = False
         Me.GridColumnPayment.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
-        Me.GridColumnPayment.Visible = True
-        Me.GridColumnPayment.VisibleIndex = 3
         '
         'RITEDecimal
         '
@@ -188,11 +446,14 @@ Partial Public Class ReportBankWithdrawal
         Me.GridColumnBBaldue.DisplayFormat.FormatString = "N2"
         Me.GridColumnBBaldue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnBBaldue.FieldName = "balance_due"
+        Me.GridColumnBBaldue.MinWidth = 80
         Me.GridColumnBBaldue.Name = "GridColumnBBaldue"
         Me.GridColumnBBaldue.OptionsColumn.AllowEdit = False
+        Me.GridColumnBBaldue.OptionsColumn.AllowFocus = False
         Me.GridColumnBBaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance_due", "{0:N2}")})
         Me.GridColumnBBaldue.Visible = True
-        Me.GridColumnBBaldue.VisibleIndex = 2
+        Me.GridColumnBBaldue.VisibleIndex = 8
+        Me.GridColumnBBaldue.Width = 191
         '
         'RICECheckReceive
         '
@@ -595,10 +856,10 @@ Partial Public Class ReportBankWithdrawal
         '
         'LBookTrf
         '
-        Me.LBookTrf.LocationFloat = New DevExpress.Utils.PointFloat(673.0!, 26.4167!)
+        Me.LBookTrf.LocationFloat = New DevExpress.Utils.PointFloat(470.2502!, 26.4167!)
         Me.LBookTrf.Name = "LBookTrf"
         Me.LBookTrf.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LBookTrf.SizeF = New System.Drawing.SizeF(100.0!, 13.16663!)
+        Me.LBookTrf.SizeF = New System.Drawing.SizeF(302.7498!, 13.16663!)
         Me.LBookTrf.StylePriority.UseTextAlignment = False
         Me.LBookTrf.Text = "Book Transfer"
         Me.LBookTrf.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -685,6 +946,10 @@ Partial Public Class ReportBankWithdrawal
         Me.Version = "15.1"
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLECurrency, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -715,17 +980,6 @@ Partial Public Class ReportBankWithdrawal
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents LNote As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
-    Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnIdRec As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPayment As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RITEDecimal As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents GridColumnBBaldue As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RICECheckReceive As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
@@ -745,4 +999,36 @@ Partial Public Class ReportBankWithdrawal
     Friend WithEvents XrLabel24 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel25 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel26 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
+    Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdRec As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCOA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCCDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents GridColumnCurrency As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLECurrency As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCurrencyHide As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVendor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumnPayment As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RITEDecimal As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumnBBaldue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICECheckReceive As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

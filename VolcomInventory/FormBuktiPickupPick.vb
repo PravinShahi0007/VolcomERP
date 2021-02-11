@@ -1,5 +1,6 @@
 ﻿Public Class FormBuktiPickupPick
     Private Sub FormBuktiPickupPick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        view_comp_group()
         view_comp()
 
         SLUECompany.EditValue = 0
@@ -47,6 +48,7 @@
         where_not_in = where_not_in.Substring(0, where_not_in.Length - 1)
 
         'store
+        Dim where_group As String = If(SLUEGroup.EditValue.ToString = "0", "", "AND d.id_comp_group = " + SLUEGroup.EditValue.ToString)
         Dim where_store As String = If(SLUECompany.EditValue.ToString = "0", "", "AND d.id_comp = " + SLUECompany.EditValue.ToString)
 
         'query
@@ -67,7 +69,7 @@
             LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = a.id_combine
             INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = b.id_so_status
             LEFT JOIN tb_m_comp_group dg ON d.id_comp_group = dg.id_comp_group
-            WHERE a.id_pl_sales_order_del NOT IN (" + where_not_in + ") AND (a.pl_sales_order_del_date >= '" + date_from + "' AND a.pl_sales_order_del_date <= '" + date_to + "') AND (a.id_report_status = 3 OR a.id_report_status=6) " + where_store + "
+            WHERE a.id_pl_sales_order_del NOT IN (" + where_not_in + ") AND (a.pl_sales_order_del_date >= '" + date_from + "' AND a.pl_sales_order_del_date <= '" + date_to + "') AND (a.id_report_status = 3 OR a.id_report_status=6) " + where_group + " " + where_store + "
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -122,9 +124,31 @@
         GVList.ActiveFilterString = ""
     End Sub
 
+    Sub view_comp_group()
+        Dim query As String = "(SELECT 0 AS id_comp_group, 'All Group' AS comp_group) UNION ALL (SELECT id_comp_group, CONCAT(comp_group, ' - ', description) AS comp_group FROM tb_m_comp_group)"
+
+        viewSearchLookupQuery(SLUEGroup, query, "id_comp_group", "comp_group", "id_comp_group")
+    End Sub
+
     Sub view_comp()
-        Dim query As String = "(SELECT 0 AS id_comp, 'All Store' AS comp_name) UNION ALL(SELECT id_comp, CONCAT(comp_number, ' - ', comp_name) AS comp_name FROM tb_m_comp WHERE id_comp_cat = 6)"
+        Dim where_group As String = If(SLUEGroup.EditValue.ToString = "0", "", "AND id_comp_group = " + SLUEGroup.EditValue.ToString)
+
+        Dim query As String = "(SELECT 0 AS id_comp, 'All Store' AS comp_name) UNION ALL (SELECT id_comp, CONCAT(comp_number, ' - ', comp_name) AS comp_name FROM tb_m_comp WHERE id_comp_cat = 6 " + where_group + ")"
 
         viewSearchLookupQuery(SLUECompany, query, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Private Sub CESelectAll_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAll.CheckedChanged
+        For i = 0 To GVList.RowCount - 1
+            If CESelectAll.EditValue Then
+                GVList.SetRowCellValue(i, "is_select", "yes")
+            Else
+                GVList.SetRowCellValue(i, "is_select", "no")
+            End If
+        Next
+    End Sub
+
+    Private Sub SLUEGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEGroup.EditValueChanged
+        view_comp()
     End Sub
 End Class

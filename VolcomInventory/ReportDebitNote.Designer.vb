@@ -32,16 +32,22 @@ Partial Public Class ReportDebitNote
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIMDescription = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCKurs = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCClaimPercent = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPriceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCClaimUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCAmoUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPriceUnit = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCClaimPcs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LTanggal = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
@@ -50,13 +56,13 @@ Partial Public Class ReportDebitNote
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LKepada = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LTerbilang = New DevExpress.XtraReports.UI.XRLabel()
         Me.LSay = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LDengan = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -96,7 +102,10 @@ Partial Public Class ReportDebitNote
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn13, Me.GridColumn12, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
+        Me.GVItemList.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVItemList.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVItemList.ColumnPanelRowHeight = 50
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn13, Me.GridColumn12, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GCKurs, Me.GCClaimPercent, Me.GridColumn10, Me.GridColumn8, Me.GCPriceUSD, Me.GCClaimUSD, Me.GCAmoUSD, Me.GCPriceUnit, Me.GridColumn9, Me.GCClaimPcs, Me.GridColumn11})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -104,6 +113,9 @@ Partial Public Class ReportDebitNote
         Me.GVItemList.OptionsBehavior.ReadOnly = True
         Me.GVItemList.OptionsCustomization.AllowGroup = False
         Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVItemList.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVItemList.OptionsView.AllowHtmlDrawHeaders = True
+        Me.GVItemList.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsView.RowAutoHeight = True
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
@@ -133,7 +145,7 @@ Partial Public Class ReportDebitNote
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
-        Me.GridColumn3.Width = 44
+        Me.GridColumn3.Width = 51
         '
         'GridColumn4
         '
@@ -142,7 +154,7 @@ Partial Public Class ReportDebitNote
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 118
+        Me.GridColumn4.Width = 138
         '
         'GridColumn5
         '
@@ -151,7 +163,7 @@ Partial Public Class ReportDebitNote
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
-        Me.GridColumn5.Width = 118
+        Me.GridColumn5.Width = 138
         '
         'GridColumn6
         '
@@ -161,41 +173,123 @@ Partial Public Class ReportDebitNote
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
-        Me.GridColumn6.Width = 118
+        Me.GridColumn6.Width = 138
         '
         'RIMDescription
         '
         Me.RIMDescription.Name = "RIMDescription"
         '
-        'GridColumn7
+        'GCKurs
         '
-        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn7.Caption = "Claim (%)"
-        Me.GridColumn7.DisplayFormat.FormatString = "N2"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "claim_percent"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 4
-        Me.GridColumn7.Width = 118
+        Me.GCKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GCKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCKurs.Caption = "Kurs"
+        Me.GCKurs.DisplayFormat.FormatString = "N2"
+        Me.GCKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCKurs.FieldName = "kurs"
+        Me.GCKurs.Name = "GCKurs"
+        Me.GCKurs.Visible = True
+        Me.GCKurs.VisibleIndex = 8
+        Me.GCKurs.Width = 90
+        '
+        'GCClaimPercent
+        '
+        Me.GCClaimPercent.AppearanceCell.Options.UseTextOptions = True
+        Me.GCClaimPercent.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCClaimPercent.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCClaimPercent.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCClaimPercent.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCClaimPercent.Caption = "Claim <br> (%)"
+        Me.GCClaimPercent.DisplayFormat.FormatString = "N2"
+        Me.GCClaimPercent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCClaimPercent.FieldName = "claim_percent"
+        Me.GCClaimPercent.Name = "GCClaimPercent"
+        Me.GCClaimPercent.Visible = True
+        Me.GCClaimPercent.VisibleIndex = 4
+        Me.GCClaimPercent.Width = 99
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "ID Currency"
+        Me.GridColumn10.FieldName = "id_currency"
+        Me.GridColumn10.Name = "GridColumn10"
         '
         'GridColumn8
         '
         Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn8.Caption = "Price / Unit (Rp)"
-        Me.GridColumn8.DisplayFormat.FormatString = "N2"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "unit_price"
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.Caption = "Currency"
+        Me.GridColumn8.FieldName = "currency"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 5
-        Me.GridColumn8.Width = 118
+        Me.GridColumn8.Width = 90
+        '
+        'GCPriceUSD
+        '
+        Me.GCPriceUSD.AppearanceCell.Options.UseTextOptions = True
+        Me.GCPriceUSD.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCPriceUSD.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCPriceUSD.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCPriceUSD.Caption = "Price / Unit <br> (USD)"
+        Me.GCPriceUSD.DisplayFormat.FormatString = "N2"
+        Me.GCPriceUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCPriceUSD.FieldName = "unit_price_usd"
+        Me.GCPriceUSD.Name = "GCPriceUSD"
+        Me.GCPriceUSD.Visible = True
+        Me.GCPriceUSD.VisibleIndex = 6
+        Me.GCPriceUSD.Width = 90
+        '
+        'GCClaimUSD
+        '
+        Me.GCClaimUSD.AppearanceCell.Options.UseTextOptions = True
+        Me.GCClaimUSD.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCClaimUSD.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCClaimUSD.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCClaimUSD.Caption = "Claim / Pcs <br> (USD)"
+        Me.GCClaimUSD.DisplayFormat.FormatString = "N2"
+        Me.GCClaimUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCClaimUSD.FieldName = "claim_pcs_usd"
+        Me.GCClaimUSD.Name = "GCClaimUSD"
+        Me.GCClaimUSD.Visible = True
+        Me.GCClaimUSD.VisibleIndex = 7
+        Me.GCClaimUSD.Width = 90
+        '
+        'GCAmoUSD
+        '
+        Me.GCAmoUSD.AppearanceCell.Options.UseTextOptions = True
+        Me.GCAmoUSD.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCAmoUSD.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCAmoUSD.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCAmoUSD.Caption = "Total Amount <br> (USD)"
+        Me.GCAmoUSD.DisplayFormat.FormatString = "N2"
+        Me.GCAmoUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCAmoUSD.FieldName = "claim_amo_usd"
+        Me.GCAmoUSD.Name = "GCAmoUSD"
+        Me.GCAmoUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_amo_usd", "{0:N2}")})
+        Me.GCAmoUSD.Visible = True
+        Me.GCAmoUSD.VisibleIndex = 12
+        Me.GCAmoUSD.Width = 122
+        '
+        'GCPriceUnit
+        '
+        Me.GCPriceUnit.AppearanceCell.Options.UseTextOptions = True
+        Me.GCPriceUnit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCPriceUnit.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCPriceUnit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCPriceUnit.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCPriceUnit.Caption = "Price / Unit <br> (Rp)"
+        Me.GCPriceUnit.DisplayFormat.FormatString = "N2"
+        Me.GCPriceUnit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCPriceUnit.FieldName = "unit_price"
+        Me.GCPriceUnit.Name = "GCPriceUnit"
+        Me.GCPriceUnit.Visible = True
+        Me.GCPriceUnit.VisibleIndex = 9
+        Me.GCPriceUnit.Width = 143
         '
         'GridColumn9
         '
@@ -210,23 +304,24 @@ Partial Public Class ReportDebitNote
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 6
-        Me.GridColumn9.Width = 118
+        Me.GridColumn9.VisibleIndex = 11
+        Me.GridColumn9.Width = 143
         '
-        'GridColumn10
+        'GCClaimPcs
         '
-        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn10.Caption = "Claim / Pcs (Rp)"
-        Me.GridColumn10.DisplayFormat.FormatString = "N2"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "claim_pcs"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 7
-        Me.GridColumn10.Width = 118
+        Me.GCClaimPcs.AppearanceCell.Options.UseTextOptions = True
+        Me.GCClaimPcs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCClaimPcs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCClaimPcs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCClaimPcs.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GCClaimPcs.Caption = "Claim / Pcs <br> (Rp)"
+        Me.GCClaimPcs.DisplayFormat.FormatString = "N2"
+        Me.GCClaimPcs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCClaimPcs.FieldName = "claim_pcs"
+        Me.GCClaimPcs.Name = "GCClaimPcs"
+        Me.GCClaimPcs.Visible = True
+        Me.GCClaimPcs.VisibleIndex = 10
+        Me.GCClaimPcs.Width = 143
         '
         'GridColumn11
         '
@@ -234,15 +329,16 @@ Partial Public Class ReportDebitNote
         Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.Caption = "Total Amount (Rp)"
+        Me.GridColumn11.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn11.Caption = "Total Amount <br> (Rp)"
         Me.GridColumn11.DisplayFormat.FormatString = "N2"
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "claim_amo"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "claim_amo", "{0:N2}")})
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 8
-        Me.GridColumn11.Width = 136
+        Me.GridColumn11.VisibleIndex = 13
+        Me.GridColumn11.Width = 141
         '
         'RepositoryItemSpinEdit1
         '
@@ -268,17 +364,17 @@ Partial Public Class ReportDebitNote
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel7, Me.XrLabel8, Me.XrLabel9, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrPictureBox1, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1})
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LTanggal, Me.XrLabel8, Me.XrLabel9, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrPictureBox1, Me.XrLabel3, Me.XrLabel2, Me.LKepada})
         Me.ReportHeader.HeightF = 171.475!
         Me.ReportHeader.Name = "ReportHeader"
         '
-        'XrLabel7
+        'LTanggal
         '
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(799.0925!, 125.0001!)
-        Me.XrLabel7.Name = "XrLabel7"
-        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(71.02411!, 18.0!)
-        Me.XrLabel7.Text = "TANGGAL"
+        Me.LTanggal.LocationFloat = New DevExpress.Utils.PointFloat(799.0925!, 125.0001!)
+        Me.LTanggal.Name = "LTanggal"
+        Me.LTanggal.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LTanggal.SizeF = New System.Drawing.SizeF(71.02411!, 18.0!)
+        Me.LTanggal.Text = "TANGGAL"
         '
         'XrLabel8
         '
@@ -346,28 +442,28 @@ Partial Public Class ReportDebitNote
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.Text = "[comp_name]"
         '
-        'XrLabel1
+        'LKepada
         '
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 107.0!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(67.01389!, 23.0!)
-        Me.XrLabel1.Text = "KEPADA :"
+        Me.LKepada.LocationFloat = New DevExpress.Utils.PointFloat(0!, 107.0!)
+        Me.LKepada.Name = "LKepada"
+        Me.LKepada.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LKepada.SizeF = New System.Drawing.SizeF(67.01389!, 23.0!)
+        Me.LKepada.Text = "KEPADA :"
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel10, Me.LSay, Me.XrLabel12, Me.XrLabel13, Me.XrLabel14, Me.XrLabel15, Me.XrTable1})
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LTerbilang, Me.LSay, Me.XrLabel12, Me.XrLabel13, Me.LDengan, Me.XrLabel15, Me.XrTable1})
         Me.ReportFooter.HeightF = 116.125!
         Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
-        'XrLabel10
+        'LTerbilang
         '
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(0!, 28.12498!)
-        Me.XrLabel10.Name = "XrLabel10"
-        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(87.51717!, 18.0!)
-        Me.XrLabel10.Text = "Terbilang"
+        Me.LTerbilang.LocationFloat = New DevExpress.Utils.PointFloat(0!, 28.12498!)
+        Me.LTerbilang.Name = "LTerbilang"
+        Me.LTerbilang.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LTerbilang.SizeF = New System.Drawing.SizeF(87.51717!, 18.0!)
+        Me.LTerbilang.Text = "Terbilang"
         '
         'LSay
         '
@@ -392,13 +488,13 @@ Partial Public Class ReportDebitNote
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(12.74515!, 18.00002!)
         Me.XrLabel13.Text = ":"
         '
-        'XrLabel14
+        'LDengan
         '
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(100.2624!, 46.12503!)
-        Me.XrLabel14.Name = "XrLabel14"
-        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(953.7375!, 18.00003!)
-        Me.XrLabel14.Text = "Dengan Pemotongan Invoice"
+        Me.LDengan.LocationFloat = New DevExpress.Utils.PointFloat(100.2624!, 46.12503!)
+        Me.LDengan.Name = "LDengan"
+        Me.LDengan.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LDengan.SizeF = New System.Drawing.SizeF(953.7375!, 18.00003!)
+        Me.LDengan.Text = "Dengan Pemotongan Invoice"
         '
         'XrLabel15
         '
@@ -455,6 +551,25 @@ Partial Public Class ReportDebitNote
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
+    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LKepada As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LTanggal As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents LTerbilang As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LSay As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LDengan As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCItemList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVItemList As DevExpress.XtraGrid.Views.Grid.GridView
@@ -466,29 +581,16 @@ Partial Public Class ReportDebitNote
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIMDescription As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCKurs As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCClaimPercent As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPriceUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCClaimUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCAmoUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPriceUnit As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCClaimPcs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
-    Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
-    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LSay As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
 End Class

@@ -86,6 +86,7 @@ Partial Class FormFGLineList
         Me.SMViewCostHist = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewHistoryProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BBRateManagementToday = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -276,8 +277,8 @@ Partial Class FormFGLineList
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BBSetAddPrc, Me.BBQuickUpdate})
-        Me.BarManager1.MaxItemId = 13
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BBSetAddPrc, Me.BBQuickUpdate, Me.BBRateManagementToday})
+        Me.BarManager1.MaxItemId = 14
         '
         'barDockControlTop
         '
@@ -361,7 +362,7 @@ Partial Class FormFGLineList
         '
         Me.BBSubOther.Caption = "Other Menu"
         Me.BBSubOther.Id = 10
-        Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BBSetAddPrc)})
+        Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BBSetAddPrc), New DevExpress.XtraBars.LinkPersistInfo(Me.BBRateManagementToday)})
         Me.BBSubOther.Name = "BBSubOther"
         '
         'BBSetAddPrc
@@ -700,6 +701,12 @@ Partial Class FormFGLineList
         Me.ProposeChangesToolStripMenuItem.Size = New System.Drawing.Size(235, 22)
         Me.ProposeChangesToolStripMenuItem.Text = "[changes]"
         '
+        'BBRateManagementToday
+        '
+        Me.BBRateManagementToday.Caption = "Today Rate Management"
+        Me.BBRateManagementToday.Id = 13
+        Me.BBRateManagementToday.Name = "BBRateManagementToday"
+        '
         'FormFGLineList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -819,4 +826,5 @@ Partial Class FormFGLineList
     Friend WithEvents ViewHistoryProposeChangesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BBQuickUpdate As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BtnSetActualInStoreDate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BBRateManagementToday As DevExpress.XtraBars.BarButtonItem
 End Class

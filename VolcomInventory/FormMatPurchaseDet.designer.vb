@@ -71,6 +71,7 @@ Partial Class FormMatPurchaseDet
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEPD = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
@@ -128,7 +129,6 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMatPurc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -240,7 +240,7 @@ Partial Class FormMatPurchaseDet
         Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
         Me.BMark.Location = New System.Drawing.Point(20, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(93, 37)
+        Me.BMark.Size = New System.Drawing.Size(102, 37)
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Approval"
         '
@@ -708,6 +708,12 @@ Partial Class FormMatPurchaseDet
         Me.GridColumn5.FieldName = "mat_det_price"
         Me.GridColumn5.Name = "GridColumn5"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "ID Mat Det Price"
+        Me.GridColumn6.FieldName = "id_mat_det_price"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
         'RICEPD
         '
         Me.RICEPD.AutoHeight = False
@@ -914,6 +920,7 @@ Partial Class FormMatPurchaseDet
         Me.PCButton.Name = "PCButton"
         Me.PCButton.Size = New System.Drawing.Size(887, 38)
         Me.PCButton.TabIndex = 18
+        Me.PCButton.Visible = False
         '
         'Bdel
         '
@@ -942,7 +949,6 @@ Partial Class FormMatPurchaseDet
         'BAdd
         '
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAdd.Enabled = False
         Me.BAdd.ImageIndex = 0
         Me.BAdd.ImageList = Me.LargeImageCollection
         Me.BAdd.Location = New System.Drawing.Point(796, 0)
@@ -1334,12 +1340,6 @@ Partial Class FormMatPurchaseDet
         Me.LabelControl3.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "ID Mat Det Price"
-        Me.GridColumn6.FieldName = "id_mat_det_price"
-        Me.GridColumn6.Name = "GridColumn6"
         '
         'FormMatPurchaseDet
         '

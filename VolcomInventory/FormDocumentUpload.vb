@@ -98,6 +98,7 @@
 
                 If IO.File.Exists(FILE_NAME) = True Then
                     Dim processinfo As ProcessStartInfo = New ProcessStartInfo()
+                    processinfo.WindowStyle = ProcessWindowStyle.Maximized
                     processinfo.FileName = FILE_NAME
                     processinfo.WorkingDirectory = path
                     Process.Start(processinfo)
@@ -108,6 +109,7 @@
                 stopCustom("No Supporting Document !")
             End If
         Catch ex As Exception
+            log_error(ex.ToString)
         End Try
     End Sub
 

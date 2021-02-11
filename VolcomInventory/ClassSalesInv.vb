@@ -4,8 +4,8 @@
         Return query
     End Function
 
-    Public Function queryMainReport(ByVal condition_param As String, ByVal order_type_param As String) As String
-        Dim query As String = "CALL view_sales_inv_report('" + condition_param + "', '" + order_type_param + "') "
+    Public Function queryMainReport(ByVal condition_param As String, ByVal order_type_param As String, ByVal is_all_unit_param As String) As String
+        Dim query As String = "CALL view_sales_inv_daily('" + condition_param + "', '" + order_type_param + "', '" + is_all_unit_param + "') "
         Return query
     End Function
 
@@ -101,9 +101,9 @@
 
         'main journal
         Dim query As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) 
-        VALUES ('" + header_number_acc("1") + "','" + report_number + "'," + id_bill_type + ",'" + id_user_prepared + "', '" + trans_date + "','" + reff_date + "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+        VALUES ('','" + report_number + "'," + id_bill_type + ",'" + id_user_prepared + "', '" + trans_date + "','" + reff_date + "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
         Dim id As String = execute_query(query, 0, True, "", "", "", "")
-        increase_inc_acc("1")
+        execute_non_query("CALL gen_number(" + id + ",36)", True, "", "", "", "")
 
         'det journal
         Dim qd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_status_open) 

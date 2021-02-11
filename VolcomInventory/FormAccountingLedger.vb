@@ -6,6 +6,7 @@
         DETo.Properties.MinValue = Now
 
         load_unit()
+        load_cc()
 
         view_acc_from()
         view_acc_to()
@@ -36,6 +37,12 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         'GROUP BY ad.id_comp"
         viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
         SLEUnit.EditValue = "1"
+    End Sub
+
+    Sub load_cc()
+        Dim query As String = "SELECT 0 AS id_comp, 'All' AS comp_number UNION ALL SELECT id_comp, CONCAT(comp_number, ' - ', comp_name) AS comp_number FROM tb_m_comp"
+
+        viewSearchLookupQuery(SLUECC, query, "id_comp", "comp_number", "id_comp")
     End Sub
 
     Private Sub FormAccountingLedger_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -80,7 +87,7 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             acc_name = "(" + acc_name.Substring(0, acc_name.Length - 4) + ")"
         End If
 
-        Dim query As String = "CALL view_acc_ledger('" + Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + acc_name + "','" & SLEUnit.EditValue.ToString & "')"
+        Dim query As String = "CALL view_acc_ledger('" + Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + acc_name + "','" & SLEUnit.EditValue.ToString & "', '" & SLUECC.EditValue.ToString & "')"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -145,6 +152,7 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
 
             report.XLPeriod.Text = DEFrom.Text + " - " + DETo.Text
             report.XLAccount.Text = SLUEFrom.Text + " - " + SLUETo.Text
+            report.LUnit.Text = SLEUnit.Text
 
             Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
@@ -257,5 +265,46 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             view_acc_to()
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub BExportRaw_Click(sender As Object, e As EventArgs) Handles BExportRaw.Click
+        If GVAccountingLedger.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "buku_besar.xlsx"
+            exportToXLS(path, "buku_besar", GCAccountingLedger)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.ShowGroupSummaries = DevExpress.Utils.DefaultBoolean.True
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.True
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BSearchVoucher_Click(sender As Object, e As EventArgs) Handles BSearchVoucher.Click
+        FormViewJournal.is_enable_search = True
+        FormViewJournal.ShowDialog()
     End Sub
 End Class

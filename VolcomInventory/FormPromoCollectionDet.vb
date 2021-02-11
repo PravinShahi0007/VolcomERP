@@ -6,10 +6,15 @@
     Dim is_confirm As String = "-1"
     Dim rmt As String = "250"
     Public dt As DataTable
+    Dim is_use_discount_code As String = "-1"
+    Dim id_price_rule As String = "-1"
+    Dim id_comp_group As String = "-1"
+    Dim id_api_type As String = "-1"
 
     Private Sub FormPromoCollectionDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         viewPromoType()
+        viewDiscountCodeList()
         actionLoad()
     End Sub
 
@@ -54,18 +59,26 @@
             DEEnd.EditValue = data.Rows(0)("end_period")
             MENote.Text = data.Rows(0)("note").ToString
             TxtNumber.Text = data.Rows(0)("number").ToString
+            TxtStore.Text = data.Rows(0)("comp_group").ToString
             DECreated.EditValue = data.Rows(0)("created_date")
             TxtCreatedBy.Text = data.Rows(0)("created_by_name").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
             TxtPromoName.Text = data.Rows(0)("promo_name").ToString
+            TxtUseDiscountCode.Text = data.Rows(0)("use_discount_code").ToString
+            TxtDiscountTitle.Text = data.Rows(0)("discount_title").ToString
+            is_use_discount_code = data.Rows(0)("is_use_discount_code").ToString
+            id_price_rule = data.Rows(0)("price_rule_id").ToString
+            rmt = data.Rows(0)("report_mark_type").ToString
+            id_api_type = data.Rows(0)("id_api_type").ToString
+            '
 
             'properti
             If is_confirm = "2" Then
                 'cek date
                 Dim min_date As DateTime
-                Dim qmin As String = "SELECT DATE(DATE_ADD(c.end_period,INTERVAL 1 DAY)) AS `min_date` FROM tb_ol_promo_collection c WHERE c.id_report_status=6 ORDER BY c.id_ol_promo_collection DESC LIMIT 1 "
+                Dim qmin As String = "SELECT DATE(DATE_ADD(c.end_period,INTERVAL 1 DAY)) AS `min_date` FROM tb_ol_promo_collection c WHERE c.id_report_status=6 AND c.is_use_discount_code=2 ORDER BY c.id_ol_promo_collection DESC LIMIT 1 "
                 Dim dmin As DataTable = execute_query(qmin, -1, True, "", "", "", "")
                 If dmin.Rows.Count > 0 Then
                     min_date = dmin.Rows(0)("min_date")
@@ -201,9 +214,15 @@
             MENote.Enabled = True
             GVData.OptionsBehavior.ReadOnly = False
             SLEPromoType.Enabled = True
-            DEStart.Enabled = True
-            DEEnd.Enabled = True
+            If is_use_discount_code = "1" Then
+                DEStart.Enabled = False
+                DEEnd.Enabled = False
+            Else
+                DEStart.Enabled = True
+                DEEnd.Enabled = True
+            End If
             TxtPromoName.Enabled = True
+            GCDiscountCode.ContextMenuStrip = CMSDiscCode
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -218,6 +237,7 @@
             DEStart.Enabled = False
             DEEnd.Enabled = False
             TxtPromoName.Enabled = False
+            GCDiscountCode.ContextMenuStrip = Nothing
         End If
 
         'reset propose
@@ -404,9 +424,12 @@
             ElseIf XTCData.SelectedTabPageIndex = 1 Then
                 gv = GVProduct
                 ReportPromoCollection.dt = GCProduct.DataSource
-            Else
+            ElseIf XTCData.SelectedTabPageIndex = 2 Then
                 gv = GVBySizeType
                 ReportPromoCollection.dt = GCBySizeType.DataSource
+            ElseIf XTCData.SelectedTabPageIndex = 3 Then
+                gv = GVDiscountCode
+                ReportPromoCollection.dt = GCDiscountCode.DataSource
             End If
             ReportPromoCollection.id = id
             If id_report_status <> "6" Then
@@ -462,9 +485,11 @@
             Report.LabelStartPeriod.Text = DEStart.Text.ToUpper
             Report.LabelEndPeriod.Text = DEEnd.Text.ToUpper
             Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+            Report.LabelStore.Text = TxtStore.Text.ToUpper
             Report.LabelDate.Text = DECreated.Text.ToUpper
             Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
             Report.LNote.Text = MENote.Text.ToUpper
+            Report.LabelDiscountCode.Text = TxtUseDiscountCode.Text.ToUpper + If(is_use_discount_code = "1", " - ", "") + TxtDiscountTitle.Text.ToUpper
 
             ' Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
@@ -571,5 +596,55 @@
         WHERE id_ol_promo_collection='" + id + "' "
         Dim dt_log As DataTable = execute_query(qlog, -1, True, "", "", "", "")
         showLog(dt_log)
+    End Sub
+
+    Sub viewDiscountCodeList()
+        Dim query As String = "SELECT 0 AS `no`, c.disc_code, c.sync_date, c.sync_by, e.employee_name AS `sync_by_name`,
+c.is_additional, IF(c.is_additional=1,'Yes', 'No') AS `is_additional_view`
+FROM tb_ol_promo_collection_disc_code c 
+INNER JOIN tb_m_user us ON us.id_user = c.sync_by
+INNER JOIN tb_m_employee e ON e.id_employee = us.id_employee
+WHERE c.id_ol_promo_collection = '" + id + "' "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            data.Rows(i)("no") = i + 1
+        Next
+
+        GCDiscountCode.DataSource = data
+
+        GVDiscountCode.BestFitColumns()
+    End Sub
+
+    Private Sub BtnSync_Click(sender As Object, e As EventArgs) Handles BtnSync.Click
+        If id_api_type = "1" Then
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            End If
+            FormMain.SplashScreenManager1.SetWaitFormCaption("Sync Discount Code")
+            Try
+                Dim vios As New ClassShopifyApi()
+                vios.get_discount_code_addition(id, id_price_rule)
+            Catch ex As Exception
+                stopCustom("Error sync : " + ex.ToString)
+            End Try
+            viewDiscountCodeList()
+            FormMain.SplashScreenManager1.CloseWaitForm()
+        Else
+            stopCustom("Sync code is not available for this store")
+        End If
+    End Sub
+
+    Private Sub AddToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddToolStripMenuItem.Click
+        If id_api_type = "2" Then
+
+        End If
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        If id_api_type = "2" Then
+
+        End If
     End Sub
 End Class

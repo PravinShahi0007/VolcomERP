@@ -7,6 +7,7 @@ Public Class FormBankDepositDet
     Public type_rec As String = "1" '1 = invoice
     Public id_list_payout_trans As String = "-1"
     Public id_virtual_acc_trans As String = "-1"
+    Public id_payout_zalora As String = "-1"
     Public id_coa_tag As String = "1"
     Public id_coa_type As String = "1"
 
@@ -21,6 +22,8 @@ Public Class FormBankDepositDet
         load_receive_from()
         load_pay_from()
         load_store()
+        view_valas()
+
         '
         TEPayNumber.Text = "[auto_generate]"
         Dim dt_now As DateTime = getTimeDB()
@@ -40,6 +43,7 @@ Public Class FormBankDepositDet
 
             'load detail
             If type_rec = "1" Then
+                SLEAkunValas.Enabled = False
                 SLEUnit.Enabled = False
                 If FormBankDeposit.XTCPO.SelectedTabPageIndex = 1 Then
                     For i As Integer = 0 To FormBankDeposit.GVInvoiceList.RowCount - 1
@@ -58,6 +62,7 @@ Public Class FormBankDepositDet
                         newRow("vendor") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "comp_number").ToString
                         newRow("total_rec") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_rec")
                         newRow("value") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due")
+                        newRow("value_bef_kurs") = 0
                         newRow("balance_due") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "total_due")
                         newRow("note") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "note").ToString
                         newRow("id_dc") = FormBankDeposit.GVInvoiceList.GetRowCellValue(i, "id_dc").ToString
@@ -76,7 +81,7 @@ Public Class FormBankDepositDet
                     CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `value`,
                     CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `balance_due`,
                     CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `note`,IF(typ.`is_receive_payment`=2,1,2) AS `id_dc`, IF(typ.`is_receive_payment`=2,'D','K') AS `dc_code`,
-                    ABS((SELECT balance_due)) AS `value_view`
+                    ABS((SELECT balance_due)) AS `value_view`, 0 AS `value_bef_kurs`
                     FROM tb_list_payout_det d
                     INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = d.id_sales_pos
                     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -107,7 +112,7 @@ Public Class FormBankDepositDet
                     sp.`value`-IFNULL(pyd.`value`,0.00) AS `value`,
                     sp.value-IFNULL(pyd.`value`,0.00) AS `balance_due`,
                     CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.end_period,'%d-%m-%y')) AS `note`,2 AS `id_dc`, 'K' AS `dc_code`,
-                    ABS((SELECT balance_due)) AS `value_view`
+                    ABS((SELECT balance_due)) AS `value_view`, 0 AS `value_bef_kurs`
                     FROM tb_list_payout_det d
                     INNER JOIN tb_invoice_ship sp ON sp.id_invoice_ship = d.id_invoice_ship
                     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= sp.id_comp_contact
@@ -137,7 +142,7 @@ Public Class FormBankDepositDet
                     SUM(p.trans_fee)*-1 AS `value`,
                     SUM(p.trans_fee)*-1 AS `balance_due`,
                     a.note_payout_fee AS `note`,'1' AS `id_dc`, 'D' AS `dc_code`,
-                    SUM(p.trans_fee) AS `value_view`
+                    SUM(p.trans_fee) AS `value_view`, 0 AS `value_bef_kurs`
                     FROM tb_list_payout p 
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
                     JOIN tb_opt_accounting a 
@@ -155,7 +160,7 @@ Public Class FormBankDepositDet
                     SUM(vd.value)*IF(vd.id_dc=1,-1,1) AS `value`,
                     SUM(vd.value)*IF(vd.id_dc=1,-1,1) AS `balance_due`,
                     CONCAT(coa.acc_description,' (Order No : ',v.order_number,')') AS `note`, vd.id_dc AS `id_dc`, dc.dc_code AS `dc_code`,
-                    SUM(vd.value) AS `value_view` 
+                    SUM(vd.value) AS `value_view` , 0 AS `value_bef_kurs`
                     FROM  tb_list_payout_trans p 
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
                     JOIN tb_opt_accounting a 
@@ -186,7 +191,7 @@ Public Class FormBankDepositDet
                     CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `value`,
                     CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `balance_due`,
                     CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `note`,IF(typ.`is_receive_payment`=2,1,2) AS `id_dc`, IF(typ.`is_receive_payment`=2,'D','K') AS `dc_code`,
-                    ABS((SELECT balance_due)) AS `value_view`
+                    ABS((SELECT balance_due)) AS `value_view`, 0 AS `value_bef_kurs`
                     FROM tb_virtual_acc_trans_inv d
                     INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = d.id_sales_pos
                     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -217,7 +222,7 @@ Public Class FormBankDepositDet
                     sp.`value`-IFNULL(pyd.`value`,0.00) AS `value`,
                     sp.value-IFNULL(pyd.`value`,0.00) AS `balance_due`,
                     CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.end_period,'%d-%m-%y')) AS `note`,2 AS `id_dc`, 'K' AS `dc_code`,
-                    ABS((SELECT balance_due)) AS `value_view`
+                    ABS((SELECT balance_due)) AS `value_view`, 0 AS `value_bef_kurs`
                     FROM tb_virtual_acc_trans_inv d
                     INNER JOIN tb_invoice_ship sp ON sp.id_invoice_ship = d.id_invoice_ship
                     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= sp.id_comp_contact
@@ -237,6 +242,25 @@ Public Class FormBankDepositDet
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
                     WHERE d.id_virtual_acc_trans=" + id_virtual_acc_trans + " 
                     UNION
+                    /*trans fee*/
+                    SELECT '0' AS `id_report`,0 AS `id_report_det`,
+                    '0' AS report_mark_type,'' AS report_mark_type_name,
+                    '' AS `number`, 
+                    cf.id_comp AS `id_comp`, 
+                    coa.id_acc AS `id_acc`, coa.acc_name, coa.acc_description,
+                    cf.comp_number AS `comp_number`,'' AS `vendor`
+                    ,0 AS total_rec,
+                    SUM(p.transaction_fee)*-1 AS `value`,
+                    SUM(p.transaction_fee)*-1 AS `balance_due`,
+                    a.note_payout_fee AS `note`,'1' AS `id_dc`, 'D' AS `dc_code`,
+                    SUM(p.transaction_fee) AS `value_view`, 0 AS `value_bef_kurs`
+                    FROM tb_virtual_acc_trans_det p 
+                    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+                    JOIN tb_opt_accounting a 
+                    INNER JOIN tb_a_acc coa ON coa.id_acc = a.id_acc_payout_fee
+                    WHERE p.id_virtual_acc_trans='" + id_virtual_acc_trans + "' AND p.transaction_fee>0
+                    GROUP BY p.id_virtual_acc_trans 
+                    UNION
                     /*other income & expense*/
                     (SELECT 
                     v.id_list_payout_ver AS `id_report`,0 AS `id_report_det`,
@@ -247,7 +271,7 @@ Public Class FormBankDepositDet
                     SUM(vd.value)*IF(vd.id_dc=1,-1,1) AS `value`,
                     SUM(vd.value)*IF(vd.id_dc=1,-1,1) AS `balance_due`,
                     CONCAT(coa.acc_description,' (Order No : ',v.order_number,')') AS `note`, vd.id_dc AS `id_dc`, dc.dc_code AS `dc_code`,
-                    SUM(vd.value) AS `value_view` 
+                    SUM(vd.value) AS `value_view` , 0 AS `value_bef_kurs`
                     FROM  tb_virtual_acc_trans p 
                     INNER JOIN tb_m_comp cf ON cf.id_comp=1
                     JOIN tb_opt_accounting a 
@@ -272,8 +296,44 @@ Public Class FormBankDepositDet
                     Dim dv As DataTable = execute_query(qv, -1, True, "", "", "", "")
                     MENote.Text = "Virtual Acc " + dv.Rows(0)("bank").ToString + " : " + dv.Rows(0)("trans_date_view").ToString
                     DERecDate.EditValue = dv.Rows(0)("trans_date")
+                ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 5 Then
+                    'zalora payout
+                    Dim pz As New ClassPayoutZalora()
+                    Dim data As DataTable = pz.viewERPPayout(id_payout_zalora)
+                    For i As Integer = 0 To data.Rows.Count - 1
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_report") = data.Rows(i)("id_ref").ToString
+                        newRow("id_report_det") = "0"
+                        newRow("report_mark_type") = data.Rows(i)("rmt_ref").ToString
+                        newRow("report_mark_type_name") = data.Rows(i)("rmt_name_ref").ToString
+                        newRow("number") = data.Rows(i)("ref").ToString
+                        newRow("id_comp") = data.Rows(i)("id_comp").ToString
+                        newRow("id_acc") = data.Rows(i)("id_acc").ToString
+                        newRow("acc_name") = data.Rows(i)("acc_name").ToString
+                        newRow("acc_description") = data.Rows(i)("acc_description").ToString
+                        newRow("comp_number") = data.Rows(i)("comp_number").ToString
+                        If data.Rows(i)("recon_type").ToString.Contains("Manual") Then
+                            newRow("vendor") = "Zalora"
+                        Else
+                            newRow("vendor") = data.Rows(i)("comp_number").ToString
+                        End If
+                        newRow("total_rec") = 0
+                        newRow("value") = data.Rows(i)("amo")
+                        newRow("value_bef_kurs") = 0
+                        newRow("balance_due") = data.Rows(i)("amo")
+                        newRow("note") = data.Rows(i)("name").ToString
+                        newRow("id_dc") = If(data.Rows(i)("amo") < 0, "1", "2")
+                        newRow("dc_code") = If(data.Rows(i)("amo") < 0, "D", "K")
+                        newRow("value_view") = Math.Abs(data.Rows(i)("amo"))
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                        'set note 
+                        MENote.Text = "Zalora"
+                        'set default rec acc
+                        SLEPayRecTo.EditValue = get_opt_acc_field("id_acc_rec_bbm_zalora")
+                    Next
                 End If
             ElseIf type_rec = "3" Then
+                SLEAkunValas.Enabled = False
                 SLEUnit.EditValue = id_coa_tag
                 SLEUnit.Enabled = False
                 If FormBankDeposit.XTCPO.SelectedTabPageIndex = 4 Then
@@ -293,6 +353,7 @@ Public Class FormBankDepositDet
                         newRow("vendor") = FormBankDeposit.GVSales.GetRowCellValue(i, "vendor").ToString
                         newRow("total_rec") = FormBankDeposit.GVSales.GetRowCellValue(i, "total_rec")
                         newRow("value") = FormBankDeposit.GVSales.GetRowCellValue(i, "total_due")
+                        newRow("value_bef_kurs") = 0
                         newRow("balance_due") = FormBankDeposit.GVSales.GetRowCellValue(i, "total_due")
                         newRow("note") = FormBankDeposit.GVSales.GetRowCellValue(i, "note").ToString
                         newRow("id_dc") = FormBankDeposit.GVSales.GetRowCellValue(i, "id_dc").ToString
@@ -339,6 +400,12 @@ Public Class FormBankDepositDet
                 type_rec = data.Rows(0)("type_rec").ToString
                 id_coa_tag = data.Rows(0)("id_coa_tag").ToString
                 SLEUnit.EditValue = id_coa_tag
+                If data.Rows(0)("id_valas_bank").ToString = "" Then
+                    SLEAkunValas.EditValue = "0"
+                Else
+                    SLEAkunValas.EditValue = data.Rows(0)("id_valas_bank").ToString
+                End If
+                TEKurs.EditValue = data.Rows(0)("kurs")
             End If
             '
             load_det()
@@ -348,6 +415,7 @@ Public Class FormBankDepositDet
             GridColumnBBaldue.Visible = False
             GridColumnReceive.OptionsColumn.AllowEdit = False
             GridColumnNote.OptionsColumn.AllowEdit = False
+            SLEAkunValas.Enabled = False
             If id_report_status = "6" Then
                 XTPDraft.PageVisible = False
             End If
@@ -384,12 +452,21 @@ Public Class FormBankDepositDet
         viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
 
+    Sub view_valas()
+        Dim query As String = "
+        SELECT 0 AS id_valas_bank,'No Valas' AS valas_bank
+        UNION ALL
+        SELECT id_valas_bank,valas_bank FROM tb_valas_bank
+        WHERE is_active=1"
+        viewSearchLookupQuery(SLEAkunValas, query, "id_valas_bank", "valas_bank", "id_valas_bank")
+    End Sub
+
     Sub load_det()
         Dim query As String = "SELECT recd.id_rec_payment_det,recd.id_report,recd.report_mark_type, recd.id_report_det,
         rmt.report_mark_type_name,recd.number,recd.total_rec,recd.`value`,recd.balance_due,recd.note,
         if(recd.id_dc=1, recd.`value`*-1, recd.`value`) AS `value_view`,
         recd.id_comp, c.comp_number, c.comp_name, recd.id_acc, coa.acc_name, coa.acc_description, coa.acc_description, 
-        recd.id_dc,dc.dc_code, recd.vendor
+        recd.id_dc,dc.dc_code, recd.vendor, recd.value_bef_kurs
         FROM tb_rec_payment_det recd 
         LEFT JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=recd.report_mark_type
         LEFT JOIN tb_m_comp c ON c.id_comp = recd.id_comp
@@ -601,13 +678,21 @@ Public Class FormBankDepositDet
                     If id_virtual_acc_trans = "-1" Then
                         id_virtual_acc_trans = "NULL"
                     End If
+                    If id_payout_zalora = "-1" Then
+                        id_payout_zalora = "NULL"
+                    End If
+                    Dim id_valas_bank As String = SLEAkunValas.EditValue.ToString
+                    If id_valas_bank = "0" Then
+                        id_valas_bank = "NULL"
+                    End If
+                    Dim kurs As String = decimalSQL(TEKurs.EditValue.ToString)
 
-                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`, `date_received`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`, type_rec, id_list_payout_trans, id_virtual_acc_trans, id_coa_tag)
-                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" + date_received + "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1', '" + type_rec + "', " + id_list_payout_trans + ", " + id_virtual_acc_trans + ",'" + SLEUnit.EditValue.ToString + "'); SELECT LAST_INSERT_ID();"
+                    query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`, `date_received`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`, type_rec, id_list_payout_trans, id_virtual_acc_trans, id_coa_tag, id_payout_zalora, id_valas_bank, kurs)
+                    VALUES ('" & SLEPayRecTo.EditValue.ToString & "'," + id_comp_contact + ",'" & id_user & "',NOW(),'" + date_received + "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1', '" + type_rec + "', " + id_list_payout_trans + ", " + id_virtual_acc_trans + ",'" + SLEUnit.EditValue.ToString + "'," + id_payout_zalora + ", " + id_valas_bank + ", '" + kurs + "'); SELECT LAST_INSERT_ID();"
                     id_deposit = execute_query(query, 0, True, "", "", "", "")
 
                     'detail
-                    query = "INSERT INTO tb_rec_payment_det(`id_rec_payment`,`id_report`,`report_mark_type`,`number`,`total_rec`,`value`,`balance_due`,`note`, id_comp, id_acc, id_dc, vendor, id_report_det) VALUES"
+                    query = "INSERT INTO tb_rec_payment_det(`id_rec_payment`,`id_report`,`report_mark_type`,`number`,`total_rec`,`value`,`balance_due`,`note`, id_comp, id_acc, id_dc, vendor, id_report_det, value_bef_kurs) VALUES"
                     For i As Integer = 0 To GVList.RowCount - 1
                         Dim id_report As String = GVList.GetRowCellValue(i, "id_report").ToString
                         If id_report = "0" Then
@@ -628,11 +713,18 @@ Public Class FormBankDepositDet
                         Dim id_acc As String = GVList.GetRowCellValue(i, "id_acc").ToString
                         Dim id_dc As String = GVList.GetRowCellValue(i, "id_dc").ToString
                         Dim vendor As String = GVList.GetRowCellValue(i, "vendor").ToString
+                        'valas
+                        Dim value_bef_kurs As String = "1"
+                        If SLEAkunValas.EditValue = 0 Then
+                            value_bef_kurs = decimalSQL(GVList.GetRowCellValue(i, "value").ToString)
+                        Else
+                            value_bef_kurs = decimalSQL(GVList.GetRowCellValue(i, "value_bef_kurs").ToString)
+                        End If
 
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" & id_deposit & "'," + id_report + "," + report_mark_type + ",'" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "', " + id_comp + ", " + id_acc + ", " + id_dc + ", '" + vendor + "', " + id_report_det + ") "
+                        query += "('" & id_deposit & "'," + id_report + "," + report_mark_type + ",'" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "', " + id_comp + ", " + id_acc + ", " + id_dc + ", '" + vendor + "', " + id_report_det + ", '" + value_bef_kurs + "') "
                     Next
                     execute_non_query(query, True, "", "", "", "")
 
@@ -652,6 +744,9 @@ Public Class FormBankDepositDet
                     End If
                     If id_virtual_acc_trans <> "-1" Then
                         FormBankDeposit.load_vacc()
+                    End If
+                    If id_payout_zalora <> "-1" Then
+                        FormBankDeposit.view_zalora_payout()
                     End If
                     FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankDeposit.GVList, "id_rec_payment", id_deposit)
                     FormBankDeposit.XTCPO.SelectedTabPageIndex = 0
@@ -804,6 +899,10 @@ Public Class FormBankDepositDet
             If SLEUnit.EditValue.ToString <> "1" Then
                 FormBankDepositAdd.id_coa_type = "2"
             End If
+            If SLEAkunValas.EditValue.ToString <> "0" Then
+                FormBankDepositAdd.is_valas = True
+                FormBankDepositAdd.kurs = TEKurs.EditValue
+            End If
             FormBankDepositAdd.ShowDialog()
             Cursor = Cursors.Default
         End If
@@ -814,6 +913,10 @@ Public Class FormBankDepositDet
             If GVList.GetFocusedRowCellValue("id_report") = "0" Then
                 Cursor = Cursors.WaitCursor
                 FormBankDepositAdd.action = "upd"
+                If SLEAkunValas.EditValue.ToString <> "0" Then
+                    FormBankDepositAdd.is_valas = True
+                    FormBankDepositAdd.kurs = TEKurs.EditValue
+                End If
                 FormBankDepositAdd.ShowDialog()
                 Cursor = Cursors.Default
             End If
@@ -825,5 +928,29 @@ Public Class FormBankDepositDet
             load_receive_from()
             load_det()
         End If
+    End Sub
+
+    Private Sub SLEAkunValas_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAkunValas.EditValueChanged
+        'search kurs rata2
+        Try
+            load_det()
+
+            If SLEAkunValas.EditValue.ToString = "0" Then
+                TEKurs.EditValue = 1
+            Else
+                Dim q As String = "SELECT * FROM `tb_stock_valas` 
+WHERE id_valas_bank=" & SLEAkunValas.EditValue.ToString & " AND id_currency=2
+ORDER BY id_stock_valas DESC LIMIT 1"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    TEKurs.EditValue = dt.Rows(0)("kurs_rata_rata")
+                Else
+                    TEKurs.EditValue = 1
+                End If
+            End If
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

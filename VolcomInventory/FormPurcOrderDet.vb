@@ -12,9 +12,16 @@
         load_form()
     End Sub
 
+    Sub load_unit()
+        Dim query As String = "SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
+        viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
+        SLEUnit.EditValue = "1"
+    End Sub
+
     Sub load_form()
         load_report_status()
         load_purc_type()
+        load_unit()
         '
         DEDueDate.EditValue = Now
         TETotal.EditValue = 0.00
@@ -37,6 +44,7 @@
             load_det()
             Try
                 If is_pick = "1" Then
+                    SLEUnit.EditValue = FormPurcOrder.id_coa_tag
                     SLEPurcType.EditValue = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "id_expense_type").ToString
 
                     For i As Integer = 0 To FormPurcOrder.GVPurcReq.RowCount - 1
@@ -50,7 +58,11 @@
                         newRow("uom") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "uom")
                         newRow("qty_pr") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_pr")
                         newRow("val_pr") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "val_pr")
-                        newRow("qty_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_po")
+                        If FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_s_rec") < 0 Then
+                            newRow("qty_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_s_rec") * -1
+                        Else
+                            newRow("qty_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_po")
+                        End If
                         '
                         newRow("item_detail") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "item_detail").ToString
                         newRow("id_expense_type") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "id_expense_type").ToString
@@ -81,7 +93,7 @@
             BMark.Visible = False
         Else 'edit
             'load header
-            Dim query As String = "SELECT c.comp_name,c.id_tax,tax.tax,c.comp_number,c.address_primary,c.fax,c.email,c.comp_number,po.is_cash_purchase,po.pay_due_date,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
+            Dim query As String = "SELECT po.id_coa_tag,c.comp_name,c.id_tax,tax.tax,c.comp_number,c.address_primary,c.fax,c.email,c.comp_number,po.is_cash_purchase,po.pay_due_date,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
 ,po.id_order_term,po.id_shipping_method,po.ship_destination,po.ship_address,po.id_expense_type,po.is_submit,po.dpp_percent,po.dpp_value
 FROM tb_purc_order po
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
@@ -92,6 +104,7 @@ INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 WHERE po.id_purc_order='" & id_po & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
+                SLEUnit.EditValue = data.Rows(0)("id_coa_tag").ToString
                 is_submit = data.Rows(0)("is_submit").ToString
                 SLEPurcType.EditValue = data.Rows(0)("id_expense_type").ToString
                 id_vendor_contact = data.Rows(0)("id_comp_contact").ToString
@@ -317,7 +330,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
 
     Sub load_det()
         is_process = "1"
-        Dim query As String = "SELECT pod.`id_item`,itt.item_type,IF(pod.budget_status=1,'Budget Ok','No Budget') AS budget_status,prd.item_detail,ic.id_expense_type,icd.`id_vendor_type`,prd.id_b_expense,prd.id_b_expense_opex,dep.`departement`,icd.id_item_cat_detail,vt.vendor_type,prd.`id_purc_req_det`,pr.`purc_req_number`,pr.`date_created` AS pr_created,item.`item_desc`,uom.`uom`,prd.`qty` AS qty_pr,prd.`value` AS val_pr,pod.`qty` AS qty_po,pod.`value` AS val_po,pod.`discount`,pod.`discount_percent`
+        Dim query As String = "SELECT pod.`id_item`,icd.item_cat_detail,itt.item_type,IF(pod.budget_status=1,'Budget Ok','No Budget') AS budget_status,prd.item_detail,ic.id_expense_type,icd.`id_vendor_type`,prd.id_b_expense,prd.id_b_expense_opex,dep.`departement`,icd.id_item_cat_detail,vt.vendor_type,prd.`id_purc_req_det`,pr.`purc_req_number`,pr.`date_created` AS pr_created,item.`item_desc`,uom.`uom`,prd.`qty` AS qty_pr,prd.`value` AS val_pr,pod.`qty` AS qty_po,pod.`value` AS val_po,pod.`discount`,pod.`discount_percent`
                                 FROM tb_purc_order_det pod
                                 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
@@ -341,7 +354,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
     End Sub
 
     Sub load_payment_term()
-        Dim query As String = "SELECT id_payment_purchasing,payment_purchasing,val_day FROM `tb_lookup_payment_purchasing` WHERE is_active='1'"
+        Dim query As String = "SELECT id_payment_purchasing,payment_purchasing,val_day,is_can_cash_purchase FROM `tb_lookup_payment_purchasing` WHERE is_active='1'"
         viewSearchLookupQuery(LEPaymentTerm, query, "id_payment_purchasing", "payment_purchasing", "id_payment_purchasing")
         LEPaymentTerm.EditValue = Nothing
     End Sub
@@ -394,6 +407,10 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                 warningCustom("Please input vendor")
             ElseIf TEVATPercent.EditValue = 0 And TEVATPercent.Properties.ReadOnly = False Then
                 warningCustom("Please input tax percent")
+            ElseIf id_vendor_contact = "1352" And is_cash_purchase = "2" Then
+                warningCustom("Cash purchase need to be checked.")
+            ElseIf is_cash_purchase = "1" And Not id_vendor_contact = "1352" Then
+                warningCustom("Please use vendor cash purchase.")
             Else
                 'header
                 Dim is_check As String = "1"
@@ -403,8 +420,8 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
                     is_check = "2"
                 End If
 
-                Dim query As String = "INSERT INTO `tb_purc_order`(`id_comp_contact`,is_cash_purchase,id_payment_purchasing,`note`,`date_created`,est_date_receive,pay_due_date,`created_by`,`last_update`,`last_update_by`,`id_report_status`,is_disc_percent,disc_percent,disc_value,dpp_percent,dpp_value,vat_percent,vat_value,ship_destination,ship_address,id_expense_type)
-                                    VALUES('" & id_vendor_contact & "','" & is_cash_purchase & "','" & LEPaymentTerm.EditValue.ToString & "','" & addSlashes(MENote.Text) & "',NOW(),'" & Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW(),'" & id_user & "','1','" & is_check & "','" & decimalSQL(TEDiscPercent.EditValue.ToString) & "','" & decimalSQL(TEDiscTotal.EditValue.ToString) & "','" & decimalSQL(TEDPPPercent.EditValue.ToString) & "','" & decimalSQL(TEDPP.EditValue.ToString) & "','" & decimalSQL(TEVATPercent.EditValue.ToString) & "','" & decimalSQL(TEVATValue.EditValue.ToString) & "','" & addSlashes(TEShipDestination.Text) & "','" & addSlashes(MESHipAddress.Text) & "','" & SLEPurcType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO `tb_purc_order`(`id_coa_tag`,`id_comp_contact`,is_cash_purchase,id_payment_purchasing,`note`,`date_created`,est_date_receive,pay_due_date,`created_by`,`last_update`,`last_update_by`,`id_report_status`,is_disc_percent,disc_percent,disc_value,dpp_percent,dpp_value,vat_percent,vat_value,ship_destination,ship_address,id_expense_type)
+                                    VALUES('" & SLEUnit.EditValue.ToString & "','" & id_vendor_contact & "','" & is_cash_purchase & "','" & LEPaymentTerm.EditValue.ToString & "','" & addSlashes(MENote.Text) & "',NOW(),'" & Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW(),'" & id_user & "','1','" & is_check & "','" & decimalSQL(TEDiscPercent.EditValue.ToString) & "','" & decimalSQL(TEDiscTotal.EditValue.ToString) & "','" & decimalSQL(TEDPPPercent.EditValue.ToString) & "','" & decimalSQL(TEDPP.EditValue.ToString) & "','" & decimalSQL(TEVATPercent.EditValue.ToString) & "','" & decimalSQL(TEVATValue.EditValue.ToString) & "','" & addSlashes(TEShipDestination.Text) & "','" & addSlashes(MESHipAddress.Text) & "','" & SLEPurcType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                 id_po = execute_query(query, 0, True, "", "", "", "")
 
                 'detail
@@ -715,6 +732,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             Else
                 Report.LCashPurchase.Text = "no"
             End If
+            Report.Lunit.Text = SLEUnit.Text
             Report.LPONumber.Text = TEPONumber.Text
             Report.LTOP.Text = LEPaymentTerm.Text.ToUpper
             Report.LDateCreated.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
@@ -874,6 +892,23 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
     Private Sub TEDPPPercent_EditValueChanged(sender As Object, e As EventArgs) Handles TEDPPPercent.EditValueChanged
         Try
             calculate_grand_total()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub LEPaymentTerm_Click(sender As Object, e As EventArgs) Handles LEPaymentTerm.Click
+        If CECashPurchase.EditValue Then
+            LEPaymentTermView.ActiveFilterString = "[is_can_cash_purchase] = '1'"
+        Else
+            LEPaymentTermView.ActiveFilterString = ""
+        End If
+    End Sub
+
+    Private Sub CECashPurchase_EditValueChanged(sender As Object, e As EventArgs) Handles CECashPurchase.EditValueChanged
+        Try
+            If CECashPurchase.EditValue And LEPaymentTermView.GetFocusedRowCellValue("is_can_cash_purchase").ToString = "2" Then
+                LEPaymentTerm.EditValue = Nothing
+            End If
         Catch ex As Exception
         End Try
     End Sub

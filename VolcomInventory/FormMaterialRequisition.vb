@@ -1,5 +1,8 @@
 ﻿Public Class FormMaterialRequisition
     Private Sub FormMaterialRequisition_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEStart.EditValue = Now
+        DEUntil.EditValue = Now
+        '
         view_mrs()
         show_but_mrs()
     End Sub
@@ -14,7 +17,7 @@
         query += "d.comp_name AS comp_name_req_from,c.id_comp_contact AS id_comp_name_req_from, "
         query += "f.comp_name AS comp_name_req_to,e.id_comp_contact AS id_comp_name_req_to, "
         query += "a.prod_order_mrs_date, "
-        query += "p.id_prod_order, p.prod_order_number, ds.design_code, ds.design_display_name "
+        query += "p.id_prod_order, p.prod_order_number, ds.design_code, ds.design_display_name, emp.employee_name AS created_by "
         query += "FROM tb_prod_order_mrs a "
         query += "LEFT JOIN tb_prod_order p ON p.id_prod_order = a.id_prod_order "
         query += "LEFT JOIN tb_prod_demand_design pd ON p.id_prod_demand_design = pd.id_prod_demand_design "
@@ -25,11 +28,13 @@
         query += "INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_req_to = e.id_comp_contact "
         query += "INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp "
         query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
-        query += "WHERE a.id_prod_order IS NOT NULL "
+        query += "LEFT JOIN tb_m_user AS usr ON a.created_by = usr.id_user "
+        query += "LEFT JOIN tb_m_employee AS emp ON usr.id_employee = emp.id_employee "
+        query += "WHERE a.id_prod_order IS NOT NULL AND DATE(a.prod_order_mrs_date)>=DATE('" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(a.prod_order_mrs_date)<=DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "') "
         query += "ORDER BY a.id_prod_order_mrs DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCMRS.DataSource = data
-
+        GVMRS.BestFitColumns()
         show_but_mrs()
     End Sub
 
@@ -53,5 +58,23 @@
 
     Private Sub GVMRS_DoubleClick(sender As Object, e As EventArgs) Handles GVMRS.DoubleClick
         FormMain.but_edit()
+    End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        view_mrs()
+    End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        Try
+            DEUntil.Properties.MinValue = DEStart.EditValue
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
+        Try
+            DEStart.Properties.MaxValue = DEUntil.EditValue
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

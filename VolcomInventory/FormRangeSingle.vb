@@ -19,9 +19,11 @@ Public Class FormRangeSingle
     End Sub
     'Form Load
     Private Sub FormRangeSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        view_season_type()
+
         If action = "upd" Then
             Dim query As String = ""
-            query += "SELECT rg.id_range, ss.id_season, rg.range, rg.description_range, rg.year_range, ss.season, ss.season_printed_name FROM tb_range rg "
+            query += "SELECT rg.id_range, ss.id_season, rg.range, rg.description_range, rg.year_range, ss.season, ss.season_printed_name, ss.id_season_type FROM tb_range rg "
             query += "INNER JOIN tb_season ss On rg.id_range = ss.id_range "
             query += "WHERE rg.id_range='" + id_range + "' "
             query += "ORDER BY rg.id_range DESC "
@@ -31,6 +33,7 @@ Public Class FormRangeSingle
             TxtSeason.Text = data.Rows(0)("season").ToString
             TxtSeasonPrintedName.Text = data.Rows(0)("season_printed_name").ToString
             TxtYear.Text = data.Rows(0)("year_range").ToString
+            SLUESeasonType.EditValue = data.Rows(0)("id_season_type").ToString
         ElseIf action = "ins" Then
             If FormSeason.is_md = "1" Then
                 Dim query As String = "SELECT IF(ISNULL(MAX(tb_range.range)), 1, MAX(tb_range.range)+1) AS current_range FROM tb_range WHERE is_md='1' "
@@ -65,7 +68,7 @@ Public Class FormRangeSingle
                 id_dept = id_departement_user
                 is_need_us_approval = "2"
             End If
-
+            Dim id_season_type As String = SLUESeasonType.EditValue.ToString
             If action = "upd" Then
                 query_count = query_count + String.Format(" AND id_range!='{0}'", id_range)
             End If
@@ -81,8 +84,8 @@ Public Class FormRangeSingle
                         id_range = execute_query(query, 0, True, "", "", "", "")
 
                         'u/ season
-                        Dim query_season As String = "INSERT INTO tb_season(id_range, season, season_printed_name, is_need_us_approval) VALUES "
-                        query_season += "('" + id_range + "', '" + season + "', '" + season_printed_name + "', '" + is_need_us_approval + "'); SELECT LAST_INSERT_ID(); "
+                        Dim query_season As String = "INSERT INTO tb_season(id_range, season, season_printed_name, is_need_us_approval, id_season_type) VALUES "
+                        query_season += "('" + id_range + "', '" + season + "', '" + season_printed_name + "', '" + is_need_us_approval + "', '" + id_season_type + "'); SELECT LAST_INSERT_ID(); "
                         Dim id_season As String = execute_query(query_season, 0, True, "", "", "", "")
 
                         'del
@@ -97,7 +100,7 @@ Public Class FormRangeSingle
                     ElseIf action = "upd" Then
                         query = ""
                         query += "UPDATE tb_range rg INNER JOIN tb_season ss On rg.id_range = ss.id_range "
-                        query += "SET ss.season='" + season + "', ss.season_printed_name='" + season_printed_name + "',rg.description_range='" + description_range + "', rg.range='" + range + "', rg.year_range='" + year_range + "' "
+                        query += "SET ss.season='" + season + "', ss.season_printed_name='" + season_printed_name + "',rg.description_range='" + description_range + "', rg.range='" + range + "', rg.year_range='" + year_range + "', ss.id_season_type='" + id_season_type + "' "
                         query += "WHERE rg.id_range ='" + id_range + "' "
                         execute_non_query(query, True, "", "", "", "")
                         logData("tb_range", 2)
@@ -124,5 +127,11 @@ Public Class FormRangeSingle
 
     Private Sub TxtSeasonPrintedName_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TxtSeasonPrintedName.Validating
         EP_TE_cant_blank(EPRange, TxtSeasonPrintedName)
+    End Sub
+
+    Sub view_season_type()
+        Dim query As String = "SELECT * FROM tb_lookup_season_type"
+
+        viewSearchLookupQuery(SLUESeasonType, query, "id_season_type", "season_type", "id_season_type")
     End Sub
 End Class

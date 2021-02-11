@@ -14,6 +14,7 @@
 
     'menu : 1=invoice 2=credit note
     Public id_menu As String = "1"
+    Dim first_load As Boolean = True
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -80,6 +81,7 @@
             LabelName.Visible = False
             TXTName.Visible = False
         End If
+        first_load = False
     End Sub
 
     Sub actionLoad()
@@ -97,7 +99,7 @@
         query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
+        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_st_date, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
         If id_menu = "5" Then
             query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref`"
         End If
@@ -195,9 +197,13 @@
         id_comp_contact_bill = data.Rows(0)("id_comp_contact_bill").ToString
         TxtCodeBillTo.Text = data.Rows(0)("comp_number_bill").ToString
         TxtNameBillTo.Text = data.Rows(0)("comp_name_bill").ToString
+        If Not IsDBNull(data.Rows(0)("sales_pos_st_date")) Then
+            DEStocktake.EditValue = data.Rows(0)("sales_pos_st_date")
+        End If
 
         ''detail2
         viewDetail()
+        viewProb()
         viewDetailCode()
         check_but()
         calculate()
@@ -239,9 +245,31 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_sales_pos_less('" + id_sales_pos + "')"
+        Dim query As String = "CALL view_sales_pos_approval('" + id_sales_pos + "')"
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
         GCItemList.DataSource = data
+        GVItemList.BestFitColumns()
+    End Sub
+
+    Sub viewProb()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT p.id_sales_pos_prob, p.is_invalid_price, p.is_no_stock, 
+        p.id_product, prod.product_full_code AS `code`, prod.product_name AS `name`, cd.display_name AS `size`,
+        p.id_design_price_retail, p.design_price_retail, p.design_price_store, p.id_design_price_valid, p.design_price_valid,
+        p.store_qty, p.invoice_qty, p.no_stock_qty,(p.invoice_qty+p.no_stock_qty) AS `total_qty`,
+        IF(p.is_invalid_price=1,'Not Valid', 'OK') AS `note_price`
+        FROM tb_sales_pos_prob p
+        INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
+        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        WHERE p.id_sales_pos='" + id_sales_pos + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCProbList.DataSource = data
+        GVProbList.BestFitColumns()
+        If first_load And GVProbList.RowCount > 0 And LEReportStatus.EditValue < 5 Then
+            stopCustom("There are some items that can't be invoiced, please see in tab 'Problem List' ")
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewDetailCode()
@@ -264,7 +292,7 @@
     End Sub
 
     Sub allow_status()
-        GVItemList.OptionsBehavior.Editable = False
+        GVItemList.OptionsBehavior.Editable = True
         MENote.Properties.ReadOnly = True
         LETypeSO.Enabled = False
 
@@ -426,6 +454,90 @@
         Else
             warningCustom("Auto journal not found.")
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVProbList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVProbList.RowCellStyle
+        If e.Column.FieldName = "note_price" Then
+            Dim note As String = ""
+            Try
+                note = GVProbList.GetRowCellValue(e.RowHandle, "note_price").ToString
+            Catch ex As Exception
+            End Try
+            If note <> "OK" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.BackColor2 = Color.Salmon
+            End If
+        ElseIf e.Column.FieldName = "no_stock_qty" Then
+            Dim oos As String = ""
+            Try
+                oos = GVProbList.GetRowCellValue(e.RowHandle, "no_stock_qty")
+            Catch ex As Exception
+            End Try
+            If oos > 0 Then
+                e.Appearance.BackColor = Color.Yellow
+                e.Appearance.BackColor2 = Color.Yellow
+            End If
+        End If
+    End Sub
+
+    Private Sub ViewPriceReconcileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewPriceReconcileToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_sales_pos_prob_price As String = "-1"
+        Try
+            id_sales_pos_prob_price = GVItemList.GetFocusedRowCellValue("id_sales_pos_prob_price")
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT IFNULL(r.id_sales_pos_recon,0) AS `id_sales_pos_recon`
+FROM tb_sales_pos_recon_det rd
+INNER JOIN tb_sales_pos_recon r ON r.id_sales_pos_recon = rd.id_sales_pos_recon
+WHERE rd.id_sales_pos_prob=" + id_sales_pos_prob_price + " AND r.id_report_status=6
+GROUP BY r.id_sales_pos_recon "
+        Try
+            Dim id_report As String = execute_query(query, 0, True, "", "", "", "")
+            Dim m As New ClassShowPopUp()
+            m.id_report = id_report
+            m.report_mark_type = "281"
+            m.show()
+        Catch ex As Exception
+            stopCustom("Price recon not found.")
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoLinkInvRef_Click(sender As Object, e As EventArgs) Handles RepoLinkInvRef.Click
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 And GVItemList.GetFocusedRowCellValue("sales_pos_number_err_prc_ref").ToString <> "" Then
+            Cursor = Cursors.WaitCursor
+            Dim rmt As String = GVItemList.GetFocusedRowCellValue("rmt_err_prc_ref").ToString
+            Dim id As String = GVItemList.GetFocusedRowCellValue("id_sales_pos_err_prc_ref").ToString
+            Dim sp As New FormViewSalesPOS()
+            sp.id_sales_pos = id
+            sp.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub ViewClosingNoStockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewClosingNoStockToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_sales_pos_oos_recon_det As String = "-1"
+        Try
+            id_sales_pos_oos_recon_det = GVItemList.GetFocusedRowCellValue("id_sales_pos_oos_recon_det").ToString
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT IFNULL(r.id_sales_pos_oos_recon,0) AS `id_sales_pos_oos_recon`
+FROM tb_sales_pos_oos_recon_det rd
+INNER JOIN tb_sales_pos_oos_recon r ON r.id_sales_pos_oos_recon = rd.id_sales_pos_oos_recon
+WHERE rd.id_sales_pos_oos_recon_det=" + id_sales_pos_oos_recon_det + " AND r.id_report_status=6
+GROUP BY r.id_sales_pos_oos_recon "
+        Try
+            Dim id_report As String = execute_query(query, 0, True, "", "", "", "")
+            Dim m As New ClassShowPopUp()
+            m.id_report = id_report
+            m.report_mark_type = "283"
+            m.show()
+        Catch ex As Exception
+            stopCustom("Closing no stock not found.")
+        End Try
         Cursor = Cursors.Default
     End Sub
 End Class

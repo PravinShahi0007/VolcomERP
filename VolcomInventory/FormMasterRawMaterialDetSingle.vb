@@ -501,10 +501,13 @@ Public Class FormMasterRawMaterialDetSingle
 
         If Not res = "0" Then
             stopCustom("Material already used with default cost.")
-        ElseIf Not res = "0" Then
-            stopCustom("Material price already used on PO.")
+        ElseIf Not list_pd = "0" Then
+            stopCustom("Material price already used on Final Raw Material List.")
         Else
             FormMasterRawMaterialPrcSingle.action = "upd"
+            If GVPrice.GetFocusedRowCellValue("is_default_po").ToString = "yes" Then
+                FormMasterRawMaterialPrcSingle.is_can_edit_price = False
+            End If
             FormMasterRawMaterialPrcSingle.id_mat_det_price = GVPrice.GetFocusedRowCellDisplayText("id_mat_det_price").ToString
             FormMasterRawMaterialPrcSingle.ShowDialog()
         End If
@@ -611,5 +614,12 @@ Public Class FormMasterRawMaterialDetSingle
             End Try
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BRevise_Click(sender As Object, e As EventArgs) Handles BRevise.Click
+        FormMasterRawMatPps.action = "ins"
+        FormMasterRawMatPps.id_mat_det_revise = id_mat_det
+        FormMasterRawMatPps.is_revise = "1"
+        FormMasterRawMatPps.ShowDialog()
     End Sub
 End Class

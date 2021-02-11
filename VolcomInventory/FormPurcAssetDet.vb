@@ -15,30 +15,34 @@
 
     Private id_departement_current As String = "-1"
 
+    Sub load_unit()
+        Dim query As String = "SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
+        '        query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
+        'UNION ALL
+        'SELECT ad.`id_comp`,c.`comp_number`,c.`comp_name` FROM `tb_a_acc_trans_det` ad
+        'INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
+        'GROUP BY ad.id_comp"
+        viewSearchLookupQuery(SLEUnit, query, "id_coa_tag", "tag_description", "id_coa_tag")
+        SLEUnit.EditValue = "1"
+    End Sub
+
     Private Sub FormPurcAssetDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_unit()
         viewCOA()
-        viewComp()
         viewEmp()
         viewDepartement()
         actionLoad()
-    End Sub
-
-    Sub viewComp()
-        Dim query As String = "SELECT id_comp, comp_number,comp_name FROM tb_m_comp"
-        viewSearchLookupQuery(SLEComp, query, "id_comp", "comp_number", "id_comp")
-        '
-        Try
-            TxtComp.Text = get_company_x(get_setup_field("id_own_company").ToString, "1")
-            SLEComp.EditValue = get_setup_field("id_own_company").ToString
-        Catch ex As Exception
-
-        End Try
     End Sub
 
     Sub viewCOA()
         Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, 
         a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
         FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 "
+        If Not SLEUnit.EditValue.ToString = "1" Then
+            query += " AND a.id_coa_type=2 "
+        Else
+            query += " AND a.id_coa_type=1 "
+        End If
         viewSearchLookupQuery(SLEAccountFixedAsset, query, "id_acc", "acc_description", "id_acc")
         viewSearchLookupQuery(SLEDep, query, "id_acc", "acc_description", "id_acc")
         viewSearchLookupQuery(SLEAccumDep, query, "id_acc", "acc_description", "id_acc")
@@ -68,21 +72,13 @@
         loaded = False
 
         If action = "ins" Then
-            MsgBox("3ins")
-            SLEComp.EditValue = "-1"
-            TxtComp.Text = ""
-            SLEComp.EditValue = "1"
-            TxtComp.Text = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + SLEComp.EditValue.ToString + "' ", 0, True, "", "", "", "")
+
         ElseIf action = "upd" Then
             Dim a As New ClassPurcAsset()
             Dim query As String = a.queryMain("AND a.id_purc_rec_asset=" + id + "", "1", find_accum)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
-            If data.Rows(0)("ship_to").ToString = "0" Then
-                SLEComp.EditValue = get_setup_field("id_own_company")
-            Else
-                SLEComp.EditValue = data.Rows(0)("ship_to").ToString
-            End If
+            SLEUnit.EditValue = data.Rows(0)("po_tag").ToString
             '
             is_confirm = data.Rows(0)("is_confirm").ToString
             'generate number
@@ -99,12 +95,13 @@
             TxtCost.EditValue = data.Rows(0)("acq_cost")
             '
             If data.Rows(0)("is_confirm") = "1" Then
-                SLEComp.EditValue = data.Rows(0)("id_comp_tag").ToString
+                SLEUnit.EditValue = data.Rows(0)("id_coa_tag").ToString
             End If
             '
             If data.Rows(0)("id_report_status") = "6" And data.Rows(0)("is_active_v") = "1" Then
                 PanelControlVA.Visible = True
-                TxtVA.EditValue = data.Rows(0)("acq_cost_va")
+                TxtVA.EditValue = data.Rows(0)("value_added")
+                TEMonthAdded.EditValue = data.Rows(0)("month_added")
                 TxtTotalCost.EditValue = TxtCost.EditValue + TxtVA.EditValue
             Else
                 PanelControlVA.Visible = False
@@ -114,6 +111,7 @@
             id_purc_order = data.Rows(0)("id_purc_order").ToString
             LinkOrder.Text = data.Rows(0)("purc_order_number").ToString
             id_report_status = data.Rows(0)("id_report_status").ToString
+            SLEUnit.EditValue = data.Rows(0)("id_coa_tag").ToString
 
             'depreciation
             TxtUseful.EditValue = data.Rows(0)("useful_life")
@@ -299,11 +297,11 @@
                     is_non_depresiasi = "2"
                 End If
                 Dim useful_life As String = decimalSQL(TxtUseful.EditValue.ToString)
-                Dim id_tag As String = SLEComp.EditValue.ToString
+                Dim id_tag As String = SLEUnit.EditValue.ToString
                 Dim id_acc_dep As String = SLEDep.EditValue.ToString
                 Dim id_acc_dep_accum As String = SLEAccumDep.EditValue.ToString
                 Dim accum_dep As String = decimalSQL(TxtAccumDep.EditValue.ToString)
-                Dim query As String = "UPDATE tb_purc_rec_asset SET id_comp_tag='" + id_tag + "',id_parent='" + id + "',asset_name='" + asset_name + "',
+                Dim query As String = "UPDATE tb_purc_rec_asset SET id_coa_tag='" + id_tag + "',id_parent='" + id + "',asset_name='" + asset_name + "',
                 asset_note='" + asset_note + "', is_non_depresiasi='" + is_non_depresiasi + "',useful_life='" + useful_life + "',
                 id_acc_dep='" + id_acc_dep + "', id_acc_dep_accum='" + id_acc_dep_accum + "', accum_dep='" + accum_dep + "',
                 is_confirm=1 WHERE id_purc_rec_asset='" + id + "' "
@@ -348,21 +346,13 @@
 
     Private Sub HLCDetailVA_Click(sender As Object, e As EventArgs) Handles HLCDetailVA.Click
         Cursor = Cursors.WaitCursor
+        FormPurcAssetValueAddedList.id_coa_tag = SLEUnit.EditValue.ToString
         FormPurcAssetValueAddedList.id_parent = id
         FormPurcAssetValueAddedList.LabelAssetName.Text = TxtAssetName.Text
         FormPurcAssetValueAddedList.LabelLinkAssetNumber.Text = TxtAssetNumber.Text
         FormPurcAssetValueAddedList.LabelLinkAssetNumber.Enabled = False
-        FormPurcAssetValueAddedList.BtnAdd.Visible = False
         FormPurcAssetValueAddedList.ShowDialog()
         Cursor = Cursors.Default
-    End Sub
-
-    Private Sub SLEComp_EditValueChanged(sender As Object, e As EventArgs) Handles SLEComp.EditValueChanged
-        Try
-            TxtComp.Text = SLEComp.Properties.View.GetFocusedRowCellValue("comp_name").ToString
-        Catch ex As Exception
-
-        End Try
     End Sub
 
     Private Sub SBSaveCurrent_Click(sender As Object, e As EventArgs) Handles SBSaveCurrent.Click
@@ -443,5 +433,9 @@
         Else
             errorCustom(err)
         End If
+    End Sub
+
+    Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
+        viewCOA()
     End Sub
 End Class
