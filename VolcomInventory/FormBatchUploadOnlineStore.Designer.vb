@@ -326,6 +326,10 @@ Partial Class FormBatchUploadOnlineStore
         Me.GVBatchUpload.GridControl = Me.GCBatchUpload
         Me.GVBatchUpload.Name = "GVBatchUpload"
         Me.GVBatchUpload.OptionsBehavior.ReadOnly = True
+        Me.GVBatchUpload.OptionsCustomization.AllowFilter = False
+        Me.GVBatchUpload.OptionsCustomization.AllowGroup = False
+        Me.GVBatchUpload.OptionsCustomization.AllowSort = False
+        Me.GVBatchUpload.OptionsFind.AllowFindPanel = False
         Me.GVBatchUpload.OptionsPrint.PrintFooter = False
         Me.GVBatchUpload.OptionsPrint.PrintHeader = False
         Me.GVBatchUpload.OptionsView.ColumnAutoWidth = False
