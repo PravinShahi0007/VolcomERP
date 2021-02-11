@@ -1,9 +1,6 @@
 ﻿Public Class FormReturnForBOF
     Private Sub FormReturnForBOF_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewSearchLookupQuery(SLUEGroup, "
-            SELECT id_comp_group, comp_group, description
-            FROM tb_m_comp_group
-        ", "id_comp_group", "comp_group", "id_comp_group")
+        viewSearchLookupQuery(SLUEGroup, "CALL view_comp_group_delivery_for_bof()", "id_comp_group", "comp_group", "id_comp_group")
 
         DEFrom.EditValue = Now
         DETo.EditValue = Now
