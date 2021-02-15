@@ -285,6 +285,7 @@
     <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassMailManage.vb" />
     <Compile Include="ClassMailManageReturn.vb" />
+    <Compile Include="ClassOLReturnRefuse.vb" />
     <Compile Include="ClassOLStore.vb" />
     <Compile Include="ClassOLStoreRefund.vb" />
     <Compile Include="ClassOwnMenu.vb" />
@@ -10714,6 +10715,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormODM.resx">
       <DependentUpon>FormODM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLReturnRefuse.resx">
+      <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStore.resx">
       <DependentUpon>FormOLStore.vb</DependentUpon>
