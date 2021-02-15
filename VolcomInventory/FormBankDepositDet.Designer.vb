@@ -101,6 +101,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnid_dc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnacc_description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnvendor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnvalue_bef_kurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTCBBM = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
@@ -118,7 +119,7 @@ Partial Class FormBankDepositDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnvalue_bef_kurs = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BMutasiValas = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -385,6 +386,7 @@ Partial Class FormBankDepositDet
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.BMutasiValas)
         Me.PanelControl3.Controls.Add(Me.LabelControl4)
         Me.PanelControl3.Controls.Add(Me.TEKurs)
         Me.PanelControl3.Controls.Add(Me.SLEAkunValas)
@@ -396,7 +398,7 @@ Partial Class FormBankDepositDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(375, 97)
+        Me.PanelControl3.Size = New System.Drawing.Size(390, 97)
         Me.PanelControl3.TabIndex = 165
         '
         'LabelControl4
@@ -421,7 +423,7 @@ Partial Class FormBankDepositDet
         Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEKurs.Properties.ReadOnly = True
-        Me.TEKurs.Size = New System.Drawing.Size(287, 20)
+        Me.TEKurs.Size = New System.Drawing.Size(207, 20)
         Me.TEKurs.TabIndex = 8910
         Me.TEKurs.TabStop = False
         '
@@ -994,6 +996,15 @@ Partial Class FormBankDepositDet
         Me.GridColumnvendor.Visible = True
         Me.GridColumnvendor.VisibleIndex = 5
         '
+        'GridColumnvalue_bef_kurs
+        '
+        Me.GridColumnvalue_bef_kurs.Caption = "Amount bef. kurs"
+        Me.GridColumnvalue_bef_kurs.DisplayFormat.FormatString = "N2"
+        Me.GridColumnvalue_bef_kurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnvalue_bef_kurs.FieldName = "value_bef_kurs"
+        Me.GridColumnvalue_bef_kurs.Name = "GridColumnvalue_bef_kurs"
+        Me.GridColumnvalue_bef_kurs.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_bef_kurs", "{0:N2}")})
+        '
         'RICECheckReceive
         '
         Me.RICECheckReceive.AutoHeight = False
@@ -1152,14 +1163,13 @@ Partial Class FormBankDepositDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
-        'GridColumnvalue_bef_kurs
+        'BMutasiValas
         '
-        Me.GridColumnvalue_bef_kurs.Caption = "Amount bef. kurs"
-        Me.GridColumnvalue_bef_kurs.DisplayFormat.FormatString = "N2"
-        Me.GridColumnvalue_bef_kurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnvalue_bef_kurs.FieldName = "value_bef_kurs"
-        Me.GridColumnvalue_bef_kurs.Name = "GridColumnvalue_bef_kurs"
-        Me.GridColumnvalue_bef_kurs.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_bef_kurs", "{0:N2}")})
+        Me.BMutasiValas.Location = New System.Drawing.Point(286, 62)
+        Me.BMutasiValas.Name = "BMutasiValas"
+        Me.BMutasiValas.Size = New System.Drawing.Size(75, 23)
+        Me.BMutasiValas.TabIndex = 8923
+        Me.BMutasiValas.Text = "Mutasi Valas"
         '
         'FormBankDepositDet
         '
@@ -1337,4 +1347,5 @@ Partial Class FormBankDepositDet
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnvalue_bef_kurs As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BMutasiValas As DevExpress.XtraEditors.SimpleButton
 End Class
