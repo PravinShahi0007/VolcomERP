@@ -160,4 +160,20 @@
             Close()
         End If
     End Sub
+
+    Sub calculate_minutes()
+        Dim query As String = "
+            SELECT TIMESTAMPDIFF(MINUTE, '2020-01-01 " + TEWorkStart.Text.ToString + "', '2020-01-01 " + TEWorkEnd.Text.ToString + "')
+        "
+
+        Dim minutes_work As String = execute_query(query, 0, True, "", "", "", "")
+
+        TEMinutes.EditValue = minutes_work
+    End Sub
+
+    Private Sub TEMinutes_KeyUp(sender As Object, e As KeyEventArgs) Handles TEMinutes.KeyUp
+        If e.KeyCode = Keys.F5 Then
+            calculate_minutes()
+        End If
+    End Sub
 End Class

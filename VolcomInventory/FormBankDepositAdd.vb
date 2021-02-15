@@ -2,6 +2,8 @@
     Public action As String = "-1"
     Public id_pop_up As String = "-1"
     Public id_coa_type As String = "1"
+    Public is_valas As Boolean = False
+    Public kurs As Decimal = 1.0
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
         Close()
@@ -27,6 +29,13 @@
             'bpj toko cabang
             SLEComp.Enabled = False
         End If
+        TxtBefKurs.EditValue = 0
+        If Not is_valas Then
+            TxtBefKurs.Enabled = False
+        Else
+            TxtAmount.Enabled = False
+        End If
+
 
         If action = "ins" Then
             'coa
@@ -64,6 +73,7 @@
                 TxtComp.Text = FormBankDepositDet.GVList.GetFocusedRowCellValue("comp_number").ToString
                 SLEComp.EditValue = FormBankDepositDet.GVList.GetFocusedRowCellValue("id_comp").ToString
                 LEDK.ItemIndex = LEDK.Properties.GetDataSourceRowIndex("id_dc", FormBankDepositDet.GVList.GetFocusedRowCellValue("id_dc").ToString)
+                TxtBefKurs.EditValue = FormBankDepositDet.GVList.GetFocusedRowCellValue("value_bef_kurs")
                 TxtAmount.EditValue = FormBankDepositDet.GVList.GetFocusedRowCellValue("value_view")
             ElseIf id_pop_up = "1" Then
                 'BPJ Toko
@@ -160,6 +170,7 @@
                 newRow("id_dc") = LEDK.EditValue.ToString
                 newRow("dc_code") = LEDK.Text
                 newRow("value_view") = amo
+                newRow("value_bef_kurs") = TxtBefKurs.EditValue
                 TryCast(FormBankDepositDet.GCList.DataSource, DataTable).Rows.Add(newRow)
                 FormBankDepositDet.GCList.RefreshDataSource()
                 FormBankDepositDet.GVList.RefreshData()
@@ -190,6 +201,7 @@
                 FormBankDepositDet.GVList.SetFocusedRowCellValue("id_dc", LEDK.EditValue.ToString)
                 FormBankDepositDet.GVList.SetFocusedRowCellValue("dc_code", LEDK.Text)
                 FormBankDepositDet.GVList.SetFocusedRowCellValue("value_view", amo)
+                FormBankDepositDet.GVList.SetFocusedRowCellValue("value_bef_kurs", TxtBefKurs.EditValue)
                 FormBankDepositDet.GCList.RefreshDataSource()
                 FormBankDepositDet.GVList.RefreshData()
                 FormBankDepositDet.calculate_amount()
@@ -257,5 +269,11 @@
 
     Private Sub TxtAutoFill_Click(sender As Object, e As EventArgs) Handles TxtAutoFill.Click
         TxtDescription.Text = SLECOA.Text
+    End Sub
+
+    Private Sub TxtBefKurs_EditValueChanged(sender As Object, e As EventArgs) Handles TxtBefKurs.EditValueChanged
+        If is_valas Then
+            TxtAmount.EditValue = TxtBefKurs.EditValue * kurs
+        End If
     End Sub
 End Class
