@@ -734,4 +734,23 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GrossupPPHToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GrossupPPHToolStripMenuItem.Click
+        If GVList.RowCount > 0 Then
+            Try
+                Dim dpp As Decimal = Decimal.Parse(GVList.GetFocusedRowCellValue("valuex").ToString)
+                Dim pph As Decimal = Decimal.Parse(GVList.GetFocusedRowCellValue("pph_percent").ToString)
+                '
+                Dim kurs As Decimal = Decimal.Parse(GVList.GetFocusedRowCellValue("kurs").ToString)
+                '
+                Dim grossup_val As Decimal = 0.00
+                grossup_val = (100 / (100 - pph)) * dpp
+                GVList.SetFocusedRowCellValue("value_bef_kurs", grossup_val / kurs)
+                GVList.SetFocusedRowCellValue("valuex", grossup_val)
+                calculate()
+            Catch ex As Exception
+                warningCustom("Please check your input")
+            End Try
+        End If
+    End Sub
 End Class

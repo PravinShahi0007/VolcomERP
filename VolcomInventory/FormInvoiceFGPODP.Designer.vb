@@ -40,6 +40,7 @@ Partial Class FormInvoiceFGPODP
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEDocType = New DevExpress.XtraEditors.TextEdit()
         Me.SLEPayType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -128,7 +129,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TEDocType = New DevExpress.XtraEditors.TextEdit()
+        Me.GrossupPPHToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
@@ -146,6 +147,7 @@ Partial Class FormInvoiceFGPODP
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TEDocType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPayType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -184,7 +186,6 @@ Partial Class FormInvoiceFGPODP
         Me.XTPDraft.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDocType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -419,6 +420,17 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(390, 118)
         Me.PanelControl3.TabIndex = 165
+        '
+        'TEDocType
+        '
+        Me.TEDocType.EditValue = ""
+        Me.TEDocType.Location = New System.Drawing.Point(88, 64)
+        Me.TEDocType.Name = "TEDocType"
+        Me.TEDocType.Properties.EditValueChangedDelay = 1
+        Me.TEDocType.Properties.ReadOnly = True
+        Me.TEDocType.Size = New System.Drawing.Size(112, 20)
+        Me.TEDocType.TabIndex = 8920
+        Me.TEDocType.TabStop = False
         '
         'SLEPayType
         '
@@ -713,14 +725,14 @@ Partial Class FormInvoiceFGPODP
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditCost})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditCost, Me.GrossupPPHToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(98, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 70)
         '
         'SMEditCost
         '
         Me.SMEditCost.Name = "SMEditCost"
-        Me.SMEditCost.Size = New System.Drawing.Size(97, 22)
+        Me.SMEditCost.Size = New System.Drawing.Size(152, 22)
         Me.SMEditCost.Text = "Split"
         '
         'GVList
@@ -1261,16 +1273,11 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumncc.VisibleIndex = 1
         Me.GridColumncc.Width = 39
         '
-        'TEDocType
+        'GrossupPPHToolStripMenuItem
         '
-        Me.TEDocType.EditValue = ""
-        Me.TEDocType.Location = New System.Drawing.Point(88, 64)
-        Me.TEDocType.Name = "TEDocType"
-        Me.TEDocType.Properties.EditValueChangedDelay = 1
-        Me.TEDocType.Properties.ReadOnly = True
-        Me.TEDocType.Size = New System.Drawing.Size(112, 20)
-        Me.TEDocType.TabIndex = 8920
-        Me.TEDocType.TabStop = False
+        Me.GrossupPPHToolStripMenuItem.Name = "GrossupPPHToolStripMenuItem"
+        Me.GrossupPPHToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.GrossupPPHToolStripMenuItem.Text = "Grossup PPH"
         '
         'FormInvoiceFGPODP
         '
@@ -1307,6 +1314,7 @@ Partial Class FormInvoiceFGPODP
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TEDocType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPayType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1347,7 +1355,6 @@ Partial Class FormInvoiceFGPODP
         Me.XTPDraft.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDocType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1460,4 +1467,5 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents TETotalPPH As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnPPHDesc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TEDocType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GrossupPPHToolStripMenuItem As ToolStripMenuItem
 End Class
