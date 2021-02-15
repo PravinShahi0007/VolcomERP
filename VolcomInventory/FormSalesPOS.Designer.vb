@@ -201,14 +201,12 @@ Partial Class FormSalesPOS
         Me.XTPNoStockList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCNoStock = New DevExpress.XtraGrid.GridControl()
         Me.GVNoStock = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoBtnHistNoStockProb = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -218,20 +216,26 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnqty_recon_on_process = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnqty_proceed_oos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn25 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand14 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnqty_recon_on_process = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn4qty_proceed_cancel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_proceed_cancel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnqty_proceed_oos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand15 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumndiff_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -245,6 +249,11 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn36 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn37 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn38 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn25 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.BandedGridColumn39 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn40 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn41 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -342,15 +351,6 @@ Partial Class FormSalesPOS
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.BandedGridColumn4qty_proceed_cancel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnqty_proceed_cancel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumndiff_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand14 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand15 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2181,6 +2181,14 @@ Partial Class FormSalesPOS
         Me.GVNoStock.OptionsView.ShowFooter = True
         Me.GVNoStock.OptionsView.ShowGroupPanel = False
         '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 150
+        '
         'BandedGridColumn1
         '
         Me.BandedGridColumn1.Caption = "  "
@@ -2218,42 +2226,20 @@ Partial Class FormSalesPOS
         Me.RepoBtnHistNoStockProb.Name = "RepoBtnHistNoStockProb"
         Me.RepoBtnHistNoStockProb.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
-        'BandedGridColumn3
+        'GridBand5
         '
-        Me.BandedGridColumn3.Caption = "Code"
-        Me.BandedGridColumn3.FieldName = "code"
-        Me.BandedGridColumn3.Name = "BandedGridColumn3"
-        Me.BandedGridColumn3.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumn3.Visible = True
-        Me.BandedGridColumn3.Width = 65
-        '
-        'BandedGridColumn4
-        '
-        Me.BandedGridColumn4.Caption = "Description"
-        Me.BandedGridColumn4.FieldName = "name"
-        Me.BandedGridColumn4.Name = "BandedGridColumn4"
-        Me.BandedGridColumn4.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumn4.Visible = True
-        Me.BandedGridColumn4.Width = 65
-        '
-        'BandedGridColumn5
-        '
-        Me.BandedGridColumn5.Caption = "Size"
-        Me.BandedGridColumn5.FieldName = "size"
-        Me.BandedGridColumn5.Name = "BandedGridColumn5"
-        Me.BandedGridColumn5.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumn5.Visible = True
-        Me.BandedGridColumn5.Width = 65
-        '
-        'BandedGridColumn17
-        '
-        Me.BandedGridColumn17.Caption = "Used Price"
-        Me.BandedGridColumn17.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn17.FieldName = "design_price_valid"
-        Me.BandedGridColumn17.Name = "BandedGridColumn17"
-        Me.BandedGridColumn17.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumn17.Visible = True
+        Me.GridBand5.Caption = "Invoice Ref."
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn6)
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn7)
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn8)
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn9)
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn10)
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn11)
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn12)
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn13)
+        Me.GridBand5.Name = "GridBand5"
+        Me.GridBand5.VisibleIndex = 1
+        Me.GridBand5.Width = 525
         '
         'BandedGridColumn6
         '
@@ -2330,6 +2316,55 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn13.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn13.Visible = True
         '
+        'GridBand3
+        '
+        Me.GridBand3.Caption = "Product No Stock"
+        Me.GridBand3.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand3.Columns.Add(Me.BandedGridColumn4)
+        Me.GridBand3.Columns.Add(Me.BandedGridColumn5)
+        Me.GridBand3.Columns.Add(Me.BandedGridColumn17)
+        Me.GridBand3.Columns.Add(Me.BandedGridColumn21)
+        Me.GridBand3.Name = "GridBand3"
+        Me.GridBand3.VisibleIndex = 2
+        Me.GridBand3.Width = 362
+        '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.Caption = "Code"
+        Me.BandedGridColumn3.FieldName = "code"
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumn3.Visible = True
+        Me.BandedGridColumn3.Width = 65
+        '
+        'BandedGridColumn4
+        '
+        Me.BandedGridColumn4.Caption = "Description"
+        Me.BandedGridColumn4.FieldName = "name"
+        Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumn4.Visible = True
+        Me.BandedGridColumn4.Width = 65
+        '
+        'BandedGridColumn5
+        '
+        Me.BandedGridColumn5.Caption = "Size"
+        Me.BandedGridColumn5.FieldName = "size"
+        Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumn5.Visible = True
+        Me.BandedGridColumn5.Width = 65
+        '
+        'BandedGridColumn17
+        '
+        Me.BandedGridColumn17.Caption = "Used Price"
+        Me.BandedGridColumn17.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn17.FieldName = "design_price_valid"
+        Me.BandedGridColumn17.Name = "BandedGridColumn17"
+        Me.BandedGridColumn17.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumn17.Visible = True
+        '
         'BandedGridColumn21
         '
         Me.BandedGridColumn21.Caption = "Qty"
@@ -2342,93 +2377,18 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn21.Visible = True
         Me.BandedGridColumn21.Width = 92
         '
-        'BandedGridColumnqty_recon_on_process
+        'GridBand6
         '
-        Me.BandedGridColumnqty_recon_on_process.Caption = "On Process Closing"
-        Me.BandedGridColumnqty_recon_on_process.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnqty_recon_on_process.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnqty_recon_on_process.FieldName = "qty_recon_on_process"
-        Me.BandedGridColumnqty_recon_on_process.Name = "BandedGridColumnqty_recon_on_process"
-        Me.BandedGridColumnqty_recon_on_process.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_recon_on_process", "{0:N0}")})
-        Me.BandedGridColumnqty_recon_on_process.Visible = True
-        Me.BandedGridColumnqty_recon_on_process.Width = 105
-        '
-        'BandedGridColumnqty_proceed_oos
-        '
-        Me.BandedGridColumnqty_proceed_oos.Caption = "Total Closed"
-        Me.BandedGridColumnqty_proceed_oos.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnqty_proceed_oos.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnqty_proceed_oos.FieldName = "qty_recon_proceed"
-        Me.BandedGridColumnqty_proceed_oos.Name = "BandedGridColumnqty_proceed_oos"
-        Me.BandedGridColumnqty_proceed_oos.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_recon_proceed", "{0:N0}")})
-        Me.BandedGridColumnqty_proceed_oos.Visible = True
-        '
-        'BandedGridColumn14
-        '
-        Me.BandedGridColumn14.Caption = "Status"
-        Me.BandedGridColumn14.FieldName = "recon_status"
-        Me.BandedGridColumn14.Name = "BandedGridColumn14"
-        Me.BandedGridColumn14.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumn14.Visible = True
-        Me.BandedGridColumn14.Width = 111
-        '
-        'BandedGridColumn22
-        '
-        Me.BandedGridColumn22.Caption = "Created Inv."
-        Me.BandedGridColumn22.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn22.FieldName = "qty_proceed"
-        Me.BandedGridColumn22.Name = "BandedGridColumn22"
-        Me.BandedGridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_proceed", "{0:N0}")})
-        Me.BandedGridColumn22.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn22.Width = 101
-        '
-        'BandedGridColumn23
-        '
-        Me.BandedGridColumn23.Caption = "Diff Qty No Used"
-        Me.BandedGridColumn23.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn23.FieldName = "no_stock_diff"
-        Me.BandedGridColumn23.Name = "BandedGridColumn23"
-        Me.BandedGridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "no_stock_diff", "{0:N0}")})
-        Me.BandedGridColumn23.UnboundExpression = "[qty_proceed] - [no_stock_qty]"
-        Me.BandedGridColumn23.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn23.Width = 101
-        '
-        'BandedGridColumn24
-        '
-        Me.BandedGridColumn24.Caption = "On Process"
-        Me.BandedGridColumn24.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn24.FieldName = "qty_on_process"
-        Me.BandedGridColumn24.Name = "BandedGridColumn24"
-        Me.BandedGridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_on_process", "{0:N0}")})
-        Me.BandedGridColumn24.Width = 101
-        '
-        'BandedGridColumn25
-        '
-        Me.BandedGridColumn25.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BandedGridColumn25.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumn25.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BandedGridColumn25.AppearanceHeader.Options.UseFont = True
-        Me.BandedGridColumn25.Caption = "Input Qty Inv."
-        Me.BandedGridColumn25.ColumnEdit = Me.RepositoryItemSpinEdit1
-        Me.BandedGridColumn25.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn25.FieldName = "qty_new"
-        Me.BandedGridColumn25.Name = "BandedGridColumn25"
-        Me.BandedGridColumn25.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_new", "{0:N0}")})
-        Me.BandedGridColumn25.Width = 102
-        '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "N0"
-        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N0"
-        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {1874919423, 2328306, 0, 0})
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        Me.GridBand6.Caption = "Invalid Price"
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn15)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn16)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn18)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn19)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn20)
+        Me.GridBand6.Name = "GridBand6"
+        Me.GridBand6.Visible = False
+        Me.GridBand6.VisibleIndex = -1
+        Me.GridBand6.Width = 524
         '
         'BandedGridColumn15
         '
@@ -2484,6 +2444,85 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_on_process_price", "{0:N0}")})
         Me.BandedGridColumn20.Visible = True
         Me.BandedGridColumn20.Width = 92
+        '
+        'gridBand14
+        '
+        Me.gridBand14.Caption = "Closing"
+        Me.gridBand14.Columns.Add(Me.BandedGridColumnqty_recon_on_process)
+        Me.gridBand14.Columns.Add(Me.BandedGridColumn4qty_proceed_cancel)
+        Me.gridBand14.Columns.Add(Me.BandedGridColumnqty_proceed_cancel)
+        Me.gridBand14.Columns.Add(Me.BandedGridColumnqty_proceed_oos)
+        Me.gridBand14.Name = "gridBand14"
+        Me.gridBand14.VisibleIndex = 3
+        Me.gridBand14.Width = 330
+        '
+        'BandedGridColumnqty_recon_on_process
+        '
+        Me.BandedGridColumnqty_recon_on_process.Caption = "On Process Closing"
+        Me.BandedGridColumnqty_recon_on_process.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnqty_recon_on_process.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_recon_on_process.FieldName = "qty_recon_on_process"
+        Me.BandedGridColumnqty_recon_on_process.Name = "BandedGridColumnqty_recon_on_process"
+        Me.BandedGridColumnqty_recon_on_process.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_recon_on_process", "{0:N0}")})
+        Me.BandedGridColumnqty_recon_on_process.Visible = True
+        Me.BandedGridColumnqty_recon_on_process.Width = 105
+        '
+        'BandedGridColumn4qty_proceed_cancel
+        '
+        Me.BandedGridColumn4qty_proceed_cancel.Caption = "Cancel Sales"
+        Me.BandedGridColumn4qty_proceed_cancel.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn4qty_proceed_cancel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn4qty_proceed_cancel.FieldName = "qty_proceed_cancel"
+        Me.BandedGridColumn4qty_proceed_cancel.Name = "BandedGridColumn4qty_proceed_cancel"
+        Me.BandedGridColumn4qty_proceed_cancel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_proceed_cancel", "{0:N0}")})
+        Me.BandedGridColumn4qty_proceed_cancel.Visible = True
+        '
+        'BandedGridColumnqty_proceed_cancel
+        '
+        Me.BandedGridColumnqty_proceed_cancel.Caption = "Changes Item"
+        Me.BandedGridColumnqty_proceed_cancel.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnqty_proceed_cancel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_proceed_cancel.FieldName = "qty_proceed_changes"
+        Me.BandedGridColumnqty_proceed_cancel.Name = "BandedGridColumnqty_proceed_cancel"
+        Me.BandedGridColumnqty_proceed_cancel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_proceed_cancel", "{0:N0}")})
+        Me.BandedGridColumnqty_proceed_cancel.Visible = True
+        '
+        'BandedGridColumnqty_proceed_oos
+        '
+        Me.BandedGridColumnqty_proceed_oos.Caption = "Total Closed"
+        Me.BandedGridColumnqty_proceed_oos.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnqty_proceed_oos.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnqty_proceed_oos.FieldName = "qty_recon_proceed"
+        Me.BandedGridColumnqty_proceed_oos.Name = "BandedGridColumnqty_proceed_oos"
+        Me.BandedGridColumnqty_proceed_oos.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_recon_proceed", "{0:N0}")})
+        Me.BandedGridColumnqty_proceed_oos.Visible = True
+        '
+        'gridBand15
+        '
+        Me.gridBand15.Columns.Add(Me.BandedGridColumndiff_qty)
+        Me.gridBand15.Columns.Add(Me.BandedGridColumn14)
+        Me.gridBand15.Name = "gridBand15"
+        Me.gridBand15.VisibleIndex = 4
+        Me.gridBand15.Width = 186
+        '
+        'BandedGridColumndiff_qty
+        '
+        Me.BandedGridColumndiff_qty.Caption = "Diff Qty"
+        Me.BandedGridColumndiff_qty.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumndiff_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumndiff_qty.FieldName = "diff_qty"
+        Me.BandedGridColumndiff_qty.Name = "BandedGridColumndiff_qty"
+        Me.BandedGridColumndiff_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", "{0:N0}")})
+        Me.BandedGridColumndiff_qty.Visible = True
+        '
+        'BandedGridColumn14
+        '
+        Me.BandedGridColumn14.Caption = "Status"
+        Me.BandedGridColumn14.FieldName = "recon_status"
+        Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumn14.Visible = True
+        Me.BandedGridColumn14.Width = 111
         '
         'BandedGridColumn26
         '
@@ -2583,6 +2622,64 @@ Partial Class FormSalesPOS
         Me.BandedGridColumn38.FieldName = "is_open_invoice"
         Me.BandedGridColumn38.Name = "BandedGridColumn38"
         Me.BandedGridColumn38.OptionsColumn.ReadOnly = True
+        '
+        'BandedGridColumn24
+        '
+        Me.BandedGridColumn24.Caption = "On Process"
+        Me.BandedGridColumn24.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn24.FieldName = "qty_on_process"
+        Me.BandedGridColumn24.Name = "BandedGridColumn24"
+        Me.BandedGridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_on_process", "{0:N0}")})
+        Me.BandedGridColumn24.Width = 101
+        '
+        'BandedGridColumn23
+        '
+        Me.BandedGridColumn23.Caption = "Diff Qty No Used"
+        Me.BandedGridColumn23.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn23.FieldName = "no_stock_diff"
+        Me.BandedGridColumn23.Name = "BandedGridColumn23"
+        Me.BandedGridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "no_stock_diff", "{0:N0}")})
+        Me.BandedGridColumn23.UnboundExpression = "[qty_proceed] - [no_stock_qty]"
+        Me.BandedGridColumn23.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn23.Width = 101
+        '
+        'BandedGridColumn22
+        '
+        Me.BandedGridColumn22.Caption = "Created Inv."
+        Me.BandedGridColumn22.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn22.FieldName = "qty_proceed"
+        Me.BandedGridColumn22.Name = "BandedGridColumn22"
+        Me.BandedGridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_proceed", "{0:N0}")})
+        Me.BandedGridColumn22.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn22.Width = 101
+        '
+        'BandedGridColumn25
+        '
+        Me.BandedGridColumn25.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridColumn25.AppearanceCell.Options.UseFont = True
+        Me.BandedGridColumn25.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridColumn25.AppearanceHeader.Options.UseFont = True
+        Me.BandedGridColumn25.Caption = "Input Qty Inv."
+        Me.BandedGridColumn25.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.BandedGridColumn25.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn25.FieldName = "qty_new"
+        Me.BandedGridColumn25.Name = "BandedGridColumn25"
+        Me.BandedGridColumn25.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_new", "{0:N0}")})
+        Me.BandedGridColumn25.Width = 102
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "N0"
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N0"
+        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {1874919423, 2328306, 0, 0})
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
         'BandedGridColumn39
         '
@@ -3454,103 +3551,6 @@ Partial Class FormSalesPOS
         Me.LabelControl10.Size = New System.Drawing.Size(0, 13)
         Me.LabelControl10.TabIndex = 8892
         Me.LabelControl10.Text = "From"
-        '
-        'BandedGridColumn4qty_proceed_cancel
-        '
-        Me.BandedGridColumn4qty_proceed_cancel.Caption = "Cancel Sales"
-        Me.BandedGridColumn4qty_proceed_cancel.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumn4qty_proceed_cancel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn4qty_proceed_cancel.FieldName = "qty_proceed_cancel"
-        Me.BandedGridColumn4qty_proceed_cancel.Name = "BandedGridColumn4qty_proceed_cancel"
-        Me.BandedGridColumn4qty_proceed_cancel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_proceed_cancel", "{0:N0}")})
-        Me.BandedGridColumn4qty_proceed_cancel.Visible = True
-        '
-        'BandedGridColumnqty_proceed_cancel
-        '
-        Me.BandedGridColumnqty_proceed_cancel.Caption = "Changes Item"
-        Me.BandedGridColumnqty_proceed_cancel.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnqty_proceed_cancel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnqty_proceed_cancel.FieldName = "qty_proceed_cancel"
-        Me.BandedGridColumnqty_proceed_cancel.Name = "BandedGridColumnqty_proceed_cancel"
-        Me.BandedGridColumnqty_proceed_cancel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_proceed_cancel", "{0:N0}")})
-        Me.BandedGridColumnqty_proceed_cancel.Visible = True
-        '
-        'BandedGridColumndiff_qty
-        '
-        Me.BandedGridColumndiff_qty.Caption = "Diff Qty"
-        Me.BandedGridColumndiff_qty.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumndiff_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumndiff_qty.FieldName = "diff_qty"
-        Me.BandedGridColumndiff_qty.Name = "BandedGridColumndiff_qty"
-        Me.BandedGridColumndiff_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", "{0:N0}")})
-        Me.BandedGridColumndiff_qty.Visible = True
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 150
-        '
-        'GridBand5
-        '
-        Me.GridBand5.Caption = "Invoice Ref."
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn6)
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn7)
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn8)
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn9)
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn10)
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn11)
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn12)
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn13)
-        Me.GridBand5.Name = "GridBand5"
-        Me.GridBand5.VisibleIndex = 1
-        Me.GridBand5.Width = 525
-        '
-        'GridBand3
-        '
-        Me.GridBand3.Caption = "Product No Stock"
-        Me.GridBand3.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBand3.Columns.Add(Me.BandedGridColumn4)
-        Me.GridBand3.Columns.Add(Me.BandedGridColumn5)
-        Me.GridBand3.Columns.Add(Me.BandedGridColumn17)
-        Me.GridBand3.Columns.Add(Me.BandedGridColumn21)
-        Me.GridBand3.Name = "GridBand3"
-        Me.GridBand3.VisibleIndex = 2
-        Me.GridBand3.Width = 362
-        '
-        'GridBand6
-        '
-        Me.GridBand6.Caption = "Invalid Price"
-        Me.GridBand6.Columns.Add(Me.BandedGridColumn15)
-        Me.GridBand6.Columns.Add(Me.BandedGridColumn16)
-        Me.GridBand6.Columns.Add(Me.BandedGridColumn18)
-        Me.GridBand6.Columns.Add(Me.BandedGridColumn19)
-        Me.GridBand6.Columns.Add(Me.BandedGridColumn20)
-        Me.GridBand6.Name = "GridBand6"
-        Me.GridBand6.Visible = False
-        Me.GridBand6.VisibleIndex = -1
-        Me.GridBand6.Width = 524
-        '
-        'gridBand14
-        '
-        Me.gridBand14.Caption = "Closing"
-        Me.gridBand14.Columns.Add(Me.BandedGridColumnqty_recon_on_process)
-        Me.gridBand14.Columns.Add(Me.BandedGridColumn4qty_proceed_cancel)
-        Me.gridBand14.Columns.Add(Me.BandedGridColumnqty_proceed_cancel)
-        Me.gridBand14.Columns.Add(Me.BandedGridColumnqty_proceed_oos)
-        Me.gridBand14.Name = "gridBand14"
-        Me.gridBand14.VisibleIndex = 3
-        Me.gridBand14.Width = 330
-        '
-        'gridBand15
-        '
-        Me.gridBand15.Columns.Add(Me.BandedGridColumndiff_qty)
-        Me.gridBand15.Columns.Add(Me.BandedGridColumn14)
-        Me.gridBand15.Name = "gridBand15"
-        Me.gridBand15.VisibleIndex = 4
-        Me.gridBand15.Width = 186
         '
         'FormSalesPOS
         '
