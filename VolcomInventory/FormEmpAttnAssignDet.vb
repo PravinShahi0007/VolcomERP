@@ -247,9 +247,9 @@
                 id_emp_assign_sch = execute_query(query, 0, True, "", "", "", "")
                 increase_inc_emp("4")
                 'detail
-                query = ""
                 'detail before
                 For i As Integer = 0 To GVScheduleBefore.RowCount - 1
+                    query = ""
                     For j As Integer = 0 To GVScheduleBefore.Columns.Count - 1
                         If Not (GVScheduleBefore.Columns(j).FieldName = "id_employee" Or GVScheduleBefore.Columns(j).FieldName = "employee_code" Or GVScheduleBefore.Columns(j).FieldName = "employee_name") Then
                             Dim shift_code As String = GVScheduleBefore.GetRowCellValue(i, GVScheduleBefore.Columns(j).FieldName.ToString).ToString
@@ -268,9 +268,11 @@
                             End If
                         End If
                     Next
+                    execute_non_query_long(query, True, "", "", "", "")
                 Next
                 'detail after
                 For i As Integer = 0 To GVScheduleAfter.RowCount - 1
+                    query = ""
                     For j As Integer = 0 To GVScheduleAfter.Columns.Count - 1
                         If Not (GVScheduleAfter.Columns(j).FieldName = "id_employee" Or GVScheduleAfter.Columns(j).FieldName = "employee_code" Or GVScheduleAfter.Columns(j).FieldName = "employee_name") Then
                             Dim shift_code As String = GVScheduleAfter.GetRowCellValue(i, GVScheduleAfter.Columns(j).FieldName.ToString).ToString
@@ -287,8 +289,8 @@
                             End If
                         End If
                     Next
+                    execute_non_query_long(query, True, "", "", "", "")
                 Next
-                execute_non_query(query, True, "", "", "", "")
                 If FormEmpAttnAssign.is_departement = "1" Then
                     submit_who_prepared("240", id_emp_assign_sch, id_user)
                 Else
