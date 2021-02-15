@@ -148,7 +148,7 @@
         If FormInvoiceFGPODP.doc_type = "2" Then
             query = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det,pnd.qty, pn.`id_pn_fgpo`,pn.`number`,pnd.id_currency,cur.currency,pnd.kurs,(pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) AS value_bef_kurs_rem,(pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) AS value_bef_kurs
 ,pnd.`vat`,pnd.`inv_number`,pnd.`note` 
-,dsg.`design_code`,dsg.`design_display_name`, wo.id_comp,wo.comp_name, wo.id_acc_dp AS id_acc
+,dsg.`design_code`,dsg.`design_display_name`, wo.id_comp,wo.comp_name, IFNULL(wo.id_acc_dp,pnd.id_acc) AS id_acc
 FROM `tb_pn_fgpo_det` pnd
 INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` AND pnd.`report_mark_type`='22'
@@ -172,7 +172,7 @@ LEFT JOIN
 )used ON used.id_report=pnd.id_pn_fgpo 
 INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1'  AND pn.doc_type='2' 
+WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1'  AND (pn.doc_type='2' OR pn.doc_type='1')
 AND (pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) > 0"
         Else
             query = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det,pnd.qty, pn.`id_pn_fgpo`,pn.`number`,pnd.id_currency,cur.currency,pnd.kurs,pnd.`vat`,pnd.`inv_number`,pnd.`note`,(pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) AS value_bef_kurs_rem,(pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) AS value_bef_kurs 
