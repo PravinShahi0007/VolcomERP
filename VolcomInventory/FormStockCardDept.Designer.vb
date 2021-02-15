@@ -72,7 +72,7 @@ Partial Class FormStockCardDept
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddInOut = New DevExpress.XtraEditors.SimpleButton()
         Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
@@ -125,7 +125,7 @@ Partial Class FormStockCardDept
         Me.XTPStockCard.Controls.Add(Me.GCSC)
         Me.XTPStockCard.Controls.Add(Me.PanelControl1)
         Me.XTPStockCard.Name = "XTPStockCard"
-        Me.XTPStockCard.Size = New System.Drawing.Size(1071, 511)
+        Me.XTPStockCard.Size = New System.Drawing.Size(892, 511)
         Me.XTPStockCard.Text = "Stock Card"
         '
         'GCSC
@@ -134,7 +134,7 @@ Partial Class FormStockCardDept
         Me.GCSC.Location = New System.Drawing.Point(0, 46)
         Me.GCSC.MainView = Me.GVSC
         Me.GCSC.Name = "GCSC"
-        Me.GCSC.Size = New System.Drawing.Size(1071, 465)
+        Me.GCSC.Size = New System.Drawing.Size(892, 465)
         Me.GCSC.TabIndex = 3
         Me.GCSC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSC})
         '
@@ -222,7 +222,7 @@ Partial Class FormStockCardDept
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1071, 46)
+        Me.PanelControl1.Size = New System.Drawing.Size(892, 46)
         Me.PanelControl1.TabIndex = 0
         '
         'SLEITem
@@ -522,7 +522,7 @@ Partial Class FormStockCardDept
         Me.XTPStockInOut.Controls.Add(Me.GridControl1)
         Me.XTPStockInOut.Controls.Add(Me.PanelControl3)
         Me.XTPStockInOut.Name = "XTPStockInOut"
-        Me.XTPStockInOut.Size = New System.Drawing.Size(1071, 511)
+        Me.XTPStockInOut.Size = New System.Drawing.Size(892, 511)
         Me.XTPStockInOut.Text = "In / Out"
         '
         'GridControl1
@@ -531,7 +531,7 @@ Partial Class FormStockCardDept
         Me.GridControl1.Location = New System.Drawing.Point(0, 46)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1071, 465)
+        Me.GridControl1.Size = New System.Drawing.Size(892, 465)
         Me.GridControl1.TabIndex = 4
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -586,7 +586,7 @@ Partial Class FormStockCardDept
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl3.Controls.Add(Me.BAddInOut)
         Me.PanelControl3.Controls.Add(Me.DateEdit1)
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
         Me.PanelControl3.Controls.Add(Me.SimpleButton1)
@@ -595,18 +595,18 @@ Partial Class FormStockCardDept
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1071, 46)
+        Me.PanelControl3.Size = New System.Drawing.Size(892, 46)
         Me.PanelControl3.TabIndex = 1
         '
-        'SimpleButton2
+        'BAddInOut
         '
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
-        Me.SimpleButton2.Location = New System.Drawing.Point(965, 2)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(104, 42)
-        Me.SimpleButton2.TabIndex = 36
-        Me.SimpleButton2.Text = "New"
+        Me.BAddInOut.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddInOut.Image = CType(resources.GetObject("BAddInOut.Image"), System.Drawing.Image)
+        Me.BAddInOut.Location = New System.Drawing.Point(786, 2)
+        Me.BAddInOut.Name = "BAddInOut"
+        Me.BAddInOut.Size = New System.Drawing.Size(104, 42)
+        Me.BAddInOut.TabIndex = 36
+        Me.BAddInOut.Text = "New"
         '
         'DateEdit1
         '
@@ -752,7 +752,7 @@ Partial Class FormStockCardDept
     Friend WithEvents GridColumntype As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddInOut As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
