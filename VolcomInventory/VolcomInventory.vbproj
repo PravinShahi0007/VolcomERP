@@ -6778,6 +6778,12 @@
     <Compile Include="FormSOHSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockCardDepDet.Designer.vb">
+      <DependentUpon>FormStockCardDepDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockCardDepDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockCardDept.Designer.vb">
       <DependentUpon>FormStockCardDept.vb</DependentUpon>
     </Compile>
@@ -12902,6 +12908,9 @@
     <EmbeddedResource Include="FormSOHSum.resx">
       <DependentUpon>FormSOHSum.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockCardDepDet.resx">
+      <DependentUpon>FormStockCardDepDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockCardDept.resx">
       <DependentUpon>FormStockCardDept.vb</DependentUpon>
