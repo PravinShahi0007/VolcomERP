@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormMasterCode
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormMasterCode
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.XTCCode = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPCode = New DevExpress.XtraTab.XtraTabPage()
@@ -35,11 +35,14 @@ Partial Class FormMasterCode
         Me.GCCodeDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVCodeDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColumnIdCodeDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColumnCheck = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColumnCodeName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColumnDisplayName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PCDeliveryTitle = New DevExpress.XtraEditors.PanelControl()
+        Me.SBParentColor = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelCodeContent = New DevExpress.XtraEditors.LabelControl()
         Me.LabelCodeTitle = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,6 +56,7 @@ Partial Class FormMasterCode
         Me.XTPCodeDet.SuspendLayout()
         CType(Me.GCCodeDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCodeDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCDeliveryTitle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCDeliveryTitle.SuspendLayout()
@@ -177,17 +181,16 @@ Partial Class FormMasterCode
         Me.GCCodeDetail.Location = New System.Drawing.Point(0, 46)
         Me.GCCodeDetail.MainView = Me.GVCodeDetail
         Me.GCCodeDetail.Name = "GCCodeDetail"
-        Me.GCCodeDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
+        Me.GCCodeDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemCheckEdit5})
         Me.GCCodeDetail.Size = New System.Drawing.Size(682, 321)
         Me.GCCodeDetail.TabIndex = 6
         Me.GCCodeDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCodeDetail})
         '
         'GVCodeDetail
         '
-        Me.GVCodeDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdCodeDet, Me.ColumnCode, Me.ColumnCodeName, Me.ColumnDisplayName})
+        Me.GVCodeDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdCodeDet, Me.ColumnCheck, Me.ColumnCode, Me.ColumnCodeName, Me.ColumnDisplayName})
         Me.GVCodeDetail.GridControl = Me.GCCodeDetail
         Me.GVCodeDetail.Name = "GVCodeDetail"
-        Me.GVCodeDetail.OptionsBehavior.Editable = False
         Me.GVCodeDetail.OptionsView.ShowGroupPanel = False
         '
         'ColumnIdCodeDet
@@ -195,6 +198,23 @@ Partial Class FormMasterCode
         Me.ColumnIdCodeDet.Caption = "Id Code Detail"
         Me.ColumnIdCodeDet.FieldName = "id_code_detail"
         Me.ColumnIdCodeDet.Name = "ColumnIdCodeDet"
+        Me.ColumnIdCodeDet.OptionsColumn.AllowEdit = False
+        '
+        'ColumnCheck
+        '
+        Me.ColumnCheck.Caption = "*"
+        Me.ColumnCheck.ColumnEdit = Me.RepositoryItemCheckEdit5
+        Me.ColumnCheck.FieldName = "is_check"
+        Me.ColumnCheck.Name = "ColumnCheck"
+        Me.ColumnCheck.Visible = True
+        Me.ColumnCheck.VisibleIndex = 0
+        '
+        'RepositoryItemCheckEdit5
+        '
+        Me.RepositoryItemCheckEdit5.AutoHeight = False
+        Me.RepositoryItemCheckEdit5.Name = "RepositoryItemCheckEdit5"
+        Me.RepositoryItemCheckEdit5.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit5.ValueUnchecked = "no"
         '
         'ColumnCode
         '
@@ -205,8 +225,9 @@ Partial Class FormMasterCode
         Me.ColumnCode.Caption = "Id"
         Me.ColumnCode.FieldName = "code"
         Me.ColumnCode.Name = "ColumnCode"
+        Me.ColumnCode.OptionsColumn.AllowEdit = False
         Me.ColumnCode.Visible = True
-        Me.ColumnCode.VisibleIndex = 0
+        Me.ColumnCode.VisibleIndex = 1
         Me.ColumnCode.Width = 100
         '
         'ColumnCodeName
@@ -214,8 +235,9 @@ Partial Class FormMasterCode
         Me.ColumnCodeName.Caption = "Description"
         Me.ColumnCodeName.FieldName = "code_detail_name"
         Me.ColumnCodeName.Name = "ColumnCodeName"
+        Me.ColumnCodeName.OptionsColumn.AllowEdit = False
         Me.ColumnCodeName.Visible = True
-        Me.ColumnCodeName.VisibleIndex = 2
+        Me.ColumnCodeName.VisibleIndex = 3
         Me.ColumnCodeName.Width = 150
         '
         'ColumnDisplayName
@@ -223,8 +245,9 @@ Partial Class FormMasterCode
         Me.ColumnDisplayName.Caption = "Printed in Barcode"
         Me.ColumnDisplayName.FieldName = "display_name"
         Me.ColumnDisplayName.Name = "ColumnDisplayName"
+        Me.ColumnDisplayName.OptionsColumn.AllowEdit = False
         Me.ColumnDisplayName.Visible = True
-        Me.ColumnDisplayName.VisibleIndex = 1
+        Me.ColumnDisplayName.VisibleIndex = 2
         '
         'RepositoryItemCheckEdit2
         '
@@ -237,6 +260,7 @@ Partial Class FormMasterCode
         '
         Me.PCDeliveryTitle.Appearance.BackColor = System.Drawing.Color.White
         Me.PCDeliveryTitle.Appearance.Options.UseBackColor = True
+        Me.PCDeliveryTitle.Controls.Add(Me.SBParentColor)
         Me.PCDeliveryTitle.Controls.Add(Me.LabelCodeContent)
         Me.PCDeliveryTitle.Controls.Add(Me.LabelCodeTitle)
         Me.PCDeliveryTitle.Dock = System.Windows.Forms.DockStyle.Top
@@ -246,6 +270,15 @@ Partial Class FormMasterCode
         Me.PCDeliveryTitle.Name = "PCDeliveryTitle"
         Me.PCDeliveryTitle.Size = New System.Drawing.Size(682, 46)
         Me.PCDeliveryTitle.TabIndex = 5
+        '
+        'SBParentColor
+        '
+        Me.SBParentColor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBParentColor.Location = New System.Drawing.Point(566, 14)
+        Me.SBParentColor.Name = "SBParentColor"
+        Me.SBParentColor.Size = New System.Drawing.Size(104, 23)
+        Me.SBParentColor.TabIndex = 5
+        Me.SBParentColor.Text = "Set Parent Color"
         '
         'LabelCodeContent
         '
@@ -288,6 +321,7 @@ Partial Class FormMasterCode
         Me.XTPCodeDet.ResumeLayout(False)
         CType(Me.GCCodeDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCodeDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCDeliveryTitle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCDeliveryTitle.ResumeLayout(False)
@@ -318,4 +352,7 @@ Partial Class FormMasterCode
     Friend WithEvents PCDeliveryTitle As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelCodeContent As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelCodeTitle As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents ColumnCheck As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents SBParentColor As DevExpress.XtraEditors.SimpleButton
 End Class
