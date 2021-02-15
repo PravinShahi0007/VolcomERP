@@ -50,7 +50,7 @@ WHERE trsd.`id_item_card_trs`='" & id_trans & "'"
         Dim q As String = "SELECT '1' AS id_type,'Delivery' AS type
 UNION ALL
 SELECT '2' AS id_type,'Receiving' AS type"
-        viewSearchLookupQuery(SLEStore, q, "id_type", "type", "id_type")
+        viewSearchLookupQuery(SLEType, q, "id_type", "type", "id_type")
     End Sub
 
     Private Sub FormStockCardDepDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -65,7 +65,9 @@ SELECT '2' AS id_type,'Receiving' AS type"
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-
+        GVItemDetail.AddNewRow()
+        GVItemDetail.FocusedRowHandle = GVItemDetail.RowCount - 1
+        load_item_pil()
         check_but()
     End Sub
 

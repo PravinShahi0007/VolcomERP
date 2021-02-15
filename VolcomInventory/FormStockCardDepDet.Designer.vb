@@ -421,7 +421,7 @@ Partial Class FormStockCardDepDet
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Item Name"
-        Me.GridColumn12.FieldName = "item_name"
+        Me.GridColumn12.FieldName = "item_desc"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 0
