@@ -3,10 +3,12 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
 
+    Public id_template As String = "-1"
+
     Private Sub FormMasterCode_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
-        button_main(bnew_active, bedit_active, bdel_active)
+        check_menu()
     End Sub
 
     Private Sub FormMasterCode_Deactivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Deactivate
@@ -18,7 +20,13 @@
     End Sub
 
     Sub view_code()
-        Dim data As DataTable = execute_query("SELECT id_code,code_name,description,is_include_name,is_include_code FROM tb_m_code ORDER BY code_name", -1, True, "", "", "", "")
+        Dim q_where As String = ""
+
+        If Not id_template = "-1" Then
+            q_where = "WHERE id_code IN (SELECT id_code FROM tb_template_code_det WHERE id_template_code = " + id_template + ")"
+        End If
+
+        Dim data As DataTable = execute_query("SELECT id_code,code_name,description,is_include_name,is_include_code FROM tb_m_code " + q_where + " ORDER BY code_name", -1, True, "", "", "", "")
         GCCode.DataSource = data
         check_menu()
         If data.Rows.Count > 0 Then
@@ -31,6 +39,7 @@
             '
             XTPCodeDet.PageEnabled = True
             view_code_detail(GVCode.GetFocusedRowCellDisplayText("id_code").ToString)
+            view_code_detail(GVCode.GetFocusedRowCellDisplayText("id_code").ToString)
             LabelCodeContent.Text = GVCode.GetFocusedRowCellDisplayText("code_name").ToString
         Else
             'hide all except new
@@ -41,6 +50,10 @@
             button_main(bnew_active, bedit_active, bdel_active)
             '
             XTPCodeDet.PageEnabled = False
+        End If
+
+        If Not id_template = "-1" Then
+            button_main("0", "0", "0")
         End If
     End Sub
     Sub view_code_detail(ByVal id_code As String)
@@ -118,6 +131,10 @@
                 checkFormAccess(Name)
                 button_main(bnew_active, bedit_active, bdel_active)
                 '
+            End If
+
+            If Not id_template = "-1" Then
+                button_main("0", "0", "0")
             End If
         Else
             'detail
