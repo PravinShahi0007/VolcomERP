@@ -42,13 +42,10 @@ Partial Class FormOLReturnRefuse
         Me.GridColumnsales_order_ol_shop_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnshipping_address = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_sales_return_order = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsales_return_order_number = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_sales_pos_cn = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsales_pos_number_cn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncreated_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
@@ -60,10 +57,28 @@ Partial Class FormOLReturnRefuse
         Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCOrder = New DevExpress.XtraGrid.GridControl()
         Me.GVOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnorderid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_groupord = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group_descord = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_sales_orderord = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_numberord = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_dateord = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_ol_shop_numberord = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_ol_shop_dateord = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncustomer_nameord = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumcomp_numberord = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_nameord = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.CEFindOrderNo = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnViewOrderList = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumncreated_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPCreated.SuspendLayout()
@@ -80,6 +95,10 @@ Partial Class FormOLReturnRefuse
         CType(Me.GVOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEFindOrderNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCData
@@ -113,7 +132,7 @@ Partial Class FormOLReturnRefuse
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_return_refuse, Me.GridColumnid_refuse_type, Me.GridColumnrefuse_type, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumnid_store_contact, Me.GridColumnid_comp, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnid_comp_group, Me.GridColumncomp_group, Me.GridColumncomp_group_desc, Me.GridColumnid_sales_order, Me.GridColumnsales_order_number, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_date, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_address, Me.GridColumnid_sales_return_order, Me.GridColumnsales_return_order_number, Me.GridColumnid_sales_pos_cn, Me.GridColumnsales_pos_number_cn, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumncreated_by_name})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_return_refuse, Me.GridColumnid_refuse_type, Me.GridColumnrefuse_type, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumnid_store_contact, Me.GridColumnid_comp, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnid_comp_group, Me.GridColumncomp_group, Me.GridColumncomp_group_desc, Me.GridColumnid_sales_order, Me.GridColumnsales_order_number, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_date, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_address, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumncreated_by_name})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -258,30 +277,6 @@ Partial Class FormOLReturnRefuse
         Me.GridColumnshipping_address.FieldName = "shipping_address"
         Me.GridColumnshipping_address.Name = "GridColumnshipping_address"
         '
-        'GridColumnid_sales_return_order
-        '
-        Me.GridColumnid_sales_return_order.Caption = "id_sales_return_order"
-        Me.GridColumnid_sales_return_order.FieldName = "id_sales_return_order"
-        Me.GridColumnid_sales_return_order.Name = "GridColumnid_sales_return_order"
-        '
-        'GridColumnsales_return_order_number
-        '
-        Me.GridColumnsales_return_order_number.Caption = "ROR. No."
-        Me.GridColumnsales_return_order_number.FieldName = "sales_return_order_number"
-        Me.GridColumnsales_return_order_number.Name = "GridColumnsales_return_order_number"
-        '
-        'GridColumnid_sales_pos_cn
-        '
-        Me.GridColumnid_sales_pos_cn.Caption = "id_sales_pos_cn"
-        Me.GridColumnid_sales_pos_cn.FieldName = "id_sales_pos_cn"
-        Me.GridColumnid_sales_pos_cn.Name = "GridColumnid_sales_pos_cn"
-        '
-        'GridColumnsales_pos_number_cn
-        '
-        Me.GridColumnsales_pos_number_cn.Caption = "CN. No."
-        Me.GridColumnsales_pos_number_cn.FieldName = "sales_pos_number_cn"
-        Me.GridColumnsales_pos_number_cn.Name = "GridColumnsales_pos_number_cn"
-        '
         'GridColumnnote
         '
         Me.GridColumnnote.Caption = "Note"
@@ -301,6 +296,14 @@ Partial Class FormOLReturnRefuse
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 9
+        '
+        'GridColumncreated_by_name
+        '
+        Me.GridColumncreated_by_name.Caption = "Created by"
+        Me.GridColumncreated_by_name.FieldName = "created_by_name"
+        Me.GridColumncreated_by_name.Name = "GridColumncreated_by_name"
+        Me.GridColumncreated_by_name.Visible = True
+        Me.GridColumncreated_by_name.VisibleIndex = 8
         '
         'GCFilter
         '
@@ -409,6 +412,7 @@ Partial Class FormOLReturnRefuse
         '
         'GVOrder
         '
+        Me.GVOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnorderid_comp_group, Me.GridColumncomp_groupord, Me.GridColumncomp_group_descord, Me.GridColumnid_sales_orderord, Me.GridColumnsales_order_numberord, Me.GridColumnsales_order_dateord, Me.GridColumnsales_order_ol_shop_numberord, Me.GridColumnsales_order_ol_shop_dateord, Me.GridColumncustomer_nameord, Me.GridColumcomp_numberord, Me.GridColumncomp_nameord})
         Me.GVOrder.GridControl = Me.GCOrder
         Me.GVOrder.Name = "GVOrder"
         Me.GVOrder.OptionsBehavior.ReadOnly = True
@@ -416,9 +420,100 @@ Partial Class FormOLReturnRefuse
         Me.GVOrder.OptionsView.ColumnAutoWidth = False
         Me.GVOrder.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnorderid_comp_group
+        '
+        Me.GridColumnorderid_comp_group.Caption = "id_comp_group"
+        Me.GridColumnorderid_comp_group.FieldName = "id_comp_group"
+        Me.GridColumnorderid_comp_group.Name = "GridColumnorderid_comp_group"
+        '
+        'GridColumncomp_groupord
+        '
+        Me.GridColumncomp_groupord.Caption = "Group"
+        Me.GridColumncomp_groupord.FieldName = "comp_group"
+        Me.GridColumncomp_groupord.Name = "GridColumncomp_groupord"
+        '
+        'GridColumncomp_group_descord
+        '
+        Me.GridColumncomp_group_descord.Caption = "Store Group"
+        Me.GridColumncomp_group_descord.FieldName = "comp_group_desc"
+        Me.GridColumncomp_group_descord.Name = "GridColumncomp_group_descord"
+        Me.GridColumncomp_group_descord.Visible = True
+        Me.GridColumncomp_group_descord.VisibleIndex = 5
+        '
+        'GridColumnid_sales_orderord
+        '
+        Me.GridColumnid_sales_orderord.Caption = "id_sales_order"
+        Me.GridColumnid_sales_orderord.FieldName = "id_sales_order"
+        Me.GridColumnid_sales_orderord.Name = "GridColumnid_sales_orderord"
+        '
+        'GridColumnsales_order_numberord
+        '
+        Me.GridColumnsales_order_numberord.Caption = "SO. No."
+        Me.GridColumnsales_order_numberord.FieldName = "sales_order_number"
+        Me.GridColumnsales_order_numberord.Name = "GridColumnsales_order_numberord"
+        Me.GridColumnsales_order_numberord.Visible = True
+        Me.GridColumnsales_order_numberord.VisibleIndex = 0
+        '
+        'GridColumnsales_order_dateord
+        '
+        Me.GridColumnsales_order_dateord.Caption = "SO. Date"
+        Me.GridColumnsales_order_dateord.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_order_dateord.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_order_dateord.FieldName = "sales_order_date"
+        Me.GridColumnsales_order_dateord.Name = "GridColumnsales_order_dateord"
+        Me.GridColumnsales_order_dateord.Visible = True
+        Me.GridColumnsales_order_dateord.VisibleIndex = 1
+        '
+        'GridColumnsales_order_ol_shop_numberord
+        '
+        Me.GridColumnsales_order_ol_shop_numberord.Caption = "Order No."
+        Me.GridColumnsales_order_ol_shop_numberord.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnsales_order_ol_shop_numberord.Name = "GridColumnsales_order_ol_shop_numberord"
+        Me.GridColumnsales_order_ol_shop_numberord.Visible = True
+        Me.GridColumnsales_order_ol_shop_numberord.VisibleIndex = 2
+        '
+        'GridColumnsales_order_ol_shop_dateord
+        '
+        Me.GridColumnsales_order_ol_shop_dateord.Caption = "Order date"
+        Me.GridColumnsales_order_ol_shop_dateord.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_order_ol_shop_dateord.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_order_ol_shop_dateord.FieldName = "sales_order_ol_shop_date"
+        Me.GridColumnsales_order_ol_shop_dateord.Name = "GridColumnsales_order_ol_shop_dateord"
+        Me.GridColumnsales_order_ol_shop_dateord.Visible = True
+        Me.GridColumnsales_order_ol_shop_dateord.VisibleIndex = 3
+        '
+        'GridColumncustomer_nameord
+        '
+        Me.GridColumncustomer_nameord.Caption = "Customer"
+        Me.GridColumncustomer_nameord.FieldName = "customer_name"
+        Me.GridColumncustomer_nameord.Name = "GridColumncustomer_nameord"
+        Me.GridColumncustomer_nameord.Visible = True
+        Me.GridColumncustomer_nameord.VisibleIndex = 4
+        '
+        'GridColumcomp_numberord
+        '
+        Me.GridColumcomp_numberord.Caption = "Store Acc."
+        Me.GridColumcomp_numberord.FieldName = "comp_number"
+        Me.GridColumcomp_numberord.Name = "GridColumcomp_numberord"
+        Me.GridColumcomp_numberord.Visible = True
+        Me.GridColumcomp_numberord.VisibleIndex = 6
+        '
+        'GridColumncomp_nameord
+        '
+        Me.GridColumncomp_nameord.Caption = "Store"
+        Me.GridColumncomp_nameord.FieldName = "comp_name"
+        Me.GridColumncomp_nameord.Name = "GridColumncomp_nameord"
+        Me.GridColumncomp_nameord.Visible = True
+        Me.GridColumncomp_nameord.VisibleIndex = 7
+        '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.TxtOrderNumber)
+        Me.GroupControl1.Controls.Add(Me.CEFindOrderNo)
+        Me.GroupControl1.Controls.Add(Me.BtnViewOrderList)
+        Me.GroupControl1.Controls.Add(Me.LabelControl7)
+        Me.GroupControl1.Controls.Add(Me.SLECompGroup)
         Me.GroupControl1.Controls.Add(Me.SimpleButton2)
         Me.GroupControl1.Controls.Add(Me.SimpleButton3)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -426,6 +521,71 @@ Partial Class FormOLReturnRefuse
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(701, 39)
         Me.GroupControl1.TabIndex = 6
+        '
+        'TxtOrderNumber
+        '
+        Me.TxtOrderNumber.Location = New System.Drawing.Point(346, 9)
+        Me.TxtOrderNumber.Name = "TxtOrderNumber"
+        Me.TxtOrderNumber.Size = New System.Drawing.Size(131, 20)
+        Me.TxtOrderNumber.TabIndex = 8903
+        '
+        'CEFindOrderNo
+        '
+        Me.CEFindOrderNo.EditValue = True
+        Me.CEFindOrderNo.Location = New System.Drawing.Point(205, 9)
+        Me.CEFindOrderNo.Name = "CEFindOrderNo"
+        Me.CEFindOrderNo.Properties.Caption = "Search by order number"
+        Me.CEFindOrderNo.Size = New System.Drawing.Size(138, 19)
+        Me.CEFindOrderNo.TabIndex = 8902
+        '
+        'BtnViewOrderList
+        '
+        Me.BtnViewOrderList.Location = New System.Drawing.Point(483, 9)
+        Me.BtnViewOrderList.LookAndFeel.SkinName = "Blue"
+        Me.BtnViewOrderList.Name = "BtnViewOrderList"
+        Me.BtnViewOrderList.Size = New System.Drawing.Size(75, 20)
+        Me.BtnViewOrderList.TabIndex = 8901
+        Me.BtnViewOrderList.Text = "View"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(23, 12)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(29, 13)
+        Me.LabelControl7.TabIndex = 8900
+        Me.LabelControl7.Text = "Group"
+        '
+        'SLECompGroup
+        '
+        Me.SLECompGroup.Location = New System.Drawing.Point(58, 9)
+        Me.SLECompGroup.Name = "SLECompGroup"
+        Me.SLECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECompGroup.Properties.ShowClearButton = False
+        Me.SLECompGroup.Properties.View = Me.GridView2
+        Me.SLECompGroup.Size = New System.Drawing.Size(141, 20)
+        Me.SLECompGroup.TabIndex = 8899
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn10})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "id_comp_group"
+        Me.GridColumn1.FieldName = "id_comp_group"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Group Description"
+        Me.GridColumn10.FieldName = "description"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
         '
         'SimpleButton2
         '
@@ -446,14 +606,6 @@ Partial Class FormOLReturnRefuse
         Me.SimpleButton3.TabIndex = 8897
         Me.SimpleButton3.Text = "Expand All Detail"
         Me.SimpleButton3.Visible = False
-        '
-        'GridColumncreated_by_name
-        '
-        Me.GridColumncreated_by_name.Caption = "Created by"
-        Me.GridColumncreated_by_name.FieldName = "created_by_name"
-        Me.GridColumncreated_by_name.Name = "GridColumncreated_by_name"
-        Me.GridColumncreated_by_name.Visible = True
-        Me.GridColumncreated_by_name.VisibleIndex = 8
         '
         'FormOLReturnRefuse
         '
@@ -482,6 +634,11 @@ Partial Class FormOLReturnRefuse
         CType(Me.GVOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
+        Me.GroupControl1.PerformLayout()
+        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEFindOrderNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -523,12 +680,27 @@ Partial Class FormOLReturnRefuse
     Friend WithEvents GridColumnsales_order_ol_shop_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnshipping_address As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnid_sales_return_order As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnsales_return_order_number As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnid_sales_pos_cn As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnsales_pos_number_cn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncreated_by_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtOrderNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CEFindOrderNo As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BtnViewOrderList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLECompGroup As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnorderid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_groupord As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_group_descord As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_sales_orderord As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_order_numberord As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_order_dateord As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_order_ol_shop_numberord As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_order_ol_shop_dateord As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncustomer_nameord As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumcomp_numberord As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_nameord As DevExpress.XtraGrid.Columns.GridColumn
 End Class

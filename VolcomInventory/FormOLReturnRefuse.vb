@@ -3,11 +3,27 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
 
+    Sub viewCompGroup()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "
+        SELECT 0 AS id_comp_group, 'ALL' AS comp_group, 'ALL GROUP' AS description
+        UNION
+        SELECT cg.id_comp_group, cg.comp_group, cg.description 
+        FROM tb_m_comp_group cg
+        INNER JOIN tb_m_comp c ON c.id_comp_group = cg.id_comp_group AND c.id_commerce_type=2
+        GROUP BY cg.id_comp_group "
+        viewSearchLookupQuery(SLECompGroup, query, "id_comp_group", "description", "id_comp_group")
+        Cursor = Cursors.Default
+    End Sub
+
+
     Private Sub FormOLReturnRefuse_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'date now
-        Dim data As DataTable = getTimeDB()
-        DEFrom.EditValue = data.Rows(0)("tgl")
-        DEUntil.EditValue = data.Rows(0)("tgl")
+        Dim tgl_sekarang As datetime = getTimeDB()
+        DEFrom.EditValue = tgl_sekarang
+        DEUntil.EditValue = tgl_sekarang
+
+        viewCompGroup()
     End Sub
 
     Private Sub FormOLReturnRefuse_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -115,5 +131,74 @@
 
     Private Sub FormOLReturnRefuse_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
+    End Sub
+
+    Private Sub CEFindOrderNo_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindOrderNo.EditValueChanged
+        resetViewOrder()
+        TxtOrderNumber.Text = ""
+        If CEFindOrderNo.EditValue = True Then
+            TxtOrderNumber.Enabled = True
+        Else
+            TxtOrderNumber.Enabled = False
+        End If
+    End Sub
+
+    Private Sub BtnViewOrderList_Click(sender As Object, e As EventArgs) Handles BtnViewOrderList.Click
+        viewOrderList()
+    End Sub
+
+    Sub viewOrderList()
+        Cursor = Cursors.WaitCursor
+        'group
+        Dim id_comp_group As String = SLECompGroup.EditValue.ToString
+        Dim cond_group As String = ""
+        If id_comp_group <> "0" Then
+            cond_group = "AND cg.id_comp_group='" + id_comp_group + "' "
+        End If
+
+        'order number
+        Dim cond_orderno As String = ""
+        Dim order_no As String = addSlashes(TxtOrderNumber.Text)
+        If order_no <> "" Then
+            cond_orderno = "AND so.sales_order_ol_shop_number='" + order_no + "' "
+        End If
+
+        'check order no
+        If CEFindOrderNo.EditValue = True And order_no = "" Then
+            stopCustom("Please input order number")
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+
+        'view
+        Dim query As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,  c.comp_number, c.comp_name,
+        so.id_sales_order, so.sales_order_number, so.sales_order_date, 
+        so.sales_order_ol_shop_number, so.sales_order_ol_shop_date, so.customer_name
+        FROM tb_pl_sales_order_del d
+        INNER JOIN tb_sales_order so ON so.id_sales_order = d.id_sales_order
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        WHERE d.id_report_status=6 AND c.id_commerce_type=2 
+        " + cond_group + "
+        " + cond_orderno + "
+        ORDER BY cg.id_comp_group ASC,so.sales_order_ol_shop_number ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCOrder.DataSource = data
+        GVOrder.BestFitColumns()
+        check_menu()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub resetViewOrder()
+        GCOrder.DataSource = Nothing
+    End Sub
+
+    Private Sub SLECompGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLECompGroup.EditValueChanged
+        resetViewOrder()
+    End Sub
+
+    Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
+        check_menu()
     End Sub
 End Class
