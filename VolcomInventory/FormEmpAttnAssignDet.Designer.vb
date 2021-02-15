@@ -27,11 +27,14 @@ Partial Class FormEmpAttnAssignDet
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.SBFill = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEFill = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TEEmpCode = New DevExpress.XtraEditors.TextEdit()
         Me.TEEmpName = New DevExpress.XtraEditors.TextEdit()
-        Me.TEDepartement = New DevExpress.XtraEditors.TextEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TEDepartement = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -46,16 +49,16 @@ Partial Class FormEmpAttnAssignDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.TEFill.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEmpCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEmpName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,6 +147,8 @@ Partial Class FormEmpAttnAssignDet
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.SBFill)
+        Me.GroupControl1.Controls.Add(Me.TEFill)
         Me.GroupControl1.Controls.Add(Me.LabelControl3)
         Me.GroupControl1.Controls.Add(Me.LabelControl1)
         Me.GroupControl1.Controls.Add(Me.TEEmpCode)
@@ -156,8 +161,34 @@ Partial Class FormEmpAttnAssignDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(784, 75)
+        Me.GroupControl1.Size = New System.Drawing.Size(784, 98)
         Me.GroupControl1.TabIndex = 3
+        '
+        'SBFill
+        '
+        Me.SBFill.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBFill.Location = New System.Drawing.Point(683, 65)
+        Me.SBFill.Name = "SBFill"
+        Me.SBFill.Size = New System.Drawing.Size(89, 23)
+        Me.SBFill.TabIndex = 103
+        Me.SBFill.Text = "Fill"
+        '
+        'TEFill
+        '
+        Me.TEFill.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEFill.Location = New System.Drawing.Point(472, 67)
+        Me.TEFill.Name = "TEFill"
+        Me.TEFill.Size = New System.Drawing.Size(205, 20)
+        Me.TEFill.TabIndex = 102
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LabelControl3.Location = New System.Drawing.Point(398, 44)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl3.TabIndex = 101
+        Me.LabelControl3.Text = "Departement"
         '
         'LabelControl1
         '
@@ -190,6 +221,16 @@ Partial Class FormEmpAttnAssignDet
         Me.TEEmpName.Size = New System.Drawing.Size(194, 20)
         Me.TEEmpName.TabIndex = 97
         '
+        'TENumber
+        '
+        Me.TENumber.EditValue = ""
+        Me.TENumber.Location = New System.Drawing.Point(116, 12)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.EditValueChangedDelay = 1
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(215, 20)
+        Me.TENumber.TabIndex = 95
+        '
         'TEDepartement
         '
         Me.TEDepartement.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -200,16 +241,6 @@ Partial Class FormEmpAttnAssignDet
         Me.TEDepartement.Properties.ReadOnly = True
         Me.TEDepartement.Size = New System.Drawing.Size(300, 20)
         Me.TEDepartement.TabIndex = 99
-        '
-        'TENumber
-        '
-        Me.TENumber.EditValue = ""
-        Me.TENumber.Location = New System.Drawing.Point(116, 12)
-        Me.TENumber.Name = "TENumber"
-        Me.TENumber.Properties.EditValueChangedDelay = 1
-        Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(215, 20)
-        Me.TENumber.TabIndex = 95
         '
         'LabelControl7
         '
@@ -243,10 +274,10 @@ Partial Class FormEmpAttnAssignDet
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 75)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 98)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPBefore
-        Me.XtraTabControl1.Size = New System.Drawing.Size(784, 367)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(784, 344)
         Me.XtraTabControl1.TabIndex = 4
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBefore, Me.XTPAfter})
         '
@@ -254,7 +285,7 @@ Partial Class FormEmpAttnAssignDet
         '
         Me.XTPBefore.Controls.Add(Me.GCScheduleBefore)
         Me.XTPBefore.Name = "XTPBefore"
-        Me.XTPBefore.Size = New System.Drawing.Size(778, 339)
+        Me.XTPBefore.Size = New System.Drawing.Size(778, 316)
         Me.XTPBefore.Text = "Before"
         '
         'GCScheduleBefore
@@ -263,7 +294,7 @@ Partial Class FormEmpAttnAssignDet
         Me.GCScheduleBefore.Location = New System.Drawing.Point(0, 0)
         Me.GCScheduleBefore.MainView = Me.GVScheduleBefore
         Me.GCScheduleBefore.Name = "GCScheduleBefore"
-        Me.GCScheduleBefore.Size = New System.Drawing.Size(778, 339)
+        Me.GCScheduleBefore.Size = New System.Drawing.Size(778, 316)
         Me.GCScheduleBefore.TabIndex = 3
         Me.GCScheduleBefore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScheduleBefore})
         '
@@ -278,7 +309,7 @@ Partial Class FormEmpAttnAssignDet
         '
         Me.XTPAfter.Controls.Add(Me.GCScheduleAfter)
         Me.XTPAfter.Name = "XTPAfter"
-        Me.XTPAfter.Size = New System.Drawing.Size(683, 150)
+        Me.XTPAfter.Size = New System.Drawing.Size(778, 316)
         Me.XTPAfter.Text = "After"
         '
         'GCScheduleAfter
@@ -287,7 +318,7 @@ Partial Class FormEmpAttnAssignDet
         Me.GCScheduleAfter.Location = New System.Drawing.Point(0, 0)
         Me.GCScheduleAfter.MainView = Me.GVScheduleAfter
         Me.GCScheduleAfter.Name = "GCScheduleAfter"
-        Me.GCScheduleAfter.Size = New System.Drawing.Size(683, 150)
+        Me.GCScheduleAfter.Size = New System.Drawing.Size(778, 316)
         Me.GCScheduleAfter.TabIndex = 3
         Me.GCScheduleAfter.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScheduleAfter})
         '
@@ -334,15 +365,6 @@ Partial Class FormEmpAttnAssignDet
         Me.MENote.Size = New System.Drawing.Size(726, 35)
         Me.MENote.TabIndex = 0
         '
-        'LabelControl3
-        '
-        Me.LabelControl3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl3.Location = New System.Drawing.Point(398, 44)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(63, 13)
-        Me.LabelControl3.TabIndex = 101
-        Me.LabelControl3.Text = "Departement"
-        '
         'FormEmpAttnAssignDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -365,10 +387,11 @@ Partial Class FormEmpAttnAssignDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.TEFill.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEEmpCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEEmpName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -412,4 +435,6 @@ Partial Class FormEmpAttnAssignDet
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SBFill As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEFill As DevExpress.XtraEditors.TextEdit
 End Class
