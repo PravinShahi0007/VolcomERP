@@ -15789,4 +15789,27 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
     End Sub
+
+    Private Sub NBOLReturnRefuse_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOLReturnRefuse.LinkClicked
+        Try
+            FormOLReturnRefuse.MdiParent = Me
+            FormOLReturnRefuse.Show()
+            FormOLReturnRefuse.WindowState = FormWindowState.Maximized
+            FormOLReturnRefuse.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBSetupMasterCode_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSetupMasterCode.LinkClicked
+        Try
+            FormMasterCode.id_template = "13"
+            FormMasterCode.MdiParent = Me
+            FormMasterCode.Show()
+            FormMasterCode.WindowState = FormWindowState.Maximized
+            FormMasterCode.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
 End Class

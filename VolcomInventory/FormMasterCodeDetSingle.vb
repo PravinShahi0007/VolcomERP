@@ -3,6 +3,8 @@
     Public id_code_det As String = "-1"
     Public id_pop_up As String = "-1"
 
+    Public is_set_parent_color As String = "-1"
+
     Private lookup As List(Of DevExpress.XtraEditors.SearchLookUpEdit) = New List(Of DevExpress.XtraEditors.SearchLookUpEdit)
 
     Private Sub TECodeDet_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TECodeDet.Validating
@@ -42,224 +44,249 @@
         If id_code = "14" Then
             view_mapping_column()
         End If
+
+        If is_set_parent_color = "1" Then
+            PanelControl2.Visible = False
+            PanelControl3.Visible = False
+            PanelControl4.Visible = False
+        End If
     End Sub
 
     Private Sub FormMasterCodeDetSingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
+        Try
+            FormMasterCode.view_code_detail(FormMasterCode.GVCode.GetFocusedRowCellDisplayText("id_code").ToString)
+        Catch ex As Exception
+        End Try
+
         Dispose()
     End Sub
 
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
         Cursor = Cursors.WaitCursor
 
-        TECode_Validating(TECode, New System.ComponentModel.CancelEventArgs)
-        TEPrintedCode_Validating(TEPrintedCode, New System.ComponentModel.CancelEventArgs)
-        TECodeDet_Validating(TECodeDet, New System.ComponentModel.CancelEventArgs)
+        If is_set_parent_color = "-1" Then
+            TECode_Validating(TECode, New System.ComponentModel.CancelEventArgs)
+            TEPrintedCode_Validating(TEPrintedCode, New System.ComponentModel.CancelEventArgs)
+            TECodeDet_Validating(TECodeDet, New System.ComponentModel.CancelEventArgs)
 
-        Dim query As String
-        Dim code As String = TECode.Text
-        Dim display_name As String = TEPrintedCode.Text
-        Dim code_name As String = TECodeDet.Text
-        Dim data_insert_parameter_temp As DataTable
+            Dim query As String
+            Dim code As String = TECode.Text
+            Dim display_name As String = TEPrintedCode.Text
+            Dim code_name As String = TECodeDet.Text
+            Dim data_insert_parameter_temp As DataTable
 
-        Try
-            If id_code_det <> "-1" Then
-                'update
-                If Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl2) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl3) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl4) Then
-                    errorInput()
-                Else
-                    query = String.Format("UPDATE tb_m_code_detail SET code_detail_name='{0}',display_name='{1}',code='{2}' WHERE id_code_detail='{3}'", addSlashes(code_name), addSlashes(display_name), addSlashes(code), id_code_det)
-                    execute_non_query(query, True, "", "", "", "")
-                    If id_pop_up = "1" Then
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterSampleDet.data_insert_parameter.Copy()
-
-                        FormMasterSampleDet.load_isi_param()
-                        FormMasterSampleDet.load_template(FormMasterSampleDet.LETemplate.EditValue)
-
-                        FormMasterSampleDet.data_insert_parameter.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterSampleDet.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
-                    ElseIf id_pop_up = "2" Then
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterDesignSingle.data_insert_parameter.Copy()
-
-                        FormMasterDesignSingle.load_isi_param("1")
-                        FormMasterDesignSingle.load_template(FormMasterDesignSingle.LETemplate.EditValue)
-
-                        FormMasterDesignSingle.data_insert_parameter.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterDesignSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
-                    ElseIf id_pop_up = "3" Then
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterProductDet.data_insert_parameter.Copy()
-
-                        FormMasterProductDet.load_isi_param()
-                        FormMasterProductDet.load_template(FormMasterProductDet.LETemplate.EditValue)
-
-                        FormMasterProductDet.data_insert_parameter.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterProductDet.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
-                    ElseIf id_pop_up = "4" Then 'raw mat det
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterRawMaterialDetSingle.data_insert_parameter.Copy()
-
-                        FormMasterRawMaterialDetSingle.loadIsiParam()
-                        FormMasterRawMaterialDetSingle.load_template(FormMasterRawMaterialDetSingle.LETemplate.EditValue)
-
-                        FormMasterRawMaterialDetSingle.data_insert_parameter.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterRawMaterialDetSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
-                    ElseIf id_pop_up = "5" Then 'raw mat
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterRawMaterialSingle.data_insert_parameter.Copy()
-
-                        FormMasterRawMaterialSingle.loadIsiParam()
-                        FormMasterRawMaterialSingle.load_template(FormMasterRawMaterialSingle.LETemplate.EditValue)
-
-                        FormMasterRawMaterialSingle.data_insert_parameter.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterRawMaterialSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
-                    ElseIf id_pop_up = "6" Then
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterDesignSingle.data_insert_parameter_dsg.Copy()
-
-                        FormMasterDesignSingle.load_isi_param("2")
-                        FormMasterDesignSingle.load_template_dsg(FormMasterDesignSingle.LETemplateDsg.EditValue)
-
-                        FormMasterDesignSingle.data_insert_parameter_dsg.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterDesignSingle.data_insert_parameter_dsg.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
+            Try
+                If id_code_det <> "-1" Then
+                    'update
+                    If Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl2) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl3) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl4) Then
+                        errorInput()
                     Else
-                        FormMasterCode.view_code_detail(id_code)
-                    End If
+                        query = String.Format("UPDATE tb_m_code_detail SET code_detail_name='{0}',display_name='{1}',code='{2}' WHERE id_code_detail='{3}'", addSlashes(code_name), addSlashes(display_name), addSlashes(code), id_code_det)
+                        execute_non_query(query, True, "", "", "", "")
+                        If id_pop_up = "1" Then
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterSampleDet.data_insert_parameter.Copy()
 
-                    Close()
-                End If
-            Else
-                'insert
-                If Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl2) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl3) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl4) Then
-                    errorInput()
+                            FormMasterSampleDet.load_isi_param()
+                            FormMasterSampleDet.load_template(FormMasterSampleDet.LETemplate.EditValue)
+
+                            FormMasterSampleDet.data_insert_parameter.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterSampleDet.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        ElseIf id_pop_up = "2" Then
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterDesignSingle.data_insert_parameter.Copy()
+
+                            FormMasterDesignSingle.load_isi_param("1")
+                            FormMasterDesignSingle.load_template(FormMasterDesignSingle.LETemplate.EditValue)
+
+                            FormMasterDesignSingle.data_insert_parameter.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterDesignSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        ElseIf id_pop_up = "3" Then
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterProductDet.data_insert_parameter.Copy()
+
+                            FormMasterProductDet.load_isi_param()
+                            FormMasterProductDet.load_template(FormMasterProductDet.LETemplate.EditValue)
+
+                            FormMasterProductDet.data_insert_parameter.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterProductDet.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        ElseIf id_pop_up = "4" Then 'raw mat det
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterRawMaterialDetSingle.data_insert_parameter.Copy()
+
+                            FormMasterRawMaterialDetSingle.loadIsiParam()
+                            FormMasterRawMaterialDetSingle.load_template(FormMasterRawMaterialDetSingle.LETemplate.EditValue)
+
+                            FormMasterRawMaterialDetSingle.data_insert_parameter.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterRawMaterialDetSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        ElseIf id_pop_up = "5" Then 'raw mat
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterRawMaterialSingle.data_insert_parameter.Copy()
+
+                            FormMasterRawMaterialSingle.loadIsiParam()
+                            FormMasterRawMaterialSingle.load_template(FormMasterRawMaterialSingle.LETemplate.EditValue)
+
+                            FormMasterRawMaterialSingle.data_insert_parameter.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterRawMaterialSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        ElseIf id_pop_up = "6" Then
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterDesignSingle.data_insert_parameter_dsg.Copy()
+
+                            FormMasterDesignSingle.load_isi_param("2")
+                            FormMasterDesignSingle.load_template_dsg(FormMasterDesignSingle.LETemplateDsg.EditValue)
+
+                            FormMasterDesignSingle.data_insert_parameter_dsg.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterDesignSingle.data_insert_parameter_dsg.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        Else
+                            FormMasterCode.view_code_detail(id_code)
+                        End If
+
+                        Close()
+                    End If
                 Else
-                    query = String.Format("INSERT INTO tb_m_code_detail(code_detail_name,display_name,code,id_code) VALUES('{0}','{1}','{2}','{3}'); SELECT LAST_INSERT_ID();", addSlashes(code_name), addSlashes(display_name), addSlashes(code), id_code)
-                    id_code_det = execute_query(query, 0, True, "", "", "", "")
-                    If id_pop_up = "1" Then
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterSampleDet.data_insert_parameter.Copy()
-
-                        FormMasterSampleDet.load_isi_param()
-                        FormMasterSampleDet.load_template(FormMasterSampleDet.LETemplate.EditValue)
-
-                        FormMasterSampleDet.data_insert_parameter.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterSampleDet.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
-                    ElseIf id_pop_up = "2" Then
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterDesignSingle.data_insert_parameter.Copy()
-
-                        FormMasterDesignSingle.load_isi_param("1")
-                        FormMasterDesignSingle.load_template(FormMasterDesignSingle.LETemplate.EditValue)
-
-                        FormMasterDesignSingle.data_insert_parameter.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterDesignSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
-                    ElseIf id_pop_up = "3" Then
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterProductDet.data_insert_parameter.Copy()
-
-                        FormMasterProductDet.load_isi_param()
-                        FormMasterProductDet.load_template(FormMasterProductDet.LETemplate.EditValue)
-
-                        FormMasterProductDet.data_insert_parameter.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterProductDet.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
-                    ElseIf id_pop_up = "4" Then 'raw mat det
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterRawMaterialDetSingle.data_insert_parameter.Copy()
-
-                        FormMasterRawMaterialDetSingle.loadIsiParam()
-                        FormMasterRawMaterialDetSingle.load_template(FormMasterRawMaterialDetSingle.LETemplate.EditValue)
-
-                        FormMasterRawMaterialDetSingle.data_insert_parameter.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterRawMaterialDetSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
-                    ElseIf id_pop_up = "5" Then 'raw mat
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterRawMaterialSingle.data_insert_parameter.Copy()
-
-                        FormMasterRawMaterialSingle.loadIsiParam()
-                        FormMasterRawMaterialSingle.load_template(FormMasterRawMaterialSingle.LETemplate.EditValue)
-
-                        FormMasterRawMaterialSingle.data_insert_parameter.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterRawMaterialSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
-                    ElseIf id_pop_up = "6" Then
-                        FormCodeTemplateEdit.view_code_detail(id_code)
-                        data_insert_parameter_temp = FormMasterDesignSingle.data_insert_parameter_dsg.Copy()
-
-                        FormMasterDesignSingle.load_isi_param("2")
-                        FormMasterDesignSingle.load_template_dsg(FormMasterDesignSingle.LETemplateDsg.EditValue)
-
-                        FormMasterDesignSingle.data_insert_parameter_dsg.Clear()
-                        If Not data_insert_parameter_temp.Rows.Count = 0 Then
-                            For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
-                                FormMasterDesignSingle.data_insert_parameter_dsg.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
-                            Next
-                        End If
+                    'insert
+                    If Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl2) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl3) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl4) Then
+                        errorInput()
                     Else
-                        FormMasterCode.view_code_detail(id_code)
-                    End If
-                    Close()
-                End If
-            End If
+                        query = String.Format("INSERT INTO tb_m_code_detail(code_detail_name,display_name,code,id_code) VALUES('{0}','{1}','{2}','{3}'); SELECT LAST_INSERT_ID();", addSlashes(code_name), addSlashes(display_name), addSlashes(code), id_code)
+                        id_code_det = execute_query(query, 0, True, "", "", "", "")
+                        If id_pop_up = "1" Then
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterSampleDet.data_insert_parameter.Copy()
 
-            'color mapping
-            If Not id_code_det = "-1" Then
-                If id_code = "14" Then
-                    execute_non_query("DELETE FROM tb_design_column_mapping_color WHERE id_code_detail = " + id_code_det, True, "", "", "", "")
+                            FormMasterSampleDet.load_isi_param()
+                            FormMasterSampleDet.load_template(FormMasterSampleDet.LETemplate.EditValue)
 
-                    For i = 0 To lookup.Count - 1
-                        If Not lookup(i).EditValue.ToString = "0" Then
-                            execute_non_query("INSERT INTO tb_design_column_mapping_color (id_design_column_type_color, id_code_detail) VALUES (" + lookup(i).EditValue.ToString + ", " + id_code_det + ")", True, "", "", "", "")
+                            FormMasterSampleDet.data_insert_parameter.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterSampleDet.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        ElseIf id_pop_up = "2" Then
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterDesignSingle.data_insert_parameter.Copy()
+
+                            FormMasterDesignSingle.load_isi_param("1")
+                            FormMasterDesignSingle.load_template(FormMasterDesignSingle.LETemplate.EditValue)
+
+                            FormMasterDesignSingle.data_insert_parameter.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterDesignSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        ElseIf id_pop_up = "3" Then
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterProductDet.data_insert_parameter.Copy()
+
+                            FormMasterProductDet.load_isi_param()
+                            FormMasterProductDet.load_template(FormMasterProductDet.LETemplate.EditValue)
+
+                            FormMasterProductDet.data_insert_parameter.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterProductDet.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        ElseIf id_pop_up = "4" Then 'raw mat det
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterRawMaterialDetSingle.data_insert_parameter.Copy()
+
+                            FormMasterRawMaterialDetSingle.loadIsiParam()
+                            FormMasterRawMaterialDetSingle.load_template(FormMasterRawMaterialDetSingle.LETemplate.EditValue)
+
+                            FormMasterRawMaterialDetSingle.data_insert_parameter.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterRawMaterialDetSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        ElseIf id_pop_up = "5" Then 'raw mat
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterRawMaterialSingle.data_insert_parameter.Copy()
+
+                            FormMasterRawMaterialSingle.loadIsiParam()
+                            FormMasterRawMaterialSingle.load_template(FormMasterRawMaterialSingle.LETemplate.EditValue)
+
+                            FormMasterRawMaterialSingle.data_insert_parameter.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterRawMaterialSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        ElseIf id_pop_up = "6" Then
+                            FormCodeTemplateEdit.view_code_detail(id_code)
+                            data_insert_parameter_temp = FormMasterDesignSingle.data_insert_parameter_dsg.Copy()
+
+                            FormMasterDesignSingle.load_isi_param("2")
+                            FormMasterDesignSingle.load_template_dsg(FormMasterDesignSingle.LETemplateDsg.EditValue)
+
+                            FormMasterDesignSingle.data_insert_parameter_dsg.Clear()
+                            If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                                For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                                    FormMasterDesignSingle.data_insert_parameter_dsg.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                                Next
+                            End If
+                        Else
+                            FormMasterCode.view_code_detail(id_code)
                         End If
-                    Next
+                        Close()
+                    End If
                 End If
-            End If
-        Catch ex As Exception
-            errorConnection()
-        End Try
+
+                'color mapping
+                If Not id_code_det = "-1" Then
+                    If id_code = "14" Then
+                        execute_non_query("DELETE FROM tb_design_column_mapping_color WHERE id_code_detail = " + id_code_det, True, "", "", "", "")
+
+                        For i = 0 To lookup.Count - 1
+                            If Not lookup(i).EditValue.ToString = "0" Then
+                                execute_non_query("INSERT INTO tb_design_column_mapping_color (id_design_column_type_color, id_code_detail) VALUES (" + lookup(i).EditValue.ToString + ", " + id_code_det + ")", True, "", "", "", "")
+                            End If
+                        Next
+                    End If
+                End If
+            Catch ex As Exception
+                errorConnection()
+            End Try
+        Else
+            For j = 0 To FormMasterCode.GVCodeDetail.RowCount - 1
+                execute_non_query("DELETE FROM tb_design_column_mapping_color WHERE id_code_detail = " + FormMasterCode.GVCodeDetail.GetRowCellValue(j, "id_code_detail").ToString, True, "", "", "", "")
+
+                For i = 0 To lookup.Count - 1
+                    If Not lookup(i).EditValue.ToString = "0" Then
+                        execute_non_query("INSERT INTO tb_design_column_mapping_color (id_design_column_type_color, id_code_detail) VALUES (" + lookup(i).EditValue.ToString + ", " + FormMasterCode.GVCodeDetail.GetRowCellValue(j, "id_code_detail").ToString + ")", True, "", "", "", "")
+                    End If
+                Next
+            Next
+
+            Close()
+        End If
 
         Cursor = Cursors.Default
     End Sub
