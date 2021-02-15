@@ -8,7 +8,7 @@
     Private Sub FormMasterCode_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
-        button_main(bnew_active, bedit_active, bdel_active)
+        check_menu()
     End Sub
 
     Private Sub FormMasterCode_Deactivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Deactivate
@@ -49,6 +49,10 @@
             button_main(bnew_active, bedit_active, bdel_active)
             '
             XTPCodeDet.PageEnabled = False
+        End If
+
+        If Not id_template = "-1" Then
+            button_main("0", "0", "0")
         End If
     End Sub
     Sub view_code_detail(ByVal id_code As String)
@@ -126,6 +130,10 @@
                 checkFormAccess(Name)
                 button_main(bnew_active, bedit_active, bdel_active)
                 '
+            End If
+
+            If Not id_template = "-1" Then
+                button_main("0", "0", "0")
             End If
         Else
             'detail
