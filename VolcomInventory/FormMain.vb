@@ -1864,6 +1864,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormAdjustmentOG" Then
             FormAdjustmentOGDet.ShowDialog()
+        ElseIf formName = "FormOLReturnRefuse" Then
+            If FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 0 Then
+                'no action
+            ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
+                If FormOLReturnRefuse.GVOrder.RowCount > 0 And FormOLReturnRefuse.GVOrder.FocusedRowHandle >= 0 Then
+                    Cursor = Cursors.WaitCursor
+                    FormOLReturnRefuseDet.action = "ins"
+                    FormOLReturnRefuseDet.id_sales_order = FormOLReturnRefuse.GVOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                    FormOLReturnRefuseDet.ShowDialog()
+                    Cursor = Cursors.Default
+                End If
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -3110,6 +3122,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormAdjustmentOG" Then
                 FormAdjustmentOGDet.id_adjustment = FormAdjustmentOG.GVList.GetFocusedRowCellValue("id_adjustment").ToString
                 FormAdjustmentOGDet.ShowDialog()
+            ElseIf formName = "FormOLReturnRefuse" Then
+                If FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 0 Then
+                    If FormOLReturnRefuse.GVData.RowCount > 0 And FormOLReturnRefuse.GVData.FocusedRowHandle >= 0 Then
+                        Cursor = Cursors.WaitCursor
+                        FormOLReturnRefuseDet.action = "upd"
+                        FormOLReturnRefuseDet.id = FormOLReturnRefuse.GVData.GetFocusedRowCellValue("id_return_refuse").ToString
+                        FormOLReturnRefuseDet.ShowDialog()
+                        Cursor = Cursors.Default
+                    End If
+                ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
+                    'no action
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6514,6 +6538,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             Else
                 stopCustom("No contract selected.")
             End If
+        ElseIf formName = "FormOLReturnRefuse" Then
+            'no action
         Else
             RPSubMenu.Visible = False
         End If
@@ -8494,6 +8520,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormAdjustmentOG" Then
             print(FormAdjustmentOG.GCList, "Adjustment Operational Goods")
+        ElseIf formName = "FormOLReturnRefuse" Then
+            If FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 0 Then
+                print(FormOLReturnRefuse.GCData, "Created List")
+            ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
+                print(FormOLReturnRefuse.GCOrder, "Order List")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -9458,6 +9490,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAdjustmentOG" Then
             FormAdjustmentOG.Close()
             FormAdjustmentOG.Dispose()
+        ElseIf formName = "FormOLReturnRefuse" Then
+            FormOLReturnRefuse.Close()
+            FormOLReturnRefuse.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10450,6 +10485,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBatchUploadOnlineStore.GVBatchUpload.Columns.Clear()
         ElseIf formName = "FormAdjustmentOG" Then
             FormAdjustmentOG.form_load()
+        ElseIf formName = "FormOLReturnRefuse" Then
+            If FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 0 Then
+                FormOLReturnRefuse.viewData()
+            ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
+                FormOLReturnRefuse.viewOrderList()
+            End If
         End If
     End Sub
     'Switch
