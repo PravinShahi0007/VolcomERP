@@ -51,6 +51,7 @@ WHERE id_asset_dep_pps='" & id_dep & "'"
                 DEReffDate.EditValue = dt.Rows(0)("reff_date")
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 SLEUnit.EditValue = dt.Rows(0)("id_coa_tag").ToString
+                id_report_status = dt.Rows(0)("id_report_status").ToString
                 If dt.Rows(0)("id_report_status").ToString = "6" Then
                     BtnViewJournal.Visible = True
                 End If
@@ -273,6 +274,7 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         ReportPurcAssetDep.id_dep = id_dep
+        ReportPurcAssetDep.id_report_status = id_report_status
         ReportPurcAssetDep.dt = GCDepreciation.DataSource
         Dim Report As New ReportPurcAssetDep()
 
@@ -287,6 +289,7 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
 
         'Grid Detail
         ReportStyleGridview(Report.GVDepreciation)
+        Report.GVDepreciation.OptionsPrint.AllowMultilineHeaders = True
 
         'Parse Val
         Report.LNumber.Text = TENumber.Text.ToUpper
