@@ -24,7 +24,7 @@ Partial Class FormOLReturnRefuseDet
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCustomerName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -75,7 +75,7 @@ Partial Class FormOLReturnRefuseDet
         Me.GroupControlHead.SuspendLayout()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCustomerName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStoreAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,7 +105,7 @@ Partial Class FormOLReturnRefuseDet
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlHead.Controls.Add(Me.SLEType)
         Me.GroupControlHead.Controls.Add(Me.LabelControl6)
-        Me.GroupControlHead.Controls.Add(Me.TextEdit1)
+        Me.GroupControlHead.Controls.Add(Me.TxtCustomerName)
         Me.GroupControlHead.Controls.Add(Me.LabelControl1)
         Me.GroupControlHead.Controls.Add(Me.TxtOrderNumber)
         Me.GroupControlHead.Controls.Add(Me.LabelControl2)
@@ -144,16 +144,16 @@ Partial Class FormOLReturnRefuseDet
         Me.LabelControl6.TabIndex = 8926
         Me.LabelControl6.Text = "Type"
         '
-        'TextEdit1
+        'TxtCustomerName
         '
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(269, 40)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(160, 20)
-        Me.TextEdit1.TabIndex = 8925
+        Me.TxtCustomerName.Enabled = False
+        Me.TxtCustomerName.Location = New System.Drawing.Point(269, 40)
+        Me.TxtCustomerName.Name = "TxtCustomerName"
+        Me.TxtCustomerName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCustomerName.Properties.Appearance.Options.UseFont = True
+        Me.TxtCustomerName.Properties.ReadOnly = True
+        Me.TxtCustomerName.Size = New System.Drawing.Size(160, 20)
+        Me.TxtCustomerName.TabIndex = 8925
         '
         'LabelControl1
         '
@@ -618,12 +618,13 @@ Partial Class FormOLReturnRefuseDet
         Me.Name = "FormOLReturnRefuseDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Refuse Return Online Order"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCustomerName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStoreAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -670,7 +671,7 @@ Partial Class FormOLReturnRefuseDet
     Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtCustomerName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton

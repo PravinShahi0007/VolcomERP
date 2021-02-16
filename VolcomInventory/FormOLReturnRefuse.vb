@@ -43,7 +43,7 @@
         End Try
 
         Dim query_c As ClassOLReturnRefuse = New ClassOLReturnRefuse()
-        Dim query As String = query_c.queryMain("AND (r.created_date>='" + date_from_selected + "' AND r.created_date<='" + date_until_selected + "') ", "2")
+        Dim query As String = query_c.queryMain("AND (DATE(r.created_date)>='" + date_from_selected + "' AND DATE(r.created_date)<='" + date_until_selected + "') ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
@@ -200,5 +200,9 @@
 
     Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
         check_menu()
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        FormMain.but_edit()
     End Sub
 End Class

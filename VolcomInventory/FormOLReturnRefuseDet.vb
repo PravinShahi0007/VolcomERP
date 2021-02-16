@@ -30,28 +30,29 @@
             TxtStoreAcc.Text = FormOLReturnRefuse.GVOrder.GetFocusedRowCellValue("comp_number").ToString
             TxtStore.Text = FormOLReturnRefuse.GVOrder.GetFocusedRowCellValue("comp_name").ToString
             TxtOrderNumber.Text = FormOLReturnRefuse.GVOrder.GetFocusedRowCellValue("sales_order_ol_shop_number").ToString
+            TxtCustomerName.Text = FormOLReturnRefuse.GVOrder.GetFocusedRowCellValue("customer_name").ToString
             viewDetail()
             viewCollectionCode()
         ElseIf action = "upd" Then
             'main
-            'Dim query_c As ClassRetOLStore = New ClassRetOLStore()
-            'Dim query As String = query_c.queryMain("AND r.id_ol_store_ret=" + id + " ", "2")
-            'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            'TxtNumber.Text = data.Rows(0)("number").ToString
-            'DECreated.EditValue = data.Rows(0)("created_date")
-            'TxtCreatedBy.Text = data.Rows(0)("created_by_name").ToString
-            'SLECompGroup.EditValue = data.Rows(0)("id_comp_group").ToString
-            'TxtOrderNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
-            'id_ret_req = data.Rows(0)("id_ol_store_ret_req").ToString
-            'TxtRetRequest.Text = data.Rows(0)("ret_req_number").ToString
-            'DERecDate.EditValue = data.Rows(0)("rec_date")
-            'MENote.Text = data.Rows(0)("note").ToString
-            'LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
-            'id_report_status = data.Rows(0)("id_report_status").ToString
+            Dim query_c As ClassOLReturnRefuse = New ClassOLReturnRefuse()
+            Dim query As String = query_c.queryMain("AND r.id_return_refuse=" + id + " ", "2")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            TxtNumber.Text = data.Rows(0)("number").ToString
+            DECreated.EditValue = data.Rows(0)("created_date")
+            TxtCreatedBy.Text = data.Rows(0)("created_by_name").ToString
+            TxtStoreAcc.Text = data.Rows(0)("comp_number").ToString
+            TxtStore.Text = data.Rows(0)("comp_name").ToString
+            TxtOrderNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+            TxtCustomerName.Text = data.Rows(0)("customer_name").ToString
+            SLEType.EditValue = data.Rows(0)("id_refuse_type").ToString
+            MENote.Text = data.Rows(0)("note").ToString
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            id_report_status = data.Rows(0)("id_report_status").ToString
 
-            ''detail
-            'viewDetail()
-            'allow_status()
+            'detail
+            viewDetail()
+            allow_status()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -265,9 +266,12 @@
             If dcek_filter.Length > 0 Then
                 Dim id_ror_det As String = dcek_filter(0)("id_sales_return_order_det").ToString
                 Dim id_cn_det As String = dcek_filter(0)("id_sales_pos_det_cn").ToString
+                Dim id_sales_return_cek As String = dcek_filter(0)("id_sales_return").ToString
                 GVData.SetRowCellValue(c, "id_sales_return_order_det", id_ror_det)
                 GVData.SetRowCellValue(c, "id_sales_pos_det_cn", id_cn_det)
-                err += GVData.GetRowCellValue(c, "item_id").ToString + " - " + GVData.GetRowCellValue(c, "name").ToString + " Size " + GVData.GetRowCellValue(c, "size").ToString
+                If id_sales_return_cek <> "0" Then
+                    err += GVData.GetRowCellValue(c, "item_id").ToString + " - " + GVData.GetRowCellValue(c, "name").ToString + " Size " + GVData.GetRowCellValue(c, "size").ToString + System.Environment.NewLine
+                End If
             End If
         Next
 

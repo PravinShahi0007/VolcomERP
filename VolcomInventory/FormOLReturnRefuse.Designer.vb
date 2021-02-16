@@ -68,6 +68,7 @@ Partial Class FormOLReturnRefuse
         Me.GridColumncustomer_nameord = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumcomp_numberord = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_nameord = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_store_contact_to = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
         Me.CEFindOrderNo = New DevExpress.XtraEditors.CheckEdit()
@@ -79,7 +80,6 @@ Partial Class FormOLReturnRefuse
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnid_store_contact_to = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPCreated.SuspendLayout()
@@ -507,6 +507,12 @@ Partial Class FormOLReturnRefuse
         Me.GridColumncomp_nameord.Visible = True
         Me.GridColumncomp_nameord.VisibleIndex = 7
         '
+        'GridColumnid_store_contact_to
+        '
+        Me.GridColumnid_store_contact_to.Caption = "id_store_contact_to"
+        Me.GridColumnid_store_contact_to.FieldName = "id_store_contact_to"
+        Me.GridColumnid_store_contact_to.Name = "GridColumnid_store_contact_to"
+        '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -607,12 +613,6 @@ Partial Class FormOLReturnRefuse
         Me.SimpleButton3.TabIndex = 8897
         Me.SimpleButton3.Text = "Expand All Detail"
         Me.SimpleButton3.Visible = False
-        '
-        'GridColumnid_store_contact_to
-        '
-        Me.GridColumnid_store_contact_to.Caption = "id_store_contact_to"
-        Me.GridColumnid_store_contact_to.FieldName = "id_store_contact_to"
-        Me.GridColumnid_store_contact_to.Name = "GridColumnid_store_contact_to"
         '
         'FormOLReturnRefuse
         '
