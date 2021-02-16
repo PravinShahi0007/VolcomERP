@@ -6751,6 +6751,14 @@ WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
                     WHERE pyd.id_rec_payment = '" + id_report + "' AND pyd.`value`=balance_due AND pyd.`value`!= 0; "
                     execute_non_query(qjd_upd, True, "", "", "", "")
                 End If
+
+                'insert valas
+                Dim qiv As String = "INSERT INTO tb_stock_valas(`id_report`,`report_mark_type`,id_valas_bank,`id_currency`,`amount`,`trans_datetime`,`kurs_transaksi`,`insert_datetime`)
+SELECT recd.id_rec_payment,'162',rec.id_valas_bank,2,recd.value_bef_kurs,rec.date_received,rec.kurs,NOW()
+FROM tb_rec_payment_det recd
+INNER JOIN tb_rec_payment rec ON rec.id_rec_payment=recd.id_rec_payment
+WHERE kurs>1 AND recd.`id_rec_payment`='" & id_report & "'"
+                execute_non_query(qiv, True, "", "", "", "")
             End If
 
             'update
