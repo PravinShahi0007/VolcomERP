@@ -21,7 +21,6 @@ Partial Class FormStockCardDepDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockCardDepDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -95,7 +94,6 @@ Partial Class FormStockCardDepDet
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BtnAttachment)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnClose)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
@@ -105,16 +103,6 @@ Partial Class FormStockCardDepDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(959, 48)
         Me.PanelControl1.TabIndex = 0
-        '
-        'BtnAttachment
-        '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(590, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(106, 44)
-        Me.BtnAttachment.TabIndex = 21
-        Me.BtnAttachment.Text = "Attachment"
         '
         'BtnPrint
         '
@@ -588,7 +576,6 @@ Partial Class FormStockCardDepDet
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton

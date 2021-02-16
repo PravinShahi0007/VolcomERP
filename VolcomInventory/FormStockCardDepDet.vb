@@ -1,7 +1,7 @@
 ﻿Public Class FormStockCardDepDet
     Public id_trans As String = "-1"
     Public id_report_status As String = "-1"
-
+    Public is_view As String = "-1"
     Private Sub FormStockCardDepDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
     End Sub
@@ -103,12 +103,16 @@ SELECT '2' AS id_type,'Receiving' AS type"
             'new
             BtnPrint.Visible = False
             BtnMark.Visible = False
-            BtnAttachment.Visible = False
         Else
             'edit
             BtnPrint.Visible = False
             BtnMark.Visible = True
-            BtnAttachment.Visible = True
+            '
+            BtnAdd.Visible = False
+            BtnDelete.Visible = False
+            '
+            SLEType.ReadOnly = True
+            SLEStore.ReadOnly = True
         End If
     End Sub
 
@@ -161,10 +165,21 @@ GROUP BY itd.id_item_detail"
                 load_form()
             Else
                 'edit
-
+                'no edit plz
             End If
         Else
             warningCustom("Please put item first.")
         End If
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        FormReportMark.report_mark_type = "289"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_trans
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        'soon
     End Sub
 End Class
