@@ -39,6 +39,7 @@
             '
             XTPCodeDet.PageEnabled = True
             view_code_detail(GVCode.GetFocusedRowCellDisplayText("id_code").ToString)
+            view_code_detail(GVCode.GetFocusedRowCellDisplayText("id_code").ToString)
             LabelCodeContent.Text = GVCode.GetFocusedRowCellDisplayText("code_name").ToString
         Else
             'hide all except new
