@@ -59,7 +59,7 @@ Partial Class FormStockCardDepDet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAvailable = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
@@ -363,7 +363,7 @@ Partial Class FormStockCardDepDet
         '
         'GVItemDetail
         '
-        Me.GVItemDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn9, Me.GridColumn10})
+        Me.GVItemDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnAvailable, Me.GridColumn10})
         Me.GVItemDetail.GridControl = Me.GCItemDetail
         Me.GVItemDetail.Name = "GVItemDetail"
         Me.GVItemDetail.OptionsView.RowAutoHeight = True
@@ -461,23 +461,23 @@ Partial Class FormStockCardDepDet
         Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 1047
         '
-        'GridColumn9
+        'GridColumnAvailable
         '
-        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn9.Caption = "Available Qty"
-        Me.GridColumn9.DisplayFormat.FormatString = "N2"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "qty_available"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.AllowEdit = False
-        Me.GridColumn9.OptionsColumn.AllowFocus = False
-        Me.GridColumn9.OptionsColumn.ReadOnly = True
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
-        Me.GridColumn9.Width = 151
+        Me.GridColumnAvailable.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnAvailable.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAvailable.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnAvailable.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAvailable.Caption = "Available Qty"
+        Me.GridColumnAvailable.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAvailable.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAvailable.FieldName = "qty_available"
+        Me.GridColumnAvailable.Name = "GridColumnAvailable"
+        Me.GridColumnAvailable.OptionsColumn.AllowEdit = False
+        Me.GridColumnAvailable.OptionsColumn.AllowFocus = False
+        Me.GridColumnAvailable.OptionsColumn.ReadOnly = True
+        Me.GridColumnAvailable.Visible = True
+        Me.GridColumnAvailable.VisibleIndex = 2
+        Me.GridColumnAvailable.Width = 151
         '
         'GridColumn10
         '
@@ -611,7 +611,7 @@ Partial Class FormStockCardDepDet
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAvailable As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit

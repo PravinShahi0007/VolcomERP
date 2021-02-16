@@ -113,6 +113,12 @@ SELECT '2' AS id_type,'Receiving' AS type"
             '
             SLEType.ReadOnly = True
             SLEStore.ReadOnly = True
+            '
+            If SLEType.EditValue.ToString = "1" Then
+                GridColumnAvailable.Visible = True
+            Else
+                GridColumnAvailable.Visible = False
+            End If
         End If
     End Sub
 
@@ -132,37 +138,51 @@ SELECT '2' AS id_type,'Receiving' AS type"
         If GVItemDetail.RowCount > 0 Then
             If id_trans = "-1" Then
                 'new
-                Dim q As String = ""
-                q = "INSERT INTO tb_item_card_trs(`id_type`,`id_store`,`id_departement`,`created_date`,`created_by`,`note`,`id_report_status`)
+                Dim is_ok_stock As Boolean = True
+                If SLEType.EditValue.ToString = "1" Then
+                    For i = 0 To GVItemDetail.RowCount - 1
+                        If GVItemDetail.GetRowCellValue(i, "qty_avaialble") < GVItemDetail.GetRowCellValue(i, "qty") Then
+                            is_ok_stock = False
+                            Exit For
+                        End If
+                    Next
+                End If
+                If is_ok_stock Then
+                    Dim q As String = ""
+                    q = "INSERT INTO tb_item_card_trs(`id_type`,`id_store`,`id_departement`,`created_date`,`created_by`,`note`,`id_report_status`)
 VALUES('" & SLEType.EditValue.ToString & "','" & SLEStore.EditValue.ToString & "','" & id_departement_user & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID();"
-                id_trans = execute_query(q, 0, True, "", "", "", "")
-                'detail
-                q = "INSERT INTO tb_item_card_trs_det(`id_item_card_trs`,`id_item_detail`,`qty_available`,`qty`)
+                    id_trans = execute_query(q, 0, True, "", "", "", "")
+                    'detail
+                    q = "INSERT INTO tb_item_card_trs_det(`id_item_card_trs`,`id_item_detail`,`qty_available`,`qty`)
 VALUES"
-                For i As Integer = 0 To GVItemDetail.RowCount - 1
-                    If Not i = 0 Then
-                        q += ","
-                    End If
+                    For i As Integer = 0 To GVItemDetail.RowCount - 1
+                        If Not i = 0 Then
+                            q += ","
+                        End If
 
-                    q += "('" & id_trans & "','" & GVItemDetail.GetRowCellValue(i, "id_item_detail").ToString & "','" & decimalSQL(Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty_available").ToString)) & "','" & decimalSQL(Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty").ToString)) & "')"
-                Next
-                '
-                execute_query(q, -1, True, "", "", "", "")
+                        q += "('" & id_trans & "','" & GVItemDetail.GetRowCellValue(i, "id_item_detail").ToString & "','" & decimalSQL(Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty_available").ToString)) & "','" & decimalSQL(Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty").ToString)) & "')"
+                    Next
+                    '
+                    execute_query(q, -1, True, "", "", "", "")
 
-                submit_who_prepared("289", id_trans, id_user)
-                execute_query("CALL gen_number('" & id_trans & "','289')", -1, True, "", "", "", "")
+                    submit_who_prepared("289", id_trans, id_user)
+                    execute_query("CALL gen_number('" & id_trans & "','289')", -1, True, "", "", "", "")
 
-                'reserved
-                q = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,report_mark_type,qty)
+                    If SLEType.EditValue.ToString = "1" Then
+                        'reserved
+                        q = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,report_mark_type,qty)
 SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,'289' AS rmt,IF(it.id_type=1,-1,1)*SUM(qty) AS qty
 FROM tb_item_card_trs_det itd
 INNER JOIN tb_item_card_trs it ON it.id_item_card_trs=itd.id_item_card_trs
-WHERE it.id_item_card_trs='" & id_trans & "'
-GROUP BY itd.id_item_detail"
-                execute_query(q, -1, True, "", "", "", "")
+WHERE it.id_item_card_trs='" & id_trans & "' GROUP BY itd.id_item_detail"
+                        execute_query(q, -1, True, "", "", "", "")
+                    End If
 
-                infoCustom("Doucment created, waiting for approval.")
-                load_form()
+                    infoCustom("Doucment created, waiting for approval.")
+                    load_form()
+                Else
+                    warningCustom("Stock is not enough")
+                End If
             Else
                 'edit
                 'no edit plz

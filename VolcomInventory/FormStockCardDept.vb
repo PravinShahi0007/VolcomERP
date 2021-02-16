@@ -19,7 +19,7 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=trx.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=trx.`id_report_status`
 INNER JOIN tb_m_comp c ON c.`id_comp`=trx.`id_store`
-WHERE trx.id_departement='" & id_departement_user & "' AND DATE(trx.`created_date`) >= '" & Date.Parse(DEFromInout.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(trx.`created_date`) <= '" & Date.Parse(DEUntilInout.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+WHERE trx.id_departement='" & id_departement_user & "' AND DATE(trx.`created_date`)>='" & Date.Parse(DEFromInout.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(trx.`created_date`) <= '" & Date.Parse(DEUntilInout.EditValue.ToString).ToString("yyyy-MM-dd") & "'
 ORDER BY trx.id_item_card_trs DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCInOut.DataSource = data
