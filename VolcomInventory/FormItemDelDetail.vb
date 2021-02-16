@@ -9,8 +9,13 @@
     Dim rmt As String = ""
 
     Private Sub FormItemDelDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewReportStatus()
-        actionLoad()
+        If get_opt_purchasing_field("is_freeze_stock_og") = "1" Then
+            warningCustom("Stock Take sedang berlangsung")
+            Close()
+        Else
+            viewReportStatus()
+            actionLoad()
+        End If
     End Sub
 
     Sub viewReportStatus()
