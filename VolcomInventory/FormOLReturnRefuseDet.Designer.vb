@@ -518,7 +518,7 @@ Partial Class FormOLReturnRefuseDet
         Me.GridColumnitem_id.FieldName = "item_id"
         Me.GridColumnitem_id.Name = "GridColumnitem_id"
         Me.GridColumnitem_id.Visible = True
-        Me.GridColumnitem_id.VisibleIndex = 2
+        Me.GridColumnitem_id.VisibleIndex = 5
         Me.GridColumnitem_id.Width = 260
         '
         'GridColumnol_store_id
@@ -527,7 +527,7 @@ Partial Class FormOLReturnRefuseDet
         Me.GridColumnol_store_id.FieldName = "ol_store_id"
         Me.GridColumnol_store_id.Name = "GridColumnol_store_id"
         Me.GridColumnol_store_id.Visible = True
-        Me.GridColumnol_store_id.VisibleIndex = 1
+        Me.GridColumnol_store_id.VisibleIndex = 4
         Me.GridColumnol_store_id.Width = 260
         '
         'GridColumnid_sales_return_order_det
@@ -554,7 +554,7 @@ Partial Class FormOLReturnRefuseDet
         Me.GridColumnname.FieldName = "name"
         Me.GridColumnname.Name = "GridColumnname"
         Me.GridColumnname.Visible = True
-        Me.GridColumnname.VisibleIndex = 3
+        Me.GridColumnname.VisibleIndex = 2
         Me.GridColumnname.Width = 260
         '
         'GridColumnsize
@@ -563,7 +563,7 @@ Partial Class FormOLReturnRefuseDet
         Me.GridColumnsize.FieldName = "size"
         Me.GridColumnsize.Name = "GridColumnsize"
         Me.GridColumnsize.Visible = True
-        Me.GridColumnsize.VisibleIndex = 4
+        Me.GridColumnsize.VisibleIndex = 3
         Me.GridColumnsize.Width = 260
         '
         'GridColumnid_pl_prod_order_rec_det_unique
@@ -578,7 +578,7 @@ Partial Class FormOLReturnRefuseDet
         Me.GridColumnscanned_code.FieldName = "scanned_code"
         Me.GridColumnscanned_code.Name = "GridColumnscanned_code"
         Me.GridColumnscanned_code.Visible = True
-        Me.GridColumnscanned_code.VisibleIndex = 5
+        Me.GridColumnscanned_code.VisibleIndex = 1
         Me.GridColumnscanned_code.Width = 260
         '
         'GridColumnqty

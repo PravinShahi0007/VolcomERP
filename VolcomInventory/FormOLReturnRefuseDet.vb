@@ -370,6 +370,7 @@
                     newRow("ol_store_id") = dtf(0)("ol_store_id").ToString
                     newRow("id_design_price") = dtf(0)("id_design_price").ToString
                     newRow("design_price") = dtf(0)("design_price")
+                    newRow("qty") = 1
 
                     TryCast(GCData.DataSource, DataTable).Rows.Add(newRow)
                     GCData.RefreshDataSource()

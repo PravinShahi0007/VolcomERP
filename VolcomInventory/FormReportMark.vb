@@ -650,6 +650,9 @@
         ElseIf report_mark_type = "287" Then
             'Setup Tax
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_setup_tax_installment WHERE id_setup_tax = '{0}'", id_report)
+        ElseIf report_mark_type = "290" Then
+            'REFUSE RETURB ONLINE
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_ol_store_return_refuse WHERE id_return_refuse = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -9323,6 +9326,37 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
                     LEFT JOIN tb_setup_tax_installment AS s ON t.id_setup_tax = s.id_setup_tax
                     WHERE t.id_setup_tax = " + id_report + "
                 ", True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_setup_tax_installment SET id_report_status='{0}' WHERE id_setup_tax ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "290" Then
+            'refuse return online
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'if completed
+            If id_status_reportx = "6" Then
+                Dim qry As String = "-- kembalikan book stock
+                DELETE FROM tb_storage_fg WHERE report_mark_type=" + report_mark_type + " AND id_report=" + id_report + ";
+                INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status)
+                SELECT getCompByContact(ro.id_store_contact, 4),1, p.id_product, d.design_cop, " + report_mark_type + ", ro.id_return_refuse, rod.qty,NOW(), 'Auto',2
+                FROM tb_ol_store_return_refuse ro
+                INNER JOIN tb_ol_store_return_refuse_det rod ON rod.id_return_refuse = ro.id_return_refuse
+                INNER JOIN tb_m_product p ON p.id_product = rod.id_product
+                INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                WHERE ro.id_return_refuse=" + id_report + " AND rod.qty>0; 
+                -- update void ror
+                UPDATE tb_sales_return_order_det main 
+                INNER JOIN (
+	                SELECT d.id_sales_return_order_det 
+	                FROM tb_ol_store_return_refuse_det d
+	                WHERE d.id_return_refuse=" + id_report + " AND !ISNULL(d.id_sales_return_order_det)
+                ) src ON main.id_sales_return_order_det = src.id_sales_return_order_det
+                SET main.is_void=1; "
+                execute_non_query(qry, True, "", "", "", "")
             End If
 
             'update status

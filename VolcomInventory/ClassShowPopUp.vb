@@ -419,6 +419,10 @@
         ElseIf report_mark_type = "288" Then
             ' setup tax
             FormReportBalanceTaxSetupDet.Close()
+        ElseIf report_mark_type = "290" Then
+            ' refuse returbn online
+            FormOLReturnRefuseDet.Close()
+            FormOLReturnRefuseDet.Dispose()
         End If
     End Sub
     Sub show()
@@ -1397,6 +1401,12 @@ GROUP BY rec.`id_prod_order`"
             'setup tax
             FormReportBalanceTaxSetupDet.id_setup_tax = id_report
             FormReportBalanceTaxSetupDet.ShowDialog()
+        ElseIf report_mark_type = "290" Then
+            ' refuse returbn online
+            FormOLReturnRefuseDet.id = id_report
+            FormOLReturnRefuseDet.action = "upd"
+            FormOLReturnRefuseDet.is_view = "1"
+            FormOLReturnRefuseDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2498,6 +2508,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_summary"
             field_number = "number"
             field_date = "created_at"
+        ElseIf report_mark_type = "290" Then
+            ' refuse returbn online
+            table_name = "tb_ol_store_return_refuse"
+            field_id = "id_return_refuse"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
