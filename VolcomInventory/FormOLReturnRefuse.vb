@@ -173,7 +173,7 @@
         'view
         Dim query As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,  c.comp_number, c.comp_name,
         so.id_sales_order, so.sales_order_number, so.sales_order_date, 
-        so.sales_order_ol_shop_number, so.sales_order_ol_shop_date, so.customer_name
+        so.sales_order_ol_shop_number, so.sales_order_ol_shop_date, so.customer_name, so.id_store_contact_to
         FROM tb_pl_sales_order_del d
         INNER JOIN tb_sales_order so ON so.id_sales_order = d.id_sales_order
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to

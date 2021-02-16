@@ -79,6 +79,7 @@ Partial Class FormOLReturnRefuse
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnid_store_contact_to = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPCreated.SuspendLayout()
@@ -412,7 +413,7 @@ Partial Class FormOLReturnRefuse
         '
         'GVOrder
         '
-        Me.GVOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnorderid_comp_group, Me.GridColumncomp_groupord, Me.GridColumncomp_group_descord, Me.GridColumnid_sales_orderord, Me.GridColumnsales_order_numberord, Me.GridColumnsales_order_dateord, Me.GridColumnsales_order_ol_shop_numberord, Me.GridColumnsales_order_ol_shop_dateord, Me.GridColumncustomer_nameord, Me.GridColumcomp_numberord, Me.GridColumncomp_nameord})
+        Me.GVOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnorderid_comp_group, Me.GridColumncomp_groupord, Me.GridColumncomp_group_descord, Me.GridColumnid_sales_orderord, Me.GridColumnsales_order_numberord, Me.GridColumnsales_order_dateord, Me.GridColumnsales_order_ol_shop_numberord, Me.GridColumnsales_order_ol_shop_dateord, Me.GridColumncustomer_nameord, Me.GridColumcomp_numberord, Me.GridColumncomp_nameord, Me.GridColumnid_store_contact_to})
         Me.GVOrder.GridControl = Me.GCOrder
         Me.GVOrder.Name = "GVOrder"
         Me.GVOrder.OptionsBehavior.ReadOnly = True
@@ -607,6 +608,12 @@ Partial Class FormOLReturnRefuse
         Me.SimpleButton3.Text = "Expand All Detail"
         Me.SimpleButton3.Visible = False
         '
+        'GridColumnid_store_contact_to
+        '
+        Me.GridColumnid_store_contact_to.Caption = "id_store_contact_to"
+        Me.GridColumnid_store_contact_to.FieldName = "id_store_contact_to"
+        Me.GridColumnid_store_contact_to.Name = "GridColumnid_store_contact_to"
+        '
         'FormOLReturnRefuse
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -703,4 +710,5 @@ Partial Class FormOLReturnRefuse
     Friend WithEvents GridColumncustomer_nameord As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumcomp_numberord As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_nameord As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_store_contact_to As DevExpress.XtraGrid.Columns.GridColumn
 End Class

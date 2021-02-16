@@ -7,6 +7,7 @@
     Dim dt As DataTable
     Dim id_report_status As String = "-1"
     Public rmt As String = "290"
+    Public id_store_contact As String = "-1"
 
     Private Sub FormOLReturnRefuseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -240,13 +241,99 @@
         End If
         FormMain.SplashScreenManager1.SetWaitFormDescription("Checking CN/ROR")
         Dim id_sales_order_det_in As String = ""
+        For d As Integer = 0 To GVData.RowCount - 1
+            If d > 0 Then
+                id_sales_order_det_in += ","
+            End If
+            id_sales_order_det_in += GVData.GetRowCellValue(d, "id_sales_order_det").ToString
+        Next
+        Dim qcek As String = "SELECT sod.id_sales_order_det, IFNULL(cnd.id_sales_pos_det,0) AS `id_sales_pos_det_cn` ,
+        IFNULL(rod.id_sales_return_order_det,0) AS `id_sales_return_order_det`, IFNULL(r.id_sales_return,0) AS `id_sales_return`
+        FROM tb_sales_order_det sod
+        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN tb_sales_pos_det spd ON spd.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+        LEFT JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos_det_ref = spd.id_sales_pos_det
+        LEFT JOIN tb_sales_return_order_det rod ON rod.id_sales_order_det = sod.id_sales_order_det AND rod.is_void=2
+        LEFT JOIN tb_sales_return_det rd ON rd.id_sales_return_order_det = rod.id_sales_return_order_det
+        LEFT JOIN tb_sales_return r ON r.id_sales_return = rd.id_sales_return AND r.id_report_status!=5
+        WHERE sod.id_sales_order_det IN(" + id_sales_order_det_in + ") "
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        Dim err As String = ""
+        For c As Integer = 0 To GVData.RowCount - 1
+            Dim id_sales_order_det_cek As String = GVData.GetRowCellValue(c, "id_sales_order_det").ToString
+            Dim dcek_filter As DataRow() = dcek.Select("[id_sales_order_det]='" + id_sales_order_det_cek + "' ")
+            If dcek_filter.Length > 0 Then
+                Dim id_ror_det As String = dcek_filter(0)("id_sales_return_order_det").ToString
+                Dim id_cn_det As String = dcek_filter(0)("id_sales_pos_det_cn").ToString
+                GVData.SetRowCellValue(c, "id_sales_return_order_det", id_ror_det)
+                GVData.SetRowCellValue(c, "id_sales_pos_det_cn", id_cn_det)
+                err += GVData.GetRowCellValue(c, "item_id").ToString + " - " + GVData.GetRowCellValue(c, "name").ToString + " Size " + GVData.GetRowCellValue(c, "size").ToString
+            End If
+        Next
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Checking RTS")
         FormMain.SplashScreenManager1.CloseWaitForm()
         If GVData.RowCount <= 0 Then
             warningCustom("Please complete all data")
+        ElseIf err <> "" Then
+            stopCustom("Return (RTS) already process : " + System.Environment.NewLine + err.ToString)
         Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this transaction ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                BtnSaveChanges.Enabled = False
+                Dim id_refuse_type As String = SLEType.EditValue.ToString
+                Dim note As String = addSlashes(MENote.Text)
 
+
+                'main 
+                Dim query As String = "INSERT INTO tb_ol_store_return_refuse(id_refuse_type, number, id_store_contact, id_sales_order,created_date, created_by, note, id_report_status)
+                VALUES('" + id_refuse_type + "','','" + id_store_contact + "', '" + id_sales_order + "', NOW(), '" + id_user + "', '" + note + "', 1);SELECT LAST_INSERT_ID(); "
+                id = execute_query(query, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ", " + rmt + "); ", True, "", "", "", "")
+
+                'detail
+                Dim query_det As String = "INSERT INTO tb_ol_store_return_refuse_det(id_return_refuse, id_sales_order_det, id_sales_return_order_det, id_sales_pos_det_cn, id_product, id_pl_prod_order_rec_det_unique, scanned_code, qty, id_design_price, design_price) VALUES "
+                For i As Integer = 0 To GVData.RowCount - 1
+                    Dim id_sales_order_det As String = GVData.GetRowCellValue(i, "id_sales_order_det").ToString
+                    Dim id_sales_return_order_det As String = GVData.GetRowCellValue(i, "id_sales_return_order_det").ToString
+                    If id_sales_return_order_det = "0" Then
+                        id_sales_return_order_det = "NULL"
+                    End If
+                    Dim id_sales_pos_det_cn As String = GVData.GetRowCellValue(i, "id_sales_pos_det_cn").ToString
+                    If id_sales_pos_det_cn = "0" Then
+                        id_sales_pos_det_cn = "NULL"
+                    End If
+                    Dim id_product As String = GVData.GetRowCellValue(i, "id_product").ToString
+                    Dim id_pl_prod_order_rec_det_unique As String = GVData.GetRowCellValue(i, "id_pl_prod_order_rec_det_unique").ToString
+                    If id_pl_prod_order_rec_det_unique = "0" Then
+                        id_pl_prod_order_rec_det_unique = "NULL"
+                    End If
+                    Dim scanned_code As String = GVData.GetRowCellValue(i, "scanned_code").ToString
+                    Dim qty As String = decimalSQL(GVData.GetRowCellValue(i, "qty").ToString)
+                    Dim id_design_price As String = GVData.GetRowCellValue(i, "id_design_price").ToString
+                    Dim design_price As String = decimalSQL(GVData.GetRowCellValue(i, "design_price").ToString)
+
+                    If i > 0 Then
+                        query_det += ","
+                    End If
+                    query_det += "('" + id + "', '" + id_sales_order_det + "', " + id_sales_return_order_det + ", " + id_sales_pos_det_cn + ",'" + id_product + "', " + id_pl_prod_order_rec_det_unique + ", '" + scanned_code + "', '" + qty + "', '" + id_design_price + "', '" + design_price + "') "
+                Next
+                If GVData.RowCount > 0 Then
+                    execute_non_query(query_det, True, "", "", "", "")
+                End If
+
+                'submit
+                submit_who_prepared(rmt, id, id_user)
+
+                'refresh
+                FormOLReturnRefuse.viewData()
+                FormOLReturnRefuse.GVData.FocusedRowHandle = find_row(FormOLReturnRefuse.GVData, "id_return_refuse", id)
+                action = "upd"
+                actionLoad()
+                infoCustom("Transaction success. Waiting for approval")
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 

@@ -1872,6 +1872,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Cursor = Cursors.WaitCursor
                     FormOLReturnRefuseDet.action = "ins"
                     FormOLReturnRefuseDet.id_sales_order = FormOLReturnRefuse.GVOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                    FormOLReturnRefuseDet.id_store_contact = FormOLReturnRefuse.GVOrder.GetFocusedRowCellValue("id_store_contact_to").ToString
                     FormOLReturnRefuseDet.ShowDialog()
                     Cursor = Cursors.Default
                 End If
