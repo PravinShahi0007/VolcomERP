@@ -64,20 +64,22 @@ Partial Class FormStockCardDept
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DESOHUntil = New DevExpress.XtraEditors.DateEdit()
         Me.XTPStockInOut = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCInOut = New DevExpress.XtraGrid.GridControl()
+        Me.GVInOut = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BAddInOut = New DevExpress.XtraEditors.SimpleButton()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.DEUntilInout = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewInOut = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromInout = New DevExpress.XtraEditors.DateEdit()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStockCard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockCard.SuspendLayout()
         Me.XTPStockCard.SuspendLayout()
@@ -99,14 +101,14 @@ Partial Class FormStockCardDept
         CType(Me.DESOHUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESOHUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPStockInOut.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCInOut, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVInOut, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilInout.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilInout.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromInout.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromInout.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCStockCard
@@ -519,79 +521,72 @@ Partial Class FormStockCardDept
         '
         'XTPStockInOut
         '
-        Me.XTPStockInOut.Controls.Add(Me.GridControl1)
+        Me.XTPStockInOut.Controls.Add(Me.GCInOut)
         Me.XTPStockInOut.Controls.Add(Me.PanelControl3)
         Me.XTPStockInOut.Name = "XTPStockInOut"
         Me.XTPStockInOut.Size = New System.Drawing.Size(892, 511)
         Me.XTPStockInOut.Text = "In / Out"
         '
-        'GridControl1
+        'GCInOut
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 46)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(892, 465)
-        Me.GridControl1.TabIndex = 4
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GCInOut.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCInOut.Location = New System.Drawing.Point(0, 46)
+        Me.GCInOut.MainView = Me.GVInOut
+        Me.GCInOut.Name = "GCInOut"
+        Me.GCInOut.Size = New System.Drawing.Size(892, 465)
+        Me.GCInOut.TabIndex = 4
+        Me.GCInOut.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInOut})
         '
-        'GridView1
+        'GVInOut
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn9})
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsCustomization.AllowSort = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GVInOut.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn3, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn9})
+        Me.GVInOut.GridControl = Me.GCInOut
+        Me.GVInOut.Name = "GVInOut"
+        Me.GVInOut.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVInOut.OptionsBehavior.Editable = False
+        Me.GVInOut.OptionsCustomization.AllowSort = False
+        Me.GVInOut.OptionsView.ShowGroupPanel = False
         '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "ID"
+        Me.GridColumn4.FieldName = "id_item_card_trs"
         Me.GridColumn4.Name = "GridColumn4"
         '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Transaction Number"
-        Me.GridColumn1.FieldName = "trans_number"
+        Me.GridColumn1.FieldName = "number"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Time"
-        Me.GridColumn2.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
+        Me.GridColumn2.Caption = "Craeted Date"
+        Me.GridColumn2.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn2.FieldName = "storage_date"
+        Me.GridColumn2.FieldName = "created_date"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Qty"
-        Me.GridColumn3.DisplayFormat.FormatString = "N2"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "qty"
-        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn2.VisibleIndex = 4
         '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Status"
-        Me.GridColumn9.FieldName = "status"
+        Me.GridColumn9.FieldName = "report_status"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 1
+        Me.GridColumn9.VisibleIndex = 3
         '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BAddInOut)
-        Me.PanelControl3.Controls.Add(Me.DateEdit1)
+        Me.PanelControl3.Controls.Add(Me.DEUntilInout)
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
-        Me.PanelControl3.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl3.Controls.Add(Me.BViewInOut)
         Me.PanelControl3.Controls.Add(Me.LabelControl6)
-        Me.PanelControl3.Controls.Add(Me.DateEdit2)
+        Me.PanelControl3.Controls.Add(Me.DEFromInout)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
@@ -608,18 +603,18 @@ Partial Class FormStockCardDept
         Me.BAddInOut.TabIndex = 36
         Me.BAddInOut.Text = "New"
         '
-        'DateEdit1
+        'DEUntilInout
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(182, 12)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DateEdit1.Size = New System.Drawing.Size(110, 20)
-        Me.DateEdit1.TabIndex = 35
+        Me.DEUntilInout.EditValue = Nothing
+        Me.DEUntilInout.Location = New System.Drawing.Point(182, 12)
+        Me.DEUntilInout.Name = "DEUntilInout"
+        Me.DEUntilInout.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilInout.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilInout.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntilInout.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilInout.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilInout.Size = New System.Drawing.Size(110, 20)
+        Me.DEUntilInout.TabIndex = 35
         '
         'LabelControl1
         '
@@ -629,14 +624,14 @@ Partial Class FormStockCardDept
         Me.LabelControl1.TabIndex = 34
         Me.LabelControl1.Text = "From"
         '
-        'SimpleButton1
+        'BViewInOut
         '
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(298, 10)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(75, 23)
-        Me.SimpleButton1.TabIndex = 30
-        Me.SimpleButton1.Text = "View"
+        Me.BViewInOut.Image = CType(resources.GetObject("BViewInOut.Image"), System.Drawing.Image)
+        Me.BViewInOut.Location = New System.Drawing.Point(298, 10)
+        Me.BViewInOut.Name = "BViewInOut"
+        Me.BViewInOut.Size = New System.Drawing.Size(75, 23)
+        Me.BViewInOut.TabIndex = 30
+        Me.BViewInOut.Text = "View"
         '
         'LabelControl6
         '
@@ -646,18 +641,42 @@ Partial Class FormStockCardDept
         Me.LabelControl6.TabIndex = 32
         Me.LabelControl6.Text = "Until"
         '
-        'DateEdit2
+        'DEFromInout
         '
-        Me.DateEdit2.EditValue = Nothing
-        Me.DateEdit2.Location = New System.Drawing.Point(39, 12)
-        Me.DateEdit2.Name = "DateEdit2"
-        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
-        Me.DateEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit2.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DateEdit2.Size = New System.Drawing.Size(110, 20)
-        Me.DateEdit2.TabIndex = 31
+        Me.DEFromInout.EditValue = Nothing
+        Me.DEFromInout.Location = New System.Drawing.Point(39, 12)
+        Me.DEFromInout.Name = "DEFromInout"
+        Me.DEFromInout.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromInout.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromInout.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFromInout.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromInout.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFromInout.Size = New System.Drawing.Size(110, 20)
+        Me.DEFromInout.TabIndex = 31
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Store"
+        Me.GridColumn3.FieldName = "comp_name"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Type"
+        Me.GridColumn5.FieldName = "type"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 2
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Created By"
+        Me.GridColumn7.FieldName = "employee_name"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
         '
         'FormStockCardDept
         '
@@ -694,15 +713,15 @@ Partial Class FormStockCardDept
         CType(Me.DESOHUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DESOHUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPStockInOut.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCInOut, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVInOut, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilInout.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilInout.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromInout.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromInout.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -753,16 +772,18 @@ Partial Class FormStockCardDept
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BAddInOut As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEUntilInout As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BViewInOut As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents DEFromInout As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GCInOut As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVInOut As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

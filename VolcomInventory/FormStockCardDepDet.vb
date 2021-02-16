@@ -45,13 +45,14 @@ LEFT JOIN (
 	FROM `tb_stock_card_dep`
 	WHERE id_departement='" & id_departement_user & "'
 	GROUP BY id_item_detail
+    
 )its ON its.id_item_detail=itd.`id_item_detail`
 WHERE IFNULL(its.qty,0.00)>0"
         viewSearchLookupRepositoryQuery(RISLEItemDetail, q, 0, "item_desc", "id_item_detail")
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT trsd.`id_item_detail`,it.`item_desc`,itd.`item_detail`,itd.`remark`,trsd.`qty`,trsd.`note`
+        Dim q As String = "SELECT trsd.id_item_card_trs_det,trsd.`id_item_detail`,it.`item_desc`,itd.`item_detail`,itd.`remark`,trsd.`qty_available`,trsd.`qty`,trsd.`note`
 FROM tb_item_card_trs_det trsd
 INNER JOIN `tb_stock_card_dep_item` itd ON itd.`id_item_detail`=trsd.`id_item_detail`
 INNER JOIN tb_item it ON it.`id_item`=itd.`id_item`
@@ -98,29 +99,25 @@ SELECT '2' AS id_type,'Receiving' AS type"
             BtnDelete.Visible = False
         End If
 
-        If Not id_report_status = "-1" Then
+        If id_report_status = "-1" Then
             'new
             BtnPrint.Visible = False
             BtnMark.Visible = False
             BtnAttachment.Visible = False
         Else
             'edit
-            BtnPrint.Visible = True
+            BtnPrint.Visible = False
             BtnMark.Visible = True
             BtnAttachment.Visible = True
         End If
     End Sub
 
     Private Sub RISLEItemDetail_EditValueChanged(sender As Object, e As EventArgs) Handles RISLEItemDetail.EditValueChanged
-        Try
-            Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
-
-            GVItemDetail.SetFocusedRowCellValue("item_detail", sle.Properties.View.GetFocusedRowCellValue("item_detail").ToString())
-            GVItemDetail.SetFocusedRowCellValue("qty_available", sle.Properties.View.GetFocusedRowCellValue("qty_available").ToString())
-            GVItemDetail.SetFocusedRowCellValue("qty", 0.00)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
+        Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
+        GVItemDetail.SetFocusedRowCellValue("item_detail", sle.Properties.View.GetFocusedRowCellValue("item_detail").ToString())
+        GVItemDetail.SetFocusedRowCellValue("qty_available", Decimal.Parse(sle.Properties.View.GetFocusedRowCellValue("qty_available").ToString()))
+        GVItemDetail.SetFocusedRowCellValue("qty", Decimal.Parse(sle.Properties.View.GetFocusedRowCellValue("qty_available").ToString()))
+        GVItemDetail.SetFocusedRowCellValue("id_item_detail", sle.Properties.View.GetFocusedRowCellValue("id_item_detail").ToString())
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
@@ -143,10 +140,25 @@ VALUES"
                         q += ","
                     End If
 
-                    q = "('" & id_trans & "','" & id_trans & "','" & decimalSQL(Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty_available").ToString)) & "','" & decimalSQL(Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty").ToString)) & "')"
+                    q += "('" & id_trans & "','" & GVItemDetail.GetRowCellValue(i, "id_item_detail").ToString & "','" & decimalSQL(Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty_available").ToString)) & "','" & decimalSQL(Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty").ToString)) & "')"
                 Next
                 '
                 execute_query(q, -1, True, "", "", "", "")
+
+                submit_who_prepared("289", id_trans, id_user)
+                execute_query("CALL gen_number('" & id_trans & "','289')", -1, True, "", "", "", "")
+
+                'reserved
+                q = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,report_mark_type,qty)
+SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,'289' AS rmt,IF(it.id_type=1,-1,1)*SUM(qty) AS qty
+FROM tb_item_card_trs_det itd
+INNER JOIN tb_item_card_trs it ON it.id_item_card_trs=itd.id_item_card_trs
+WHERE it.id_item_card_trs='" & id_trans & "'
+GROUP BY itd.id_item_detail"
+                execute_query(q, -1, True, "", "", "", "")
+
+                infoCustom("Doucment created, waiting for approval.")
+                load_form()
             Else
                 'edit
 

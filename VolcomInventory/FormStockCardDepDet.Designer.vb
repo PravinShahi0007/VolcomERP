@@ -60,12 +60,12 @@ Partial Class FormStockCardDepDet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,14 +103,14 @@ Partial Class FormStockCardDepDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 538)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1030, 48)
+        Me.PanelControl1.Size = New System.Drawing.Size(959, 48)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnAttachment
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(661, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(590, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 44)
         Me.BtnAttachment.TabIndex = 21
@@ -120,7 +120,7 @@ Partial Class FormStockCardDepDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(767, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(696, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 44)
         Me.BtnPrint.TabIndex = 20
@@ -130,7 +130,7 @@ Partial Class FormStockCardDepDet
         '
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(854, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(783, 2)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(87, 44)
         Me.BtnClose.TabIndex = 19
@@ -141,7 +141,7 @@ Partial Class FormStockCardDepDet
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.Location = New System.Drawing.Point(941, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(870, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(87, 44)
         Me.BtnSave.TabIndex = 18
@@ -170,7 +170,7 @@ Partial Class FormStockCardDepDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1030, 80)
+        Me.PanelControl2.Size = New System.Drawing.Size(959, 80)
         Me.PanelControl2.TabIndex = 1
         '
         'SLEStore
@@ -313,7 +313,7 @@ Partial Class FormStockCardDepDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 80)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1030, 48)
+        Me.PanelControl3.Size = New System.Drawing.Size(959, 48)
         Me.PanelControl3.TabIndex = 2
         '
         'TEDepartement
@@ -337,7 +337,7 @@ Partial Class FormStockCardDepDet
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(851, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(780, 2)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(90, 44)
         Me.BtnDelete.TabIndex = 3
@@ -347,7 +347,7 @@ Partial Class FormStockCardDepDet
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(941, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(870, 2)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(87, 44)
         Me.BtnAdd.TabIndex = 2
@@ -359,17 +359,17 @@ Partial Class FormStockCardDepDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl4.Location = New System.Drawing.Point(0, 128)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(1030, 334)
+        Me.PanelControl4.Size = New System.Drawing.Size(959, 334)
         Me.PanelControl4.TabIndex = 3
         '
         'GCItemDetail
         '
-        Me.GCItemDetail.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GCItemDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCItemDetail.Location = New System.Drawing.Point(2, 2)
         Me.GCItemDetail.MainView = Me.GVItemDetail
         Me.GCItemDetail.Name = "GCItemDetail"
         Me.GCItemDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEItemDetail, Me.RepositoryItemMemoEdit2})
-        Me.GCItemDetail.Size = New System.Drawing.Size(1026, 254)
+        Me.GCItemDetail.Size = New System.Drawing.Size(955, 330)
         Me.GCItemDetail.TabIndex = 0
         Me.GCItemDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemDetail})
         '
@@ -386,6 +386,9 @@ Partial Class FormStockCardDepDet
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "id_item_card_trs_det"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.AllowFocus = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         '
         'GridColumn2
         '
@@ -461,7 +464,6 @@ Partial Class FormStockCardDepDet
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Item Detail"
-        Me.GridColumn3.ColumnEdit = Me.RepositoryItemMemoEdit2
         Me.GridColumn3.FieldName = "item_detail"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
@@ -470,10 +472,6 @@ Partial Class FormStockCardDepDet
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 1047
-        '
-        'RepositoryItemMemoEdit2
-        '
-        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
         '
         'GridColumn9
         '
@@ -508,6 +506,10 @@ Partial Class FormStockCardDepDet
         Me.GridColumn10.VisibleIndex = 3
         Me.GridColumn10.Width = 151
         '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        '
         'PanelControl5
         '
         Me.PanelControl5.Controls.Add(Me.MENote)
@@ -515,8 +517,15 @@ Partial Class FormStockCardDepDet
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl5.Location = New System.Drawing.Point(0, 462)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(1030, 76)
+        Me.PanelControl5.Size = New System.Drawing.Size(959, 76)
         Me.PanelControl5.TabIndex = 4
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(51, 10)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(580, 54)
+        Me.MENote.TabIndex = 1
         '
         'LabelControl6
         '
@@ -526,18 +535,11 @@ Partial Class FormStockCardDepDet
         Me.LabelControl6.TabIndex = 0
         Me.LabelControl6.Text = "Note"
         '
-        'MENote
-        '
-        Me.MENote.Location = New System.Drawing.Point(51, 10)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(580, 54)
-        Me.MENote.TabIndex = 1
-        '
         'FormStockCardDepDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1030, 586)
+        Me.ClientSize = New System.Drawing.Size(959, 586)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl5)
         Me.Controls.Add(Me.PanelControl3)
