@@ -9372,16 +9372,16 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
 
             If id_status_reportx = "5" Then
                 'revert
-                Dim q As String = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,report_mark_type,qty)
-SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,'289' AS rmt,IF(it.id_type=1,1,-1)*SUM(qty) AS qty
+                Dim q As String = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,report_mark_type,qty,storage_item_datetime)
+SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,'289' AS rmt,IF(it.id_type=1,1,-1)*SUM(qty) AS qty,NOW()
 FROM tb_item_card_trs_det itd
 INNER JOIN tb_item_card_trs it ON it.id_item_card_trs=itd.id_item_card_trs
 WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=1 GROUP BY itd.id_item_detail"
                 execute_query(q, -1, True, "", "", "", "")
             ElseIf id_status_reportx = "6" Then
                 'complete in
-                Dim q As String = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,report_mark_type,qty)
-SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,'289' AS rmt,IF(it.id_type=1,-1,1)*SUM(qty) AS qty
+                Dim q As String = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,report_mark_type,qty,storage_item_datetime)
+SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,'289' AS rmt,IF(it.id_type=1,-1,1)*SUM(qty) AS qty,NOW()
 FROM tb_item_card_trs_det itd
 INNER JOIN tb_item_card_trs it ON it.id_item_card_trs=itd.id_item_card_trs
 WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=2 GROUP BY itd.id_item_detail"

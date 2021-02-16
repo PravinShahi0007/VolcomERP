@@ -170,8 +170,8 @@ VALUES"
 
                     If SLEType.EditValue.ToString = "1" Then
                         'reserved
-                        q = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,report_mark_type,qty)
-SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,'289' AS rmt,IF(it.id_type=1,-1,1)*SUM(qty) AS qty
+                        q = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,report_mark_type,qty,storage_item_datetime)
+SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,'289' AS rmt,IF(it.id_type=1,-1,1)*SUM(qty) AS qty,NOW()
 FROM tb_item_card_trs_det itd
 INNER JOIN tb_item_card_trs it ON it.id_item_card_trs=itd.id_item_card_trs
 WHERE it.id_item_card_trs='" & id_trans & "' GROUP BY itd.id_item_detail"
