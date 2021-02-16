@@ -17,7 +17,12 @@
 
         Dim auth As String = Convert.ToBase64String(Text.Encoding.UTF8.GetBytes(username + ":" + password))
 
-        Dim request As Net.HttpWebRequest = Net.WebRequest.Create("https://api.blibli.com/v2/proxy/mta/api/businesspartner/v1/order/downloadShippingLabel?channelId=VOLCOM&requestId=" + request_id + "&storeId=10001&orderItemId=" + order_item_id)
+        Dim packageId As String = ""
+
+        'package id
+        Dim order_par As String = execute_query("SELECT id FROM tb_ol_store_order WHERE ol_store_id = " + order_item_id, 0, True, "", "", "", "")
+
+        Dim request As Net.HttpWebRequest = Net.WebRequest.Create("https://api.blibli.com/v2/proxy/mta/api/businesspartner/v1/order/orderDetail?storeId=" + store_id + "&requestId=" + request_id + "&businessPartnerCode=" + business_partner + "&channelId=" + channel_id + "&orderNo=" + order_par + "&orderItemNo=" + order_item_id)
 
         request.Method = "GET"
 
@@ -36,8 +41,35 @@
 
             Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
 
+            If json("success").ToString = True AndAlso json("value").Count > 0 Then
+                packageId = json("value")("packageId").ToString
+            End If
+        End Using
+
+        response.Close()
+
+        'shipping label
+        request = Net.WebRequest.Create("https://api.blibli.com/v2/proxy/seller/v1/orders/" + packageId + "/shippingLabel?username=" + username + "&requestId=" + request_id + "&channelId=" + channel_id + "&storeId=" + store_id + "&storeCode=" + business_partner)
+
+        request.Method = "GET"
+
+        request.Accept = "application/json"
+        request.ContentType = "application/json"
+
+        request.Headers.Add("Authorization", "Basic " + auth)
+        request.Headers.Add("API-Seller-Key", api_seller_key)
+
+        response = request.GetResponse()
+
+        Using dataStream As IO.Stream = response.GetResponseStream()
+            Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+
+            Dim responseFromServer As String = reader.ReadToEnd()
+
+            Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+
             Try
-                out = json("value")("document")
+                out = json("content")("shippingLabel")
             Catch ex As Exception
             End Try
         End Using
