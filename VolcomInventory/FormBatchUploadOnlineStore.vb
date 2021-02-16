@@ -235,6 +235,11 @@
             If data.Rows.Count > 0 Then
                 Dim i As Integer = 0
 
+                'tags
+                For i = 1 To data.Rows.Count - 1
+                    data.Rows(i)("Tags") = data.Rows(i)("Tag 1").ToString + ", " + data.Rows(i)("Tag 2").ToString + ", " + data.Rows(i)("Tag 3").ToString + ", " + data.Rows(i)("Tag 4").ToString + ", " + data.Rows(i)("Tag 5").ToString.Replace(" ", "") + ", " + data.Rows(i)("Tag 6").ToString + ", " + data.Rows(i)("Tag 7").ToString + ", " + data.Rows(i)("Tag 8").ToString
+                Next
+
                 'replace enter with new line
                 For i = 0 To data.Rows.Count - 1
                     For j = 0 To data.Columns.Count - 1
@@ -305,6 +310,14 @@
 
                 data.Columns.Remove(data.Columns("id_design"))
                 data.Columns.Remove(data.Columns("id_product"))
+                data.Columns.Remove(data.Columns("Tag 1"))
+                data.Columns.Remove(data.Columns("Tag 2"))
+                data.Columns.Remove(data.Columns("Tag 3"))
+                data.Columns.Remove(data.Columns("Tag 4"))
+                data.Columns.Remove(data.Columns("Tag 5"))
+                data.Columns.Remove(data.Columns("Tag 6"))
+                data.Columns.Remove(data.Columns("Tag 7"))
+                data.Columns.Remove(data.Columns("Tag 8"))
             End If
         End If
 
