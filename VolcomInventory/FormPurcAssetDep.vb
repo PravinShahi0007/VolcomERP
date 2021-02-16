@@ -289,6 +289,7 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
 
         'Grid Detail
         ReportStyleGridview(Report.GVDepreciation)
+        Report.GVDepreciation.OptionsPrint.AllowMultilineHeaders = True
 
         'Parse Val
         Report.LNumber.Text = TENumber.Text.ToUpper
