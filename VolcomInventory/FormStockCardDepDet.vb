@@ -1,7 +1,12 @@
 ﻿Public Class FormStockCardDepDet
     Public id_trans As String = "-1"
+    Public id_report_status As String = "-1"
 
     Private Sub FormStockCardDepDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
+    End Sub
+
+    Sub load_form()
         DEProposedDate.EditValue = Now()
         load_store()
         load_type()
@@ -12,8 +17,23 @@
         If id_trans = "-1" Then 'new
             TEDepartement.Text = get_departement_x(id_departement_user, "1")
         Else 'edit
-
+            Dim q As String = "SELECT * 
+FROM `tb_item_card_trs` trx
+INNER JOIN tb_m_departement dep ON dep.id_departement=trx.id_departement
+WHERE id_item_card_trs='" & id_trans & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                SLEType.EditValue = dt.Rows(0)("id_type").ToString
+                TEDepartement.Text = dt.Rows(0)("departement").ToString
+                SLEStore.EditValue = dt.Rows(0)("id_store").ToString
+                TENumber.Text = dt.Rows(0)("number").ToString
+                DEProposedDate.EditValue = dt.Rows(0)("created_date")
+                MENote.Text = dt.Rows(0)("note").ToString
+                id_report_status = dt.Rows(0)("id_report_status").ToString
+            End If
         End If
+
+        check_but()
     End Sub
 
     Sub load_item_pil()
@@ -76,6 +96,63 @@ SELECT '2' AS id_type,'Receiving' AS type"
             BtnDelete.Visible = True
         Else
             BtnDelete.Visible = False
+        End If
+
+        If Not id_report_status = "-1" Then
+            'new
+            BtnPrint.Visible = False
+            BtnMark.Visible = False
+            BtnAttachment.Visible = False
+        Else
+            'edit
+            BtnPrint.Visible = True
+            BtnMark.Visible = True
+            BtnAttachment.Visible = True
+        End If
+    End Sub
+
+    Private Sub RISLEItemDetail_EditValueChanged(sender As Object, e As EventArgs) Handles RISLEItemDetail.EditValueChanged
+        Try
+            Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
+
+            GVItemDetail.SetFocusedRowCellValue("item_detail", sle.Properties.View.GetFocusedRowCellValue("item_detail").ToString())
+            GVItemDetail.SetFocusedRowCellValue("qty_available", sle.Properties.View.GetFocusedRowCellValue("qty_available").ToString())
+            GVItemDetail.SetFocusedRowCellValue("qty", 0.00)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        Close()
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        If GVItemDetail.RowCount > 0 Then
+            If id_trans = "-1" Then
+                'new
+                Dim q As String = ""
+                q = "INSERT INTO tb_item_card_trs(`id_type`,`id_store`,`id_departement`,`created_date`,`created_by`,`note`,`id_report_status`)
+VALUES('" & SLEType.EditValue.ToString & "','" & SLEStore.EditValue.ToString & "','" & id_departement_user & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID();"
+                id_trans = execute_query(q, 0, True, "", "", "", "")
+                'detail
+                q = "INSERT INTO tb_item_card_trs_det(`id_item_card_trs`,`id_item_detail`,`qty_available`,`qty`)
+VALUES"
+                For i As Integer = 0 To GVItemDetail.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+
+                    q = "('" & id_trans & "','" & id_trans & "','" & decimalSQL(Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty_available").ToString)) & "','" & decimalSQL(Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty").ToString)) & "')"
+                Next
+                '
+                execute_query(q, -1, True, "", "", "", "")
+            Else
+                'edit
+
+            End If
+        Else
+            warningCustom("Please put item first.")
         End If
     End Sub
 End Class

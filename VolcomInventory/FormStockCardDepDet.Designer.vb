@@ -40,7 +40,7 @@ Partial Class FormStockCardDepDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DEProposedDate = New DevExpress.XtraEditors.DateEdit()
-        Me.TxtMemoNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.TEDepartement = New DevExpress.XtraEditors.TextEdit()
@@ -63,6 +63,9 @@ Partial Class FormStockCardDepDet
         Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,7 +76,7 @@ Partial Class FormStockCardDepDet
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEProposedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEProposedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtMemoNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,6 +88,9 @@ Partial Class FormStockCardDepDet
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -159,7 +165,7 @@ Partial Class FormStockCardDepDet
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.DEProposedDate)
-        Me.PanelControl2.Controls.Add(Me.TxtMemoNumber)
+        Me.PanelControl2.Controls.Add(Me.TENumber)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
@@ -281,14 +287,14 @@ Partial Class FormStockCardDepDet
         Me.DEProposedDate.Size = New System.Drawing.Size(297, 20)
         Me.DEProposedDate.TabIndex = 9
         '
-        'TxtMemoNumber
+        'TENumber
         '
-        Me.TxtMemoNumber.EditValue = "[auto generated]"
-        Me.TxtMemoNumber.Location = New System.Drawing.Point(94, 20)
-        Me.TxtMemoNumber.Name = "TxtMemoNumber"
-        Me.TxtMemoNumber.Properties.ReadOnly = True
-        Me.TxtMemoNumber.Size = New System.Drawing.Size(297, 20)
-        Me.TxtMemoNumber.TabIndex = 3
+        Me.TENumber.EditValue = "[auto generated]"
+        Me.TENumber.Location = New System.Drawing.Point(94, 20)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(297, 20)
+        Me.TENumber.TabIndex = 3
         '
         'LabelControl3
         '
@@ -353,17 +359,17 @@ Partial Class FormStockCardDepDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl4.Location = New System.Drawing.Point(0, 128)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(1030, 410)
+        Me.PanelControl4.Size = New System.Drawing.Size(1030, 334)
         Me.PanelControl4.TabIndex = 3
         '
         'GCItemDetail
         '
-        Me.GCItemDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCItemDetail.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCItemDetail.Location = New System.Drawing.Point(2, 2)
         Me.GCItemDetail.MainView = Me.GVItemDetail
         Me.GCItemDetail.Name = "GCItemDetail"
         Me.GCItemDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEItemDetail, Me.RepositoryItemMemoEdit2})
-        Me.GCItemDetail.Size = New System.Drawing.Size(1026, 406)
+        Me.GCItemDetail.Size = New System.Drawing.Size(1026, 254)
         Me.GCItemDetail.TabIndex = 0
         Me.GCItemDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemDetail})
         '
@@ -389,7 +395,7 @@ Partial Class FormStockCardDepDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 179
+        Me.GridColumn2.Width = 267
         '
         'RISLEItemDetail
         '
@@ -458,9 +464,12 @@ Partial Class FormStockCardDepDet
         Me.GridColumn3.ColumnEdit = Me.RepositoryItemMemoEdit2
         Me.GridColumn3.FieldName = "item_detail"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.AllowFocus = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 702
+        Me.GridColumn3.Width = 1047
         '
         'RepositoryItemMemoEdit2
         '
@@ -468,9 +477,21 @@ Partial Class FormStockCardDepDet
         '
         'GridColumn9
         '
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn9.Caption = "Available Qty"
+        Me.GridColumn9.DisplayFormat.FormatString = "N2"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "qty_available"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.AllowFocus = False
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
+        Me.GridColumn9.Width = 151
         '
         'GridColumn10
         '
@@ -484,8 +505,33 @@ Partial Class FormStockCardDepDet
         Me.GridColumn10.FieldName = "qty"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
-        Me.GridColumn10.Width = 127
+        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.Width = 151
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.MENote)
+        Me.PanelControl5.Controls.Add(Me.LabelControl6)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 462)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(1030, 76)
+        Me.PanelControl5.TabIndex = 4
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 12)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl6.TabIndex = 0
+        Me.LabelControl6.Text = "Note"
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(51, 10)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(580, 54)
+        Me.MENote.TabIndex = 1
         '
         'FormStockCardDepDet
         '
@@ -493,6 +539,7 @@ Partial Class FormStockCardDepDet
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1030, 586)
         Me.Controls.Add(Me.PanelControl4)
+        Me.Controls.Add(Me.PanelControl5)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -513,7 +560,7 @@ Partial Class FormStockCardDepDet
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEProposedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEProposedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtMemoNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -526,6 +573,10 @@ Partial Class FormStockCardDepDet
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -541,7 +592,7 @@ Partial Class FormStockCardDepDet
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents TxtMemoNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEProposedDate As DevExpress.XtraEditors.DateEdit
@@ -573,4 +624,7 @@ Partial Class FormStockCardDepDet
     Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class
