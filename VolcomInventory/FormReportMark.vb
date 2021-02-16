@@ -9340,13 +9340,14 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
             'if completed
             If id_status_reportx = "6" Then
                 Dim qry As String = "-- kembalikan book stock
-                DELETE FROM tb_storage_fg WHERE report_mark_type=" + report_mark_type + " AND id_report=" + id_report + ";
-                INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status)
-                SELECT getCompByContact(ro.id_store_contact, 4),1, p.id_product, d.design_cop, " + report_mark_type + ", ro.id_return_refuse, rod.qty,NOW(), 'Auto',2
+                DELETE FROM tb_storage_fg WHERE report_mark_type_ref=" + report_mark_type + " AND id_report_ref =" + id_report + ";
+                INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status, report_mark_type_ref, id_report_ref)
+                SELECT getCompByContact(ro.id_store_contact, 4),1, p.id_product, d.design_cop, 119, ror_det.id_sales_return_order, rod.qty,NOW(), 'Auto',2, " + report_mark_type + ", " + id_report + "
                 FROM tb_ol_store_return_refuse ro
                 INNER JOIN tb_ol_store_return_refuse_det rod ON rod.id_return_refuse = ro.id_return_refuse
                 INNER JOIN tb_m_product p ON p.id_product = rod.id_product
                 INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                INNER JOIN tb_sales_return_order_det ror_det ON ror_det.id_sales_return_order_det = rod.id_sales_return_order_det
                 WHERE ro.id_return_refuse=" + id_report + " AND rod.qty>0; 
                 -- update void ror
                 UPDATE tb_sales_return_order_det main 
@@ -9360,7 +9361,7 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
             End If
 
             'update status
-            query = String.Format("UPDATE tb_setup_tax_installment SET id_report_status='{0}' WHERE id_setup_tax ='{1}'", id_status_reportx, id_report)
+            query = String.Format("UPDATE tb_ol_store_return_refuse SET id_report_status='{0}' WHERE id_return_refuse ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
