@@ -409,9 +409,14 @@ Public Class FormSalesReturnDet
             If is_non_list = "1" Then
                 query = "CALL view_sales_return_order_limit_non_list('" + id_sales_return_order + "','" + id_store + "')"
             Else
-                query = "CALL view_sales_return_order_limit('" + id_sales_return_order + "', '0', '0')"
+                query = "CALL view_sales_return_order_limit_for_trans('" + id_sales_return_order + "', '0', '0')"
             End If
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+            If id_ret_type = "4" Then
+                For i As Integer = 0 To data.Rows.Count - 1
+
+                Next
+            End If
             GCItemList.DataSource = data
         ElseIf action = "upd" Then
             Dim query As String = "CALL view_sales_return('" + id_sales_return + "')"
@@ -999,7 +1004,7 @@ Public Class FormSalesReturnDet
         If is_non_list = "1" Then
             query_cek_stok = "CALL view_sales_return_order_limit_non_list('" + id_sales_return_order + "','" + id_store + "') "
         Else
-            query_cek_stok = "CALL view_sales_return_order_limit('" + id_sales_return_order + "','0','0') "
+            query_cek_stok = "CALL view_sales_return_order_limit_for_trans('" + id_sales_return_order + "','0','0') "
         End If
         Dim dt_cek As DataTable = execute_query(query_cek_stok, -1, True, "", "", "", "")
 
