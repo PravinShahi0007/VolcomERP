@@ -173,7 +173,7 @@ Partial Class FormPurcItemDet
         Me.XTCDetail.Location = New System.Drawing.Point(0, 0)
         Me.XTCDetail.Name = "XTCDetail"
         Me.XTCDetail.SelectedTabPage = Me.XtraTabPage1
-        Me.XTCDetail.Size = New System.Drawing.Size(512, 424)
+        Me.XTCDetail.Size = New System.Drawing.Size(512, 430)
         Me.XTCDetail.TabIndex = 0
         Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XTPPriceList, Me.XTPAttachment, Me.XTPHistory})
         '
@@ -205,26 +205,28 @@ Partial Class FormPurcItemDet
         Me.XtraTabPage1.Controls.Add(Me.LabelControl11)
         Me.XtraTabPage1.Controls.Add(Me.TECode)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(506, 396)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(506, 402)
         Me.XtraTabPage1.Text = "Detail"
         '
         'LabelControl12
         '
         Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Location = New System.Drawing.Point(11, 307)
+        Me.LabelControl12.Location = New System.Drawing.Point(11, 337)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(52, 13)
         Me.LabelControl12.TabIndex = 8919
         Me.LabelControl12.Text = "Card Stock"
+        Me.LabelControl12.Visible = False
         '
         'SLEStockCardDept
         '
-        Me.SLEStockCardDept.Location = New System.Drawing.Point(109, 304)
+        Me.SLEStockCardDept.Location = New System.Drawing.Point(109, 334)
         Me.SLEStockCardDept.Name = "SLEStockCardDept"
         Me.SLEStockCardDept.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStockCardDept.Properties.View = Me.GridView8
         Me.SLEStockCardDept.Size = New System.Drawing.Size(201, 20)
         Me.SLEStockCardDept.TabIndex = 8918
+        Me.SLEStockCardDept.Visible = False
         '
         'GridView8
         '
@@ -335,7 +337,7 @@ Partial Class FormPurcItemDet
         'LStatus
         '
         Me.LStatus.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LStatus.Location = New System.Drawing.Point(11, 333)
+        Me.LStatus.Location = New System.Drawing.Point(11, 311)
         Me.LStatus.Name = "LStatus"
         Me.LStatus.Size = New System.Drawing.Size(31, 13)
         Me.LStatus.TabIndex = 8910
@@ -348,7 +350,7 @@ Partial Class FormPurcItemDet
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEStatus.EditValue = ""
         Me.TEStatus.Enabled = False
-        Me.TEStatus.Location = New System.Drawing.Point(109, 330)
+        Me.TEStatus.Location = New System.Drawing.Point(109, 308)
         Me.TEStatus.Name = "TEStatus"
         Me.TEStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEStatus.Properties.Appearance.Options.UseFont = True
@@ -516,7 +518,7 @@ Partial Class FormPurcItemDet
         Me.PanelControl1.Controls.Add(Me.BClose)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 356)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 362)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(506, 40)
         Me.PanelControl1.TabIndex = 8902
@@ -1084,7 +1086,7 @@ Partial Class FormPurcItemDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(512, 424)
+        Me.ClientSize = New System.Drawing.Size(512, 430)
         Me.Controls.Add(Me.XTCDetail)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False

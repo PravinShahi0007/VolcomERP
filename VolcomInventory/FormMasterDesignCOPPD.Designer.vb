@@ -27,6 +27,7 @@ Partial Class FormMasterDesignCOPPD
         Me.BtnBrowseContactFrom = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BLock = New DevExpress.XtraEditors.SimpleButton()
         Me.BHistoryCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -88,7 +89,14 @@ Partial Class FormMasterDesignCOPPD
         Me.TETodayKurs = New DevExpress.XtraEditors.TextEdit()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.BLock = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEECOPNote = New DevExpress.XtraEditors.MemoEdit()
+        Me.SLECOO = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,6 +130,11 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TETodayKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.MEECOPNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLECOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -199,13 +212,24 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl3.Controls.Add(Me.BHistoryCOP)
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 520)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 553)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(827, 44)
         Me.PanelControl3.TabIndex = 5
         Me.PanelControl3.TabStop = True
+        '
+        'BLock
+        '
+        Me.BLock.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BLock.Image = CType(resources.GetObject("BLock.Image"), System.Drawing.Image)
+        Me.BLock.ImageList = Me.LargeImageCollection
+        Me.BLock.Location = New System.Drawing.Point(651, 2)
+        Me.BLock.Name = "BLock"
+        Me.BLock.Size = New System.Drawing.Size(99, 40)
+        Me.BLock.TabIndex = 9
+        Me.BLock.Text = "Lock"
         '
         'BHistoryCOP
         '
@@ -410,8 +434,8 @@ Partial Class FormMasterDesignCOPPD
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.LStorage)
-        Me.PanelControl1.Controls.Add(Me.SLECoolStorage)
+        Me.PanelControl1.Controls.Add(Me.LabelControl10)
+        Me.PanelControl1.Controls.Add(Me.SLECOO)
         Me.PanelControl1.Controls.Add(Me.TEDesc)
         Me.PanelControl1.Controls.Add(Me.LabelControl6)
         Me.PanelControl1.Controls.Add(Me.BtnBrowseContactFrom)
@@ -438,7 +462,7 @@ Partial Class FormMasterDesignCOPPD
         '
         'LStorage
         '
-        Me.LStorage.Location = New System.Drawing.Point(373, 73)
+        Me.LStorage.Location = New System.Drawing.Point(303, 13)
         Me.LStorage.Name = "LStorage"
         Me.LStorage.Size = New System.Drawing.Size(65, 13)
         Me.LStorage.TabIndex = 8911
@@ -447,11 +471,11 @@ Partial Class FormMasterDesignCOPPD
         '
         'SLECoolStorage
         '
-        Me.SLECoolStorage.Location = New System.Drawing.Point(451, 70)
+        Me.SLECoolStorage.Location = New System.Drawing.Point(381, 10)
         Me.SLECoolStorage.Name = "SLECoolStorage"
         Me.SLECoolStorage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECoolStorage.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLECoolStorage.Size = New System.Drawing.Size(177, 20)
+        Me.SLECoolStorage.Size = New System.Drawing.Size(146, 20)
         Me.SLECoolStorage.TabIndex = 8910
         Me.SLECoolStorage.Visible = False
         '
@@ -483,7 +507,7 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 151)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(827, 369)
+        Me.PanelControl2.Size = New System.Drawing.Size(827, 402)
         Me.PanelControl2.TabIndex = 8911
         '
         'XTCCOPPD
@@ -493,7 +517,7 @@ Partial Class FormMasterDesignCOPPD
         Me.XTCCOPPD.Location = New System.Drawing.Point(2, 2)
         Me.XTCCOPPD.Name = "XTCCOPPD"
         Me.XTCCOPPD.SelectedTabPage = Me.XTPCurrent
-        Me.XTCCOPPD.Size = New System.Drawing.Size(823, 365)
+        Me.XTCCOPPD.Size = New System.Drawing.Size(823, 398)
         Me.XTCCOPPD.TabIndex = 3
         Me.XTCCOPPD.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPCurrent, Me.XTPUpdateCOP})
         '
@@ -501,7 +525,7 @@ Partial Class FormMasterDesignCOPPD
         '
         Me.XTPCurrent.Controls.Add(Me.GCCOPCurrent)
         Me.XTPCurrent.Name = "XTPCurrent"
-        Me.XTPCurrent.Size = New System.Drawing.Size(817, 343)
+        Me.XTPCurrent.Size = New System.Drawing.Size(817, 337)
         Me.XTPCurrent.Text = "Current"
         '
         'GCCOPCurrent
@@ -511,7 +535,7 @@ Partial Class FormMasterDesignCOPPD
         Me.GCCOPCurrent.MainView = Me.GVCOPCurrent
         Me.GCCOPCurrent.Name = "GCCOPCurrent"
         Me.GCCOPCurrent.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLE})
-        Me.GCCOPCurrent.Size = New System.Drawing.Size(817, 343)
+        Me.GCCOPCurrent.Size = New System.Drawing.Size(817, 337)
         Me.GCCOPCurrent.TabIndex = 1
         Me.GCCOPCurrent.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCOPCurrent})
         '
@@ -673,21 +697,22 @@ Partial Class FormMasterDesignCOPPD
         '
         'XTPUpdateCOP
         '
+        Me.XTPUpdateCOP.Controls.Add(Me.PanelControl5)
         Me.XTPUpdateCOP.Controls.Add(Me.GCCOPComponent)
         Me.XTPUpdateCOP.Controls.Add(Me.BUpdateCOP)
         Me.XTPUpdateCOP.Controls.Add(Me.PanelControl4)
         Me.XTPUpdateCOP.Name = "XTPUpdateCOP"
-        Me.XTPUpdateCOP.Size = New System.Drawing.Size(817, 337)
+        Me.XTPUpdateCOP.Size = New System.Drawing.Size(817, 370)
         Me.XTPUpdateCOP.Text = "Input COP"
         '
         'GCCOPComponent
         '
-        Me.GCCOPComponent.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCCOPComponent.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCCOPComponent.Location = New System.Drawing.Point(0, 40)
         Me.GCCOPComponent.MainView = Me.GVCOPComponent
         Me.GCCOPComponent.Name = "GCCOPComponent"
         Me.GCCOPComponent.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEComp})
-        Me.GCCOPComponent.Size = New System.Drawing.Size(817, 268)
+        Me.GCCOPComponent.Size = New System.Drawing.Size(817, 216)
         Me.GCCOPComponent.TabIndex = 0
         Me.GCCOPComponent.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCOPComponent})
         '
@@ -845,7 +870,7 @@ Partial Class FormMasterDesignCOPPD
         'BUpdateCOP
         '
         Me.BUpdateCOP.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BUpdateCOP.Location = New System.Drawing.Point(0, 308)
+        Me.BUpdateCOP.Location = New System.Drawing.Point(0, 341)
         Me.BUpdateCOP.Name = "BUpdateCOP"
         Me.BUpdateCOP.Size = New System.Drawing.Size(817, 29)
         Me.BUpdateCOP.TabIndex = 2
@@ -853,7 +878,9 @@ Partial Class FormMasterDesignCOPPD
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.LStorage)
         Me.PanelControl4.Controls.Add(Me.BTemplate)
+        Me.PanelControl4.Controls.Add(Me.SLECoolStorage)
         Me.PanelControl4.Controls.Add(Me.LabelControl8)
         Me.PanelControl4.Controls.Add(Me.TETodayKurs)
         Me.PanelControl4.Controls.Add(Me.BDelete)
@@ -918,22 +945,75 @@ Partial Class FormMasterDesignCOPPD
         Me.BAdd.TabIndex = 0
         Me.BAdd.Text = "Add"
         '
-        'BLock
+        'PanelControl5
         '
-        Me.BLock.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BLock.Image = CType(resources.GetObject("BLock.Image"), System.Drawing.Image)
-        Me.BLock.ImageList = Me.LargeImageCollection
-        Me.BLock.Location = New System.Drawing.Point(651, 2)
-        Me.BLock.Name = "BLock"
-        Me.BLock.Size = New System.Drawing.Size(99, 40)
-        Me.BLock.TabIndex = 9
-        Me.BLock.Text = "Lock"
+        Me.PanelControl5.Controls.Add(Me.MEECOPNote)
+        Me.PanelControl5.Controls.Add(Me.LabelControl9)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 256)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(817, 85)
+        Me.PanelControl5.TabIndex = 3
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(7, 6)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl9.TabIndex = 0
+        Me.LabelControl9.Text = "Note"
+        '
+        'MEECOPNote
+        '
+        Me.MEECOPNote.Location = New System.Drawing.Point(55, 4)
+        Me.MEECOPNote.Name = "MEECOPNote"
+        Me.MEECOPNote.Size = New System.Drawing.Size(757, 75)
+        Me.MEECOPNote.TabIndex = 1
+        '
+        'SLECOO
+        '
+        Me.SLECOO.Location = New System.Drawing.Point(451, 70)
+        Me.SLECOO.Name = "SLECOO"
+        Me.SLECOO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECOO.Properties.View = Me.GridView2
+        Me.SLECOO.Size = New System.Drawing.Size(177, 20)
+        Me.SLECOO.TabIndex = 8910
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(373, 73)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl10.TabIndex = 8911
+        Me.LabelControl10.Text = "COO"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "ID Country"
+        Me.GridColumn23.FieldName = "id_country"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Country"
+        Me.GridColumn24.FieldName = "country"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 0
         '
         'FormMasterDesignCOPPD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(827, 564)
+        Me.ClientSize = New System.Drawing.Size(827, 597)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl3)
@@ -979,6 +1059,12 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
         CType(Me.TETodayKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.MEECOPNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLECOO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1051,4 +1137,12 @@ Partial Class FormMasterDesignCOPPD
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BTemplate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BLock As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents MEECOPNote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLECOO As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
