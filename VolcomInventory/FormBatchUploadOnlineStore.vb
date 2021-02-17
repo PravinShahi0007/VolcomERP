@@ -194,6 +194,11 @@
 
             Dim data_tmp As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+            'tags
+            For i = 0 To data_tmp.Rows.Count - 1
+                data_tmp.Rows(i)("Tags") = data_tmp.Rows(i)("Tag 1").ToString + ", " + data_tmp.Rows(i)("Tag 2").ToString + ", " + data_tmp.Rows(i)("Tag 3").ToString + ", " + data_tmp.Rows(i)("Tag 4").ToString + ", " + data_tmp.Rows(i)("Tag 5").ToString.Replace(" ", "") + ", " + data_tmp.Rows(i)("Tag 6").ToString + ", " + data_tmp.Rows(i)("Tag 7").ToString + ", " + data_tmp.Rows(i)("Tag 8").ToString
+            Next
+
             'remove same
             Dim x As Integer = 0
 
@@ -305,6 +310,14 @@
 
                 data.Columns.Remove(data.Columns("id_design"))
                 data.Columns.Remove(data.Columns("id_product"))
+                data.Columns.Remove(data.Columns("Tag 1"))
+                data.Columns.Remove(data.Columns("Tag 2"))
+                data.Columns.Remove(data.Columns("Tag 3"))
+                data.Columns.Remove(data.Columns("Tag 4"))
+                data.Columns.Remove(data.Columns("Tag 5"))
+                data.Columns.Remove(data.Columns("Tag 6"))
+                data.Columns.Remove(data.Columns("Tag 7"))
+                data.Columns.Remove(data.Columns("Tag 8"))
             End If
         End If
 

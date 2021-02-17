@@ -53,6 +53,7 @@ Public Class FormMasterRawMaterialDetSingle
             Dim mat_det_code As String = addSlashes(TxtMaterialFullCode.Text)
             Dim id_method As String = LEMethod.EditValue.ToString
             Dim lifetime As String = TxtLifetime.Text
+            Dim is_active As String = SLEActive.EditValue.ToString
 
             Dim gramasi As String = "0"
 
@@ -69,9 +70,9 @@ Public Class FormMasterRawMaterialDetSingle
             If action = "ins" Then
                 Try
                     'insert db
-                    query = "INSERT INTO tb_m_mat_det(id_mat, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, mat_det_date, allow_design, id_fab_type, gramasi,id_range) "
-                    query += "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', DATE(NOW()),'{6}','{7}','{8}','{9}');SELECT LAST_INSERT_ID() "
-                    query = String.Format(query, id_mat, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString)
+                    query = "INSERT INTO tb_m_mat_det(id_mat, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, mat_det_date, allow_design, id_fab_type, gramasi,id_range,is_active) "
+                    query += "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', DATE(NOW()),'{6}','{7}','{8}','{9}','{10}');SELECT LAST_INSERT_ID() "
+                    query = String.Format(query, id_mat, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, is_active)
 
                     id_mat_det = execute_query(query, 0, True, "", "", "", "")
 
@@ -107,8 +108,8 @@ Public Class FormMasterRawMaterialDetSingle
                 Try
                     'update db
                     query = "UPDATE tb_m_mat_det SET mat_det_display_name = '{0}', mat_det_name='{1}', mat_det_code='{2}', id_method='{3}', "
-                    query += "lifetime = '{4}', allow_design='{6}',id_fab_type='{7}',gramasi='{8}',id_range='{9}'  WHERE id_mat_det = '{5}'"
-                    query = String.Format(query, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, id_mat_det, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString)
+                    query += "lifetime = '{4}', allow_design='{6}',id_fab_type='{7}',gramasi='{8}',id_range='{9}',is_active='{10}'  WHERE id_mat_det = '{5}'"
+                    query = String.Format(query, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, id_mat_det, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, is_active)
                     execute_non_query(query, True, "", "", "", "")
                     logData("tb_mat_det", 1)
 
@@ -152,6 +153,7 @@ Public Class FormMasterRawMaterialDetSingle
         'checkFormAccess(Name)
         viewInventoryMethod()
         viewFabType()
+        view_is_active()
 
         loadIsiParam()
         viewTemplate(LETemplate)
@@ -189,6 +191,7 @@ Public Class FormMasterRawMaterialDetSingle
             SEGramation.EditValue = data.Rows(0)("gramasi").ToString
             id_method = data.Rows(0)("id_method").ToString
             SLERange.EditValue = data.Rows(0)("id_range").ToString
+            SLEActive.EditValue = data.Rows(0)("is_active").ToString
 
             If data.Rows(0)("allow_design").ToString = "1" Then
                 CEAllowDesign.Checked = True
@@ -251,6 +254,13 @@ Public Class FormMasterRawMaterialDetSingle
         query += "UNION ALL "
         query += "(SELECT id_method, method FROM tb_lookup_inventory_method ORDER BY method ASC) "
         viewLookupQuery(LEMethod, query, 0, "method", "id_method")
+    End Sub
+
+    Sub view_is_active()
+        Dim query As String = "SELECT 1 AS is_active,'Active' AS active 
+UNION ALL
+SELECT 2 AS is_active,'Not Active' AS active "
+        viewSearchLookupQuery(SLEActive, query, "is_active", "active", "is_active")
     End Sub
 
     'View fabric type

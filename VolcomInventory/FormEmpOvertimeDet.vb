@@ -157,7 +157,7 @@
         data.Columns.Add("id_departement", GetType(String))
         data.Columns.Add("id_departement_sub", GetType(String))
         data.Columns.Add("departement", GetType(String))
-        data.Columns.Add("ot_date", GetType(String))
+        data.Columns.Add("ot_date", GetType(Date))
         data.Columns.Add("employee_code", GetType(String))
         data.Columns.Add("employee_name", GetType(String))
         data.Columns.Add("employee_position", GetType(String))

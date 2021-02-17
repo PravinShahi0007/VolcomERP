@@ -11,8 +11,13 @@
     Public id_coa_tag As String = "1"
 
     Private Sub FormPurcReceiveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewReportStatus()
-        actionLoad()
+        If get_opt_purchasing_field("is_freeze_stock_og") = "1" Then
+            warningCustom("Stock Take sedang berlangsung")
+            Close()
+        Else
+            viewReportStatus()
+            actionLoad()
+        End If
     End Sub
 
     Sub viewReportStatus()
@@ -215,7 +220,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             GVDetail.BestFitColumns()
         ElseIf action = "upd" Then
             query = "SELECT rd.id_purc_order_det,reqd.ship_destination,reqd.ship_address,req.purc_req_number,d.departement, 
-            rd.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, rd.qty, reqd.item_detail
+            rd.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, rd.qty ,CONCAT(rd.item_detail,IF(ISNULL(rd.remark) OR rd.remark='','',CONCAT('\r\n',rd.remark))) AS item_detail
             ,CONCAT('1:',i.stock_convertion) AS stock_convertion_view, (rd.qty*i.stock_convertion) AS `qty_stock`,u_st.uom AS uom_stock
             FROM tb_purc_rec_det rd
             INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
@@ -248,7 +253,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
         Dim query As String = ""
         If action = "ins" Then
             query = "SELECT 0 AS `id_purc_rec_det`,0 AS `id_purc_rec`,
-            pod.id_item, i.item_desc, i.id_uom, u.uom, reqd.item_detail,
+            pod.id_item, i.item_desc, i.id_uom, u.uom, CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) AS item_detail,
             pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, 0.00 AS qty,(SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_rem`, '' AS  `note`, '' AS `stt`
             ,u_st.uom AS uom_stock,i.stock_convertion, CONCAT('1:',i.stock_convertion) AS stock_convertion_view, 0.00 AS `qty_stock`
             FROM tb_purc_order_det pod
@@ -271,10 +276,10 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
             INNER JOIN tb_m_uom u_st ON u_st.id_uom = i.id_uom_stock
             WHERE pod.is_drop='2' AND pod.id_purc_order=" + id_purc_order + "
-            GROUP BY pod.id_item, BINARY reqd.item_detail "
+            GROUP BY pod.id_item, BINARY CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) "
         ElseIf action = "upd" Then
             query = "SELECT rd.id_purc_rec_det, rd.id_purc_rec,  
-            rd.id_item, i.item_desc, i.id_uom, u.uom, reqd.item_detail,
+            rd.id_item, i.item_desc, i.id_uom, u.uom, CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) AS item_detail,
             rd.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, SUM(rd.qty) AS `qty`, rd.note,  '' AS `stt`
             ,u_st.uom AS uom_stock,i.stock_convertion, CONCAT('1:',i.stock_convertion) AS stock_convertion_view, SUM(rd.qty*i.stock_convertion) AS `qty_stock`
             FROM tb_purc_rec_det rd
@@ -284,7 +289,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
             INNER JOIN tb_m_uom u_st ON u_st.id_uom = i.id_uom_stock
             WHERE rd.id_purc_rec=" + id + " 
-            GROUP BY rd.id_item,BINARY reqd.item_detail "
+            GROUP BY rd.id_item,BINARY CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) "
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummary.DataSource = data
@@ -471,8 +476,8 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
 	                GROUP BY retd.id_item
                 ) retd ON retd.id_item = pod.id_item
                 INNER JOIN tb_purc_req_det prd ON prd.id_purc_req_det=pod.id_purc_req_det
-                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + " AND IFNULL(prd.item_detail,'')='" & item_detail & "'
-                GROUP BY pod.id_item, prd.item_detail "
+                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + " AND IFNULL(CONCAT(prd.item_detail,IF(ISNULL(prd.remark) OR prd.remark='','',CONCAT('\r\n',prd.remark)))='" & item_detail & "'
+                GROUP BY pod.id_item, CONCAT(prd.item_detail,IF(ISNULL(prd.remark) OR prd.remark='','',CONCAT('\r\n',prd.remark))) "
                 Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
                 If e.Value > dcek.Rows(0)("qty_remaining") Then
                     warningCustom("Qty can't exceed " + dcek.Rows(0)("qty_remaining").ToString)
