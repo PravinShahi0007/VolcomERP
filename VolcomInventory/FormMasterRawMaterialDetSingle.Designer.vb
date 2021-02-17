@@ -106,6 +106,11 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.EPMaterial = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEActive = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLotTitle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,6 +156,8 @@ Partial Class FormMasterRawMaterialDetSingle
         CType(Me.GVMovement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemSearchLookUpEdit1
@@ -226,7 +233,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.XTCDetSample.LookAndFeel.SkinName = "Xmas 2008 Blue"
         Me.XTCDetSample.Name = "XTCDetSample"
         Me.XTCDetSample.SelectedTabPage = Me.XTPGeneral
-        Me.XTCDetSample.Size = New System.Drawing.Size(979, 379)
+        Me.XTCDetSample.Size = New System.Drawing.Size(979, 392)
         Me.XTCDetSample.TabIndex = 13
         Me.XTCDetSample.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPGeneral, Me.XTPPrice, Me.XTPMovement})
         '
@@ -243,12 +250,12 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.XTPGeneral.Controls.Add(Me.PanC2)
         Me.XTPGeneral.ImageIndex = 3
         Me.XTPGeneral.Name = "XTPGeneral"
-        Me.XTPGeneral.Size = New System.Drawing.Size(874, 373)
+        Me.XTPGeneral.Size = New System.Drawing.Size(874, 386)
         Me.XTPGeneral.Text = "General"
         '
         'SLERange
         '
-        Me.SLERange.Location = New System.Drawing.Point(699, 298)
+        Me.SLERange.Location = New System.Drawing.Point(699, 320)
         Me.SLERange.Name = "SLERange"
         Me.SLERange.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLERange.Properties.Appearance.Options.UseFont = True
@@ -292,7 +299,7 @@ Partial Class FormMasterRawMaterialDetSingle
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(699, 277)
+        Me.LabelControl9.Location = New System.Drawing.Point(699, 299)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(33, 15)
         Me.LabelControl9.TabIndex = 97
@@ -301,7 +308,7 @@ Partial Class FormMasterRawMaterialDetSingle
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(421, 277)
+        Me.LabelControl2.Location = New System.Drawing.Point(421, 299)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(78, 15)
         Me.LabelControl2.TabIndex = 95
@@ -309,7 +316,7 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'TxtMaterialFullCode
         '
-        Me.TxtMaterialFullCode.Location = New System.Drawing.Point(421, 298)
+        Me.TxtMaterialFullCode.Location = New System.Drawing.Point(421, 320)
         Me.TxtMaterialFullCode.Name = "TxtMaterialFullCode"
         Me.TxtMaterialFullCode.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtMaterialFullCode.Properties.Appearance.Options.UseFont = True
@@ -318,7 +325,7 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'DNCodeMaterial
         '
-        Me.DNCodeMaterial.Location = New System.Drawing.Point(421, 247)
+        Me.DNCodeMaterial.Location = New System.Drawing.Point(421, 269)
         Me.DNCodeMaterial.Name = "DNCodeMaterial"
         Me.DNCodeMaterial.Size = New System.Drawing.Size(440, 24)
         Me.DNCodeMaterial.TabIndex = 10
@@ -329,7 +336,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.GCCodeMaterial.Location = New System.Drawing.Point(421, 67)
         Me.GCCodeMaterial.MainView = Me.GVCodeMaterial
         Me.GCCodeMaterial.Name = "GCCodeMaterial"
-        Me.GCCodeMaterial.Size = New System.Drawing.Size(440, 184)
+        Me.GCCodeMaterial.Size = New System.Drawing.Size(440, 204)
         Me.GCCodeMaterial.TabIndex = 8
         Me.GCCodeMaterial.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCodeMaterial})
         '
@@ -373,7 +380,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.PCSave.Controls.Add(Me.BGenerate)
         Me.PCSave.Controls.Add(Me.BSave)
         Me.PCSave.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCSave.Location = New System.Drawing.Point(416, 337)
+        Me.PCSave.Location = New System.Drawing.Point(416, 350)
         Me.PCSave.Name = "PCSave"
         Me.PCSave.Size = New System.Drawing.Size(458, 36)
         Me.PCSave.TabIndex = 10
@@ -495,6 +502,8 @@ Partial Class FormMasterRawMaterialDetSingle
         'PanC2
         '
         Me.PanC2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanC2.Controls.Add(Me.SLEActive)
+        Me.PanC2.Controls.Add(Me.LabelControl10)
         Me.PanC2.Controls.Add(Me.GroupBox1)
         Me.PanC2.Controls.Add(Me.BViewImage)
         Me.PanC2.Controls.Add(Me.LEMethod)
@@ -509,7 +518,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.PanC2.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanC2.Location = New System.Drawing.Point(0, 0)
         Me.PanC2.Name = "PanC2"
-        Me.PanC2.Size = New System.Drawing.Size(416, 373)
+        Me.PanC2.Size = New System.Drawing.Size(416, 386)
         Me.PanC2.TabIndex = 3
         '
         'GroupBox1
@@ -519,9 +528,9 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.GroupBox1.Controls.Add(Me.LabelControl1)
         Me.GroupBox1.Controls.Add(Me.LabelControl5)
         Me.GroupBox1.Controls.Add(Me.LEFabType)
-        Me.GroupBox1.Location = New System.Drawing.Point(11, 178)
+        Me.GroupBox1.Location = New System.Drawing.Point(11, 204)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(191, 178)
+        Me.GroupBox1.Size = New System.Drawing.Size(191, 166)
         Me.GroupBox1.TabIndex = 104
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Fabric Consumption"
@@ -590,7 +599,7 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'LEMethod
         '
-        Me.LEMethod.Location = New System.Drawing.Point(12, 134)
+        Me.LEMethod.Location = New System.Drawing.Point(12, 129)
         Me.LEMethod.Name = "LEMethod"
         Me.LEMethod.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEMethod.Properties.Appearance.Options.UseFont = True
@@ -628,7 +637,7 @@ Partial Class FormMasterRawMaterialDetSingle
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(12, 113)
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 108)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(97, 15)
         Me.LabelControl4.TabIndex = 88
@@ -645,7 +654,7 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'TxtDisplayName
         '
-        Me.TxtDisplayName.Location = New System.Drawing.Point(11, 81)
+        Me.TxtDisplayName.Location = New System.Drawing.Point(11, 75)
         Me.TxtDisplayName.Name = "TxtDisplayName"
         Me.TxtDisplayName.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDisplayName.Properties.Appearance.Options.UseFont = True
@@ -659,7 +668,7 @@ Partial Class FormMasterRawMaterialDetSingle
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(11, 62)
+        Me.LabelControl8.Location = New System.Drawing.Point(11, 56)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(76, 15)
         Me.LabelControl8.TabIndex = 82
@@ -667,7 +676,7 @@ Partial Class FormMasterRawMaterialDetSingle
         '
         'TxtName
         '
-        Me.TxtName.Location = New System.Drawing.Point(11, 33)
+        Me.TxtName.Location = New System.Drawing.Point(11, 28)
         Me.TxtName.Name = "TxtName"
         Me.TxtName.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtName.Properties.Appearance.Options.UseFont = True
@@ -681,7 +690,7 @@ Partial Class FormMasterRawMaterialDetSingle
         'LabelControlUpdateName
         '
         Me.LabelControlUpdateName.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControlUpdateName.Location = New System.Drawing.Point(12, 14)
+        Me.LabelControlUpdateName.Location = New System.Drawing.Point(12, 9)
         Me.LabelControlUpdateName.Name = "LabelControlUpdateName"
         Me.LabelControlUpdateName.Size = New System.Drawing.Size(64, 15)
         Me.LabelControlUpdateName.TabIndex = 80
@@ -987,12 +996,52 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.EPMaterial.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPMaterial.ContainerControl = Me
         '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(12, 157)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(34, 15)
+        Me.LabelControl10.TabIndex = 105
+        Me.LabelControl10.Text = "Status"
+        '
+        'SLEActive
+        '
+        Me.SLEActive.Location = New System.Drawing.Point(12, 178)
+        Me.SLEActive.Name = "SLEActive"
+        Me.SLEActive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEActive.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEActive.Size = New System.Drawing.Size(190, 20)
+        Me.SLEActive.TabIndex = 106
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID"
+        Me.GridColumn13.FieldName = "is_active"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "GridColumn14"
+        Me.GridColumn14.FieldName = "active"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
         'FormMasterRawMaterialDetSingle
         '
         Me.AcceptButton = Me.BSave
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(979, 425)
+        Me.ClientSize = New System.Drawing.Size(979, 438)
         Me.Controls.Add(Me.XTCDetSample)
         Me.Controls.Add(Me.PCLotTitle)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -1052,6 +1101,8 @@ Partial Class FormMasterRawMaterialDetSingle
         CType(Me.GVMovement, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1140,4 +1191,9 @@ Partial Class FormMasterRawMaterialDetSingle
     Friend WithEvents BSetPrice As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BRevise As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEActive As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class

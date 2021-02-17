@@ -246,7 +246,7 @@ Public Class ClassSendEmail
 
             mail.Subject = "Final COP Approved (" & design_code & " - " & design_name & ")"
             mail.IsBodyHtml = True
-            mail.Body = email_body_final_cop(cop, design_name, design_code, "1")
+            mail.Body = email_body_final_cop(cop, design_name, design_code)
             client.Send(mail)
         ElseIf report_mark_type = "186" Then
             'par1 = id_design
@@ -295,7 +295,7 @@ Public Class ClassSendEmail
 
             mail.Subject = "Pre Final COP Approved (" & design_code & " - " & design_name & ")"
             mail.IsBodyHtml = True
-            mail.Body = email_body_final_cop(cop, design_name, design_code, "2")
+            mail.Body = email_body_final_cop(cop, design_name, design_code)
             client.Send(mail)
         ElseIf report_mark_type = "267" Then 'ECOP PD
             'par1 = id_design
@@ -344,7 +344,56 @@ Public Class ClassSendEmail
 
             mail.Subject = "Entry ECOP PD (" & design_code & " - " & design_name & ")"
             mail.IsBodyHtml = True
-            mail.Body = email_body_ecop(cop, design_name, design_code)
+            mail.Body = email_body_ecop(cop, design_name, design_code, "")
+            client.Send(mail)
+        ElseIf report_mark_type = "291" Then 'Reset ECOP PD
+            'par1 = id_design
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Reset ECOP PD - Volcom ERP")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+            'Send to
+            Dim query_send_to As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='1' AND md.report_mark_type=291 "
+            Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_to.Rows.Count - 1
+                If Not data_send_to.Rows(i)("email_external").ToString = "" Then
+                    Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
+                    mail.To.Add(to_mail)
+                End If
+            Next
+            'CC
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='2' AND md.report_mark_type=291 "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                If Not data_send_cc.Rows(i)("email_external").ToString = "" Then
+                    Dim cc_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                    mail.CC.Add(cc_mail)
+                End If
+            Next
+
+            Dim design_name, cop, design_code As String
+            Dim query As String = "SELECT design_display_name,design_code,prod_order_cop_pd FROM tb_m_design WHERE id_design='" & par1 & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                design_name = data.Rows(0)("design_display_name").ToString
+                design_code = data.Rows(0)("design_code").ToString
+                cop = Decimal.Parse(data.Rows(0)("prod_order_cop_pd").ToString).ToString("N2")
+            Else
+                design_name = ""
+                design_code = ""
+                cop = ""
+            End If
+
+            mail.Subject = "Reset ECOP PD (" & design_code & " - " & design_name & ")"
+            mail.IsBodyHtml = True
+            mail.Body = email_body_ecop(cop, design_name, design_code, "reset")
             client.Send(mail)
         ElseIf report_mark_type = "design_comment" Then
             ' Create a new report. 
@@ -4120,7 +4169,7 @@ WHERE rm.id_report='" & id_report & "' AND rm.report_mark_type='" & report_mark_
         Return body_temp
     End Function
 
-    Function email_body_ecop(ByVal cop As String, ByVal design_name As String, ByVal design_code As String)
+    Function email_body_ecop(ByVal cop As String, ByVal design_name As String, ByVal design_code As String, ByVal opt As String)
         Dim body_temp As String = ""
         body_temp = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
  <tbody><tr>
@@ -4214,35 +4263,35 @@ WHERE rm.id_report='" & id_report & "' AND rm.report_mark_type='" & report_mark_
       </div>
       </td>
      </tr>
-     <tr>
-      <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
-        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>
-        Estimate COP
-        </span>
-      </td>
-      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
-      <div>
-      <p class='MsoNormal' style='line-height:14.25pt'>
-        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+    " & If(opt = "reset", "", "<tr>
+          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>
+            Estimate COP
+            </span>
+          </td>
+          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+          <div>
+          <p class='MsoNormal' style='line-height:14.25pt'>
+            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
           
-        </span>
-      </p>
+            </span>
+          </p>
 
-      </div>
-      </td>
-      <td style='padding:1.0pt 10.0pt 1.0pt 10.0pt'>
-      <div>
-      <p class='MsoNormal' style='line-height:14.25pt'>
-        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & cop & "
-        </span>
-      </p>
-      </div>
-      </td>
-     </tr>
+          </div>
+          </td>
+          <td style='padding:1.0pt 10.0pt 1.0pt 10.0pt'>
+          <div>
+          <p class='MsoNormal' style='line-height:14.25pt'>
+            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & cop & "
+            </span>
+          </p>
+          </div>
+          </td>
+     </tr>") & "
      <tr>
       <td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
       <div>
-      <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>ECOP updated. </span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+      <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>ECOP " & If(opt = "reset", "reset", "updated") & ". </span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
       </div>
       </td>
      </tr>
@@ -4277,7 +4326,7 @@ WHERE rm.id_report='" & id_report & "' AND rm.report_mark_type='" & report_mark_
         Return body_temp
     End Function
 
-    Function email_body_final_cop(ByVal cop As String, ByVal design_name As String, ByVal design_code As String, ByVal opt As String)
+    Function email_body_final_cop(ByVal cop As String, ByVal design_name As String, ByVal design_code As String)
         Dim body_temp As String = ""
         body_temp = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
  <tbody><tr>

@@ -118,6 +118,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -163,7 +164,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIMEMO = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -236,6 +237,7 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIMEMO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -1291,7 +1293,7 @@ Partial Class FormPurcOrderDet
         Me.GCPurcReq.Location = New System.Drawing.Point(0, 36)
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
-        Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase})
+        Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase, Me.RIMEMO})
         Me.GCPurcReq.Size = New System.Drawing.Size(1038, 155)
         Me.GCPurcReq.TabIndex = 11
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
@@ -1303,6 +1305,7 @@ Partial Class FormPurcOrderDet
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsBehavior.ReadOnly = True
         Me.GVPurcReq.OptionsFind.AllowFindPanel = False
+        Me.GVPurcReq.OptionsView.RowAutoHeight = True
         Me.GVPurcReq.OptionsView.ShowGroupPanel = False
         '
         'GridColumn8
@@ -1346,12 +1349,21 @@ Partial Class FormPurcOrderDet
         'GridColumn14
         '
         Me.GridColumn14.Caption = "Item Detail"
+        Me.GridColumn14.ColumnEdit = Me.RIMEMO
         Me.GridColumn14.FieldName = "item_detail"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.OptionsColumn.AllowEdit = False
         Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 4
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Category"
+        Me.GridColumn34.FieldName = "item_cat_detail"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 2
         '
         'GridColumn3
         '
@@ -1829,13 +1841,9 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
         '
-        'GridColumn34
+        'RIMEMO
         '
-        Me.GridColumn34.Caption = "Category"
-        Me.GridColumn34.FieldName = "item_cat_detail"
-        Me.GridColumn34.Name = "GridColumn34"
-        Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 2
+        Me.RIMEMO.Name = "RIMEMO"
         '
         'FormPurcOrderDet
         '
@@ -1929,6 +1937,7 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIMEMO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2076,4 +2085,5 @@ Partial Class FormPurcOrderDet
     Friend WithEvents GridColumn230 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn231 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RIMEMO As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class
