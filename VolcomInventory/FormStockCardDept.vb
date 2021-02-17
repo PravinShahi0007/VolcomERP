@@ -94,7 +94,7 @@ LEFT JOIN (
         Dim query As String = "
 SELECT uom.uom,a.id_item, im.item_desc,a.item_detail,im.id_item_cat, cat.item_cat, SUM(a.qty) AS `qty`
 FROM (
-	SELECT i.id_item_detail,id.`id_item`,id.item_detail,
+	SELECT i.id_item_detail,id.`id_item`,CONCAT(id.item_detail,IF(ISNULL(id.remark) OR id.remark='','',CONCAT('\r\n',id.remark))) AS item_detail,
 	SUM(i.qty) AS `qty`
 	FROM `tb_stock_card_dep` i
 	INNER JOIN `tb_stock_card_dep_item` id ON id.`id_item_detail`=i.`id_item_detail`

@@ -388,7 +388,7 @@ Partial Class FormStockCardDept
         Me.GridColumnItemCat.Caption = "Description"
         Me.GridColumnItemCat.ColumnEdit = Me.RepositoryItemMemoEdit3
         Me.GridColumnItemCat.FieldName = "item_detail"
-        Me.GridColumnItemCat.MaxWidth = 200
+        Me.GridColumnItemCat.MaxWidth = 600
         Me.GridColumnItemCat.Name = "GridColumnItemCat"
         Me.GridColumnItemCat.Visible = True
         Me.GridColumnItemCat.VisibleIndex = 2
