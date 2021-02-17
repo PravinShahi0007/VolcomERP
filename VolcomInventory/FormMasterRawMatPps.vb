@@ -183,8 +183,16 @@ WHERE cc.`is_default`=1 AND (c.id_comp_cat=8 OR c.id_comp_cat=1)"
         viewSearchLookupQuery(SLECurrency, q, "id_currency", "currency", "id_currency")
     End Sub
 
+    Sub view_is_active()
+        Dim query As String = "SELECT 1 AS is_active,'Active' AS active 
+UNION ALL
+SELECT 2 AS is_active,'Not Active' AS active "
+        viewSearchLookupQuery(SLEActive, query, "is_active", "active", "is_active")
+    End Sub
+
     Sub load_form()
         'checkFormAccess(Name)
+        view_is_active()
         load_currency()
         load_contact()
         load_mat_cat()
@@ -198,7 +206,7 @@ WHERE cc.`is_default`=1 AND (c.id_comp_cat=8 OR c.id_comp_cat=1)"
             '
             If is_revise = "1" Then
                 'revisi lgsg isi
-                Dim q As String = "SELECT mdp.id_comp_contact,mdp.id_currency,matd.id_method,matd.`id_mat`,mat.`mat_display_name`,mat.`mat_code`,matd.`mat_det_code`,matd.`mat_det_display_name`,matd.`mat_det_name`,uom.`uom`,matd.`lifetime`,matd.`id_range` ,IFNULL(mdp.`mat_det_price`,0) AS fob_price
+                Dim q As String = "SELECT matd.is_active,mdp.id_comp_contact,mdp.id_currency,matd.id_method,matd.`id_mat`,mat.`mat_display_name`,mat.`mat_code`,matd.`mat_det_code`,matd.`mat_det_display_name`,matd.`mat_det_name`,uom.`uom`,matd.`lifetime`,matd.`id_range` ,IFNULL(mdp.`mat_det_price`,0) AS fob_price
 FROM `tb_m_mat_det` matd
 INNER JOIN tb_m_mat mat ON mat.`id_mat`=matd.`id_mat`
 INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`
@@ -212,6 +220,7 @@ WHERE matd.`id_mat_det`='" & id_mat_det_revise & "'"
                         PictureEdit1.LoadAsync(material_image_path & "default" & ".jpg")
                     End If
                     '
+                    SLEActive.EditValue = dt.Rows(0)("is_active").ToString
                     SLECurrency.EditValue = dt.Rows(0)("id_currency").ToString
                     SLEVendor.EditValue = dt.Rows(0)("id_comp_contact").ToString
                     SLEMaterialCategory.EditValue = dt.Rows(0)("id_mat").ToString
@@ -281,6 +290,7 @@ WHERE pps.id_mat_det_pps='" + id_pps + "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             id_mat_det_revise = data.Rows(0)("id_mat_det_revise").ToString
             is_revise = data.Rows(0)("is_revise").ToString
+            SLEActive.EditValue = data.Rows(0)("is_active").ToString
             SLECurrency.EditValue = data.Rows(0)("id_currency").ToString
             SLEVendor.EditValue = data.Rows(0)("id_comp_contact").ToString
             SLEMaterialCategory.EditValue = data.Rows(0)("id_mat").ToString
@@ -431,9 +441,9 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
             If action = "ins" Then
                 Try
                     'insert db
-                    query = "INSERT INTO tb_m_mat_det_pps(id_mat, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, mat_det_date, allow_design, id_fab_type, gramasi,id_range,id_comp_contact,id_currency,fob_price,created_by,last_update_by,last_update_date,id_mat_det_revise,is_revise) "
-                    query += "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', DATE(NOW()),'{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{13}',NOW(),{14},'{15}');SELECT LAST_INSERT_ID() "
-                    query = String.Format(query, SLEMaterialCategory.EditValue.ToString, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, SLEVendor.EditValue.ToString, SLECurrency.EditValue.ToString, decimalSQL(TEFOBPrice.EditValue.ToString), id_user, id_mat_rev, is_rev)
+                    query = "INSERT INTO tb_m_mat_det_pps(id_mat, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, mat_det_date, allow_design, id_fab_type, gramasi,id_range,id_comp_contact,id_currency,fob_price,created_by,last_update_by,last_update_date,id_mat_det_revise,is_revise,is_active) "
+                    query += "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', DATE(NOW()),'{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{13}',NOW(),{14},'{15}','{16}');SELECT LAST_INSERT_ID() "
+                    query = String.Format(query, SLEMaterialCategory.EditValue.ToString, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, SLEVendor.EditValue.ToString, SLECurrency.EditValue.ToString, decimalSQL(TEFOBPrice.EditValue.ToString), id_user, id_mat_rev, is_rev, SLEActive.EditValue.ToString)
 
                     id_pps = execute_query(query, 0, True, "", "", "", "")
 
@@ -467,8 +477,8 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
                 Try
                     'update db
                     query = "UPDATE tb_m_mat_det_pps SET mat_det_display_name = '{0}', mat_det_name='{1}', mat_det_code='{2}', id_method='{3}', "
-                    query += "lifetime = '{4}', allow_design='{6}',id_fab_type='{7}',gramasi='{8}',id_range='{9}',id_mat='{10}',last_update_date=NOW(),last_update_by='{11}',id_comp_contact='{12}',id_currency='{13}',fob_price='{14}',id_mat_det_revise={15},is_revise='{16}'  WHERE id_mat_det_pps = '{5}'"
-                    query = String.Format(query, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, id_pps, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, SLEMaterialCategory.EditValue.ToString, id_user, SLEVendor.EditValue.ToString, SLECurrency.EditValue.ToString, decimalSQL(TEFOBPrice.EditValue.ToString), id_mat_rev, is_rev)
+                    query += "lifetime = '{4}', allow_design='{6}',id_fab_type='{7}',gramasi='{8}',id_range='{9}',id_mat='{10}',last_update_date=NOW(),last_update_by='{11}',id_comp_contact='{12}',id_currency='{13}',fob_price='{14}',id_mat_det_revise={15},is_revise='{16}',is_active='{17}'  WHERE id_mat_det_pps = '{5}'"
+                    query = String.Format(query, mat_det_display_name, mat_det_name, mat_det_code, id_method, lifetime, id_pps, is_allow, id_fab_type, gramasi, SLERange.EditValue.ToString, SLEMaterialCategory.EditValue.ToString, id_user, SLEVendor.EditValue.ToString, SLECurrency.EditValue.ToString, decimalSQL(TEFOBPrice.EditValue.ToString), id_mat_rev, is_rev, SLEActive.EditValue.ToString)
                     execute_non_query(query, True, "", "", "", "")
 
                     'cek image

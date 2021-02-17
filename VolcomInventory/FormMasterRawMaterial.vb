@@ -7,9 +7,17 @@
     Dim bdel_active2 As String = "1"
     'Form Load
     Private Sub FormMasterRawMaterial_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        view_is_active()
         viewMat()
         viewMatDetail()
         viewMatDetailList()
+    End Sub
+
+    Sub view_is_active()
+        Dim query As String = "SELECT 1 AS is_active,'Active' AS active 
+UNION ALL
+SELECT 2 AS is_active,'Not Active' AS active "
+        viewSearchLookupQuery(SLEActive, query, "is_active", "active", "is_active")
     End Sub
     'View Material Data
     Sub viewMat()
@@ -42,7 +50,7 @@
     '
     Sub viewMatDetailList()
         Dim query As String = "SELECT * FROM tb_m_mat_det a  
-                                INNER JOIN tb_m_mat b ON a.id_mat = b.id_mat  
+                                INNER JOIN tb_m_mat b ON a.id_mat = b.id_mat  AND a.is_active='" & SLEActive.EditValue.ToString & "'
                                 LEFT JOIN tb_lookup_inventory_method c ON a.id_method = c.id_method  
                                 LEFT JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det = a.id_mat_det AND mdp.is_default_cost='1'
                                 ORDER BY a.mat_det_date ASC, a.id_mat_det ASC"

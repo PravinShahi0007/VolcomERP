@@ -409,7 +409,7 @@ Partial Class FormMasterDesignCOP
         '
         'BandedGridColumntotal_ord
         '
-        Me.BandedGridColumntotal_ord.Caption = "Order Qty"
+        Me.BandedGridColumntotal_ord.Caption = "Demand Qty"
         Me.BandedGridColumntotal_ord.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumntotal_ord.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumntotal_ord.FieldName = "total_ord"

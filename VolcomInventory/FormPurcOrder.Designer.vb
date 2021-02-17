@@ -57,6 +57,7 @@ Partial Class FormPurcOrder
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn73 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIMemoDetail = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.BCantFulfill = New DevExpress.XtraEditors.SimpleButton()
@@ -227,6 +228,7 @@ Partial Class FormPurcOrder
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIMemoDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -317,7 +319,7 @@ Partial Class FormPurcOrder
         Me.GCPurcReq.Location = New System.Drawing.Point(0, 44)
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
-        Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase, Me.RITEQty})
+        Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase, Me.RITEQty, Me.RIMemoDetail})
         Me.GCPurcReq.Size = New System.Drawing.Size(1145, 362)
         Me.GCPurcReq.TabIndex = 10
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
@@ -329,6 +331,7 @@ Partial Class FormPurcOrder
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsFind.AlwaysVisible = True
         Me.GVPurcReq.OptionsView.ColumnAutoWidth = False
+        Me.GVPurcReq.OptionsView.RowAutoHeight = True
         Me.GVPurcReq.OptionsView.ShowGroupPanel = False
         '
         'GridColumn32
@@ -651,13 +654,19 @@ Partial Class FormPurcOrder
         'GridColumn73
         '
         Me.GridColumn73.Caption = "Item Detail"
+        Me.GridColumn73.ColumnEdit = Me.RIMemoDetail
         Me.GridColumn73.FieldName = "item_detail"
+        Me.GridColumn73.MaxWidth = 300
         Me.GridColumn73.Name = "GridColumn73"
         Me.GridColumn73.OptionsColumn.AllowEdit = False
         Me.GridColumn73.OptionsColumn.AllowFocus = False
         Me.GridColumn73.Visible = True
         Me.GridColumn73.VisibleIndex = 4
         Me.GridColumn73.Width = 140
+        '
+        'RIMemoDetail
+        '
+        Me.RIMemoDetail.Name = "RIMemoDetail"
         '
         'RICECheck
         '
@@ -2163,6 +2172,7 @@ Partial Class FormPurcOrder
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIMemoDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -2431,4 +2441,5 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn230 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn231 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn99 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RIMemoDetail As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

@@ -87,6 +87,11 @@ Partial Class FormMasterRawMatPps
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TxtMaterialTypeCode = New DevExpress.XtraEditors.TextEdit()
         Me.EPMaterial = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.SLEActive = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PCLotTitle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLotTitle.SuspendLayout()
         CType(Me.PCSave, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,6 +123,8 @@ Partial Class FormMasterRawMatPps
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMaterialTypeCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCLotTitle
@@ -171,7 +178,7 @@ Partial Class FormMasterRawMatPps
         Me.PCSave.Controls.Add(Me.BClose)
         Me.PCSave.Controls.Add(Me.BSave)
         Me.PCSave.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCSave.Location = New System.Drawing.Point(0, 405)
+        Me.PCSave.Location = New System.Drawing.Point(0, 432)
         Me.PCSave.Name = "PCSave"
         Me.PCSave.Size = New System.Drawing.Size(892, 42)
         Me.PCSave.TabIndex = 14
@@ -209,6 +216,8 @@ Partial Class FormMasterRawMatPps
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.SLEActive)
+        Me.PanelControl1.Controls.Add(Me.LabelControl10)
         Me.PanelControl1.Controls.Add(Me.SLECurrency)
         Me.PanelControl1.Controls.Add(Me.SLEVendor)
         Me.PanelControl1.Controls.Add(Me.TEUOM)
@@ -230,12 +239,12 @@ Partial Class FormMasterRawMatPps
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl1.Location = New System.Drawing.Point(0, 46)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(430, 359)
+        Me.PanelControl1.Size = New System.Drawing.Size(430, 386)
         Me.PanelControl1.TabIndex = 15
         '
         'SLECurrency
         '
-        Me.SLECurrency.Location = New System.Drawing.Point(209, 329)
+        Me.SLECurrency.Location = New System.Drawing.Point(209, 351)
         Me.SLECurrency.Name = "SLECurrency"
         Me.SLECurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECurrency.Properties.NullText = ""
@@ -268,13 +277,13 @@ Partial Class FormMasterRawMatPps
         '
         'SLEVendor
         '
-        Me.SLEVendor.Location = New System.Drawing.Point(12, 329)
+        Me.SLEVendor.Location = New System.Drawing.Point(73, 351)
         Me.SLEVendor.Name = "SLEVendor"
         Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEVendor.Properties.NullText = ""
         Me.SLEVendor.Properties.ShowFooter = False
         Me.SLEVendor.Properties.View = Me.GridView3
-        Me.SLEVendor.Size = New System.Drawing.Size(191, 20)
+        Me.SLEVendor.Size = New System.Drawing.Size(133, 20)
         Me.SLEVendor.TabIndex = 106
         '
         'GridView3
@@ -339,7 +348,7 @@ Partial Class FormMasterRawMatPps
         '
         'TEUOM
         '
-        Me.TEUOM.Location = New System.Drawing.Point(12, 182)
+        Me.TEUOM.Location = New System.Drawing.Point(14, 172)
         Me.TEUOM.Name = "TEUOM"
         Me.TEUOM.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEUOM.Properties.Appearance.Options.UseFont = True
@@ -353,7 +362,7 @@ Partial Class FormMasterRawMatPps
         '
         'TEFOBPrice
         '
-        Me.TEFOBPrice.Location = New System.Drawing.Point(270, 329)
+        Me.TEFOBPrice.Location = New System.Drawing.Point(270, 351)
         Me.TEFOBPrice.Name = "TEFOBPrice"
         Me.TEFOBPrice.Properties.Appearance.Options.UseTextOptions = True
         Me.TEFOBPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -367,7 +376,7 @@ Partial Class FormMasterRawMatPps
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(14, 308)
+        Me.LabelControl5.Location = New System.Drawing.Point(14, 354)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(53, 15)
         Me.LabelControl5.TabIndex = 103
@@ -375,7 +384,7 @@ Partial Class FormMasterRawMatPps
         '
         'SLERange
         '
-        Me.SLERange.Location = New System.Drawing.Point(12, 280)
+        Me.SLERange.Location = New System.Drawing.Point(15, 270)
         Me.SLERange.Name = "SLERange"
         Me.SLERange.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLERange.Properties.Appearance.Options.UseFont = True
@@ -419,7 +428,7 @@ Partial Class FormMasterRawMatPps
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(12, 259)
+        Me.LabelControl9.Location = New System.Drawing.Point(15, 249)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(33, 15)
         Me.LabelControl9.TabIndex = 99
@@ -428,7 +437,7 @@ Partial Class FormMasterRawMatPps
         'BViewImage
         '
         Me.BViewImage.Enabled = False
-        Me.BViewImage.Location = New System.Drawing.Point(223, 279)
+        Me.BViewImage.Location = New System.Drawing.Point(223, 269)
         Me.BViewImage.Name = "BViewImage"
         Me.BViewImage.Size = New System.Drawing.Size(189, 23)
         Me.BViewImage.TabIndex = 102
@@ -437,7 +446,7 @@ Partial Class FormMasterRawMatPps
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(14, 16)
+        Me.LabelControl1.Location = New System.Drawing.Point(17, 6)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(48, 15)
         Me.LabelControl1.TabIndex = 101
@@ -445,7 +454,7 @@ Partial Class FormMasterRawMatPps
         '
         'SLEMaterialCategory
         '
-        Me.SLEMaterialCategory.Location = New System.Drawing.Point(12, 37)
+        Me.SLEMaterialCategory.Location = New System.Drawing.Point(15, 27)
         Me.SLEMaterialCategory.Name = "SLEMaterialCategory"
         Me.SLEMaterialCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEMaterialCategory.Properties.View = Me.SearchLookUpEdit1View
@@ -496,7 +505,7 @@ Partial Class FormMasterRawMatPps
         'TxtLifetime
         '
         Me.TxtLifetime.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.TxtLifetime.Location = New System.Drawing.Point(12, 231)
+        Me.TxtLifetime.Location = New System.Drawing.Point(14, 221)
         Me.TxtLifetime.Name = "TxtLifetime"
         Me.TxtLifetime.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtLifetime.Properties.Appearance.Options.UseFont = True
@@ -510,7 +519,7 @@ Partial Class FormMasterRawMatPps
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 210)
+        Me.LabelControl3.Location = New System.Drawing.Point(14, 200)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(74, 15)
         Me.LabelControl3.TabIndex = 99
@@ -519,7 +528,7 @@ Partial Class FormMasterRawMatPps
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(12, 161)
+        Me.LabelControl4.Location = New System.Drawing.Point(14, 151)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(28, 15)
         Me.LabelControl4.TabIndex = 97
@@ -531,12 +540,12 @@ Partial Class FormMasterRawMatPps
         Me.PictureEdit1.Name = "PictureEdit1"
         Me.PictureEdit1.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.Image
         Me.PictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.PictureEdit1.Size = New System.Drawing.Size(189, 265)
+        Me.PictureEdit1.Size = New System.Drawing.Size(189, 255)
         Me.PictureEdit1.TabIndex = 95
         '
         'TxtDisplayName
         '
-        Me.TxtDisplayName.Location = New System.Drawing.Point(12, 133)
+        Me.TxtDisplayName.Location = New System.Drawing.Point(13, 123)
         Me.TxtDisplayName.Name = "TxtDisplayName"
         Me.TxtDisplayName.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDisplayName.Properties.Appearance.Options.UseFont = True
@@ -550,7 +559,7 @@ Partial Class FormMasterRawMatPps
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(13, 112)
+        Me.LabelControl8.Location = New System.Drawing.Point(14, 102)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(76, 15)
         Me.LabelControl8.TabIndex = 86
@@ -558,7 +567,7 @@ Partial Class FormMasterRawMatPps
         '
         'TxtName
         '
-        Me.TxtName.Location = New System.Drawing.Point(13, 84)
+        Me.TxtName.Location = New System.Drawing.Point(14, 74)
         Me.TxtName.Name = "TxtName"
         Me.TxtName.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtName.Properties.Appearance.Options.UseFont = True
@@ -572,7 +581,7 @@ Partial Class FormMasterRawMatPps
         'LabelControlUpdateName
         '
         Me.LabelControlUpdateName.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControlUpdateName.Location = New System.Drawing.Point(14, 63)
+        Me.LabelControlUpdateName.Location = New System.Drawing.Point(15, 53)
         Me.LabelControlUpdateName.Name = "LabelControlUpdateName"
         Me.LabelControlUpdateName.Size = New System.Drawing.Size(64, 15)
         Me.LabelControlUpdateName.TabIndex = 85
@@ -589,12 +598,12 @@ Partial Class FormMasterRawMatPps
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(430, 46)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(462, 359)
+        Me.PanelControl2.Size = New System.Drawing.Size(462, 386)
         Me.PanelControl2.TabIndex = 16
         '
         'BGenerate
         '
-        Me.BGenerate.Location = New System.Drawing.Point(344, 328)
+        Me.BGenerate.Location = New System.Drawing.Point(343, 350)
         Me.BGenerate.Name = "BGenerate"
         Me.BGenerate.Size = New System.Drawing.Size(106, 23)
         Me.BGenerate.TabIndex = 98
@@ -603,7 +612,7 @@ Partial Class FormMasterRawMatPps
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 308)
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 330)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(78, 15)
         Me.LabelControl2.TabIndex = 97
@@ -611,7 +620,7 @@ Partial Class FormMasterRawMatPps
         '
         'TxtMaterialFullCode
         '
-        Me.TxtMaterialFullCode.Location = New System.Drawing.Point(12, 329)
+        Me.TxtMaterialFullCode.Location = New System.Drawing.Point(11, 351)
         Me.TxtMaterialFullCode.Name = "TxtMaterialFullCode"
         Me.TxtMaterialFullCode.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtMaterialFullCode.Properties.Appearance.Options.UseFont = True
@@ -623,7 +632,7 @@ Partial Class FormMasterRawMatPps
         Me.GCCodeMaterial.Location = New System.Drawing.Point(11, 68)
         Me.GCCodeMaterial.MainView = Me.GVCodeMaterial
         Me.GCCodeMaterial.Name = "GCCodeMaterial"
-        Me.GCCodeMaterial.Size = New System.Drawing.Size(440, 234)
+        Me.GCCodeMaterial.Size = New System.Drawing.Size(440, 256)
         Me.GCCodeMaterial.TabIndex = 9
         Me.GCCodeMaterial.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCodeMaterial})
         '
@@ -760,11 +769,51 @@ Partial Class FormMasterRawMatPps
         Me.EPMaterial.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPMaterial.ContainerControl = Me
         '
+        'SLEActive
+        '
+        Me.SLEActive.Location = New System.Drawing.Point(14, 319)
+        Me.SLEActive.Name = "SLEActive"
+        Me.SLEActive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEActive.Properties.View = Me.GridView5
+        Me.SLEActive.Size = New System.Drawing.Size(190, 20)
+        Me.SLEActive.TabIndex = 109
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn14})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID"
+        Me.GridColumn12.FieldName = "is_active"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "GridColumn14"
+        Me.GridColumn14.FieldName = "active"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(14, 298)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(34, 15)
+        Me.LabelControl10.TabIndex = 108
+        Me.LabelControl10.Text = "Status"
+        '
         'FormMasterRawMatPps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(892, 447)
+        Me.ClientSize = New System.Drawing.Size(892, 474)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PCSave)
@@ -810,6 +859,8 @@ Partial Class FormMasterRawMatPps
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMaterialTypeCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -880,4 +931,9 @@ Partial Class FormMasterRawMatPps
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LREvise As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEActive As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class

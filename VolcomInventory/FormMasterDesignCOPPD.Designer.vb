@@ -29,7 +29,6 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BHistoryCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TECode = New DevExpress.XtraEditors.TextEdit()
         Me.TEDesc = New DevExpress.XtraEditors.TextEdit()
@@ -84,11 +83,12 @@ Partial Class FormMasterDesignCOPPD
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BUpdateCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BTemplate = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TETodayKurs = New DevExpress.XtraEditors.TextEdit()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.BTemplate = New DevExpress.XtraEditors.SimpleButton()
+        Me.BLock = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,15 +195,15 @@ Partial Class FormMasterDesignCOPPD
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BLock)
         Me.PanelControl3.Controls.Add(Me.BHistoryCOP)
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
-        Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 526)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 520)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(827, 38)
+        Me.PanelControl3.Size = New System.Drawing.Size(827, 44)
         Me.PanelControl3.TabIndex = 5
         Me.PanelControl3.TabStop = True
         '
@@ -214,7 +214,7 @@ Partial Class FormMasterDesignCOPPD
         Me.BHistoryCOP.ImageList = Me.LargeImageCollection
         Me.BHistoryCOP.Location = New System.Drawing.Point(2, 2)
         Me.BHistoryCOP.Name = "BHistoryCOP"
-        Me.BHistoryCOP.Size = New System.Drawing.Size(138, 34)
+        Me.BHistoryCOP.Size = New System.Drawing.Size(138, 40)
         Me.BHistoryCOP.TabIndex = 8
         Me.BHistoryCOP.Text = "History COP (Similar)"
         '
@@ -223,22 +223,11 @@ Partial Class FormMasterDesignCOPPD
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(675, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(750, 2)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 40)
         Me.BtnCancel.TabIndex = 7
         Me.BtnCancel.Text = "Cancel"
-        '
-        'BtnSave
-        '
-        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSave.ImageIndex = 7
-        Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(750, 2)
-        Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(75, 34)
-        Me.BtnSave.TabIndex = 6
-        Me.BtnSave.Text = "Save"
         '
         'LabelControl2
         '
@@ -494,7 +483,7 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 151)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(827, 375)
+        Me.PanelControl2.Size = New System.Drawing.Size(827, 369)
         Me.PanelControl2.TabIndex = 8911
         '
         'XTCCOPPD
@@ -504,7 +493,7 @@ Partial Class FormMasterDesignCOPPD
         Me.XTCCOPPD.Location = New System.Drawing.Point(2, 2)
         Me.XTCCOPPD.Name = "XTCCOPPD"
         Me.XTCCOPPD.SelectedTabPage = Me.XTPCurrent
-        Me.XTCCOPPD.Size = New System.Drawing.Size(823, 371)
+        Me.XTCCOPPD.Size = New System.Drawing.Size(823, 365)
         Me.XTCCOPPD.TabIndex = 3
         Me.XTCCOPPD.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPCurrent, Me.XTPUpdateCOP})
         '
@@ -688,7 +677,7 @@ Partial Class FormMasterDesignCOPPD
         Me.XTPUpdateCOP.Controls.Add(Me.BUpdateCOP)
         Me.XTPUpdateCOP.Controls.Add(Me.PanelControl4)
         Me.XTPUpdateCOP.Name = "XTPUpdateCOP"
-        Me.XTPUpdateCOP.Size = New System.Drawing.Size(817, 343)
+        Me.XTPUpdateCOP.Size = New System.Drawing.Size(817, 337)
         Me.XTPUpdateCOP.Text = "Input COP"
         '
         'GCCOPComponent
@@ -698,7 +687,7 @@ Partial Class FormMasterDesignCOPPD
         Me.GCCOPComponent.MainView = Me.GVCOPComponent
         Me.GCCOPComponent.Name = "GCCOPComponent"
         Me.GCCOPComponent.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEComp})
-        Me.GCCOPComponent.Size = New System.Drawing.Size(817, 274)
+        Me.GCCOPComponent.Size = New System.Drawing.Size(817, 268)
         Me.GCCOPComponent.TabIndex = 0
         Me.GCCOPComponent.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCOPComponent})
         '
@@ -856,7 +845,7 @@ Partial Class FormMasterDesignCOPPD
         'BUpdateCOP
         '
         Me.BUpdateCOP.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BUpdateCOP.Location = New System.Drawing.Point(0, 314)
+        Me.BUpdateCOP.Location = New System.Drawing.Point(0, 308)
         Me.BUpdateCOP.Name = "BUpdateCOP"
         Me.BUpdateCOP.Size = New System.Drawing.Size(817, 29)
         Me.BUpdateCOP.TabIndex = 2
@@ -874,6 +863,16 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(817, 40)
         Me.PanelControl4.TabIndex = 1
+        '
+        'BTemplate
+        '
+        Me.BTemplate.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BTemplate.Image = CType(resources.GetObject("BTemplate.Image"), System.Drawing.Image)
+        Me.BTemplate.Location = New System.Drawing.Point(533, 2)
+        Me.BTemplate.Name = "BTemplate"
+        Me.BTemplate.Size = New System.Drawing.Size(126, 36)
+        Me.BTemplate.TabIndex = 8904
+        Me.BTemplate.Text = "Load Template"
         '
         'LabelControl8
         '
@@ -919,15 +918,16 @@ Partial Class FormMasterDesignCOPPD
         Me.BAdd.TabIndex = 0
         Me.BAdd.Text = "Add"
         '
-        'BTemplate
+        'BLock
         '
-        Me.BTemplate.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BTemplate.Image = CType(resources.GetObject("BTemplate.Image"), System.Drawing.Image)
-        Me.BTemplate.Location = New System.Drawing.Point(533, 2)
-        Me.BTemplate.Name = "BTemplate"
-        Me.BTemplate.Size = New System.Drawing.Size(126, 36)
-        Me.BTemplate.TabIndex = 8904
-        Me.BTemplate.Text = "Load Template"
+        Me.BLock.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BLock.Image = CType(resources.GetObject("BLock.Image"), System.Drawing.Image)
+        Me.BLock.ImageList = Me.LargeImageCollection
+        Me.BLock.Location = New System.Drawing.Point(651, 2)
+        Me.BLock.Name = "BLock"
+        Me.BLock.Size = New System.Drawing.Size(99, 40)
+        Me.BLock.TabIndex = 9
+        Me.BLock.Text = "Lock"
         '
         'FormMasterDesignCOPPD
         '
@@ -990,7 +990,6 @@ Partial Class FormMasterDesignCOPPD
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEDesc As DevExpress.XtraEditors.TextEdit
@@ -1051,4 +1050,5 @@ Partial Class FormMasterDesignCOPPD
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BTemplate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BLock As DevExpress.XtraEditors.SimpleButton
 End Class

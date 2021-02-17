@@ -76,7 +76,7 @@ WHERE p.id_mat_purc_list='" & id_list & "'"
     Sub load_mat()
         Dim query As String = "SELECT md.`id_mat_det`,md.`id_mat`,md.`mat_det_code`,md.`mat_det_display_name` ,uom.`uom`
 FROM tb_m_mat_det md
-INNER JOIN tb_m_mat mat ON mat.`id_mat`=md.`id_mat`
+INNER JOIN tb_m_mat mat ON mat.`id_mat`=md.`id_mat` AND md.is_active='1'
 INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`"
         viewSearchLookupQuery(SLEMaterial, query, "id_mat_det", "mat_det_display_name", "id_mat_det")
         SLEMaterial.EditValue = Nothing
