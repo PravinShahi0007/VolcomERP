@@ -475,7 +475,7 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
     End Sub
 
     Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
-        If Not id_role_login = get_opt_prod_field("id_role_prod_manager") Then
+        If Not id_user = get_opt_prod_field("id_user_ast_mngr_prod") Then
             stopCustom("You have no right to do this.")
         Else
             If BLock.Text = "Lock" Then
