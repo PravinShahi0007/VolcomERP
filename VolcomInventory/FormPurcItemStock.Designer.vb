@@ -112,6 +112,7 @@ Partial Class FormPurcItemStock
         Me.BandedGridColumnQtyRemBook = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnTotRemBook = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -129,7 +130,6 @@ Partial Class FormPurcItemStock
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
-        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -175,7 +175,7 @@ Partial Class FormPurcItemStock
         Me.XTCStock.Location = New System.Drawing.Point(0, 0)
         Me.XTCStock.Name = "XTCStock"
         Me.XTCStock.SelectedTabPage = Me.XTPSOH
-        Me.XTCStock.Size = New System.Drawing.Size(1064, 592)
+        Me.XTCStock.Size = New System.Drawing.Size(1064, 500)
         Me.XTCStock.TabIndex = 0
         Me.XTCStock.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSOH, Me.XTPStockCard, Me.XTPUsage})
         '
@@ -184,7 +184,7 @@ Partial Class FormPurcItemStock
         Me.XTPSOH.Controls.Add(Me.GCSOH)
         Me.XTPSOH.Controls.Add(Me.PCNav)
         Me.XTPSOH.Name = "XTPSOH"
-        Me.XTPSOH.Size = New System.Drawing.Size(1058, 564)
+        Me.XTPSOH.Size = New System.Drawing.Size(1058, 472)
         Me.XTPSOH.Text = "Stock On Hand"
         '
         'GCSOH
@@ -193,7 +193,7 @@ Partial Class FormPurcItemStock
         Me.GCSOH.Location = New System.Drawing.Point(0, 48)
         Me.GCSOH.MainView = Me.GVSOH
         Me.GCSOH.Name = "GCSOH"
-        Me.GCSOH.Size = New System.Drawing.Size(1058, 516)
+        Me.GCSOH.Size = New System.Drawing.Size(1058, 424)
         Me.GCSOH.TabIndex = 1
         Me.GCSOH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOH})
         '
@@ -400,7 +400,7 @@ Partial Class FormPurcItemStock
         Me.XTPStockCard.Controls.Add(Me.GCSC)
         Me.XTPStockCard.Controls.Add(Me.PanelControl1)
         Me.XTPStockCard.Name = "XTPStockCard"
-        Me.XTPStockCard.Size = New System.Drawing.Size(1058, 564)
+        Me.XTPStockCard.Size = New System.Drawing.Size(1058, 472)
         Me.XTPStockCard.Text = "Stock Card"
         '
         'GCSC
@@ -410,7 +410,7 @@ Partial Class FormPurcItemStock
         Me.GCSC.Location = New System.Drawing.Point(0, 50)
         Me.GCSC.MainView = Me.GVSC
         Me.GCSC.Name = "GCSC"
-        Me.GCSC.Size = New System.Drawing.Size(1058, 514)
+        Me.GCSC.Size = New System.Drawing.Size(1058, 422)
         Me.GCSC.TabIndex = 2
         Me.GCSC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSC})
         '
@@ -696,7 +696,7 @@ Partial Class FormPurcItemStock
         Me.XTPUsage.Controls.Add(Me.GCPemakaian)
         Me.XTPUsage.Controls.Add(Me.XtraScrollableControl1)
         Me.XTPUsage.Name = "XTPUsage"
-        Me.XTPUsage.Size = New System.Drawing.Size(1058, 564)
+        Me.XTPUsage.Size = New System.Drawing.Size(1058, 472)
         Me.XTPUsage.Text = "Report Pemakaian"
         '
         'GCPemakaian
@@ -706,7 +706,7 @@ Partial Class FormPurcItemStock
         Me.GCPemakaian.Location = New System.Drawing.Point(0, 69)
         Me.GCPemakaian.MainView = Me.GVPemakaian
         Me.GCPemakaian.Name = "GCPemakaian"
-        Me.GCPemakaian.Size = New System.Drawing.Size(1058, 495)
+        Me.GCPemakaian.Size = New System.Drawing.Size(1058, 403)
         Me.GCPemakaian.TabIndex = 1
         Me.GCPemakaian.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPemakaian})
         '
@@ -1008,6 +1008,14 @@ Partial Class FormPurcItemStock
         Me.BandedGridColumnTotRemBook.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rem_book", "{0:N2}")})
         Me.BandedGridColumnTotRemBook.Visible = True
         '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.Caption = "Min Date"
+        Me.BandedGridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn6.FieldName = "min_date"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        '
         'XtraScrollableControl1
         '
         Me.XtraScrollableControl1.Controls.Add(Me.SLEUnit)
@@ -1171,19 +1179,11 @@ Partial Class FormPurcItemStock
         Me.BView.TabIndex = 4
         Me.BView.Text = "view all"
         '
-        'BandedGridColumn6
-        '
-        Me.BandedGridColumn6.Caption = "Min Date"
-        Me.BandedGridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.BandedGridColumn6.FieldName = "min_date"
-        Me.BandedGridColumn6.Name = "BandedGridColumn6"
-        '
         'FormPurcItemStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1064, 592)
+        Me.ClientSize = New System.Drawing.Size(1064, 500)
         Me.Controls.Add(Me.XTCStock)
         Me.MinimizeBox = False
         Me.Name = "FormPurcItemStock"

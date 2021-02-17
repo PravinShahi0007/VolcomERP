@@ -207,7 +207,7 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
         'expense type
         query_where += " AND cat.id_expense_type='" & SLEExpenseType.EditValue.ToString & "' "
         '
-        Dim query As String = "SELECT '-' AS status_val,cat.id_expense_type,rd.item_detail,rd.id_b_expense,rd.id_b_expense_opex,icd.id_vendor_type,icd.item_cat_detail,vt.vendor_type,req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
+        Dim query As String = "SELECT '-' AS status_val,cat.id_expense_type,CONCAT(rd.item_detail,IF(ISNULL(rd.remark) OR rd.remark='','',CONCAT('\r\n',rd.remark))) AS item_detail,rd.id_b_expense,rd.id_b_expense_opex,icd.id_vendor_type,icd.item_cat_detail,vt.vendor_type,req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
                                 ,req.note,IFNULL(po.qty,0) AS qty_po_created,IFNULL(rec.qty,0)-IFNULL(ret.qty,0) AS qty_rec,0.00 AS qty_po,uom.uom,rd.id_item,req.id_item_type,req.id_report_status,typ.item_type,itm.latest_price,rd.ship_destination,rd.ship_address, (IFNULL(po.qty_rec,0) - IFNULL(po.qty,0)) qty_s_rec
                                 FROM tb_purc_req_det rd 
                                 INNER JOIN tb_purc_req req ON req.id_purc_req=rd.id_purc_req
@@ -397,7 +397,7 @@ GROUP BY c.id_comp"
         End If
 
         Dim query As String = "SELECT 'no' AS is_check,po.`id_purc_order`,po.`id_expense_type`,reqd.`id_b_expense`,reqd.`id_b_expense_opex`,pod.qty AS qty_po,SUM(IFNULL(recd.qty,0.00)) AS qty_rec,IF(pod.is_drop='1','Closed',IF(SUM(IFNULL(recd.qty,0.00))=0,'Waiting',IF(SUM(IFNULL(recd.qty,0.00))<pod.qty,'Partial','Complete'))) AS status_rec,po.date_created,cd.item_cat_detail,po.est_date_receive,po.pay_due_date
-,pod.`id_purc_order_det`,po.`purc_order_number`,c.`comp_number`,c.`comp_name`,it.id_item,it.`item_desc`,reqd.`item_detail`,pod.`value`,(pod.`qty`*pod.`value`) AS tot_value
+,pod.`id_purc_order_det`,po.`purc_order_number`,c.`comp_number`,c.`comp_name`,it.id_item,it.`item_desc`,CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) AS item_detail,pod.`value`,(pod.`qty`*pod.`value`) AS tot_value
 FROM tb_purc_order_det pod
 INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status` = 6 AND po.`is_close_rec`='2'
 INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req_det`=pod.`id_purc_req_det`
