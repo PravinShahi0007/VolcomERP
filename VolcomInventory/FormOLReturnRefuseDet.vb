@@ -8,6 +8,7 @@
     Dim id_report_status As String = "-1"
     Public rmt As String = "290"
     Public id_store_contact As String = "-1"
+    Dim form_title As String
 
     Private Sub FormOLReturnRefuseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -24,6 +25,9 @@
 
     Sub actionLoad()
         Cursor = Cursors.WaitCursor
+        Dim rrf As New ClassOLReturnRefuse()
+        form_title = rrf.getFormName(rmt)
+        Text = form_title
         If action = "ins" Then
             Dim dt_now As DateTime = getTimeDB()
             DECreated.EditValue = dt_now
@@ -198,30 +202,31 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        'Cursor = Cursors.WaitCursor
+        Cursor = Cursors.WaitCursor
 
-        'Dim report As ReportRetOLStoreDet = New ReportRetOLStoreDet
+        Dim report As ReportOLReturnRefuse = New ReportOLReturnRefuse
 
-        'report.id = id
-        'report.id_pre = If(id_report_status = "6", "-1", "1")
-        'report.data = GCData.DataSource
-        'report.report_mark_type = rmt
+        report.id = id
+        report.id_pre = If(id_report_status = "6", "-1", "1")
+        report.data = GCData.DataSource
+        report.report_mark_type = rmt
 
-        'report.LabelNumber.Text = "NO. " + TxtNumber.Text.ToUpper
-        'report.LabelStoreGroup.Text = SLECompGroup.Text.ToUpper
-        'report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
-        'report.LabelRetRequest.Text = TxtRetRequest.Text.ToUpper
-        'report.LabelReceivedDate.Text = DERecDate.Text.ToUpper
-        'report.LabelCreatedDate.Text = DECreated.Text.ToUpper
-        'report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        report.LTitle.Text = form_title.ToUpper
+        report.LabelNumber.Text = "NO. " + TxtNumber.Text.ToUpper
+        report.LabelStore.Text = TxtStoreAcc.Text.ToUpper + " - " + TxtStore.Text.ToUpper
+        report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
+        report.LabelCustomer.Text = TxtCustomerName.Text.ToUpper
+        report.LabelType.Text = SLEType.Text.ToUpper
+        report.LabelCreatedDate.Text = DECreated.Text.ToUpper
+        report.LabelStatus.Text = LEReportStatus.Text.ToUpper
 
-        'report.LabelRemark.Text = MENote.Text
+        report.LabelRemark.Text = MENote.Text
 
-        ''Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
-        'Tool.ShowPreview()
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+        Tool.ShowPreview()
 
-        'Cursor = Cursors.Default
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click

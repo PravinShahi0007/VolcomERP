@@ -30,4 +30,8 @@
         query += "ORDER BY r.id_return_refuse " + order_type
         Return query
     End Function
+
+    Public Function getFormName(ByVal rmt_par As String) As String
+        Return execute_query("SELECT rmt.report_mark_type_name FROM tb_lookup_report_mark_type rmt WHERE rmt.report_mark_type=" + rmt_par + "", 0, True, "", "", "", "")
+    End Function
 End Class

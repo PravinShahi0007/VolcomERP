@@ -8528,6 +8528,12 @@
     <Compile Include="ReportODMScan.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportOLReturnRefuse.Designer.vb">
+      <DependentUpon>ReportOLReturnRefuse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportOLReturnRefuse.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportOlStoreRetCust.Designer.vb">
       <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
     </Compile>
@@ -13905,6 +13911,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportODMScan.resx">
       <DependentUpon>ReportODMScan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportOLReturnRefuse.resx">
+      <DependentUpon>ReportOLReturnRefuse.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOlStoreRetCust.resx">
       <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
