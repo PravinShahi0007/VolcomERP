@@ -62,6 +62,8 @@ ORDER BY trx.id_item_card_trs DESC"
         DEFromSC.EditValue = Now
         DEUntilSC.EditValue = Now
         '
+        DESOHUntil.EditValue = Now
+        '
         load_item()
     End Sub
 
@@ -90,9 +92,9 @@ LEFT JOIN (
         Dim dept As String = "AND i.id_departement=" + id_departement_user + ""
         '
         Dim query As String = "
-SELECT uom.uom,a.id_item, im.item_desc, im.id_item_cat, cat.item_cat, SUM(a.qty) AS `qty`
+SELECT uom.uom,a.id_item, im.item_desc,a.item_detail,im.id_item_cat, cat.item_cat, SUM(a.qty) AS `qty`
 FROM (
-	SELECT i.id_item_detail,id.`id_item`,
+	SELECT i.id_item_detail,id.`id_item`,id.item_detail,
 	SUM(i.qty) AS `qty`
 	FROM `tb_stock_card_dep` i
 	INNER JOIN `tb_stock_card_dep_item` id ON id.`id_item_detail`=i.`id_item_detail`

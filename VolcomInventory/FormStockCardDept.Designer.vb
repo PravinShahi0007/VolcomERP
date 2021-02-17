@@ -33,6 +33,8 @@ Partial Class FormStockCardDept
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEITem = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnItemId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -49,6 +51,7 @@ Partial Class FormStockCardDept
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItemDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -72,9 +75,6 @@ Partial Class FormStockCardDept
         Me.BViewInOut = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFromInout = New DevExpress.XtraEditors.DateEdit()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.XTCStockCard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockCard.SuspendLayout()
         Me.XTPStockCard.SuspendLayout()
@@ -83,6 +83,8 @@ Partial Class FormStockCardDept
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEITem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,6 +93,7 @@ Partial Class FormStockCardDept
         Me.XTPStockOnHand.SuspendLayout()
         CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DESOHUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,9 +107,6 @@ Partial Class FormStockCardDept
         CType(Me.DEUntilInout.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromInout.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromInout.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCStockCard
@@ -235,6 +235,14 @@ Partial Class FormStockCardDept
         Me.SLEITem.Properties.View = Me.SearchLookUpEdit1View
         Me.SLEITem.Size = New System.Drawing.Size(270, 20)
         Me.SLEITem.TabIndex = 29
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
         '
         'SearchLookUpEdit1View
         '
@@ -369,7 +377,7 @@ Partial Class FormStockCardDept
         'GridColumnItemDesc
         '
         Me.GridColumnItemDesc.Caption = "Item"
-        Me.GridColumnItemDesc.FieldName = "item_name"
+        Me.GridColumnItemDesc.FieldName = "item_desc"
         Me.GridColumnItemDesc.Name = "GridColumnItemDesc"
         Me.GridColumnItemDesc.Visible = True
         Me.GridColumnItemDesc.VisibleIndex = 1
@@ -385,6 +393,10 @@ Partial Class FormStockCardDept
         Me.GridColumnItemCat.Visible = True
         Me.GridColumnItemCat.VisibleIndex = 2
         Me.GridColumnItemCat.Width = 200
+        '
+        'RepositoryItemMemoEdit3
+        '
+        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
         '
         'GridColumnQty
         '
@@ -611,18 +623,6 @@ Partial Class FormStockCardDept
         Me.DEFromInout.Size = New System.Drawing.Size(110, 20)
         Me.DEFromInout.TabIndex = 31
         '
-        'RepositoryItemMemoEdit1
-        '
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
-        '
-        'RepositoryItemMemoEdit2
-        '
-        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
-        '
-        'RepositoryItemMemoEdit3
-        '
-        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
-        '
         'FormStockCardDept
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -644,6 +644,8 @@ Partial Class FormStockCardDept
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEITem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -652,6 +654,7 @@ Partial Class FormStockCardDept
         Me.XTPStockOnHand.ResumeLayout(False)
         CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -667,9 +670,6 @@ Partial Class FormStockCardDept
         CType(Me.DEUntilInout.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromInout.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromInout.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
