@@ -141,7 +141,6 @@ SELECT '2' AS id_type,'Receiving' AS type"
                 Dim is_ok_stock As Boolean = True
                 If SLEType.EditValue.ToString = "1" Then
                     For i = 0 To GVItemDetail.RowCount - 1
-
                         If Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty_available").ToString) < Decimal.Parse(GVItemDetail.GetRowCellValue(i, "qty").ToString) Then
                             is_ok_stock = False
                             MsgBox(GVItemDetail.GetRowCellValue(i, "qty_available").ToString + " - " + GVItemDetail.GetRowCellValue(i, "qty").ToString)
@@ -188,6 +187,7 @@ WHERE it.id_item_card_trs='" & id_trans & "' GROUP BY itd.id_item_detail"
             Else
                 'edit
                 'no edit plz
+
             End If
         Else
             warningCustom("Please put item first.")

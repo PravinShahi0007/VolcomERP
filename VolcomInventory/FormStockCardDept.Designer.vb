@@ -458,7 +458,7 @@ Partial Class FormStockCardDept
         Me.DESOHUntil.Name = "DESOHUntil"
         Me.DESOHUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DESOHUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DESOHUntil.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DESOHUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DESOHUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DESOHUntil.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DESOHUntil.Size = New System.Drawing.Size(172, 20)
