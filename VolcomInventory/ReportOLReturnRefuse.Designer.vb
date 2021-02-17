@@ -94,7 +94,7 @@ Partial Public Class ReportOLReturnRefuse
         Me.XRCompany.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 24.91665!)
         Me.XRCompany.Name = "XRCompany"
         Me.XRCompany.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XRCompany.SizeF = New System.Drawing.SizeF(252.4853!, 25.08334!)
+        Me.XRCompany.SizeF = New System.Drawing.SizeF(390.0!, 25.08334!)
         Me.XRCompany.StylePriority.UseBorders = False
         Me.XRCompany.StylePriority.UseFont = False
         Me.XRCompany.StylePriority.UseTextAlignment = False
@@ -104,10 +104,10 @@ Partial Public Class ReportOLReturnRefuse
         'LTitle
         '
         Me.LTitle.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(584.0414!, 24.91665!)
+        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(390.0!, 24.91665!)
         Me.LTitle.Name = "LTitle"
         Me.LTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LTitle.SizeF = New System.Drawing.SizeF(188.9586!, 25.08334!)
+        Me.LTitle.SizeF = New System.Drawing.SizeF(383.0!, 25.08334!)
         Me.LTitle.StylePriority.UseFont = False
         Me.LTitle.StylePriority.UseTextAlignment = False
         Me.LTitle.Text = "REPORT NAME"
@@ -203,7 +203,7 @@ Partial Public Class ReportOLReturnRefuse
         Me.LabelCustomer.LocationFloat = New DevExpress.Utils.PointFloat(106.3987!, 112.6669!)
         Me.LabelCustomer.Name = "LabelCustomer"
         Me.LabelCustomer.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelCustomer.SizeF = New System.Drawing.SizeF(295.8333!, 13.58337!)
+        Me.LabelCustomer.SizeF = New System.Drawing.SizeF(348.9584!, 13.58337!)
         Me.LabelCustomer.StylePriority.UseBorders = False
         Me.LabelCustomer.StylePriority.UseFont = False
         Me.LabelCustomer.StylePriority.UseTextAlignment = False
@@ -216,7 +216,7 @@ Partial Public Class ReportOLReturnRefuse
         Me.LabelStore.LocationFloat = New DevExpress.Utils.PointFloat(106.3987!, 85.50005!)
         Me.LabelStore.Name = "LabelStore"
         Me.LabelStore.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelStore.SizeF = New System.Drawing.SizeF(295.8334!, 13.58335!)
+        Me.LabelStore.SizeF = New System.Drawing.SizeF(348.9584!, 13.58335!)
         Me.LabelStore.StylePriority.UseBorders = False
         Me.LabelStore.StylePriority.UseFont = False
         Me.LabelStore.StylePriority.UseTextAlignment = False
@@ -285,7 +285,7 @@ Partial Public Class ReportOLReturnRefuse
         Me.LabelOrderNumber.LocationFloat = New DevExpress.Utils.PointFloat(106.3987!, 99.0833!)
         Me.LabelOrderNumber.Name = "LabelOrderNumber"
         Me.LabelOrderNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelOrderNumber.SizeF = New System.Drawing.SizeF(295.8333!, 13.58345!)
+        Me.LabelOrderNumber.SizeF = New System.Drawing.SizeF(348.9584!, 13.58345!)
         Me.LabelOrderNumber.StylePriority.UseBorders = False
         Me.LabelOrderNumber.StylePriority.UseFont = False
         Me.LabelOrderNumber.StylePriority.UseTextAlignment = False
@@ -316,17 +316,17 @@ Partial Public Class ReportOLReturnRefuse
         Me.LabelTypeTitle.StylePriority.UseBorders = False
         Me.LabelTypeTitle.StylePriority.UseFont = False
         Me.LabelTypeTitle.StylePriority.UseTextAlignment = False
-        Me.LabelTypeTitle.Text = "RECEIVED DATE"
+        Me.LabelTypeTitle.Text = "TYPE"
         Me.LabelTypeTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LabelType
         '
         Me.LabelType.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LabelType.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelType.LocationFloat = New DevExpress.Utils.PointFloat(106.3987!, 126.2502!)
+        Me.LabelType.LocationFloat = New DevExpress.Utils.PointFloat(106.3986!, 126.2502!)
         Me.LabelType.Name = "LabelType"
         Me.LabelType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelType.SizeF = New System.Drawing.SizeF(295.8333!, 13.58337!)
+        Me.LabelType.SizeF = New System.Drawing.SizeF(348.9585!, 13.58337!)
         Me.LabelType.StylePriority.UseBorders = False
         Me.LabelType.StylePriority.UseFont = False
         Me.LabelType.StylePriority.UseTextAlignment = False
