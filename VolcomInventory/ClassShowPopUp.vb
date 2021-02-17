@@ -419,6 +419,9 @@
         ElseIf report_mark_type = "288" Then
             ' setup tax
             FormReportBalanceTaxSetupDet.Close()
+        ElseIf report_mark_type = "289" Then
+            ' asset in out
+            FormStockCardDept.Close()
         ElseIf report_mark_type = "290" Then
             ' refuse returbn online
             FormOLReturnRefuseDet.Close()
@@ -1401,7 +1404,11 @@ GROUP BY rec.`id_prod_order`"
             'setup tax
             FormReportBalanceTaxSetupDet.id_setup_tax = id_report
             FormReportBalanceTaxSetupDet.ShowDialog()
-        ElseIf report_mark_type = "290" Then
+        ElseIf report_mark_type = "289" Then
+            ' asset in out
+            FormStockCardDepDet.id_trans = id_report
+            FormStockCardDepDet.ShowDialog()
+       	 ElseIf report_mark_type = "290" Then
             ' refuse returbn online
             FormOLReturnRefuseDet.id = id_report
             FormOLReturnRefuseDet.action = "upd"
@@ -2490,6 +2497,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_sales_pos_oos_recon"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "284" Then
+            'summary tax
+            table_name = "tb_tax_pph_summary"
+            field_id = "id_summary"
+            field_number = "number"
+            field_date = "created_at"
         ElseIf report_mark_type = "287" Then
             'depresiasi
             table_name = "tb_asset_dep_pps"
@@ -2502,18 +2515,17 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_setup_tax"
             field_number = "number"
             field_date = "created_at"
-        ElseIf report_mark_type = "284" Then
-            'summary tax
-            table_name = "tb_tax_pph_summary"
-            field_id = "id_summary"
+        ElseIf report_mark_type = "289" Then
+            'setup tax
+            table_name = "tb_item_card_trs"
+            field_id = "id_item_card_trs"
             field_number = "number"
             field_date = "created_at"
-        ElseIf report_mark_type = "290" Then
+       	ElseIf report_mark_type = "290" Then
             ' refuse returbn online
             table_name = "tb_ol_store_return_refuse"
             field_id = "id_return_refuse"
             field_number = "number"
-            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

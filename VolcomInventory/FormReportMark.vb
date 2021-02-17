@@ -647,14 +647,16 @@
         ElseIf report_mark_type = "284" Then
             'Summary Tax Report
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_tax_pph_summary WHERE id_summary = '{0}'", id_report)
-        ElseIf report_mark_type = "287" Then
+        ElseIf report_mark_type = "288" Then
             'Setup Tax
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_setup_tax_installment WHERE id_setup_tax = '{0}'", id_report)
+        ElseIf report_mark_type = "289" Then
+            'Asset In Out
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_item_card_trs WHERE id_item_card_trs = '{0}'", id_report)
         ElseIf report_mark_type = "290" Then
             'REFUSE RETURB ONLINE
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_ol_store_return_refuse WHERE id_return_refuse = '{0}'", id_report)
         End If
-
         data = execute_query(query, -1, True, "", "", "", "")
 
         LEReportStatus.EditValue = Nothing
@@ -9337,6 +9339,7 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
                 id_status_reportx = "6"
             End If
 
+
             'if completed
             If id_status_reportx = "6" Then
                 Dim qry As String = "-- kembalikan book stock
@@ -9352,9 +9355,9 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
                 -- update void ror
                 UPDATE tb_sales_return_order_det main 
                 INNER JOIN (
-	                SELECT d.id_sales_return_order_det 
-	                FROM tb_ol_store_return_refuse_det d
-	                WHERE d.id_return_refuse=" + id_report + " AND !ISNULL(d.id_sales_return_order_det)
+                    SELECT d.id_sales_return_order_det 
+                    FROM tb_ol_store_return_refuse_det d
+                    WHERE d.id_return_refuse=" + id_report + " AND !ISNULL(d.id_sales_return_order_det)
                 ) src ON main.id_sales_return_order_det = src.id_sales_return_order_det
                 SET main.is_void=1; "
                 execute_non_query(qry, True, "", "", "", "")
@@ -9362,6 +9365,15 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
 
             'update status
             query = String.Format("UPDATE tb_ol_store_return_refuse SET id_report_status='{0}' WHERE id_return_refuse ='{1}'", id_status_reportx, id_report)
+        ElseIf report_mark_type = "289" Then
+            'Asset In Out
+            If id_status_reportx = "5" Then
+                'revert
+
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_item_card_trs SET id_report_status='{0}' WHERE id_item_card_trs ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

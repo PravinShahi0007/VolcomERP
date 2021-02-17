@@ -194,6 +194,11 @@
 
             Dim data_tmp As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+            'tags
+            For i = 0 To data_tmp.Rows.Count - 1
+                data_tmp.Rows(i)("Tags") = data_tmp.Rows(i)("Tag 1").ToString + ", " + data_tmp.Rows(i)("Tag 2").ToString + ", " + data_tmp.Rows(i)("Tag 3").ToString + ", " + data_tmp.Rows(i)("Tag 4").ToString + ", " + data_tmp.Rows(i)("Tag 5").ToString.Replace(" ", "") + ", " + data_tmp.Rows(i)("Tag 6").ToString + ", " + data_tmp.Rows(i)("Tag 7").ToString + ", " + data_tmp.Rows(i)("Tag 8").ToString
+            Next
+
             'remove same
             Dim x As Integer = 0
 
@@ -234,11 +239,6 @@
 
             If data.Rows.Count > 0 Then
                 Dim i As Integer = 0
-
-                'tags
-                For i = 1 To data.Rows.Count - 1
-                    data.Rows(i)("Tags") = data.Rows(i)("Tag 1").ToString + ", " + data.Rows(i)("Tag 2").ToString + ", " + data.Rows(i)("Tag 3").ToString + ", " + data.Rows(i)("Tag 4").ToString + ", " + data.Rows(i)("Tag 5").ToString.Replace(" ", "") + ", " + data.Rows(i)("Tag 6").ToString + ", " + data.Rows(i)("Tag 7").ToString + ", " + data.Rows(i)("Tag 8").ToString
-                Next
 
                 'replace enter with new line
                 For i = 0 To data.Rows.Count - 1
