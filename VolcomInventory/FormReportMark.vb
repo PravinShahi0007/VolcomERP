@@ -9365,6 +9365,7 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
 
             'update status
             query = String.Format("UPDATE tb_ol_store_return_refuse SET id_report_status='{0}' WHERE id_return_refuse ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "289" Then
             'Asset In Out
             If id_status_reportx = "5" Then

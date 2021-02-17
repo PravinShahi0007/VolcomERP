@@ -2526,6 +2526,7 @@ GROUP BY rec.`id_prod_order`"
             table_name = "tb_ol_store_return_refuse"
             field_id = "id_return_refuse"
             field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
