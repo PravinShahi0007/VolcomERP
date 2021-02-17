@@ -52,6 +52,7 @@ Partial Class FormAdjustmentOGDet
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
@@ -65,7 +66,6 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SBViewJournal = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -378,6 +378,16 @@ Partial Class FormAdjustmentOGDet
         Me.PanelControl2.Size = New System.Drawing.Size(784, 45)
         Me.PanelControl2.TabIndex = 3
         '
+        'SBViewJournal
+        '
+        Me.SBViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBViewJournal.Image = CType(resources.GetObject("SBViewJournal.Image"), System.Drawing.Image)
+        Me.SBViewJournal.Location = New System.Drawing.Point(265, 2)
+        Me.SBViewJournal.Name = "SBViewJournal"
+        Me.SBViewJournal.Size = New System.Drawing.Size(115, 41)
+        Me.SBViewJournal.TabIndex = 5
+        Me.SBViewJournal.Text = "View Journal"
+        '
         'SBAttachment
         '
         Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
@@ -498,19 +508,8 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn14.FieldName = "value"
         Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 5
-        '
-        'SBViewJournal
-        '
-        Me.SBViewJournal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBViewJournal.Image = CType(resources.GetObject("SBViewJournal.Image"), System.Drawing.Image)
-        Me.SBViewJournal.Location = New System.Drawing.Point(265, 2)
-        Me.SBViewJournal.Name = "SBViewJournal"
-        Me.SBViewJournal.Size = New System.Drawing.Size(115, 41)
-        Me.SBViewJournal.TabIndex = 5
-        Me.SBViewJournal.Text = "View Journal"
         '
         'FormAdjustmentOGDet
         '
