@@ -9450,6 +9450,14 @@ WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=2 GROUP BY itd.id_i
             'update status
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+
+            If form_origin = "FormSalesPOSDet" Then
+                FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesPOSDet.check_but()
+                FormSalesPOSDet.actionLoad()
+                FormSalesPOS.viewSalesPOS()
+                FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            End If
         End If
 
         'adding lead time

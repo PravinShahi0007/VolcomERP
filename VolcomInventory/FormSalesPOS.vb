@@ -1335,4 +1335,15 @@
         FormSalesPOSDet.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim rrf As New ClassShowPopUp()
+            rrf.report_mark_type = "290"
+            rrf.id_report = GVData.GetFocusedRowCellValue("id_return_refuse").ToString
+            rrf.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
