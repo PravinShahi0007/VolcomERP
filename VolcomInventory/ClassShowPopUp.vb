@@ -120,7 +120,7 @@
         ElseIf report_mark_type = "47" Then
             'return in mat
             FormViewMatRetInProd.Close()
-        ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Or report_mark_type = "183" Then
+        ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Or report_mark_type = "183" Or report_mark_type = "292" Then
             'invoice/missing/credit note
             FormViewSalesPOS.Close()
         ElseIf report_mark_type = "50" Then
@@ -1408,12 +1408,16 @@ GROUP BY rec.`id_prod_order`"
             ' asset in out
             FormStockCardDepDet.id_trans = id_report
             FormStockCardDepDet.ShowDialog()
-       	 ElseIf report_mark_type = "290" Then
+        ElseIf report_mark_type = "290" Then
             ' refuse returbn online
             FormOLReturnRefuseDet.id = id_report
             FormOLReturnRefuseDet.action = "upd"
             FormOLReturnRefuseDet.is_view = "1"
             FormOLReturnRefuseDet.ShowDialog()
+        ElseIf report_mark_type = "292" Then
+            'cancel cn
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2527,6 +2531,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_return_refuse"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "292" Then
+            'cancel CN
+            table_name = "tb_sales_pos"
+            field_id = "id_sales_pos"
+            field_number = "sales_pos_number"
+            field_date = "sales_pos_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

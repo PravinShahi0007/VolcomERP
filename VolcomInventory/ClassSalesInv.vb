@@ -82,6 +82,8 @@
             id_bill_type = "27"
         ElseIf report_mark_type_param = "116" Then
             id_bill_type = "5"
+        ElseIf report_mark_type_param = "292" Then
+            id_bill_type = "30"
         End If
 
         'select user prepared 

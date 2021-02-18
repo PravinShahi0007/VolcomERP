@@ -656,6 +656,9 @@
         ElseIf report_mark_type = "290" Then
             'REFUSE RETURB ONLINE
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_ol_store_return_refuse WHERE id_return_refuse = '{0}'", id_report)
+        ElseIf report_mark_type = "292" Then
+            'CANCEL CN
+            query = String.Format("SELECT id_report_status,sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -9421,6 +9424,31 @@ WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=2 GROUP BY itd.id_i
 
             'update status
             query = String.Format("UPDATE tb_item_card_trs SET id_report_status='{0}' WHERE id_item_card_trs ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "292" Then
+            ' CANCEL CN
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "5" Then
+                Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+
+                If FormSalesPOSDet.is_use_unique_code = "1" Then
+                    'cancelled unique
+                    cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                End If
+
+                'cancelled
+                cancel_rsv_stock.cancelReservedStock(id_report, report_mark_type)
+            ElseIf id_status_reportx = "6" Then
+                'completed
+                Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
+                complete_rsv_stock.completedStock(id_report, report_mark_type)
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
