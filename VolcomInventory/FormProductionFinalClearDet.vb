@@ -590,7 +590,7 @@ Public Class FormProductionFinalClearDet
         Report.LRecNumber.Text = TxtNumber.Text
         Report.LRecDate.Text = DEForm.Text
         Report.LNote.Text = MENote.Text
-        Report.LPONumber.Text = TxtOrder.Text
+        Report.LPONumber.Text = TxtOrder.Text + " - " + TERec.Text + "(" + SLERecType.Text + ")"
         Report.LSeason.Text = TxtSeason.Text + " / " + TxtDel.Text
         Report.LVendor.Text = TxtVendorCode.Text + " - " + TxtVendorName.Text
         Report.LDesign.Text = TxtStyleCode.Text + " - " + TxtStyle.Text

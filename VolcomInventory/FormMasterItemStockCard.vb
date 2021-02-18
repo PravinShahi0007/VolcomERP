@@ -23,4 +23,11 @@ INNER JOIN tb_item it ON it.`id_item`=scd.`id_item`"
     Private Sub BNewItem_Click(sender As Object, e As EventArgs) Handles BNewItem.Click
         FormMasterItemStockCardDet.ShowDialog()
     End Sub
+
+    Private Sub GVItem_DoubleClick(sender As Object, e As EventArgs) Handles GVItem.DoubleClick
+        If GVItem.RowCount > 0 Then
+            FormMasterItemStockCardDet.id_item_detail = GVItem.GetFocusedRowCellValue("id_item_detail").ToString
+            FormMasterItemStockCardDet.ShowDialog()
+        End If
+    End Sub
 End Class

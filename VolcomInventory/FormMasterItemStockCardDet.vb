@@ -27,16 +27,40 @@ WHERE is_active=1"
             If id_item_detail = "-1" Then
                 'new
                 'cek dupe
-
-                'insert
-                Dim q As String = "INSERT INTO `tb_stock_card_dep_item`(id_item,item_detail,remark)
+                Dim qc As String = "SELECT * from tb_stock_card_dep_item WHERE id_item='" & SLEItem.EditValue.ToString & "',item_detail='" & addSlashes(MEDefDesc.Text) & "' AND remark='" & addSlashes(TERemark.Text) & "'"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                If dtc.Rows.Count > 0 Then
+                    warningCustom("Same item already registered")
+                Else
+                    'insert
+                    Dim q As String = "INSERT INTO `tb_stock_card_dep_item`(id_item,item_detail,remark)
 VALUES('" & SLEItem.EditValue.ToString & "','" & addSlashes(MEDefDesc.Text) & "','" & addSlashes(TERemark.Text) & "')"
-                execute_query(q, -1, True, "", "", "", "")
-                FormMasterItemStockCard.load_item()
-                Close()
+                    execute_query(q, -1, True, "", "", "", "")
+                    FormMasterItemStockCard.load_item()
+                    Close()
+                End If
             Else
                 'edit
-
+                'cek dupe
+                Dim qc As String = "SELECT * from tb_stock_card_dep_item WHERE id_item='" & SLEItem.EditValue.ToString & "',item_detail='" & addSlashes(MEDefDesc.Text) & "' AND remark='" & addSlashes(TERemark.Text) & "' AND id_item_detail!='" & id_item_detail & "'"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                If dtc.Rows.Count > 0 Then
+                    warningCustom("Same item already registered")
+                Else
+                    'cek sudah pernah stok
+                    qc = "SELECT * FROM tb_stock_card_dep WHERE id_item_detail='" & id_item_detail & "'"
+                    dtc = execute_query(qc, -1, True, "", "", "", "")
+                    If dtc.Rows.Count > 0 Then
+                        warningCustom("Item already have transaction")
+                    Else
+                        'update
+                        Dim q As String = "UPDATE `tb_stock_card_dep_item` SET id_item='" & SLEItem.EditValue.ToString & "',item_detail='" & addSlashes(MEDefDesc.Text) & "',remark
+,,'" & addSlashes(TERemark.Text) & "'"
+                        execute_query(q, -1, True, "", "", "", "")
+                        FormMasterItemStockCard.load_item()
+                        Close()
+                    End If
+                End If
             End If
         End If
     End Sub
