@@ -5787,7 +5787,7 @@ FROM tb_purc_rec_det prd
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=prd.`id_purc_order_det`
 INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req_det`=pod.`id_purc_req_det`
 INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req`
-INNER JOIN tb_item it ON it.id_item=reqd.id_item AND it.is_dep_stock_card=1
+INNER JOIN tb_item it ON it.id_item=reqd.id_item AND reqd.is_dep_stock_card=1
 WHERE prd.`id_purc_rec`='" & id_report & "'
 GROUP BY reqd.`id_item`,reqd.item_detail,reqd.remark"
                 Dim dtsi As DataTable = execute_query(qsi, -1, True, "", "", "", "")

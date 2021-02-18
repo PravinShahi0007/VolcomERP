@@ -517,6 +517,12 @@
     <Compile Include="FormBatchUploadOnlineStoreSearch.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBiayaSewa.Designer.vb">
+      <DependentUpon>FormBiayaSewa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBiayaSewa.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBudgetProdDemand.Designer.vb">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
     </Compile>
@@ -9402,6 +9408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBatchUploadOnlineStoreSearch.resx">
       <DependentUpon>FormBatchUploadOnlineStoreSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBiayaSewa.resx">
+      <DependentUpon>FormBiayaSewa.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemand.resx">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
