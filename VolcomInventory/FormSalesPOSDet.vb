@@ -155,6 +155,13 @@ Public Class FormSalesPOSDet
             BtnImportOLStoreNew.Visible = False
             BtnLoadPOS.Visible = False
             BtnLoadFromBOF.Visible = False
+        ElseIf id_menu = "6" Then
+            Text = "Cancellation CN"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Visible = False
+            PanelControlNav.Visible = False
+            print_title = "CANCELLATION CN"
         End If
 
         'print opt
@@ -301,6 +308,16 @@ Public Class FormSalesPOSDet
                 BtnImport.Visible = False
                 BtnLoadFromProbList.Visible = True
                 DeleteToolStripMenuItem.Visible = False
+            End If
+
+            'cancellation cn
+            If id_menu = "6" Then
+                'get comp
+                Dim id_comp_ref As String = FormSalesPOS.SLEStoreRefuseReturn.EditValue.ToString
+                Dim comp_ref As String = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + id_comp_ref + "' ", 0, True, "", "", "", "")
+                TxtCodeCompFrom.Text = comp_ref
+                TxtCodeCompFrom.Enabled = False
+                actionCompFrom()
             End If
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True

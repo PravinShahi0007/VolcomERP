@@ -347,6 +347,17 @@ Partial Class FormSalesPOS
         Me.XTPOLReturnRefuse = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_return_refuse = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_refuse_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrefuse_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_comp_refuse = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_number_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_name_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_ol_shop_number_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncustomer_name_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_status_ccn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstatus_ccn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnCreateCancelCN = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrintListRefuseReturn = New DevExpress.XtraEditors.SimpleButton()
@@ -365,17 +376,6 @@ Partial Class FormSalesPOS
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnid_return_refuse = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_refuse_type = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnrefuse_type = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_comp_refuse = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp_number_ref = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp_name_ref = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsales_order_ol_shop_number_ref = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncustomer_name_ref = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_status_ccn = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnstatus_ccn = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3548,6 +3548,86 @@ Partial Class FormSalesPOS
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnid_return_refuse
+        '
+        Me.GridColumnid_return_refuse.Caption = "id_return_refuse"
+        Me.GridColumnid_return_refuse.FieldName = "id_return_refuse"
+        Me.GridColumnid_return_refuse.Name = "GridColumnid_return_refuse"
+        '
+        'GridColumnid_refuse_type
+        '
+        Me.GridColumnid_refuse_type.Caption = "id_refuse_type"
+        Me.GridColumnid_refuse_type.FieldName = "id_refuse_type"
+        Me.GridColumnid_refuse_type.Name = "GridColumnid_refuse_type"
+        '
+        'GridColumnrefuse_type
+        '
+        Me.GridColumnrefuse_type.Caption = "Type"
+        Me.GridColumnrefuse_type.FieldName = "refuse_type"
+        Me.GridColumnrefuse_type.Name = "GridColumnrefuse_type"
+        Me.GridColumnrefuse_type.Visible = True
+        Me.GridColumnrefuse_type.VisibleIndex = 0
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Number"
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 1
+        '
+        'GridColumnid_comp_refuse
+        '
+        Me.GridColumnid_comp_refuse.Caption = "id_comp"
+        Me.GridColumnid_comp_refuse.FieldName = "id_comp"
+        Me.GridColumnid_comp_refuse.Name = "GridColumnid_comp_refuse"
+        '
+        'GridColumncomp_number_ref
+        '
+        Me.GridColumncomp_number_ref.Caption = "Store Acc."
+        Me.GridColumncomp_number_ref.FieldName = "comp_number"
+        Me.GridColumncomp_number_ref.Name = "GridColumncomp_number_ref"
+        Me.GridColumncomp_number_ref.Visible = True
+        Me.GridColumncomp_number_ref.VisibleIndex = 2
+        '
+        'GridColumncomp_name_ref
+        '
+        Me.GridColumncomp_name_ref.Caption = "Store"
+        Me.GridColumncomp_name_ref.FieldName = "comp_name"
+        Me.GridColumncomp_name_ref.Name = "GridColumncomp_name_ref"
+        Me.GridColumncomp_name_ref.Visible = True
+        Me.GridColumncomp_name_ref.VisibleIndex = 3
+        '
+        'GridColumnsales_order_ol_shop_number_ref
+        '
+        Me.GridColumnsales_order_ol_shop_number_ref.Caption = "Order No."
+        Me.GridColumnsales_order_ol_shop_number_ref.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnsales_order_ol_shop_number_ref.Name = "GridColumnsales_order_ol_shop_number_ref"
+        Me.GridColumnsales_order_ol_shop_number_ref.Visible = True
+        Me.GridColumnsales_order_ol_shop_number_ref.VisibleIndex = 4
+        '
+        'GridColumncustomer_name_ref
+        '
+        Me.GridColumncustomer_name_ref.Caption = "Customer"
+        Me.GridColumncustomer_name_ref.FieldName = "customer_name"
+        Me.GridColumncustomer_name_ref.Name = "GridColumncustomer_name_ref"
+        Me.GridColumncustomer_name_ref.Visible = True
+        Me.GridColumncustomer_name_ref.VisibleIndex = 5
+        '
+        'GridColumnid_status_ccn
+        '
+        Me.GridColumnid_status_ccn.Caption = "id_status_ccn"
+        Me.GridColumnid_status_ccn.FieldName = "id_status_ccn"
+        Me.GridColumnid_status_ccn.Name = "GridColumnid_status_ccn"
+        '
+        'GridColumnstatus_ccn
+        '
+        Me.GridColumnstatus_ccn.Caption = "Status"
+        Me.GridColumnstatus_ccn.FieldName = "status_ccn"
+        Me.GridColumnstatus_ccn.Name = "GridColumnstatus_ccn"
+        Me.GridColumnstatus_ccn.Visible = True
+        Me.GridColumnstatus_ccn.VisibleIndex = 6
+        '
         'BtnCreateCancelCN
         '
         Me.BtnCreateCancelCN.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -3716,86 +3796,6 @@ Partial Class FormSalesPOS
         Me.LabelControl10.Size = New System.Drawing.Size(0, 13)
         Me.LabelControl10.TabIndex = 8892
         Me.LabelControl10.Text = "From"
-        '
-        'GridColumnid_return_refuse
-        '
-        Me.GridColumnid_return_refuse.Caption = "id_return_refuse"
-        Me.GridColumnid_return_refuse.FieldName = "id_return_refuse"
-        Me.GridColumnid_return_refuse.Name = "GridColumnid_return_refuse"
-        '
-        'GridColumnid_refuse_type
-        '
-        Me.GridColumnid_refuse_type.Caption = "id_refuse_type"
-        Me.GridColumnid_refuse_type.FieldName = "id_refuse_type"
-        Me.GridColumnid_refuse_type.Name = "GridColumnid_refuse_type"
-        '
-        'GridColumnrefuse_type
-        '
-        Me.GridColumnrefuse_type.Caption = "Type"
-        Me.GridColumnrefuse_type.FieldName = "refuse_type"
-        Me.GridColumnrefuse_type.Name = "GridColumnrefuse_type"
-        Me.GridColumnrefuse_type.Visible = True
-        Me.GridColumnrefuse_type.VisibleIndex = 0
-        '
-        'GridColumnnumber
-        '
-        Me.GridColumnnumber.Caption = "Number"
-        Me.GridColumnnumber.FieldName = "number"
-        Me.GridColumnnumber.Name = "GridColumnnumber"
-        Me.GridColumnnumber.Visible = True
-        Me.GridColumnnumber.VisibleIndex = 1
-        '
-        'GridColumnid_comp_refuse
-        '
-        Me.GridColumnid_comp_refuse.Caption = "id_comp"
-        Me.GridColumnid_comp_refuse.FieldName = "id_comp"
-        Me.GridColumnid_comp_refuse.Name = "GridColumnid_comp_refuse"
-        '
-        'GridColumncomp_number_ref
-        '
-        Me.GridColumncomp_number_ref.Caption = "Store Acc."
-        Me.GridColumncomp_number_ref.FieldName = "comp_number"
-        Me.GridColumncomp_number_ref.Name = "GridColumncomp_number_ref"
-        Me.GridColumncomp_number_ref.Visible = True
-        Me.GridColumncomp_number_ref.VisibleIndex = 2
-        '
-        'GridColumncomp_name_ref
-        '
-        Me.GridColumncomp_name_ref.Caption = "Store"
-        Me.GridColumncomp_name_ref.FieldName = "comp_name"
-        Me.GridColumncomp_name_ref.Name = "GridColumncomp_name_ref"
-        Me.GridColumncomp_name_ref.Visible = True
-        Me.GridColumncomp_name_ref.VisibleIndex = 3
-        '
-        'GridColumnsales_order_ol_shop_number_ref
-        '
-        Me.GridColumnsales_order_ol_shop_number_ref.Caption = "Order No."
-        Me.GridColumnsales_order_ol_shop_number_ref.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumnsales_order_ol_shop_number_ref.Name = "GridColumnsales_order_ol_shop_number_ref"
-        Me.GridColumnsales_order_ol_shop_number_ref.Visible = True
-        Me.GridColumnsales_order_ol_shop_number_ref.VisibleIndex = 4
-        '
-        'GridColumncustomer_name_ref
-        '
-        Me.GridColumncustomer_name_ref.Caption = "Customer"
-        Me.GridColumncustomer_name_ref.FieldName = "customer_name"
-        Me.GridColumncustomer_name_ref.Name = "GridColumncustomer_name_ref"
-        Me.GridColumncustomer_name_ref.Visible = True
-        Me.GridColumncustomer_name_ref.VisibleIndex = 5
-        '
-        'GridColumnid_status_ccn
-        '
-        Me.GridColumnid_status_ccn.Caption = "id_status_ccn"
-        Me.GridColumnid_status_ccn.FieldName = "id_status_ccn"
-        Me.GridColumnid_status_ccn.Name = "GridColumnid_status_ccn"
-        '
-        'GridColumnstatus_ccn
-        '
-        Me.GridColumnstatus_ccn.Caption = "Status"
-        Me.GridColumnstatus_ccn.FieldName = "status_ccn"
-        Me.GridColumnstatus_ccn.Name = "GridColumnstatus_ccn"
-        Me.GridColumnstatus_ccn.Visible = True
-        Me.GridColumnstatus_ccn.VisibleIndex = 6
         '
         'FormSalesPOS
         '

@@ -1313,4 +1313,11 @@
         GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnCreateCancelCN_Click(sender As Object, e As EventArgs) Handles BtnCreateCancelCN.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesPOSDet.id_menu = "6"
+        FormSalesPOSDet.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
