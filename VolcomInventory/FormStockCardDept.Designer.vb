@@ -75,6 +75,7 @@ Partial Class FormStockCardDept
         Me.BViewInOut = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFromInout = New DevExpress.XtraEditors.DateEdit()
+        Me.BMaster = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCStockCard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockCard.SuspendLayout()
         Me.XTPStockCard.SuspendLayout()
@@ -550,6 +551,7 @@ Partial Class FormStockCardDept
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BMaster)
         Me.PanelControl3.Controls.Add(Me.BAddInOut)
         Me.PanelControl3.Controls.Add(Me.DEUntilInout)
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
@@ -622,6 +624,16 @@ Partial Class FormStockCardDept
         Me.DEFromInout.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEFromInout.Size = New System.Drawing.Size(110, 20)
         Me.DEFromInout.TabIndex = 31
+        '
+        'BMaster
+        '
+        Me.BMaster.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BMaster.Image = CType(resources.GetObject("BMaster.Image"), System.Drawing.Image)
+        Me.BMaster.Location = New System.Drawing.Point(675, 2)
+        Me.BMaster.Name = "BMaster"
+        Me.BMaster.Size = New System.Drawing.Size(111, 42)
+        Me.BMaster.TabIndex = 37
+        Me.BMaster.Text = "Master Item"
         '
         'FormStockCardDept
         '
@@ -729,4 +741,5 @@ Partial Class FormStockCardDept
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents RepositoryItemMemoEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents BMaster As DevExpress.XtraEditors.SimpleButton
 End Class
