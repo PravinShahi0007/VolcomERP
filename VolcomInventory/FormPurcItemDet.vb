@@ -15,7 +15,6 @@
         load_item_type()
         load_purc_cat()
         load_cat()
-        load_card_stock()
         '
         If Not id_item = "-1" Then 'edit
             TEStatus.Visible = True
@@ -42,7 +41,6 @@ WHERE it.id_item='" & id_item & "'"
             SLEUOM.EditValue = data.Rows(0)("id_uom").ToString
             SLEUOMStock.EditValue = data.Rows(0)("id_uom_stock").ToString
             SLEItemType.EditValue = data.Rows(0)("id_item_type").ToString
-            SLEStockCardDept.EditValue = data.Rows(0)("is_dep_stock_card").ToString
             '
             SLEPurchaseCategory.EditValue = data.Rows(0)("id_item_cat_detail").ToString
             SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
@@ -92,13 +90,6 @@ WHERE pr.id_report_status!=5"
     Sub load_vendor_type()
         Dim query As String = "SELECT id_vendor_type,vendor_type FROM tb_vendor_type"
         viewSearchLookupQuery(SLEVendorType, query, "id_vendor_type", "vendor_type", "id_vendor_type")
-    End Sub
-
-    Sub load_card_stock()
-        Dim query As String = "SELECT '2' AS id_carded,'Not Listed' AS carded
-UNION ALL
-SELECT '1' AS id_carded, 'Listed to Departement Stock Card' AS carded"
-        viewSearchLookupQuery(SLEStockCardDept, query, "id_carded", "carded", "id_carded")
     End Sub
 
     Sub load_price()
@@ -171,7 +162,7 @@ WHERE id_status='2'"
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         If Not SLEPurchaseCategory.EditValue = Nothing Then
             If id_item = "-1" Then 'new
-                Dim query As String = "INSERT INTO tb_item(item_desc,id_item_cat_detail,id_item_cat,id_item_type,id_uom,id_uom_stock,stock_convertion,date_created,id_user_created,is_active,def_desc,is_dep_stock_card) VALUES('" & TEDesc.Text & "','" & SLEPurchaseCategory.EditValue.ToString & "','" & SLECat.EditValue.ToString & "','" & SLEItemType.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "','" & SLEUOMStock.EditValue.ToString & "','" & decimalSQL(TEConvertion.EditValue.ToString) & "',NOW(),'" & id_user & "','1','" & addSlashes(MEDefDesc.Text) & "','" & SLEStockCardDept.EditValue.ToString & "'); SELECT LAST_INSERT_ID();"
+                Dim query As String = "INSERT INTO tb_item(item_desc,id_item_cat_detail,id_item_cat,id_item_type,id_uom,id_uom_stock,stock_convertion,date_created,id_user_created,is_active,def_desc) VALUES('" & TEDesc.Text & "','" & SLEPurchaseCategory.EditValue.ToString & "','" & SLECat.EditValue.ToString & "','" & SLEItemType.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "','" & SLEUOMStock.EditValue.ToString & "','" & decimalSQL(TEConvertion.EditValue.ToString) & "',NOW(),'" & id_user & "','1','" & addSlashes(MEDefDesc.Text) & "'); SELECT LAST_INSERT_ID();"
                 id_item = execute_query(query, 0, True, "", "", "", "")
                 'insert price
                 query = "INSERT INTO tb_item_price(id_item,create_by,create_date,price) VALUES('" & id_item & "','" & id_user & "',NOW(),0.00)"
@@ -181,7 +172,7 @@ WHERE id_status='2'"
                 FormPurcItem.GVItem.FocusedRowHandle = find_row(FormPurcItem.GVItem, "id_item", id_item)
                 Close()
             Else 'edit
-                Dim query As String = "UPDATE tb_item SET item_desc='" & TEDesc.Text & "',id_item_cat='" & SLECat.EditValue.ToString & "',id_item_type='" & SLEItemType.EditValue.ToString & "',id_uom='" & SLEUOM.EditValue.ToString & "',id_uom_stock='" & SLEUOMStock.EditValue.ToString & "',stock_convertion='" & decimalSQL(TEConvertion.EditValue.ToString) & "',is_active='1',date_updated=NOW(),id_user_updated='" & id_user & "',def_desc='" & addSlashes(MEDefDesc.Text) & "',is_dep_stock_card='" & SLEStockCardDept.EditValue.ToString & "' WHERE id_item='" & id_item & "'"
+                Dim query As String = "UPDATE tb_item SET item_desc='" & TEDesc.Text & "',id_item_cat='" & SLECat.EditValue.ToString & "',id_item_type='" & SLEItemType.EditValue.ToString & "',id_uom='" & SLEUOM.EditValue.ToString & "',id_uom_stock='" & SLEUOMStock.EditValue.ToString & "',stock_convertion='" & decimalSQL(TEConvertion.EditValue.ToString) & "',is_active='1',date_updated=NOW(),id_user_updated='" & id_user & "',def_desc='" & addSlashes(MEDefDesc.Text) & "' WHERE id_item='" & id_item & "'"
                 execute_non_query(query, True, "", "", "", "")
                 FormPurcItem.load_item()
                 FormPurcItem.GVItem.FocusedRowHandle = find_row(FormPurcItem.GVItem, "id_item", id_item)
