@@ -1316,7 +1316,22 @@
 
     Private Sub BtnCreateCancelCN_Click(sender As Object, e As EventArgs) Handles BtnCreateCancelCN.Click
         Cursor = Cursors.WaitCursor
+        'cek on process
+        Dim id_return_refuse As String = GVData.GetFocusedRowCellValue("id_return_refuse").ToString
+        Dim qcek As String = "SELECT sp.id_sales_pos FROM tb_sales_pos sp 
+        WHERE sp.id_report_status!=5 AND sp.id_return_refuse='" + id_return_refuse + "' "
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        If dcek.Rows.Count > 0 Then
+            stopCustom("Already process")
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+
+        'show
         FormSalesPOSDet.id_menu = "6"
+        FormSalesPOSDet.action = "ins"
+        FormSalesPOSDet.is_from_cancel_cn = True
+        FormSalesPOSDet.id_return_refuse = id_return_refuse
         FormSalesPOSDet.ShowDialog()
         Cursor = Cursors.Default
     End Sub

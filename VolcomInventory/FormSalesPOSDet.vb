@@ -57,6 +57,8 @@ Public Class FormSalesPOSDet
     Public is_from_prob_list As Boolean = False
     Public is_from_prob_list_no_stock As Boolean = False
     Public id_store_type As String = "-1"
+    Public id_return_refuse As String = "-1"
+    Public is_from_cancel_cn As Boolean = False
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -160,7 +162,6 @@ Public Class FormSalesPOSDet
             LEInvType.Enabled = False
             TEDO.Enabled = False
             CheckEditInvType.Visible = False
-            PanelControlNav.Visible = False
             print_title = "CANCELLATION CN"
         End If
 
@@ -317,7 +318,11 @@ Public Class FormSalesPOSDet
                 Dim comp_ref As String = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + id_comp_ref + "' ", 0, True, "", "", "", "")
                 TxtCodeCompFrom.Text = comp_ref
                 TxtCodeCompFrom.Enabled = False
+                BtnBrowseContactFrom.Enabled = False
                 actionCompFrom()
+                BtnImport.Visible = False
+                BtnLoadFromProbList.Visible = True
+                DeleteToolStripMenuItem.Visible = False
             End If
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True
@@ -657,6 +662,9 @@ Public Class FormSalesPOSDet
             cond_bill_to = False
         End If
 
+        'refuse
+
+
         'cek no stok
         makeSafeGV(GVItemList)
         Dim cond_no_stock As Boolean = False
@@ -778,6 +786,10 @@ Public Class FormSalesPOSDet
                 id_memo_type = "2"
                 'sales_pos_number = header_number_sales("17")
                 sales_pos_number = ""
+            ElseIf id_menu = "6" Then
+                report_mark_type = "292"
+                id_memo_type = "10"
+                sales_pos_number = ""
             End If
             Dim id_inv_type As String = LEInvType.EditValue.ToString
             If id_comp_contact_bill = "-1" Then
@@ -785,6 +797,9 @@ Public Class FormSalesPOSDet
             End If
             If id_sales_pos_ref = "-1" Then
                 id_sales_pos_ref = "NULL "
+            End If
+            If id_return_refuse = "-1" Then
+                id_return_refuse = "NULL"
             End If
 
             'cek same invoice
@@ -882,8 +897,8 @@ Public Class FormSalesPOSDet
 
                     'Main tbale
                     BtnSave.Enabled = False
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date, kurs_trans, sales_pos_st_date) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + ", '" + bof_number + "'," + bof_date + ", '" + kurs_trans + "'," + sales_pos_st_date + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date, kurs_trans, sales_pos_st_date,id_return_refuse) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + ", '" + bof_number + "'," + bof_date + ", '" + kurs_trans + "'," + sales_pos_st_date + ", " + id_return_refuse + "); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
                     'gen number
                     execute_non_query("CALL gen_number(" + id_sales_pos + ", " + report_mark_type + ");", True, "", "", "", "")
@@ -907,7 +922,7 @@ Public Class FormSalesPOSDet
                     Dim jum_ins_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary, id_ol_store_ret_list, id_sales_pos_prob, id_sales_pos_prob_price,id_sales_pos_oos_recon_det) VALUES "
+                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary, id_ol_store_ret_list, id_sales_pos_prob, id_sales_pos_prob_price,id_sales_pos_oos_recon_det, id_cn_det, id_return_refuse_det) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                         Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
@@ -964,11 +979,19 @@ Public Class FormSalesPOSDet
                         If id_sales_pos_oos_recon_det = "0" Then
                             id_sales_pos_oos_recon_det = "NULL"
                         End If
+                        Dim id_cn_det As String = GVItemList.GetRowCellValue(i, "id_cn_det").ToString
+                        If id_cn_det = "0" Or id_cn_det = "" Then
+                            id_cn_det = "NULL"
+                        End If
+                        Dim id_return_refuse_det As String = GVItemList.GetRowCellValue(i, "id_return_refuse_det").ToString
+                        If id_return_refuse_det = "0" Or id_return_refuse_det = "" Then
+                            id_return_refuse_det = "NULL"
+                        End If
 
                         If jum_ins_i > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ", " + id_ol_store_ret_list + "," + id_sales_pos_prob + "," + id_sales_pos_prob_price + "," + id_sales_pos_oos_recon_det + ") "
+                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ", " + id_ol_store_ret_list + "," + id_sales_pos_prob + "," + id_sales_pos_prob_price + "," + id_sales_pos_oos_recon_det + ", " + id_cn_det + "," + id_return_refuse_det + ") "
                         jum_ins_i = jum_ins_i + 1
                     Next
                     If jum_ins_i > 0 Then
@@ -1031,7 +1054,7 @@ Public Class FormSalesPOSDet
                         End If
                     End If
 
-                    If id_menu = "1" Or id_menu = "4" Then
+                    If id_menu = "1" Or id_menu = "4" Or id_menu = "6" Then
                         'reserved stock
                         Dim rsv_stock As ClassSalesInv = New ClassSalesInv()
                         rsv_stock.reservedStock(id_sales_pos, report_mark_type)
@@ -1070,7 +1093,7 @@ Public Class FormSalesPOSDet
 
                     'draft journal
                     Dim acc As New ClassAccounting()
-                    If id_menu = "1" Or id_menu = "2" Or id_menu = "3" Or id_menu = "4" Or id_menu = "5" Then
+                    If id_menu = "1" Or id_menu = "2" Or id_menu = "3" Or id_menu = "4" Or id_menu = "5" Or id_menu = "6" Then
                         Try
                             If is_use_inv_mapping = "1" Then
                                 acc.generateJournalSalesDraftWithMapping(id_sales_pos, report_mark_type)
@@ -1112,6 +1135,9 @@ Public Class FormSalesPOSDet
                         viewDraft()
                     ElseIf id_menu = "4" Then
                         infoCustom("Invoice Different Margin " + TxtVirtualPosNumber.Text + " created succesfully")
+                        viewDraft()
+                    ElseIf id_menu = "6" Then
+                        infoCustom("Cancellation CN " + TxtVirtualPosNumber.Text + " created succesfully")
                         viewDraft()
                     End If
 
@@ -1387,7 +1413,7 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub SimpleButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SimpleButton1.Click
-        print_raw(GCItemList, "")
+
     End Sub
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
@@ -2330,6 +2356,10 @@ Public Class FormSalesPOSDet
             If is_from_prob_list_no_stock Then
                 load_prob_list()
             End If
+            'cancel CN
+            If is_from_cancel_cn Then
+                loadCancelCN()
+            End If
         End If
     End Sub
 
@@ -3133,7 +3163,12 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub BtnLoadFromProbList_Click(sender As Object, e As EventArgs) Handles BtnLoadFromProbList.Click
-        load_prob_list()
+        If is_from_prob_list Or is_from_prob_list_no_stock Then
+            load_prob_list()
+        End If
+        If is_from_cancel_cn Then
+            loadCancelCN()
+        End If
     End Sub
 
     Private Sub ViewPriceReconcileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewPriceReconcileToolStripMenuItem.Click
@@ -3221,5 +3256,52 @@ GROUP BY r.id_sales_pos_recon "
             stopCustom("Closing no stock not found.")
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Sub loadCancelCN()
+        If is_from_cancel_cn Then
+            viewDetail()
+            Dim query As String = "SELECT p.id_product, p.id_design,p.product_full_code AS `code`, p.product_display_name AS `name`, cd.display_name AS `size`, d.qty,
+            d.id_design_price, d.design_price, pt.design_price_type,d.id_sales_pos_det_cn, d.id_return_refuse_det
+            FROM tb_ol_store_return_refuse_det d
+            INNER JOIN tb_m_product p ON p.id_product = d.id_product
+            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+            INNER JOIN tb_m_design_price prc ON prc.id_design_price = d.id_design_price
+            INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
+            WHERE d.id_return_refuse='" + id_return_refuse + "' AND !ISNULL(d.id_sales_pos_det_cn) "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            For i As Integer = 0 To data.Rows.Count - 1
+                Dim qty As Integer = data.Rows(i)("qty")
+                Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+                newRow("code") = data.Rows(i)("code").ToString
+                newRow("name") = data.Rows(i)("name").ToString
+                newRow("size") = data.Rows(i)("size").ToString
+                newRow("sales_pos_det_qty") = qty
+                newRow("sales_pos_det_amount") = qty * data.Rows(i)("design_price")
+                newRow("limit_qty") = qty
+                newRow("id_design_price") = data.Rows(i)("id_design_price").ToString
+                newRow("design_price") = data.Rows(i)("design_price")
+                newRow("design_price_type") = data.Rows(i)("design_price_type").ToString
+                newRow("id_design_price_retail") = data.Rows(i)("id_design_price").ToString
+                newRow("design_price_retail") = data.Rows(i)("design_price")
+                newRow("id_design") = data.Rows(i)("id_design").ToString
+                newRow("id_product") = data.Rows(i)("id_product").ToString
+                newRow("is_select") = "No"
+                newRow("note") = "OK"
+                newRow("id_sales_pos_det") = "0"
+                newRow("id_sales_pos_prob") = "0"
+                newRow("id_sales_pos_prob_price") = "0"
+                newRow("id_sales_pos_oos_recon_det") = "0"
+                newRow("id_cn_det") = data.Rows(i)("id_sales_pos_det_cn").ToString
+                newRow("id_return_refuse_det") = data.Rows(i)("id_return_refuse_det").ToString
+                TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
+                MsgBox(i.ToString + "/" + data.Rows(i)("code").ToString)
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                calculate()
+            Next
+        End If
     End Sub
 End Class
