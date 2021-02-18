@@ -344,6 +344,20 @@ Partial Class FormSalesPOS
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         Me.LookUpEdit3 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.XTPOLReturnRefuse = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BtnCreateCancelCN = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrintListRefuseReturn = New DevExpress.XtraEditors.SimpleButton()
+        Me.LEStatusRefuseReturn = New DevExpress.XtraEditors.LookUpEdit()
+        Me.BtnViewListRefuseReturn = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEStoreRefuseReturn = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
@@ -351,6 +365,17 @@ Partial Class FormSalesPOS
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnid_return_refuse = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_refuse_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrefuse_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_comp_refuse = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_number_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_name_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_ol_shop_number_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncustomer_name_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_status_ccn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstatus_ccn = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -469,6 +494,14 @@ Partial Class FormSalesPOS
         CType(Me.SLEStoreNewItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LookUpEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPOLReturnRefuse.SuspendLayout()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl10.SuspendLayout()
+        CType(Me.LEStatusRefuseReturn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEStoreRefuseReturn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1062,7 +1095,7 @@ Partial Class FormSalesPOS
         Me.XTCInvoice.SelectedTabPage = Me.XTPListInv
         Me.XTCInvoice.Size = New System.Drawing.Size(1240, 533)
         Me.XTCInvoice.TabIndex = 3
-        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInv, Me.XTPListWholesale, Me.XTPCNOnlineStore, Me.XTPProblemList})
+        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInv, Me.XTPListWholesale, Me.XTPCNOnlineStore, Me.XTPProblemList, Me.XTPOLReturnRefuse})
         '
         'XTPListInv
         '
@@ -3486,6 +3519,138 @@ Partial Class FormSalesPOS
         Me.LookUpEdit3.Size = New System.Drawing.Size(342, 20)
         Me.LookUpEdit3.TabIndex = 1
         '
+        'XTPOLReturnRefuse
+        '
+        Me.XTPOLReturnRefuse.Controls.Add(Me.GCData)
+        Me.XTPOLReturnRefuse.Controls.Add(Me.BtnCreateCancelCN)
+        Me.XTPOLReturnRefuse.Controls.Add(Me.PanelControl10)
+        Me.XTPOLReturnRefuse.Name = "XTPOLReturnRefuse"
+        Me.XTPOLReturnRefuse.Size = New System.Drawing.Size(1234, 505)
+        Me.XTPOLReturnRefuse.Text = "Refuse Return Online Order"
+        '
+        'GCData
+        '
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 52)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(1234, 411)
+        Me.GCData.TabIndex = 1
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'GVData
+        '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_return_refuse, Me.GridColumnid_refuse_type, Me.GridColumnrefuse_type, Me.GridColumnnumber, Me.GridColumnid_comp_refuse, Me.GridColumncomp_number_ref, Me.GridColumncomp_name_ref, Me.GridColumnsales_order_ol_shop_number_ref, Me.GridColumncustomer_name_ref, Me.GridColumnid_status_ccn, Me.GridColumnstatus_ccn})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.ReadOnly = True
+        Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'BtnCreateCancelCN
+        '
+        Me.BtnCreateCancelCN.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnCreateCancelCN.Appearance.Options.UseFont = True
+        Me.BtnCreateCancelCN.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnCreateCancelCN.Image = CType(resources.GetObject("BtnCreateCancelCN.Image"), System.Drawing.Image)
+        Me.BtnCreateCancelCN.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnCreateCancelCN.Location = New System.Drawing.Point(0, 463)
+        Me.BtnCreateCancelCN.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.BtnCreateCancelCN.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCreateCancelCN.Name = "BtnCreateCancelCN"
+        Me.BtnCreateCancelCN.Size = New System.Drawing.Size(1234, 42)
+        Me.BtnCreateCancelCN.TabIndex = 13
+        Me.BtnCreateCancelCN.Text = "Create Cancellation"
+        Me.BtnCreateCancelCN.Visible = False
+        '
+        'PanelControl10
+        '
+        Me.PanelControl10.Controls.Add(Me.BtnPrintListRefuseReturn)
+        Me.PanelControl10.Controls.Add(Me.LEStatusRefuseReturn)
+        Me.PanelControl10.Controls.Add(Me.BtnViewListRefuseReturn)
+        Me.PanelControl10.Controls.Add(Me.LabelControl24)
+        Me.PanelControl10.Controls.Add(Me.SLEStoreRefuseReturn)
+        Me.PanelControl10.Controls.Add(Me.LabelControl23)
+        Me.PanelControl10.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl10.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl10.Name = "PanelControl10"
+        Me.PanelControl10.Size = New System.Drawing.Size(1234, 52)
+        Me.PanelControl10.TabIndex = 0
+        '
+        'BtnPrintListRefuseReturn
+        '
+        Me.BtnPrintListRefuseReturn.Image = CType(resources.GetObject("BtnPrintListRefuseReturn.Image"), System.Drawing.Image)
+        Me.BtnPrintListRefuseReturn.Location = New System.Drawing.Point(557, 11)
+        Me.BtnPrintListRefuseReturn.Name = "BtnPrintListRefuseReturn"
+        Me.BtnPrintListRefuseReturn.Size = New System.Drawing.Size(78, 24)
+        Me.BtnPrintListRefuseReturn.TabIndex = 9
+        Me.BtnPrintListRefuseReturn.Text = "Print List"
+        '
+        'LEStatusRefuseReturn
+        '
+        Me.LEStatusRefuseReturn.Location = New System.Drawing.Point(354, 13)
+        Me.LEStatusRefuseReturn.Name = "LEStatusRefuseReturn"
+        Me.LEStatusRefuseReturn.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEStatusRefuseReturn.Size = New System.Drawing.Size(113, 20)
+        Me.LEStatusRefuseReturn.TabIndex = 8938
+        '
+        'BtnViewListRefuseReturn
+        '
+        Me.BtnViewListRefuseReturn.Image = CType(resources.GetObject("BtnViewListRefuseReturn.Image"), System.Drawing.Image)
+        Me.BtnViewListRefuseReturn.Location = New System.Drawing.Point(473, 11)
+        Me.BtnViewListRefuseReturn.Name = "BtnViewListRefuseReturn"
+        Me.BtnViewListRefuseReturn.Size = New System.Drawing.Size(79, 24)
+        Me.BtnViewListRefuseReturn.TabIndex = 8
+        Me.BtnViewListRefuseReturn.Text = "View List"
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(317, 16)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl24.TabIndex = 8937
+        Me.LabelControl24.Text = "Status"
+        '
+        'SLEStoreRefuseReturn
+        '
+        Me.SLEStoreRefuseReturn.Location = New System.Drawing.Point(47, 13)
+        Me.SLEStoreRefuseReturn.Name = "SLEStoreRefuseReturn"
+        Me.SLEStoreRefuseReturn.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreRefuseReturn.Properties.View = Me.GridView6
+        Me.SLEStoreRefuseReturn.Size = New System.Drawing.Size(264, 20)
+        Me.SLEStoreRefuseReturn.TabIndex = 7
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "id_comp"
+        Me.GridColumn14.FieldName = "id_comp"
+        Me.GridColumn14.Name = "GridColumn14"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Account"
+        Me.GridColumn15.FieldName = "comp"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 0
+        '
+        'LabelControl23
+        '
+        Me.LabelControl23.Location = New System.Drawing.Point(15, 16)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl23.TabIndex = 6
+        Me.LabelControl23.Text = "Store"
+        '
         'LookUpEdit1
         '
         Me.LookUpEdit1.Location = New System.Drawing.Point(391, 14)
@@ -3551,6 +3716,86 @@ Partial Class FormSalesPOS
         Me.LabelControl10.Size = New System.Drawing.Size(0, 13)
         Me.LabelControl10.TabIndex = 8892
         Me.LabelControl10.Text = "From"
+        '
+        'GridColumnid_return_refuse
+        '
+        Me.GridColumnid_return_refuse.Caption = "id_return_refuse"
+        Me.GridColumnid_return_refuse.FieldName = "id_return_refuse"
+        Me.GridColumnid_return_refuse.Name = "GridColumnid_return_refuse"
+        '
+        'GridColumnid_refuse_type
+        '
+        Me.GridColumnid_refuse_type.Caption = "id_refuse_type"
+        Me.GridColumnid_refuse_type.FieldName = "id_refuse_type"
+        Me.GridColumnid_refuse_type.Name = "GridColumnid_refuse_type"
+        '
+        'GridColumnrefuse_type
+        '
+        Me.GridColumnrefuse_type.Caption = "Type"
+        Me.GridColumnrefuse_type.FieldName = "refuse_type"
+        Me.GridColumnrefuse_type.Name = "GridColumnrefuse_type"
+        Me.GridColumnrefuse_type.Visible = True
+        Me.GridColumnrefuse_type.VisibleIndex = 0
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Number"
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 1
+        '
+        'GridColumnid_comp_refuse
+        '
+        Me.GridColumnid_comp_refuse.Caption = "id_comp"
+        Me.GridColumnid_comp_refuse.FieldName = "id_comp"
+        Me.GridColumnid_comp_refuse.Name = "GridColumnid_comp_refuse"
+        '
+        'GridColumncomp_number_ref
+        '
+        Me.GridColumncomp_number_ref.Caption = "Store Acc."
+        Me.GridColumncomp_number_ref.FieldName = "comp_number"
+        Me.GridColumncomp_number_ref.Name = "GridColumncomp_number_ref"
+        Me.GridColumncomp_number_ref.Visible = True
+        Me.GridColumncomp_number_ref.VisibleIndex = 2
+        '
+        'GridColumncomp_name_ref
+        '
+        Me.GridColumncomp_name_ref.Caption = "Store"
+        Me.GridColumncomp_name_ref.FieldName = "comp_name"
+        Me.GridColumncomp_name_ref.Name = "GridColumncomp_name_ref"
+        Me.GridColumncomp_name_ref.Visible = True
+        Me.GridColumncomp_name_ref.VisibleIndex = 3
+        '
+        'GridColumnsales_order_ol_shop_number_ref
+        '
+        Me.GridColumnsales_order_ol_shop_number_ref.Caption = "Order No."
+        Me.GridColumnsales_order_ol_shop_number_ref.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnsales_order_ol_shop_number_ref.Name = "GridColumnsales_order_ol_shop_number_ref"
+        Me.GridColumnsales_order_ol_shop_number_ref.Visible = True
+        Me.GridColumnsales_order_ol_shop_number_ref.VisibleIndex = 4
+        '
+        'GridColumncustomer_name_ref
+        '
+        Me.GridColumncustomer_name_ref.Caption = "Customer"
+        Me.GridColumncustomer_name_ref.FieldName = "customer_name"
+        Me.GridColumncustomer_name_ref.Name = "GridColumncustomer_name_ref"
+        Me.GridColumncustomer_name_ref.Visible = True
+        Me.GridColumncustomer_name_ref.VisibleIndex = 5
+        '
+        'GridColumnid_status_ccn
+        '
+        Me.GridColumnid_status_ccn.Caption = "id_status_ccn"
+        Me.GridColumnid_status_ccn.FieldName = "id_status_ccn"
+        Me.GridColumnid_status_ccn.Name = "GridColumnid_status_ccn"
+        '
+        'GridColumnstatus_ccn
+        '
+        Me.GridColumnstatus_ccn.Caption = "Status"
+        Me.GridColumnstatus_ccn.FieldName = "status_ccn"
+        Me.GridColumnstatus_ccn.Name = "GridColumnstatus_ccn"
+        Me.GridColumnstatus_ccn.Visible = True
+        Me.GridColumnstatus_ccn.VisibleIndex = 6
         '
         'FormSalesPOS
         '
@@ -3688,6 +3933,15 @@ Partial Class FormSalesPOS
         CType(Me.SLEStoreNewItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LookUpEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPOLReturnRefuse.ResumeLayout(False)
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl10.ResumeLayout(False)
+        Me.PanelControl10.PerformLayout()
+        CType(Me.LEStatusRefuseReturn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEStoreRefuseReturn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4023,4 +4277,29 @@ Partial Class FormSalesPOS
     Friend WithEvents GridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand14 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand15 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents XTPOLReturnRefuse As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl10 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLEStoreRefuseReturn As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnPrintListRefuseReturn As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LEStatusRefuseReturn As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents BtnViewListRefuseReturn As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BtnCreateCancelCN As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_return_refuse As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_refuse_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnrefuse_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_comp_refuse As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_number_ref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_name_ref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_order_ol_shop_number_ref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncustomer_name_ref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_status_ccn As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstatus_ccn As DevExpress.XtraGrid.Columns.GridColumn
 End Class
