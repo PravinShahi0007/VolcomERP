@@ -52,6 +52,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnIDPODetail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -73,6 +74,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnDetIdItem = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnDetValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetQtyRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -92,6 +94,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnOrdDept = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrdDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnOrdPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrdUOM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrdQty = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -109,9 +112,6 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CEAlreadyDeliver.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,14 +133,17 @@ Partial Class FormPurcReceiveDet
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEDelivered, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOrder.SuspendLayout()
         CType(Me.GCOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
         CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,9 +152,6 @@ Partial Class FormPurcReceiveDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -499,6 +499,10 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnDesc.VisibleIndex = 2
         Me.GridColumnDesc.Width = 228
         '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
         'GridColumnUOM
         '
         Me.GridColumnUOM.AppearanceCell.Options.UseTextOptions = True
@@ -725,6 +729,10 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnDetDescription.VisibleIndex = 3
         Me.GridColumnDetDescription.Width = 212
         '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        '
         'GridColumnDetValue
         '
         Me.GridColumnDetValue.Caption = "Price"
@@ -795,6 +803,8 @@ Partial Class FormPurcReceiveDet
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Qty To Stock"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn12.FieldName = "qty_stock"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
@@ -911,6 +921,10 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnOrdDesc.Visible = True
         Me.GridColumnOrdDesc.VisibleIndex = 3
         Me.GridColumnOrdDesc.Width = 157
+        '
+        'RepositoryItemMemoEdit3
+        '
+        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
         '
         'GridColumnOrdPrice
         '
@@ -1097,18 +1111,6 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl5.TabIndex = 144
         Me.LabelControl5.Text = "Status"
         '
-        'RepositoryItemMemoEdit1
-        '
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
-        '
-        'RepositoryItemMemoEdit2
-        '
-        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
-        '
-        'RepositoryItemMemoEdit3
-        '
-        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
-        '
         'FormPurcReceiveDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1146,14 +1148,17 @@ Partial Class FormPurcReceiveDet
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEDelivered, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOrder.ResumeLayout(False)
         CType(Me.GCOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1164,9 +1169,6 @@ Partial Class FormPurcReceiveDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
