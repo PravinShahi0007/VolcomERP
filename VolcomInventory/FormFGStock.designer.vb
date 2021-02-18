@@ -19,6 +19,7 @@ Partial Class FormFGStock
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGStock))
         Me.XTCFGStock = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPFGStockWHSum = New DevExpress.XtraTab.XtraTabPage()
@@ -77,7 +78,7 @@ Partial Class FormFGStock
         Me.XTPFGStockCardWH = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControlTraccking = New DevExpress.XtraEditors.GroupControl()
         Me.GCFGStockCard = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.BandedGridViewFGStockCard = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -2212,12 +2213,14 @@ Partial Class FormFGStock
         Me.GridColumnid_product.Caption = "id_product"
         Me.GridColumnid_product.FieldName = "id_product"
         Me.GridColumnid_product.Name = "GridColumnid_product"
+        Me.GridColumnid_product.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'GridColumncode_soh
         '
         Me.GridColumncode_soh.Caption = "Code"
         Me.GridColumncode_soh.FieldName = "code"
         Me.GridColumncode_soh.Name = "GridColumncode_soh"
+        Me.GridColumncode_soh.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumncode_soh.Visible = True
         Me.GridColumncode_soh.VisibleIndex = 0
         Me.GridColumncode_soh.Width = 98
@@ -2227,6 +2230,7 @@ Partial Class FormFGStock
         Me.GridColumnname.Caption = "Description"
         Me.GridColumnname.FieldName = "name"
         Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnname.Visible = True
         Me.GridColumnname.VisibleIndex = 2
         Me.GridColumnname.Width = 157
@@ -2236,6 +2240,7 @@ Partial Class FormFGStock
         Me.GridColumnmain_code.Caption = "Main Code"
         Me.GridColumnmain_code.FieldName = "main_code"
         Me.GridColumnmain_code.Name = "GridColumnmain_code"
+        Me.GridColumnmain_code.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnmain_code.Visible = True
         Me.GridColumnmain_code.VisibleIndex = 1
         Me.GridColumnmain_code.Width = 84
@@ -2245,6 +2250,7 @@ Partial Class FormFGStock
         Me.GridColumnsize_soh.Caption = "Size"
         Me.GridColumnsize_soh.FieldName = "size"
         Me.GridColumnsize_soh.Name = "GridColumnsize_soh"
+        Me.GridColumnsize_soh.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnsize_soh.Visible = True
         Me.GridColumnsize_soh.VisibleIndex = 3
         Me.GridColumnsize_soh.Width = 48
@@ -2254,12 +2260,14 @@ Partial Class FormFGStock
         Me.GridColumnid_class.Caption = "id class"
         Me.GridColumnid_class.FieldName = "id_class"
         Me.GridColumnid_class.Name = "GridColumnid_class"
+        Me.GridColumnid_class.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'GridColumnclass
         '
         Me.GridColumnclass.Caption = "Class"
         Me.GridColumnclass.FieldName = "class"
         Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnclass.Visible = True
         Me.GridColumnclass.VisibleIndex = 4
         Me.GridColumnclass.Width = 50
@@ -2269,18 +2277,21 @@ Partial Class FormFGStock
         Me.GridColumnid_design_cat.Caption = "id_design_cat"
         Me.GridColumnid_design_cat.FieldName = "id_design_cat"
         Me.GridColumnid_design_cat.Name = "GridColumnid_design_cat"
+        Me.GridColumnid_design_cat.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'GridColumndesign_cat
         '
         Me.GridColumndesign_cat.Caption = "design_cat"
         Me.GridColumndesign_cat.FieldName = "design_cat"
         Me.GridColumndesign_cat.Name = "GridColumndesign_cat"
+        Me.GridColumndesign_cat.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'GridColumnstt
         '
         Me.GridColumnstt.Caption = "Status"
         Me.GridColumnstt.FieldName = "stt"
         Me.GridColumnstt.Name = "GridColumnstt"
+        Me.GridColumnstt.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnstt.Visible = True
         Me.GridColumnstt.VisibleIndex = 6
         Me.GridColumnstt.Width = 46
@@ -2290,12 +2301,14 @@ Partial Class FormFGStock
         Me.GridColumnid_comp.Caption = "id_comp"
         Me.GridColumnid_comp.FieldName = "id_comp"
         Me.GridColumnid_comp.Name = "GridColumnid_comp"
+        Me.GridColumnid_comp.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'GridColumncomp_number
         '
         Me.GridColumncomp_number.Caption = "Account"
         Me.GridColumncomp_number.FieldName = "comp_number"
         Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumncomp_number.Visible = True
         Me.GridColumncomp_number.VisibleIndex = 7
         Me.GridColumncomp_number.Width = 50
@@ -2305,6 +2318,7 @@ Partial Class FormFGStock
         Me.GridColumncomp_name.Caption = "Acc. Description"
         Me.GridColumncomp_name.FieldName = "comp_name"
         Me.GridColumncomp_name.Name = "GridColumncomp_name"
+        Me.GridColumncomp_name.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumncomp_name.Visible = True
         Me.GridColumncomp_name.VisibleIndex = 8
         Me.GridColumncomp_name.Width = 105
@@ -2314,6 +2328,7 @@ Partial Class FormFGStock
         Me.GridColumngroup_store.Caption = "Group"
         Me.GridColumngroup_store.FieldName = "group_store"
         Me.GridColumngroup_store.Name = "GridColumngroup_store"
+        Me.GridColumngroup_store.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumngroup_store.Visible = True
         Me.GridColumngroup_store.VisibleIndex = 10
         Me.GridColumngroup_store.Width = 55
@@ -2323,6 +2338,7 @@ Partial Class FormFGStock
         Me.GridColumngroup_store_desc.Caption = "Group Desc"
         Me.GridColumngroup_store_desc.FieldName = "group_store_desc"
         Me.GridColumngroup_store_desc.Name = "GridColumngroup_store_desc"
+        Me.GridColumngroup_store_desc.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'GridColumnqty_avl
         '
@@ -2331,6 +2347,7 @@ Partial Class FormFGStock
         Me.GridColumnqty_avl.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnqty_avl.FieldName = "qty_avl"
         Me.GridColumnqty_avl.Name = "GridColumnqty_avl"
+        Me.GridColumnqty_avl.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnqty_avl.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_avl", "{0:N0}")})
         Me.GridColumnqty_avl.Visible = True
         Me.GridColumnqty_avl.VisibleIndex = 12
@@ -2342,6 +2359,7 @@ Partial Class FormFGStock
         Me.GridColumnqty_rsv.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnqty_rsv.FieldName = "qty_rsv"
         Me.GridColumnqty_rsv.Name = "GridColumnqty_rsv"
+        Me.GridColumnqty_rsv.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnqty_rsv.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rsv", "{0:N0}")})
         Me.GridColumnqty_rsv.Visible = True
         Me.GridColumnqty_rsv.VisibleIndex = 13
@@ -2353,6 +2371,7 @@ Partial Class FormFGStock
         Me.GridColumnqty_ttl.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnqty_ttl.FieldName = "qty_ttl"
         Me.GridColumnqty_ttl.Name = "GridColumnqty_ttl"
+        Me.GridColumnqty_ttl.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnqty_ttl.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ttl", "{0:N0}")})
         Me.GridColumnqty_ttl.Visible = True
         Me.GridColumnqty_ttl.VisibleIndex = 14
@@ -2364,6 +2383,7 @@ Partial Class FormFGStock
         Me.GridColumnunit_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnunit_price.FieldName = "unit_price"
         Me.GridColumnunit_price.Name = "GridColumnunit_price"
+        Me.GridColumnunit_price.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnunit_price.Visible = True
         Me.GridColumnunit_price.VisibleIndex = 16
         Me.GridColumnunit_price.Width = 54
@@ -2376,6 +2396,7 @@ Partial Class FormFGStock
         Me.GridColumnunit_cost.FieldName = "unit_cost"
         Me.GridColumnunit_cost.Name = "GridColumnunit_cost"
         Me.GridColumnunit_cost.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumnunit_cost.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'GridColumnamount
         '
@@ -2384,6 +2405,7 @@ Partial Class FormFGStock
         Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnamount.FieldName = "amount"
         Me.GridColumnamount.Name = "GridColumnamount"
+        Me.GridColumnamount.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
         Me.GridColumnamount.Visible = True
         Me.GridColumnamount.VisibleIndex = 17
@@ -2396,6 +2418,7 @@ Partial Class FormFGStock
         Me.GridColumnamount_cost.FieldName = "amount_cost"
         Me.GridColumnamount_cost.Name = "GridColumnamount_cost"
         Me.GridColumnamount_cost.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumnamount_cost.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnamount_cost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_cost", "{0:N2}")})
         '
         'GridColumnnormal_price
@@ -2405,6 +2428,7 @@ Partial Class FormFGStock
         Me.GridColumnnormal_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnnormal_price.FieldName = "normal_price"
         Me.GridColumnnormal_price.Name = "GridColumnnormal_price"
+        Me.GridColumnnormal_price.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'GridColumnamount_normal
         '
@@ -2413,6 +2437,7 @@ Partial Class FormFGStock
         Me.GridColumnamount_normal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnamount_normal.FieldName = "amount_normal"
         Me.GridColumnamount_normal.Name = "GridColumnamount_normal"
+        Me.GridColumnamount_normal.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnamount_normal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_normal", "{0:N0}")})
         '
         'GridColumncomp_cat_name
@@ -2420,6 +2445,7 @@ Partial Class FormFGStock
         Me.GridColumncomp_cat_name.Caption = "Acc. Type"
         Me.GridColumncomp_cat_name.FieldName = "comp_cat_name"
         Me.GridColumncomp_cat_name.Name = "GridColumncomp_cat_name"
+        Me.GridColumncomp_cat_name.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumncomp_cat_name.Visible = True
         Me.GridColumncomp_cat_name.VisibleIndex = 9
         '
@@ -2428,6 +2454,7 @@ Partial Class FormFGStock
         Me.GridColumnprice_type.Caption = "Price Type"
         Me.GridColumnprice_type.FieldName = "price_type"
         Me.GridColumnprice_type.Name = "GridColumnprice_type"
+        Me.GridColumnprice_type.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnprice_type.Visible = True
         Me.GridColumnprice_type.VisibleIndex = 15
         '
@@ -2438,6 +2465,7 @@ Partial Class FormFGStock
         Me.GridColumndesign_first_rec_wh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumndesign_first_rec_wh.FieldName = "design_first_rec_wh"
         Me.GridColumndesign_first_rec_wh.Name = "GridColumndesign_first_rec_wh"
+        Me.GridColumndesign_first_rec_wh.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumndesign_first_rec_wh.Visible = True
         Me.GridColumndesign_first_rec_wh.VisibleIndex = 11
         '
@@ -2446,6 +2474,7 @@ Partial Class FormFGStock
         Me.GridColumnseason.Caption = "Season"
         Me.GridColumnseason.FieldName = "season"
         Me.GridColumnseason.Name = "GridColumnseason"
+        Me.GridColumnseason.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnseason.Visible = True
         Me.GridColumnseason.VisibleIndex = 5
         '
@@ -2454,6 +2483,7 @@ Partial Class FormFGStock
         Me.GridColumnrange.Caption = "Range"
         Me.GridColumnrange.FieldName = "range"
         Me.GridColumnrange.Name = "GridColumnrange"
+        Me.GridColumnrange.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'XTPByCodeSOH
         '
@@ -2501,6 +2531,7 @@ Partial Class FormFGStock
         Me.BandedGridColumncode.Caption = "Code"
         Me.BandedGridColumncode.FieldName = "code"
         Me.BandedGridColumncode.Name = "BandedGridColumncode"
+        Me.BandedGridColumncode.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumncode.Visible = True
         Me.BandedGridColumncode.Width = 77
         '
@@ -2509,6 +2540,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnname.Caption = "Description"
         Me.BandedGridColumnname.FieldName = "name"
         Me.BandedGridColumnname.Name = "BandedGridColumnname"
+        Me.BandedGridColumnname.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnname.Visible = True
         Me.BandedGridColumnname.Width = 164
         '
@@ -2531,6 +2563,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnclass.Caption = "Class"
         Me.BandedGridColumnclass.FieldName = "class"
         Me.BandedGridColumnclass.Name = "BandedGridColumnclass"
+        Me.BandedGridColumnclass.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnclass.Visible = True
         Me.BandedGridColumnclass.Width = 70
         '
@@ -2539,6 +2572,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnseason_code.Caption = "Season"
         Me.BandedGridColumnseason_code.FieldName = "season"
         Me.BandedGridColumnseason_code.Name = "BandedGridColumnseason_code"
+        Me.BandedGridColumnseason_code.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnseason_code.Visible = True
         '
         'BandedGridColumnstt
@@ -2546,6 +2580,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnstt.Caption = "Status"
         Me.BandedGridColumnstt.FieldName = "stt"
         Me.BandedGridColumnstt.Name = "BandedGridColumnstt"
+        Me.BandedGridColumnstt.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnstt.Visible = True
         Me.BandedGridColumnstt.Width = 59
         '
@@ -2554,6 +2589,7 @@ Partial Class FormFGStock
         Me.BandedGridColumncomp_number.Caption = "Account"
         Me.BandedGridColumncomp_number.FieldName = "comp_number"
         Me.BandedGridColumncomp_number.Name = "BandedGridColumncomp_number"
+        Me.BandedGridColumncomp_number.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumncomp_number.Visible = True
         Me.BandedGridColumncomp_number.Width = 65
         '
@@ -2562,6 +2598,7 @@ Partial Class FormFGStock
         Me.BandedGridColumncomp_name.Caption = "Acc Description"
         Me.BandedGridColumncomp_name.FieldName = "comp_name"
         Me.BandedGridColumncomp_name.Name = "BandedGridColumncomp_name"
+        Me.BandedGridColumncomp_name.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumncomp_name.Visible = True
         Me.BandedGridColumncomp_name.Width = 130
         '
@@ -2570,6 +2607,7 @@ Partial Class FormFGStock
         Me.BandedGridColumngroup_store.Caption = "Store Group"
         Me.BandedGridColumngroup_store.FieldName = "group_store"
         Me.BandedGridColumngroup_store.Name = "BandedGridColumngroup_store"
+        Me.BandedGridColumngroup_store.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumngroup_store.Visible = True
         Me.BandedGridColumngroup_store.Width = 73
         '
@@ -2580,6 +2618,7 @@ Partial Class FormFGStock
         Me.BandedGridColumndesign_first_rec_wh_code.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumndesign_first_rec_wh_code.FieldName = "design_first_rec_wh"
         Me.BandedGridColumndesign_first_rec_wh_code.Name = "BandedGridColumndesign_first_rec_wh_code"
+        Me.BandedGridColumndesign_first_rec_wh_code.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumndesign_first_rec_wh_code.Visible = True
         '
         'BandedGridColumnsize_type
@@ -2587,6 +2626,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnsize_type.Caption = "Sizetype"
         Me.BandedGridColumnsize_type.FieldName = "size_type"
         Me.BandedGridColumnsize_type.Name = "BandedGridColumnsize_type"
+        Me.BandedGridColumnsize_type.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnsize_type.Visible = True
         '
         'gridBand7
@@ -2614,6 +2654,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnavl_qty1.FieldName = "avl_qty1"
         Me.BandedGridColumnavl_qty1.Name = "BandedGridColumnavl_qty1"
+        Me.BandedGridColumnavl_qty1.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnavl_qty1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty1", "{0:N0}")})
         Me.BandedGridColumnavl_qty1.Visible = True
         '
@@ -2624,6 +2665,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnavl_qty2.FieldName = "avl_qty2"
         Me.BandedGridColumnavl_qty2.Name = "BandedGridColumnavl_qty2"
+        Me.BandedGridColumnavl_qty2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnavl_qty2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty2", "{0:N0}")})
         Me.BandedGridColumnavl_qty2.Visible = True
         '
@@ -2634,6 +2676,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnavl_qty3.FieldName = "avl_qty3"
         Me.BandedGridColumnavl_qty3.Name = "BandedGridColumnavl_qty3"
+        Me.BandedGridColumnavl_qty3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnavl_qty3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty3", "{0:N0}")})
         Me.BandedGridColumnavl_qty3.Visible = True
         '
@@ -2644,6 +2687,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnavl_qty4.FieldName = "avl_qty4"
         Me.BandedGridColumnavl_qty4.Name = "BandedGridColumnavl_qty4"
+        Me.BandedGridColumnavl_qty4.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnavl_qty4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty4", "{0:N0}")})
         Me.BandedGridColumnavl_qty4.Visible = True
         '
@@ -2654,6 +2698,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnavl_qty5.FieldName = "avl_qty5"
         Me.BandedGridColumnavl_qty5.Name = "BandedGridColumnavl_qty5"
+        Me.BandedGridColumnavl_qty5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnavl_qty5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty5", "{0:N0}")})
         Me.BandedGridColumnavl_qty5.Visible = True
         '
@@ -2664,6 +2709,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnavl_qty6.FieldName = "avl_qty6"
         Me.BandedGridColumnavl_qty6.Name = "BandedGridColumnavl_qty6"
+        Me.BandedGridColumnavl_qty6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnavl_qty6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty6", "{0:N0}")})
         Me.BandedGridColumnavl_qty6.Visible = True
         '
@@ -2674,6 +2720,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnavl_qty7.FieldName = "avl_qty7"
         Me.BandedGridColumnavl_qty7.Name = "BandedGridColumnavl_qty7"
+        Me.BandedGridColumnavl_qty7.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnavl_qty7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty7", "{0:N0}")})
         Me.BandedGridColumnavl_qty7.Visible = True
         '
@@ -2684,6 +2731,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnavl_qty8.FieldName = "avl_qty8"
         Me.BandedGridColumnavl_qty8.Name = "BandedGridColumnavl_qty8"
+        Me.BandedGridColumnavl_qty8.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnavl_qty8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty8", "{0:N0}")})
         Me.BandedGridColumnavl_qty8.Visible = True
         '
@@ -2694,6 +2742,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnavl_qty9.FieldName = "avl_qty9"
         Me.BandedGridColumnavl_qty9.Name = "BandedGridColumnavl_qty9"
+        Me.BandedGridColumnavl_qty9.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnavl_qty9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty9", "{0:N0}")})
         Me.BandedGridColumnavl_qty9.Visible = True
         '
@@ -2704,6 +2753,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty0.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnavl_qty0.FieldName = "avl_qty0"
         Me.BandedGridColumnavl_qty0.Name = "BandedGridColumnavl_qty0"
+        Me.BandedGridColumnavl_qty0.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnavl_qty0.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty0", "{0:N0}")})
         Me.BandedGridColumnavl_qty0.Visible = True
         '
@@ -2714,6 +2764,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnavl_qty.FieldName = "avl_qty"
         Me.BandedGridColumnavl_qty.Name = "BandedGridColumnavl_qty"
+        Me.BandedGridColumnavl_qty.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnavl_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty", "{0:N0}")})
         Me.BandedGridColumnavl_qty.Visible = True
         '
@@ -2742,6 +2793,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnrsv_qty1.FieldName = "rsv_qty1"
         Me.BandedGridColumnrsv_qty1.Name = "BandedGridColumnrsv_qty1"
+        Me.BandedGridColumnrsv_qty1.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty1", "{0:N0}")})
         Me.BandedGridColumnrsv_qty1.Visible = True
         '
@@ -2752,6 +2804,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnrsv_qty2.FieldName = "rsv_qty2"
         Me.BandedGridColumnrsv_qty2.Name = "BandedGridColumnrsv_qty2"
+        Me.BandedGridColumnrsv_qty2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty2", "{0:N0}")})
         Me.BandedGridColumnrsv_qty2.Visible = True
         '
@@ -2762,6 +2815,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnrsv_qty3.FieldName = "rsv_qty3"
         Me.BandedGridColumnrsv_qty3.Name = "BandedGridColumnrsv_qty3"
+        Me.BandedGridColumnrsv_qty3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty3", "{0:N0}")})
         Me.BandedGridColumnrsv_qty3.Visible = True
         '
@@ -2772,6 +2826,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnrsv_qty4.FieldName = "rsv_qty4"
         Me.BandedGridColumnrsv_qty4.Name = "BandedGridColumnrsv_qty4"
+        Me.BandedGridColumnrsv_qty4.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty4", "{0:N0}")})
         Me.BandedGridColumnrsv_qty4.Visible = True
         '
@@ -2782,6 +2837,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnrsv_qty5.FieldName = "rsv_qty5"
         Me.BandedGridColumnrsv_qty5.Name = "BandedGridColumnrsv_qty5"
+        Me.BandedGridColumnrsv_qty5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty5", "{0:N0}")})
         Me.BandedGridColumnrsv_qty5.Visible = True
         '
@@ -2792,6 +2848,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnrsv_qty6.FieldName = "rsv_qty6"
         Me.BandedGridColumnrsv_qty6.Name = "BandedGridColumnrsv_qty6"
+        Me.BandedGridColumnrsv_qty6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty6", "{0:N0}")})
         Me.BandedGridColumnrsv_qty6.Visible = True
         '
@@ -2802,6 +2859,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnrsv_qty7.FieldName = "rsv_qty7"
         Me.BandedGridColumnrsv_qty7.Name = "BandedGridColumnrsv_qty7"
+        Me.BandedGridColumnrsv_qty7.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty7", "{0:N0}")})
         Me.BandedGridColumnrsv_qty7.Visible = True
         '
@@ -2812,6 +2870,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnrsv_qty8.FieldName = "rsv_qty8"
         Me.BandedGridColumnrsv_qty8.Name = "BandedGridColumnrsv_qty8"
+        Me.BandedGridColumnrsv_qty8.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty8", "{0:N0}")})
         Me.BandedGridColumnrsv_qty8.Visible = True
         '
@@ -2822,6 +2881,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnrsv_qty9.FieldName = "rsv_qty9"
         Me.BandedGridColumnrsv_qty9.Name = "BandedGridColumnrsv_qty9"
+        Me.BandedGridColumnrsv_qty9.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty9", "{0:N0}")})
         Me.BandedGridColumnrsv_qty9.Visible = True
         '
@@ -2832,6 +2892,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty0.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnrsv_qty0.FieldName = "rsv_qty0"
         Me.BandedGridColumnrsv_qty0.Name = "BandedGridColumnrsv_qty0"
+        Me.BandedGridColumnrsv_qty0.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty0.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty0", "{0:N0}")})
         Me.BandedGridColumnrsv_qty0.Visible = True
         '
@@ -2842,6 +2903,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnrsv_qty.FieldName = "rsv_qty"
         Me.BandedGridColumnrsv_qty.Name = "BandedGridColumnrsv_qty"
+        Me.BandedGridColumnrsv_qty.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty", "{0:N0}")})
         Me.BandedGridColumnrsv_qty.Visible = True
         '
@@ -2873,6 +2935,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnttl_qty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnttl_qty1.FieldName = "ttl_qty1"
         Me.BandedGridColumnttl_qty1.Name = "BandedGridColumnttl_qty1"
+        Me.BandedGridColumnttl_qty1.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnttl_qty1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty1", "{0:N0}")})
         Me.BandedGridColumnttl_qty1.Visible = True
         '
@@ -2883,6 +2946,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnttl_qty2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnttl_qty2.FieldName = "ttl_qty2"
         Me.BandedGridColumnttl_qty2.Name = "BandedGridColumnttl_qty2"
+        Me.BandedGridColumnttl_qty2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnttl_qty2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty2", "{0:N0}")})
         Me.BandedGridColumnttl_qty2.Visible = True
         '
@@ -2893,6 +2957,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnttl_qty3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnttl_qty3.FieldName = "ttl_qty3"
         Me.BandedGridColumnttl_qty3.Name = "BandedGridColumnttl_qty3"
+        Me.BandedGridColumnttl_qty3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnttl_qty3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty3", "{0:N0}")})
         Me.BandedGridColumnttl_qty3.Visible = True
         '
@@ -2903,6 +2968,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnttl_qty4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnttl_qty4.FieldName = "ttl_qty4"
         Me.BandedGridColumnttl_qty4.Name = "BandedGridColumnttl_qty4"
+        Me.BandedGridColumnttl_qty4.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnttl_qty4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty4", "{0:N0}")})
         Me.BandedGridColumnttl_qty4.Visible = True
         '
@@ -2913,6 +2979,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnttl_qty5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnttl_qty5.FieldName = "ttl_qty5"
         Me.BandedGridColumnttl_qty5.Name = "BandedGridColumnttl_qty5"
+        Me.BandedGridColumnttl_qty5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnttl_qty5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty5", "{0:N0}")})
         Me.BandedGridColumnttl_qty5.Visible = True
         '
@@ -2923,6 +2990,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnttl_qty6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnttl_qty6.FieldName = "ttl_qty6"
         Me.BandedGridColumnttl_qty6.Name = "BandedGridColumnttl_qty6"
+        Me.BandedGridColumnttl_qty6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnttl_qty6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty6", "{0:N0}")})
         Me.BandedGridColumnttl_qty6.Visible = True
         '
@@ -2933,6 +3001,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnttl_qty7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnttl_qty7.FieldName = "ttl_qty7"
         Me.BandedGridColumnttl_qty7.Name = "BandedGridColumnttl_qty7"
+        Me.BandedGridColumnttl_qty7.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnttl_qty7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty7", "{0:N0}")})
         Me.BandedGridColumnttl_qty7.Visible = True
         '
@@ -2943,6 +3012,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnttl_qty8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnttl_qty8.FieldName = "ttl_qty8"
         Me.BandedGridColumnttl_qty8.Name = "BandedGridColumnttl_qty8"
+        Me.BandedGridColumnttl_qty8.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnttl_qty8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty8", "{0:N0}")})
         Me.BandedGridColumnttl_qty8.Visible = True
         '
@@ -2953,6 +3023,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnttl_qty9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnttl_qty9.FieldName = "ttl_qty9"
         Me.BandedGridColumnttl_qty9.Name = "BandedGridColumnttl_qty9"
+        Me.BandedGridColumnttl_qty9.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnttl_qty9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty9", "{0:N0}")})
         Me.BandedGridColumnttl_qty9.Visible = True
         '
@@ -2963,6 +3034,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnttl_qty0.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnttl_qty0.FieldName = "ttl_qty0"
         Me.BandedGridColumnttl_qty0.Name = "BandedGridColumnttl_qty0"
+        Me.BandedGridColumnttl_qty0.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnttl_qty0.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty0", "{0:N0}")})
         Me.BandedGridColumnttl_qty0.Visible = True
         '
@@ -2973,6 +3045,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnttl_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnttl_qty.FieldName = "ttl_qty"
         Me.BandedGridColumnttl_qty.Name = "BandedGridColumnttl_qty"
+        Me.BandedGridColumnttl_qty.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnttl_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty", "{0:N0}")})
         Me.BandedGridColumnttl_qty.Visible = True
         '
@@ -2981,6 +3054,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnprice_type.Caption = "Price Type"
         Me.BandedGridColumnprice_type.FieldName = "price_type"
         Me.BandedGridColumnprice_type.Name = "BandedGridColumnprice_type"
+        Me.BandedGridColumnprice_type.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnprice_type.Visible = True
         '
         'BandedGridColumnunit_price
@@ -2990,6 +3064,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnunit_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnunit_price.FieldName = "unit_price"
         Me.BandedGridColumnunit_price.Name = "BandedGridColumnunit_price"
+        Me.BandedGridColumnunit_price.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnunit_price.Visible = True
         '
         'BandedGridColumnamount
@@ -2999,6 +3074,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnamount.FieldName = "amount"
         Me.BandedGridColumnamount.Name = "BandedGridColumnamount"
+        Me.BandedGridColumnamount.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
         Me.BandedGridColumnamount.Visible = True
         '
@@ -3007,36 +3083,42 @@ Partial Class FormFGStock
         Me.BandedGridColumnid_design.Caption = "id_design"
         Me.BandedGridColumnid_design.FieldName = "id_design"
         Me.BandedGridColumnid_design.Name = "BandedGridColumnid_design"
+        Me.BandedGridColumnid_design.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'BandedGridColumnid_class
         '
         Me.BandedGridColumnid_class.Caption = "id_class"
         Me.BandedGridColumnid_class.FieldName = "id_class"
         Me.BandedGridColumnid_class.Name = "BandedGridColumnid_class"
+        Me.BandedGridColumnid_class.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'BandedGridColumnid_design_cat
         '
         Me.BandedGridColumnid_design_cat.Caption = "id_design_cat"
         Me.BandedGridColumnid_design_cat.FieldName = "id_design_cat"
         Me.BandedGridColumnid_design_cat.Name = "BandedGridColumnid_design_cat"
+        Me.BandedGridColumnid_design_cat.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'BandedGridColumndesign_cat
         '
         Me.BandedGridColumndesign_cat.Caption = "design_cat"
         Me.BandedGridColumndesign_cat.FieldName = "design_cat"
         Me.BandedGridColumndesign_cat.Name = "BandedGridColumndesign_cat"
+        Me.BandedGridColumndesign_cat.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'BandedGridColumnid_comp
         '
         Me.BandedGridColumnid_comp.Caption = "id_comp"
         Me.BandedGridColumnid_comp.FieldName = "id_comp"
         Me.BandedGridColumnid_comp.Name = "BandedGridColumnid_comp"
+        Me.BandedGridColumnid_comp.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'BandedGridColumngroup_store_desc
         '
         Me.BandedGridColumngroup_store_desc.Caption = "Store Group Desc"
         Me.BandedGridColumngroup_store_desc.FieldName = "group_store_desc"
         Me.BandedGridColumngroup_store_desc.Name = "BandedGridColumngroup_store_desc"
+        Me.BandedGridColumngroup_store_desc.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'BandedGridColumnnormal_price
         '
@@ -3045,6 +3127,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnnormal_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnnormal_price.FieldName = "normal_price"
         Me.BandedGridColumnnormal_price.Name = "BandedGridColumnnormal_price"
+        Me.BandedGridColumnnormal_price.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnnormal_price.Visible = True
         '
         'BandedGridColumnunit_cost
@@ -3055,6 +3138,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnunit_cost.FieldName = "unit_cost"
         Me.BandedGridColumnunit_cost.Name = "BandedGridColumnunit_cost"
         Me.BandedGridColumnunit_cost.OptionsColumn.ShowInCustomizationForm = False
+        Me.BandedGridColumnunit_cost.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'BandedGridColumnamount_normal
         '
@@ -3063,6 +3147,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnamount_normal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnamount_normal.FieldName = "amount_normal"
         Me.BandedGridColumnamount_normal.Name = "BandedGridColumnamount_normal"
+        Me.BandedGridColumnamount_normal.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnamount_normal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_normal", "{0:N0}")})
         '
         'BandedGridColumnamount_cost
@@ -3073,6 +3158,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnamount_cost.FieldName = "amount_cost"
         Me.BandedGridColumnamount_cost.Name = "BandedGridColumnamount_cost"
         Me.BandedGridColumnamount_cost.OptionsColumn.ShowInCustomizationForm = False
+        Me.BandedGridColumnamount_cost.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnamount_cost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_cost", "{0:N2}")})
         '
         'BandedGridColumnrange_code
@@ -3080,6 +3166,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrange_code.Caption = "Range"
         Me.BandedGridColumnrange_code.FieldName = "range"
         Me.BandedGridColumnrange_code.Name = "BandedGridColumnrange_code"
+        Me.BandedGridColumnrange_code.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrange_code.Visible = True
         '
         'BtnShowFilter
