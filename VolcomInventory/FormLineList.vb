@@ -563,4 +563,12 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
     Private Sub SLEMechType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEMechType.EditValueChanged
         viewSeason()
     End Sub
+
+    Private Sub GVData_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVData.RowCellStyle
+        If GVData.RowCount > 0 Then
+            If GVData.GetRowCellValue(e.RowHandle, "id_design_type").ToString = "2" Then
+                e.Appearance.BackColor = Color.SkyBlue
+            End If
+        End If
+    End Sub
 End Class

@@ -1687,4 +1687,20 @@
     Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
 
     End Sub
+
+    Private Sub GVSOH_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVSOH.RowCellStyle
+        If GVSOH.RowCount > 0 Then
+            If GVSOH.GetRowCellValue(e.RowHandle, "id_design_type").ToString = "2" Then
+                e.Appearance.BackColor = Color.SkyBlue
+            End If
+        End If
+    End Sub
+
+    Private Sub GVSOHCode_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVSOHCode.RowCellStyle
+        If GVSOHCode.RowCount > 0 Then
+            If GVSOHCode.GetRowCellValue(e.RowHandle, "id_design_type").ToString = "2" Then
+                e.Appearance.BackColor = Color.SkyBlue
+            End If
+        End If
+    End Sub
 End Class

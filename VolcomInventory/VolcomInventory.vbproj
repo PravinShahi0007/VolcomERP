@@ -2938,6 +2938,18 @@
     <Compile Include="FormMasterEmployeeTrainingDoc.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterItemStockCard.Designer.vb">
+      <DependentUpon>FormMasterItemStockCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterItemStockCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterItemStockCardDet.Designer.vb">
+      <DependentUpon>FormMasterItemStockCardDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterItemStockCardDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterPrice.Designer.vb">
       <DependentUpon>FormMasterPrice.vb</DependentUpon>
     </Compile>
@@ -10651,6 +10663,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeeTrainingDoc.resx">
       <DependentUpon>FormMasterEmployeeTrainingDoc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterItemStockCard.resx">
+      <DependentUpon>FormMasterItemStockCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterItemStockCardDet.resx">
+      <DependentUpon>FormMasterItemStockCardDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterPrice.resx">
       <DependentUpon>FormMasterPrice.vb</DependentUpon>
