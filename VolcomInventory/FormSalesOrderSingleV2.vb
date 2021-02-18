@@ -222,4 +222,12 @@
         GVProdList.RefreshData()
         LabelTotal.Text = GVProdList.Columns("total_order").SummaryItem.SummaryValue.ToString
     End Sub
+
+    Private Sub GVProdList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVProdList.RowCellStyle
+        If GVProdList.RowCount > 0 Then
+            If GVProdList.GetRowCellValue(id_comp_user, "id_design_type").ToString = "2" Then
+                e.Appearance.BackColor = Color.SkyBlue
+            End If
+        End If
+    End Sub
 End Class
