@@ -4042,6 +4042,18 @@
     <Compile Include="FormReportBalanceTaxSummaryDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormReportBalanceTaxSummaryPpn.Designer.vb">
+      <DependentUpon>FormReportBalanceTaxSummaryPpn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportBalanceTaxSummaryPpn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportBalanceTaxSummaryPpnDet.Designer.vb">
+      <DependentUpon>FormReportBalanceTaxSummaryPpnDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportBalanceTaxSummaryPpnDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormReportBudget.Designer.vb">
       <DependentUpon>FormReportBudget.vb</DependentUpon>
     </Compile>
@@ -11216,6 +11228,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportBalanceTaxSummaryDet.resx">
       <DependentUpon>FormReportBalanceTaxSummaryDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportBalanceTaxSummaryPpn.resx">
+      <DependentUpon>FormReportBalanceTaxSummaryPpn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportBalanceTaxSummaryPpnDet.resx">
+      <DependentUpon>FormReportBalanceTaxSummaryPpnDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportBudget.resx">
       <DependentUpon>FormReportBudget.vb</DependentUpon>

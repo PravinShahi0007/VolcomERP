@@ -653,6 +653,9 @@
         ElseIf report_mark_type = "289" Then
             'Asset In Out
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_item_card_trs WHERE id_item_card_trs = '{0}'", id_report)
+        ElseIf report_mark_type = "293" Then
+            'Summary Tax Report
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_tax_ppn_summary WHERE id_summary = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -9390,6 +9393,15 @@ WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=2 GROUP BY itd.id_i
 
             'update status
             query = String.Format("UPDATE tb_item_card_trs SET id_report_status='{0}' WHERE id_item_card_trs ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "293" Then
+            'summary tax
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_tax_ppn_summary SET id_report_status='{0}' WHERE id_summary ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
