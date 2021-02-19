@@ -1498,7 +1498,7 @@
         'actual workdays
         Dim where_actual_workdays As String = "
             -- actual workdays
-            SELECT s.id_employee, IF(e.employee_last_date BETWEEN IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")), COUNT(*), d.total_workdays) AS actual_workdays
+            SELECT s.id_employee, IF(e.employee_last_date BETWEEN IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")), COUNT(*), IF(e.employee_actual_join_date BETWEEN IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")), COUNT(*), d.total_workdays)) AS actual_workdays
             FROM tb_emp_schedule AS s
             LEFT JOIN tb_m_employee AS e
                 ON s.id_employee = e.id_employee
@@ -1614,14 +1614,14 @@
                             End If
                         End If
 
-                        'If data.Rows(i)("actual_workdays").ToString <> GVPayroll.GetRowCellValue(j, "actual_workdays").ToString Then
-                        '    'update actual workdays
-                        '    Dim q_actual_workdays As String = "
-                        '        UPDATE tb_emp_payroll_det SET actual_workdays = " + data.Rows(i)("actual_workdays").ToString + " WHERE id_employee = " + data.Rows(i)("id_employee").ToString + " AND id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString +
-                        '    ""
+                        If data.Rows(i)("actual_workdays").ToString <> GVPayroll.GetRowCellValue(j, "actual_workdays").ToString Then
+                            'update actual workdays
+                            Dim q_actual_workdays As String = "
+                                UPDATE tb_emp_payroll_det SET actual_workdays = " + data.Rows(i)("actual_workdays").ToString + " WHERE id_employee = " + data.Rows(i)("id_employee").ToString + " AND id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString +
+                            ""
 
-                        '    execute_non_query(q_actual_workdays, True, "", "", "", "")
-                        'End If
+                            execute_non_query(q_actual_workdays, True, "", "", "", "")
+                        End If
 
                         already = True
                     End If
