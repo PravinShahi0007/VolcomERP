@@ -62,6 +62,11 @@
             LabelInvoice.Visible = True
             TxtInvoice.Visible = True
             TxtCodeCompFrom.Focus()
+        ElseIf id_menu = "6" Then
+            Text = "Cancellation CN"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Visible = False
         End If
 
         actionLoad()
@@ -186,6 +191,8 @@
             report_mark_type = "117"
         ElseIf id_memo_type = "9" Then 'invoice diff margin
             report_mark_type = "183"
+        ElseIf id_memo_type = "10" Then 'invoice diff margin
+            report_mark_type = "292"
         End If
         LEInvType.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
         TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString

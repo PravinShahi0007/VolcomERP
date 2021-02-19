@@ -285,6 +285,7 @@
     <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassMailManage.vb" />
     <Compile Include="ClassMailManageReturn.vb" />
+    <Compile Include="ClassOLReturnRefuse.vb" />
     <Compile Include="ClassOLStore.vb" />
     <Compile Include="ClassOLStoreRefund.vb" />
     <Compile Include="ClassOwnMenu.vb" />
@@ -3086,6 +3087,12 @@
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOLReturnRefuse.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLReturnRefuseDet.Designer.vb">
+      <DependentUpon>FormOLReturnRefuseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLReturnRefuseDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOLStore.Designer.vb">
@@ -6826,6 +6833,12 @@
     <Compile Include="FormStockCardDept.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockCardPickPR.Designer.vb">
+      <DependentUpon>FormStockCardPickPR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockCardPickPR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockQC.Designer.vb">
       <DependentUpon>FormStockQC.vb</DependentUpon>
     </Compile>
@@ -8549,6 +8562,12 @@
       <DependentUpon>ReportODMScan.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportODMScan.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportOLReturnRefuse.Designer.vb">
+      <DependentUpon>ReportOLReturnRefuse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportOLReturnRefuse.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportOlStoreRetCust.Designer.vb">
@@ -10753,6 +10772,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormODM.resx">
       <DependentUpon>FormODM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLReturnRefuse.resx">
+      <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLReturnRefuseDet.resx">
+      <DependentUpon>FormOLReturnRefuseDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStore.resx">
       <DependentUpon>FormOLStore.vb</DependentUpon>
@@ -12966,6 +12991,9 @@
     <EmbeddedResource Include="FormStockCardDept.resx">
       <DependentUpon>FormStockCardDept.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStockCardPickPR.resx">
+      <DependentUpon>FormStockCardPickPR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStockQC.resx">
       <DependentUpon>FormStockQC.vb</DependentUpon>
     </EmbeddedResource>
@@ -13937,6 +13965,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportODMScan.resx">
       <DependentUpon>ReportODMScan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportOLReturnRefuse.resx">
+      <DependentUpon>ReportOLReturnRefuse.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOlStoreRetCust.resx">
       <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
