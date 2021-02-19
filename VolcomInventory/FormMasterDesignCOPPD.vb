@@ -523,6 +523,10 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & id_design & "'"
                     Catch ex As Exception
                         execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
                     End Try
+                    '
+                    warningCustom("ECOP PD Lock complete")
+                    '
+                    load_form()
                 End If
             ElseIf BLock.Text = "Reset" Then
                 'reset
@@ -556,6 +560,10 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & id_design & "'"
                     Catch ex As Exception
                         execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send reset ECOP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
                     End Try
+                    '
+                    warningCustom("ECOP PD Reset complete")
+                    '
+                    load_form()
                 End If
             End If
         End If

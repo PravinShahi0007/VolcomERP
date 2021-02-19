@@ -19,10 +19,39 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        Dim nm As New ClassSendEmail
-        nm.par1 = "5632"
-        nm.report_mark_type = "291"
-        nm.send_email()
+        'stock card for listed
+        Dim qi As String = ""
+        Dim qsi As String = ""
+
+        'stock card
+        qsi = "SELECT prd.id_purc_rec,prd.id_purc_rec_det,'148' AS report_mark_type,req.id_departement,reqd.id_item,reqd.item_detail,reqd.remark,SUM(prd.qty) AS qty,reqd.id_item
+FROM tb_purc_rec_det prd
+INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=prd.`id_purc_order_det`
+INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req_det`=pod.`id_purc_req_det`
+INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req`
+INNER JOIN tb_item it ON it.id_item=reqd.id_item AND reqd.is_dep_stock_card=1
+WHERE prd.`id_purc_rec`='631'
+GROUP BY prd.id_purc_rec_det,reqd.`id_item`,reqd.item_detail,reqd.remark"
+        Dim dtsi As DataTable = execute_query(qsi, -1, True, "", "", "", "")
+        For i As Integer = 0 To dtsi.Rows.Count - 1
+            Dim id_item_detail As String = ""
+            'insert ignore
+            qi = "SELECT id_item_detail FROM tb_stock_card_dep_item WHERE `id_item`='" & dtsi.Rows(i)("id_item").ToString & "' AND `item_detail`='" & addSlashes(dtsi.Rows(i)("item_detail").ToString) & "' AND `remark`='" & addSlashes(dtsi.Rows(i)("remark").ToString) & "'"
+            Dim dti As DataTable = execute_query(qi, -1, True, "", "", "", "")
+
+            If dti.Rows.Count > 0 Then
+                id_item_detail = dti.Rows(0)("id_item_detail").ToString
+            Else
+                qi = "INSERT INTO tb_stock_card_dep_item(`id_item`,`item_detail`,`remark`)
+VALUES('" & dtsi.Rows(i)("id_item").ToString & "','" & addSlashes(dtsi.Rows(i)("item_detail").ToString) & "','" & addSlashes(dtsi.Rows(i)("remark").ToString) & "'); SELECT LAST_INSERT_ID();"
+                id_item_detail = execute_query(qi, 0, True, "", "", "", "")
+            End If
+
+            'insert qty
+            qi = "INSERT INTO `tb_stock_card_dep`(`id_departement`,`id_item_detail`,`id_report`,`id_report_det`,`report_mark_type`,`qty`,storage_item_datetime)
+VALUES('" & dtsi.Rows(i)("id_departement").ToString & "','" & id_item_detail & "','" & dtsi.Rows(i)("id_purc_rec").ToString & "','" & dtsi.Rows(i)("id_purc_rec_det").ToString & "','" & dtsi.Rows(i)("report_mark_type").ToString & "','" & decimalSQL(Decimal.Parse(dtsi.Rows(i)("qty").ToString)) & "',NOW())"
+            execute_non_query(qi, True, "", "", "", "")
+        Next
 
         'gen stiker
         '        Dim q As String = "SELECT so.sales_order_ol_shop_number 

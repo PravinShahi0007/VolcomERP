@@ -6826,6 +6826,12 @@
     <Compile Include="FormStockCardDept.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockCardPickPR.Designer.vb">
+      <DependentUpon>FormStockCardPickPR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockCardPickPR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockQC.Designer.vb">
       <DependentUpon>FormStockQC.vb</DependentUpon>
     </Compile>
@@ -12965,6 +12971,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockCardDept.resx">
       <DependentUpon>FormStockCardDept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockCardPickPR.resx">
+      <DependentUpon>FormStockCardPickPR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockQC.resx">
       <DependentUpon>FormStockQC.vb</DependentUpon>
