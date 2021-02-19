@@ -76,12 +76,14 @@ Partial Class FormPurcReqDet
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -100,6 +102,8 @@ Partial Class FormPurcReqDet
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEFixedAssetGrid = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnStockCard = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
@@ -121,8 +125,6 @@ Partial Class FormPurcReqDet
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BSetShipping = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,6 +158,7 @@ Partial Class FormPurcReqDet
         CType(Me.RISLEShipTo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEFixedAssetGrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
@@ -590,7 +593,7 @@ Partial Class FormPurcReqDet
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
-        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem, Me.RISLEShipTo, Me.RICEFixedAssetGrid})
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem, Me.RISLEShipTo, Me.RICEFixedAssetGrid, Me.RepositoryItemCheckEdit1})
         Me.GCItemList.Size = New System.Drawing.Size(955, 180)
         Me.GCItemList.TabIndex = 3
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
@@ -599,7 +602,7 @@ Partial Class FormPurcReqDet
         '
         Me.GVItemList.AppearancePrint.Row.Options.UseTextOptions = True
         Me.GVItemList.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn34, Me.GridColumn6, Me.GridColumn21, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumn20, Me.GridColumnRemark, Me.GridColumn31, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GridColumnUOM, Me.GridColumn13, Me.GridColumn3, Me.GridColumn14, Me.GridColumn17, Me.GridColumn28, Me.GridColumn15, Me.GridColumn30})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn34, Me.GridColumn6, Me.GridColumn21, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumn20, Me.GridColumnRemark, Me.GridColumn31, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GridColumnUOM, Me.GridColumn13, Me.GridColumn3, Me.GridColumn14, Me.GridColumn17, Me.GridColumn28, Me.GridColumn15, Me.GridColumn30, Me.GridColumnStockCard})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Nothing, "{0:N2}")})
         Me.GVItemList.Name = "GVItemList"
@@ -755,6 +758,15 @@ Partial Class FormPurcReqDet
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 1
         '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Default Description"
+        Me.GridColumn35.FieldName = "def_desc"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 2
+        Me.GridColumn35.Width = 120
+        '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "UOM"
@@ -809,6 +821,15 @@ Partial Class FormPurcReqDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 3
         Me.GridColumn20.Width = 219
+        '
+        'GridColumnRemark
+        '
+        Me.GridColumnRemark.Caption = "Remark"
+        Me.GridColumnRemark.FieldName = "remark"
+        Me.GridColumnRemark.Name = "GridColumnRemark"
+        Me.GridColumnRemark.Visible = True
+        Me.GridColumnRemark.VisibleIndex = 4
+        Me.GridColumnRemark.Width = 102
         '
         'GridColumn31
         '
@@ -998,6 +1019,20 @@ Partial Class FormPurcReqDet
         Me.RICEFixedAssetGrid.Name = "RICEFixedAssetGrid"
         Me.RICEFixedAssetGrid.ValueChecked = "yes"
         Me.RICEFixedAssetGrid.ValueUnchecked = "no"
+        '
+        'GridColumnStockCard
+        '
+        Me.GridColumnStockCard.Caption = "List To Stock Card"
+        Me.GridColumnStockCard.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnStockCard.FieldName = "is_listed"
+        Me.GridColumnStockCard.Name = "GridColumnStockCard"
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
         'RepositoryItemSpinEdit1
         '
@@ -1222,24 +1257,6 @@ Partial Class FormPurcReqDet
         Me.BSetShipping.TabStop = False
         Me.BSetShipping.Text = "Set blank shipping destination to Volcom"
         '
-        'GridColumn35
-        '
-        Me.GridColumn35.Caption = "Default Description"
-        Me.GridColumn35.FieldName = "def_desc"
-        Me.GridColumn35.Name = "GridColumn35"
-        Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 2
-        Me.GridColumn35.Width = 120
-        '
-        'GridColumnRemark
-        '
-        Me.GridColumnRemark.Caption = "Remark"
-        Me.GridColumnRemark.FieldName = "remark"
-        Me.GridColumnRemark.Name = "GridColumnRemark"
-        Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 4
-        Me.GridColumnRemark.Width = 102
-        '
         'FormPurcReqDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1293,6 +1310,7 @@ Partial Class FormPurcReqDet
         CType(Me.RISLEShipTo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEFixedAssetGrid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
@@ -1419,4 +1437,6 @@ Partial Class FormPurcReqDet
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStockCard As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

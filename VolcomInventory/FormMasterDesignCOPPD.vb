@@ -18,7 +18,13 @@
         viewSearchLookupQuery(SLECoolStorage, q, "id_cool_storage", "cool_storage", "id_cool_storage")
     End Sub
 
+    Sub load_coo()
+        Dim q As String = "SELECT id_country,country FROM tb_m_country"
+        viewSearchLookupQuery(SLECOO, q, "id_country", "country", "id_country")
+    End Sub
+
     Sub load_form()
+        load_coo()
         view_currency_grid()
         load_cool_storage()
 
@@ -44,14 +50,18 @@
         TEVendor.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_number_pd").ToString
         TEVendorName.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_name_pd").ToString
         TEKurs.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
+        MEECOPNote.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("cop_pd_note").ToString
+        SLECOO.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("coo").ToString
         '
         TEEcop.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd") - FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
         TEAdditionalCost.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
         '
         If TEEcop.EditValue > 0 Then
             BLock.Text = "Reset"
+            BUpdateCOP.Visible = False
         Else
             BLock.Text = "Lock"
+            BUpdateCOP.Visible = True
         End If
         '
         SLECoolStorage.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("is_cold_storage").ToString
@@ -419,7 +429,7 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
                 'query += String.Format(";UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor={3},prod_order_cop_pd_curr='{4}',prod_order_cop_pd_addcost='{5}' WHERE id_design='{0}'", id_design, decimalSQL((cop_non_additional + additional).ToString), decimalSQL(TETodayKurs.EditValue.ToString), id_c, curr, decimalSQL(additional.ToString))
                 'execute_non_query(query, True, "", "", "", "")
                 '
-                query += String.Format(";UPDATE tb_m_design SET prod_order_cop_kurs_pd='{1}',prod_order_cop_pd_vendor={2},prod_order_cop_pd_curr='{3}' WHERE id_design='{0}'", id_design, decimalSQL(TETodayKurs.EditValue.ToString), id_c, curr)
+                query += String.Format(";UPDATE tb_m_design SET prod_order_cop_kurs_pd='{1}',prod_order_cop_pd_vendor={2},prod_order_cop_pd_curr='{3}',cop_pd_note='{4}',coo='{5}' WHERE id_design='{0}'", id_design, decimalSQL(TETodayKurs.EditValue.ToString), id_c, curr, addSlashes(MEECOPNote.Text), SLECOO.EditValue.ToString)
                 execute_non_query(query, True, "", "", "", "")
                 '
                 If is_insert_cool_storage = "1" Then
@@ -465,7 +475,7 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
     End Sub
 
     Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
-        If Not id_role_login = get_opt_prod_field("id_role_prod_manager") Then
+        If Not id_user = get_opt_prod_field("id_user_ast_mngr_prod") Then
             stopCustom("You have no right to do this.")
         Else
             If BLock.Text = "Lock" Then

@@ -19,7 +19,6 @@ Partial Class FormReportBalanceSheet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.PCFilterUpper = New DevExpress.XtraEditors.PanelControl()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -127,7 +126,7 @@ Partial Class FormReportBalanceSheet
         Me.XTPTaxDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPendingLapor = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTaxReport = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewJournalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVTaxReport = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -220,6 +219,7 @@ Partial Class FormReportBalanceSheet
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.DETaxUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.SBSummaryPpn = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PCFilterUpper, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterUpper.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2043,6 +2043,7 @@ Partial Class FormReportBalanceSheet
         '
         'XtraScrollableControl1
         '
+        Me.XtraScrollableControl1.Controls.Add(Me.SBSummaryPpn)
         Me.XtraScrollableControl1.Controls.Add(Me.SBSetup)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl4)
         Me.XtraScrollableControl1.Controls.Add(Me.SBSummary)
@@ -2083,7 +2084,7 @@ Partial Class FormReportBalanceSheet
         Me.SBSummary.Name = "SBSummary"
         Me.SBSummary.Size = New System.Drawing.Size(79, 23)
         Me.SBSummary.TabIndex = 13
-        Me.SBSummary.Text = "summary"
+        Me.SBSummary.Text = "summary pph"
         '
         'DETaxFrom
         '
@@ -2229,6 +2230,14 @@ Partial Class FormReportBalanceSheet
         Me.DETaxUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DETaxUntil.Size = New System.Drawing.Size(173, 20)
         Me.DETaxUntil.TabIndex = 8
+        '
+        'SBSummaryPpn
+        '
+        Me.SBSummaryPpn.Location = New System.Drawing.Point(1064, 12)
+        Me.SBSummaryPpn.Name = "SBSummaryPpn"
+        Me.SBSummaryPpn.Size = New System.Drawing.Size(79, 23)
+        Me.SBSummaryPpn.TabIndex = 15
+        Me.SBSummaryPpn.Text = "summary ppn"
         '
         'FormReportBalanceSheet
         '
@@ -2519,4 +2528,5 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents SBSummary As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
     Friend WithEvents SBSetup As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBSummaryPpn As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormReportBalanceTaxSummary
+Partial Class FormReportBalanceTaxSummaryPpn
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -19,9 +19,7 @@ Partial Class FormReportBalanceTaxSummary
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormReportBalanceTaxSummary))
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBNewSummary = New DevExpress.XtraEditors.SimpleButton()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormReportBalanceTaxSummaryPpn))
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -31,30 +29,13 @@ Partial Class FormReportBalanceTaxSummary
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBNewSummary = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.SBNewSummary)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 49)
-        Me.PanelControl1.TabIndex = 0
-        '
-        'SBNewSummary
-        '
-        Me.SBNewSummary.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBNewSummary.Image = CType(resources.GetObject("SBNewSummary.Image"), System.Drawing.Image)
-        Me.SBNewSummary.Location = New System.Drawing.Point(650, 2)
-        Me.SBNewSummary.Name = "SBNewSummary"
-        Me.SBNewSummary.Size = New System.Drawing.Size(132, 45)
-        Me.SBNewSummary.TabIndex = 0
-        Me.SBNewSummary.Text = "New Summary"
         '
         'GCSummary
         '
@@ -63,7 +44,7 @@ Partial Class FormReportBalanceTaxSummary
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
         Me.GCSummary.Size = New System.Drawing.Size(784, 512)
-        Me.GCSummary.TabIndex = 2
+        Me.GCSummary.TabIndex = 4
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
         'GVSummary
@@ -127,29 +108,45 @@ Partial Class FormReportBalanceTaxSummary
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 5
         '
-        'FormReportBalanceTaxSummary
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.SBNewSummary)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 49)
+        Me.PanelControl1.TabIndex = 3
+        '
+        'SBNewSummary
+        '
+        Me.SBNewSummary.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBNewSummary.Image = CType(resources.GetObject("SBNewSummary.Image"), System.Drawing.Image)
+        Me.SBNewSummary.Location = New System.Drawing.Point(650, 2)
+        Me.SBNewSummary.Name = "SBNewSummary"
+        Me.SBNewSummary.Size = New System.Drawing.Size(132, 45)
+        Me.SBNewSummary.TabIndex = 0
+        Me.SBNewSummary.Text = "New Summary"
+        '
+        'FormReportBalanceTaxSummaryPpn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.GCSummary)
         Me.Controls.Add(Me.PanelControl1)
-        Me.MinimizeBox = False
-        Me.Name = "FormReportBalanceTaxSummary"
+        Me.Name = "FormReportBalanceTaxSummaryPpn"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Tax Summary PPH"
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
+        Me.Text = "Tax Summary PPN"
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents SBNewSummary As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
@@ -157,4 +154,6 @@ Partial Class FormReportBalanceTaxSummary
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBNewSummary As DevExpress.XtraEditors.SimpleButton
 End Class

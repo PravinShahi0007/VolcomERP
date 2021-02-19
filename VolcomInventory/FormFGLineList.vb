@@ -1372,4 +1372,12 @@ Public Class FormFGLineList
         infoCustom("Today Rate : " + System.Environment.NewLine + Decimal.Parse(rate.ToString).ToString("N2"))
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BGVLineList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles BGVLineList.RowCellStyle
+        If BGVLineList.RowCount > 0 Then
+            If BGVLineList.GetRowCellValue(e.RowHandle, "id_design_type").ToString = "2" Then
+                e.Appearance.BackColor = Color.SkyBlue
+            End If
+        End If
+    End Sub
 End Class

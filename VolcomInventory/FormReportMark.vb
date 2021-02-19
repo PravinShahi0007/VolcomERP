@@ -653,6 +653,9 @@
         ElseIf report_mark_type = "289" Then
             'Asset In Out
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_item_card_trs WHERE id_item_card_trs = '{0}'", id_report)
+        ElseIf report_mark_type = "293" Then
+            'Summary Tax Report
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_tax_ppn_summary WHERE id_summary = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5787,7 +5790,7 @@ FROM tb_purc_rec_det prd
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=prd.`id_purc_order_det`
 INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req_det`=pod.`id_purc_req_det`
 INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req`
-INNER JOIN tb_item it ON it.id_item=reqd.id_item AND it.is_dep_stock_card=1
+INNER JOIN tb_item it ON it.id_item=reqd.id_item AND reqd.is_dep_stock_card=1
 WHERE prd.`id_purc_rec`='" & id_report & "'
 GROUP BY reqd.`id_item`,reqd.item_detail,reqd.remark"
                 Dim dtsi As DataTable = execute_query(qsi, -1, True, "", "", "", "")
@@ -9390,6 +9393,15 @@ WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=2 GROUP BY itd.id_i
 
             'update status
             query = String.Format("UPDATE tb_item_card_trs SET id_report_status='{0}' WHERE id_item_card_trs ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "293" Then
+            'summary tax
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_tax_ppn_summary SET id_report_status='{0}' WHERE id_summary ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

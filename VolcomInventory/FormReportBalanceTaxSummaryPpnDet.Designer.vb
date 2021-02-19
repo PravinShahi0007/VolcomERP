@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormReportBalanceTaxSummaryDet
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FormReportBalanceTaxSummaryPpnDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,10 +17,11 @@ Partial Class FormReportBalanceTaxSummaryDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormReportBalanceTaxSummaryDet))
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormReportBalanceTaxSummaryPpnDet))
+        Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.DEDateTo = New DevExpress.XtraEditors.DateEdit()
@@ -30,23 +31,20 @@ Partial Class FormReportBalanceTaxSummaryDet
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.SLUEReportStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,31 +54,33 @@ Partial Class FormReportBalanceTaxSummaryDet
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'PanelControl1
+        'SBMark
         '
-        Me.PanelControl1.Controls.Add(Me.TENumber)
-        Me.PanelControl1.Controls.Add(Me.Label5)
-        Me.PanelControl1.Controls.Add(Me.DEDateTo)
-        Me.PanelControl1.Controls.Add(Me.DEDateFrom)
-        Me.PanelControl1.Controls.Add(Me.SBGenerateSummary)
-        Me.PanelControl1.Controls.Add(Me.TECreatedAt)
-        Me.PanelControl1.Controls.Add(Me.TECreatedBy)
-        Me.PanelControl1.Controls.Add(Me.SLUEReportStatus)
-        Me.PanelControl1.Controls.Add(Me.Label4)
-        Me.PanelControl1.Controls.Add(Me.Label3)
-        Me.PanelControl1.Controls.Add(Me.Label2)
-        Me.PanelControl1.Controls.Add(Me.Label1)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 102)
-        Me.PanelControl1.TabIndex = 0
+        Me.SBMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBMark.Image = CType(resources.GetObject("SBMark.Image"), System.Drawing.Image)
+        Me.SBMark.Location = New System.Drawing.Point(2, 2)
+        Me.SBMark.Name = "SBMark"
+        Me.SBMark.Size = New System.Drawing.Size(90, 45)
+        Me.SBMark.TabIndex = 2
+        Me.SBMark.Text = "Mark"
+        '
+        'SBSubmit
+        '
+        Me.SBSubmit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSubmit.Image = CType(resources.GetObject("SBSubmit.Image"), System.Drawing.Image)
+        Me.SBSubmit.Location = New System.Drawing.Point(692, 2)
+        Me.SBSubmit.Name = "SBSubmit"
+        Me.SBSubmit.Size = New System.Drawing.Size(90, 45)
+        Me.SBSubmit.TabIndex = 0
+        Me.SBSubmit.Text = "Submit"
         '
         'TENumber
         '
@@ -167,6 +167,27 @@ Partial Class FormReportBalanceTaxSummaryDet
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.SBMark)
+        Me.PanelControl2.Controls.Add(Me.SBPrint)
+        Me.PanelControl2.Controls.Add(Me.SBSubmit)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 512)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(784, 49)
+        Me.PanelControl2.TabIndex = 5
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
+        Me.SBPrint.Location = New System.Drawing.Point(602, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(90, 45)
+        Me.SBPrint.TabIndex = 1
+        Me.SBPrint.Text = "Print"
+        '
         'Label4
         '
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -177,6 +198,38 @@ Partial Class FormReportBalanceTaxSummaryDet
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "Report Status"
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Jumlah"
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "balance"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Keterangan"
+        Me.GridColumn3.FieldName = "tax_report"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.FieldName = "id_tax_report"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Tag"
+        Me.GridColumn2.FieldName = "tag_description"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
         'Label3
         '
         Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -186,35 +239,6 @@ Partial Class FormReportBalanceTaxSummaryDet
         Me.Label3.Size = New System.Drawing.Size(60, 13)
         Me.Label3.TabIndex = 3
         Me.Label3.Text = "Created At"
-        '
-        'Label2
-        '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(537, 17)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(61, 13)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Created By"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(14, 43)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(37, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Period"
-        '
-        'GCSummary
-        '
-        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSummary.Location = New System.Drawing.Point(0, 102)
-        Me.GCSummary.MainView = Me.GVSummary
-        Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(784, 410)
-        Me.GCSummary.TabIndex = 1
-        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
         'GVSummary
         '
@@ -263,80 +287,56 @@ Partial Class FormReportBalanceTaxSummaryDet
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         '
-        'GridColumn2
+        'GCSummary
         '
-        Me.GridColumn2.Caption = "Tag"
-        Me.GridColumn2.FieldName = "tag_description"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSummary.Location = New System.Drawing.Point(0, 102)
+        Me.GCSummary.MainView = Me.GVSummary
+        Me.GCSummary.Name = "GCSummary"
+        Me.GCSummary.Size = New System.Drawing.Size(784, 410)
+        Me.GCSummary.TabIndex = 4
+        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
-        'GridColumn5
+        'Label2
         '
-        Me.GridColumn5.FieldName = "id_tax_report"
-        Me.GridColumn5.Name = "GridColumn5"
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(537, 17)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(61, 13)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Created By"
         '
-        'GridColumn3
+        'Label1
         '
-        Me.GridColumn3.Caption = "Keterangan"
-        Me.GridColumn3.FieldName = "tax_report"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(14, 43)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(37, 13)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Period"
         '
-        'GridColumn4
+        'PanelControl1
         '
-        Me.GridColumn4.Caption = "Jumlah"
-        Me.GridColumn4.DisplayFormat.FormatString = "N2"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "balance"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.PanelControl1.Controls.Add(Me.TENumber)
+        Me.PanelControl1.Controls.Add(Me.Label5)
+        Me.PanelControl1.Controls.Add(Me.DEDateTo)
+        Me.PanelControl1.Controls.Add(Me.DEDateFrom)
+        Me.PanelControl1.Controls.Add(Me.SBGenerateSummary)
+        Me.PanelControl1.Controls.Add(Me.TECreatedAt)
+        Me.PanelControl1.Controls.Add(Me.TECreatedBy)
+        Me.PanelControl1.Controls.Add(Me.SLUEReportStatus)
+        Me.PanelControl1.Controls.Add(Me.Label4)
+        Me.PanelControl1.Controls.Add(Me.Label3)
+        Me.PanelControl1.Controls.Add(Me.Label2)
+        Me.PanelControl1.Controls.Add(Me.Label1)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 102)
+        Me.PanelControl1.TabIndex = 3
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.SBMark)
-        Me.PanelControl2.Controls.Add(Me.SBPrint)
-        Me.PanelControl2.Controls.Add(Me.SBSubmit)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 512)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(784, 49)
-        Me.PanelControl2.TabIndex = 2
-        '
-        'SBMark
-        '
-        Me.SBMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SBMark.Image = CType(resources.GetObject("SBMark.Image"), System.Drawing.Image)
-        Me.SBMark.Location = New System.Drawing.Point(2, 2)
-        Me.SBMark.Name = "SBMark"
-        Me.SBMark.Size = New System.Drawing.Size(90, 45)
-        Me.SBMark.TabIndex = 2
-        Me.SBMark.Text = "Mark"
-        '
-        'SBPrint
-        '
-        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
-        Me.SBPrint.Location = New System.Drawing.Point(602, 2)
-        Me.SBPrint.Name = "SBPrint"
-        Me.SBPrint.Size = New System.Drawing.Size(90, 45)
-        Me.SBPrint.TabIndex = 1
-        Me.SBPrint.Text = "Print"
-        '
-        'SBSubmit
-        '
-        Me.SBSubmit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBSubmit.Image = CType(resources.GetObject("SBSubmit.Image"), System.Drawing.Image)
-        Me.SBSubmit.Location = New System.Drawing.Point(692, 2)
-        Me.SBSubmit.Name = "SBSubmit"
-        Me.SBSubmit.Size = New System.Drawing.Size(90, 45)
-        Me.SBSubmit.TabIndex = 0
-        Me.SBSubmit.Text = "Submit"
-        '
-        'FormReportBalanceTaxSummaryDet
+        'FormReportBalanceTaxSummaryPpnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -344,13 +344,9 @@ Partial Class FormReportBalanceTaxSummaryDet
         Me.Controls.Add(Me.GCSummary)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
-        Me.MinimizeBox = False
-        Me.Name = "FormReportBalanceTaxSummaryDet"
+        Me.Name = "FormReportBalanceTaxSummaryPpnDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Tax Summary PPH Detail"
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
+        Me.Text = "Tax Summary PPN Detail"
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -360,37 +356,40 @@ Partial Class FormReportBalanceTaxSummaryDet
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBMark As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBSubmit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label5 As Label
+    Friend WithEvents DEDateTo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEDateFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents SBGenerateSummary As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TECreatedAt As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SLUEReportStatus As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents Label4 As Label
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label3 As Label
+    Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents SBGenerateSummary As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents DEDateTo As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents DEDateFrom As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label5 As Label
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
 End Class
