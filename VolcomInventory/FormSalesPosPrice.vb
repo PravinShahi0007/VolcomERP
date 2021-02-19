@@ -31,6 +31,10 @@
             ElseIf id_pop_up = "1" Then
                 FormSalesPOSNoStockAdd.id_design_price = GVPrice.GetFocusedRowCellValue("id_design_price").ToString
                 FormSalesPOSNoStockAdd.TxtPrice.EditValue = GVPrice.GetFocusedRowCellValue("design_price")
+            ElseIf id_pop_up = "2" Then
+                FormSalesPosPriceRecon.GVData.SetFocusedRowCellValue("design_price_valid", GVPrice.GetFocusedRowCellValue("design_price"))
+                FormSalesPosPriceRecon.GVData.SetFocusedRowCellValue("id_design_price_valid", GVPrice.GetFocusedRowCellValue("id_design_price").ToString)
+                FormSalesPosPriceRecon.GVData.SetFocusedRowCellValue("note", "OK")
             End If
             Close()
         End If
