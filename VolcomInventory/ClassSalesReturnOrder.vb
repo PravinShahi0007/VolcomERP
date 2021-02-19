@@ -124,4 +124,14 @@
         WHERE ro.id_sales_return_order=" + id_report_param + " "
         execute_non_query(query, True, "", "", "", "")
     End Sub
+
+    Function isNotDuplicateROR(ByVal sales_return_order_number_par As String) As Boolean
+        Dim qcek As String = "SELECT * FROM tb_sales_return_order ror WHERE ror.sales_return_order_number='" + sales_return_order_number_par + "'"
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        If dcek.Rows.Count > 0 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
 End Class

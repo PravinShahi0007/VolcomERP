@@ -73,6 +73,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnPrintedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_ol_store_oos = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
@@ -370,7 +371,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPClosingSuratJalan = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumnid_ol_store_oos = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.LETypeRestockTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1008,6 +1008,13 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnorder_type.Visible = True
         Me.GridColumnorder_type.VisibleIndex = 1
         '
+        'GridColumnid_ol_store_oos
+        '
+        Me.GridColumnid_ol_store_oos.Caption = "id_ol_store_oos"
+        Me.GridColumnid_ol_store_oos.FieldName = "id_ol_store_oos"
+        Me.GridColumnid_ol_store_oos.Name = "GridColumnid_ol_store_oos"
+        Me.GridColumnid_ol_store_oos.OptionsColumn.ReadOnly = True
+        '
         'GridView2
         '
         Me.GridView2.GridControl = Me.GCSalesOrder
@@ -1579,9 +1586,9 @@ Partial Class FormSalesOrderSvcLevel
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl1.Controls.Add(Me.CheckEdit1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(826, 0)
+        Me.PanelControl1.Location = New System.Drawing.Point(1357, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(86, 68)
+        Me.PanelControl1.Size = New System.Drawing.Size(86, 51)
         Me.PanelControl1.TabIndex = 8902
         '
         'CheckEdit1
@@ -3779,13 +3786,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPClosingSuratJalan.Name = "XTPClosingSuratJalan"
         Me.XTPClosingSuratJalan.Size = New System.Drawing.Size(934, 311)
         Me.XTPClosingSuratJalan.Text = "Closing Surat Jalan"
-        '
-        'GridColumnid_ol_store_oos
-        '
-        Me.GridColumnid_ol_store_oos.Caption = "id_ol_store_oos"
-        Me.GridColumnid_ol_store_oos.FieldName = "id_ol_store_oos"
-        Me.GridColumnid_ol_store_oos.Name = "GridColumnid_ol_store_oos"
-        Me.GridColumnid_ol_store_oos.OptionsColumn.ReadOnly = True
         '
         'FormSalesOrderSvcLevel
         '

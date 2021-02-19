@@ -653,11 +653,16 @@
         ElseIf report_mark_type = "289" Then
             'Asset In Out
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_item_card_trs WHERE id_item_card_trs = '{0}'", id_report)
+        ElseIf report_mark_type = "290" Then
+            'REFUSE RETURB ONLINE
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_ol_store_return_refuse WHERE id_return_refuse = '{0}'", id_report)
+        ElseIf report_mark_type = "292" Then
+            'CANCEL CN
+            query = String.Format("SELECT id_report_status,sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
         ElseIf report_mark_type = "293" Then
             'Summary Tax Report
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_tax_ppn_summary WHERE id_summary = '{0}'", id_report)
         End If
-
         data = execute_query(query, -1, True, "", "", "", "")
 
         LEReportStatus.EditValue = Nothing
@@ -9368,12 +9373,41 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
             'update status
             query = String.Format("UPDATE tb_setup_tax_installment SET id_report_status='{0}' WHERE id_setup_tax ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "289" Then
-            'Asset In Out
+        ElseIf report_mark_type = "290" Then
+            'refuse return online
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If
 
+
+            'if completed
+            If id_status_reportx = "6" Then
+                Dim qry As String = "-- kembalikan book stock
+                DELETE FROM tb_storage_fg WHERE report_mark_type_ref=" + report_mark_type + " AND id_report_ref =" + id_report + ";
+                INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status, report_mark_type_ref, id_report_ref)
+                SELECT getCompByContact(ro.id_store_contact, 4),1, p.id_product, d.design_cop, 119, ror_det.id_sales_return_order, rod.qty,NOW(), 'Auto',2, " + report_mark_type + ", " + id_report + "
+                FROM tb_ol_store_return_refuse ro
+                INNER JOIN tb_ol_store_return_refuse_det rod ON rod.id_return_refuse = ro.id_return_refuse
+                INNER JOIN tb_m_product p ON p.id_product = rod.id_product
+                INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                INNER JOIN tb_sales_return_order_det ror_det ON ror_det.id_sales_return_order_det = rod.id_sales_return_order_det
+                WHERE ro.id_return_refuse=" + id_report + " AND rod.qty>0; 
+                -- update void ror
+                UPDATE tb_sales_return_order_det main 
+                INNER JOIN (
+                    SELECT d.id_sales_return_order_det 
+                    FROM tb_ol_store_return_refuse_det d
+                    WHERE d.id_return_refuse=" + id_report + " AND !ISNULL(d.id_sales_return_order_det)
+                ) src ON main.id_sales_return_order_det = src.id_sales_return_order_det
+                SET main.is_void=1; "
+                execute_non_query(qry, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_ol_store_return_refuse SET id_report_status='{0}' WHERE id_return_refuse ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "289" Then
+            'Asset In Out
             If id_status_reportx = "5" Then
                 'revert
                 Dim q As String = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,id_report_det,report_mark_type,qty,storage_item_datetime)
@@ -9395,6 +9429,49 @@ WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=2 GROUP BY itd.id_i
             'update status
             query = String.Format("UPDATE tb_item_card_trs SET id_report_status='{0}' WHERE id_item_card_trs ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "292" Then
+            ' CANCEL CN
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "5" Then
+                Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+
+                If FormSalesPOSDet.is_use_unique_code = "1" Then
+                    'cancelled unique
+                    cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                End If
+
+                'cancelled
+                cancel_rsv_stock.cancelReservedStock(id_report, report_mark_type)
+            ElseIf id_status_reportx = "6" Then
+                'completed
+                Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
+                complete_rsv_stock.completedStock(id_report, report_mark_type)
+
+                'set is_cancel_trans
+                Dim qct As String = "UPDATE tb_sales_pos_det main 
+                INNER JOIN (
+	                SELECT spd.id_cn_det 
+	                FROM tb_sales_pos_det spd
+	                WHERE spd.id_sales_pos=" + id_report + "
+                ) src ON src.id_cn_det = main.id_sales_pos_det
+                SET main.is_cancel_trans=1 "
+                execute_non_query(qct, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            If form_origin = "FormSalesPOSDet" Then
+                FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesPOSDet.check_but()
+                FormSalesPOSDet.actionLoad()
+                FormSalesPOS.viewSalesPOS()
+                FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            End If
         ElseIf report_mark_type = "293" Then
             'summary tax
             If id_status_reportx = "3" Then

@@ -45,6 +45,8 @@
             Text = "Invoice Different Margin"
         ElseIf id_menu = "5" Then
             Text = "Credit Note Online Store"
+        ElseIf id_menu = "6" Then
+            Text = "Cancellation CN"
         End If
 
         'Tab Daily
@@ -57,16 +59,23 @@
         viewReconStt()
         viewInvoiceStt()
         viewNoStockStt()
+        viewReturnRefuseStt()
         viewStoreProb()
 
         'pending online store return
         If id_menu = "5" Then
             XTPCNOnlineStore.PageVisible = True
             XTPProblemList.PageVisible = False
+            XTPOLReturnRefuse.PageVisible = False
             viewPendingCNOLStore()
         ElseIf id_menu = "1" Or id_menu = "4" Then
             XTPCNOnlineStore.PageVisible = False
             XTPProblemList.PageVisible = True
+            XTPOLReturnRefuse.PageVisible = False
+        ElseIf id_menu = "6" Then
+            XTPCNOnlineStore.PageVisible = False
+            XTPProblemList.PageVisible = False
+            XTPOLReturnRefuse.PageVisible = True
         Else
             XTPCNOnlineStore.PageVisible = False
             XTPProblemList.PageVisible = False
@@ -119,6 +128,17 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewReturnRefuseStt()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '0' AS `id_stt`, 'All' AS `stt`
+        UNION ALL
+        SELECT '1' AS `id_stt`, 'Open' AS `stt`
+        UNION ALL
+        SELECT '2' AS `id_stt`, 'Close' AS `stt` "
+        viewLookupQuery(LEStatusRefuseReturn, query, 1, "stt", "id_stt")
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewStoreProb()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT 0 AS `id_comp`, 'All' AS `comp`
@@ -129,6 +149,7 @@
         viewSearchLookupQuery(SLEStoreProb, query, "id_comp", "comp", "id_comp")
         viewSearchLookupQuery(SLEStoreNoStock, query, "id_comp", "comp", "id_comp")
         viewSearchLookupQuery(SLEStoreNewItem, query, "id_comp", "comp", "id_comp")
+        viewSearchLookupQuery(SLEStoreRefuseReturn, query, "id_comp", "comp", "id_comp")
         Cursor = Cursors.Default
     End Sub
 
@@ -147,6 +168,8 @@
                 query = query_c.queryMain("AND (a.id_memo_type=''8'' OR a.id_memo_type=''9'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
             ElseIf id_menu = "5" Then
                 query = query_c.queryMain("AND a.id_memo_type=''2'' AND !ISNULL(a.id_sales_pos_ref) AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
+            ElseIf id_menu = "6" Then
+                query = query_c.queryMain("And a.id_memo_type=''10'' AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
             End If
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -1220,6 +1243,106 @@
             Dim inv As New FormViewSalesPOS()
             inv.id_sales_pos = GVNewItem.GetFocusedRowCellValue("id_sales_pos_proc")
             inv.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SLEStoreRefuseReturn_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreRefuseReturn.EditValueChanged
+        resetViewRefuseReturn()
+    End Sub
+
+    Sub resetViewRefuseReturn()
+        GCData.DataSource = Nothing
+        If SLEStoreRefuseReturn.EditValue.ToString <> "0" And LEStatusRefuseReturn.EditValue.ToString = "1" Then
+            BtnCreateCancelCN.Visible = True
+        Else
+            BtnCreateCancelCN.Visible = False
+        End If
+    End Sub
+
+    Private Sub LEStatusRefuseReturn_EditValueChanged(sender As Object, e As EventArgs) Handles LEStatusRefuseReturn.EditValueChanged
+        resetViewRefuseReturn()
+    End Sub
+
+    Private Sub BtnViewListRefuseReturn_Click(sender As Object, e As EventArgs) Handles BtnViewListRefuseReturn.Click
+        viewRefuseReturnList()
+    End Sub
+
+    Sub viewRefuseReturnList()
+        Cursor = Cursors.WaitCursor
+        'cond store
+        Dim id_store As String = SLEStoreRefuseReturn.EditValue.ToString
+        Dim cond_store As String = ""
+        If id_store <> "0" Then
+            cond_store = "AND s.id_comp='" + id_store + "' "
+        End If
+
+        'cond status
+        Dim id_stt As String = LEStatusRefuseReturn.EditValue.ToString
+        Dim cond_stt As String = ""
+        If id_stt <> "0" Then
+            cond_stt = "AND id_status_ccn='" + id_stt + "'"
+        End If
+
+        Dim query As String = "SELECT rf.id_return_refuse, rf.id_refuse_type, rt.refuse_type, rf.`number`, rf.note,
+        s.id_comp, s.comp_number, s.comp_name, so.sales_order_ol_shop_number, so.customer_name, 
+        IF(ISNULL(cd.id_return_refuse_det),'1','2') AS `id_status_ccn`,
+        IF(ISNULL(cd.id_return_refuse_det),'Open','Close') AS `status_ccn`
+        FROM tb_ol_store_return_refuse rf
+        INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = rf.id_store_contact
+        INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+        INNER JOIN tb_lookup_refuse_type rt ON rt.id_refuse_type = rf.id_refuse_type
+        INNER JOIN tb_ol_store_return_refuse_det rfd ON rfd.id_return_refuse = rf.id_return_refuse
+        INNER JOIN tb_sales_order so ON so.id_sales_order = rf.id_sales_order
+        LEFT JOIN (
+	        SELECT cd.id_return_refuse_det 
+	        FROM tb_sales_pos_det cd
+	        INNER JOIN tb_sales_pos c ON c.id_sales_pos = cd.id_sales_pos
+	        WHERE c.id_report_status=6 AND !ISNULL(cd.id_return_refuse_det)
+	        GROUP BY cd.id_return_refuse_det
+        ) cd ON cd.id_return_refuse_det = rfd.id_return_refuse_det
+        WHERE rf.id_report_status=6 
+        AND !ISNULL(rfd.id_sales_pos_det_cn)
+        " + cond_store + "
+        GROUP BY rf.id_return_refuse
+        HAVING 1=1 
+         " + cond_stt + "
+        ORDER BY id_return_refuse ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCreateCancelCN_Click(sender As Object, e As EventArgs) Handles BtnCreateCancelCN.Click
+        Cursor = Cursors.WaitCursor
+        'cek on process
+        Dim id_return_refuse As String = GVData.GetFocusedRowCellValue("id_return_refuse").ToString
+        Dim qcek As String = "SELECT sp.id_sales_pos FROM tb_sales_pos sp 
+        WHERE sp.id_report_status!=5 AND sp.id_return_refuse='" + id_return_refuse + "' "
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        If dcek.Rows.Count > 0 Then
+            stopCustom("Already process")
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+
+        'show
+        FormSalesPOSDet.id_menu = "6"
+        FormSalesPOSDet.action = "ins"
+        FormSalesPOSDet.is_from_cancel_cn = True
+        FormSalesPOSDet.id_return_refuse = id_return_refuse
+        FormSalesPOSDet.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim rrf As New ClassShowPopUp()
+            rrf.report_mark_type = "290"
+            rrf.id_report = GVData.GetFocusedRowCellValue("id_return_refuse").ToString
+            rrf.show()
             Cursor = Cursors.Default
         End If
     End Sub
