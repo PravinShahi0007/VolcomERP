@@ -390,17 +390,17 @@
                         End If
 
                         'public holiday
-                        Dim query_holiday As String = "
-                            SELECT id_emp_holiday
-                            FROM tb_emp_holiday
-                            WHERE (id_religion = (SELECT id_religion FROM tb_m_employee WHERE id_employee = " + GVScheduleAfter.GetRowCellValue(r, "id_employee").ToString + ") OR id_religion = 0) AND emp_holiday_date = '" + date_select.ToString("yyyy-MM-dd") + "'
-                        "
+                        'Dim query_holiday As String = "
+                        '    SELECT id_emp_holiday
+                        '    FROM tb_emp_holiday
+                        '    WHERE (id_religion = (SELECT id_religion FROM tb_m_employee WHERE id_employee = " + GVScheduleAfter.GetRowCellValue(r, "id_employee").ToString + ") OR id_religion = 0) AND emp_holiday_date = '" + date_select.ToString("yyyy-MM-dd") + "'
+                        '"
 
-                        Dim data_holiday As DataTable = execute_query(query_holiday, -1, True, "", "", "", "")
+                        'Dim data_holiday As DataTable = execute_query(query_holiday, -1, True, "", "", "", "")
 
-                        If data_holiday.Rows.Count > 0 Then
-                            sch_code = "OFF"
-                        End If
+                        'If data_holiday.Rows.Count > 0 Then
+                        '    sch_code = "OFF"
+                        'End If
 
                         'insert
                         GVScheduleAfter.SetRowCellValue(r, GVScheduleAfter.Columns(c), sch_code)

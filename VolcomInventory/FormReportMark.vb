@@ -653,6 +653,9 @@
         ElseIf report_mark_type = "289" Then
             'Asset In Out
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_item_card_trs WHERE id_item_card_trs = '{0}'", id_report)
+        ElseIf report_mark_type = "293" Then
+            'Summary Tax Report
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_tax_ppn_summary WHERE id_summary = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5782,14 +5785,15 @@ HAVING debit!=credit"
                 Dim qi As String = ""
                 Dim qsi As String = ""
 
-                qsi = "SELECT prd.id_purc_rec,'148' AS report_mark_type,req.id_departement,reqd.id_item,reqd.item_detail,reqd.remark,SUM(prd.qty) AS qty,reqd.id_item
+                'stock card
+                qsi = "SELECT prd.id_purc_rec,prd.id_purc_rec_det,'148' AS report_mark_type,req.id_departement,reqd.id_item,reqd.item_detail,reqd.remark,SUM(prd.qty) AS qty,reqd.id_item
 FROM tb_purc_rec_det prd
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=prd.`id_purc_order_det`
 INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req_det`=pod.`id_purc_req_det`
 INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req`
 INNER JOIN tb_item it ON it.id_item=reqd.id_item AND reqd.is_dep_stock_card=1
 WHERE prd.`id_purc_rec`='" & id_report & "'
-GROUP BY reqd.`id_item`,reqd.item_detail,reqd.remark"
+GROUP BY prd.id_purc_rec_det,reqd.`id_item`,reqd.item_detail,reqd.remark"
                 Dim dtsi As DataTable = execute_query(qsi, -1, True, "", "", "", "")
                 For i As Integer = 0 To dtsi.Rows.Count - 1
                     Dim id_item_detail As String = ""
@@ -5806,13 +5810,13 @@ VALUES('" & dtsi.Rows(i)("id_item").ToString & "','" & addSlashes(dtsi.Rows(i)("
                     End If
 
                     'insert qty
-                    qi = "INSERT INTO `tb_stock_card_dep`(`id_departement`,`id_item_detail`,`id_report`,`report_mark_type`,`qty`)
-VALUES('" & dtsi.Rows(i)("id_departement").ToString & "','" & id_item_detail & "','" & dtsi.Rows(i)("id_purc_rec").ToString & "','" & dtsi.Rows(i)("report_mark_type").ToString & "','" & decimalSQL(Decimal.Parse(dtsi.Rows(i)("qty").ToString)) & "')"
+                    qi = "INSERT INTO `tb_stock_card_dep`(`id_departement`,`id_item_detail`,`id_report`,`id_report_det`,`report_mark_type`,`qty`,storage_item_datetime)
+VALUES('" & dtsi.Rows(i)("id_departement").ToString & "','" & id_item_detail & "','" & dtsi.Rows(i)("id_purc_rec").ToString & "','" & dtsi.Rows(i)("id_purc_rec_det").ToString & "','" & dtsi.Rows(i)("report_mark_type").ToString & "','" & decimalSQL(Decimal.Parse(dtsi.Rows(i)("qty").ToString)) & "',NOW())"
                     execute_non_query(qi, True, "", "", "", "")
                 Next
             End If
             'jurnal PPH pindah
-            'UNION ALL - -PPH
+            'UNION ALL-PPH
             '    Select Case " + id_acc_trans + " As id_acc_trans, comp.id_acc_ap As `id_acc`, dep.id_main_comp, SUM(rd.qty) As `qty`,
             '    SUM(rd.`qty` * (pod.`value`-pod.`discount`) * (pod.`pph_percent`/100)) As `debit`,
             '    0 AS `credit`,
@@ -9372,16 +9376,16 @@ WHERE dep.id_asset_dep_pps='" + id_report + "'"
 
             If id_status_reportx = "5" Then
                 'revert
-                Dim q As String = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,report_mark_type,qty,storage_item_datetime)
-SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,'289' AS rmt,IF(it.id_type=1,1,-1)*SUM(qty) AS qty,NOW()
+                Dim q As String = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,id_report_det,report_mark_type,qty,storage_item_datetime)
+SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,itd.id_item_card_trs_det,'289' AS rmt,IF(it.id_type=1,1,-1)*SUM(qty) AS qty,NOW()
 FROM tb_item_card_trs_det itd
 INNER JOIN tb_item_card_trs it ON it.id_item_card_trs=itd.id_item_card_trs
 WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=1 GROUP BY itd.id_item_detail"
                 execute_query(q, -1, True, "", "", "", "")
             ElseIf id_status_reportx = "6" Then
                 'complete in
-                Dim q As String = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,report_mark_type,qty,storage_item_datetime)
-SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,'289' AS rmt,IF(it.id_type=1,-1,1)*SUM(qty) AS qty,NOW()
+                Dim q As String = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,id_report_det,report_mark_type,qty,storage_item_datetime)
+SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,itd.id_item_card_trs_det,'289' AS rmt,IF(it.id_type=1,-1,1)*SUM(qty) AS qty,NOW()
 FROM tb_item_card_trs_det itd
 INNER JOIN tb_item_card_trs it ON it.id_item_card_trs=itd.id_item_card_trs
 WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=2 GROUP BY itd.id_item_detail"
@@ -9390,6 +9394,15 @@ WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=2 GROUP BY itd.id_i
 
             'update status
             query = String.Format("UPDATE tb_item_card_trs SET id_report_status='{0}' WHERE id_item_card_trs ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "293" Then
+            'summary tax
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_tax_ppn_summary SET id_report_status='{0}' WHERE id_summary ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

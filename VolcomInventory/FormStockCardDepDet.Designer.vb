@@ -42,6 +42,7 @@ Partial Class FormStockCardDepDet
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BTemplate = New DevExpress.XtraEditors.SimpleButton()
         Me.TEDepartement = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
@@ -294,6 +295,7 @@ Partial Class FormStockCardDepDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BTemplate)
         Me.PanelControl3.Controls.Add(Me.TEDepartement)
         Me.PanelControl3.Controls.Add(Me.LabelControl5)
         Me.PanelControl3.Controls.Add(Me.BtnDelete)
@@ -303,6 +305,16 @@ Partial Class FormStockCardDepDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(959, 48)
         Me.PanelControl3.TabIndex = 2
+        '
+        'BTemplate
+        '
+        Me.BTemplate.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BTemplate.Image = CType(resources.GetObject("BTemplate.Image"), System.Drawing.Image)
+        Me.BTemplate.Location = New System.Drawing.Point(632, 2)
+        Me.BTemplate.Name = "BTemplate"
+        Me.BTemplate.Size = New System.Drawing.Size(148, 44)
+        Me.BTemplate.TabIndex = 7
+        Me.BTemplate.Text = "Load From Receiving"
         '
         'TEDepartement
         '
@@ -616,4 +628,5 @@ Partial Class FormStockCardDepDet
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BTemplate As DevExpress.XtraEditors.SimpleButton
 End Class
