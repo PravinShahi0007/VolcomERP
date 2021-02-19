@@ -42,6 +42,8 @@ Partial Class FormStockCardDepDet
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TERec = New DevExpress.XtraEditors.TextEdit()
+        Me.Lrec = New DevExpress.XtraEditors.LabelControl()
         Me.BTemplate = New DevExpress.XtraEditors.SimpleButton()
         Me.TEDepartement = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -66,6 +68,7 @@ Partial Class FormStockCardDepDet
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +82,7 @@ Partial Class FormStockCardDepDet
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
@@ -91,6 +95,7 @@ Partial Class FormStockCardDepDet
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -295,6 +300,8 @@ Partial Class FormStockCardDepDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.TERec)
+        Me.PanelControl3.Controls.Add(Me.Lrec)
         Me.PanelControl3.Controls.Add(Me.BTemplate)
         Me.PanelControl3.Controls.Add(Me.TEDepartement)
         Me.PanelControl3.Controls.Add(Me.LabelControl5)
@@ -305,6 +312,23 @@ Partial Class FormStockCardDepDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(959, 48)
         Me.PanelControl3.TabIndex = 2
+        '
+        'TERec
+        '
+        Me.TERec.EditValue = "[auto generated]"
+        Me.TERec.Location = New System.Drawing.Point(388, 14)
+        Me.TERec.Name = "TERec"
+        Me.TERec.Properties.ReadOnly = True
+        Me.TERec.Size = New System.Drawing.Size(219, 20)
+        Me.TERec.TabIndex = 9
+        '
+        'Lrec
+        '
+        Me.Lrec.Location = New System.Drawing.Point(328, 17)
+        Me.Lrec.Name = "Lrec"
+        Me.Lrec.Size = New System.Drawing.Size(54, 13)
+        Me.Lrec.TabIndex = 8
+        Me.Lrec.Text = "Receive No"
         '
         'BTemplate
         '
@@ -322,7 +346,7 @@ Partial Class FormStockCardDepDet
         Me.TEDepartement.Location = New System.Drawing.Point(94, 14)
         Me.TEDepartement.Name = "TEDepartement"
         Me.TEDepartement.Properties.ReadOnly = True
-        Me.TEDepartement.Size = New System.Drawing.Size(297, 20)
+        Me.TEDepartement.Size = New System.Drawing.Size(219, 20)
         Me.TEDepartement.TabIndex = 5
         '
         'LabelControl5
@@ -368,7 +392,7 @@ Partial Class FormStockCardDepDet
         Me.GCItemDetail.Location = New System.Drawing.Point(2, 2)
         Me.GCItemDetail.MainView = Me.GVItemDetail
         Me.GCItemDetail.Name = "GCItemDetail"
-        Me.GCItemDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEItemDetail, Me.RepositoryItemMemoEdit2})
+        Me.GCItemDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEItemDetail, Me.RepositoryItemMemoEdit2, Me.RepositoryItemMemoEdit3})
         Me.GCItemDetail.Size = New System.Drawing.Size(955, 330)
         Me.GCItemDetail.TabIndex = 0
         Me.GCItemDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemDetail})
@@ -464,6 +488,7 @@ Partial Class FormStockCardDepDet
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Item Detail"
+        Me.GridColumn3.ColumnEdit = Me.RepositoryItemMemoEdit3
         Me.GridColumn3.FieldName = "item_detail"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
@@ -535,6 +560,10 @@ Partial Class FormStockCardDepDet
         Me.LabelControl6.TabIndex = 0
         Me.LabelControl6.Text = "Note"
         '
+        'RepositoryItemMemoEdit3
+        '
+        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
+        '
         'FormStockCardDepDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -566,6 +595,7 @@ Partial Class FormStockCardDepDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
@@ -579,6 +609,7 @@ Partial Class FormStockCardDepDet
         Me.PanelControl5.ResumeLayout(False)
         Me.PanelControl5.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -629,4 +660,7 @@ Partial Class FormStockCardDepDet
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BTemplate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TERec As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Lrec As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents RepositoryItemMemoEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

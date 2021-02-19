@@ -9424,6 +9424,40 @@ FROM tb_item_card_trs_det itd
 INNER JOIN tb_item_card_trs it ON it.id_item_card_trs=itd.id_item_card_trs
 WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=2 GROUP BY itd.id_item_detail"
                 execute_query(q, -1, True, "", "", "", "")
+
+                'auto item request
+                Dim qir As String = "INSERT INTO `tb_item_req`(`id_departement`,`created_date`,`created_by`,`note`,`id_report_status`,`is_for_store`)
+SELECT it.id_departement,NOW(),'" & id_user & "' AS id_user,'','6','1'
+FROM tb_item_card_trs it 
+WHERE it.id_item_card_trs='" & id_report & "' AND it.id_purc_rec != "" AND NOT ISNULL(it.id_purc_rec) AND it.id_purc_rec !='0'"
+                Dim id_ir As String = execute_query(qir, 0, True, "", "", "", "")
+
+                execute_non_query("CALL gen_number(" + id_ir + ",163)", True, "", "", "", "")
+
+                qir = "INSERT INTO `tb_item_req_det`(id_item_req, id_item, qty, is_store_request, remark)
+SELECT '" & id_ir & "' AS id_item_req,itsd.id_item,IF(it.id_type=1,1,0)*SUM(qty) AS qty,1 AS is_store_request,'' AS remark
+FROM tb_item_card_trs_det itd
+INNER JOIN tb_item_card_trs it ON it.id_item_card_trs=itd.id_item_card_trs
+INNER JOIN `tb_stock_card_dep_item` itsd ON itsd.id_item_detail=itd.id_item_detail
+WHERE 
+it.id_item_card_trs='" & id_report & "' AND 
+it.id_type=1
+GROUP BY itsd.id_item
+HAVING qty>0"
+                execute_non_query(qir, True, "", "", "", "")
+
+                'allocation
+                qir = "INSERT `tb_item_req_det_alloc`(`id_item_req`,`is_store_request`,`id_item`,`id_comp`,`qty`)
+SELECT '" & id_ir & "' AS id_item_req,'1' AS is_store_request,itsd.id_item,it.id_store,IF(it.id_type=1,1,0)*SUM(qty) AS qty
+FROM tb_item_card_trs_det itd
+INNER JOIN tb_item_card_trs it ON it.id_item_card_trs=itd.id_item_card_trs
+INNER JOIN `tb_stock_card_dep_item` itsd ON itsd.id_item_detail=itd.id_item_detail
+WHERE 
+it.id_item_card_trs='" & id_report & "' AND 
+it.id_type=1
+GROUP BY itsd.id_item
+HAVING qty>0"
+                execute_non_query(qir, True, "", "", "", "")
             End If
 
             'update status

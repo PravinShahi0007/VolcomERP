@@ -2,6 +2,8 @@
     Public id_trans As String = "-1"
     Public id_report_status As String = "-1"
     Public is_view As String = "-1"
+    Public id_purc_rec As String = "-1"
+
     Private Sub FormStockCardDepDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
     End Sub
@@ -17,12 +19,15 @@
         If id_trans = "-1" Then 'new
             TEDepartement.Text = get_departement_x(id_departement_user, "1")
         Else 'edit
-            Dim q As String = "SELECT * 
+            Dim q As String = "SELECT trx.* ,rec.purc_rec_number,dep.departement
 FROM `tb_item_card_trs` trx
+LEFT JOIN tb_purc_rec rec ON rec.id_purc_rec=trx.id_purc_rec
 INNER JOIN tb_m_departement dep ON dep.id_departement=trx.id_departement
 WHERE id_item_card_trs='" & id_trans & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
+                id_purc_rec = dt.Rows(0)("id_purc_rec").ToString
+                TERec.Text = dt.Rows(0)("purc_rec_number").ToString
                 SLEType.EditValue = dt.Rows(0)("id_type").ToString
                 TEDepartement.Text = dt.Rows(0)("departement").ToString
                 SLEStore.EditValue = dt.Rows(0)("id_store").ToString
@@ -30,6 +35,9 @@ WHERE id_item_card_trs='" & id_trans & "'"
                 DEProposedDate.EditValue = dt.Rows(0)("created_date")
                 MENote.Text = dt.Rows(0)("note").ToString
                 id_report_status = dt.Rows(0)("id_report_status").ToString
+                '
+                id_purc_rec = dt.Rows(0)("id_purc_rec").ToString
+                '
             End If
         End If
 
@@ -47,7 +55,10 @@ LEFT JOIN (
 	GROUP BY id_item_detail
     
 )its ON its.id_item_detail=itd.`id_item_detail`
-WHERE IFNULL(its.qty,0.00)>0"
+"
+        If id_trans = "-1" Then
+            q += " WHERE IFNULL(its.qty,0.00)>0"
+        End If
         viewSearchLookupRepositoryQuery(RISLEItemDetail, q, 0, "item_desc", "id_item_detail")
     End Sub
 
@@ -82,6 +93,13 @@ SELECT '2' AS id_type,'Receiving' AS type"
         If GVItemDetail.RowCount > 0 Then
             GVItemDetail.DeleteSelectedRows()
         End If
+        check_but()
+    End Sub
+
+    Sub delete_all_row()
+        For i = GVItemDetail.RowCount - 1 To 0 Step -1
+            GVItemDetail.DeleteRow(i)
+        Next
         check_but()
     End Sub
 
@@ -120,6 +138,16 @@ SELECT '2' AS id_type,'Receiving' AS type"
                 GridColumnAvailable.Visible = False
             End If
         End If
+
+        If id_purc_rec = "-1" Then
+            'tidak ada
+            Lrec.Visible = False
+            TERec.Visible = False
+        Else
+            'ada
+            Lrec.Visible = True
+            TERec.Visible = True
+        End If
     End Sub
 
     Private Sub RISLEItemDetail_EditValueChanged(sender As Object, e As EventArgs) Handles RISLEItemDetail.EditValueChanged
@@ -149,9 +177,15 @@ SELECT '2' AS id_type,'Receiving' AS type"
                     Next
                 End If
                 If is_ok_stock Then
+                    Dim id_rec As String = ""
+                    If id_purc_rec = "0" Or id_purc_rec = "-1" Or id_purc_rec = "" Then
+                        id_rec = "NULL"
+                    Else
+                        id_rec = "'" & id_purc_rec & "'"
+                    End If
                     Dim q As String = ""
-                    q = "INSERT INTO tb_item_card_trs(`id_type`,`id_store`,`id_departement`,`created_date`,`created_by`,`note`,`id_report_status`)
-VALUES('" & SLEType.EditValue.ToString & "','" & SLEStore.EditValue.ToString & "','" & id_departement_user & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID();"
+                    q = "INSERT INTO tb_item_card_trs(`id_type`,`id_store`,`id_departement`,`created_date`,`created_by`,`note`,id_purc_rec,`id_report_status`)
+VALUES('" & SLEType.EditValue.ToString & "','" & SLEStore.EditValue.ToString & "','" & id_departement_user & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "'," & id_rec & ",'1'); SELECT LAST_INSERT_ID();"
                     id_trans = execute_query(q, 0, True, "", "", "", "")
                     'detail
                     q = "INSERT INTO tb_item_card_trs_det(`id_item_card_trs`,`id_item_detail`,`qty_available`,`qty`)
@@ -172,7 +206,7 @@ VALUES"
                     If SLEType.EditValue.ToString = "1" Then
                         'reserved
                         q = "INSERT INTO `tb_stock_card_dep`(id_departement,id_item_detail,id_report,id_report_det,report_mark_type,qty,storage_item_datetime)
-SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,'289' AS rmt,IF(it.id_type=1,-1,1)*SUM(qty) AS qty,NOW()
+SELECT it.id_departement,itd.id_item_detail,it.id_item_card_trs,itd.id_item_card_trs_det,'289' AS rmt,IF(it.id_type=1,-1,1)*SUM(qty) AS qty,NOW()
 FROM tb_item_card_trs_det itd
 INNER JOIN tb_item_card_trs it ON it.id_item_card_trs=itd.id_item_card_trs
 WHERE it.id_item_card_trs='" & id_trans & "' GROUP BY itd.id_item_detail"
