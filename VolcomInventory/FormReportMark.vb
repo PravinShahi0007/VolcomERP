@@ -9448,6 +9448,16 @@ WHERE it.id_item_card_trs='" & id_report & "' AND it.id_type=2 GROUP BY itd.id_i
                 'completed
                 Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
                 complete_rsv_stock.completedStock(id_report, report_mark_type)
+
+                'set is_cancel_trans
+                Dim qct As String = "UPDATE tb_sales_pos_det main 
+                INNER JOIN (
+	                SELECT spd.id_cn_det 
+	                FROM tb_sales_pos_det spd
+	                WHERE spd.id_sales_pos=" + id_report + "
+                ) src ON src.id_cn_det = main.id_sales_pos_det
+                SET main.is_cancel_trans=1 "
+                execute_non_query(qct, True, "", "", "", "")
             End If
 
             'update status
