@@ -112,4 +112,8 @@ GROUP BY a.id_item_detail HAVING qty>0"
         GVSOH.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BMaster_Click(sender As Object, e As EventArgs) Handles BMaster.Click
+
+    End Sub
 End Class

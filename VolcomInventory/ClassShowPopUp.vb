@@ -426,6 +426,9 @@
             ' refuse returbn online
             FormOLReturnRefuseDet.Close()
             FormOLReturnRefuseDet.Dispose()
+        ElseIf report_mark_type = "293" Then
+            ' summary tax
+            FormReportBalanceTaxSummaryPpnDet.Close()
         End If
     End Sub
     Sub show()
@@ -1418,6 +1421,10 @@ GROUP BY rec.`id_prod_order`"
             'cancel cn
             FormViewSalesPOS.id_sales_pos = id_report
             FormViewSalesPOS.ShowDialog()
+        ElseIf report_mark_type = "293" Then
+            'summary tax
+            FormReportBalanceTaxSummaryPpnDet.id_summary = id_report
+            FormReportBalanceTaxSummaryPpnDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2537,6 +2544,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_sales_pos"
             field_number = "sales_pos_number"
             field_date = "sales_pos_date"
+        ElseIf report_mark_type = "293" Then
+            'summary tax
+            table_name = "tb_tax_ppn_summary"
+            field_id = "id_summary"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

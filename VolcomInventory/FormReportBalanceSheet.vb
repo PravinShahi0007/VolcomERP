@@ -1254,4 +1254,8 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
     Private Sub SBSetup_Click(sender As Object, e As EventArgs) Handles SBSetup.Click
         FormReportBalanceTaxSetup.ShowDialog()
     End Sub
+
+    Private Sub SBSummaryPpn_Click(sender As Object, e As EventArgs) Handles SBSummaryPpn.Click
+        FormReportBalanceTaxSummaryPpn.ShowDialog()
+    End Sub
 End Class

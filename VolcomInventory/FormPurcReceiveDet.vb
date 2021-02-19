@@ -456,7 +456,12 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
         Dim item_detail As String = addSlashes(GVSummary.GetRowCellValue(rh, "item_detail").ToString)
         If e.Column.FieldName = "qty" Then
             If e.Value >= 0 Then
-                Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
+                Dim old_value As Decimal = 0.00
+                Try
+                    old_value = sender.ActiveEditor.OldEditValue
+                Catch ex As Exception
+
+                End Try
                 Dim qcek As String = "SELECT pod.id_purc_order,pod.id_item, SUM(pod.qty) AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`,
                 (SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`,
                 pod.`value` 
@@ -476,7 +481,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
 	                GROUP BY retd.id_item
                 ) retd ON retd.id_item = pod.id_item
                 INNER JOIN tb_purc_req_det prd ON prd.id_purc_req_det=pod.id_purc_req_det
-                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + " AND IFNULL(CONCAT(prd.item_detail,IF(ISNULL(prd.remark) OR prd.remark='','',CONCAT('\r\n',prd.remark)))='" & item_detail & "'
+                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + " AND CONCAT(prd.item_detail,IF(ISNULL(prd.remark) OR prd.remark='','',CONCAT('\r\n',prd.remark)))='" & item_detail & "'
                 GROUP BY pod.id_item, CONCAT(prd.item_detail,IF(ISNULL(prd.remark) OR prd.remark='','',CONCAT('\r\n',prd.remark))) "
                 Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
                 If e.Value > dcek.Rows(0)("qty_remaining") Then
