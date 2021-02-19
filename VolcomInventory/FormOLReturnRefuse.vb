@@ -2,6 +2,7 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Dim comp_not_in As String = ""
 
     Sub viewCompGroup()
         Cursor = Cursors.WaitCursor
@@ -11,6 +12,7 @@
         SELECT cg.id_comp_group, cg.comp_group, cg.description 
         FROM tb_m_comp_group cg
         INNER JOIN tb_m_comp c ON c.id_comp_group = cg.id_comp_group AND c.id_commerce_type=2
+        WHERE c.id_comp NOT IN (" + comp_not_in + ")
         GROUP BY cg.id_comp_group "
         viewSearchLookupQuery(SLECompGroup, query, "id_comp_group", "description", "id_comp_group")
         Cursor = Cursors.Default
@@ -19,9 +21,12 @@
 
     Private Sub FormOLReturnRefuse_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'date now
-        Dim tgl_sekarang As datetime = getTimeDB()
+        Dim tgl_sekarang As DateTime = getTimeDB()
         DEFrom.EditValue = tgl_sekarang
         DEUntil.EditValue = tgl_sekarang
+
+        'get not in
+        comp_not_in = execute_query("SELECT GROUP_CONCAT(DISTINCT o.id_store) FROM tb_m_comp_volcom_ol o", 0, True, "", "", "", "")
 
         viewCompGroup()
     End Sub
@@ -179,10 +184,10 @@
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        WHERE d.id_report_status=6 AND c.id_commerce_type=2 
+        WHERE d.id_report_status=6 AND c.id_commerce_type=2 AND c.id_comp NOT IN(" + comp_not_in + ")
         " + cond_group + "
         " + cond_orderno + "
-        ORDER BY cg.id_comp_group ASC,so.sales_order_ol_shop_number ASC "
+        ORDER BY cg.id_comp_group ASC,so.id_sales_order ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOrder.DataSource = data
         GVOrder.BestFitColumns()
