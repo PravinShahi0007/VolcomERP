@@ -15873,4 +15873,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBBiayaSewa_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBiayaSewa.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBiayaSewa.MdiParent = Me
+            FormBiayaSewa.Show()
+            FormBiayaSewa.WindowState = FormWindowState.Maximized
+            FormBiayaSewa.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
