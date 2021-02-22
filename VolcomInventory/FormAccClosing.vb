@@ -110,13 +110,13 @@ GROUP BY trxd.`id_acc_trans`"
 
         'main journal bulanan
         Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created,date_reference, acc_trans_note, id_report_status, is_close)
-                        VALUES ('','" + report_number + "','0','" + id_user_prepared + "', NOW(), '" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "', 'Auto Posting', '6', '1'); SELECT LAST_INSERT_ID(); "
+                        VALUES ('','" + report_number + "','0','" + id_user_prepared + "', NOW(), '" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "', 'Closing Bulanan', '6', '1'); SELECT LAST_INSERT_ID(); "
         Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
         execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
         'det journal bulanan
         Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_comp, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_coa_tag)
-        SELECT " + id_acc_trans + " AS `id_trans`,1,coal.`id_acc`,1 AS qty,IF(SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))<0,0,SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))) AS debit,IF(SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))<0,SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))*-1,0) AS credit,'' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
+        SELECT " + id_acc_trans + " AS `id_trans`,1,coal.`id_acc`,1 AS qty,IF(SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))<0,0,SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))) AS debit,IF(SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))<0,SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))*-1,0) AS credit,'Closing Bulanan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
         FROM tb_a_acc_trans_det trxd
         INNER JOIN tb_a_acc_trans trx ON trx.`id_acc_trans`=trxd.`id_acc_trans`
         INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc AND (LEFT(acc.acc_name,1)='3' OR LEFT(acc.acc_name,1)='4')
@@ -167,7 +167,7 @@ INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans
 INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc AND LEFT(acc.acc_name,7)='2214111' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
 WHERE YEAR(trx.date_reference)='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy") & "'
 UNION ALL
-SELECT " + id_acc_trans + " AS `id_trans`,1," + id_acc_laba + ",1 AS qty,SUM((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit)) AS debit,0 AS credit,'Pindah laba tahun berjalan ke laba ditahan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
+SELECT " + id_acc_trans + " AS `id_trans`,1,acc.id_acc,1 AS qty,SUM((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit)) AS debit,0 AS credit,'Pindah laba tahun berjalan ke laba ditahan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
 FROM tb_a_acc_trans_det trxd
 INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans
 INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc AND LEFT(acc.acc_name,7)='2214111' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
@@ -175,14 +175,14 @@ WHERE YEAR(trx.date_reference)='" & Date.Parse(DEUntil.EditValue.ToString).ToStr
 GROUP BY acc.id_acc"
                 execute_non_query(q, True, "", "", "", "")
             ElseIf id_coa_type = "2" Then 'cabang
-                q = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_coa_tag)
-                SELECT " + id_acc_trans + " AS `id_trans`," + id_acc_laba + ",1 AS qty,0 AS debit,SUM((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit)) AS credit,'Pindah laba tahun berjalan ke laba ditahan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
+                q = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_comp, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_coa_tag)
+                SELECT " + id_acc_trans + " AS `id_trans`,1," + id_acc_laba + ",1 AS qty,0 AS debit,SUM((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit)) AS credit,'Pindah laba tahun berjalan ke laba ditahan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
 FROM tb_a_acc_trans_det trxd
 INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans
 INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc AND LEFT(acc.acc_name,7)='2204' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
 WHERE YEAR(trx.date_reference)='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy") & "'
 UNION ALL
-SELECT " + id_acc_trans + " AS `id_trans`," + id_acc_laba + ",1 AS qty,SUM((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit)) AS debit,0 AS credit,'Pindah laba tahun berjalan ke laba ditahan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
+SELECT " + id_acc_trans + " AS `id_trans`,1,acc.id_acc,1 AS qty,SUM((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit)) AS debit,0 AS credit,'Pindah laba tahun berjalan ke laba ditahan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
 FROM tb_a_acc_trans_det trxd
 INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans
 INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc AND LEFT(acc.acc_name,7)='2204' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
