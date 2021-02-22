@@ -171,6 +171,8 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
                     q = "CALL gen_number('" & id_biaya_bulanan & "','294')"
                     execute_non_query(q, True, "", "", "", "")
                     '
+                    submit_who_prepared("294", id_biaya_bulanan, id_user)
+                    '
                     warningCustom("Alokasi biaya diajukan, menunggu persetujuan")
                     FormBiayaSewa.load_biaya_bulanan_pps()
                     Close()

@@ -171,6 +171,8 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
                     q = "CALL gen_number('" & id_dep & "','287')"
                     execute_non_query(q, True, "", "", "", "")
                     '
+                    submit_who_prepared("287", id_dep, id_user)
+                    '
                     warningCustom("Depreciation created, waiting to approve")
                     FormPurcAsset.load_dep_pps()
                     Close()
