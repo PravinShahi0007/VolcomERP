@@ -45,19 +45,20 @@ ORDER BY id_biaya_sewa DESC"
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
-
+        If XTCBiayaSewa.SelectedTabPageIndex = 1 Then
+            FormBiayaSewaBulanan.ShowDialog()
+        End If
     End Sub
 
     Private Sub FormBiayaSewa_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_unit()
-
     End Sub
 
     Sub load_unit()
         Dim query As String = "SELECT 0 AS id_coa_tag,'ALL' AS tag_code,'ALL' AS tag_description 
 UNION ALL
 SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
-        '        query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
+        'query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
         'UNION ALL
         'SELECT ad.`id_comp`,c.`comp_number`,c.`comp_name` FROM `tb_a_acc_trans_det` ad
         'INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
@@ -75,17 +76,24 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
     End Sub
 
     Sub load_biaya_bulanan_pps()
-        Dim q As String = "SELECT ct.tag_description,SUM(ppsd.dep_value) AS dep_value_tot,pps.*,emp.employee_name,sts.report_status 
-FROM tb_asset_dep_pps_det ppsd
-INNER JOIN `tb_asset_dep_pps` pps ON pps.id_asset_dep_pps=ppsd.id_asset_dep_pps
+        Dim q As String = "SELECT ct.tag_description,SUM(ppsd.alokasi_biaya_per_bulan) AS dep_value_tot,pps.*,emp.employee_name,sts.report_status 
+FROM `tb_biaya_sewa_bulanan_det` ppsd
+INNER JOIN `tb_biaya_sewa_bulanan` pps ON pps.id_biaya_sewa_bulanan=ppsd.id_biaya_sewa_bulanan
 INNER JOIN tb_coa_tag ct ON ct.id_coa_tag=pps.id_coa_tag
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON pps.id_report_status=sts.id_report_status
-GROUP by ppsd.id_asset_dep_pps
-ORDER BY ppsd.id_asset_dep_pps DESC"
+GROUP BY ppsd.id_biaya_sewa_bulanan
+ORDER BY ppsd.id_biaya_sewa_bulanan DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCMonthlyPPS.DataSource = dt
         GVMonthlyPPS.BestFitColumns()
+    End Sub
+
+    Private Sub GVMonthlyPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVMonthlyPPS.DoubleClick
+        If GVMonthlyPPS.RowCount > 0 Then
+            FormBiayaSewaBulanan.id_biaya_bulanan = GVMonthlyPPS.GetFocusedRowCellValue("id_biaya_sewa_bulanan").ToString
+            FormBiayaSewaBulanan.ShowDialog()
+        End If
     End Sub
 End Class

@@ -7805,6 +7805,12 @@
     <Compile Include="ReportBankWithdrawalSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBiayaSewaBulanan.Designer.vb">
+      <DependentUpon>ReportBiayaSewaBulanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBiayaSewaBulanan.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBOM.Designer.vb">
       <DependentUpon>ReportBOM.vb</DependentUpon>
     </Compile>
@@ -13555,6 +13561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBankWithdrawalSum.resx">
       <DependentUpon>ReportBankWithdrawalSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBiayaSewaBulanan.resx">
+      <DependentUpon>ReportBiayaSewaBulanan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBOM.resx">
       <DependentUpon>ReportBOM.vb</DependentUpon>

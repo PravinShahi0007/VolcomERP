@@ -273,10 +273,10 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        ReportPurcAssetDep.id_dep = id_biaya_bulanan
-        ReportPurcAssetDep.id_report_status = id_report_status
-        ReportPurcAssetDep.dt = GCDepreciation.DataSource
-        Dim Report As New ReportPurcAssetDep()
+        ReportBiayaSewaBulanan.id_biaya = id_biaya_bulanan
+        ReportBiayaSewaBulanan.id_report_status = id_report_status
+        ReportBiayaSewaBulanan.dt = GCDepreciation.DataSource
+        Dim Report As New ReportBiayaSewaBulanan()
 
 
         'creating And saving the view's layout to a new memory stream 
