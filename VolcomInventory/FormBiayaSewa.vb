@@ -33,8 +33,7 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=bs.`insert_by`
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.`id_employee`
 INNER JOIN tb_a_acc acc ON acc.`id_acc`=bs.`coa_biaya`
 INNER JOIN tb_a_acc acc2 ON acc2.`id_acc`=bs.`coa_uang_muka`
-WHERE bs.is_active=2 " & qw & "
-ORDER BY id_biaya_sewa DESC"
+WHERE bs.is_active=2 " & qw & " ORDER BY id_biaya_sewa DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()

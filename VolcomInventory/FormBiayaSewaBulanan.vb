@@ -63,7 +63,7 @@ WHERE id_biaya_sewa_bulanan='" & id_biaya_bulanan & "'"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT ass.total_bulan AS total_bulan,ppsd.remaining_month, ppsd.coa_uang_muka, ppsd.coa_biaya,acc_biaya.acc_description AS acc_biaya,acc_uangmuka.acc_description AS acc_uangmuka
+        Dim q As String = "SELECT ass.total_bulan AS total_bulan,ppsd.remaining_month, ppsd.coa_uang_muka, ppsd.coa_biaya,acc_biaya.acc_description AS acc_biaya,acc_uangmuka.acc_description AS acc_uang_muka
 ,ass.`description`,ass.date_reff
 ,ass.total_uang_muka AS total_uang_muka
 ,ppsd.alokasi_biaya_per_bulan,ppsd.biaya_teralokasi
@@ -206,8 +206,8 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
                 newRow("cc") = "000"
                 newRow("report_number") = TENumber.Text
                 newRow("note") = "Alokasi biaya " & GVDepreciation.GetRowCellValue(i, "description").ToString & "(" & Date.Parse(DEReffDate.EditValue.ToString).ToString("MMMM yyyy") & ")"
-                newRow("debit") = GVDepreciation.GetRowCellValue(i, "alokasi_biaya_per_bulan")
-                newRow("credit") = 0
+                newRow("debit") = 0
+                newRow("credit") = GVDepreciation.GetRowCellValue(i, "alokasi_biaya_per_bulan")
                 TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
                 GCDraft.RefreshDataSource()
                 GVDraft.RefreshData()
@@ -223,8 +223,8 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
                 newRow_accum("cc") = "000"
                 newRow_accum("report_number") = TENumber.Text
                 newRow_accum("note") = "Alokasi biaya " & GVDepreciation.GetRowCellValue(i, "description").ToString & "(" & Date.Parse(DEReffDate.EditValue.ToString).ToString("MMMM yyyy") & ")"
-                newRow_accum("debit") = 0
-                newRow_accum("credit") = GVDepreciation.GetRowCellValue(i, "alokasi_biaya_per_bulan")
+                newRow_accum("debit") = GVDepreciation.GetRowCellValue(i, "alokasi_biaya_per_bulan")
+                newRow_accum("credit") = 0
                 TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow_accum)
                 GCDraft.RefreshDataSource()
                 GVDraft.RefreshData()
