@@ -180,7 +180,7 @@ Partial Class FormBiayaSewa
         Me.XTPDepresiasi.Controls.Add(Me.GCMonthlyPPS)
         Me.XTPDepresiasi.Name = "XTPDepresiasi"
         Me.XTPDepresiasi.Size = New System.Drawing.Size(1049, 459)
-        Me.XTPDepresiasi.Text = "Pembiayaan Bulanan"
+        Me.XTPDepresiasi.Text = "Alokasi Biaya"
         '
         'GCMonthlyPPS
         '
