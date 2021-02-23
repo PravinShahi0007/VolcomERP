@@ -235,6 +235,10 @@
     End Sub
 
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
+        saveROR()
+    End Sub
+
+    Sub saveROR()
         GVItemList.CloseEditor()
         makeSafeGV(GVItemList)
         ValidateChildren()
@@ -271,23 +275,29 @@
                         Else
                             If LEOrderType.EditValue.ToString = "4" Then
                                 sales_return_order_number = header_number_sales("41")
+                                increase_inc_sales("41")
                             ElseIf LEOrderType.EditValue.ToString = "6" Then
                                 sales_return_order_number = header_number_sales("42")
+                                increase_inc_sales("42")
                             Else
                                 sales_return_order_number = header_number_sales("4")
+                                increase_inc_sales("4")
                             End If
                         End If
+
+                        'cek
+                        Dim ro As New ClassSalesReturnOrder()
+                        Dim is_no_dupe As Boolean = ro.isNotDuplicateROR(sales_return_order_number)
+                        If Not is_no_dupe Then
+                            warningCustom("ROR number already used, please try again to save changes this transaction")
+                            Cursor = Cursors.Default
+                            Exit Sub
+                        End If
+
 
                         Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date, sales_return_order_est_del_date, is_on_hold, id_order_type, id_return_clasification) "
                         query += "VALUES('" + id_store_contact_to + "', '" + sales_return_order_number + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY), '" + sales_return_order_est_del_date + "', '" + is_on_hold + "', '" + id_order_type + "', '" + SLUEClasification.EditValue.ToString + "'); SELECT LAST_INSERT_ID(); "
                         id_sales_return_order = execute_query(query, 0, True, "", "", "", "")
-                        If LEOrderType.EditValue.ToString = "4" Then
-                            increase_inc_sales("41")
-                        ElseIf LEOrderType.EditValue.ToString = "6" Then
-                            increase_inc_sales("42")
-                        Else
-                            increase_inc_sales("4")
-                        End If
 
                         'insert who prepared
                         insert_who_prepared("45", id_sales_return_order, id_user)

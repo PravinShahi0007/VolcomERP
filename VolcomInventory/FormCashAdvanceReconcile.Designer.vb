@@ -749,12 +749,12 @@ Partial Class FormCashAdvanceReconcile
         '
         Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         Me.ContextMenuStrip.Name = "ContextMenuStrip"
-        Me.ContextMenuStrip.Size = New System.Drawing.Size(153, 48)
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(147, 26)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(146, 22)
         Me.ToolStripMenuItem1.Text = "Gross up PPH"
         '
         'GVJournalDet
@@ -850,6 +850,7 @@ Partial Class FormCashAdvanceReconcile
         Me.RSLEComp.AutoHeight = False
         Me.RSLEComp.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RSLEComp.Name = "RSLEComp"
+        Me.RSLEComp.ShowClearButton = False
         Me.RSLEComp.View = Me.GridView1
         '
         'GridView1
