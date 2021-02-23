@@ -412,7 +412,8 @@
         IFNULL(stt.`status`, 'Pending') AS `ol_store_status`, IFNULL(stt.status_date, sales_order_ol_shop_date) AS `ol_store_date`,
         IFNULL(stt_internal.`status`, '-') AS `ol_store_status_internal`, IFNULL(stt_internal.status_date, sales_order_ol_shop_date) AS `ol_store_date_internal`,
         so.sales_order_ol_shop_date,  so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
-        so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, cg.lead_time_return, '' AS view_shipping_label
+        so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, cg.lead_time_return, '' AS view_shipping_label,
+        rrf.id_return_refuse, rrf.`return_refuse_number`, rrf.`return_refuse_date`,rrf.`return_refuse_status`
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
         LEFT JOIN tb_ol_promo_collection prm ON prm.id_ol_promo_collection = sod.id_ol_promo_collection
@@ -597,6 +598,15 @@
             WHERE ish.id_report_status=6 
             GROUP BY ish.id_report
         ) ish ON ish.id_report = so.id_sales_order_ol_shop
+        LEFT JOIN (
+            SELECT d.id_sales_order_det, h.id_return_refuse, h.`number` AS `return_refuse_number`, 
+            h.created_date AS `return_refuse_date`,stt.report_status AS `return_refuse_status`
+            FROM tb_ol_store_return_refuse_det d
+            INNER JOIN tb_ol_store_return_refuse h ON h.id_return_refuse = d.id_return_refuse
+            INNER JOIN tb_lookup_report_status stt  ON stt.id_report_status = h.id_report_status
+            WHERE h.id_report_status!=5
+            GROUP BY d.id_sales_order_det
+        ) rrf ON rrf.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
@@ -1303,6 +1313,18 @@
             path = path + "ol_store_report_prm_summ.xlsx"
             exportToXLS(path, "ol_store_report_prm_summ", GCPromoSummary)
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnRRF_Click(sender As Object, e As EventArgs) Handles RepoBtnRRF.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
+            Dim m As New ClassShowPopUp()
+            Dim id As String = GVDetail.GetFocusedRowCellValue("id_return_refuse").ToString
+            If id <> "" Then
+                m.id_report = id
+                m.report_mark_type = "290"
+                m.show()
+            End If
         End If
     End Sub
 End Class
