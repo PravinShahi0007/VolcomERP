@@ -429,6 +429,9 @@
         ElseIf report_mark_type = "293" Then
             ' summary tax
             FormReportBalanceTaxSummaryPpnDet.Close()
+        ElseIf report_mark_type = "294" Then
+            ' alokasi biaya bulanan
+            FormBiayaSewaBulanan.Close()
         End If
     End Sub
     Sub show()
@@ -1425,6 +1428,10 @@ GROUP BY rec.`id_prod_order`"
             'summary tax
             FormReportBalanceTaxSummaryPpnDet.id_summary = id_report
             FormReportBalanceTaxSummaryPpnDet.ShowDialog()
+        ElseIf report_mark_type = "294" Then
+            'alokasi biaya bulanan
+            FormBiayaSewaBulanan.id_biaya_bulanan = id_report
+            FormBiayaSewaBulanan.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2532,7 +2539,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_item_card_trs"
             field_number = "number"
             field_date = "created_at"
-       	ElseIf report_mark_type = "290" Then
+        ElseIf report_mark_type = "290" Then
             ' refuse returbn online
             table_name = "tb_ol_store_return_refuse"
             field_id = "id_return_refuse"
@@ -2550,6 +2557,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_summary"
             field_number = "number"
             field_date = "created_at"
+        ElseIf report_mark_type = "294" Then
+            'alokasi biaya bulanan
+            table_name = "tb_biaya_sewa_bulanan"
+            field_id = "id_biaya_sewa_bulanan"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

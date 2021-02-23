@@ -9515,6 +9515,47 @@ HAVING qty>0"
             'update status
             query = String.Format("UPDATE tb_tax_ppn_summary SET id_report_status='{0}' WHERE id_summary ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "294" Then
+            'alokasi biaya bulanan
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'masukkan ke tabel alokasi bulanan
+                Dim qi As String = "INSERT INTO `tb_biaya_sewa_teralokasi`(`id_biaya_sewa`,`id_biaya_sewa_bulanan`,`reff_date`,`amount`)
+SELECT psd.id_biaya_sewa,psd.id_biaya_sewa_bulanan,ps.`reff_date`,psd.alokasi_biaya_per_bulan
+FROM `tb_biaya_sewa_bulanan_det` psd
+INNER JOIN tb_biaya_sewa_bulanan ps ON ps.`id_asset_dep_pps`=psd.`id_asset_dep_pps`
+WHERE psd.id_biaya_sewa_bulanan='" & id_report & "'"
+                execute_non_query(qi, True, "", "", "", "")
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status,date_reference) 
+                VALUES ('','" + report_number + "','0','" + id_user + "', NOW(), 'Auto Posting', '6', (SELECT reff_date FROM tb_biaya_sewa_bulanan WHERE id_biaya_sewa_bulanan='" & id_report & "')); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_comp, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_coa_tag)
+            SELECT '" + id_acc_trans + "',1, dep.coa_uang_muka, 0, dep.alokasi_biaya_per_bulan,  CONCAT('Alokasi Biaya - ',a.description,'(',DATE_FORMAT(dep_head.reff_date,'%M %Y'),')'), 287, dep_head.id_biaya_sewa_bulanan, dep_head.number,dep_head.id_coa_tag
+FROM `tb_biaya_sewa_bulanan_det` dep
+INNER JOIN tb_biaya_sewa_bulanan dep_head ON dep_head.id_biaya_sewa_bulanan=dep.id_biaya_sewa_bulanan
+INNER JOIN tb_biaya_sewa a ON a.id_biaya_sewa = dep.id_biaya_sewa
+WHERE dep.id_biaya_sewa_bulanan='" + id_report + "'
+UNION ALL
+SELECT '" + id_acc_trans + "',1, dep.coa_biaya, dep.alokasi_biaya_per_bulan, 0,   CONCAT('Alokasi Biaya - ',a.description,'(',DATE_FORMAT(dep_head.reff_date,'%M %Y'),')'), 287, dep_head.id_biaya_sewa_bulanan, dep_head.number,dep_head.id_coa_tag
+FROM `tb_biaya_sewa_bulanan_det` dep
+INNER JOIN tb_biaya_sewa_bulanan dep_head ON dep_head.id_biaya_sewa_bulanan=dep.id_biaya_sewa_bulanan
+INNER JOIN tb_biaya_sewa a ON a.id_biaya_sewa = dep.id_biaya_sewa
+WHERE dep.id_biaya_sewa_bulanan='" + id_report + "'"
+                'Console.WriteLine("Insert jurnal")
+                execute_non_query(qjd, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_biaya_sewa_bulanan SET id_report_status='{0}' WHERE id_biaya_sewa_bulanan ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time
