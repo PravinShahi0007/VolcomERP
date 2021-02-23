@@ -46,11 +46,19 @@ WHERE bs.is_active=1 " & qw & " ORDER BY id_biaya_sewa DESC"
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         If XTCBiayaSewa.SelectedTabPageIndex = 1 Then
             FormBiayaSewaBulanan.ShowDialog()
+        Else
+            FormBiayaSewaPPS.ShowDialog()
         End If
     End Sub
 
     Private Sub FormBiayaSewa_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_unit()
+    End Sub
+
+    Sub load_pps()
+        Dim q As String = ""
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
     End Sub
 
     Sub load_unit()
@@ -71,6 +79,8 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             load_biaya_sewa()
         ElseIf XTCBiayaSewa.SelectedTabPageIndex = 1 Then
             load_biaya_bulanan_pps()
+        ElseIf XTCBiayaSewa.SelectedTabPageIndex = 2 Then
+            load_pps()
         End If
     End Sub
 

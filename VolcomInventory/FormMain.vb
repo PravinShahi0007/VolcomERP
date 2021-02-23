@@ -1621,13 +1621,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormItemCatProposeDet.id = id
             FormItemCatProposeDet.ShowDialog()
         ElseIf formName = "FormItemCatMapping" Then
-            Dim query As String = "INSERT INTO tb_item_coa_propose(number, created_date, note, id_report_status) 
-            VALUES('" + header_number_sales("38") + "',NOW(), '',1);SELECT LAST_INSERT_ID(); "
-            Dim id As String = execute_query(query, 0, True, "", "", "", "")
-            FormItemCatMapping.viewPropose()
-            FormItemCatMapping.GVPropose.FocusedRowHandle = find_row(FormItemCatMapping.GVPropose, "id_item_coa_propose", id)
-            FormItemCatMappingDet.id = id
-            FormItemCatMappingDet.ShowDialog()
+            'check first
+            Dim qc As String = "SELECT * FROM tb_item_coa_propose WHERE id_report_status!=5 AND id_report_status!=6"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                warningCustom("There is pending document, please complete it first.")
+            Else
+                Dim query As String = "INSERT INTO tb_item_coa_propose(number, created_date, note, id_report_status) 
+                VALUES('" + header_number_sales("38") + "',NOW(), '',1);SELECT LAST_INSERT_ID(); "
+                Dim id As String = execute_query(query, 0, True, "", "", "", "")
+                FormItemCatMapping.viewPropose()
+                FormItemCatMapping.GVPropose.FocusedRowHandle = find_row(FormItemCatMapping.GVPropose, "id_item_coa_propose", id)
+                FormItemCatMappingDet.id = id
+                FormItemCatMappingDet.ShowDialog()
+            End If
         ElseIf formName = "FormPurcItem" Then
             FormPurcItemDet.id_item = "-1"
             FormPurcItemDet.ShowDialog()
