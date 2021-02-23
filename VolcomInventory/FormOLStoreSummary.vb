@@ -413,7 +413,8 @@
         IFNULL(stt_internal.`status`, '-') AS `ol_store_status_internal`, IFNULL(stt_internal.status_date, sales_order_ol_shop_date) AS `ol_store_date_internal`,
         so.sales_order_ol_shop_date,  so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
         so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, cg.lead_time_return, '' AS view_shipping_label,
-        rrf.id_return_refuse, rrf.`return_refuse_number`, rrf.`return_refuse_date`,rrf.`return_refuse_status`
+        rrf.id_return_refuse, rrf.`return_refuse_number`, rrf.`return_refuse_date`,rrf.`return_refuse_status`,
+        ccn.`id_cancel_cn`, ccn.`cancel_cn_number`, ccn.`cancel_cn_date`, ccn.cancel_cn_status
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
         LEFT JOIN tb_ol_promo_collection prm ON prm.id_ol_promo_collection = sod.id_ol_promo_collection
@@ -607,6 +608,18 @@
             WHERE h.id_report_status!=5
             GROUP BY d.id_sales_order_det
         ) rrf ON rrf.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+            SELECT dd.id_sales_order_det, h.id_sales_pos AS `id_cancel_cn`, 
+            h.sales_pos_number AS `cancel_cn_number`, h.sales_pos_date AS `cancel_cn_date`, stt.report_status AS `cancel_cn_status`
+            FROM tb_sales_pos_det d
+            INNER JOIN tb_sales_pos h ON h.id_sales_pos = d.id_sales_pos
+            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = h.id_report_status
+            INNER JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos_det = d.id_cn_det
+            INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos_det = cnd.id_sales_pos_det_ref
+            INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
+            WHERE h.id_report_status!=5 AND !ISNULL(d.id_cn_det)
+            GROUP BY dd.id_sales_order_det
+        ) ccn ON ccn.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
@@ -1323,6 +1336,18 @@
             If id <> "" Then
                 m.id_report = id
                 m.report_mark_type = "290"
+                m.show()
+            End If
+        End If
+    End Sub
+
+    Private Sub RepoBtnCancelCN_Click(sender As Object, e As EventArgs) Handles RepoBtnCancelCN.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
+            Dim m As New ClassShowPopUp()
+            Dim id As String = GVDetail.GetFocusedRowCellValue("id_cancel_cn").ToString
+            If id <> "" Then
+                m.id_report = id
+                m.report_mark_type = "292"
                 m.show()
             End If
         End If
