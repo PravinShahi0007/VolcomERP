@@ -524,6 +524,12 @@
     <Compile Include="FormBiayaSewa.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBiayaSewaBulanan.Designer.vb">
+      <DependentUpon>FormBiayaSewaBulanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBiayaSewaBulanan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBudgetProdDemand.Designer.vb">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
     </Compile>
@@ -7799,6 +7805,12 @@
     <Compile Include="ReportBankWithdrawalSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBiayaSewaBulanan.Designer.vb">
+      <DependentUpon>ReportBiayaSewaBulanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBiayaSewaBulanan.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBOM.Designer.vb">
       <DependentUpon>ReportBOM.vb</DependentUpon>
     </Compile>
@@ -9442,6 +9454,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBiayaSewa.resx">
       <DependentUpon>FormBiayaSewa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBiayaSewaBulanan.resx">
+      <DependentUpon>FormBiayaSewaBulanan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemand.resx">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
@@ -13546,6 +13561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBankWithdrawalSum.resx">
       <DependentUpon>ReportBankWithdrawalSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBiayaSewaBulanan.resx">
+      <DependentUpon>ReportBiayaSewaBulanan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBOM.resx">
       <DependentUpon>ReportBOM.vb</DependentUpon>
