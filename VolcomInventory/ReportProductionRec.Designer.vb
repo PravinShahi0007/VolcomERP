@@ -32,6 +32,9 @@ Partial Public Class ReportProductionRec
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.LabelRecType = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel22 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelArriveDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
@@ -65,9 +68,6 @@ Partial Public Class ReportProductionRec
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelRecType = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel22 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,7 +205,7 @@ Partial Public Class ReportProductionRec
         Me.LTitle.SizeF = New System.Drawing.SizeF(397.9584!, 26.54166!)
         Me.LTitle.StylePriority.UseFont = False
         Me.LTitle.StylePriority.UseTextAlignment = False
-        Me.LTitle.Text = "PRE RECEIVING REPORT"
+        Me.LTitle.Text = "RECEIVING QC"
         Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'LRecNumber
@@ -259,6 +259,37 @@ Partial Public Class ReportProductionRec
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(787.1248!, 115.0817!)
         Me.XrPanel1.StylePriority.UseBorderColor = False
         Me.XrPanel1.StylePriority.UseBorders = False
+        '
+        'LabelRecType
+        '
+        Me.LabelRecType.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelRecType.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.LabelRecType.LocationFloat = New DevExpress.Utils.PointFloat(622.5417!, 42.75012!)
+        Me.LabelRecType.Name = "LabelRecType"
+        Me.LabelRecType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelRecType.SizeF = New System.Drawing.SizeF(154.5832!, 13.58337!)
+        Me.LabelRecType.StylePriority.UseBorders = False
+        Me.LabelRecType.StylePriority.UseFont = False
+        '
+        'XrLabel18
+        '
+        Me.XrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(611.0834!, 42.75006!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(11.45837!, 13.58337!)
+        Me.XrLabel18.StylePriority.UseBorders = False
+        Me.XrLabel18.Text = ":"
+        '
+        'XrLabel22
+        '
+        Me.XrLabel22.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(525.6667!, 42.75006!)
+        Me.XrLabel22.Name = "XrLabel22"
+        Me.XrLabel22.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel22.SizeF = New System.Drawing.SizeF(85.41647!, 13.58337!)
+        Me.XrLabel22.StylePriority.UseBorders = False
+        Me.XrLabel22.Text = "Rec Type"
         '
         'LabelArriveDate
         '
@@ -619,37 +650,6 @@ Partial Public Class ReportProductionRec
         Me.XrLabel14.StylePriority.UseTextAlignment = False
         Me.XrLabel14.Text = "Receive Before :"
         Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'LabelRecType
-        '
-        Me.LabelRecType.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LabelRecType.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.LabelRecType.LocationFloat = New DevExpress.Utils.PointFloat(622.5417!, 42.75012!)
-        Me.LabelRecType.Name = "LabelRecType"
-        Me.LabelRecType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelRecType.SizeF = New System.Drawing.SizeF(154.5832!, 13.58337!)
-        Me.LabelRecType.StylePriority.UseBorders = False
-        Me.LabelRecType.StylePriority.UseFont = False
-        '
-        'XrLabel18
-        '
-        Me.XrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(611.0834!, 42.75006!)
-        Me.XrLabel18.Name = "XrLabel18"
-        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(11.45837!, 13.58337!)
-        Me.XrLabel18.StylePriority.UseBorders = False
-        Me.XrLabel18.Text = ":"
-        '
-        'XrLabel22
-        '
-        Me.XrLabel22.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(525.6667!, 42.75006!)
-        Me.XrLabel22.Name = "XrLabel22"
-        Me.XrLabel22.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel22.SizeF = New System.Drawing.SizeF(85.41647!, 13.58337!)
-        Me.XrLabel22.StylePriority.UseBorders = False
-        Me.XrLabel22.Text = "Rec Type"
         '
         'ReportProductionRec
         '

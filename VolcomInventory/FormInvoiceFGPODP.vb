@@ -141,10 +141,10 @@
                             '
                             newRow("id_currency") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_currency")
                             newRow("kurs") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "prod_order_wo_kurs")
-                            newRow("value_bef_kurs") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_bef_kurs")
+                            newRow("value_bef_kurs") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_bef_kurs") - FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "val_dp")
                             '
                             newRow("pph_percent") = 0
-                            newRow("vat") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_vat")
+                            newRow("vat") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "dp_amount_vat") - FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "val_vat_dp")
                             newRow("inv_number") = ""
                             newRow("note") = ""
                             TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)

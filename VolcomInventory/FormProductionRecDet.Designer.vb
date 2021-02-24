@@ -1083,7 +1083,7 @@ Partial Class FormProductionRecDet
         Me.Name = "FormProductionRecDet"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Pre Receiving"
+        Me.Text = "Receiving QC"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
