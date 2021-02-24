@@ -56,9 +56,22 @@ WHERE bs.is_active=1 " & qw & " ORDER BY id_biaya_sewa DESC"
     End Sub
 
     Sub load_pps()
-        Dim q As String = ""
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        Dim qw As String = ""
 
+        If Not SLEUnit.EditValue.ToString = "0" Then
+            qw = " WHERE pps.id_coa_tag='" & SLEUnit.EditValue.ToString & "'"
+        End If
+
+        Dim q As String = "SELECT pps.*,emp.`employee_name`,sts.`report_status` 
+FROM tb_biaya_sewa_pps pps
+INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=pps.`id_report_status`
+" & qw & "
+ORDER BY pps.id_biaya_sewa_pps DESC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCPPS.DataSource = dt
+        GVPPS.BestFitColumns()
     End Sub
 
     Sub load_unit()
@@ -85,6 +98,12 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
     End Sub
 
     Sub load_biaya_bulanan_pps()
+        Dim qw As String = ""
+
+        If Not SLEUnit.EditValue.ToString = "0" Then
+            qw = " WHERE pps.id_coa_tag='" & SLEUnit.EditValue.ToString & "'"
+        End If
+
         Dim q As String = "SELECT ct.tag_description,SUM(ppsd.alokasi_biaya_per_bulan) AS dep_value_tot,pps.*,emp.employee_name,sts.report_status 
 FROM `tb_biaya_sewa_bulanan_det` ppsd
 INNER JOIN `tb_biaya_sewa_bulanan` pps ON pps.id_biaya_sewa_bulanan=ppsd.id_biaya_sewa_bulanan
@@ -92,6 +111,7 @@ INNER JOIN tb_coa_tag ct ON ct.id_coa_tag=pps.id_coa_tag
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON pps.id_report_status=sts.id_report_status
+" & qw & "
 GROUP BY ppsd.id_biaya_sewa_bulanan
 ORDER BY ppsd.id_biaya_sewa_bulanan DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -103,6 +123,13 @@ ORDER BY ppsd.id_biaya_sewa_bulanan DESC"
         If GVMonthlyPPS.RowCount > 0 Then
             FormBiayaSewaBulanan.id_biaya_bulanan = GVMonthlyPPS.GetFocusedRowCellValue("id_biaya_sewa_bulanan").ToString
             FormBiayaSewaBulanan.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub GVPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVPPS.DoubleClick
+        If GVPPS.RowCount > 0 Then
+            FormBiayaSewaPPS.id_pps = GVPPS.GetFocusedRowCellValue("id_biaya_sewa_pps").ToString
+            FormBiayaSewaPPS.ShowDialog()
         End If
     End Sub
 End Class

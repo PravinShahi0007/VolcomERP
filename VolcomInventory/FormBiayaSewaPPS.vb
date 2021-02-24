@@ -193,8 +193,8 @@ WHERE ppsd.id_biaya_sewa_pps='" & id_pps & "'"
             warningCustom("Please insert item first.")
         Else
             If id_pps = "-1" Then 'new
-                Dim q As String = "INSERT INTO `tb_biaya_sewa_pps`(`created_by`,`created_date`,`id_report_status`)
-VALUES('" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID(); "
+                Dim q As String = "INSERT INTO `tb_biaya_sewa_pps`(`created_by`,`created_date`,`id_report_status`,id_coa_tag)
+VALUES('" & id_user & "',NOW(),'1','" & SLEUnit.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                 id_pps = execute_query(q, 0, True, "", "", "", "")
                 'det
                 q = "INSERT INTO tb_biaya_sewa_pps_det(`id_biaya_sewa_pps`,`description`,`date_reff`,`total_uang_muka`,`total_bulan`,`coa_prepaid_non_current`,`coa_uang_muka`,`coa_biaya`) VALUES"
@@ -206,10 +206,10 @@ VALUES('" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID(); "
                 Next
                 execute_non_query(q, True, "", "", "", "")
                 '
-                q = "CALL gen_number('" & id_pps & "','294')"
+                q = "CALL gen_number('" & id_pps & "','295')"
                 execute_non_query(q, True, "", "", "", "")
                 '
-                submit_who_prepared("294", id_pps, id_user)
+                submit_who_prepared("295", id_pps, id_user)
                 '
                 warningCustom("Master alokasi biaya diajukan, menunggu persetujuan")
                 FormBiayaSewa.XTCBiayaSewa.SelectedTabPageIndex = 2
@@ -217,5 +217,41 @@ VALUES('" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID(); "
                 Close()
             End If
         End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "295"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_pps
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            INNER JOIN tb_a_acc_trans a ON a.id_acc_trans=ad.id_acc_trans 
+            WHERE ad.report_mark_type=295 AND ad.id_report=" + id_pps + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
     End Sub
 End Class
