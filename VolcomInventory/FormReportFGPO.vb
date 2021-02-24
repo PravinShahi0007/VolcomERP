@@ -213,4 +213,12 @@ LEFT JOIN
     Private Sub BSearchTanggal_Click(sender As Object, e As EventArgs) Handles BSearchTanggal.Click
         view_production_order("date")
     End Sub
+
+    Private Sub GVProd_DoubleClick(sender As Object, e As EventArgs) Handles GVProd.DoubleClick
+        If GVProd.RowCount > 0 Then
+            FormProductionDet.is_no_cost = "1"
+            FormProductionDet.id_prod_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+            FormProductionDet.ShowDialog()
+        End If
+    End Sub
 End Class

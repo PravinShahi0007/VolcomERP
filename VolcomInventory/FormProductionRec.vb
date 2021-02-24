@@ -221,9 +221,12 @@ WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a
 
     Private Sub GVProd_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVProd.DoubleClick
         If GVProd.RowCount > 0 Then
-            GVProdRec.ApplyFindFilter(GVProd.GetFocusedRowCellValue("prod_order_number").ToString)
-            XTCTabReceive.SelectedTabPageIndex = 0
-            check_menu()
+            'GVProdRec.ApplyFindFilter(GVProd.GetFocusedRowCellValue("prod_order_number").ToString)
+            'XTCTabReceive.SelectedTabPageIndex = 0
+            'check_menu()
+            FormProductionDet.is_no_cost = "1"
+            FormProductionDet.id_prod_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+            FormProductionDet.ShowDialog()
         End If
     End Sub
 
