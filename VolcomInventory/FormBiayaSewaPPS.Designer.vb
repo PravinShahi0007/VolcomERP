@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormBiayaSewaBulanan
+Partial Class FormBiayaSewaPPS
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -19,7 +19,13 @@ Partial Class FormBiayaSewaBulanan
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBiayaSewaBulanan))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBiayaSewaPPS))
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -30,30 +36,30 @@ Partial Class FormBiayaSewaBulanan
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
-        Me.DEReffDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCDep = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCDepreciation = New DevExpress.XtraGrid.GridControl()
-        Me.GVDepreciation = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCItem = New DevExpress.XtraGrid.GridControl()
+        Me.GVItem = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIDEReffDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLEPrepaid = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -62,7 +68,9 @@ Partial Class FormBiayaSewaBulanan
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BLoadAsset = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDraftJurnal = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDraft = New DevExpress.XtraGrid.GridControl()
         Me.GVDraft = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -74,6 +82,8 @@ Partial Class FormBiayaSewaBulanan
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,21 +92,97 @@ Partial Class FormBiayaSewaBulanan
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEReffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
         CType(Me.XTCDep, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDep.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
-        CType(Me.GCDepreciation, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDepreciation, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIDEReffDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIDEReffDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLEPrepaid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEDepCoa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddDel.SuspendLayout()
         Me.XTPDraftJurnal.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnViewJournal)
+        Me.PanelControl1.Controls.Add(Me.BtnPrint)
+        Me.PanelControl1.Controls.Add(Me.BtnCancel)
+        Me.PanelControl1.Controls.Add(Me.BtnSave)
+        Me.PanelControl1.Controls.Add(Me.BMark)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 537)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1088, 43)
+        Me.PanelControl1.TabIndex = 4
+        '
+        'BtnViewJournal
+        '
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(698, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(112, 39)
+        Me.BtnViewJournal.TabIndex = 24
+        Me.BtnViewJournal.Text = "View Journal"
+        Me.BtnViewJournal.Visible = False
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.ImageIndex = 6
+        Me.BtnPrint.Location = New System.Drawing.Point(810, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(87, 39)
+        Me.BtnPrint.TabIndex = 22
+        Me.BtnPrint.TabStop = False
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnCancel
+        '
+        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancel.Image = CType(resources.GetObject("BtnCancel.Image"), System.Drawing.Image)
+        Me.BtnCancel.ImageIndex = 5
+        Me.BtnCancel.Location = New System.Drawing.Point(897, 2)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.Size = New System.Drawing.Size(89, 39)
+        Me.BtnCancel.TabIndex = 23
+        Me.BtnCancel.TabStop = False
+        Me.BtnCancel.Text = "Cancel"
+        '
+        'BtnSave
+        '
+        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
+        Me.BtnSave.ImageIndex = 7
+        Me.BtnSave.Location = New System.Drawing.Point(986, 2)
+        Me.BtnSave.Name = "BtnSave"
+        Me.BtnSave.Size = New System.Drawing.Size(100, 39)
+        Me.BtnSave.TabIndex = 21
+        Me.BtnSave.TabStop = False
+        Me.BtnSave.Text = "Save"
+        '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
+        Me.BMark.ImageIndex = 4
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(101, 39)
+        Me.BMark.TabIndex = 20
+        Me.BMark.TabStop = False
+        Me.BMark.Text = "Mark"
         '
         'PanelControl2
         '
@@ -105,16 +191,14 @@ Partial Class FormBiayaSewaBulanan
         Me.PanelControl2.Controls.Add(Me.TECreatedBy)
         Me.PanelControl2.Controls.Add(Me.TENumber)
         Me.PanelControl2.Controls.Add(Me.DECreatedDate)
-        Me.PanelControl2.Controls.Add(Me.DEReffDate)
-        Me.PanelControl2.Controls.Add(Me.LabelControl8)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1024, 150)
-        Me.PanelControl2.TabIndex = 2
+        Me.PanelControl2.Size = New System.Drawing.Size(1088, 130)
+        Me.PanelControl2.TabIndex = 5
         '
         'SLEUnit
         '
@@ -198,27 +282,6 @@ Partial Class FormBiayaSewaBulanan
         Me.DECreatedDate.Size = New System.Drawing.Size(293, 20)
         Me.DECreatedDate.TabIndex = 169
         '
-        'DEReffDate
-        '
-        Me.DEReffDate.EditValue = Nothing
-        Me.DEReffDate.Location = New System.Drawing.Point(132, 123)
-        Me.DEReffDate.Name = "DEReffDate"
-        Me.DEReffDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEReffDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEReffDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEReffDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEReffDate.Size = New System.Drawing.Size(293, 20)
-        Me.DEReffDate.TabIndex = 168
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(12, 126)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(72, 13)
-        Me.LabelControl8.TabIndex = 167
-        Me.LabelControl8.Text = "Periode Alokasi"
-        '
         'LabelControl3
         '
         Me.LabelControl3.Location = New System.Drawing.Point(12, 74)
@@ -243,133 +306,55 @@ Partial Class FormBiayaSewaBulanan
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Number"
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BtnViewJournal)
-        Me.PanelControl1.Controls.Add(Me.BtnPrint)
-        Me.PanelControl1.Controls.Add(Me.BtnCancel)
-        Me.PanelControl1.Controls.Add(Me.BtnSave)
-        Me.PanelControl1.Controls.Add(Me.BMark)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 488)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1024, 43)
-        Me.PanelControl1.TabIndex = 3
-        '
-        'BtnViewJournal
-        '
-        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(634, 2)
-        Me.BtnViewJournal.Name = "BtnViewJournal"
-        Me.BtnViewJournal.Size = New System.Drawing.Size(112, 39)
-        Me.BtnViewJournal.TabIndex = 24
-        Me.BtnViewJournal.Text = "View Journal"
-        Me.BtnViewJournal.Visible = False
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.ImageIndex = 6
-        Me.BtnPrint.Location = New System.Drawing.Point(746, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 39)
-        Me.BtnPrint.TabIndex = 22
-        Me.BtnPrint.TabStop = False
-        Me.BtnPrint.Text = "Print"
-        '
-        'BtnCancel
-        '
-        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancel.Image = CType(resources.GetObject("BtnCancel.Image"), System.Drawing.Image)
-        Me.BtnCancel.ImageIndex = 5
-        Me.BtnCancel.Location = New System.Drawing.Point(833, 2)
-        Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(89, 39)
-        Me.BtnCancel.TabIndex = 23
-        Me.BtnCancel.TabStop = False
-        Me.BtnCancel.Text = "Cancel"
-        '
-        'BtnSave
-        '
-        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.ImageIndex = 7
-        Me.BtnSave.Location = New System.Drawing.Point(922, 2)
-        Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(100, 39)
-        Me.BtnSave.TabIndex = 21
-        Me.BtnSave.TabStop = False
-        Me.BtnSave.Text = "Save"
-        '
-        'BMark
-        '
-        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
-        Me.BMark.ImageIndex = 4
-        Me.BMark.Location = New System.Drawing.Point(2, 2)
-        Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(101, 39)
-        Me.BMark.TabIndex = 20
-        Me.BMark.TabStop = False
-        Me.BMark.Text = "Mark"
-        '
         'XTCDep
         '
         Me.XTCDep.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCDep.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCDep.Location = New System.Drawing.Point(0, 150)
+        Me.XTCDep.Location = New System.Drawing.Point(0, 130)
         Me.XTCDep.Name = "XTCDep"
         Me.XTCDep.SelectedTabPage = Me.XTPDetail
-        Me.XTCDep.Size = New System.Drawing.Size(1024, 338)
-        Me.XTCDep.TabIndex = 144
+        Me.XTCDep.Size = New System.Drawing.Size(1088, 407)
+        Me.XTCDep.TabIndex = 145
         Me.XTCDep.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPDraftJurnal})
         '
         'XTPDetail
         '
-        Me.XTPDetail.Controls.Add(Me.GCDepreciation)
-        Me.XTPDetail.Controls.Add(Me.BLoadAsset)
+        Me.XTPDetail.Controls.Add(Me.GCItem)
+        Me.XTPDetail.Controls.Add(Me.PCAddDel)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(1018, 310)
+        Me.XTPDetail.Size = New System.Drawing.Size(1082, 379)
         Me.XTPDetail.Text = "Depreciation"
         '
-        'GCDepreciation
+        'GCItem
         '
-        Me.GCDepreciation.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDepreciation.Location = New System.Drawing.Point(0, 0)
-        Me.GCDepreciation.MainView = Me.GVDepreciation
-        Me.GCDepreciation.Name = "GCDepreciation"
-        Me.GCDepreciation.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEDepCoa})
-        Me.GCDepreciation.Size = New System.Drawing.Size(1018, 272)
-        Me.GCDepreciation.TabIndex = 142
-        Me.GCDepreciation.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDepreciation})
+        Me.GCItem.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCItem.Location = New System.Drawing.Point(0, 43)
+        Me.GCItem.MainView = Me.GVItem
+        Me.GCItem.Name = "GCItem"
+        Me.GCItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEDepCoa, Me.RIDEReffDate, Me.RISLEPrepaid, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
+        Me.GCItem.Size = New System.Drawing.Size(1082, 336)
+        Me.GCItem.TabIndex = 142
+        Me.GCItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItem})
         '
-        'GVDepreciation
+        'GVItem
         '
-        Me.GVDepreciation.Appearance.HeaderPanel.Options.UseTextOptions = True
-        Me.GVDepreciation.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVDepreciation.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
-        Me.GVDepreciation.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVDepreciation.ColumnPanelRowHeight = 50
-        Me.GVDepreciation.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn3, Me.GridColumn5, Me.GridColumn11, Me.GridColumn12, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7})
-        Me.GVDepreciation.GridControl = Me.GCDepreciation
-        Me.GVDepreciation.Name = "GVDepreciation"
-        Me.GVDepreciation.OptionsPrint.AllowMultilineHeaders = True
-        Me.GVDepreciation.OptionsView.ShowFooter = True
-        Me.GVDepreciation.OptionsView.ShowGroupPanel = False
+        Me.GVItem.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GVItem.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVItem.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVItem.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVItem.ColumnPanelRowHeight = 50
+        Me.GVItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn3, Me.GridColumn5, Me.GridColumn11, Me.GridColumn12, Me.GridColumn2, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7})
+        Me.GVItem.GridControl = Me.GCItem
+        Me.GVItem.Name = "GVItem"
+        Me.GVItem.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVItem.OptionsView.ShowFooter = True
+        Me.GVItem.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID Det"
-        Me.GridColumn1.FieldName = "id_biaya_sewa_bulanan_det"
+        Me.GridColumn1.FieldName = "id_biaya_sewa_pps_det"
         Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "ID Asset"
-        Me.GridColumn2.FieldName = "id_biaya_sewa"
-        Me.GridColumn2.Name = "GridColumn2"
         '
         'GridColumn8
         '
@@ -382,7 +367,8 @@ Partial Class FormBiayaSewaBulanan
         '
         'GridColumn9
         '
-        Me.GridColumn9.Caption = "Reff Date"
+        Me.GridColumn9.Caption = "Reff date"
+        Me.GridColumn9.ColumnEdit = Me.RIDEReffDate
         Me.GridColumn9.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn9.FieldName = "date_reff"
@@ -391,77 +377,161 @@ Partial Class FormBiayaSewaBulanan
         Me.GridColumn9.VisibleIndex = 1
         Me.GridColumn9.Width = 202
         '
+        'RIDEReffDate
+        '
+        Me.RIDEReffDate.AutoHeight = False
+        Me.RIDEReffDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIDEReffDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIDEReffDate.Name = "RIDEReffDate"
+        '
         'GridColumn10
         '
-        Me.GridColumn10.Caption = "Sisa bulan untuk dialokasikan"
-        Me.GridColumn10.FieldName = "remaining_month"
+        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn10.Caption = "Jumlah bulan dialokasikan"
+        Me.GridColumn10.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn10.DisplayFormat.FormatString = "N0"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "total_bulan"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 4
+        Me.GridColumn10.VisibleIndex = 6
         Me.GridColumn10.Width = 202
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "COA Uang Muka"
-        Me.GridColumn3.DisplayFormat.FormatString = "N0"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "acc_uang_muka"
+        Me.GridColumn3.Caption = "COA Prepaid Expense"
+        Me.GridColumn3.ColumnEdit = Me.RISLEPrepaid
+        Me.GridColumn3.FieldName = "coa_uang_muka"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 3
         Me.GridColumn3.Width = 200
+        '
+        'RISLEPrepaid
+        '
+        Me.RISLEPrepaid.AutoHeight = False
+        Me.RISLEPrepaid.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLEPrepaid.Name = "RISLEPrepaid"
+        Me.RISLEPrepaid.View = Me.GridView2
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "ID Acc"
+        Me.GridColumn16.FieldName = "id_acc"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "COA"
+        Me.GridColumn17.FieldName = "acc_name"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 0
+        Me.GridColumn17.Width = 400
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Description"
+        Me.GridColumn18.FieldName = "acc_description"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 1
+        Me.GridColumn18.Width = 1216
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "ID COA Uang Muka"
-        Me.GridColumn5.FieldName = "coa_uang_muka"
+        Me.GridColumn5.Caption = "COA Prepaid Expense"
+        Me.GridColumn5.FieldName = "acc_uang_muka"
         Me.GridColumn5.Name = "GridColumn5"
         '
         'GridColumn11
         '
-        Me.GridColumn11.Caption = "Uang Muka Biaya Sewa"
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.Caption = "Total Uang Muka Biaya"
+        Me.GridColumn11.ColumnEdit = Me.RepositoryItemTextEdit2
         Me.GridColumn11.DisplayFormat.FormatString = "N2"
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "total_uang_muka"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 3
+        Me.GridColumn11.VisibleIndex = 5
         Me.GridColumn11.Width = 202
+        '
+        'RepositoryItemTextEdit2
+        '
+        Me.RepositoryItemTextEdit2.AutoHeight = False
+        Me.RepositoryItemTextEdit2.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         '
         'GridColumn12
         '
-        Me.GridColumn12.Caption = "Biaya Teralokasi"
-        Me.GridColumn12.DisplayFormat.FormatString = "N2"
-        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn12.FieldName = "biaya_teralokasi"
+        Me.GridColumn12.Caption = "COA Prepaid Expense Non Current"
+        Me.GridColumn12.ColumnEdit = Me.RISLEPrepaid
+        Me.GridColumn12.FieldName = "coa_prepaid_non_current"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 5
+        Me.GridColumn12.VisibleIndex = 2
         Me.GridColumn12.Width = 202
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "COA Prepaid Expense Non Current"
+        Me.GridColumn2.FieldName = "acc_prepaid_non_current"
+        Me.GridColumn2.Name = "GridColumn2"
         '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "COA Biaya"
-        Me.GridColumn4.FieldName = "acc_biaya"
+        Me.GridColumn4.ColumnEdit = Me.RISLEPrepaid
+        Me.GridColumn4.FieldName = "coa_biaya"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 6
+        Me.GridColumn4.VisibleIndex = 4
         Me.GridColumn4.Width = 200
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "ID COA Biaya"
-        Me.GridColumn6.FieldName = "coa_biaya"
+        Me.GridColumn6.Caption = "COA Biaya"
+        Me.GridColumn6.FieldName = "acc_biaya"
         Me.GridColumn6.Name = "GridColumn6"
         '
         'GridColumn7
         '
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn7.Caption = "Alokasi Biaya Per Bulan"
         Me.GridColumn7.DisplayFormat.FormatString = "N2"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "alokasi_biaya_per_bulan"
         Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dep_value", "{0:N2}")})
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
+        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "alokasi_biaya_per_bulan", "{0:N2}")})
+        Me.GridColumn7.UnboundExpression = "Round([total_uang_muka] / [total_bulan], 2)"
+        Me.GridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 7
         Me.GridColumn7.Width = 206
@@ -505,31 +575,41 @@ Partial Class FormBiayaSewaBulanan
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 2
         '
-        'BLoadAsset
+        'PCAddDel
         '
-        Me.BLoadAsset.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
-        Me.BLoadAsset.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BLoadAsset.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BLoadAsset.Appearance.Options.UseBackColor = True
-        Me.BLoadAsset.Appearance.Options.UseFont = True
-        Me.BLoadAsset.Appearance.Options.UseForeColor = True
-        Me.BLoadAsset.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BLoadAsset.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BLoadAsset.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BLoadAsset.Location = New System.Drawing.Point(0, 272)
-        Me.BLoadAsset.LookAndFeel.SkinName = "Metropolis"
-        Me.BLoadAsset.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BLoadAsset.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BLoadAsset.Name = "BLoadAsset"
-        Me.BLoadAsset.Size = New System.Drawing.Size(1018, 38)
-        Me.BLoadAsset.TabIndex = 141
-        Me.BLoadAsset.Text = "Load Biaya Sewa"
+        Me.PCAddDel.Controls.Add(Me.BDelete)
+        Me.PCAddDel.Controls.Add(Me.BAdd)
+        Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCAddDel.Location = New System.Drawing.Point(0, 0)
+        Me.PCAddDel.Name = "PCAddDel"
+        Me.PCAddDel.Size = New System.Drawing.Size(1082, 43)
+        Me.PCAddDel.TabIndex = 143
+        '
+        'BDelete
+        '
+        Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelete.Image = CType(resources.GetObject("BDelete.Image"), System.Drawing.Image)
+        Me.BDelete.Location = New System.Drawing.Point(856, 2)
+        Me.BDelete.Name = "BDelete"
+        Me.BDelete.Size = New System.Drawing.Size(112, 39)
+        Me.BDelete.TabIndex = 26
+        Me.BDelete.Text = "Delete"
+        '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
+        Me.BAdd.Location = New System.Drawing.Point(968, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(112, 39)
+        Me.BAdd.TabIndex = 25
+        Me.BAdd.Text = "Add"
         '
         'XTPDraftJurnal
         '
         Me.XTPDraftJurnal.Controls.Add(Me.GCDraft)
         Me.XTPDraftJurnal.Name = "XTPDraftJurnal"
-        Me.XTPDraftJurnal.Size = New System.Drawing.Size(1018, 310)
+        Me.XTPDraftJurnal.Size = New System.Drawing.Size(1082, 379)
         Me.XTPDraftJurnal.Text = "Draft Jurnal"
         '
         'GCDraft
@@ -538,7 +618,7 @@ Partial Class FormBiayaSewaBulanan
         Me.GCDraft.Location = New System.Drawing.Point(0, 0)
         Me.GCDraft.MainView = Me.GVDraft
         Me.GCDraft.Name = "GCDraft"
-        Me.GCDraft.Size = New System.Drawing.Size(1018, 310)
+        Me.GCDraft.Size = New System.Drawing.Size(1082, 379)
         Me.GCDraft.TabIndex = 2
         Me.GCDraft.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDraft})
         '
@@ -632,19 +712,22 @@ Partial Class FormBiayaSewaBulanan
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
-        'FormBiayaSewaBulanan
+        'FormBiayaSewaPPS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1024, 531)
+        Me.ClientSize = New System.Drawing.Size(1088, 580)
         Me.Controls.Add(Me.XTCDep)
-        Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl2)
+        Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
-        Me.Name = "FormBiayaSewaBulanan"
+        Me.Name = "FormBiayaSewaPPS"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Biaya Sewa Bulanan"
+        Me.Text = "Propose Biaya Sewa"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -654,17 +737,21 @@ Partial Class FormBiayaSewaBulanan
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEReffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
         CType(Me.XTCDep, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCDep.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
-        CType(Me.GCDepreciation, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDepreciation, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCItem, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVItem, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIDEReffDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIDEReffDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLEPrepaid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEDepCoa, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddDel.ResumeLayout(False)
         Me.XTPDraftJurnal.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
@@ -672,6 +759,12 @@ Partial Class FormBiayaSewaBulanan
 
     End Sub
 
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLEUnit As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -682,23 +775,14 @@ Partial Class FormBiayaSewaBulanan
     Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents DECreatedDate As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents DEReffDate As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTCDep As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCDepreciation As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVDepreciation As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCItem As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVItem As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
@@ -714,7 +798,7 @@ Partial Class FormBiayaSewaBulanan
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BLoadAsset As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCAddDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents XTPDraftJurnal As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCDraft As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVDraft As DevExpress.XtraGrid.Views.Grid.GridView
@@ -726,4 +810,15 @@ Partial Class FormBiayaSewaBulanan
     Friend WithEvents GridColumndebit_draft As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncredit_draft As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents RIDEReffDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents RISLEPrepaid As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

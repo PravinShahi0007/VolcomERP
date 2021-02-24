@@ -63,7 +63,7 @@ WHERE id_biaya_sewa_bulanan='" & id_biaya_bulanan & "'"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT ass.total_bulan AS total_bulan,ppsd.remaining_month, ppsd.coa_uang_muka, ppsd.coa_biaya,acc_biaya.acc_description AS acc_biaya,acc_uangmuka.acc_description AS acc_uang_muka
+        Dim q As String = "SELECT ass.total_bulan AS total_bulan,ppsd.remaining_month, ppsd.coa_uang_muka, ppsd.coa_biaya,acc_biaya.acc_description AS acc_biaya,acc_uangmuka.acc_description AS acc_uang_muka,acc_biaya.acc_name AS acc_biaya_name,acc_uangmuka.acc_name AS acc_uang_muka_name
 ,ass.`description`,ass.date_reff
 ,ass.total_uang_muka AS total_uang_muka
 ,ppsd.alokasi_biaya_per_bulan,ppsd.biaya_teralokasi
@@ -182,6 +182,7 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
             warningCustom("Alokasi biaya bulan lalu belum dilaksanakan.")
         End If
     End Sub
+
     Sub viewBlankJournal()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT 0 AS `no`, '' AS acc_name, '' AS acc_description, '' AS `cc`, '' AS report_number, '' AS note, 0.00 AS `debit`, 0.00 AS `credit` "

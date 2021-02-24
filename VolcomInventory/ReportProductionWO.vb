@@ -8,6 +8,7 @@ Public Class ReportProductionWO
     Public Shared id_cur As String = "-1"
     Public Shared id_po As String = "-1"
     Public Shared is_pre As String = "-1"
+    Public Shared is_no_cost As String = "-1"
     '
     Public Shared is_main As String = "-1"
     Public Shared is_po_print As String = "-1"
@@ -204,6 +205,58 @@ WHERE a.id_prod_order_wo='" & id_prod_wo & "'"
         Dim qpd As String = "SELECT DATE_FORMAT(NOW(), '%d/%M/%Y %H:%i') AS `printed_date` "
         Dim dpd As DataTable = execute_query(qpd, -1, True, "", "", "", "")
         DataSource = dpd
+
+        If is_no_cost = "1" Then
+            LLGrosTot.Visible = False
+            LCur_1.Visible = False
+            LGrossTot.Visible = False
+
+            LLVat.Visible = False
+            LPVat.Visible = False
+            LVat.Visible = False
+            LVatTot.Visible = False
+            LCur_2.Visible = False
+
+            LLTotal.Visible = False
+            LCur_3.Visible = False
+            LTot.Visible = False
+
+            LLSay.Visible = False
+            LPSay.Visible = False
+            LSay.Visible = False
+
+            LLKurs.Visible = False
+            LKurs.Visible = False
+
+            LNote.WidthF = 722.79
+
+            ColPrice.Visible = False
+            ColSubtotal.Visible = False
+        Else
+            LLGrosTot.Visible = True
+            LCur_1.Visible = True
+            LGrossTot.Visible = True
+
+            LLVat.Visible = True
+            LPVat.Visible = True
+            LVat.Visible = True
+            LVatTot.Visible = True
+            LCur_2.Visible = True
+
+            LLTotal.Visible = True
+            LCur_3.Visible = True
+            LTot.Visible = True
+
+            LLSay.Visible = True
+            LPSay.Visible = True
+            LSay.Visible = True
+
+            LLKurs.Visible = True
+            LKurs.Visible = True
+
+            ColPrice.Visible = True
+            ColSubtotal.Visible = True
+        End If
     End Sub
 
     Private Sub PageFooter_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles PageFooter.BeforePrint

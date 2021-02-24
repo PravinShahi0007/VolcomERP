@@ -530,6 +530,12 @@
     <Compile Include="FormBiayaSewaBulanan.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBiayaSewaPPS.Designer.vb">
+      <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBiayaSewaPPS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBudgetProdDemand.Designer.vb">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
     </Compile>
@@ -9457,6 +9463,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBiayaSewaBulanan.resx">
       <DependentUpon>FormBiayaSewaBulanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBiayaSewaPPS.resx">
+      <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemand.resx">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>

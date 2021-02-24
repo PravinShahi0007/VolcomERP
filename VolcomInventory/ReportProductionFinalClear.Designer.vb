@@ -38,6 +38,9 @@ Partial Public Class ReportProductionFinalClear
         Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.LRecDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.LServiceNote = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LVendor = New DevExpress.XtraReports.UI.XRLabel()
@@ -67,9 +70,6 @@ Partial Public Class ReportProductionFinalClear
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.LServiceNote = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -243,7 +243,7 @@ Partial Public Class ReportProductionFinalClear
         Me.LTitle.SizeF = New System.Drawing.SizeF(311.7084!, 26.54166!)
         Me.LTitle.StylePriority.UseFont = False
         Me.LTitle.StylePriority.UseTextAlignment = False
-        Me.LTitle.Text = "FINAL CLEARANCE REJECT PRODUCT"
+        Me.LTitle.Text = "QC REPORT"
         Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'LRecDate
@@ -270,6 +270,42 @@ Partial Public Class ReportProductionFinalClear
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(772.9999!, 68.62337!)
         Me.XrPanel1.StylePriority.UseBorderColor = False
         Me.XrPanel1.StylePriority.UseBorders = False
+        '
+        'LServiceNote
+        '
+        Me.LServiceNote.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LServiceNote.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!)
+        Me.LServiceNote.LocationFloat = New DevExpress.Utils.PointFloat(525.1252!, 42.75015!)
+        Me.LServiceNote.Name = "LServiceNote"
+        Me.LServiceNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LServiceNote.SizeF = New System.Drawing.SizeF(234.8748!, 13.58339!)
+        Me.LServiceNote.StylePriority.UseBorders = False
+        Me.LServiceNote.StylePriority.UseFont = False
+        Me.LServiceNote.Text = "-"
+        '
+        'XrLabel18
+        '
+        Me.XrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel18.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(513.6668!, 42.7502!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(11.45837!, 13.58334!)
+        Me.XrLabel18.StylePriority.UseBorders = False
+        Me.XrLabel18.StylePriority.UseFont = False
+        Me.XrLabel18.Text = ":"
+        '
+        'XrLabel20
+        '
+        Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel20.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(436.5836!, 42.75018!)
+        Me.XrLabel20.Name = "XrLabel20"
+        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(77.08319!, 13.58334!)
+        Me.XrLabel20.StylePriority.UseBorders = False
+        Me.XrLabel20.StylePriority.UseFont = False
+        Me.XrLabel20.Text = "Service Note"
         '
         'XrLabel16
         '
@@ -544,7 +580,7 @@ Partial Public Class ReportProductionFinalClear
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 50.0!
+        Me.BottomMargin.HeightF = 22.99998!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -622,46 +658,10 @@ Partial Public Class ReportProductionFinalClear
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
-        'LServiceNote
-        '
-        Me.LServiceNote.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LServiceNote.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!)
-        Me.LServiceNote.LocationFloat = New DevExpress.Utils.PointFloat(525.1252!, 42.75015!)
-        Me.LServiceNote.Name = "LServiceNote"
-        Me.LServiceNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LServiceNote.SizeF = New System.Drawing.SizeF(234.8748!, 13.58339!)
-        Me.LServiceNote.StylePriority.UseBorders = False
-        Me.LServiceNote.StylePriority.UseFont = False
-        Me.LServiceNote.Text = "-"
-        '
-        'XrLabel18
-        '
-        Me.XrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel18.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!)
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(513.6668!, 42.7502!)
-        Me.XrLabel18.Name = "XrLabel18"
-        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(11.45837!, 13.58334!)
-        Me.XrLabel18.StylePriority.UseBorders = False
-        Me.XrLabel18.StylePriority.UseFont = False
-        Me.XrLabel18.Text = ":"
-        '
-        'XrLabel20
-        '
-        Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel20.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!)
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(436.5836!, 42.75018!)
-        Me.XrLabel20.Name = "XrLabel20"
-        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel20.SizeF = New System.Drawing.SizeF(77.08319!, 13.58334!)
-        Me.XrLabel20.StylePriority.UseBorders = False
-        Me.XrLabel20.StylePriority.UseFont = False
-        Me.XrLabel20.Text = "Service Note"
-        '
         'ReportProductionFinalClear
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(39, 38, 117, 50)
+        Me.Margins = New System.Drawing.Printing.Margins(39, 38, 117, 23)
         Me.PageHeight = 550
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic

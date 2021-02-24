@@ -432,6 +432,9 @@
         ElseIf report_mark_type = "294" Then
             ' alokasi biaya bulanan
             FormBiayaSewaBulanan.Close()
+        ElseIf report_mark_type = "295" Then
+            ' master biaya bulanan
+            FormBiayaSewaPPS.Close()
         End If
     End Sub
     Sub show()
@@ -1432,6 +1435,10 @@ GROUP BY rec.`id_prod_order`"
             'alokasi biaya bulanan
             FormBiayaSewaBulanan.id_biaya_bulanan = id_report
             FormBiayaSewaBulanan.ShowDialog()
+        ElseIf report_mark_type = "295" Then
+            'master biaya bulanan
+            FormBiayaSewaPPS.id_pps = id_report
+            FormBiayaSewaPPS.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2561,6 +2568,12 @@ GROUP BY rec.`id_prod_order`"
             'alokasi biaya bulanan
             table_name = "tb_biaya_sewa_bulanan"
             field_id = "id_biaya_sewa_bulanan"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "295" Then
+            'master biaya bulanan
+            table_name = "tb_biaya_sewa_pps"
+            field_id = "id_biaya_sewa_pps"
             field_number = "number"
             field_date = "created_date"
         Else
