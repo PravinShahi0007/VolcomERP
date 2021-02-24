@@ -107,6 +107,7 @@ WHERE pnt.is_payment=2 AND pn.doc_type <> 4 " & query_where
 ,CAST((py.`dp_amount`/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS dp_amount 
 ,CAST((py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS dp_amount_vat
 ,IFNULL(dp_paid.val_dp,0) AS val_dp
+,IFNULL(dp_paid.val_vat_dp,0) AS val_vat_dp
 FROM tb_prod_order_wo_det wod
 INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
@@ -119,7 +120,7 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_lookup_payment py ON py.`id_payment`=wo.`id_payment` AND py.`dp_amount` > 0
 LEFT JOIN 
 (
-	SELECT id_prod_order,SUM(pnd.value_bef_kurs) as val_dp
+	SELECT id_prod_order,SUM(pnd.value_bef_kurs) as val_dp,SUM(pnd.vat) as val_vat_dp
     FROM `tb_pn_fgpo_det` pnd
 	INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
 	WHERE pn.id_report_status !=5 AND pn.doc_type=2 AND pn.type=1
@@ -222,7 +223,7 @@ WHERE 1=1  " & query_where & " ORDER BY pn.created_date DESC"
             Next
             '
             Dim query_check As String = "SELECT * FROM tb_pn_fgpo_det pnd
-INNER JOIN tb_pn_fgpo pn ON pnd.`id_pn_fgpo`=pn.`id_pn_fgpo` AND pn.`id_report_status` != 5 
+INNER JOIN tb_pn_fgpo pn ON pnd.`id_pn_fgpo`=pn.`id_pn_fgpo` AND pn.`id_report_status` != 5 AND pn.`id_report_status` != 6 
 LEFT JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
 WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
             Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
@@ -234,7 +235,7 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
                     End If
                     number_already_dp += "'" & data_check.Rows(i)("prod_order_number").ToString & "'"
                 Next
-                warningCustom("DP FGPO with number : " & number_already_dp & " already process.")
+                warningCustom("DP FGPO with number : " & number_already_dp & " still on process.")
             Else
                 FormInvoiceFGPODP.ShowDialog()
             End If

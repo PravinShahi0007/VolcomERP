@@ -103,6 +103,11 @@ Partial Class FormProductionRec
         Me.PCUpdateHO = New DevExpress.XtraEditors.PanelControl()
         Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.SLESeasonByCode = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -118,11 +123,6 @@ Partial Class FormProductionRec
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCTabReceive = New DevExpress.XtraTab.XtraTabControl()
-        Me.BView = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.XTPListPO.SuspendLayout()
         CType(Me.SCCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCRec.SuspendLayout()
@@ -154,23 +154,23 @@ Partial Class FormProductionRec
         Me.PCUpdateHO.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESeasonByCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabReceive.SuspendLayout()
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTPListPO
         '
         Me.XTPListPO.Controls.Add(Me.SCCRec)
         Me.XTPListPO.Name = "XTPListPO"
-        Me.XTPListPO.Size = New System.Drawing.Size(980, 466)
+        Me.XTPListPO.Size = New System.Drawing.Size(1084, 466)
         Me.XTPListPO.Text = "List Production Order"
         '
         'SCCRec
@@ -183,7 +183,7 @@ Partial Class FormProductionRec
         Me.SCCRec.Panel1.Text = "Panel1"
         Me.SCCRec.Panel2.Controls.Add(Me.GroupControl2)
         Me.SCCRec.Panel2.Text = "Panel2"
-        Me.SCCRec.Size = New System.Drawing.Size(980, 466)
+        Me.SCCRec.Size = New System.Drawing.Size(1084, 466)
         Me.SCCRec.SplitterPosition = 315
         Me.SCCRec.TabIndex = 28
         Me.SCCRec.Text = "SplitContainerControl1"
@@ -195,7 +195,7 @@ Partial Class FormProductionRec
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(980, 315)
+        Me.GroupControl1.Size = New System.Drawing.Size(1084, 315)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Production Order"
         '
@@ -206,7 +206,7 @@ Partial Class FormProductionRec
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
-        Me.GCProd.Size = New System.Drawing.Size(976, 249)
+        Me.GCProd.Size = New System.Drawing.Size(1080, 249)
         Me.GCProd.TabIndex = 3
         Me.GCProd.ToolTipController = Me.ToolTipControllerNew
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd, Me.GridView2})
@@ -412,7 +412,7 @@ Partial Class FormProductionRec
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(2, 20)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(976, 44)
+        Me.PanelControl2.Size = New System.Drawing.Size(1080, 44)
         Me.PanelControl2.TabIndex = 4
         '
         'BViewRec
@@ -480,7 +480,7 @@ Partial Class FormProductionRec
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(980, 146)
+        Me.GroupControl2.Size = New System.Drawing.Size(1084, 146)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Detail"
         '
@@ -491,7 +491,7 @@ Partial Class FormProductionRec
         Me.GCListProd.MainView = Me.GVListProd
         Me.GCListProd.Name = "GCListProd"
         Me.GCListProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit1})
-        Me.GCListProd.Size = New System.Drawing.Size(976, 124)
+        Me.GCListProd.Size = New System.Drawing.Size(1080, 124)
         Me.GCListProd.TabIndex = 2
         Me.GCListProd.ToolTipController = Me.ToolTipControllerNew
         Me.GCListProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProd, Me.GridView1})
@@ -921,6 +921,60 @@ Partial Class FormProductionRec
         Me.PanelControl1.Size = New System.Drawing.Size(1084, 38)
         Me.PanelControl1.TabIndex = 6
         '
+        'BView
+        '
+        Me.BView.Location = New System.Drawing.Point(1014, 6)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(49, 23)
+        Me.BView.TabIndex = 8914
+        Me.BView.Text = "view"
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(860, 8)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntil.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEUntil.Size = New System.Drawing.Size(148, 20)
+        Me.DEUntil.TabIndex = 8913
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(833, 11)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl4.TabIndex = 8912
+        Me.LabelControl4.Text = "Until"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(661, 11)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl5.TabIndex = 8911
+        Me.LabelControl5.Text = "From"
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(691, 8)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEStart.Size = New System.Drawing.Size(136, 20)
+        Me.DEStart.TabIndex = 8910
+        '
         'SLESeasonByCode
         '
         Me.SLESeasonByCode.Location = New System.Drawing.Point(420, 8)
@@ -1048,60 +1102,6 @@ Partial Class FormProductionRec
         Me.XTCTabReceive.TabIndex = 8
         Me.XTCTabReceive.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListReceive, Me.XTPListPO})
         '
-        'BView
-        '
-        Me.BView.Location = New System.Drawing.Point(1014, 6)
-        Me.BView.Name = "BView"
-        Me.BView.Size = New System.Drawing.Size(49, 23)
-        Me.BView.TabIndex = 8914
-        Me.BView.Text = "view"
-        '
-        'DEUntil
-        '
-        Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(860, 8)
-        Me.DEUntil.Name = "DEUntil"
-        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Properties.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.DEUntil.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEUntil.Size = New System.Drawing.Size(148, 20)
-        Me.DEUntil.TabIndex = 8913
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(833, 11)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl4.TabIndex = 8912
-        Me.LabelControl4.Text = "Until"
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(661, 11)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl5.TabIndex = 8911
-        Me.LabelControl5.Text = "From"
-        '
-        'DEStart
-        '
-        Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(691, 8)
-        Me.DEStart.Name = "DEStart"
-        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Properties.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.DEStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEStart.Size = New System.Drawing.Size(136, 20)
-        Me.DEStart.TabIndex = 8910
-        '
         'FormProductionRec
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1114,7 +1114,7 @@ Partial Class FormProductionRec
         Me.Name = "FormProductionRec"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Pre Receiving"
+        Me.Text = "Receiving QC"
         Me.XTPListPO.ResumeLayout(False)
         CType(Me.SCCRec, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SCCRec.ResumeLayout(False)
@@ -1148,16 +1148,16 @@ Partial Class FormProductionRec
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESeasonByCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCTabReceive.ResumeLayout(False)
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

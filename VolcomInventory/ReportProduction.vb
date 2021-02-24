@@ -3,6 +3,9 @@
     Public Shared sign_col As String = "-1"
     Public Shared id_cur As String = "-1"
     Public Shared is_pre As String = "-1"
+    '
+    Public Shared is_no_cost As String = "2"
+    '
     Sub view_mat_purchase()
         Dim query = "CALL view_prod_order_det('" & id_prod_order & "','1')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -48,8 +51,31 @@
     End Sub
 
     Private Sub ReportMatPurchase_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        If is_pre = "1" Then
+        If is_no_cost = "1" Then
+            LLTot.Visible = False
+            LPTot.Visible = False
+            LTot.Visible = False
 
+            LLUnitCost.Visible = False
+            LPUnitCost.Visible = False
+            LUnitCost.Visible = False
+
+            ColPrice.Visible = False
+            ColSubtotal.Visible = False
+        Else
+            LLTot.Visible = True
+            LPTot.Visible = True
+            LTot.Visible = True
+
+            LLUnitCost.Visible = True
+            LPUnitCost.Visible = True
+            LUnitCost.Visible = True
+
+            ColPrice.Visible = True
+            ColSubtotal.Visible = True
+        End If
+
+        If is_pre = "1" Then
             pre_load_mark_horz("22", id_prod_order, "2", "2", XrTable1)
         Else
             load_mark_horz("22", id_prod_order, "2", "1", XrTable1)

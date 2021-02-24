@@ -75,9 +75,9 @@ Partial Class FormProductionDet
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarLargeButtonItem1 = New DevExpress.XtraBars.BarLargeButtonItem()
-        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBPrintFGPO = New DevExpress.XtraBars.BarLargeButtonItem()
+        Me.BBPrintBOM = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBPrintPD = New DevExpress.XtraBars.BarButtonItem()
         Me.XTPListWO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCWO = New DevExpress.XtraGrid.GridControl()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -864,7 +864,7 @@ Partial Class FormProductionDet
         Me.BMDD.DockControls.Add(Me.barDockControlLeft)
         Me.BMDD.DockControls.Add(Me.barDockControlRight)
         Me.BMDD.Form = Me
-        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarLargeButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3})
+        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BBPrintFGPO, Me.BBPrintBOM, Me.BBPrintPD})
         Me.BMDD.MaxItemId = 4
         '
         'barDockControlTop
@@ -900,23 +900,23 @@ Partial Class FormProductionDet
         Me.BarButtonItem1.Id = 0
         Me.BarButtonItem1.Name = "BarButtonItem1"
         '
-        'BarLargeButtonItem1
+        'BBPrintFGPO
         '
-        Me.BarLargeButtonItem1.Caption = "Print F. G. Purchase Order"
-        Me.BarLargeButtonItem1.Id = 1
-        Me.BarLargeButtonItem1.Name = "BarLargeButtonItem1"
+        Me.BBPrintFGPO.Caption = "Print F. G. Purchase Order"
+        Me.BBPrintFGPO.Id = 1
+        Me.BBPrintFGPO.Name = "BBPrintFGPO"
         '
-        'BarButtonItem2
+        'BBPrintBOM
         '
-        Me.BarButtonItem2.Caption = "Print BOM"
-        Me.BarButtonItem2.Id = 2
-        Me.BarButtonItem2.Name = "BarButtonItem2"
+        Me.BBPrintBOM.Caption = "Print BOM"
+        Me.BBPrintBOM.Id = 2
+        Me.BBPrintBOM.Name = "BBPrintBOM"
         '
-        'BarButtonItem3
+        'BBPrintPD
         '
-        Me.BarButtonItem3.Caption = "Print PD"
-        Me.BarButtonItem3.Id = 3
-        Me.BarButtonItem3.Name = "BarButtonItem3"
+        Me.BBPrintPD.Caption = "Print PD"
+        Me.BBPrintPD.Id = 3
+        Me.BBPrintPD.Name = "BBPrintPD"
         '
         'XTPListWO
         '
@@ -1465,7 +1465,7 @@ Partial Class FormProductionDet
         '
         'PUDD
         '
-        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarLargeButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem3)})
+        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBPrintFGPO), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPrintBOM), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPrintPD)})
         Me.PUDD.Manager = Me.BMDD
         Me.PUDD.Name = "PUDD"
         '
@@ -1478,7 +1478,7 @@ Partial Class FormProductionDet
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(88, 36)
         Me.BCancel.TabIndex = 2
-        Me.BCancel.Text = "Cancel"
+        Me.BCancel.Text = "Close"
         '
         'BSave
         '
@@ -2627,8 +2627,8 @@ Partial Class FormProductionDet
     Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
     Friend WithEvents BMDD As DevExpress.XtraBars.BarManager
     Friend WithEvents PUDD As DevExpress.XtraBars.PopupMenu
-    Friend WithEvents BarLargeButtonItem1 As DevExpress.XtraBars.BarLargeButtonItem
-    Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBPrintFGPO As DevExpress.XtraBars.BarLargeButtonItem
+    Friend WithEvents BBPrintBOM As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
@@ -2703,7 +2703,7 @@ Partial Class FormProductionDet
     Friend WithEvents RILETermOfPayment As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents TEVendorName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBPrintPD As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents TEReff As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BCancelFGPO As DevExpress.XtraEditors.SimpleButton

@@ -530,6 +530,12 @@
     <Compile Include="FormBiayaSewaBulanan.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBiayaSewaPPS.Designer.vb">
+      <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBiayaSewaPPS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBudgetProdDemand.Designer.vb">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
     </Compile>
@@ -3447,6 +3453,12 @@
       <DependentUpon>FormPopUpOVH.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPopUpOVH.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPopUpProdRec.Designer.vb">
+      <DependentUpon>FormPopUpProdRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpProdRec.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPopUpRetOut.Designer.vb">
@@ -9458,6 +9470,9 @@
     <EmbeddedResource Include="FormBiayaSewaBulanan.resx">
       <DependentUpon>FormBiayaSewaBulanan.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBiayaSewaPPS.resx">
+      <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemand.resx">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
     </EmbeddedResource>
@@ -10965,6 +10980,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpOVH.resx">
       <DependentUpon>FormPopUpOVH.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpProdRec.resx">
+      <DependentUpon>FormPopUpProdRec.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpRetOut.resx">
       <DependentUpon>FormPopUpRetOut.vb</DependentUpon>

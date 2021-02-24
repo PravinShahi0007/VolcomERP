@@ -45,6 +45,15 @@ Partial Class FormBiayaSewa
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.XTPNewBiaya = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPPS = New DevExpress.XtraGrid.GridControl()
+        Me.GVPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
@@ -63,6 +72,10 @@ Partial Class FormBiayaSewa
         CType(Me.GCMonthlyPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMonthlyPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPNewBiaya.SuspendLayout()
+        CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -287,9 +300,85 @@ Partial Class FormBiayaSewa
         '
         'XTPNewBiaya
         '
+        Me.XTPNewBiaya.Controls.Add(Me.GCPPS)
         Me.XTPNewBiaya.Name = "XTPNewBiaya"
         Me.XTPNewBiaya.Size = New System.Drawing.Size(1049, 459)
         Me.XTPNewBiaya.Text = "Biaya Baru"
+        '
+        'GCPPS
+        '
+        Me.GCPPS.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPPS.Location = New System.Drawing.Point(0, 0)
+        Me.GCPPS.MainView = Me.GVPPS
+        Me.GCPPS.Name = "GCPPS"
+        Me.GCPPS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1})
+        Me.GCPPS.Size = New System.Drawing.Size(1049, 459)
+        Me.GCPPS.TabIndex = 6
+        Me.GCPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPPS})
+        '
+        'GVPPS
+        '
+        Me.GVPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn17, Me.GridColumn19, Me.GridColumn20, Me.GridColumn22, Me.GridColumn28})
+        Me.GVPPS.GridControl = Me.GCPPS
+        Me.GVPPS.Name = "GVPPS"
+        Me.GVPPS.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPPS.OptionsBehavior.Editable = False
+        Me.GVPPS.OptionsFind.AlwaysVisible = True
+        Me.GVPPS.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID Depreciation"
+        Me.GridColumn8.FieldName = "id_biaya_sewa_pps"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Unit"
+        Me.GridColumn17.FieldName = "tag_description"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Number"
+        Me.GridColumn19.FieldName = "number"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 0
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Created By"
+        Me.GridColumn20.FieldName = "employee_name"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 2
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Date Created"
+        Me.GridColumn22.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn22.FieldName = "created_date"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 3
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Status"
+        Me.GridColumn28.FieldName = "report_status"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 4
+        '
+        'RepositoryItemButtonEdit1
+        '
+        Me.RepositoryItemButtonEdit1.AutoHeight = False
+        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
         '
         'BAdd
         '
@@ -396,6 +485,10 @@ Partial Class FormBiayaSewa
         CType(Me.GCMonthlyPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMonthlyPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPNewBiaya.ResumeLayout(False)
+        CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -439,4 +532,13 @@ Partial Class FormBiayaSewa
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCPPS As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPPS As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class
