@@ -13,6 +13,10 @@
     End Sub
 
     Private Sub FormOLStoreSummary_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        For Each t As DevExpress.XtraTab.XtraTabPage In XTCOLStore.TabPages
+            XTCOLStore.SelectedTabPage = t
+        Next t
+        XTCOLStore.SelectedTabPage = XTCOLStore.TabPages(1)
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
@@ -24,9 +28,11 @@
         DEExUntil.EditValue = data_dt.Rows(0)("dt")
         viewComp()
         viewCompGroup()
+        viewCompGroupROR()
         viewCompDetail()
         viewPromo()
         viewPromoNotAll()
+        viewOpenCloseStt()
 
         'set caption size
         'propose
@@ -88,6 +94,20 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewCompGroupROR()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "
+        SELECT 0 AS id_comp_group, 'ALL' AS comp_group, 'ALL GROUP' AS description
+        UNION
+        SELECT cg.id_comp_group, cg.comp_group, cg.description 
+        FROM tb_m_comp_group cg
+        INNER JOIN tb_m_comp c ON c.id_comp_group = cg.id_comp_group AND c.id_commerce_type=2
+        WHERE 1=1
+        GROUP BY cg.id_comp_group "
+        viewSearchLookupQuery(SLEStoreGroupROR, query, "id_comp_group", "description", "id_comp_group")
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewComp()
         Dim query As String = "SELECT 0 AS `id_comp`, 0 AS `id_comp_contact`, 'ALL' AS `comp_number`, 'ALL STORE' AS `comp_name`
         UNION ALL
@@ -137,6 +157,17 @@
         WHERE p.id_report_status=6 AND p.is_use_discount_code=2
         ORDER BY id_ol_promo_collection DESC "
         viewSearchLookupQuery(SLEPromoDetail, query, "id_ol_promo_collection", "promo", "id_ol_promo_collection")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewOpenCloseStt()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '0' AS `id_stt`, 'All' AS `stt`
+        UNION ALL
+        SELECT '1' AS `id_stt`, 'Open' AS `stt`
+        UNION ALL
+        SELECT '2' AS `id_stt`, 'Close' AS `stt` "
+        viewLookupQuery(LEStatus, query, 1, "stt", "id_stt")
         Cursor = Cursors.Default
     End Sub
 
@@ -1350,6 +1381,86 @@
                 m.report_mark_type = "292"
                 m.show()
             End If
+        End If
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnViewROR.Click
+        viewROR()
+    End Sub
+
+    Sub viewROR()
+        Cursor = Cursors.WaitCursor
+        'store group
+        Dim id_store As String = SLEStoreGroupROR.EditValue.ToString
+        Dim cond_store As String = ""
+        If id_store <> "0" Then
+            cond_store = "AND cg.id_comp_group='" + id_store + "' "
+        End If
+        'open close
+        Dim id_stt As String = LEStatus.EditValue.ToString
+        Dim cond_stt As String = ""
+        If id_stt <> "0" Then
+            cond_stt = "AND status='" + LEStatus.Text.ToString + "' "
+        End If
+        Dim query As String = "SELECT ro.id_sales_return_order, ro.sales_return_order_number, ro.sales_return_order_date,
+        cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`, c.comp_number, c.comp_name,
+        so.id_sales_order, so.sales_order_number, so.sales_order_date, so.sales_order_ol_shop_number, so.sales_order_ol_shop_date, so.customer_name,
+        SUM(rod.sales_return_order_det_qty) AS `qty_ror`,SUM(IFNULL(rts.sales_return_det_qty,0)) AS `qty_rts`, SUM(IFNULL(rrf.qty,0)) AS `qty_rrf`,
+        (SUM(rod.sales_return_order_det_qty)-SUM(IFNULL(rts.sales_return_det_qty,0))-SUM(IFNULL(rrf.qty,0))) AS `qty_bal`,
+        IF((SUM(rod.sales_return_order_det_qty)-SUM(IFNULL(rts.sales_return_det_qty,0))-SUM(IFNULL(rrf.qty,0)))>0,'Open','Close') AS `status`
+        FROM tb_sales_return_order ro
+        INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order = ro.id_sales_return_order
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ro.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp AND c.id_commerce_type=2
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_sales_order so ON so.id_sales_order = ro.id_sales_order
+        LEFT JOIN (
+	        SELECT rd.id_sales_return_order_det, rd.sales_return_det_qty
+	        FROM tb_sales_return r
+	        INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = r.id_store_contact_from
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp AND c.id_commerce_type=2
+	        WHERE r.id_report_status=6
+	        GROUP BY rd.id_sales_return_order_det
+        ) rts ON rts.id_sales_return_order_det = rod.id_sales_return_order_det
+        LEFT JOIN (
+	        SELECT rfd.id_sales_return_order_det, rfd.qty 
+	        FROM tb_ol_store_return_refuse rf
+	        INNER JOIN tb_ol_store_return_refuse_det rfd ON rfd.id_return_refuse = rf.id_return_refuse
+	        WHERE rf.id_report_status=6
+	        GROUP BY rfd.id_sales_return_order_det
+        ) rrf ON rrf.id_sales_return_order_det = rod.id_sales_return_order_det
+        WHERE ro.id_report_status=6 
+        " + cond_store + "
+        GROUP BY ro.id_sales_return_order 
+        HAVING 1=1 " + cond_stt
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCROR.DataSource = data
+        GVROR.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportXLSROR_Click(sender As Object, e As EventArgs) Handles BtnExportXLSROR.Click
+        If GVROR.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "ol_store_report_ror.xlsx"
+            exportToXLS(path, "list", GCDetail)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub LinkROR_Click(sender As Object, e As EventArgs) Handles LinkROR.Click
+        If GVROR.RowCount > 0 And GVROR.FocusedRowHandle >= 0 Then
+            FormSalesReturnOrderOLDet.is_view = "1"
+            FormSalesReturnOrderOLDet.action = "upd"
+            FormSalesReturnOrderOLDet.id_sales_return_order = GVROR.GetFocusedRowCellValue("id_sales_return_order").ToString()
+            FormSalesReturnOrderOLDet.is_detail_soh = "1"
+            FormSalesReturnOrderOLDet.ShowDialog()
         End If
     End Sub
 End Class

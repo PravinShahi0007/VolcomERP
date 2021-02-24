@@ -119,7 +119,7 @@
 
     Sub viewDetail()
         If is_detail_soh <> "-1" Then
-            Dim query As String = "CALL view_sales_return_order_limit('" + id_sales_return_order + "',0,0)"
+            Dim query As String = "CALL view_sales_return_order_limit_lite('" + id_sales_return_order + "',0,0)"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = data
         Else
