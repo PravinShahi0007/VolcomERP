@@ -1407,7 +1407,8 @@
         so.id_sales_order, so.sales_order_number, so.sales_order_date, so.sales_order_ol_shop_number, so.sales_order_ol_shop_date, so.customer_name,
         SUM(rod.sales_return_order_det_qty) AS `qty_ror`,SUM(IFNULL(rts.sales_return_det_qty,0)) AS `qty_rts`, SUM(IFNULL(rrf.qty,0)) AS `qty_rrf`,
         (SUM(rod.sales_return_order_det_qty)-SUM(IFNULL(rts.sales_return_det_qty,0))-SUM(IFNULL(rrf.qty,0))) AS `qty_bal`,
-        IF((SUM(rod.sales_return_order_det_qty)-SUM(IFNULL(rts.sales_return_det_qty,0))-SUM(IFNULL(rrf.qty,0)))>0,'Open','Close') AS `status`
+        IF((SUM(rod.sales_return_order_det_qty)-SUM(IFNULL(rts.sales_return_det_qty,0))-SUM(IFNULL(rrf.qty,0)))>0 AND ro.id_prepare_status=1,'Open','Close') AS `status`,
+        ro.final_comment
         FROM tb_sales_return_order ro
         INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order = ro.id_sales_return_order
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ro.id_store_contact_to
@@ -1449,7 +1450,7 @@
                 System.IO.Directory.CreateDirectory(path)
             End If
             path = path + "ol_store_report_ror.xlsx"
-            exportToXLS(path, "list", GCDetail)
+            exportToXLS(path, "list", GCROR)
             Cursor = Cursors.Default
         End If
     End Sub

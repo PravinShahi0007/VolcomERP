@@ -470,6 +470,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnqty_rrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty_bal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfinal_comment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportXLSROR = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewROR = New DevExpress.XtraEditors.SimpleButton()
@@ -4504,7 +4505,7 @@ Partial Class FormOLStoreSummary
         '
         'GVROR
         '
-        Me.GVROR.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_return_order, Me.GridColumnsales_return_order_number, Me.GridColumnsales_return_order_date, Me.GridColumnid_comp_groupror, Me.GridColumncomp_group, Me.GridColumncomp_group_desc, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnid_sales_orderror, Me.GridColumnsales_order_numberror, Me.GridColumnsales_order_dateror, Me.GridColumnsales_order_ol_shop_numberror, Me.GridColumnsales_order_ol_shop_dateror, Me.GridColumncustomer_nameror, Me.GridColumnqty_ror, Me.GridColumnqty_rts, Me.GridColumnqty_rrf, Me.GridColumnqty_bal, Me.GridColumnstatus})
+        Me.GVROR.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_return_order, Me.GridColumnsales_return_order_number, Me.GridColumnsales_return_order_date, Me.GridColumnid_comp_groupror, Me.GridColumncomp_group, Me.GridColumncomp_group_desc, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnid_sales_orderror, Me.GridColumnsales_order_numberror, Me.GridColumnsales_order_dateror, Me.GridColumnsales_order_ol_shop_numberror, Me.GridColumnsales_order_ol_shop_dateror, Me.GridColumncustomer_nameror, Me.GridColumnqty_ror, Me.GridColumnqty_rts, Me.GridColumnqty_rrf, Me.GridColumnqty_bal, Me.GridColumnstatus, Me.GridColumnfinal_comment})
         Me.GVROR.GridControl = Me.GCROR
         Me.GVROR.Name = "GVROR"
         Me.GVROR.OptionsBehavior.AutoExpandAllGroups = True
@@ -4654,7 +4655,7 @@ Partial Class FormOLStoreSummary
         '
         'GridColumnqty_rrf
         '
-        Me.GridColumnqty_rrf.Caption = "Refuse Ret."
+        Me.GridColumnqty_rrf.Caption = "Refuse Ret. Qty"
         Me.GridColumnqty_rrf.DisplayFormat.FormatString = "N0"
         Me.GridColumnqty_rrf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnqty_rrf.FieldName = "qty_rrf"
@@ -4681,6 +4682,14 @@ Partial Class FormOLStoreSummary
         Me.GridColumnstatus.Name = "GridColumnstatus"
         Me.GridColumnstatus.Visible = True
         Me.GridColumnstatus.VisibleIndex = 14
+        '
+        'GridColumnfinal_comment
+        '
+        Me.GridColumnfinal_comment.Caption = "Closing Note"
+        Me.GridColumnfinal_comment.FieldName = "final_comment"
+        Me.GridColumnfinal_comment.Name = "GridColumnfinal_comment"
+        Me.GridColumnfinal_comment.Visible = True
+        Me.GridColumnfinal_comment.VisibleIndex = 15
         '
         'PanelControl8
         '
@@ -5348,4 +5357,5 @@ Partial Class FormOLStoreSummary
     Friend WithEvents GridColumnqty_bal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnstatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LinkROR As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents GridColumnfinal_comment As DevExpress.XtraGrid.Columns.GridColumn
 End Class
