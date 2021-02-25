@@ -6935,6 +6935,12 @@
     <Compile Include="FormTemplateSize.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormTempTable.Designer.vb">
+      <DependentUpon>FormTempTable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTempTable.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormTest.Designer.vb">
       <DependentUpon>FormTest.vb</DependentUpon>
     </Compile>
@@ -13068,6 +13074,9 @@
     <EmbeddedResource Include="FormTemplateSize.resx">
       <DependentUpon>FormTemplateSize.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTempTable.resx">
+      <DependentUpon>FormTempTable.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTest.resx">
       <DependentUpon>FormTest.vb</DependentUpon>

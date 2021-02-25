@@ -19,7 +19,7 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-
+        FormTempTable.ShowDialog()
         'gen stiker
         '        Dim q As String = "SELECT so.sales_order_ol_shop_number 
         'FROM tb_sales_order so 
