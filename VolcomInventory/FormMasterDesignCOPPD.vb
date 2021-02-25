@@ -18,7 +18,13 @@
         viewSearchLookupQuery(SLECoolStorage, q, "id_cool_storage", "cool_storage", "id_cool_storage")
     End Sub
 
-    Private Sub FormMasterDesignCOPPD_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Sub load_coo()
+        Dim q As String = "SELECT id_country,country FROM tb_m_country"
+        viewSearchLookupQuery(SLECOO, q, "id_country", "country", "id_country")
+    End Sub
+
+    Sub load_form()
+        load_coo()
         view_currency_grid()
         load_cool_storage()
 
@@ -44,8 +50,19 @@
         TEVendor.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_number_pd").ToString
         TEVendorName.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_name_pd").ToString
         TEKurs.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
+        MEECOPNote.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("cop_pd_note").ToString
+        SLECOO.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("coo").ToString
+        '
         TEEcop.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd") - FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
         TEAdditionalCost.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
+        '
+        If TEEcop.EditValue > 0 Then
+            BLock.Text = "Reset"
+            BUpdateCOP.Visible = False
+        Else
+            BLock.Text = "Lock"
+            BUpdateCOP.Visible = True
+        End If
         '
         SLECoolStorage.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("is_cold_storage").ToString
         '
@@ -64,7 +81,6 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
             warningCustom("PD already created, COP already locked.")
             '
             BUpdateVendor.Visible = True
-            BtnSave.Visible = False
             XTPUpdateCOP.PageVisible = False
         Else
             'check if target cost already input
@@ -90,16 +106,18 @@ WHERE dsg.id_design='" & id_design & "'"
             '
             If target_ok = True Then
                 BUpdateVendor.Visible = False
-                BtnSave.Visible = True
                 XTPUpdateCOP.PageVisible = True
             Else
                 warningCustom("Target cost belum terdaftar, silahkan hubungi merchandise.")
                 '
                 BUpdateVendor.Visible = False
-                BtnSave.Visible = False
                 XTPUpdateCOP.PageVisible = False
             End If
         End If
+    End Sub
+
+    Private Sub FormMasterDesignCOPPD_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
     End Sub
 
     Function get_use_target_cost()
@@ -180,77 +198,71 @@ WHERE dsg.id_design='" & id_design & "'"
         End If
     End Sub
 
-    Private Sub TEEcop_KeyDown(sender As Object, e As KeyEventArgs) Handles TEEcop.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            BtnSave.Focus()
-        End If
-    End Sub
+    '    Private Sub BtnSave_Click(sender As Object, e As EventArgs)
+    '        'If id_comp = "-1" Or id_comp = "" Then
+    '        'stopCustom("Please select vendor first")
+    '        'Else
+    '        Dim id_season As Integer = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
+    '        Dim is_more_than_limit As Boolean = False
 
-    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        'If id_comp = "-1" Or id_comp = "" Then
-        'stopCustom("Please select vendor first")
-        'Else
-        Dim id_season As Integer = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
-        Dim is_more_than_limit As Boolean = False
+    '        'check limit
+    '        If get_use_target_cost() = "1" Then
+    '            Dim limit As Decimal = 0.00
+    '            Dim target_cost As Decimal = TETargetCost.EditValue
+    '            Dim ecop As Decimal = TEEcop.EditValue
+    '            '
+    '            limit = Decimal.Parse(get_opt_prod_field("ecop_limit_upper_percent"))
 
-        'check limit
-        If get_use_target_cost() = "1" Then
-            Dim limit As Decimal = 0.00
-            Dim target_cost As Decimal = TETargetCost.EditValue
-            Dim ecop As Decimal = TEEcop.EditValue
-            '
-            limit = Decimal.Parse(get_opt_prod_field("ecop_limit_upper_percent"))
+    '            If ecop > (target_cost * ((100 + limit) / 100)) Then
+    '                is_more_than_limit = True
+    '            End If
+    '        End If
 
-            If ecop > (target_cost * ((100 + limit) / 100)) Then
-                is_more_than_limit = True
-            End If
-        End If
+    '        If is_more_than_limit = True Then
+    '            warningCustom("Estimasti Cost melewati batas target cost. " & vbNewLine & "Untuk melanjutkan, silahkan negosiasi dengan vendor atau koordinasikan dengan Merchandise dan Design")
+    '        Else
+    '            Dim query As String = ""
+    '            'check 
+    '            query = "SELECT pdd.`id_prod_demand`,pd.`id_report_status`,pdd.`id_design` FROM tb_prod_demand_design pdd
+    'INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
+    'WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND pd.is_pd='1'"
+    '            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+    '            If data.Rows.Count > 0 Then
+    '                warningCustom("PD already created, COP already locked.")
+    '            Else
+    '                Dim id_c As String = ""
+    '                If id_comp = "-1" Or id_comp = "" Then
+    '                    id_c = "NULL"
+    '                Else
+    '                    id_c = "'" & id_comp_contact & "'"
+    '                End If
+    '                query = String.Format("UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_pd_addcost='{5}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor={3},prod_order_cop_pd_curr='{4}' WHERE id_design='{0}'", id_design, decimalSQL((TEEcop.EditValue + TEAdditionalCost.EditValue).ToString), decimalSQL(TEKurs.EditValue.ToString), id_c, LECurrency.EditValue.ToString, decimalSQL(TEAdditionalCost.EditValue.ToString))
+    '                execute_non_query(query, True, "", "", "", "")
 
-        If is_more_than_limit = True Then
-            warningCustom("Estimasti Cost melewati batas target cost. " & vbNewLine & "Untuk melanjutkan, silahkan negosiasi dengan vendor atau koordinasikan dengan Merchandise dan Design")
-        Else
-            Dim query As String = ""
-            'check 
-            query = "SELECT pdd.`id_prod_demand`,pd.`id_report_status`,pdd.`id_design` FROM tb_prod_demand_design pdd
-INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
-WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND pd.is_pd='1'"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            If data.Rows.Count > 0 Then
-                warningCustom("PD already created, COP already locked.")
-            Else
-                Dim id_c As String = ""
-                If id_comp = "-1" Or id_comp = "" Then
-                    id_c = "NULL"
-                Else
-                    id_c = "'" & id_comp_contact & "'"
-                End If
-                query = String.Format("UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_pd_addcost='{5}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor={3},prod_order_cop_pd_curr='{4}' WHERE id_design='{0}'", id_design, decimalSQL((TEEcop.EditValue + TEAdditionalCost.EditValue).ToString), decimalSQL(TEKurs.EditValue.ToString), id_c, LECurrency.EditValue.ToString, decimalSQL(TEAdditionalCost.EditValue.ToString))
-                execute_non_query(query, True, "", "", "", "")
+    '                If is_insert_cool_storage = "1" Then
+    '                    query = "UPDATE tb_m_design SET is_cold_storage='" & SLECoolStorage.EditValue.ToString & "' WHERE id_design='" & SLECoolStorage.EditValue.ToString & "'"
+    '                    execute_non_query(query, True, "", "", "", "")
+    '                End If
 
-                If is_insert_cool_storage = "1" Then
-                    query = "UPDATE tb_m_design SET is_cold_storage='" & SLECoolStorage.EditValue.ToString & "' WHERE id_design='" & SLECoolStorage.EditValue.ToString & "'"
-                    execute_non_query(query, True, "", "", "", "")
-                End If
+    '                infoCustom("ECOP entry success.")
 
-                infoCustom("ECOP entry success.")
+    '                'send email
+    '                'Try
+    '                '    Dim nm As New ClassSendEmail
+    '                '    nm.par1 = id_design
+    '                '    nm.report_mark_type = "267"
+    '                '    nm.send_email()
+    '                'Catch ex As Exception
+    '                '    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send COP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
+    '                'End Try
 
-                'send email
-                'Try
-                '    Dim nm As New ClassSendEmail
-                '    nm.par1 = id_design
-                '    nm.report_mark_type = "267"
-                '    nm.send_email()
-                'Catch ex As Exception
-                '    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send COP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
-                'End Try
-
-                FormMasterDesignCOP.view_design()
-                FormMasterDesignCOP.BGVDesign.FocusedRowHandle = find_row_as_is(FormMasterDesignCOP.BGVDesign, "id_design", id_design)
-                Close()
-            End If
-        End If
-        'End If
-    End Sub
+    '                FormMasterDesignCOP.view_design()
+    '                FormMasterDesignCOP.BGVDesign.FocusedRowHandle = find_row_as_is(FormMasterDesignCOP.BGVDesign, "id_design", id_design)
+    '                Close()
+    '            End If
+    '        End If
+    '        'End If
+    '    End Sub
 
     Private Sub BtnBrowseContactFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseContactFrom.Click
         FormPopUpContact.id_pop_up = "68"
@@ -389,8 +401,6 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
             ElseIf GVCOPComponent.RowCount <= 0 Then
                 warningCustom("Please input COP component.")
             Else
-                Dim cop_non_additional As Decimal = GVCOPComponent.Columns("after_kurs").SummaryItem.SummaryValue
-                Dim additional As Decimal = GVCOPComponent.Columns("additional").SummaryItem.SummaryValue
                 Dim curr As String = "1"
 
                 For i = 0 To GVCOPComponent.RowCount - 1
@@ -416,26 +426,29 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
                 Next
 
                 'header
-                query += String.Format(";UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_pd_addcost='{5}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor={3},prod_order_cop_pd_curr='{4}' WHERE id_design='{0}'", id_design, decimalSQL((cop_non_additional + additional).ToString), decimalSQL(TETodayKurs.EditValue.ToString), id_c, curr, decimalSQL(additional.ToString))
+                'query += String.Format(";UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor={3},prod_order_cop_pd_curr='{4}',prod_order_cop_pd_addcost='{5}' WHERE id_design='{0}'", id_design, decimalSQL((cop_non_additional + additional).ToString), decimalSQL(TETodayKurs.EditValue.ToString), id_c, curr, decimalSQL(additional.ToString))
+                'execute_non_query(query, True, "", "", "", "")
+                '
+                query += String.Format(";UPDATE tb_m_design SET prod_order_cop_kurs_pd='{1}',prod_order_cop_pd_vendor={2},prod_order_cop_pd_curr='{3}',cop_pd_note='{4}',coo='{5}' WHERE id_design='{0}'", id_design, decimalSQL(TETodayKurs.EditValue.ToString), id_c, curr, addSlashes(MEECOPNote.Text), SLECOO.EditValue.ToString)
                 execute_non_query(query, True, "", "", "", "")
-
+                '
                 If is_insert_cool_storage = "1" Then
                     query = "UPDATE tb_m_design SET is_cold_storage='" & SLECoolStorage.EditValue.ToString & "' WHERE id_design='" & SLECoolStorage.EditValue.ToString & "'"
                     execute_non_query(query, True, "", "", "", "")
                 End If
 
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("ECOP updated. You want to send notification mail ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    'send email
-                    Try
-                        Dim nm As New ClassSendEmail
-                        nm.par1 = id_design
-                        nm.report_mark_type = "267"
-                        nm.send_email()
-                    Catch ex As Exception
-                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send COP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
-                    End Try
-                End If
+                'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("ECOP updated. You want to send notification mail ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                'If confirm = Windows.Forms.DialogResult.Yes Then
+                '    'send email
+                '    Try
+                '        Dim nm As New ClassSendEmail
+                '        nm.par1 = id_design
+                '        nm.report_mark_type = "267"
+                '        nm.send_email()
+                '    Catch ex As Exception
+                '        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send COP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
+                '    End Try
+                'End If
 
                 FormMasterDesignCOP.view_design()
                 FormMasterDesignCOP.BGVDesign.FocusedRowHandle = find_row_as_is(FormMasterDesignCOP.BGVDesign, "id_design", id_design)
@@ -459,5 +472,100 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
         Next
 
         show_but()
+    End Sub
+
+    Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
+        If Not id_user = get_opt_prod_field("id_user_ast_mngr_prod") Then
+            stopCustom("You have no right to do this.")
+        Else
+            If BLock.Text = "Lock" Then
+                If GVCOPComponent.RowCount <= 0 Then
+                    warningCustom("Please input COP component.")
+                Else
+                    Dim cop_non_additional As Decimal = GVCOPComponent.Columns("after_kurs").SummaryItem.SummaryValue
+                    Dim additional As Decimal = GVCOPComponent.Columns("additional").SummaryItem.SummaryValue
+
+                    Dim curr As String = "1"
+
+                    For i = 0 To GVCOPComponent.RowCount - 1
+                        If GVCOPComponent.GetRowCellValue(i, "id_currency").ToString = "2" Then
+                            curr = "2"
+                        End If
+                    Next
+
+                    Dim id_c As String = ""
+                    If id_comp = "-1" Or id_comp = "" Then
+                        id_c = "NULL"
+                    Else
+                        id_c = "'" & id_comp_contact & "'"
+                    End If
+
+                    Dim query As String = ""
+                    query = String.Format("UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor={3},prod_order_cop_pd_curr='{4}',prod_order_cop_pd_addcost='{5}' WHERE id_design='{0}'", id_design, decimalSQL((cop_non_additional + additional).ToString), decimalSQL(TETodayKurs.EditValue.ToString), id_c, curr, decimalSQL(additional.ToString))
+                    execute_non_query(query, True, "", "", "", "")
+
+                    query = "UPDATE 
+tb_m_design dsg
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=dsg.`id_prod_demand_design_line`
+INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
+SET pdd.prod_demand_design_estimate_price = dsg.prod_order_cop_pd,
+pdd.prod_demand_design_total_cost = dsg.prod_order_cop_pd,  
+pdd.additional_cost = dsg.prod_order_cop_pd_addcost,
+pdd.additional_price = IF(dsg.prod_order_cop_pd_addcost>0,opt.default_add_price,0)
+WHERE pd.is_pd=2 AND dsg.id_design='" & id_design & "'"
+
+                    'send email
+                    Try
+                        Dim nm As New ClassSendEmail
+                        nm.par1 = id_design
+                        nm.report_mark_type = "267"
+                        nm.send_email()
+                    Catch ex As Exception
+                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
+                    End Try
+                    '
+                    warningCustom("ECOP PD Lock complete")
+                    '
+                    load_form()
+                End If
+            ElseIf BLock.Text = "Reset" Then
+                'reset
+                Dim query As String = ""
+                'check 
+                query = "SELECT pdd.`id_prod_demand`,pd.`id_report_status`,pdd.`id_design` FROM tb_prod_demand_design pdd
+INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
+WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND pd.is_pd='1'"
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If data.Rows.Count > 0 Then
+                    warningCustom("PD already created, COP already locked.")
+                Else
+                    'reset
+                    Dim qu As String = "UPDATE 
+tb_m_design dsg
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=dsg.`id_prod_demand_design_line`
+INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
+SET pdd.prod_demand_design_estimate_price=0,pdd.prod_demand_design_total_cost=0,pdd.additional_cost=0,pdd.additional_price=0
+WHERE pd.is_pd=2 AND dsg.id_design='" & id_design & "'"
+                    execute_non_query(qu, True, "", "", "", "")
+                    '
+                    qu = String.Format("UPDATE tb_m_design SET prod_order_cop_pd=0,prod_order_cop_pd_addcost=0 WHERE id_design='{0}'", id_design)
+                    execute_non_query(qu, True, "", "", "", "")
+
+                    'reset mail
+                    Try
+                        Dim nm As New ClassSendEmail
+                        nm.par1 = id_design
+                        nm.report_mark_type = "291"
+                        nm.send_email()
+                    Catch ex As Exception
+                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send reset ECOP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
+                    End Try
+                    '
+                    warningCustom("ECOP PD Reset complete")
+                    '
+                    load_form()
+                End If
+            End If
+        End If
     End Sub
 End Class

@@ -841,8 +841,10 @@ Public Class FormImportExcel
                                 .id_design_cat = If(y1 Is Nothing, 0, y1("id_design_cat")),
                                 .id_product = If(y1 Is Nothing, 0, y1("id_product")),
                                 .id_design = If(y1 Is Nothing, 0, y1("id_design")),
+                                .id_design_type = If(y1 Is Nothing, 0, y1("id_design_type")),
                                 .design_price_type = If(y1 Is Nothing, 0, y1("design_price_type")),
-                                .Status = If(y1 Is Nothing, "Not found", If(If(table1("qty").ToString = "", 0, CType(table1("qty"), Decimal)) > If(y1 Is Nothing, 0, y1("total_allow")), "Input qty exceed available qty", "OK"))
+                                .Status = If(y1 Is Nothing, "Not found", If(If(table1("qty").ToString = "", 0, CType(table1("qty"), Decimal)) > If(y1 Is Nothing, 0, y1("total_allow")), "Input qty exceed available qty", "OK")),
+                                .DesignType = If(y1 Is Nothing, "", y1("design_type"))
                             }
                 GCData.DataSource = Nothing
                 GCData.DataSource = query.ToList()
@@ -855,6 +857,7 @@ Public Class FormImportExcel
                 GVData.Columns("design_price_type").Visible = False
                 GVData.Columns("id_product").Visible = False
                 GVData.Columns("id_design").Visible = False
+                GVData.Columns("id_design_type").Visible = False
                 GVData.Columns("Code").VisibleIndex = 0
                 GVData.Columns("Style").VisibleIndex = 1
                 GVData.Columns("Size").VisibleIndex = 2
@@ -862,6 +865,7 @@ Public Class FormImportExcel
                 GVData.Columns("Available").VisibleIndex = 4
                 GVData.Columns("Qty").VisibleIndex = 5
                 GVData.Columns("Status").VisibleIndex = 6
+                GVData.Columns("DesignType").VisibleIndex = 7
                 GVData.Columns("Available").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
                 GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1545,6 +1549,7 @@ Public Class FormImportExcel
             GVData.Columns("id_design").Visible = False
             GVData.Columns("id_wh").Visible = False
             GVData.Columns("id_user").Visible = False
+            GVData.Columns("id_design_type").Visible = False
             'GVData.Columns("Class").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
             GVData.Columns("Style").VisibleIndex = 1
@@ -1553,6 +1558,7 @@ Public Class FormImportExcel
             GVData.Columns("Available").VisibleIndex = 4
             GVData.Columns("Qty").VisibleIndex = 5
             GVData.Columns("Status").VisibleIndex = 6
+            GVData.Columns("Design Type").VisibleIndex = 7
             GVData.Columns("Available").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -3709,6 +3715,13 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.Salmon
+            End If
+
+            If id_pop_up = "25" Or id_pop_up = "15" Then
+                If sender.GetRowCellValue(e.RowHandle, sender.Columns("id_design_type")).ToString = "2" Then
+                    e.Appearance.BackColor = Color.SkyBlue
+                    e.Appearance.BackColor2 = Color.SkyBlue
+                End If
             End If
         ElseIf id_pop_up = "12" Then
             'condition

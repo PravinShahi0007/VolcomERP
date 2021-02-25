@@ -27,15 +27,26 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
         viewSearchLookupQuery(SLEIAApproval, query, "id_approval", "approval", "id_approval")
     End Sub
 
+    Sub view_column()
+        Dim q As String = "SELECT is_pr_stock_card FROM tb_m_departement WHERE id_departement='" & id_departement & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            If dt.Rows(0)("is_pr_stock_card").ToString = "1" Then
+                GridColumnStockCard.Visible = True
+            Else
+                GridColumnStockCard.Visible = False
+            End If
+            GVItemList.BestFitColumns()
+        End If
+    End Sub
+
     Sub load_form()
         load_approval_ic_ia()
         load_report_status()
-        is_reload = "1"
+        is_reload = " Then1"
         DEYearBudget.EditValue = Now
         load_purc_type()
         is_reload = "2"
-        '
-
         '
         If is_duplicate = "1" Then
             id_req_temp = id_req
@@ -54,6 +65,8 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
                 id_departement = FormPurcReq.SLEDepartement.EditValue.ToString
             End If
 
+            view_column()
+
             load_item_pil()
             load_det()
             '
@@ -67,17 +80,17 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
             GVItemList.OptionsBehavior.Editable = True
             BtnAttachment.Visible = False
             '
-            Dim query As String = "SELECT NOW() as time_server"
+            Dim query As String = "Select NOW() As time_server"
             Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
             DERequirementDate.Properties.MinValue = Date.Parse(dt.Rows(0)("time_server")).AddDays(7)
 
             If is_duplicate = "1" Then
-                Dim data As DataTable = execute_query("SELECT id_expense_type, is_store_purchase, note FROM tb_purc_req WHERE id_purc_req = '" & id_req & "'", -1, True, "", "", "", "")
+                Dim data As DataTable = execute_query("Select id_expense_type, is_store_purchase, note FROM tb_purc_req WHERE id_purc_req = '" & id_req & "'", -1, True, "", "", "", "")
 
-                MENote.Text = data.Rows(0)("note").ToString
-                SLEPurcType.EditValue = data.Rows(0)("id_expense_type").ToString
+                MENote.Text = Data.Rows(0)("note").ToString
+                SLEPurcType.EditValue = Data.Rows(0)("id_expense_type").ToString
 
-                If data.Rows(0)("is_store_purchase").ToString = "1" Then
+                If Data.Rows(0)("is_store_purchase").ToString = "1" Then
                     CEStoreRequest.Checked = True
                 Else
                     CEStoreRequest.Checked = False
@@ -110,6 +123,9 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
                 id_user_created = data.Rows(0)("id_user_created").ToString
                 TEReqBy.Text = data.Rows(0)("employee_name").ToString
                 id_departement = data.Rows(0)("id_departement").ToString
+
+                view_column()
+
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
                 DERequirementDate.EditValue = data.Rows(0)("requirement_date")
                 TEReqNUmber.Text = data.Rows(0)("purc_req_number").ToString
@@ -222,7 +238,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT reqd.*,uom.uom,cat.`item_cat`,itm.item_desc,itm.`id_item_type`,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,itt.item_type
+        Dim query As String = "SELECT reqd.*,IF(reqd.is_dep_stock_card=1,'yes','no') AS is_listed,CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) AS full_desc,uom.uom,cat.`item_cat`,itm.item_desc,itm.`id_item_type`,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,itt.item_type
                                 FROM tb_purc_req_det reqd 
                                 INNER JOIN tb_item itm ON reqd.`id_item`=itm.`id_item`
                                 INNER JOIN tb_lookup_purc_item_type itt ON itt.id_item_type=itm.id_item_type
@@ -252,7 +268,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
     Sub load_item_pil()
         Dim query As String = ""
 
-        query = "SELECT it.id_item,itt.item_type,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,used.id_b_expense,used_opex.id_b_expense_opex,cat.`id_expense_type`,it.`id_item_cat`,it.item_desc,uom.uom,cat.item_cat,IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) AS budget,IFNULL(IF(cat.`id_expense_type`='2',used.val,used_opex.val),0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` 
+        query = "SELECT it.id_item,it.def_desc,itt.item_type,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,used.id_b_expense,used_opex.id_b_expense_opex,cat.`id_expense_type`,it.`id_item_cat`,it.item_desc,uom.uom,cat.item_cat,IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) AS budget,IFNULL(IF(cat.`id_expense_type`='2',used.val,used_opex.val),0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` 
                     FROM tb_item it
                      INNER JOIN tb_lookup_purc_item_type itt ON itt.id_item_type=it.id_item_type
                     INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
@@ -314,9 +330,19 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
         End If
 
         If is_ok Then
-            GVItemList.AddNewRow()
-            GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
-            GVItemList.SetFocusedRowCellValue("ship_destination", get_setup_field("id_own_company"))
+            Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+            newRow("ship_to") = get_setup_field("id_own_company")
+            newRow("ship_destination") = get_company_x(get_setup_field("id_own_company"), "1")
+            newRow("ship_address") = get_company_x(get_setup_field("id_own_company"), "3")
+            newRow("is_listed") = "no"
+            TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
+            GCItemList.RefreshDataSource()
+            GVItemList.RefreshData()
+
+            'GVItemList.AddNewRow()
+            'GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+            'GVItemList.SetFocusedRowCellValue("ship_destination", get_setup_field("id_own_company"))
+            'GVItemList.SetFocusedRowCellValue("is_listed", "no")
             load_item_pil()
             check_but()
         End If
@@ -356,7 +382,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
             'End If
 
             GVItemList.SetFocusedRowCellValue("item_type", sle.Properties.View.GetFocusedRowCellValue("item_type").ToString())
-            GVItemList.SetFocusedRowCellValue("item_detail", sle.Properties.View.GetFocusedRowCellValue("item_desc").ToString())
+            GVItemList.SetFocusedRowCellValue("item_detail", sle.Properties.View.GetFocusedRowCellValue("def_desc").ToString())
             GVItemList.SetFocusedRowCellValue("uom", sle.Properties.View.GetFocusedRowCellValue("uom").ToString())
             GVItemList.SetFocusedRowCellValue("item_cat", sle.Properties.View.GetFocusedRowCellValue("item_cat").ToString())
             GVItemList.SetFocusedRowCellValue("budget", sle.Properties.View.GetFocusedRowCellValue("budget").ToString())
@@ -444,10 +470,10 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
                         If Not query_det = "" Then
                             query_det += ","
                         End If
-                        query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense_opex").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','0.00','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "note").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_to").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_destination").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_address").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "item_detail").ToString) & "')"
+                        query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense_opex").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','0.00','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "note").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_to").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_destination").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "ship_address").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "item_detail").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "remark").ToString) & "','" & If(GVItemList.GetRowCellValue(i, "is_listed").ToString = "yes", "1", "2") & "')"
                     Next
                     '
-                    query_det = "INSERT INTO `tb_purc_req_det`(id_purc_req,id_item,id_b_expense_opex,id_b_expense,qty,value,budget,budget_remaining,note,ship_to,ship_destination,ship_address,item_detail)
+                    query_det = "INSERT INTO `tb_purc_req_det`(id_purc_req,id_item,id_b_expense_opex,id_b_expense,qty,value,budget,budget_remaining,note,ship_to,ship_destination,ship_address,item_detail,remark,is_dep_stock_card)
                                                 VALUES" & query_det
                     '
                     execute_non_query(query_det, True, "", "", "", "")

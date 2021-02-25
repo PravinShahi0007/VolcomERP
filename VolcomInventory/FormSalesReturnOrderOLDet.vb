@@ -119,7 +119,7 @@
 
     Sub viewDetail()
         If is_detail_soh <> "-1" Then
-            Dim query As String = "CALL view_sales_return_order_limit('" + id_sales_return_order + "',0,0)"
+            Dim query As String = "CALL view_sales_return_order_limit_lite('" + id_sales_return_order + "',0,0)"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = data
         Else
@@ -179,6 +179,8 @@
     End Sub
 
     Sub allow_status()
+        XTPRTS.PageVisible = True
+        XTPRRF.PageVisible = True
         BtnBrowseOrder.Enabled = False
         BtnBrowseStore.Enabled = False
         BtnBrowseWH.Enabled = False
@@ -387,11 +389,23 @@
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
+                    'number 
+                    sales_return_order_number = header_number_sales("4")
+                    increase_inc_sales("4")
+
+                    'cek number
+                    Dim roc As New ClassSalesReturnOrder()
+                    Dim is_no_dupe As Boolean = roc.isNotDuplicateROR(sales_return_order_number)
+                    If Not is_no_dupe Then
+                        warningCustom("ROR number already used, please try again to save changes this transaction")
+                        Cursor = Cursors.Default
+                        Exit Sub
+                    End If
+
                     'Main tbale
                     Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, id_wh_contact_to, id_sales_order, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date, id_order_type) "
-                    query += "VALUES('" + id_store_contact_to + "','" + id_wh_contact_to + "', '" + id_sales_order + "', '" + header_number_sales("4") + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', '" + sales_return_order_est_date + "', '2'); SELECT LAST_INSERT_ID(); "
+                    query += "VALUES('" + id_store_contact_to + "','" + id_wh_contact_to + "', '" + id_sales_order + "', '" + sales_return_order_number + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', '" + sales_return_order_est_date + "', '2'); SELECT LAST_INSERT_ID(); "
                     id_sales_return_order = execute_query(query, 0, True, "", "", "", "")
-                    increase_inc_sales("4")
 
                     'insert who prepared
                     insert_who_prepared("119", id_sales_return_order, id_user)
@@ -718,5 +732,74 @@
 
     Private Sub GVItemList_InvalidValueException(sender As Object, e As DevExpress.XtraEditors.Controls.InvalidValueExceptionEventArgs) Handles GVItemList.InvalidValueException
 
+    End Sub
+
+    Private Sub BtnPrintList_Click(sender As Object, e As EventArgs) Handles BtnPrintList.Click
+        Cursor = Cursors.WaitCursor
+        print(GCRTS, TxtSalesOrderNumber.Text + " - Returned list")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewRTS()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT r.id_sales_return, r.sales_return_number, r.sales_return_date, SUM(rd.sales_return_det_qty) AS `total_qty`, rs.report_status
+        FROM tb_sales_return r 
+        INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return
+        INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = r.id_report_status
+        WHERE r.id_sales_return_order='" + id_sales_return_order + "' 
+        GROUP BY r.id_sales_return "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRTS.DataSource = data
+        GVRTS.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewRRF()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT r.id_return_refuse, r.number, r.created_date, SUM(rd.qty) AS `total_qty`, rs.report_status
+        FROM tb_ol_store_return_refuse r
+        INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = r.id_report_status
+        INNER JOIN tb_ol_store_return_refuse_det rd ON rd.id_return_refuse = r.id_return_refuse
+        INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order_det = rd.id_sales_return_order_det
+        WHERE rod.id_sales_return_order='" + id_sales_return_order + "'
+        GROUP BY r.id_return_refuse "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRRF.DataSource = data
+        GVRRF.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCROR_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCROR.SelectedPageChanged
+        If XTCROR.SelectedTabPageIndex = 1 Then
+            viewRTS()
+        ElseIf XTCROR.SelectedTabPageIndex = 2 Then
+            viewRRF()
+        End If
+    End Sub
+
+    Private Sub GVRTS_DoubleClick(sender As Object, e As EventArgs) Handles GVRTS.DoubleClick
+
+    End Sub
+
+    Private Sub LinkRTS_Click(sender As Object, e As EventArgs) Handles LinkRTS.Click
+        If GVRTS.RowCount > 0 And GVRTS.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp()
+            m.id_report = GVRTS.GetFocusedRowCellValue("id_sales_return").ToString
+            m.report_mark_type = "120"
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub LinkRRF_Click(sender As Object, e As EventArgs) Handles LinkRRF.Click
+        If GVRRF.RowCount > 0 And GVRRF.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp()
+            m.id_report = GVRRF.GetFocusedRowCellValue("id_return_refuse").ToString
+            m.report_mark_type = "290"
+            m.show()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

@@ -1621,13 +1621,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormItemCatProposeDet.id = id
             FormItemCatProposeDet.ShowDialog()
         ElseIf formName = "FormItemCatMapping" Then
-            Dim query As String = "INSERT INTO tb_item_coa_propose(number, created_date, note, id_report_status) 
-            VALUES('" + header_number_sales("38") + "',NOW(), '',1);SELECT LAST_INSERT_ID(); "
-            Dim id As String = execute_query(query, 0, True, "", "", "", "")
-            FormItemCatMapping.viewPropose()
-            FormItemCatMapping.GVPropose.FocusedRowHandle = find_row(FormItemCatMapping.GVPropose, "id_item_coa_propose", id)
-            FormItemCatMappingDet.id = id
-            FormItemCatMappingDet.ShowDialog()
+            'check first
+            Dim qc As String = "SELECT * FROM tb_item_coa_propose WHERE id_report_status!=5 AND id_report_status!=6"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                warningCustom("There is pending document, please complete it first.")
+            Else
+                Dim query As String = "INSERT INTO tb_item_coa_propose(number, created_date, note, id_report_status) 
+                VALUES('" + header_number_sales("38") + "',NOW(), '',1);SELECT LAST_INSERT_ID(); "
+                Dim id As String = execute_query(query, 0, True, "", "", "", "")
+                FormItemCatMapping.viewPropose()
+                FormItemCatMapping.GVPropose.FocusedRowHandle = find_row(FormItemCatMapping.GVPropose, "id_item_coa_propose", id)
+                FormItemCatMappingDet.id = id
+                FormItemCatMappingDet.ShowDialog()
+            End If
         ElseIf formName = "FormPurcItem" Then
             FormPurcItemDet.id_item = "-1"
             FormPurcItemDet.ShowDialog()
@@ -1864,6 +1871,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormAdjustmentOG" Then
             FormAdjustmentOGDet.ShowDialog()
+        ElseIf formName = "FormOLReturnRefuse" Then
+            If FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 0 Then
+                'no action
+            ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
+                If FormOLReturnRefuse.GVOrder.RowCount > 0 And FormOLReturnRefuse.GVOrder.FocusedRowHandle >= 0 Then
+                    Cursor = Cursors.WaitCursor
+                    FormOLReturnRefuseDet.action = "ins"
+                    FormOLReturnRefuseDet.id_sales_order = FormOLReturnRefuse.GVOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                    FormOLReturnRefuseDet.id_store_contact = FormOLReturnRefuse.GVOrder.GetFocusedRowCellValue("id_store_contact_to").ToString
+                    FormOLReturnRefuseDet.ShowDialog()
+                    Cursor = Cursors.Default
+                End If
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -3110,6 +3130,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormAdjustmentOG" Then
                 FormAdjustmentOGDet.id_adjustment = FormAdjustmentOG.GVList.GetFocusedRowCellValue("id_adjustment").ToString
                 FormAdjustmentOGDet.ShowDialog()
+            ElseIf formName = "FormOLReturnRefuse" Then
+                If FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 0 Then
+                    If FormOLReturnRefuse.GVData.RowCount > 0 And FormOLReturnRefuse.GVData.FocusedRowHandle >= 0 Then
+                        Cursor = Cursors.WaitCursor
+                        FormOLReturnRefuseDet.action = "upd"
+                        FormOLReturnRefuseDet.id = FormOLReturnRefuse.GVData.GetFocusedRowCellValue("id_return_refuse").ToString
+                        FormOLReturnRefuseDet.ShowDialog()
+                        Cursor = Cursors.Default
+                    End If
+                ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
+                    'no action
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6514,6 +6546,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             Else
                 stopCustom("No contract selected.")
             End If
+        ElseIf formName = "FormOLReturnRefuse" Then
+            'no action
         Else
             RPSubMenu.Visible = False
         End If
@@ -8494,6 +8528,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormAdjustmentOG" Then
             print(FormAdjustmentOG.GCList, "Adjustment Operational Goods")
+        ElseIf formName = "FormOLReturnRefuse" Then
+            If FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 0 Then
+                print(FormOLReturnRefuse.GCData, "Created List")
+            ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
+                print(FormOLReturnRefuse.GCOrder, "Order List")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -9458,6 +9498,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAdjustmentOG" Then
             FormAdjustmentOG.Close()
             FormAdjustmentOG.Dispose()
+        ElseIf formName = "FormOLReturnRefuse" Then
+            FormOLReturnRefuse.Close()
+            FormOLReturnRefuse.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10450,6 +10493,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBatchUploadOnlineStore.GVBatchUpload.Columns.Clear()
         ElseIf formName = "FormAdjustmentOG" Then
             FormAdjustmentOG.form_load()
+        ElseIf formName = "FormOLReturnRefuse" Then
+            If FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 0 Then
+                FormOLReturnRefuse.viewData()
+            ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
+                FormOLReturnRefuse.viewOrderList()
+            End If
         End If
     End Sub
     'Switch
@@ -15788,5 +15837,60 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Catch ex As Exception
             errorProcess()
         End Try
+    End Sub
+
+    Private Sub NBOLReturnRefuse_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOLReturnRefuse.LinkClicked
+        Try
+            FormOLReturnRefuse.MdiParent = Me
+            FormOLReturnRefuse.Show()
+            FormOLReturnRefuse.WindowState = FormWindowState.Maximized
+            FormOLReturnRefuse.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBSetupMasterCode_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSetupMasterCode.LinkClicked
+        Try
+            FormMasterCode.id_template = "13"
+            FormMasterCode.MdiParent = Me
+            FormMasterCode.Show()
+            FormMasterCode.WindowState = FormWindowState.Maximized
+            FormMasterCode.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBCancellationCN_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCancellationCN.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesPOS.Close()
+            FormSalesPOS.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesPOS.MdiParent = Me
+            FormSalesPOS.id_menu = "6"
+            FormSalesPOS.Show()
+            FormSalesPOS.WindowState = FormWindowState.Maximized
+            FormSalesPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBBiayaSewa_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBiayaSewa.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBiayaSewa.MdiParent = Me
+            FormBiayaSewa.Show()
+            FormBiayaSewa.WindowState = FormWindowState.Maximized
+            FormBiayaSewa.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

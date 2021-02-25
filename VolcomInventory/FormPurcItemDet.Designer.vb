@@ -23,6 +23,8 @@ Partial Class FormPurcItemDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcItemDet))
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEDefDesc = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEConvertion = New DevExpress.XtraEditors.TextEdit()
         Me.SLEUOMStock = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -114,6 +116,7 @@ Partial Class FormPurcItemDet
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
+        CType(Me.MEDefDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEConvertion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEUOMStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,12 +166,14 @@ Partial Class FormPurcItemDet
         Me.XTCDetail.Location = New System.Drawing.Point(0, 0)
         Me.XTCDetail.Name = "XTCDetail"
         Me.XTCDetail.SelectedTabPage = Me.XtraTabPage1
-        Me.XTCDetail.Size = New System.Drawing.Size(519, 335)
+        Me.XTCDetail.Size = New System.Drawing.Size(512, 407)
         Me.XTCDetail.TabIndex = 0
         Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XTPPriceList, Me.XTPAttachment, Me.XTPHistory})
         '
         'XtraTabPage1
         '
+        Me.XtraTabPage1.Controls.Add(Me.LabelControl8)
+        Me.XtraTabPage1.Controls.Add(Me.MEDefDesc)
         Me.XtraTabPage1.Controls.Add(Me.LabelControl10)
         Me.XtraTabPage1.Controls.Add(Me.TEConvertion)
         Me.XtraTabPage1.Controls.Add(Me.SLEUOMStock)
@@ -191,13 +196,29 @@ Partial Class FormPurcItemDet
         Me.XtraTabPage1.Controls.Add(Me.LabelControl11)
         Me.XtraTabPage1.Controls.Add(Me.TECode)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(513, 307)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(506, 379)
         Me.XtraTabPage1.Text = "Detail"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(11, 72)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(91, 13)
+        Me.LabelControl8.TabIndex = 8917
+        Me.LabelControl8.Text = "Default Description"
+        '
+        'MEDefDesc
+        '
+        Me.MEDefDesc.Location = New System.Drawing.Point(109, 70)
+        Me.MEDefDesc.Name = "MEDefDesc"
+        Me.MEDefDesc.Size = New System.Drawing.Size(367, 66)
+        Me.MEDefDesc.TabIndex = 8916
         '
         'LabelControl10
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(109, 177)
+        Me.LabelControl10.Location = New System.Drawing.Point(109, 249)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(19, 13)
         Me.LabelControl10.TabIndex = 8915
@@ -208,7 +229,7 @@ Partial Class FormPurcItemDet
         Me.TEConvertion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEConvertion.EditValue = ""
-        Me.TEConvertion.Location = New System.Drawing.Point(134, 174)
+        Me.TEConvertion.Location = New System.Drawing.Point(134, 246)
         Me.TEConvertion.Name = "TEConvertion"
         Me.TEConvertion.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEConvertion.Properties.Appearance.Options.UseFont = True
@@ -218,13 +239,13 @@ Partial Class FormPurcItemDet
         Me.TEConvertion.Properties.Mask.EditMask = "N0"
         Me.TEConvertion.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEConvertion.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEConvertion.Size = New System.Drawing.Size(143, 20)
+        Me.TEConvertion.Size = New System.Drawing.Size(136, 20)
         Me.TEConvertion.TabIndex = 8914
         Me.TEConvertion.TabStop = False
         '
         'SLEUOMStock
         '
-        Me.SLEUOMStock.Location = New System.Drawing.Point(287, 174)
+        Me.SLEUOMStock.Location = New System.Drawing.Point(287, 246)
         Me.SLEUOMStock.Name = "SLEUOMStock"
         Me.SLEUOMStock.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEUOMStock.Properties.View = Me.GridView7
@@ -256,7 +277,7 @@ Partial Class FormPurcItemDet
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(11, 177)
+        Me.LabelControl9.Location = New System.Drawing.Point(11, 249)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(68, 13)
         Me.LabelControl9.TabIndex = 8912
@@ -265,7 +286,7 @@ Partial Class FormPurcItemDet
         'LStatus
         '
         Me.LStatus.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LStatus.Location = New System.Drawing.Point(11, 235)
+        Me.LStatus.Location = New System.Drawing.Point(11, 311)
         Me.LStatus.Name = "LStatus"
         Me.LStatus.Size = New System.Drawing.Size(31, 13)
         Me.LStatus.TabIndex = 8910
@@ -278,7 +299,7 @@ Partial Class FormPurcItemDet
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEStatus.EditValue = ""
         Me.TEStatus.Enabled = False
-        Me.TEStatus.Location = New System.Drawing.Point(109, 232)
+        Me.TEStatus.Location = New System.Drawing.Point(109, 308)
         Me.TEStatus.Name = "TEStatus"
         Me.TEStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEStatus.Properties.Appearance.Options.UseFont = True
@@ -294,7 +315,7 @@ Partial Class FormPurcItemDet
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(11, 125)
+        Me.LabelControl7.Location = New System.Drawing.Point(11, 197)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl7.TabIndex = 8908
@@ -303,7 +324,7 @@ Partial Class FormPurcItemDet
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(11, 99)
+        Me.LabelControl6.Location = New System.Drawing.Point(11, 171)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(82, 13)
         Me.LabelControl6.TabIndex = 8907
@@ -312,7 +333,7 @@ Partial Class FormPurcItemDet
         'SLEVendorType
         '
         Me.SLEVendorType.Enabled = False
-        Me.SLEVendorType.Location = New System.Drawing.Point(109, 122)
+        Me.SLEVendorType.Location = New System.Drawing.Point(109, 194)
         Me.SLEVendorType.Name = "SLEVendorType"
         Me.SLEVendorType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEVendorType.Properties.View = Me.GridView6
@@ -343,7 +364,7 @@ Partial Class FormPurcItemDet
         '
         'SLEPurchaseCategory
         '
-        Me.SLEPurchaseCategory.Location = New System.Drawing.Point(109, 70)
+        Me.SLEPurchaseCategory.Location = New System.Drawing.Point(109, 142)
         Me.SLEPurchaseCategory.Name = "SLEPurchaseCategory"
         Me.SLEPurchaseCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPurchaseCategory.Properties.View = Me.GridView5
@@ -403,7 +424,7 @@ Partial Class FormPurcItemDet
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(11, 209)
+        Me.LabelControl5.Location = New System.Drawing.Point(11, 281)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(49, 13)
         Me.LabelControl5.TabIndex = 8904
@@ -411,7 +432,7 @@ Partial Class FormPurcItemDet
         '
         'SLEItemType
         '
-        Me.SLEItemType.Location = New System.Drawing.Point(109, 206)
+        Me.SLEItemType.Location = New System.Drawing.Point(109, 278)
         Me.SLEItemType.Name = "SLEItemType"
         Me.SLEItemType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEItemType.Properties.View = Me.GridView3
@@ -446,9 +467,9 @@ Partial Class FormPurcItemDet
         Me.PanelControl1.Controls.Add(Me.BClose)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 267)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 339)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(513, 40)
+        Me.PanelControl1.Size = New System.Drawing.Size(506, 40)
         Me.PanelControl1.TabIndex = 8902
         '
         'BNonActive
@@ -466,7 +487,7 @@ Partial Class FormPurcItemDet
         '
         Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BClose.Image = CType(resources.GetObject("BClose.Image"), System.Drawing.Image)
-        Me.BClose.Location = New System.Drawing.Point(326, 2)
+        Me.BClose.Location = New System.Drawing.Point(319, 2)
         Me.BClose.Name = "BClose"
         Me.BClose.Size = New System.Drawing.Size(96, 36)
         Me.BClose.TabIndex = 1
@@ -476,7 +497,7 @@ Partial Class FormPurcItemDet
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
-        Me.BSave.Location = New System.Drawing.Point(422, 2)
+        Me.BSave.Location = New System.Drawing.Point(415, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(89, 36)
         Me.BSave.TabIndex = 0
@@ -485,7 +506,7 @@ Partial Class FormPurcItemDet
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(11, 151)
+        Me.LabelControl4.Location = New System.Drawing.Point(11, 223)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(70, 13)
         Me.LabelControl4.TabIndex = 8900
@@ -493,7 +514,7 @@ Partial Class FormPurcItemDet
         '
         'SLEUOM
         '
-        Me.SLEUOM.Location = New System.Drawing.Point(109, 148)
+        Me.SLEUOM.Location = New System.Drawing.Point(109, 220)
         Me.SLEUOM.Name = "SLEUOM"
         Me.SLEUOM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEUOM.Properties.View = Me.GridView1
@@ -525,7 +546,7 @@ Partial Class FormPurcItemDet
         'SLECat
         '
         Me.SLECat.Enabled = False
-        Me.SLECat.Location = New System.Drawing.Point(109, 96)
+        Me.SLECat.Location = New System.Drawing.Point(109, 168)
         Me.SLECat.Name = "SLECat"
         Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECat.Properties.View = Me.SearchLookUpEdit1View
@@ -557,7 +578,7 @@ Partial Class FormPurcItemDet
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(11, 73)
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 145)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(92, 13)
         Me.LabelControl2.TabIndex = 8896
@@ -584,9 +605,9 @@ Partial Class FormPurcItemDet
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl1.Location = New System.Drawing.Point(11, 46)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl1.TabIndex = 8894
-        Me.LabelControl1.Text = "Description"
+        Me.LabelControl1.Text = "Item"
         '
         'LabelControl11
         '
@@ -621,7 +642,7 @@ Partial Class FormPurcItemDet
         Me.XTPPriceList.Controls.Add(Me.PanelControl3)
         Me.XTPPriceList.Controls.Add(Me.PCSetPrice)
         Me.XTPPriceList.Name = "XTPPriceList"
-        Me.XTPPriceList.Size = New System.Drawing.Size(513, 307)
+        Me.XTPPriceList.Size = New System.Drawing.Size(506, 402)
         Me.XTPPriceList.Text = "Price List"
         '
         'GCPriceList
@@ -631,7 +652,7 @@ Partial Class FormPurcItemDet
         Me.GCPriceList.MainView = Me.GVPriceList
         Me.GCPriceList.Name = "GCPriceList"
         Me.GCPriceList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCPriceList.Size = New System.Drawing.Size(513, 227)
+        Me.GCPriceList.Size = New System.Drawing.Size(506, 322)
         Me.GCPriceList.TabIndex = 8905
         Me.GCPriceList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPriceList, Me.GridView4})
         '
@@ -708,7 +729,7 @@ Partial Class FormPurcItemDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(513, 40)
+        Me.PanelControl3.Size = New System.Drawing.Size(506, 40)
         Me.PanelControl3.TabIndex = 8904
         '
         'TEPrice
@@ -732,7 +753,7 @@ Partial Class FormPurcItemDet
         '
         Me.BAddPrice.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddPrice.Image = CType(resources.GetObject("BAddPrice.Image"), System.Drawing.Image)
-        Me.BAddPrice.Location = New System.Drawing.Point(402, 2)
+        Me.BAddPrice.Location = New System.Drawing.Point(395, 2)
         Me.BAddPrice.Name = "BAddPrice"
         Me.BAddPrice.Size = New System.Drawing.Size(109, 36)
         Me.BAddPrice.TabIndex = 0
@@ -743,9 +764,9 @@ Partial Class FormPurcItemDet
         Me.PCSetPrice.Controls.Add(Me.BSetSameItemPrice)
         Me.PCSetPrice.Controls.Add(Me.BSetSameSpecPrice)
         Me.PCSetPrice.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCSetPrice.Location = New System.Drawing.Point(0, 267)
+        Me.PCSetPrice.Location = New System.Drawing.Point(0, 362)
         Me.PCSetPrice.Name = "PCSetPrice"
-        Me.PCSetPrice.Size = New System.Drawing.Size(513, 40)
+        Me.PCSetPrice.Size = New System.Drawing.Size(506, 40)
         Me.PCSetPrice.TabIndex = 8906
         Me.PCSetPrice.Visible = False
         '
@@ -753,7 +774,7 @@ Partial Class FormPurcItemDet
         '
         Me.BSetSameItemPrice.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSetSameItemPrice.Image = CType(resources.GetObject("BSetSameItemPrice.Image"), System.Drawing.Image)
-        Me.BSetSameItemPrice.Location = New System.Drawing.Point(135, 2)
+        Me.BSetSameItemPrice.Location = New System.Drawing.Point(128, 2)
         Me.BSetSameItemPrice.Name = "BSetSameItemPrice"
         Me.BSetSameItemPrice.Size = New System.Drawing.Size(200, 36)
         Me.BSetSameItemPrice.TabIndex = 1
@@ -763,7 +784,7 @@ Partial Class FormPurcItemDet
         '
         Me.BSetSameSpecPrice.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSetSameSpecPrice.Image = CType(resources.GetObject("BSetSameSpecPrice.Image"), System.Drawing.Image)
-        Me.BSetSameSpecPrice.Location = New System.Drawing.Point(335, 2)
+        Me.BSetSameSpecPrice.Location = New System.Drawing.Point(328, 2)
         Me.BSetSameSpecPrice.Name = "BSetSameSpecPrice"
         Me.BSetSameSpecPrice.Size = New System.Drawing.Size(176, 36)
         Me.BSetSameSpecPrice.TabIndex = 0
@@ -774,7 +795,7 @@ Partial Class FormPurcItemDet
         Me.XTPAttachment.Controls.Add(Me.GCFileList)
         Me.XTPAttachment.Controls.Add(Me.PanelControl2)
         Me.XTPAttachment.Name = "XTPAttachment"
-        Me.XTPAttachment.Size = New System.Drawing.Size(513, 307)
+        Me.XTPAttachment.Size = New System.Drawing.Size(506, 402)
         Me.XTPAttachment.Text = "Supporting Document"
         '
         'GCFileList
@@ -784,7 +805,7 @@ Partial Class FormPurcItemDet
         Me.GCFileList.MainView = Me.GVFileList
         Me.GCFileList.Name = "GCFileList"
         Me.GCFileList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICE})
-        Me.GCFileList.Size = New System.Drawing.Size(513, 267)
+        Me.GCFileList.Size = New System.Drawing.Size(506, 362)
         Me.GCFileList.TabIndex = 8904
         Me.GCFileList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFileList, Me.GridView2})
         '
@@ -893,16 +914,16 @@ Partial Class FormPurcItemDet
         '
         Me.PanelControl2.Controls.Add(Me.BUploadDoc)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 267)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 362)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(513, 40)
+        Me.PanelControl2.Size = New System.Drawing.Size(506, 40)
         Me.PanelControl2.TabIndex = 8903
         '
         'BUploadDoc
         '
         Me.BUploadDoc.Dock = System.Windows.Forms.DockStyle.Right
         Me.BUploadDoc.Image = CType(resources.GetObject("BUploadDoc.Image"), System.Drawing.Image)
-        Me.BUploadDoc.Location = New System.Drawing.Point(402, 2)
+        Me.BUploadDoc.Location = New System.Drawing.Point(395, 2)
         Me.BUploadDoc.Name = "BUploadDoc"
         Me.BUploadDoc.Size = New System.Drawing.Size(109, 36)
         Me.BUploadDoc.TabIndex = 0
@@ -912,7 +933,7 @@ Partial Class FormPurcItemDet
         '
         Me.XTPHistory.Controls.Add(Me.GCHistory)
         Me.XTPHistory.Name = "XTPHistory"
-        Me.XTPHistory.Size = New System.Drawing.Size(513, 307)
+        Me.XTPHistory.Size = New System.Drawing.Size(506, 402)
         Me.XTPHistory.Text = "History"
         '
         'GCHistory
@@ -922,7 +943,7 @@ Partial Class FormPurcItemDet
         Me.GCHistory.Location = New System.Drawing.Point(0, 0)
         Me.GCHistory.MainView = Me.GVHistory
         Me.GCHistory.Name = "GCHistory"
-        Me.GCHistory.Size = New System.Drawing.Size(513, 307)
+        Me.GCHistory.Size = New System.Drawing.Size(506, 402)
         Me.GCHistory.TabIndex = 0
         Me.GCHistory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVHistory})
         '
@@ -1014,7 +1035,7 @@ Partial Class FormPurcItemDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(519, 335)
+        Me.ClientSize = New System.Drawing.Size(512, 407)
         Me.Controls.Add(Me.XTCDetail)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -1026,6 +1047,7 @@ Partial Class FormPurcItemDet
         Me.XTCDetail.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
         Me.XtraTabPage1.PerformLayout()
+        CType(Me.MEDefDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEConvertion.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEUOMStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1161,4 +1183,6 @@ Partial Class FormPurcItemDet
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEConvertion As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MEDefDesc As DevExpress.XtraEditors.MemoEdit
 End Class

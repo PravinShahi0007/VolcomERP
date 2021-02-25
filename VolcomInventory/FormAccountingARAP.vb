@@ -80,6 +80,11 @@
             TxtARCodeCabang.Text = getAccNo(id_ar_cabang)
         End If
 
+        'kalo ekstra discount confirm di hide
+        If FormAccounting.GVCompany.GetFocusedRowCellValue("is_extra").ToString = "1" Then
+            BtnConfirm.Visible = False
+            GroupControl1.Visible = False
+        End If
         viewOtherDiscount()
     End Sub
 

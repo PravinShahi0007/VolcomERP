@@ -51,6 +51,7 @@ WHERE id_asset_dep_pps='" & id_dep & "'"
                 DEReffDate.EditValue = dt.Rows(0)("reff_date")
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 SLEUnit.EditValue = dt.Rows(0)("id_coa_tag").ToString
+                id_report_status = dt.Rows(0)("id_report_status").ToString
                 If dt.Rows(0)("id_report_status").ToString = "6" Then
                     BtnViewJournal.Visible = True
                 End If
@@ -61,7 +62,7 @@ WHERE id_asset_dep_pps='" & id_dep & "'"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT ass.useful_life+ass.month_added AS useful_life,ppsd.remaining_life AS life,ppsd.remaining_life, ass.id_acc_dep, ass.id_acc_dep_accum,accdep.acc_description AS acc_dep,accacum.acc_description AS acc_dep_accum,accdep.acc_name AS acc_dep_name,accacum.acc_name AS acc_dep_accum_name
+        Dim q As String = "SELECT ass.useful_life+ass.month_added AS useful_life,ppsd.remaining_life AS life,ppsd.remaining_life, ppsd.id_acc_dep, ppsd.id_acc_dep_accum,accdep.acc_description AS acc_dep,accacum.acc_description AS acc_dep_accum,accdep.acc_name AS acc_dep_name,accacum.acc_name AS acc_dep_accum_name
 ,ass.`asset_name`,ass.acq_date,ppsd.remaining_life AS rem_life
 ,ass.id_acc_dep
 ,ass.acq_cost + ass.value_added AS acq_cost,ppsd.dep_value,ppsd.accum_dep
@@ -170,6 +171,8 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
                     q = "CALL gen_number('" & id_dep & "','287')"
                     execute_non_query(q, True, "", "", "", "")
                     '
+                    submit_who_prepared("287", id_dep, id_user)
+                    '
                     warningCustom("Depreciation created, waiting to approve")
                     FormPurcAsset.load_dep_pps()
                     Close()
@@ -273,6 +276,7 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         ReportPurcAssetDep.id_dep = id_dep
+        ReportPurcAssetDep.id_report_status = id_report_status
         ReportPurcAssetDep.dt = GCDepreciation.DataSource
         Dim Report As New ReportPurcAssetDep()
 
@@ -287,6 +291,7 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
 
         'Grid Detail
         ReportStyleGridview(Report.GVDepreciation)
+        Report.GVDepreciation.OptionsPrint.AllowMultilineHeaders = True
 
         'Parse Val
         Report.LNumber.Text = TENumber.Text.ToUpper

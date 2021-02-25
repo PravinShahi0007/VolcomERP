@@ -137,7 +137,7 @@ Partial Class FormReportBalanceTaxSummary
         Me.MinimizeBox = False
         Me.Name = "FormReportBalanceTaxSummary"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Tax Summary"
+        Me.Text = "Tax Summary PPH"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()

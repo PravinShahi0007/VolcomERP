@@ -583,6 +583,7 @@
         BGVParam.Columns("id_prod_demand_design_line_upd").Visible = False
         BGVParam.Columns("id_prod_demand_design_line_final").Visible = False
         BGVParam.Columns("TARGET PRICE BASE ON MARKUP_Prc").Visible = False
+        BGVParam.Columns("id_design_type").Visible = False
 
 
         'hide band
@@ -1549,6 +1550,7 @@
         BGVParam.Columns("RATE PD_Prc").Visible = False
         BGVParam.Columns("ORGANIC COST RATE PD_Prc").Visible = False
         'BGVParam.Columns("COP STATUS_Prc").Visible = False
+        BGVParam.Columns("id_design_type").Visible = False
 
 
         'hide band

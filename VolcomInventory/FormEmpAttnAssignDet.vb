@@ -9,6 +9,8 @@
 
     Private data_code As DataTable = New DataTable
     Private Sub FormEmpAttnAssignDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TEFill.EditValue = ""
+
         If id_emp_assign_sch = "-1" Then 'new
             Dim query As String = "SELECT emp.employee_name,emp.employee_code,dep.departement,emp.id_departement FROM tb_m_employee emp
                                     INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
@@ -245,9 +247,9 @@
                 id_emp_assign_sch = execute_query(query, 0, True, "", "", "", "")
                 increase_inc_emp("4")
                 'detail
-                query = ""
                 'detail before
                 For i As Integer = 0 To GVScheduleBefore.RowCount - 1
+                    query = ""
                     For j As Integer = 0 To GVScheduleBefore.Columns.Count - 1
                         If Not (GVScheduleBefore.Columns(j).FieldName = "id_employee" Or GVScheduleBefore.Columns(j).FieldName = "employee_code" Or GVScheduleBefore.Columns(j).FieldName = "employee_name") Then
                             Dim shift_code As String = GVScheduleBefore.GetRowCellValue(i, GVScheduleBefore.Columns(j).FieldName.ToString).ToString
@@ -266,9 +268,13 @@
                             End If
                         End If
                     Next
+                    If Not query = "" Then
+                        execute_non_query_long(query, True, "", "", "", "")
+                    End If
                 Next
                 'detail after
                 For i As Integer = 0 To GVScheduleAfter.RowCount - 1
+                    query = ""
                     For j As Integer = 0 To GVScheduleAfter.Columns.Count - 1
                         If Not (GVScheduleAfter.Columns(j).FieldName = "id_employee" Or GVScheduleAfter.Columns(j).FieldName = "employee_code" Or GVScheduleAfter.Columns(j).FieldName = "employee_name") Then
                             Dim shift_code As String = GVScheduleAfter.GetRowCellValue(i, GVScheduleAfter.Columns(j).FieldName.ToString).ToString
@@ -285,8 +291,10 @@
                             End If
                         End If
                     Next
+                    If Not query = "" Then
+                        execute_non_query_long(query, True, "", "", "", "")
+                    End If
                 Next
-                execute_non_query(query, True, "", "", "", "")
                 If FormEmpAttnAssign.is_departement = "1" Then
                     submit_who_prepared("240", id_emp_assign_sch, id_user)
                 Else
@@ -351,6 +359,59 @@
                 warningCustom("Please make sure shift code is correct.")
 
                 GVScheduleAfter.SetRowCellValue(e.RowHandle, e.Column.FieldName, "")
+            End If
+        End If
+    End Sub
+
+    Private Sub SBFill_Click(sender As Object, e As EventArgs) Handles SBFill.Click
+        If Not TEFill.EditValue.ToString = "" Then
+            Dim already As Boolean = False
+
+            set_data_code()
+
+            For i = 0 To data_code.Rows.Count - 1
+                If data_code.Rows(i)("shift_code").ToString = TEFill.EditValue.ToString Then
+                    already = True
+                End If
+            Next
+
+            If Not already Then
+                warningCustom("Please make sure shift code is correct.")
+
+                TEFill.EditValue = ""
+            Else
+                XtraTabControl1.SelectedTabPage = XTPAfter
+
+                For c = 3 To GVScheduleAfter.Columns.Count - 1
+                    For r = 0 To GVScheduleAfter.RowCount - 1
+                        Dim sch_code As String = TEFill.EditValue.ToString
+
+                        'saturday or sunday
+                        Dim date_select As Date = Date.Parse(GVScheduleAfter.Columns(c).Caption.ToString)
+
+                        If date_select.DayOfWeek = 6 Or date_select.DayOfWeek = 0 Then
+                            sch_code = "OFF"
+                        End If
+
+                        'public holiday
+                        'Dim query_holiday As String = "
+                        '    SELECT id_emp_holiday
+                        '    FROM tb_emp_holiday
+                        '    WHERE (id_religion = (SELECT id_religion FROM tb_m_employee WHERE id_employee = " + GVScheduleAfter.GetRowCellValue(r, "id_employee").ToString + ") OR id_religion = 0) AND emp_holiday_date = '" + date_select.ToString("yyyy-MM-dd") + "'
+                        '"
+
+                        'Dim data_holiday As DataTable = execute_query(query_holiday, -1, True, "", "", "", "")
+
+                        'If data_holiday.Rows.Count > 0 Then
+                        '    sch_code = "OFF"
+                        'End If
+
+                        'insert
+                        GVScheduleAfter.SetRowCellValue(r, GVScheduleAfter.Columns(c), sch_code)
+                    Next
+                Next
+
+                TEFill.EditValue = ""
             End If
         End If
     End Sub

@@ -230,13 +230,14 @@ Public Class FormProduction
 	                GROUP BY wo.id_prod_order_wo
                 ) wo_price ON wo_price.id_prod_order= a.id_prod_order "
         query += "LEFT JOIN  "
-        query += "( "
-        query += "SELECT rec.prod_order_rec_date,recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty "
-        query += "FROM "
-        query += "tb_prod_order_rec rec "
-        query += "LEFT JOIN tb_prod_order_rec_det recd On recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status != 5 "
-        query += "GROUP BY recd.id_prod_order_det "
-        query += ") rec On rec.id_prod_order_det=pod.id_prod_order_det "
+        query += "
+(
+SELECT rec.prod_order_rec_date,recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty
+FROM 
+tb_prod_order_rec rec 
+LEFT JOIN tb_prod_order_rec_det recd On recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status != 5 
+GROUP BY recd.id_prod_order_det 
+) rec On rec.id_prod_order_det=pod.id_prod_order_det "
         query += "LEFT JOIN
                     (
                     SELECT pld.`id_prod_order_det`,SUM(pld.`pl_prod_order_det_qty`) as qty,pl.pl_prod_order_date FROM tb_pl_prod_order_det pld
@@ -797,5 +798,10 @@ GROUP BY id_prod_order_cps2_reff) AND is_purc_mat=2 " & query_where & " ORDER BY
 
     Private Sub BEditCopyProto2_Click(sender As Object, e As EventArgs) Handles BEditCopyProto2.Click
         view_cps2()
+    End Sub
+
+    Private Sub ViewReceivingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewReceivingToolStripMenuItem.Click
+        FormPopUpProdRec.id_po = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+        FormPopUpProdRec.ShowDialog()
     End Sub
 End Class

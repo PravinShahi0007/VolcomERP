@@ -91,7 +91,7 @@ CONCAT(dp_cabang.acc_name,' - ', dp_cabang.acc_description) AS `acc_cabang_dp`,
 CONCAT(ar.acc_name,' - ', ar.acc_description) AS `acc_ar`,
 CONCAT(ar.acc_name,' - ', ar.acc_description) AS `acc_cabang_ar`,
 CONCAT(sal.acc_name,' - ', sal.acc_description) AS `acc_sales`,
-CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`, cg.comp_group
+CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`, cg.comp_group, '2' AS `is_extra`
 FROM tb_m_comp
 INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat
 LEFT JOIN tb_a_acc ap ON ap.id_acc = tb_m_comp.id_acc_ap
@@ -120,6 +120,7 @@ WHERE tb_m_comp.id_comp>0 "
             0 AS `id_acc_cabang_ap`, 
             0 AS `id_acc_cabang_dp`,
             IFNULL(tb_m_comp_comm_extra.id_acc_ar,0) AS `id_acc_ar`,
+            0 AS `id_acc_cabang_ar`,
             IFNULL(tb_m_comp_comm_extra.id_acc_sales,0) AS `id_acc_sales`,
             IFNULL(tb_m_comp_comm_extra.id_acc_sales_return,0) AS `id_acc_sales_return`,
             NULL AS `acc_ap`,
@@ -127,8 +128,9 @@ WHERE tb_m_comp.id_comp>0 "
             NULL AS `acc_cabang_ap`,
             NULL AS `acc_cabang_dp`,
             CONCAT(ar.acc_name,' - ', ar.acc_description) AS `acc_ar`,
+            NULL AS `acc_cabang_ar`,
             CONCAT(sal.acc_name,' - ', sal.acc_description) AS `acc_sales`,
-            CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`, cg.comp_group
+            CONCAT(sal_ret.acc_name,' - ', sal_ret.acc_description) AS `acc_sales_return`,are.area_acc_sales AS `area`, cg.comp_group,'1' AS `is_extra`
             FROM tb_m_comp
             INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat
             INNER JOIN tb_m_comp_comm_extra ON tb_m_comp_comm_extra.id_comp = tb_m_comp.id_comp

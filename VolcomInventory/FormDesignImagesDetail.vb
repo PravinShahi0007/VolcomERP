@@ -17,7 +17,7 @@
 
             'zalora
             Dim query_z = "
-                SELECT CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.file_name, i.sort
+                SELECT CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.file_name, i.sort, '' AS file_open
                 FROM tb_design_images AS i
                 WHERE i.id_design = " + id_design + " AND i.store = 'Z'
                 ORDER BY i.sort ASC
@@ -40,7 +40,7 @@
 
             'vios
             Dim query_v = "
-                SELECT CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.file_name, i.sort
+                SELECT CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.file_name, i.sort, '' AS file_open
                 FROM tb_design_images AS i
                 WHERE i.id_design = " + id_design + " AND i.store = 'V'
                 ORDER BY i.sort ASC
@@ -63,7 +63,7 @@
 
             'sq
             Dim query_sq = "
-                SELECT CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.file_name, i.sort
+                SELECT CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.file_name, i.sort, '' AS file_open
                 FROM tb_design_images AS i
                 WHERE i.id_design = " + id_design + " AND i.store = 'SQ'
                 ORDER BY i.sort ASC
@@ -86,7 +86,7 @@
 
             'th
             Dim query_th = "
-                SELECT CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.file_name, i.sort
+                SELECT CONCAT('" + cloud_image_url + "/', i.file_name) AS url, i.file_name, i.sort, '' AS file_open
                 FROM tb_design_images AS i
                 WHERE i.id_design = " + id_design + " AND i.store = 'TH'
                 ORDER BY i.sort ASC
@@ -260,5 +260,133 @@
 
             e.Value = imagesTH(fileName)
         End If
+    End Sub
+
+    Private Sub RepositoryItemHyperLinkEdit_Click(sender As Object, e As EventArgs) Handles RepositoryItemHyperLinkEdit.Click
+        Process.Start(GVZ.GetFocusedRowCellValue("url").ToString)
+    End Sub
+
+    Private Sub RepositoryItemHyperLinkEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemHyperLinkEdit1.Click
+        Process.Start(GVV.GetFocusedRowCellValue("url").ToString)
+    End Sub
+
+    Private Sub RepositoryItemHyperLinkEdit2_Click(sender As Object, e As EventArgs) Handles RepositoryItemHyperLinkEdit2.Click
+        Process.Start(GVSQ.GetFocusedRowCellValue("url").ToString)
+    End Sub
+
+    Private Sub RepositoryItemHyperLinkEdit3_Click(sender As Object, e As EventArgs) Handles RepositoryItemHyperLinkEdit3.Click
+        Process.Start(GVTH.GetFocusedRowCellValue("url").ToString)
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit.Click
+        Cursor = Cursors.WaitCursor
+
+        'download file
+        Dim client As Net.WebClient = New Net.WebClient
+
+        Dim file As String = GVZ.GetFocusedRowCellValue("file_name").ToString
+
+        Dim path As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(path) Then
+            System.IO.Directory.CreateDirectory(path)
+        End If
+
+        client.DownloadFile(cloud_image_url + "/" + file, path + file)
+
+        'open file
+        Dim process_info As ProcessStartInfo = New ProcessStartInfo()
+
+        process_info.FileName = path + file
+
+        process_info.WorkingDirectory = path
+
+        Process.Start(process_info)
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.Click
+        Cursor = Cursors.WaitCursor
+
+        'download file
+        Dim client As Net.WebClient = New Net.WebClient
+
+        Dim file As String = GVV.GetFocusedRowCellValue("file_name").ToString
+
+        Dim path As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(path) Then
+            System.IO.Directory.CreateDirectory(path)
+        End If
+
+        client.DownloadFile(cloud_image_url + "/" + file, path + file)
+
+        'open file
+        Dim process_info As ProcessStartInfo = New ProcessStartInfo()
+
+        process_info.FileName = path + file
+
+        process_info.WorkingDirectory = path
+
+        Process.Start(process_info)
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit2_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit2.Click
+        Cursor = Cursors.WaitCursor
+
+        'download file
+        Dim client As Net.WebClient = New Net.WebClient
+
+        Dim file As String = GVSQ.GetFocusedRowCellValue("file_name").ToString
+
+        Dim path As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(path) Then
+            System.IO.Directory.CreateDirectory(path)
+        End If
+
+        client.DownloadFile(cloud_image_url + "/" + file, path + file)
+
+        'open file
+        Dim process_info As ProcessStartInfo = New ProcessStartInfo()
+
+        process_info.FileName = path + file
+
+        process_info.WorkingDirectory = path
+
+        Process.Start(process_info)
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit3_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit3.Click
+        Cursor = Cursors.WaitCursor
+
+        'download file
+        Dim client As Net.WebClient = New Net.WebClient
+
+        Dim file As String = GVTH.GetFocusedRowCellValue("file_name").ToString
+
+        Dim path As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(path) Then
+            System.IO.Directory.CreateDirectory(path)
+        End If
+
+        client.DownloadFile(cloud_image_url + "/" + file, path + file)
+
+        'open file
+        Dim process_info As ProcessStartInfo = New ProcessStartInfo()
+
+        process_info.FileName = path + file
+
+        process_info.WorkingDirectory = path
+
+        Process.Start(process_info)
+
+        Cursor = Cursors.Default
     End Sub
 End Class

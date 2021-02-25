@@ -285,6 +285,7 @@
     <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassMailManage.vb" />
     <Compile Include="ClassMailManageReturn.vb" />
+    <Compile Include="ClassOLReturnRefuse.vb" />
     <Compile Include="ClassOLStore.vb" />
     <Compile Include="ClassOLStoreRefund.vb" />
     <Compile Include="ClassOwnMenu.vb" />
@@ -515,6 +516,24 @@
       <DependentUpon>FormBatchUploadOnlineStoreSearch.vb</DependentUpon>
     </Compile>
     <Compile Include="FormBatchUploadOnlineStoreSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBiayaSewa.Designer.vb">
+      <DependentUpon>FormBiayaSewa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBiayaSewa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBiayaSewaBulanan.Designer.vb">
+      <DependentUpon>FormBiayaSewaBulanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBiayaSewaBulanan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBiayaSewaPPS.Designer.vb">
+      <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBiayaSewaPPS.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBudgetProdDemand.Designer.vb">
@@ -2938,6 +2957,18 @@
     <Compile Include="FormMasterEmployeeTrainingDoc.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterItemStockCard.Designer.vb">
+      <DependentUpon>FormMasterItemStockCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterItemStockCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterItemStockCardDet.Designer.vb">
+      <DependentUpon>FormMasterItemStockCardDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterItemStockCardDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterPrice.Designer.vb">
       <DependentUpon>FormMasterPrice.vb</DependentUpon>
     </Compile>
@@ -3062,6 +3093,18 @@
       <DependentUpon>FormODM.vb</DependentUpon>
     </Compile>
     <Compile Include="FormODM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLReturnRefuse.Designer.vb">
+      <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLReturnRefuse.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLReturnRefuseDet.Designer.vb">
+      <DependentUpon>FormOLReturnRefuseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLReturnRefuseDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOLStore.Designer.vb">
@@ -3416,6 +3459,12 @@
       <DependentUpon>FormPopUpOVH.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPopUpOVH.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPopUpProdRec.Designer.vb">
+      <DependentUpon>FormPopUpProdRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpProdRec.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPopUpRetOut.Designer.vb">
@@ -4022,6 +4071,18 @@
       <DependentUpon>FormReportBalanceTaxSummaryDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormReportBalanceTaxSummaryDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportBalanceTaxSummaryPpn.Designer.vb">
+      <DependentUpon>FormReportBalanceTaxSummaryPpn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportBalanceTaxSummaryPpn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportBalanceTaxSummaryPpnDet.Designer.vb">
+      <DependentUpon>FormReportBalanceTaxSummaryPpnDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportBalanceTaxSummaryPpnDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormReportBudget.Designer.vb">
@@ -6784,10 +6845,22 @@
     <Compile Include="FormSOHSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockCardDepDet.Designer.vb">
+      <DependentUpon>FormStockCardDepDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockCardDepDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockCardDept.Designer.vb">
       <DependentUpon>FormStockCardDept.vb</DependentUpon>
     </Compile>
     <Compile Include="FormStockCardDept.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockCardPickPR.Designer.vb">
+      <DependentUpon>FormStockCardPickPR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockCardPickPR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormStockQC.Designer.vb">
@@ -6866,6 +6939,12 @@
       <DependentUpon>FormTemplateSize.vb</DependentUpon>
     </Compile>
     <Compile Include="FormTemplateSize.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTempTable.Designer.vb">
+      <DependentUpon>FormTempTable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTempTable.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormTest.Designer.vb">
@@ -7750,6 +7829,12 @@
     <Compile Include="ReportBankWithdrawalSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBiayaSewaBulanan.Designer.vb">
+      <DependentUpon>ReportBiayaSewaBulanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBiayaSewaBulanan.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBOM.Designer.vb">
       <DependentUpon>ReportBOM.vb</DependentUpon>
     </Compile>
@@ -8513,6 +8598,12 @@
       <DependentUpon>ReportODMScan.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportODMScan.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportOLReturnRefuse.Designer.vb">
+      <DependentUpon>ReportOLReturnRefuse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportOLReturnRefuse.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportOlStoreRetCust.Designer.vb">
@@ -9384,6 +9475,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBatchUploadOnlineStoreSearch.resx">
       <DependentUpon>FormBatchUploadOnlineStoreSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBiayaSewa.resx">
+      <DependentUpon>FormBiayaSewa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBiayaSewaBulanan.resx">
+      <DependentUpon>FormBiayaSewaBulanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBiayaSewaPPS.resx">
+      <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemand.resx">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
@@ -10646,6 +10746,12 @@
     <EmbeddedResource Include="FormMasterEmployeeTrainingDoc.resx">
       <DependentUpon>FormMasterEmployeeTrainingDoc.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterItemStockCard.resx">
+      <DependentUpon>FormMasterItemStockCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterItemStockCardDet.resx">
+      <DependentUpon>FormMasterItemStockCardDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMasterPrice.resx">
       <DependentUpon>FormMasterPrice.vb</DependentUpon>
     </EmbeddedResource>
@@ -10708,6 +10814,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormODM.resx">
       <DependentUpon>FormODM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLReturnRefuse.resx">
+      <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLReturnRefuseDet.resx">
+      <DependentUpon>FormOLReturnRefuseDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStore.resx">
       <DependentUpon>FormOLStore.vb</DependentUpon>
@@ -10883,6 +10995,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpOVH.resx">
       <DependentUpon>FormPopUpOVH.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpProdRec.resx">
+      <DependentUpon>FormPopUpProdRec.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpRetOut.resx">
       <DependentUpon>FormPopUpRetOut.vb</DependentUpon>
@@ -11186,6 +11301,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportBalanceTaxSummaryDet.resx">
       <DependentUpon>FormReportBalanceTaxSummaryDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportBalanceTaxSummaryPpn.resx">
+      <DependentUpon>FormReportBalanceTaxSummaryPpn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportBalanceTaxSummaryPpnDet.resx">
+      <DependentUpon>FormReportBalanceTaxSummaryPpnDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportBudget.resx">
       <DependentUpon>FormReportBudget.vb</DependentUpon>
@@ -12912,8 +13033,14 @@
       <DependentUpon>FormSOHSum.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStockCardDepDet.resx">
+      <DependentUpon>FormStockCardDepDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStockCardDept.resx">
       <DependentUpon>FormStockCardDept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockCardPickPR.resx">
+      <DependentUpon>FormStockCardPickPR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockQC.resx">
       <DependentUpon>FormStockQC.vb</DependentUpon>
@@ -12956,6 +13083,9 @@
     <EmbeddedResource Include="FormTemplateSize.resx">
       <DependentUpon>FormTemplateSize.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTempTable.resx">
+      <DependentUpon>FormTempTable.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTest.resx">
       <DependentUpon>FormTest.vb</DependentUpon>
@@ -13468,6 +13598,9 @@
     <EmbeddedResource Include="ReportBankWithdrawalSum.resx">
       <DependentUpon>ReportBankWithdrawalSum.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportBiayaSewaBulanan.resx">
+      <DependentUpon>ReportBiayaSewaBulanan.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportBOM.resx">
       <DependentUpon>ReportBOM.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -13886,6 +14019,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportODMScan.resx">
       <DependentUpon>ReportODMScan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportOLReturnRefuse.resx">
+      <DependentUpon>ReportOLReturnRefuse.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOlStoreRetCust.resx">
       <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>

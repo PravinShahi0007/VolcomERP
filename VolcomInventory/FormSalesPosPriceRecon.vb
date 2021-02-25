@@ -27,6 +27,7 @@
             Dim time_now As DateTime = getTimeDB()
             DECreated.EditValue = time_now
             viewDetail()
+            GCData.ContextMenuStrip = ContextMenuStrip1
 
             'insert row
             If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
@@ -42,6 +43,7 @@
                 newRow("comp_number") = FormSalesPOS.GVProbList.GetRowCellValue(d, "comp_number").ToString
                 newRow("comp_name") = FormSalesPOS.GVProbList.GetRowCellValue(d, "comp_name").ToString
                 newRow("id_product") = FormSalesPOS.GVProbList.GetRowCellValue(d, "id_product").ToString
+                newRow("id_design") = FormSalesPOS.GVProbList.GetRowCellValue(d, "id_design").ToString
                 newRow("code") = FormSalesPOS.GVProbList.GetRowCellValue(d, "code").ToString
                 newRow("name") = FormSalesPOS.GVProbList.GetRowCellValue(d, "name").ToString
                 newRow("size") = FormSalesPOS.GVProbList.GetRowCellValue(d, "size").ToString
@@ -96,7 +98,7 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = "Select rd.id_sales_pos_recon_det, rd.id_sales_pos_recon,
         rd.id_sales_pos_prob, rd.id_sales_pos, rd.id_comp, sp.sales_pos_number, c.comp_number, c.comp_name,
-        rd.id_product, p.product_full_code As `code`, p.product_display_name As `name`, cd.code_detail_name As `size`,
+        p.id_design,rd.id_product, p.product_full_code As `code`, p.product_display_name As `name`, cd.code_detail_name As `size`,
         rd.id_design_price_retail, rd.design_price_retail, rd.design_price_store,
         rd.id_design_price_valid, rd.design_price_valid, rd.note, sp.report_mark_type AS `rmt_inv`
         FROM tb_sales_pos_recon_det rd
@@ -113,20 +115,20 @@
     End Sub
 
     Sub allowStatus()
+        GCData.ContextMenuStrip = Nothing
         If is_confirm = "2" And is_view = "-1" Then
             MENote.Properties.ReadOnly = False
             BtnCreate.Visible = True
             BtnConfirm.Visible = True
             BtnMark.Visible = False
-            BtnCancell.Visible = False
         Else
             MENote.Properties.ReadOnly = True
             BtnCreate.Visible = False
             BtnConfirm.Visible = False
             BtnMark.Visible = True
-            BtnCancell.Visible = True
         End If
         BtnAttachment.Visible = True
+        BtnCancell.Visible = True
 
         'reset propose
         If is_view = "-1" And is_confirm = "1" Then
@@ -141,6 +143,8 @@
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
             BtnResetPropose.Visible = False
+            BtnConfirm.Visible = False
+            BtnCreate.Visible = False
         End If
 
         If id_report_status = "-1" Then
@@ -288,7 +292,7 @@
                 Dim query_upd As String = "-- delete report mark
                 DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt + " AND id_report=" + id + "; 
                 -- reset confirm
-                UPDATE tb_sales_pos_recon SET is_confirm=2 WHERE id_sales_pos_recon=" + id + "; "
+                UPDATE tb_sales_pos_recon SET is_confirm=2 AND id_report_status=1 WHERE id_sales_pos_recon=" + id + "; "
                 execute_non_query(query_upd, True, "", "", "", "")
 
                 'refresh
@@ -364,5 +368,15 @@
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
 
         tool.ShowPreviewDialog()
+    End Sub
+
+    Private Sub SelectPriceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectPriceToolStripMenuItem.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And action = "ins" And GVData.GetFocusedRowCellValue("note") <> "OK" Then
+            FormSalesPosPrice.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormSalesPosPrice.id_pop_up = "2"
+            FormSalesPosPrice.ShowDialog()
+            GCData.RefreshDataSource()
+            GVData.RefreshData()
+        End If
     End Sub
 End Class

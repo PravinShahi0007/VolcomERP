@@ -35,7 +35,7 @@
         query += "SELECT rto.id_sales_return_order, SUM(rto_det.sales_return_order_det_qty) AS order_qty "
         query += "FROM tb_sales_return_order rto "
         query += "INNER JOIN tb_sales_return_order_det rto_det ON rto.id_sales_return_order = rto_det.id_sales_return_order "
-        query += "WHERE rto.id_report_status='6' "
+        query += "WHERE rto.id_report_status='6' AND rto_det.is_void=2 "
         query += "GROUP BY rto.id_sales_return_order "
         query += ") h ON h.id_sales_return_order = a.id_sales_return_order "
         query += "LEFT JOIN ( "

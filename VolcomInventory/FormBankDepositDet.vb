@@ -953,4 +953,9 @@ ORDER BY id_stock_valas DESC LIMIT 1"
 
         End Try
     End Sub
+
+    Private Sub BMutasiValas_Click(sender As Object, e As EventArgs) Handles BMutasiValas.Click
+        FormStockValas.id_valas_bank = SLEAkunValas.EditValue.ToString
+        FormStockValas.ShowDialog()
+    End Sub
 End Class

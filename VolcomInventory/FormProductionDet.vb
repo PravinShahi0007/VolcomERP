@@ -7,6 +7,7 @@
     Public is_pd_base As String = "-1"
     Public date_created As Date
     Public is_wo_view As String = "-1"
+    Public is_qc_view As Boolean = False
     '
     Public is_no_cost As String = "-1"
     '
@@ -118,9 +119,23 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
         If is_no_cost = "1" Then
             XTPBOM.PageVisible = False
             XTPListWO.PageVisible = False
+            XTPWorkOrder.PageVisible = False
+            XTPMRS.PageVisible = False
+            BMark.Visible = False
+            BtnAttachment.Visible = False
+            BCOP.Visible = False
+            BBPrintBOM.Visibility = False
+            BBPrintPD.Visibility = False
         Else
             XTPBOM.PageVisible = True
             XTPListWO.PageVisible = True
+            XTPWorkOrder.PageVisible = True
+            XTPMRS.PageVisible = True
+            BMark.Visible = True
+            BtnAttachment.Visible = True
+            BCOP.Visible = True
+            BBPrintBOM.Visibility = True
+            BBPrintPD.Visibility = True
         End If
     End Sub
 
@@ -685,12 +700,13 @@ GROUP BY m_ovh_p.id_ovh_price"
         FormPopUpBOM.ShowDialog()
     End Sub
 
-    Private Sub BarLargeButtonItem1_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarLargeButtonItem1.ItemClick
+    Private Sub BarLargeButtonItem1_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPrintFGPO.ItemClick
         If Not is_submit = "1" Then
             'check main vendor
             Dim query As String = "SELECT id_prod_order_wo FROM tb_prod_order_wo WHERE id_prod_order='" & id_prod_order & "' AND is_main_vendor=1 AND id_report_status!=5"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
+                ReportProductionWO.is_no_cost = is_no_cost
                 ReportProductionWO.id_po = id_prod_order
                 ReportProductionWO.is_po_print = "1"
                 ReportProductionWO.is_pre = "1"
@@ -707,6 +723,7 @@ GROUP BY m_ovh_p.id_ovh_price"
         ElseIf Not check_allow_print(id_report_status_g, "22", id_prod_order) Then
             warningCustom("Can't print, please complete all approval on system first")
         Else
+            ReportProductionWO.is_no_cost = is_no_cost
             ReportProductionWO.id_po = id_prod_order
             ReportProductionWO.is_po_print = "1"
             '
@@ -723,7 +740,7 @@ GROUP BY m_ovh_p.id_ovh_price"
         End If
     End Sub
 
-    Private Sub BarButtonItem2_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem2.ItemClick
+    Private Sub BarButtonItem2_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPrintBOM.ItemClick
         If Not check_allow_print(id_report_status_g, "22", id_prod_order) Then
             warningCustom("Can't print, please complete all approval on system first")
         Else
@@ -863,7 +880,7 @@ GROUP BY m_ovh_p.id_ovh_price"
         End If
     End Sub
 
-    Private Sub BarButtonItem3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem3.ItemClick
+    Private Sub BarButtonItem3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPrintPD.ItemClick
         Cursor = Cursors.WaitCursor
         FormViewProdDemand.id_prod_demand = id_prod_demand
         FormViewProdDemand.is_for_production = True
