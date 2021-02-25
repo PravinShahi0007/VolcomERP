@@ -1114,7 +1114,7 @@ Partial Class FormProductionRec
         Me.Name = "FormProductionRec"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Receiving QC"
+        Me.Text = "Receiving Report"
         Me.XTPListPO.ResumeLayout(False)
         CType(Me.SCCRec, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SCCRec.ResumeLayout(False)
