@@ -1664,7 +1664,9 @@ Public Class FormSalesPOSDet
                             .id_sales_pos_det = "0",
                             .id_sales_pos_prob = "0",
                             .id_sales_pos_prob_price = "0",
-                            .id_sales_pos_oos_recon_det = "0"
+                            .id_sales_pos_oos_recon_det = "0",
+                            .id_cn_det = "0",
+                            .id_return_refuse_det = "0"
                         }
 
             GCItemList.DataSource = Nothing
