@@ -89,7 +89,7 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='')", oledbconn)
         ElseIf id_pop_up = "14" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([reg_no]='')", oledbconn)
-        ElseIf id_pop_up = "15" Then
+        ElseIf id_pop_up = "15" Or id_pop_up = "56" Then
             MyCommand = New OleDbDataAdapter("select code, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code", oledbconn)
         ElseIf id_pop_up = "17" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='')", oledbconn)
@@ -3637,6 +3637,52 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
         ElseIf id_pop_up = "55" Then
             GCData.DataSource = Nothing
             GCData.DataSource = data_temp
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+        ElseIf id_pop_up = "56" Then
+            'import excel ol promo replace
+            Dim dt_promo As DataTable = execute_query("ELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
+            prod.id_design, prod.id_product, d.design_code,prod.product_full_code AS `code`, d.design_display_name AS `name`, 
+            cd.code_detail_name AS `size`, pd.id_prod_shopify, pd.current_tag, pd.id_design_price,pd.design_price, design_price_type AS `price_type`, pd.qty,
+            pd.is_block, IF(pd.is_block=1,'Not Active', 'Active') AS `is_block_view`, 0.00 AS order_qty
+            FROM tb_ol_promo_collection_sku pd
+            INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+            INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+            INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+            LEFT JOIN tb_m_design_price prc ON prc.id_design_price = pd.id_design_price
+            LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type 
+            WHERE pd.id_ol_promo_collection=" + FormSalesOrderDet.id_ol_promo + " AND pd.is_block=2
+            ORDER BY d.design_display_name ASC, prod.product_full_code ASC", -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
+            Dim tb2 = FormSalesOrderDet.dt.AsEnumerable()
+            Dim tb3 = dt_promo.AsEnumerable
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("code").ToString Equals table_tmp("product_full_code").ToString
+                        Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Group Join table_prm In tb3 On table1("code").ToString Equals table_prm("code").ToString
+                        Into join_prm = Group
+                        From y2 In Group.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .Code = table1.Field(Of String)("code"),
+                            .Style = If(y1 Is Nothing, "", y1("design_display_name")),
+                            .Size = If(y1 Is Nothing, "", y1("Size")),
+                            .Price = If(y1 Is Nothing, 0.0, y1("design_price")),
+                            .Available = If(y1 Is Nothing, 0, y1("total_allow")),
+                            .Qty = If(table1("qty").ToString = "", 0, CType(table1("qty"), Decimal)),
+                            .id_design_price = If(y1 Is Nothing, 0, y1("id_design_price")),
+                            .id_design_cat = If(y1 Is Nothing, 0, y1("id_design_cat")),
+                            .id_product = If(y1 Is Nothing, 0, y1("id_product")),
+                            .id_design = If(y1 Is Nothing, 0, y1("id_design")),
+                            .id_design_type = If(y1 Is Nothing, 0, y1("id_design_type")),
+                            .design_price_type = If(y1 Is Nothing, 0, y1("design_price_type")),
+                            .Status = If(y1 Is Nothing, "Not found", If(If(table1("qty").ToString = "", 0, CType(table1("qty"), Decimal)) > If(y1 Is Nothing, 0, y1("total_allow")), "Input qty exceed available qty", "OK")),
+                            .DesignType = If(y1 Is Nothing, "", y1("design_type"))
+                        }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
             GCData.RefreshDataSource()
             GVData.PopulateColumns()
         End If
