@@ -86,6 +86,9 @@
                 FormFGTrfNewDet.BMark.Enabled = True
             ElseIf type = "13" Then
                 FormSalesDelOrderDet.BMark.Enabled = True
+            ElseIf type = "14" Then
+                'manual sync auto CN/ROR
+
             End If
             Close()
         Else

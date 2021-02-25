@@ -326,4 +326,11 @@
         viewSalesReturn()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnSyncROROnline_Click(sender As Object, e As EventArgs) Handles BtnSyncROROnline.Click
+        Cursor = Cursors.WaitCursor
+        FormMenuAuth.type = "14"
+        FormMenuAuth.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
