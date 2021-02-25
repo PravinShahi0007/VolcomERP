@@ -3455,6 +3455,12 @@
     <Compile Include="FormPopUpOVH.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPopUpProdRec.Designer.vb">
+      <DependentUpon>FormPopUpProdRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpProdRec.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpRetOut.Designer.vb">
       <DependentUpon>FormPopUpRetOut.vb</DependentUpon>
     </Compile>
@@ -6927,6 +6933,12 @@
       <DependentUpon>FormTemplateSize.vb</DependentUpon>
     </Compile>
     <Compile Include="FormTemplateSize.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTempTable.Designer.vb">
+      <DependentUpon>FormTempTable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTempTable.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormTest.Designer.vb">
@@ -10975,6 +10987,9 @@
     <EmbeddedResource Include="FormPopUpOVH.resx">
       <DependentUpon>FormPopUpOVH.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpProdRec.resx">
+      <DependentUpon>FormPopUpProdRec.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpRetOut.resx">
       <DependentUpon>FormPopUpRetOut.vb</DependentUpon>
     </EmbeddedResource>
@@ -13059,6 +13074,9 @@
     <EmbeddedResource Include="FormTemplateSize.resx">
       <DependentUpon>FormTemplateSize.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTempTable.resx">
+      <DependentUpon>FormTempTable.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTest.resx">
       <DependentUpon>FormTest.vb</DependentUpon>

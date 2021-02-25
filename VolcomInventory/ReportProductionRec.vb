@@ -14,7 +14,7 @@
 
     Private Sub ReportProductionRec_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GCListPurchase.DataSource = dt
-        load_mark_horz(rmt, id_receive, "2", "1", XrTable1)
+        load_mark_horz(rmt, id_receive, "Security", "1", XrTable1)
     End Sub
 
     Private Sub PageFooter_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles PageFooter.BeforePrint

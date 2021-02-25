@@ -6692,7 +6692,7 @@ WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
                     LEFT JOIN (
 	                    SELECT e.id_sales_pos, e.id_ar_eval
 	                    FROM tb_ar_eval e 
-	                    WHERE e.eval_date IN (SELECT MAX(e.eval_date)  FROM tb_ar_eval e)
+	                    WHERE e.eval_date IN (SELECT MAX(e.eval_date)  FROM tb_ar_eval e) AND ISNULL(e.id_propose_delay_payment_det)
                     ) e ON e.id_sales_pos = rd.id_report
                     WHERE rd.id_rec_payment=" + id_report + " AND !ISNULL(e.id_ar_eval) "
                     Dim data_in_evaluation As DataTable = execute_query(query_in_evaluation, -1, True, "", "", "", "")

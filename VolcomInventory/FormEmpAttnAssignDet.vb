@@ -268,7 +268,9 @@
                             End If
                         End If
                     Next
-                    execute_non_query_long(query, True, "", "", "", "")
+                    If Not query = "" Then
+                        execute_non_query_long(query, True, "", "", "", "")
+                    End If
                 Next
                 'detail after
                 For i As Integer = 0 To GVScheduleAfter.RowCount - 1
@@ -289,7 +291,9 @@
                             End If
                         End If
                     Next
-                    execute_non_query_long(query, True, "", "", "", "")
+                    If Not query = "" Then
+                        execute_non_query_long(query, True, "", "", "", "")
+                    End If
                 Next
                 If FormEmpAttnAssign.is_departement = "1" Then
                     submit_who_prepared("240", id_emp_assign_sch, id_user)

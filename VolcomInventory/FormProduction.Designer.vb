@@ -221,6 +221,8 @@ Partial Class FormProduction
         Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn88 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar2 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
@@ -239,6 +241,8 @@ Partial Class FormProduction
         Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn71 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn72 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar3 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
@@ -270,10 +274,8 @@ Partial Class FormProduction
         Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearchCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.GridColumn88 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewReceivingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -335,6 +337,7 @@ Partial Class FormProduction
         Me.XTPFGPOKO.SuspendLayout()
         CType(Me.GCKO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVKO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
@@ -343,6 +346,7 @@ Partial Class FormProduction
         Me.XTPFGPOKP.SuspendLayout()
         CType(Me.GCKP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVKP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
@@ -356,8 +360,7 @@ Partial Class FormProduction
         Me.PanelControl7.SuspendLayout()
         CType(Me.SLEVendorCopyProto2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCTabProduction
@@ -382,6 +385,7 @@ Partial Class FormProduction
         '
         'GCProd
         '
+        Me.GCProd.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCProd.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCProd.Location = New System.Drawing.Point(0, 38)
         Me.GCProd.MainView = Me.GVProd
@@ -2260,6 +2264,23 @@ Partial Class FormProduction
         Me.GridColumn61.Visible = True
         Me.GridColumn61.VisibleIndex = 3
         '
+        'GridColumn88
+        '
+        Me.GridColumn88.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn88.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn88.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn88.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn88.Caption = "Design List"
+        Me.GridColumn88.ColumnEdit = Me.RepositoryItemMemoEdit2
+        Me.GridColumn88.FieldName = "design_list"
+        Me.GridColumn88.Name = "GridColumn88"
+        Me.GridColumn88.Visible = True
+        Me.GridColumn88.VisibleIndex = 4
+        '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        '
         'GridColumn66
         '
         Me.GridColumn66.AppearanceCell.Options.UseTextOptions = True
@@ -2427,6 +2448,23 @@ Partial Class FormProduction
         Me.GridColumn70.Name = "GridColumn70"
         Me.GridColumn70.Visible = True
         Me.GridColumn70.VisibleIndex = 2
+        '
+        'GridColumn87
+        '
+        Me.GridColumn87.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn87.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn87.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn87.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn87.Caption = "Design List"
+        Me.GridColumn87.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumn87.FieldName = "design_list"
+        Me.GridColumn87.Name = "GridColumn87"
+        Me.GridColumn87.Visible = True
+        Me.GridColumn87.VisibleIndex = 4
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GridColumn71
         '
@@ -2724,39 +2762,17 @@ Partial Class FormProduction
         Me.LabelControl13.TabIndex = 8901
         Me.LabelControl13.Text = "Vendor"
         '
-        'GridColumn87
+        'ContextMenuStrip1
         '
-        Me.GridColumn87.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn87.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn87.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn87.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn87.Caption = "Design List"
-        Me.GridColumn87.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.GridColumn87.FieldName = "design_list"
-        Me.GridColumn87.Name = "GridColumn87"
-        Me.GridColumn87.Visible = True
-        Me.GridColumn87.VisibleIndex = 4
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewReceivingToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(154, 48)
         '
-        'RepositoryItemMemoEdit1
+        'ViewReceivingToolStripMenuItem
         '
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
-        '
-        'GridColumn88
-        '
-        Me.GridColumn88.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn88.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn88.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn88.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn88.Caption = "Design List"
-        Me.GridColumn88.ColumnEdit = Me.RepositoryItemMemoEdit2
-        Me.GridColumn88.FieldName = "design_list"
-        Me.GridColumn88.Name = "GridColumn88"
-        Me.GridColumn88.Visible = True
-        Me.GridColumn88.VisibleIndex = 4
-        '
-        'RepositoryItemMemoEdit2
-        '
-        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        Me.ViewReceivingToolStripMenuItem.Name = "ViewReceivingToolStripMenuItem"
+        Me.ViewReceivingToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
+        Me.ViewReceivingToolStripMenuItem.Text = "View Receiving"
         '
         'FormProduction
         '
@@ -2837,6 +2853,7 @@ Partial Class FormProduction
         Me.XTPFGPOKO.ResumeLayout(False)
         CType(Me.GCKO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVKO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
@@ -2846,6 +2863,7 @@ Partial Class FormProduction
         Me.XTPFGPOKP.ResumeLayout(False)
         CType(Me.GCKP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVKP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
@@ -2861,8 +2879,7 @@ Partial Class FormProduction
         Me.PanelControl7.PerformLayout()
         CType(Me.SLEVendorCopyProto2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -3119,4 +3136,6 @@ Partial Class FormProduction
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents GridColumn88 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewReceivingToolStripMenuItem As ToolStripMenuItem
 End Class

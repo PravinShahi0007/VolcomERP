@@ -205,7 +205,7 @@ Partial Public Class ReportProductionRec
         Me.LTitle.SizeF = New System.Drawing.SizeF(397.9584!, 26.54166!)
         Me.LTitle.StylePriority.UseFont = False
         Me.LTitle.StylePriority.UseTextAlignment = False
-        Me.LTitle.Text = "RECEIVING QC"
+        Me.LTitle.Text = "RECEIVING REPORT"
         Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'LRecNumber
