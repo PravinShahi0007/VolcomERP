@@ -99,6 +99,7 @@ Partial Class FormAccounting
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumnis_extra = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGeneral.SuspendLayout()
         Me.XTPAccount.SuspendLayout()
@@ -476,7 +477,7 @@ Partial Class FormAccounting
         '
         'GVCompany
         '
-        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.CompanyCode, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.Category, Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumnSalesAccount, Me.GridColumnSalesReturnAccount, Me.GridColumncomp_commission, Me.GridColumnarea, Me.GridColumnGroup})
+        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.CompanyCode, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.Category, Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumnSalesAccount, Me.GridColumnSalesReturnAccount, Me.GridColumncomp_commission, Me.GridColumnarea, Me.GridColumnGroup, Me.GridColumnis_extra})
         Me.GVCompany.GridControl = Me.GCCompany
         Me.GVCompany.Name = "GVCompany"
         Me.GVCompany.OptionsBehavior.AutoExpandAllGroups = True
@@ -870,6 +871,13 @@ Partial Class FormAccounting
         Me.SMViewTransaction.Size = New System.Drawing.Size(134, 22)
         Me.SMViewTransaction.Text = "Transaction"
         '
+        'GridColumnis_extra
+        '
+        Me.GridColumnis_extra.Caption = "is_extra"
+        Me.GridColumnis_extra.FieldName = "is_extra"
+        Me.GridColumnis_extra.Name = "GridColumnis_extra"
+        Me.GridColumnis_extra.OptionsColumn.AllowEdit = False
+        '
         'FormAccounting
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1004,4 +1012,5 @@ Partial Class FormAccounting
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LECOATypeLedger As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnis_extra As DevExpress.XtraGrid.Columns.GridColumn
 End Class
