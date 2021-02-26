@@ -205,6 +205,7 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
         Dim query_item As String = "SELECT pod.`id_purc_order_det`, item.`item_desc`,itt.id_item_type,itt.item_type, SUM(recd.`qty`) AS qty_po, pod.`value` AS val_po, pod.pph_percent, pod.gross_up_value , IFNULL(pod.discount_for_pph,0.00) AS discount_for_pph
 FROM tb_purc_rec_det recd 
 INNER JOIN tb_purc_order_det pod ON recd.`id_purc_order_det`=pod.`id_purc_order_det`
+INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.id_report_status=6
 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
 INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
 INNER JOIN `tb_item` item ON item.`id_item`=pod.`id_item`

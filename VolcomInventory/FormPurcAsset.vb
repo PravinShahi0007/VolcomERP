@@ -397,4 +397,13 @@ ORDER BY ppsd.id_asset_dep_pps DESC"
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
         viewActive()
     End Sub
+
+    Private Sub BRefreshDisp_Click(sender As Object, e As EventArgs) Handles BRefreshDisp.Click
+
+    End Sub
+
+    Sub view_disp()
+        Dim q As String = ""
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+    End Sub
 End Class
