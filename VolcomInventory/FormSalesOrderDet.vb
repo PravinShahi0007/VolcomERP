@@ -1462,9 +1462,9 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
             stopCustom("Please select warehouse and store first !")
         Else
             If id_ol_promo <> "-1" Then
-                FormImportExcel.id_pop_up = "15"
-            Else
                 FormImportExcel.id_pop_up = "56"
+            Else
+                FormImportExcel.id_pop_up = "15"
             End If
             FormImportExcel.ShowDialog()
         End If
