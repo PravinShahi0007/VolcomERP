@@ -406,4 +406,8 @@ ORDER BY ppsd.id_asset_dep_pps DESC"
         Dim q As String = ""
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
     End Sub
+
+    Private Sub BNewDisp_Click(sender As Object, e As EventArgs) Handles BNewDisp.Click
+        FormPurcAssetDisp.ShowDialog()
+    End Sub
 End Class
