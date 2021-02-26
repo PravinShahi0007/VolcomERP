@@ -235,4 +235,118 @@ VALUES('" & id_user & "',NOW(),'" & Date.Parse(DEReff.EditValue.ToString).ToStri
             End If
         End If
     End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "298"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_trans
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            INNER JOIN tb_a_acc_trans a ON a.id_acc_trans=ad.id_acc_trans 
+            WHERE ad.report_mark_type=298 AND ad.id_report=" + id_trans + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCDep_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCDep.SelectedPageChanged
+        If XTCDep.SelectedTabPageIndex = 1 Then
+            viewBlankJournal()
+            viewDraftJournal()
+        End If
+    End Sub
+
+    Sub viewBlankJournal()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `no`, '' AS acc_name, '' AS acc_description, '' AS `cc`, '' AS report_number, '' AS note, 0.00 AS `debit`, 0.00 AS `credit` "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDraft.DataSource = data
+        GVDraft.DeleteSelectedRows()
+        GVDraft.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewDraftJournal()
+        Cursor = Cursors.WaitCursor
+        If GVItem.RowCount > 0 Then
+            makeSafeGV(GVItem)
+            Dim jum_row As Integer = 0
+            'detail
+            For i As Integer = 0 To GVItem.RowCount - 1
+                'perolehan
+                jum_row += 1
+                Dim newRow As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                newRow("no") = jum_row
+                newRow("acc_name") = get_acc(GVItem.GetRowCellValue(i, "id_acc_fa").ToString, "1")
+                newRow("acc_description") = get_acc(GVItem.GetRowCellValue(i, "id_acc_fa").ToString, "2")
+                newRow("cc") = "000"
+                newRow("report_number") = TENumber.Text
+                newRow("note") = If(is_sell, "Penjualan Fixed Asset ", "Penghapusan Fixed Asset ") & GVItem.GetRowCellValue(i, "asset_note").ToString
+                newRow("debit") = 0
+                newRow("credit") = GVItem.GetRowCellValue(i, "total_value")
+                TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
+                GCDraft.RefreshDataSource()
+                GVDraft.RefreshData()
+                GVDraft.BestFitColumns()
+                'kerugian
+                If GVItem.GetRowCellValue(i, "rem_value") > 0 Then
+                    jum_row += 1
+                    Dim newRowk As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                    newRowk("no") = jum_row
+                    newRowk("acc_name") = get_acc(SLECOAKerugian.EditValue.ToString, "1")
+                    newRowk("acc_description") = get_acc(SLECOAKerugian.EditValue.ToString, "2")
+                    newRowk("cc") = "000"
+                    newRowk("report_number") = TENumber.Text
+                    newRowk("note") = If(is_sell, "Penjualan Fixed Asset ", "Penghapusan Fixed Asset ") & GVItem.GetRowCellValue(i, "asset_note").ToString
+                    newRowk("debit") = GVItem.GetRowCellValue(i, "rem_value")
+                    newRowk("credit") = 0
+                    TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowk)
+                    GCDraft.RefreshDataSource()
+                    GVDraft.RefreshData()
+                    GVDraft.BestFitColumns()
+                End If
+                'akumulasi
+                If GVItem.GetRowCellValue(i, "total_value") - GVItem.GetRowCellValue(i, "rem_value") > 0 Then
+                    jum_row += 1
+                    Dim newRowa As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                    newRowa("no") = jum_row
+                    newRowa("acc_name") = get_acc(GVItem.GetRowCellValue(i, "id_acc_dep_accum").ToString, "1")
+                    newRowa("acc_description") = get_acc(GVItem.GetRowCellValue(i, "id_acc_dep_accum").ToString, "2")
+                    newRowa("cc") = "000"
+                    newRowa("report_number") = TENumber.Text
+                    newRowa("note") = If(is_sell, "Penjualan Fixed Asset ", "Penghapusan Fixed Asset ") & GVItem.GetRowCellValue(i, "asset_note").ToString
+                    newRowa("debit") = GVItem.GetRowCellValue(i, "total_value") - GVItem.GetRowCellValue(i, "rem_value")
+                    newRowa("credit") = 0
+                    TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowa)
+                    GCDraft.RefreshDataSource()
+                    GVDraft.RefreshData()
+                    GVDraft.BestFitColumns()
+                End If
+            Next
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
+    End Sub
 End Class
