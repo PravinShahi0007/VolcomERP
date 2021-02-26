@@ -89,7 +89,7 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='')", oledbconn)
         ElseIf id_pop_up = "14" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([reg_no]='')", oledbconn)
-        ElseIf id_pop_up = "15" Then
+        ElseIf id_pop_up = "15" Or id_pop_up = "56" Then
             MyCommand = New OleDbDataAdapter("select code, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code", oledbconn)
         ElseIf id_pop_up = "17" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='')", oledbconn)
@@ -3639,6 +3639,74 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GCData.DataSource = data_temp
             GCData.RefreshDataSource()
             GVData.PopulateColumns()
+        ElseIf id_pop_up = "56" Then
+            'import excel ol promo replace
+            Dim dt_promo As DataTable = execute_query("SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
+            prod.id_design, prod.id_product, d.design_code,prod.product_full_code AS `code`, d.design_display_name AS `name`, 
+            cd.code_detail_name AS `size`, pd.id_prod_shopify, pd.current_tag, pd.id_design_price,pd.design_price, design_price_type AS `price_type`, pd.qty,
+            pd.is_block, IF(pd.is_block=1,'Not Active', 'Active') AS `is_block_view`, 0.00 AS order_qty
+            FROM tb_ol_promo_collection_sku pd
+            INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+            INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+            INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+            LEFT JOIN tb_m_design_price prc ON prc.id_design_price = pd.id_design_price
+            LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type 
+            WHERE pd.id_ol_promo_collection=" + FormSalesOrderDet.id_ol_promo + " AND pd.is_block=2
+            ORDER BY d.design_display_name ASC, prod.product_full_code ASC", -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
+            Dim tb2 = FormSalesOrderDet.dt.AsEnumerable()
+            Dim tb3 = dt_promo.AsEnumerable
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("code").ToString Equals table_tmp("product_full_code").ToString
+                        Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Group Join table_prm In tb3 On table1("code").ToString Equals table_prm("code").ToString
+                        Into join_prm = Group
+                        From y2 In join_prm.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .Code = table1.Field(Of String)("code"),
+                            .Style = If(y1 Is Nothing, "", y1("design_display_name")),
+                            .Size = If(y1 Is Nothing, "", y1("Size")),
+                            .Price = If(y1 Is Nothing, 0.0, y1("design_price")),
+                            .Available = If(y1 Is Nothing, 0, y1("total_allow")),
+                            .Qty = If(table1("qty").ToString = "", 0, CType(table1("qty"), Decimal)),
+                            .id_design_price = If(y1 Is Nothing, 0, y1("id_design_price")),
+                            .id_design_cat = If(y1 Is Nothing, 0, y1("id_design_cat")),
+                            .id_product = If(y2 Is Nothing, 0, y2("id_product")),
+                            .id_design = If(y1 Is Nothing, 0, y1("id_design")),
+                            .id_design_type = If(y1 Is Nothing, 0, y1("id_design_type")),
+                            .design_price_type = If(y1 Is Nothing, 0, y1("design_price_type")),
+                            .Status = If(y2 Is Nothing, "Not found", If(If(table1("qty").ToString = "", 0, CType(table1("qty"), Decimal)) > If(y1 Is Nothing, 0, y1("total_allow")), "Input qty exceed available qty", "OK")),
+                            .DesignType = If(y1 Is Nothing, "", y1("design_type")),
+                            .id_ol_promo_collection_sku_replace = If(y2 Is Nothing, 0, y2("id_ol_promo_collection_sku"))
+                        }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_design_price").Visible = False
+            GVData.Columns("id_design_cat").Visible = False
+            GVData.Columns("design_price_type").Visible = False
+            GVData.Columns("id_product").Visible = False
+            GVData.Columns("id_design").Visible = False
+            GVData.Columns("id_design_type").Visible = False
+            GVData.Columns("id_ol_promo_collection_sku_replace").Visible = False
+            GVData.Columns("Code").VisibleIndex = 0
+            GVData.Columns("Style").VisibleIndex = 1
+            GVData.Columns("Size").VisibleIndex = 2
+            GVData.Columns("Price").VisibleIndex = 3
+            GVData.Columns("Available").VisibleIndex = 4
+            GVData.Columns("Qty").VisibleIndex = 5
+            GVData.Columns("Status").VisibleIndex = 6
+            GVData.Columns("DesignType").VisibleIndex = 7
+            GVData.Columns("Available").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
+            GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -3710,7 +3778,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -6324,6 +6392,46 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                 Else
                     stopCustom("There is no data for import process, please make sure your input !")
                     makeSafeGV(GVData)
+                End If
+            ElseIf id_pop_up = "56" Then
+                'too for product promo
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will include in order list." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    FormSalesOrderDet.viewDetail(FormSalesOrderDet.id_sales_order)
+
+                    GVData.ActiveFilterString = "[Status] = 'OK' "
+                    If GVData.RowCount > 0 Then
+                        FormSalesOrderDet.delNotFoundMyRow()
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim newRow As DataRow = (TryCast(FormSalesOrderDet.GCItemList.DataSource, DataTable)).NewRow()
+                            newRow("id_sales_order_det") = "0"
+                            newRow("name") = GVData.GetRowCellValue(i, "Style").ToString
+                            newRow("code") = GVData.GetRowCellValue(i, "Code").ToString
+                            newRow("size") = GVData.GetRowCellValue(i, "Size").ToString
+                            newRow("sales_order_det_qty") = GVData.GetRowCellValue(i, "Qty")
+                            newRow("qty_avail") = GVData.GetRowCellValue(i, "Available")
+                            newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
+                            newRow("design_price") = GVData.GetRowCellValue(i, "Price")
+                            newRow("design_price_type") = GVData.GetRowCellValue(i, "design_price_type").ToString
+                            newRow("amount") = GVData.GetRowCellValue(i, "Price") * GVData.GetRowCellValue(i, "Qty")
+                            newRow("sales_order_det_note") = ""
+                            newRow("id_design") = GVData.GetRowCellValue(i, "id_design").ToString
+                            newRow("id_product") = GVData.GetRowCellValue(i, "id_product").ToString
+                            newRow("is_found") = "1"
+                            newRow("id_ol_promo_collection_sku_replace") = GVData.GetRowCellValue(i, "id_ol_promo_collection_sku_replace").ToString
+                            TryCast(FormSalesOrderDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
+                            FormSalesOrderDet.GCItemList.RefreshDataSource()
+                            FormSalesOrderDet.GVItemList.RefreshData()
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormSalesOrderDet.BtnAddV2.Visible = False
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
                 End If
             End If
         End If
