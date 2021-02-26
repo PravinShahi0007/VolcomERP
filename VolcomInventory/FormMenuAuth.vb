@@ -88,7 +88,7 @@
                 FormSalesDelOrderDet.BMark.Enabled = True
             ElseIf type = "14" Then
                 'manual sync auto CN/ROR
-
+                FormManualSyncCNROR.ShowDialog()
             End If
             Close()
         Else
