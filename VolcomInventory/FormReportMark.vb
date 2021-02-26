@@ -8699,7 +8699,9 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
                 WHERE s.id_ol_promo_collection=" + id_report + "
                 GROUP BY s.id_prod_shopify "
                 Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
-                FormMain.SplashScreenManager1.ShowWaitForm()
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
                 For l As Integer = 0 To dl.Rows.Count - 1
                     FormMain.SplashScreenManager1.SetWaitFormDescription((l + 1).ToString + " of " + dl.Rows.Count.ToString)
                     Dim prod_id As String = dl.Rows(l)("id_prod_shopify").ToString

@@ -92,6 +92,7 @@ GROUP BY pl.`id_mat_purc_list`"
                 'get all list
                 'header vendor,etc
                 id_comp_to = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "id_comp_contact").ToString
+                TEVat.EditValue = If(FormMatPurchase.GVListMatPD.GetRowCellValue(0, "id_tax").ToString = "2", 10, 0)
                 TECompCode.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "comp_number").ToString
                 TECompName.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "comp_name").ToString
                 MECompAddress.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "address_primary").ToString
