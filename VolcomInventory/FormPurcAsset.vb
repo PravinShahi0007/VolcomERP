@@ -399,10 +399,10 @@ ORDER BY ppsd.id_asset_dep_pps DESC"
     End Sub
 
     Private Sub BRefreshDisp_Click(sender As Object, e As EventArgs) Handles BRefreshDisp.Click
-
+        load_disp()
     End Sub
 
-    Sub view_disp()
+    Sub load_disp()
         Dim q As String = ""
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
     End Sub

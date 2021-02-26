@@ -21,6 +21,10 @@ Partial Class FormPurcAssetDisp
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcAssetDisp))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEReff = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEType = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -45,22 +49,43 @@ Partial Class FormPurcAssetDisp
         Me.GVItem = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RIDEReffDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.RISLEPrepaid = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLEAsset = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnHargaJual = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLEDepCoa = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIDEReffDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.RISLEPrepaid = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -75,27 +100,14 @@ Partial Class FormPurcAssetDisp
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RISLEAsset = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnHargaJual = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.DEReff.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,25 +121,32 @@ Partial Class FormPurcAssetDisp
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItem, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RIDEReffDate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RIDEReffDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RISLEPrepaid, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLEAsset, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEDepCoa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIDEReffDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIDEReffDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLEPrepaid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
         Me.XTPDraftJurnal.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RISLEAsset, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.DEReff)
+        Me.PanelControl2.Controls.Add(Me.LabelControl6)
+        Me.PanelControl2.Controls.Add(Me.TEType)
+        Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.SLEUnit)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.TECreatedBy)
@@ -139,8 +158,44 @@ Partial Class FormPurcAssetDisp
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1021, 130)
+        Me.PanelControl2.Size = New System.Drawing.Size(1021, 127)
         Me.PanelControl2.TabIndex = 6
+        '
+        'DEReff
+        '
+        Me.DEReff.EditValue = Nothing
+        Me.DEReff.Location = New System.Drawing.Point(402, 71)
+        Me.DEReff.Name = "DEReff"
+        Me.DEReff.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEReff.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEReff.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEReff.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEReff.Size = New System.Drawing.Size(211, 20)
+        Me.DEReff.TabIndex = 176
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(349, 74)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl6.TabIndex = 175
+        Me.LabelControl6.Text = "Reff Date"
+        '
+        'TEType
+        '
+        Me.TEType.Location = New System.Drawing.Point(379, 14)
+        Me.TEType.Name = "TEType"
+        Me.TEType.Properties.ReadOnly = True
+        Me.TEType.Size = New System.Drawing.Size(234, 20)
+        Me.TEType.TabIndex = 174
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(349, 17)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl4.TabIndex = 173
+        Me.LabelControl4.Text = "Type"
         '
         'SLEUnit
         '
@@ -148,7 +203,7 @@ Partial Class FormPurcAssetDisp
         Me.SLEUnit.Name = "SLEUnit"
         Me.SLEUnit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEUnit.Properties.View = Me.GridView1
-        Me.SLEUnit.Size = New System.Drawing.Size(293, 20)
+        Me.SLEUnit.Size = New System.Drawing.Size(481, 20)
         Me.SLEUnit.TabIndex = 172
         '
         'GridView1
@@ -189,7 +244,7 @@ Partial Class FormPurcAssetDisp
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(12, 100)
+        Me.LabelControl5.Location = New System.Drawing.Point(12, 93)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(19, 13)
         Me.LabelControl5.TabIndex = 171
@@ -200,7 +255,7 @@ Partial Class FormPurcAssetDisp
         Me.TECreatedBy.Location = New System.Drawing.Point(132, 42)
         Me.TECreatedBy.Name = "TECreatedBy"
         Me.TECreatedBy.Properties.ReadOnly = True
-        Me.TECreatedBy.Size = New System.Drawing.Size(293, 20)
+        Me.TECreatedBy.Size = New System.Drawing.Size(481, 20)
         Me.TECreatedBy.TabIndex = 170
         '
         'TENumber
@@ -221,7 +276,7 @@ Partial Class FormPurcAssetDisp
         Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DECreatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DECreatedDate.Properties.ReadOnly = True
-        Me.DECreatedDate.Size = New System.Drawing.Size(293, 20)
+        Me.DECreatedDate.Size = New System.Drawing.Size(211, 20)
         Me.DECreatedDate.TabIndex = 169
         '
         'LabelControl3
@@ -324,10 +379,10 @@ Partial Class FormPurcAssetDisp
         '
         Me.XTCDep.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCDep.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCDep.Location = New System.Drawing.Point(0, 130)
+        Me.XTCDep.Location = New System.Drawing.Point(0, 127)
         Me.XTCDep.Name = "XTCDep"
         Me.XTCDep.SelectedTabPage = Me.XTPDetail
-        Me.XTCDep.Size = New System.Drawing.Size(1021, 399)
+        Me.XTCDep.Size = New System.Drawing.Size(1021, 322)
         Me.XTCDep.TabIndex = 146
         Me.XTCDep.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPDraftJurnal})
         '
@@ -336,7 +391,7 @@ Partial Class FormPurcAssetDisp
         Me.XTPDetail.Controls.Add(Me.GCItem)
         Me.XTPDetail.Controls.Add(Me.PCAddDel)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(1015, 371)
+        Me.XTPDetail.Size = New System.Drawing.Size(1015, 294)
         Me.XTPDetail.Text = "Depreciation"
         '
         'GCItem
@@ -346,7 +401,7 @@ Partial Class FormPurcAssetDisp
         Me.GCItem.MainView = Me.GVItem
         Me.GCItem.Name = "GCItem"
         Me.GCItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEDepCoa, Me.RIDEReffDate, Me.RISLEPrepaid, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RISLEAsset})
-        Me.GCItem.Size = New System.Drawing.Size(1015, 328)
+        Me.GCItem.Size = New System.Drawing.Size(1015, 251)
         Me.GCItem.TabIndex = 142
         Me.GCItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItem})
         '
@@ -357,7 +412,7 @@ Partial Class FormPurcAssetDisp
         Me.GVItem.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVItem.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVItem.ColumnPanelRowHeight = 50
-        Me.GVItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn4, Me.GridColumn11, Me.GridColumn6, Me.GridColumn3, Me.GridColumn5, Me.GridColumn9, Me.GridColumn2, Me.GridColumnHargaJual})
+        Me.GVItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn4, Me.GridColumn11, Me.GridColumn6, Me.GridColumn3, Me.GridColumn5, Me.GridColumn9, Me.GridColumn2, Me.GridColumnHargaJual, Me.GridColumn31, Me.GridColumn32})
         Me.GVItem.GridControl = Me.GCItem
         Me.GVItem.Name = "GVItem"
         Me.GVItem.OptionsPrint.AllowMultilineHeaders = True
@@ -378,70 +433,112 @@ Partial Class FormPurcAssetDisp
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 0
-        Me.GridColumn8.Width = 288
+        Me.GridColumn8.Width = 263
         '
-        'RIDEReffDate
+        'RISLEAsset
         '
-        Me.RIDEReffDate.AutoHeight = False
-        Me.RIDEReffDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RIDEReffDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RIDEReffDate.Name = "RIDEReffDate"
+        Me.RISLEAsset.AutoHeight = False
+        Me.RISLEAsset.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLEAsset.Name = "RISLEAsset"
+        Me.RISLEAsset.View = Me.GridView3
         '
-        'RepositoryItemTextEdit1
+        'GridView3
         '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.Mask.EditMask = "N2"
-        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn28, Me.GridColumn29, Me.GridColumn7, Me.GridColumn10, Me.GridColumn12, Me.GridColumn30})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
         '
-        'RISLEPrepaid
+        'GridColumn19
         '
-        Me.RISLEPrepaid.AutoHeight = False
-        Me.RISLEPrepaid.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RISLEPrepaid.Name = "RISLEPrepaid"
-        Me.RISLEPrepaid.View = Me.GridView2
+        Me.GridColumn19.Caption = "ID"
+        Me.GridColumn19.FieldName = "id_purc_rec_asset"
+        Me.GridColumn19.Name = "GridColumn19"
         '
-        'GridView2
+        'GridColumn20
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
+        Me.GridColumn20.Caption = "Number"
+        Me.GridColumn20.FieldName = "asset_number"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
         '
-        'GridColumn16
+        'GridColumn21
         '
-        Me.GridColumn16.Caption = "ID Acc"
-        Me.GridColumn16.FieldName = "id_acc"
-        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn21.Caption = "Asset"
+        Me.GridColumn21.FieldName = "asset_name"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 1
         '
-        'GridColumn17
+        'GridColumn22
         '
-        Me.GridColumn17.Caption = "COA"
-        Me.GridColumn17.FieldName = "acc_name"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 0
-        Me.GridColumn17.Width = 400
+        Me.GridColumn22.Caption = "Note"
+        Me.GridColumn22.FieldName = "asset_note"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 2
         '
-        'GridColumn18
+        'GridColumn23
         '
-        Me.GridColumn18.Caption = "Description"
-        Me.GridColumn18.FieldName = "acc_description"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 1
-        Me.GridColumn18.Width = 1216
+        Me.GridColumn23.Caption = "Acq Cost"
+        Me.GridColumn23.FieldName = "total_value"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 3
         '
-        'GridColumn5
+        'GridColumn24
         '
-        Me.GridColumn5.Caption = "COA Perolehan"
-        Me.GridColumn5.FieldName = "acc_fa"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 2
-        Me.GridColumn5.Width = 137
+        Me.GridColumn24.Caption = "Remaining Book Value"
+        Me.GridColumn24.FieldName = "rem_value"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 4
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "COA Perolehan"
+        Me.GridColumn28.FieldName = "id_acc_fa"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "COA akumulasi"
+        Me.GridColumn29.FieldName = "id_acc_dep_accum"
+        Me.GridColumn29.Name = "GridColumn29"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "COA Perolehan"
+        Me.GridColumn7.FieldName = "acc_fa"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "COA Perolehan"
+        Me.GridColumn10.FieldName = "acc_fa_name"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "COA akumulasi"
+        Me.GridColumn12.FieldName = "acc_dep_accum"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "COA akumulasi"
+        Me.GridColumn30.FieldName = "acc_dep_accum_name"
+        Me.GridColumn30.Name = "GridColumn30"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Asset Detail"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.Width = 450
         '
         'GridColumn11
         '
@@ -456,8 +553,8 @@ Partial Class FormPurcAssetDisp
         Me.GridColumn11.FieldName = "total_value"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 3
-        Me.GridColumn11.Width = 292
+        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.Width = 199
         '
         'RepositoryItemTextEdit2
         '
@@ -467,14 +564,90 @@ Partial Class FormPurcAssetDisp
         Me.RepositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn6.Caption = "Sisa Nilai Buku"
+        Me.GridColumn6.DisplayFormat.FormatString = "N2"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "rem_value"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.Width = 249
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Acc Perolehan"
+        Me.GridColumn3.FieldName = "acc_fa_name"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 68
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "COA Perolehan"
+        Me.GridColumn5.FieldName = "acc_fa"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.Width = 201
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Acc Akumulasi"
+        Me.GridColumn9.FieldName = "acc_dep_accum_name"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.Width = 65
+        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "COA Akumulasi"
         Me.GridColumn2.FieldName = "acc_dep_accum"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
-        Me.GridColumn2.Width = 137
+        Me.GridColumn2.VisibleIndex = 6
+        Me.GridColumn2.Width = 121
+        '
+        'GridColumnHargaJual
+        '
+        Me.GridColumnHargaJual.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnHargaJual.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnHargaJual.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnHargaJual.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnHargaJual.Caption = "Harga Jual"
+        Me.GridColumnHargaJual.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumnHargaJual.DisplayFormat.FormatString = "N2"
+        Me.GridColumnHargaJual.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnHargaJual.FieldName = "harga_jual"
+        Me.GridColumnHargaJual.Name = "GridColumnHargaJual"
+        Me.GridColumnHargaJual.Width = 156
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "ID COA Perolehan"
+        Me.GridColumn31.FieldName = "id_acc_fa"
+        Me.GridColumn31.Name = "GridColumn31"
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "ID COA Akumulasi"
+        Me.GridColumn32.FieldName = "id_acc_dep_accum"
+        Me.GridColumn32.Name = "GridColumn32"
         '
         'RISLEDepCoa
         '
@@ -515,6 +688,52 @@ Partial Class FormPurcAssetDisp
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 2
         '
+        'RIDEReffDate
+        '
+        Me.RIDEReffDate.AutoHeight = False
+        Me.RIDEReffDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIDEReffDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIDEReffDate.Name = "RIDEReffDate"
+        '
+        'RISLEPrepaid
+        '
+        Me.RISLEPrepaid.AutoHeight = False
+        Me.RISLEPrepaid.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLEPrepaid.Name = "RISLEPrepaid"
+        Me.RISLEPrepaid.View = Me.GridView2
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "ID Acc"
+        Me.GridColumn16.FieldName = "id_acc"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "COA"
+        Me.GridColumn17.FieldName = "acc_name"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 0
+        Me.GridColumn17.Width = 400
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Description"
+        Me.GridColumn18.FieldName = "acc_description"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 1
+        Me.GridColumn18.Width = 1216
+        '
         'PCAddDel
         '
         Me.PCAddDel.Controls.Add(Me.BDelete)
@@ -549,7 +768,7 @@ Partial Class FormPurcAssetDisp
         '
         Me.XTPDraftJurnal.Controls.Add(Me.GCDraft)
         Me.XTPDraftJurnal.Name = "XTPDraftJurnal"
-        Me.XTPDraftJurnal.Size = New System.Drawing.Size(1082, 379)
+        Me.XTPDraftJurnal.Size = New System.Drawing.Size(1015, 294)
         Me.XTPDraftJurnal.Text = "Draft Jurnal"
         '
         'GCDraft
@@ -558,7 +777,7 @@ Partial Class FormPurcAssetDisp
         Me.GCDraft.Location = New System.Drawing.Point(0, 0)
         Me.GCDraft.MainView = Me.GVDraft
         Me.GCDraft.Name = "GCDraft"
-        Me.GCDraft.Size = New System.Drawing.Size(1082, 379)
+        Me.GCDraft.Size = New System.Drawing.Size(1015, 294)
         Me.GCDraft.TabIndex = 2
         Me.GCDraft.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDraft})
         '
@@ -652,151 +871,30 @@ Partial Class FormPurcAssetDisp
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
-        'RISLEAsset
+        'PanelControl3
         '
-        Me.RISLEAsset.AutoHeight = False
-        Me.RISLEAsset.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RISLEAsset.Name = "RISLEAsset"
-        Me.RISLEAsset.View = Me.GridView3
+        Me.PanelControl3.Controls.Add(Me.MENote)
+        Me.PanelControl3.Controls.Add(Me.LabelControl7)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 449)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1021, 80)
+        Me.PanelControl3.TabIndex = 147
         '
-        'GridView3
+        'MENote
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn28, Me.GridColumn29, Me.GridColumn7, Me.GridColumn10, Me.GridColumn12, Me.GridColumn30})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
+        Me.MENote.Location = New System.Drawing.Point(53, 12)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(706, 56)
+        Me.MENote.TabIndex = 1
         '
-        'GridColumn19
+        'LabelControl7
         '
-        Me.GridColumn19.Caption = "ID"
-        Me.GridColumn19.FieldName = "id_purc_rec_asset"
-        Me.GridColumn19.Name = "GridColumn19"
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Number"
-        Me.GridColumn20.FieldName = "asset_number"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 0
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "Asset"
-        Me.GridColumn21.FieldName = "asset_name"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 1
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Note"
-        Me.GridColumn22.FieldName = "asset_note"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 2
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "Acq Cost"
-        Me.GridColumn23.FieldName = "total_value"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 3
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "Remaining Book Value"
-        Me.GridColumn24.FieldName = "rem_value"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 4
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "COA Perolehan"
-        Me.GridColumn28.FieldName = "id_acc_fa"
-        Me.GridColumn28.Name = "GridColumn28"
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "COA akumulasi"
-        Me.GridColumn29.FieldName = "id_acc_dep_accum"
-        Me.GridColumn29.Name = "GridColumn29"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Asset Detail"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 492
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn6.Caption = "Sisa Nilai Buku"
-        Me.GridColumn6.DisplayFormat.FormatString = "N2"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "rem_value"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 270
-        '
-        'GridColumnHargaJual
-        '
-        Me.GridColumnHargaJual.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnHargaJual.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnHargaJual.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnHargaJual.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnHargaJual.Caption = "Harga Jual"
-        Me.GridColumnHargaJual.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.GridColumnHargaJual.DisplayFormat.FormatString = "N2"
-        Me.GridColumnHargaJual.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnHargaJual.FieldName = "harga_jual"
-        Me.GridColumnHargaJual.Name = "GridColumnHargaJual"
-        Me.GridColumnHargaJual.Width = 156
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "COA Perolehan"
-        Me.GridColumn3.FieldName = "acc_fa_name"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "COA Akumulasi"
-        Me.GridColumn9.FieldName = "acc_dep_accum_name"
-        Me.GridColumn9.Name = "GridColumn9"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "COA Perolehan"
-        Me.GridColumn7.FieldName = "acc_fa"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "COA Perolehan"
-        Me.GridColumn10.FieldName = "acc_fa_name"
-        Me.GridColumn10.Name = "GridColumn10"
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "COA akumulasi"
-        Me.GridColumn12.FieldName = "acc_dep_accum"
-        Me.GridColumn12.Name = "GridColumn12"
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.Caption = "COA akumulasi"
-        Me.GridColumn30.FieldName = "acc_dep_accum_name"
-        Me.GridColumn30.Name = "GridColumn30"
+        Me.LabelControl7.Location = New System.Drawing.Point(12, 14)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl7.TabIndex = 0
+        Me.LabelControl7.Text = "Note"
         '
         'FormPurcAssetDisp
         '
@@ -804,6 +902,7 @@ Partial Class FormPurcAssetDisp
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1021, 572)
         Me.Controls.Add(Me.XTCDep)
+        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -815,6 +914,9 @@ Partial Class FormPurcAssetDisp
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.DEReff.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -828,21 +930,25 @@ Partial Class FormPurcAssetDisp
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItem, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RIDEReffDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RIDEReffDate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RISLEPrepaid, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLEAsset, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEDepCoa, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIDEReffDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIDEReffDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLEPrepaid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
         Me.XTPDraftJurnal.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RISLEAsset, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -921,4 +1027,13 @@ Partial Class FormPurcAssetDisp
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DEReff As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
 End Class
