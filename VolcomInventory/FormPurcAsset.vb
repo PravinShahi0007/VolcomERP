@@ -403,11 +403,23 @@ ORDER BY ppsd.id_asset_dep_pps DESC"
     End Sub
 
     Sub load_disp()
-        Dim q As String = ""
+        Dim q As String = "SELECT disp.`id_purc_rec_asset_disp`,disp.`note`,disp.`created_date`,emp.employee_name,tag.`tag_description`,sts.`report_status`,IF(disp.`is_sell`=1,'Penjualan Fixed Asset','Penghapusan Fixed Asset') AS typ
+FROM tb_purc_rec_asset_disp disp
+INNER JOIN tb_m_user usr ON usr.id_user=disp.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=disp.`id_report_status`
+INNER JOIN tb_coa_tag tag ON tag.`id_coa_tag`=disp.`id_coa_tag`
+ORDER BY id_purc_rec_asset_disp DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
     End Sub
 
     Private Sub BNewDisp_Click(sender As Object, e As EventArgs) Handles BNewDisp.Click
+        FormPurcAssetDisp.is_sell = False
+        FormPurcAssetDisp.ShowDialog()
+    End Sub
+
+    Private Sub BNewJual_Click(sender As Object, e As EventArgs) Handles BNewJual.Click
+        FormPurcAssetDisp.is_sell = True
         FormPurcAssetDisp.ShowDialog()
     End Sub
 End Class
