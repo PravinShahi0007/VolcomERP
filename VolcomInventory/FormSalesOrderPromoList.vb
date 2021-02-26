@@ -83,6 +83,7 @@
                 FormSalesOrderDet.GCItemList.RefreshDataSource()
                 FormSalesOrderDet.GVItemList.RefreshData()
             Next
+            FormSalesOrderDet.BtnImportExcel.Visible = False
             GVProduct.ActiveFilterString = ""
             actionLoad()
         Else
