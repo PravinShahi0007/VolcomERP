@@ -649,6 +649,7 @@ Partial Class FormPurcAssetDisp
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Asset Detail"
+        Me.GridColumn4.FieldName = "asset_note"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1

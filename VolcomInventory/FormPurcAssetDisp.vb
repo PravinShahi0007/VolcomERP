@@ -24,6 +24,7 @@
         If id_trans = "-1" Then
             'new
             DECreatedDate.EditValue = Now
+            DEReff.EditValue = Now
             '
             TENumber.Text = "[auto number]"
             TECreatedBy.Text = "[auto]"
