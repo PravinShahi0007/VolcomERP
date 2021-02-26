@@ -21,6 +21,18 @@ Partial Class FormPurcAssetDisp
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcAssetDisp))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLECOAPendPenjualan = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LCOAPendPenjualan = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLECOAKerugian = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit2View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DEReff = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TEType = New DevExpress.XtraEditors.TextEdit()
@@ -105,6 +117,10 @@ Partial Class FormPurcAssetDisp
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.SLECOAPendPenjualan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLECOAKerugian.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEReff.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,6 +159,10 @@ Partial Class FormPurcAssetDisp
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SLECOAPendPenjualan)
+        Me.PanelControl2.Controls.Add(Me.LCOAPendPenjualan)
+        Me.PanelControl2.Controls.Add(Me.LabelControl8)
+        Me.PanelControl2.Controls.Add(Me.SLECOAKerugian)
         Me.PanelControl2.Controls.Add(Me.DEReff)
         Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Controls.Add(Me.TEType)
@@ -160,6 +180,100 @@ Partial Class FormPurcAssetDisp
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1021, 127)
         Me.PanelControl2.TabIndex = 6
+        '
+        'SLECOAPendPenjualan
+        '
+        Me.SLECOAPendPenjualan.Location = New System.Drawing.Point(488, 97)
+        Me.SLECOAPendPenjualan.Name = "SLECOAPendPenjualan"
+        Me.SLECOAPendPenjualan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECOAPendPenjualan.Properties.View = Me.GridView4
+        Me.SLECOAPendPenjualan.Size = New System.Drawing.Size(211, 20)
+        Me.SLECOAPendPenjualan.TabIndex = 180
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn36, Me.GridColumn37, Me.GridColumn38})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "ID Acc"
+        Me.GridColumn36.FieldName = "id_acc"
+        Me.GridColumn36.Name = "GridColumn36"
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Account"
+        Me.GridColumn37.FieldName = "acc_name"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 0
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Description"
+        Me.GridColumn38.FieldName = "acc_description"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 1
+        '
+        'LCOAPendPenjualan
+        '
+        Me.LCOAPendPenjualan.Location = New System.Drawing.Point(349, 100)
+        Me.LCOAPendPenjualan.Name = "LCOAPendPenjualan"
+        Me.LCOAPendPenjualan.Size = New System.Drawing.Size(133, 13)
+        Me.LCOAPendPenjualan.TabIndex = 179
+        Me.LCOAPendPenjualan.Text = "COA Pendapatan Penjualan"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(12, 100)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl8.TabIndex = 178
+        Me.LabelControl8.Text = "COA Kerugian"
+        '
+        'SLECOAKerugian
+        '
+        Me.SLECOAKerugian.Location = New System.Drawing.Point(132, 97)
+        Me.SLECOAKerugian.Name = "SLECOAKerugian"
+        Me.SLECOAKerugian.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECOAKerugian.Properties.View = Me.SearchLookUpEdit2View
+        Me.SLECOAKerugian.Size = New System.Drawing.Size(211, 20)
+        Me.SLECOAKerugian.TabIndex = 177
+        '
+        'SearchLookUpEdit2View
+        '
+        Me.SearchLookUpEdit2View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn33, Me.GridColumn34, Me.GridColumn35})
+        Me.SearchLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit2View.Name = "SearchLookUpEdit2View"
+        Me.SearchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit2View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "ID Acc"
+        Me.GridColumn33.FieldName = "id_acc"
+        Me.GridColumn33.Name = "GridColumn33"
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Account"
+        Me.GridColumn34.FieldName = "acc_name"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 0
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Description"
+        Me.GridColumn35.FieldName = "acc_description"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 1
         '
         'DEReff
         '
@@ -183,10 +297,10 @@ Partial Class FormPurcAssetDisp
         '
         'TEType
         '
-        Me.TEType.Location = New System.Drawing.Point(379, 14)
+        Me.TEType.Location = New System.Drawing.Point(402, 14)
         Me.TEType.Name = "TEType"
         Me.TEType.Properties.ReadOnly = True
-        Me.TEType.Size = New System.Drawing.Size(234, 20)
+        Me.TEType.Size = New System.Drawing.Size(211, 20)
         Me.TEType.TabIndex = 174
         '
         'LabelControl4
@@ -199,11 +313,11 @@ Partial Class FormPurcAssetDisp
         '
         'SLEUnit
         '
-        Me.SLEUnit.Location = New System.Drawing.Point(132, 97)
+        Me.SLEUnit.Location = New System.Drawing.Point(402, 45)
         Me.SLEUnit.Name = "SLEUnit"
         Me.SLEUnit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEUnit.Properties.View = Me.GridView1
-        Me.SLEUnit.Size = New System.Drawing.Size(481, 20)
+        Me.SLEUnit.Size = New System.Drawing.Size(211, 20)
         Me.SLEUnit.TabIndex = 172
         '
         'GridView1
@@ -244,7 +358,7 @@ Partial Class FormPurcAssetDisp
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(12, 93)
+        Me.LabelControl5.Location = New System.Drawing.Point(349, 48)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(19, 13)
         Me.LabelControl5.TabIndex = 171
@@ -255,7 +369,7 @@ Partial Class FormPurcAssetDisp
         Me.TECreatedBy.Location = New System.Drawing.Point(132, 42)
         Me.TECreatedBy.Name = "TECreatedBy"
         Me.TECreatedBy.Properties.ReadOnly = True
-        Me.TECreatedBy.Size = New System.Drawing.Size(481, 20)
+        Me.TECreatedBy.Size = New System.Drawing.Size(211, 20)
         Me.TECreatedBy.TabIndex = 170
         '
         'TENumber
@@ -914,6 +1028,10 @@ Partial Class FormPurcAssetDisp
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.SLECOAPendPenjualan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLECOAKerugian.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEReff.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1036,4 +1154,16 @@ Partial Class FormPurcAssetDisp
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLECOAPendPenjualan As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LCOAPendPenjualan As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLECOAKerugian As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit2View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -19,6 +19,7 @@
     Private Sub FormPurcAssetDisp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_unit()
         load_pil()
+        load_acc()
 
         If id_trans = "-1" Then
             'new
@@ -32,6 +33,8 @@
             BtnPrint.Visible = True
             SLEUnit.Properties.ReadOnly = True
             PCAddDel.Visible = False
+            SLECOAKerugian.Properties.ReadOnly = True
+            SLECOAPendPenjualan.Properties.ReadOnly = True
 
             Dim q As String = "SELECT pps.*,emp.employee_name 
 FROM `tb_purc_rec_asset_disp` pps
@@ -51,6 +54,10 @@ WHERE id_purc_rec_asset_disp='" & id_trans & "'"
                     BtnViewJournal.Visible = True
                 End If
                 MENote.Text = dt.Rows(0)("note").ToString
+                SLECOAKerugian.EditValue = dt.Rows(0)("coa_kerugian").ToString
+                If is_sell Then
+                    SLECOAPendPenjualan.EditValue = dt.Rows(0)("coa_pend_penjualan").ToString
+                End If
             End If
         End If
 
@@ -71,6 +78,19 @@ INNER JOIN tb_a_acc accacum ON accacum.id_acc=ass.id_acc_dep_accum
 WHERE ass.is_active=1 AND ass.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
 GROUP BY ass.id_purc_rec_asset"
         viewSearchLookupRepositoryQuery(RISLEAsset, q, 0, "asset_number", "id_purc_rec_asset")
+    End Sub
+
+    Sub load_acc()
+        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+
+        If SLEUnit.EditValue.ToString = "1" Then
+            query += " AND id_coa_type='1' "
+        Else
+            query += " AND id_coa_type='2' "
+        End If
+
+        viewSearchLookupQuery(SLECOAKerugian, query, "id_acc", "acc_description", "id_acc")
+        viewSearchLookupQuery(SLECOAPendPenjualan, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
     Sub load_det()
@@ -129,9 +149,13 @@ WHERE dd.id_purc_rec_asset_disp='" & id_trans & "'"
         If is_sell Then
             TEType.Text = "Penjualan Fixed Asset"
             formName = "Penjualan Fixed Asset"
+            LCOAPendPenjualan.Visible = True
+            SLECOAPendPenjualan.Visible = True
         Else
             TEType.Text = "Penghapusan Fixed Asset"
             formName = "Penghapusan Fixed Asset"
+            LCOAPendPenjualan.Visible = False
+            SLECOAPendPenjualan.Visible = False
         End If
     End Sub
 
@@ -180,9 +204,15 @@ WHERE dd.id_purc_rec_asset_disp='" & id_trans & "'"
             warningCustom("Item duplicate.")
         Else
             If id_trans = "-1" Then 'new
-                Dim q As String = "INSERT INTO `tb_purc_rec_asset_disp`(`created_by`,`created_date`,`date_reff`,`id_report_status`,`is_sell`,`note`,`id_coa_tag`)
+                Dim coa_pend_penjualan As String = "NULL"
+
+                If is_sell Then
+                    coa_pend_penjualan = "'" & SLECOAPendPenjualan.EditValue.ToString & "'"
+                End If
+
+                Dim q As String = "INSERT INTO `tb_purc_rec_asset_disp`(`created_by`,`created_date`,`date_reff`,`id_report_status`,`is_sell`,`note`,`id_coa_tag`,coa_kerugian,coa_pend_penjualan)
 VALUES()
-VALUES('" & id_user & "',NOW(),'" & Date.Parse(DEReff.EditValue.ToString).ToString("yyyy-MM-dd") & "','1','" & If(is_sell, "1", "2") & "','" & addSlashes(MENote.Text) & "','" & SLEUnit.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+VALUES('" & id_user & "',NOW(),'" & Date.Parse(DEReff.EditValue.ToString).ToString("yyyy-MM-dd") & "','1','" & If(is_sell, "1", "2") & "','" & addSlashes(MENote.Text) & "','" & SLEUnit.EditValue.ToString & "','" & SLECOAKerugian.EditValue.ToString & "'," & coa_pend_penjualan & "); SELECT LAST_INSERT_ID(); "
                 id_trans = execute_query(q, 0, True, "", "", "", "")
                 'det
                 q = "INSERT INTO `tb_purc_rec_asset_disp_det`(`id_purc_rec_asset_disp`,`id_purc_rec_asset`,`id_acc_fa`,`id_acc_dep_accum`,`total_value`,`rem_value`,`harga_jual`)"
