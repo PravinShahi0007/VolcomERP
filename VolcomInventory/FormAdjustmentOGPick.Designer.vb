@@ -47,6 +47,7 @@ Partial Class FormAdjustmentOGPick
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.ReadOnly = True
+        Me.GVList.OptionsFind.AlwaysVisible = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1

@@ -4,9 +4,11 @@
         'Prepare paramater
         Dim in_item As String = ""
 
-        For i = 0 To FormAdjustmentOGDet.GVList.RowCount - 1
-            in_item += FormAdjustmentOGDet.GVList.GetRowCellValue(i, "id_item").ToString + ", "
-        Next
+        If Not FormAdjustmentOGDet.SLUEType.EditValue.ToString = "1" Then
+            For i = 0 To FormAdjustmentOGDet.GVList.RowCount - 1
+                in_item += FormAdjustmentOGDet.GVList.GetRowCellValue(i, "id_item").ToString + ", "
+            Next
+        End If
 
         If in_item = "" Then
             in_item = "0"
@@ -95,5 +97,9 @@
         FormAdjustmentOGDet.GCList.DataSource = data
 
         Close()
+    End Sub
+
+    Private Sub FormAdjustmentOGPick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
