@@ -98,4 +98,8 @@
 
         Close()
     End Sub
+
+    Private Sub FormAdjustmentOGPick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
 End Class
