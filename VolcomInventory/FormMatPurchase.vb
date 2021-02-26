@@ -454,7 +454,7 @@ GROUP BY mpd.`id_mat_purc`"
     End Function
 
     Function q_list(ByVal q_where As String)
-        Dim query As String = "SELECT 'no' AS is_check,pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number
+        Dim query As String = "SELECT 'no' AS is_check,c.id_tax,pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number
 ,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
 ,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
 ,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person

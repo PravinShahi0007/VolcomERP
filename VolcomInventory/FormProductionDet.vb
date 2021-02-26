@@ -387,6 +387,17 @@ GROUP BY m_ovh_p.id_ovh_price"
             Top = "30" 'default by ririn
             notex = ""
             vat = "0"
+            'search vat
+            Dim qvat As String = "SELECT c.id_tax,ovhp.id_ovh_price
+FROM tb_m_ovh_price ovhp
+INNER JOIN tb_m_ovh ovh ON ovh.`id_ovh`=ovhp.`id_ovh`
+INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+WHERE ovhp.`id_ovh_price`='" & id_ovh_price & "'"
+            Dim dtvat As DataTable = execute_query(qvat, -1, True, "", "", "", "")
+            If dtvat.Rows.Count > 0 Then
+                vat = If(dtvat.Rows(0)("id_tax").ToString = "2", "10", "0")
+            End If
             del_date = Date.Parse(Now().ToString).ToString("yyyy-MM-dd")
             kurs = data.Rows(i)("kurs").ToString
             id_currency = data.Rows(i)("id_currency").ToString
