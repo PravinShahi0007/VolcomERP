@@ -403,7 +403,7 @@ ORDER BY ppsd.id_asset_dep_pps DESC"
     End Sub
 
     Sub load_disp()
-        Dim q As String = "SELECT disp.`id_purc_rec_asset_disp`,disp.`note`,disp.`created_date`,emp.employee_name,tag.`tag_description`,sts.`report_status`,IF(disp.`is_sell`=1,'Penjualan Fixed Asset','Penghapusan Fixed Asset') AS typ
+        Dim q As String = "SELECT disp.`id_purc_rec_asset_disp`,disp.`note`,disp.`created_date`,emp.employee_name,tag.`tag_description`,sts.`report_status`,IF(disp.`is_sell`=1,'Penjualan Fixed Asset','Penghapusan Fixed Asset') AS typ,disp.`is_sell`
 FROM tb_purc_rec_asset_disp disp
 INNER JOIN tb_m_user usr ON usr.id_user=disp.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
@@ -411,6 +411,8 @@ INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=disp.`id_report
 INNER JOIN tb_coa_tag tag ON tag.`id_coa_tag`=disp.`id_coa_tag`
 ORDER BY id_purc_rec_asset_disp DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCDisp.DataSource = dt
+        GVDisp.BestFitColumns()
     End Sub
 
     Private Sub BNewDisp_Click(sender As Object, e As EventArgs) Handles BNewDisp.Click
@@ -421,5 +423,12 @@ ORDER BY id_purc_rec_asset_disp DESC"
     Private Sub BNewJual_Click(sender As Object, e As EventArgs) Handles BNewJual.Click
         FormPurcAssetDisp.is_sell = True
         FormPurcAssetDisp.ShowDialog()
+    End Sub
+
+    Private Sub GVDisp_DoubleClick(sender As Object, e As EventArgs) Handles GVDisp.DoubleClick
+        If GVDisp.RowCount > 0 Then
+            FormPurcAssetDisp.id_trans = GVDisp.GetFocusedRowCellValue("is_sell").ToString()
+            FormPurcAssetDisp.ShowDialog()
+        End If
     End Sub
 End Class

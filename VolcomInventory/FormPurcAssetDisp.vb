@@ -212,11 +212,10 @@ WHERE dd.id_purc_rec_asset_disp='" & id_trans & "'"
                 End If
 
                 Dim q As String = "INSERT INTO `tb_purc_rec_asset_disp`(`created_by`,`created_date`,`date_reff`,`id_report_status`,`is_sell`,`note`,`id_coa_tag`,coa_kerugian,coa_pend_penjualan)
-VALUES()
 VALUES('" & id_user & "',NOW(),'" & Date.Parse(DEReff.EditValue.ToString).ToString("yyyy-MM-dd") & "','1','" & If(is_sell, "1", "2") & "','" & addSlashes(MENote.Text) & "','" & SLEUnit.EditValue.ToString & "','" & SLECOAKerugian.EditValue.ToString & "'," & coa_pend_penjualan & "); SELECT LAST_INSERT_ID(); "
                 id_trans = execute_query(q, 0, True, "", "", "", "")
                 'det
-                q = "INSERT INTO `tb_purc_rec_asset_disp_det`(`id_purc_rec_asset_disp`,`id_purc_rec_asset`,`id_acc_fa`,`id_acc_dep_accum`,`total_value`,`rem_value`,`harga_jual`)"
+                q = "INSERT INTO `tb_purc_rec_asset_disp_det`(`id_purc_rec_asset_disp`,`id_purc_rec_asset`,`id_acc_fa`,`id_acc_dep_accum`,`total_value`,`rem_value`,`harga_jual`) VALUES"
                 For i As Integer = 0 To GVItem.RowCount - 1
                     If Not i = 0 Then
                         q += ","
