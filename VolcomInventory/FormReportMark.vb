@@ -6771,6 +6771,13 @@ WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
                     SET d.is_close=1
                     WHERE pyd.id_rec_payment = '" + id_report + "' AND pyd.`value`=balance_due AND pyd.`value`!= 0; "
                     execute_non_query(qjd_upd, True, "", "", "", "")
+                ElseIf FormBankDepositDet.type_rec = "4" Then
+                    'penjualan fixed asset
+                    Dim qjd_upd = "UPDATE tb_purc_rec_asset_disp d
+                    INNER JOIN tb_rec_payment_det pyd ON pyd.id_report = d.id_purc_rec_asset_disp AND pyd.report_mark_type=298
+                    SET d.is_rec_payment=1
+                    WHERE pyd.id_rec_payment = '" + id_report + "'; "
+                    execute_non_query(qjd_upd, True, "", "", "", "")
                 End If
 
                 'insert valas
