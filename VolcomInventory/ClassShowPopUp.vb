@@ -435,6 +435,12 @@
         ElseIf report_mark_type = "295" Then
             ' master biaya bulanan
             FormBiayaSewaPPS.Close()
+        ElseIf report_mark_type = "298" Then
+            ' Fixed Asset drop / sell
+            FormPurcAssetDisp.Close()
+        ElseIf report_mark_type = "299" Then
+            ' Product Weight
+            FormProductWeight.Close()
         End If
     End Sub
     Sub show()
@@ -1434,11 +1440,23 @@ GROUP BY rec.`id_prod_order`"
         ElseIf report_mark_type = "294" Then
             'alokasi biaya bulanan
             FormBiayaSewaBulanan.id_biaya_bulanan = id_report
+            FormBiayaSewaBulanan.is_view = "1"
             FormBiayaSewaBulanan.ShowDialog()
         ElseIf report_mark_type = "295" Then
             'master biaya bulanan
             FormBiayaSewaPPS.id_pps = id_report
+            FormBiayaSewaPPS.is_view = "1"
             FormBiayaSewaPPS.ShowDialog()
+        ElseIf report_mark_type = "298" Then
+            'Fixed Asset drop / sell
+            FormPurcAssetDisp.id_trans = id_report
+            FormPurcAssetDisp.is_view = "1"
+            FormPurcAssetDisp.ShowDialog()
+        ElseIf report_mark_type = "299" Then
+            'Product Weight
+            FormProductWeight.id_trans = id_report
+            FormProductWeight.is_view = "1"
+            FormProductWeight.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2574,6 +2592,18 @@ GROUP BY rec.`id_prod_order`"
             'master biaya bulanan
             table_name = "tb_biaya_sewa_pps"
             field_id = "id_biaya_sewa_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "298" Then
+            ' Fixed Asset drop / sell
+            table_name = "tb_purc_rec_asset_disp"
+            field_id = "id_purc_rec_asset_disp"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "299" Then
+            ' Product weight
+            table_name = "tb_product_weight_pps"
+            field_id = "id_product_weight_pps"
             field_number = "number"
             field_date = "created_date"
         Else

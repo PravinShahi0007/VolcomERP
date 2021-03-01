@@ -3761,6 +3761,12 @@
     <Compile Include="FormProductionWOList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductWeight.Designer.vb">
+      <DependentUpon>FormProductWeight.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductWeight.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPromoCollection.Designer.vb">
       <DependentUpon>FormPromoCollection.vb</DependentUpon>
     </Compile>
@@ -3873,6 +3879,12 @@
       <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcAssetDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcAssetDisp.Designer.vb">
+      <DependentUpon>FormPurcAssetDisp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetDisp.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurcAssetHistory.Designer.vb">
@@ -11140,6 +11152,9 @@
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProductWeight.resx">
+      <DependentUpon>FormProductWeight.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPromoCollection.resx">
       <DependentUpon>FormPromoCollection.vb</DependentUpon>
     </EmbeddedResource>
@@ -11196,6 +11211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAssetDet.resx">
       <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetDisp.resx">
+      <DependentUpon>FormPurcAssetDisp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAssetHistory.resx">
       <DependentUpon>FormPurcAssetHistory.vb</DependentUpon>

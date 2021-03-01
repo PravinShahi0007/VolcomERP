@@ -362,6 +362,45 @@ Public Class FormBankDepositDet
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                     Next
                 End If
+            ElseIf type_rec = "4" Then
+                SLEAkunValas.Enabled = False
+                SLEUnit.EditValue = id_coa_tag
+                SLEUnit.Enabled = False
+                If FormBankDeposit.XTCPO.SelectedTabPageIndex = 6 Then
+                    For i As Integer = 0 To FormBankDeposit.GVJualAsset.RowCount - 1
+                        Dim q As String = "SELECT d.`id_purc_rec_asset_disp` AS id_report,d.coa_pend_penjualan,acc.acc_name,acc.acc_description,dd.`id_purc_rec_asset_disp_det` AS id_report_det,pa.asset_note,rmt.report_mark_type,rmt.report_mark_type_name,d.`number`,d.`created_date`,dd.`harga_jual` AS harga_jual,d.`coa_kerugian`,d.`coa_pend_penjualan`,d.`note`
+FROM tb_purc_rec_asset_disp_det dd 
+INNER JOIN tb_purc_rec_asset_disp d ON d.id_purc_rec_asset_disp=dd.id_purc_rec_asset_disp AND d.id_report_status=6 AND d.is_sell=1 AND d.is_rec_payment=2 AND d.`id_purc_rec_asset_disp`='" & FormBankDeposit.GVJualAsset.GetRowCellValue(i, "id_report").ToString & "'
+INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type='298'
+INNER JOIN tb_purc_rec_asset pa ON pa.id_purc_rec_asset=dd.id_purc_rec_asset
+INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
+                        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                        For j = 0 To dt.Rows.Count - 1
+                            'id_report,number,total,balance due
+                            Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                            newRow("id_report") = dt.Rows(j)("id_report").ToString
+                            newRow("id_report_det") = dt.Rows(j)("id_report_det").ToString
+                            newRow("report_mark_type") = dt.Rows(j)("report_mark_type").ToString
+                            newRow("report_mark_type_name") = dt.Rows(j)("report_mark_type_name").ToString
+                            newRow("number") = dt.Rows(j)("number").ToString
+                            newRow("id_comp") = "1"
+                            newRow("id_acc") = dt.Rows(j)("coa_pend_penjualan").ToString
+                            newRow("acc_name") = dt.Rows(j)("acc_name").ToString
+                            newRow("acc_description") = dt.Rows(j)("acc_description").ToString
+                            newRow("comp_number") = "000"
+                            newRow("vendor") = ""
+                            newRow("total_rec") = dt.Rows(j)("harga_jual")
+                            newRow("value") = dt.Rows(j)("harga_jual")
+                            newRow("value_bef_kurs") = 0
+                            newRow("balance_due") = dt.Rows(j)("harga_jual")
+                            newRow("note") = "Penjualan Fixed Asset " & dt.Rows(j)("asset_note").ToString
+                            newRow("id_dc") = "1"
+                            newRow("dc_code") = "D"
+                            newRow("value_view") = Math.Abs(dt.Rows(j)("harga_jual"))
+                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                        Next
+                    Next
+                End If
             End If
             calculate_amount()
         Else

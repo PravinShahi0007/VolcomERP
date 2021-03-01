@@ -19,7 +19,69 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        FormTempTable.ShowDialog()
+        'set auto cn/ror
+        'Try
+        '    Dim qcr As String = "SELECT olr.id_sales_order, olr.id_sales_pos, olr.order_number
+        '                        FROM tb_ol_store_return_order olr
+        '                        WHERE olr.is_process=2 AND olr.is_manual_sync=2 AND !ISNULL(olr.id_sales_order) AND !ISNULL(olr.id_sales_pos)
+        '                        GROUP BY olr.id_sales_order, olr.id_sales_pos
+        '                        ORDER BY olr.created_date ASC "
+        '    Dim dcr As DataTable = execute_query(qcr, -1, True, "", "", "", "")
+        '    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+        '        FormMain.SplashScreenManager1.ShowWaitForm()
+        '    End If
+        '    For c As Integer = 0 To dcr.Rows.Count - 1
+        '        FormMain.SplashScreenManager1.SetWaitFormDescription((c + 1).ToString + " of " + dcr.Rows.Count.ToString)
+        '        'cmos.insertLog(sch_input, "auto_cn_ror_" + dcr.Rows(c)("order_number").ToString)
+        '        execute_non_query_long("CALL create_ol_store_cn_ror(" + dcr.Rows(c)("id_sales_order").ToString + ", " + dcr.Rows(c)("id_sales_pos").ToString + "); ", True, "", "", "", "")
+        '    Next
+        '    FormMain.SplashScreenManager1.CloseWaitForm()
+        'Catch ex As Exception
+        '    'cmos.insertLog(sch_input, "err_cn_ror;" + ex.ToString)
+        'End Try
+        'set tag promo manual
+        'Dim id_report As String = "0"
+        'Dim ql As String = "SELECT s.id_prod_shopify, p.id_design , m.tag,lh.`log`
+        'FROM tb_ol_promo_collection_sku s
+        'INNER JOIN tb_ol_promo_collection m ON m.id_ol_promo_collection = s.id_ol_promo_collection
+        'INNER JOIN tb_m_product p ON p.id_product = s.id_product
+        'LEFT JOIN (
+        ' SELECT l.id_design, l.`log` 
+        ' FROM tb_ol_promo_collection_log l 
+        ' WHERE l.id_ol_promo_collection=" + id_report + "
+        ' GROUP BY l.id_design
+        ') lh ON lh.id_design = p.id_design
+        'WHERE s.id_ol_promo_collection=" + id_report + " 
+        'AND !ISNULL(lh.log) 
+        'AND lh.`log`<>'OK'
+        'GROUP BY s.id_prod_shopify "
+        'Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
+        '   If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+        'FormMain.SplashScreenManager1.ShowWaitForm()
+        'End If
+        'For l As Integer = 0 To dl.Rows.Count - 1
+        '    FormMain.SplashScreenManager1.SetWaitFormDescription((l + 1).ToString + " of " + dl.Rows.Count.ToString)
+        '    Dim prod_id As String = dl.Rows(l)("id_prod_shopify").ToString
+        '    Dim id_design_curr As String = dl.Rows(l)("id_design").ToString
+        '    Try
+        '        Dim s As New ClassShopifyApi()
+        '        Dim tag As String = s.get_tag(prod_id)
+        '        Dim tag_save As String = ""
+        '        If tag <> "" Then
+        '            tag_save = tag + "," + dl.Rows(l)("tag").ToString
+        '        Else
+        '            tag_save = dl.Rows(l)("tag").ToString
+        '        End If
+        '        s.set_tag(prod_id, tag_save)
+        '        execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
+        '                VALUES('" + id_report + "', 1, '" + id_design_curr + "', 'OK', NOW()); ", True, "", "", "", "")
+        '    Catch ex As Exception
+        '        execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
+        '                VALUES('" + id_report + "', 1, '" + id_design_curr + "', '" + addSlashes(ex.ToString) + "', NOW()); ", True, "", "", "", "")
+        '    End Try
+        'Next
+        'FormMain.SplashScreenManager1.CloseWaitForm()
+        'FormTempTable.ShowDialog()
         'gen stiker
         '        Dim q As String = "SELECT so.sales_order_ol_shop_number 
         'FROM tb_sales_order so 
