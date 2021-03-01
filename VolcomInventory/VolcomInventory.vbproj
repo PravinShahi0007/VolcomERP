@@ -285,6 +285,7 @@
     <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassMailManage.vb" />
     <Compile Include="ClassMailManageReturn.vb" />
+    <Compile Include="ClassMOS.vb" />
     <Compile Include="ClassOLReturnRefuse.vb" />
     <Compile Include="ClassOLStore.vb" />
     <Compile Include="ClassOLStoreRefund.vb" />
