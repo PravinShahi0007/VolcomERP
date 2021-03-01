@@ -20,6 +20,7 @@ Partial Class FormProductionRec
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionRec))
         Me.XTPListPO = New DevExpress.XtraTab.XtraTabPage()
         Me.SCCRec = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -123,6 +124,18 @@ Partial Class FormProductionRec
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCTabReceive = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPListNimbang = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.GCTimbang = New DevExpress.XtraGrid.GridControl()
+        Me.GVTimbang = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BRefreshDisp = New DevExpress.XtraEditors.SimpleButton()
+        Me.BNewTimbang = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPListPO.SuspendLayout()
         CType(Me.SCCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCRec.SuspendLayout()
@@ -164,6 +177,11 @@ Partial Class FormProductionRec
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabReceive.SuspendLayout()
+        Me.XTPListNimbang.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.GCTimbang, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVTimbang, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTPListPO
@@ -1100,7 +1118,113 @@ Partial Class FormProductionRec
         Me.XTCTabReceive.SelectedTabPage = Me.XTPListReceive
         Me.XTCTabReceive.Size = New System.Drawing.Size(1090, 494)
         Me.XTCTabReceive.TabIndex = 8
-        Me.XTCTabReceive.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListReceive, Me.XTPListPO})
+        Me.XTCTabReceive.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListReceive, Me.XTPListPO, Me.XTPListNimbang})
+        '
+        'XTPListNimbang
+        '
+        Me.XTPListNimbang.Controls.Add(Me.GCTimbang)
+        Me.XTPListNimbang.Controls.Add(Me.PanelControl3)
+        Me.XTPListNimbang.Name = "XTPListNimbang"
+        Me.XTPListNimbang.Size = New System.Drawing.Size(1084, 466)
+        Me.XTPListNimbang.Text = "Penimbangan Berat"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BNewTimbang)
+        Me.PanelControl3.Controls.Add(Me.BRefreshDisp)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1084, 46)
+        Me.PanelControl3.TabIndex = 0
+        '
+        'GCTimbang
+        '
+        Me.GCTimbang.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCTimbang.Location = New System.Drawing.Point(0, 46)
+        Me.GCTimbang.MainView = Me.GVTimbang
+        Me.GCTimbang.Name = "GCTimbang"
+        Me.GCTimbang.Size = New System.Drawing.Size(1084, 420)
+        Me.GCTimbang.TabIndex = 2
+        Me.GCTimbang.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTimbang})
+        '
+        'GVTimbang
+        '
+        Me.GVTimbang.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
+        Me.GVTimbang.GridControl = Me.GCTimbang
+        Me.GVTimbang.Name = "GVTimbang"
+        Me.GVTimbang.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVTimbang.OptionsBehavior.Editable = False
+        Me.GVTimbang.OptionsFind.AlwaysVisible = True
+        Me.GVTimbang.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "ID"
+        Me.GridColumn19.FieldName = "id_product_weight_pps"
+        Me.GridColumn19.Name = "GridColumn19"
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Number"
+        Me.GridColumn20.FieldName = "number"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Created by"
+        Me.GridColumn21.FieldName = "employee_name"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 1
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Created At"
+        Me.GridColumn22.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn22.FieldName = "created_date"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 2
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Status"
+        Me.GridColumn23.FieldName = "report_status"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 3
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Note"
+        Me.GridColumn24.FieldName = "note"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 4
+        '
+        'BRefreshDisp
+        '
+        Me.BRefreshDisp.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefreshDisp.Image = CType(resources.GetObject("BRefreshDisp.Image"), System.Drawing.Image)
+        Me.BRefreshDisp.Location = New System.Drawing.Point(969, 2)
+        Me.BRefreshDisp.Name = "BRefreshDisp"
+        Me.BRefreshDisp.Size = New System.Drawing.Size(113, 42)
+        Me.BRefreshDisp.TabIndex = 4
+        Me.BRefreshDisp.Text = "Refresh"
+        '
+        'BNewTimbang
+        '
+        Me.BNewTimbang.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BNewTimbang.Image = CType(resources.GetObject("BNewTimbang.Image"), System.Drawing.Image)
+        Me.BNewTimbang.Location = New System.Drawing.Point(879, 2)
+        Me.BNewTimbang.Name = "BNewTimbang"
+        Me.BNewTimbang.Size = New System.Drawing.Size(90, 42)
+        Me.BNewTimbang.TabIndex = 5
+        Me.BNewTimbang.Text = "New"
         '
         'FormProductionRec
         '
@@ -1158,6 +1282,11 @@ Partial Class FormProductionRec
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCTabReceive.ResumeLayout(False)
+        Me.XTPListNimbang.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.GCTimbang, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVTimbang, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1264,4 +1393,16 @@ Partial Class FormProductionRec
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents XTPListNimbang As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GCTimbang As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVTimbang As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BRefreshDisp As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BNewTimbang As DevExpress.XtraEditors.SimpleButton
 End Class
