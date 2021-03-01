@@ -447,7 +447,7 @@ Partial Class FormSalesReturn
         Me.SCCWaitingReturn.Panel2.Controls.Add(Me.GroupControlSalesReturnOrderDetail)
         Me.SCCWaitingReturn.Panel2.Text = "Panel2"
         Me.SCCWaitingReturn.Size = New System.Drawing.Size(729, 477)
-        Me.SCCWaitingReturn.SplitterPosition = 167
+        Me.SCCWaitingReturn.SplitterPosition = 239
         Me.SCCWaitingReturn.TabIndex = 0
         Me.SCCWaitingReturn.Text = "SplitContainerControl1"
         '
@@ -457,7 +457,7 @@ Partial Class FormSalesReturn
         Me.GroupControlSalesReturnOrder.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlSalesReturnOrder.Location = New System.Drawing.Point(0, 31)
         Me.GroupControlSalesReturnOrder.Name = "GroupControlSalesReturnOrder"
-        Me.GroupControlSalesReturnOrder.Size = New System.Drawing.Size(729, 136)
+        Me.GroupControlSalesReturnOrder.Size = New System.Drawing.Size(729, 208)
         Me.GroupControlSalesReturnOrder.TabIndex = 0
         Me.GroupControlSalesReturnOrder.Text = "Order"
         '
@@ -468,7 +468,7 @@ Partial Class FormSalesReturn
         Me.GCSalesReturnOrder.MainView = Me.GVSalesReturnOrder
         Me.GCSalesReturnOrder.Name = "GCSalesReturnOrder"
         Me.GCSalesReturnOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
-        Me.GCSalesReturnOrder.Size = New System.Drawing.Size(725, 114)
+        Me.GCSalesReturnOrder.Size = New System.Drawing.Size(725, 186)
         Me.GCSalesReturnOrder.TabIndex = 3
         Me.GCSalesReturnOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesReturnOrder, Me.GridView2})
         '
@@ -646,7 +646,7 @@ Partial Class FormSalesReturn
         Me.GroupControlSalesReturnOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlSalesReturnOrderDetail.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlSalesReturnOrderDetail.Name = "GroupControlSalesReturnOrderDetail"
-        Me.GroupControlSalesReturnOrderDetail.Size = New System.Drawing.Size(729, 305)
+        Me.GroupControlSalesReturnOrderDetail.Size = New System.Drawing.Size(729, 233)
         Me.GroupControlSalesReturnOrderDetail.TabIndex = 0
         Me.GroupControlSalesReturnOrderDetail.Text = "Item Detail"
         '
@@ -658,7 +658,7 @@ Partial Class FormSalesReturn
         Me.GCSalesReturnOrderDetail.MainView = Me.GVSalesReturnOrderDetail
         Me.GCSalesReturnOrderDetail.Name = "GCSalesReturnOrderDetail"
         Me.GCSalesReturnOrderDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCSalesReturnOrderDetail.Size = New System.Drawing.Size(725, 251)
+        Me.GCSalesReturnOrderDetail.Size = New System.Drawing.Size(725, 179)
         Me.GCSalesReturnOrderDetail.TabIndex = 3
         Me.GCSalesReturnOrderDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesReturnOrderDetail})
         '

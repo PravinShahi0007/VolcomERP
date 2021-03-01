@@ -21,17 +21,17 @@ Partial Class FormManualSyncCNROR
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormManualSyncCNROR))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnSync = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
         Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnSync = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_ol_store_return_order = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,78 +48,48 @@ Partial Class FormManualSyncCNROR
         Me.GridColumnsales_return_order_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_process_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmanual_sync_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.LabelControl3)
-        Me.PanelControl1.Controls.Add(Me.TxtOrderNumber)
-        Me.PanelControl1.Controls.Add(Me.SLECompGroup)
+        Me.PanelControl1.Controls.Add(Me.PanelControl2)
         Me.PanelControl1.Controls.Add(Me.BtnSync)
-        Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.BtnRefresh)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(642, 58)
+        Me.PanelControl1.Size = New System.Drawing.Size(1006, 45)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnSync
+        'LabelControl3
         '
-        Me.BtnSync.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSync.Image = CType(resources.GetObject("BtnSync.Image"), System.Drawing.Image)
-        Me.BtnSync.Location = New System.Drawing.Point(517, 2)
-        Me.BtnSync.Name = "BtnSync"
-        Me.BtnSync.Size = New System.Drawing.Size(123, 54)
-        Me.BtnSync.TabIndex = 1
-        Me.BtnSync.Text = "Check Status"
+        Me.LabelControl3.Location = New System.Drawing.Point(236, 14)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl3.TabIndex = 8905
+        Me.LabelControl3.Text = "Order No."
         '
-        'BtnRefresh
+        'TxtOrderNumber
         '
-        Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
-        Me.BtnRefresh.Location = New System.Drawing.Point(103, 2)
-        Me.BtnRefresh.Name = "BtnRefresh"
-        Me.BtnRefresh.Size = New System.Drawing.Size(101, 54)
-        Me.BtnRefresh.TabIndex = 3
-        Me.BtnRefresh.Text = "Refresh"
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(2, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(101, 54)
-        Me.BtnPrint.TabIndex = 2
-        Me.BtnPrint.Text = "Print List"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(119, 208)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(0, 13)
-        Me.LabelControl1.TabIndex = 1
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(287, 11)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(58, 13)
-        Me.LabelControl2.TabIndex = 2
-        Me.LabelControl2.Text = "Store Group"
+        Me.TxtOrderNumber.Location = New System.Drawing.Point(290, 11)
+        Me.TxtOrderNumber.Name = "TxtOrderNumber"
+        Me.TxtOrderNumber.Size = New System.Drawing.Size(149, 20)
+        Me.TxtOrderNumber.TabIndex = 8904
         '
         'SLECompGroup
         '
-        Me.SLECompGroup.Location = New System.Drawing.Point(360, 8)
+        Me.SLECompGroup.Location = New System.Drawing.Point(81, 11)
         Me.SLECompGroup.Name = "SLECompGroup"
         Me.SLECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECompGroup.Properties.ShowClearButton = False
@@ -149,28 +119,58 @@ Partial Class FormManualSyncCNROR
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
         '
-        'TxtOrderNumber
+        'BtnSync
         '
-        Me.TxtOrderNumber.Location = New System.Drawing.Point(360, 31)
-        Me.TxtOrderNumber.Name = "TxtOrderNumber"
-        Me.TxtOrderNumber.Size = New System.Drawing.Size(149, 20)
-        Me.TxtOrderNumber.TabIndex = 8904
+        Me.BtnSync.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSync.Image = CType(resources.GetObject("BtnSync.Image"), System.Drawing.Image)
+        Me.BtnSync.Location = New System.Drawing.Point(881, 2)
+        Me.BtnSync.Name = "BtnSync"
+        Me.BtnSync.Size = New System.Drawing.Size(123, 41)
+        Me.BtnSync.TabIndex = 1
+        Me.BtnSync.Text = "Check Status"
         '
-        'LabelControl3
+        'LabelControl2
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(287, 34)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(48, 13)
-        Me.LabelControl3.TabIndex = 8905
-        Me.LabelControl3.Text = "Order No."
+        Me.LabelControl2.Location = New System.Drawing.Point(8, 14)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl2.TabIndex = 2
+        Me.LabelControl2.Text = "Store Group"
+        '
+        'BtnRefresh
+        '
+        Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
+        Me.BtnRefresh.Location = New System.Drawing.Point(103, 2)
+        Me.BtnRefresh.Name = "BtnRefresh"
+        Me.BtnRefresh.Size = New System.Drawing.Size(101, 41)
+        Me.BtnRefresh.TabIndex = 3
+        Me.BtnRefresh.Text = "Refresh"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(2, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(101, 41)
+        Me.BtnPrint.TabIndex = 2
+        Me.BtnPrint.Text = "Print List"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(119, 208)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(0, 13)
+        Me.LabelControl1.TabIndex = 1
         '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 58)
+        Me.GCData.Location = New System.Drawing.Point(0, 45)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(642, 386)
+        Me.GCData.Size = New System.Drawing.Size(1006, 399)
         Me.GCData.TabIndex = 2
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -299,11 +299,24 @@ Partial Class FormManualSyncCNROR
         Me.GridColumnmanual_sync_by_name.VisibleIndex = 11
         Me.GridColumnmanual_sync_by_name.Width = 161
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.SLECompGroup)
+        Me.PanelControl2.Controls.Add(Me.LabelControl3)
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
+        Me.PanelControl2.Controls.Add(Me.TxtOrderNumber)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl2.Location = New System.Drawing.Point(435, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(446, 41)
+        Me.PanelControl2.TabIndex = 8906
+        '
         'FormManualSyncCNROR
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(642, 444)
+        Me.ClientSize = New System.Drawing.Size(1006, 444)
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.PanelControl1)
@@ -313,12 +326,14 @@ Partial Class FormManualSyncCNROR
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
+        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -352,4 +367,5 @@ Partial Class FormManualSyncCNROR
     Friend WithEvents GridColumnsales_return_order_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_process_view As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmanual_sync_by_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
 End Class

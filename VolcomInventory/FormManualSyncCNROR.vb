@@ -61,7 +61,7 @@
             If TxtOrderNumber.Text <> "" Then
                 Dim order_no As String = addSlashes(TxtOrderNumber.Text.Trim)
                 Dim id_grp As String = SLECompGroup.EditValue.ToString
-                Dim query As String = "SELECT so.id_sales_order, so.id_sales_order_ol_shop, sod.id_sales_order_det, sod.ol_store_id,sod.item_id, 
+                Dim query As String = "SELECT so.id_sales_order, so.id_sales_order_ol_shop AS `id_order`, so.sales_order_ol_shop_number AS `order_no`, sod.id_sales_order_det, sod.ol_store_id,sod.item_id, 
                 sp.id_sales_pos, spd.id_sales_pos_det 
                 FROM tb_sales_order so
                 INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
@@ -73,16 +73,23 @@
                 WHERE so.id_report_status=6 AND so.sales_order_ol_shop_number='" + order_no + "' AND c.id_comp_group='" + id_grp + "' "
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If data.Rows.Count > 0 Then
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
                     Dim sch_cek As DateTime = getTimeDB()
                     Dim sch_input As String = DateTime.Parse(sch_cek).ToString("yyyy-MM-dd HH:mm:ss")
                     Dim cmos As New ClassMOS()
                     cmos.insertLog(sch_input, "start")
-                    'zalora
+                    Dim found As Boolean = False
+                    Dim already_exist As Boolean = False
+
+                    'get status
                     If id_grp = id_zalora_grp Then
+                        'zalora get status
                         Cursor = Cursors.WaitCursor
                         Dim zalora_sleep_req_time As Integer = get_setup_field("zalora_sleep_req_time")
-                        Dim found As Boolean = False
                         For z As Integer = 0 To data.Rows.Count - 1
+                            FormMain.SplashScreenManager1.SetWaitFormDescription("Get status " + (z + 1).ToString + " of " + data.Rows.Count.ToString)
                             Try
                                 Dim za As New ClassZaloraApi()
                                 Dim dt As DataTable = za.get_status_update(data.Rows(z)("id_order").ToString, data.Rows(z)("item_id").ToString)
@@ -94,10 +101,16 @@
 
                                     'for auto cn/ror
                                     If data.Rows(z)("id_sales_pos").ToString <> "" And (dt.Rows(0)("order_status").ToString = "canceled" Or dt.Rows(0)("order_status").ToString = "failed" Or dt.Rows(0)("order_status").ToString = "returned") Then
-                                        found = True
-                                        Dim qiz As String = "INSERT INTO tb_ol_store_return_order(id_comp_group, created_date, order_number, ol_store_id, item_id, qty, id_sales_order, id_sales_order_det, id_sales_pos_det, id_sales_pos, is_manual_sync, manual_sync_by)
-                                        VALUES('" + id_grp + "', NOW(), '" + data.Rows(z)("order_no").ToString + "', '" + data.Rows(z)("ol_store_id").ToString + "', '" + data.Rows(z)("item_id").ToString + "','1','" + data.Rows(z)("id_sales_order").ToString + "', '" + data.Rows(z)("id_sales_order_det").ToString + "', '" + data.Rows(z)("id_sales_pos_det").ToString + "', '" + data.Rows(z)("id_sales_pos").ToString + "',1,'" + id_user + "'); "
-                                        execute_non_query(qiz, True, "", "", "", "")
+                                        'cek database
+                                        Dim dt_cek As DataTable = execute_query("SELECT * FROM tb_ol_store_return_order WHERE id_sales_order_det='" + data.Rows(z)("id_sales_order_det").ToString + "' ", -1, True, "", "", "", "")
+                                        If dt_cek.Rows.Count <= 0 Then
+                                            Dim qiz As String = "INSERT INTO tb_ol_store_return_order(id_comp_group, created_date, order_number, ol_store_id, item_id, qty, id_sales_order, id_sales_order_det, id_sales_pos_det, id_sales_pos, is_manual_sync, manual_sync_by)
+                                            VALUES('" + id_grp + "', NOW(), '" + data.Rows(z)("order_no").ToString + "', '" + data.Rows(z)("ol_store_id").ToString + "', '" + data.Rows(z)("item_id").ToString + "','1','" + data.Rows(z)("id_sales_order").ToString + "', '" + data.Rows(z)("id_sales_order_det").ToString + "', '" + data.Rows(z)("id_sales_pos_det").ToString + "', '" + data.Rows(z)("id_sales_pos").ToString + "',1,'" + id_user + "'); "
+                                            execute_non_query(qiz, True, "", "", "", "")
+                                            found = True
+                                        Else
+                                            already_exist = True
+                                        End If
                                     End If
                                 End If
                                 If (z + 1) Mod 30 = 0 Then
@@ -107,19 +120,40 @@
                                 cmos.insertLog(sch_input, "err_stt_zal;item:" + data.Rows(z)("item_id").ToString + ";" + ex.ToString + "")
                             End Try
                         Next
-                        If found Then
-
-                        Else
-                            stopCustom("Returned item not found")
-                        End If
                         Cursor = Cursors.Default
+                    ElseIf id_grp = id_bli_grp Then
+                        'blibli get status
                     End If
 
-                    'bli
-                    If id_grp = id_bli_grp Then
-
+                    'auto cn ror
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Checking auto CN & ROR")
+                    If found Then
+                        Try
+                            Dim qcr As String = "SELECT olr.id_sales_order, olr.id_sales_pos, olr.order_number
+                                                    FROM tb_ol_store_return_order olr
+                                                    WHERE olr.is_process=2 AND olr.is_manual_sync=1 AND olr.manual_sync_by='" + id_user + "' AND olr.order_number='" + order_no + "' AND olr.id_comp_group='" + id_grp + "' AND !ISNULL(olr.id_sales_order) AND !ISNULL(olr.id_sales_pos)
+                                                    GROUP BY olr.id_sales_order, olr.id_sales_pos
+                                                    ORDER BY olr.created_date ASC "
+                            Dim dcr As DataTable = execute_query(qcr, -1, True, "", "", "", "")
+                            For c As Integer = 0 To dcr.Rows.Count - 1
+                                FormMain.SplashScreenManager1.SetWaitFormDescription((c + 1).ToString + " of " + dcr.Rows.Count.ToString)
+                                cmos.insertLog(sch_input, "auto_cn_ror_" + dcr.Rows(c)("order_number").ToString)
+                                execute_non_query_long("CALL create_ol_store_cn_ror(" + dcr.Rows(c)("id_sales_order").ToString + ", " + dcr.Rows(c)("id_sales_pos").ToString + "); ", True, "", "", "", "")
+                            Next
+                        Catch ex As Exception
+                            cmos.insertLog(sch_input, "err_cn_ror;" + ex.ToString)
+                        End Try
+                    Else
+                        If already_exist Then
+                            stopCustom("Already exist on manual sync list")
+                        Else
+                            stopCustom("Returned/failed status not found")
+                        End If
                     End If
+                    TxtOrderNumber.Text = ""
+                    FormMain.SplashScreenManager1.CloseWaitForm()
                     cmos.insertLog(sch_input, "end")
+                    viewData()
                 Else
                     stopCustom("Order not found")
                 End If
