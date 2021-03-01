@@ -19,6 +19,26 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        'set auto cn/ror
+        'Try
+        '    Dim qcr As String = "SELECT olr.id_sales_order, olr.id_sales_pos, olr.order_number
+        '                        FROM tb_ol_store_return_order olr
+        '                        WHERE olr.is_process=2 AND olr.is_manual_sync=2 AND !ISNULL(olr.id_sales_order) AND !ISNULL(olr.id_sales_pos)
+        '                        GROUP BY olr.id_sales_order, olr.id_sales_pos
+        '                        ORDER BY olr.created_date ASC "
+        '    Dim dcr As DataTable = execute_query(qcr, -1, True, "", "", "", "")
+        '    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+        '        FormMain.SplashScreenManager1.ShowWaitForm()
+        '    End If
+        '    For c As Integer = 0 To dcr.Rows.Count - 1
+        '        FormMain.SplashScreenManager1.SetWaitFormDescription((c + 1).ToString + " of " + dcr.Rows.Count.ToString)
+        '        'cmos.insertLog(sch_input, "auto_cn_ror_" + dcr.Rows(c)("order_number").ToString)
+        '        execute_non_query_long("CALL create_ol_store_cn_ror(" + dcr.Rows(c)("id_sales_order").ToString + ", " + dcr.Rows(c)("id_sales_pos").ToString + "); ", True, "", "", "", "")
+        '    Next
+        '    FormMain.SplashScreenManager1.CloseWaitForm()
+        'Catch ex As Exception
+        '    'cmos.insertLog(sch_input, "err_cn_ror;" + ex.ToString)
+        'End Try
         'set tag promo manual
         'Dim id_report As String = "0"
         'Dim ql As String = "SELECT s.id_prod_shopify, p.id_design , m.tag,lh.`log`

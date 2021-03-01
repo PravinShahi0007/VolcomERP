@@ -83,6 +83,7 @@ WHERE ppsd.id_biaya_sewa_pps='" & id_pps & "'"
     Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BDelete.Click
         If GVItem.RowCount > 0 Then
             GVItem.DeleteSelectedRows()
+            check_but()
         End If
     End Sub
 

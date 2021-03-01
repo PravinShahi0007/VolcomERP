@@ -186,8 +186,22 @@ Partial Class FormBankDeposit
         Me.GridColumnamountpayzalora = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnCreateBBMZalora = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlZalora = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnZaloraPayoutList = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefreshZaloraPayout = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnZaloraPayoutList = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPJualAsset = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCJualAsset = New DevExpress.XtraGrid.GridControl()
+        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -245,6 +259,13 @@ Partial Class FormBankDeposit
         CType(Me.GVZalora, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlZalora, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlZalora.SuspendLayout()
+        Me.XTPJualAsset.SuspendLayout()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
+        CType(Me.GCJualAsset, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -256,7 +277,7 @@ Partial Class FormBankDeposit
         Me.XTCPO.SelectedTabPage = Me.XTPInvoice
         Me.XTCPO.Size = New System.Drawing.Size(1192, 561)
         Me.XTCPO.TabIndex = 3
-        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDeposit, Me.XTPInvoice, Me.XTPPayout, Me.XTPVA, Me.XTPVS, Me.XTPZalora})
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDeposit, Me.XTPInvoice, Me.XTPPayout, Me.XTPVA, Me.XTPVS, Me.XTPZalora, Me.XTPJualAsset})
         '
         'XTPInvoice
         '
@@ -1822,6 +1843,16 @@ Partial Class FormBankDeposit
         Me.PanelControlZalora.Size = New System.Drawing.Size(1186, 50)
         Me.PanelControlZalora.TabIndex = 0
         '
+        'BtnRefreshZaloraPayout
+        '
+        Me.BtnRefreshZaloraPayout.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefreshZaloraPayout.Image = CType(resources.GetObject("BtnRefreshZaloraPayout.Image"), System.Drawing.Image)
+        Me.BtnRefreshZaloraPayout.Location = New System.Drawing.Point(952, 2)
+        Me.BtnRefreshZaloraPayout.Name = "BtnRefreshZaloraPayout"
+        Me.BtnRefreshZaloraPayout.Size = New System.Drawing.Size(114, 46)
+        Me.BtnRefreshZaloraPayout.TabIndex = 8933
+        Me.BtnRefreshZaloraPayout.Text = "Refresh List"
+        '
         'BtnZaloraPayoutList
         '
         Me.BtnZaloraPayoutList.Dock = System.Windows.Forms.DockStyle.Right
@@ -1832,15 +1863,146 @@ Partial Class FormBankDeposit
         Me.BtnZaloraPayoutList.TabIndex = 8930
         Me.BtnZaloraPayoutList.Text = "Payout List"
         '
-        'BtnRefreshZaloraPayout
+        'XTPJualAsset
         '
-        Me.BtnRefreshZaloraPayout.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnRefreshZaloraPayout.Image = CType(resources.GetObject("BtnRefreshZaloraPayout.Image"), System.Drawing.Image)
-        Me.BtnRefreshZaloraPayout.Location = New System.Drawing.Point(952, 2)
-        Me.BtnRefreshZaloraPayout.Name = "BtnRefreshZaloraPayout"
-        Me.BtnRefreshZaloraPayout.Size = New System.Drawing.Size(114, 46)
-        Me.BtnRefreshZaloraPayout.TabIndex = 8933
-        Me.BtnRefreshZaloraPayout.Text = "Refresh List"
+        Me.XTPJualAsset.Controls.Add(Me.GCJualAsset)
+        Me.XTPJualAsset.Controls.Add(Me.SimpleButton4)
+        Me.XTPJualAsset.Controls.Add(Me.PanelControl6)
+        Me.XTPJualAsset.Name = "XTPJualAsset"
+        Me.XTPJualAsset.Size = New System.Drawing.Size(1186, 533)
+        Me.XTPJualAsset.Text = "Penjualan Asset"
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(1186, 50)
+        Me.PanelControl6.TabIndex = 1
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
+        Me.SimpleButton2.Location = New System.Drawing.Point(1070, 2)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(114, 46)
+        Me.SimpleButton2.TabIndex = 8933
+        Me.SimpleButton2.Text = "Refresh List"
+        '
+        'SimpleButton4
+        '
+        Me.SimpleButton4.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.SimpleButton4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton4.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton4.Appearance.Options.UseBackColor = True
+        Me.SimpleButton4.Appearance.Options.UseFont = True
+        Me.SimpleButton4.Appearance.Options.UseForeColor = True
+        Me.SimpleButton4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SimpleButton4.Location = New System.Drawing.Point(0, 501)
+        Me.SimpleButton4.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton4.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton4.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton4.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton4.Name = "SimpleButton4"
+        Me.SimpleButton4.Size = New System.Drawing.Size(1186, 32)
+        Me.SimpleButton4.TabIndex = 19
+        Me.SimpleButton4.Text = "Receive Payment"
+        '
+        'GCJualAsset
+        '
+        Me.GCJualAsset.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCJualAsset.Location = New System.Drawing.Point(0, 50)
+        Me.GCJualAsset.MainView = Me.GridView7
+        Me.GCJualAsset.Name = "GCJualAsset"
+        Me.GCJualAsset.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit4, Me.RepositoryItemCheckEdit5})
+        Me.GCJualAsset.Size = New System.Drawing.Size(1186, 451)
+        Me.GCJualAsset.TabIndex = 20
+        Me.GCJualAsset.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView7})
+        '
+        'GridView7
+        '
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38})
+        Me.GridView7.GridControl = Me.GCJualAsset
+        Me.GridView7.Name = "GridView7"
+        Me.GridView7.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GridView7.OptionsFind.AlwaysVisible = True
+        Me.GridView7.OptionsSelection.EnableAppearanceFocusedRow = False
+        Me.GridView7.OptionsView.ColumnAutoWidth = False
+        Me.GridView7.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn33.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn33.Caption = "*"
+        Me.GridColumn33.ColumnEdit = Me.RepositoryItemCheckEdit4
+        Me.GridColumn33.FieldName = "is_check"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 0
+        '
+        'RepositoryItemCheckEdit4
+        '
+        Me.RepositoryItemCheckEdit4.AutoHeight = False
+        Me.RepositoryItemCheckEdit4.Name = "RepositoryItemCheckEdit4"
+        Me.RepositoryItemCheckEdit4.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit4.ValueUnchecked = "no"
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "ID"
+        Me.GridColumn34.FieldName = "id_sales_pos"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Number"
+        Me.GridColumn35.FieldName = "sales_pos_number"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.OptionsColumn.AllowEdit = False
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 1
+        Me.GridColumn35.Width = 165
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Created Date"
+        Me.GridColumn36.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn36.FieldName = "sales_pos_date"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.OptionsColumn.AllowEdit = False
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 7
+        Me.GridColumn36.Width = 92
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Note"
+        Me.GridColumn37.FieldName = "sales_pos_note"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.OptionsColumn.AllowEdit = False
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 3
+        '
+        'RepositoryItemCheckEdit5
+        '
+        Me.RepositoryItemCheckEdit5.AutoHeight = False
+        Me.RepositoryItemCheckEdit5.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit5.Name = "RepositoryItemCheckEdit5"
+        Me.RepositoryItemCheckEdit5.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit5.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit5.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit5.ValueUnchecked = "No"
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Value"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 4
         '
         'FormBankDeposit
         '
@@ -1916,6 +2078,13 @@ Partial Class FormBankDeposit
         CType(Me.GVZalora, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlZalora, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlZalora.ResumeLayout(False)
+        Me.XTPJualAsset.ResumeLayout(False)
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
+        CType(Me.GCJualAsset, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2088,4 +2257,18 @@ Partial Class FormBankDeposit
     Friend WithEvents BtnRefreshVIOSPayout As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnRefreshVIOSVAcc As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnRefreshZaloraPayout As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPJualAsset As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCJualAsset As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents SimpleButton4 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
