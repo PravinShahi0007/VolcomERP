@@ -4,11 +4,12 @@
     Public id As String = "-1"
     Public id_sales_order As String = "-1"
     Dim scan_mode As String = ""
-    Dim dt As DataTable
+    Public dt As DataTable
     Dim id_report_status As String = "-1"
     Public rmt As String = "290"
     Public id_store_contact As String = "-1"
     Dim form_title As String
+    Dim is_non_fisik As String = "-1"
 
     Private Sub FormOLReturnRefuseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -151,20 +152,37 @@
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
-        TxtScannedCode.Enabled = True
-        scan_mode = "add"
-        LabelScannedCode.Appearance.ForeColor = Color.Green
-        TxtScannedCode.Properties.Appearance.ForeColor = Color.Green
-        TxtScannedCode.Focus()
+        If is_non_fisik = "1" Then
+            FormOLReturnRefuseAddNonFisik.ShowDialog()
+        Else
+            TxtScannedCode.Enabled = True
+            scan_mode = "add"
+            LabelScannedCode.Appearance.ForeColor = Color.Green
+            TxtScannedCode.Properties.Appearance.ForeColor = Color.Green
+            TxtScannedCode.Focus()
+        End If
         Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
         Cursor = Cursors.WaitCursor
-        scan_mode = "delete"
-        LabelScannedCode.Appearance.ForeColor = Color.Red
-        TxtScannedCode.Properties.Appearance.ForeColor = Color.Red
-        TxtScannedCode.Focus()
+        If is_non_fisik = "1" Then
+            If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+                Dim dtf As DataRow() = dt.Select("[code_list]='" + GVData.GetFocusedRowCellValue("scanned_code").ToString + "' AND [id_sales_order_det]='" + GVData.GetFocusedRowCellValue("id_sales_order_det").ToString + "'")
+                dtf(0)("is_used") = "2"
+
+                GVData.DeleteSelectedRows()
+                '
+                GCData.RefreshDataSource()
+                GVData.RefreshData()
+                GVData.FocusedRowHandle = GVData.RowCount - 1
+            End If
+        Else
+            scan_mode = "delete"
+            LabelScannedCode.Appearance.ForeColor = Color.Red
+            TxtScannedCode.Properties.Appearance.ForeColor = Color.Red
+            TxtScannedCode.Focus()
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -410,6 +428,22 @@
                 GVData.ActiveFilterString = ""
             End If
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEType.EditValueChanged
+        Cursor = Cursors.WaitCursor
+        Dim id_type As String = "-1"
+        Try
+            id_type = SLEType.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        Dim qry As String = "SELECT rt.is_non_fisik FROM tb_lookup_refuse_type rt WHERE rt.id_refuse_type='" + id_type + "' "
+        is_non_fisik = execute_query(qry, 0, True, "", "", "", "")
+        TxtScannedCode.Text = ""
+        TxtScannedCode.Enabled = False
+        viewDetail()
+        viewCollectionCode()
         Cursor = Cursors.Default
     End Sub
 End Class

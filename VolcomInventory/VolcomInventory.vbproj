@@ -3108,6 +3108,12 @@
     <Compile Include="FormOLReturnRefuse.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLReturnRefuseAddNonFisik.Designer.vb">
+      <DependentUpon>FormOLReturnRefuseAddNonFisik.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLReturnRefuseAddNonFisik.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLReturnRefuseDet.Designer.vb">
       <DependentUpon>FormOLReturnRefuseDet.vb</DependentUpon>
     </Compile>
@@ -10827,6 +10833,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLReturnRefuse.resx">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLReturnRefuseAddNonFisik.resx">
+      <DependentUpon>FormOLReturnRefuseAddNonFisik.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLReturnRefuseDet.resx">
       <DependentUpon>FormOLReturnRefuseDet.vb</DependentUpon>
