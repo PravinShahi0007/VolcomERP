@@ -438,6 +438,9 @@
         ElseIf report_mark_type = "298" Then
             ' Fixed Asset drop / sell
             FormPurcAssetDisp.Close()
+        ElseIf report_mark_type = "299" Then
+            ' Product Weight
+            FormProductWeight.Close()
         End If
     End Sub
     Sub show()
@@ -1449,6 +1452,11 @@ GROUP BY rec.`id_prod_order`"
             FormPurcAssetDisp.id_trans = id_report
             FormPurcAssetDisp.is_view = "1"
             FormPurcAssetDisp.ShowDialog()
+        ElseIf report_mark_type = "299" Then
+            'Product Weight
+            FormProductWeight.id_trans = id_report
+            FormProductWeight.is_view = "1"
+            FormProductWeight.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2590,6 +2598,12 @@ GROUP BY rec.`id_prod_order`"
             ' Fixed Asset drop / sell
             table_name = "tb_purc_rec_asset_disp"
             field_id = "id_purc_rec_asset_disp"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "299" Then
+            ' Product weight
+            table_name = "tb_product_weight_pps"
+            field_id = "id_product_weight_pps"
             field_number = "number"
             field_date = "created_date"
         Else

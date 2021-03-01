@@ -38,6 +38,8 @@
     End Sub
 
     Private Sub FormBankDeposit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_unit()
+
         Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
         DEFromList.EditValue = dt_now.Rows(0)("tgl")
         DEUntilList.EditValue = dt_now.Rows(0)("tgl")
@@ -617,5 +619,54 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
 
     Private Sub BtnRefreshZaloraPayout_Click(sender As Object, e As EventArgs) Handles BtnRefreshZaloraPayout.Click
         view_zalora_payout()
+    End Sub
+
+    Private Sub BViewListPenjAsset_Click(sender As Object, e As EventArgs) Handles BViewListPenjAsset.Click
+        load_penj_asset()
+    End Sub
+
+    Sub load_penj_asset()
+        Dim q As String = "SELECT 'no' AS is_check,d.`id_purc_rec_asset_disp` AS id_report,'298' AS report_mark_type,d.`number`,d.`created_date`,SUM(dd.`harga_jual`) AS harga_jual,d.`coa_kerugian`,d.`coa_pend_penjualan`,d.`note`,IFNULL(recd.`id_rec_payment`,0) AS id_rec_payment
+FROM tb_purc_rec_asset_disp_det dd 
+INNER JOIN tb_purc_rec_asset_disp d ON d.id_purc_rec_asset_disp=dd.id_purc_rec_asset_disp AND d.id_report_status=6 AND d.is_sell=1 AND d.is_rec_payment=2 AND d.id_coa_tag='" & SLEUnitJualAsset.EditValue.ToString & "'
+LEFT JOIN tb_rec_payment_det recd ON recd.`id_report`=d.`id_purc_rec_asset_disp` AND recd.`report_mark_type`='298'
+GROUP BY d.`id_purc_rec_asset_disp`"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCJualAsset.DataSource = dt
+        GVJualAsset.BestFitColumns()
+    End Sub
+
+    Private Sub BRecPayJualAsset_Click(sender As Object, e As EventArgs) Handles BRecPayJualAsset.Click
+        GVSales.ActiveFilterString = "[is_check]='yes'"
+        If GVJualAsset.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            FormBankDepositDet.id_coa_tag = SLEUnitJualAsset.EditValue.ToString
+            If SLEUnitJualAsset.EditValue.ToString = "1" Then
+                FormBankDepositDet.id_coa_type = "1"
+            Else
+                FormBankDepositDet.id_coa_type = "2"
+            End If
+            FormBankDepositDet.type_rec = "4"
+            FormBankDepositDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+        GVSales.ActiveFilterString = ""
+    End Sub
+
+    Private Sub SLEUnitJualAsset_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnitJualAsset.EditValueChanged
+        For i As Integer = GVJualAsset.RowCount - 1 To 0 Step -1
+            GVJualAsset.DeleteRow(i)
+        Next
+    End Sub
+
+    Sub load_unit()
+        Dim query As String = "SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
+        'query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
+        'UNION ALL
+        'SELECT ad.`id_comp`,c.`comp_number`,c.`comp_name` FROM `tb_a_acc_trans_det` ad
+        'INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
+        'GROUP BY ad.id_comp"
+        viewSearchLookupQuery(SLEUnitJualAsset, query, "id_coa_tag", "tag_description", "id_coa_tag")
+        SLEUnitJualAsset.EditValue = "1"
     End Sub
 End Class

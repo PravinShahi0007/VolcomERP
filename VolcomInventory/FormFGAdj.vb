@@ -5,8 +5,10 @@
 
     'Form
     Private Sub FormFGAdj_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        viewAdjIn()
-        viewAdjOut()
+        DEInFrom.EditValue = Now
+        DEInTo.EditValue = Now
+        DEOutFrom.EditValue = Now
+        DEOutTo.EditValue = Now
     End Sub
     Private Sub FormFGAdj_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
@@ -19,6 +21,9 @@
 
     'View Data
     Sub viewAdjIn()
+        Dim date_from As String = Date.Parse(DEInFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim date_to As String = Date.Parse(DEInTo.EditValue.ToString).ToString("yyyy-MM-dd")
+
         Dim query As String = ""
         query += "SELECT *, DATE_FORMAT(a.adj_in_fg_date, '%d %M %Y') AS adj_in_fg_datex, SUM(adj_in_fg_det_qty) AS `total_qty`, 
         GROUP_CONCAT(DISTINCT comp.comp_number) AS `account` "
@@ -29,14 +34,17 @@
         INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator
         INNER JOIN tb_m_comp comp ON comp.id_comp = loc.id_comp "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status = b.id_report_status "
-        query += "INNER JOIN tb_lookup_currency c ON a.id_currency = c.id_currency  
-        GROUP BY a.id_adj_in_fg "
+        query += "INNER JOIN tb_lookup_currency c ON a.id_currency = c.id_currency  "
+        query += "WHERE a.adj_in_fg_date BETWEEN '" + date_from + "' AND '" + date_to + "'"
+        query += "GROUP BY a.id_adj_in_fg "
         query += "ORDER BY a.id_adj_in_fg DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCAdjIn.DataSource = data
         check_menu()
     End Sub
     Sub viewAdjOut()
+        Dim date_from As String = Date.Parse(DEInFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim date_to As String = Date.Parse(DEInTo.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim query As String = ""
         query += "SELECT *, DATE_FORMAT(a.adj_out_fg_date, '%d %M %Y') AS adj_out_fg_datex,
         SUM(adj_out_fg_det_qty) AS `total_qty`, 
@@ -48,8 +56,9 @@
         INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator
         INNER JOIN tb_m_comp comp ON comp.id_comp = loc.id_comp "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status = b.id_report_status "
-        query += "INNER JOIN tb_lookup_currency c ON a.id_currency = c.id_currency  
-        GROUP BY a.id_adj_out_fg  "
+        query += "INNER JOIN tb_lookup_currency c ON a.id_currency = c.id_currency  "
+        query += "WHERE a.adj_out_fg_date BETWEEN '" + date_from + "' AND '" + date_to + "'"
+        query += "GROUP BY a.id_adj_out_fg  "
         query += "ORDER BY a.id_adj_out_fg DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCAdjOut.DataSource = data
@@ -110,5 +119,13 @@
         FormFGAdjReport.is_out = False
         FormFGAdjReport.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBInView_Click(sender As Object, e As EventArgs) Handles SBInView.Click
+        viewAdjIn()
+    End Sub
+
+    Private Sub SBOutView_Click(sender As Object, e As EventArgs) Handles SBOutView.Click
+        viewAdjOut()
     End Sub
 End Class
