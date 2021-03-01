@@ -123,6 +123,47 @@
                         Cursor = Cursors.Default
                     ElseIf id_grp = id_bli_grp Then
                         'blibli get status
+                        Cursor = Cursors.WaitCursor
+                        For b As Integer = 0 To data.Rows.Count - 1
+                            Try
+                                Dim bli As New ClassBliBliApi()
+                                Dim dt As DataTable = bli.get_status(data.Rows(b)("order_no").ToString, data.Rows(b)("ol_store_id").ToString)
+                                If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+                                    Dim id_sales_order_det As String = data.Rows(b)("id_sales_order_det").ToString
+                                    Dim status As String = dt.Rows(0)("order_status").ToString
+                                    Dim status_date As String = DateTime.Parse(dt.Rows(0)("order_status_date").ToString).ToString("yyyy-MM-dd HH:mm")
+                                    cmos.insertStatusOrder(id_sales_order_det, status, status_date)
+
+                                    'for auto cn/ror
+                                    If data.Rows(b)("id_sales_pos").ToString <> "" And (dt.Rows(0)("order_status").ToString = "cancelled" Or dt.Rows(0)("order_status").ToString = "failed") Then
+                                        Dim dt_cek As DataTable = execute_query("SELECT * FROM tb_ol_store_return_order WHERE id_sales_order_det='" + data.Rows(b)("id_sales_order_det").ToString + "' ", -1, True, "", "", "", "")
+                                        If dt_cek.Rows.Count <= 0 Then
+                                            Dim qib As String = "INSERT INTO tb_ol_store_return_order(id_comp_group, created_date, order_number, ol_store_id, item_id, qty, id_sales_order, id_sales_order_det, id_sales_pos_det, id_sales_pos, is_manual_sync, manual_sync_by)
+                                            VALUES('" + id_grp + "', NOW(), '" + data.Rows(b)("order_no").ToString + "', '" + data.Rows(b)("ol_store_id").ToString + "', '" + data.Rows(b)("item_id").ToString + "','1','" + data.Rows(b)("id_sales_order").ToString + "', '" + data.Rows(b)("id_sales_order_det").ToString + "', '" + data.Rows(b)("id_sales_pos_det").ToString + "', '" + data.Rows(b)("id_sales_pos").ToString + "',1,'" + id_user + "'); "
+                                            execute_non_query(qib, True, "", "", "", "")
+                                            found = True
+                                        Else
+                                            already_exist = True
+                                        End If
+                                    End If
+
+                                    'ror
+                                    If Not found Then
+                                        bli.get_ror_list_spesific(data.Rows(b)("ol_store_id").ToString)
+                                        Dim dt_cek As DataTable = execute_query("SELECT * FROM tb_ol_store_return_order WHERE id_sales_order_det='" + data.Rows(b)("id_sales_order_det").ToString + "' ", -1, True, "", "", "", "")
+                                        If dt_cek.Rows.Count <= 0 Then
+                                            bli.set_to_returned_spesific(data.Rows(b)("ol_store_id").ToString, 1)
+                                            found = True
+                                        Else
+                                            already_exist = True
+                                        End If
+                                    End If
+                                End If
+                            Catch ex As Exception
+                                cmos.insertLog(sch_input, "err_stt_bli;ol_id:" + data.Rows(b)("ol_store_id").ToString + ";" + ex.ToString + "")
+                            End Try
+                        Next
+                        Cursor = Cursors.Default
                     End If
 
                     'auto cn ror
