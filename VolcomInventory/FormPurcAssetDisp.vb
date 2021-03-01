@@ -189,14 +189,38 @@ WHERE dd.id_purc_rec_asset_disp='" & id_trans & "'"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         'check duplicate
         Dim is_dupe As Boolean = False
-        If GVItem.RowCount > 2 Then
+
+        For i As Integer = 0 To GVItem.RowCount - 1
+            Dim qc As String = "SELECT * FROM tb_purc_rec_asset_disp_det dd 
+INNER JOIN tb_purc_rec_asset_disp d ON d.id_purc_rec_asset_disp=dd.id_purc_rec_asset_disp AND d.id_report_status!=5
+WHERE dd.id_purc_rec_asset='" & GVItem.GetRowCellValue(i, "id_purc_rec_asset").ToString & "'"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                is_dupe = True
+                Exit For
+            End If
+        Next
+
+        If GVItem.RowCount > 2 And Not is_dupe Then
             For i As Integer = 0 To GVItem.RowCount - 1
                 For j = i To GVItem.RowCount - 1
                     If GVItem.GetRowCellValue(i, "id_purc_rec_asset").ToString = GVItem.GetRowCellValue(j, "id_purc_rec_asset").ToString And Not i = j Then
                         Exit For
                     End If
                 Next
+
                 If is_dupe Then
+                    Exit For
+                End If
+            Next
+        End If
+
+        '
+        Dim is_ok_harga_jual As Boolean = True
+        If is_sell Then
+            For i As Integer = 0 To GVItem.RowCount - 1
+                If GVItem.GetRowCellValue(i, "harga_jual") <= 0 Then
+                    is_ok_harga_jual = False
                     Exit For
                 End If
             Next
@@ -205,7 +229,9 @@ WHERE dd.id_purc_rec_asset_disp='" & id_trans & "'"
         If GVItem.RowCount = 0 Then
             warningCustom("Please insert item first.")
         ElseIf is_dupe Then
-            warningCustom("Item duplicate.")
+            warningCustom("Item already proposed.")
+        ElseIf Not is_ok_harga_jual Then
+            warningCustom("Pastikan harga jual terinput dengan benar.")
         Else
             If id_trans = "-1" Then 'new
                 Dim coa_pend_penjualan As String = "NULL"
