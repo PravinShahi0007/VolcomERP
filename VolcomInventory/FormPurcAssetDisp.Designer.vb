@@ -452,6 +452,7 @@ Partial Class FormPurcAssetDisp
         Me.BtnPrint.TabIndex = 22
         Me.BtnPrint.TabStop = False
         Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Visible = False
         '
         'BtnCancel
         '
@@ -488,6 +489,7 @@ Partial Class FormPurcAssetDisp
         Me.BMark.TabIndex = 20
         Me.BMark.TabStop = False
         Me.BMark.Text = "Mark"
+        Me.BMark.Visible = False
         '
         'XTCDep
         '

@@ -28,6 +28,7 @@
             '
             TENumber.Text = "[auto number]"
             TECreatedBy.Text = "[auto]"
+            '
         Else
             'edit
             BMark.Visible = True
@@ -152,11 +153,13 @@ WHERE dd.id_purc_rec_asset_disp='" & id_trans & "'"
             formName = "Penjualan Fixed Asset"
             LCOAPendPenjualan.Visible = True
             SLECOAPendPenjualan.Visible = True
+            GridColumnHargaJual.Visible = True
         Else
             TEType.Text = "Penghapusan Fixed Asset"
             formName = "Penghapusan Fixed Asset"
             LCOAPendPenjualan.Visible = False
             SLECOAPendPenjualan.Visible = False
+            GridColumnHargaJual.Visible = False
         End If
     End Sub
 
