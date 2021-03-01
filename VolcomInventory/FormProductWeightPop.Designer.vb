@@ -26,8 +26,11 @@ Partial Class FormProductWeightPop
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(860, 526)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormProductWeightPop"
-        Me.Text = "FormProductWeightPop"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Pick Product"
         Me.ResumeLayout(False)
 
     End Sub

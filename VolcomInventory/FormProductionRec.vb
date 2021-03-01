@@ -522,6 +522,6 @@ WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a
     End Sub
 
     Private Sub BNewTimbang_Click(sender As Object, e As EventArgs) Handles BNewTimbang.Click
-
+        FormProductWeight.ShowDialog()
     End Sub
 End Class
