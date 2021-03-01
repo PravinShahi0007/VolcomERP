@@ -57,7 +57,7 @@
         Dim is_need_sync As String = execute_query("CALL view_ol_store_status_check_sync();", 0, True, "", "", "", "")
         If is_need_sync = "1" Then
             Dim id_zalora_grp As String = get_setup_field("zalora_comp_group")
-            Dim id_bli_grp As String = get_setup_field("blilbi_comp_group")
+            Dim id_bli_grp As String = get_setup_field("blibli_comp_group")
             If TxtOrderNumber.Text <> "" Then
                 Dim order_no As String = addSlashes(TxtOrderNumber.Text.Trim)
                 Dim id_grp As String = SLECompGroup.EditValue.ToString
