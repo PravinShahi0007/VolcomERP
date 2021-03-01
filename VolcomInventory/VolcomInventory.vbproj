@@ -3767,6 +3767,12 @@
     <Compile Include="FormProductWeight.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductWeightPop.Designer.vb">
+      <DependentUpon>FormProductWeightPop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductWeightPop.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPromoCollection.Designer.vb">
       <DependentUpon>FormPromoCollection.vb</DependentUpon>
     </Compile>
@@ -11154,6 +11160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductWeight.resx">
       <DependentUpon>FormProductWeight.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductWeightPop.resx">
+      <DependentUpon>FormProductWeightPop.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoCollection.resx">
       <DependentUpon>FormPromoCollection.vb</DependentUpon>
