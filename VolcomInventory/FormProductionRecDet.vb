@@ -236,7 +236,22 @@ Public Class FormProductionRecDet
         If id_receive = "-1" Then
             Dim query = "CALL view_prod_order_rec_det('" + id_receive + "', '0')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCListPurchase.DataSource = data
+            If data.Rows.Count > 0 Then
+                Dim is_ok_weight As Boolean = True
+                For i = 0 To data.Rows.Count - 1
+                    If data.Rows(i)("qc_weight") <= 0 Then
+                        is_ok_weight = False
+                        Exit For
+                    End If
+                Next
+
+                If is_ok_weight Then
+                    GCListPurchase.DataSource = data
+                Else
+                    warningCustom("Berat belum terinput, mohon input berat terlebih dahulu.")
+                    Close()
+                End If
+            End If
         Else
             Dim query = "CALL view_prod_order_rec_det('" + id_receive + "', '0')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
