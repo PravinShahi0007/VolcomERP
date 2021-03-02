@@ -49,6 +49,7 @@ Partial Class FormPayoutZaloraManualReconSingle
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddReference = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -308,6 +309,7 @@ Partial Class FormPayoutZaloraManualReconSingle
         '
         Me.PanelControl3.Controls.Add(Me.BtnDelete)
         Me.PanelControl3.Controls.Add(Me.BtnAdd)
+        Me.PanelControl3.Controls.Add(Me.BtnAddReference)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(2, 20)
         Me.PanelControl3.Name = "PanelControl3"
@@ -318,7 +320,7 @@ Partial Class FormPayoutZaloraManualReconSingle
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(278, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(167, 2)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(71, 30)
         Me.BtnDelete.TabIndex = 1
@@ -328,11 +330,21 @@ Partial Class FormPayoutZaloraManualReconSingle
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(349, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(238, 2)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(63, 30)
         Me.BtnAdd.TabIndex = 0
         Me.BtnAdd.Text = "Add"
+        '
+        'BtnAddReference
+        '
+        Me.BtnAddReference.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddReference.Image = CType(resources.GetObject("BtnAddReference.Image"), System.Drawing.Image)
+        Me.BtnAddReference.Location = New System.Drawing.Point(301, 2)
+        Me.BtnAddReference.Name = "BtnAddReference"
+        Me.BtnAddReference.Size = New System.Drawing.Size(111, 30)
+        Me.BtnAddReference.TabIndex = 2
+        Me.BtnAddReference.Text = "Add Reference"
         '
         'FormPayoutZaloraManualReconSingle
         '
@@ -401,4 +413,5 @@ Partial Class FormPayoutZaloraManualReconSingle
     Friend WithEvents GridColumnerp_amount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnacc_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnacc_description As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnAddReference As DevExpress.XtraEditors.SimpleButton
 End Class

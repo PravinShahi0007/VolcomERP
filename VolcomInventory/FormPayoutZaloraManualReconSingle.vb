@@ -126,4 +126,10 @@ WHERE d.id_payout_zalora_det=" + id_det + " "
     Private Sub TxtAmount_EditValueChanged(sender As Object, e As EventArgs) Handles TxtAmount.EditValueChanged
         getTotal()
     End Sub
+
+    Private Sub BtnAddReference_Click(sender As Object, e As EventArgs) Handles BtnAddReference.Click
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
+    End Sub
 End Class
