@@ -73,6 +73,9 @@ Partial Class FormProductWeight
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,6 +101,9 @@ Partial Class FormProductWeight
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -123,6 +129,7 @@ Partial Class FormProductWeight
         Me.BtnPrint.TabIndex = 22
         Me.BtnPrint.TabStop = False
         Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Visible = False
         '
         'BtnCancel
         '
@@ -159,6 +166,7 @@ Partial Class FormProductWeight
         Me.BMark.TabIndex = 20
         Me.BMark.TabStop = False
         Me.BMark.Text = "Mark"
+        Me.BMark.Visible = False
         '
         'PanelControl2
         '
@@ -293,7 +301,7 @@ Partial Class FormProductWeight
         Me.GCItem.MainView = Me.GVItem
         Me.GCItem.Name = "GCItem"
         Me.GCItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEDepCoa, Me.RIDEReffDate, Me.RISLEPrepaid, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RISLEProduct, Me.RepositoryItemTextEdit3})
-        Me.GCItem.Size = New System.Drawing.Size(1046, 351)
+        Me.GCItem.Size = New System.Drawing.Size(1046, 275)
         Me.GCItem.TabIndex = 145
         Me.GCItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItem})
         '
@@ -581,12 +589,38 @@ Partial Class FormProductWeight
         Me.GridColumn30.FieldName = "acc_dep_accum_name"
         Me.GridColumn30.Name = "GridColumn30"
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.MENote)
+        Me.PanelControl3.Controls.Add(Me.LabelControl4)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 427)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1046, 76)
+        Me.PanelControl3.TabIndex = 146
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(56, 12)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(706, 53)
+        Me.MENote.TabIndex = 1
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(16, 14)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl4.TabIndex = 0
+        Me.LabelControl4.Text = "Note"
+        '
         'FormProductWeight
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1046, 546)
         Me.Controls.Add(Me.GCItem)
+        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PCAddDel)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -622,6 +656,10 @@ Partial Class FormProductWeight
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -679,4 +717,7 @@ Partial Class FormProductWeight
     Friend WithEvents TEFGPONumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LFGPONumber As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEFGPONumbers As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
 End Class

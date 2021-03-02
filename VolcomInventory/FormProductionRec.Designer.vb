@@ -125,7 +125,6 @@ Partial Class FormProductionRec
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCTabReceive = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListNimbang = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.GCTimbang = New DevExpress.XtraGrid.GridControl()
         Me.GVTimbang = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -134,8 +133,10 @@ Partial Class FormProductionRec
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BRefreshDisp = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BNewTimbang = New DevExpress.XtraEditors.SimpleButton()
+        Me.BRefreshDisp = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPListPO.SuspendLayout()
         CType(Me.SCCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCRec.SuspendLayout()
@@ -178,10 +179,10 @@ Partial Class FormProductionRec
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabReceive.SuspendLayout()
         Me.XTPListNimbang.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
         CType(Me.GCTimbang, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVTimbang, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTPListPO
@@ -516,7 +517,7 @@ Partial Class FormProductionRec
         '
         'GVListProd
         '
-        Me.GVListProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.GridColumnQtyCreated, Me.GridColumnQtyRemaining, Me.ColNote})
+        Me.GVListProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.GridColumnQtyCreated, Me.GridColumnQtyRemaining, Me.ColNote, Me.GridColumn16})
         Me.GVListProd.GridControl = Me.GCListProd
         Me.GVListProd.Name = "GVListProd"
         Me.GVListProd.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -615,7 +616,7 @@ Partial Class FormProductionRec
         Me.ColQtyRec.Name = "ColQtyRec"
         Me.ColQtyRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", "{0:f2}")})
         Me.ColQtyRec.Visible = True
-        Me.ColQtyRec.VisibleIndex = 4
+        Me.ColQtyRec.VisibleIndex = 5
         Me.ColQtyRec.Width = 80
         '
         'RepositoryItemSpinEdit1
@@ -639,7 +640,7 @@ Partial Class FormProductionRec
         Me.GridColumnQtyCreated.Name = "GridColumnQtyCreated"
         Me.GridColumnQtyCreated.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_qty", "{0:f2}")})
         Me.GridColumnQtyCreated.Visible = True
-        Me.GridColumnQtyCreated.VisibleIndex = 5
+        Me.GridColumnQtyCreated.VisibleIndex = 6
         Me.GridColumnQtyCreated.Width = 92
         '
         'GridColumnQtyRemaining
@@ -651,7 +652,7 @@ Partial Class FormProductionRec
         Me.GridColumnQtyRemaining.Name = "GridColumnQtyRemaining"
         Me.GridColumnQtyRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_remaining_qty", "{0:f2}")})
         Me.GridColumnQtyRemaining.Visible = True
-        Me.GridColumnQtyRemaining.VisibleIndex = 6
+        Me.GridColumnQtyRemaining.VisibleIndex = 7
         Me.GridColumnQtyRemaining.Width = 82
         '
         'ColNote
@@ -660,7 +661,7 @@ Partial Class FormProductionRec
         Me.ColNote.FieldName = "prod_order_det_note"
         Me.ColNote.Name = "ColNote"
         Me.ColNote.Visible = True
-        Me.ColNote.VisibleIndex = 7
+        Me.ColNote.VisibleIndex = 8
         Me.ColNote.Width = 136
         '
         'RepositoryItemCheckEdit1
@@ -1128,16 +1129,6 @@ Partial Class FormProductionRec
         Me.XTPListNimbang.Size = New System.Drawing.Size(1084, 466)
         Me.XTPListNimbang.Text = "Penimbangan Berat"
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.BNewTimbang)
-        Me.PanelControl3.Controls.Add(Me.BRefreshDisp)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1084, 46)
-        Me.PanelControl3.TabIndex = 0
-        '
         'GCTimbang
         '
         Me.GCTimbang.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1206,15 +1197,15 @@ Partial Class FormProductionRec
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 4
         '
-        'BRefreshDisp
+        'PanelControl3
         '
-        Me.BRefreshDisp.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRefreshDisp.Image = CType(resources.GetObject("BRefreshDisp.Image"), System.Drawing.Image)
-        Me.BRefreshDisp.Location = New System.Drawing.Point(969, 2)
-        Me.BRefreshDisp.Name = "BRefreshDisp"
-        Me.BRefreshDisp.Size = New System.Drawing.Size(113, 42)
-        Me.BRefreshDisp.TabIndex = 4
-        Me.BRefreshDisp.Text = "Refresh"
+        Me.PanelControl3.Controls.Add(Me.BNewTimbang)
+        Me.PanelControl3.Controls.Add(Me.BRefreshDisp)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1084, 46)
+        Me.PanelControl3.TabIndex = 0
         '
         'BNewTimbang
         '
@@ -1225,6 +1216,30 @@ Partial Class FormProductionRec
         Me.BNewTimbang.Size = New System.Drawing.Size(90, 42)
         Me.BNewTimbang.TabIndex = 5
         Me.BNewTimbang.Text = "New"
+        '
+        'BRefreshDisp
+        '
+        Me.BRefreshDisp.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefreshDisp.Image = CType(resources.GetObject("BRefreshDisp.Image"), System.Drawing.Image)
+        Me.BRefreshDisp.Location = New System.Drawing.Point(969, 2)
+        Me.BRefreshDisp.Name = "BRefreshDisp"
+        Me.BRefreshDisp.Size = New System.Drawing.Size(113, 42)
+        Me.BRefreshDisp.TabIndex = 4
+        Me.BRefreshDisp.Text = "Refresh"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn16.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn16.Caption = "Weight (gram)"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "qc_weight"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 4
         '
         'FormProductionRec
         '
@@ -1283,10 +1298,10 @@ Partial Class FormProductionRec
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCTabReceive.ResumeLayout(False)
         Me.XTPListNimbang.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
         CType(Me.GCTimbang, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVTimbang, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1405,4 +1420,5 @@ Partial Class FormProductionRec
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BRefreshDisp As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BNewTimbang As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
