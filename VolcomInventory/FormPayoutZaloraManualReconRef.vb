@@ -1,4 +1,5 @@
 ﻿Public Class FormPayoutZaloraManualReconRef
+    Public id_payout_zalora_det As String = "-1"
     Private Sub FormPayoutZaloraManualReconRef_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewData()
     End Sub
@@ -98,7 +99,7 @@
                 If c > 0 Then
                     id_ref_det_cek += ","
                 End If
-                id_ref_det_cek += "AND "
+                id_ref_det_cek += GVData.GetRowCellValue(c, "id_ref_det").ToString
             Next
             Dim qcek As String = "SELECT * 
             FROM tb_payout_zalora_det_addition a
@@ -106,16 +107,32 @@
             WHERE a.id_ref_det IN (" + id_ref_det_cek + ") AND a.rmt_ref IN (48,118, 292) "
             Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
             If dcek.Rows.Count > 0 Then
-
+                stopCustom("Some items already used")
             Else
-
+                Dim qins As String = "INSERT INTO tb_payout_zalora_det_addition(id_payout_zalora_det, erp_amount, id_acc, is_use_ref, id_ref, id_ref_det, rmt_ref) VALUES "
+                For i As Integer = 0 To GVData.RowCount.ToString - 1
+                    If i > 0 Then
+                        qins += ","
+                    End If
+                    qins += "('" + id_payout_zalora_det + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amo").ToString) + "','" + GVData.GetRowCellValue(i, "id_acc").ToString + "', 1, '" + GVData.GetRowCellValue(i, "id_ref").ToString + "', '" + GVData.GetRowCellValue(i, "id_ref_det").ToString + "', '" + GVData.GetRowCellValue(i, "rmt_ref").ToString + "') "
+                Next
+                If GVData.RowCount.ToString > 0 Then
+                    execute_non_query(qins, True, "", "", "", "")
+                End If
+                FormPayoutZaloraManualReconSingle.viewDetail()
+                FormPayoutZaloraManualReconSingle.getTotal()
+                viewData()
             End If
-
-
             Cursor = Cursors.Default
         Else
             warningCustom("Please select reference")
         End If
         GVData.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
+        If TxtOrderNo.Text <> "" Then
+            viewData()
+        End If
     End Sub
 End Class
