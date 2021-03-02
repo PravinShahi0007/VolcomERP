@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormSalesWeekly
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormSalesWeekly
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
@@ -63,6 +63,7 @@ Partial Class FormSalesWeekly
         Me.GridColumnsales_pos_discount_value = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_pos_potongan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstore_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_pos_tax = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolTipControllerNew = New DevExpress.Utils.ToolTipController(Me.components)
         Me.XTCPOS = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDailySales = New DevExpress.XtraTab.XtraTabPage()
@@ -146,7 +147,18 @@ Partial Class FormSalesWeekly
         Me.GroupControlMonthlySales = New DevExpress.XtraEditors.GroupControl()
         Me.GCSalesPOSMonthly = New DevExpress.XtraGrid.GridControl()
         Me.BGVSalesPOSMonthly = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridColumnsales_pos_tax = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCInvoiceWeek = New DevExpress.XtraGrid.GridControl()
+        Me.GVInvoiceWeek = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
+        Me.DEInvoiceTo = New DevExpress.XtraEditors.DateEdit()
+        Me.SBInvoiceExportExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.SBInvoiceTo = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEInvoiceFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -224,6 +236,18 @@ Partial Class FormSalesWeekly
         Me.GroupControlMonthlySales.SuspendLayout()
         CType(Me.GCSalesPOSMonthly, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVSalesPOSMonthly, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPInvoice.SuspendLayout()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
+        CType(Me.GCInvoiceWeek, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVInvoiceWeek, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl4.SuspendLayout()
+        CType(Me.DEInvoiceTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEInvoiceTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEInvoiceFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEInvoiceFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GVSalesPOSDet
@@ -641,6 +665,16 @@ Partial Class FormSalesWeekly
         Me.GridColumnstore_group.Visible = True
         Me.GridColumnstore_group.VisibleIndex = 3
         '
+        'GridColumnsales_pos_tax
+        '
+        Me.GridColumnsales_pos_tax.Caption = "TAX"
+        Me.GridColumnsales_pos_tax.DisplayFormat.FormatString = "N2"
+        Me.GridColumnsales_pos_tax.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnsales_pos_tax.FieldName = "sales_pos_tax"
+        Me.GridColumnsales_pos_tax.Name = "GridColumnsales_pos_tax"
+        Me.GridColumnsales_pos_tax.Visible = True
+        Me.GridColumnsales_pos_tax.VisibleIndex = 14
+        '
         'ToolTipControllerNew
         '
         '
@@ -653,7 +687,7 @@ Partial Class FormSalesWeekly
         Me.XTCPOS.SelectedTabPage = Me.XTPDailySales
         Me.XTCPOS.Size = New System.Drawing.Size(1138, 514)
         Me.XTCPOS.TabIndex = 4
-        Me.XTCPOS.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDailySales, Me.XTPWeeklySales, Me.XTPMonthlySales})
+        Me.XTCPOS.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDailySales, Me.XTPWeeklySales, Me.XTPMonthlySales, Me.XTPInvoice})
         '
         'XTPDailySales
         '
@@ -1444,15 +1478,125 @@ Partial Class FormSalesWeekly
         Me.BGVSalesPOSMonthly.OptionsView.ShowFooter = True
         Me.BGVSalesPOSMonthly.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnsales_pos_tax
+        'XTPInvoice
         '
-        Me.GridColumnsales_pos_tax.Caption = "TAX"
-        Me.GridColumnsales_pos_tax.DisplayFormat.FormatString = "N2"
-        Me.GridColumnsales_pos_tax.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnsales_pos_tax.FieldName = "sales_pos_tax"
-        Me.GridColumnsales_pos_tax.Name = "GridColumnsales_pos_tax"
-        Me.GridColumnsales_pos_tax.Visible = True
-        Me.GridColumnsales_pos_tax.VisibleIndex = 14
+        Me.XTPInvoice.Controls.Add(Me.XtraTabControl1)
+        Me.XTPInvoice.Controls.Add(Me.GroupControl4)
+        Me.XTPInvoice.Name = "XTPInvoice"
+        Me.XTPInvoice.Size = New System.Drawing.Size(1132, 486)
+        Me.XTPInvoice.Text = "Invoice"
+        '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 50)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1132, 436)
+        Me.XtraTabControl1.TabIndex = 6
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCInvoiceWeek)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1103, 430)
+        Me.XtraTabPage1.Text = "View by Week"
+        '
+        'GCInvoiceWeek
+        '
+        Me.GCInvoiceWeek.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCInvoiceWeek.Location = New System.Drawing.Point(0, 0)
+        Me.GCInvoiceWeek.MainView = Me.GVInvoiceWeek
+        Me.GCInvoiceWeek.Name = "GCInvoiceWeek"
+        Me.GCInvoiceWeek.Size = New System.Drawing.Size(1103, 430)
+        Me.GCInvoiceWeek.TabIndex = 0
+        Me.GCInvoiceWeek.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoiceWeek})
+        '
+        'GVInvoiceWeek
+        '
+        Me.GVInvoiceWeek.Appearance.BandPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVInvoiceWeek.Appearance.BandPanel.Options.UseFont = True
+        Me.GVInvoiceWeek.GridControl = Me.GCInvoiceWeek
+        Me.GVInvoiceWeek.Name = "GVInvoiceWeek"
+        Me.GVInvoiceWeek.OptionsView.ColumnAutoWidth = False
+        Me.GVInvoiceWeek.OptionsView.ShowGroupPanel = False
+        '
+        'GroupControl4
+        '
+        Me.GroupControl4.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl4.Controls.Add(Me.DEInvoiceTo)
+        Me.GroupControl4.Controls.Add(Me.SBInvoiceExportExcel)
+        Me.GroupControl4.Controls.Add(Me.LabelControl9)
+        Me.GroupControl4.Controls.Add(Me.SBInvoiceTo)
+        Me.GroupControl4.Controls.Add(Me.DEInvoiceFrom)
+        Me.GroupControl4.Controls.Add(Me.LabelControl16)
+        Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl4.Name = "GroupControl4"
+        Me.GroupControl4.Size = New System.Drawing.Size(1132, 50)
+        Me.GroupControl4.TabIndex = 4
+        '
+        'DEInvoiceTo
+        '
+        Me.DEInvoiceTo.EditValue = Nothing
+        Me.DEInvoiceTo.Location = New System.Drawing.Point(213, 16)
+        Me.DEInvoiceTo.Name = "DEInvoiceTo"
+        Me.DEInvoiceTo.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEInvoiceTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEInvoiceTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEInvoiceTo.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEInvoiceTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEInvoiceTo.Size = New System.Drawing.Size(111, 20)
+        Me.DEInvoiceTo.TabIndex = 8895
+        '
+        'SBInvoiceExportExcel
+        '
+        Me.SBInvoiceExportExcel.Location = New System.Drawing.Point(411, 16)
+        Me.SBInvoiceExportExcel.LookAndFeel.SkinName = "Blue"
+        Me.SBInvoiceExportExcel.Name = "SBInvoiceExportExcel"
+        Me.SBInvoiceExportExcel.Size = New System.Drawing.Size(92, 20)
+        Me.SBInvoiceExportExcel.TabIndex = 8934
+        Me.SBInvoiceExportExcel.Text = "Export to XLS"
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(30, 19)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl9.TabIndex = 8892
+        Me.LabelControl9.Text = "From"
+        '
+        'SBInvoiceTo
+        '
+        Me.SBInvoiceTo.Location = New System.Drawing.Point(330, 16)
+        Me.SBInvoiceTo.LookAndFeel.SkinName = "Blue"
+        Me.SBInvoiceTo.Name = "SBInvoiceTo"
+        Me.SBInvoiceTo.Size = New System.Drawing.Size(75, 20)
+        Me.SBInvoiceTo.TabIndex = 8896
+        Me.SBInvoiceTo.Text = "View"
+        '
+        'DEInvoiceFrom
+        '
+        Me.DEInvoiceFrom.EditValue = Nothing
+        Me.DEInvoiceFrom.Location = New System.Drawing.Point(65, 16)
+        Me.DEInvoiceFrom.Name = "DEInvoiceFrom"
+        Me.DEInvoiceFrom.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEInvoiceFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEInvoiceFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEInvoiceFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEInvoiceFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEInvoiceFrom.Size = New System.Drawing.Size(100, 20)
+        Me.DEInvoiceFrom.TabIndex = 8894
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Location = New System.Drawing.Point(181, 19)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl16.TabIndex = 8893
+        Me.LabelControl16.Text = "Until"
         '
         'FormSalesWeekly
         '
@@ -1547,6 +1691,19 @@ Partial Class FormSalesWeekly
         Me.GroupControlMonthlySales.ResumeLayout(False)
         CType(Me.GCSalesPOSMonthly, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVSalesPOSMonthly, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPInvoice.ResumeLayout(False)
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GCInvoiceWeek, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVInvoiceWeek, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl4.ResumeLayout(False)
+        Me.GroupControl4.PerformLayout()
+        CType(Me.DEInvoiceTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEInvoiceTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEInvoiceFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEInvoiceFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1676,4 +1833,16 @@ Partial Class FormSalesWeekly
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CEAllUnit As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnsales_pos_tax As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPInvoice As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents DEInvoiceTo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SBInvoiceExportExcel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEInvoiceFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents SBInvoiceTo As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCInvoiceWeek As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVInvoiceWeek As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
 End Class
