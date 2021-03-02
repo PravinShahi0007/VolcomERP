@@ -668,6 +668,12 @@
         ElseIf report_mark_type = "295" Then
             'Master Alokasi bulanan
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_biaya_sewa_pps WHERE id_biaya_sewa_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "298" Then
+            'Fixed Asset sell / drop
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_purc_rec_asset_disp WHERE id_purc_rec_asset_disp = '{0}'", id_report)
+        ElseIf report_mark_type = "299" Then
+            'Weight PPS
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_product_weight_pps WHERE id_product_weight_pps = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -6768,6 +6774,13 @@ WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
                     SET d.is_close=1
                     WHERE pyd.id_rec_payment = '" + id_report + "' AND pyd.`value`=balance_due AND pyd.`value`!= 0; "
                     execute_non_query(qjd_upd, True, "", "", "", "")
+                ElseIf FormBankDepositDet.type_rec = "4" Then
+                    'penjualan fixed asset
+                    Dim qjd_upd = "UPDATE tb_purc_rec_asset_disp d
+                    INNER JOIN tb_rec_payment_det pyd ON pyd.id_report = d.id_purc_rec_asset_disp AND pyd.report_mark_type=298
+                    SET d.is_rec_payment=1
+                    WHERE pyd.id_rec_payment = '" + id_report + "'; "
+                    execute_non_query(qjd_upd, True, "", "", "", "")
                 End If
 
                 'insert valas
@@ -9601,6 +9614,74 @@ WHERE dep.id_biaya_sewa_pps='" + id_report + "'"
 
             'update status
             query = String.Format("UPDATE tb_biaya_sewa_pps SET id_report_status='{0}' WHERE id_biaya_sewa_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "298" Then
+            'Fixed Asset Sell or Drop
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'update not active
+                Dim qi As String = "UPDATE tb_purc_rec_asset ass
+INNER JOIN tb_purc_rec_asset_disp_det dd ON dd.id_purc_rec_asset=ass.id_purc_rec_asset
+SET ass.is_active='2',ass.active_reff=dd.id_purc_rec_asset_disp
+WHERE dd.id_purc_rec_asset_disp='" & id_report & "'"
+                execute_non_query(qi, True, "", "", "", "")
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status,date_reference) 
+            VALUES ('','" + report_number + "','0','" + id_user + "', NOW(), 'Auto Posting', '6', (SELECT date_reff FROM tb_purc_rec_asset_disp WHERE id_purc_rec_asset_disp='" & id_report & "')); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
+
+                'det journal belum kelar
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_comp, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_coa_tag)
+-- perolehan
+SELECT '" + id_acc_trans + "',1, dep.id_acc_fa, 0, dep.total_value,  CONCAT(IF(dep_head.is_sell=1,'Penjualan Fixed Asset ','Penghapysan Fixed Asset '),'(',ass.asset_note,')') AS note, 298, dep_head.id_purc_rec_asset_disp, dep_head.number,dep_head.id_coa_tag
+FROM `tb_purc_rec_asset_disp_det` dep
+INNER JOIN tb_purc_rec_asset_disp dep_head ON dep_head.id_purc_rec_asset_disp=dep.id_purc_rec_asset_disp
+INNER JOIN tb_purc_rec_asset ass ON dep.id_purc_rec_asset=ass.id_purc_rec_asset
+WHERE dep.id_purc_rec_asset_disp='" + id_report + "'
+UNION ALL
+-- kerugian
+SELECT '" + id_acc_trans + "',1, dep_head.coa_kerugian, dep.rem_value, 0, CONCAT(IF(dep_head.is_sell=1,'Penjualan Fixed Asset ','Penghapysan Fixed Asset '),'(',ass.asset_note,')') AS note, 298, dep_head.id_purc_rec_asset_disp, dep_head.number,dep_head.id_coa_tag
+FROM `tb_purc_rec_asset_disp_det` dep
+INNER JOIN tb_purc_rec_asset_disp dep_head ON dep_head.id_purc_rec_asset_disp=dep.id_purc_rec_asset_disp
+INNER JOIN tb_purc_rec_asset ass ON dep.id_purc_rec_asset=ass.id_purc_rec_asset
+WHERE dep.id_purc_rec_asset_disp='" + id_report + "' AND dep.rem_value>0
+UNION ALL
+-- akumulasi
+SELECT '" + id_acc_trans + "',1, dep.id_acc_dep_accum, (dep.total_value-dep.rem_value), 0, CONCAT(IF(dep_head.is_sell=1,'Penjualan Fixed Asset ','Penghapysan Fixed Asset '),'(',ass.asset_note,')') AS note, 298, dep_head.id_purc_rec_asset_disp, dep_head.number,dep_head.id_coa_tag
+FROM `tb_purc_rec_asset_disp_det` dep
+INNER JOIN tb_purc_rec_asset_disp dep_head ON dep_head.id_purc_rec_asset_disp=dep.id_purc_rec_asset_disp
+INNER JOIN tb_purc_rec_asset ass ON dep.id_purc_rec_asset=ass.id_purc_rec_asset
+WHERE dep.id_purc_rec_asset_disp='" + id_report + "' AND (dep.total_value-dep.rem_value)>0
+"
+                'Console.WriteLine("Insert jurnal")
+                execute_non_query(qjd, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_purc_rec_asset_disp SET id_report_status='{0}' WHERE id_purc_rec_asset_disp ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "299" Then
+            'Product Weight
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'update tb_m_product
+                Dim qi As String = "UPDATE tb_m_product p
+INNER JOIN tb_product_weight_pps_det pps ON pps.id_product=p.id_product
+SET p.qc_weight=pps.weight
+WHERE pps.id_product_weight_pps='" & id_report & "'"
+                execute_non_query(qi, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_product_weight_pps SET id_report_status='{0}' WHERE id_product_weight_pps ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

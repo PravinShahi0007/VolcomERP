@@ -37,7 +37,7 @@
                         .is_select = "No",
                         .note = If(rs Is Nothing, "Product not found", If(table1("qty") > If(rs Is Nothing, 0, rs("qty_all_product")), "+" + (table1("qty") - If(rs Is Nothing, 0, rs("qty_all_product"))).ToString, "OK")),
                         .note_price = If(If(rp Is Nothing, 0, rp("design_price")) = table1("price"), "OK", "Not Valid"),
-                        .stt = If(If(If(rp Is Nothing, 0, rp("design_price")) = table1("price"), "OK", "Not Valid") = "OK", If(table1("qty") = If(table1("qty") <= If(rs Is Nothing, 0, rs("qty_all_product")), table1("qty"), If(rs Is Nothing, 0, rs("qty_all_product"))), "OK", "No Stock"), "Price not valid"),
+                        .stt = If(If(If(rp Is Nothing, 0, rp("design_price")) = table1("price"), "OK", "Not Valid") = "OK", If(table1("qty") = If(table1("qty") <= If(rs Is Nothing, 0, rs("qty_all_product")), table1("qty"), If(rs Is Nothing, 0, rs("qty_all_product"))), "OK", "No Stock"), If((table1("qty") - If(table1("qty") <= If(rs Is Nothing, 0, rs("qty_all_product")), table1("qty"), If(rs Is Nothing, 0, rs("qty_all_product")))) <= 0, "Price not valid", "Price not valid & no stock")),
                         .id_sales_pos_det = "0"
                     }
         GCData.DataSource = Nothing
@@ -78,6 +78,9 @@
         ElseIf stt = "Price not valid" Then
             e.Appearance.BackColor = Color.Salmon
             e.Appearance.BackColor2 = Color.Salmon
+        ElseIf stt = "Price not valid & no stock" Then
+            e.Appearance.BackColor = Color.Salmon
+            e.Appearance.BackColor2 = Color.Yellow
         Else
             e.Appearance.BackColor = Color.Empty
             e.Appearance.BackColor2 = Color.Empty

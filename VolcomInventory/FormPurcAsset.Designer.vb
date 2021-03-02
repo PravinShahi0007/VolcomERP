@@ -20,9 +20,9 @@ Partial Class FormPurcAsset
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcAsset))
         Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcAsset))
         Me.XTCAsset = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPending = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPending = New DevExpress.XtraGrid.GridControl()
@@ -71,6 +71,16 @@ Partial Class FormPurcAsset
         Me.XTPSold = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDisp = New DevExpress.XtraGrid.GridControl()
         Me.GVDisp = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BNewDisp = New DevExpress.XtraEditors.SimpleButton()
+        Me.BNewJual = New DevExpress.XtraEditors.SimpleButton()
+        Me.BRefreshDisp = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDepresiasi = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDep = New DevExpress.XtraGrid.GridControl()
         Me.GVDep = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -117,17 +127,8 @@ Partial Class FormPurcAsset
         Me.BRefreshDepreciation = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BNewJual = New DevExpress.XtraEditors.SimpleButton()
-        Me.BRefreshDisp = New DevExpress.XtraEditors.SimpleButton()
-        Me.BNewDisp = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -145,6 +146,8 @@ Partial Class FormPurcAsset
         Me.XTPSold.SuspendLayout()
         CType(Me.GCDisp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDisp, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         Me.XTPDepresiasi.SuspendLayout()
         CType(Me.GCDep, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDep, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,8 +161,6 @@ Partial Class FormPurcAsset
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCAsset
@@ -580,13 +581,102 @@ Partial Class FormPurcAsset
         '
         'GVDisp
         '
-        Me.GVDisp.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20, Me.GridColumn28, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
+        Me.GVDisp.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn30, Me.GridColumn29, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
         Me.GVDisp.GridControl = Me.GCDisp
         Me.GVDisp.Name = "GVDisp"
         Me.GVDisp.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDisp.OptionsBehavior.Editable = False
         Me.GVDisp.OptionsFind.AlwaysVisible = True
         Me.GVDisp.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "ID"
+        Me.GridColumn19.FieldName = "id_purc_rec_asset_disp"
+        Me.GridColumn19.Name = "GridColumn19"
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Number"
+        Me.GridColumn20.FieldName = "number"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 1
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Created by"
+        Me.GridColumn21.FieldName = "employee_name"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 3
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Created At"
+        Me.GridColumn22.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn22.FieldName = "created_date"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 4
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Status"
+        Me.GridColumn23.FieldName = "report_status"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 5
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Note"
+        Me.GridColumn24.FieldName = "note"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 6
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BNewDisp)
+        Me.PanelControl3.Controls.Add(Me.BNewJual)
+        Me.PanelControl3.Controls.Add(Me.BRefreshDisp)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(775, 47)
+        Me.PanelControl3.TabIndex = 2
+        '
+        'BNewDisp
+        '
+        Me.BNewDisp.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BNewDisp.Image = CType(resources.GetObject("BNewDisp.Image"), System.Drawing.Image)
+        Me.BNewDisp.Location = New System.Drawing.Point(439, 2)
+        Me.BNewDisp.Name = "BNewDisp"
+        Me.BNewDisp.Size = New System.Drawing.Size(114, 43)
+        Me.BNewDisp.TabIndex = 5
+        Me.BNewDisp.Text = "Penghapusan"
+        '
+        'BNewJual
+        '
+        Me.BNewJual.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BNewJual.Image = CType(resources.GetObject("BNewJual.Image"), System.Drawing.Image)
+        Me.BNewJual.Location = New System.Drawing.Point(553, 2)
+        Me.BNewJual.Name = "BNewJual"
+        Me.BNewJual.Size = New System.Drawing.Size(107, 43)
+        Me.BNewJual.TabIndex = 4
+        Me.BNewJual.Text = "Penjualan"
+        '
+        'BRefreshDisp
+        '
+        Me.BRefreshDisp.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefreshDisp.Image = CType(resources.GetObject("BRefreshDisp.Image"), System.Drawing.Image)
+        Me.BRefreshDisp.Location = New System.Drawing.Point(660, 2)
+        Me.BRefreshDisp.Name = "BRefreshDisp"
+        Me.BRefreshDisp.Size = New System.Drawing.Size(113, 43)
+        Me.BRefreshDisp.TabIndex = 3
+        Me.BRefreshDisp.Text = "Refresh"
         '
         'XTPDepresiasi
         '
@@ -1044,102 +1134,21 @@ Partial Class FormPurcAsset
         Me.LabelControl2.TabIndex = 0
         Me.LabelControl2.Text = "Depreciation"
         '
-        'PanelControl3
+        'GridColumn29
         '
-        Me.PanelControl3.Controls.Add(Me.BNewDisp)
-        Me.PanelControl3.Controls.Add(Me.BNewJual)
-        Me.PanelControl3.Controls.Add(Me.BRefreshDisp)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(775, 47)
-        Me.PanelControl3.TabIndex = 2
+        Me.GridColumn29.Caption = "Type"
+        Me.GridColumn29.FieldName = "typ"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 2
         '
-        'BNewJual
+        'GridColumn30
         '
-        Me.BNewJual.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BNewJual.Image = CType(resources.GetObject("BNewJual.Image"), System.Drawing.Image)
-        Me.BNewJual.Location = New System.Drawing.Point(553, 2)
-        Me.BNewJual.Name = "BNewJual"
-        Me.BNewJual.Size = New System.Drawing.Size(107, 43)
-        Me.BNewJual.TabIndex = 4
-        Me.BNewJual.Text = "Penjualan"
-        '
-        'BRefreshDisp
-        '
-        Me.BRefreshDisp.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRefreshDisp.Image = CType(resources.GetObject("BRefreshDisp.Image"), System.Drawing.Image)
-        Me.BRefreshDisp.Location = New System.Drawing.Point(660, 2)
-        Me.BRefreshDisp.Name = "BRefreshDisp"
-        Me.BRefreshDisp.Size = New System.Drawing.Size(113, 43)
-        Me.BRefreshDisp.TabIndex = 3
-        Me.BRefreshDisp.Text = "Refresh"
-        '
-        'BNewDisp
-        '
-        Me.BNewDisp.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BNewDisp.Image = CType(resources.GetObject("BNewDisp.Image"), System.Drawing.Image)
-        Me.BNewDisp.Location = New System.Drawing.Point(439, 2)
-        Me.BNewDisp.Name = "BNewDisp"
-        Me.BNewDisp.Size = New System.Drawing.Size(114, 43)
-        Me.BNewDisp.TabIndex = 5
-        Me.BNewDisp.Text = "Penghapusan"
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "ID"
-        Me.GridColumn19.FieldName = "id_purc_rec_asset_disp"
-        Me.GridColumn19.Name = "GridColumn19"
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Number"
-        Me.GridColumn20.FieldName = "number"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 0
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "Created by"
-        Me.GridColumn21.FieldName = "employee_name"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 1
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Created At"
-        Me.GridColumn22.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn22.FieldName = "created_date"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 3
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "Status"
-        Me.GridColumn23.FieldName = "report_status"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 4
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "Note"
-        Me.GridColumn24.FieldName = "note"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 5
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "Type"
-        Me.GridColumn28.FieldName = "type"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 2
+        Me.GridColumn30.Caption = "Unit"
+        Me.GridColumn30.FieldName = "tag_description"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 0
         '
         'FormPurcAsset
         '
@@ -1169,6 +1178,8 @@ Partial Class FormPurcAsset
         Me.XTPSold.ResumeLayout(False)
         CType(Me.GCDisp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDisp, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         Me.XTPDepresiasi.ResumeLayout(False)
         CType(Me.GCDep, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDep, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1184,8 +1195,6 @@ Partial Class FormPurcAsset
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1290,9 +1299,10 @@ Partial Class FormPurcAsset
     Friend WithEvents BRefreshDisp As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -285,6 +285,7 @@
     <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassMailManage.vb" />
     <Compile Include="ClassMailManageReturn.vb" />
+    <Compile Include="ClassMOS.vb" />
     <Compile Include="ClassOLReturnRefuse.vb" />
     <Compile Include="ClassOLStore.vb" />
     <Compile Include="ClassOLStoreRefund.vb" />
@@ -2759,6 +2760,12 @@
     <Compile Include="FormMailManageReturnPendingInvoice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormManualSyncCNROR.Designer.vb">
+      <DependentUpon>FormManualSyncCNROR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormManualSyncCNROR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMappingStore.Designer.vb">
       <DependentUpon>FormMappingStore.vb</DependentUpon>
     </Compile>
@@ -3099,6 +3106,12 @@
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOLReturnRefuse.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLReturnRefuseAddNonFisik.Designer.vb">
+      <DependentUpon>FormOLReturnRefuseAddNonFisik.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLReturnRefuseAddNonFisik.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOLReturnRefuseDet.Designer.vb">
@@ -3761,6 +3774,18 @@
     <Compile Include="FormProductionWOList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductWeight.Designer.vb">
+      <DependentUpon>FormProductWeight.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductWeight.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductWeightPop.Designer.vb">
+      <DependentUpon>FormProductWeightPop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductWeightPop.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPromoCollection.Designer.vb">
       <DependentUpon>FormPromoCollection.vb</DependentUpon>
     </Compile>
@@ -3873,6 +3898,12 @@
       <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcAssetDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcAssetDisp.Designer.vb">
+      <DependentUpon>FormPurcAssetDisp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetDisp.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurcAssetHistory.Designer.vb">
@@ -10641,6 +10672,9 @@
     <EmbeddedResource Include="FormMailManageReturnPendingInvoice.resx">
       <DependentUpon>FormMailManageReturnPendingInvoice.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManualSyncCNROR.resx">
+      <DependentUpon>FormManualSyncCNROR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMappingStore.resx">
       <DependentUpon>FormMappingStore.vb</DependentUpon>
     </EmbeddedResource>
@@ -10811,6 +10845,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLReturnRefuse.resx">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLReturnRefuseAddNonFisik.resx">
+      <DependentUpon>FormOLReturnRefuseAddNonFisik.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLReturnRefuseDet.resx">
       <DependentUpon>FormOLReturnRefuseDet.vb</DependentUpon>
@@ -11140,6 +11177,12 @@
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProductWeight.resx">
+      <DependentUpon>FormProductWeight.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductWeightPop.resx">
+      <DependentUpon>FormProductWeightPop.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPromoCollection.resx">
       <DependentUpon>FormPromoCollection.vb</DependentUpon>
     </EmbeddedResource>
@@ -11196,6 +11239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAssetDet.resx">
       <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetDisp.resx">
+      <DependentUpon>FormPurcAssetDisp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAssetHistory.resx">
       <DependentUpon>FormPurcAssetHistory.vb</DependentUpon>

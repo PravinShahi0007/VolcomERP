@@ -520,4 +520,31 @@ WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a
         check_menu()
         GVProdRec.ExpandAllGroups()
     End Sub
+
+    Private Sub BNewTimbang_Click(sender As Object, e As EventArgs) Handles BNewTimbang.Click
+        FormProductWeight.ShowDialog()
+    End Sub
+
+    Sub load_weight_pps()
+        Dim q As String = "SELECT pps.`created_date`,pps.`id_product_weight_pps`,pps.`number`,pps.`note`,emp.`employee_name`
+FROM `tb_product_weight_pps` pps
+INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+ORDER BY pps.id_product_weight_pps DESC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCTimbang.DataSource = dt
+        GVTimbang.BestFitColumns()
+    End Sub
+
+    Private Sub BRefreshDisp_Click(sender As Object, e As EventArgs) Handles BRefreshDisp.Click
+        load_weight_pps()
+    End Sub
+
+    Private Sub GVTimbang_DoubleClick(sender As Object, e As EventArgs) Handles GVTimbang.DoubleClick
+        If GVTimbang.RowCount > 0 Then
+            FormProductWeight.id_trans = GVTimbang.GetFocusedRowCellValue("id_product_weight_pps").ToString
+            FormProductWeight.ShowDialog()
+        End If
+    End Sub
 End Class
