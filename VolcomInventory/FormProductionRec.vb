@@ -526,7 +526,7 @@ WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a
     End Sub
 
     Sub load_weight_pps()
-        Dim q As String = "SELECT pps.`created_date`,pps.`id_product_weight_pps`,pps.`number`,pps.`note`,emp.`employee_name`
+        Dim q As String = "SELECT pps.`created_date`,pps.`id_product_weight_pps`,pps.`number`,pps.`note`,emp.`employee_name`,sts.report_status
 FROM `tb_product_weight_pps` pps
 INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
