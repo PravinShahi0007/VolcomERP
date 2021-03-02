@@ -50,6 +50,9 @@ Partial Class FormPayoutZaloraManualReconSingle
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddReference = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnid_ref = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_ref_det = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrmt_ref = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -258,7 +261,7 @@ Partial Class FormPayoutZaloraManualReconSingle
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_payout_zalora_det_addition, Me.GridColumnid_payout_zalora_det, Me.GridColumnerp_amount, Me.GridColumnacc_name, Me.GridColumnacc_description})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_payout_zalora_det_addition, Me.GridColumnid_payout_zalora_det, Me.GridColumnerp_amount, Me.GridColumnacc_name, Me.GridColumnacc_description, Me.GridColumnid_ref, Me.GridColumnid_ref_det, Me.GridColumnrmt_ref})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -308,8 +311,8 @@ Partial Class FormPayoutZaloraManualReconSingle
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BtnDelete)
-        Me.PanelControl3.Controls.Add(Me.BtnAdd)
         Me.PanelControl3.Controls.Add(Me.BtnAddReference)
+        Me.PanelControl3.Controls.Add(Me.BtnAdd)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(2, 20)
         Me.PanelControl3.Name = "PanelControl3"
@@ -320,7 +323,7 @@ Partial Class FormPayoutZaloraManualReconSingle
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(167, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(278, 2)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(71, 30)
         Me.BtnDelete.TabIndex = 1
@@ -330,7 +333,7 @@ Partial Class FormPayoutZaloraManualReconSingle
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(238, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(349, 2)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(63, 30)
         Me.BtnAdd.TabIndex = 0
@@ -338,13 +341,31 @@ Partial Class FormPayoutZaloraManualReconSingle
         '
         'BtnAddReference
         '
-        Me.BtnAddReference.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddReference.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnAddReference.Image = CType(resources.GetObject("BtnAddReference.Image"), System.Drawing.Image)
-        Me.BtnAddReference.Location = New System.Drawing.Point(301, 2)
+        Me.BtnAddReference.Location = New System.Drawing.Point(2, 2)
         Me.BtnAddReference.Name = "BtnAddReference"
         Me.BtnAddReference.Size = New System.Drawing.Size(111, 30)
         Me.BtnAddReference.TabIndex = 2
         Me.BtnAddReference.Text = "Add Reference"
+        '
+        'GridColumnid_ref
+        '
+        Me.GridColumnid_ref.Caption = "id_ref"
+        Me.GridColumnid_ref.FieldName = "id_ref"
+        Me.GridColumnid_ref.Name = "GridColumnid_ref"
+        '
+        'GridColumnid_ref_det
+        '
+        Me.GridColumnid_ref_det.Caption = "id_ref_det"
+        Me.GridColumnid_ref_det.FieldName = "id_ref_det"
+        Me.GridColumnid_ref_det.Name = "GridColumnid_ref_det"
+        '
+        'GridColumnrmt_ref
+        '
+        Me.GridColumnrmt_ref.Caption = "rmt_ref"
+        Me.GridColumnrmt_ref.FieldName = "rmt_ref"
+        Me.GridColumnrmt_ref.Name = "GridColumnrmt_ref"
         '
         'FormPayoutZaloraManualReconSingle
         '
@@ -414,4 +435,7 @@ Partial Class FormPayoutZaloraManualReconSingle
     Friend WithEvents GridColumnacc_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnacc_description As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnAddReference As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_ref As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_ref_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnrmt_ref As DevExpress.XtraGrid.Columns.GridColumn
 End Class
