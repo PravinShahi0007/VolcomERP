@@ -373,7 +373,7 @@ Partial Class FormProductWeight
         Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.Caption = "Berat"
+        Me.GridColumn2.Caption = "Berat (gram)"
         Me.GridColumn2.ColumnEdit = Me.RepositoryItemTextEdit3
         Me.GridColumn2.DisplayFormat.FormatString = " N2"
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric

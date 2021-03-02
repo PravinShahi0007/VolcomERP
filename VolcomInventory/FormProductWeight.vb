@@ -141,4 +141,37 @@ VALUES"
         FormReportMark.id_report = id_trans
         FormReportMark.ShowDialog()
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportWeightPPS.dt = GCItem.DataSource
+        ReportWeightPPS.id_pps = id_trans
+        ReportWeightPPS.rmt = "299"
+
+        Dim Report As New ReportWeightPPS()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVItem.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVItem.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVItem)
+
+        'Parse val
+        Report.LNumber.Text = TENumber.Text
+        Report.LCreatedBy.Text = TECreatedBy.Text
+        Report.LCreatedDate.Text = Date.Parse(DECreatedDate.EditValue.ToString).ToString("dd MMMM yyyy")
+
+        ' 
+        Report.LNote.Text = MENote.Text.ToString
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
+    End Sub
 End Class
