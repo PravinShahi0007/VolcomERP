@@ -78,6 +78,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                     SLEPayType.EditValue = id_pay_type
                     TxtTag.EditValue = execute_query("SELECT CONCAT(tag_code, ' - ', tag_description) AS tag FROM tb_coa_tag WHERE id_coa_tag = " + FormBankWithdrawal.GVPOList.GetRowCellValue(0, "po_coa_tag").ToString, 0, True, "", "", "", "")
                     '
+                    id_coa_tag = FormBankWithdrawal.GVPOList.GetRowCellValue(0, "po_coa_tag").ToString
                     SLEReportType.EditValue = report_mark_type
                     'load detail
                     For i As Integer = 0 To FormBankWithdrawal.GVPOList.RowCount - 1
@@ -221,15 +222,14 @@ SELECT 1 AS id,'Yes' AS auto_debet"
                             Dim qd As String = "SELECT IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS `type`,pnd.id_pn_fgpo,1 AS is_dc,'189' AS report_mark_type,GROUP_CONCAT(DISTINCT(po.prod_order_number)) AS po_number,GROUP_CONCAT(DISTINCT(pnd.inv_number)) AS inv_number
 ,SUM(pnd.`value`+pnd.`vat`-IF(pnd.id_currency=2,0,pnd.`pph`)) AS amount
 ,SUM(pnd.`vat`) AS vat
-,SUM(pnd.`value_bef_kurs`-IF(pnd.id_currency=2,0,pnd.`pph`)) AS value_bef_kurs
 ,CAST(SUM(IF(pnd.id_currency=2,(pnd.`value_bef_kurs`*pnd.`kurs`)-(pnd.`value_bef_kurs`*" & decimalSQL(FormBankWithdrawal.TEKurs.EditValue.ToString) & "),0)) AS DECIMAL(13,2)) AS amount_selisih_kurs 
 ,CAST(SUM(IF(pnd.id_currency=2,((pnd.`value_bef_kurs`*" & decimalSQL(FormBankWithdrawal.TEKurs.EditValue.ToString) & ")+pnd.`vat`),(pnd.`value`+pnd.`vat`))-IF(pnd.id_currency=2,0,pnd.`pph`)) AS DECIMAL(13,2)) AS amount_now_kurs 
 ,cur.`id_currency`,cur.`currency`,pnd.`kurs`
 ,acc.id_acc,acc.acc_name,acc.acc_description
 ,c.`comp_number`,pn.number
 ,0 AS total_paid,cur.currency
-,SUM(pnd.`value`+pnd.`vat`-IF(pnd.id_currency=2,0,pnd.`pph`)) AS total_pending
-,SUM(pnd.`value`+pnd.`vat`-IF(pnd.id_currency=2,0,pnd.`pph`)) AS balance
+,SUM(pnd.`value_bef_kurs`-IF(pnd.id_currency=2,0,pnd.`pph`))-IFNULL(payment.val_bef_kurs,0) AS value_bef_kurs
+,SUM(pnd.`value`+pnd.`vat`-IF(pnd.id_currency=2,0,pnd.`pph`))-IFNULL(payment.value,0) AS balance
 ,cf.id_comp AS `id_comp_default`, cf.comp_number AS `comp_number_default`
 FROM tb_pn_fgpo_det pnd
 LEFT JOIN tb_prod_order po ON po.id_prod_order=pnd.id_prod_order
@@ -238,6 +238,12 @@ INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pnd.`id_currency`
 INNER JOIN tb_m_comp c ON c.id_comp=pn.id_comp 
 INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ap
 INNER JOIN tb_m_comp cf ON cf.id_comp=1
+LEFT JOIN
+(
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value`,SUM(pyd.`val_bef_kurs`) AS `val_bef_kurs` FROM `tb_pn_det` pyd
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND pyd.report_mark_type='189' AND py.is_tolakan=2
+	GROUP BY pyd.id_report
+)payment ON payment.id_report=pn.id_pn_fgpo
 GROUP BY pnd.kurs"
                             Dim dtd As DataTable = execute_query(qd, -1, True, "", "", "", "")
                             For k = 0 To dtd.Rows.Count - 1
@@ -1234,6 +1240,7 @@ GROUP BY dnd.id_report"
 
                 calculate_amount()
             ElseIf report_mark_type = "254" Then
+                id_coa_tag = FormBankWithdrawal.SLEUnit.EditValue.ToString
                 For i As Integer = 0 To FormBankWithdrawal.GVSales.RowCount - 1
                     'id_report,number,total,balance due
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
@@ -1244,8 +1251,8 @@ GROUP BY dnd.id_report"
                     newRow("acc_description") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "acc_description").ToString
                     newRow("note") = Date.Parse(FormBankWithdrawal.GVSales.GetRowCellValue(i, "transaction_date").ToString).ToString("dd MMMM yyyy") & " - " & FormBankWithdrawal.GVSales.GetRowCellValue(i, "note").ToString
                     newRow("vendor") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "comp_number").ToString
-                    newRow("id_dc") = "1"
-                    newRow("dc_code") = "D"
+                    newRow("id_dc") = If(FormBankWithdrawal.GVSales.GetRowCellValue(i, "amount") < 0, "2", "1")
+                    newRow("dc_code") = If(FormBankWithdrawal.GVSales.GetRowCellValue(i, "amount") < 0, "K", "D")
                     newRow("id_comp") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "id_comp").ToString
                     newRow("comp_number") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "comp_number").ToString
                     newRow("number") = FormBankWithdrawal.GVSales.GetRowCellValue(i, "number").ToString

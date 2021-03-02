@@ -6537,12 +6537,27 @@ WHERE pd.balance_due=pd.`value` AND pd.`id_pn`='" & id_report & "'"
                         'close jamsostek
                         execute_non_query("UPDATE tb_emp_payroll SET is_close_pay_jamsostek = 1 WHERE id_payroll IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
                     ElseIf data_payment.Rows(0)("report_mark_type").ToString = "254" Then
-                        'close expense
-                        Dim qc As String = "UPDATE tb_sales_branch e
-                                                SET e.is_close_bbk='1'
+                        'close SVS & CVS
+                        Dim qv As String = "SELECT sb.* ,paid.*,IF(ABS(sb.comp_rev_normal+sb.comp_rev_sale)=ABS(paid.`val`),1,2) AS is_ok
+FROM tb_sales_branch sb
+LEFT JOIN
+(
+	SELECT pnd.id_report,SUM(pnd.`value`) val 
+	FROM tb_pn_det pnd 
+	INNER JOIN tb_pn pn ON (pn.id_report_status=6 OR pn.id_pn='" & id_report & "') AND pnd.id_pn=pn.id_pn 
+	WHERE pnd.report_mark_type='254'
+	GROUP BY id_report
+)paid ON paid.id_report=sb.id_sales_branch
 WHERE id_sales_branch IN (SELECT id_report FROM tb_pn_det WHERE id_pn='" & id_report & "' AND report_mark_type='254')"
-                        execute_non_query(qc, True, "", "", "", "")
-                        'FormBankWithdrawal.load_expense()
+                        Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
+                        If dtv.Rows.Count > 0 Then
+                            If dtv.Rows(0)("is_ok").ToString = "1" Then
+                                Dim qc As String = "UPDATE tb_sales_branch e
+                                                SET e.is_close_bbk='1'
+WHERE id_sales_branch ='" & dtv.Rows(0)("id_sales_branch").ToString & "' "
+                                execute_non_query(qc, True, "", "", "", "")
+                            End If
+                        End If
                     ElseIf data_payment.Rows(0)("report_mark_type").ToString = "167" Then
                         'close cash advance
                         execute_non_query("UPDATE tb_cash_advance SET is_bbk = 1 WHERE id_cash_advance IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
