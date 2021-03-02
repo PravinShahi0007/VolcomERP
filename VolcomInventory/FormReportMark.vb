@@ -671,6 +671,9 @@
         ElseIf report_mark_type = "298" Then
             'Fixed Asset sell / drop
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_purc_rec_asset_disp WHERE id_purc_rec_asset_disp = '{0}'", id_report)
+        ElseIf report_mark_type = "299" Then
+            'Weight PPS
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_product_weight_pps WHERE id_product_weight_pps = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
