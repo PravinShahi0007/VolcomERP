@@ -20,14 +20,14 @@
         '
         view_del_type()
         '
-        Dim q As String = "SELECT awb.id_awbill,dis.sub_district,c.comp_name
+        Dim q As String = "SELECT awb.id_awbill,awb.ol_number,dis.sub_district,c.comp_name
 FROM tb_wh_awbill awb 
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awb.id_sub_district
 INNER JOIN tb_m_comp c ON c.id_comp=awb.id_store
 WHERE awb.id_awbill='" & id_awb & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
-            TEOutboundNumber.Text = dt.Rows(0)("id_awbill").ToString
+            TEOutboundNumber.Text = dt.Rows(0)("ol_number").ToString
             TESubDistrict.Text = dt.Rows(0)("sub_district").ToString
             TEStore.Text = dt.Rows(0)("comp_name").ToString
             '
@@ -182,7 +182,12 @@ GROUP BY pld.`id_ol_store_cust_ret`
 ORDER BY pl.id_ol_store_cust_ret ASC)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         '
+        Dim olnumber As String = ""
+        Dim qs As String = "SELECT ol_number FROM tb_wh_awbill WHERE id_awbill='" & id_awbill & "'"
+        olnumber = execute_query(qs, 0, True, "", "", "", "")
+        '
         report.id_awbill = id_awbill
+        report.ol_number = olnumber
         report.dt = dt
 
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)

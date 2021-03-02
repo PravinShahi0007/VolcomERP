@@ -74,6 +74,13 @@ WHERE awbd.`id_pl_sales_order_del` IN (" & id & ") "
 
                 id_awb = execute_query(query, 0, True, "", "", "", "")
 
+                query = "CALL gen_number_outbound_label('" & id_awb & "')"
+                execute_non_query(query, True, "", "", "", "")
+
+                Dim olnumber As String = ""
+                Dim qs As String = "SELECT ol_number FROM tb_wh_awbill WHERE id_awbill='" & id_awb & "'"
+                olnumber = execute_query(qs, 0, True, "", "", "", "")
+
                 query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,id_ol_store_cust_ret,do_no,qty) VALUES"
                 For i As Integer = 0 To GVDOERP.RowCount - 1
                     Dim id_pl_sales_order_del As String = "NULL"
@@ -100,7 +107,7 @@ WHERE awbd.`id_pl_sales_order_del` IN (" & id & ") "
                 Next
                 execute_non_query(query, True, "", "", "", "")
 
-                warningCustom("Outbound Number " & id_awb & " created")
+                warningCustom("Outbound Number " & olnumber & " created")
 
                 '===================== PRINT HERE =====================
                 print_ol(id_awb)
@@ -135,7 +142,12 @@ GROUP BY pld.`id_ol_store_cust_ret`
 ORDER BY pl.id_ol_store_cust_ret ASC)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         '
+        Dim olnumber As String = ""
+        Dim qs As String = "SELECT ol_number FROM tb_wh_awbill WHERE id_awbill='" & id_awbill & "'"
+        olnumber = execute_query(qs, 0, True, "", "", "", "")
+        '
         report.id_awbill = id_awbill
+        report.ol_number = olnumber
         report.dt = dt
 
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
@@ -228,10 +240,17 @@ WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.T
 
                     id_awb = execute_query(query, 0, True, "", "", "", "")
 
+                    query = "CALL gen_number_outbound_label('" & id_awb & "')"
+                    execute_non_query(query, True, "", "", "", "")
+
+                    Dim olnumber As String = ""
+                    Dim qs As String = "SELECT ol_number FROM tb_wh_awbill WHERE id_awbill='" & id_awb & "'"
+                    olnumber = execute_query(qs, 0, True, "", "", "", "")
+
                     If Not j = 0 Then
                         koli_collection += ","
                     End If
-                    koli_collection += id_awb
+                    koli_collection += olnumber
                     '
                     Dim q_loop As String = "SELECT d.id_pl_sales_order_del, c.id_comp_group, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
 c.comp_number AS `store_number`,c.id_commerce_type,IF(so.is_export_awb=1,'Exported to CSSS','Not yet exported') AS is_export_awb,IFNULL(awbh.id_awbill,'') AS collie_number,c.id_comp, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'yes' AS `is_check`, stt.report_status,so.shipping_city,c.id_commerce_type

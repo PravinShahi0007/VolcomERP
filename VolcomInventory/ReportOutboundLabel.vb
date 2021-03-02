@@ -1,10 +1,11 @@
 ﻿Public Class ReportOutboundLabel
     Public id_awbill As String = ""
+    Public ol_number As String = ""
     Public dt As DataTable = New DataTable
 
     Private Sub Detail_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles Detail.BeforePrint
-        XRBarcode.Text = id_awbill
-        XRNumber.Text = id_awbill
+        XRBarcode.Text = ol_number
+        XRNumber.Text = ol_number
         '
         Dim row As DevExpress.XtraReports.UI.XRTableRow = XrTableRow
 

@@ -10,7 +10,7 @@
     Sub view()
         Dim q As String = "SELECT *
 FROM (
-    SELECT 0 AS NO,md.id_comp AS id_3pl,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
+    SELECT 0 AS NO,a.ol_number,md.id_comp AS id_3pl,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
     c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
@@ -100,7 +100,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
             Dim is_found As Boolean = False
             For i As Integer = 0 To GVList.RowCount - 1
                 Try
-                    If GVList.GetRowCellValue(i, "id_awbill").ToString = addSlashes(TEScan.Text) Then
+                    If GVList.GetRowCellValue(i, "ol_number").ToString = addSlashes(TEScan.Text) Then
                         GVList.SetRowCellValue(i, "is_check", "OK")
 
                         GVList.FocusedRowHandle = i
@@ -112,7 +112,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
             Next
 
             If Not is_found Then
-                FormError.LabelContent.Text = "Outbound Number Not Found"
+                FormError.LabelContent.Text = "Outbound Label Number Not Found"
                 FormError.ShowDialog()
             End If
 
@@ -161,7 +161,10 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Else
             'complete
             Try
-                FormMain.SplashScreenManager1.ShowWaitForm()
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Creating report header..")
                 Dim q As String = "INSERT INTO `tb_odm_sc`(id_3pl,awbill_no,created_by,created_date,id_report_status)
 VALUES('" & SLUE3PL.EditValue.ToString & "','" & addSlashes(TEAWB.Text) & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID(); "
@@ -187,12 +190,17 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & addSlashes(TEAWB.Text) & "','" 
 
                 For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Processing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
-                    Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
-                    stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+                    'Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+                    'stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
                 Next
 
                 FormMain.SplashScreenManager1.CloseWaitForm()
-                infoCustom("Print!")
+                XTCManifestScan.SelectedTabPageIndex = 1
+                load_odm_sc()
+                SLEScanList.EditValue = id_odm_sc
+                load_odm_det()
+
+                print()
             Catch ex As Exception
                 warningCustom(ex.ToString)
                 FormMain.SplashScreenManager1.CloseWaitForm()
@@ -312,6 +320,10 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        print()
+    End Sub
+
+    Sub print()
         Dim report As ReportODMScan = New ReportODMScan
 
         report.dt = GCListHistory.DataSource

@@ -34,7 +34,7 @@ INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
 INNER JOIN tb_m_comp c ON c.id_comp=awb.id_store
 WHERE awb.id_report_status!=5 AND awb.id_report_status!=6 AND awb.is_old_ways!=1 AND awb.step=1"
         If Not id = "" Then
-            q += " AND awb.id_awbill='" & id & "' "
+            q += " AND awb.ol_number='" & id & "' "
         End If
         q += " GROUP BY awb.id_awbill"
 

@@ -324,7 +324,7 @@ Partial Class FormODM
         'GridColumnCollie
         '
         Me.GridColumnCollie.Caption = "Outbound Label Number"
-        Me.GridColumnCollie.FieldName = "id_awbill"
+        Me.GridColumnCollie.FieldName = "ol_number"
         Me.GridColumnCollie.Name = "GridColumnCollie"
         Me.GridColumnCollie.OptionsColumn.AllowEdit = False
         Me.GridColumnCollie.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
@@ -671,7 +671,7 @@ Partial Class FormODM
         'GridColumn16
         '
         Me.GridColumn16.Caption = "Outbound Label Number"
-        Me.GridColumn16.FieldName = "id_awbill"
+        Me.GridColumn16.FieldName = "ol_number"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.OptionsColumn.AllowEdit = False
         Me.GridColumn16.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]

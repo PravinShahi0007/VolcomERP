@@ -27,7 +27,6 @@ Partial Public Class ReportODMScan
         Me.XrTableCell20 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell36 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -133,7 +132,7 @@ Partial Public Class ReportODMScan
         'XrTableRow
         '
         Me.XrTableRow.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrTableRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell20, Me.XrTableCell4, Me.XrTableCell5, Me.XrTableCell36, Me.XrTableCell2, Me.XrTableCell3, Me.XrTableCell6, Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell9, Me.XrTableCell10, Me.XrTableCell11, Me.XrTableCell12, Me.XrTableCell13, Me.XrTableCell14})
+        Me.XrTableRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell20, Me.XrTableCell4, Me.XrTableCell5, Me.XrTableCell2, Me.XrTableCell3, Me.XrTableCell6, Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell9, Me.XrTableCell10, Me.XrTableCell11, Me.XrTableCell12, Me.XrTableCell13, Me.XrTableCell14})
         Me.XrTableRow.Font = New System.Drawing.Font("Tahoma", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrTableRow.Name = "XrTableRow"
         Me.XrTableRow.StylePriority.UseBorders = False
@@ -160,8 +159,8 @@ Partial Public Class ReportODMScan
         Me.XrTableCell20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell20.StylePriority.UseBorders = False
         Me.XrTableCell20.StylePriority.UsePadding = False
-        Me.XrTableCell20.Text = "Delivery" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Manifest"
-        Me.XrTableCell20.Weight = 0.57190398246208662R
+        Me.XrTableCell20.Text = "AWB NUMBER"
+        Me.XrTableCell20.Weight = 0.76253864481512612R
         '
         'XrTableCell4
         '
@@ -181,17 +180,7 @@ Partial Public Class ReportODMScan
         Me.XrTableCell5.StylePriority.UseBorders = False
         Me.XrTableCell5.StylePriority.UsePadding = False
         Me.XrTableCell5.Text = "DELIVERY SLIP"
-        Me.XrTableCell5.Weight = 0.45752319850694834R
-        '
-        'XrTableCell36
-        '
-        Me.XrTableCell36.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell36.Name = "XrTableCell36"
-        Me.XrTableCell36.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrTableCell36.StylePriority.UseBorders = False
-        Me.XrTableCell36.StylePriority.UsePadding = False
-        Me.XrTableCell36.Text = "AWB NUMBER"
-        Me.XrTableCell36.Weight = 0.76253860009472918R
+        Me.XrTableCell5.Weight = 0.571903995918772R
         '
         'XrTableCell2
         '
@@ -201,7 +190,7 @@ Partial Public Class ReportODMScan
         Me.XrTableCell2.StylePriority.UseBorders = False
         Me.XrTableCell2.StylePriority.UsePadding = False
         Me.XrTableCell2.Text = "STORE ACC"
-        Me.XrTableCell2.Weight = 0.30501545288136622R
+        Me.XrTableCell2.Weight = 0.7625385932112323R
         '
         'XrTableCell3
         '
@@ -996,7 +985,6 @@ Partial Public Class ReportODMScan
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell36 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
