@@ -129,6 +129,9 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         TEScan.Text = ""
         BComplete.Visible = False
         '
+        TEAWB.Text = ""
+        TEAWB.Enabled = True
+        '
         empty_gv()
     End Sub
 
@@ -139,7 +142,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     End Sub
 
     Private Sub GVList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVList.RowCellStyle
-        If e.Column.FieldName = "id_awbill" Then
+        If e.Column.FieldName = "ol_number" Then
             e.Appearance.BackColor = If(GVList.GetRowCellValue(e.RowHandle, "is_check").ToString = "OK", Color.LightGreen, Color.LightSalmon)
         End If
     End Sub

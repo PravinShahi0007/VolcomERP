@@ -22,10 +22,9 @@ Partial Public Class ReportOutboundLabel
         Dim Code128Generator1 As DevExpress.XtraPrinting.BarCode.Code128Generator = New DevExpress.XtraPrinting.BarCode.Code128Generator()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
-        Me.XRBarcode = New DevExpress.XtraReports.UI.XRBarCode()
-        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XRNumber = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XRBarcode = New DevExpress.XtraReports.UI.XRBarCode()
         Me.XrTable = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -36,7 +35,8 @@ Partial Public Class ReportOutboundLabel
         Me.XrTableRowTotal = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell38 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XRTotal = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -56,8 +56,32 @@ Partial Public Class ReportOutboundLabel
         Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XRNumber, Me.XrLabel1, Me.XRBarcode, Me.XrTable})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(325.0!, 250.0!)
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(353.125!, 250.0!)
         Me.XrPanel1.StylePriority.UseBorders = False
+        '
+        'XRNumber
+        '
+        Me.XRNumber.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XRNumber.LocationFloat = New DevExpress.Utils.PointFloat(50.41669!, 5.750004!)
+        Me.XRNumber.Name = "XRNumber"
+        Me.XRNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XRNumber.SizeF = New System.Drawing.SizeF(292.7083!, 23.0!)
+        Me.XRNumber.StylePriority.UseBorders = False
+        Me.XRNumber.StylePriority.UseTextAlignment = False
+        Me.XRNumber.Text = "OL #"
+        Me.XRNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 5.750004!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(40.41668!, 23.0!)
+        Me.XrLabel1.StylePriority.UseBorders = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = "OL #"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XRBarcode
         '
@@ -66,45 +90,19 @@ Partial Public Class ReportOutboundLabel
         Me.XRBarcode.Name = "XRBarcode"
         Me.XRBarcode.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
         Me.XRBarcode.ShowText = False
-        Me.XRBarcode.SizeF = New System.Drawing.SizeF(305.0!, 37.58333!)
+        Me.XRBarcode.SizeF = New System.Drawing.SizeF(334.7917!, 37.58333!)
         Me.XRBarcode.StylePriority.UseBorders = False
         Me.XRBarcode.Symbology = Code128Generator1
-        Me.XRBarcode.Text = "12345678"
-        '
-        'TopMargin
-        '
-        Me.TopMargin.HeightF = 50.0!
-        Me.TopMargin.Name = "TopMargin"
-        Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'BottomMargin
-        '
-        Me.BottomMargin.HeightF = 50.0!
-        Me.BottomMargin.Name = "BottomMargin"
-        Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XRNumber
-        '
-        Me.XRNumber.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XRNumber.LocationFloat = New DevExpress.Utils.PointFloat(50.41669!, 5.750004!)
-        Me.XRNumber.Name = "XRNumber"
-        Me.XRNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XRNumber.SizeF = New System.Drawing.SizeF(264.5833!, 23.0!)
-        Me.XRNumber.StylePriority.UseBorders = False
-        Me.XRNumber.StylePriority.UseTextAlignment = False
-        Me.XRNumber.Text = "OL #"
-        Me.XRNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XRBarcode.Text = "20211231999"
         '
         'XrTable
         '
         Me.XrTable.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTable.Font = New System.Drawing.Font("Segoe UI", 6.0!, System.Drawing.FontStyle.Bold)
-        Me.XrTable.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 70.33334!)
+        Me.XrTable.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 70.33335!)
         Me.XrTable.Name = "XrTable"
         Me.XrTable.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow, Me.XrTableRowTotal})
-        Me.XrTable.SizeF = New System.Drawing.SizeF(305.0!, 38.05555!)
+        Me.XrTable.SizeF = New System.Drawing.SizeF(333.125!, 38.05555!)
         Me.XrTable.StylePriority.UseBorders = False
         Me.XrTable.StylePriority.UseFont = False
         '
@@ -147,7 +145,7 @@ Partial Public Class ReportOutboundLabel
         Me.XrTableCell2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell2.StylePriority.UseBorders = False
         Me.XrTableCell2.StylePriority.UsePadding = False
-        Me.XrTableCell2.Text = "STORE ACC"
+        Me.XrTableCell2.Text = "STORE"
         Me.XrTableCell2.Weight = 0.5925447994725388R
         '
         'XrTableCell3
@@ -157,7 +155,7 @@ Partial Public Class ReportOutboundLabel
         Me.XrTableCell3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell3.StylePriority.UseBorders = False
         Me.XrTableCell3.StylePriority.UsePadding = False
-        Me.XrTableCell3.Text = "STORE NAME"
+        Me.XrTableCell3.Text = "DESCRIPTION"
         Me.XrTableCell3.Weight = 1.9196563859094205R
         '
         'XrTableCell6
@@ -198,17 +196,19 @@ Partial Public Class ReportOutboundLabel
         Me.XRTotal.StylePriority.UsePadding = False
         Me.XRTotal.Weight = 0.63608264704615025R
         '
-        'XrLabel1
+        'TopMargin
         '
-        Me.XrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 5.750004!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(40.41668!, 23.0!)
-        Me.XrLabel1.StylePriority.UseBorders = False
-        Me.XrLabel1.StylePriority.UseTextAlignment = False
-        Me.XrLabel1.Text = "OL #"
-        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.TopMargin.HeightF = 50.0!
+        Me.TopMargin.Name = "TopMargin"
+        Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'BottomMargin
+        '
+        Me.BottomMargin.HeightF = 50.0!
+        Me.BottomMargin.Name = "BottomMargin"
+        Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'ReportOutboundLabel
         '

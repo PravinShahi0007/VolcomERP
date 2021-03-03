@@ -27,7 +27,7 @@
     Dim is_load As Boolean = False
 
     Sub load_list(ByVal id As String)
-        Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) As qty,dis.sub_district,c.comp_name
+        Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) As qty,dis.sub_district,c.comp_name,awb.ol_number
 FROM `tb_wh_awbill` awb 
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awb.id_sub_district
 INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
@@ -51,7 +51,7 @@ WHERE awb.id_report_status!=5 AND awb.id_report_status!=6 AND awb.is_old_ways!=1
         If dt.Rows.Count > 0 Then
             If Not id = "" Then
                 'popup detail
-                FormOutboundListDet.id_awb = addSlashes(TEOutboundNumber.Text)
+                FormOutboundListDet.id_awb = dt.Rows(0)("id_awbill").ToString
                 FormOutboundListDet.ShowDialog()
             End If
         End If

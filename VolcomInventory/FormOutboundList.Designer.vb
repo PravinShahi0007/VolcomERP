@@ -104,7 +104,7 @@ Partial Class FormOutboundList
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Outbound Number"
-        Me.GridColumn1.FieldName = "id_awbill"
+        Me.GridColumn1.FieldName = "ol_number"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
