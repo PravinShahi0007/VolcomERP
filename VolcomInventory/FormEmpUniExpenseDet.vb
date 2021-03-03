@@ -95,6 +95,7 @@ Public Class FormEmpUniExpenseDet
     End Sub
 
     Sub allow_status()
+        GCData.ContextMenuStrip = Nothing
         SLECat.Enabled = False
         BtnBrowse.Enabled = False
         TxtNumber.Enabled = False
@@ -158,6 +159,8 @@ Public Class FormEmpUniExpenseDet
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        makeSafeGV(GVData)
+
         'cek periode
         Dim start_period_cek As String = "0000-01-01"
         Dim end_period_cek As String = "9999-12-01"
@@ -180,6 +183,48 @@ Public Class FormEmpUniExpenseDet
         Dim dcoa As DataTable = execute_query(qcoa, -1, True, "", "", "", "")
         If dcoa.Rows.Count <= 0 Then
             cond_coa = False
+        End If
+
+        'cek stock 
+        Dim cond_no_stock As Boolean = False
+        For r As Integer = 0 To GVData.RowCount - 1
+            GVData.SetRowCellValue(r, "stt_acc", "OK")
+        Next
+        If GVData.RowCount > 0 Then
+            Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; 
+                            INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES "
+            Dim id_prod As String = ""
+            For s As Integer = 0 To GVData.RowCount - 1
+                If s > 0 Then
+                    qs += ","
+                    id_prod += ","
+                End If
+                qs += "('" + id_user + "','" + GVData.GetRowCellValue(s, "code").ToString + "','" + addSlashes(GVData.GetRowCellValue(s, "name").ToString) + "', '" + GVData.GetRowCellValue(s, "size").ToString + "', '" + GVData.GetRowCellValue(s, "id_product").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(s, "qty").ToString) + "') "
+                id_prod += GVData.GetRowCellValue(s, "id_product").ToString
+            Next
+            qs += "; CALL view_validate_stock(" + id_user + ", " + id_comp + ", '" + id_prod + "',1); "
+            Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+            If dts.Rows.Count > 0 Then
+                Cursor = Cursors.WaitCursor
+                For c As Integer = 0 To dts.Rows.Count - 1
+                    GVData.ActiveFilterString = "[code]='" + dts.Rows(c)("code").ToString + "' "
+                    If GVData.RowCount > 0 Then
+                        GVData.SetFocusedRowCellValue("stt_acc", dts.Rows(c)("note").ToString)
+                    Else
+                        GVData.SetFocusedRowCellValue("stt_acc", "OK")
+                    End If
+                    GVData.ActiveFilterString = ""
+                Next
+                GridColumnstt_acc.VisibleIndex = 100
+                Cursor = Cursors.Default
+                cond_no_stock = True
+                stopCustom("No stock available for some items.")
+                'FormValidateStock.dt = dts
+                'FormValidateStock.ShowDialog()
+                Exit Sub
+            Else
+                GridColumnstt_acc.Visible = False
+            End If
         End If
 
 
@@ -594,5 +639,12 @@ Public Class FormEmpUniExpenseDet
             warningCustom("Auto journal not found.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SetQtyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetQtyToolStripMenuItem.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And GVData.GetFocusedRowCellValue("stt_acc").ToString <> "OK" Then
+            FormEmpUniExpenseSetQty.id_del_det = GVData.GetFocusedRowCellValue("id_pl_sales_order_del_det").ToString
+            FormEmpUniExpenseSetQty.ShowDialog()
+        End If
     End Sub
 End Class

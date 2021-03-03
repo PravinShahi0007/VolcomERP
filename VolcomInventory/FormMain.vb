@@ -7630,6 +7630,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                     Tool.ShowPreview()
                 End If
+            ElseIf FormSalesWeekly.XTCPOS.SelectedTabPageIndex = 3 Then
+                print(FormSalesWeekly.GCInvoiceWeek, "Invoice (View by Week)")
             End If
         ElseIf formName = "FormSalesCreditNote" Then
             'CREDIT NOTE

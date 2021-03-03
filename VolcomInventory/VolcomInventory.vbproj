@@ -1837,6 +1837,12 @@
     <Compile Include="FormEmpUniExpenseDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniExpenseSetQty.Designer.vb">
+      <DependentUpon>FormEmpUniExpenseSetQty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniExpenseSetQty.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniGroupSizeGuide.Designer.vb">
       <DependentUpon>FormEmpUniGroupSizeGuide.vb</DependentUpon>
     </Compile>
@@ -9349,6 +9355,12 @@
     <Compile Include="ReportVA.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportWeightPPS.Designer.vb">
+      <DependentUpon>ReportWeightPPS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportWeightPPS.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportWHAWBillShipmentLabel.Designer.vb">
       <DependentUpon>ReportWHAWBillShipmentLabel.vb</DependentUpon>
     </Compile>
@@ -10197,6 +10209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniExpenseDet.resx">
       <DependentUpon>FormEmpUniExpenseDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniExpenseSetQty.resx">
+      <DependentUpon>FormEmpUniExpenseSetQty.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniGroupSizeGuide.resx">
       <DependentUpon>FormEmpUniGroupSizeGuide.vb</DependentUpon>
@@ -14463,6 +14478,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportVA.resx">
       <DependentUpon>ReportVA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportWeightPPS.resx">
+      <DependentUpon>ReportWeightPPS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportWHAWBillShipmentLabel.resx">
       <DependentUpon>ReportWHAWBillShipmentLabel.vb</DependentUpon>

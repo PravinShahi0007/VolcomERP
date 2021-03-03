@@ -59,6 +59,8 @@
         DEUntil.EditValue = tgl
         DEFromWeekly.EditValue = tgl
         DEEndWeekly.EditValue = tgl
+        DEInvoiceFrom.EditValue = tgl
+        DEInvoiceTo.EditValue = tgl
 
         'Tab Weekly
         TxtYear.Text = current_year
@@ -1237,5 +1239,147 @@
 
     Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
         viewStore()
+    End Sub
+
+    Sub view_invoice_week()
+        GVInvoiceWeek.Columns.Clear()
+        GVInvoiceWeek.Bands.Clear()
+
+        Dim s_data As DataTable = execute_query("CALL view_inv_week('" + Date.Parse(DEInvoiceFrom.EditValue.ToString()).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DEInvoiceTo.EditValue.ToString()).ToString("yyyy-MM-dd") + "')", -1, True, "", "", "", "")
+
+        Dim list_month As List(Of String) = New List(Of String)
+        Dim list_week As List(Of List(Of String)) = New List(Of List(Of String))
+        Dim list_detail As List(Of String) = New List(Of String)
+
+        Dim temp_week_list As List(Of String) = New List(Of String)
+
+        For i = 0 To s_data.Columns.Count - 1
+            If s_data.Columns(i).ColumnName.Contains("s/d") Then
+                Dim a_date() As String = s_data.Columns(i).ColumnName.Split("/")
+
+                a_date(0) = a_date(0).Replace(" ", "").Replace("s", "")
+                a_date(1) = a_date(1).Replace(" ", "").Replace("d", "")
+
+                Dim start_date As Date = Date.Parse(a_date(0))
+                Dim end_date As Date = Date.Parse(a_date(1))
+
+                If list_month.Count = 0 Then
+                    list_month.Add(start_date.ToString("MMMM yyyy"))
+
+                    'detail week
+                    temp_week_list = New List(Of String)
+
+                    list_week.Add(temp_week_list)
+                Else
+                    If Not list_month(list_month.Count - 1) = start_date.ToString("MMMM yyyy") Then
+                        list_month.Add(start_date.ToString("MMMM yyyy"))
+
+                        'detail week
+                        temp_week_list = New List(Of String)
+
+                        list_week.Add(temp_week_list)
+                    End If
+                End If
+
+                temp_week_list.Add(start_date.ToString("dd") + " - " + end_date.ToString("dd"))
+
+                list_detail.Add(s_data.Columns(i).ColumnName)
+            End If
+        Next
+
+        'add band
+        Dim band_desc As DevExpress.XtraGrid.Views.BandedGrid.GridBand = New DevExpress.XtraGrid.Views.BandedGrid.GridBand
+
+        band_desc.Caption = "Description"
+
+        GVInvoiceWeek.Bands.Add(band_desc)
+
+        Dim list_fieldname As List(Of String) = New List(Of String)
+        Dim list_caption As List(Of String) = New List(Of String)
+
+        list_fieldname.Add("comp_number")
+        list_fieldname.Add("comp_name")
+        list_fieldname.Add("comp_group")
+        list_fieldname.Add("comp_group_desc")
+        list_fieldname.Add("total_qty")
+        list_fieldname.Add("sales_pos_total_retail")
+        list_fieldname.Add("sales_pos_discount_value")
+        list_fieldname.Add("sales_pos_potongan_value")
+        list_fieldname.Add("sales_pos_netto")
+        list_fieldname.Add("sales_pos_revenue")
+
+        list_caption.Add("Store Acc")
+        list_caption.Add("Store")
+        list_caption.Add("Store Group")
+        list_caption.Add("Store Group Desc")
+        list_caption.Add("Qty")
+        list_caption.Add("Retail")
+        list_caption.Add("Discount")
+        list_caption.Add("Potongan")
+        list_caption.Add("Netto")
+        list_caption.Add("Revenue")
+
+        For i = 0 To list_fieldname.Count - 1
+            Dim column_desc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+
+            column_desc.Caption = list_caption(i)
+            column_desc.FieldName = list_fieldname(i)
+            column_desc.VisibleIndex = i
+
+            If list_fieldname(i) = "total_qty" Or
+                list_fieldname(i) = "sales_pos_total_retail" Or
+                list_fieldname(i) = "sales_pos_discount_value" Or
+                list_fieldname(i) = "sales_pos_potongan_value" Or
+                list_fieldname(i) = "sales_pos_netto" Or
+                list_fieldname(i) = "sales_pos_revenue" Then
+                column_desc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                column_desc.DisplayFormat.FormatString = "N2"
+            End If
+
+            band_desc.Columns.Add(column_desc)
+        Next
+
+        Dim l As Integer = 0
+
+        For i = 0 To list_month.Count - 1
+            Dim band As DevExpress.XtraGrid.Views.BandedGrid.GridBand = New DevExpress.XtraGrid.Views.BandedGrid.GridBand
+
+            band.Caption = list_month(i)
+
+            GVInvoiceWeek.Bands.Add(band)
+
+            For j = 0 To list_week(i).Count - 1
+                Dim column As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+
+                column.Caption = list_week(i)(j)
+                column.FieldName = list_detail(l)
+                column.VisibleIndex = j + list_fieldname.Count
+
+                band.Columns.Add(column)
+
+                l = l + 1
+            Next
+        Next
+
+        GCInvoiceWeek.DataSource = s_data
+        GVInvoiceWeek.BestFitColumns()
+    End Sub
+
+    Private Sub SBInvoiceTo_Click(sender As Object, e As EventArgs) Handles SBInvoiceTo.Click
+        view_invoice_week()
+    End Sub
+
+    Private Sub SBInvoiceExportExcel_Click(sender As Object, e As EventArgs) Handles SBInvoiceExportExcel.Click
+        If GVInvoiceWeek.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "in_weekly.xlsx"
+            exportToXLS(path, "weekly invoice", GCInvoiceWeek)
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

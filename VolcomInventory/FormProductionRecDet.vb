@@ -267,7 +267,26 @@ Public Class FormProductionRecDet
     Sub view_list_purchase()
         Dim query = "CALL view_prod_order_det('" & id_order & "', '0')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCListPurchase.DataSource = data
+
+        If get_opt_prod_field("is_must_input_weight") = "1" Then
+            If data.Rows.Count > 0 Then
+                Dim is_ok_weight As Boolean = True
+                For i = 0 To data.Rows.Count - 1
+                    If data.Rows(i)("qc_weight") <= 0 Then
+                        is_ok_weight = False
+                        Exit For
+                    End If
+                Next
+
+                If is_ok_weight Then
+                    GCListPurchase.DataSource = data
+                Else
+                    warningCustom("Berat belum terinput, mohon input berat terlebih dahulu.")
+                End If
+            End If
+        Else
+            GCListPurchase.DataSource = data
+        End If
     End Sub
 
     Sub view_report_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)

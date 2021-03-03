@@ -19,6 +19,7 @@ Partial Class FormEmpUniExpenseDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniExpenseDet))
         Me.GroupControlTop = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
@@ -52,6 +53,8 @@ Partial Class FormEmpUniExpenseDet
         Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditPreview = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -63,6 +66,8 @@ Partial Class FormEmpUniExpenseDet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlMiddle = New DevExpress.XtraEditors.GroupControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SetQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -79,8 +84,7 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumnEnd = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDueEate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckEditPreview = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridColumnstt_acc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,6 +106,9 @@ Partial Class FormEmpUniExpenseDet
         CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.CheckEditPreview.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlBottom.SuspendLayout()
         CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,10 +118,8 @@ Partial Class FormEmpUniExpenseDet
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlMiddle.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.CheckEditPreview.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlTop
@@ -439,6 +444,24 @@ Partial Class FormEmpUniExpenseDet
         Me.BtnAttachment.TabIndex = 4
         Me.BtnAttachment.Text = "Attachment"
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.CheckEditPreview)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl2.Location = New System.Drawing.Point(655, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(69, 41)
+        Me.PanelControl2.TabIndex = 27
+        '
+        'CheckEditPreview
+        '
+        Me.CheckEditPreview.EditValue = True
+        Me.CheckEditPreview.Location = New System.Drawing.Point(5, 11)
+        Me.CheckEditPreview.Name = "CheckEditPreview"
+        Me.CheckEditPreview.Properties.Caption = "Preview"
+        Me.CheckEditPreview.Size = New System.Drawing.Size(75, 19)
+        Me.CheckEditPreview.TabIndex = 0
+        '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
@@ -544,6 +567,7 @@ Partial Class FormEmpUniExpenseDet
         '
         'GCData
         '
+        Me.GCData.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(20, 2)
         Me.GCData.MainView = Me.GVData
@@ -552,9 +576,21 @@ Partial Class FormEmpUniExpenseDet
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQtyToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        '
+        'SetQtyToolStripMenuItem
+        '
+        Me.SetQtyToolStripMenuItem.Name = "SetQtyToolStripMenuItem"
+        Me.SetQtyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SetQtyToolStripMenuItem.Text = "Set Qty"
+        '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnCode, Me.GridColumn3, Me.GridColumn4, Me.GridColumnQty, Me.GridColumnCost, Me.GridColumn7, Me.GridColumnIdPLDet, Me.GridColumnIdProduct, Me.GridColumnNumber, Me.GridColumnAccount, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueEate, Me.GridColumnType})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnCode, Me.GridColumn3, Me.GridColumn4, Me.GridColumnQty, Me.GridColumnCost, Me.GridColumn7, Me.GridColumnIdPLDet, Me.GridColumnIdProduct, Me.GridColumnNumber, Me.GridColumnAccount, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueEate, Me.GridColumnType, Me.GridColumnstt_acc})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -690,23 +726,11 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumnType.FieldName = "type"
         Me.GridColumnType.Name = "GridColumnType"
         '
-        'PanelControl2
+        'GridColumnstt_acc
         '
-        Me.PanelControl2.Controls.Add(Me.CheckEditPreview)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(655, 2)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(69, 41)
-        Me.PanelControl2.TabIndex = 27
-        '
-        'CheckEditPreview
-        '
-        Me.CheckEditPreview.EditValue = True
-        Me.CheckEditPreview.Location = New System.Drawing.Point(5, 11)
-        Me.CheckEditPreview.Name = "CheckEditPreview"
-        Me.CheckEditPreview.Properties.Caption = "Preview"
-        Me.CheckEditPreview.Size = New System.Drawing.Size(75, 19)
-        Me.CheckEditPreview.TabIndex = 0
+        Me.GridColumnstt_acc.Caption = "Check Stock"
+        Me.GridColumnstt_acc.FieldName = "stt_acc"
+        Me.GridColumnstt_acc.Name = "GridColumnstt_acc"
         '
         'FormEmpUniExpenseDet
         '
@@ -745,6 +769,9 @@ Partial Class FormEmpUniExpenseDet
         CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.CheckEditPreview.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlBottom.ResumeLayout(False)
         Me.GroupControlBottom.PerformLayout()
@@ -756,10 +783,8 @@ Partial Class FormEmpUniExpenseDet
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlMiddle.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        CType(Me.CheckEditPreview.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -825,4 +850,7 @@ Partial Class FormEmpUniExpenseDet
     Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CheckEditPreview As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnstt_acc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents SetQtyToolStripMenuItem As ToolStripMenuItem
 End Class
