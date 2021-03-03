@@ -36,10 +36,11 @@ Partial Class FormPolis
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCPolis = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPToko = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPFixedAsset = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BProposePolis = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCPolisToko, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,6 +53,7 @@ Partial Class FormPolis
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BProposePolis)
         Me.PanelControl1.Controls.Add(Me.BExpiredSoon)
         Me.PanelControl1.Controls.Add(Me.BRefresh)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -206,6 +208,15 @@ Partial Class FormPolis
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 9
         '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Total Nilai Pertanggungan"
+        Me.GridColumn11.FieldName = "nilai_total"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 7
+        '
         'XTCPolis
         '
         Me.XTCPolis.Dock = System.Windows.Forms.DockStyle.Fill
@@ -230,14 +241,17 @@ Partial Class FormPolis
         Me.XTPFixedAsset.Size = New System.Drawing.Size(1003, 417)
         Me.XTPFixedAsset.Text = "Fixed Asset"
         '
-        'GridColumn11
+        'BProposePolis
         '
-        Me.GridColumn11.Caption = "Total Nilai Pertanggungan"
-        Me.GridColumn11.FieldName = "nilai_total"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 7
+        Me.BProposePolis.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BProposePolis.Image = CType(resources.GetObject("BProposePolis.Image"), System.Drawing.Image)
+        Me.BProposePolis.ImageIndex = 13
+        Me.BProposePolis.Location = New System.Drawing.Point(2, 2)
+        Me.BProposePolis.Name = "BProposePolis"
+        Me.BProposePolis.Size = New System.Drawing.Size(116, 42)
+        Me.BProposePolis.TabIndex = 20
+        Me.BProposePolis.TabStop = False
+        Me.BProposePolis.Text = "Propose Polis"
         '
         'FormPolis
         '
@@ -282,4 +296,5 @@ Partial Class FormPolis
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIMemoLocation As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BProposePolis As DevExpress.XtraEditors.SimpleButton
 End Class

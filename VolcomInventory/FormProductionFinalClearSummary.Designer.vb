@@ -81,8 +81,9 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -362,7 +363,7 @@ Partial Class FormProductionFinalClearSummary
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdFc, Me.GridColumnNo, Me.GridColumnVendor, Me.GridColumnDesign, Me.GridColumnNumber, Me.GridColumnCategory, Me.GridColumnClaim, Me.GridColumnQty, Me.GridColumnQtyPO, Me.GridColumnQtyRec, Me.GridColumnTanggalInput})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdFc, Me.GridColumnNo, Me.GridColumnVendor, Me.GridColumnDesign, Me.GridColumnNumber, Me.GridColumnCategory, Me.GridColumnClaim, Me.GridColumnQty, Me.GridColumnQtyPO, Me.GridColumnQtyRec, Me.GridColumnTanggalInput, Me.GridColumn17})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_fc_det_qty", Me.GridColumnQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", Me.GridColumnQtyPO, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnQtyRec, "{0:N2}")})
         Me.GVList.Name = "GVList"
@@ -513,7 +514,7 @@ Partial Class FormProductionFinalClearSummary
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1002, 581)
+        Me.XTPSummary.Size = New System.Drawing.Size(1002, 497)
         Me.XTPSummary.Text = "Summary"
         '
         'GCSummary
@@ -522,7 +523,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(1002, 581)
+        Me.GCSummary.Size = New System.Drawing.Size(1002, 497)
         Me.GCSummary.TabIndex = 2
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -768,6 +769,15 @@ Partial Class FormProductionFinalClearSummary
         Me.PanelControl4.Size = New System.Drawing.Size(1008, 84)
         Me.PanelControl4.TabIndex = 23
         '
+        'MENote
+        '
+        Me.MENote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MENote.Location = New System.Drawing.Point(48, 13)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(948, 60)
+        Me.MENote.TabIndex = 19
+        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -777,14 +787,17 @@ Partial Class FormProductionFinalClearSummary
         Me.Label6.TabIndex = 18
         Me.Label6.Text = "Note"
         '
-        'MENote
+        'GridColumn17
         '
-        Me.MENote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MENote.Location = New System.Drawing.Point(48, 13)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(948, 60)
-        Me.MENote.TabIndex = 19
+        Me.GridColumn17.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn17.Caption = "Status"
+        Me.GridColumn17.FieldName = "report_status"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 10
         '
         'FormProductionFinalClearSummary
         '
@@ -894,4 +907,5 @@ Partial Class FormProductionFinalClearSummary
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents Label6 As Label
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
