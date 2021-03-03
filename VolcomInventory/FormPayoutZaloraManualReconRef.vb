@@ -27,7 +27,7 @@
         UNION ALL
         SELECT 'No' AS `is_select`,sod.item_id, p.product_full_code AS `code`, p.product_name, cd.display_name AS `size`,CONCAT(c.comp_name,' Per ', DATE_FORMAT(cn.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(cn.sales_pos_end_period,'%d-%m-%y'))  AS `name`,
         2 AS `id_group`, 'Commision' AS `group`, cn.id_sales_pos AS `id_ref`, cnd.id_sales_pos_det AS `id_ref_det`, cn.report_mark_type AS `rmt_ref`, rmt.report_mark_type_name, cn.sales_pos_number AS `ref`,
-        cnd.design_price_retail AS `amo`, cn.id_acc_ar AS `id_acc`, c.id_comp, c.comp_number 
+        (cnd.design_price_retail*-1) AS `amo`, cn.id_acc_ar AS `id_acc`, c.id_comp, c.comp_number 
         FROM tb_sales_pos cn
         INNER JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos = cn.id_sales_pos
         INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = cnd.id_sales_pos_det_ref

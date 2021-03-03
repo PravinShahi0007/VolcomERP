@@ -71,6 +71,8 @@ FROM (
 	GROUP BY cd.id_acc, cd.manual_recon_reason)
 	UNION ALL
 	-- komisi
+    
+    UNION ALL
 	(SELECT 'Komisi penjualan Zalora' AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, m.comm AS `amo`, d.id_acc, d.recon_type AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 3 AS `indeks`
 	FROM tb_payout_zalora m
 	LEFT JOIN (

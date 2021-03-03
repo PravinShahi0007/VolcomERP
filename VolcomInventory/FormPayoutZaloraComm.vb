@@ -12,6 +12,18 @@
         GROUP BY d.id_payout_zalora "
         Dim dcom As DataTable = execute_query(qcom, -1, True, "", "", "", "")
         TxtLinkComm.EditValue = dcom.Rows(0)("amount")
+        'get comm with referemce
+        Dim qr As String = "SELECT SUM(a.erp_amount) AS `comm_reff_amo` 
+        FROM tb_payout_zalora_det_addition a
+        INNER JOIN tb_payout_zalora_det d ON d.id_payout_zalora_det = a.id_payout_zalora_det
+        WHERE d.id_payout_zalora='" + id + "'
+        GROUP BY d.id_payout_zalora "
+        Dim dr As DataTable = execute_query(qr, -1, True, "", "", "", "")
+        If dr.Rows.Count > 0 Then
+            TxtCommReff.EditValue = dr.Rows(0)("comm_reff_amo")
+        Else
+            TxtCommReff.EditValue = 0.00
+        End If
         'get detail tax
         Dim query As String = "SELECT m.comm, m.comm_tax FROM tb_payout_zalora m WHERE m.id_payout_zalora=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -30,7 +42,7 @@
 
     Sub getTotal()
         Cursor = Cursors.WaitCursor
-        TxtTotalCommInput.EditValue = TxtComm.EditValue + TxtCommTax.EditValue
+        TxtTotalCommInput.EditValue = TxtCommReff.EditValue + TxtComm.EditValue + TxtCommTax.EditValue
         Cursor = Cursors.Default
     End Sub
 
