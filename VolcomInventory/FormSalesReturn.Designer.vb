@@ -71,7 +71,10 @@ Partial Class FormSalesReturn
         Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSyncROROnline = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlSalesReturnOrderDetail = New DevExpress.XtraEditors.GroupControl()
         Me.GCSalesReturnOrderDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVSalesReturnOrderDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -104,7 +107,6 @@ Partial Class FormSalesReturn
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesReturn.SuspendLayout()
         Me.XTPSalesReturnList.SuspendLayout()
@@ -126,6 +128,8 @@ Partial Class FormSalesReturn
         CType(Me.GVSalesReturnOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.GroupControlSalesReturnOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlSalesReturnOrderDetail.SuspendLayout()
         CType(Me.GCSalesReturnOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -438,11 +442,12 @@ Partial Class FormSalesReturn
         Me.SCCWaitingReturn.Location = New System.Drawing.Point(0, 0)
         Me.SCCWaitingReturn.Name = "SCCWaitingReturn"
         Me.SCCWaitingReturn.Panel1.Controls.Add(Me.GroupControlSalesReturnOrder)
+        Me.SCCWaitingReturn.Panel1.Controls.Add(Me.PanelControl2)
         Me.SCCWaitingReturn.Panel1.Text = "Panel1"
         Me.SCCWaitingReturn.Panel2.Controls.Add(Me.GroupControlSalesReturnOrderDetail)
         Me.SCCWaitingReturn.Panel2.Text = "Panel2"
         Me.SCCWaitingReturn.Size = New System.Drawing.Size(729, 477)
-        Me.SCCWaitingReturn.SplitterPosition = 253
+        Me.SCCWaitingReturn.SplitterPosition = 239
         Me.SCCWaitingReturn.TabIndex = 0
         Me.SCCWaitingReturn.Text = "SplitContainerControl1"
         '
@@ -450,9 +455,9 @@ Partial Class FormSalesReturn
         '
         Me.GroupControlSalesReturnOrder.Controls.Add(Me.GCSalesReturnOrder)
         Me.GroupControlSalesReturnOrder.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlSalesReturnOrder.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControlSalesReturnOrder.Location = New System.Drawing.Point(0, 31)
         Me.GroupControlSalesReturnOrder.Name = "GroupControlSalesReturnOrder"
-        Me.GroupControlSalesReturnOrder.Size = New System.Drawing.Size(729, 253)
+        Me.GroupControlSalesReturnOrder.Size = New System.Drawing.Size(729, 208)
         Me.GroupControlSalesReturnOrder.TabIndex = 0
         Me.GroupControlSalesReturnOrder.Text = "Order"
         '
@@ -463,7 +468,7 @@ Partial Class FormSalesReturn
         Me.GCSalesReturnOrder.MainView = Me.GVSalesReturnOrder
         Me.GCSalesReturnOrder.Name = "GCSalesReturnOrder"
         Me.GCSalesReturnOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
-        Me.GCSalesReturnOrder.Size = New System.Drawing.Size(725, 231)
+        Me.GCSalesReturnOrder.Size = New System.Drawing.Size(725, 186)
         Me.GCSalesReturnOrder.TabIndex = 3
         Me.GCSalesReturnOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesReturnOrder, Me.GridView2})
         '
@@ -600,10 +605,39 @@ Partial Class FormSalesReturn
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         '
+        'GridColumnorder_type
+        '
+        Me.GridColumnorder_type.Caption = "Type"
+        Me.GridColumnorder_type.FieldName = "order_type"
+        Me.GridColumnorder_type.Name = "GridColumnorder_type"
+        Me.GridColumnorder_type.Visible = True
+        Me.GridColumnorder_type.VisibleIndex = 1
+        '
         'GridView2
         '
         Me.GridView2.GridControl = Me.GCSalesReturnOrder
         Me.GridView2.Name = "GridView2"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BtnSyncROROnline)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(729, 31)
+        Me.PanelControl2.TabIndex = 2
+        '
+        'BtnSyncROROnline
+        '
+        Me.BtnSyncROROnline.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnSyncROROnline.Appearance.Options.UseFont = True
+        Me.BtnSyncROROnline.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSyncROROnline.Image = CType(resources.GetObject("BtnSyncROROnline.Image"), System.Drawing.Image)
+        Me.BtnSyncROROnline.Location = New System.Drawing.Point(543, 2)
+        Me.BtnSyncROROnline.Name = "BtnSyncROROnline"
+        Me.BtnSyncROROnline.Size = New System.Drawing.Size(184, 27)
+        Me.BtnSyncROROnline.TabIndex = 1
+        Me.BtnSyncROROnline.Text = "Sync ROR Online Marketplace"
         '
         'GroupControlSalesReturnOrderDetail
         '
@@ -612,7 +646,7 @@ Partial Class FormSalesReturn
         Me.GroupControlSalesReturnOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlSalesReturnOrderDetail.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlSalesReturnOrderDetail.Name = "GroupControlSalesReturnOrderDetail"
-        Me.GroupControlSalesReturnOrderDetail.Size = New System.Drawing.Size(729, 219)
+        Me.GroupControlSalesReturnOrderDetail.Size = New System.Drawing.Size(729, 233)
         Me.GroupControlSalesReturnOrderDetail.TabIndex = 0
         Me.GroupControlSalesReturnOrderDetail.Text = "Item Detail"
         '
@@ -624,7 +658,7 @@ Partial Class FormSalesReturn
         Me.GCSalesReturnOrderDetail.MainView = Me.GVSalesReturnOrderDetail
         Me.GCSalesReturnOrderDetail.Name = "GCSalesReturnOrderDetail"
         Me.GCSalesReturnOrderDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCSalesReturnOrderDetail.Size = New System.Drawing.Size(725, 165)
+        Me.GCSalesReturnOrderDetail.Size = New System.Drawing.Size(725, 179)
         Me.GCSalesReturnOrderDetail.TabIndex = 3
         Me.GCSalesReturnOrderDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesReturnOrderDetail})
         '
@@ -934,14 +968,6 @@ Partial Class FormSalesReturn
         Me.SMPrint.Size = New System.Drawing.Size(136, 22)
         Me.SMPrint.Text = "Print"
         '
-        'GridColumnorder_type
-        '
-        Me.GridColumnorder_type.Caption = "Type"
-        Me.GridColumnorder_type.FieldName = "order_type"
-        Me.GridColumnorder_type.Name = "GridColumnorder_type"
-        Me.GridColumnorder_type.Visible = True
-        Me.GridColumnorder_type.VisibleIndex = 1
-        '
         'FormSalesReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -977,6 +1003,8 @@ Partial Class FormSalesReturn
         CType(Me.GVSalesReturnOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         CType(Me.GroupControlSalesReturnOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlSalesReturnOrderDetail.ResumeLayout(False)
         CType(Me.GCSalesReturnOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1072,4 +1100,6 @@ Partial Class FormSalesReturn
     Friend WithEvents RepoCENonList As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumncombine_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnorder_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnSyncROROnline As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
 End Class

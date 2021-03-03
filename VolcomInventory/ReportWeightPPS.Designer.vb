@@ -1,8 +1,8 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormProductWeight
-    Inherits DevExpress.XtraEditors.XtraForm
+Partial Public Class ReportWeightPPS
+    Inherits DevExpress.XtraReports.UI.XtraReport
 
-    'Form overrides dispose to clean up the component list.
+    'XtraReport overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
@@ -11,33 +11,16 @@ Partial Class FormProductWeight
         MyBase.Dispose(disposing)
     End Sub
 
-    'Required by the Windows Form Designer
+    'Required by the Designer
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
+    'NOTE: The following procedure is required by the Designer
+    'It can be modified using the Designer.  
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductWeight))
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
-        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
-        Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
-        Me.TEFGPONumbers = New DevExpress.XtraEditors.TextEdit()
-        Me.TEFGPONumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LFGPONumber = New DevExpress.XtraEditors.LabelControl()
-        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCItem = New DevExpress.XtraGrid.GridControl()
         Me.GVItem = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -73,21 +56,27 @@ Partial Class FormProductWeight
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCAddDel.SuspendLayout()
-        CType(Me.TEFGPONumbers.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEFGPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
+        Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LCreatedDate = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LCreatedBy = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LNumber = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,207 +90,31 @@ Partial Class FormProductWeight
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
-        'PanelControl1
+        'Detail
         '
-        Me.PanelControl1.Controls.Add(Me.BtnPrint)
-        Me.PanelControl1.Controls.Add(Me.BtnCancel)
-        Me.PanelControl1.Controls.Add(Me.BtnSave)
-        Me.PanelControl1.Controls.Add(Me.BMark)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 503)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1046, 43)
-        Me.PanelControl1.TabIndex = 4
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
+        Me.Detail.HeightF = 184.375!
+        Me.Detail.Name = "Detail"
+        Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'BtnPrint
+        'WinControlContainer1
         '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.ImageIndex = 6
-        Me.BtnPrint.Location = New System.Drawing.Point(768, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 39)
-        Me.BtnPrint.TabIndex = 22
-        Me.BtnPrint.TabStop = False
-        Me.BtnPrint.Text = "Print"
-        Me.BtnPrint.Visible = False
-        '
-        'BtnCancel
-        '
-        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancel.Image = CType(resources.GetObject("BtnCancel.Image"), System.Drawing.Image)
-        Me.BtnCancel.ImageIndex = 5
-        Me.BtnCancel.Location = New System.Drawing.Point(855, 2)
-        Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(89, 39)
-        Me.BtnCancel.TabIndex = 23
-        Me.BtnCancel.TabStop = False
-        Me.BtnCancel.Text = "Cancel"
-        '
-        'BtnSave
-        '
-        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.ImageIndex = 7
-        Me.BtnSave.Location = New System.Drawing.Point(944, 2)
-        Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(100, 39)
-        Me.BtnSave.TabIndex = 21
-        Me.BtnSave.TabStop = False
-        Me.BtnSave.Text = "Save"
-        '
-        'BMark
-        '
-        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
-        Me.BMark.ImageIndex = 4
-        Me.BMark.Location = New System.Drawing.Point(2, 2)
-        Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(101, 39)
-        Me.BMark.TabIndex = 20
-        Me.BMark.TabStop = False
-        Me.BMark.Text = "Mark"
-        Me.BMark.Visible = False
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.TECreatedBy)
-        Me.PanelControl2.Controls.Add(Me.TENumber)
-        Me.PanelControl2.Controls.Add(Me.DECreatedDate)
-        Me.PanelControl2.Controls.Add(Me.LabelControl3)
-        Me.PanelControl2.Controls.Add(Me.LabelControl2)
-        Me.PanelControl2.Controls.Add(Me.LabelControl1)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1046, 109)
-        Me.PanelControl2.TabIndex = 5
-        '
-        'TECreatedBy
-        '
-        Me.TECreatedBy.Location = New System.Drawing.Point(132, 42)
-        Me.TECreatedBy.Name = "TECreatedBy"
-        Me.TECreatedBy.Properties.ReadOnly = True
-        Me.TECreatedBy.Size = New System.Drawing.Size(293, 20)
-        Me.TECreatedBy.TabIndex = 170
-        '
-        'TENumber
-        '
-        Me.TENumber.Location = New System.Drawing.Point(132, 14)
-        Me.TENumber.Name = "TENumber"
-        Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(211, 20)
-        Me.TENumber.TabIndex = 143
-        '
-        'DECreatedDate
-        '
-        Me.DECreatedDate.EditValue = Nothing
-        Me.DECreatedDate.Location = New System.Drawing.Point(132, 71)
-        Me.DECreatedDate.Name = "DECreatedDate"
-        Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DECreatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreatedDate.Properties.ReadOnly = True
-        Me.DECreatedDate.Size = New System.Drawing.Size(293, 20)
-        Me.DECreatedDate.TabIndex = 169
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 74)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(65, 13)
-        Me.LabelControl3.TabIndex = 2
-        Me.LabelControl3.Text = "Created Date"
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 45)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl2.TabIndex = 1
-        Me.LabelControl2.Text = "Created By"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 17)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "Number"
-        '
-        'PCAddDel
-        '
-        Me.PCAddDel.Controls.Add(Me.TEFGPONumbers)
-        Me.PCAddDel.Controls.Add(Me.TEFGPONumber)
-        Me.PCAddDel.Controls.Add(Me.LFGPONumber)
-        Me.PCAddDel.Controls.Add(Me.BDelete)
-        Me.PCAddDel.Controls.Add(Me.BAdd)
-        Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCAddDel.Location = New System.Drawing.Point(0, 109)
-        Me.PCAddDel.Name = "PCAddDel"
-        Me.PCAddDel.Size = New System.Drawing.Size(1046, 43)
-        Me.PCAddDel.TabIndex = 144
-        '
-        'TEFGPONumbers
-        '
-        Me.TEFGPONumbers.Location = New System.Drawing.Point(222, 12)
-        Me.TEFGPONumbers.Name = "TEFGPONumbers"
-        Me.TEFGPONumbers.Size = New System.Drawing.Size(203, 20)
-        Me.TEFGPONumbers.TabIndex = 145
-        '
-        'TEFGPONumber
-        '
-        Me.TEFGPONumber.EditValue = "PRO"
-        Me.TEFGPONumber.Location = New System.Drawing.Point(132, 12)
-        Me.TEFGPONumber.Name = "TEFGPONumber"
-        Me.TEFGPONumber.Properties.ReadOnly = True
-        Me.TEFGPONumber.Size = New System.Drawing.Size(84, 20)
-        Me.TEFGPONumber.TabIndex = 144
-        '
-        'LFGPONumber
-        '
-        Me.LFGPONumber.Location = New System.Drawing.Point(12, 15)
-        Me.LFGPONumber.Name = "LFGPONumber"
-        Me.LFGPONumber.Size = New System.Drawing.Size(67, 13)
-        Me.LFGPONumber.TabIndex = 27
-        Me.LFGPONumber.Text = "FGPO Number"
-        '
-        'BDelete
-        '
-        Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDelete.Image = CType(resources.GetObject("BDelete.Image"), System.Drawing.Image)
-        Me.BDelete.Location = New System.Drawing.Point(820, 2)
-        Me.BDelete.Name = "BDelete"
-        Me.BDelete.Size = New System.Drawing.Size(112, 39)
-        Me.BDelete.TabIndex = 26
-        Me.BDelete.Text = "Delete"
-        Me.BDelete.Visible = False
-        '
-        'BAdd
-        '
-        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
-        Me.BAdd.Location = New System.Drawing.Point(932, 2)
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(112, 39)
-        Me.BAdd.TabIndex = 25
-        Me.BAdd.Text = "Add"
-        Me.BAdd.Visible = False
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 0!)
+        Me.WinControlContainer1.Name = "WinControlContainer1"
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(723.0!, 184.375!)
+        Me.WinControlContainer1.WinControl = Me.GCItem
         '
         'GCItem
         '
-        Me.GCItem.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCItem.Location = New System.Drawing.Point(0, 152)
         Me.GCItem.MainView = Me.GVItem
         Me.GCItem.Name = "GCItem"
         Me.GCItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEDepCoa, Me.RIDEReffDate, Me.RISLEPrepaid, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RISLEProduct, Me.RepositoryItemTextEdit3})
-        Me.GCItem.Size = New System.Drawing.Size(1046, 275)
+        Me.GCItem.Size = New System.Drawing.Size(694, 177)
         Me.GCItem.TabIndex = 145
         Me.GCItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItem})
         '
@@ -589,60 +402,242 @@ Partial Class FormProductWeight
         Me.GridColumn30.FieldName = "acc_dep_accum_name"
         Me.GridColumn30.Name = "GridColumn30"
         '
-        'PanelControl3
+        'TopMargin
         '
-        Me.PanelControl3.Controls.Add(Me.MENote)
-        Me.PanelControl3.Controls.Add(Me.LabelControl4)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 427)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1046, 76)
-        Me.PanelControl3.TabIndex = 146
+        Me.TopMargin.HeightF = 23.95833!
+        Me.TopMargin.Name = "TopMargin"
+        Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'MENote
+        'BottomMargin
         '
-        Me.MENote.Location = New System.Drawing.Point(56, 12)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(706, 53)
-        Me.MENote.TabIndex = 1
+        Me.BottomMargin.HeightF = 22.83335!
+        Me.BottomMargin.Name = "BottomMargin"
+        Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'LabelControl4
+        'PageFooter
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(16, 14)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl4.TabIndex = 0
-        Me.LabelControl4.Text = "Note"
+        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
+        Me.PageFooter.HeightF = 22.99998!
+        Me.PageFooter.Name = "PageFooter"
         '
-        'FormProductWeight
+        'XrPageInfo1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1046, 546)
-        Me.Controls.Add(Me.GCItem)
-        Me.Controls.Add(Me.PanelControl3)
-        Me.Controls.Add(Me.PCAddDel)
-        Me.Controls.Add(Me.PanelControl2)
-        Me.Controls.Add(Me.PanelControl1)
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
-        Me.Name = "FormProductWeight"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Penimbangan berat"
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
-        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCAddDel.ResumeLayout(False)
-        Me.PCAddDel.PerformLayout()
-        CType(Me.TEFGPONumbers.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEFGPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XrPageInfo1.BorderColor = System.Drawing.Color.DimGray
+        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(293.0001!, 0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(430.0!, 22.99998!)
+        Me.XrPageInfo1.StylePriority.UseBorderColor = False
+        Me.XrPageInfo1.StylePriority.UseBorders = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
+        'XrTable1
+        '
+        Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 46.95829!)
+        Me.XrTable1.Name = "XrTable1"
+        Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(723.0001!, 25.0!)
+        Me.XrTable1.StylePriority.UseFont = False
+        '
+        'XrTableRow1
+        '
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1})
+        Me.XrTableRow1.Name = "XrTableRow1"
+        Me.XrTableRow1.Weight = 1.0R
+        '
+        'XrTableCell1
+        '
+        Me.XrTableCell1.Font = New System.Drawing.Font("Lucida Console", 8.0!)
+        Me.XrTableCell1.Name = "XrTableCell1"
+        Me.XrTableCell1.StylePriority.UseFont = False
+        Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
+        Me.XrTableCell1.Visible = False
+        Me.XrTableCell1.Weight = 2.99999986405489R
+        '
+        'ReportFooter
+        '
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel2, Me.LNote, Me.XrTable1})
+        Me.ReportFooter.HeightF = 71.95832!
+        Me.ReportFooter.Name = "ReportFooter"
+        '
+        'XrLabel2
+        '
+        Me.XrLabel2.BorderColor = System.Drawing.Color.DimGray
+        Me.XrLabel2.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(43.66681!, 46.95832!)
+        Me.XrLabel2.StylePriority.UseBorderColor = False
+        Me.XrLabel2.StylePriority.UseBorders = False
+        Me.XrLabel2.StylePriority.UseTextAlignment = False
+        Me.XrLabel2.Text = "Note :"
+        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'LNote
+        '
+        Me.LNote.BorderColor = System.Drawing.Color.DimGray
+        Me.LNote.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(43.66681!, 0!)
+        Me.LNote.Name = "LNote"
+        Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LNote.SizeF = New System.Drawing.SizeF(679.3333!, 46.95832!)
+        Me.LNote.StylePriority.UseBorderColor = False
+        Me.LNote.StylePriority.UseBorders = False
+        Me.LNote.StylePriority.UseTextAlignment = False
+        Me.LNote.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'PageHeader
+        '
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel5, Me.XrLabel6, Me.LCreatedDate, Me.LCreatedBy, Me.XrLabel3, Me.XrLabel4, Me.XrLabel1, Me.XrLabel12, Me.LNumber, Me.LTitle})
+        Me.PageHeader.HeightF = 100.0!
+        Me.PageHeader.Name = "PageHeader"
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(414.5002!, 50.54166!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(77.16674!, 20.29166!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseTextAlignment = False
+        Me.XrLabel5.Text = "Created Date"
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(491.6669!, 50.54166!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(11.45835!, 20.29166!)
+        Me.XrLabel6.StylePriority.UseBorders = False
+        Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UseTextAlignment = False
+        Me.XrLabel6.Text = ":"
+        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LCreatedDate
+        '
+        Me.LCreatedDate.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LCreatedDate.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.LCreatedDate.LocationFloat = New DevExpress.Utils.PointFloat(503.1252!, 50.54166!)
+        Me.LCreatedDate.Name = "LCreatedDate"
+        Me.LCreatedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LCreatedDate.SizeF = New System.Drawing.SizeF(219.8748!, 20.29166!)
+        Me.LCreatedDate.StylePriority.UseBorders = False
+        Me.LCreatedDate.StylePriority.UseFont = False
+        Me.LCreatedDate.StylePriority.UseTextAlignment = False
+        Me.LCreatedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LCreatedBy
+        '
+        Me.LCreatedBy.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LCreatedBy.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.LCreatedBy.LocationFloat = New DevExpress.Utils.PointFloat(88.62505!, 70.83334!)
+        Me.LCreatedBy.Name = "LCreatedBy"
+        Me.LCreatedBy.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LCreatedBy.SizeF = New System.Drawing.SizeF(219.8748!, 20.29166!)
+        Me.LCreatedBy.StylePriority.UseBorders = False
+        Me.LCreatedBy.StylePriority.UseFont = False
+        Me.LCreatedBy.StylePriority.UseTextAlignment = False
+        Me.LCreatedBy.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel3
+        '
+        Me.XrLabel3.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(77.16675!, 70.83334!)
+        Me.XrLabel3.Name = "XrLabel3"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(11.45835!, 20.29166!)
+        Me.XrLabel3.StylePriority.UseBorders = False
+        Me.XrLabel3.StylePriority.UseFont = False
+        Me.XrLabel3.StylePriority.UseTextAlignment = False
+        Me.XrLabel3.Text = ":"
+        Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel4
+        '
+        Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 70.83334!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(77.16674!, 20.29166!)
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UseTextAlignment = False
+        Me.XrLabel4.Text = "Created By"
+        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 50.54166!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(77.16674!, 20.29166!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = "NO"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel12
+        '
+        Me.XrLabel12.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel12.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(77.16675!, 50.54166!)
+        Me.XrLabel12.Name = "XrLabel12"
+        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(11.45835!, 20.29166!)
+        Me.XrLabel12.StylePriority.UseBorders = False
+        Me.XrLabel12.StylePriority.UseFont = False
+        Me.XrLabel12.StylePriority.UseTextAlignment = False
+        Me.XrLabel12.Text = ":"
+        Me.XrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LNumber
+        '
+        Me.LNumber.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LNumber.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.LNumber.LocationFloat = New DevExpress.Utils.PointFloat(88.62505!, 50.54166!)
+        Me.LNumber.Name = "LNumber"
+        Me.LNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LNumber.SizeF = New System.Drawing.SizeF(219.8748!, 20.29166!)
+        Me.LNumber.StylePriority.UseBorders = False
+        Me.LNumber.StylePriority.UseFont = False
+        Me.LNumber.StylePriority.UseTextAlignment = False
+        Me.LNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LTitle
+        '
+        Me.LTitle.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.LTitle.Name = "LTitle"
+        Me.LTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LTitle.SizeF = New System.Drawing.SizeF(723.0001!, 26.54166!)
+        Me.LTitle.StylePriority.UseFont = False
+        Me.LTitle.StylePriority.UseTextAlignment = False
+        Me.LTitle.Text = "PRODUCT WEIGHT"
+        Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
+        'ReportWeightPPS
+        '
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter, Me.ReportFooter, Me.PageHeader})
+        Me.Margins = New System.Drawing.Printing.Margins(51, 76, 24, 23)
+        Me.PageHeight = 550
+        Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
+        Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
+        Me.Version = "15.1"
         CType(Me.GCItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -656,47 +651,35 @@ Partial Class FormProductWeight
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
-
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents DECreatedDate As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PCAddDel As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Detail As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
+    Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
+    Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
+    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
+    Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
+    Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
+    Friend WithEvents LTitle As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LNumber As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LCreatedDate As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LCreatedBy As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCItem As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVItem As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RISLEProduct As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
-    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
@@ -714,10 +697,20 @@ Partial Class FormProductWeight
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents TEFGPONumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LFGPONumber As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TEFGPONumbers As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents RISLEProduct As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LNote As DevExpress.XtraReports.UI.XRLabel
 End Class

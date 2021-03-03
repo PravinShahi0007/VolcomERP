@@ -285,6 +285,7 @@
     <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassMailManage.vb" />
     <Compile Include="ClassMailManageReturn.vb" />
+    <Compile Include="ClassMOS.vb" />
     <Compile Include="ClassOLReturnRefuse.vb" />
     <Compile Include="ClassOLStore.vb" />
     <Compile Include="ClassOLStoreRefund.vb" />
@@ -2759,6 +2760,12 @@
     <Compile Include="FormMailManageReturnPendingInvoice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormManualSyncCNROR.Designer.vb">
+      <DependentUpon>FormManualSyncCNROR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormManualSyncCNROR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMappingStore.Designer.vb">
       <DependentUpon>FormMappingStore.vb</DependentUpon>
     </Compile>
@@ -3099,6 +3106,12 @@
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOLReturnRefuse.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLReturnRefuseAddNonFisik.Designer.vb">
+      <DependentUpon>FormOLReturnRefuseAddNonFisik.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLReturnRefuseAddNonFisik.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOLReturnRefuseDet.Designer.vb">
@@ -3765,6 +3778,12 @@
       <DependentUpon>FormProductWeight.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductWeight.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductWeightPop.Designer.vb">
+      <DependentUpon>FormProductWeightPop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductWeightPop.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPromoCollection.Designer.vb">
@@ -9324,6 +9343,12 @@
     <Compile Include="ReportVA.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportWeightPPS.Designer.vb">
+      <DependentUpon>ReportWeightPPS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportWeightPPS.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportWHAWBillShipmentLabel.Designer.vb">
       <DependentUpon>ReportWHAWBillShipmentLabel.vb</DependentUpon>
     </Compile>
@@ -10653,6 +10678,9 @@
     <EmbeddedResource Include="FormMailManageReturnPendingInvoice.resx">
       <DependentUpon>FormMailManageReturnPendingInvoice.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManualSyncCNROR.resx">
+      <DependentUpon>FormManualSyncCNROR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMappingStore.resx">
       <DependentUpon>FormMappingStore.vb</DependentUpon>
     </EmbeddedResource>
@@ -10823,6 +10851,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLReturnRefuse.resx">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLReturnRefuseAddNonFisik.resx">
+      <DependentUpon>FormOLReturnRefuseAddNonFisik.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLReturnRefuseDet.resx">
       <DependentUpon>FormOLReturnRefuseDet.vb</DependentUpon>
@@ -11154,6 +11185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductWeight.resx">
       <DependentUpon>FormProductWeight.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductWeightPop.resx">
+      <DependentUpon>FormProductWeightPop.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoCollection.resx">
       <DependentUpon>FormPromoCollection.vb</DependentUpon>
@@ -14426,6 +14460,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportVA.resx">
       <DependentUpon>ReportVA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportWeightPPS.resx">
+      <DependentUpon>ReportWeightPPS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportWHAWBillShipmentLabel.resx">
       <DependentUpon>ReportWHAWBillShipmentLabel.vb</DependentUpon>

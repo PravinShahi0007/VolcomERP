@@ -50,11 +50,8 @@
             ol_store_id.Font = New Font(ol_store_id.Font.FontFamily, ol_store_id.Font.Size, FontStyle.Regular)
         Next
 
-        If id_pre = "-1" Then
-            load_mark_horz(report_mark_type, id, "2", "1", XrTable)
-        Else
-            pre_load_mark_horz(report_mark_type, id, "2", "2", XrTable)
-
+        pre_load_mark_horz_plain_acc(report_mark_type, id, "Courier", "2", XrTable)
+        If id_pre <> "-1" Then
             LabelCompleted.Visible = False
         End If
 
