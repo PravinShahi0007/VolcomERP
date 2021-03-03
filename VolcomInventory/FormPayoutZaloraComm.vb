@@ -4,9 +4,10 @@
     Private Sub FormPayoutZaloraComm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
         'get commision
-        Dim qcom As String = "SELECT SUM(d.erp_amount) AS `amount` 
+        Dim qcom As String = "SELECT SUM(d.erp_amount)+SUM(IFNULL(a.erp_amount,0)) AS `amount` 
         FROM tb_payout_zalora_det d
         INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+        LEFT JOIN tb_payout_zalora_det_addition a ON a.id_payout_zalora_det = d.id_payout_zalora_det
         WHERE d.id_payout_zalora=" + id + " AND (t.id_payout_zalora_cat=3 OR t.id_payout_zalora_cat=5)
         GROUP BY d.id_payout_zalora "
         Dim dcom As DataTable = execute_query(qcom, -1, True, "", "", "", "")
