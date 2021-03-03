@@ -389,7 +389,7 @@
 
         Report.LabelTitleNumber.Text = "NO. " + TxtNumber.Text.ToUpper
 
-        Report.LabelTitle.Text = printed_name
+        Report.LabelTitle.Text = "CREDIT NOTE " + printed_name
         Report.LabelDate.Text = Date.Parse(DECreated.EditValue.ToString).ToString("dd MMMM yyyy")
         Report.XrLabel3.Text = TEExpense.Text
 
