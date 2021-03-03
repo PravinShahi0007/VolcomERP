@@ -1837,6 +1837,12 @@
     <Compile Include="FormEmpUniExpenseDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniExpenseSetQty.Designer.vb">
+      <DependentUpon>FormEmpUniExpenseSetQty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniExpenseSetQty.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniGroupSizeGuide.Designer.vb">
       <DependentUpon>FormEmpUniGroupSizeGuide.vb</DependentUpon>
     </Compile>
@@ -10197,6 +10203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniExpenseDet.resx">
       <DependentUpon>FormEmpUniExpenseDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniExpenseSetQty.resx">
+      <DependentUpon>FormEmpUniExpenseSetQty.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniGroupSizeGuide.resx">
       <DependentUpon>FormEmpUniGroupSizeGuide.vb</DependentUpon>
