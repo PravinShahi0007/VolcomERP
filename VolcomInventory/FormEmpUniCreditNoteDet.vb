@@ -55,12 +55,12 @@
             id_comp_contact = data.Rows(0)("id_comp_contact").ToString
 
             printed_name = data.Rows(0)("printed_name").ToString
-
-            'detail
-            Dim data_detail As DataTable = execute_query("CALL view_emp_uni_ex(" + id_emp_uni_ex + ")", -1, True, "", "", "", "")
-
-            GCData.DataSource = data_detail
         End If
+
+        'detail
+        Dim data_detail As DataTable = execute_query("CALL view_emp_uni_ex(" + id_emp_uni_ex + ")", -1, True, "", "", "", "")
+
+        GCData.DataSource = data_detail
 
         If LEReportStatus.EditValue.ToString = "5" Or LEReportStatus.EditValue.ToString = "6" Then
             is_view = True
@@ -136,6 +136,8 @@
     Sub load_ref(selected_id As String)
         Cursor = Cursors.WaitCursor
 
+        GCData.DataSource = execute_query("CALL view_emp_uni_ex(0)", -1, True, "", "", "", "")
+
         id_emp_uni_ex_ref = selected_id
 
         Dim query_c As New ClassEmpUniExpense()
@@ -157,44 +159,44 @@
         id_departement = data.Rows(0)("id_departement").ToString
         id_comp_contact = data.Rows(0)("id_comp_contact").ToString
 
-        Dim data_detail As DataTable = execute_query("CALL view_emp_uni_ex(" + selected_id + ")", -1, True, "", "", "", "")
+        'Dim data_detail As DataTable = execute_query("CALL view_emp_uni_ex(" + selected_id + ")", -1, True, "", "", "", "")
 
-        GCData.DataSource = data_detail
+        'GCData.DataSource = data_detail
 
-        'get maximum qty
-        Dim q_in As String = ""
+        ''get maximum qty
+        'Dim q_in As String = ""
 
-        For i = 0 To data_detail.Rows.Count - 1
-            q_in += data_detail.Rows(i)("id_emp_uni_ex_det").ToString + ", "
-        Next
+        'For i = 0 To data_detail.Rows.Count - 1
+        '    q_in += data_detail.Rows(i)("id_emp_uni_ex_det").ToString + ", "
+        'Next
 
-        q_in = q_in.Substring(0, q_in.Length - 2)
+        'q_in = q_in.Substring(0, q_in.Length - 2)
 
-        max_qty = execute_query("
-            SELECT d.id_emp_uni_ex_det, (d.qty - IFNULL(t_used.used, 0)) AS max_qty
-            FROM tb_emp_uni_ex_det AS d
-            LEFT JOIN (
-	            SELECT d.id_emp_uni_ex_det_ref, SUM(ABS(d.qty)) AS used
-	            FROM tb_emp_uni_ex_det AS d
-	            LEFT JOIN tb_emp_uni_ex AS a ON d.id_emp_uni_ex = a.id_emp_uni_ex
-	            WHERE a.id_report_status <> 5 AND d.id_emp_uni_ex_det_ref IN (" + q_in + ")
-	            GROUP BY d.id_emp_uni_ex_det_ref
-            ) AS t_used ON d.id_emp_uni_ex_det = t_used.id_emp_uni_ex_det_ref
-            WHERE d.id_emp_uni_ex = " + selected_id + "
-        ", -1, True, "", "", "", "")
+        'max_qty = execute_query("
+        '    SELECT d.id_emp_uni_ex_det, (d.qty - IFNULL(t_used.used, 0)) AS max_qty
+        '    FROM tb_emp_uni_ex_det AS d
+        '    LEFT JOIN (
+        '     SELECT d.id_emp_uni_ex_det_ref, SUM(ABS(d.qty)) AS used
+        '     FROM tb_emp_uni_ex_det AS d
+        '     LEFT JOIN tb_emp_uni_ex AS a ON d.id_emp_uni_ex = a.id_emp_uni_ex
+        '     WHERE a.id_report_status <> 5 AND d.id_emp_uni_ex_det_ref IN (" + q_in + ")
+        '     GROUP BY d.id_emp_uni_ex_det_ref
+        '    ) AS t_used ON d.id_emp_uni_ex_det = t_used.id_emp_uni_ex_det_ref
+        '    WHERE d.id_emp_uni_ex = " + selected_id + "
+        '", -1, True, "", "", "", "")
 
-        'set qty to maximum
-        For i = 0 To GVData.RowCount - 1
-            If GVData.IsValidRowHandle(i) Then
-                For j = 0 To max_qty.Rows.Count - 1
-                    If GVData.GetRowCellValue(i, "id_emp_uni_ex_det").ToString = max_qty.Rows(j)("id_emp_uni_ex_det").ToString Then
-                        GVData.SetRowCellValue(i, "qty", max_qty.Rows(j)("max_qty"))
+        ''set qty to maximum
+        'For i = 0 To GVData.RowCount - 1
+        '    If GVData.IsValidRowHandle(i) Then
+        '        For j = 0 To max_qty.Rows.Count - 1
+        '            If GVData.GetRowCellValue(i, "id_emp_uni_ex_det").ToString = max_qty.Rows(j)("id_emp_uni_ex_det").ToString Then
+        '                GVData.SetRowCellValue(i, "qty", max_qty.Rows(j)("max_qty"))
 
-                        Exit For
-                    End If
-                Next
-            End If
-        Next
+        '                Exit For
+        '            End If
+        '        Next
+        '    End If
+        'Next
 
         Cursor = Cursors.Default
     End Sub
@@ -547,5 +549,52 @@
         Finally
             o = Nothing
         End Try
+    End Sub
+
+    Private Sub SBAdd_Click(sender As Object, e As EventArgs) Handles SBAdd.Click
+        FormEmpUniCreditNoteAdd.id_emp_uni_ex_ref = id_emp_uni_ex_ref
+
+        FormEmpUniCreditNoteAdd.ShowDialog()
+
+        'get maximum qty
+        Dim data_detail As DataTable = GCData.DataSource
+
+        Dim q_in As String = ""
+
+        For i = 0 To data_detail.Rows.Count - 1
+            q_in += data_detail.Rows(i)("id_emp_uni_ex_det").ToString + ", "
+        Next
+
+        If q_in = "" Then
+            q_in = "0"
+        Else
+            q_in = q_in.Substring(0, q_in.Length - 2)
+        End If
+
+        max_qty = execute_query("
+            SELECT d.id_emp_uni_ex_det, (d.qty - IFNULL(t_used.used, 0)) AS max_qty
+            FROM tb_emp_uni_ex_det AS d
+            LEFT JOIN (
+                SELECT d.id_emp_uni_ex_det_ref, SUM(ABS(d.qty)) AS used
+                FROM tb_emp_uni_ex_det AS d
+                LEFT JOIN tb_emp_uni_ex AS a ON d.id_emp_uni_ex = a.id_emp_uni_ex
+                WHERE a.id_report_status <> 5 AND d.id_emp_uni_ex_det_ref IN (" + q_in + ")
+                GROUP BY d.id_emp_uni_ex_det_ref
+            ) AS t_used ON d.id_emp_uni_ex_det = t_used.id_emp_uni_ex_det_ref
+            WHERE d.id_emp_uni_ex = " + id_emp_uni_ex_ref + "
+        ", -1, True, "", "", "", "")
+
+        'set qty to maximum
+        For i = 0 To GVData.RowCount - 1
+            If GVData.IsValidRowHandle(i) Then
+                For j = 0 To max_qty.Rows.Count - 1
+                    If GVData.GetRowCellValue(i, "id_emp_uni_ex_det").ToString = max_qty.Rows(j)("id_emp_uni_ex_det").ToString Then
+                        GVData.SetRowCellValue(i, "qty", max_qty.Rows(j)("max_qty"))
+
+                        Exit For
+                    End If
+                Next
+            End If
+        Next
     End Sub
 End Class

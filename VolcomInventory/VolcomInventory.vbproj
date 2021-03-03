@@ -1813,6 +1813,12 @@
     <Compile Include="FormEmpUniCreditNote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniCreditNoteAdd.Designer.vb">
+      <DependentUpon>FormEmpUniCreditNoteAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniCreditNoteAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniCreditNoteDet.Designer.vb">
       <DependentUpon>FormEmpUniCreditNoteDet.vb</DependentUpon>
     </Compile>
@@ -10191,6 +10197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniCreditNote.resx">
       <DependentUpon>FormEmpUniCreditNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniCreditNoteAdd.resx">
+      <DependentUpon>FormEmpUniCreditNoteAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniCreditNoteDet.resx">
       <DependentUpon>FormEmpUniCreditNoteDet.vb</DependentUpon>
