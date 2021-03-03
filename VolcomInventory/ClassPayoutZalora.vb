@@ -71,6 +71,23 @@ FROM (
 	GROUP BY cd.id_acc, cd.manual_recon_reason)
 	UNION ALL
 	-- komisi
+    (SELECT sp.`name`,2 AS `id_group`, 'Commision' AS `group`, sp.id_sales_pos AS `id_ref`, sp.report_mark_type AS `rmt_ref`, sp.sales_pos_number AS `ref`, 
+    a.erp_amount AS `amo`, a.id_acc, 'Manual' AS `recon_type`, d.manual_recon_reason AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, sp.id_comp,sp.comp_number, 3 AS `indeks` 
+    FROM tb_payout_zalora_det_addition a
+    INNER JOIN tb_payout_zalora_det d ON d.id_payout_zalora_det = a.id_payout_zalora_det
+    INNER JOIN (
+	    SELECT 
+	    CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y'))  AS `name`, 
+	    sp.id_sales_pos , sp.report_mark_type,sp.sales_pos_number, c.id_comp, c.comp_number 
+	    FROM tb_sales_pos_det spd 
+	    INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+	    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+	    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` 
+	    WHERE sp.id_report_status=6 AND sp.report_mark_type IN(48,118,292) AND sp.is_close_rec_payment=2
+    ) sp ON sp.id_sales_pos = a.id_ref 
+    WHERE d.id_payout_zalora=" + id + " AND a.is_use_ref=1 AND a.rmt_ref IN (48,118,292)
+    GROUP BY a.rmt_ref, a.id_ref_det)
+    UNION ALL
 	(SELECT 'Komisi penjualan Zalora' AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, m.comm AS `amo`, d.id_acc, d.recon_type AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 3 AS `indeks`
 	FROM tb_payout_zalora m
 	LEFT JOIN (

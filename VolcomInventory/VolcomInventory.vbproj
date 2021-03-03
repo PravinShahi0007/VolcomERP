@@ -1813,6 +1813,12 @@
     <Compile Include="FormEmpUniCreditNote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniCreditNoteAdd.Designer.vb">
+      <DependentUpon>FormEmpUniCreditNoteAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniCreditNoteAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniCreditNoteDet.Designer.vb">
       <DependentUpon>FormEmpUniCreditNoteDet.vb</DependentUpon>
     </Compile>
@@ -3406,6 +3412,12 @@
       <DependentUpon>FormPayoutZaloraManualRecon.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPayoutZaloraManualRecon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPayoutZaloraManualReconRef.Designer.vb">
+      <DependentUpon>FormPayoutZaloraManualReconRef.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPayoutZaloraManualReconRef.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPayoutZaloraManualReconSingle.Designer.vb">
@@ -10192,6 +10204,9 @@
     <EmbeddedResource Include="FormEmpUniCreditNote.resx">
       <DependentUpon>FormEmpUniCreditNote.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniCreditNoteAdd.resx">
+      <DependentUpon>FormEmpUniCreditNoteAdd.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniCreditNoteDet.resx">
       <DependentUpon>FormEmpUniCreditNoteDet.vb</DependentUpon>
     </EmbeddedResource>
@@ -11004,6 +11019,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutZaloraManualRecon.resx">
       <DependentUpon>FormPayoutZaloraManualRecon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPayoutZaloraManualReconRef.resx">
+      <DependentUpon>FormPayoutZaloraManualReconRef.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutZaloraManualReconSingle.resx">
       <DependentUpon>FormPayoutZaloraManualReconSingle.vb</DependentUpon>

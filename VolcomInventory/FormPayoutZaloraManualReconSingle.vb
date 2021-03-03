@@ -42,9 +42,10 @@ FROM tb_payout_zalora_det d WHERE d.id_payout_zalora_det=" + id_det + " "
         Cursor = Cursors.WaitCursor
         'view detail
         Dim qd As String = "SELECT d.id_payout_zalora_det_addition, d.id_payout_zalora_det, d.erp_amount, 
-d.id_acc, coa.acc_name, coa.acc_description
+d.id_acc, coa.acc_name, coa.acc_description, IFNULL(d.id_ref,0) AS `id_ref`, IFNULL(d.id_ref_det,0) AS `id_ref_det`, IFNULL(d.rmt_ref,0) AS `rmt_ref`
 FROM tb_payout_zalora_det_addition d 
 INNER JOIN tb_a_acc coa ON coa.id_acc = d.id_acc
+LEFT JOIN tb_sales_pos sp ON sp.id_sales_pos = d.id_ref AND d.rmt_ref IN(48,118,292)
 WHERE d.id_payout_zalora_det=" + id_det + " "
         Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
         GCData.DataSource = dd
@@ -125,5 +126,12 @@ WHERE d.id_payout_zalora_det=" + id_det + " "
 
     Private Sub TxtAmount_EditValueChanged(sender As Object, e As EventArgs) Handles TxtAmount.EditValueChanged
         getTotal()
+    End Sub
+
+    Private Sub BtnAddReference_Click(sender As Object, e As EventArgs) Handles BtnAddReference.Click
+        Cursor = Cursors.WaitCursor
+        FormPayoutZaloraManualReconRef.id_payout_zalora_det = id_det
+        FormPayoutZaloraManualReconRef.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
