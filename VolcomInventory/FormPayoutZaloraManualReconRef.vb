@@ -90,7 +90,7 @@
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         makeSafeGV(GVData)
-        GVData.ActiveFilterString = "[is_select]='No'"
+        GVData.ActiveFilterString = "[is_select]='Yes'"
         If GVData.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
             'cek di tabel
@@ -134,5 +134,9 @@
         If TxtOrderNo.Text <> "" Then
             viewData()
         End If
+    End Sub
+
+    Private Sub TxtOrderNo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtOrderNo.KeyDown
+        GCData.DataSource = Nothing
     End Sub
 End Class
