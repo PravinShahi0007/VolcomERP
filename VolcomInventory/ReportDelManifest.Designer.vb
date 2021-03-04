@@ -110,6 +110,9 @@ Partial Public Class ReportDelManifest
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLabelAWB = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabelDraft = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -337,7 +340,7 @@ Partial Public Class ReportDelManifest
         Me.XrTableCell47.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell47.StylePriority.UseBorders = False
         Me.XrTableCell47.StylePriority.UsePadding = False
-        Me.XrTableCell47.Weight = 3.1958649413390372R
+        Me.XrTableCell47.Weight = 3.1958649413390368R
         '
         'TopMargin
         '
@@ -950,14 +953,49 @@ Partial Public Class ReportDelManifest
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabelDraft, Me.XrLabelTitle, Me.XrLabel5, Me.XrPictureBox1, Me.XrLabel2, Me.XrLabel10, Me.XrLabel12, Me.XrLabel11, Me.XrLabelNumber, Me.XrLabel3PL})
-        Me.PageHeader.HeightF = 113.4583!
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabelAWB, Me.XrLabel8, Me.XrLabel13, Me.XrLabelDraft, Me.XrLabelTitle, Me.XrLabel5, Me.XrPictureBox1, Me.XrLabel2, Me.XrLabel10, Me.XrLabel12, Me.XrLabel11, Me.XrLabelNumber, Me.XrLabel3PL})
+        Me.PageHeader.HeightF = 124.9166!
         Me.PageHeader.Name = "PageHeader"
+        '
+        'XrLabelAWB
+        '
+        Me.XrLabelAWB.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabelAWB.LocationFloat = New DevExpress.Utils.PointFloat(80.00005!, 93.45834!)
+        Me.XrLabelAWB.Name = "XrLabelAWB"
+        Me.XrLabelAWB.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabelAWB.SizeF = New System.Drawing.SizeF(250.0!, 17.79167!)
+        Me.XrLabelAWB.StylePriority.UseFont = False
+        Me.XrLabelAWB.StylePriority.UseTextAlignment = False
+        Me.XrLabelAWB.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
+        '
+        'XrLabel8
+        '
+        Me.XrLabel8.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(69.99995!, 93.45834!)
+        Me.XrLabel8.Name = "XrLabel8"
+        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(10.0!, 17.79167!)
+        Me.XrLabel8.StylePriority.UseFont = False
+        Me.XrLabel8.StylePriority.UseTextAlignment = False
+        Me.XrLabel8.Text = ":"
+        Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
+        '
+        'XrLabel13
+        '
+        Me.XrLabel13.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(0!, 93.45834!)
+        Me.XrLabel13.Name = "XrLabel13"
+        Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(70.0!, 17.79167!)
+        Me.XrLabel13.StylePriority.UseFont = False
+        Me.XrLabel13.StylePriority.UseTextAlignment = False
+        Me.XrLabel13.Text = "AWB/Resi"
+        Me.XrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
         '
         'XrLabelDraft
         '
         Me.XrLabelDraft.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabelDraft.LocationFloat = New DevExpress.Utils.PointFloat(277.4877!, 25.08334!)
+        Me.XrLabelDraft.LocationFloat = New DevExpress.Utils.PointFloat(298.0001!, 0!)
         Me.XrLabelDraft.Name = "XrLabelDraft"
         Me.XrLabelDraft.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabelDraft.SizeF = New System.Drawing.SizeF(537.0249!, 32.79166!)
@@ -1074,4 +1112,7 @@ Partial Public Class ReportDelManifest
     Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrLabelDraft As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrTableCell36 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLabelAWB As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
 End Class

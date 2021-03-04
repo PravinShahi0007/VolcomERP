@@ -2694,6 +2694,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             'SALES Del Order
             Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
             stt.changeStatus(id_report, id_status_reportx)
+
             If FormViewSalesDelOrder.id_commerce_type = "2" Then
                 stt.sendEmailConfirmation(id_report)
             End If
@@ -8657,10 +8658,10 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
             execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "245" Then
             'return cust
-            'auto completed
-            If id_status_reportx = "3" Then
-                id_status_reportx = "6"
-            End If
+            'auto completed changed because complete di manifest
+            'If id_status_reportx = "3" Then
+            'id_status_reportx = "6"
+            'End If
 
             If id_status_reportx = "6" Then
                 'action completed
