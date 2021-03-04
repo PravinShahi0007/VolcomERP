@@ -25,7 +25,27 @@
             TxtCommReff.EditValue = 0.00
         End If
         'get other expense
-        Dim qo As String = ""
+        Dim id_acc_default_comm As String = get_opt_sales_field("id_acc_default_fee_zalora")
+        Dim qex As String = "SELECT SUM(a.erp_amount) AS `erp_amount`
+        FROM (
+	        SELECT d.id_payout_zalora, d.erp_amount
+	        FROM tb_payout_zalora_det d 
+	        INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+	        WHERE d.id_payout_zalora='" + id + "' AND (t.id_payout_zalora_cat=3 OR t.id_payout_zalora_cat=5) AND d.id_acc<>'" + id_acc_default_comm + "'
+	        UNION ALL
+	        SELECT d.id_payout_zalora, a.erp_amount
+	        FROM tb_payout_zalora_det_addition a
+	        INNER JOIN tb_payout_zalora_det d ON d.id_payout_zalora_det = a.id_payout_zalora_det
+	        INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+	        WHERE d.id_payout_zalora='" + id + "' AND (t.id_payout_zalora_cat=3 OR t.id_payout_zalora_cat=5) AND a.id_acc<>'" + id_acc_default_comm + "' AND a.is_use_ref=2
+        ) a
+        GROUP BY a.id_payout_zalora "
+        Dim dex As DataTable = execute_query(qex, -1, True, "", "", "", "")
+        If dex.Rows.Count > 0 Then
+            TxtOtherExpense.EditValue = dex.Rows(0)("erp_amount")
+        Else
+            TxtOtherExpense.EditValue = 0.00
+        End If
         'get detail tax
         Dim query As String = "SELECT m.comm, m.comm_tax FROM tb_payout_zalora m WHERE m.id_payout_zalora=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
