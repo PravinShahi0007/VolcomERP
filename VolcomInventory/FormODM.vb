@@ -10,8 +10,8 @@
     Sub view()
         Dim q As String = "SELECT *
 FROM (
-    SELECT 0 AS NO,a.ol_number,md.id_comp AS id_3pl,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
-    c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
+    SELECT 0 AS NO,a.ol_number,md.id_comp AS id_3pl,sts.report_status,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
+    c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
     INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`) 
@@ -22,10 +22,13 @@ FROM (
     ) odm ON odm.id_del_manifest=md.id_del_manifest
     LEFT JOIN tb_wh_awbill_det AS adet ON mdet.id_wh_awb_det = adet.id_wh_awb_det
     LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
-    LEFT JOIN tb_m_comp AS c ON a.id_store = c.id_comp
-    LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
     LEFT JOIN tb_pl_sales_order_del AS pdel ON adet.id_pl_sales_order_del = pdel.id_pl_sales_order_del
     LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pdel.id_combine = pdelc.id_combine
+    LEFT JOIN tb_lookup_report_status sts ON sts.id_report_status=pdel.id_report_status
+    LEFT JOIN tb_sales_order so ON so.`id_sales_order`=pdel.`id_sales_order`
+    LEFT JOIN tb_m_comp_contact AS cc ON pdel.id_store_contact_to = cc.id_comp_contact
+    LEFT JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+    LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
     LEFT JOIN (
 	    SELECT z3.combine_number, SUM(pl_sales_order_del_det_qty) AS qty
 	    FROM tb_pl_sales_order_del_det AS z1
@@ -41,7 +44,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         GVList.BestFitColumns()
         '
         If Not GVList.RowCount > 0 Then
-            warningCustom("AWB not found.")
+            warningCustom("AWB not found or already checked.")
             TEAWB.Text = ""
         Else
             TEAWB.Enabled = False
@@ -81,6 +84,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim query As String = "(SELECT id_comp, comp_name AS comp_name FROM tb_m_comp WHERE id_comp_cat = 7)"
 
         viewSearchLookupQuery(SLUE3PL, query, "id_comp", "comp_name", "id_comp")
+        viewSearchLookupQuery(SLE3PLPrint, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Private Sub GVList_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVList.CellMerge
@@ -201,7 +205,7 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & addSlashes(TEAWB.Text) & "','" 
                 SLEScanList.EditValue = id_odm_sc
                 load_odm_det()
 
-                print()
+                'print()
             Catch ex As Exception
                 warningCustom(ex.ToString)
                 FormMain.SplashScreenManager1.CloseWaitForm()
@@ -228,8 +232,8 @@ WHERE sc.id_report_status!=5"
     Sub load_odm_det()
         Dim q As String = "SELECT *
 FROM (
-    SELECT 0 AS NO,sts.id_report_status,sts.report_status AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
-    c.id_comp_group, md.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city
+    SELECT 0 AS NO,sts.id_report_status,a.ol_number,sts.report_status AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
+    c.id_comp_group, md.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
     INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`)
@@ -237,9 +241,11 @@ FROM (
     INNER JOIN tb_odm_sc sc ON sc.`id_odm_sc`=scd.`id_odm_sc` AND sc.`id_report_status`!=5
     LEFT JOIN tb_wh_awbill_det AS adet ON mdet.id_wh_awb_det = adet.id_wh_awb_det
     LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
-    LEFT JOIN tb_m_comp AS c ON a.id_store = c.id_comp
-    LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
     LEFT JOIN tb_pl_sales_order_del AS pdel ON adet.id_pl_sales_order_del = pdel.id_pl_sales_order_del
+    LEFT JOIN tb_sales_order so ON so.`id_sales_order`=pdel.`id_sales_order`
+    LEFT JOIN tb_m_comp_contact AS cc ON pdel.id_store_contact_to = cc.id_comp_contact
+    LEFT JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+    LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
     LEFT JOIN tb_lookup_report_status sts ON sts.id_report_status=pdel.id_report_status
     LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pdel.id_combine = pdelc.id_combine
     LEFT JOIN (
@@ -288,7 +294,7 @@ FROM (
 ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
-            BPrint.Visible = False
+            BPrint.Visible = True
             BCompleteHistory.Visible = True
         Else
             BPrint.Visible = True
@@ -339,5 +345,32 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         If e.KeyCode = Keys.Enter Then
             view()
         End If
+    End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        FormODMPrintPick.ShowDialog()
+    End Sub
+
+    Private Sub GVListODM_DoubleClick(sender As Object, e As EventArgs) Handles GVListODM.DoubleClick
+        If GVListODM.RowCount > 0 Then
+            FormODMPrint.id_print = GVListODM.GetRowCellValue(0, "id_odm_print").ToString
+            FormODMPrint.ShowDialog()
+        End If
+    End Sub
+
+    Sub load_print_list()
+        Dim q As String = "SELECT od.id_odm_print,od.`number`,emp.employee_name,od.`created_date`
+FROM
+`tb_odm_print` od
+INNER JOIN tb_m_user usr ON usr.`id_user`=od.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE od.id_3pl='" & SLE3PLPrint.EditValue.ToString & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCListODM.DataSource = dt
+        GVListODM.BestFitColumns()
+    End Sub
+
+    Private Sub BViewPrintList_Click(sender As Object, e As EventArgs) Handles BViewPrintList.Click
+        load_print_list()
     End Sub
 End Class

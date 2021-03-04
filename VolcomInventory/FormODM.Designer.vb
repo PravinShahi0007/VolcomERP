@@ -19,6 +19,7 @@ Partial Class FormODM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormODM))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.TEAWB = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -104,6 +105,21 @@ Partial Class FormODM
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPPrint = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCListODM = New DevExpress.XtraGrid.GridControl()
+        Me.GVListODM = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLE3PLPrint = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewPrintList = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEAWB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,6 +144,13 @@ Partial Class FormODM
         Me.PanelControl3.SuspendLayout()
         CType(Me.SLEScanList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPrint.SuspendLayout()
+        CType(Me.GCListODM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVListODM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.SLE3PLPrint.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -214,7 +237,7 @@ Partial Class FormODM
         Me.XTCManifestScan.SelectedTabPage = Me.XTPManifestList
         Me.XTCManifestScan.Size = New System.Drawing.Size(1078, 584)
         Me.XTCManifestScan.TabIndex = 1
-        Me.XTCManifestScan.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPManifestList, Me.XTPHistory})
+        Me.XTCManifestScan.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPManifestList, Me.XTPHistory, Me.XTPPrint})
         '
         'XTPManifestList
         '
@@ -572,6 +595,7 @@ Partial Class FormODM
         Me.XTPHistory.Controls.Add(Me.BCompleteHistory)
         Me.XTPHistory.Controls.Add(Me.PanelControl2)
         Me.XTPHistory.Name = "XTPHistory"
+        Me.XTPHistory.PageVisible = False
         Me.XTPHistory.Size = New System.Drawing.Size(1072, 556)
         Me.XTPHistory.Text = "Already Scan"
         '
@@ -864,7 +888,6 @@ Partial Class FormODM
         Me.BPrint.Size = New System.Drawing.Size(1072, 32)
         Me.BPrint.TabIndex = 18
         Me.BPrint.Text = "PRINT"
-        Me.BPrint.Visible = False
         '
         'BCompleteHistory
         '
@@ -1003,6 +1026,132 @@ Partial Class FormODM
         Me.LabelControl3.TabIndex = 0
         Me.LabelControl3.Text = "Document Number"
         '
+        'XTPPrint
+        '
+        Me.XTPPrint.Controls.Add(Me.GCListODM)
+        Me.XTPPrint.Controls.Add(Me.PanelControl4)
+        Me.XTPPrint.Name = "XTPPrint"
+        Me.XTPPrint.Size = New System.Drawing.Size(1072, 556)
+        Me.XTPPrint.Text = "Print Manifest"
+        '
+        'GCListODM
+        '
+        Me.GCListODM.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCListODM.Location = New System.Drawing.Point(0, 44)
+        Me.GCListODM.MainView = Me.GVListODM
+        Me.GCListODM.Name = "GCListODM"
+        Me.GCListODM.Size = New System.Drawing.Size(1072, 512)
+        Me.GCListODM.TabIndex = 3
+        Me.GCListODM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListODM})
+        '
+        'GVListODM
+        '
+        Me.GVListODM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38})
+        Me.GVListODM.GridControl = Me.GCListODM
+        Me.GVListODM.Name = "GVListODM"
+        Me.GVListODM.OptionsBehavior.Editable = False
+        Me.GVListODM.OptionsBehavior.ReadOnly = True
+        Me.GVListODM.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "ID"
+        Me.GridColumn35.FieldName = "id_odm_print"
+        Me.GridColumn35.Name = "GridColumn35"
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Number"
+        Me.GridColumn36.FieldName = "number"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 0
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Created by"
+        Me.GridColumn37.FieldName = "employee_name"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 1
+        Me.GridColumn37.Width = 416
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Created At"
+        Me.GridColumn38.FieldName = "created_date"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 2
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.SLE3PLPrint)
+        Me.PanelControl4.Controls.Add(Me.BAdd)
+        Me.PanelControl4.Controls.Add(Me.BViewPrintList)
+        Me.PanelControl4.Controls.Add(Me.LabelControl10)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(1072, 44)
+        Me.PanelControl4.TabIndex = 2
+        '
+        'SLE3PLPrint
+        '
+        Me.SLE3PLPrint.Location = New System.Drawing.Point(37, 12)
+        Me.SLE3PLPrint.Name = "SLE3PLPrint"
+        Me.SLE3PLPrint.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLE3PLPrint.Properties.View = Me.GridView2
+        Me.SLE3PLPrint.Size = New System.Drawing.Size(211, 20)
+        Me.SLE3PLPrint.TabIndex = 12
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn21})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.FieldName = "id_comp"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "3PL"
+        Me.GridColumn21.FieldName = "comp_name"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 0
+        '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
+        Me.BAdd.Location = New System.Drawing.Point(971, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(99, 40)
+        Me.BAdd.TabIndex = 11
+        Me.BAdd.Text = "Add"
+        '
+        'BViewPrintList
+        '
+        Me.BViewPrintList.Location = New System.Drawing.Point(254, 10)
+        Me.BViewPrintList.Name = "BViewPrintList"
+        Me.BViewPrintList.Size = New System.Drawing.Size(54, 23)
+        Me.BViewPrintList.TabIndex = 9
+        Me.BViewPrintList.Text = "view"
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(14, 16)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(17, 13)
+        Me.LabelControl10.TabIndex = 0
+        Me.LabelControl10.Text = "3PL"
+        '
         'FormODM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1042,6 +1191,14 @@ Partial Class FormODM
         Me.PanelControl3.PerformLayout()
         CType(Me.SLEScanList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPrint.ResumeLayout(False)
+        CType(Me.GCListODM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVListODM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.SLE3PLPrint.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1131,4 +1288,19 @@ Partial Class FormODM
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEAWB As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTPPrint As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCListODM As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVListODM As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BViewPrintList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLE3PLPrint As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

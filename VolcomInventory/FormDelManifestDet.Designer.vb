@@ -745,8 +745,6 @@ Partial Class FormDelManifestDet
         Me.GridColumnNo.Name = "GridColumnNo"
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 0
         '
         'GridColumnIdWhAwbDet
         '

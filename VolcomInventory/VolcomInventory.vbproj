@@ -3114,6 +3114,18 @@
     <Compile Include="FormODM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormODMPrint.Designer.vb">
+      <DependentUpon>FormODMPrint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormODMPrint.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormODMPrintPick.Designer.vb">
+      <DependentUpon>FormODMPrintPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormODMPrintPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLReturnRefuse.Designer.vb">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
     </Compile>
@@ -10878,6 +10890,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormODM.resx">
       <DependentUpon>FormODM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormODMPrint.resx">
+      <DependentUpon>FormODMPrint.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormODMPrintPick.resx">
+      <DependentUpon>FormODMPrintPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLReturnRefuse.resx">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
