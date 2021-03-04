@@ -35,6 +35,8 @@ Partial Class FormPayoutZaloraComm
         Me.TxtLinkComm = New DevExpress.XtraEditors.HyperLinkEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCommReff = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtOtherExpense = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -43,6 +45,7 @@ Partial Class FormPayoutZaloraComm
         CType(Me.TxtTotalCommInput.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtLinkComm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCommReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtOtherExpense.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -50,7 +53,7 @@ Partial Class FormPayoutZaloraComm
         Me.PanelControl1.Controls.Add(Me.BtnDiscard)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 249)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 300)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(400, 44)
         Me.PanelControl1.TabIndex = 1
@@ -90,7 +93,7 @@ Partial Class FormPayoutZaloraComm
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 102)
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 147)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(50, 13)
         Me.LabelControl2.TabIndex = 4
@@ -98,7 +101,7 @@ Partial Class FormPayoutZaloraComm
         '
         'TxtComm
         '
-        Me.TxtComm.Location = New System.Drawing.Point(12, 121)
+        Me.TxtComm.Location = New System.Drawing.Point(12, 166)
         Me.TxtComm.Name = "TxtComm"
         Me.TxtComm.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtComm.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -109,7 +112,7 @@ Partial Class FormPayoutZaloraComm
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 147)
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 192)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(84, 13)
         Me.LabelControl3.TabIndex = 7
@@ -117,7 +120,7 @@ Partial Class FormPayoutZaloraComm
         '
         'TxtCommTax
         '
-        Me.TxtCommTax.Location = New System.Drawing.Point(12, 166)
+        Me.TxtCommTax.Location = New System.Drawing.Point(12, 211)
         Me.TxtCommTax.Name = "TxtCommTax"
         Me.TxtCommTax.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtCommTax.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -129,7 +132,7 @@ Partial Class FormPayoutZaloraComm
         'TxtTotalCommInput
         '
         Me.TxtTotalCommInput.Enabled = False
-        Me.TxtTotalCommInput.Location = New System.Drawing.Point(12, 211)
+        Me.TxtTotalCommInput.Location = New System.Drawing.Point(12, 256)
         Me.TxtTotalCommInput.Name = "TxtTotalCommInput"
         Me.TxtTotalCommInput.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtTotalCommInput.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -140,7 +143,7 @@ Partial Class FormPayoutZaloraComm
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(12, 192)
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 237)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(77, 13)
         Me.LabelControl4.TabIndex = 10
@@ -160,9 +163,9 @@ Partial Class FormPayoutZaloraComm
         '
         Me.LabelControl5.Location = New System.Drawing.Point(12, 57)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(126, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(66, 13)
         Me.LabelControl5.TabIndex = 12
-        Me.LabelControl5.Text = "Commision with Reference"
+        Me.LabelControl5.Text = "Pelunasan AR"
         '
         'TxtCommReff
         '
@@ -176,11 +179,33 @@ Partial Class FormPayoutZaloraComm
         Me.TxtCommReff.Size = New System.Drawing.Size(371, 20)
         Me.TxtCommReff.TabIndex = 13
         '
+        'TxtOtherExpense
+        '
+        Me.TxtOtherExpense.Enabled = False
+        Me.TxtOtherExpense.Location = New System.Drawing.Point(12, 121)
+        Me.TxtOtherExpense.Name = "TxtOtherExpense"
+        Me.TxtOtherExpense.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtOtherExpense.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtOtherExpense.Properties.Mask.EditMask = "N2"
+        Me.TxtOtherExpense.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtOtherExpense.Size = New System.Drawing.Size(371, 20)
+        Me.TxtOtherExpense.TabIndex = 14
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 102)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl6.TabIndex = 15
+        Me.LabelControl6.Text = "Other Expense"
+        '
         'FormPayoutZaloraComm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(400, 293)
+        Me.ClientSize = New System.Drawing.Size(400, 344)
+        Me.Controls.Add(Me.LabelControl6)
+        Me.Controls.Add(Me.TxtOtherExpense)
         Me.Controls.Add(Me.TxtCommReff)
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.TxtLinkComm)
@@ -206,6 +231,7 @@ Partial Class FormPayoutZaloraComm
         CType(Me.TxtTotalCommInput.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtLinkComm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCommReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtOtherExpense.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -225,4 +251,6 @@ Partial Class FormPayoutZaloraComm
     Friend WithEvents TxtLinkComm As DevExpress.XtraEditors.HyperLinkEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtCommReff As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtOtherExpense As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class

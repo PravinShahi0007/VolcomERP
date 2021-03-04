@@ -39,6 +39,7 @@
     End Function
 
     Public Function viewERPPayout(ByVal id As String) As DataTable
+        Dim id_acc_default_comm As String = get_opt_sales_field("id_acc_default_fee_zalora")
         Dim query As String = "SELECT a.`name`, a.id_group,a.`group`, a.id_ref, a.`rmt_ref`, rmt.report_mark_type_name AS `rmt_name_ref`, a.ref, a.amo,a.id_acc, coa.acc_name, coa.acc_description, a.recon_type, a.id_payout_zalora_det_adj, a.id_comp, a.comp_number, a.indeks
 FROM ( 
 	-- SALES REVENUE
@@ -83,10 +84,23 @@ FROM (
 	    INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
 	    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
 	    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` 
-	    WHERE sp.id_report_status=6 AND sp.report_mark_type IN(48,118,292) AND sp.is_close_rec_payment=2
+	    WHERE sp.id_report_status=6 AND sp.report_mark_type IN(48,118,292) 
     ) sp ON sp.id_sales_pos = a.id_ref 
     WHERE d.id_payout_zalora=" + id + " AND a.is_use_ref=1 AND a.rmt_ref IN (48,118,292)
     GROUP BY a.rmt_ref, a.id_ref_det)
+    UNION ALL
+    (SELECT d.manual_recon_reason AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, d.erp_amount AS `amo`, d.id_acc, 'Manual' AS `recon_type`, d.manual_recon_reason AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 3 AS `indeks`
+    FROM tb_payout_zalora_det d 
+    INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+    WHERE d.id_payout_zalora='" + id + "' AND (t.id_payout_zalora_cat=3 OR t.id_payout_zalora_cat=5) AND d.id_acc<>'" + id_acc_default_comm + "')
+    UNION ALL
+    (SELECT d.manual_recon_reason AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, a.erp_amount AS `amo`, a.id_acc, 'Manual' AS `recon_type`, d.manual_recon_reason AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 3 AS `indeks`
+    FROM tb_payout_zalora_det_addition a
+    INNER JOIN tb_payout_zalora_det d ON d.id_payout_zalora_det = a.id_payout_zalora_det
+    INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+    WHERE d.id_payout_zalora='" + id + "' AND (t.id_payout_zalora_cat=3 OR t.id_payout_zalora_cat=5) AND a.id_acc<>'" + id_acc_default_comm + "' AND a.is_use_ref=2)
     UNION ALL
 	(SELECT 'Komisi penjualan Zalora' AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, m.comm AS `amo`, d.id_acc, d.recon_type AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 3 AS `indeks`
 	FROM tb_payout_zalora m
