@@ -145,14 +145,14 @@ Partial Class FormODM
         '
         'TEAWB
         '
-        Me.TEAWB.Location = New System.Drawing.Point(43, 13)
+        Me.TEAWB.Location = New System.Drawing.Point(283, 13)
         Me.TEAWB.Name = "TEAWB"
         Me.TEAWB.Size = New System.Drawing.Size(232, 20)
         Me.TEAWB.TabIndex = 12
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(14, 16)
+        Me.LabelControl6.Location = New System.Drawing.Point(254, 16)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl6.TabIndex = 11
@@ -160,10 +160,9 @@ Partial Class FormODM
         '
         'SLUE3PL
         '
-        Me.SLUE3PL.Location = New System.Drawing.Point(304, 13)
+        Me.SLUE3PL.Location = New System.Drawing.Point(34, 13)
         Me.SLUE3PL.Name = "SLUE3PL"
         Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUE3PL.Properties.ReadOnly = True
         Me.SLUE3PL.Properties.View = Me.SearchLookUpEdit1View
         Me.SLUE3PL.Size = New System.Drawing.Size(211, 20)
         Me.SLUE3PL.TabIndex = 10
@@ -200,7 +199,7 @@ Partial Class FormODM
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(281, 16)
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 16)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(17, 13)
         Me.LabelControl1.TabIndex = 0
