@@ -24,6 +24,8 @@
         Else
             TxtCommReff.EditValue = 0.00
         End If
+        'get other expense
+        Dim qo As String = ""
         'get detail tax
         Dim query As String = "SELECT m.comm, m.comm_tax FROM tb_payout_zalora m WHERE m.id_payout_zalora=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -42,7 +44,7 @@
 
     Sub getTotal()
         Cursor = Cursors.WaitCursor
-        TxtTotalCommInput.EditValue = TxtCommReff.EditValue + TxtComm.EditValue + TxtCommTax.EditValue
+        TxtTotalCommInput.EditValue = TxtCommReff.EditValue + TxtOtherExpense.EditValue + TxtComm.EditValue + TxtCommTax.EditValue
         Cursor = Cursors.Default
     End Sub
 
