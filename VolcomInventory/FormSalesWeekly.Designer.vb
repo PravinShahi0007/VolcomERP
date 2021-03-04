@@ -1522,6 +1522,7 @@ Partial Class FormSalesWeekly
         Me.GVInvoiceWeek.OptionsBehavior.Editable = False
         Me.GVInvoiceWeek.OptionsView.AllowCellMerge = True
         Me.GVInvoiceWeek.OptionsView.ColumnAutoWidth = False
+        Me.GVInvoiceWeek.OptionsView.ShowFooter = True
         Me.GVInvoiceWeek.OptionsView.ShowGroupPanel = False
         '
         'GroupControl4
