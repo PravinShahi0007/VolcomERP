@@ -43,7 +43,7 @@ FROM (
     ) AS z ON pdelc.combine_number = z.combine_number
     WHERE odpd.`id_odm_print`='" & id_print & "'
 ) AS tb
-ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
+ORDER BY tb.awbill_no,tb.ol_number ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCListHistory.DataSource = dt
         GVListHistory.BestFitColumns()
