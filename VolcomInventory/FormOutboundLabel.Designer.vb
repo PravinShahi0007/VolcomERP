@@ -59,6 +59,7 @@ Partial Class FormOutboundLabel
         Me.XTPOnline = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDOOnline = New DevExpress.XtraGrid.GridControl()
         Me.GVDOOnline = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -91,7 +92,6 @@ Partial Class FormOutboundLabel
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewDOOnline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -507,6 +507,12 @@ Partial Class FormOutboundLabel
         Me.GVDOOnline.OptionsCustomization.CustomizationFormSearchBoxVisible = True
         Me.GVDOOnline.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "ID Comp"
+        Me.GridColumn30.FieldName = "id_comp"
+        Me.GridColumn30.Name = "GridColumn30"
+        '
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Delivery Order Number"
@@ -631,9 +637,9 @@ Partial Class FormOutboundLabel
         '
         'TEOrderOnline
         '
-        Me.TEOrderOnline.Location = New System.Drawing.Point(264, 14)
+        Me.TEOrderOnline.Location = New System.Drawing.Point(251, 14)
         Me.TEOrderOnline.Name = "TEOrderOnline"
-        Me.TEOrderOnline.Size = New System.Drawing.Size(131, 20)
+        Me.TEOrderOnline.Size = New System.Drawing.Size(144, 20)
         Me.TEOrderOnline.TabIndex = 96
         '
         'PanelControl5
@@ -739,7 +745,7 @@ Partial Class FormOutboundLabel
         Me.SLEStoreGroup.Name = "SLEStoreGroup"
         Me.SLEStoreGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStoreGroup.Properties.View = Me.GridView4
-        Me.SLEStoreGroup.Size = New System.Drawing.Size(203, 20)
+        Me.SLEStoreGroup.Size = New System.Drawing.Size(190, 20)
         Me.SLEStoreGroup.TabIndex = 13
         '
         'GridView4
@@ -789,12 +795,6 @@ Partial Class FormOutboundLabel
         Me.LabelControl4.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl4.TabIndex = 1
         Me.LabelControl4.Text = "Order#"
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.Caption = "ID Comp"
-        Me.GridColumn30.FieldName = "id_comp"
-        Me.GridColumn30.Name = "GridColumn30"
         '
         'FormOutboundLabel
         '

@@ -188,6 +188,22 @@ WHERE c.id_commerce_type='1' AND c.id_comp_cat='6' AND is_active='1'"
     End Sub
 
     Private Sub BCreateOutboundOnline_Click(sender As Object, e As EventArgs) Handles BCreateOutboundOnline.Click
+        Dim order As String = ""
+
+        Try
+            If SLEStoreGroup.EditValue.ToString = "64" Then 'ZA
+                order = addSlashes(TEOrderOnline.Text.Split("-")(1))
+            ElseIf SLEStoreGroup.EditValue.ToString = "75" Then 'BLI
+                order = addSlashes(TEOrderOnline.Text)
+            ElseIf SLEStoreGroup.EditValue.ToString = "76" Then 'VIOS
+                order = addSlashes(TEOrderOnline.Text.Split("-")(1))
+            ElseIf SLEStoreGroup.EditValue.ToString = "77" Then 'SHOPEE
+                order = addSlashes(TEOrderOnline.Text)
+            End If
+        Catch ex As Exception
+            order = addSlashes(TEOrderOnline.Text)
+        End Try
+
         If GVDOOnline.RowCount > 0 Then
             'check if already generated
             Dim id As String = ""
@@ -212,31 +228,26 @@ WHERE awbd.`id_pl_sales_order_del` IN (" & id & ") "
                 Next
                 warningCustom("Delivery with number : " & number_already_generated & " already process.")
             Else
-                'group per store
-                Dim koli_collection As String = ""
                 Dim q As String = "SELECT d.id_pl_sales_order_del, c.id_comp_group, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
-c.comp_number AS `store_number`,c.id_commerce_type,IF(so.is_export_awb=1,'Exported to CSSS','Not yet exported') AS is_export_awb,IFNULL(awbh.id_awbill,'') AS collie_number,c.id_comp, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'yes' AS `is_check`, stt.report_status,so.shipping_city,c.id_commerce_type
-FROM tb_pl_sales_order_del d
-INNER JOIN tb_sales_order so ON so.id_sales_order=d.id_sales_order
-LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = d.id_combine
-INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
-INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group`
-LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
-LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
-LEFT JOIN tb_wh_awbill awbh ON awbh.id_awbill=awb.id_awbill AND awbh.id_report_status!=5
-INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
-WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderOnline.Text) & "' AND ISNULL(awbh.id_awbill) GROUP BY c.id_comp"
+                c.comp_number AS `store_number`,c.id_commerce_type,SUM(dd.pl_sales_order_del_det_qty) AS `qty`,IF(so.is_export_awb=1,'Exported to CSSS','Not yet exported') AS is_export_awb,IFNULL(awbh.id_awbill,'') AS collie_number,c.id_comp, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'yes' AS `is_check`, stt.report_status,so.shipping_city,c.id_commerce_type
+                FROM tb_pl_sales_order_del d
+                INNER JOIN tb_sales_order so ON so.id_sales_order=d.id_sales_order
+                LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = d.id_combine
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+                INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group`
+                LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+                LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
+                LEFT JOIN tb_wh_awbill awbh ON awbh.id_awbill=awb.id_awbill AND awbh.id_report_status!=5
+                INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
+                WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(order) & "' AND ISNULL(awbh.id_awbill) GROUP BY d.id_pl_sales_order_del"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-                For j = 0 To dt.Rows.Count - 1
-                    'loop per comp
-                    Dim id_comp_loop As String = dt.Rows(j)("id_comp").ToString
-                    'outbound label generate
+                If dt.Rows.Count > 0 Then
                     Dim query As String = ""
                     Dim id_awb As String = ""
-                    '
+
                     query = "INSERT INTO tb_wh_awbill(id_sub_district,awbill_type,awbill_date,id_store,is_old_ways)"
-                    query += " VALUES('" + SLESubDistrictOnline.EditValue.ToString + "','1',NOW(),'" + id_comp_loop + "','2'); SELECT LAST_INSERT_ID(); "
+                    query += " VALUES('" + SLESubDistrictOnline.EditValue.ToString + "','1',NOW(),NULL,'2'); SELECT LAST_INSERT_ID(); "
 
                     id_awb = execute_query(query, 0, True, "", "", "", "")
 
@@ -247,43 +258,97 @@ WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.T
                     Dim qs As String = "SELECT ol_number FROM tb_wh_awbill WHERE id_awbill='" & id_awb & "'"
                     olnumber = execute_query(qs, 0, True, "", "", "", "")
 
-                    If Not j = 0 Then
-                        koli_collection += ","
-                    End If
-                    koli_collection += olnumber
-                    '
-                    Dim q_loop As String = "SELECT d.id_pl_sales_order_del, c.id_comp_group, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
-c.comp_number AS `store_number`,c.id_commerce_type,IF(so.is_export_awb=1,'Exported to CSSS','Not yet exported') AS is_export_awb,IFNULL(awbh.id_awbill,'') AS collie_number,c.id_comp, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'yes' AS `is_check`, stt.report_status,so.shipping_city,c.id_commerce_type
-FROM tb_pl_sales_order_del d
-INNER JOIN tb_sales_order so ON so.id_sales_order=d.id_sales_order
-LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = d.id_combine
-INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
-INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group`
-LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
-LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
-LEFT JOIN tb_wh_awbill awbh ON awbh.id_awbill=awb.id_awbill AND awbh.id_report_status!=5
-INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
-WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderOnline.Text) & "'
-AND ISNULL(awbh.id_awbill) AND c.id_comp='" & id_comp_loop & "'
-GROUP BY c.id_comp"
-                    Dim dt_loop As DataTable = execute_query(q_loop, -1, True, "", "", "", "")
-                    For k = 0 To dt_loop.Rows.Count - 1
+
+                    For k = 0 To dt.Rows.Count - 1
                         query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,id_ol_store_cust_ret,do_no,qty) VALUES"
+
                         Dim id_pl_sales_order_del As String = "NULL"
                         Dim id_ol_store_cust_ret As String = "NULL"
 
-                        id_pl_sales_order_del = dt_loop.Rows(k)("id_pl_sales_order_del").ToString
+                        id_pl_sales_order_del = dt.Rows(k)("id_pl_sales_order_del").ToString
 
-                        query += "('" + id_awb + "'," + id_pl_sales_order_del + "," + id_ol_store_cust_ret + ",'" + dt_loop.Rows(k)("do_no").ToString + "','" + decimalSQL(Decimal.Parse(dt_loop.Rows(k)("qty").ToString).ToString) + "')"
+                        query += "('" + id_awb + "'," + id_pl_sales_order_del + "," + id_ol_store_cust_ret + ",'" + dt.Rows(k)("do_no").ToString + "','" + decimalSQL(Decimal.Parse(dt.Rows(k)("qty").ToString).ToString) + "')"
                         execute_non_query(query, True, "", "", "", "")
                     Next
-                    '================= PRINT HERE PER LOOP ===================
                     print_ol(id_awb)
+                    warningCustom("Outbound Number " & olnumber & " created")
+                    Close()
+                End If
 
-                Next
-                warningCustom("Outbound Number " & koli_collection & " created")
-                Close()
+
+                'group per store
+                'Dim koli_collection As String = ""
+                '                Dim q As String = "SELECT d.id_pl_sales_order_del, c.id_comp_group, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
+                'c.comp_number AS `store_number`,c.id_commerce_type,IF(so.is_export_awb=1,'Exported to CSSS','Not yet exported') AS is_export_awb,IFNULL(awbh.id_awbill,'') AS collie_number,c.id_comp, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'yes' AS `is_check`, stt.report_status,so.shipping_city,c.id_commerce_type
+                'FROM tb_pl_sales_order_del d
+                'INNER JOIN tb_sales_order so ON so.id_sales_order=d.id_sales_order
+                'LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = d.id_combine
+                'INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+                'INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                'INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group`
+                'LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+                'LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
+                'LEFT JOIN tb_wh_awbill awbh ON awbh.id_awbill=awb.id_awbill AND awbh.id_report_status!=5
+                'INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
+                'WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderOnline.Text) & "' AND ISNULL(awbh.id_awbill) GROUP BY c.id_comp"
+                '                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                '                For j = 0 To dt.Rows.Count - 1
+                '                    'loop per comp
+                '                    Dim id_comp_loop As String = dt.Rows(j)("id_comp").ToString
+                '                    'outbound label generate
+                '                    Dim query As String = ""
+                '                    Dim id_awb As String = ""
+                '                    '
+                '                    query = "INSERT INTO tb_wh_awbill(id_sub_district,awbill_type,awbill_date,id_store,is_old_ways)"
+                '                    query += " VALUES('" + SLESubDistrictOnline.EditValue.ToString + "','1',NOW(),'" + id_comp_loop + "','2'); SELECT LAST_INSERT_ID(); "
+
+                '                    id_awb = execute_query(query, 0, True, "", "", "", "")
+
+                '                    query = "CALL gen_number_outbound_label('" & id_awb & "')"
+                '                    execute_non_query(query, True, "", "", "", "")
+
+                '                    Dim olnumber As String = ""
+                '                    Dim qs As String = "SELECT ol_number FROM tb_wh_awbill WHERE id_awbill='" & id_awb & "'"
+                '                    olnumber = execute_query(qs, 0, True, "", "", "", "")
+
+                '                    If Not j = 0 Then
+                '                        koli_collection += ","
+                '                    End If
+                '                    koli_collection += olnumber
+                '                    '
+                '                    Dim q_loop As String = "SELECT d.id_pl_sales_order_del, c.id_comp_group, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
+                'c.comp_number AS `store_number`,c.id_commerce_type,IF(so.is_export_awb=1,'Exported to CSSS','Not yet exported') AS is_export_awb,IFNULL(awbh.id_awbill,'') AS collie_number,c.id_comp, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'yes' AS `is_check`, stt.report_status,so.shipping_city,c.id_commerce_type
+                'FROM tb_pl_sales_order_del d
+                'INNER JOIN tb_sales_order so ON so.id_sales_order=d.id_sales_order
+                'LEFT JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = d.id_combine
+                'INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+                'INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                'INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group`
+                'LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+                'LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
+                'LEFT JOIN tb_wh_awbill awbh ON awbh.id_awbill=awb.id_awbill AND awbh.id_report_status!=5
+                'INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
+                'WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & order & "'
+                'AND ISNULL(awbh.id_awbill) AND c.id_comp='" & id_comp_loop & "'
+                'GROUP BY c.id_comp"
+                '                    Dim dt_loop As DataTable = execute_query(q_loop, -1, True, "", "", "", "")
+                '                    For k = 0 To dt_loop.Rows.Count - 1
+                '                        query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,id_ol_store_cust_ret,do_no,qty) VALUES"
+                '                        Dim id_pl_sales_order_del As String = "NULL"
+                '                        Dim id_ol_store_cust_ret As String = "NULL"
+
+                '                        id_pl_sales_order_del = dt_loop.Rows(k)("id_pl_sales_order_del").ToString
+
+                '                        query += "('" + id_awb + "'," + id_pl_sales_order_del + "," + id_ol_store_cust_ret + ",'" + dt_loop.Rows(k)("do_no").ToString + "','" + decimalSQL(Decimal.Parse(dt_loop.Rows(k)("qty").ToString).ToString) + "')"
+                '                        execute_non_query(query, True, "", "", "", "")
+                '                    Next
+                '                    '================= PRINT HERE PER LOOP ===================
+                '                    print_ol(id_awb)
+
+                '                Next
+                '                warningCustom("Outbound Number " & koli_collection & " created")
+                '                Close()
+
             End If
         Else
             warningCustom("Please choose DO")
@@ -300,6 +365,26 @@ GROUP BY cg.`id_comp_group`"
     End Sub
 
     Private Sub BViewDOOnline_Click(sender As Object, e As EventArgs) Handles BViewDOOnline.Click
+        view_ol()
+    End Sub
+
+    Sub view_ol()
+        Dim order As String = ""
+
+        Try
+            If SLEStoreGroup.EditValue.ToString = "64" Then 'ZA
+                order = addSlashes(TEOrderOnline.Text.Split("-")(1))
+            ElseIf SLEStoreGroup.EditValue.ToString = "75" Then 'BLI
+                order = addSlashes(TEOrderOnline.Text)
+            ElseIf SLEStoreGroup.EditValue.ToString = "76" Then 'VIOS
+                order = addSlashes(TEOrderOnline.Text.Split("-")(1))
+            ElseIf SLEStoreGroup.EditValue.ToString = "77" Then 'SHOPEE
+                order = addSlashes(TEOrderOnline.Text)
+            End If
+        Catch ex As Exception
+            order = addSlashes(TEOrderOnline.Text)
+        End Try
+
         If BViewDOOnline.Text = "view" Then
             'cari
             Dim q As String = "SELECT d.id_pl_sales_order_del, c.id_comp_group, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
@@ -314,7 +399,7 @@ LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sal
 LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
 LEFT JOIN tb_wh_awbill awbh ON awbh.id_awbill=awb.id_awbill AND awbh.id_report_status!=5
 INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
-WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderOnline.Text) & "'
+WHERE d.id_report_status=1 AND cg.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & order & "'
 AND ISNULL(awbh.id_awbill)
 GROUP BY d.id_pl_sales_order_del"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -368,6 +453,12 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country` " & filter
                     GVDOERP.SetRowCellValue(i, "is_check", "no")
                 End If
             Next
+        End If
+    End Sub
+
+    Private Sub TEOrderOnline_KeyUp(sender As Object, e As KeyEventArgs) Handles TEOrderOnline.KeyUp
+        If e.KeyCode = Keys.Enter Then
+            view_ol()
         End If
     End Sub
 End Class

@@ -26,7 +26,71 @@
     Sub viewSalesOrder()
         Cursor = Cursors.WaitCursor
         Dim query_c As ClassSalesOrder = New ClassSalesOrder()
-        Dim query As String = query_c.queryMain("AND a.id_so_status!=5 AND a.id_report_status='6' AND a.id_prepare_status='1' ", "1")
+        Dim query As String = "SELECT a.id_sales_order, a.id_store_contact_to, d.id_commerce_type,d.id_comp AS `id_store`, d.is_use_unique_code, d.id_store_type, d.comp_number AS `store_number`, d.comp_name AS `store`, d.address_primary as `store_address`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, a.id_warehouse_contact_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to,  (wh.comp_name) AS `warehouse`, wh.id_drawer_def AS `id_wh_drawer`, drw.wh_drawer_code, drw.wh_drawer, 
+        a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, 
+        (a.sales_order_date) AS sales_order_date, 
+        ps.id_prepare_status, ps.prepare_status, ('No') AS `is_select`, cat.id_so_status, cat.so_status, ot.order_type, del_cat.id_so_cat, del_cat.so_cat, IFNULL(so_item.tot_so,0.00) AS `total_order`, 
+        CAST((IFNULL(dord_item.tot_do, 0.00)/IFNULL(so_item.tot_so,0.00)*100) AS DECIMAL(5,2)) AS so_completness,  
+        a.id_so_type,prep.id_user, prep.prepared_date, 
+        IFNULL(crt.created, 0) AS created_process, 
+        gen.id_sales_order_gen, IFNULL(gen.sales_order_gen_reff, '-') AS `sales_order_gen_reff`, a.final_comment, a.final_date, fe.employee_name AS `final_by_name`, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, 
+        lp.printed_date, IFNULL(lp.printed_by,'-') AS `printed_by`, IFNULL(pri.indeks_order,0) AS `indeks_order`
+        FROM tb_sales_order a 
+        INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
+        INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = d.id_comp_group
+        INNER JOIN tb_m_comp_contact wh_c ON wh_c.id_comp_contact = a.id_warehouse_contact_to 
+        INNER JOIN tb_m_comp wh ON wh_c.id_comp = wh.id_comp 
+        INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status 
+        INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = a.id_prepare_status 
+        INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = a.id_so_status 
+        INNER JOIN tb_lookup_order_type ot ON ot.id_order_type = cat.id_order_type 
+        LEFT JOIN ( 
+	        SELECT so_det.id_sales_order, SUM(so_det.sales_order_det_qty) AS tot_so  
+	        FROM tb_sales_order_det so_det 
+	        GROUP BY so_det.id_sales_order 
+        ) so_item ON so_item.id_sales_order = a.id_sales_order 
+        LEFT JOIN ( 
+	        SELECT dord.id_sales_order, SUM(dord_det.pl_sales_order_del_det_qty) AS tot_do 
+	        FROM tb_pl_sales_order_del_det dord_det 
+	        INNER JOIN tb_pl_sales_order_del dord ON dord.id_pl_sales_order_del = dord_det.id_pl_sales_order_del 
+	        WHERE dord.id_report_status!='5' 
+	        GROUP BY dord.id_sales_order 
+        ) dord_item ON dord_item.id_sales_order = a.id_sales_order 
+        Left Join( 
+	        Select a.id_report, a.id_user, a.report_mark_datetime AS `prepared_date` 
+	        From tb_report_mark a 
+	        Where a.report_mark_type ='39' and a.id_report_status='1' 
+	        group by a.id_report 
+        ) prep On prep.id_report = a.id_sales_order 
+        LEFT JOIN tb_lookup_pd_alloc alloc On alloc.id_pd_alloc = d.id_pd_alloc 
+        LEFT JOIN tb_lookup_so_cat del_cat On del_cat.id_so_cat = alloc.id_so_cat 
+        Left Join( 
+	        Select id_sales_order, COUNT(*) As created FROM tb_pl_sales_order_del GROUP BY id_sales_order 
+        ) crt On crt.id_sales_order = a.id_sales_order 
+        LEFT JOIN tb_sales_order_gen gen ON gen.id_sales_order_gen = a.id_sales_order_gen 
+        LEFT JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = wh.id_drawer_def  
+        LEFT JOIN tb_m_user fu ON fu.id_user = a.final_by 
+        LEFT JOIN tb_m_employee fe ON fe.id_employee = fu.id_employee 
+        LEFT JOIN tb_emp_uni_period eu ON eu.id_emp_uni_period=a.id_emp_uni_period 
+        LEFT JOIN tb_lookup_uni_type ut ON ut.id_uni_type = a.id_uni_type 
+        LEFT JOIN tb_emp_uni_budget ub ON ub.id_emp_uni_budget = a.id_emp_uni_budget
+        LEFT JOIN tb_m_employee ube ON ube.id_employee = ub.id_employee 
+        LEFT JOIN (
+           SELECT a.id_sales_order, a.log_date AS `printed_date`, e.employee_name AS `printed_by` 
+           FROM (
+              SELECT * FROM tb_sales_order_log_print lp
+              ORDER BY lp.log_date ASC
+           ) a 
+           INNER JOIN tb_m_user u ON u.id_user = a.id_user
+           INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+           GROUP BY a.id_sales_order
+        ) lp ON lp.id_sales_order = a.id_sales_order 
+        LEFT JOIN tb_store_priority_order pri ON pri.id_comp = d.id_comp
+        WHERE a.id_sales_order>0 
+        AND a.id_so_status!=5 AND a.id_report_status='6' AND a.id_prepare_status='1' 
+        HAVING so_completness<100
+        ORDER BY indeks_order ASC, id_sales_order ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesOrder.DataSource = data
         GVSalesOrder.BestFitColumns()
@@ -494,5 +558,13 @@
         End If
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVSalesOrder_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVSalesOrder.RowCellStyle
+        If GVSalesOrder.GetRowCellValue(e.RowHandle, "indeks_order") < 0 Then
+            e.Appearance.BackColor = Color.Yellow
+        Else
+            e.Appearance.BackColor = Color.Empty
+        End If
     End Sub
 End Class

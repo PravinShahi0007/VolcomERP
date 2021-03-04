@@ -27,11 +27,15 @@
     Dim is_load As Boolean = False
 
     Sub load_list(ByVal id As String)
-        Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) As qty,dis.sub_district,c.comp_name,awb.ol_number
+        Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) AS qty,dis.sub_district,IFNULL(c.comp_name,cg.description) AS comp_name,awb.ol_number
 FROM `tb_wh_awbill` awb 
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awb.id_sub_district
 INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
-INNER JOIN tb_m_comp c ON c.id_comp=awb.id_store
+LEFT JOIN tb_m_comp c ON c.id_comp=awb.id_store
+INNER JOIN tb_pl_sales_order_del pl ON pl.id_pl_sales_order_del=awbd.id_pl_sales_order_del
+INNER JOIN tb_m_comp_contact ccx ON ccx.id_comp_contact = pl.id_store_contact_to
+INNER JOIN tb_m_comp cx ON cx.id_comp = ccx.id_comp
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=cx.`id_comp_group`
 WHERE awb.id_report_status!=5 AND awb.id_report_status!=6 AND awb.is_old_ways!=1 AND awb.step=1"
         If Not id = "" Then
             q += " AND awb.ol_number='" & id & "' "

@@ -107,7 +107,7 @@ Partial Class FormOutboundList
         Me.GridColumn1.FieldName = "ol_number"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.VisibleIndex = 1
         Me.GridColumn1.Width = 98
         '
         'GridColumn2
@@ -116,7 +116,7 @@ Partial Class FormOutboundList
         Me.GridColumn2.FieldName = "comp_name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 0
         Me.GridColumn2.Width = 257
         '
         'GridColumn4
@@ -162,7 +162,7 @@ Partial Class FormOutboundList
         Me.TEOutboundNumber.Name = "TEOutboundNumber"
         Me.TEOutboundNumber.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.TEOutboundNumber.Properties.Appearance.Options.UseFont = True
-        Me.TEOutboundNumber.Size = New System.Drawing.Size(255, 28)
+        Me.TEOutboundNumber.Size = New System.Drawing.Size(334, 28)
         Me.TEOutboundNumber.TabIndex = 1
         '
         'LabelControl1
