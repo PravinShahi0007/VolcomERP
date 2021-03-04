@@ -177,15 +177,17 @@ GROUP BY cg.`id_comp_group`"
         'detail
         Dim query_det As String = "
             SELECT *
-            FROM (
-                SELECT 0 AS no, mdet.id_wh_awb_det, c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, ct.city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
+                FROM (
+                SELECT 0 AS NO, mdet.id_wh_awb_det, c.id_comp_group, a.ol_number, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
                 FROM tb_del_manifest_det AS mdet
                 LEFT JOIN tb_wh_awbill_det AS adet ON mdet.id_wh_awb_det = adet.id_wh_awb_det
                 LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
-                LEFT JOIN tb_m_comp AS c ON a.id_store = c.id_comp
-                LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
                 LEFT JOIN tb_pl_sales_order_del AS pdel ON adet.id_pl_sales_order_del = pdel.id_pl_sales_order_del
                 LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pdel.id_combine = pdelc.id_combine
+                LEFT JOIN tb_sales_order so ON so.`id_sales_order`=pdel.`id_sales_order`
+                LEFT JOIN tb_m_comp_contact AS cc ON pdel.id_store_contact_to = cc.id_comp_contact
+                LEFT JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+                LEFT JOIN tb_m_city AS ct ON c.id_city = ct.id_city
                 LEFT JOIN (
 	                SELECT z3.combine_number, SUM(pl_sales_order_del_det_qty) AS qty
 	                FROM tb_pl_sales_order_del_det AS z1
@@ -658,7 +660,7 @@ WHERE id_del_manifest = " + id_del_manifest
     End Sub
 
     Sub gen_online()
-        Dim q As String = "SELECT 0 AS `no`,awb.old_number,awbd.id_wh_awb_det,c.id_comp_group,awb.`awbill_date`,awb.`id_awbill`,IFNULL(pdelc.combine_number, awbd.do_no) AS combine_number,awbd.`do_no`,pl.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`
+        Dim q As String = "SELECT 0 AS `no`,awb.id_sub_district,awb.ol_number,awbd.id_wh_awb_det,c.id_comp_group,awb.`awbill_date`,awb.`id_awbill`,IFNULL(pdelc.combine_number, awbd.do_no) AS combine_number,awbd.`do_no`,pl.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`
 ,CONCAT((ROUND(IF(pdelc.combine_number IS NULL, awbd.qty, z.qty), 0)), ' ') AS qty,so.`shipping_city` AS city,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
 FROM tb_wh_awbill_det awbd
 INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_del_type=" & SLEDelType.EditValue.ToString & "
@@ -681,7 +683,7 @@ WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales
         '
         If GVList.RowCount > 0 Then
             'sub district
-            load_sub_dsitrict_filter(" AND ct.city='" & GVList.GetRowCellValue(0, "city").ToString & "'")
+            load_sub_dsitrict_filter(" AND dis.id_sub_district='" & GVList.GetRowCellValue(0, "id_sub_district").ToString & "'")
             '
             load_cargo_rate()
             '
@@ -777,7 +779,7 @@ INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderNumber.Text) & "'
-HAVING weight > 0 
+HAVING weight >= 0 
 )tb "
             Else
                 'offline
@@ -793,7 +795,7 @@ FROM
 	INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 	WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "'
 	GROUP BY awb.id_awbill
-	HAVING weight > 0
+	HAVING weight >= 0
 )tb "
             End If
             Dim dt_weight As DataTable = execute_query(q_weight, -1, True, "", "", "", "")

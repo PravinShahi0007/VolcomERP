@@ -170,7 +170,7 @@ Partial Public Class ReportODMScan
         Me.XrTableCell4.StylePriority.UseBorders = False
         Me.XrTableCell4.StylePriority.UsePadding = False
         Me.XrTableCell4.Text = "KOLI"
-        Me.XrTableCell4.Weight = 0.38126932010904729R
+        Me.XrTableCell4.Weight = 0.72441182869868237R
         '
         'XrTableCell5
         '
@@ -180,7 +180,7 @@ Partial Public Class ReportODMScan
         Me.XrTableCell5.StylePriority.UseBorders = False
         Me.XrTableCell5.StylePriority.UsePadding = False
         Me.XrTableCell5.Text = "DELIVERY SLIP"
-        Me.XrTableCell5.Weight = 0.571903995918772R
+        Me.XrTableCell5.Weight = 0.55665368834718476R
         '
         'XrTableCell2
         '
@@ -190,7 +190,7 @@ Partial Public Class ReportODMScan
         Me.XrTableCell2.StylePriority.UseBorders = False
         Me.XrTableCell2.StylePriority.UsePadding = False
         Me.XrTableCell2.Text = "STORE ACC"
-        Me.XrTableCell2.Weight = 0.7625385932112323R
+        Me.XrTableCell2.Weight = 0.43464639219318435R
         '
         'XrTableCell3
         '
