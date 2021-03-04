@@ -193,8 +193,8 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & addSlashes(TEAWB.Text) & "','" 
 
                 For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Processing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
-                    'Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
-                    'stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+                    Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+                    stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
                 Next
 
                 FormMain.SplashScreenManager1.CloseWaitForm()
