@@ -33,7 +33,7 @@ FROM (
 	    LEFT JOIN tb_pl_sales_order_del_combine AS z3 ON z2.id_combine = z3.id_combine
 	    GROUP BY z2.id_combine
     ) AS z ON pdelc.combine_number = z.combine_number
-    WHERE md.awbill_no='" & addSlashes(TEAWB.Text) & "' AND ISNULL(odm.id_odm_sc)
+    WHERE md.awbill_no='" & addSlashes(TEAWB.Text) & "' AND md.id_comp='" & SLUE3PL.EditValue.ToString & "' AND ISNULL(odm.id_odm_sc)
 ) AS tb
 ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -44,8 +44,6 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
             warningCustom("AWB not found.")
             TEAWB.Text = ""
         Else
-            SLUE3PL.EditValue = GVList.GetRowCellValue(0, "id_3pl").ToString
-
             TEAWB.Enabled = False
             SLUE3PL.Properties.ReadOnly = True
             BView.Visible = False
