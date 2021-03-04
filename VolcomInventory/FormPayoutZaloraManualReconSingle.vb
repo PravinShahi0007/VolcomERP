@@ -42,7 +42,8 @@ FROM tb_payout_zalora_det d WHERE d.id_payout_zalora_det=" + id_det + " "
         Cursor = Cursors.WaitCursor
         'view detail
         Dim qd As String = "SELECT d.id_payout_zalora_det_addition, d.id_payout_zalora_det, d.erp_amount, 
-d.id_acc, coa.acc_name, coa.acc_description, IFNULL(d.id_ref,0) AS `id_ref`, IFNULL(d.id_ref_det,0) AS `id_ref_det`, IFNULL(d.rmt_ref,0) AS `rmt_ref`
+d.id_acc, coa.acc_name, coa.acc_description, IFNULL(d.id_ref,0) AS `id_ref`, IFNULL(d.id_ref_det,0) AS `id_ref_det`, IFNULL(d.rmt_ref,0) AS `rmt_ref`,
+sp.sales_pos_number AS `ref_number`
 FROM tb_payout_zalora_det_addition d 
 INNER JOIN tb_a_acc coa ON coa.id_acc = d.id_acc
 LEFT JOIN tb_sales_pos sp ON sp.id_sales_pos = d.id_ref AND d.rmt_ref IN(48,118,292)
@@ -115,6 +116,10 @@ WHERE d.id_payout_zalora_det=" + id_det + " "
                 SET erp_amount='" + erp_amount + "', is_manual_recon=1, manual_recon_reason='" + manual_recon_reason + "', id_acc='" + id_acc + "'
                 WHERE id_payout_zalora_det='" + id_det + "'; "
                 execute_non_query(query, True, "", "", "", "")
+                'reset tax setup
+                If id_payout_zalora_cat = "3" Or id_payout_zalora_cat = "5" Then
+                    execute_non_query("UPDATE tb_payout_zalora SET comm=0.00, comm_tax=0.00 WHERE id_payout_zalora='" + FormPayoutZaloraDet.id + "'", True, "", "", "", "")
+                End If
                 FormPayoutZaloraDet.CESelectAll.EditValue = False
                 FormPayoutZaloraDet.viewSummary()
                 FormPayoutZaloraDet.viewERPPayout()
@@ -134,5 +139,19 @@ WHERE d.id_payout_zalora_det=" + id_det + " "
         FormPayoutZaloraManualReconRef.id_payout_zalora_det = id_det
         FormPayoutZaloraManualReconRef.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LinkRef_Click(sender As Object, e As EventArgs) Handles LinkRef.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim id_ref As String = GVData.GetFocusedRowCellValue("id_ref").ToString
+            If id_ref <> "0" Then
+                Cursor = Cursors.WaitCursor
+                Dim m As New ClassShowPopUp()
+                m.id_report = id_ref
+                m.report_mark_type = GVData.GetFocusedRowCellValue("rmt_ref").ToString
+                m.show()
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 End Class
