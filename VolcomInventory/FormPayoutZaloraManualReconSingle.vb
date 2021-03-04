@@ -117,6 +117,7 @@ WHERE d.id_payout_zalora_det=" + id_det + " "
                 execute_non_query(query, True, "", "", "", "")
                 FormPayoutZaloraDet.CESelectAll.EditValue = False
                 FormPayoutZaloraDet.viewSummary()
+                FormPayoutZaloraDet.viewERPPayout()
                 FormPayoutZaloraDet.viewDetailRecon(id_payout_zalora_cat)
                 Close()
                 Cursor = Cursors.Default
