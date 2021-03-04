@@ -48,6 +48,7 @@ Partial Class FormProductionFinalClearSummaryPick
         Me.SLUEViewVendor = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,7 +107,7 @@ Partial Class FormProductionFinalClearSummaryPick
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSelect, Me.GridColumnIdProdFc, Me.GridColumnVendor, Me.GridColumnDesign, Me.GridColumnNumber, Me.GridColumnCategory, Me.GridColumnClaim, Me.GridColumnQty, Me.GridColumnQtyPO, Me.GridColumnQtyRec, Me.GridColumnTanggalInput})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSelect, Me.GridColumnIdProdFc, Me.GridColumnVendor, Me.GridColumnDesign, Me.GridColumnNumber, Me.GridColumnCategory, Me.GridColumnClaim, Me.GridColumnQty, Me.GridColumnQtyPO, Me.GridColumnQtyRec, Me.GridColumnTanggalInput, Me.GridColumn3})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_fc_det_qty", Me.GridColumnQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", Me.GridColumnQtyPO, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnQtyRec, "{0:N2}")})
         Me.GVList.Name = "GVList"
@@ -340,6 +341,14 @@ Partial Class FormProductionFinalClearSummaryPick
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Status"
+        Me.GridColumn3.FieldName = "report_status"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 10
+        '
         'FormProductionFinalClearSummaryPick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -398,4 +407,5 @@ Partial Class FormProductionFinalClearSummaryPick
     Friend WithEvents DateEditFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumnClaim As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

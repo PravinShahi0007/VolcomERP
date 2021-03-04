@@ -44,8 +44,9 @@
         Next
 
         Dim query As String = "
-            SELECT 'no' AS is_select, fc.id_prod_fc, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, cat_sub.pl_category_sub, qty.prod_fc_det_qty, qty_po.qty_po, qty_rec.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date
+            SELECT 'no' AS is_select,sts.report_status, fc.id_prod_fc, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, cat_sub.pl_category_sub, qty.prod_fc_det_qty, qty_po.qty_po, qty_rec.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date
             FROM tb_prod_fc AS fc
+            LEFT JOIN tb_lookup_report_status sts ON sts.id_report_status=fc.id_report_status
             LEFT JOIN tb_lookup_pl_category AS cat ON fc.id_pl_category = cat.id_pl_category
             LEFT JOIN tb_lookup_pl_category_sub AS cat_sub ON fc.id_pl_category_sub = cat_sub.id_pl_category_sub
             LEFT JOIN tb_prod_order AS po ON fc.id_prod_order = po.id_prod_order
@@ -107,7 +108,8 @@
                         GVList.GetRowCellValue(i, "prod_fc_det_qty"),
                         GVList.GetRowCellValue(i, "qty_po"),
                         GVList.GetRowCellValue(i, "qty_rec"),
-                        GVList.GetRowCellValue(i, "prod_fc_date")
+                        GVList.GetRowCellValue(i, "prod_fc_date"),
+                        GVList.GetRowCellValue(i, "report_status")
                     )
                 End If
             Next

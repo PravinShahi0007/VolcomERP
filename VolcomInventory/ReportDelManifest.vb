@@ -188,8 +188,8 @@
             'final weight
             Dim c_weight As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(13)
 
-            c_weight.Text = Decimal.Round(dt.Rows(i)("c_weight"), 2)
-            c_weight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            'c_weight.Text = Decimal.Round(dt.Rows(i)("c_weight"), 2)
+            'c_weight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
 
             'remove border top
             If Not i = 0 Then

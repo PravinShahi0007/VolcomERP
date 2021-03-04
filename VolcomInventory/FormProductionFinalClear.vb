@@ -311,7 +311,7 @@ LEFT JOIN
 	SELECT id_prod_order_rec,SUM(retd.`prod_order_ret_out_det_qty`) AS qty
 	FROM tb_prod_order_ret_out_det retd 
 	INNER JOIN tb_prod_order_ret_out ret ON retd.`id_prod_order_ret_out`=ret.`id_prod_order_ret_out`
-	WHERE ret.`id_report_status`!=5
+	WHERE ret.`id_report_status`=6
 	GROUP BY ret.`id_prod_order_rec`
 )retout ON retout.id_prod_order_rec=rec.`id_prod_order_rec`
 LEFT JOIN 
