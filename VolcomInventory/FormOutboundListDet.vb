@@ -122,6 +122,11 @@ WHERE awb.id_awbill='" & id_awb & "'"
                         If FormViewSalesDelOrder.id_commerce_type = "2" Then
                             stt.sendEmailConfirmation(GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
                         End If
+
+                        'Reset approval
+                        q = String.Format("UPDATE tb_report_mark SET report_mark_start_datetime=NULL,report_mark_lead_time=NULL,report_mark_datetime=NULL WHERE id_report='{0}' AND report_mark_type='43'", GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
+                        execute_non_query(q, True, "", "", "", "")
+
                     ElseIf Not GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString = "" And Not GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString = "NULL" Then
                         Dim query As String = String.Format("UPDATE tb_ol_store_cust_ret SET id_report_status='{0}' WHERE id_ol_store_cust_ret ='{1}'", "3", GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString)
                         execute_non_query(query, True, "", "", "", "")
