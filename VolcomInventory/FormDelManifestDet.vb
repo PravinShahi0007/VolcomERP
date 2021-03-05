@@ -993,7 +993,7 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
 
     Private Sub TEOrderNumber_KeyUp(sender As Object, e As KeyEventArgs) Handles TEOrderNumber.KeyUp
         If e.KeyCode = Keys.Enter Then
-
+            gen_online()
         End If
     End Sub
 End Class
