@@ -21,6 +21,8 @@ Partial Class FormODMPrint
     Private Sub InitializeComponent()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.L3PL = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -43,6 +45,7 @@ Partial Class FormODMPrint
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -51,16 +54,14 @@ Partial Class FormODMPrint
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.GCListHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BPrint
@@ -92,6 +93,22 @@ Partial Class FormODMPrint
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1063, 44)
         Me.PanelControl2.TabIndex = 20
+        '
+        'TENumber
+        '
+        Me.TENumber.Location = New System.Drawing.Point(55, 13)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(269, 20)
+        Me.TENumber.TabIndex = 13
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 16)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl1.TabIndex = 12
+        Me.LabelControl1.Text = "Number"
         '
         'PanelControl3
         '
@@ -142,7 +159,7 @@ Partial Class FormODMPrint
         'GVListHistory
         '
         Me.GVListHistory.Appearance.GroupPanel.ForeColor = System.Drawing.Color.Black
-        Me.GVListHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHChecklist, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GCHStoreAccount, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
+        Me.GVListHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHChecklist, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GCHStoreAccount, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn1, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
         Me.GVListHistory.GridControl = Me.GCListHistory
         Me.GVListHistory.GroupCount = 1
         Me.GVListHistory.GroupFormat = "[#image]{1} {2}"
@@ -218,7 +235,7 @@ Partial Class FormODMPrint
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 15
+        Me.GridColumn15.VisibleIndex = 16
         '
         'GridColumn16
         '
@@ -311,6 +328,14 @@ Partial Class FormODMPrint
         Me.GridColumn24.VisibleIndex = 8
         Me.GridColumn24.Width = 77
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "District"
+        Me.GridColumn1.FieldName = "district"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 9
+        '
         'GridColumn25
         '
         Me.GridColumn25.Caption = "Weight"
@@ -321,7 +346,7 @@ Partial Class FormODMPrint
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 9
+        Me.GridColumn25.VisibleIndex = 10
         '
         'GridColumn26
         '
@@ -333,7 +358,7 @@ Partial Class FormODMPrint
         Me.GridColumn26.OptionsColumn.AllowEdit = False
         Me.GridColumn26.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 10
+        Me.GridColumn26.VisibleIndex = 11
         '
         'GridColumn27
         '
@@ -345,7 +370,7 @@ Partial Class FormODMPrint
         Me.GridColumn27.OptionsColumn.AllowEdit = False
         Me.GridColumn27.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 11
+        Me.GridColumn27.VisibleIndex = 12
         '
         'GridColumn28
         '
@@ -357,7 +382,7 @@ Partial Class FormODMPrint
         Me.GridColumn28.OptionsColumn.AllowEdit = False
         Me.GridColumn28.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 12
+        Me.GridColumn28.VisibleIndex = 13
         '
         'GridColumn29
         '
@@ -369,7 +394,7 @@ Partial Class FormODMPrint
         Me.GridColumn29.OptionsColumn.AllowEdit = False
         Me.GridColumn29.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 13
+        Me.GridColumn29.VisibleIndex = 14
         '
         'GridColumn30
         '
@@ -381,7 +406,7 @@ Partial Class FormODMPrint
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 14
+        Me.GridColumn30.VisibleIndex = 15
         '
         'GridColumn31
         '
@@ -390,7 +415,7 @@ Partial Class FormODMPrint
         Me.GridColumn31.OptionsColumn.AllowEdit = False
         Me.GridColumn31.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 16
+        Me.GridColumn31.VisibleIndex = 17
         '
         'RepositoryItemCheckEdit1
         '
@@ -398,22 +423,6 @@ Partial Class FormODMPrint
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 16)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl1.TabIndex = 12
-        Me.LabelControl1.Text = "Number"
-        '
-        'TENumber
-        '
-        Me.TENumber.Location = New System.Drawing.Point(55, 13)
-        Me.TENumber.Name = "TENumber"
-        Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(269, 20)
-        Me.TENumber.TabIndex = 13
         '
         'FormODMPrint
         '
@@ -431,13 +440,13 @@ Partial Class FormODMPrint
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
         CType(Me.GCListHistory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListHistory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -476,4 +485,5 @@ Partial Class FormODMPrint
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
