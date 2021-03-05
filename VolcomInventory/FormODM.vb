@@ -368,7 +368,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
 
     Private Sub GVListODM_DoubleClick(sender As Object, e As EventArgs) Handles GVListODM.DoubleClick
         If GVListODM.RowCount > 0 Then
-            FormODMPrint.id_print = GVListODM.GetRowCellValue(0, "id_odm_print").ToString
+            FormODMPrint.id_print = GVListODM.GetFocusedRowCellValue("id_odm_print").ToString
             FormODMPrint.ShowDialog()
         End If
     End Sub
