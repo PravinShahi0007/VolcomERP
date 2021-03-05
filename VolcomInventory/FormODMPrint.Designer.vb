@@ -331,7 +331,7 @@ Partial Class FormODMPrint
         'GridColumn1
         '
         Me.GridColumn1.Caption = "District"
-        Me.GridColumn1.FieldName = "district"
+        Me.GridColumn1.FieldName = "sub_district"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 9
