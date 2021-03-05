@@ -702,7 +702,12 @@ LEFT JOIN (
 INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & order & "'"
+LEFT JOIN (
+    SELECT id_wh_awb_det 
+    FROM `tb_del_manifest_det` deld 
+    INNER JOIN tb_del_manifest del ON del.id_del_manifest=deld.id_del_manifest AND del.id_report_status!=5
+) tb_c ON tb_c.id_wh_awb_det=awbd.id_wh_awb_det
+WHERE ISNULL(tb_c.id_wh_awb_det) AND c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & order & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
@@ -720,7 +725,7 @@ WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales
             '
             PCRate.Visible = True
         Else
-            warningCustom("Outbound number not found")
+            warningCustom("Outbound number not found or already created")
         End If
     End Sub
 
@@ -768,7 +773,7 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb
             '
             PCRate.Visible = True
         Else
-            warningCustom("Outbound number not found")
+            warningCustom("Outbound number not found or already created")
         End If
     End Sub
 
@@ -797,33 +802,44 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb
                 q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
 FROM 
 (
-SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height,SUM(awb.`weight_calc`) AS volume
-FROM tb_wh_awbill_det awbd
-INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_awbill IN (" & id_awb & ")
-INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
-INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
-INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
-INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderNumber.Text) & "'
-HAVING weight >= 0 
+	SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height, SUM(awb.`volume`) AS volume
+	FROM (
+        SELECT awb.id_awbill,awb.weight AS weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
+        FROM tb_wh_awbill_det awbd
+        INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_awbill IN (" & id_awb & ")
+        INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
+        INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderNumber.Text) & "'
+        GROUP BY awb.`id_awbill`
+        HAVING weight >= 0 
+    )awb 
+	GROUP BY awb.id_awbill
 )tb "
             Else
                 'offline
                 q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
 FROM 
 (
-	SELECT awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
-	FROM tb_wh_awbill_det awbd
-	INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_awbill IN (" & id_awb & ")
-	INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
-	INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
-	INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
-	INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-	WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "'
+    SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height, SUM(awb.`volume`) AS volume
+	FROM (
+	    SELECT awb.id_awbill,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
+	    FROM tb_wh_awbill_det awbd
+	    INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_awbill IN (" & id_awb & ")
+	    INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
+	    INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
+	    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+	    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+	    WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "'
+	    GROUP BY awb.id_awbill
+	    HAVING weight >= 0
+    )awb 
 	GROUP BY awb.id_awbill
-	HAVING weight >= 0
 )tb "
             End If
+
+
             Dim dt_weight As DataTable = execute_query(q_weight, -1, True, "", "", "", "")
             If dt_weight.Rows.Count > 0 Then
                 berat_dim = Decimal.Parse(dt_weight.Rows(0)("volume").ToString)
