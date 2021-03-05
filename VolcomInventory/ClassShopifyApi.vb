@@ -83,7 +83,15 @@
             End If
 
             'get next page
-            Dim link As String() = response.Headers.GetValues(16)
+            Dim link_pos As Integer = 0
+
+            For l = 0 To response.Headers.AllKeys.Count - 1
+                If response.Headers.AllKeys(l) = "Link" Then
+                    link_pos = l
+                End If
+            Next
+
+            Dim link As String() = response.Headers.GetValues(link_pos)
 
             Dim j1 As Integer = link(link.Count - 1).LastIndexOf(">; rel=""next")
             Dim j2 As Integer = link(link.Count - 1).LastIndexOf("o=") + 2
