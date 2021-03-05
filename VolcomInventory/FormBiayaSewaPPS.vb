@@ -75,7 +75,7 @@ WHERE ppsd.id_biaya_sewa_pps='" & id_pps & "'"
     End Sub
 
     Sub load_acc()
-        Dim q As String = "SELECT id_acc,acc_name,acc_description,CONCAT(acc_name,' - ',acc_description) AS full_desc FROM tb_a_acc WHERE id_is_det=2 AND id_coa_type='" & If(SLEUnit.EditValue.ToString = "1", "1", "2") & "'"
+        Dim q As String = "SELECT id_acc,acc_name,acc_description,CONCAT(acc_name,' - ',acc_description) AS full_desc FROM tb_a_acc WHERE id_is_det=2 AND id_status=1 AND id_coa_type='" & If(SLEUnit.EditValue.ToString = "1", "1", "2") & "'"
         viewSearchLookupRepositoryQuery(RISLEPrepaid, q, 0, "full_desc", "id_acc")
         def_id_acc = execute_query(q, 0, True, "", "", "", "")
     End Sub
