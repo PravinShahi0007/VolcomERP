@@ -670,6 +670,22 @@ WHERE dmd.`id_del_manifest`='" & id_del_manifest & "'"
     End Sub
 
     Sub gen_online()
+        Dim order As String = ""
+
+        Try
+            If SLEStoreGroup.EditValue.ToString = "64" Then 'ZA
+                order = addSlashes(TEOrderNumber.Text.Split("-")(1))
+            ElseIf SLEStoreGroup.EditValue.ToString = "75" Then 'BLI
+                order = addSlashes(TEOrderNumber.Text)
+            ElseIf SLEStoreGroup.EditValue.ToString = "76" Then 'VIOS
+                order = addSlashes(TEOrderNumber.Text.Split("-")(1))
+            ElseIf SLEStoreGroup.EditValue.ToString = "77" Then 'SHOPEE
+                order = addSlashes(TEOrderNumber.Text)
+            End If
+        Catch ex As Exception
+            order = addSlashes(TEOrderNumber.Text)
+        End Try
+
         Dim q As String = "SELECT 0 AS `no`,awb.id_sub_district,awb.ol_number,awbd.id_wh_awb_det,c.id_comp_group,awb.`awbill_date`,awb.`id_awbill`,IFNULL(pdelc.combine_number, awbd.do_no) AS combine_number,awbd.`do_no`,pl.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`
 ,CONCAT((ROUND(IF(pdelc.combine_number IS NULL, awbd.qty, z.qty), 0)), ' ') AS qty,so.`shipping_city` AS city,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
 FROM tb_wh_awbill_det awbd
@@ -686,7 +702,7 @@ LEFT JOIN (
 INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderNumber.Text) & "'"
+WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & order & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
@@ -924,5 +940,11 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
                 load_cargo_rate()
             End If
         End If
+    End Sub
+
+    Private Sub TEOrderNumber_KeyUp(sender As Object, e As KeyEventArgs) Handles TEOrderNumber.KeyUp
+
+
+
     End Sub
 End Class
