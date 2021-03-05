@@ -308,6 +308,23 @@ GROUP BY cg.`id_comp_group`"
     End Sub
 
     Sub save(ByVal type As String)
+        '
+        Dim order As String = ""
+
+        Try
+            If SLEStoreGroup.EditValue.ToString = "64" Then 'ZA
+                order = addSlashes(TEOrderNumber.Text.Split("-")(1))
+            ElseIf SLEStoreGroup.EditValue.ToString = "75" Then 'BLI
+                order = addSlashes(TEOrderNumber.Text)
+            ElseIf SLEStoreGroup.EditValue.ToString = "76" Then 'VIOS
+                order = addSlashes(TEOrderNumber.Text.Split("-")(1))
+            ElseIf SLEStoreGroup.EditValue.ToString = "77" Then 'SHOPEE
+                order = addSlashes(TEOrderNumber.Text)
+            End If
+        Catch ex As Exception
+            order = addSlashes(TEOrderNumber.Text)
+        End Try
+
         'check awb
         Dim qc As String = "SELECT awbill_no FROM tb_wh_awbill WHERE awbill_no='" & TEAwb.Text & "' AND id_report_status!=5
 UNION ALL
@@ -343,7 +360,7 @@ SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & TEAwb.Text & "' AND i
                     query = "INSERT INTO tb_del_manifest (id_comp, created_date, created_by,is_ol_shop,id_comp_group,ol_order,id_store_offline,id_del_type, id_sub_district ,awbill_no, id_cargo,cargo_rate,cargo_min_weight,cargo_lead_time
 ,c_weight,c_tot_price,id_cargo_best,cargo_rate_best,cargo_min_weight_best,cargo_lead_time_best,mark_different) 
 VALUES (" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + ", NOW(), " + id_user + "
-,'" + SLEOnlineShop.EditValue.ToString + "','" + SLEStoreGroup.EditValue.ToString + "','" + addSlashes(TEOrderNumber.Text) + "','" + SLEComp.EditValue.ToString + "'
+,'" + SLEOnlineShop.EditValue.ToString + "','" + SLEStoreGroup.EditValue.ToString + "','" + order + "','" + SLEComp.EditValue.ToString + "'
 ,'" + SLEDelType.EditValue.ToString + "','" + SLESubDistrict.EditValue.ToString + "','" + addSlashes(TEAwb.Text) + "','" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_min_weight").ToString) + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_lead_time").ToString) + "'
 ,'" + decimalSQL(TECWeight.EditValue.ToString) + "','" + decimalSQL(TETotalRate.EditValue.ToString) + "','" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "','" + addSlashes(TERemarkDiff.Text) + "'); SELECT LAST_INSERT_ID();"
 
@@ -351,7 +368,7 @@ VALUES (" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + ", NOW(), 
                 Else
                     'update
                     query = "UPDATE tb_del_manifest SET id_comp = " + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + ", updated_date = NOW(), updated_by = " + id_user + ", id_report_status = " + If(type = "draft", "NULL", If(type = "complete", "6", "5")) + "
-,id_del_type='" + SLEDelType.EditValue.ToString + "',id_sub_district='" + SLESubDistrict.EditValue.ToString + "' ,is_ol_shop='" + SLEOnlineShop.EditValue.ToString + "',id_comp_group='" + SLEStoreGroup.EditValue.ToString + "',ol_order='" + addSlashes(TEOrderNumber.Text) + "',id_store_offline='" + SLEComp.EditValue.ToString + "'
+,id_del_type='" + SLEDelType.EditValue.ToString + "',id_sub_district='" + SLESubDistrict.EditValue.ToString + "' ,is_ol_shop='" + SLEOnlineShop.EditValue.ToString + "',id_comp_group='" + SLEStoreGroup.EditValue.ToString + "',ol_order='" + order + "',id_store_offline='" + SLEComp.EditValue.ToString + "'
 ,awbill_no='" + addSlashes(TEAwb.Text) + "',id_cargo='" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + "',cargo_rate='" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_rate").ToString) + "',cargo_min_weight='" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_min_weight").ToString) + "',cargo_lead_time='" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_lead_time").ToString) + "'
 ,c_weight='" + decimalSQL(TECWeight.EditValue.ToString) + "',c_tot_price='" + decimalSQL(TETotalRate.EditValue.ToString) + "',id_cargo_best='" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "',cargo_rate_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "',cargo_min_weight_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "',cargo_lead_time_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "',mark_different='" + addSlashes(TERemarkDiff.Text) + "'
 WHERE id_del_manifest = " + id_del_manifest
@@ -786,6 +803,22 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb
         Dim berat_dim As Decimal = 0.00
         Dim berat_aktual As Decimal = 0.00
         '
+        Dim order As String = ""
+
+        Try
+            If SLEStoreGroup.EditValue.ToString = "64" Then 'ZA
+                order = addSlashes(TEOrderNumber.Text.Split("-")(1))
+            ElseIf SLEStoreGroup.EditValue.ToString = "75" Then 'BLI
+                order = addSlashes(TEOrderNumber.Text)
+            ElseIf SLEStoreGroup.EditValue.ToString = "76" Then 'VIOS
+                order = addSlashes(TEOrderNumber.Text.Split("-")(1))
+            ElseIf SLEStoreGroup.EditValue.ToString = "77" Then 'SHOPEE
+                order = addSlashes(TEOrderNumber.Text)
+            End If
+        Catch ex As Exception
+            order = addSlashes(TEOrderNumber.Text)
+        End Try
+        '
         If id_del_manifest = "0" Then
             Dim q_weight As String = ""
             'get all awbill
@@ -811,7 +844,7 @@ FROM
         INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-        WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & addSlashes(TEOrderNumber.Text) & "'
+        WHERE c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & order & "'
         GROUP BY awb.`id_awbill`
         HAVING weight >= 0 
     )awb 
@@ -959,8 +992,8 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
     End Sub
 
     Private Sub TEOrderNumber_KeyUp(sender As Object, e As KeyEventArgs) Handles TEOrderNumber.KeyUp
+        If e.KeyCode = Keys.Enter Then
 
-
-
+        End If
     End Sub
 End Class
