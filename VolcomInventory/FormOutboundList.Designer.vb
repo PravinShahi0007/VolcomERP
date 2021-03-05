@@ -36,6 +36,8 @@ Partial Class FormOutboundList
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOutbound.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -94,7 +96,7 @@ Partial Class FormOutboundList
         '
         'GVOutbound
         '
-        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn3})
+        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn6, Me.GridColumn5, Me.GridColumn3})
         Me.GVOutbound.GridControl = Me.GCOutbound
         Me.GVOutbound.Name = "GVOutbound"
         Me.GVOutbound.OptionsBehavior.Editable = False
@@ -134,7 +136,7 @@ Partial Class FormOutboundList
         Me.GridColumn3.FieldName = "qty"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.VisibleIndex = 5
         Me.GridColumn3.Width = 132
         '
         'BRefresh
@@ -190,6 +192,22 @@ Partial Class FormOutboundList
         Me.PanelControl2.Size = New System.Drawing.Size(910, 46)
         Me.PanelControl2.TabIndex = 1
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Online Order Number"
+        Me.GridColumn5.FieldName = "online_order_number"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Delivery Number"
+        Me.GridColumn6.FieldName = "sdo_number"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 3
+        '
         'FormOutboundList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -234,4 +252,6 @@ Partial Class FormOutboundList
     Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewDocumentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
