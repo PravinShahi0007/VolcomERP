@@ -1338,6 +1338,7 @@
                 column_desc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 column_desc.DisplayFormat.FormatString = "N2"
                 column_desc.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False
+                column_desc.Summary.Add(DevExpress.Data.SummaryItemType.Sum, list_fieldname(i), "{0:0.##}")
             End If
 
             band_desc.Columns.Add(column_desc)
