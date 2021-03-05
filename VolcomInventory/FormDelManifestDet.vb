@@ -375,6 +375,16 @@ WHERE id_del_manifest = " + id_del_manifest
 
                 execute_non_query(query, True, "", "", "", "")
 
+                'Update AWB
+                query = "UPDATE tb_wh_awbill awb 
+INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill`
+INNER JOIN `tb_del_manifest_det` dmd ON dmd.`id_wh_awb_det`=awbd.`id_wh_awb_det`
+INNER JOIN tb_del_manifest dm ON dm.id_del_manifest=dmd.`id_del_manifest`
+SET awb.`awbill_no`=dm.`awbill_no`
+WHERE dmd.`id_del_manifest`='" & id_del_manifest & "'"
+                execute_non_query(query, True, "", "", "", "")
+                '
+
                 execute_non_query("CALL gen_number(" + id_del_manifest + ", '232')", True, "", "", "", "")
 
                 If type = "save" Then
