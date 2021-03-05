@@ -126,6 +126,10 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     End Sub
 
     Private Sub BReset_Click(sender As Object, e As EventArgs) Handles BReset.Click
+        reset()
+    End Sub
+
+    Sub reset()
         SLUE3PL.Properties.ReadOnly = False
         BView.Visible = True
         TEScan.Text = ""
@@ -199,11 +203,22 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & addSlashes(TEAWB.Text) & "','" 
                     stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
                 Next
 
+                before_id_del_manifest = ""
+                For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                    If Not GVList.GetRowCellValue(i, "id_del_manifest").ToString = before_id_del_manifest Then
+                        before_id_del_manifest = GVList.GetRowCellValue(i, "id_del_manifest").ToString
+
+                        q = "UPDATE tb_del_manifest SET updated_date=NOW(),updated_by='" & id_user & "',id_report_status='6' WHERE id_del_manifest='" & GVList.GetRowCellValue(i, "id_del_manifest").ToString & "'"
+                        execute_non_query(q, True, "", "", "", "")
+                    End If
+                Next
+
                 FormMain.SplashScreenManager1.CloseWaitForm()
-                XTCManifestScan.SelectedTabPageIndex = 1
-                load_odm_sc()
-                SLEScanList.EditValue = id_odm_sc
-                load_odm_det()
+                infoCustom("Completed")
+                reset()
+
+                'SLEScanList.EditValue = id_odm_sc
+                'load_odm_det()
 
                 'print()
             Catch ex As Exception

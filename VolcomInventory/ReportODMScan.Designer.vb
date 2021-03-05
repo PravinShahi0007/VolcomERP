@@ -103,6 +103,10 @@ Partial Public Class ReportODMScan
         Me.CWHManager = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow8 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.CWHManagerPosition = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell23 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell24 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell27 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -653,18 +657,16 @@ Partial Public Class ReportODMScan
         '
         'XrTable1
         '
-        Me.XrTable1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0.00009536743!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1, Me.XrTableRow4, Me.XrTableRow3, Me.XrTableRow2})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(400.0!, 133.3333!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(600.0!, 133.3333!)
         Me.XrTable1.StylePriority.UseBorders = False
         '
         'XrTableRow1
         '
-        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell15, Me.XrTableCell16})
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell15, Me.XrTableCell16, Me.XrTableCell21})
         Me.XrTableRow1.Name = "XrTableRow1"
         Me.XrTableRow1.Weight = 0.791666564941406R
         '
@@ -691,7 +693,7 @@ Partial Public Class ReportODMScan
         '
         'XrTableRow4
         '
-        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell18, Me.XrTableCell19})
+        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell18, Me.XrTableCell19, Me.XrTableCell23})
         Me.XrTableRow4.Name = "XrTableRow4"
         Me.XrTableRow4.Weight = 2.96166748046875R
         '
@@ -707,7 +709,7 @@ Partial Public Class ReportODMScan
         '
         'XrTableRow3
         '
-        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.CLoginSecurity, Me.XrTableCell22})
+        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.CLoginSecurity, Me.XrTableCell22, Me.XrTableCell24})
         Me.XrTableRow3.Name = "XrTableRow3"
         Me.XrTableRow3.Weight = 0.78833251953125R
         '
@@ -727,7 +729,7 @@ Partial Public Class ReportODMScan
         '
         'XrTableRow2
         '
-        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.CAdminWHPosition, Me.XrTableCell26})
+        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.CAdminWHPosition, Me.XrTableCell26, Me.XrTableCell27})
         Me.XrTableRow2.Name = "XrTableRow2"
         Me.XrTableRow2.Weight = 0.791666870117188R
         '
@@ -753,9 +755,7 @@ Partial Public Class ReportODMScan
         '
         'XrTable3
         '
-        Me.XrTable3.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable3.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(668.6447!, 0!)
         Me.XrTable3.Name = "XrTable3"
         Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow9, Me.XrTableRow10, Me.XrTableRow11, Me.XrTableRow12})
@@ -770,8 +770,7 @@ Partial Public Class ReportODMScan
         '
         'XrTableCell32
         '
-        Me.XrTableCell32.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell32.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTableCell32.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableCell32.Name = "XrTableCell32"
         Me.XrTableCell32.StylePriority.UseBorders = False
@@ -789,8 +788,7 @@ Partial Public Class ReportODMScan
         '
         'XrTableCell33
         '
-        Me.XrTableCell33.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell33.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTableCell33.Name = "XrTableCell33"
         Me.XrTableCell33.StylePriority.UseBorders = False
         Me.XrTableCell33.Weight = 4.0R
@@ -803,8 +801,7 @@ Partial Public Class ReportODMScan
         '
         'XrTableCell34
         '
-        Me.XrTableCell34.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell34.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTableCell34.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell34.Name = "XrTableCell34"
         Me.XrTableCell34.StylePriority.UseBorders = False
@@ -821,8 +818,7 @@ Partial Public Class ReportODMScan
         '
         'XrTableCell35
         '
-        Me.XrTableCell35.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell35.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTableCell35.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableCell35.Name = "XrTableCell35"
         Me.XrTableCell35.StylePriority.UseBorders = False
@@ -834,9 +830,7 @@ Partial Public Class ReportODMScan
         '
         'XrTable2
         '
-        Me.XrTable2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable2.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(869.0!, 0!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow5, Me.XrTableRow6, Me.XrTableRow7, Me.XrTableRow8})
@@ -899,6 +893,35 @@ Partial Public Class ReportODMScan
         Me.CWHManagerPosition.Text = "Security Area"
         Me.CWHManagerPosition.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.CWHManagerPosition.Weight = 4.0R
+        '
+        'XrTableCell21
+        '
+        Me.XrTableCell21.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell21.Name = "XrTableCell21"
+        Me.XrTableCell21.StylePriority.UseFont = False
+        Me.XrTableCell21.StylePriority.UseTextAlignment = False
+        Me.XrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell21.Weight = 1.25388994597842R
+        '
+        'XrTableCell23
+        '
+        Me.XrTableCell23.Name = "XrTableCell23"
+        Me.XrTableCell23.Weight = 1.25388994597842R
+        '
+        'XrTableCell24
+        '
+        Me.XrTableCell24.Name = "XrTableCell24"
+        Me.XrTableCell24.Weight = 1.25388994597842R
+        '
+        'XrTableCell27
+        '
+        Me.XrTableCell27.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.XrTableCell27.Name = "XrTableCell27"
+        Me.XrTableCell27.StylePriority.UseFont = False
+        Me.XrTableCell27.StylePriority.UseTextAlignment = False
+        Me.XrTableCell27.Text = "WH Manager"
+        Me.XrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell27.Weight = 1.25388994597842R
         '
         'ReportODMScan
         '
@@ -1001,4 +1024,8 @@ Partial Public Class ReportODMScan
     Friend WithEvents XTCCollie As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell47 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell20 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell21 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell23 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell24 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell27 As DevExpress.XtraReports.UI.XRTableCell
 End Class

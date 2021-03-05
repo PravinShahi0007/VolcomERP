@@ -639,7 +639,7 @@ Partial Class FormOutboundLabel
         '
         Me.TEOrderOnline.Location = New System.Drawing.Point(251, 14)
         Me.TEOrderOnline.Name = "TEOrderOnline"
-        Me.TEOrderOnline.Size = New System.Drawing.Size(144, 20)
+        Me.TEOrderOnline.Size = New System.Drawing.Size(239, 20)
         Me.TEOrderOnline.TabIndex = 96
         '
         'PanelControl5
@@ -782,7 +782,7 @@ Partial Class FormOutboundLabel
         '
         'BViewDOOnline
         '
-        Me.BViewDOOnline.Location = New System.Drawing.Point(401, 12)
+        Me.BViewDOOnline.Location = New System.Drawing.Point(496, 12)
         Me.BViewDOOnline.Name = "BViewDOOnline"
         Me.BViewDOOnline.Size = New System.Drawing.Size(53, 23)
         Me.BViewDOOnline.TabIndex = 2
