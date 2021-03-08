@@ -232,6 +232,9 @@ WHERE dd.`id_del_manifest`='" & GVList.GetRowCellValue(i, "id_del_manifest").ToS
 
                 'print()
             Catch ex As Exception
+                'log scan security
+                Dim qlog As String = "INSERT INTO tb_log_scan_security(reff,log_date,log_by,log) VALUES('" & addSlashes(TEAWB.Text) & "',NOW(),'" & id_user & "','" & addSlashes(ex.ToString) & "')"
+                execute_non_query(qlog, True, "", "", "", "")
                 warningCustom(ex.ToString)
                 FormMain.SplashScreenManager1.CloseWaitForm()
             End Try
