@@ -80,6 +80,7 @@ Partial Class FormProductionRecDet
         Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEANCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -730,7 +731,7 @@ Partial Class FormProductionRecDet
         '
         'GVListPurchase
         '
-        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.ColNote, Me.GridColumnPOQty, Me.GridColumnRemainingQty, Me.GridColumnExtra, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.GridColumn3, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.ColNote, Me.GridColumnPOQty, Me.GridColumnRemainingQty, Me.GridColumnExtra, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
         Me.GVListPurchase.Name = "GVListPurchase"
         Me.GVListPurchase.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -763,7 +764,7 @@ Partial Class FormProductionRecDet
         Me.ColNo.OptionsColumn.AllowEdit = False
         Me.ColNo.Visible = True
         Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 59
+        Me.ColNo.Width = 30
         '
         'ColCode
         '
@@ -773,7 +774,20 @@ Partial Class FormProductionRecDet
         Me.ColCode.OptionsColumn.ReadOnly = True
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
-        Me.ColCode.Width = 160
+        Me.ColCode.Width = 81
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.Caption = "Berat (gram)"
+        Me.GridColumn3.FieldName = "qc_weight"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 5
+        Me.GridColumn3.Width = 72
         '
         'GridColumnEANCode
         '
@@ -783,7 +797,7 @@ Partial Class FormProductionRecDet
         Me.GridColumnEANCode.OptionsColumn.ReadOnly = True
         Me.GridColumnEANCode.Visible = True
         Me.GridColumnEANCode.VisibleIndex = 2
-        Me.GridColumnEANCode.Width = 120
+        Me.GridColumnEANCode.Width = 61
         '
         'ColName
         '
@@ -793,7 +807,7 @@ Partial Class FormProductionRecDet
         Me.ColName.OptionsColumn.ReadOnly = True
         Me.ColName.Visible = True
         Me.ColName.VisibleIndex = 3
-        Me.ColName.Width = 401
+        Me.ColName.Width = 204
         '
         'ColSize
         '
@@ -807,7 +821,7 @@ Partial Class FormProductionRecDet
         Me.ColSize.OptionsColumn.ReadOnly = True
         Me.ColSize.Visible = True
         Me.ColSize.VisibleIndex = 4
-        Me.ColSize.Width = 128
+        Me.ColSize.Width = 65
         '
         'ColQty
         '
@@ -836,8 +850,8 @@ Partial Class FormProductionRecDet
         Me.ColQtyRec.OptionsColumn.ReadOnly = True
         Me.ColQtyRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_rec_det_qty", "{0:n0}")})
         Me.ColQtyRec.Visible = True
-        Me.ColQtyRec.VisibleIndex = 6
-        Me.ColQtyRec.Width = 152
+        Me.ColQtyRec.VisibleIndex = 7
+        Me.ColQtyRec.Width = 68
         '
         'ColNote
         '
@@ -845,8 +859,8 @@ Partial Class FormProductionRecDet
         Me.ColNote.FieldName = "prod_order_rec_det_note"
         Me.ColNote.Name = "ColNote"
         Me.ColNote.Visible = True
-        Me.ColNote.VisibleIndex = 9
-        Me.ColNote.Width = 259
+        Me.ColNote.VisibleIndex = 10
+        Me.ColNote.Width = 134
         '
         'GridColumnPOQty
         '
@@ -861,8 +875,8 @@ Partial Class FormProductionRecDet
         Me.GridColumnPOQty.Name = "GridColumnPOQty"
         Me.GridColumnPOQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "past_rec_qty", "{0:N0}")})
         Me.GridColumnPOQty.Visible = True
-        Me.GridColumnPOQty.VisibleIndex = 5
-        Me.GridColumnPOQty.Width = 120
+        Me.GridColumnPOQty.VisibleIndex = 6
+        Me.GridColumnPOQty.Width = 53
         '
         'GridColumnRemainingQty
         '
@@ -877,8 +891,8 @@ Partial Class FormProductionRecDet
         Me.GridColumnRemainingQty.Name = "GridColumnRemainingQty"
         Me.GridColumnRemainingQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "remaining_qty", "{0:N0}")})
         Me.GridColumnRemainingQty.Visible = True
-        Me.GridColumnRemainingQty.VisibleIndex = 7
-        Me.GridColumnRemainingQty.Width = 140
+        Me.GridColumnRemainingQty.VisibleIndex = 8
+        Me.GridColumnRemainingQty.Width = 62
         '
         'GridColumnExtra
         '
@@ -893,8 +907,8 @@ Partial Class FormProductionRecDet
         Me.GridColumnExtra.Name = "GridColumnExtra"
         Me.GridColumnExtra.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "extra", "{0:N0}")})
         Me.GridColumnExtra.Visible = True
-        Me.GridColumnExtra.VisibleIndex = 8
-        Me.GridColumnExtra.Width = 93
+        Me.GridColumnExtra.VisibleIndex = 9
+        Me.GridColumnExtra.Width = 40
         '
         'GridColumnNumber
         '
@@ -1221,4 +1235,5 @@ Partial Class FormProductionRecDet
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
