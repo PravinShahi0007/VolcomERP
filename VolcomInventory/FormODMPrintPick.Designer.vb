@@ -21,32 +21,35 @@ Partial Class FormODMPrintPick
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormODMPrintPick))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BCreateManifest = New DevExpress.XtraEditors.SimpleButton()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCreateManifest = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.GCDOERP = New DevExpress.XtraGrid.GridControl()
-        Me.GVDOERP = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCDOERP = New DevExpress.XtraGrid.GridControl()
+        Me.GVDOERP = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DETo = New DevExpress.XtraEditors.DateEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDOERP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDOERP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -59,16 +62,6 @@ Partial Class FormODMPrintPick
         Me.PanelControl1.Size = New System.Drawing.Size(895, 49)
         Me.PanelControl1.TabIndex = 0
         '
-        'BCreateManifest
-        '
-        Me.BCreateManifest.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCreateManifest.Image = CType(resources.GetObject("BCreateManifest.Image"), System.Drawing.Image)
-        Me.BCreateManifest.Location = New System.Drawing.Point(741, 2)
-        Me.BCreateManifest.Name = "BCreateManifest"
-        Me.BCreateManifest.Size = New System.Drawing.Size(152, 45)
-        Me.BCreateManifest.TabIndex = 0
-        Me.BCreateManifest.Text = "Create Manifest"
-        '
         'BClose
         '
         Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
@@ -79,8 +72,19 @@ Partial Class FormODMPrintPick
         Me.BClose.TabIndex = 1
         Me.BClose.Text = "Close"
         '
+        'BCreateManifest
+        '
+        Me.BCreateManifest.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCreateManifest.Image = CType(resources.GetObject("BCreateManifest.Image"), System.Drawing.Image)
+        Me.BCreateManifest.Location = New System.Drawing.Point(741, 2)
+        Me.BCreateManifest.Name = "BCreateManifest"
+        Me.BCreateManifest.Size = New System.Drawing.Size(152, 45)
+        Me.BCreateManifest.TabIndex = 0
+        Me.BCreateManifest.Text = "Create Manifest"
+        '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.DETo)
         Me.PanelControl2.Controls.Add(Me.BView)
         Me.PanelControl2.Controls.Add(Me.SLUE3PL)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
@@ -90,70 +94,13 @@ Partial Class FormODMPrintPick
         Me.PanelControl2.Size = New System.Drawing.Size(895, 46)
         Me.PanelControl2.TabIndex = 2
         '
-        'GCDOERP
+        'BView
         '
-        Me.GCDOERP.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDOERP.Location = New System.Drawing.Point(0, 46)
-        Me.GCDOERP.MainView = Me.GVDOERP
-        Me.GCDOERP.Name = "GCDOERP"
-        Me.GCDOERP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCDOERP.Size = New System.Drawing.Size(895, 410)
-        Me.GCDOERP.TabIndex = 6
-        Me.GCDOERP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDOERP})
-        '
-        'GVDOERP
-        '
-        Me.GVDOERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn32, Me.GridColumn33, Me.GridColumncombine_number})
-        Me.GVDOERP.GridControl = Me.GCDOERP
-        Me.GVDOERP.Name = "GVDOERP"
-        Me.GVDOERP.OptionsCustomization.AllowColumnMoving = False
-        Me.GVDOERP.OptionsCustomization.AllowColumnResizing = False
-        Me.GVDOERP.OptionsCustomization.AllowGroup = False
-        Me.GVDOERP.OptionsCustomization.AllowQuickHideColumns = False
-        Me.GVDOERP.OptionsCustomization.AllowRowSizing = True
-        Me.GVDOERP.OptionsCustomization.CustomizationFormSearchBoxVisible = True
-        Me.GVDOERP.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn32
-        '
-        Me.GridColumn32.Caption = "AWB Number"
-        Me.GridColumn32.FieldName = "awbill_no"
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.OptionsColumn.AllowEdit = False
-        Me.GridColumn32.OptionsColumn.AllowFocus = False
-        Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 1
-        Me.GridColumn32.Width = 620
-        '
-        'GridColumn33
-        '
-        Me.GridColumn33.Caption = "Scan Date"
-        Me.GridColumn33.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn33.FieldName = "created_date"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.OptionsColumn.AllowEdit = False
-        Me.GridColumn33.OptionsColumn.AllowFocus = False
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 3
-        Me.GridColumn33.Width = 523
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
-        '
-        'GridColumncombine_number
-        '
-        Me.GridColumncombine_number.Caption = "Scan By"
-        Me.GridColumncombine_number.FieldName = "employee_name"
-        Me.GridColumncombine_number.Name = "GridColumncombine_number"
-        Me.GridColumncombine_number.OptionsColumn.AllowEdit = False
-        Me.GridColumncombine_number.Visible = True
-        Me.GridColumncombine_number.VisibleIndex = 2
-        Me.GridColumncombine_number.Width = 326
+        Me.BView.Location = New System.Drawing.Point(416, 10)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(54, 23)
+        Me.BView.TabIndex = 13
+        Me.BView.Text = "view"
         '
         'SLUE3PL
         '
@@ -193,19 +140,29 @@ Partial Class FormODMPrintPick
         Me.LabelControl1.TabIndex = 11
         Me.LabelControl1.Text = "3PL"
         '
-        'GridColumn1
+        'GCDOERP
         '
-        Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_odm_sc"
-        Me.GridColumn1.Name = "GridColumn1"
+        Me.GCDOERP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDOERP.Location = New System.Drawing.Point(0, 46)
+        Me.GCDOERP.MainView = Me.GVDOERP
+        Me.GCDOERP.Name = "GCDOERP"
+        Me.GCDOERP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCDOERP.Size = New System.Drawing.Size(895, 410)
+        Me.GCDOERP.TabIndex = 6
+        Me.GCDOERP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDOERP})
         '
-        'BView
+        'GVDOERP
         '
-        Me.BView.Location = New System.Drawing.Point(252, 10)
-        Me.BView.Name = "BView"
-        Me.BView.Size = New System.Drawing.Size(54, 23)
-        Me.BView.TabIndex = 13
-        Me.BView.Text = "view"
+        Me.GVDOERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn32, Me.GridColumn33, Me.GridColumncombine_number})
+        Me.GVDOERP.GridControl = Me.GCDOERP
+        Me.GVDOERP.Name = "GVDOERP"
+        Me.GVDOERP.OptionsCustomization.AllowColumnMoving = False
+        Me.GVDOERP.OptionsCustomization.AllowColumnResizing = False
+        Me.GVDOERP.OptionsCustomization.AllowGroup = False
+        Me.GVDOERP.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVDOERP.OptionsCustomization.AllowRowSizing = True
+        Me.GVDOERP.OptionsCustomization.CustomizationFormSearchBoxVisible = True
+        Me.GVDOERP.OptionsView.ShowGroupPanel = False
         '
         'GridColumn2
         '
@@ -218,6 +175,65 @@ Partial Class FormODMPrintPick
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         Me.GridColumn2.Width = 147
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id_odm_sc"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "AWB Number"
+        Me.GridColumn32.FieldName = "awbill_no"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        Me.GridColumn32.OptionsColumn.AllowFocus = False
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 1
+        Me.GridColumn32.Width = 620
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Scan Date"
+        Me.GridColumn33.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn33.FieldName = "created_date"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.OptionsColumn.AllowEdit = False
+        Me.GridColumn33.OptionsColumn.AllowFocus = False
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 3
+        Me.GridColumn33.Width = 523
+        '
+        'GridColumncombine_number
+        '
+        Me.GridColumncombine_number.Caption = "Scan By"
+        Me.GridColumncombine_number.FieldName = "employee_name"
+        Me.GridColumncombine_number.Name = "GridColumncombine_number"
+        Me.GridColumncombine_number.OptionsColumn.AllowEdit = False
+        Me.GridColumncombine_number.Visible = True
+        Me.GridColumncombine_number.VisibleIndex = 2
+        Me.GridColumncombine_number.Width = 326
+        '
+        'DETo
+        '
+        Me.DETo.EditValue = Nothing
+        Me.DETo.Location = New System.Drawing.Point(252, 12)
+        Me.DETo.Name = "DETo"
+        Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DETo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETo.Size = New System.Drawing.Size(158, 20)
+        Me.DETo.TabIndex = 8930
         '
         'FormODMPrintPick
         '
@@ -236,11 +252,13 @@ Partial Class FormODMPrintPick
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDOERP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDOERP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -263,4 +281,5 @@ Partial Class FormODMPrintPick
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DETo As DevExpress.XtraEditors.DateEdit
 End Class

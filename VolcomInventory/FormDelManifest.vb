@@ -31,7 +31,7 @@
             LEFT JOIN tb_m_comp AS c ON m.id_comp = c.id_comp
             LEFT JOIN tb_m_user AS ua ON m.created_by = ua.id_user
             LEFT JOIN tb_m_employee AS ea ON ua.id_employee = ea.id_employee
-            LEFT JOIN tb_m_user AS ub ON m.update_by = ub.id_user
+            LEFT JOIN tb_m_user AS ub ON m.updated_by = ub.id_user
             LEFT JOIN tb_m_employee AS eb ON ub.id_employee = eb.id_employee
             LEFT JOIN tb_lookup_report_status AS l ON m.id_report_status = l.id_report_status
             WHERE 1 " + query_where + "

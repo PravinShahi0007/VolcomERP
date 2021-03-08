@@ -270,8 +270,10 @@ WHERE awbd.`id_pl_sales_order_del` IN (" & id & ") "
                         query += "('" + id_awb + "'," + id_pl_sales_order_del + "," + id_ol_store_cust_ret + ",'" + dt.Rows(k)("do_no").ToString + "','" + decimalSQL(Decimal.Parse(dt.Rows(k)("qty").ToString).ToString) + "')"
                         execute_non_query(query, True, "", "", "", "")
                     Next
-                    print_ol(id_awb)
+
                     warningCustom("Outbound Number " & olnumber & " created")
+
+                    print_ol(id_awb)
                     Close()
                 End If
 
