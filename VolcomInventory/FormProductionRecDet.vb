@@ -886,10 +886,10 @@ GROUP BY rec.`id_prod_order`"
                 Else
                     If SLERecType.EditValue.ToString = "1" Then
                         GVBarcode.SetFocusedRowCellValue("ean_code", "")
-                        stopCustom("Maximum receive : " + (total_order - total_rec_normal).ToString)
+                        stopCustom("Maximum receive normal : " + (total_order - total_rec_normal).ToString)
                     Else
                         GVBarcode.SetFocusedRowCellValue("ean_code", "")
-                        stopCustom("Maximum receive : " + (total_max - total_rec).ToString)
+                        stopCustom("Maximum receive dengan toleransi : " + (total_max - total_rec).ToString)
                     End If
                 End If
             End If

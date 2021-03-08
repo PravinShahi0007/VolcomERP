@@ -1,6 +1,7 @@
 ﻿Public Class FormOutboundListDet
     Public id_awb As String = ""
     Public is_cancel As Boolean = False
+
     Private Sub FormOutboundListDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -133,7 +134,7 @@ WHERE awb.id_awbill='" & id_awb & "'"
                     End If
                 Next
 
-                FormOutboundList.load_list("")
+                FormOutboundList.load_list("", "")
                 Close()
             End If
         End If
@@ -141,28 +142,55 @@ WHERE awb.id_awbill='" & id_awb & "'"
 
     Private Sub BNotApprove_Click(sender As Object, e As EventArgs) Handles BNotApprove.Click
         'pakai login dept head + cancel semua DO
-        FormMenuAuth.type = "7"
+        FormMenuAuth.type = "15"
         FormMenuAuth.ShowDialog()
 
         If is_cancel Then
             'cancel
-            For i = 0 To GVDO.RowCount - 1
-                If Not GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString = "" And Not GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString = "NULL" Then
-                    Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
-                    stt.changeStatus(GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "5")
+            'check first
+            Dim qc As String = "SELECT awb.id_awbill,SUM(awbd.qty) AS qty,dis.sub_district,IFNULL(c.comp_name,cg.description) AS comp_name,awb.ol_number
+,GROUP_CONCAT(DISTINCT pl.`pl_sales_order_del_number`) AS sdo_number,GROUP_CONCAT(DISTINCT so.sales_order_ol_shop_number) AS online_order_number
+,sts.report_status
+,d.number AS draft_manifest
+,odmsc.number AS scan_manifest
+,odmp.number AS print_manifest
+FROM `tb_wh_awbill` awb 
+INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awb.id_sub_district
+INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
+LEFT JOIN tb_m_comp c ON c.id_comp=awb.id_store
+INNER JOIN tb_pl_sales_order_del pl ON pl.id_pl_sales_order_del=awbd.id_pl_sales_order_del
+INNER JOIN tb_sales_order so ON so.id_sales_order=pl.id_sales_order
+INNER JOIN tb_m_comp_contact ccx ON ccx.id_comp_contact = pl.id_store_contact_to
+INNER JOIN tb_m_comp cx ON cx.id_comp = ccx.id_comp
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=cx.`id_comp_group`
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=awb.id_report_status
+LEFT JOIN tb_del_manifest_det dd ON awbd.`id_wh_awb_det`=dd.`id_wh_awb_det` 
+LEFT JOIN tb_del_manifest d ON d.id_del_manifest=dd.`id_del_manifest` AND d.id_del_manifest!=5
+LEFT JOIN tb_odm_sc_det odmscd ON odmscd.id_del_manifest=d.id_del_manifest
+LEFT JOIN tb_odm_sc odmsc ON odmsc.id_odm_sc=odmscd.id_odm_sc
+LEFT JOIN tb_odm_print_det odmpd ON odmpd.id_odm_sc=odmscd.id_odm_sc
+LEFT JOIN tb_odm_print odmp ON odmp.id_odm_print=odmpd.id_odm_print
+WHERE awb.is_old_ways!=1 AND awb.step!=1 AND awb.id_report_status!=5 AND awb.id_awbill='" & id_awb & "' AND ISNULL(d.id_del_manifest)
+GROUP BY awb.id_awbill"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                For i = 0 To GVDO.RowCount - 1
+                    If Not GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString = "" And Not GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString = "NULL" Then
+                        Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+                        stt.changeStatus(GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "5")
 
-                    If FormViewSalesDelOrder.id_commerce_type = "2" Then
-                        stt.sendEmailConfirmation(GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
+                    ElseIf Not GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString = "" And Not GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString = "NULL" Then
+                        Dim query As String = String.Format("UPDATE tb_ol_store_cust_ret SET id_report_status='{0}' WHERE id_ol_store_cust_ret ='{1}'", "5", GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString)
+                        execute_non_query(query, True, "", "", "", "")
                     End If
-                ElseIf Not GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString = "" And Not GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString = "NULL" Then
-                    Dim query As String = String.Format("UPDATE tb_ol_store_cust_ret SET id_report_status='{0}' WHERE id_ol_store_cust_ret ='{1}'", "5", GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString)
-                    execute_non_query(query, True, "", "", "", "")
-                End If
-            Next
-            Dim q As String = "UPDATE tb_wh_awbill SET id_report_status=5  WHERE id_awbill='" & id_awb & "'"
-            execute_non_query(q, True, "", "", "", "")
-            FormOutboundList.load_list("")
-            Close()
+                Next
+                Dim q As String = "UPDATE tb_wh_awbill SET id_report_status=5  WHERE id_awbill='" & id_awb & "'"
+                execute_non_query(q, True, "", "", "", "")
+                FormOutboundList.load_list("", "")
+                Close()
+            Else
+                warningCustom("Already created manifest, please cancel it first")
+            End If
         End If
     End Sub
 

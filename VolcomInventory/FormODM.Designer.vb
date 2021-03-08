@@ -1079,6 +1079,8 @@ Partial Class FormODM
         'GridColumn38
         '
         Me.GridColumn38.Caption = "Created At"
+        Me.GridColumn38.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn38.FieldName = "created_date"
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.Visible = True

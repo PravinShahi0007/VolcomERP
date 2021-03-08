@@ -6,12 +6,14 @@
 
         If is_view = "1" Then
             XTPPending.PageVisible = False
+            XTPSold.PageVisible = False
             XTPNewDepreciation.PageVisible = False
             XTCAsset.SelectedTabPageIndex = 1
             viewActive()
         Else
             XTPPending.PageVisible = True
             XTPNewDepreciation.PageVisible = True
+            XTPSold.PageVisible = True
             viewPending()
         End If
     End Sub

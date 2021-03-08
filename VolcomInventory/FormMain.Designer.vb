@@ -3238,7 +3238,7 @@ Partial Class FormMain
         '
         'NBDelManifest
         '
-        Me.NBDelManifest.Caption = "Outbound Delivery Manifest"
+        Me.NBDelManifest.Caption = "Draft Manifest"
         Me.NBDelManifest.Name = "NBDelManifest"
         Me.NBDelManifest.SmallImage = CType(resources.GetObject("NBDelManifest.SmallImage"), System.Drawing.Image)
         '
