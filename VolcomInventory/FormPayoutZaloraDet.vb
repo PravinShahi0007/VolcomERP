@@ -58,6 +58,7 @@ FROM tb_payout_zalora_cat c"
 
     Sub allow_status()
         If is_confirm = "2" And is_view = "-1" Then
+            BtnRefreshZaloraPayout.Visible = True
             MENote.Properties.ReadOnly = False
             BtnSaveChanges.Visible = True
             BtnConfirm.Visible = True
@@ -70,6 +71,7 @@ FROM tb_payout_zalora_cat c"
             GCERPPay.ContextMenuStrip = CMSERPPay
             GCData.ContextMenuStrip = CMSDetail
         Else
+            BtnRefreshZaloraPayout.Visible = False
             MENote.Properties.ReadOnly = True
             BtnSaveChanges.Visible = False
             BtnConfirm.Visible = False
@@ -941,5 +943,18 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             m.show()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnRefreshZaloraPayout_Click(sender As Object, e As EventArgs) Handles BtnRefreshZaloraPayout.Click
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Refresh zalora payout")
+        Dim za As New ClassZaloraApi()
+        za.get_payout_spesific(TxtStatementNumber.Text)
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        viewDetailAll()
+        Cursor = Cursors.Default
     End Sub
 End Class
