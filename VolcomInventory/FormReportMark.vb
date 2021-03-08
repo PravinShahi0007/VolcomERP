@@ -4764,6 +4764,9 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 mail.id_report = id_report
                 mail.send_email()
                 Cursor = Cursors.Default
+            ElseIf id_status_reportx = "5" Then
+                Dim qu As String = "UPDATE tb_prod_order_rec SET id_report_status=5 WHERE id_prod_over_memo='" + id_report + "' "
+                execute_non_query(qu, True, "", "", "", "")
             End If
 
             Dim query_upd As String = "UPDATE tb_prod_over_memo SET id_report_status='" + id_status_reportx + "' WHERE id_prod_over_memo='" + id_report + "' "
