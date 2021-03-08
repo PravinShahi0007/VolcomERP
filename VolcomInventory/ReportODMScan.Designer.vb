@@ -31,6 +31,7 @@ Partial Public Class ReportODMScan
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell28 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -107,7 +108,6 @@ Partial Public Class ReportODMScan
         Me.CWHManager = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow8 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.CWHManagerPosition = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell28 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,6 +119,7 @@ Partial Public Class ReportODMScan
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable})
         Me.Detail.HeightF = 75.0!
+        Me.Detail.KeepTogether = True
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -226,6 +227,16 @@ Partial Public Class ReportODMScan
         Me.XrTableCell7.StylePriority.UsePadding = False
         Me.XrTableCell7.Text = "DESTINATION"
         Me.XrTableCell7.Weight = 0.61003090220805867R
+        '
+        'XrTableCell28
+        '
+        Me.XrTableCell28.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell28.Name = "XrTableCell28"
+        Me.XrTableCell28.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell28.StylePriority.UseBorders = False
+        Me.XrTableCell28.StylePriority.UsePadding = False
+        Me.XrTableCell28.Text = "DISTRICT"
+        Me.XrTableCell28.Weight = 0.61003090220805867R
         '
         'XrTableCell8
         '
@@ -923,16 +934,6 @@ Partial Public Class ReportODMScan
         Me.CWHManagerPosition.Text = "Security Area"
         Me.CWHManagerPosition.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.CWHManagerPosition.Weight = 4.0R
-        '
-        'XrTableCell28
-        '
-        Me.XrTableCell28.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell28.Name = "XrTableCell28"
-        Me.XrTableCell28.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrTableCell28.StylePriority.UseBorders = False
-        Me.XrTableCell28.StylePriority.UsePadding = False
-        Me.XrTableCell28.Text = "DISTRICT"
-        Me.XrTableCell28.Weight = 0.61003090220805867R
         '
         'ReportODMScan
         '
