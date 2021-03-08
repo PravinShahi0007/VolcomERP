@@ -68,6 +68,7 @@ Partial Class FormPayoutZaloraDet
         Me.GridColumnerp_val = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndiff_val = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnotesum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnRefreshZaloraPayout = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.GCERPPay = New DevExpress.XtraGrid.GridControl()
         Me.CMSERPPay = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -593,6 +594,7 @@ Partial Class FormPayoutZaloraDet
         Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupControl2.AppearanceCaption.Options.UseFont = True
         Me.GroupControl2.Controls.Add(Me.GCSummary)
+        Me.GroupControl2.Controls.Add(Me.BtnRefreshZaloraPayout)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
@@ -603,10 +605,10 @@ Partial Class FormPayoutZaloraDet
         'GCSummary
         '
         Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSummary.Location = New System.Drawing.Point(2, 28)
+        Me.GCSummary.Location = New System.Drawing.Point(2, 59)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(1195, 159)
+        Me.GCSummary.Size = New System.Drawing.Size(1195, 128)
         Me.GCSummary.TabIndex = 0
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -680,6 +682,18 @@ Partial Class FormPayoutZaloraDet
         Me.GridColumnnotesum.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumnnotesum.Visible = True
         Me.GridColumnnotesum.VisibleIndex = 4
+        '
+        'BtnRefreshZaloraPayout
+        '
+        Me.BtnRefreshZaloraPayout.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnRefreshZaloraPayout.Image = CType(resources.GetObject("BtnRefreshZaloraPayout.Image"), System.Drawing.Image)
+        Me.BtnRefreshZaloraPayout.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnRefreshZaloraPayout.Location = New System.Drawing.Point(2, 28)
+        Me.BtnRefreshZaloraPayout.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BtnRefreshZaloraPayout.Name = "BtnRefreshZaloraPayout"
+        Me.BtnRefreshZaloraPayout.Size = New System.Drawing.Size(1195, 31)
+        Me.BtnRefreshZaloraPayout.TabIndex = 5
+        Me.BtnRefreshZaloraPayout.Text = "Refresh Zalora Payout"
         '
         'GroupControl3
         '
@@ -1574,4 +1588,5 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RepoLinkReference As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents BtnRefreshZaloraPayout As DevExpress.XtraEditors.SimpleButton
 End Class
