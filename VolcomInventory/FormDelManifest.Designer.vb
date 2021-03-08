@@ -219,7 +219,7 @@ Partial Class FormDelManifest
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormDelManifest"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Outbound Delivery Manifest"
+        Me.Text = "Draft Manifest"
         CType(Me.XTCDelManifest, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCDelManifest.ResumeLayout(False)
         Me.XTPList.ResumeLayout(False)
