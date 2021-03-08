@@ -19,11 +19,10 @@ Partial Class FormSalesOrderSvcLevel
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesOrderSvcLevel))
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.LETypeRestockTOO = New DevExpress.XtraEditors.LookUpEdit()
-        Me.BarManager3PLMail = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.BarManager3PLMail = New DevExpress.XtraBars.BarManager()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -75,7 +74,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_ol_store_oos = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewDetailOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintPrepareOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -125,7 +124,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl25 = New DevExpress.XtraEditors.LabelControl()
         Me.DropDownButton1 = New DevExpress.XtraEditors.DropDownButton()
-        Me.PopupMenu3PLMail = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.PopupMenu3PLMail = New DevExpress.XtraBars.PopupMenu()
         Me.SBViewAllPickupDate = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.SBInputTanggalPickup = New DevExpress.XtraEditors.SimpleButton()
@@ -143,7 +142,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.XTPRec = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPL = New DevExpress.XtraGrid.GridControl()
-        Me.ViewRevProduct = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewRevProduct = New System.Windows.Forms.ContextMenuStrip()
         Me.PrintUniqueCodeToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPL = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -187,7 +186,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPDelOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesDelOrder = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPreDel = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewPreDel = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CancellCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -236,7 +235,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPReturn = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesReturn = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPreReturn = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewPreReturn = New System.Windows.Forms.ContextMenuStrip()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CancelCombineToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesReturn = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -275,7 +274,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPReturnQC = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesReturnQC = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPreReturnTransfer = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewPreReturnTransfer = New System.Windows.Forms.ContextMenuStrip()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesReturnQC = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnSalesReturnQCNumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -307,7 +306,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPTrf = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFGTrf = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPreTransfer = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewPreTransfer = New System.Windows.Forms.ContextMenuStrip()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVFGTrf = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnFGTrfNumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -943,6 +942,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnOutstanding.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOutstanding.FieldName = "outstanding"
         Me.GridColumnOutstanding.Name = "GridColumnOutstanding"
+        Me.GridColumnOutstanding.OptionsColumn.ReadOnly = True
         Me.GridColumnOutstanding.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "outstanding", "{0:n0}")})
         Me.GridColumnOutstanding.Visible = True
         Me.GridColumnOutstanding.VisibleIndex = 10
@@ -955,6 +955,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnFinalDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnFinalDate.FieldName = "final_date"
         Me.GridColumnFinalDate.Name = "GridColumnFinalDate"
+        Me.GridColumnFinalDate.OptionsColumn.ReadOnly = True
         Me.GridColumnFinalDate.Visible = True
         Me.GridColumnFinalDate.VisibleIndex = 15
         Me.GridColumnFinalDate.Width = 87
@@ -965,6 +966,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnClosedBy.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnClosedBy.FieldName = "final_by_name"
         Me.GridColumnClosedBy.Name = "GridColumnClosedBy"
+        Me.GridColumnClosedBy.OptionsColumn.ReadOnly = True
         Me.GridColumnClosedBy.Visible = True
         Me.GridColumnClosedBy.VisibleIndex = 16
         Me.GridColumnClosedBy.Width = 102
@@ -996,6 +998,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn62.Caption = "OL Store Order#"
         Me.GridColumn62.FieldName = "sales_order_ol_shop_number"
         Me.GridColumn62.Name = "GridColumn62"
+        Me.GridColumn62.OptionsColumn.ReadOnly = True
         Me.GridColumn62.Visible = True
         Me.GridColumn62.VisibleIndex = 3
         Me.GridColumn62.Width = 125
@@ -1005,6 +1008,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnorder_type.Caption = "Type"
         Me.GridColumnorder_type.FieldName = "order_type"
         Me.GridColumnorder_type.Name = "GridColumnorder_type"
+        Me.GridColumnorder_type.OptionsColumn.ReadOnly = True
         Me.GridColumnorder_type.Visible = True
         Me.GridColumnorder_type.VisibleIndex = 1
         '

@@ -87,14 +87,45 @@
                 End If
                 Dim qry As String = ""
                 Dim qry_stt As String = ""
+                Dim qry_in As String = ""
                 For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVSalesOrder.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVSalesOrder))
                     If i > 0 Then
                         qry += "OR "
                         qry_stt += "OR "
+                        qry_in += ", "
                     End If
                     qry += "stc.id_report='" + FormSalesOrderSvcLevel.GVSalesOrder.GetRowCellValue(i, "id_sales_order").ToString + "' "
                     qry_stt += "id_sales_order='" + FormSalesOrderSvcLevel.GVSalesOrder.GetRowCellValue(i, "id_sales_order").ToString + "' "
+                    qry_in += FormSalesOrderSvcLevel.GVSalesOrder.GetRowCellValue(i, "id_sales_order").ToString
                 Next
+
+                'check outstanding
+                Dim q_out As String = "
+                    SELECT id_report_status
+                    FROM tb_pl_sales_order_del
+                    WHERE id_sales_order IN (" + qry_in + ")
+                    UNION ALL
+                    SELECT id_report_status
+                    FROM tb_fg_trf
+                    WHERE id_sales_order IN (" + qry_in + ")
+                "
+
+                Dim d_out As DataTable = execute_query(q_out, -1, True, "", "", "", "")
+
+                Dim c_out As Boolean = True
+
+                For l = 0 To d_out.Rows.Count - 1
+                    If d_out.Rows(l)("id_report_status") < 5 Then
+                        c_out = False
+                    End If
+                Next
+
+                If Not c_out Then
+                    stopCustom("Please complete all outstanding.")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+
                 If qry <> "" Then
                     'closed stock
                     Dim query_close_stock As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) "
