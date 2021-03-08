@@ -1379,12 +1379,22 @@
         If GVInvoiceWeek.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
             Dim path As String = Application.StartupPath & "\download\"
+
             'create directory if not exist
             If Not IO.Directory.Exists(path) Then
                 System.IO.Directory.CreateDirectory(path)
             End If
+
             path = path + "in_weekly.xlsx"
-            exportToXLS(path, "weekly invoice", GCInvoiceWeek)
+
+            Dim op As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx
+
+            op.ExportType = DevExpress.Export.ExportType.WYSIWYG
+
+            GVInvoiceWeek.ExportToXlsx(path, op)
+
+            Process.Start(path)
+
             Cursor = Cursors.Default
         End If
     End Sub

@@ -14,6 +14,7 @@ Public Class FormProductionRecDet
     Dim total_order As Integer = 0
     Dim total_max As Integer = 0
     Dim total_rec As Integer = 0
+    Dim total_rec_normal As Integer = 0
     Dim is_special_rec As String = "-1"
     Dim expired_date As DateTime = Nothing
     Dim is_over_tol As String = "2"
@@ -171,7 +172,7 @@ Public Class FormProductionRecDet
         qty_limit = 0
 
         Dim query As String = "SELECT b.id_design,d.id_sample, d.design_name, d.design_display_name, a.id_report_status, a.prod_order_number, a.id_po_type, DATE_FORMAT(a.prod_order_date,'%Y-%m-%d') as prod_order_datex, "
-        query += "a.prod_order_lead_time, a.prod_order_note, g.po_type, get_total_po(" + id_order + ", 1) AS `total_order`, get_total_po(" + id_order + ", 2) AS `total_min`, g.po_type, get_total_po(" + id_order + ", 3) AS `total_max`, get_total_po(" + id_order + ", 4) AS `total_rec`, a.is_special_rec, a.special_rec_memo "
+        query += "a.prod_order_lead_time, a.prod_order_note, g.po_type, get_total_po(" + id_order + ", 1) AS `total_order`, get_total_po(" + id_order + ", 2) AS `total_min`, g.po_type, get_total_po(" + id_order + ", 3) AS `total_max`, get_total_po(" + id_order + ", 4) AS `total_rec`, get_total_po(" + id_order + ", 5) AS `total_rec_normal`, a.is_special_rec, a.special_rec_memo "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design "
         query += "INNER JOIN tb_lookup_report_status c ON a.id_report_status = c.id_report_status "
@@ -195,6 +196,7 @@ Public Class FormProductionRecDet
         total_min = Integer.Parse(data.Rows(0)("total_min").ToString)
         total_max = Integer.Parse(data.Rows(0)("total_max").ToString)
         total_rec = Integer.Parse(data.Rows(0)("total_rec").ToString)
+        total_rec_normal = Integer.Parse(data.Rows(0)("total_rec_normal").ToString)
         pre_viewImages("2", PEView, id_design, False)
         mainVendor()
 
@@ -846,7 +848,7 @@ GROUP BY rec.`id_prod_order`"
                 newRows()
                 SLERecType.Properties.ReadOnly = True
             Else
-                If (total_rec + cur_total + 1) <= total_order And SLERecType.EditValue.ToString = "1" Then 'batas order
+                If (total_rec_normal + cur_total + 1) <= total_order And SLERecType.EditValue.ToString = "1" Then 'batas order
                     GVBarcode.SetFocusedRowCellValue("is_fix", "2")
                     GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
                     countQty(id_prod_order_det)
@@ -884,7 +886,7 @@ GROUP BY rec.`id_prod_order`"
                 Else
                     If SLERecType.EditValue.ToString = "1" Then
                         GVBarcode.SetFocusedRowCellValue("ean_code", "")
-                        stopCustom("Maximum receive : " + (total_order - total_rec).ToString)
+                        stopCustom("Maximum receive : " + (total_order - total_rec_normal).ToString)
                     Else
                         GVBarcode.SetFocusedRowCellValue("ean_code", "")
                         stopCustom("Maximum receive : " + (total_max - total_rec).ToString)
