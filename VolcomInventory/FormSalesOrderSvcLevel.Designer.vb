@@ -1586,9 +1586,9 @@ Partial Class FormSalesOrderSvcLevel
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl1.Controls.Add(Me.CheckEdit1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(1357, 0)
+        Me.PanelControl1.Location = New System.Drawing.Point(826, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(86, 51)
+        Me.PanelControl1.Size = New System.Drawing.Size(86, 68)
         Me.PanelControl1.TabIndex = 8902
         '
         'CheckEdit1
@@ -2363,12 +2363,14 @@ Partial Class FormSalesOrderSvcLevel
         '
         'BtnUpdateDO
         '
+        Me.BtnUpdateDO.Enabled = False
         Me.BtnUpdateDO.Location = New System.Drawing.Point(572, 11)
         Me.BtnUpdateDO.LookAndFeel.SkinName = "Blue"
         Me.BtnUpdateDO.Name = "BtnUpdateDO"
         Me.BtnUpdateDO.Size = New System.Drawing.Size(84, 20)
         Me.BtnUpdateDO.TabIndex = 8900
         Me.BtnUpdateDO.Text = "Update Status"
+        Me.BtnUpdateDO.Visible = False
         '
         'SLEStatusDO
         '
