@@ -1813,6 +1813,12 @@
     <Compile Include="FormEmpUniCreditNote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniCreditNoteAdd.Designer.vb">
+      <DependentUpon>FormEmpUniCreditNoteAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniCreditNoteAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniCreditNoteDet.Designer.vb">
       <DependentUpon>FormEmpUniCreditNoteDet.vb</DependentUpon>
     </Compile>
@@ -3108,6 +3114,18 @@
     <Compile Include="FormODM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormODMPrint.Designer.vb">
+      <DependentUpon>FormODMPrint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormODMPrint.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormODMPrintPick.Designer.vb">
+      <DependentUpon>FormODMPrintPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormODMPrintPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLReturnRefuse.Designer.vb">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
     </Compile>
@@ -3300,6 +3318,12 @@
     <Compile Include="FormOptViewSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOutboundLabel.Designer.vb">
+      <DependentUpon>FormOutboundLabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOutboundLabel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOutboundList.Designer.vb">
       <DependentUpon>FormOutboundList.vb</DependentUpon>
     </Compile>
@@ -3406,6 +3430,12 @@
       <DependentUpon>FormPayoutZaloraManualRecon.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPayoutZaloraManualRecon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPayoutZaloraManualReconRef.Designer.vb">
+      <DependentUpon>FormPayoutZaloraManualReconRef.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPayoutZaloraManualReconRef.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPayoutZaloraManualReconSingle.Designer.vb">
@@ -10192,6 +10222,9 @@
     <EmbeddedResource Include="FormEmpUniCreditNote.resx">
       <DependentUpon>FormEmpUniCreditNote.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniCreditNoteAdd.resx">
+      <DependentUpon>FormEmpUniCreditNoteAdd.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniCreditNoteDet.resx">
       <DependentUpon>FormEmpUniCreditNoteDet.vb</DependentUpon>
     </EmbeddedResource>
@@ -10858,6 +10891,12 @@
     <EmbeddedResource Include="FormODM.resx">
       <DependentUpon>FormODM.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormODMPrint.resx">
+      <DependentUpon>FormODMPrint.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormODMPrintPick.resx">
+      <DependentUpon>FormODMPrintPick.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOLReturnRefuse.resx">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
     </EmbeddedResource>
@@ -10951,6 +10990,9 @@
     <EmbeddedResource Include="FormOptViewSingle.resx">
       <DependentUpon>FormOptViewSingle.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormOutboundLabel.resx">
+      <DependentUpon>FormOutboundLabel.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOutboundList.resx">
       <DependentUpon>FormOutboundList.vb</DependentUpon>
     </EmbeddedResource>
@@ -11004,6 +11046,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutZaloraManualRecon.resx">
       <DependentUpon>FormPayoutZaloraManualRecon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPayoutZaloraManualReconRef.resx">
+      <DependentUpon>FormPayoutZaloraManualReconRef.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutZaloraManualReconSingle.resx">
       <DependentUpon>FormPayoutZaloraManualReconSingle.vb</DependentUpon>
@@ -14077,6 +14122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOlStoreRetCust.resx">
       <DependentUpon>ReportOlStoreRetCust.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportOutboundLabel.resx">
+      <DependentUpon>ReportOutboundLabel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOutboundManifest.resx">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>

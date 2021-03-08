@@ -19,7 +19,6 @@ Partial Class FormSalesWeekly
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -64,7 +63,7 @@ Partial Class FormSalesWeekly
         Me.GridColumnsales_pos_potongan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstore_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_pos_tax = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ToolTipControllerNew = New DevExpress.Utils.ToolTipController(Me.components)
+        Me.ToolTipControllerNew = New DevExpress.Utils.ToolTipController()
         Me.XTCPOS = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDailySales = New DevExpress.XtraTab.XtraTabPage()
         Me.GCView = New DevExpress.XtraEditors.GroupControl()
@@ -1520,6 +1519,8 @@ Partial Class FormSalesWeekly
         Me.GVInvoiceWeek.Appearance.BandPanel.Options.UseFont = True
         Me.GVInvoiceWeek.GridControl = Me.GCInvoiceWeek
         Me.GVInvoiceWeek.Name = "GVInvoiceWeek"
+        Me.GVInvoiceWeek.OptionsBehavior.Editable = False
+        Me.GVInvoiceWeek.OptionsView.AllowCellMerge = True
         Me.GVInvoiceWeek.OptionsView.ColumnAutoWidth = False
         Me.GVInvoiceWeek.OptionsView.ShowGroupPanel = False
         '

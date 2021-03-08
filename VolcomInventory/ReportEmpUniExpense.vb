@@ -9,6 +9,7 @@
         LabelOwnCompNPWP.Text = execute_query("SELECT npwp FROM tb_m_comp WHERE id_comp = (SELECT id_own_company FROM tb_opt LIMIT 1)", 0, True, "", "", "", "")
 
         Dim total As Decimal = 0.00
+        Dim total_qty As Decimal = 0.00
 
         Dim row As DevExpress.XtraReports.UI.XRTableRow = XTRow
 
@@ -65,9 +66,11 @@
             amount.Borders = DevExpress.XtraPrinting.BorderSide.None
 
             total += dt.Rows(i)("qty") * dt.Rows(i)("design_cop")
+            total_qty += dt.Rows(i)("qty")
         Next
 
         RowTotalAmount.Text = Decimal.Parse(total.ToString).ToString("N2")
+        RowTotalQty.Text = Decimal.Parse(total_qty.ToString).ToString("N0")
 
         pre_load_mark_horz_plain_acc(report_mark_type, id_emp_uni_ex, "(                       )", "2", XrTable1)
         'load_mark_horz(report_mark_type, id_emp_uni_ex, "2", "1", XrTable1)

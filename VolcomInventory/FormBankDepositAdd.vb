@@ -29,7 +29,7 @@
             'bpj toko cabang
             SLEComp.Enabled = False
         End If
-        TxtBefKurs.EditValue = 0
+        TxtBefKurs.EditValue = 0.00
         If Not is_valas Then
             TxtBefKurs.Enabled = False
         Else

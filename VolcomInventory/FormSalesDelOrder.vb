@@ -511,12 +511,8 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub GVSalesOrder_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVSalesOrder.RowCellStyle
-        If GVSalesOrder.GetRowCellValue(e.RowHandle, "indeks_order") < 0 Then
-            e.Appearance.BackColor = Color.Yellow
-        Else
-            e.Appearance.BackColor = Color.Empty
-        End If
+    Private Sub BOutboundLabel_Click(sender As Object, e As EventArgs) Handles BOutboundLabel.Click
+        FormOutboundLabel.ShowDialog()
     End Sub
 
     Private Sub DownloadShippingLabelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DownloadShippingLabelToolStripMenuItem.Click
@@ -562,5 +558,13 @@
         End If
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVSalesOrder_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVSalesOrder.RowCellStyle
+        If GVSalesOrder.GetRowCellValue(e.RowHandle, "indeks_order") < 0 Then
+            e.Appearance.BackColor = Color.Yellow
+        Else
+            e.Appearance.BackColor = Color.Empty
+        End If
     End Sub
 End Class

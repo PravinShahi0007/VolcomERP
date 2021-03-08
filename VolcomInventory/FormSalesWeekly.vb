@@ -59,8 +59,11 @@
         DEUntil.EditValue = tgl
         DEFromWeekly.EditValue = tgl
         DEEndWeekly.EditValue = tgl
-        DEInvoiceFrom.EditValue = tgl
-        DEInvoiceTo.EditValue = tgl
+
+        Dim cur_month As DataTable = execute_query("SELECT CAST(CONCAT(SUBSTRING(CURDATE(), 1, 8), '01') AS DATE) AS first_date, LAST_DAY(NOW()) AS last_date", -1, True, "", "", "", "")
+
+        DEInvoiceFrom.EditValue = cur_month(0)("first_date")
+        DEInvoiceTo.EditValue = cur_month(0)("last_date")
 
         'Tab Weekly
         TxtYear.Text = current_year
@@ -1297,10 +1300,10 @@
         Dim list_fieldname As List(Of String) = New List(Of String)
         Dim list_caption As List(Of String) = New List(Of String)
 
-        list_fieldname.Add("comp_number")
-        list_fieldname.Add("comp_name")
         list_fieldname.Add("comp_group")
         list_fieldname.Add("comp_group_desc")
+        list_fieldname.Add("comp_number")
+        list_fieldname.Add("comp_name")
         list_fieldname.Add("total_qty")
         list_fieldname.Add("sales_pos_total_retail")
         list_fieldname.Add("sales_pos_discount_value")
@@ -1308,10 +1311,10 @@
         list_fieldname.Add("sales_pos_netto")
         list_fieldname.Add("sales_pos_revenue")
 
-        list_caption.Add("Store Acc")
-        list_caption.Add("Store")
         list_caption.Add("Store Group")
         list_caption.Add("Store Group Desc")
+        list_caption.Add("Store Acc")
+        list_caption.Add("Store")
         list_caption.Add("Qty")
         list_caption.Add("Retail")
         list_caption.Add("Discount")
@@ -1334,6 +1337,7 @@
                 list_fieldname(i) = "sales_pos_revenue" Then
                 column_desc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 column_desc.DisplayFormat.FormatString = "N2"
+                column_desc.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False
             End If
 
             band_desc.Columns.Add(column_desc)
@@ -1354,6 +1358,7 @@
                 column.Caption = list_week(i)(j)
                 column.FieldName = list_detail(l)
                 column.VisibleIndex = j + list_fieldname.Count
+                column.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False
 
                 band.Columns.Add(column)
 
@@ -1380,6 +1385,12 @@
             path = path + "in_weekly.xlsx"
             exportToXLS(path, "weekly invoice", GCInvoiceWeek)
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub GVInvoiceWeek_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVInvoiceWeek.RowStyle
+        If GVInvoiceWeek.GetRowCellValue(e.RowHandle, "total_qty") = 0 Then
+            e.Appearance.BackColor = Color.LightPink
         End If
     End Sub
 End Class

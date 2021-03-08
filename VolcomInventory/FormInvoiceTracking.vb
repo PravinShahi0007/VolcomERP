@@ -161,7 +161,7 @@
             bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`, IFNULL(pyd_op.total_pending, 0) AS `bbm_on_process`,
             IFNULL(bbk.`id_bbk`,0) AS `id_bbk`, bbk.`bbk_number`, bbk.`bbk_created_date`, bbk.`bbk_payment_date`, bbk.`bbk_value`, bbk.`bbk_status`,
             IFNULL(sp.id_propose_delay_payment,0) AS `id_propose_delay_payment`, mem.number AS `memo_number`, sp.propose_delay_payment_due_date,
-            so.sales_order_ol_shop_number AS `ol_store_order`, SUM(dsg.design_cop * spd.sales_pos_det_qty) AS `amount_cost`
+            del.id_pl_sales_order_del, del.pl_sales_order_del_number,so.sales_order_ol_shop_number AS `ol_store_order`, SUM(dsg.design_cop * spd.sales_pos_det_qty) AS `amount_cost`
             FROM tb_sales_pos sp 
             INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
             INNER JOIN tb_m_product prod ON prod.id_product = spd.id_product
@@ -279,7 +279,7 @@
             0 AS id_mail_invoice, '' AS mail_invoice_no, NULL AS mail_invoice_date, '' AS mail_invoice_status,
             bbm.`id_bbm`,bbm.`bbm_number`, bbm.`bbm_value`, bbm.`bbm_created_date`, bbm.`bbm_received_date`, IFNULL(pyd_op.total_pending, 0) AS `bbm_on_process`,
             0 AS `id_bbk`,'' AS `bbk_number`, NULL AS `bbk_created_date`, NULL AS `bbk_payment_date`, 0 AS `bbk_value`, '' AS `bbk_status`,
-            0 AS `id_propose_delay_payment`, '' AS `memo_number`, NULL AS propose_delay_payment_due_date, od.ol_store_order, 0 AS `amount_cost`
+            0 AS `id_propose_delay_payment`, '' AS `memo_number`, NULL AS propose_delay_payment_due_date, 0 AS `id_pl_sales_order_del`, '' AS `pl_sales_order_del_number`, od.ol_store_order, 0 AS `amount_cost`
             FROM tb_invoice_ship sp
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= sp.id_comp_contact
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -715,6 +715,20 @@
             DEStartBBM.Enabled = True
             DEEndBBM.Enabled = True
             DEStartBBM.Focus()
+        End If
+    End Sub
+
+    Private Sub RepoLinkDel_Click(sender As Object, e As EventArgs) Handles RepoLinkDel.Click
+        If GVUnpaid.RowCount > 0 And GVUnpaid.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_del As String = GVUnpaid.GetFocusedRowCellValue("id_pl_sales_order_del").ToString
+            If id_del <> "0" Then
+                Dim del As New ClassShowPopUp()
+                del.id_report = id_del
+                del.report_mark_type = "43"
+                del.show()
+            End If
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

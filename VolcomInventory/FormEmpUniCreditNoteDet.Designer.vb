@@ -84,6 +84,7 @@ Partial Class FormEmpUniCreditNoteDet
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TEExpense = New DevExpress.XtraEditors.TextEdit()
         Me.SBPick = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlMiddle.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -469,6 +470,7 @@ Partial Class FormEmpUniCreditNoteDet
         'GroupControlTop
         '
         Me.GroupControlTop.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlTop.Controls.Add(Me.SBAdd)
         Me.GroupControlTop.Controls.Add(Me.BtnBrowse)
         Me.GroupControlTop.Controls.Add(Me.LabelControl9)
         Me.GroupControlTop.Controls.Add(Me.TxtDepartement)
@@ -754,6 +756,15 @@ Partial Class FormEmpUniCreditNoteDet
         Me.SBPick.TabIndex = 8936
         Me.SBPick.Text = "SimpleButton1"
         '
+        'SBAdd
+        '
+        Me.SBAdd.Image = CType(resources.GetObject("SBAdd.Image"), System.Drawing.Image)
+        Me.SBAdd.Location = New System.Drawing.Point(34, 140)
+        Me.SBAdd.Name = "SBAdd"
+        Me.SBAdd.Size = New System.Drawing.Size(75, 23)
+        Me.SBAdd.TabIndex = 8956
+        Me.SBAdd.Text = "Add"
+        '
         'FormEmpUniCreditNoteDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -867,4 +878,5 @@ Partial Class FormEmpUniCreditNoteDet
     Friend WithEvents GridColumnDueEate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents SBAdd As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -64,4 +64,8 @@ WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45"
             e.Appearance.ForeColor = Color.Black
         End If
     End Sub
+
+    Private Sub BProposePolis_Click(sender As Object, e As EventArgs) Handles BProposePolis.Click
+        FormPolisDet.ShowDialog()
+    End Sub
 End Class
