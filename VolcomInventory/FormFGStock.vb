@@ -1097,7 +1097,43 @@
     Private Sub TxtCodeDsgSC_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeDsgSC.KeyDown
         If e.KeyCode = Keys.Enter Then
             Cursor = Cursors.WaitCursor
-            Dim query As String = "CALL view_all_design_param('AND design_code=''" + TxtCodeDsgSC.Text + "''')"
+            Dim query As String = "SELECT d.id_design, d.design_code, d.design_display_name, col.`color`, cls.product_class, cls.product_class_display,
+            GROUP_CONCAT(DISTINCT sz.display_name ORDER BY sz.id_code_detail ASC) AS `size_chart`, 
+            IFNULL(prc.design_price,0) AS `design_price`, prc.design_price_type
+            FROM tb_m_design d
+            JOIN tb_opt o
+            LEFT JOIN (
+	            SELECT d.id_design, cd.code_detail_name AS `color` 
+	            FROM tb_m_design d
+	            JOIN tb_opt o
+	            INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code = o.id_code_fg_color
+	            WHERE d.id_lookup_status_order!=2
+            ) col ON col.id_design = d.id_design
+            LEFT JOIN (
+	            SELECT d.id_design, cd.code_detail_name AS `product_class`,cd.display_name AS `product_class_display` 
+	            FROM tb_m_design d
+	            JOIN tb_opt o
+	            INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code = o.id_code_fg_class
+	            WHERE d.id_lookup_status_order!=2
+            ) cls ON cls.id_design = d.id_design
+            INNER JOIN tb_m_product p ON p.id_design = d.id_design
+            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+            INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = pc.id_code_detail
+            LEFT JOIN (
+	            SELECT prc.id_design,  prc.design_price, prc.id_design_price_type, pt.design_price_type
+	            FROM tb_m_design_price prc
+	            INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
+	            WHERE id_design_price IN (
+	                SELECT MAX(id_design_price) AS id_design_price
+	                FROM tb_m_design_price
+	                WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0
+	                GROUP BY id_design
+	            )
+            ) prc ON prc.id_design = d.id_design
+            WHERE d.id_lookup_status_order!=2 AND d.design_code='" + addSlashes(TxtCodeDsgSC.Text) + "'
+            GROUP BY p.id_design "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count = 0 Then
                 stopCustom("Design not found !")
