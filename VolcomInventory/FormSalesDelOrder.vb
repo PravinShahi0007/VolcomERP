@@ -567,4 +567,9 @@
             e.Appearance.BackColor = Color.Empty
         End If
     End Sub
+
+    Private Sub GVSalesOrder_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVSalesOrder.PopupMenuShowing
+        SMPrint.Visible = True
+        SMPrePrint.Visible = True
+    End Sub
 End Class
