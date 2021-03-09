@@ -183,6 +183,9 @@ Public Class FormProductionPLToWHRecDet
         query += "JOIN tb_opt opt "
         query += "WHERE a.id_departement = '" + id_departement_user + "' "
         query += "AND a.id_comp_cat = opt.id_comp_cat_wh AND a.is_active=1 "
+        If action = "ins" Then
+            query += "AND a.id_comp<>'" + get_setup_field("wh_temp") + "' "
+        End If
         query += "GROUP BY a.id_comp "
         query += "ORDER BY a.id_wh_type ASC)"
         viewSearchLookupQuery(SLEStorage, query, "id_comp", "comp_name", "id_comp")

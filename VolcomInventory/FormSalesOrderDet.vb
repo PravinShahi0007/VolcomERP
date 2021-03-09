@@ -977,12 +977,12 @@ Public Class FormSalesOrderDet
     Private Sub TxtCodeCompTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompTo.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim id_so_type As String = LETypeSO.EditValue.ToString
-            Dim query_cond As String = ""
+            Dim query_cond As String = "AND comp.id_comp<>'" + get_setup_field("wh_temp") + "' "
             If is_transfer_data = "2" Then
-                query_cond = "AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 AND comp.is_only_for_alloc=2 "
+                query_cond += "AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 AND comp.is_only_for_alloc=2 "
             Else
                 Dim id_wh_parent As String = SLEAccount.EditValue.ToString
-                query_cond = "AND comp.is_active=1 AND comp.id_wh_group='" + id_wh_parent + "' "
+                query_cond += "AND comp.is_active=1 AND comp.id_wh_group='" + id_wh_parent + "' "
             End If
             Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, query_cond)
             If data.Rows.Count = 0 Then
@@ -1109,11 +1109,11 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
 
     Private Sub TxtWHCodeTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtWHCodeTo.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim condwh As String = ""
+            Dim condwh As String = "AND comp.id_comp<>'" + get_setup_field("wh_temp") + "' "
             If is_transfer_data = "2" Then
-                condwh = "AND id_comp_cat = '" + id_comp_cat_wh + "' AND comp.is_active=1 AND comp.is_only_for_alloc=2 "
+                condwh += "AND id_comp_cat = '" + id_comp_cat_wh + "' AND comp.is_active=1 AND comp.is_only_for_alloc=2 "
             Else
-                condwh = "AND comp.is_active=1 AND comp.id_wh_group='" + SLEAccount.EditValue.ToString + "' "
+                condwh += "AND comp.is_active=1 AND comp.id_wh_group='" + SLEAccount.EditValue.ToString + "' "
             End If
             Dim data As DataTable = get_company_by_code(TxtWHCodeTo.Text, condwh)
             If data.Rows.Count = 0 Then

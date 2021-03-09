@@ -516,10 +516,8 @@
     Private Sub LEInvoiceStt_EditValueChanged(sender As Object, e As EventArgs) Handles LEInvoiceStt.EditValueChanged
         If LEInvoiceStt.EditValue.ToString = "1" Then
             BtnCreateInvoice.Visible = True
-            BtnCreatePriceReconcile.Visible = True
         Else
             BtnCreateInvoice.Visible = False
-            BtnCreatePriceReconcile.Visible = False
         End If
         resetViewProb()
     End Sub
@@ -830,6 +828,11 @@
     End Sub
 
     Private Sub LEReconStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LEReconStatus.EditValueChanged
+        If LEReconStatus.EditValue.ToString = "1" Then
+            BtnCreatePriceReconcile.Visible = True
+        Else
+            BtnCreatePriceReconcile.Visible = False
+        End If
         resetViewProb()
     End Sub
 
