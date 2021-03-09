@@ -59,6 +59,8 @@ Partial Public Class ReportAdjustmentOG
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,6 +92,12 @@ Partial Public Class ReportAdjustmentOG
         '
         'GVList
         '
+        Me.GVList.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVList.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVList.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVList.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVList.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVList.AppearancePrint.FooterPanel.Options.UseFont = True
         Me.GVList.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.GVList.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
         Me.GVList.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -102,9 +110,10 @@ Partial Public Class ReportAdjustmentOG
         Me.GVList.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
         Me.GVList.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVList.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn2})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
+        Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn9
@@ -114,7 +123,7 @@ Partial Public Class ReportAdjustmentOG
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 0
+        Me.GridColumn9.VisibleIndex = 1
         '
         'GridColumn10
         '
@@ -123,7 +132,7 @@ Partial Public Class ReportAdjustmentOG
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.VisibleIndex = 2
         '
         'GridColumn11
         '
@@ -132,7 +141,7 @@ Partial Public Class ReportAdjustmentOG
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.ReadOnly = True
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 2
+        Me.GridColumn11.VisibleIndex = 3
         '
         'GridColumn12
         '
@@ -141,7 +150,7 @@ Partial Public Class ReportAdjustmentOG
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 3
+        Me.GridColumn12.VisibleIndex = 4
         '
         'GridColumn13
         '
@@ -150,8 +159,9 @@ Partial Public Class ReportAdjustmentOG
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn13.FieldName = "qty"
         Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n2}")})
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 4
+        Me.GridColumn13.VisibleIndex = 5
         '
         'GridColumn14
         '
@@ -161,8 +171,9 @@ Partial Public Class ReportAdjustmentOG
         Me.GridColumn14.FieldName = "value"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.OptionsColumn.ReadOnly = True
+        Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:n2}")})
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 5
+        Me.GridColumn14.VisibleIndex = 6
         '
         'TopMargin
         '
@@ -434,6 +445,27 @@ Partial Public Class ReportAdjustmentOG
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "No"
+        Me.GridColumn1.FieldName = "no"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Total"
+        Me.GridColumn2.DisplayFormat.FormatString = "N2"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn2.FieldName = "GridColumn2"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GridColumn2", "{0:N2}")})
+        Me.GridColumn2.UnboundExpression = "[qty] * [value]"
+        Me.GridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 7
+        '
         'ReportAdjustmentOG
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
@@ -485,4 +517,6 @@ Partial Public Class ReportAdjustmentOG
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
