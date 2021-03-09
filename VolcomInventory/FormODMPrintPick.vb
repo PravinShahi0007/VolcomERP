@@ -17,7 +17,7 @@ LEFT JOIN
     INNER JOIN tb_odm_print p ON p.id_odm_print=pd.id_odm_print AND p.is_cancel=2
 )used ON used.id_odm_sc = odd.id_odm_sc
 WHERE ISNULL(used.id_odm_print) AND d.id_comp='" & SLUE3PL.EditValue.ToString & "'
-"
+AND DATE(od.created_date)=DATE('" & Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") & "') "
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCDOERP.DataSource = dt
         GVDOERP.BestFitColumns()
@@ -39,6 +39,7 @@ WHERE ISNULL(used.id_odm_print) AND d.id_comp='" & SLUE3PL.EditValue.ToString & 
 
 
     Private Sub FormODMPrintPick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DETo.EditValue = Now
         view_3pl()
     End Sub
 

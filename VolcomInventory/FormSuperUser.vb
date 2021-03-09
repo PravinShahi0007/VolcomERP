@@ -18,7 +18,114 @@
         Return s
     End Function
 
+    Private Sub insertFinalComment(ByVal rmt As String, ByVal id_report As String, ByVal id_report_status As String, ByVal comment As String)
+        If id_report_status = "6" Then
+            Dim query As String = "INSERT INTO tb_report_mark_final_comment(report_mark_type, id_report, id_report_status, id_user, final_comment, final_comment_date, ip_user) VALUES "
+            query += "('" + rmt + "', '" + id_report + "', '" + id_report_status + "', '143', '" + comment + "', NOW(), '192.168.1.205') "
+            execute_non_query(query, True, "", "", "", "")
+        End If
+    End Sub
+
+    Sub sendEmailConfirmationFinal(ByVal id_commerce_type As String, ByVal id_report As String, ByVal id_status_reportx As String)
+        If id_commerce_type = "2" And id_status_reportx = "6" Then
+            'only online store
+            Dim query As String = "SELECT del.id_pl_sales_order_del, del.pl_sales_order_del_number AS `del_number`, 
+                DATE_FORMAT(del.pl_sales_order_del_date, '%d %M %Y') AS `scan_date`, DATE_FORMAT(fcom.final_comment_date,'%d %M %Y %H:%i') AS `del_date`,
+                so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, DATE_FORMAT(so.sales_order_date,'%d %M %Y') AS `order_date`, so.customer_name,
+                CONCAT(s.comp_number, ' - ', s.comp_name) AS `store`, sg.comp_group AS `store_group_code`, sg.description AS `store_group`
+                FROM tb_pl_sales_order_del del 
+                INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = del.id_store_contact_to
+                INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+                INNER JOIN tb_m_comp_group sg ON sg.id_comp_group = s.id_comp_group
+                INNER JOIN tb_report_mark_final_comment fcom ON fcom.id_report = del.id_pl_sales_order_del AND fcom.report_mark_type=43
+                INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order
+                WHERE del.id_pl_sales_order_del='" + id_report + "' "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                Try
+                    Dim em As New ClassSendEmail
+                    em.report_mark_type = "43_confirm"
+                    em.id_report = id_report
+                    em.dt = data
+                    em.send_email()
+                Catch ex As Exception
+                    Dim qerr As String = "INSERT INTO tb_error_mail(date,description, note_penyelesaian) VALUES(NOW(), 'Failed send delivery confirmation; id del:" + id_report + "; error:" + addSlashes(ex.ToString) + "', ''); "
+                    execute_non_query(qerr, True, "", "", "", "")
+                End Try
+            End If
+        End If
+    End Sub
+
+    Sub updateStatusOnlineStoreVIOS(ByVal id_commerce_type As String, ByVal id_store As String, ByVal id_report As String, ByVal id_web_order As String, ByVal id_report_status As String)
+        If id_report_status = "6" Then
+            'And (id_store = id_volcomstore_normal Or id_store = id_volcomstore_sale)
+            If id_commerce_type = "2" Then
+                Dim so As New ClassSalesOrder
+                Dim shopify_comp_group As String = get_setup_field("shopify_comp_group")
+                Try
+                    Dim shopify_tracking_comp As String = get_setup_field("shopify_tracking_comp")
+                    Dim shopify_tracking_url As String = get_setup_field("shopify_tracking_url")
+                    Dim track_number As String = execute_query("SELECT m.awbill_no FROM tb_wh_awbill_det d INNER JOIN tb_wh_awbill m ON m.id_awbill = d.id_awbill WHERE d.id_pl_sales_order_del=" + id_report + "", 0, True, "", "", "", "")
+                    Dim query As String = "SELECT sod.ol_store_id, CAST(SUM(sod.sales_order_det_qty) AS DECIMAL(10,0)) AS `qty`, so.id_sales_order_ol_shop AS `id_web_order`, o.shopify_location_id AS `location_id`
+                FROM tb_pl_sales_order_del_det d
+                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+                INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+                JOIN tb_opt o 
+                WHERE d.id_pl_sales_order_del=" + id_report + " AND sod.is_additional=2
+                GROUP BY sod.ol_store_id "
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    Dim val As String = ""
+                    Dim location_id As String = ""
+                    For i As Integer = 0 To data.Rows.Count - 1
+                        location_id = data.Rows(i)("location_id").ToString
+                        If i > 0 Then
+                            val += ","
+                        End If
+                        val += "{
+        ""id"": " + data.Rows(i)("ol_store_id").ToString + ",
+""quantity"": " + data.Rows(i)("qty").ToString + "
+      }"
+                    Next
+                    If val <> "" Then
+                        Dim shop As New ClassShopifyApi()
+                        shop.set_fullfill(id_web_order, location_id, track_number, val, shopify_tracking_comp, shopify_tracking_url)
+                    End If
+                Catch ex As Exception
+                    so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Fullfillment:" + ex.ToString, shopify_comp_group)
+                End Try
+
+                Try
+                    'insert status 
+                    Dim qstt As String = "INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, `status`, status_date, input_status_date)
+                SELECT sod.id_sales_order_det, 'shipped', NOW(), NOW()
+                FROM tb_pl_sales_order_del_det d
+                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+                INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+                JOIN tb_opt o 
+                WHERE d.id_pl_sales_order_del=" + id_report + " AND sod.is_additional=2 "
+                    execute_non_query(qstt, True, "", "", "", "")
+                Catch ex As Exception
+                    so.insertLogWebOrder(id_web_order, "ID DEL:" + id_report + "; Error Set Status:" + ex.ToString, shopify_comp_group)
+                End Try
+            End If
+        End If
+    End Sub
+
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        '        Dim id_report_par As String = "97043"
+        '        Dim id_status_reportx_par As String = "6"
+        '        Dim qs As String = "SELECT c.id_comp,pl.`id_pl_sales_order_del`,so.`id_sales_order_ol_shop`,c.`id_commerce_type`,c.`is_use_unique_code` FROM tb_pl_sales_order_del pl
+        'INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
+        'INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
+        'INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        'WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
+        '        Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+
+        '        'ini harus di uncomment nanti
+        '        insertFinalComment("43", id_report_par, id_status_reportx_par, "Complete by scan security")
+        '        sendEmailConfirmationFinal(dts.Rows(0)("id_commerce_type").ToString, id_report_par, id_status_reportx_par)
+        '        updateStatusOnlineStoreVIOS(dts.Rows(0)("id_commerce_type").ToString, dts.Rows(0)("id_comp").ToString, id_report_par, dts.Rows(0)("id_sales_order_ol_shop").ToString, id_status_reportx_par)
+
         'set auto cn/ror
         'Try
         '    Dim qcr As String = "SELECT olr.id_sales_order, olr.id_sales_pos, olr.order_number

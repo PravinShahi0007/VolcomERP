@@ -203,6 +203,7 @@
         query += "ORDER BY a.id_pl_sales_order_del " + order_type
         Return query
     End Function
+
     Public Sub changeStatus(ByVal id_report_par As String, ByVal id_status_reportx_par As String)
         getOnlineStoreVolcom()
 

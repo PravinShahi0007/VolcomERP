@@ -26,7 +26,7 @@ Partial Class FormOutboundListDet
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TEOutboundNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCType = New DevExpress.XtraEditors.PanelControl()
         Me.SLEDelType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -55,18 +55,18 @@ Partial Class FormOutboundListDet
         Me.GridColumnIdDelERP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintLabel = New DevExpress.XtraEditors.SimpleButton()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.BNotApprove = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPrintLabel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TESubDistrict.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOutboundNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
+        CType(Me.PCType, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCType.SuspendLayout()
         CType(Me.SLEDelType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCWeight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -147,15 +147,15 @@ Partial Class FormOutboundListDet
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Outbound Number"
         '
-        'PanelControl2
+        'PCType
         '
-        Me.PanelControl2.Controls.Add(Me.SLEDelType)
-        Me.PanelControl2.Controls.Add(Me.LabelControl2)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 304)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(508, 71)
-        Me.PanelControl2.TabIndex = 1
+        Me.PCType.Controls.Add(Me.SLEDelType)
+        Me.PCType.Controls.Add(Me.LabelControl2)
+        Me.PCType.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCType.Location = New System.Drawing.Point(0, 304)
+        Me.PCType.Name = "PCType"
+        Me.PCType.Size = New System.Drawing.Size(508, 71)
+        Me.PCType.TabIndex = 1
         '
         'SLEDelType
         '
@@ -262,6 +262,9 @@ Partial Class FormOutboundListDet
         Me.TEActWeight.Name = "TEActWeight"
         Me.TEActWeight.Properties.Appearance.Options.UseTextOptions = True
         Me.TEActWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TEActWeight.Properties.Mask.EditMask = "N2"
+        Me.TEActWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEActWeight.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEActWeight.Size = New System.Drawing.Size(95, 20)
         Me.TEActWeight.TabIndex = 7
         '
@@ -294,6 +297,8 @@ Partial Class FormOutboundListDet
         Me.TETinggi.Name = "TETinggi"
         Me.TETinggi.Properties.Appearance.Options.UseTextOptions = True
         Me.TETinggi.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TETinggi.Properties.Mask.EditMask = "N2"
+        Me.TETinggi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TETinggi.Size = New System.Drawing.Size(76, 20)
         Me.TETinggi.TabIndex = 4
         '
@@ -311,6 +316,9 @@ Partial Class FormOutboundListDet
         Me.TELebar.Name = "TELebar"
         Me.TELebar.Properties.Appearance.Options.UseTextOptions = True
         Me.TELebar.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TELebar.Properties.Mask.EditMask = "N2"
+        Me.TELebar.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TELebar.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TELebar.Size = New System.Drawing.Size(76, 20)
         Me.TELebar.TabIndex = 2
         '
@@ -328,6 +336,9 @@ Partial Class FormOutboundListDet
         Me.TEPanjang.Name = "TEPanjang"
         Me.TEPanjang.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPanjang.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TEPanjang.Properties.Mask.EditMask = "N2"
+        Me.TEPanjang.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPanjang.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEPanjang.Size = New System.Drawing.Size(76, 20)
         Me.TEPanjang.TabIndex = 0
         '
@@ -418,6 +429,25 @@ Partial Class FormOutboundListDet
         Me.PanelControl3.Size = New System.Drawing.Size(508, 129)
         Me.PanelControl3.TabIndex = 4
         '
+        'BPrintLabel
+        '
+        Me.BPrintLabel.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen
+        Me.BPrintLabel.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrintLabel.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrintLabel.Appearance.Options.UseBackColor = True
+        Me.BPrintLabel.Appearance.Options.UseFont = True
+        Me.BPrintLabel.Appearance.Options.UseForeColor = True
+        Me.BPrintLabel.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BPrintLabel.Location = New System.Drawing.Point(2, 95)
+        Me.BPrintLabel.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrintLabel.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrintLabel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrintLabel.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrintLabel.Name = "BPrintLabel"
+        Me.BPrintLabel.Size = New System.Drawing.Size(504, 32)
+        Me.BPrintLabel.TabIndex = 21
+        Me.BPrintLabel.Text = "Print Label"
+        '
         'MENote
         '
         Me.MENote.Location = New System.Drawing.Point(12, 32)
@@ -471,32 +501,13 @@ Partial Class FormOutboundListDet
         Me.BNotApprove.TabIndex = 21
         Me.BNotApprove.Text = "Not Approve"
         '
-        'BPrintLabel
-        '
-        Me.BPrintLabel.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen
-        Me.BPrintLabel.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BPrintLabel.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BPrintLabel.Appearance.Options.UseBackColor = True
-        Me.BPrintLabel.Appearance.Options.UseFont = True
-        Me.BPrintLabel.Appearance.Options.UseForeColor = True
-        Me.BPrintLabel.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BPrintLabel.Location = New System.Drawing.Point(2, 95)
-        Me.BPrintLabel.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BPrintLabel.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BPrintLabel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BPrintLabel.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BPrintLabel.Name = "BPrintLabel"
-        Me.BPrintLabel.Size = New System.Drawing.Size(504, 32)
-        Me.BPrintLabel.TabIndex = 21
-        Me.BPrintLabel.Text = "Print Label"
-        '
         'FormOutboundListDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(508, 628)
         Me.Controls.Add(Me.GroupControl1)
-        Me.Controls.Add(Me.PanelControl2)
+        Me.Controls.Add(Me.PCType)
         Me.Controls.Add(Me.PCWeight)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.BNotApprove)
@@ -514,9 +525,9 @@ Partial Class FormOutboundListDet
         CType(Me.TESubDistrict.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEOutboundNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
+        CType(Me.PCType, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCType.ResumeLayout(False)
+        Me.PCType.PerformLayout()
         CType(Me.SLEDelType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCWeight, System.ComponentModel.ISupportInitialize).EndInit()
@@ -542,7 +553,7 @@ Partial Class FormOutboundListDet
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TEOutboundNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCType As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLEDelType As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl

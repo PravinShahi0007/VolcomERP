@@ -21,7 +21,7 @@ LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sal
 LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
 LEFT JOIN tb_wh_awbill awbh ON awbh.id_awbill = awb.id_awbill
 INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
-WHERE d.`id_report_status`=1 AND so.is_export_awb=2 AND d.last_update_by='" & id_user & "' AND ISNULL(awbh.id_awbill) " & q_where & "
+WHERE d.`id_report_status`=1 AND so.is_export_awb=2  AND ISNULL(awbh.id_awbill) " & q_where & "
 GROUP BY d.id_pl_sales_order_del 
 ORDER BY d.id_pl_sales_order_del DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -270,8 +270,10 @@ WHERE awbd.`id_pl_sales_order_del` IN (" & id & ") "
                         query += "('" + id_awb + "'," + id_pl_sales_order_del + "," + id_ol_store_cust_ret + ",'" + dt.Rows(k)("do_no").ToString + "','" + decimalSQL(Decimal.Parse(dt.Rows(k)("qty").ToString).ToString) + "')"
                         execute_non_query(query, True, "", "", "", "")
                     Next
-                    print_ol(id_awb)
+
                     warningCustom("Outbound Number " & olnumber & " created")
+
+                    print_ol(id_awb)
                     Close()
                 End If
 

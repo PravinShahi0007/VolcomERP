@@ -14,7 +14,7 @@ FROM (
     c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
-    INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`) 
+    INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`)
     LEFT JOIN (
         SELECT odmd.id_odm_sc,odmd.id_del_manifest
         FROM tb_odm_sc_det odmd
@@ -126,6 +126,10 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     End Sub
 
     Private Sub BReset_Click(sender As Object, e As EventArgs) Handles BReset.Click
+        reset()
+    End Sub
+
+    Sub reset()
         SLUE3PL.Properties.ReadOnly = False
         BView.Visible = True
         TEScan.Text = ""
@@ -199,14 +203,38 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & addSlashes(TEAWB.Text) & "','" 
                     stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
                 Next
 
+                before_id_del_manifest = ""
+                For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                    If Not GVList.GetRowCellValue(i, "id_del_manifest").ToString = before_id_del_manifest Then
+                        before_id_del_manifest = GVList.GetRowCellValue(i, "id_del_manifest").ToString
+
+                        q = "UPDATE tb_del_manifest SET updated_date=NOW(),updated_by='" & id_user & "',id_report_status='6' WHERE id_del_manifest='" & GVList.GetRowCellValue(i, "id_del_manifest").ToString & "'"
+                        execute_non_query(q, True, "", "", "", "")
+
+                        'update outbound label
+                        q = "UPDATE `tb_del_manifest_det` dd
+INNER JOIN tb_del_manifest d ON d.id_del_manifest=dd.`id_del_manifest` AND d.`id_report_status`=6
+INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_wh_awb_det`=dd.`id_wh_awb_det` 
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` 
+SET awb.`id_report_status`=6
+WHERE dd.`id_del_manifest`='" & GVList.GetRowCellValue(i, "id_del_manifest").ToString & "'"
+                        execute_non_query(q, True, "", "", "", "")
+
+                    End If
+                Next
+
                 FormMain.SplashScreenManager1.CloseWaitForm()
-                XTCManifestScan.SelectedTabPageIndex = 1
-                load_odm_sc()
-                SLEScanList.EditValue = id_odm_sc
-                load_odm_det()
+                infoCustom("Completed")
+                reset()
+
+                'SLEScanList.EditValue = id_odm_sc
+                'load_odm_det()
 
                 'print()
             Catch ex As Exception
+                'log scan security
+                Dim qlog As String = "INSERT INTO tb_log_scan_security(reff,log_date,log_by,log) VALUES('" & addSlashes(TEAWB.Text) & "',NOW(),'" & id_user & "','" & addSlashes(ex.ToString) & "')"
+                execute_non_query(qlog, True, "", "", "", "")
                 warningCustom(ex.ToString)
                 FormMain.SplashScreenManager1.CloseWaitForm()
             End Try
@@ -353,7 +381,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
 
     Private Sub GVListODM_DoubleClick(sender As Object, e As EventArgs) Handles GVListODM.DoubleClick
         If GVListODM.RowCount > 0 Then
-            FormODMPrint.id_print = GVListODM.GetRowCellValue(0, "id_odm_print").ToString
+            FormODMPrint.id_print = GVListODM.GetFocusedRowCellValue("id_odm_print").ToString
             FormODMPrint.ShowDialog()
         End If
     End Sub

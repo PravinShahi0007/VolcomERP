@@ -43,7 +43,7 @@
     End Sub
 
     Sub load_acc()
-        Dim query As String = "SELECT id_acc, acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE id_is_det='2'"
+        Dim query As String = "SELECT id_acc, acc_name, acc_description, CONCAT(acc_name, ' - ', acc_description) AS acc_name_description FROM tb_a_acc WHERE id_is_det='2' AND id_status='1'"
         viewSearchLookupRepositoryQuery(RSLECOA, query, 0, "acc_name_description", "id_acc")
         viewSearchLookupRepositoryQuery(RSLECOABW, query, 0, "acc_name_description", "id_acc")
         viewSearchLookupRepositoryQuery(RSLECOABD, query, 0, "acc_name_description", "id_acc")

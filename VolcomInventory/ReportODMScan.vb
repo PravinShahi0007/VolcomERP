@@ -119,8 +119,17 @@
                 city.RowSpan = rowspan_del_manifest
             End If
 
+            'district
+            Dim dis As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
+
+            dis.Text = dt.Rows(i)("sub_district").ToString
+
+            If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+                dis.RowSpan = rowspan_del_manifest
+            End If
+
             'weight
-            Dim weight As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
+            Dim weight As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(9)
 
             weight.Text = dt.Rows(i)("weight").ToString
             weight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -130,7 +139,7 @@
             End If
 
             'p
-            Dim width As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(9)
+            Dim width As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(10)
 
             width.Text = Decimal.Round(dt.Rows(i)("width"), 2)
             width.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -140,7 +149,7 @@
             End If
 
             'l
-            Dim length As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(10)
+            Dim length As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(11)
 
             length.Text = Decimal.Round(dt.Rows(i)("length"), 2)
             length.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -150,7 +159,7 @@
             End If
 
             't
-            Dim height As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(11)
+            Dim height As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(12)
 
             height.Text = Decimal.Round(dt.Rows(i)("height"), 2)
             height.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -160,7 +169,7 @@
             End If
 
             'dim
-            Dim volume As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(12)
+            Dim volume As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(13)
 
             volume.Text = Decimal.Round(dt.Rows(i)("volume"), 2)
             volume.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -170,7 +179,7 @@
             End If
 
             'final weight
-            Dim c_weight As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(13)
+            Dim c_weight As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(14)
 
             c_weight.Text = Decimal.Round(dt.Rows(i)("c_weight"), 2)
             c_weight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -180,7 +189,7 @@
             End If
 
             'remark
-            Dim remark As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(14)
+            Dim remark As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(15)
 
             last_del_manifest = dt.Rows(i)("id_del_manifest").ToString
             last_collie = dt.Rows(i)("id_awbill").ToString

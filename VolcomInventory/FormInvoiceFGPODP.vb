@@ -31,7 +31,7 @@
     End Sub
 
     Private Sub view_coa()
-        Dim query As String = "SELECT id_acc,acc_name,CONCAT(acc_name,' - ',acc_description) AS acc_description FROM tb_a_acc WHERE id_is_det='2'"
+        Dim query As String = "SELECT id_acc,acc_name,CONCAT(acc_name,' - ',acc_description) AS acc_description FROM tb_a_acc WHERE id_is_det='2' AND id_status='1'"
         If id_coa_tag = "1" Then
             query += " AND id_coa_type='1' "
         Else
@@ -39,7 +39,7 @@
         End If
         viewSearchLookupRepositoryQuery(RISLECOA, query, 0, "acc_description", "id_acc")
 
-        query = "SELECT id_acc,acc_name,CONCAT(acc_name,' - ',acc_description) AS acc_description FROM tb_a_acc WHERE id_is_det='2' AND acc_name LIKE '1115111%'"
+        query = "SELECT id_acc,acc_name,CONCAT(acc_name,' - ',acc_description) AS acc_description FROM tb_a_acc WHERE id_is_det='2' AND id_status='1' AND acc_name LIKE '1115111%'"
         If id_coa_tag = "1" Then
             query += " AND id_coa_type='1' "
         Else
