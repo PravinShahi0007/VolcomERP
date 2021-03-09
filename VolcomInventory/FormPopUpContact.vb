@@ -183,7 +183,7 @@
         End If
 
         If id_pop_up = "87" Then
-            query += "AND tb_m_comp.is_only_for_alloc=2 "
+            query += "AND tb_m_comp.is_only_for_alloc=2 AND tb_m_comp.id_comp<>'" + get_setup_field("wh_temp") + "' "
         End If
 
 
