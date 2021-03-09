@@ -262,6 +262,9 @@ Partial Class FormOutboundListDet
         Me.TEActWeight.Name = "TEActWeight"
         Me.TEActWeight.Properties.Appearance.Options.UseTextOptions = True
         Me.TEActWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TEActWeight.Properties.Mask.EditMask = "N2"
+        Me.TEActWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEActWeight.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEActWeight.Size = New System.Drawing.Size(95, 20)
         Me.TEActWeight.TabIndex = 7
         '
@@ -294,6 +297,8 @@ Partial Class FormOutboundListDet
         Me.TETinggi.Name = "TETinggi"
         Me.TETinggi.Properties.Appearance.Options.UseTextOptions = True
         Me.TETinggi.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TETinggi.Properties.Mask.EditMask = "N2"
+        Me.TETinggi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TETinggi.Size = New System.Drawing.Size(76, 20)
         Me.TETinggi.TabIndex = 4
         '
@@ -311,6 +316,9 @@ Partial Class FormOutboundListDet
         Me.TELebar.Name = "TELebar"
         Me.TELebar.Properties.Appearance.Options.UseTextOptions = True
         Me.TELebar.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TELebar.Properties.Mask.EditMask = "N2"
+        Me.TELebar.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TELebar.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TELebar.Size = New System.Drawing.Size(76, 20)
         Me.TELebar.TabIndex = 2
         '
@@ -328,6 +336,9 @@ Partial Class FormOutboundListDet
         Me.TEPanjang.Name = "TEPanjang"
         Me.TEPanjang.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPanjang.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TEPanjang.Properties.Mask.EditMask = "N2"
+        Me.TEPanjang.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPanjang.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEPanjang.Size = New System.Drawing.Size(76, 20)
         Me.TEPanjang.TabIndex = 0
         '
