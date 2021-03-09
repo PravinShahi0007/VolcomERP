@@ -199,7 +199,7 @@
             ElseIf id_ret_type = "1" Then 'return reguler
                 query += "AND tb_m_comp.is_only_for_alloc=2  AND tb_m_comp.id_comp=" + get_setup_field("wh_temp") + " "
             Else
-                query += "AND tb_m_comp.is_only_for_alloc=2 "
+                query += "AND tb_m_comp.is_only_for_alloc=2 AND tb_m_comp.id_comp<>" + get_setup_field("wh_temp") + " "
             End If
         End If
 
