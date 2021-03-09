@@ -246,7 +246,7 @@
 
                 'reset mark
                 Dim id_mark_asg As String = execute_query("
-                    SELECT GROUP_CONCAT(id_mark_asg) AS id_mark_asg FROM tb_report_mark WHERE report_mark_type = " + report_mark_type + " AND id_report = " + id_report + " AND id_mark = 1 AND is_use = 1
+                    SELECT IFNULL(GROUP_CONCAT(id_mark_asg), 0) AS id_mark_asg FROM tb_report_mark WHERE report_mark_type = " + report_mark_type + " AND id_report = " + id_report + " AND id_mark = 1 AND is_use = 1
                 ", 0, True, "", "", "", "")
 
                 execute_non_query("UPDATE tb_report_mark SET report_mark_start_datetime = NULL, report_mark_lead_time = NULL WHERE report_mark_type = " + report_mark_type + " AND id_report = " + id_report + " AND id_mark_asg IN (" + id_mark_asg + ")", True, "", "", "", "")
