@@ -37,7 +37,7 @@
         MENote.EditValue = data.Rows(0)("note").ToString
 
         Dim query_detail As String = "
-            SELECT id_item, item_desc, uom, id_item_cat, item_cat, qty, `value`
+            SELECT '' AS `no`, id_item, item_desc, uom, id_item_cat, item_cat, qty, `value`
             FROM tb_adjustment_og_det
             WHERE id_adjustment = " + id_adjustment + "
         "
@@ -401,5 +401,13 @@
             warningCustom("Auto journal not found.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVList_RowCountChanged(sender As Object, e As EventArgs) Handles GVList.RowCountChanged
+        For i = 0 To GVList.RowCount - 1
+            If GVList.IsValidRowHandle(i) Then
+                GVList.SetRowCellValue(i, "no", i + 1)
+            End If
+        Next
     End Sub
 End Class

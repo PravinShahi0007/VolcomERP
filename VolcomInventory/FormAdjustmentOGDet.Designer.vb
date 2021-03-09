@@ -60,12 +60,14 @@ Partial Class FormAdjustmentOGDet
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -450,10 +452,19 @@ Partial Class FormAdjustmentOGDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn16})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
+        Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "No"
+        Me.GridColumn15.FieldName = "no"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 0
         '
         'GridColumn9
         '
@@ -462,7 +473,7 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 0
+        Me.GridColumn9.VisibleIndex = 1
         '
         'GridColumn10
         '
@@ -471,7 +482,7 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.VisibleIndex = 2
         '
         'GridColumn11
         '
@@ -480,7 +491,7 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.ReadOnly = True
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 2
+        Me.GridColumn11.VisibleIndex = 3
         '
         'GridColumn12
         '
@@ -489,7 +500,7 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 3
+        Me.GridColumn12.VisibleIndex = 4
         '
         'GridColumn13
         '
@@ -498,8 +509,9 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn13.FieldName = "qty"
         Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 4
+        Me.GridColumn13.VisibleIndex = 5
         '
         'GridColumn14
         '
@@ -508,8 +520,23 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn14.FieldName = "value"
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 5
+        Me.GridColumn14.VisibleIndex = 6
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Total"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "GridColumn16"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
+        Me.GridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GridColumn16", "{0:N2}")})
+        Me.GridColumn16.UnboundExpression = "[qty] * [value]"
+        Me.GridColumn16.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 7
         '
         'FormAdjustmentOGDet
         '
@@ -593,4 +620,6 @@ Partial Class FormAdjustmentOGDet
     Friend WithEvents Label8 As Label
     Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBViewJournal As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
