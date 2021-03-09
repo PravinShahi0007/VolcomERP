@@ -12,5 +12,11 @@
         Else
             pre_load_mark_horz("284", id_summary, "2", "2", XrTable1)
         End If
+
+        For i = 0 To XrTable1.Rows(1).Cells.Count - 1
+            If XrTable1.Rows(1).Cells(i).Text = "Approved By," Then
+                XrTable1.Rows(1).Cells(i).Text = "Acknowledge By,"
+            End If
+        Next
     End Sub
 End Class
