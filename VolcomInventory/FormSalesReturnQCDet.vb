@@ -41,6 +41,7 @@ Public Class FormSalesReturnQCDet
     Dim report_mark_type_loc As String = "-1"
     Public is_use_unique_code As String = "2"
     Dim id_drawer_origin As String = "-1"
+    Dim id_wh_source As String = "-1"
 
     Private Sub FormSalesReturnQCDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -159,7 +160,7 @@ Public Class FormSalesReturnQCDet
 
     Sub viewSalesReturn()
         Dim query As String = ""
-        query += "SELECT a.id_sales_return, getCompByContact(a.id_store_contact_from,'1') AS `id_comp_from`, a.id_store_contact_from, getCompByContact(a.id_comp_contact_to,'1') AS `id_comp_to`,a.id_comp_contact_to, (d.comp_number) AS store_code_from,(d.comp_name) AS store_name_from, (d1.comp_number) AS comp_code_to,(d1.comp_name) AS comp_name_to, IFNULL(d1.id_wh_type,0) AS `id_wh_type`,a.id_report_status, f.report_status, "
+        query += "SELECT a.id_sales_return, getCompByContact(a.id_store_contact_from,'1') AS `id_comp_from`, a.id_store_contact_from, getCompByContact(a.id_comp_contact_to,'1') AS `id_comp_to`,a.id_comp_contact_to, (d.comp_number) AS store_code_from,(d.comp_name) AS store_name_from, d1.id_comp AS `id_wh_source`, (d1.comp_number) AS comp_code_to,(d1.comp_name) AS comp_name_to, IFNULL(d1.id_wh_type,0) AS `id_wh_type`,a.id_report_status, f.report_status, "
         query += "a.sales_return_note, a.sales_return_number, "
         query += "DATE_FORMAT(a.sales_return_date,'%d %M %Y') AS sales_return_date, a.id_wh_drawer AS `id_drawer_origin` "
         query += "FROM tb_sales_return a "
@@ -201,6 +202,7 @@ Public Class FormSalesReturnQCDet
 
         id_comp_to = data.Rows(0)("id_comp_to").ToString
         id_comp_contact_to_return = data.Rows(0)("id_comp_contact_to").ToString
+        id_wh_source = data.Rows(0)("id_wh_source").ToString
         TxtCodeFrom.Text = data.Rows(0)("comp_code_to").ToString
         TxtNameFrom.Text = data.Rows(0)("comp_name_to").ToString
         is_use_unique_code = get_setup_field("is_use_unique_code_all")
@@ -657,12 +659,53 @@ Public Class FormSalesReturnQCDet
         makeSafeGV(GVItemList)
         makeSafeGV(GVBarcode)
 
+        'cek rts
         Dim cond As Boolean = True
         Dim query_cek As String = ""
         If action = "ins" Then
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            End If
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Checking RTS")
             cond = verifyTrans()
+            FormMain.SplashScreenManager1.CloseWaitForm()
         End If
 
+        'cek stok
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        GVItemList.ActiveFilterString = "[sales_return_qc_det_qty]>0 "
+        If GVItemList.RowCount > 0 Then
+            Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; 
+                            INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES "
+            Dim id_prod As String = ""
+            For s As Integer = 0 To GVItemList.RowCount - 1
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Checking " + (s + 1).ToString + " of " + GVItemList.RowCount.ToString)
+                If s > 0 Then
+                    qs += ","
+                    id_prod += ","
+                End If
+                qs += "('" + id_user + "','" + GVItemList.GetRowCellValue(s, "code").ToString + "','" + addSlashes(GVItemList.GetRowCellValue(s, "name").ToString) + "', '" + GVItemList.GetRowCellValue(s, "size").ToString + "', '" + GVItemList.GetRowCellValue(s, "id_product").ToString + "', '" + decimalSQL(GVItemList.GetRowCellValue(s, "sales_return_qc_det_qty").ToString) + "') "
+                id_prod += GVItemList.GetRowCellValue(s, "id_product").ToString
+            Next
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Checking stock")
+            qs += "; CALL view_validate_stock(" + id_user + ", " + id_wh_source + ", '" + id_prod + "',1); "
+            Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+            If dts.Rows.Count > 0 Then
+                Cursor = Cursors.Default
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                makeSafeGV(GVItemList)
+                stopCustom("No stock available for some items.")
+                FormValidateStock.dt = dts
+                FormValidateStock.ShowDialog()
+                Exit Sub
+            End If
+        End If
+        makeSafeGV(GVItemList)
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
 
         If Not formIsValidInGroup(EPForm, GroupGeneralHeader) Then
             errorInput()
