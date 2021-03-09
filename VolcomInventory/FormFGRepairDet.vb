@@ -136,7 +136,7 @@ Public Class FormFGRepairDet
 
     Private Sub TxtCodeCompFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompFrom.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query_cond As String = "AND comp.id_departement = '" + id_departement_user + "' AND comp.is_only_for_alloc=2 AND comp.is_active=1 "
+            Dim query_cond As String = "AND comp.id_departement = '" + id_departement_user + "' AND comp.is_only_for_alloc=2 AND comp.is_active=1 AND comp.id_comp<>'" + get_setup_field("wh_temp") + "' "
             Dim data As DataTable = get_company_by_code(TxtCodeCompFrom.Text, query_cond)
             If data.Rows.Count = 0 Then
                 stopCustom("Account not found!")
@@ -160,7 +160,7 @@ Public Class FormFGRepairDet
 
     Private Sub TxtCodeCompTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompTo.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query_cond As String = "AND comp.is_active=1 AND comp.is_only_for_alloc=2 "
+            Dim query_cond As String = "AND comp.is_active=1 AND comp.is_only_for_alloc=2 AND comp.id_comp<>'" + get_setup_field("wh_temp") + "' "
             Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, query_cond)
             If data.Rows.Count = 0 Then
                 stopCustom("Account not found!")
