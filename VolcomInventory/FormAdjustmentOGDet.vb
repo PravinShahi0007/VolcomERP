@@ -288,11 +288,11 @@
 
             For i = 0 To GVList.RowCount - 1
                 If SLUEType.EditValue.ToString = "1" Then
-                    balance_debit += GVList.GetRowCellValue(i, "value")
+                    balance_debit += GVList.GetRowCellValue(i, "value") * GVList.GetRowCellValue(i, "qty")
                     balance_credit = 0.00
                 Else
                     balance_debit = 0.00
-                    balance_credit += GVList.GetRowCellValue(i, "value")
+                    balance_credit += GVList.GetRowCellValue(i, "value") * GVList.GetRowCellValue(i, "qty")
                 End If
             Next
 
