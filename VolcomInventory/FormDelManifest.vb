@@ -41,6 +41,7 @@
                 INNER JOIN tb_odm_sc sc ON sc.`id_odm_sc`=scd.`id_odm_sc` 
                 LEFT JOIN tb_odm_print_det pd ON pd.`id_odm_sc`=sc.`id_odm_sc`
                 LEFT JOIN tb_odm_print p ON p.`id_odm_print`=pd.`id_odm_print`
+                GROUP BY scd.`id_del_manifest`
             )odm ON odm.id_del_manifest=m.id_del_manifest
             WHERE 1 " + query_where + "
             ORDER BY m.id_del_manifest DESC
