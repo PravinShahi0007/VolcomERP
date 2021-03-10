@@ -43,7 +43,7 @@ Public Class FormProductionFinalClearDet
 
     'View PL Category
     Sub viewPLCat()
-        Dim query As String = "SELECT * FROM tb_lookup_pl_category a ORDER BY a.id_pl_category ASC  "
+        Dim query As String = "SELECT * FROM tb_lookup_pl_category a WHERE is_only_rec=2 ORDER BY a.id_pl_category ASC  "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(LEPLCategory, query, 0, "pl_category", "id_pl_category")
     End Sub
