@@ -12,6 +12,7 @@
                                UNION
                                SELECT id_comp,comp_number,comp_name FROM tb_m_comp WHERE id_comp_cat='1'"
         viewSearchLookupQuery(SLEVendor, query, "id_comp", "comp_name", "id_comp")
+        viewSearchLookupQuery(SLUEVendorFOC, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub viewOrder()
@@ -89,6 +90,38 @@
                 bdel_active = "0"
                 noManipulating()
             End If
+        ElseIf XTCRec.SelectedTabPageIndex = 2 Then
+            If XTCFOC.SelectedTabPageIndex = 0 Then
+                If GVFOC.RowCount < 1 Then
+                    'hide all except new
+                    bnew_active = "0"
+                    bedit_active = "0"
+                    bdel_active = "0"
+                    checkFormAccess(Name)
+                    button_main(bnew_active, bedit_active, bdel_active)
+                Else
+                    'show all
+                    bnew_active = "1"
+                    bedit_active = "0"
+                    bdel_active = "0"
+                    noManipulating()
+                End If
+            ElseIf XTCFOC.SelectedTabPageIndex = 1 Then
+                If GVReceiveFOC.RowCount < 1 Then
+                    'hide all except new
+                    bnew_active = "0"
+                    bedit_active = "0"
+                    bdel_active = "0"
+                    checkFormAccess(Name)
+                    button_main(bnew_active, bedit_active, bdel_active)
+                Else
+                    'show all
+                    bnew_active = "0"
+                    bedit_active = "1"
+                    bdel_active = "0"
+                    noManipulating()
+                End If
+            End If
         End If
     End Sub
 
@@ -117,6 +150,20 @@
                     bedit_active = "1"
                     bdel_active = "0"
                 End If
+            ElseIf XTCRec.SelectedTabPageIndex = 2 Then
+                If XTCFOC.SelectedTabPageIndex = 0 Then
+                    indeks = GVFOC.FocusedRowHandle
+                    If indeks < 0 Then
+                        bnew_active = "0"
+                        bedit_active = "0"
+                        bdel_active = "0"
+                    Else
+                        bnew_active = "1"
+                        bedit_active = "0"
+                        bdel_active = "0"
+                    End If
+                ElseIf XTCFOC.SelectedTabPageIndex = 1 Then
+                End If
             End If
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
@@ -144,10 +191,63 @@
             viewOrder()
         ElseIf XTCRec.SelectedTabPageIndex = 1 Then
             viewReceive()
+        ElseIf XTCRec.SelectedTabPageIndex = 2 Then
+            If XTCFOC.SelectedTabPageIndex = 0 Then
+                viewFOC()
+            ElseIf XTCFOC.SelectedTabPageIndex = 1 Then
+            End If
         End If
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
         viewOrder()
+    End Sub
+
+    Sub viewFOC()
+        Cursor = Cursors.WaitCursor
+        Dim where_string As String = ""
+
+        If SLUEVendorFOC.EditValue.ToString = "0" Then
+            where_string = ""
+        Else
+            where_string = " AND c.id_comp='" & SLUEVendorFOC.EditValue.ToString & "'"
+        End If
+        where_string += "AND po.id_report_status=6 AND po.is_close_rec=1 "
+
+        Dim po As New ClassPurcOrder()
+        Dim query As String = po.queryMain(where_string, "2", False)
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCFOC.DataSource = data
+        GVFOC.BestFitColumns()
+        check_menu()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBFOC_Click(sender As Object, e As EventArgs) Handles SBFOC.Click
+        viewFOC()
+    End Sub
+
+    Private Sub XTCFOC_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCFOC.SelectedPageChanged
+        check_menu()
+        If XTCFOC.SelectedTabPageIndex = 0 Then
+            viewFOC()
+        ElseIf XTCFOC.SelectedTabPageIndex = 1 Then
+            viewListFOC()
+        End If
+    End Sub
+
+    Sub viewListFOC()
+        Cursor = Cursors.WaitCursor
+        Dim r As New ClassPurcReceive()
+        Dim query As String = r.queryMainFOC("-1", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCReceiveFOC.DataSource = data
+        GVReceiveFOC.BestFitColumns()
+        check_menu()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVReceiveFOC_DoubleClick(sender As Object, e As EventArgs) Handles GVReceiveFOC.DoubleClick
+        FormMain.but_edit()
     End Sub
 End Class
