@@ -367,7 +367,6 @@ Partial Class FormODM
         Me.GridColumnCreatedDate.FieldName = "awbill_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.OptionsColumn.AllowEdit = False
-        Me.GridColumnCreatedDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnCreatedDate.Visible = True
         Me.GridColumnCreatedDate.VisibleIndex = 16
         '
@@ -413,7 +412,7 @@ Partial Class FormODM
         Me.GridColumnAWBNumber.Caption = "AWB Number"
         Me.GridColumnAWBNumber.FieldName = "awbill_no"
         Me.GridColumnAWBNumber.Name = "GridColumnAWBNumber"
-        Me.GridColumnAWBNumber.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnAWBNumber.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnAWBNumber.Visible = True
         Me.GridColumnAWBNumber.VisibleIndex = 5
         '
@@ -423,7 +422,7 @@ Partial Class FormODM
         Me.GridColumnStoreAccount.FieldName = "comp_number"
         Me.GridColumnStoreAccount.Name = "GridColumnStoreAccount"
         Me.GridColumnStoreAccount.OptionsColumn.AllowEdit = False
-        Me.GridColumnStoreAccount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnStoreAccount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnStoreAccount.Visible = True
         Me.GridColumnStoreAccount.VisibleIndex = 6
         Me.GridColumnStoreAccount.Width = 78
@@ -434,7 +433,7 @@ Partial Class FormODM
         Me.GridColumnStoreName.FieldName = "comp_name"
         Me.GridColumnStoreName.Name = "GridColumnStoreName"
         Me.GridColumnStoreName.OptionsColumn.AllowEdit = False
-        Me.GridColumnStoreName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnStoreName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnStoreName.Visible = True
         Me.GridColumnStoreName.VisibleIndex = 7
         '

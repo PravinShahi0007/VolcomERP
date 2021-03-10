@@ -246,51 +246,55 @@
     End Sub
 
     Private Sub BPickAll_Click(sender As Object, e As EventArgs) Handles BPickAll.Click
-        FormEmpLeaveDet.clear_grid()
+        If GVSchedule.RowCount > 0 Then
+            FormEmpLeaveDet.clear_grid()
 
-        'check already
-        Dim check_msg As String = ""
+            'check already
+            Dim check_msg As String = ""
 
-        For i = 0 To FormEmpLeaveDet.GVLeaveDet.RowCount - 1
-            For j = 0 To GVSchedule.RowCount - 1
-                If FormEmpLeaveDet.GVLeaveDet.GetRowCellValue(i, "id_schedule").ToString = GVSchedule.GetRowCellValue(j, "id_schedule").ToString Then
-                    check_msg += "- " + Date.Parse(GVSchedule.GetRowCellValue(j, "date").ToString).ToString("dd MMM yyyy") + Environment.NewLine
-                End If
-            Next
-        Next
-
-        If check_msg = "" Then
-            For i As Integer = 0 To GVSchedule.RowCount - 1
-                If GVSchedule.GetRowCellValue(i, "id_schedule_type").ToString = "1" Then
-                    Dim total_min As Integer = 0
-
-                    Dim is_full_day As String = "no"
-                    Dim date_from, date_until As Date
-
-                    date_from = Date.Parse(GVSchedule.GetRowCellValue(i, "in").ToString)
-                    date_until = Date.Parse(GVSchedule.GetRowCellValue(i, "out").ToString)
-
-                    is_full_day = "yes"
-                    total_min = GVSchedule.GetRowCellValue(i, "minutes_work")
-
-                    Dim newRow As DataRow = (TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable)).NewRow()
-                    newRow("id_schedule") = GVSchedule.GetRowCellValue(i, "id_schedule").ToString
-                    newRow("datetime_start") = date_from
-                    newRow("datetime_until") = date_until
-                    newRow("is_full_day") = is_full_day
-                    newRow("hours_total") = total_min / 60
-                    newRow("minutes_total") = total_min
-
-                    TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
-                    FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
-                    FormEmpLeaveDet.load_but_calc()
-                    FormEmpLeaveDet.GVLeaveDet.FocusedRowHandle = 0
-                End If
+            For i = 0 To FormEmpLeaveDet.GVLeaveDet.RowCount - 1
+                For j = 0 To GVSchedule.RowCount - 1
+                    If FormEmpLeaveDet.GVLeaveDet.GetRowCellValue(i, "id_schedule").ToString = GVSchedule.GetRowCellValue(j, "id_schedule").ToString Then
+                        check_msg += "- " + Date.Parse(GVSchedule.GetRowCellValue(j, "date").ToString).ToString("dd MMM yyyy") + Environment.NewLine
+                    End If
+                Next
             Next
 
-            Close()
+            If check_msg = "" Then
+                For i As Integer = 0 To GVSchedule.RowCount - 1
+                    If GVSchedule.GetRowCellValue(i, "id_schedule_type").ToString = "1" Then
+                        Dim total_min As Integer = 0
+
+                        Dim is_full_day As String = "no"
+                        Dim date_from, date_until As Date
+
+                        date_from = Date.Parse(GVSchedule.GetRowCellValue(i, "in").ToString)
+                        date_until = Date.Parse(GVSchedule.GetRowCellValue(i, "out").ToString)
+
+                        is_full_day = "yes"
+                        total_min = GVSchedule.GetRowCellValue(i, "minutes_work")
+
+                        Dim newRow As DataRow = (TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable)).NewRow()
+                        newRow("id_schedule") = GVSchedule.GetRowCellValue(i, "id_schedule").ToString
+                        newRow("datetime_start") = date_from
+                        newRow("datetime_until") = date_until
+                        newRow("is_full_day") = is_full_day
+                        newRow("hours_total") = total_min / 60
+                        newRow("minutes_total") = total_min
+
+                        TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
+                        FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
+                        FormEmpLeaveDet.load_but_calc()
+                        FormEmpLeaveDet.GVLeaveDet.FocusedRowHandle = 0
+                    End If
+                Next
+
+                Close()
+            Else
+                stopCustom("Tanggal berikut ini sudah diajukan cuti." + Environment.NewLine + check_msg)
+            End If
         Else
-            stopCustom("Tanggal berikut ini sudah diajukan cuti." + Environment.NewLine + check_msg)
+            stopCustom("Schedule anda belum diinput, Harap untuk menghubungi HRD.")
         End If
     End Sub
 
@@ -298,6 +302,10 @@
         Try
             DEUntil.Properties.MinValue = DEStart.EditValue
             view_schedule()
+
+            If GVSchedule.RowCount <= 0 Then
+                stopCustom("Schedule anda belum diinput, Harap untuk menghubungi HRD.")
+            End If
         Catch ex As Exception
         End Try
     End Sub
