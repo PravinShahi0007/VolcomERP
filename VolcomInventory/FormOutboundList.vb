@@ -167,6 +167,7 @@ ORDER BY pl.id_ol_store_cust_ret ASC)"
 ,d.number AS draft_manifest
 ,odmsc.number AS scan_manifest
 ,odmp.number AS print_manifest
+,d.awbill_no
 FROM `tb_wh_awbill` awb 
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awb.id_sub_district
 INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
@@ -190,5 +191,13 @@ GROUP BY awb.id_awbill "
         '
         GCHistory.DataSource = dt
         GVHistory.BestFitColumns()
+    End Sub
+
+    Private Sub BOutboundLabel_Click(sender As Object, e As EventArgs) Handles BOutboundLabel.Click
+        FormOutboundLabel.ShowDialog()
+    End Sub
+
+    Private Sub CancelOutboundLabelToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CancelOutboundLabelToolStripMenuItem1.Click
+
     End Sub
 End Class

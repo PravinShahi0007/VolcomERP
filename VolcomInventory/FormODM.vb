@@ -14,7 +14,8 @@ FROM (
     c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
-    INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` AND ISNULL(md.`id_report_status`)
+    INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` 
+    AND ISNULL(md.`id_report_status`)
     LEFT JOIN (
         SELECT odmd.id_odm_sc,odmd.id_del_manifest
         FROM tb_odm_sc_det odmd
@@ -36,7 +37,8 @@ FROM (
 	    LEFT JOIN tb_pl_sales_order_del_combine AS z3 ON z2.id_combine = z3.id_combine
 	    GROUP BY z2.id_combine
     ) AS z ON pdelc.combine_number = z.combine_number
-    WHERE md.awbill_no='" & addSlashes(TEAWB.Text) & "' AND md.id_comp='" & SLUE3PL.EditValue.ToString & "' AND ISNULL(odm.id_odm_sc)
+    WHERE md.awbill_no='" & addSlashes(TEAWB.Text) & "' AND md.id_comp='" & SLUE3PL.EditValue.ToString & "' 
+    AND ISNULL(odm.id_odm_sc)
 ) AS tb
 ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -77,6 +79,9 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     End Sub
 
     Private Sub FormODM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEFrom.EditValue = Now
+        DETo.EditValue = Now
+
         view_3pl()
     End Sub
 
@@ -400,5 +405,35 @@ WHERE od.id_3pl='" & SLE3PLPrint.EditValue.ToString & "'"
 
     Private Sub BViewPrintList_Click(sender As Object, e As EventArgs) Handles BViewPrintList.Click
         load_print_list()
+    End Sub
+
+    Private Sub BViewHistoryList_Click(sender As Object, e As EventArgs) Handles BViewHistoryList.Click
+        load_hist()
+    End Sub
+
+    Sub load_hist()
+        Dim query As String = "
+            SELECT odm.scan_manifest,odm.print_manifest,m.id_del_manifest, c.comp_name,m.awbill_no, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, IFNULL(l.report_status, 'Waiting checked by security') AS report_status
+            FROM tb_del_manifest AS m
+            LEFT JOIN tb_m_comp AS c ON m.id_comp = c.id_comp
+            LEFT JOIN tb_m_user AS ua ON m.created_by = ua.id_user
+            LEFT JOIN tb_m_employee AS ea ON ua.id_employee = ea.id_employee
+            LEFT JOIN tb_m_user AS ub ON m.updated_by = ub.id_user
+            LEFT JOIN tb_m_employee AS eb ON ub.id_employee = eb.id_employee
+            LEFT JOIN tb_lookup_report_status AS l ON m.id_report_status = l.id_report_status
+            INNER JOIN
+            (
+                SELECT scd.`id_del_manifest`,sc.`number` AS scan_manifest,sc.created_date,p.`number` AS print_manifest
+                FROM tb_odm_sc_det scd 
+                INNER JOIN tb_odm_sc sc ON sc.`id_odm_sc`=scd.`id_odm_sc` 
+                LEFT JOIN tb_odm_print_det pd ON pd.`id_odm_sc`=sc.`id_odm_sc`
+                LEFT JOIN tb_odm_print p ON p.`id_odm_print`=pd.`id_odm_print`
+            )odm ON odm.id_del_manifest=m.id_del_manifest
+            WHERE DATE(odm.created_date)>='" & Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(odm.created_date)<='" & Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+            ORDER BY m.id_del_manifest DESC
+        "
+
+        GCHistoryList.DataSource = execute_query(query, -1, True, "", "", "", "")
+        GVHistoryList.BestFitColumns()
     End Sub
 End Class

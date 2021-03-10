@@ -531,9 +531,10 @@ Partial Class FormAdjustmentOGDet
         Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn16.FieldName = "GridColumn16"
         Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GridColumn16", "{0:N2}")})
         Me.GridColumn16.UnboundExpression = "[qty] * [value]"
-        Me.GridColumn16.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumn16.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 7
         '

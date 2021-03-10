@@ -30,7 +30,10 @@ Partial Class FormDelManifest
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBView = New DevExpress.XtraEditors.SimpleButton()
@@ -80,7 +83,7 @@ Partial Class FormDelManifest
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn13, Me.GridColumn12, Me.GridColumn7, Me.GridColumn11})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.Editable = False
@@ -113,7 +116,7 @@ Partial Class FormDelManifest
         Me.GridColumn3.FieldName = "created_date"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 3
         '
         'GridColumn4
         '
@@ -121,7 +124,7 @@ Partial Class FormDelManifest
         Me.GridColumn4.FieldName = "created_by"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 4
         '
         'GridColumn5
         '
@@ -129,7 +132,7 @@ Partial Class FormDelManifest
         Me.GridColumn5.FieldName = "updated_date"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 5
         '
         'GridColumn6
         '
@@ -137,7 +140,23 @@ Partial Class FormDelManifest
         Me.GridColumn6.FieldName = "updated_by"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 6
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Scan Manifest"
+        Me.GridColumn13.FieldName = "scan_manifest"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 7
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Print Manifest"
+        Me.GridColumn12.FieldName = "print_manifest"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 9
         '
         'GridColumn7
         '
@@ -145,7 +164,15 @@ Partial Class FormDelManifest
         Me.GridColumn7.FieldName = "report_status"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.VisibleIndex = 8
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "AWB/Resi"
+        Me.GridColumn11.FieldName = "awbill_no"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 2
         '
         'XTPDetail
         '
@@ -217,6 +244,8 @@ Partial Class FormDelManifest
         Me.ClientSize = New System.Drawing.Size(766, 502)
         Me.Controls.Add(Me.XTCDelManifest)
         Me.Controls.Add(Me.PanelControl1)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormDelManifest"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Draft Manifest"
@@ -254,4 +283,7 @@ Partial Class FormDelManifest
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

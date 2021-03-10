@@ -26,6 +26,7 @@ Partial Class FormOutboundList
         Me.GCOutbound = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CancelOutboundLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVOutbound = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -35,11 +36,10 @@ Partial Class FormOutboundList
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BOutboundLabel = New DevExpress.XtraEditors.SimpleButton()
         Me.TEOutboundNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BRefreshHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.GCHistory = New DevExpress.XtraGrid.GridControl()
         Me.GVHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -50,13 +50,16 @@ Partial Class FormOutboundList
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CancelOutboundLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.DETo = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.BRefreshHistory = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CancelOutboundLabelToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOutbound.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -67,10 +70,10 @@ Partial Class FormOutboundList
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEOutboundNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPHistory.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
         CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,15 +113,21 @@ Partial Class FormOutboundList
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem, Me.CancelOutboundLabelToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem, Me.CancelOutboundLabelToolStripMenuItem, Me.CancelOutboundLabelToolStripMenuItem1})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(137, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(200, 92)
         '
         'ViewDocumentToolStripMenuItem
         '
         Me.ViewDocumentToolStripMenuItem.Name = "ViewDocumentToolStripMenuItem"
         Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.ViewDocumentToolStripMenuItem.Text = "Print"
+        '
+        'CancelOutboundLabelToolStripMenuItem
+        '
+        Me.CancelOutboundLabelToolStripMenuItem.Name = "CancelOutboundLabelToolStripMenuItem"
+        Me.CancelOutboundLabelToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.CancelOutboundLabelToolStripMenuItem.Text = "Cancel SDO"
         '
         'GVOutbound
         '
@@ -192,6 +201,7 @@ Partial Class FormOutboundList
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BOutboundLabel)
         Me.PanelControl1.Controls.Add(Me.TEOutboundNumber)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -199,6 +209,18 @@ Partial Class FormOutboundList
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(910, 46)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BOutboundLabel
+        '
+        Me.BOutboundLabel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BOutboundLabel.Image = CType(resources.GetObject("BOutboundLabel.Image"), System.Drawing.Image)
+        Me.BOutboundLabel.Location = New System.Drawing.Point(767, 2)
+        Me.BOutboundLabel.LookAndFeel.SkinName = "Blue"
+        Me.BOutboundLabel.Name = "BOutboundLabel"
+        Me.BOutboundLabel.Size = New System.Drawing.Size(141, 42)
+        Me.BOutboundLabel.TabIndex = 8900
+        Me.BOutboundLabel.Text = "Outbound Label"
+        Me.BOutboundLabel.Visible = False
         '
         'TEOutboundNumber
         '
@@ -226,29 +248,6 @@ Partial Class FormOutboundList
         Me.XTPHistory.Size = New System.Drawing.Size(910, 494)
         Me.XTPHistory.Text = "History"
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.DETo)
-        Me.PanelControl2.Controls.Add(Me.LabelControl19)
-        Me.PanelControl2.Controls.Add(Me.LabelControl18)
-        Me.PanelControl2.Controls.Add(Me.DEFrom)
-        Me.PanelControl2.Controls.Add(Me.BRefreshHistory)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(910, 46)
-        Me.PanelControl2.TabIndex = 1
-        '
-        'BRefreshHistory
-        '
-        Me.BRefreshHistory.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRefreshHistory.Image = CType(resources.GetObject("BRefreshHistory.Image"), System.Drawing.Image)
-        Me.BRefreshHistory.Location = New System.Drawing.Point(796, 2)
-        Me.BRefreshHistory.Name = "BRefreshHistory"
-        Me.BRefreshHistory.Size = New System.Drawing.Size(112, 42)
-        Me.BRefreshHistory.TabIndex = 3
-        Me.BRefreshHistory.Text = "Refresh"
-        '
         'GCHistory
         '
         Me.GCHistory.ContextMenuStrip = Me.ContextMenuStrip1
@@ -262,7 +261,7 @@ Partial Class FormOutboundList
         '
         'GVHistory
         '
-        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
+        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn17, Me.GridColumn15, Me.GridColumn16})
         Me.GVHistory.GridControl = Me.GCHistory
         Me.GVHistory.Name = "GVHistory"
         Me.GVHistory.OptionsBehavior.Editable = False
@@ -335,13 +334,7 @@ Partial Class FormOutboundList
         Me.GridColumn14.FieldName = "draft_manifest"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 8
-        '
-        'CancelOutboundLabelToolStripMenuItem
-        '
-        Me.CancelOutboundLabelToolStripMenuItem.Name = "CancelOutboundLabelToolStripMenuItem"
-        Me.CancelOutboundLabelToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
-        Me.CancelOutboundLabelToolStripMenuItem.Text = "Cancel SDO"
+        Me.GridColumn14.VisibleIndex = 7
         '
         'GridColumn15
         '
@@ -349,7 +342,7 @@ Partial Class FormOutboundList
         Me.GridColumn15.FieldName = "scan_manifest"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 7
+        Me.GridColumn15.VisibleIndex = 9
         '
         'GridColumn16
         '
@@ -357,7 +350,20 @@ Partial Class FormOutboundList
         Me.GridColumn16.FieldName = "print_manifest"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 9
+        Me.GridColumn16.VisibleIndex = 10
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.DETo)
+        Me.PanelControl2.Controls.Add(Me.LabelControl19)
+        Me.PanelControl2.Controls.Add(Me.LabelControl18)
+        Me.PanelControl2.Controls.Add(Me.DEFrom)
+        Me.PanelControl2.Controls.Add(Me.BRefreshHistory)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(910, 46)
+        Me.PanelControl2.TabIndex = 1
         '
         'DETo
         '
@@ -399,6 +405,30 @@ Partial Class FormOutboundList
         Me.DEFrom.Size = New System.Drawing.Size(158, 20)
         Me.DEFrom.TabIndex = 8926
         '
+        'BRefreshHistory
+        '
+        Me.BRefreshHistory.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefreshHistory.Image = CType(resources.GetObject("BRefreshHistory.Image"), System.Drawing.Image)
+        Me.BRefreshHistory.Location = New System.Drawing.Point(796, 2)
+        Me.BRefreshHistory.Name = "BRefreshHistory"
+        Me.BRefreshHistory.Size = New System.Drawing.Size(112, 42)
+        Me.BRefreshHistory.TabIndex = 3
+        Me.BRefreshHistory.Text = "Refresh"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "AWB"
+        Me.GridColumn17.FieldName = "awbill_no"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 8
+        '
+        'CancelOutboundLabelToolStripMenuItem1
+        '
+        Me.CancelOutboundLabelToolStripMenuItem1.Name = "CancelOutboundLabelToolStripMenuItem1"
+        Me.CancelOutboundLabelToolStripMenuItem1.Size = New System.Drawing.Size(199, 22)
+        Me.CancelOutboundLabelToolStripMenuItem1.Text = "Cancel Outbound Label"
+        '
         'FormOutboundList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -422,11 +452,11 @@ Partial Class FormOutboundList
         Me.PanelControl1.PerformLayout()
         CType(Me.TEOutboundNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPHistory.ResumeLayout(False)
+        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -471,4 +501,7 @@ Partial Class FormOutboundList
     Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BOutboundLabel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CancelOutboundLabelToolStripMenuItem1 As ToolStripMenuItem
 End Class

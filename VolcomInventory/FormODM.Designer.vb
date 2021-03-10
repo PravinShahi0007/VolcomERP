@@ -120,6 +120,25 @@ Partial Class FormODM
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BViewPrintList = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPHistoryList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCHistoryList = New DevExpress.XtraGrid.GridControl()
+        Me.GVHistoryList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.DETo = New DevExpress.XtraEditors.DateEdit()
+        Me.BViewHistoryList = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEAWB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,6 +170,15 @@ Partial Class FormODM
         Me.PanelControl4.SuspendLayout()
         CType(Me.SLE3PLPrint.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPHistoryList.SuspendLayout()
+        CType(Me.GCHistoryList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVHistoryList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -237,7 +265,7 @@ Partial Class FormODM
         Me.XTCManifestScan.SelectedTabPage = Me.XTPManifestList
         Me.XTCManifestScan.Size = New System.Drawing.Size(1078, 584)
         Me.XTCManifestScan.TabIndex = 1
-        Me.XTCManifestScan.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPManifestList, Me.XTPHistory, Me.XTPPrint})
+        Me.XTCManifestScan.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPManifestList, Me.XTPHistory, Me.XTPPrint, Me.XTPHistoryList})
         '
         'XTPManifestList
         '
@@ -1154,6 +1182,162 @@ Partial Class FormODM
         Me.LabelControl10.TabIndex = 0
         Me.LabelControl10.Text = "3PL"
         '
+        'XTPHistoryList
+        '
+        Me.XTPHistoryList.Controls.Add(Me.GCHistoryList)
+        Me.XTPHistoryList.Controls.Add(Me.PanelControl5)
+        Me.XTPHistoryList.Name = "XTPHistoryList"
+        Me.XTPHistoryList.Size = New System.Drawing.Size(1072, 556)
+        Me.XTPHistoryList.Text = "History"
+        '
+        'GCHistoryList
+        '
+        Me.GCHistoryList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCHistoryList.Location = New System.Drawing.Point(0, 46)
+        Me.GCHistoryList.MainView = Me.GVHistoryList
+        Me.GCHistoryList.Name = "GCHistoryList"
+        Me.GCHistoryList.Size = New System.Drawing.Size(1072, 510)
+        Me.GCHistoryList.TabIndex = 4
+        Me.GCHistoryList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVHistoryList})
+        '
+        'GVHistoryList
+        '
+        Me.GVHistoryList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49})
+        Me.GVHistoryList.GridControl = Me.GCHistoryList
+        Me.GVHistoryList.Name = "GVHistoryList"
+        Me.GVHistoryList.OptionsBehavior.Editable = False
+        Me.GVHistoryList.OptionsFind.AlwaysVisible = True
+        Me.GVHistoryList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.FieldName = "id_del_manifest"
+        Me.GridColumn39.Name = "GridColumn39"
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "3PL"
+        Me.GridColumn40.FieldName = "comp_name"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 0
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.Caption = "Number"
+        Me.GridColumn41.FieldName = "number"
+        Me.GridColumn41.Name = "GridColumn41"
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Created Date"
+        Me.GridColumn42.FieldName = "created_date"
+        Me.GridColumn42.Name = "GridColumn42"
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Created By"
+        Me.GridColumn43.FieldName = "created_by"
+        Me.GridColumn43.Name = "GridColumn43"
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "Updated Date"
+        Me.GridColumn44.FieldName = "updated_date"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 3
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "Updated By"
+        Me.GridColumn45.FieldName = "updated_by"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 4
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Scan Manifest"
+        Me.GridColumn46.FieldName = "scan_manifest"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 2
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "Print Manifest"
+        Me.GridColumn47.FieldName = "print_manifest"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 5
+        '
+        'GridColumn48
+        '
+        Me.GridColumn48.Caption = "Report Status"
+        Me.GridColumn48.FieldName = "report_status"
+        Me.GridColumn48.Name = "GridColumn48"
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.Caption = "AWB/Resi"
+        Me.GridColumn49.FieldName = "awbill_no"
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.Visible = True
+        Me.GridColumn49.VisibleIndex = 1
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.LabelControl7)
+        Me.PanelControl5.Controls.Add(Me.DEFrom)
+        Me.PanelControl5.Controls.Add(Me.DETo)
+        Me.PanelControl5.Controls.Add(Me.BViewHistoryList)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(1072, 46)
+        Me.PanelControl5.TabIndex = 3
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(175, 15)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl7.TabIndex = 8932
+        Me.LabelControl7.Text = "-"
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(11, 12)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Size = New System.Drawing.Size(158, 20)
+        Me.DEFrom.TabIndex = 8931
+        '
+        'DETo
+        '
+        Me.DETo.EditValue = Nothing
+        Me.DETo.Location = New System.Drawing.Point(185, 12)
+        Me.DETo.Name = "DETo"
+        Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DETo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETo.Size = New System.Drawing.Size(158, 20)
+        Me.DETo.TabIndex = 8930
+        '
+        'BViewHistoryList
+        '
+        Me.BViewHistoryList.Location = New System.Drawing.Point(349, 10)
+        Me.BViewHistoryList.Name = "BViewHistoryList"
+        Me.BViewHistoryList.Size = New System.Drawing.Size(54, 23)
+        Me.BViewHistoryList.TabIndex = 13
+        Me.BViewHistoryList.Text = "view"
+        '
         'FormODM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1201,6 +1385,16 @@ Partial Class FormODM
         Me.PanelControl4.PerformLayout()
         CType(Me.SLE3PLPrint.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPHistoryList.ResumeLayout(False)
+        CType(Me.GCHistoryList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVHistoryList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1305,4 +1499,23 @@ Partial Class FormODM
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPHistoryList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DETo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BViewHistoryList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCHistoryList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVHistoryList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
