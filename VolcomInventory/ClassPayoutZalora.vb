@@ -150,7 +150,25 @@ FROM (
     INNER JOIN tb_m_comp cf ON cf.id_comp=1
 	GROUP BY cd.id_acc, cd.manual_recon_reason)
 	UNION ALL
-	(SELECT a.note AS `name`, 5 AS `id_group`, 'Adjustment' AS `group`, IFNULL(a.id_report,0) AS `id_ref`, IFNULL(a.report_mark_type,0) AS `rmt_ref`, IFNULL(a.report_number,'')  AS `ref`, a.adj_value AS `amo`, a.id_acc, 'Manual' AS `recon_type`, '' AS `manual_recon_reason`, a.id_payout_zalora_det_adj, cf.id_comp, cf.comp_number, 4 AS `indeks`
+    -- OTHER
+    (SELECT cd.manual_recon_reason AS `name`, 6 AS `id_group`, 'Other' AS `group`, cd.`id_ref`, cd.`rmt_ref`, cd.`ref`, SUM(cd.erp_amount) AS `amo`, cd.id_acc, 'Manual' AS `recon_type`, cd.manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 4 AS `indeks`
+    FROM (
+        SELECT d.id_payout_zalora_det,d.erp_amount, d.id_acc, d.manual_recon_reason, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`
+        FROM tb_payout_zalora_det d 
+        INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+        WHERE d.id_payout_zalora=" + id + " AND (t.id_payout_zalora_cat=6) AND d.is_manual_recon=1
+        UNION ALL
+	    SELECT a.id_payout_zalora_det,a.erp_amount, a.id_acc, d.manual_recon_reason, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`
+	    FROM tb_payout_zalora_det_addition a 
+	    INNER JOIN tb_payout_zalora_det d ON d.id_payout_zalora_det = a.id_payout_zalora_det 
+	    INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+	    WHERE d.id_payout_zalora=" + id + " AND (t.id_payout_zalora_cat=6) AND d.is_manual_recon=1
+    ) cd
+    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+    GROUP BY cd.id_acc, cd.manual_recon_reason)
+    -- ADJ
+    UNION ALL
+	(SELECT a.note AS `name`, 5 AS `id_group`, 'Adjustment' AS `group`, IFNULL(a.id_report,0) AS `id_ref`, IFNULL(a.report_mark_type,0) AS `rmt_ref`, IFNULL(a.report_number,'')  AS `ref`, a.adj_value AS `amo`, a.id_acc, 'Manual' AS `recon_type`, '' AS `manual_recon_reason`, a.id_payout_zalora_det_adj, cf.id_comp, cf.comp_number, 5 AS `indeks`
 	FROM tb_payout_zalora_det_adj a
     INNER JOIN tb_m_comp cf ON cf.id_comp=1
 	WHERE a.id_payout_zalora=" + id + " AND a.adj_value>0)

@@ -442,7 +442,7 @@ WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading trans. summary")
-        Dim query_sum As String = "SELECT z.id_payout_zalora_cat, c.payout_zalora_cat, z.val, z.note, z.col_name, IFNULL(e.erp_amount,0.00) AS `erp_val`, 
+        Dim query_sum As String = "SELECT z.id_payout_zalora_cat, c.payout_zalora_cat, z.val, z.note AS `note_manual_recon`, c.col_name, IFNULL(e.erp_amount,0.00) AS `erp_val`, 
 (IFNULL(e.erp_amount,0.00)-z.val) AS `diff_val`
 FROM (
 	SELECT 1 AS `id_payout_zalora_cat`,z.opening_balance AS `val`, z.opening_balance_note AS `note` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
@@ -965,6 +965,8 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
     Private Sub ManualReconcileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManualReconcileToolStripMenuItem.Click
         If GVSummary.RowCount > 0 And GVSummary.FocusedRowHandle >= 0 And is_confirm = "2" Then
             Cursor = Cursors.WaitCursor
+            FormPayoutZaloraReconSummary.id = id
+            FormPayoutZaloraReconSummary.ShowDialog()
             Cursor = Cursors.Default
         End If
     End Sub
