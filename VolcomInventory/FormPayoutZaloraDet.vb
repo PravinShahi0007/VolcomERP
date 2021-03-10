@@ -70,6 +70,7 @@ FROM tb_payout_zalora_cat c"
             BtnManualRecon.Visible = True
             GCERPPay.ContextMenuStrip = CMSERPPay
             GCData.ContextMenuStrip = CMSDetail
+            GCSummary.ContextMenuStrip = CMSComparison
         Else
             BtnRefreshZaloraPayout.Visible = False
             MENote.Properties.ReadOnly = True
@@ -83,6 +84,7 @@ FROM tb_payout_zalora_cat c"
             BtnManualRecon.Visible = False
             GCERPPay.ContextMenuStrip = Nothing
             GCData.ContextMenuStrip = Nothing
+            GCSummary.ContextMenuStrip = Nothing
         End If
         BtnAttachment.Visible = True
 
@@ -440,18 +442,20 @@ WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading trans. summary")
-        Dim query_sum As String = "SELECT z.id_payout_zalora_cat, c.payout_zalora_cat, z.val, IFNULL(e.erp_amount,0.00) AS `erp_val`, 
+        Dim query_sum As String = "SELECT z.id_payout_zalora_cat, c.payout_zalora_cat, z.val, z.note, z.col_name, IFNULL(e.erp_amount,0.00) AS `erp_val`, 
 (IFNULL(e.erp_amount,0.00)-z.val) AS `diff_val`
 FROM (
-	SELECT 1 AS `id_payout_zalora_cat`,z.opening_balance AS `val` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
+	SELECT 1 AS `id_payout_zalora_cat`,z.opening_balance AS `val`, z.opening_balance_note AS `note` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
 	UNION ALL
-	SELECT 2 AS `id_payout_zalora_cat`,z.sales_revenue AS `val` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
+	SELECT 2 AS `id_payout_zalora_cat`,z.sales_revenue AS `val`, z.sales_revenue_note AS `note` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
 	UNION ALL
-	SELECT 3 AS `id_payout_zalora_cat`, z.total_fees AS `val` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
+	SELECT 3 AS `id_payout_zalora_cat`, z.total_fees AS `val`, z.total_fees_note AS `note` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
 	UNION ALL
-	SELECT 4 AS `id_payout_zalora_cat`, z.sales_refund AS `val` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
+	SELECT 4 AS `id_payout_zalora_cat`, z.sales_refund AS `val`, z.sales_refund_note AS `note` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
 	UNION ALL
-	SELECT 5 AS `id_payout_zalora_cat`, z.total_refund_fee AS `val` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
+	SELECT 5 AS `id_payout_zalora_cat`, z.total_refund_fee AS `val`, z.total_refund_fee_note AS `note` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
+    UNION ALL
+    SELECT 6 AS `id_payout_zalora_cat`, z.other_transaction AS `val`, z.other_transaction_note AS `note` FROM tb_payout_zalora z WHERE z.id_payout_zalora=" + id + "
 ) z
 INNER JOIN tb_payout_zalora_cat c ON c.id_payout_zalora_cat = z.id_payout_zalora_cat
 LEFT JOIN (
@@ -956,5 +960,12 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
         FormMain.SplashScreenManager1.CloseWaitForm()
         viewDetailAll()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ManualReconcileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManualReconcileToolStripMenuItem.Click
+        If GVSummary.RowCount > 0 And GVSummary.FocusedRowHandle >= 0 And is_confirm = "2" Then
+            Cursor = Cursors.WaitCursor
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
