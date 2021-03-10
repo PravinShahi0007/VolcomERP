@@ -972,12 +972,22 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
     End Sub
 
     Private Sub GVList_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVList.CellMerge
-        If GVList.GetRowCellValue(e.RowHandle1, "id_awbill").ToString = GVList.GetRowCellValue(e.RowHandle2, "id_awbill").ToString Then
-            e.Merge = True
-            e.Handled = True
+        If e.Column.FieldName = "qty" Or e.Column.FieldName = "combine_number" Or e.Column.FieldName = "city" Or e.Column.FieldName = "comp_number" Or e.Column.FieldName = "comp_name" Then
+            If GVList.GetRowCellValue(e.RowHandle1, "combine_number").ToString = GVList.GetRowCellValue(e.RowHandle2, "combine_number").ToString Then
+                e.Merge = True
+                e.Handled = True
+            Else
+                e.Merge = False
+                e.Handled = True
+            End If
         Else
-            e.Merge = False
-            e.Handled = True
+            If GVList.GetRowCellValue(e.RowHandle1, "id_awbill").ToString = GVList.GetRowCellValue(e.RowHandle2, "id_awbill").ToString Then
+                e.Merge = True
+                e.Handled = True
+            Else
+                e.Merge = False
+                e.Handled = True
+            End If
         End If
     End Sub
 
