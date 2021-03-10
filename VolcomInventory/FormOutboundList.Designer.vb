@@ -27,6 +27,7 @@ Partial Class FormOutboundList
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CancelOutboundLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CancelOutboundLabelToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVOutbound = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -50,6 +51,7 @@ Partial Class FormOutboundList
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -58,8 +60,6 @@ Partial Class FormOutboundList
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BRefreshHistory = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CancelOutboundLabelToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOutbound.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -115,19 +115,25 @@ Partial Class FormOutboundList
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem, Me.CancelOutboundLabelToolStripMenuItem, Me.CancelOutboundLabelToolStripMenuItem1})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(200, 92)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(200, 70)
         '
         'ViewDocumentToolStripMenuItem
         '
         Me.ViewDocumentToolStripMenuItem.Name = "ViewDocumentToolStripMenuItem"
-        Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
         Me.ViewDocumentToolStripMenuItem.Text = "Print"
         '
         'CancelOutboundLabelToolStripMenuItem
         '
         Me.CancelOutboundLabelToolStripMenuItem.Name = "CancelOutboundLabelToolStripMenuItem"
-        Me.CancelOutboundLabelToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.CancelOutboundLabelToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
         Me.CancelOutboundLabelToolStripMenuItem.Text = "Cancel SDO"
+        '
+        'CancelOutboundLabelToolStripMenuItem1
+        '
+        Me.CancelOutboundLabelToolStripMenuItem1.Name = "CancelOutboundLabelToolStripMenuItem1"
+        Me.CancelOutboundLabelToolStripMenuItem1.Size = New System.Drawing.Size(199, 22)
+        Me.CancelOutboundLabelToolStripMenuItem1.Text = "Cancel Outbound Label"
         '
         'GVOutbound
         '
@@ -220,7 +226,6 @@ Partial Class FormOutboundList
         Me.BOutboundLabel.Size = New System.Drawing.Size(141, 42)
         Me.BOutboundLabel.TabIndex = 8900
         Me.BOutboundLabel.Text = "Outbound Label"
-        Me.BOutboundLabel.Visible = False
         '
         'TEOutboundNumber
         '
@@ -336,6 +341,14 @@ Partial Class FormOutboundList
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 7
         '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "AWB"
+        Me.GridColumn17.FieldName = "awbill_no"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 8
+        '
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Scan Manifest"
@@ -414,20 +427,6 @@ Partial Class FormOutboundList
         Me.BRefreshHistory.Size = New System.Drawing.Size(112, 42)
         Me.BRefreshHistory.TabIndex = 3
         Me.BRefreshHistory.Text = "Refresh"
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "AWB"
-        Me.GridColumn17.FieldName = "awbill_no"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 8
-        '
-        'CancelOutboundLabelToolStripMenuItem1
-        '
-        Me.CancelOutboundLabelToolStripMenuItem1.Name = "CancelOutboundLabelToolStripMenuItem1"
-        Me.CancelOutboundLabelToolStripMenuItem1.Size = New System.Drawing.Size(199, 22)
-        Me.CancelOutboundLabelToolStripMenuItem1.Text = "Cancel Outbound Label"
         '
         'FormOutboundList
         '
