@@ -61,6 +61,8 @@ Partial Class FormPayoutZaloraDet
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
+        Me.CMSComparison = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ManualReconcileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_payout_zalora_cat_sum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpayout_zalora_cat = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -68,6 +70,8 @@ Partial Class FormPayoutZaloraDet
         Me.GridColumnerp_val = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndiff_val = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnotesum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote_manual_recon = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncol_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnRefreshZaloraPayout = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.GCERPPay = New DevExpress.XtraGrid.GridControl()
@@ -178,6 +182,7 @@ Partial Class FormPayoutZaloraDet
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMSComparison.SuspendLayout()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -585,7 +590,7 @@ Partial Class FormPayoutZaloraDet
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl3)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
         Me.SplitContainerControl1.Size = New System.Drawing.Size(1199, 391)
-        Me.SplitContainerControl1.SplitterPosition = 189
+        Me.SplitContainerControl1.SplitterPosition = 210
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
@@ -598,23 +603,36 @@ Partial Class FormPayoutZaloraDet
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1199, 189)
+        Me.GroupControl2.Size = New System.Drawing.Size(1199, 210)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Payout Comparison"
         '
         'GCSummary
         '
+        Me.GCSummary.ContextMenuStrip = Me.CMSComparison
         Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSummary.Location = New System.Drawing.Point(2, 59)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(1195, 128)
+        Me.GCSummary.Size = New System.Drawing.Size(1195, 149)
         Me.GCSummary.TabIndex = 0
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
+        'CMSComparison
+        '
+        Me.CMSComparison.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ManualReconcileToolStripMenuItem})
+        Me.CMSComparison.Name = "CMSComparison"
+        Me.CMSComparison.Size = New System.Drawing.Size(194, 26)
+        '
+        'ManualReconcileToolStripMenuItem
+        '
+        Me.ManualReconcileToolStripMenuItem.Name = "ManualReconcileToolStripMenuItem"
+        Me.ManualReconcileToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ManualReconcileToolStripMenuItem.Text = "Recon. Zalora Amount"
+        '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_payout_zalora_cat_sum, Me.GridColumnpayout_zalora_cat, Me.GridColumnval, Me.GridColumnerp_val, Me.GridColumndiff_val, Me.GridColumnnotesum})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_payout_zalora_cat_sum, Me.GridColumnpayout_zalora_cat, Me.GridColumnval, Me.GridColumnerp_val, Me.GridColumndiff_val, Me.GridColumnnotesum, Me.GridColumnnote_manual_recon, Me.GridColumncol_name})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.Name = "GVSummary"
         Me.GVSummary.OptionsBehavior.ReadOnly = True
@@ -683,6 +701,20 @@ Partial Class FormPayoutZaloraDet
         Me.GridColumnnotesum.Visible = True
         Me.GridColumnnotesum.VisibleIndex = 4
         '
+        'GridColumnnote_manual_recon
+        '
+        Me.GridColumnnote_manual_recon.Caption = "Manual Recon. Remark"
+        Me.GridColumnnote_manual_recon.FieldName = "note_manual_recon"
+        Me.GridColumnnote_manual_recon.Name = "GridColumnnote_manual_recon"
+        Me.GridColumnnote_manual_recon.Visible = True
+        Me.GridColumnnote_manual_recon.VisibleIndex = 5
+        '
+        'GridColumncol_name
+        '
+        Me.GridColumncol_name.Caption = "col_name"
+        Me.GridColumncol_name.FieldName = "col_name"
+        Me.GridColumncol_name.Name = "GridColumncol_name"
+        '
         'BtnRefreshZaloraPayout
         '
         Me.BtnRefreshZaloraPayout.Dock = System.Windows.Forms.DockStyle.Top
@@ -703,7 +735,7 @@ Partial Class FormPayoutZaloraDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1199, 197)
+        Me.GroupControl3.Size = New System.Drawing.Size(1199, 176)
         Me.GroupControl3.TabIndex = 2
         Me.GroupControl3.Text = "ERP Payout Detail"
         '
@@ -715,7 +747,7 @@ Partial Class FormPayoutZaloraDet
         Me.GCERPPay.MainView = Me.GVERPPay
         Me.GCERPPay.Name = "GCERPPay"
         Me.GCERPPay.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLinkReference})
-        Me.GCERPPay.Size = New System.Drawing.Size(1195, 167)
+        Me.GCERPPay.Size = New System.Drawing.Size(1195, 146)
         Me.GCERPPay.TabIndex = 1
         Me.GCERPPay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVERPPay})
         '
@@ -1437,6 +1469,7 @@ Partial Class FormPayoutZaloraDet
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMSComparison.ResumeLayout(False)
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
@@ -1589,4 +1622,8 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RepoLinkReference As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents BtnRefreshZaloraPayout As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnnote_manual_recon As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncol_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMSComparison As ContextMenuStrip
+    Friend WithEvents ManualReconcileToolStripMenuItem As ToolStripMenuItem
 End Class
