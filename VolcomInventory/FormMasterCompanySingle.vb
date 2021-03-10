@@ -70,7 +70,13 @@
     End Sub
 
     Sub load_kode_bank()
-        Dim query As String = "SELECT id,nama_bank,kode_bank FROM `tb_kode_bank` WHERE id!=0"
+        Dim where_country As String = ""
+
+        If LECountry.EditValue.ToString = "5" Then
+            where_country = "WHERE id!=0"
+        End If
+
+        Dim query As String = "SELECT id,nama_bank,kode_bank FROM `tb_kode_bank` " + where_country
         viewSearchLookupQuery(SLEBankAccount, query, "id", "nama_bank", "id")
     End Sub
 
@@ -241,7 +247,6 @@ WHERE comp.id_comp = '{0}'", id_company)
             view_store_company()
             SLEStoreCompany.EditValue = data.Rows(0)("id_store_company").ToString
             SLEVendorType.EditValue = id_vendor_type
-            SLEBankAccount.EditValue = id_bank
 
             data.Dispose()
 
@@ -321,6 +326,8 @@ WHERE comp.id_comp = '{0}'", id_company)
 
             LEStatus.EditValue = Nothing
             LEStatus.ItemIndex = LEStatus.Properties.GetDataSourceRowIndex("id_status", is_active)
+
+            SLEBankAccount.EditValue = id_bank
 
             'Updated 8 juni 2015
             TxtCommission.EditValue = data.Rows(0)("comp_commission")
@@ -422,6 +429,7 @@ WHERE comp.id_comp = '{0}'", id_company)
                 LECity.EditValue = Nothing
                 LEDistrict.EditValue = Nothing
                 view_region(LERegion, LECountry.EditValue)
+                load_kode_bank()
                 'view_state(LEState, LERegion.EditValue)
                 'view_city(LECity, LEState.EditValue)
             End If
