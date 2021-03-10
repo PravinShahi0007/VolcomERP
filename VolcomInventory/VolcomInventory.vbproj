@@ -4038,6 +4038,12 @@
     <Compile Include="FormPurcReceiveDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcReceiveFOCDet.Designer.vb">
+      <DependentUpon>FormPurcReceiveFOCDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReceiveFOCDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcReq.Designer.vb">
       <DependentUpon>FormPurcReq.vb</DependentUpon>
     </Compile>
@@ -11350,6 +11356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReceiveDet.resx">
       <DependentUpon>FormPurcReceiveDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReceiveFOCDet.resx">
+      <DependentUpon>FormPurcReceiveFOCDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReq.resx">
       <DependentUpon>FormPurcReq.vb</DependentUpon>

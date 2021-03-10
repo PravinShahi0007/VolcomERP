@@ -59,8 +59,15 @@
             no.Text = number.ToString
             no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
 
+            'If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
+            '    no.RowSpan = rowspan_koli
+            'End If
+
             If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
-                no.RowSpan = rowspan_koli
+                no.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                no.Text = ""
+                no.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'awb number
@@ -68,8 +75,15 @@
 
             awbill_no.Text = dt.Rows(i)("awbill_no").ToString
 
-            If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                awbill_no.RowSpan = rowspan_del_manifest
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    awbill_no.RowSpan = rowspan_del_manifest
+            'End If
+
+            If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
+                awbill_no.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                awbill_no.Text = ""
+                awbill_no.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'collie
@@ -77,22 +91,36 @@
 
             collie.Text = dt.Rows(i)("ol_number").ToString
 
+            'If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
+            '    collie.RowSpan = rowspan_koli
+            'End If
+
             If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
-                collie.RowSpan = rowspan_koli
+                collie.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                collie.Text = ""
+                collie.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'delivery slip
             Dim do_no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
 
             do_no.Text = dt.Rows(i)("combine_number").ToString
-
+            do_no.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             'store account
             Dim comp_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
 
             comp_number.Text = dt.Rows(i)("comp_number").ToString
 
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    comp_number.RowSpan = rowspan_del_manifest
+            'End If
+
             If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                comp_number.RowSpan = rowspan_del_manifest
+                comp_number.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                comp_number.Text = ""
+                comp_number.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'store name
@@ -100,8 +128,15 @@
 
             comp_name.Text = dt.Rows(i)("comp_name").ToString
 
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    comp_name.RowSpan = rowspan_del_manifest
+            'End If
+
             If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                comp_name.RowSpan = rowspan_del_manifest
+                comp_name.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                comp_name.Text = ""
+                comp_name.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'qty
@@ -109,14 +144,22 @@
 
             qty.Text = dt.Rows(i)("qty").ToString
             qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            qty.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             'destination
             Dim city As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
 
             city.Text = dt.Rows(i)("city").ToString
 
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    city.RowSpan = rowspan_del_manifest
+            'End If
+
             If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                city.RowSpan = rowspan_del_manifest
+                city.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                city.Text = ""
+                city.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'district
@@ -124,8 +167,15 @@
 
             dis.Text = dt.Rows(i)("sub_district").ToString
 
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    dis.RowSpan = rowspan_del_manifest
+            'End If
+
             If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                dis.RowSpan = rowspan_del_manifest
+                dis.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                dis.Text = ""
+                dis.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'weight
@@ -134,8 +184,15 @@
             weight.Text = dt.Rows(i)("weight").ToString
             weight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
 
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    weight.RowSpan = rowspan_del_manifest
+            'End If
+
             If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                weight.RowSpan = rowspan_del_manifest
+                weight.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                weight.Text = ""
+                weight.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'p
@@ -144,8 +201,15 @@
             width.Text = Decimal.Round(dt.Rows(i)("width"), 2)
             width.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
 
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    width.RowSpan = rowspan_del_manifest
+            'End If
+
             If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                width.RowSpan = rowspan_del_manifest
+                width.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                width.Text = ""
+                width.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'l
@@ -154,8 +218,15 @@
             length.Text = Decimal.Round(dt.Rows(i)("length"), 2)
             length.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
 
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    length.RowSpan = rowspan_del_manifest
+            'End If
+
             If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                length.RowSpan = rowspan_del_manifest
+                length.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                length.Text = ""
+                length.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             't
@@ -164,8 +235,15 @@
             height.Text = Decimal.Round(dt.Rows(i)("height"), 2)
             height.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
 
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    height.RowSpan = rowspan_del_manifest
+            'End If
+
             If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                height.RowSpan = rowspan_del_manifest
+                height.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                height.Text = ""
+                height.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'dim
@@ -174,8 +252,15 @@
             volume.Text = Decimal.Round(dt.Rows(i)("volume"), 2)
             volume.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
 
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    volume.RowSpan = rowspan_del_manifest
+            'End If
+
             If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                volume.RowSpan = rowspan_del_manifest
+                volume.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                volume.Text = ""
+                volume.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'final weight
@@ -184,12 +269,21 @@
             c_weight.Text = Decimal.Round(dt.Rows(i)("c_weight"), 2)
             c_weight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
 
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    c_weight.RowSpan = rowspan_del_manifest
+            'End If
+
             If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                c_weight.RowSpan = rowspan_del_manifest
+                c_weight.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            Else
+                c_weight.Text = ""
+                c_weight.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
             End If
 
             'remark
             Dim remark As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(15)
+
+            remark.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom Or DevExpress.XtraPrinting.BorderSide.Right
 
             last_del_manifest = dt.Rows(i)("id_del_manifest").ToString
             last_collie = dt.Rows(i)("id_awbill").ToString

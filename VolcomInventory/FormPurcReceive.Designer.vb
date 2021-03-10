@@ -58,6 +58,46 @@ Partial Class FormPurcReceive
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDOVENDOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPFOC = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCFOC = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPFOCPO = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCFOC = New DevExpress.XtraGrid.GridControl()
+        Me.GVFOC = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBFOC = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLUEVendorFOC = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPFOCRec = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCReceiveFOC = New DevExpress.XtraGrid.GridControl()
+        Me.GVReceiveFOC = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRec.SuspendLayout()
         Me.XTPOrder.SuspendLayout()
@@ -70,6 +110,19 @@ Partial Class FormPurcReceive
         Me.XTPReceived.SuspendLayout()
         CType(Me.GCReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPFOC.SuspendLayout()
+        CType(Me.XTCFOC, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCFOC.SuspendLayout()
+        Me.XTPFOCPO.SuspendLayout()
+        CType(Me.GCFOC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVFOC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.SLUEVendorFOC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPFOCRec.SuspendLayout()
+        CType(Me.GCReceiveFOC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVReceiveFOC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCRec
@@ -81,7 +134,7 @@ Partial Class FormPurcReceive
         Me.XTCRec.SelectedTabPage = Me.XTPOrder
         Me.XTCRec.Size = New System.Drawing.Size(783, 548)
         Me.XTCRec.TabIndex = 0
-        Me.XTCRec.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOrder, Me.XTPReceived})
+        Me.XTCRec.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOrder, Me.XTPReceived, Me.XTPFOC})
         '
         'XTPOrder
         '
@@ -394,6 +447,335 @@ Partial Class FormPurcReceive
         Me.GridColumnDOVENDOR.Visible = True
         Me.GridColumnDOVENDOR.VisibleIndex = 1
         '
+        'XTPFOC
+        '
+        Me.XTPFOC.Controls.Add(Me.XTCFOC)
+        Me.XTPFOC.Name = "XTPFOC"
+        Me.XTPFOC.Size = New System.Drawing.Size(777, 520)
+        Me.XTPFOC.Text = "Free of Charge"
+        '
+        'XTCFOC
+        '
+        Me.XTCFOC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCFOC.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCFOC.Location = New System.Drawing.Point(0, 0)
+        Me.XTCFOC.Name = "XTCFOC"
+        Me.XTCFOC.SelectedTabPage = Me.XTPFOCPO
+        Me.XTCFOC.Size = New System.Drawing.Size(777, 520)
+        Me.XTCFOC.TabIndex = 6
+        Me.XTCFOC.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFOCPO, Me.XTPFOCRec})
+        '
+        'XTPFOCPO
+        '
+        Me.XTPFOCPO.Controls.Add(Me.GCFOC)
+        Me.XTPFOCPO.Controls.Add(Me.PanelControl2)
+        Me.XTPFOCPO.Name = "XTPFOCPO"
+        Me.XTPFOCPO.Size = New System.Drawing.Size(771, 492)
+        Me.XTPFOCPO.Text = "Purchase Order List"
+        '
+        'GCFOC
+        '
+        Me.GCFOC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCFOC.Location = New System.Drawing.Point(0, 42)
+        Me.GCFOC.MainView = Me.GVFOC
+        Me.GCFOC.Name = "GCFOC"
+        Me.GCFOC.Size = New System.Drawing.Size(771, 450)
+        Me.GCFOC.TabIndex = 5
+        Me.GCFOC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFOC})
+        '
+        'GVFOC
+        '
+        Me.GVFOC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21})
+        Me.GVFOC.GridControl = Me.GCFOC
+        Me.GVFOC.Name = "GVFOC"
+        Me.GVFOC.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID PO"
+        Me.GridColumn9.FieldName = "id_purc_order"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "PO Number"
+        Me.GridColumn10.FieldName = "purc_order_number"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Created By"
+        Me.GridColumn11.FieldName = "emp_created"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 1
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Vendor Code"
+        Me.GridColumn12.FieldName = "comp_number"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 3
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Vendor"
+        Me.GridColumn14.FieldName = "comp_name"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 2
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Contact Person"
+        Me.GridColumn15.FieldName = "contact_person"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 5
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Contact Number"
+        Me.GridColumn16.FieldName = "contact_number"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 7
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Created Date"
+        Me.GridColumn17.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn17.FieldName = "date_created"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 4
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Est Receive Date"
+        Me.GridColumn18.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn18.FieldName = "est_date_receive"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 8
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Last Update By"
+        Me.GridColumn19.FieldName = "emp_updated"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 6
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Last Update"
+        Me.GridColumn20.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn20.FieldName = "last_update"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 9
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "ID Comp"
+        Me.GridColumn21.FieldName = "id_comp"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.SBFOC)
+        Me.PanelControl2.Controls.Add(Me.SLUEVendorFOC)
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(771, 42)
+        Me.PanelControl2.TabIndex = 4
+        '
+        'SBFOC
+        '
+        Me.SBFOC.Location = New System.Drawing.Point(234, 8)
+        Me.SBFOC.Name = "SBFOC"
+        Me.SBFOC.Size = New System.Drawing.Size(60, 23)
+        Me.SBFOC.TabIndex = 8913
+        Me.SBFOC.Text = "view"
+        '
+        'SLUEVendorFOC
+        '
+        Me.SLUEVendorFOC.Location = New System.Drawing.Point(51, 10)
+        Me.SLUEVendorFOC.Name = "SLUEVendorFOC"
+        Me.SLUEVendorFOC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEVendorFOC.Properties.View = Me.GridView3
+        Me.SLUEVendorFOC.Size = New System.Drawing.Size(177, 20)
+        Me.SLUEVendorFOC.TabIndex = 8912
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "ID"
+        Me.GridColumn22.FieldName = "id_comp"
+        Me.GridColumn22.Name = "GridColumn22"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Account"
+        Me.GridColumn23.FieldName = "comp_number"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 0
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Description"
+        Me.GridColumn24.FieldName = "comp_name"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 1
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 13)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl1.TabIndex = 8911
+        Me.LabelControl1.Text = "Vendor"
+        '
+        'XTPFOCRec
+        '
+        Me.XTPFOCRec.Controls.Add(Me.GCReceiveFOC)
+        Me.XTPFOCRec.Name = "XTPFOCRec"
+        Me.XTPFOCRec.Size = New System.Drawing.Size(771, 492)
+        Me.XTPFOCRec.Text = "Received List"
+        '
+        'GCReceiveFOC
+        '
+        Me.GCReceiveFOC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCReceiveFOC.Location = New System.Drawing.Point(0, 0)
+        Me.GCReceiveFOC.MainView = Me.GVReceiveFOC
+        Me.GCReceiveFOC.Name = "GCReceiveFOC"
+        Me.GCReceiveFOC.Size = New System.Drawing.Size(771, 492)
+        Me.GCReceiveFOC.TabIndex = 1
+        Me.GCReceiveFOC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReceiveFOC})
+        '
+        'GVReceiveFOC
+        '
+        Me.GVReceiveFOC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn38, Me.GridColumn39})
+        Me.GVReceiveFOC.GridControl = Me.GCReceiveFOC
+        Me.GVReceiveFOC.Name = "GVReceiveFOC"
+        Me.GVReceiveFOC.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVReceiveFOC.OptionsBehavior.Editable = False
+        Me.GVReceiveFOC.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "ID"
+        Me.GridColumn25.FieldName = "id_purc_rec_foc"
+        Me.GridColumn25.Name = "GridColumn25"
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Number"
+        Me.GridColumn26.FieldName = "purc_rec_foc_number"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 0
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Order Number"
+        Me.GridColumn27.FieldName = "purc_order_number"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 2
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Created Date"
+        Me.GridColumn28.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
+        Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn28.FieldName = "date_created"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 5
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Arrival Date"
+        Me.GridColumn29.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn29.FieldName = "date_arrived"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 4
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Created By"
+        Me.GridColumn30.FieldName = "created_by_name"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 6
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Last Updated"
+        Me.GridColumn31.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
+        Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn31.FieldName = "last_update"
+        Me.GridColumn31.Name = "GridColumn31"
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Updated By"
+        Me.GridColumn32.FieldName = "last_update_by_name"
+        Me.GridColumn32.Name = "GridColumn32"
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Note"
+        Me.GridColumn33.FieldName = "note"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 7
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Status"
+        Me.GridColumn34.FieldName = "report_status"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 8
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Vendor"
+        Me.GridColumn38.FieldName = "vendor"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 3
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "DO Number"
+        Me.GridColumn39.FieldName = "do_vendor_number"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 1
+        '
         'FormPurcReceive
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -416,6 +798,20 @@ Partial Class FormPurcReceive
         Me.XTPReceived.ResumeLayout(False)
         CType(Me.GCReceive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPFOC.ResumeLayout(False)
+        CType(Me.XTCFOC, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCFOC.ResumeLayout(False)
+        Me.XTPFOCPO.ResumeLayout(False)
+        CType(Me.GCFOC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVFOC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.SLUEVendorFOC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPFOCRec.ResumeLayout(False)
+        CType(Me.GCReceiveFOC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVReceiveFOC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -459,4 +855,44 @@ Partial Class FormPurcReceive
     Friend WithEvents GridColumnDOVENDOR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPFOC As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCFOC As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVFOC As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBFOC As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLUEVendorFOC As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTCFOC As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPFOCPO As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPFOCRec As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCReceiveFOC As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVReceiveFOC As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

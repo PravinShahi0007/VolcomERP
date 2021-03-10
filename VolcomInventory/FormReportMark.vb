@@ -674,6 +674,9 @@
         ElseIf report_mark_type = "299" Then
             'Weight PPS
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_product_weight_pps WHERE id_product_weight_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "300" Then
+            'foc og
+            query = String.Format("SELECT id_report_status, purc_rec_foc_number as report_number FROM tb_purc_rec_foc WHERE id_purc_rec_foc = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -9701,6 +9704,19 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
 
             'update status
             query = String.Format("UPDATE tb_product_weight_pps SET id_report_status='{0}' WHERE id_product_weight_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "300" Then
+            'foc og
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                FormPurcReceiveFOCDet.update_changes()
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_purc_rec_foc SET id_report_status='{0}' WHERE id_purc_rec_foc ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
