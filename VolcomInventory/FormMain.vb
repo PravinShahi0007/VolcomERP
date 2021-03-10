@@ -1655,15 +1655,29 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormReportMarkCancel.id_report_mark_cancel = "-1"
             FormReportMarkCancel.ShowDialog()
         ElseIf formName = "FormPurcReceive" Then
-            If FormPurcReceive.GVPO.RowCount > 0 And FormPurcReceive.GVPO.FocusedRowHandle >= 0 Then
-                Dim id_purc_order As String = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_purc_order").ToString
-                FormPurcReceiveDet.id_purc_order = id_purc_order
-                FormPurcReceiveDet.id_coa_tag = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_coa_tag").ToString
-                FormPurcReceiveDet.id_comp = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_comp").ToString
-                FormPurcReceiveDet.action = "ins"
-                FormPurcReceiveDet.TxtOrderNumber.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("purc_order_number").ToString
-                FormPurcReceiveDet.TxtVendor.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_number").ToString + " - " + FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_name").ToString
-                FormPurcReceiveDet.ShowDialog()
+            If FormPurcReceive.XTCRec.SelectedTabPageIndex = 0 Then
+                If FormPurcReceive.GVPO.RowCount > 0 And FormPurcReceive.GVPO.FocusedRowHandle >= 0 Then
+                    Dim id_purc_order As String = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_purc_order").ToString
+                    FormPurcReceiveDet.id_purc_order = id_purc_order
+                    FormPurcReceiveDet.id_coa_tag = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_coa_tag").ToString
+                    FormPurcReceiveDet.id_comp = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_comp").ToString
+                    FormPurcReceiveDet.action = "ins"
+                    FormPurcReceiveDet.TxtOrderNumber.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("purc_order_number").ToString
+                    FormPurcReceiveDet.TxtVendor.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_number").ToString + " - " + FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_name").ToString
+                    FormPurcReceiveDet.ShowDialog()
+                End If
+            ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 2 Then
+                If FormPurcReceive.XTCFOC.SelectedTabPageIndex = 0 Then
+                    If FormPurcReceive.GVFOC.RowCount > 0 And FormPurcReceive.GVFOC.FocusedRowHandle >= 0 Then
+                        Dim id_purc_order As String = FormPurcReceive.GVFOC.GetFocusedRowCellValue("id_purc_order").ToString
+                        FormPurcReceiveFOCDet.id_purc_order = id_purc_order
+                        FormPurcReceiveFOCDet.id_comp = FormPurcReceive.GVFOC.GetFocusedRowCellValue("id_comp").ToString
+                        FormPurcReceiveFOCDet.action = "ins"
+                        FormPurcReceiveFOCDet.TxtOrderNumber.Text = FormPurcReceive.GVFOC.GetFocusedRowCellValue("purc_order_number").ToString
+                        FormPurcReceiveFOCDet.TxtVendor.Text = FormPurcReceive.GVFOC.GetFocusedRowCellValue("comp_number").ToString + " - " + FormPurcReceive.GVFOC.GetFocusedRowCellValue("comp_name").ToString
+                        FormPurcReceiveFOCDet.ShowDialog()
+                    End If
+                End If
             End If
         ElseIf formName = "FormPurcReturn" Then
             If FormPurcReturn.GVPO.RowCount > 0 And FormPurcReturn.GVPO.FocusedRowHandle >= 0 Then
@@ -2893,9 +2907,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormReportMarkCancel.id_report_mark_cancel = FormReportMarkCancelList.GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString
                 FormReportMarkCancel.ShowDialog()
             ElseIf formName = "FormPurcReceive" Then
-                FormPurcReceiveDet.action = "upd"
-                FormPurcReceiveDet.id = FormPurcReceive.GVReceive.GetFocusedRowCellValue("id_purc_rec").ToString
-                FormPurcReceiveDet.ShowDialog()
+                If FormPurcReceive.XTCRec.SelectedTabPageIndex = 0 Then
+                    FormPurcReceiveDet.action = "upd"
+                    FormPurcReceiveDet.id = FormPurcReceive.GVReceive.GetFocusedRowCellValue("id_purc_rec").ToString
+                    FormPurcReceiveDet.ShowDialog()
+                ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 2 Then
+                    FormPurcReceiveFOCDet.action = "upd"
+                    FormPurcReceiveFOCDet.id = FormPurcReceive.GVReceiveFOC.GetFocusedRowCellValue("id_purc_rec_foc").ToString
+                    FormPurcReceiveFOCDet.ShowDialog()
+                End If
             ElseIf formName = "FormPurcReturn" Then
                 FormPurchaseReturnDet.action = "upd"
                 FormPurchaseReturnDet.id = FormPurcReturn.GVReturn.GetFocusedRowCellValue("id_purc_return").ToString
@@ -7630,8 +7650,6 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                     Tool.ShowPreview()
                 End If
-            ElseIf FormSalesWeekly.XTCPOS.SelectedTabPageIndex = 3 Then
-                print(FormSalesWeekly.GCInvoiceWeek, "Invoice (View by Week)")
             End If
         ElseIf formName = "FormSalesCreditNote" Then
             'CREDIT NOTE
@@ -8172,6 +8190,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 print_raw_no_export(FormPurcReceive.GCPO)
             ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
                 print_raw_no_export(FormPurcReceive.GCReceive)
+            ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 2 Then
+                If FormPurcReceive.XTCFOC.SelectedTabPageIndex = 0 Then
+                    print_raw_no_export(FormPurcReceive.GCFOC)
+                ElseIf FormPurcReceive.XTCFOC.SelectedTabPageIndex = 1 Then
+                    print_raw_no_export(FormPurcReceive.GCReceiveFOC)
+                End If
             End If
         ElseIf formName = "FormPurcReturn" Then
             If FormPurcReturn.XTCReturn.SelectedTabPageIndex = 0 Then
@@ -10268,6 +10292,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormPurcReceive.viewOrder()
             ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
                 FormPurcReceive.viewReceive()
+            ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 2 Then
+                If FormPurcReceive.XTCFOC.SelectedTabPageIndex = 0 Then
+                    FormPurcReceive.viewFOC()
+                ElseIf FormPurcReceive.XTCFOC.SelectedTabPageIndex = 1 Then
+                    FormPurcReceive.viewListFOC()
+                End If
             End If
         ElseIf formName = "FormPurcReturn" Then
             If FormPurcReturn.XTCReturn.SelectedTabPageIndex = 0 Then
