@@ -50,6 +50,69 @@ ORDER BY tb.awbill_no,tb.ol_number ASC"
         GVListHistory.BestFitColumns()
     End Sub
 
+    Private Sub GVList_RowCountChanged(sender As Object, e As EventArgs) Handles GVListHistory.RowCountChanged
+        'manipulate numbering, merge qty & total qty
+        Dim last_collie As String = ""
+        Dim last_combine As String = ""
+
+        Dim total_qty As Integer = 0
+
+        Dim qty_manipulated As String = ""
+
+        Dim no As Integer = 1
+
+        For i = 0 To GVListHistory.RowCount - 1
+            If GVListHistory.IsValidRowHandle(i) Then
+                If i = 0 Then
+                    last_collie = GVListHistory.GetRowCellValue(i, "id_awbill").ToString
+                    last_combine = GVListHistory.GetRowCellValue(i, "combine_number").ToString
+
+                    total_qty = total_qty + Integer.Parse(GVListHistory.GetRowCellValue(i, "qty").ToString.Replace(" ", ""))
+                End If
+
+                'numbering & merge qty
+                If Not last_collie = GVListHistory.GetRowCellValue(i, "id_awbill").ToString Then
+                    qty_manipulated = qty_manipulated + " "
+
+                    no = no + 1
+                End If
+
+                'total qty
+                If Not last_combine = GVListHistory.GetRowCellValue(i, "combine_number").ToString Then
+                    total_qty = total_qty + Integer.Parse(GVListHistory.GetRowCellValue(i, "qty").ToString.Replace(" ", ""))
+                End If
+
+                GVListHistory.SetRowCellValue(i, "qty", GVListHistory.GetRowCellValue(i, "qty").ToString.Replace(" ", "") + qty_manipulated)
+
+                last_collie = GVListHistory.GetRowCellValue(i, "id_awbill").ToString
+                last_combine = GVListHistory.GetRowCellValue(i, "combine_number").ToString
+            End If
+        Next
+
+        'set total qty
+        GridColumnQty.SummaryItem.DisplayFormat = total_qty.ToString
+    End Sub
+
+    Private Sub GVList_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVListHistory.CellMerge
+        If e.Column.FieldName = "qty" Or e.Column.FieldName = "combine_number" Or e.Column.FieldName = "city" Or e.Column.FieldName = "sub_district" Or e.Column.FieldName = "comp_number" Or e.Column.FieldName = "comp_name" Then
+            If GVListHistory.GetRowCellValue(e.RowHandle1, "combine_number").ToString = GVListHistory.GetRowCellValue(e.RowHandle2, "combine_number").ToString Then
+                e.Merge = True
+                e.Handled = True
+            Else
+                e.Merge = False
+                e.Handled = True
+            End If
+        Else
+            If GVListHistory.GetRowCellValue(e.RowHandle1, "id_awbill").ToString = GVListHistory.GetRowCellValue(e.RowHandle2, "id_awbill").ToString Then
+                e.Merge = True
+                e.Handled = True
+            Else
+                e.Merge = False
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         print()
     End Sub

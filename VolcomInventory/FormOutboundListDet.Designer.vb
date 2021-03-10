@@ -60,6 +60,7 @@ Partial Class FormOutboundListDet
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.BNotApprove = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TESubDistrict.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -364,7 +365,7 @@ Partial Class FormOutboundListDet
         '
         'GVDO
         '
-        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnIdDelERP, Me.GridColumn7})
+        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnIdDelERP, Me.GridColumn7})
         Me.GVDO.GridControl = Me.GCDO
         Me.GVDO.Name = "GVDO"
         Me.GVDO.OptionsBehavior.ReadOnly = True
@@ -392,7 +393,7 @@ Partial Class FormOutboundListDet
         Me.GridColumn5.FieldName = "do_no"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
+        Me.GridColumn5.VisibleIndex = 1
         '
         'GridColumn6
         '
@@ -403,7 +404,7 @@ Partial Class FormOutboundListDet
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.VisibleIndex = 2
         '
         'GridColumnIdDelERP
         '
@@ -501,6 +502,15 @@ Partial Class FormOutboundListDet
         Me.BNotApprove.TabIndex = 21
         Me.BNotApprove.Text = "Not Approve"
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Combine Number"
+        Me.GridColumn8.FieldName = "combine_number"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        '
         'FormOutboundListDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -591,4 +601,5 @@ Partial Class FormOutboundListDet
     Friend WithEvents TEStore As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BPrintLabel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

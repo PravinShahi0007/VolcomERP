@@ -43,7 +43,7 @@ Partial Class FormODMPrint
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHStoreAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -159,7 +159,7 @@ Partial Class FormODMPrint
         'GVListHistory
         '
         Me.GVListHistory.Appearance.GroupPanel.ForeColor = System.Drawing.Color.Black
-        Me.GVListHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHChecklist, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GCHStoreAccount, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn1, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
+        Me.GVListHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHChecklist, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GCHStoreAccount, Me.GridColumn22, Me.GridColumnQty, Me.GridColumn24, Me.GridColumn1, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
         Me.GVListHistory.GridControl = Me.GCListHistory
         Me.GVListHistory.GroupCount = 1
         Me.GVListHistory.GroupFormat = "[#image]{1} {2}"
@@ -233,7 +233,7 @@ Partial Class FormODMPrint
         Me.GridColumn15.FieldName = "awbill_date"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
-        Me.GridColumn15.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn15.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 16
         '
@@ -279,7 +279,7 @@ Partial Class FormODMPrint
         Me.GridColumn20.Caption = "AWB Number"
         Me.GridColumn20.FieldName = "awbill_no"
         Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn20.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 4
         '
@@ -289,7 +289,7 @@ Partial Class FormODMPrint
         Me.GCHStoreAccount.FieldName = "comp_number"
         Me.GCHStoreAccount.Name = "GCHStoreAccount"
         Me.GCHStoreAccount.OptionsColumn.AllowEdit = False
-        Me.GCHStoreAccount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GCHStoreAccount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GCHStoreAccount.Visible = True
         Me.GCHStoreAccount.VisibleIndex = 5
         Me.GCHStoreAccount.Width = 78
@@ -300,22 +300,22 @@ Partial Class FormODMPrint
         Me.GridColumn22.FieldName = "comp_name"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
-        Me.GridColumn22.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn22.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 6
         '
-        'GridColumn23
+        'GridColumnQty
         '
-        Me.GridColumn23.Caption = "Qty"
-        Me.GridColumn23.FieldName = "qty"
-        Me.GridColumn23.MaxWidth = 50
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.OptionsColumn.AllowEdit = False
-        Me.GridColumn23.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 7
-        Me.GridColumn23.Width = 50
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.MaxWidth = 50
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.OptionsColumn.AllowEdit = False
+        Me.GridColumnQty.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 7
+        Me.GridColumnQty.Width = 50
         '
         'GridColumn24
         '
@@ -333,6 +333,8 @@ Partial Class FormODMPrint
         Me.GridColumn1.Caption = "District"
         Me.GridColumn1.FieldName = "sub_district"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 9
         '
@@ -414,8 +416,6 @@ Partial Class FormODMPrint
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.OptionsColumn.AllowEdit = False
         Me.GridColumn31.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 17
         '
         'RepositoryItemCheckEdit1
         '
@@ -473,7 +473,7 @@ Partial Class FormODMPrint
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHStoreAccount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
