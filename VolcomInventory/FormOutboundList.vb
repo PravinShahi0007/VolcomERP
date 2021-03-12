@@ -27,7 +27,7 @@
     Dim is_load As Boolean = False
 
     Sub load_list(ByVal id As String, ByVal opt As String)
-        Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) AS qty,dis.sub_district,IFNULL(c.comp_name,cg.description) AS comp_name,awb.ol_number
+        Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) AS qty,dis.sub_district,IFNULL(c.comp_number,cg.comp_group) AS comp_number,IFNULL(c.comp_name,cg.description) AS comp_name,awb.ol_number
 ,GROUP_CONCAT(DISTINCT pl.`pl_sales_order_del_number`) AS sdo_number,GROUP_CONCAT(DISTINCT cb.`combine_number`) AS combine_number,GROUP_CONCAT(DISTINCT so.sales_order_ol_shop_number) AS online_order_number
 FROM `tb_wh_awbill` awb 
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awb.id_sub_district
@@ -163,7 +163,7 @@ ORDER BY pl.id_ol_store_cust_ret ASC)"
     End Sub
 
     Sub load_history()
-        Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) AS qty,dis.sub_district,IFNULL(c.comp_name,cg.description) AS comp_name,awb.ol_number
+        Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) AS qty,dis.sub_district,IFNULL(c.comp_number,cg.comp_group) AS comp_number,IFNULL(c.comp_name,cg.description) AS comp_name,awb.ol_number
 ,GROUP_CONCAT(DISTINCT pl.`pl_sales_order_del_number`) AS sdo_number,GROUP_CONCAT(DISTINCT so.sales_order_ol_shop_number) AS online_order_number
 ,sts.report_status
 ,d.number AS draft_manifest

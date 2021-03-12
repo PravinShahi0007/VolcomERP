@@ -139,6 +139,7 @@ Partial Class FormODM
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.DETo = New DevExpress.XtraEditors.DateEdit()
         Me.BViewHistoryList = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEAWB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1073,7 +1074,7 @@ Partial Class FormODM
         '
         'GVListODM
         '
-        Me.GVListODM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38})
+        Me.GVListODM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn35, Me.GridColumn50, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38})
         Me.GVListODM.GridControl = Me.GCListODM
         Me.GVListODM.Name = "GVListODM"
         Me.GVListODM.OptionsBehavior.Editable = False
@@ -1092,7 +1093,7 @@ Partial Class FormODM
         Me.GridColumn36.FieldName = "number"
         Me.GridColumn36.Name = "GridColumn36"
         Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 0
+        Me.GridColumn36.VisibleIndex = 1
         '
         'GridColumn37
         '
@@ -1100,18 +1101,18 @@ Partial Class FormODM
         Me.GridColumn37.FieldName = "employee_name"
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 1
+        Me.GridColumn37.VisibleIndex = 2
         Me.GridColumn37.Width = 416
         '
         'GridColumn38
         '
         Me.GridColumn38.Caption = "Created At"
-        Me.GridColumn38.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn38.DisplayFormat.FormatString = "dd MMMM yyyy H:mm"
         Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn38.FieldName = "created_date"
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 2
+        Me.GridColumn38.VisibleIndex = 3
         '
         'PanelControl4
         '
@@ -1337,6 +1338,14 @@ Partial Class FormODM
         Me.BViewHistoryList.TabIndex = 13
         Me.BViewHistoryList.Text = "view"
         '
+        'GridColumn50
+        '
+        Me.GridColumn50.Caption = "3PL"
+        Me.GridColumn50.FieldName = "comp_name"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 0
+        '
         'FormODM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1517,4 +1526,5 @@ Partial Class FormODM
     Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
