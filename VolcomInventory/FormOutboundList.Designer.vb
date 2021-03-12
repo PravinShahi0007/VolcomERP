@@ -33,6 +33,7 @@ Partial Class FormOutboundList
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
@@ -47,6 +48,7 @@ Partial Class FormOutboundList
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -60,8 +62,6 @@ Partial Class FormOutboundList
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BRefreshHistory = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOutbound.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -180,6 +180,14 @@ Partial Class FormOutboundList
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Combine Number"
+        Me.GridColumn18.FieldName = "combine_number"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 3
         '
         'GridColumn5
         '
@@ -310,6 +318,14 @@ Partial Class FormOutboundList
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 4
         '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Combine number"
+        Me.GridColumn19.FieldName = "combine_number"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
+        '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Online Order Number"
@@ -429,22 +445,6 @@ Partial Class FormOutboundList
         Me.BRefreshHistory.Size = New System.Drawing.Size(112, 42)
         Me.BRefreshHistory.TabIndex = 3
         Me.BRefreshHistory.Text = "Refresh"
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Combine Number"
-        Me.GridColumn18.FieldName = "combine_number"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 3
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Combine number"
-        Me.GridColumn19.FieldName = "combine_number"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 3
         '
         'FormOutboundList
         '
