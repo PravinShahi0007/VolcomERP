@@ -11,7 +11,8 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT a.id_virtual_acc_trans,a.id_virtual_acc, va.bank, a.number,a.transaction_date, a.generate_date, SUM(d.amount) AS `amount`, SUM(d.transaction_fee) AS `transaction_fee`,
         (SUM(d.amount)-SUM(d.transaction_fee)) AS `nett`,
-        IFNULL(bap.jum_bap,0) AS `jum_bap`
+        IFNULL(bap.jum_bap,0) AS `jum_bap`,
+        stt.id_report_status, stt.report_status
         FROM tb_virtual_acc_trans a 
         INNER JOIN tb_virtual_acc va ON va.id_virtual_acc = a.id_virtual_acc
         INNER JOIN tb_virtual_acc_trans_det d ON d.id_virtual_acc_trans = a.id_virtual_acc_trans
@@ -21,6 +22,7 @@
             WHERE !ISNULL(d.id_list_payout_ver)
             GROUP BY d.id_virtual_acc_trans
         ) bap ON bap.id_virtual_acc_trans = a.id_virtual_acc_trans
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = a.id_report_status
         GROUP BY a.id_virtual_acc_trans "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCVA.DataSource = data

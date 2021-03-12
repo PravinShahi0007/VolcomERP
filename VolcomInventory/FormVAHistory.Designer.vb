@@ -34,6 +34,7 @@ Partial Class FormVAHistory
         Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntransaction_fee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnett = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,7 +99,7 @@ Partial Class FormVAHistory
         '
         'GVVA
         '
-        Me.GVVA.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_virtual_acc_trans, Me.GridColumntransaction_date, Me.GridColumnbank, Me.GridColumngenerate_date, Me.GridColumnamountva, Me.GridColumnnumber, Me.GridColumntransaction_fee, Me.GridColumnnett})
+        Me.GVVA.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_virtual_acc_trans, Me.GridColumntransaction_date, Me.GridColumnbank, Me.GridColumngenerate_date, Me.GridColumnamountva, Me.GridColumnnumber, Me.GridColumntransaction_fee, Me.GridColumnnett, Me.GridColumnreport_status})
         Me.GVVA.GridControl = Me.GCVA
         Me.GVVA.Name = "GVVA"
         Me.GVVA.OptionsBehavior.ReadOnly = True
@@ -178,6 +179,14 @@ Partial Class FormVAHistory
         Me.GridColumnnett.Visible = True
         Me.GridColumnnett.VisibleIndex = 5
         '
+        'GridColumnreport_status
+        '
+        Me.GridColumnreport_status.Caption = "Status"
+        Me.GridColumnreport_status.FieldName = "report_status"
+        Me.GridColumnreport_status.Name = "GridColumnreport_status"
+        Me.GridColumnreport_status.Visible = True
+        Me.GridColumnreport_status.VisibleIndex = 6
+        '
         'FormVAHistory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -213,4 +222,5 @@ Partial Class FormVAHistory
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumntransaction_fee As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnett As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
 End Class
