@@ -62,6 +62,8 @@ Partial Class FormOutboundList
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BRefreshHistory = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOutbound.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -139,7 +141,7 @@ Partial Class FormOutboundList
         '
         'GVOutbound
         '
-        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn6, Me.GridColumn18, Me.GridColumn5, Me.GridColumn3})
+        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn20, Me.GridColumn2, Me.GridColumn4, Me.GridColumn6, Me.GridColumn18, Me.GridColumn5, Me.GridColumn3})
         Me.GVOutbound.GridControl = Me.GCOutbound
         Me.GVOutbound.Name = "GVOutbound"
         Me.GVOutbound.OptionsBehavior.Editable = False
@@ -152,7 +154,7 @@ Partial Class FormOutboundList
         Me.GridColumn1.FieldName = "ol_number"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
+        Me.GridColumn1.VisibleIndex = 2
         Me.GridColumn1.Width = 98
         '
         'GridColumn2
@@ -161,7 +163,7 @@ Partial Class FormOutboundList
         Me.GridColumn2.FieldName = "comp_name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 257
         '
         'GridColumn4
@@ -170,7 +172,7 @@ Partial Class FormOutboundList
         Me.GridColumn4.FieldName = "sub_district"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.VisibleIndex = 3
         Me.GridColumn4.Width = 327
         '
         'GridColumn6
@@ -179,7 +181,7 @@ Partial Class FormOutboundList
         Me.GridColumn6.FieldName = "sdo_number"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 5
         '
         'GridColumn18
         '
@@ -187,7 +189,7 @@ Partial Class FormOutboundList
         Me.GridColumn18.FieldName = "combine_number"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 3
+        Me.GridColumn18.VisibleIndex = 4
         '
         'GridColumn5
         '
@@ -195,7 +197,7 @@ Partial Class FormOutboundList
         Me.GridColumn5.FieldName = "online_order_number"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 6
         '
         'GridColumn3
         '
@@ -203,7 +205,7 @@ Partial Class FormOutboundList
         Me.GridColumn3.FieldName = "qty"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 6
+        Me.GridColumn3.VisibleIndex = 7
         Me.GridColumn3.Width = 132
         '
         'BRefresh
@@ -276,7 +278,7 @@ Partial Class FormOutboundList
         '
         'GVHistory
         '
-        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn19, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn17, Me.GridColumn15, Me.GridColumn16})
+        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn21, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn19, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn17, Me.GridColumn15, Me.GridColumn16})
         Me.GVHistory.GridControl = Me.GCHistory
         Me.GVHistory.Name = "GVHistory"
         Me.GVHistory.OptionsBehavior.Editable = False
@@ -289,7 +291,7 @@ Partial Class FormOutboundList
         Me.GridColumn7.FieldName = "ol_number"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.VisibleIndex = 2
         Me.GridColumn7.Width = 98
         '
         'GridColumn8
@@ -307,7 +309,7 @@ Partial Class FormOutboundList
         Me.GridColumn9.FieldName = "sub_district"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
+        Me.GridColumn9.VisibleIndex = 3
         Me.GridColumn9.Width = 327
         '
         'GridColumn10
@@ -316,7 +318,7 @@ Partial Class FormOutboundList
         Me.GridColumn10.FieldName = "sdo_number"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 4
+        Me.GridColumn10.VisibleIndex = 5
         '
         'GridColumn19
         '
@@ -324,7 +326,7 @@ Partial Class FormOutboundList
         Me.GridColumn19.FieldName = "combine_number"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 3
+        Me.GridColumn19.VisibleIndex = 4
         '
         'GridColumn11
         '
@@ -332,7 +334,7 @@ Partial Class FormOutboundList
         Me.GridColumn11.FieldName = "online_order_number"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 5
+        Me.GridColumn11.VisibleIndex = 6
         '
         'GridColumn12
         '
@@ -340,7 +342,7 @@ Partial Class FormOutboundList
         Me.GridColumn12.FieldName = "qty"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 6
+        Me.GridColumn12.VisibleIndex = 7
         Me.GridColumn12.Width = 132
         '
         'GridColumn13
@@ -349,7 +351,7 @@ Partial Class FormOutboundList
         Me.GridColumn13.FieldName = "report_status"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 7
+        Me.GridColumn13.VisibleIndex = 8
         '
         'GridColumn14
         '
@@ -357,7 +359,7 @@ Partial Class FormOutboundList
         Me.GridColumn14.FieldName = "draft_manifest"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 8
+        Me.GridColumn14.VisibleIndex = 9
         '
         'GridColumn17
         '
@@ -365,7 +367,7 @@ Partial Class FormOutboundList
         Me.GridColumn17.FieldName = "awbill_no"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 9
+        Me.GridColumn17.VisibleIndex = 10
         '
         'GridColumn15
         '
@@ -373,7 +375,7 @@ Partial Class FormOutboundList
         Me.GridColumn15.FieldName = "scan_manifest"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 10
+        Me.GridColumn15.VisibleIndex = 11
         '
         'GridColumn16
         '
@@ -381,7 +383,7 @@ Partial Class FormOutboundList
         Me.GridColumn16.FieldName = "print_manifest"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 11
+        Me.GridColumn16.VisibleIndex = 12
         '
         'PanelControl2
         '
@@ -445,6 +447,22 @@ Partial Class FormOutboundList
         Me.BRefreshHistory.Size = New System.Drawing.Size(112, 42)
         Me.BRefreshHistory.TabIndex = 3
         Me.BRefreshHistory.Text = "Refresh"
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Code"
+        Me.GridColumn20.FieldName = "comp_number"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Code"
+        Me.GridColumn21.FieldName = "comp_number"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 1
         '
         'FormOutboundList
         '
@@ -523,4 +541,6 @@ Partial Class FormOutboundList
     Friend WithEvents CancelOutboundLabelToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

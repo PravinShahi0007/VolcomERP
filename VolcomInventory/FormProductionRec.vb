@@ -526,11 +526,15 @@ WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a
     End Sub
 
     Sub load_weight_pps()
-        Dim q As String = "SELECT pps.`created_date`,pps.`id_product_weight_pps`,pps.`number`,pps.`note`,emp.`employee_name`,sts.report_status
+        Dim q As String = "SELECT pps.`created_date`,pps.`id_product_weight_pps`,pps.`number`,pps.`note`,emp.`employee_name`,sts.report_status,GROUP_CONCAT(DISTINCT dsg.design_display_name) AS design_name
 FROM `tb_product_weight_pps` pps
+INNER JOIN tb_product_weight_pps_det ppsd ON ppsd.id_product_weight_pps=pps.id_product_weight_pps
+INNER JOIN tb_m_product p ON p.id_product=ppsd.id_product
+INNER JOIN tb_m_design dsg ON dsg.id_design=p.id_design
 INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+GROUP BY pps.id_product_weight_pps
 ORDER BY pps.id_product_weight_pps DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCTimbang.DataSource = dt

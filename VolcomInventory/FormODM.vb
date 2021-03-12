@@ -402,12 +402,14 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
     End Sub
 
     Sub load_print_list()
-        Dim q As String = "SELECT od.id_odm_print,od.`number`,emp.employee_name,od.`created_date`
+        Dim q As String = "SELECT od.id_odm_print,od.`number`,emp.employee_name,od.`created_date`,c.comp_name
 FROM
 `tb_odm_print` od
 INNER JOIN tb_m_user usr ON usr.`id_user`=od.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-WHERE od.id_3pl='" & SLE3PLPrint.EditValue.ToString & "'"
+INNER JOIN tb_m_comp c ON od.id_3pl=c.id_comp
+WHERE od.id_3pl='" & SLE3PLPrint.EditValue.ToString & "'
+ORDER BY od.id_odm_print DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCListODM.DataSource = dt
         GVListODM.BestFitColumns()
