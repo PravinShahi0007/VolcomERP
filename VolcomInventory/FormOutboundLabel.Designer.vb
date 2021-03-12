@@ -52,7 +52,6 @@ Partial Class FormOutboundLabel
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOffline = New DevExpress.XtraTab.XtraTabPage()
@@ -342,7 +341,7 @@ Partial Class FormOutboundLabel
         '
         'GVDOERP
         '
-        Me.GVDOERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumnIdDel, Me.GridColumncombine_number, Me.GridColumnreport_status})
+        Me.GVDOERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumnIdDel, Me.GridColumnreport_status})
         Me.GVDOERP.GridControl = Me.GCDOERP
         Me.GVDOERP.Name = "GVDOERP"
         Me.GVDOERP.OptionsCustomization.AllowColumnMoving = False
@@ -374,7 +373,7 @@ Partial Class FormOutboundLabel
         Me.GridColumn33.OptionsColumn.AllowEdit = False
         Me.GridColumn33.OptionsColumn.AllowFocus = False
         Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 3
+        Me.GridColumn33.VisibleIndex = 2
         Me.GridColumn33.Width = 119
         '
         'GridColumn34
@@ -385,7 +384,7 @@ Partial Class FormOutboundLabel
         Me.GridColumn34.OptionsColumn.AllowEdit = False
         Me.GridColumn34.OptionsColumn.AllowFocus = False
         Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 4
+        Me.GridColumn34.VisibleIndex = 3
         Me.GridColumn34.Width = 83
         '
         'GridColumn35
@@ -396,7 +395,7 @@ Partial Class FormOutboundLabel
         Me.GridColumn35.OptionsColumn.AllowEdit = False
         Me.GridColumn35.OptionsColumn.AllowFocus = False
         Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 5
+        Me.GridColumn35.VisibleIndex = 4
         Me.GridColumn35.Width = 201
         '
         'GridColumn36
@@ -407,7 +406,7 @@ Partial Class FormOutboundLabel
         Me.GridColumn36.OptionsColumn.AllowEdit = False
         Me.GridColumn36.OptionsColumn.AllowFocus = False
         Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 6
+        Me.GridColumn36.VisibleIndex = 5
         Me.GridColumn36.Width = 86
         '
         'GridColumn37
@@ -435,22 +434,13 @@ Partial Class FormOutboundLabel
         Me.GridColumnIdDel.FieldName = "id_pl_sales_order_del"
         Me.GridColumnIdDel.Name = "GridColumnIdDel"
         '
-        'GridColumncombine_number
-        '
-        Me.GridColumncombine_number.Caption = "Combine No"
-        Me.GridColumncombine_number.FieldName = "combine_number"
-        Me.GridColumncombine_number.Name = "GridColumncombine_number"
-        Me.GridColumncombine_number.OptionsColumn.AllowEdit = False
-        Me.GridColumncombine_number.Visible = True
-        Me.GridColumncombine_number.VisibleIndex = 2
-        '
         'GridColumnreport_status
         '
         Me.GridColumnreport_status.Caption = "Status"
         Me.GridColumnreport_status.FieldName = "report_status"
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
-        Me.GridColumnreport_status.VisibleIndex = 7
+        Me.GridColumnreport_status.VisibleIndex = 6
         '
         'XtraTabControl1
         '
@@ -863,7 +853,6 @@ Partial Class FormOutboundLabel
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnIdDel As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumncombine_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SLEComp As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
