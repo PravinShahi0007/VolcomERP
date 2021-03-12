@@ -10,7 +10,7 @@
             q_where += " AND c.id_comp='" + addSlashes(SLEComp.EditValue.ToString) + "'"
         End If
 
-        Dim query As String = "SELECT 'yes' AS is_check,d.id_pl_sales_order_del, d.pl_sales_order_del_number AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
+        Dim query As String = "SELECT 'yes' AS is_check,d.id_combine,d.id_pl_sales_order_del, IFNULL(comb.combine_number,d.pl_sales_order_del_number)  AS `do_no`, comb.combine_number, d.pl_sales_order_del_date AS `scan_date`, 
 c.comp_number AS `store_number`,c.id_commerce_type,c.id_sub_district,c.id_comp, c.comp_name AS `store_name`, SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 'no' AS `is_check`, stt.report_status,so.shipping_city,c.id_commerce_type
 FROM tb_pl_sales_order_del d
 INNER JOIN tb_sales_order so ON so.id_sales_order=d.id_sales_order
@@ -22,7 +22,7 @@ LEFT JOIN tb_wh_awbill_det awb ON awb.id_pl_sales_order_del = d.id_pl_sales_orde
 LEFT JOIN tb_wh_awbill awbh ON awbh.id_awbill = awb.id_awbill
 INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = d.id_report_status
 WHERE d.`id_report_status`=1 AND so.is_export_awb=2  AND ISNULL(awbh.id_awbill) " & q_where & "
-GROUP BY d.id_pl_sales_order_del 
+GROUP BY IFNULL(d.`id_combine`,d.id_pl_sales_order_del) 
 ORDER BY d.id_pl_sales_order_del DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GVDOERP.ActiveFilterString = ""
@@ -83,27 +83,39 @@ WHERE awbd.`id_pl_sales_order_del` IN (" & id & ") "
 
                 query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,id_ol_store_cust_ret,do_no,qty) VALUES"
                 For i As Integer = 0 To GVDOERP.RowCount - 1
-                    Dim id_pl_sales_order_del As String = "NULL"
-                    Dim id_ol_store_cust_ret As String = "NULL"
-                    Try
-                        id_pl_sales_order_del = GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString
-                    Catch ex As Exception
-                    End Try
-                    Try
-                        id_ol_store_cust_ret = GVDOERP.GetRowCellValue(i, "id_ol_store_cust_ret").ToString
-                    Catch ex As Exception
-                    End Try
-                    If id_pl_sales_order_del = "" Then
-                        id_pl_sales_order_del = "NULL"
-                    End If
-                    If id_ol_store_cust_ret = "" Then
-                        id_ol_store_cust_ret = "NULL"
-                    End If
+                    If GVDOERP.GetRowCellValue(i, "id_combine").ToString = "" Then
+                        Dim id_pl_sales_order_del As String = "NULL"
+                        Dim id_ol_store_cust_ret As String = "NULL"
+                        Try
+                            id_pl_sales_order_del = GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                        Catch ex As Exception
+                        End Try
+                        Try
+                            id_ol_store_cust_ret = GVDOERP.GetRowCellValue(i, "id_ol_store_cust_ret").ToString
+                        Catch ex As Exception
+                        End Try
+                        If id_pl_sales_order_del = "" Then
+                            id_pl_sales_order_del = "NULL"
+                        End If
+                        If id_ol_store_cust_ret = "" Then
+                            id_ol_store_cust_ret = "NULL"
+                        End If
 
-                    If Not i = 0 Then
-                        query += ","
+                        If Not i = 0 Then
+                            query += ","
+                        End If
+                        query += "('" + id_awb + "'," + id_pl_sales_order_del + "," + id_ol_store_cust_ret + ",'" + GVDOERP.GetRowCellValue(i, "do_no").ToString + "','" + GVDOERP.GetRowCellValue(i, "qty").ToString + "')"
+                    Else
+                        Dim q As String = "SELECT id_pl_sales_order_del,pl_sales_order_del_number FROM tb_pl_sales_order_del WHERE id_combine='" & GVDOERP.GetRowCellValue(i, "id_combine").ToString & "'"
+                        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                        For j = 0 To dt.Rows.Count - 1
+                            If Not i + j = 0 Then
+                                query += ","
+                            End If
+                            ' INI QTY salah perbaiki
+                            query += "('" + id_awb + "'," + dt.Rows(j)("id_pl_sales_order_del").ToString + ",NULL,'" + dt.Rows(j)("pl_sales_order_del_number").ToString + "','" + GVDOERP.GetRowCellValue(i, "qty").ToString + "')"
+                        Next
                     End If
-                    query += "('" + id_awb + "'," + id_pl_sales_order_del + "," + id_ol_store_cust_ret + ",'" + GVDOERP.GetRowCellValue(i, "do_no").ToString + "','" + GVDOERP.GetRowCellValue(i, "qty").ToString + "')"
                 Next
                 execute_non_query(query, True, "", "", "", "")
 
