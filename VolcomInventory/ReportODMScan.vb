@@ -234,21 +234,21 @@
                     rec_by.Borders = DevExpress.XtraPrinting.BorderSide.Left
                 End If
 
-                'ttd
-                Dim ttd As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(11)
+                'rec_date
+                Dim rec_date As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(11)
 
-                ttd.Text = ""
-                ttd.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+                rec_date.Text = ""
+                rec_date.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
 
                 'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
                 '    width.RowSpan = rowspan_del_manifest
                 'End If
 
                 If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
-                    ttd.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                    rec_date.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
                 Else
-                    ttd.Text = ""
-                    ttd.Borders = DevExpress.XtraPrinting.BorderSide.Left
+                    rec_date.Text = ""
+                    rec_date.Borders = DevExpress.XtraPrinting.BorderSide.Left
                 End If
 
                 'remark
