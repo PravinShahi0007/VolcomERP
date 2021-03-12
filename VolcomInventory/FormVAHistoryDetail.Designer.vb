@@ -32,16 +32,21 @@ Partial Class FormVAHistoryDetail
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsales_order_ol_shop_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncustomer_name = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsettlement_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpay_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandPaymentGate = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnpayment = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandERP = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumninvoice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnship_invoice_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnother_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumninvoice_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumntransaction_fee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnreconcile_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnid_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -50,11 +55,9 @@ Partial Class FormVAHistoryDetail
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.BandedGridColumntransaction_fee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandPaymentGate = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandERP = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtBank.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,6 +72,7 @@ Partial Class FormVAHistoryDetail
         Me.PanelControl2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -76,6 +80,7 @@ Partial Class FormVAHistoryDetail
         Me.PanelControl1.Controls.Add(Me.BtnMark)
         Me.PanelControl1.Controls.Add(Me.BtnClose)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
+        Me.PanelControl1.Controls.Add(Me.BtnCancell)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 409)
         Me.PanelControl1.Name = "PanelControl1"
@@ -96,7 +101,7 @@ Partial Class FormVAHistoryDetail
         '
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(638, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(512, 2)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(90, 43)
         Me.BtnClose.TabIndex = 1
@@ -106,7 +111,7 @@ Partial Class FormVAHistoryDetail
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(728, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(602, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(90, 43)
         Me.BtnPrint.TabIndex = 0
@@ -173,11 +178,11 @@ Partial Class FormVAHistoryDetail
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 69)
+        Me.GCData.Location = New System.Drawing.Point(0, 98)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1})
-        Me.GCData.Size = New System.Drawing.Size(820, 340)
+        Me.GCData.Size = New System.Drawing.Size(820, 311)
         Me.GCData.TabIndex = 2
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -193,6 +198,17 @@ Partial Class FormVAHistoryDetail
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnno)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnsales_order_ol_shop_number)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumncustomer_name)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnsettlement_date)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnpay_type)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 429
         '
         'BandedGridColumnno
         '
@@ -234,6 +250,14 @@ Partial Class FormVAHistoryDetail
         Me.BandedGridColumnpay_type.Name = "BandedGridColumnpay_type"
         Me.BandedGridColumnpay_type.Visible = True
         '
+        'gridBandPaymentGate
+        '
+        Me.gridBandPaymentGate.Caption = "Payment Gateway"
+        Me.gridBandPaymentGate.Columns.Add(Me.BandedGridColumnpayment)
+        Me.gridBandPaymentGate.Name = "gridBandPaymentGate"
+        Me.gridBandPaymentGate.VisibleIndex = 1
+        Me.gridBandPaymentGate.Width = 135
+        '
         'BandedGridColumnpayment
         '
         Me.BandedGridColumnpayment.Caption = "Amount"
@@ -244,6 +268,18 @@ Partial Class FormVAHistoryDetail
         Me.BandedGridColumnpayment.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "payment", "{0:N2}")})
         Me.BandedGridColumnpayment.Visible = True
         Me.BandedGridColumnpayment.Width = 135
+        '
+        'gridBandERP
+        '
+        Me.gridBandERP.Caption = "ERP"
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumninvoice)
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumnship_invoice_number)
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumnother_price)
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumninvoice_amount)
+        Me.gridBandERP.Columns.Add(Me.BandedGridColumntransaction_fee)
+        Me.gridBandERP.Name = "gridBandERP"
+        Me.gridBandERP.VisibleIndex = 2
+        Me.gridBandERP.Width = 514
         '
         'BandedGridColumninvoice
         '
@@ -283,6 +319,24 @@ Partial Class FormVAHistoryDetail
         Me.BandedGridColumninvoice_amount.Visible = True
         Me.BandedGridColumninvoice_amount.Width = 99
         '
+        'BandedGridColumntransaction_fee
+        '
+        Me.BandedGridColumntransaction_fee.Caption = "Transaction Fee"
+        Me.BandedGridColumntransaction_fee.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumntransaction_fee.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumntransaction_fee.FieldName = "transaction_fee"
+        Me.BandedGridColumntransaction_fee.Name = "BandedGridColumntransaction_fee"
+        Me.BandedGridColumntransaction_fee.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "transaction_fee", "{0:N2}")})
+        Me.BandedGridColumntransaction_fee.Visible = True
+        Me.BandedGridColumntransaction_fee.Width = 87
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnreconcile_number)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 3
+        Me.gridBand2.Width = 75
+        '
         'BandedGridColumnreconcile_number
         '
         Me.BandedGridColumnreconcile_number.Caption = "Reconcile No"
@@ -318,19 +372,21 @@ Partial Class FormVAHistoryDetail
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(820, 69)
+        Me.PanelControl2.Size = New System.Drawing.Size(820, 98)
         Me.PanelControl2.TabIndex = 3
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.LabelControl5)
         Me.Panel1.Controls.Add(Me.LabelControl4)
+        Me.Panel1.Controls.Add(Me.LEReportStatus)
         Me.Panel1.Controls.Add(Me.TxtNumber)
         Me.Panel1.Controls.Add(Me.DECreated)
         Me.Panel1.Controls.Add(Me.LabelControl2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel1.Location = New System.Drawing.Point(506, 2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(312, 65)
+        Me.Panel1.Size = New System.Drawing.Size(312, 94)
         Me.Panel1.TabIndex = 0
         '
         'LabelControl4
@@ -349,54 +405,32 @@ Partial Class FormVAHistoryDetail
         Me.TxtNumber.Size = New System.Drawing.Size(201, 20)
         Me.TxtNumber.TabIndex = 7
         '
-        'BandedGridColumntransaction_fee
+        'BtnCancell
         '
-        Me.BandedGridColumntransaction_fee.Caption = "Transaction Fee"
-        Me.BandedGridColumntransaction_fee.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumntransaction_fee.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumntransaction_fee.FieldName = "transaction_fee"
-        Me.BandedGridColumntransaction_fee.Name = "BandedGridColumntransaction_fee"
-        Me.BandedGridColumntransaction_fee.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "transaction_fee", "{0:N2}")})
-        Me.BandedGridColumntransaction_fee.Visible = True
-        Me.BandedGridColumntransaction_fee.Width = 87
+        Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
+        Me.BtnCancell.Location = New System.Drawing.Point(692, 2)
+        Me.BtnCancell.Name = "BtnCancell"
+        Me.BtnCancell.Size = New System.Drawing.Size(126, 43)
+        Me.BtnCancell.TabIndex = 12
+        Me.BtnCancell.Text = "Cancell Payout"
         '
-        'GridBand1
+        'LabelControl5
         '
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnno)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnsales_order_ol_shop_number)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumncustomer_name)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnsettlement_date)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnpay_type)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 429
+        Me.LabelControl5.Location = New System.Drawing.Point(15, 62)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl5.TabIndex = 10
+        Me.LabelControl5.Text = "Status"
         '
-        'gridBandPaymentGate
+        'LEReportStatus
         '
-        Me.gridBandPaymentGate.Caption = "Payment Gateway"
-        Me.gridBandPaymentGate.Columns.Add(Me.BandedGridColumnpayment)
-        Me.gridBandPaymentGate.Name = "gridBandPaymentGate"
-        Me.gridBandPaymentGate.VisibleIndex = 1
-        Me.gridBandPaymentGate.Width = 135
-        '
-        'gridBandERP
-        '
-        Me.gridBandERP.Caption = "ERP"
-        Me.gridBandERP.Columns.Add(Me.BandedGridColumninvoice)
-        Me.gridBandERP.Columns.Add(Me.BandedGridColumnship_invoice_number)
-        Me.gridBandERP.Columns.Add(Me.BandedGridColumnother_price)
-        Me.gridBandERP.Columns.Add(Me.BandedGridColumninvoice_amount)
-        Me.gridBandERP.Columns.Add(Me.BandedGridColumntransaction_fee)
-        Me.gridBandERP.Name = "gridBandERP"
-        Me.gridBandERP.VisibleIndex = 2
-        Me.gridBandERP.Width = 514
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnreconcile_number)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 3
-        Me.gridBand2.Width = 75
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(98, 59)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Size = New System.Drawing.Size(201, 20)
+        Me.LEReportStatus.TabIndex = 9
         '
         'FormVAHistoryDetail
         '
@@ -427,6 +461,7 @@ Partial Class FormVAHistoryDetail
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -466,4 +501,7 @@ Partial Class FormVAHistoryDetail
     Friend WithEvents gridBandERP As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumntransaction_fee As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BtnCancell As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
 End Class
