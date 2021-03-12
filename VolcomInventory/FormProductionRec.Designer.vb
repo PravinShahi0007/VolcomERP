@@ -73,6 +73,7 @@ Partial Class FormProductionRec
         Me.GridColumnQtyCreated = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.XTPListReceive = New DevExpress.XtraTab.XtraTabPage()
@@ -136,7 +137,7 @@ Partial Class FormProductionRec
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BNewTimbang = New DevExpress.XtraEditors.SimpleButton()
         Me.BRefreshDisp = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPListPO.SuspendLayout()
         CType(Me.SCCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCRec.SuspendLayout()
@@ -664,6 +665,20 @@ Partial Class FormProductionRec
         Me.ColNote.VisibleIndex = 8
         Me.ColNote.Width = 136
         '
+        'GridColumn16
+        '
+        Me.GridColumn16.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn16.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn16.Caption = "Weight (gram)"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "qc_weight"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 4
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -1141,7 +1156,7 @@ Partial Class FormProductionRec
         '
         'GVTimbang
         '
-        Me.GVTimbang.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
+        Me.GVTimbang.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20, Me.GridColumn17, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
         Me.GVTimbang.GridControl = Me.GCTimbang
         Me.GVTimbang.Name = "GVTimbang"
         Me.GVTimbang.OptionsBehavior.AutoExpandAllGroups = True
@@ -1169,7 +1184,7 @@ Partial Class FormProductionRec
         Me.GridColumn21.FieldName = "employee_name"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 1
+        Me.GridColumn21.VisibleIndex = 2
         '
         'GridColumn22
         '
@@ -1179,7 +1194,7 @@ Partial Class FormProductionRec
         Me.GridColumn22.FieldName = "created_date"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 2
+        Me.GridColumn22.VisibleIndex = 3
         '
         'GridColumn23
         '
@@ -1187,7 +1202,7 @@ Partial Class FormProductionRec
         Me.GridColumn23.FieldName = "report_status"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 3
+        Me.GridColumn23.VisibleIndex = 4
         '
         'GridColumn24
         '
@@ -1195,7 +1210,7 @@ Partial Class FormProductionRec
         Me.GridColumn24.FieldName = "note"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 4
+        Me.GridColumn24.VisibleIndex = 5
         '
         'PanelControl3
         '
@@ -1227,19 +1242,13 @@ Partial Class FormProductionRec
         Me.BRefreshDisp.TabIndex = 4
         Me.BRefreshDisp.Text = "Refresh"
         '
-        'GridColumn16
+        'GridColumn17
         '
-        Me.GridColumn16.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn16.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn16.Caption = "Weight (gram)"
-        Me.GridColumn16.DisplayFormat.FormatString = "N2"
-        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn16.FieldName = "qc_weight"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 4
+        Me.GridColumn17.Caption = "Design"
+        Me.GridColumn17.FieldName = "design_name"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
         '
         'FormProductionRec
         '
@@ -1421,4 +1430,5 @@ Partial Class FormProductionRec
     Friend WithEvents BRefreshDisp As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BNewTimbang As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

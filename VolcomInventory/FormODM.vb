@@ -408,7 +408,8 @@ FROM
 INNER JOIN tb_m_user usr ON usr.`id_user`=od.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_comp c ON od.id_3pl=c.id_comp
-WHERE od.id_3pl='" & SLE3PLPrint.EditValue.ToString & "'"
+WHERE od.id_3pl='" & SLE3PLPrint.EditValue.ToString & "'
+ORDER BY od.id_odm_print DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCListODM.DataSource = dt
         GVListODM.BestFitColumns()
