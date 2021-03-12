@@ -430,6 +430,7 @@
         IFNULL(del.id_pl_sales_order_del,0) AS `id_del`,del.pl_sales_order_del_number AS `del_number`, del.pl_sales_order_del_date AS `del_date`, del.report_status AS `del_status`, awb_del.awbill_no, awb_del.del_received_date, awb_del.del_received_by,
         IFNULL(ro.id_sales_return_order,0) AS `id_ro`, ro.sales_return_order_number AS `ro_number`, ro.sales_return_order_date as `ro_date`, ro.report_status AS `ro_status`,
         IFNULL(ret.id_sales_return,0) AS `id_ret`,ret.sales_return_number AS `ret_number`, ret.sales_return_date AS `ret_date`, ret.report_status AS `ret_status`,
+        ret.`ret_awb`, ret.`ret_rec_by_wh_date`, ret.`ret_pick_up_date`,
         IFNULL(inv.id_sales_pos,0) AS `id_inv`,inv.sales_pos_number AS `inv_number`, inv.sales_pos_date AS `inv_date`, inv.report_status AS `inv_status`,
         IFNULL(cn.id_sales_pos,0) AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn.report_status AS `cn_status`,
         IFNULL(rec_pay.id_rec_payment,0) AS `id_rec_pay`,rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
@@ -501,12 +502,15 @@
         ) ro ON ro.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
            SELECT retd.id_sales_return_order_det, retd.id_sales_return_det,
-           ret.id_sales_return, ret.sales_return_number, ret.sales_return_date, ret_stt.report_status 
+           ret.id_sales_return, ret.sales_return_number, ret.sales_return_date, ret_stt.report_status,
+           sj.awbill_no AS `ret_awb`, sj.rec_by_store_date AS `ret_rec_by_wh_date`, sj.pick_up_date AS `ret_pick_up_date`
            FROM tb_sales_return_det retd
            INNER JOIN tb_sales_return ret ON ret.id_sales_return = retd.id_sales_return
            INNER JOIN tb_lookup_report_status ret_stt ON ret_stt.id_report_status = ret.id_report_status
            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ret.id_store_contact_from
            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+           LEFT JOIN tb_wh_awbill_det_in sjd ON sjd.id_wh_awb_det = ret.id_wh_awb_det
+           LEFT JOIN tb_wh_awbill sj ON sj.id_awbill = sjd.id_awbill
            WHERE ret.id_report_status!=5 AND c.id_commerce_type=2
         ) ret ON ret.id_sales_return_order_det = ro.id_sales_return_order_det
         LEFT JOIN (
@@ -1408,7 +1412,7 @@
         SUM(rod.sales_return_order_det_qty) AS `qty_ror`,SUM(IFNULL(rts.sales_return_det_qty,0)) AS `qty_rts`, SUM(IFNULL(rrf.qty,0)) AS `qty_rrf`,
         (SUM(rod.sales_return_order_det_qty)-SUM(IFNULL(rts.sales_return_det_qty,0))-SUM(IFNULL(rrf.qty,0))) AS `qty_bal`,
         IF((SUM(rod.sales_return_order_det_qty)-SUM(IFNULL(rts.sales_return_det_qty,0))-SUM(IFNULL(rrf.qty,0)))>0 AND ro.id_prepare_status=1,'Open','Close') AS `status`,
-        ro.final_comment
+        ro.final_comment, rts.`ret_awb`, rts.`ret_rec_by_wh_date`, rts.`ret_pick_up_date`
         FROM tb_sales_return_order ro
         INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order = ro.id_sales_return_order
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ro.id_store_contact_to
@@ -1416,11 +1420,14 @@
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         INNER JOIN tb_sales_order so ON so.id_sales_order = ro.id_sales_order
         LEFT JOIN (
-	        SELECT rd.id_sales_return_order_det, rd.sales_return_det_qty
+	        SELECT rd.id_sales_return_order_det, rd.sales_return_det_qty,
+            sj.awbill_no AS `ret_awb`, sj.rec_by_store_date AS `ret_rec_by_wh_date`, sj.pick_up_date AS `ret_pick_up_date`
 	        FROM tb_sales_return r
 	        INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return
 	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = r.id_store_contact_from
 	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp AND c.id_commerce_type=2
+            LEFT JOIN tb_wh_awbill_det_in sjd ON sjd.id_wh_awb_det = r.id_wh_awb_det
+            LEFT JOIN tb_wh_awbill sj ON sj.id_awbill = sjd.id_awbill
 	        WHERE r.id_report_status=6
 	        GROUP BY rd.id_sales_return_order_det
         ) rts ON rts.id_sales_return_order_det = rod.id_sales_return_order_det
