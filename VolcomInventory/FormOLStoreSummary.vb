@@ -424,6 +424,7 @@
             cond_having = "AND (DATE(ol_store_date)>='" + upd_date_from_selected + "' AND DATE(ol_store_date)<='" + upd_date_until_selected + "') "
         End If
 
+        Dim id_vios As String = get_setup_field("shopify_comp_group").ToString
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
         IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, cg.description AS `store_group`,CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
         sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sz.code_detail_name AS `size`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note, sod.discount, prm.promo_name AS `promo`, sod.discount_code, prm.number AS `propose_promo_number`, prm.id_ol_promo_collection,
@@ -446,7 +447,7 @@
         so.sales_order_ol_shop_date,  so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
         so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, cg.lead_time_return, '' AS view_shipping_label,
         rrf.id_return_refuse, rrf.`return_refuse_number`, rrf.`return_refuse_date`,rrf.`return_refuse_status`,
-        ccn.`id_cancel_cn`, ccn.`cancel_cn_number`, ccn.`cancel_cn_date`, ccn.cancel_cn_status
+        ccn.`id_cancel_cn`, ccn.`cancel_cn_number`, ccn.`cancel_cn_date`, ccn.cancel_cn_status, vios.checkout_id
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
         LEFT JOIN tb_ol_promo_collection prm ON prm.id_ol_promo_collection = sod.id_ol_promo_collection
@@ -660,6 +661,12 @@
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = so.id_warehouse_contact_to
         INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
+        LEFT JOIN (
+            SELECT od.id AS `id_order`, od.checkout_id 
+            FROM tb_ol_store_order od 
+            WHERE od.id_comp_group=" + id_vios + "
+            GROUP BY od.id
+        ) vios ON vios.id_order = so.id_sales_order_ol_shop
         WHERE so.id_report_status=6  
         " + cond_date + "
         AND ISNULL(oc.id_sales_order) AND c.id_commerce_type=2 " + qcomp2 + " " + qcomp2_group + "
