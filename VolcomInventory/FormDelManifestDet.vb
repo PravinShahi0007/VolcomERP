@@ -355,8 +355,11 @@ SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text
 
             If type = "cancel" Then
                 Dim query As String = ""
-                query = "UPDATE tb_del_manifest SET id_report_status=5 WHERE id_del_manifest = " + id_del_manifest
+                query = "UPDATE tb_del_manifest SET id_report_status=5,awbill_no='' WHERE id_del_manifest = " + id_del_manifest
                 execute_non_query(query, True, "", "", "", "")
+                query = "DELETE FROM tb_del_manifest_det WHERE id_del_manifest = " + id_del_manifest
+                execute_non_query(query, True, "", "", "", "")
+
                 Close()
             Else
                 If continue_save Then

@@ -88,7 +88,7 @@
             '    awbill_no.RowSpan = rowspan_del_manifest
             'End If
 
-            If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
+            If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
                 awbill_no.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
             Else
                 awbill_no.Text = ""
