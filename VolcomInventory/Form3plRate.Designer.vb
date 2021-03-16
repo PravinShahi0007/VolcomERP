@@ -21,6 +21,7 @@ Partial Class Form3plRate
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form3plRate))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BImport = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEDelType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -65,6 +66,7 @@ Partial Class Form3plRate
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BPrint)
         Me.PanelControl1.Controls.Add(Me.BImport)
         Me.PanelControl1.Controls.Add(Me.SLEDelType)
         Me.PanelControl1.Controls.Add(Me.SLEInboundOutbound)
@@ -78,6 +80,14 @@ Partial Class Form3plRate
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1121, 45)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BPrint
+        '
+        Me.BPrint.Location = New System.Drawing.Point(667, 11)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(48, 23)
+        Me.BPrint.TabIndex = 17
+        Me.BPrint.Text = "print"
         '
         'BImport
         '
@@ -401,4 +411,5 @@ Partial Class Form3plRate
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BImport As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
 End Class
