@@ -270,19 +270,9 @@
                 LEFT JOIN tb_adjustment_og AS a ON a.id_adjustment = d.id_adjustment
                 WHERE d.id_adjustment = " + id_adjustment
 
-            execute_non_query(query, True, "", "", "", "")
+            'execute_non_query(query, True, "", "", "", "")
 
             'jurnal
-            'header
-            Dim id_user As String = execute_query("SELECT rm.id_user FROM tb_report_mark rm WHERE rm.report_mark_type = 241 AND rm.id_report = '" + id_adjustment + "' AND rm.id_report_status = 1", 0, True, "", "", "", "")
-
-            Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) VALUES ('', '" + TENumber.EditValue.ToString + "', '0', '" + id_user + "', NOW(), NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-
-            Dim id_acc_trans As String = execute_query(insert_jurnal, 0, True, "", "", "", "")
-
-            execute_non_query("CALL gen_number(" + id_acc_trans + ", 36)", True, "", "", "", "")
-
-            'detail
             Dim balance_debit As Decimal = 0.00
             Dim balance_credit As Decimal = 0.00
 
@@ -296,13 +286,25 @@
                 End If
             Next
 
-            Dim insert_detail As String = "INSERT INTO tb_a_acc_trans_det (id_acc_trans, id_acc, id_comp, vendor, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number) VALUES "
+            If Not balance_debit = 0.00 Or Not balance_credit = 0.00 Then
+                'header
+                Dim id_user As String = execute_query("SELECT rm.id_user FROM tb_report_mark rm WHERE rm.report_mark_type = 241 AND rm.id_report = '" + id_adjustment + "' AND rm.id_report_status = 1", 0, True, "", "", "", "")
 
-            insert_detail = insert_detail + "('" + id_acc_trans + "', '3508', '1', '000', " + decimalSQL(balance_credit) + ", " + decimalSQL(balance_debit) + ", '" + SLUEType.Text + " OG', 241, '" + id_adjustment + "', '" + TENumber.EditValue.ToString + "'), "
+                Dim insert_jurnal As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) VALUES ('', '" + TENumber.EditValue.ToString + "', '0', '" + id_user + "', NOW(), NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
 
-            insert_detail = insert_detail + "('" + id_acc_trans + "', '475', '1', '000', " + decimalSQL(balance_debit) + ", " + decimalSQL(balance_credit) + ", '" + SLUEType.Text + " OG', 241, '" + id_adjustment + "', '" + TENumber.EditValue.ToString + "')"
+                Dim id_acc_trans As String = execute_query(insert_jurnal, 0, True, "", "", "", "")
 
-            execute_non_query(insert_detail, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_acc_trans + ", 36)", True, "", "", "", "")
+
+                'detail
+                Dim insert_detail As String = "INSERT INTO tb_a_acc_trans_det (id_acc_trans, id_acc, id_comp, vendor, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number) VALUES "
+
+                insert_detail = insert_detail + "('" + id_acc_trans + "', '3508', '1', '000', " + decimalSQL(balance_credit) + ", " + decimalSQL(balance_debit) + ", '" + SLUEType.Text + " OG', 241, '" + id_adjustment + "', '" + TENumber.EditValue.ToString + "'), "
+
+                insert_detail = insert_detail + "('" + id_acc_trans + "', '475', '1', '000', " + decimalSQL(balance_debit) + ", " + decimalSQL(balance_credit) + ", '" + SLUEType.Text + " OG', 241, '" + id_adjustment + "', '" + TENumber.EditValue.ToString + "')"
+
+                execute_non_query(insert_detail, True, "", "", "", "")
+            End If
         End If
     End Sub
 
