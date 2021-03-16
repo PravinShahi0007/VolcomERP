@@ -112,7 +112,7 @@ WHERE id_awbill='" + id_awb + "'"
         'Approve DO
         If SLEDelType.EditValue = Nothing Then
             warningCustom("Please select delivery type !")
-        ElseIf TEActWeight.EditValue <= 0 Then
+        ElseIf TEActWeight.EditValue <= 0 And PCWeight.Visible = True Then
             warningCustom("Please input weight")
         Else
             If SearchLookUpEdit1View.GetFocusedRowCellValue("is_no_weight").ToString = "2" And (TEActWeight.EditValue + TEDimWeight.EditValue <= 0) Then
