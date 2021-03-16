@@ -222,11 +222,13 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         If opt = "zero" Then
             zero_filter = ""
         Else
-            zero_filter = " HAVING qty_beg>0 OR qty_rec>0 OR qty_used>0 OR qty_rem>0 "
+            zero_filter = " HAVING qty_beg>0 OR amount_beg!=0 OR qty_rec>0 OR qty_used>0 OR qty_rem>0 "
         End If
 
         Dim q_unit As String = ""
         Dim q_where_unit As String = ""
+        Dim q_selisih_unit As String = ""
+
         If Not SLEUnit.EditValue.ToString = "0" Then
             If SLEUnit.EditValue.ToString = "1" Then
                 q_unit = " LEFT JOIN tb_m_departement ON tb_m_departement.id_departement=tb_storage_item.id_departement AND tb_m_departement.`id_coa_tag`='1' "
@@ -234,6 +236,8 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             Else
                 q_unit = " INNER JOIN tb_m_departement ON tb_m_departement.id_departement=tb_storage_item.id_departement AND tb_m_departement.`id_coa_tag`='" & SLEUnit.EditValue.ToString & "' "
             End If
+
+            q_selisih_unit = " AND savg.id_coa_tag='" & SLEUnit.EditValue.ToString & "'"
         End If
 
         Dim q As String = "SET @start_date='" & date_start & "';
@@ -254,14 +258,14 @@ LEFT JOIN
 	-- begining
 	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_begs,MIN(storage_item_datetime) as min_date
 	-- ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`) AS amount_begs
-    ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty))*getAvgCostDate(`id_item`,DATE_SUB(@start_date, INTERVAL 1 DAY)) AS amount_begs
+    ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty))*getAvgCostDate(`id_item`,DATE_SUB(@start_date, INTERVAL 1 DAY))+IFNULL(get_amount_selisih_beg(id_item,@start_date),0) AS amount_begs
 	-- ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`)/SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS harga_satuan_begs
 	,getAvgCostDate(`id_item`,DATE_SUB(@start_date, INTERVAL 1 DAY)) AS harga_satuan_begs
     FROM `tb_storage_item` 
      " & q_unit & "
 	WHERE DATE(storage_item_datetime)<@start_date AND NOT report_mark_type='154' AND NOT report_mark_type='163' " & q_where_unit & "
 	GROUP BY `id_item`
-	HAVING qty_begs!=0
+	HAVING qty_begs!=0 OR IFNULL(get_amount_selisih_beg(id_item,@start_date),0)!=0
 )beg ON beg.id_item=i.`id_item`
 LEFT JOIN (
 	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_rec,MIN(storage_item_datetime) AS min_date
@@ -320,7 +324,22 @@ LEFT JOIN
 	WHERE DATE(storage_item_datetime)<=@end_date " & q_where_unit & "
 	GROUP BY `id_item`
 )rem_book ON rem_book.id_item=i.`id_item`
-" & zero_filter
+" & zero_filter & "
+UNION ALL
+SELECT i.`id_item`,itc.item_cat,date_reff AS min_date,uom.uom,CONCAT('Selisih Pembulatan ',i.`item_desc`) AS item_desc
+,0 AS qty_beg,0  AS harga_satuan_beg,0  AS amount_beg
+,0 AS qty_rec,0 AS harga_satuan_rec,SUM(IF(savg.`id_type`=1,savg.`values`,0)) AS amount_rec
+,0 AS qty_used,0  AS harga_satuan_used,0  AS amount_used
+,0 AS qty_rem,0 AS harga_satuan_rem,SUM(savg.`values`) AS amount_rem
+,0 AS qty_req,0 AS harga_satuan_req,0 AS amount_req
+,0 AS qty_rem_book,0 AS harga_satuan_rem_book,0 AS amount_rem_book
+FROM tb_storage_item_selisih_avg savg
+INNER JOIN tb_item i ON i.`id_item`=savg.`id_item`
+INNER JOIN tb_item_cat itc ON itc.id_item_cat=i.id_item_cat
+INNER JOIN tb_m_uom uom ON uom.id_uom=i.id_uom_stock
+WHERE DATE(savg.`date_reff`)>=@start_date AND DATE(savg.`date_reff`)<=@end_date " & q_selisih_unit & "
+GROUP BY savg.`id_item`
+"
 
         '        q = "SELECT it.`id_item`,it.`item_desc`,IFNULL(beg.min_date,rec.min_date) AS min_date,uom.uom
         ',IFNULL(beg.qty_beg,0)+IFNULL(book_before.qty_req,0) AS qty_beg,IF(IFNULL(beg.qty_beg,0)+IFNULL(book_before.qty_req,0)=0,0,IFNULL(beg.amount_beg,0)+IFNULL(book_before.amount_req,0)) AS amount_beg
