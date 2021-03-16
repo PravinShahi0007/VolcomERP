@@ -92,7 +92,6 @@ Public Class FormSalesOrderDet
             If id_ol_promo <> "-1" Then
                 BtnAddV3.Visible = False
                 BtnDel.Visible = False
-                BtnImportExcelNew.Visible = False
                 GridColumnCode.OptionsColumn.AllowEdit = False
                 GridColumnQty.OptionsColumn.AllowEdit = False
             End If
@@ -1487,7 +1486,11 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
         If id_comp_par = "-1" Or id_store = "-1" Then
             stopCustom("Please select warehouse and store first !")
         Else
-            FormImportExcel.id_pop_up = "25"
+            If id_ol_promo <> "-1" Then
+                FormImportExcel.id_pop_up = "57"
+            Else
+                FormImportExcel.id_pop_up = "25"
+            End If
             FormImportExcel.ShowDialog()
         End If
         Cursor = Cursors.Default

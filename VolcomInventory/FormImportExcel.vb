@@ -99,7 +99,7 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select code, wh, store, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code,wh,store", oledbconn)
         ElseIf id_pop_up = "23" Or id_pop_up = "24" Then
             MyCommand = New OleDbDataAdapter("select VENDOR, KODE, NAMA, SIZETYP, `xxs/1`, `xs/2`, `s/3`, `m/4`, `ml/5`, `l/6`, `xl/7`, `xxl/8`, `all/9`, `~/0` from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
-        ElseIf id_pop_up = "25" Or id_pop_up = "29" Then
+        ElseIf id_pop_up = "25" Or id_pop_up = "29" Or id_pop_up = "57" Then
             MyCommand = New OleDbDataAdapter("select KODE, NAMA, SIZETYP, `xxs/1`, `xs/2`, `s/3`, `m/4`, `ml/5`, `l/6`, `xl/7`, `xxl/8`, `all/9`, `~/0` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='')", oledbconn)
         ElseIf id_pop_up = "26" Then
             MyCommand = New OleDbDataAdapter("select no_faktur, nama_toko, npwp, alamat, id_keterangan_tambahan, kode_barang, ket_barang, jumlah_barang, harga_satuan, harga_total, diskon, ppn, dpp, jumlah_ppn, jumlah_dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
@@ -3711,6 +3711,97 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
+        ElseIf id_pop_up = "57" Then
+            'import excel ol promo replace 9 digit
+            'sales order 9
+            Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+            Dim connection As New MySqlConnection(connection_string)
+            connection.Open()
+
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            End If
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Preparing")
+            Dim command As MySqlCommand = connection.CreateCommand()
+            Dim qry As String = "DROP TABLE IF EXISTS tb_so_single_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_so_single_temp AS ( SELECT * FROM ("
+            Dim qry_det As String = ""
+            For d As Integer = 0 To data_temp.Rows.Count - 1
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Row " + (d + 1).ToString + " of " + data_temp.Rows.Count.ToString)
+                For c As Integer = 3 To 12
+                    If data_temp.Rows(d)(c).ToString <> "" And data_temp.Rows(d)(c).ToString <> "-" And data_temp.Rows(d)(c).ToString <> "0" Then
+                        If qry_det <> "" Then
+                            qry_det += "UNION ALL "
+                        End If
+                        Dim size As String = 0
+                        If c < 12 Then
+                            size = c - 2
+                        End If
+                        qry_det += "SELECT '" + FormSalesOrderDet.id_comp_par + "' AS `id_wh`,'" + id_user + "' AS `id_user`, '" + data_temp.Rows(d)("KODE").ToString + data_temp.Rows(d)("SIZETYP").ToString + size + "1" + "' AS `code`, '" + data_temp.Rows(d)(c).ToString + "' AS `qty` "
+                    End If
+                Next
+            Next
+            qry += qry_det + ") a ); ALTER TABLE tb_so_single_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+
+            'For d As Integer = 0 To data_temp.Rows.Count - 1
+            '    If d > 0 Then
+            '        qry += "UNION ALL "
+            '    End If
+            '    qry += "SELECT '" + FormSalesOrderDet.id_comp_par + "' AS `id_wh`,'" + id_user + "' AS `id_user`, '" + data_temp.Rows(d)("KODE").ToString + "' AS `code`, '" + data_temp.Rows(d)("SIZETYP").ToString + "' AS `sizetype`,  '" + data_temp.Rows(d)("xxs/1").ToString + "' AS `1`, '" + data_temp.Rows(d)("xs/2").ToString + "' AS `2`, '" + data_temp.Rows(d)("s/3").ToString + "' AS `3`, '" + data_temp.Rows(d)("m/4").ToString + "' AS `4`, '" + data_temp.Rows(d)("ml/5").ToString + "' AS `5`, '" + data_temp.Rows(d)("l/6").ToString + "' AS `6`, '" + data_temp.Rows(d)("xl/7").ToString + "' AS `7`, '" + data_temp.Rows(d)("xxl/8").ToString + "' AS `8`, '" + data_temp.Rows(d)("all/9").ToString + "' AS `9`, '" + data_temp.Rows(d)("~/0").ToString + "' AS `0` "
+            'Next
+            'qry += ") a ); ALTER TABLE tb_so_single_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+            command.CommandText = qry
+            command.ExecuteNonQuery()
+            command.Dispose()
+            'Console.WriteLine(qry)
+
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Checking product")
+            Dim data As New DataTable
+            Dim adapter As New MySqlDataAdapter("CALL view_sales_order_single_promo_temp(" + FormSalesOrderDet.id_comp_par + ", '" + id_user + "','" + FormSalesOrderDet.id_ol_promo + "')", connection)
+            adapter.SelectCommand.CommandTimeout = 300
+            adapter.Fill(data)
+            adapter.Dispose()
+            data.Dispose()
+            Dim data_par As DataTable = FormSalesOrderDet.GCItemList.DataSource
+            If data_par.Rows.Count = 0 Then
+                GCData.DataSource = data
+            Else
+                Dim t1 = data.AsEnumerable()
+                Dim t2 = data_par.AsEnumerable()
+                Dim except As DataTable = (From _t1 In t1
+                                           Group Join _t2 In t2
+                                           On _t1("id_product") Equals _t2("id_product") Into Group
+                                           From _t3 In Group.DefaultIfEmpty()
+                                           Where _t3 Is Nothing
+                                           Select _t1).CopyToDataTable
+                GCData.DataSource = except
+            End If
+            connection.Close()
+            connection.Dispose()
+
+            'Customize column
+            GVData.Columns("id_design_price").Visible = False
+            GVData.Columns("id_design_cat").Visible = False
+            GVData.Columns("design_price_type").Visible = False
+            GVData.Columns("id_product").Visible = False
+            GVData.Columns("id_design").Visible = False
+            GVData.Columns("id_wh").Visible = False
+            GVData.Columns("id_user").Visible = False
+            GVData.Columns("id_design_type").Visible = False
+            GVData.Columns("id_ol_promo_collection_sku_replace").Visible = False
+            'GVData.Columns("Class").Visible = False
+            GVData.Columns("Code").VisibleIndex = 0
+            GVData.Columns("Style").VisibleIndex = 1
+            GVData.Columns("Size").VisibleIndex = 2
+            GVData.Columns("Price").VisibleIndex = 3
+            GVData.Columns("Available").VisibleIndex = 4
+            GVData.Columns("Qty").VisibleIndex = 5
+            GVData.Columns("Status").VisibleIndex = 6
+            GVData.Columns("Design Type").VisibleIndex = 7
+            GVData.Columns("Available").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
+            GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
+            FormMain.SplashScreenManager1.CloseWaitForm()
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -3782,14 +3873,14 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.Salmon
             End If
 
-            If id_pop_up = "25" Or id_pop_up = "15" Then
+            If id_pop_up = "25" Or id_pop_up = "15" Or id_pop_up = "56" Or id_pop_up = "57" Then
                 If sender.GetRowCellValue(e.RowHandle, sender.Columns("id_design_type")).ToString = "2" Then
                     e.Appearance.BackColor = Color.SkyBlue
                     e.Appearance.BackColor2 = Color.SkyBlue
@@ -6397,7 +6488,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                     stopCustom("There is no data for import process, please make sure your input !")
                     makeSafeGV(GVData)
                 End If
-            ElseIf id_pop_up = "56" Then
+            ElseIf id_pop_up = "56" Or id_pop_up = "57" Then
                 'too for product promo
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will include in order list." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
