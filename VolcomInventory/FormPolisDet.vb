@@ -70,6 +70,7 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                     If Not i = 0 Then
                         q += ","
                     End If
+
                     q += "('" & id_pps & "','" & BGVSummary.GetFocusedRowCellValue("old_id_polis") & "',`old_nilai_stock`,`old_nilai_fit_out`,`old_nilai_building`,`old_nilai_peralatan`,`old_nilai_public_liability`,`old_nilai_total`,`old_polis_vendor`)"
                 Next
             Else
