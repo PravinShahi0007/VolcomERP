@@ -3135,6 +3135,7 @@ Public Class FormImportExcel
             GVData.Columns("track_no").Caption = "Tracking Number"
             GVData.Columns("status").Caption = "Description"
         ElseIf id_pop_up = "50" Then
+            Dim id_vios As String = get_setup_field("shopify_comp_group")
             Dim queryx As String = "(SELECT ol.id_list_payout, ol.id AS `id_order`, ol.checkout_id,ol.sales_order_ol_shop_number, ol.payment AS curr_payout,
             ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`))+IFNULL(sh.ship_amo,0)+IFNULL(v.value,0.00) AS amount,IFNULL(v.value,0.00) AS `other_price`,
             GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`, v.number AS `ver_number`,
@@ -3144,7 +3145,8 @@ Public Class FormImportExcel
 	            SELECT ol.*,lp.`payment`,lp.`trans_fee`,lp.pay_type, lp.id_list_payout, SUM(ol.other_price * ol.sales_order_det_qty) AS `other_price_sum`
 	            FROM tb_ol_store_order ol
 	            LEFT JOIN tb_list_payout lp ON lp.id=ol.`id`
-	            WHERE NOT ISNULL(ol.`checkout_id`)
+                LEFT JOIN tb_list_payout_trans tr ON tr.id_list_payout_trans = lp.id_list_payout_trans AND tr.id_report_status!=5
+	            WHERE NOT ISNULL(ol.`checkout_id`) AND ol.id_comp_group=" + id_vios + "
 	            GROUP BY ol.`id`
             ) ol
             INNER JOIN tb_sales_order so ON so.`id_sales_order_ol_shop`=ol.`id`
@@ -3424,6 +3426,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             'Customize column
             GVData.Columns("id_sub_district").Visible = False
         ElseIf id_pop_up = "53" Then 'import VA BBM
+            Dim id_vios As String = get_setup_field("shopify_comp_group")
             Dim queryx As String = "(SELECT ol.id_virtual_acc_trans, ol.id AS `id_order`, ol.checkout_id, IFNULL(v.value,0.00) AS `other_price`,ol.sales_order_ol_shop_number,
             SUM(CAST(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`) AS DECIMAL(15,2)))+IFNULL(sh.ship_amo,0)+IFNULL(v.value,0.00) AS amount,
             GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`,v.number AS `ver_number`,
@@ -3433,7 +3436,8 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
 	            IFNULL(lp.id_virtual_acc_trans,0) AS `id_virtual_acc_trans`, SUM(ol.other_price * ol.sales_order_det_qty) AS `other_price_sum`
 	            FROM tb_ol_store_order ol
 	            LEFT JOIN tb_virtual_acc_trans_det lp ON lp.id =ol.`id`
-	            WHERE NOT ISNULL(ol.`checkout_id`)
+                LEFT JOIN tb_virtual_acc_trans l ON l.id_virtual_acc_trans = lp.id_virtual_acc_trans AND l.id_report_status!=5
+	            WHERE NOT ISNULL(ol.`checkout_id`) AND ol.id_comp_group=" + id_vios + "
 	            GROUP BY ol.`id`
             ) ol
             INNER JOIN tb_sales_order so ON so.`id_sales_order_ol_shop`=ol.`id`

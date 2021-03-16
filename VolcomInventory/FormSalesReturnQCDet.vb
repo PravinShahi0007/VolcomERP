@@ -239,11 +239,11 @@ Public Class FormSalesReturnQCDet
 
     Sub viewDetail()
         If action = "ins" Then
-            Dim query As String = "CALL view_sales_return_limit('" + id_sales_return + "', '0', '0') "
+            Dim query As String = "CALL view_sales_return_limit_lite('" + id_sales_return + "', '0', '0') "
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = data
         ElseIf action = "upd" Then
-            Dim query As String = "CALL view_sales_return_qc('" + id_sales_return_qc + "')"
+            Dim query As String = "CALL view_sales_return_qc_lite('" + id_sales_return_qc + "')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = data
         End If
@@ -632,7 +632,7 @@ Public Class FormSalesReturnQCDet
     Function verifyTrans() As Boolean
         GridColumnStt.Visible = True
         Dim cond As Boolean = True
-        Dim query_cek = "CALL view_sales_return_limit('" + id_sales_return + "', 0, 0) "
+        Dim query_cek = "CALL view_sales_return_limit_lite('" + id_sales_return + "', 0, 0) "
         Dim dt_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
         For c As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
             Dim id_product_cek As String = GVItemList.GetRowCellValue(c, "id_product").ToString

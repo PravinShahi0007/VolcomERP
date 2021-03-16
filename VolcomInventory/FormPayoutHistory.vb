@@ -9,7 +9,8 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT t.id_list_payout_trans, t.number, SUM(p.payment) AS `amount`, SUM(p.trans_fee) AS `trans_fee`, SUM(p.payment)-SUM(p.trans_fee) AS `nett`, b.number AS `bbm_number`, IFNULL(bap.jum_bap,0) AS `jum_bap`
+        Dim query As String = "SELECT t.id_list_payout_trans, t.number, SUM(p.payment) AS `amount`, SUM(p.trans_fee) AS `trans_fee`, SUM(p.payment)-SUM(p.trans_fee) AS `nett`, b.number AS `bbm_number`, IFNULL(bap.jum_bap,0) AS `jum_bap`,
+        stt.id_report_status, stt.report_status
         FROM tb_list_payout_trans t
         INNER JOIN tb_list_payout p ON p.id_list_payout_trans = t.id_list_payout_trans
         LEFT JOIN tb_rec_payment b ON b.id_list_payout_trans = t.id_list_payout_trans AND b.id_report_status!=5
@@ -18,6 +19,7 @@
             FROM tb_list_payout_det d WHERE !ISNULL(d.id_list_payout_ver)
             GROUP BY d.id_list_payout_trans
         ) bap ON bap.id_list_payout_trans = t.id_list_payout_trans
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = t.id_report_status
         GROUP BY p.id_list_payout_trans "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPayout.DataSource = data

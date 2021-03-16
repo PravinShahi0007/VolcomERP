@@ -153,7 +153,7 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_sales_return_qc('" + id_sales_return_qc + "')"
+        Dim query As String = "CALL view_sales_return_qc_lite('" + id_sales_return_qc + "')"
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
         GCItemList.DataSource = data
     End Sub

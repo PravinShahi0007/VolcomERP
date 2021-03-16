@@ -411,7 +411,7 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
             Cursor = Cursors.Default
         Else
             'cek di table
-            Dim query As String = "SELECT * FROM tb_list_payout_trans p WHERE p.number='" + numb + "' "
+            Dim query As String = "SELECT * FROM tb_list_payout_trans p WHERE p.number='" + numb + "' AND p.id_report_status!=5 "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 warningCustom("Payout already exist")

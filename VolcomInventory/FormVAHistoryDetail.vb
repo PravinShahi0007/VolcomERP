@@ -5,6 +5,13 @@
 
     Private Sub FormVAHistoryDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
+        viewReportStatus()
+        actionLoad()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub actionLoad()
+        Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT * FROM tb_virtual_acc_trans t 
         INNER JOIN tb_virtual_acc ta ON ta.id_virtual_acc = t.id_virtual_acc
         WHERE t.id_virtual_acc_trans=" + id + " "
@@ -14,8 +21,15 @@
         DECreated.EditValue = data.Rows(0)("generate_date")
         TxtNumber.Text = data.Rows(0)("number").ToString
         id_report_status = data.Rows(0)("id_report_status").ToString
+        LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         viewData()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub viewReportStatus()
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
 
     Sub viewData()
@@ -120,6 +134,37 @@
             e.Appearance.BackColor = Color.Yellow
         Else
             e.Appearance.BackColor = Color.Empty
+        End If
+    End Sub
+
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+        'cek
+        Dim qcek As String = "SELECT * FROM tb_rec_payment r WHERE r.id_virtual_acc_trans=" + id + " AND r.id_report_status!=5 "
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        If dcek.Rows.Count > 0 Then
+            stopCustom("BBM already processed")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim query As String = "UPDATE tb_virtual_acc_trans SET id_report_status=5 WHERE id_virtual_acc_trans='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'nonaktif mark
+                Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt, id)
+                execute_non_query(queryrm, True, "", "", "", "")
+
+                Try
+                    FormVAHistory.viewData()
+                Catch ex As Exception
+                End Try
+                Try
+                    FormBankDeposit.load_vacc()
+                Catch ex As Exception
+                End Try
+                actionLoad()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 End Class
