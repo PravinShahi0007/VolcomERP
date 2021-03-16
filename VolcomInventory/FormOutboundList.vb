@@ -171,6 +171,7 @@ ORDER BY pl.id_ol_store_cust_ret ASC)"
 ,odmp.number AS print_manifest
 ,d.awbill_no
 ,GROUP_CONCAT(DISTINCT cb.`combine_number`) AS combine_number
+,cargo.comp_name AS cargo
 FROM `tb_wh_awbill` awb 
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awb.id_sub_district
 INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
@@ -188,6 +189,7 @@ LEFT JOIN tb_odm_sc_det odmscd ON odmscd.id_del_manifest=d.id_del_manifest
 LEFT JOIN tb_odm_sc odmsc ON odmsc.id_odm_sc=odmscd.id_odm_sc
 LEFT JOIN tb_odm_print_det odmpd ON odmpd.id_odm_sc=odmscd.id_odm_sc
 LEFT JOIN tb_odm_print odmp ON odmp.id_odm_print=odmpd.id_odm_print
+LEFT JOIN tb_m_comp cargo ON cargo.id_comp=d.id_comp
 WHERE awb.is_old_ways!=1 AND awb.step!=1 AND awb.id_report_status!=5 AND DATE(awb.awbill_date)>=DATE('" & Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(awb.awbill_date)<=DATE('" & Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") & "')
 GROUP BY awb.id_awbill "
 
