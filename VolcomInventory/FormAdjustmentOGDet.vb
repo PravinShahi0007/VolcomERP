@@ -270,7 +270,7 @@
                 LEFT JOIN tb_adjustment_og AS a ON a.id_adjustment = d.id_adjustment
                 WHERE d.id_adjustment = " + id_adjustment
 
-            'execute_non_query(query, True, "", "", "", "")
+            execute_non_query(query, True, "", "", "", "")
 
             'jurnal
             Dim balance_debit As Decimal = 0.00
