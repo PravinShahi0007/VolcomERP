@@ -79,16 +79,23 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_sales_order_gen(" + id_sales_order_gen + ")"
+        Dim query As String = "CALL view_sales_order_gen_lite(" + id_sales_order_gen + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
 
         If is_submit = "2" Then
             'sum
-            Dim query_sum As String = "CALL view_sales_order_gen_sum(" + id_sales_order_gen + ")"
+            Dim query_sum As String = "CALL view_sales_order_gen_sum_lite(" + id_sales_order_gen + ")"
             Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
 
-            Dim query_stock As String = "CALL view_sales_order_prod_list(0, 0, 0)"
+            'get wh from
+            Dim id_wh_source_from As String = execute_query("SELECT GROUP_CONCAT(DISTINCT cc.id_comp) AS `id_wh_source_from`
+            FROM tb_sales_order_gen_det g 
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = g.id_comp_contact_from
+            WHERE g.id_sales_order_gen=" + id_sales_order_gen + " ", 0, True, "", "", "", "")
+
+
+            Dim query_stock As String = "CALL view_sales_order_prod_list_less(0, " + id_wh_source_from + ")"
             Dim data_stock As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
             Dim tb1 = data_sum.AsEnumerable() 'sum
             Dim tb2 = data_stock.AsEnumerable() 'allow stock fo so
