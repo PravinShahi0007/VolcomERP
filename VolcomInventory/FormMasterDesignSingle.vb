@@ -2470,7 +2470,7 @@
 
     Sub view_product(ByVal id_design As String)
         Try
-            Dim query As String = "CALL view_product_master('" & id_design & "')"
+            Dim query As String = "CALL view_product_master_line_sheet('" & id_design & "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCProduct.DataSource = data
             check_but_size()

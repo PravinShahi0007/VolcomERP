@@ -256,6 +256,7 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnNonActive = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelSize = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnTemplateSize = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPLineList = New DevExpress.XtraTab.XtraTabPage()
@@ -294,6 +295,7 @@ Partial Class FormMasterDesignSingle
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GridColumnproduct_active_status = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2688,7 +2690,7 @@ Partial Class FormMasterDesignSingle
         '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumnproduct_active_status})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.Editable = False
@@ -2745,6 +2747,7 @@ Partial Class FormMasterDesignSingle
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnNonActive)
         Me.PanelControl1.Controls.Add(Me.BtnDelSize)
         Me.PanelControl1.Controls.Add(Me.BtnTemplateSize)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -2755,6 +2758,19 @@ Partial Class FormMasterDesignSingle
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(907, 39)
         Me.PanelControl1.TabIndex = 20
+        '
+        'BtnNonActive
+        '
+        Me.BtnNonActive.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnNonActive.Image = CType(resources.GetObject("BtnNonActive.Image"), System.Drawing.Image)
+        Me.BtnNonActive.ImageIndex = 4
+        Me.BtnNonActive.ImageList = Me.LargeImageCollection
+        Me.BtnNonActive.Location = New System.Drawing.Point(2, 2)
+        Me.BtnNonActive.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BtnNonActive.Name = "BtnNonActive"
+        Me.BtnNonActive.Size = New System.Drawing.Size(141, 35)
+        Me.BtnNonActive.TabIndex = 19
+        Me.BtnNonActive.Text = "Set As Non Active"
         '
         'BtnDelSize
         '
@@ -3131,6 +3147,15 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
+        '
+        'GridColumnproduct_active_status
+        '
+        Me.GridColumnproduct_active_status.Caption = "Status"
+        Me.GridColumnproduct_active_status.FieldName = "product_active_status"
+        Me.GridColumnproduct_active_status.Name = "GridColumnproduct_active_status"
+        Me.GridColumnproduct_active_status.OptionsColumn.ReadOnly = True
+        Me.GridColumnproduct_active_status.Visible = True
+        Me.GridColumnproduct_active_status.VisibleIndex = 4
         '
         'FormMasterDesignSingle
         '
@@ -3565,4 +3590,6 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents SBFabricationBrowse As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPImages As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents BtnNonActive As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnproduct_active_status As DevExpress.XtraGrid.Columns.GridColumn
 End Class
