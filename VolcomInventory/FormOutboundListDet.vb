@@ -112,6 +112,8 @@ WHERE id_awbill='" + id_awb + "'"
         'Approve DO
         If SLEDelType.EditValue = Nothing Then
             warningCustom("Please select delivery type !")
+        ElseIf TEActWeight.EditValue <= 0 Then
+            warningCustom("Please input weight")
         Else
             If SearchLookUpEdit1View.GetFocusedRowCellValue("is_no_weight").ToString = "2" And (TEActWeight.EditValue + TEDimWeight.EditValue <= 0) Then
                 warningCustom("Please put some weight")
@@ -129,7 +131,7 @@ WHERE id_awbill='" + id_awb + "'"
                         End If
 
                         'Reset approval
-                        q = String.Format("UPDATE tb_report_mark SET report_mark_start_datetime=NULL,report_mark_lead_time=NULL,report_mark_datetime=NULL WHERE id_report='{0}' AND report_mark_type='43'", GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
+                        q = String.Format("UPDATE tb_report_mark SET report_mark_start_datetime=NULL,report_mark_lead_time=NULL WHERE id_report='{0}' AND report_mark_type='43'", GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
                         execute_non_query(q, True, "", "", "", "")
 
                     ElseIf Not GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString = "" And Not GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString = "NULL" Then

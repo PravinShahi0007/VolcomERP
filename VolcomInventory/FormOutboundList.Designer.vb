@@ -30,6 +30,7 @@ Partial Class FormOutboundList
         Me.CancelOutboundLabelToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVOutbound = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -45,6 +46,7 @@ Partial Class FormOutboundList
         Me.GCHistory = New DevExpress.XtraGrid.GridControl()
         Me.GVHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -62,8 +64,7 @@ Partial Class FormOutboundList
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BRefreshHistory = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOutbound.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -156,6 +157,14 @@ Partial Class FormOutboundList
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
         Me.GridColumn1.Width = 98
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Code"
+        Me.GridColumn20.FieldName = "comp_number"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
         '
         'GridColumn2
         '
@@ -278,7 +287,7 @@ Partial Class FormOutboundList
         '
         'GVHistory
         '
-        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn21, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn19, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn17, Me.GridColumn15, Me.GridColumn16})
+        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn21, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn19, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn22, Me.GridColumn17, Me.GridColumn15, Me.GridColumn16})
         Me.GVHistory.GridControl = Me.GCHistory
         Me.GVHistory.Name = "GVHistory"
         Me.GVHistory.OptionsBehavior.Editable = False
@@ -293,6 +302,14 @@ Partial Class FormOutboundList
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 2
         Me.GridColumn7.Width = 98
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Code"
+        Me.GridColumn21.FieldName = "comp_number"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 1
         '
         'GridColumn8
         '
@@ -367,7 +384,7 @@ Partial Class FormOutboundList
         Me.GridColumn17.FieldName = "awbill_no"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 10
+        Me.GridColumn17.VisibleIndex = 11
         '
         'GridColumn15
         '
@@ -375,7 +392,7 @@ Partial Class FormOutboundList
         Me.GridColumn15.FieldName = "scan_manifest"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 11
+        Me.GridColumn15.VisibleIndex = 12
         '
         'GridColumn16
         '
@@ -383,7 +400,7 @@ Partial Class FormOutboundList
         Me.GridColumn16.FieldName = "print_manifest"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 12
+        Me.GridColumn16.VisibleIndex = 13
         '
         'PanelControl2
         '
@@ -448,21 +465,13 @@ Partial Class FormOutboundList
         Me.BRefreshHistory.TabIndex = 3
         Me.BRefreshHistory.Text = "Refresh"
         '
-        'GridColumn20
+        'GridColumn22
         '
-        Me.GridColumn20.Caption = "Code"
-        Me.GridColumn20.FieldName = "comp_number"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 0
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "Code"
-        Me.GridColumn21.FieldName = "comp_number"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 1
+        Me.GridColumn22.Caption = "3PL"
+        Me.GridColumn22.FieldName = "cargo"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 10
         '
         'FormOutboundList
         '
@@ -543,4 +552,5 @@ Partial Class FormOutboundList
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

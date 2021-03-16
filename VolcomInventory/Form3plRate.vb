@@ -80,4 +80,8 @@ WHERE 3pl.id_del_type = '" + SLEDelType.EditValue.ToString + "' AND 3pl.is_activ
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        print(GCListRate, "3PL Rate " & SLECargo.Text & " - " & SLEDelType.Text & " - " & SLEInboundOutbound.Text)
+    End Sub
 End Class

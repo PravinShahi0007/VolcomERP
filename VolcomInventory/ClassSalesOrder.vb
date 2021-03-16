@@ -158,7 +158,7 @@ Public Class ClassSalesOrder
         Dim break_alloc_initial As New List(Of String)
 
         'query
-        Dim query As String = "CALL view_sales_order_reff('" + id + "','" + cond_par + "') "
+        Dim query As String = "CALL view_sales_order_reff_lite('" + id + "','" + cond_par + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
 
