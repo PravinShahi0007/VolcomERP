@@ -254,6 +254,7 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnproduct_active_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnNonActive = New DevExpress.XtraEditors.SimpleButton()
@@ -295,7 +296,6 @@ Partial Class FormMasterDesignSingle
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnproduct_active_status = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2740,6 +2740,15 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 3
         '
+        'GridColumnproduct_active_status
+        '
+        Me.GridColumnproduct_active_status.Caption = "Status"
+        Me.GridColumnproduct_active_status.FieldName = "product_active_status"
+        Me.GridColumnproduct_active_status.Name = "GridColumnproduct_active_status"
+        Me.GridColumnproduct_active_status.OptionsColumn.ReadOnly = True
+        Me.GridColumnproduct_active_status.Visible = True
+        Me.GridColumnproduct_active_status.VisibleIndex = 4
+        '
         'GridView6
         '
         Me.GridView6.GridControl = Me.GCProduct
@@ -3147,15 +3156,6 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
-        '
-        'GridColumnproduct_active_status
-        '
-        Me.GridColumnproduct_active_status.Caption = "Status"
-        Me.GridColumnproduct_active_status.FieldName = "product_active_status"
-        Me.GridColumnproduct_active_status.Name = "GridColumnproduct_active_status"
-        Me.GridColumnproduct_active_status.OptionsColumn.ReadOnly = True
-        Me.GridColumnproduct_active_status.Visible = True
-        Me.GridColumnproduct_active_status.VisibleIndex = 4
         '
         'FormMasterDesignSingle
         '

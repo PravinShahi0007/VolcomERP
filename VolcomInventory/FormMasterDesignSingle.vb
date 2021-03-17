@@ -3333,4 +3333,71 @@
             FormDesignImagesDetail.Dock = DockStyle.Fill
         End If
     End Sub
+
+    Private Sub BtnNonActive_Click(sender As Object, e As EventArgs) Handles BtnNonActive.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_product As String = GVProduct.GetFocusedRowCellDisplayText("id_product").ToString
+
+        'cek stock
+        Dim cond_no_stock As Boolean = False
+        Dim qcek_stock As String = "SELECT * FROM tb_storage_fg f WHERE f.id_product=" + id_product + " LIMIT 1 "
+        Dim dcek_stock As DataTable = execute_query(qcek_stock, -1, True, "", "", "", "")
+        If dcek_stock.Rows.Count > 0 Then
+            cond_no_stock = False
+        Else
+            cond_no_stock = True
+        End If
+
+        If Not cond_no_stock Then
+            stopCustom("Cannot deadactivate product, because this product already exist in inventory list")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to deadactivate this product?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim query As String = ""
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim qcek As String = "SELECT * FROM tb_m_product_void pv WHERE pv.id_product='" + id_product + "' "
+                    Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+                    If dcek.Rows.Count <= 0 Then
+                        'insert product void
+                        Dim qiv As String = "INSERT tb_m_product_void(id_product, updated_by, updated_date) VALUES('" + id_product + "','" + id_user + "',NOW()); "
+                        execute_non_query(qiv, True, "", "", "", "")
+                    End If
+                    ' set zero value for allocation
+                    Dim qpdp As String = "UPDATE tb_prod_demand_product main
+                    INNER JOIN (
+	                    SELECT pdp.id_prod_demand_product, pdp.prod_demand_product_qty
+	                    FROM tb_prod_demand_product pdp
+	                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = pdp.id_prod_demand_design
+	                    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
+	                    WHERE pd.is_pd!=1 AND pdp.id_product=" + id_product + " AND pdp.prod_demand_product_qty>0
+                    ) src ON src.id_prod_demand_product = main.id_prod_demand_product
+                    SET main.prod_demand_product_qty=0; 
+                    UPDATE tb_prod_demand_alloc main
+                    INNER JOIN (
+	                    SELECT pda.id_prod_demand_alloc, pda.prod_demand_alloc_qty
+	                    FROM  tb_prod_demand_alloc pda
+	                    INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pda.id_prod_demand_product
+	                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = pdp.id_prod_demand_design
+	                    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
+	                    WHERE pd.is_pd!=1 AND pdp.id_product=" + id_product + " AND pda.prod_demand_alloc_qty>0 
+                    ) src ON src.id_prod_demand_alloc = main.id_prod_demand_alloc
+                    SET main.prod_demand_alloc_qty=0; "
+                    execute_non_query(qpdp, True, "", "", "", "")
+                    view_product(id_design)
+                    If form_name = "-1" Then
+                        FormMasterProduct.view_design()
+                        FormMasterProduct.GVDesign.FocusedRowHandle = find_row(FormMasterProduct.GVDesign, "id_design", id_design)
+                    ElseIf form_name = "FormFGLineList" Then
+                        FormFGLineList.viewLineList()
+                        FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design)
+                        loadLineList(id_prod_demand_design_active)
+                    End If
+                    infoCustom("Deadactivate status success")
+                Catch ex As Exception
+                    stopCustom("Set status failed, please contact administrator")
+                End Try
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class
