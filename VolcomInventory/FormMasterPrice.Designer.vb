@@ -122,6 +122,7 @@ Partial Class FormMasterPrice
         Me.GridColumnsale_pricesum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnsourcesum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEClassHistSum = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -152,7 +153,6 @@ Partial Class FormMasterPrice
         Me.DEFromList = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnsourcesum = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPrice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -329,6 +329,7 @@ Partial Class FormMasterPrice
         Me.GVBrowsePrice.Name = "GVBrowsePrice"
         Me.GVBrowsePrice.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVBrowsePrice.OptionsBehavior.Editable = False
+        Me.GVBrowsePrice.OptionsFind.AlwaysVisible = True
         Me.GVBrowsePrice.OptionsView.ShowGroupPanel = False
         '
         'GridColumnFullCode
@@ -1115,6 +1116,15 @@ Partial Class FormMasterPrice
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         Me.RepositoryItemTextEdit1.NullText = "-"
         '
+        'GridColumnsourcesum
+        '
+        Me.GridColumnsourcesum.Caption = "Source"
+        Me.GridColumnsourcesum.FieldName = "source"
+        Me.GridColumnsourcesum.Name = "GridColumnsourcesum"
+        Me.GridColumnsourcesum.Visible = True
+        Me.GridColumnsourcesum.VisibleIndex = 4
+        Me.GridColumnsourcesum.Width = 53
+        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.LabelControl13)
@@ -1390,15 +1400,6 @@ Partial Class FormMasterPrice
         Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl5.TabIndex = 8892
         Me.LabelControl5.Text = "From"
-        '
-        'GridColumnsourcesum
-        '
-        Me.GridColumnsourcesum.Caption = "Source"
-        Me.GridColumnsourcesum.FieldName = "source"
-        Me.GridColumnsourcesum.Name = "GridColumnsourcesum"
-        Me.GridColumnsourcesum.Visible = True
-        Me.GridColumnsourcesum.VisibleIndex = 4
-        Me.GridColumnsourcesum.Width = 53
         '
         'FormMasterPrice
         '

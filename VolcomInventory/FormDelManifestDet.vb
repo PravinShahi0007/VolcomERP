@@ -327,6 +327,7 @@ GROUP BY cg.`id_comp_group`"
 
         'check awb
         Dim qc As String = "SELECT awbill_no FROM tb_wh_awbill WHERE awbill_no='" & addSlashes(TEAwb.Text) & "' AND id_report_status!=5
+AND id_awbill NOT IN (SELECT id_awbill FROM tb_del_manifest_det WHERE id_del_manifest='" & id_del_manifest & "')
 UNION ALL
 SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text) & "' AND id_report_status!=5 AND id_del_manifest!='" & id_del_manifest & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
@@ -781,7 +782,8 @@ INNER JOIN tb_m_city ct ON ct.id_city=c.id_city
 LEFT JOIN (
     SELECT id_wh_awb_det 
     FROM `tb_del_manifest_det` deld 
-    INNER JOIN tb_del_manifest del ON del.id_del_manifest=deld.id_del_manifest AND del.id_report_status!=5
+    INNER JOIN tb_del_manifest del ON del.id_del_manifest=deld.id_del_manifest 
+    AND (del.id_report_status!=5 OR ISNULL(id_report_status))
 ) tb_c ON tb_c.id_wh_awb_det=awbd.id_wh_awb_det
 WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb_det)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")

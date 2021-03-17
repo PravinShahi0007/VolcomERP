@@ -160,13 +160,13 @@
         'completed
         If id_report_status = "6" Then
             LabelCompleted.Visible = True
-            Dim qcom As String = "SELECT e.employee_name AS `completed_by`, DATE_FORMAT(r.final_comment_date,'%d-%m-%Y %H:%i') AS `completed_date` 
-            FROM tb_report_mark_final_comment r 
-            INNER JOIN tb_m_user u ON u.id_user = r.id_user
-            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-            WHERE r.report_mark_type=" + rmt + " AND r.id_report=" + id + " "
-            Dim dcom As DataTable = execute_query(qcom, -1, True, "", "", "", "")
-            DataSource = dcom
+            'Dim qcom As String = "SELECT e.employee_name AS `completed_by`, DATE_FORMAT(r.final_comment_date,'%d-%m-%Y %H:%i') AS `completed_date` 
+            'FROM tb_report_mark_final_comment r 
+            'INNER JOIN tb_m_user u ON u.id_user = r.id_user
+            'INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+            'WHERE r.report_mark_type=" + rmt + " AND r.id_report=" + id + " "
+            'Dim dcom As DataTable = execute_query(qcom, -1, True, "", "", "", "")
+            'DataSource = dcom
         End If
 
         LRecNumber.Text = "NO. " + LRecNumber.Text
