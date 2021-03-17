@@ -11,6 +11,28 @@
         Dispose()
     End Sub
 
+    Sub view_cons_type()
+        Dim q As String = "SELECT '-' AS header,'-' AS sub_header,0 AS id_consolidation,'' AS description_ind,'Please select' AS description_eng 
+UNION ALL
+SELECT ch.`description_eng` AS header,cs.`description_eng` AS sub_header,c.id_consolidation,c.description_ind,c.description_eng 
+FROM `tb_consolidation` c
+INNER JOIN `tb_consolidation_sub_header` cs ON cs.`id_consolidation_sub_header`=c.`id_consolidation_sub_header`
+INNER JOIN `tb_consolidation_header` ch ON ch.`id_consolidation_header`=cs.`id_consolidation_header`"
+        viewSearchLookupQuery(SLEConsolidationCat, q, "id_consolidation", "description_eng", "id_consolidation")
+    End Sub
+
+    Sub view_tax_report_type()
+        Dim q As String = "SELECT 0 AS id_tax_report,'Not in Tax Report' AS tax_report
+UNION ALL
+SELECT id_tax_report,tax_report FROM `tb_lookup_tax_report`"
+        If LECOAType.EditValue.ToString = "1" Then
+            q += " WHERE available_in_office_tag=1"
+        Else
+            q += " WHERE available_in_store_tag=1"
+        End If
+        viewSearchLookupQuery(SLETaxReport, q, "id_tax_report", "tax_report", "id_tax_report")
+    End Sub
+
     Private Sub FormAccountingAcc_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewCoaType()
         viewParent(SLEParentAccount)
@@ -18,7 +40,10 @@
         view_active(LEActive)
         view_is_det(LEDetail)
         view_dc(LEType)
-
+        '
+        view_cons_type()
+        view_tax_report_type()
+        '
         If id_acc = "-1" Then
             'new
             If Not id_parent = "0" And Not id_parent = "-1" Then
@@ -146,13 +171,31 @@
         ValidateChildren()
         If Not formIsValidInPanel(EPACC, PanelControl3) Then
             errorInput()
+        ElseIf LEDetail.EditValue.ToString = "2" And SLEConsolidationCat.EditValue.ToString = "0" Then
+            warningCustom("Please select consolidation report category")
         Else
             If id_acc = "-1" Then
                 'new
+                Dim is_tax_report As String = "2"
+                Dim id_tax_report As String = "NULL"
+                Dim id_consolidation As String = "NULL"
+                '
+                If LEDetail.EditValue.ToString = "2" Then
+                    'tax
+                    If Not SLETaxReport.EditValue.ToString = "0" Then
+                        is_tax_report = "1"
+                        id_tax_report = "'" & SLETaxReport.EditValue.ToString & "'"
+                    End If
+                    'consolidation
+                    If Not SLEConsolidationCat.EditValue.ToString = "0" Then
+                        id_consolidation = "'" & SLEConsolidationCat.EditValue.ToString & "'"
+                    End If
+                End If
+                '
                 If SLEParentAccount.EditValue = "-1" Then
                     query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_cat,id_is_det,id_status,id_dc, id_coa_type) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString)
                 Else
-                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc, id_coa_type) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6}, '{7}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString)
+                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc, id_coa_type, is_tax_report,id_tax_report,id_consolidation) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6}, '{7}','{8}',{9},{10});SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString, is_tax_report, id_tax_report, id_consolidation)
                 End If
 
                 id_acc = execute_query(query, 0, True, "", "", "", "")
@@ -235,6 +278,21 @@
 
     Private Sub LECOAType_EditValueChanged(sender As Object, e As EventArgs) Handles LECOAType.EditValueChanged
         viewParent(SLEParentAccount)
+        view_tax_report_type()
         TEAccountDetail.Text = ""
+    End Sub
+
+    Private Sub LEDetail_EditValueChanged(sender As Object, e As EventArgs) Handles LEDetail.EditValueChanged
+        If LEDetail.EditValue.ToString = "2" Then
+            LtaxReport.Visible = True
+            SLETaxReport.Visible = True
+            LConsCat.Visible = True
+            SLEConsolidationCat.Visible = True
+        Else
+            LtaxReport.Visible = False
+            SLETaxReport.Visible = False
+            LConsCat.Visible = False
+            SLEConsolidationCat.Visible = False
+        End If
     End Sub
 End Class

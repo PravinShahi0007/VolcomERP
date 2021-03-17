@@ -19,6 +19,7 @@ Partial Class FormReportBalanceSheet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.PCFilterUpper = New DevExpress.XtraEditors.PanelControl()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -126,7 +127,7 @@ Partial Class FormReportBalanceSheet
         Me.XTPTaxDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPendingLapor = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTaxReport = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewJournalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVTaxReport = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -200,6 +201,7 @@ Partial Class FormReportBalanceSheet
         Me.CESelAllActiveTax = New DevExpress.XtraEditors.CheckEdit()
         Me.PCPajak = New DevExpress.XtraEditors.PanelControl()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.SBSummaryPpn = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSetup = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SBSummary = New DevExpress.XtraEditors.SimpleButton()
@@ -219,7 +221,6 @@ Partial Class FormReportBalanceSheet
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.DETaxUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.SBSummaryPpn = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PCFilterUpper, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterUpper.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -653,7 +654,7 @@ Partial Class FormReportBalanceSheet
         Me.SplitterBS.Panel2.Controls.Add(Me.GroupControl2)
         Me.SplitterBS.Panel2.Text = "Panel2"
         Me.SplitterBS.Size = New System.Drawing.Size(1009, 416)
-        Me.SplitterBS.SplitterPosition = 422
+        Me.SplitterBS.SplitterPosition = 521
         Me.SplitterBS.TabIndex = 0
         Me.SplitterBS.Text = "SplitContainerControl1"
         '
@@ -663,7 +664,7 @@ Partial Class FormReportBalanceSheet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(422, 416)
+        Me.GroupControl1.Size = New System.Drawing.Size(521, 416)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Asset"
         '
@@ -673,7 +674,7 @@ Partial Class FormReportBalanceSheet
         Me.GCAktiva.Location = New System.Drawing.Point(2, 20)
         Me.GCAktiva.MainView = Me.GVAktiva
         Me.GCAktiva.Name = "GCAktiva"
-        Me.GCAktiva.Size = New System.Drawing.Size(418, 394)
+        Me.GCAktiva.Size = New System.Drawing.Size(517, 394)
         Me.GCAktiva.TabIndex = 0
         Me.GCAktiva.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAktiva})
         '
@@ -791,7 +792,7 @@ Partial Class FormReportBalanceSheet
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(582, 416)
+        Me.GroupControl2.Size = New System.Drawing.Size(483, 416)
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Liability And Equity"
         '
@@ -801,7 +802,7 @@ Partial Class FormReportBalanceSheet
         Me.GCPasiva.Location = New System.Drawing.Point(2, 20)
         Me.GCPasiva.MainView = Me.GVPasiva
         Me.GCPasiva.Name = "GCPasiva"
-        Me.GCPasiva.Size = New System.Drawing.Size(578, 394)
+        Me.GCPasiva.Size = New System.Drawing.Size(479, 394)
         Me.GCPasiva.TabIndex = 1
         Me.GCPasiva.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPasiva})
         '
@@ -2062,6 +2063,14 @@ Partial Class FormReportBalanceSheet
         Me.XtraScrollableControl1.Size = New System.Drawing.Size(1011, 74)
         Me.XtraScrollableControl1.TabIndex = 14
         '
+        'SBSummaryPpn
+        '
+        Me.SBSummaryPpn.Location = New System.Drawing.Point(1064, 12)
+        Me.SBSummaryPpn.Name = "SBSummaryPpn"
+        Me.SBSummaryPpn.Size = New System.Drawing.Size(79, 23)
+        Me.SBSummaryPpn.TabIndex = 15
+        Me.SBSummaryPpn.Text = "summary ppn"
+        '
         'SBSetup
         '
         Me.SBSetup.Location = New System.Drawing.Point(894, 12)
@@ -2230,14 +2239,6 @@ Partial Class FormReportBalanceSheet
         Me.DETaxUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DETaxUntil.Size = New System.Drawing.Size(173, 20)
         Me.DETaxUntil.TabIndex = 8
-        '
-        'SBSummaryPpn
-        '
-        Me.SBSummaryPpn.Location = New System.Drawing.Point(1064, 12)
-        Me.SBSummaryPpn.Name = "SBSummaryPpn"
-        Me.SBSummaryPpn.Size = New System.Drawing.Size(79, 23)
-        Me.SBSummaryPpn.TabIndex = 15
-        Me.SBSummaryPpn.Text = "summary ppn"
         '
         'FormReportBalanceSheet
         '
