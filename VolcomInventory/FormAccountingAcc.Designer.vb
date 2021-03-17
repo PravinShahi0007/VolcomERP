@@ -49,6 +49,19 @@ Partial Class FormAccountingAcc
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.EPACC = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.SLEConsolidationCat = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LConsCat = New DevExpress.XtraEditors.LabelControl()
+        Me.LtaxReport = New DevExpress.XtraEditors.LabelControl()
+        Me.SLETaxReport = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +78,10 @@ Partial Class FormAccountingAcc
         CType(Me.TEAccountDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPACC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEConsolidationCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLETaxReport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -74,14 +91,14 @@ Partial Class FormAccountingAcc
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 296)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(665, 39)
+        Me.PanelControl1.Size = New System.Drawing.Size(639, 39)
         Me.PanelControl1.TabIndex = 0
         '
         'BCancel
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.Image = CType(resources.GetObject("BCancel.Image"), System.Drawing.Image)
-        Me.BCancel.Location = New System.Drawing.Point(483, 2)
+        Me.BCancel.Location = New System.Drawing.Point(457, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(94, 35)
         Me.BCancel.TabIndex = 1
@@ -91,7 +108,7 @@ Partial Class FormAccountingAcc
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
-        Me.BSave.Location = New System.Drawing.Point(577, 2)
+        Me.BSave.Location = New System.Drawing.Point(551, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(86, 35)
         Me.BSave.TabIndex = 0
@@ -99,6 +116,10 @@ Partial Class FormAccountingAcc
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.SLETaxReport)
+        Me.PanelControl3.Controls.Add(Me.LtaxReport)
+        Me.PanelControl3.Controls.Add(Me.LConsCat)
+        Me.PanelControl3.Controls.Add(Me.SLEConsolidationCat)
         Me.PanelControl3.Controls.Add(Me.LabelControl4)
         Me.PanelControl3.Controls.Add(Me.LECOAType)
         Me.PanelControl3.Controls.Add(Me.LEType)
@@ -118,7 +139,7 @@ Partial Class FormAccountingAcc
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(665, 296)
+        Me.PanelControl3.Size = New System.Drawing.Size(639, 296)
         Me.PanelControl3.TabIndex = 54
         '
         'LabelControl4
@@ -135,12 +156,13 @@ Partial Class FormAccountingAcc
         Me.LECOAType.Location = New System.Drawing.Point(130, 12)
         Me.LECOAType.Name = "LECOAType"
         Me.LECOAType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LECOAType.Size = New System.Drawing.Size(134, 20)
+        Me.LECOAType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_coa_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("coa_type", "Type")})
+        Me.LECOAType.Size = New System.Drawing.Size(188, 20)
         Me.LECOAType.TabIndex = 123
         '
         'LEType
         '
-        Me.LEType.Location = New System.Drawing.Point(130, 244)
+        Me.LEType.Location = New System.Drawing.Point(130, 206)
         Me.LEType.Name = "LEType"
         Me.LEType.Properties.Appearance.Options.UseTextOptions = True
         Me.LEType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -148,13 +170,13 @@ Partial Class FormAccountingAcc
         Me.LEType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_dc", "id_dc", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dc", "Debit / Credit")})
         Me.LEType.Properties.NullText = ""
         Me.LEType.Properties.ShowFooter = False
-        Me.LEType.Size = New System.Drawing.Size(134, 20)
+        Me.LEType.Size = New System.Drawing.Size(236, 20)
         Me.LEType.TabIndex = 122
         '
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(18, 246)
+        Me.LabelControl2.Location = New System.Drawing.Point(18, 208)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(73, 15)
         Me.LabelControl2.TabIndex = 121
@@ -164,7 +186,7 @@ Partial Class FormAccountingAcc
         '
         Me.MEAccDesc.Location = New System.Drawing.Point(130, 115)
         Me.MEAccDesc.Name = "MEAccDesc"
-        Me.MEAccDesc.Size = New System.Drawing.Size(492, 45)
+        Me.MEAccDesc.Size = New System.Drawing.Size(493, 45)
         Me.MEAccDesc.TabIndex = 120
         '
         'TEAccount
@@ -239,7 +261,7 @@ Partial Class FormAccountingAcc
         '
         'LEActive
         '
-        Me.LEActive.Location = New System.Drawing.Point(130, 210)
+        Me.LEActive.Location = New System.Drawing.Point(130, 236)
         Me.LEActive.Name = "LEActive"
         Me.LEActive.Properties.Appearance.Options.UseTextOptions = True
         Me.LEActive.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -247,13 +269,13 @@ Partial Class FormAccountingAcc
         Me.LEActive.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_status", "id_status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("status", "Status")})
         Me.LEActive.Properties.NullText = ""
         Me.LEActive.Properties.ShowFooter = False
-        Me.LEActive.Size = New System.Drawing.Size(134, 20)
+        Me.LEActive.Size = New System.Drawing.Size(236, 20)
         Me.LEActive.TabIndex = 117
         '
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(18, 212)
+        Me.LabelControl8.Location = New System.Drawing.Point(18, 238)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(33, 15)
         Me.LabelControl8.TabIndex = 116
@@ -291,7 +313,7 @@ Partial Class FormAccountingAcc
         Me.LEDetail.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_is_det", "id_is_det", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("is_det", "Type Account")})
         Me.LEDetail.Properties.NullText = ""
         Me.LEDetail.Properties.ShowFooter = False
-        Me.LEDetail.Size = New System.Drawing.Size(134, 20)
+        Me.LEDetail.Size = New System.Drawing.Size(236, 20)
         Me.LEDetail.TabIndex = 113
         '
         'LabelControl5
@@ -318,7 +340,7 @@ Partial Class FormAccountingAcc
         Me.TEAccountDetail.Name = "TEAccountDetail"
         Me.TEAccountDetail.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEAccountDetail.Properties.Appearance.Options.UseFont = True
-        Me.TEAccountDetail.Size = New System.Drawing.Size(178, 22)
+        Me.TEAccountDetail.Size = New System.Drawing.Size(179, 22)
         Me.TEAccountDetail.TabIndex = 52
         '
         'LabelControl3
@@ -356,11 +378,126 @@ Partial Class FormAccountingAcc
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
+        'SLEConsolidationCat
+        '
+        Me.SLEConsolidationCat.Location = New System.Drawing.Point(192, 265)
+        Me.SLEConsolidationCat.Name = "SLEConsolidationCat"
+        Me.SLEConsolidationCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEConsolidationCat.Properties.View = Me.GridView1
+        Me.SLEConsolidationCat.Size = New System.Drawing.Size(431, 20)
+        Me.SLEConsolidationCat.TabIndex = 125
+        Me.SLEConsolidationCat.Visible = False
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn7, Me.GridColumn6, Me.GridColumn4, Me.GridColumn5})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'LConsCat
+        '
+        Me.LConsCat.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LConsCat.Location = New System.Drawing.Point(18, 267)
+        Me.LConsCat.Name = "LConsCat"
+        Me.LConsCat.Size = New System.Drawing.Size(168, 15)
+        Me.LConsCat.TabIndex = 126
+        Me.LConsCat.Text = "Consolidation Report Category"
+        Me.LConsCat.Visible = False
+        '
+        'LtaxReport
+        '
+        Me.LtaxReport.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LtaxReport.Location = New System.Drawing.Point(372, 177)
+        Me.LtaxReport.Name = "LtaxReport"
+        Me.LtaxReport.Size = New System.Drawing.Size(58, 15)
+        Me.LtaxReport.TabIndex = 127
+        Me.LtaxReport.Text = "Tax Report"
+        Me.LtaxReport.Visible = False
+        '
+        'SLETaxReport
+        '
+        Me.SLETaxReport.Location = New System.Drawing.Point(444, 175)
+        Me.SLETaxReport.Name = "SLETaxReport"
+        Me.SLETaxReport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLETaxReport.Properties.View = Me.GridView2
+        Me.SLETaxReport.Size = New System.Drawing.Size(179, 20)
+        Me.SLETaxReport.TabIndex = 128
+        Me.SLETaxReport.Visible = False
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID "
+        Me.GridColumn1.FieldName = "id_tax_report"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Type"
+        Me.GridColumn2.FieldName = "tax_report"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "No"
+        Me.GridColumn3.FieldName = "id_consolidation"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        Me.GridColumn3.Width = 112
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Type (Indonesia)"
+        Me.GridColumn4.FieldName = "description_ind"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.Width = 375
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Type (English)"
+        Me.GridColumn5.FieldName = "description_eng"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.Width = 379
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Sub Header"
+        Me.GridColumn6.FieldName = "sub_header"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 2
+        Me.GridColumn6.Width = 375
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Header"
+        Me.GridColumn7.FieldName = "header"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.Width = 375
+        '
         'FormAccountingAcc
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(665, 335)
+        Me.ClientSize = New System.Drawing.Size(639, 335)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -387,6 +524,10 @@ Partial Class FormAccountingAcc
         CType(Me.TEAccountDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPACC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEConsolidationCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLETaxReport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -418,4 +559,17 @@ Partial Class FormAccountingAcc
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LECOAType As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LConsCat As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEConsolidationCat As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SLETaxReport As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LtaxReport As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
