@@ -52,6 +52,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty_exp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpros = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnacc_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPageStore = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabPageDesign = New DevExpress.XtraTab.XtraTabPage()
@@ -117,7 +118,7 @@ Partial Class FormFGTransSummary
         Me.GridColumnCostDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand15 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnacc_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.LEAmoType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,6 +139,7 @@ Partial Class FormFGTransSummary
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilter.Controls.Add(Me.LabelControl8)
         Me.GCFilter.Controls.Add(Me.BtnExportToXLSRec)
         Me.GCFilter.Controls.Add(Me.LabelControl1)
         Me.GCFilter.Controls.Add(Me.LEAmoType)
@@ -151,12 +153,12 @@ Partial Class FormFGTransSummary
         Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCFilter.Location = New System.Drawing.Point(0, 0)
         Me.GCFilter.Name = "GCFilter"
-        Me.GCFilter.Size = New System.Drawing.Size(1008, 39)
+        Me.GCFilter.Size = New System.Drawing.Size(1008, 61)
         Me.GCFilter.TabIndex = 4
         '
         'BtnExportToXLSRec
         '
-        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(601, 9)
+        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(601, 13)
         Me.BtnExportToXLSRec.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSRec.Name = "BtnExportToXLSRec"
         Me.BtnExportToXLSRec.Size = New System.Drawing.Size(92, 20)
@@ -165,7 +167,7 @@ Partial Class FormFGTransSummary
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(319, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(319, 16)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(64, 13)
         Me.LabelControl1.TabIndex = 8900
@@ -173,7 +175,7 @@ Partial Class FormFGTransSummary
         '
         'LEAmoType
         '
-        Me.LEAmoType.Location = New System.Drawing.Point(389, 9)
+        Me.LEAmoType.Location = New System.Drawing.Point(389, 13)
         Me.LEAmoType.Name = "LEAmoType"
         Me.LEAmoType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEAmoType.Size = New System.Drawing.Size(125, 20)
@@ -181,7 +183,7 @@ Partial Class FormFGTransSummary
         '
         'BtnView
         '
-        Me.BtnView.Location = New System.Drawing.Point(520, 9)
+        Me.BtnView.Location = New System.Drawing.Point(520, 13)
         Me.BtnView.LookAndFeel.SkinName = "Blue"
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(75, 20)
@@ -211,7 +213,7 @@ Partial Class FormFGTransSummary
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntil.Location = New System.Drawing.Point(202, 13)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -225,7 +227,7 @@ Partial Class FormFGTransSummary
         'DEFrom
         '
         Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(58, 9)
+        Me.DEFrom.Location = New System.Drawing.Point(58, 13)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -238,7 +240,7 @@ Partial Class FormFGTransSummary
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl2.Location = New System.Drawing.Point(175, 16)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl2.TabIndex = 8893
@@ -246,7 +248,7 @@ Partial Class FormFGTransSummary
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl3.Location = New System.Drawing.Point(28, 16)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl3.TabIndex = 8892
@@ -258,7 +260,7 @@ Partial Class FormFGTransSummary
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(1002, 662)
+        Me.GCData.Size = New System.Drawing.Size(1002, 640)
         Me.GCData.TabIndex = 5
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -501,13 +503,21 @@ Partial Class FormFGTransSummary
         Me.GridColumnpros.Visible = True
         Me.GridColumnpros.VisibleIndex = 17
         '
+        'GridColumnacc_type
+        '
+        Me.GridColumnacc_type.Caption = "ACC TYPE"
+        Me.GridColumnacc_type.FieldName = "acc_type"
+        Me.GridColumnacc_type.Name = "GridColumnacc_type"
+        Me.GridColumnacc_type.Visible = True
+        Me.GridColumnacc_type.VisibleIndex = 2
+        '
         'XtraTabControl
         '
         Me.XtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl.Location = New System.Drawing.Point(0, 39)
+        Me.XtraTabControl.Location = New System.Drawing.Point(0, 61)
         Me.XtraTabControl.Name = "XtraTabControl"
         Me.XtraTabControl.SelectedTabPage = Me.XtraTabPageStore
-        Me.XtraTabControl.Size = New System.Drawing.Size(1008, 690)
+        Me.XtraTabControl.Size = New System.Drawing.Size(1008, 668)
         Me.XtraTabControl.TabIndex = 6
         Me.XtraTabControl.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPageStore, Me.XtraTabPageDesign})
         '
@@ -515,7 +525,7 @@ Partial Class FormFGTransSummary
         '
         Me.XtraTabPageStore.Controls.Add(Me.GCData)
         Me.XtraTabPageStore.Name = "XtraTabPageStore"
-        Me.XtraTabPageStore.Size = New System.Drawing.Size(1002, 662)
+        Me.XtraTabPageStore.Size = New System.Drawing.Size(1002, 640)
         Me.XtraTabPageStore.Text = "By Account"
         '
         'XtraTabPageDesign
@@ -1165,13 +1175,14 @@ Partial Class FormFGTransSummary
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         '
-        'GridColumnacc_type
+        'LabelControl8
         '
-        Me.GridColumnacc_type.Caption = "ACC TYPE"
-        Me.GridColumnacc_type.FieldName = "acc_type"
-        Me.GridColumnacc_type.Name = "GridColumnacc_type"
-        Me.GridColumnacc_type.Visible = True
-        Me.GridColumnacc_type.VisibleIndex = 2
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(404, 39)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(109, 11)
+        Me.LabelControl8.TabIndex = 8905
+        Me.LabelControl8.Text = "Press F7 to show unit cost"
         '
         'FormFGTransSummary
         '
@@ -1180,6 +1191,7 @@ Partial Class FormFGTransSummary
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.XtraTabControl)
         Me.Controls.Add(Me.GCFilter)
+        Me.KeyPreview = True
         Me.Name = "FormFGTransSummary"
         Me.Text = "Transaction Summary"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1301,4 +1313,5 @@ Partial Class FormFGTransSummary
     Friend WithEvents gridBand14 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand15 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnacc_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -91,6 +91,9 @@
                 FormManualSyncCNROR.ShowDialog()
             ElseIf type = "15" Then 'able not approve
                 FormOutboundListDet.is_cancel = True
+            ElseIf type = "16" Then 'show cost trans summary
+                FormFGTransSummary.is_view_cost = True
+                FormFGTransSummary.viewAmoType()
             End If
             Close()
         Else
