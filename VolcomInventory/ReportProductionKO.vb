@@ -10,7 +10,7 @@
         Dim row_po_height As Integer = 20
 
         If is_po_mat = "1" Then
-            row_po_height = 45
+            row_po_height = 65
         End If
 
         For i = 0 To dt_det.Rows.Count - 1
