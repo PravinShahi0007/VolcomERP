@@ -1,4 +1,6 @@
 ﻿Public Class FormFGTransSummary
+    Public is_view_cost As Boolean = False
+
     Private Sub FormFGTransSummary_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`, LAST_DAY(DATE(NOW())) AS `last_date` ", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
@@ -137,9 +139,11 @@
     Sub viewAmoType()
         Dim query As String = "SELECT 0 AS `id_typ`, 'No Amount' AS `typ`
         UNION
-        SELECT 1 AS `id_typ`, 'Retail Price' AS `typ`
-        UNION
-        SELECT 2 AS `id_typ`, 'Cost Price' AS `typ` "
+        SELECT 1 AS `id_typ`, 'Retail Price' AS `typ` "
+        If is_view_cost Then
+            query += "UNION
+            SELECT 2 AS `id_typ`, 'Cost Price' AS `typ` "
+        End If
         viewLookupQuery(LEAmoType, query, 0, "typ", "id_typ")
     End Sub
 
@@ -331,6 +335,15 @@
                 Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
                 e.DisplayText = (rowHandle + 1).ToString()
             End If
+        End If
+    End Sub
+
+    Private Sub FormFGTransSummary_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F7 Then
+            Cursor = Cursors.WaitCursor
+            FormMenuAuth.type = "16"
+            FormMenuAuth.ShowDialog()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class
