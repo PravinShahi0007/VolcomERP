@@ -2773,25 +2773,27 @@ GROUP BY rec.`id_prod_order`"
                     End If
                 ElseIf report_mark_type = "37" Then
                     'rec wh
-                    query = "SELECT CONCAT(c.comp_number,' - ', c.comp_name) AS `vendor`,
-                d.design_code AS `code`, d.design_display_name AS `name`,
-                CAST(IFNULL(SUM(recd.pl_prod_order_rec_det_qty),0) AS DECIMAL(10,0)) AS `total_qty`
-                FROM tb_pl_prod_order_rec rec
-                LEFT JOIN tb_pl_prod_order_rec_det recd ON recd.id_pl_prod_order_rec = rec.id_pl_prod_order_rec
-                INNER JOIN tb_pl_prod_order pl ON pl.id_pl_prod_order = rec.id_pl_prod_order
-                INNER JOIN tb_prod_order po ON po.id_prod_order = pl.id_prod_order
-                LEFT JOIN tb_prod_order_wo wo ON wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor=1
-                LEFT JOIN tb_m_ovh_price op ON op.id_ovh_price = wo.id_ovh_price
-                LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact = op.id_comp_contact
-                LEFT JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-                INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
-                INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
-                WHERE rec.id_pl_prod_order_rec=" + id_report + "
-                GROUP BY rec.id_pl_prod_order_rec "
+                    query = "SELECT CONCAT(c.comp_number,' - ', c.comp_name) AS `vendor`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
+d.design_code AS `code`, d.design_display_name AS `name`,
+CAST(IFNULL(SUM(recd.pl_prod_order_rec_det_qty),0) AS DECIMAL(10,0)) AS `total_qty`
+FROM tb_pl_prod_order_rec rec
+LEFT JOIN tb_pl_prod_order_rec_det recd ON recd.id_pl_prod_order_rec = rec.id_pl_prod_order_rec
+INNER JOIN tb_pl_prod_order pl ON pl.id_pl_prod_order = rec.id_pl_prod_order
+INNER JOIN tb_prod_order po ON po.id_prod_order = pl.id_prod_order
+LEFT JOIN tb_prod_order_wo wo ON wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor=1
+LEFT JOIN tb_m_ovh_price op ON op.id_ovh_price = wo.id_ovh_price
+LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact = op.id_comp_contact
+LEFT JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = rec.id_comp_contact_to
+INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
+WHERE rec.id_pl_prod_order_rec=" + id_report + "
+GROUP BY rec.id_pl_prod_order_rec LIMIT 1 "
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("total_qty").ToString
-                        info_report = datax.Rows(0)("vendor").ToString
+                        info_report = datax.Rows(0)("wh").ToString
                         info_design_code = datax.Rows(0)("code").ToString
                         info_design = datax.Rows(0)("name").ToString
                     End If
