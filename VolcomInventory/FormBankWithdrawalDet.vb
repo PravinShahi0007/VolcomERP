@@ -1550,7 +1550,9 @@ WHERE pnd.id_pn='" & id_payment & "'"
         'Parse val
         Dim query As String = "Select py.number,If(py.is_auto_debet=1,'- Auto Debet','') AS auto_debet,FORMAT(py.`trf_fee`,2,'id_ID') AS trf_fee,FORMAT(py.`kurs`,2,'id_ID') AS kurs,acc.acc_name as acc_payfrom_name,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created,DATE_FORMAT(py.date_payment,'%d %M %Y') as date_payment, py.`id_pn`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
 ,'" & ConvertCurrencyToIndonesian(TETotal.EditValue) & "' AS tot_say, CONCAT(tag.tag_code, ' - ', tag.tag_description) AS tag
+,FORMAT(SUM(IF(pyd.id_currency!=1,val_bef_kurs,0)),2,'id_ID') AS total_valas
 FROM tb_pn py
+INNER JOIN tb_pn_det pyd ON pyd.id_pn=py.id_pn
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 INNER JOIN `tb_lookup_report_mark_type` rm ON rm.`report_mark_type`=py.`report_mark_type`
@@ -1560,7 +1562,9 @@ INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
 INNER JOIN tb_a_acc acc ON acc.id_acc=py.id_acc_payfrom
 INNER JOIN tb_coa_tag tag ON py.id_coa_tag = tag.id_coa_tag
-WHERE py.`id_pn`='" & id_payment & "'"
+WHERE py.`id_pn`='" & id_payment & "'
+GROUP BY py.id_pn"
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Report.DataSource = data
 
@@ -1588,10 +1592,18 @@ WHERE py.`id_pn`='" & id_payment & "'"
             Report.LKurs.Visible = False
             Report.LkursLabel.Visible = False
             Report.LKursTitik.Visible = False
+            '
+            Report.LTotUSD.Visible = False
+            Report.LTotUSD2.Visible = False
+            Report.LTotUSDVal.Visible = False
         Else
             Report.LKurs.Visible = True
             Report.LkursLabel.Visible = True
             Report.LKursTitik.Visible = True
+            '
+            Report.LTotUSD.Visible = True
+            Report.LTotUSD2.Visible = True
+            Report.LTotUSDVal.Visible = True
         End If
         '
         If is_print_preview = True Then

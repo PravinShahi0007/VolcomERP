@@ -258,6 +258,7 @@ WHERE po.id_purc_order='" & id_po & "'"
                     End If
                 End If
             Next
+
             'check budget
             Dim q_budget As String = ""
             If GVPurcReq.GetRowCellValue(i, "id_expense_type").ToString = "1" Then 'opex

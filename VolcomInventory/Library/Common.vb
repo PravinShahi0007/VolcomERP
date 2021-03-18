@@ -2437,7 +2437,7 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
         words.Append(".")
         words.Replace(words(0), Char.ToUpper(words(0)), 0, 1)
 
-        Return (words.ToString.First().ToString().ToUpper() & words.ToString.Substring(1)).TrimStart
+        Return (words.ToString.TrimStart.First().ToString().ToUpper() & words.ToString.TrimStart.Substring(1)).TrimStart
     End Function
 
     Private Sub AddWords(ByVal number As Short, ByVal suffix As String)
