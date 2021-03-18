@@ -57,7 +57,37 @@ INNER JOIN `tb_lookup_bill_type` bt ON bt.`id_bill_type`=trx.`id_bill_type`
 INNER JOIN tb_m_user usr ON usr.`id_user`=trx.`id_user`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 WHERE trx.`is_close`='2' AND DATE(trx.`date_reference`)<'" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-01") & "' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
-GROUP BY trxd.`id_acc_trans`"
+GROUP BY trxd.`id_acc_trans`
+UNION ALL
+SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,IF(IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0)<0,IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0),0) * -1 AS debit,IF(IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0)>0,IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0),0) AS credit,'Branch vs Kantor pusat tidak balance' AS sts 
+FROM `tb_consolidation` c
+LEFT JOIN
+(
+	SELECT acc.id_consolidation,trxd.id_acc,acc.`acc_name`,SUM(trxd.debit) AS debit,SUM(trxd.credit) AS credit
+	,SUM(IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit)) AS saldo
+	,SUM(IF(IFNULL(trx.date_reference,trx.date_created) < DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-01') ,IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(1=2,1,IF(acc.id_dc=2,-1,1))) AS prev_month
+	,SUM(IF(DATE_FORMAT(IFNULL(trx.date_reference,trx.date_created),'%Y-%m-%d')<=DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y-%m-%d'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(1=2,1,IF(acc.id_dc=2,-1,1))) AS this_month
+	FROM `tb_a_acc_trans_det` trxd
+	INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status!=5
+	INNER JOIN tb_a_acc acc ON trxd.id_acc=acc.`id_acc` AND acc.`id_consolidation`=10
+	GROUP BY id_acc
+) trx ON c.`id_consolidation`=trx.id_consolidation
+LEFT JOIN
+(
+	SELECT acc.id_consolidation,trxd.id_acc,acc.`acc_name`,SUM(trxd.debit) AS debit,SUM(trxd.credit) AS credit
+	,SUM(IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit)) AS saldo
+	,SUM(IF(IFNULL(trx.date_reference,trx.date_created) < DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-01') ,IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(LEFT(acc.acc_name,1)=2,1,IF(acc.id_dc=2,-1,1))) AS prev_month
+	,SUM(IF(DATE_FORMAT(IFNULL(trx.date_reference,trx.date_created),'%Y-%m-%d')<=DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y-%m-%d'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(LEFT(acc.acc_name,1)=2,1,IF(acc.id_dc=2,-1,1))) AS this_month
+	FROM `tb_a_acc_trans_det` trxd
+	INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status!=5
+	INNER JOIN tb_a_acc acc ON trxd.id_acc=acc.`id_acc` AND acc.id_consolidation IN (SELECT minus_with FROM `tb_consolidation` WHERE minus_with>0)
+	GROUP BY id_consolidation
+) minus ON minus.id_consolidation=c.`minus_with`
+INNER JOIN `tb_consolidation_sub_header` acc_sub ON acc_sub.`id_consolidation_sub_header`=c.`id_consolidation_sub_header`
+INNER JOIN `tb_consolidation_header` acc_head ON acc_sub.`id_consolidation_header`=acc_head.`id_consolidation_header`
+WHERE c.`id_consolidation`=10
+GROUP BY c.`id_consolidation`
+HAVING debit+credit!=0;"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCClosing.DataSource = data
