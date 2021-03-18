@@ -73,6 +73,9 @@
         viewDay()
         viewFilterMonth()
         viewFilterYear()
+
+        'Tab USA Sales
+        view_month()
     End Sub
 
     Sub load_group_store()
@@ -1403,5 +1406,127 @@
         If GVInvoiceWeek.GetRowCellValue(e.RowHandle, "total_qty") = 0 Then
             e.Appearance.BackColor = Color.LightPink
         End If
+    End Sub
+
+    Sub view_month()
+        Dim d_start As Date = Date.Parse("2020-01-01")
+        Dim d_before As Date = Date.Parse(Date.Now.Year.ToString() + "-" + Date.Now.Month.ToString() + "-01")
+
+        Dim cnt As Boolean = True
+
+        Dim data As DataTable = New DataTable
+
+        data.Columns.Add("month", GetType(String))
+        data.Columns.Add("text", GetType(String))
+
+        While cnt
+            data.Rows.Add(d_start.ToString("yyyy-MM-dd"), d_start.ToString("MMMM yyyy"))
+
+            d_start = d_start.AddMonths(1)
+
+            If d_start = d_before Then
+                data.Rows.Add(d_start.ToString("yyyy-MM-dd"), d_start.ToString("MMMM yyyy"))
+
+                cnt = False
+            End If
+        End While
+
+        SLUEUSASales.Properties.DataSource = data
+        SLUEUSASales.Properties.DisplayMember = "text"
+        SLUEUSASales.Properties.ValueMember = "month"
+        SLUEUSASales.EditValue = data.Rows(data.Rows.Count - 1)("month")
+    End Sub
+
+    Sub view_usa_sales()
+        Dim royalty As String = execute_query("SELECT usa_sales_royalty FROM tb_opt_sales LIMIT 1", 0, True, "", "", "", "")
+
+        Dim last_day As Integer = Date.DaysInMonth(Date.Parse(SLUEUSASales.EditValue.ToString).Year, Date.Parse(SLUEUSASales.EditValue.ToString).Month)
+
+        Dim date_from As String = SLUEUSASales.EditValue.ToString
+        Dim date_to As String = SLUEUSASales.EditValue.ToString.Substring(0, 8) + last_day.ToString
+
+        Dim query_c As ClassSalesInv = New ClassSalesInv()
+
+        Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 AND (a.sales_pos_end_period >= ''" + date_from + "'' AND a.sales_pos_end_period <= ''" + date_to + "'') AND a.sales_pos_total > 0 AND a.report_mark_type != 116 ", "1", "2")
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim store As DataTable = execute_query("SELECT id_sal_usa_store, store_name, 0.00 AS total_sales FROM tb_lookup_sal_usa_store", -1, True, "", "", "", "")
+        Dim store_detail As DataTable = execute_query("
+            SELECT u.id_sal_usa_store, c.comp_number, u.ppn_ptc, 0.00 AS total_sales
+            FROM tb_lookup_sal_usa_store_detail AS u
+            LEFT JOIN tb_m_comp AS c ON u.id_comp = c.id_comp
+        ", -1, True, "", "", "", "")
+
+        Dim royalty_volcom As Decimal = 0.00
+
+        For i = 0 To data.Rows.Count - 1
+            royalty_volcom += data.Rows(i)("sales_pos_revenue")
+
+            For j = 0 To store_detail.Rows.Count - 1
+                If data.Rows(i)("store_number").ToString = store_detail.Rows(j)("comp_number").ToString Then
+                    store_detail.Rows(j)("total_sales") += data.Rows(i)("sales_pos_netto")
+                End If
+            Next
+        Next
+
+        For i = 0 To store_detail.Rows.Count - 1
+            store_detail.Rows(i)("total_sales") = (store_detail.Rows(i)("total_sales") * store_detail.Rows(i)("ppn_ptc")) / (100 - store_detail.Rows(i)("ppn_ptc"))
+
+            store_detail.Rows(i)("total_sales") = store_detail.Rows(i)("total_sales") * 100 / 110
+        Next
+
+        For i = 0 To store.Rows.Count - 1
+            For j = 0 To store_detail.Rows.Count - 1
+                If store.Rows(i)("id_sal_usa_store").ToString = store_detail.Rows(j)("id_sal_usa_store").ToString Then
+                    store.Rows(i)("total_sales") += store_detail.Rows(j)("total_sales")
+                End If
+            Next
+        Next
+
+        'data 1
+        Dim data1 As DataTable = execute_query("SELECT 1 AS `no`, '01 - " + date_to.Substring(8, 2) + " " + SLUEUSASales.Text + "' AS `date`, 0.00 AS amount", -1, True, "", "", "", "")
+
+        For i = 0 To store.Rows.Count - 1
+            data1.Rows(0)("amount") += store.Rows(i)("total_sales")
+        Next
+
+        data1.Rows(0)("amount") += royalty_volcom
+
+        GCUSASales.DataSource = data1
+
+        'data 2
+        Dim data2 As DataTable = execute_query("SELECT id_sal_usa_store, CONCAT('Sales Volcom ', store_name, ' for Royalty') AS `text`, 0.00 AS amount FROM tb_lookup_sal_usa_store UNION ALL SELECT 0 AS id_sal_usa_store, 'Sales Volcom for Royalty' AS `text`, 0.00 AS amount", -1, True, "", "", "", "")
+
+        For i = 0 To store.Rows.Count - 1
+            For j = 0 To data2.Rows.Count - 1
+                If store.Rows(i)("id_sal_usa_store").ToString = data2.Rows(j)("id_sal_usa_store").ToString Then
+                    data2.Rows(j)("amount") += store.Rows(i)("total_sales")
+                End If
+
+                If data2.Rows(j)("id_sal_usa_store").ToString = "0" Then
+                    data2.Rows(j)("amount") = royalty_volcom
+                End If
+            Next
+        Next
+
+        GCDetailSales.DataSource = data2
+
+        'data 3
+        Dim data3 As DataTable = execute_query("SELECT 0 AS id_sal_usa_store, '1: Total Sales for Royalty' AS `group`, 'Royalty = " + royalty + "%' AS `text`, '" + SLUEUSASales.Text + "' AS `date`, 0.00 AS amount UNION ALL SELECT id_sal_usa_store, CONCAT((id_sal_usa_store + 1), ': Total Sales ', store_name, ' for Royalty') AS `group`, 'Royalty = " + royalty + "%' AS `text`, '" + SLUEUSASales.Text + "' AS `date`, 0.00 AS amount FROM tb_lookup_sal_usa_store", -1, True, "", "", "", "")
+
+        For i = 0 To data2.Rows.Count - 1
+            For j = 0 To data3.Rows.Count - 1
+                If data2.Rows(i)("id_sal_usa_store").ToString = data3.Rows(j)("id_sal_usa_store").ToString Then
+                    data3.Rows(j)("amount") = data2.Rows(i)("amount") * (Integer.Parse(royalty) / 100)
+                End If
+            Next
+        Next
+
+        GCDetailRoyalty.DataSource = data3
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+        view_usa_sales()
     End Sub
 End Class
