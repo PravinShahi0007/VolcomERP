@@ -95,6 +95,9 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LTotUSDVal = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LTotUSD2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LTotUSD = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -778,7 +781,7 @@ Partial Public Class ReportBankWithdrawal
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel26, Me.XrLabel24, Me.XrLabel25, Me.XrLabel21, Me.XrLabel22, Me.XrLabel23, Me.LBookTrf, Me.LkursLabel, Me.LKursTitik, Me.LKurs, Me.XrLabel17, Me.XrLabel19, Me.XrLabel20, Me.XrLine1, Me.XrLabel7, Me.XrPictureBox1, Me.XrLabel1, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel13, Me.XrLabel9, Me.XrLabel10, Me.XrLabel11, Me.XrLabel8, Me.XrLabel12})
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LTotUSDVal, Me.LTotUSD2, Me.LTotUSD, Me.XrLabel26, Me.XrLabel24, Me.XrLabel25, Me.XrLabel21, Me.XrLabel22, Me.XrLabel23, Me.LBookTrf, Me.LkursLabel, Me.LKursTitik, Me.LKurs, Me.XrLabel17, Me.XrLabel19, Me.XrLabel20, Me.XrLine1, Me.XrLabel7, Me.XrPictureBox1, Me.XrLabel1, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel13, Me.XrLabel9, Me.XrLabel10, Me.XrLabel11, Me.XrLabel8, Me.XrLabel12})
         Me.PageHeader.HeightF = 140.25!
         Me.PageHeader.Name = "PageHeader"
         '
@@ -867,7 +870,7 @@ Partial Public Class ReportBankWithdrawal
         'LkursLabel
         '
         Me.LkursLabel.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.LkursLabel.LocationFloat = New DevExpress.Utils.PointFloat(0.0001738469!, 109.0416!)
+        Me.LkursLabel.LocationFloat = New DevExpress.Utils.PointFloat(170.8334!, 109.0418!)
         Me.LkursLabel.Name = "LkursLabel"
         Me.LkursLabel.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LkursLabel.SizeF = New System.Drawing.SizeF(70.83333!, 16.0!)
@@ -879,7 +882,7 @@ Partial Public Class ReportBankWithdrawal
         'LKursTitik
         '
         Me.LKursTitik.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.LKursTitik.LocationFloat = New DevExpress.Utils.PointFloat(70.83353!, 109.0417!)
+        Me.LKursTitik.LocationFloat = New DevExpress.Utils.PointFloat(241.6667!, 109.0418!)
         Me.LKursTitik.Name = "LKursTitik"
         Me.LKursTitik.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LKursTitik.SizeF = New System.Drawing.SizeF(14.58334!, 16.0!)
@@ -891,10 +894,10 @@ Partial Public Class ReportBankWithdrawal
         'LKurs
         '
         Me.LKurs.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.LKurs.LocationFloat = New DevExpress.Utils.PointFloat(85.41693!, 109.0417!)
+        Me.LKurs.LocationFloat = New DevExpress.Utils.PointFloat(256.2501!, 109.0418!)
         Me.LKurs.Name = "LKurs"
         Me.LKurs.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LKurs.SizeF = New System.Drawing.SizeF(234.375!, 16.0!)
+        Me.LKurs.SizeF = New System.Drawing.SizeF(134.375!, 16.00001!)
         Me.LKurs.StylePriority.UseFont = False
         Me.LKurs.StylePriority.UseTextAlignment = False
         Me.LKurs.Text = "[kurs]"
@@ -935,6 +938,42 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel20.StylePriority.UseTextAlignment = False
         Me.XrLabel20.Text = ":"
         Me.XrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LTotUSDVal
+        '
+        Me.LTotUSDVal.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.LTotUSDVal.LocationFloat = New DevExpress.Utils.PointFloat(85.41673!, 109.0418!)
+        Me.LTotUSDVal.Name = "LTotUSDVal"
+        Me.LTotUSDVal.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LTotUSDVal.SizeF = New System.Drawing.SizeF(85.41667!, 16.00001!)
+        Me.LTotUSDVal.StylePriority.UseFont = False
+        Me.LTotUSDVal.StylePriority.UseTextAlignment = False
+        Me.LTotUSDVal.Text = "[total_valas]"
+        Me.LTotUSDVal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LTotUSD2
+        '
+        Me.LTotUSD2.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.LTotUSD2.LocationFloat = New DevExpress.Utils.PointFloat(70.8334!, 109.0418!)
+        Me.LTotUSD2.Name = "LTotUSD2"
+        Me.LTotUSD2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LTotUSD2.SizeF = New System.Drawing.SizeF(14.58334!, 16.0!)
+        Me.LTotUSD2.StylePriority.UseFont = False
+        Me.LTotUSD2.StylePriority.UseTextAlignment = False
+        Me.LTotUSD2.Text = ":"
+        Me.LTotUSD2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LTotUSD
+        '
+        Me.LTotUSD.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.LTotUSD.LocationFloat = New DevExpress.Utils.PointFloat(0!, 109.0417!)
+        Me.LTotUSD.Name = "LTotUSD"
+        Me.LTotUSD.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LTotUSD.SizeF = New System.Drawing.SizeF(70.83333!, 16.0!)
+        Me.LTotUSD.StylePriority.UseFont = False
+        Me.LTotUSD.StylePriority.UseTextAlignment = False
+        Me.LTotUSD.Text = "Total USD"
+        Me.LTotUSD.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportBankWithdrawal
         '
@@ -1031,4 +1070,7 @@ Partial Public Class ReportBankWithdrawal
     Friend WithEvents RITEDecimal As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnBBaldue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICECheckReceive As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents LTotUSDVal As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LTotUSD2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LTotUSD As DevExpress.XtraReports.UI.XRLabel
 End Class
