@@ -181,7 +181,7 @@
         Cursor = Cursors.WaitCursor
 
         FormDocumentUpload.is_no_delete = If(Not id_report_status = "0", "1", "-1")
-        FormDocumentUpload.is_view = If(Not id_report_status = "0", "1", "-1")
+        'FormDocumentUpload.is_view = If(Not id_report_status = "0", "1", "-1")
         FormDocumentUpload.id_report = id_prod_fc_sum
         FormDocumentUpload.report_mark_type = "222"
 
