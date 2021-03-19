@@ -266,22 +266,31 @@ SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`
     End Sub
 
     Private Sub BUpdateLeadTime_Click(sender As Object, e As EventArgs) Handles BUpdate.Click
-        Dim query As String = "UPDATE tb_prod_order_ko SET id_ko_template='" & SLEContractTemplate.EditValue.ToString & "' WHERE id_prod_order_ko='" & id_ko & "'"
-        execute_non_query(query, True, "", "", "", "")
-        'update lead time
-        For i As Integer = 0 To GVProd.RowCount - 1
-            query = "UPDATE tb_prod_order_ko_det SET lead_time_prod='" & GVProd.GetRowCellValue(i, "lead_time").ToString & "' WHERE id_prod_order_ko_det='" & GVProd.GetRowCellValue(i, "id_prod_order_ko_det").ToString & "'"
+        If Not SLEContractTemplate.EditValue.ToString = "0" Then
+            Dim query As String = "UPDATE tb_prod_order_ko SET id_ko_template='" & SLEContractTemplate.EditValue.ToString & "' WHERE id_prod_order_ko='" & id_ko & "'"
             execute_non_query(query, True, "", "", "", "")
-        Next
-        infoCustom("KO updated")
-        load_head()
+            'update lead time
+            For i As Integer = 0 To GVProd.RowCount - 1
+                query = "UPDATE tb_prod_order_ko_det SET lead_time_prod='" & GVProd.GetRowCellValue(i, "lead_time").ToString & "' WHERE id_prod_order_ko_det='" & GVProd.GetRowCellValue(i, "id_prod_order_ko_det").ToString & "'"
+                execute_non_query(query, True, "", "", "", "")
+            Next
+            infoCustom("KO updated")
+            load_head()
+        Else
+            stopCustom("Please select Contract Template")
+        End If
     End Sub
 
     Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
-        Dim query As String = "UPDATE tb_prod_order_ko SET is_locked='1' WHERE id_prod_order_ko='" & id_ko & "'"
-        execute_non_query(query, True, "", "", "", "")
-        infoCustom("KO locked")
-        load_head()
+        Dim id_ko_template As String = execute_query("SELECT id_ko_template FROM tb_prod_order_ko WHERE id_prod_order_ko = " & id_ko, 0, True, "", "", "", "")
+        If Not id_ko_template = "0" Then
+            Dim query As String = "UPDATE tb_prod_order_ko SET is_locked='1' WHERE id_prod_order_ko='" & id_ko & "'"
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("KO locked")
+            load_head()
+        Else
+            stopCustom("Please select Contract Template and Update")
+        End If
     End Sub
 
     Private Sub SLERevision_EditValueChanged(sender As Object, e As EventArgs) Handles SLERevision.EditValueChanged
