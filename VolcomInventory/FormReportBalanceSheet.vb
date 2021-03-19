@@ -38,6 +38,8 @@ SELECT id_tax_report,tax_report,id_type FROM tb_lookup_tax_report"
         DETaxFrom.EditValue = Now
         DETaxUntil.EditValue = Now
         '
+        DEMonthlyReport.EditValue = Now
+        '
         DEUntil.EditValue = New DateTime(Now.Year, Now.Month, Date.DaysInMonth(Now.Year, Now.Month))
         load_unit()
         load_tag_coa()
@@ -157,10 +159,10 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
             If XTCBS.SelectedTabPageIndex = 0 Then
                 CreateNodes(TLBalanceSheet, " WHERE b.is_balance_sheet='1'", Date.Parse(DEUntil.EditValue.ToString), SLEUnit.EditValue.ToString)
             ElseIf XTCBS.SelectedTabPageIndex = 1 Then
-                load_report(GCAktiva, "1")
+                load_report(GCAktiva, "1", Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd"), SLEUnit.EditValue.ToString)
                 GVAktiva.BestFitColumns()
                 GVAktiva.ExpandAllGroups()
-                load_report(GCPasiva, "2")
+                load_report(GCPasiva, "2", Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd"), SLEUnit.EditValue.ToString)
                 GVPasiva.BestFitColumns()
                 GVPasiva.ExpandAllGroups()
             End If
@@ -175,9 +177,9 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
         End If
     End Sub
 
-    Sub load_report(ByVal gc As DevExpress.XtraGrid.GridControl, ByVal opt As String)
-        Dim date_str As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim unit_str As String = SLEUnit.EditValue.ToString
+    Sub load_report(ByVal gc As DevExpress.XtraGrid.GridControl, ByVal opt As String, ByVal date_until As String, ByVal unit As String)
+        Dim date_str As String = date_until
+        Dim unit_str As String = unit
         Dim query As String = "CALL acc_show_report('" & date_str & "','" & opt & "','" & unit_str & "')"
         gc.DataSource = execute_query(query, -1, True, "", "", "", "")
     End Sub
@@ -1257,5 +1259,23 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
 
     Private Sub SBSummaryPpn_Click(sender As Object, e As EventArgs) Handles SBSummaryPpn.Click
         FormReportBalanceTaxSummaryPpn.ShowDialog()
+    End Sub
+
+    Private Sub BViewMonthlyReport_Click(sender As Object, e As EventArgs) Handles BViewMonthlyReport.Click
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            load_report(GCMAktiva, "1", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), SLEUnit.EditValue.ToString)
+            GVMAktiva.BestFitColumns()
+            GVMAktiva.ExpandAllGroups()
+            load_report(GCMPasiva, "2", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), SLEUnit.EditValue.ToString)
+            GVMPasiva.BestFitColumns()
+            GVMPasiva.ExpandAllGroups()
+        End If
+    End Sub
+
+    Private Sub DEMonthlyReport_EditValueChanged(sender As Object, e As EventArgs) Handles DEMonthlyReport.EditValueChanged
+        Try
+            DEMonthlyReport.EditValue = New DateTime(DEMonthlyReport.EditValue.Year, DEMonthlyReport.EditValue.Month, Date.DaysInMonth(DEMonthlyReport.EditValue.Year, DEMonthlyReport.EditValue.Month))
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

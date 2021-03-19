@@ -108,7 +108,7 @@ WHERE id_prod_order_ko='" & id_ko & "'"
 
         If is_purc_mat = "1" Then
             query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`mat_purc_number` AS prod_order_number,md.mat_det_display_name AS class_dsg,cd.`display_name` AS color
-,SUM(pod.mat_purc_det_qty) AS qty_order,pod.mat_purc_det_price AS bom_unit,SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty) AS po_amount_rp
+,(pod.mat_purc_det_qty) AS qty_order,pod.mat_purc_det_price AS bom_unit,(pod.mat_purc_det_price*pod.mat_purc_det_qty) AS po_amount_rp
 ,kod.lead_time_prod AS lead_time,kod.lead_time_payment,po.mat_purc_date AS prod_order_wo_del_date,DATE_ADD(po.mat_purc_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
 ,IFNULL(revtimes.revision_times,0) AS revision_times
 FROM `tb_prod_order_ko_det` kod
@@ -128,7 +128,7 @@ LEFT JOIN(
     ) revtimes GROUP BY revtimes.id_purc_order
 )revtimes ON revtimes.id_purc_order=po.id_mat_purc
 WHERE kod.id_prod_order_ko='" & id_ko & "'
-GROUP BY po.id_mat_purc
+-- GROUP BY po.id_mat_purc
 ORDER BY po.`id_mat_purc` ASC"
         Else
             query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`prod_order_number`,LEFT(dsg.design_display_name,LENGTH(dsg.design_display_name)-3) AS class_dsg,RIGHT(dsg.design_display_name,3) AS color
