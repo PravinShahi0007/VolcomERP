@@ -2815,17 +2815,22 @@ GROUP BY rec.id_pl_prod_order_rec LIMIT 1 "
                 ElseIf report_mark_type = "46" Or report_mark_type = "113" Or report_mark_type = "120" Then
                     'return
                     query = "SELECT CONCAT(c.comp_number,' - ', c.comp_name) AS `store`,
-                CAST(IFNULL(SUM(rd.sales_return_det_qty),0) AS DECIMAL(10,0)) AS `total_qty`
-                FROM tb_sales_return r
-                LEFT JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return
-                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = r.id_store_contact_from
-                INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-                WHERE r.id_sales_return=" + id_report + "
-                GROUP BY r.id_sales_return "
+CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
+CAST(IFNULL(SUM(rd.sales_return_det_qty),0) AS DECIMAL(10,0)) AS `total_qty`
+FROM tb_sales_return r
+LEFT JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = r.id_store_contact_from
+INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = r.id_comp_contact_to
+INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
+WHERE r.id_sales_return=" + id_report + "
+GROUP BY r.id_sales_return 
+LIMIT 1 "
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("total_qty").ToString
-                        info_report = datax.Rows(0)("store").ToString
+                        info_report = datax.Rows(0)("wh").ToString
+                        info_design = datax.Rows(0)("store").ToString
                     End If
                 ElseIf report_mark_type = "47" Then
                     'mat return in production
