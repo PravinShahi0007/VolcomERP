@@ -9,230 +9,234 @@
     Private browser_zalora_shippinglabel As DevExpress.XtraPdfViewer.PdfViewer = New DevExpress.XtraPdfViewer.PdfViewer
 
     Private Sub FormSalesOrderShippingLabelPdf_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim path As String = Application.StartupPath & "\download\"
+        Try
+            Dim path As String = Application.StartupPath & "\download\"
 
-        If Not IO.Directory.Exists(path) Then
-            IO.Directory.CreateDirectory(path)
-        End If
-
-        Dim full_path_invoice As String = ""
-        Dim full_path_shippinglabel As String = ""
-
-        If ol_store = "blibli" Then
-            full_path_shippinglabel = path + "BLIBLI-" + order_id + "-" + Now.Ticks.ToString + ".pdf"
-        ElseIf ol_store = "zalora" Then
-            full_path_invoice = path + "ZALORA-INV-" + order_id + "-" + Now.Ticks.ToString + ".html"
-            full_path_shippinglabel = path + "ZALORA-SHI-" + order_id + "-" + Now.Ticks.ToString + ".html"
-        End If
-
-        Dim bytes_invoice() As Byte = Nothing
-        Dim bytes_shippinglabel() As Byte = Nothing
-
-        If ol_store = "blibli" Then
-            Dim cls As ClassBliBliApi = New ClassBliBliApi
-
-            Dim out_shippinglabel As String = cls.download_shipping_label(order_id)
-
-            If Not out_shippinglabel = "" Then
-                bytes_shippinglabel = Convert.FromBase64String(out_shippinglabel)
-            End If
-        ElseIf ol_store = "zalora" Then
-            Dim cls As ClassZaloraApi = New ClassZaloraApi
-
-            Dim out_invoice As String = cls.download_shipping_label(order_id, "invoice")
-            Dim out_shippinglabel As String = cls.download_shipping_label(order_id, "shippingLabel")
-
-            If Not out_invoice = "" Then
-                bytes_invoice = Convert.FromBase64String(out_invoice)
+            If Not IO.Directory.Exists(path) Then
+                IO.Directory.CreateDirectory(path)
             End If
 
-            If Not out_shippinglabel = "" Then
-                bytes_shippinglabel = Convert.FromBase64String(out_shippinglabel)
+            Dim full_path_invoice As String = ""
+            Dim full_path_shippinglabel As String = ""
+
+            If ol_store = "blibli" Then
+                full_path_shippinglabel = path + "BLIBLI-" + order_id + "-" + Now.Ticks.ToString + ".pdf"
+            ElseIf ol_store = "zalora" Then
+                full_path_invoice = path + "ZALORA-INV-" + order_id + "-" + Now.Ticks.ToString + ".html"
+                full_path_shippinglabel = path + "ZALORA-SHI-" + order_id + "-" + Now.Ticks.ToString + ".html"
             End If
 
-            'replace https
-            bytes_invoice = System.Text.Encoding.UTF8.GetBytes(System.Text.Encoding.UTF8.GetString(bytes_invoice).Replace("https", "http"))
-            bytes_shippinglabel = System.Text.Encoding.UTF8.GetBytes(System.Text.Encoding.UTF8.GetString(bytes_shippinglabel).Replace("https", "http"))
-        End If
+            Dim bytes_invoice() As Byte = Nothing
+            Dim bytes_shippinglabel() As Byte = Nothing
 
-        If ol_store = "blibli" Then
-            If bytes_shippinglabel IsNot Nothing Then
-                Dim stream As IO.FileStream = New IO.FileStream(full_path_shippinglabel, IO.FileMode.CreateNew)
-                Dim writer As IO.BinaryWriter = New IO.BinaryWriter(stream)
+            If ol_store = "blibli" Then
+                Dim cls As ClassBliBliApi = New ClassBliBliApi
 
-                writer.Write(bytes_shippinglabel, 0, bytes_shippinglabel.Length)
+                Dim out_shippinglabel As String = cls.download_shipping_label(order_id)
 
-                writer.Close()
+                If Not out_shippinglabel = "" Then
+                    bytes_shippinglabel = Convert.FromBase64String(out_shippinglabel)
+                End If
+            ElseIf ol_store = "zalora" Then
+                Dim cls As ClassZaloraApi = New ClassZaloraApi
 
-                'panel
-                Dim panel As DevExpress.XtraEditors.PanelControl = New DevExpress.XtraEditors.PanelControl
+                Dim out_invoice As String = cls.download_shipping_label(order_id, "invoice")
+                Dim out_shippinglabel As String = cls.download_shipping_label(order_id, "shippingLabel")
 
-                panel.Dock = DockStyle.Bottom
+                If Not out_invoice = "" Then
+                    bytes_invoice = Convert.FromBase64String(out_invoice)
+                End If
 
-                panel.Height = 45
+                If Not out_shippinglabel = "" Then
+                    bytes_shippinglabel = Convert.FromBase64String(out_shippinglabel)
+                End If
 
-                Controls.Add(panel)
-
-                'button
-                Dim button As DevExpress.XtraEditors.SimpleButton = New DevExpress.XtraEditors.SimpleButton
-
-                button.Dock = DockStyle.Right
-
-                button.Width = 100
-
-                button.Text = "Print"
-
-                AddHandler button.Click, AddressOf button_blibli_print
-
-                panel.Controls.Add(button)
-
-                'browser
-                browser_blibli.Dock = DockStyle.Fill
-
-                Dim file As IO.Stream = New IO.FileStream(full_path_shippinglabel, IO.FileMode.Open)
-
-                browser_blibli.LoadDocument(file)
-
-                Controls.Add(browser_blibli)
-
-                browser_blibli.BringToFront()
-            Else
-                is_not_found = True
+                'replace https
+                bytes_invoice = System.Text.Encoding.UTF8.GetBytes(System.Text.Encoding.UTF8.GetString(bytes_invoice).Replace("https", "http"))
+                bytes_shippinglabel = System.Text.Encoding.UTF8.GetBytes(System.Text.Encoding.UTF8.GetString(bytes_shippinglabel).Replace("https", "http"))
             End If
-        ElseIf ol_store = "zalora" Then
-            If bytes_invoice IsNot Nothing And bytes_shippinglabel IsNot Nothing Then
-                'invoice
-                Dim stream_invoice As IO.FileStream = New IO.FileStream(full_path_invoice, IO.FileMode.CreateNew)
-                Dim writer_invoice As IO.BinaryWriter = New IO.BinaryWriter(stream_invoice)
 
-                writer_invoice.Write(bytes_invoice, 0, bytes_invoice.Length)
+            If ol_store = "blibli" Then
+                If bytes_shippinglabel IsNot Nothing Then
+                    Dim stream As IO.FileStream = New IO.FileStream(full_path_shippinglabel, IO.FileMode.CreateNew)
+                    Dim writer As IO.BinaryWriter = New IO.BinaryWriter(stream)
 
-                writer_invoice.Close()
+                    writer.Write(bytes_shippinglabel, 0, bytes_shippinglabel.Length)
 
-                'shipping label
-                Dim stream_shippinglabel As IO.FileStream = New IO.FileStream(full_path_shippinglabel, IO.FileMode.CreateNew)
-                Dim writer_shippinglabel As IO.BinaryWriter = New IO.BinaryWriter(stream_shippinglabel)
+                    writer.Close()
 
-                writer_shippinglabel.Write(bytes_shippinglabel, 0, bytes_shippinglabel.Length)
+                    'panel
+                    Dim panel As DevExpress.XtraEditors.PanelControl = New DevExpress.XtraEditors.PanelControl
 
-                writer_shippinglabel.Close()
+                    panel.Dock = DockStyle.Bottom
 
-                'tab
-                Dim tab As DevExpress.XtraTab.XtraTabControl = New DevExpress.XtraTab.XtraTabControl
+                    panel.Height = 45
 
-                tab.Dock = DockStyle.Fill
+                    Controls.Add(panel)
 
-                tab.TabPages.Add("Invoice")
-                tab.TabPages.Add("Shipping Label")
+                    'button
+                    Dim button As DevExpress.XtraEditors.SimpleButton = New DevExpress.XtraEditors.SimpleButton
 
-                'pdf
-                Dim pdf_invoice As Pechkin.GlobalConfig = New Pechkin.GlobalConfig
+                    button.Dock = DockStyle.Right
 
-                pdf_invoice.SetPaperOrientation(True)
-                pdf_invoice.SetPaperSize(Printing.PaperKind.A4)
+                    button.Width = 100
 
-                Dim obj_invoice As Pechkin.ObjectConfig = New Pechkin.ObjectConfig
+                    button.Text = "Print"
 
-                obj_invoice.SetPageUri(full_path_invoice)
-                obj_invoice.SetPrintBackground(True)
-                obj_invoice.SetScreenMediaType(True)
-                obj_invoice.SetLoadImages(True)
+                    AddHandler button.Click, AddressOf button_blibli_print
 
-                Dim converter_invoice As Pechkin.Synchronized.SynchronizedPechkin = New Pechkin.Synchronized.SynchronizedPechkin(pdf_invoice)
+                    panel.Controls.Add(button)
 
-                Dim result_invoice() As Byte = converter_invoice.Convert(obj_invoice)
+                    'browser
+                    browser_blibli.Dock = DockStyle.Fill
 
-                IO.File.WriteAllBytes(full_path_invoice.Replace(".html", ".pdf"), result_invoice)
+                    Dim file As IO.Stream = New IO.FileStream(full_path_shippinglabel, IO.FileMode.Open)
 
-                Dim pdf_shippinglabel As TuesPechkin.HtmlToPdfDocument = New TuesPechkin.HtmlToPdfDocument
+                    browser_blibli.LoadDocument(file)
 
-                pdf_shippinglabel.GlobalSettings.PaperSize = Printing.PaperKind.A4Rotated
+                    Controls.Add(browser_blibli)
 
-                Dim obj_shippinglabel As TuesPechkin.ObjectSettings = New TuesPechkin.ObjectSettings
+                    browser_blibli.BringToFront()
+                Else
+                    is_not_found = True
+                End If
+            ElseIf ol_store = "zalora" Then
+                If bytes_invoice IsNot Nothing And bytes_shippinglabel IsNot Nothing Then
+                    'invoice
+                    Dim stream_invoice As IO.FileStream = New IO.FileStream(full_path_invoice, IO.FileMode.CreateNew)
+                    Dim writer_invoice As IO.BinaryWriter = New IO.BinaryWriter(stream_invoice)
 
-                obj_shippinglabel.PageUrl = full_path_shippinglabel
-                obj_shippinglabel.WebSettings.PrintBackground = True
-                obj_shippinglabel.WebSettings.PrintMediaType = True
-                obj_shippinglabel.WebSettings.LoadImages = True
+                    writer_invoice.Write(bytes_invoice, 0, bytes_invoice.Length)
 
-                pdf_shippinglabel.Objects.Add(obj_shippinglabel)
+                    writer_invoice.Close()
 
-                Dim converter_shippinglabel As TuesPechkin.IConverter = New TuesPechkin.StandardConverter(New TuesPechkin.PdfToolset(New TuesPechkin.Win32EmbeddedDeployment(New TuesPechkin.TempFolderDeployment())))
+                    'shipping label
+                    Dim stream_shippinglabel As IO.FileStream = New IO.FileStream(full_path_shippinglabel, IO.FileMode.CreateNew)
+                    Dim writer_shippinglabel As IO.BinaryWriter = New IO.BinaryWriter(stream_shippinglabel)
 
-                Dim result_shippinglabel() As Byte = converter_shippinglabel.Convert(pdf_shippinglabel)
+                    writer_shippinglabel.Write(bytes_shippinglabel, 0, bytes_shippinglabel.Length)
 
-                IO.File.WriteAllBytes(full_path_shippinglabel.Replace(".html", ".pdf"), result_shippinglabel)
+                    writer_shippinglabel.Close()
 
-                'panel
-                Dim panel_invoice As DevExpress.XtraEditors.PanelControl = New DevExpress.XtraEditors.PanelControl
+                    'tab
+                    Dim tab As DevExpress.XtraTab.XtraTabControl = New DevExpress.XtraTab.XtraTabControl
 
-                panel_invoice.Dock = DockStyle.Bottom
+                    tab.Dock = DockStyle.Fill
 
-                panel_invoice.Height = 45
+                    tab.TabPages.Add("Invoice")
+                    tab.TabPages.Add("Shipping Label")
 
-                tab.TabPages.Item(0).Controls.Add(panel_invoice)
+                    'pdf
+                    Dim pdf_invoice As Pechkin.GlobalConfig = New Pechkin.GlobalConfig
 
-                'button
-                Dim button_invoice As DevExpress.XtraEditors.SimpleButton = New DevExpress.XtraEditors.SimpleButton
+                    pdf_invoice.SetPaperOrientation(True)
+                    pdf_invoice.SetPaperSize(Printing.PaperKind.A4)
 
-                button_invoice.Dock = DockStyle.Right
+                    Dim obj_invoice As Pechkin.ObjectConfig = New Pechkin.ObjectConfig
 
-                button_invoice.Width = 100
+                    obj_invoice.SetPageUri(full_path_invoice)
+                    obj_invoice.SetPrintBackground(True)
+                    obj_invoice.SetScreenMediaType(True)
+                    obj_invoice.SetLoadImages(True)
 
-                button_invoice.Text = "Print"
+                    Dim converter_invoice As Pechkin.Synchronized.SynchronizedPechkin = New Pechkin.Synchronized.SynchronizedPechkin(pdf_invoice)
 
-                AddHandler button_invoice.Click, AddressOf button_zalora_invoice_print
+                    Dim result_invoice() As Byte = converter_invoice.Convert(obj_invoice)
 
-                panel_invoice.Controls.Add(button_invoice)
+                    IO.File.WriteAllBytes(full_path_invoice.Replace(".html", ".pdf"), result_invoice)
 
-                'browser
-                browser_zalora_invoice.Dock = DockStyle.Fill
+                    Dim pdf_shippinglabel As TuesPechkin.HtmlToPdfDocument = New TuesPechkin.HtmlToPdfDocument
 
-                Dim file_invoice As IO.Stream = New IO.FileStream(full_path_invoice.Replace(".html", ".pdf"), IO.FileMode.Open)
+                    pdf_shippinglabel.GlobalSettings.PaperSize = Printing.PaperKind.A4Rotated
 
-                browser_zalora_invoice.LoadDocument(file_invoice)
+                    Dim obj_shippinglabel As TuesPechkin.ObjectSettings = New TuesPechkin.ObjectSettings
 
-                tab.TabPages.Item(0).Controls.Add(browser_zalora_invoice)
+                    obj_shippinglabel.PageUrl = full_path_shippinglabel
+                    obj_shippinglabel.WebSettings.PrintBackground = True
+                    obj_shippinglabel.WebSettings.PrintMediaType = True
+                    obj_shippinglabel.WebSettings.LoadImages = True
 
-                'panel
-                Dim panel_shippinglabel As DevExpress.XtraEditors.PanelControl = New DevExpress.XtraEditors.PanelControl
+                    pdf_shippinglabel.Objects.Add(obj_shippinglabel)
 
-                panel_shippinglabel.Dock = DockStyle.Bottom
+                    Dim converter_shippinglabel As TuesPechkin.IConverter = New TuesPechkin.StandardConverter(New TuesPechkin.PdfToolset(New TuesPechkin.Win32EmbeddedDeployment(New TuesPechkin.TempFolderDeployment())))
 
-                panel_shippinglabel.Height = 45
+                    Dim result_shippinglabel() As Byte = converter_shippinglabel.Convert(pdf_shippinglabel)
 
-                tab.TabPages.Item(1).Controls.Add(panel_shippinglabel)
+                    IO.File.WriteAllBytes(full_path_shippinglabel.Replace(".html", ".pdf"), result_shippinglabel)
 
-                'button
-                Dim button_shippinglabel As DevExpress.XtraEditors.SimpleButton = New DevExpress.XtraEditors.SimpleButton
+                    'panel
+                    Dim panel_invoice As DevExpress.XtraEditors.PanelControl = New DevExpress.XtraEditors.PanelControl
 
-                button_shippinglabel.Dock = DockStyle.Right
+                    panel_invoice.Dock = DockStyle.Bottom
 
-                button_shippinglabel.Width = 100
+                    panel_invoice.Height = 45
 
-                button_shippinglabel.Text = "Print"
+                    tab.TabPages.Item(0).Controls.Add(panel_invoice)
 
-                AddHandler button_shippinglabel.Click, AddressOf button_zalora_shippinglabel_print
+                    'button
+                    Dim button_invoice As DevExpress.XtraEditors.SimpleButton = New DevExpress.XtraEditors.SimpleButton
 
-                panel_shippinglabel.Controls.Add(button_shippinglabel)
+                    button_invoice.Dock = DockStyle.Right
 
-                'browser
-                browser_zalora_shippinglabel.Dock = DockStyle.Fill
+                    button_invoice.Width = 100
 
-                Dim file_shippinglabel As IO.Stream = New IO.FileStream(full_path_shippinglabel.Replace(".html", ".pdf"), IO.FileMode.Open)
+                    button_invoice.Text = "Print"
 
-                browser_zalora_shippinglabel.LoadDocument(file_shippinglabel)
+                    AddHandler button_invoice.Click, AddressOf button_zalora_invoice_print
 
-                tab.TabPages.Item(1).Controls.Add(browser_zalora_shippinglabel)
+                    panel_invoice.Controls.Add(button_invoice)
 
-                Controls.Add(tab)
+                    'browser
+                    browser_zalora_invoice.Dock = DockStyle.Fill
 
-                browser_zalora_invoice.BringToFront()
-                browser_zalora_shippinglabel.BringToFront()
-            Else
-                is_not_found = True
+                    Dim file_invoice As IO.Stream = New IO.FileStream(full_path_invoice.Replace(".html", ".pdf"), IO.FileMode.Open)
+
+                    browser_zalora_invoice.LoadDocument(file_invoice)
+
+                    tab.TabPages.Item(0).Controls.Add(browser_zalora_invoice)
+
+                    'panel
+                    Dim panel_shippinglabel As DevExpress.XtraEditors.PanelControl = New DevExpress.XtraEditors.PanelControl
+
+                    panel_shippinglabel.Dock = DockStyle.Bottom
+
+                    panel_shippinglabel.Height = 45
+
+                    tab.TabPages.Item(1).Controls.Add(panel_shippinglabel)
+
+                    'button
+                    Dim button_shippinglabel As DevExpress.XtraEditors.SimpleButton = New DevExpress.XtraEditors.SimpleButton
+
+                    button_shippinglabel.Dock = DockStyle.Right
+
+                    button_shippinglabel.Width = 100
+
+                    button_shippinglabel.Text = "Print"
+
+                    AddHandler button_shippinglabel.Click, AddressOf button_zalora_shippinglabel_print
+
+                    panel_shippinglabel.Controls.Add(button_shippinglabel)
+
+                    'browser
+                    browser_zalora_shippinglabel.Dock = DockStyle.Fill
+
+                    Dim file_shippinglabel As IO.Stream = New IO.FileStream(full_path_shippinglabel.Replace(".html", ".pdf"), IO.FileMode.Open)
+
+                    browser_zalora_shippinglabel.LoadDocument(file_shippinglabel)
+
+                    tab.TabPages.Item(1).Controls.Add(browser_zalora_shippinglabel)
+
+                    Controls.Add(tab)
+
+                    browser_zalora_invoice.BringToFront()
+                    browser_zalora_shippinglabel.BringToFront()
+                Else
+                    is_not_found = True
+                End If
             End If
-        End If
+        Catch ex As Exception
+            stopCustom("Connection error" + System.Environment.NewLine + ex.ToString)
+        End Try
     End Sub
 
     Private Sub FormSalesOrderShippingLabelPdf_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
