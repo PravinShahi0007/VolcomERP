@@ -9133,6 +9133,12 @@
     <Compile Include="ReportSalesPosPriceRecon.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesPOSUSA.Designer.vb">
+      <DependentUpon>ReportSalesPOSUSA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesPOSUSA.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesPOSWeekly.Designer.vb">
       <DependentUpon>ReportSalesPOSWeekly.vb</DependentUpon>
     </Compile>
@@ -14383,6 +14389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesPosPriceRecon.resx">
       <DependentUpon>ReportSalesPosPriceRecon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesPOSUSA.resx">
+      <DependentUpon>ReportSalesPOSUSA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesPOSWeekly.resx">
       <DependentUpon>ReportSalesPOSWeekly.vb</DependentUpon>

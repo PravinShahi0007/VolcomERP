@@ -7650,6 +7650,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                     Tool.ShowPreview()
                 End If
+            ElseIf FormSalesWeekly.XTCPOS.SelectedTabPageIndex = 4 Then
+                Dim report As ReportSalesPOSUSA = New ReportSalesPOSUSA
+
+                report.data1 = FormSalesWeekly.GCUSASales.DataSource
+                report.data2 = FormSalesWeekly.GCDetailSales.DataSource
+                report.data3 = FormSalesWeekly.GCDetailRoyalty.DataSource
+
+                Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+                tool.ShowPreview()
             End If
         ElseIf formName = "FormSalesCreditNote" Then
             'CREDIT NOTE
