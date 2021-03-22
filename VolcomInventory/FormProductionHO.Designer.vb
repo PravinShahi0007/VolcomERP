@@ -100,6 +100,7 @@ Partial Class FormProductionHO
         Me.BandedGridColumncode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsize = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnCLass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnseason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndelivery = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -128,7 +129,7 @@ Partial Class FormProductionHO
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnViewSummary = New DevExpress.XtraEditors.SimpleButton()
-        Me.BandedGridColumnCLass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumncop = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandStyle = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandOrder = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandRecQC = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -956,7 +957,7 @@ Partial Class FormProductionHO
         'GVSummary
         '
         Me.GVSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandStyle, Me.gridBandOrder, Me.gridBandRecQC, Me.gridBandHO, Me.gridBandRecInWH})
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnbarcode, Me.BandedGridColumncode, Me.BandedGridColumnname, Me.BandedGridColumnsize, Me.BandedGridColumnseason, Me.BandedGridColumndelivery, Me.BandedGridColumntotal_order, Me.BandedGridColumntotal_rec, Me.BandedGridColumndiff_order, Me.BandedGridColumnnormal_pl, Me.BandedGridColumnreject_minor_pl, Me.BandedGridColumnreject_major_pl, Me.BandedGridColumnafkir_pl, Me.BandedGridColumntotal_pl, Me.BandedGridColumndiff_rec, Me.BandedGridColumnnormal_rw, Me.BandedGridColumnreject_minor_rw, Me.BandedGridColumnreject_major_rw, Me.BandedGridColumnafkir_rw, Me.BandedGridColumntotal_rw, Me.BandedGridColumndiff_ho, Me.BandedGridColumnCLass})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnbarcode, Me.BandedGridColumncode, Me.BandedGridColumnname, Me.BandedGridColumnsize, Me.BandedGridColumnseason, Me.BandedGridColumndelivery, Me.BandedGridColumncop, Me.BandedGridColumntotal_order, Me.BandedGridColumntotal_rec, Me.BandedGridColumndiff_order, Me.BandedGridColumnnormal_pl, Me.BandedGridColumnreject_minor_pl, Me.BandedGridColumnreject_major_pl, Me.BandedGridColumnafkir_pl, Me.BandedGridColumntotal_pl, Me.BandedGridColumndiff_rec, Me.BandedGridColumnnormal_rw, Me.BandedGridColumnreject_minor_rw, Me.BandedGridColumnreject_major_rw, Me.BandedGridColumnafkir_rw, Me.BandedGridColumntotal_rw, Me.BandedGridColumndiff_ho, Me.BandedGridColumnCLass})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupCount = 1
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", Me.BandedGridColumntotal_order, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", Me.BandedGridColumntotal_rec, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_order", Me.BandedGridColumndiff_order, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "normal_pl", Me.BandedGridColumnnormal_pl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reject_minor_pl", Me.BandedGridColumnreject_minor_pl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reject_major_pl", Me.BandedGridColumnreject_major_pl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "afkir_pl", Me.BandedGridColumnafkir_pl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_pl", Me.BandedGridColumntotal_pl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_rec", Me.BandedGridColumndiff_rec, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "normal_rw", Me.BandedGridColumnnormal_rw, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reject_minor_rw", Me.BandedGridColumnreject_minor_rw, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reject_major_rw", Me.BandedGridColumnreject_major_rw, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "afkir_rw", Me.BandedGridColumnafkir_rw, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rw", Me.BandedGridColumntotal_rw, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_ho", Me.BandedGridColumndiff_ho, "{0:N0}")})
@@ -997,6 +998,13 @@ Partial Class FormProductionHO
         Me.BandedGridColumnsize.FieldName = "size"
         Me.BandedGridColumnsize.Name = "BandedGridColumnsize"
         Me.BandedGridColumnsize.Visible = True
+        '
+        'BandedGridColumnCLass
+        '
+        Me.BandedGridColumnCLass.Caption = "Class"
+        Me.BandedGridColumnCLass.FieldName = "class"
+        Me.BandedGridColumnCLass.Name = "BandedGridColumnCLass"
+        Me.BandedGridColumnCLass.Visible = True
         '
         'BandedGridColumnseason
         '
@@ -1276,12 +1284,12 @@ Partial Class FormProductionHO
         Me.BtnViewSummary.TabIndex = 0
         Me.BtnViewSummary.Text = "View"
         '
-        'BandedGridColumnCLass
+        'BandedGridColumncop
         '
-        Me.BandedGridColumnCLass.Caption = "Class"
-        Me.BandedGridColumnCLass.FieldName = "class"
-        Me.BandedGridColumnCLass.Name = "BandedGridColumnCLass"
-        Me.BandedGridColumnCLass.Visible = True
+        Me.BandedGridColumncop.Caption = "Status COP"
+        Me.BandedGridColumncop.FieldName = "cop_status"
+        Me.BandedGridColumncop.Name = "BandedGridColumncop"
+        Me.BandedGridColumncop.Visible = True
         '
         'gridBandStyle
         '
@@ -1292,9 +1300,10 @@ Partial Class FormProductionHO
         Me.gridBandStyle.Columns.Add(Me.BandedGridColumnCLass)
         Me.gridBandStyle.Columns.Add(Me.BandedGridColumnseason)
         Me.gridBandStyle.Columns.Add(Me.BandedGridColumndelivery)
+        Me.gridBandStyle.Columns.Add(Me.BandedGridColumncop)
         Me.gridBandStyle.Name = "gridBandStyle"
         Me.gridBandStyle.VisibleIndex = 0
-        Me.gridBandStyle.Width = 525
+        Me.gridBandStyle.Width = 600
         '
         'gridBandOrder
         '
@@ -1507,8 +1516,9 @@ Partial Class FormProductionHO
     Friend WithEvents GridColumnid_season As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrange As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnseason As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gridBandStyle As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnCLass As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandStyle As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumncop As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandOrder As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandRecQC As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandHO As DevExpress.XtraGrid.Views.BandedGrid.GridBand
