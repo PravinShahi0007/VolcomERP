@@ -93,7 +93,9 @@
             FROM tb_sales_order_gen_det g 
             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = g.id_comp_contact_from
             WHERE g.id_sales_order_gen=" + id_sales_order_gen + " ", 0, True, "", "", "", "")
-
+            If id_wh_source_from = "" Then
+                id_wh_source_from = "0"
+            End If
 
             Dim query_stock As String = "CALL view_sales_order_prod_list_less(0, " + id_wh_source_from + ")"
             Dim data_stock As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
