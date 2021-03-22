@@ -86,7 +86,7 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT fc_sum_det.id_prod_fc, 0 AS no,sts.report_status, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, cat_sub.pl_category_sub, qty.prod_fc_det_qty, fc_sum_det.qty_po, fc_sum_det.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date
+            SELECT fc_sum_det.id_prod_fc, 0 AS no, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, cat_sub.pl_category_sub, qty.prod_fc_det_qty, fc_sum_det.qty_po, fc_sum_det.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date,sts.report_status
             FROM tb_prod_fc_sum_det AS fc_sum_det
             LEFT JOIN tb_prod_fc AS fc ON fc_sum_det.id_prod_fc = fc.id_prod_fc
             LEFT JOIN tb_lookup_report_status sts ON sts.id_report_status=fc.id_report_status
