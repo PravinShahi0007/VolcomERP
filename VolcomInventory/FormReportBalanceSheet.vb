@@ -1286,4 +1286,10 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
         Catch ex As Exception
         End Try
     End Sub
+
+    Private Sub GVMAktiva_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVMAktiva.CustomSummaryCalculate
+        Dim cost As Decimal = CDec(myCoalesce(GVMAktiva.GetRowCellValue(e.RowHandle, "this_month").ToString, "0.00"))
+        Dim cost_total As Decimal = CDec(myCoalesce(GVMAktiva.GetRowCellValue(e.RowHandle, "total_asset").ToString, "0.00"))
+        e.TotalValue = cost / cost_total
+    End Sub
 End Class

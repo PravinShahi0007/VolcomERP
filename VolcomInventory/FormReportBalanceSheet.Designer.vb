@@ -227,13 +227,6 @@ Partial Class FormReportBalanceSheet
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.GCMAktiva = New DevExpress.XtraGrid.GridControl()
-        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
-        Me.XTPMProfitLoss = New DevExpress.XtraTab.XtraTabPage()
-        Me.PCFilterMonthly = New DevExpress.XtraEditors.PanelControl()
-        Me.BPrintMonthlyReport = New DevExpress.XtraEditors.SimpleButton()
-        Me.BViewMonthlyReport = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEMonthlyReport = New DevExpress.XtraEditors.DateEdit()
         Me.GVMAktiva = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BandedGridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -245,6 +238,7 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumnPercentage = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.GCMPasiva = New DevExpress.XtraGrid.GridControl()
         Me.GVMPasiva = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -257,6 +251,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPMProfitLoss = New DevExpress.XtraTab.XtraTabPage()
         Me.GCMProfitLoss = New DevExpress.XtraGrid.GridControl()
         Me.GVMProfitLoss = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -274,6 +269,11 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn48 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn49 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn50 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.PCFilterMonthly = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintMonthlyReport = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewMonthlyReport = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEMonthlyReport = New DevExpress.XtraEditors.DateEdit()
         CType(Me.PCFilterUpper, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterUpper.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -353,18 +353,18 @@ Partial Class FormReportBalanceSheet
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GCMAktiva, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVMAktiva, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
+        CType(Me.GCMPasiva, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVMPasiva, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPMProfitLoss.SuspendLayout()
+        CType(Me.GCMProfitLoss, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVMProfitLoss, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCFilterMonthly, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterMonthly.SuspendLayout()
         CType(Me.DEMonthlyReport.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEMonthlyReport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVMAktiva, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCMPasiva, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVMPasiva, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCMProfitLoss, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVMProfitLoss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCFilterUpper
@@ -2375,77 +2375,12 @@ Partial Class FormReportBalanceSheet
         Me.GCMAktiva.TabIndex = 0
         Me.GCMAktiva.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMAktiva})
         '
-        'GroupControl4
-        '
-        Me.GroupControl4.Controls.Add(Me.GCMPasiva)
-        Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(492, 368)
-        Me.GroupControl4.TabIndex = 2
-        Me.GroupControl4.Text = "Liability And Equity"
-        '
-        'XTPMProfitLoss
-        '
-        Me.XTPMProfitLoss.Controls.Add(Me.GCMProfitLoss)
-        Me.XTPMProfitLoss.Name = "XTPMProfitLoss"
-        Me.XTPMProfitLoss.Size = New System.Drawing.Size(1009, 368)
-        Me.XTPMProfitLoss.Text = "Profit and Loss"
-        '
-        'PCFilterMonthly
-        '
-        Me.PCFilterMonthly.Controls.Add(Me.BPrintMonthlyReport)
-        Me.PCFilterMonthly.Controls.Add(Me.BViewMonthlyReport)
-        Me.PCFilterMonthly.Controls.Add(Me.LabelControl8)
-        Me.PCFilterMonthly.Controls.Add(Me.DEMonthlyReport)
-        Me.PCFilterMonthly.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCFilterMonthly.Location = New System.Drawing.Point(0, 0)
-        Me.PCFilterMonthly.Name = "PCFilterMonthly"
-        Me.PCFilterMonthly.Size = New System.Drawing.Size(1015, 48)
-        Me.PCFilterMonthly.TabIndex = 1
-        '
-        'BPrintMonthlyReport
-        '
-        Me.BPrintMonthlyReport.Location = New System.Drawing.Point(274, 13)
-        Me.BPrintMonthlyReport.Name = "BPrintMonthlyReport"
-        Me.BPrintMonthlyReport.Size = New System.Drawing.Size(50, 23)
-        Me.BPrintMonthlyReport.TabIndex = 6
-        Me.BPrintMonthlyReport.Text = "print"
-        '
-        'BViewMonthlyReport
-        '
-        Me.BViewMonthlyReport.Location = New System.Drawing.Point(218, 13)
-        Me.BViewMonthlyReport.Name = "BViewMonthlyReport"
-        Me.BViewMonthlyReport.Size = New System.Drawing.Size(50, 23)
-        Me.BViewMonthlyReport.TabIndex = 3
-        Me.BViewMonthlyReport.Text = "view"
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(10, 18)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl8.TabIndex = 2
-        Me.LabelControl8.Text = "Date"
-        '
-        'DEMonthlyReport
-        '
-        Me.DEMonthlyReport.EditValue = Nothing
-        Me.DEMonthlyReport.Location = New System.Drawing.Point(39, 15)
-        Me.DEMonthlyReport.Name = "DEMonthlyReport"
-        Me.DEMonthlyReport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEMonthlyReport.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEMonthlyReport.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEMonthlyReport.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEMonthlyReport.Size = New System.Drawing.Size(173, 20)
-        Me.DEMonthlyReport.TabIndex = 1
-        '
         'GVMAktiva
         '
         Me.GVMAktiva.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.BandedGridColumn35, Me.BandedGridColumn26, Me.BandedGridColumn36, Me.BandedGridColumn30, Me.BandedGridColumn37, Me.BandedGridColumn31, Me.BandedGridColumn32, Me.BandedGridColumn34, Me.BandedGridColumnPercentage, Me.BandedGridColumn33})
         Me.GVMAktiva.GridControl = Me.GCMAktiva
         Me.GVMAktiva.GroupCount = 2
-        Me.GVMAktiva.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", Me.BandedGridColumn34, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", Me.BandedGridColumn33, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "percentage", Me.BandedGridColumnPercentage, "{0:N2} %")})
+        Me.GVMAktiva.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", Me.BandedGridColumn34, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", Me.BandedGridColumn33, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percentage", Me.BandedGridColumnPercentage, "{0:N2} %")})
         Me.GVMAktiva.Name = "GVMAktiva"
         Me.GVMAktiva.OptionsView.ShowFooter = True
         Me.GVMAktiva.OptionsView.ShowGroupPanel = False
@@ -2532,7 +2467,7 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumnPercentage.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnPercentage.FieldName = "percentage"
         Me.BandedGridColumnPercentage.Name = "BandedGridColumnPercentage"
-        Me.BandedGridColumnPercentage.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "percentage", "{0:N2} %")})
+        Me.BandedGridColumnPercentage.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percentage", "100 %")})
         Me.BandedGridColumnPercentage.Visible = True
         Me.BandedGridColumnPercentage.VisibleIndex = 3
         Me.BandedGridColumnPercentage.Width = 102
@@ -2549,6 +2484,16 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn33.FieldName = "prev_month"
         Me.BandedGridColumn33.Name = "BandedGridColumn33"
         Me.BandedGridColumn33.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", "{0:N2}")})
+        '
+        'GroupControl4
+        '
+        Me.GroupControl4.Controls.Add(Me.GCMPasiva)
+        Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl4.Name = "GroupControl4"
+        Me.GroupControl4.Size = New System.Drawing.Size(492, 368)
+        Me.GroupControl4.TabIndex = 2
+        Me.GroupControl4.Text = "Liability And Equity"
         '
         'GCMPasiva
         '
@@ -2652,7 +2597,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn61.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn61.FieldName = "percentage"
         Me.GridColumn61.Name = "GridColumn61"
-        Me.GridColumn61.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "percentage", "{0:N2} %")})
+        Me.GridColumn61.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "percentage", "100 %")})
         Me.GridColumn61.Visible = True
         Me.GridColumn61.VisibleIndex = 3
         Me.GridColumn61.Width = 102
@@ -2669,6 +2614,13 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn62.FieldName = "prev_month"
         Me.GridColumn62.Name = "GridColumn62"
         Me.GridColumn62.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", "{0:N2}")})
+        '
+        'XTPMProfitLoss
+        '
+        Me.XTPMProfitLoss.Controls.Add(Me.GCMProfitLoss)
+        Me.XTPMProfitLoss.Name = "XTPMProfitLoss"
+        Me.XTPMProfitLoss.Size = New System.Drawing.Size(1009, 368)
+        Me.XTPMProfitLoss.Text = "Profit and Loss"
         '
         'GCMProfitLoss
         '
@@ -2847,6 +2799,54 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn50.FieldName = "id_acc"
         Me.BandedGridColumn50.Name = "BandedGridColumn50"
         '
+        'PCFilterMonthly
+        '
+        Me.PCFilterMonthly.Controls.Add(Me.BPrintMonthlyReport)
+        Me.PCFilterMonthly.Controls.Add(Me.BViewMonthlyReport)
+        Me.PCFilterMonthly.Controls.Add(Me.LabelControl8)
+        Me.PCFilterMonthly.Controls.Add(Me.DEMonthlyReport)
+        Me.PCFilterMonthly.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCFilterMonthly.Location = New System.Drawing.Point(0, 0)
+        Me.PCFilterMonthly.Name = "PCFilterMonthly"
+        Me.PCFilterMonthly.Size = New System.Drawing.Size(1015, 48)
+        Me.PCFilterMonthly.TabIndex = 1
+        '
+        'BPrintMonthlyReport
+        '
+        Me.BPrintMonthlyReport.Location = New System.Drawing.Point(274, 13)
+        Me.BPrintMonthlyReport.Name = "BPrintMonthlyReport"
+        Me.BPrintMonthlyReport.Size = New System.Drawing.Size(50, 23)
+        Me.BPrintMonthlyReport.TabIndex = 6
+        Me.BPrintMonthlyReport.Text = "print"
+        '
+        'BViewMonthlyReport
+        '
+        Me.BViewMonthlyReport.Location = New System.Drawing.Point(218, 13)
+        Me.BViewMonthlyReport.Name = "BViewMonthlyReport"
+        Me.BViewMonthlyReport.Size = New System.Drawing.Size(50, 23)
+        Me.BViewMonthlyReport.TabIndex = 3
+        Me.BViewMonthlyReport.Text = "view"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(10, 18)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl8.TabIndex = 2
+        Me.LabelControl8.Text = "Date"
+        '
+        'DEMonthlyReport
+        '
+        Me.DEMonthlyReport.EditValue = Nothing
+        Me.DEMonthlyReport.Location = New System.Drawing.Point(39, 15)
+        Me.DEMonthlyReport.Name = "DEMonthlyReport"
+        Me.DEMonthlyReport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEMonthlyReport.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEMonthlyReport.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEMonthlyReport.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEMonthlyReport.Size = New System.Drawing.Size(173, 20)
+        Me.DEMonthlyReport.TabIndex = 1
+        '
         'FormReportBalanceSheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2941,19 +2941,19 @@ Partial Class FormReportBalanceSheet
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.GCMAktiva, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVMAktiva, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
+        CType(Me.GCMPasiva, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVMPasiva, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPMProfitLoss.ResumeLayout(False)
+        CType(Me.GCMProfitLoss, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVMProfitLoss, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCFilterMonthly, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCFilterMonthly.ResumeLayout(False)
         Me.PCFilterMonthly.PerformLayout()
         CType(Me.DEMonthlyReport.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEMonthlyReport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVMAktiva, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCMPasiva, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVMPasiva, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCMProfitLoss, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVMProfitLoss, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

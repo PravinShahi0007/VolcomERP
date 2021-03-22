@@ -2050,8 +2050,17 @@ Public Class FormImportExcel
             End Try
         ElseIf id_pop_up = "35" Then 'import awb receiving data
             Try
-                Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no,cargo_min_weight,cargo_rate,a_weight,a_tot_price FROM tb_wh_awbill 
-                                        WHERE awbill_no != '' AND awbill_type='1' AND is_lock='2'"
+                Dim queryx As String = "SELECT a.is_old_ways,d.id_del_manifest,a.id_awbill,d.awbill_no,a.rec_by_store_date,a.rec_by_store_person,a.awbill_inv_no,d.`cargo_min_weight`,d.`cargo_rate`,IFNULL(a.a_weight,0) AS a_weight,IFNULL(a.a_tot_price,0) AS  a_tot_price
+FROM tb_wh_awbill a
+INNER JOIN tb_wh_awbill_det ad ON ad.`id_awbill`=a.id_awbill
+INNER JOIN tb_del_manifest_det dd ON dd.`id_wh_awb_det`=ad.`id_wh_awb_det`
+INNER JOIN tb_del_manifest d ON d.`id_del_manifest`=dd.`id_del_manifest`
+WHERE a.awbill_no != ''  AND a.is_old_ways=2
+GROUP BY a.id_awbill
+UNION ALL
+SELECT is_old_ways,0 AS id_del_manifest,id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no,cargo_min_weight,cargo_rate,IFNULL(a_weight,0) AS a_weight,IFNULL(a_tot_price,0) AS  a_tot_price
+FROM tb_wh_awbill 
+WHERE awbill_no != '' AND awbill_type='1' AND is_lock='2' AND is_old_ways=1"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
                 Dim tb1 = data_temp.AsEnumerable()
@@ -2075,7 +2084,9 @@ Public Class FormImportExcel
                                     .inv_no_new = If(table1("inv_no").ToString = "", If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")), table1("inv_no")),
                                     .a_weight_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_weight")), table1("a_weight")),
                                     .a_tot_price_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_tot_price")), If(result_awb Is Nothing, table1("a_weight"), If(table1("a_weight") < result_awb("cargo_min_weight"), result_awb("cargo_min_weight"), table1("a_weight"))) * If(result_awb Is Nothing, 0, result_awb("cargo_rate"))),
-                                    .note = If(result_awb Is Nothing, "AWB Number not found", "OK")
+                                    .note = If(result_awb Is Nothing, "AWB Number not found", "OK"),
+                                    .is_old_ways = If(result_awb Is Nothing, "0", result_awb("is_old_ways")),
+                                    .id_del_manifest = If(result_awb Is Nothing, "0", result_awb("id_del_manifest"))
                                 }
 
                 GCData.DataSource = Nothing
@@ -2085,6 +2096,8 @@ Public Class FormImportExcel
 
                 'Customize column
                 GVData.Columns("IdAwb").Visible = False
+                GVData.Columns("is_old_ways").Visible = False
+                GVData.Columns("id_del_manifest").Visible = False
                 GVData.Columns("AWB").Caption = "AWB Number"
                 GVData.Columns("rec_date_old").Caption = "(Old) Receive Date"
                 GVData.Columns("rec_by_old").Caption = "(Old) Receive By"
@@ -2811,8 +2824,18 @@ Public Class FormImportExcel
             GVData.BestFitColumns()
         ElseIf id_pop_up = "44" Then 'import awb receiving data inbound
             Try
-                Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no,cargo_min_weight,cargo_rate,a_weight,a_tot_price FROM tb_wh_awbill 
-                                        WHERE awbill_no != '' AND awbill_type='2' AND is_lock='2'"
+                Dim queryx As String = "SELECT a.is_old_ways,d.id_del_manifest,a.id_awbill,d.awbill_no,a.rec_by_store_date,a.rec_by_store_person,a.awbill_inv_no,d.`cargo_min_weight`,d.`cargo_rate`,IFNULL(a.a_weight,0) AS a_weight,IFNULL(a.a_tot_price,0) AS  a_tot_price
+FROM tb_wh_awbill a
+INNER JOIN tb_wh_awbill_det ad ON ad.`id_awbill`=a.id_awbill
+INNER JOIN tb_del_manifest_det dd ON dd.`id_wh_awb_det`=ad.`id_wh_awb_det`
+INNER JOIN tb_del_manifest d ON d.`id_del_manifest`=dd.`id_del_manifest`
+WHERE a.awbill_no != ''  AND a.is_old_ways=2
+GROUP BY a.id_awbill
+UNION ALL
+SELECT is_old_ways,0 AS id_del_manifest,id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no,cargo_min_weight,cargo_rate,IFNULL(a_weight,0) AS a_weight,IFNULL(a_tot_price,0) AS  a_tot_price
+FROM tb_wh_awbill 
+WHERE awbill_no != '' AND awbill_type='2' AND is_lock='2' AND is_old_ways=1
+"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
                 Dim tb1 = data_temp.AsEnumerable()
@@ -2832,7 +2855,9 @@ Public Class FormImportExcel
                                     .inv_no_new = If(table1("inv_no").ToString = "", If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")), table1("inv_no")),
                                     .a_weight_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_weight")), table1("a_weight")),
                                     .a_tot_price_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_tot_price")), If(result_awb Is Nothing, table1("a_weight"), If(table1("a_weight") < result_awb("cargo_min_weight"), result_awb("cargo_min_weight"), table1("a_weight"))) * If(result_awb Is Nothing, 0, result_awb("cargo_rate"))),
-                                    .note = If(result_awb Is Nothing, "AWB Number not found", "OK")
+                                    .note = If(result_awb Is Nothing, "AWB Number not found", "OK"),
+                                    .is_old_ways = If(result_awb Is Nothing, "0", result_awb("id_awbill")),
+                                    .id_del_manifest = If(result_awb Is Nothing, "0", result_awb("id_del_manifest"))
                                 }
 
                 GCData.DataSource = Nothing
@@ -2841,6 +2866,8 @@ Public Class FormImportExcel
                 GVData.PopulateColumns()
 
                 'Customize column
+                GVData.Columns("id_del_manifest").Visible = False
+                GVData.Columns("is_old_ways").Visible = False
                 GVData.Columns("IdAwb").Visible = False
                 GVData.Columns("AWB").Caption = "AWB Number"
                 GVData.Columns("inv_no_old").Caption = "(Old) Invoice Number"
@@ -5332,8 +5359,16 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                                 date_new = "'" & Date.Parse(GVData.GetRowCellValue(i, "rec_date_new").ToString).ToString("yyyy-MM-dd") & "'"
                             End If
                             '
-                            Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" & date_new & ",rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
-                            execute_non_query(query_exec, True, "", "", "", "")
+                            If GVData.GetRowCellValue(i, "is_old_ways").ToString = "1" Then
+                                Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" & date_new & ",rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
+                                execute_non_query(query_exec, True, "", "", "", "")
+                            Else
+                                Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" & date_new & ",rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
+                                execute_non_query(query_exec, True, "", "", "", "")
+
+                                query_exec = "UPDATE tb_del_manifest SET rec_by_store_date=" & date_new & ",rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_del_manifest='" & GVData.GetRowCellValue(i, "id_del_manifest").ToString & "'"
+                                execute_non_query(query_exec, True, "", "", "", "")
+                            End If
                         End If
                         '
                         PBC.PerformStep()
@@ -5836,8 +5871,16 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdAwb").ToString = "0" Then
                             '
-                            Dim query_exec As String = "UPDATE tb_wh_awbill SET awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
-                            execute_non_query(query_exec, True, "", "", "", "")
+                            If GVData.GetRowCellValue(i, "IdAwb").ToString = "1" Then 'old ways
+                                Dim query_exec As String = "UPDATE tb_wh_awbill SET awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
+                                execute_non_query(query_exec, True, "", "", "", "")
+                            Else 'new ways
+                                Dim query_exec As String = "UPDATE tb_wh_awbill SET awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
+                                execute_non_query(query_exec, True, "", "", "", "")
+
+                                query_exec = "UPDATE tb_del_manifest SET awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_del_manifest='" & GVData.GetRowCellValue(i, "id_del_manifest").ToString & "'"
+                                execute_non_query(query_exec, True, "", "", "", "")
+                            End If
                         End If
                         '
                         PBC.PerformStep()
