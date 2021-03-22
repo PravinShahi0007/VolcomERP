@@ -203,12 +203,12 @@
             date_until_selected = DateTime.Parse(DEUntilDetail.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-        Dim cond As String = "AND pl.pl_prod_order_date<=""" + date_until_selected + """ "
+        Dim cond As String = ""
         Dim id_season As String = SLESeason.EditValue.ToString
         If id_season <> "0" Then
             cond += "AND d.id_season=" + id_season + " "
         End If
-        Dim query As String = "CALL view_pl_prod_report_summary('" + cond + "')"
+        Dim query As String = "CALL view_pl_prod_report_summary_by_po('" + cond + "','" + date_until_selected + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummary.DataSource = data
         GVSummary.BestFitColumns()
