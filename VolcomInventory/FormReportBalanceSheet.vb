@@ -242,6 +242,10 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
         Else
             PCFilterUpper.Visible = False
         End If
+
+        If XTCBalanceSheet.SelectedTabPageIndex = 4 Then
+            SplitContainerControl1.SplitterPosition = SplitContainerControl1.Width / 2
+        End If
     End Sub
 
     Sub view_pajak()
@@ -1262,13 +1266,17 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
     End Sub
 
     Private Sub BViewMonthlyReport_Click(sender As Object, e As EventArgs) Handles BViewMonthlyReport.Click
-        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+        If XTCMonthlyReport.SelectedTabPageIndex = 0 Then
             load_report(GCMAktiva, "1", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), SLEUnit.EditValue.ToString)
             GVMAktiva.BestFitColumns()
             GVMAktiva.ExpandAllGroups()
             load_report(GCMPasiva, "2", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), SLEUnit.EditValue.ToString)
             GVMPasiva.BestFitColumns()
             GVMPasiva.ExpandAllGroups()
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 1 Then
+            load_report_pl(GCMProfitLoss)
+            GVProfitAndLoss.BestFitColumns()
+            GVProfitAndLoss.ExpandAllGroups()
         End If
     End Sub
 
