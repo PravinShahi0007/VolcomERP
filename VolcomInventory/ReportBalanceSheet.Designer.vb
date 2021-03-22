@@ -49,13 +49,13 @@ Partial Public Class ReportBalanceSheet
         Me.XrTable6 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow6 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell18 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.CellFooterLiability = New DevExpress.XtraReports.UI.XRTableCell()
         Me.CPPrevMonth = New DevExpress.XtraReports.UI.XRTableCell()
         Me.CPThisMonth = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTable5 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow5 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.CellFooterAsset = New DevExpress.XtraReports.UI.XRTableCell()
         Me.CAPrevMonth = New DevExpress.XtraReports.UI.XRTableCell()
         Me.CAThisMonth = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
@@ -403,7 +403,7 @@ Partial Public Class ReportBalanceSheet
         '
         'XrTableRow6
         '
-        Me.XrTableRow6.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell17, Me.XrTableCell18, Me.CPPrevMonth, Me.CPThisMonth})
+        Me.XrTableRow6.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell17, Me.CellFooterLiability, Me.CPPrevMonth, Me.CPThisMonth})
         Me.XrTableRow6.Name = "XrTableRow6"
         Me.XrTableRow6.Weight = 1.0R
         '
@@ -415,17 +415,17 @@ Partial Public Class ReportBalanceSheet
         Me.XrTableCell17.StylePriority.UseBorders = False
         Me.XrTableCell17.Weight = 0.27970866095427144R
         '
-        'XrTableCell18
+        'CellFooterLiability
         '
-        Me.XrTableCell18.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+        Me.CellFooterLiability.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell18.Name = "XrTableCell18"
-        Me.XrTableCell18.StylePriority.UseBorders = False
-        Me.XrTableCell18.StylePriority.UseTextAlignment = False
-        Me.XrTableCell18.Text = "TOTAL LIABILTY & EQUITY"
-        Me.XrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell18.Weight = 0.91904276158423781R
+        Me.CellFooterLiability.Name = "CellFooterLiability"
+        Me.CellFooterLiability.StylePriority.UseBorders = False
+        Me.CellFooterLiability.StylePriority.UseTextAlignment = False
+        Me.CellFooterLiability.Text = "TOTAL LIABILTY & EQUITY"
+        Me.CellFooterLiability.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.CellFooterLiability.Weight = 0.91904276158423781R
         '
         'CPPrevMonth
         '
@@ -470,7 +470,7 @@ Partial Public Class ReportBalanceSheet
         '
         'XrTableRow5
         '
-        Me.XrTableRow5.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell9, Me.XrTableCell10, Me.CAPrevMonth, Me.CAThisMonth})
+        Me.XrTableRow5.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell9, Me.CellFooterAsset, Me.CAPrevMonth, Me.CAThisMonth})
         Me.XrTableRow5.Name = "XrTableRow5"
         Me.XrTableRow5.Weight = 1.0R
         '
@@ -483,19 +483,19 @@ Partial Public Class ReportBalanceSheet
         Me.XrTableCell9.StylePriority.UseBorders = False
         Me.XrTableCell9.Weight = 0.27970866095427144R
         '
-        'XrTableCell10
+        'CellFooterAsset
         '
-        Me.XrTableCell10.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+        Me.CellFooterAsset.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell10.Name = "XrTableCell10"
-        Me.XrTableCell10.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 0, 0, 0, 100.0!)
-        Me.XrTableCell10.StylePriority.UseBorders = False
-        Me.XrTableCell10.StylePriority.UsePadding = False
-        Me.XrTableCell10.StylePriority.UseTextAlignment = False
-        Me.XrTableCell10.Text = "TOTAL ASSETS"
-        Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell10.Weight = 0.91904276158423781R
+        Me.CellFooterAsset.Name = "CellFooterAsset"
+        Me.CellFooterAsset.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 0, 0, 0, 100.0!)
+        Me.CellFooterAsset.StylePriority.UseBorders = False
+        Me.CellFooterAsset.StylePriority.UsePadding = False
+        Me.CellFooterAsset.StylePriority.UseTextAlignment = False
+        Me.CellFooterAsset.Text = "TOTAL ASSETS"
+        Me.CellFooterAsset.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.CellFooterAsset.Weight = 0.91904276158423781R
         '
         'CAPrevMonth
         '
@@ -718,13 +718,13 @@ Partial Public Class ReportBalanceSheet
     Friend WithEvents XrTable6 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow6 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell18 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents CellFooterLiability As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents CPPrevMonth As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents CPThisMonth As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTable5 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow5 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents CellFooterAsset As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents CAPrevMonth As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents CAThisMonth As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand

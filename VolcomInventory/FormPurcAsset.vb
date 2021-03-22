@@ -405,7 +405,7 @@ ORDER BY ppsd.id_asset_dep_pps DESC"
     End Sub
 
     Sub load_disp()
-        Dim q As String = "SELECT disp.`id_purc_rec_asset_disp`,disp.`note`,disp.`created_date`,emp.employee_name,tag.`tag_description`,sts.`report_status`,IF(disp.`is_sell`=1,'Penjualan Fixed Asset','Penghapusan Fixed Asset') AS typ,disp.`is_sell`
+        Dim q As String = "SELECT disp.number,disp.`id_purc_rec_asset_disp`,disp.`note`,disp.`created_date`,emp.employee_name,tag.`tag_description`,sts.`report_status`,IF(disp.`is_sell`=1,'Penjualan Fixed Asset','Penghapusan Fixed Asset') AS typ,disp.`is_sell`
 FROM tb_purc_rec_asset_disp disp
 INNER JOIN tb_m_user usr ON usr.id_user=disp.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee

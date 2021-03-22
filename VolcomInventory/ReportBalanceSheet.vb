@@ -10,29 +10,60 @@
         For i = 0 To FormReportBalanceSheet.GVAktiva.RowCount - 1 - GetGroupRowCount(FormReportBalanceSheet.GVAktiva)
             'header/sub header or footer
             'head footer
-            If Not pembanding = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 1) And Not pembanding = "0" Then
-                add_row(XTableAktiva, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i - 1, "head_name").ToString, "Total " & FormReportBalanceSheet.GVAktiva.GetRowCellValue(i - 1, "head_desc").ToString, 5, True, "", "")
+
+            'If Not pembanding = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 1) And Not pembanding = "0" Then
+            '    add_row(XTableAktiva, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i - 1, "head_name").ToString, "Total " & FormReportBalanceSheet.GVAktiva.GetRowCellValue(i - 1, "head_desc").ToString, 5, True, "", "")
+            'End If
+
+            ''sub footer
+            'If Not pembanding_sub = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 2) And Not pembanding_sub = "0" Then
+            '    add_row(XTableAktiva, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i - 1, "sub_name").ToString, "Total " & FormReportBalanceSheet.GVAktiva.GetRowCellValue(i - 1, "sub_desc").ToString, 7, True, Decimal.Parse(sub_prev_month_value.ToString).ToString("N2"), Decimal.Parse(sub_this_month_value.ToString).ToString("N2"))
+            '    sub_this_month_value = 0.0
+            '    sub_prev_month_value = 0.0
+            'End If
+
+            ''header
+            'If Not pembanding = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 1) Then
+            '    add_row(XTableAktiva, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "head_name").ToString, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "head_desc").ToString, 5, False, "", "")
+            'End If
+
+            ''sub header
+            'If Not pembanding_sub = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 2) Then
+            '    add_row(XTableAktiva, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "sub_name").ToString, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "sub_desc").ToString, 7, False, "", "")
+            'End If
+
+            'pembanding = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 1)
+            'pembanding_sub = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 2)
+
+            If Not pembanding = FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "head_name").ToString And Not pembanding = "0" Then
+                add_row(XTableAktiva, "", "Total " & FormReportBalanceSheet.GVAktiva.GetRowCellValue(i - 1, "head_desc").ToString, 5, True, "", "")
             End If
 
             'sub footer
-            If Not pembanding_sub = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 2) And Not pembanding_sub = "0" Then
-                add_row(XTableAktiva, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i - 1, "sub_name").ToString, "Total " & FormReportBalanceSheet.GVAktiva.GetRowCellValue(i - 1, "sub_desc").ToString, 7, True, Decimal.Parse(sub_prev_month_value.ToString).ToString("N2"), Decimal.Parse(sub_this_month_value.ToString).ToString("N2"))
+            If Not pembanding_sub = FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "sub_name").ToString And Not pembanding_sub = "0" Then
+                add_row(XTableAktiva, "", "Total " & FormReportBalanceSheet.GVAktiva.GetRowCellValue(i - 1, "sub_desc").ToString, 7, True, Decimal.Parse(sub_prev_month_value.ToString).ToString("N2"), Decimal.Parse(sub_this_month_value.ToString).ToString("N2"))
                 sub_this_month_value = 0.0
                 sub_prev_month_value = 0.0
             End If
 
             'header
-            If Not pembanding = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 1) Then
-                add_row(XTableAktiva, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "head_name").ToString, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "head_desc").ToString, 5, False, "", "")
+            If Not pembanding = FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "head_name").ToString Then
+                add_row(XTableAktiva, "", FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "head_desc").ToString, 5, False, "", "")
             End If
 
             'sub header
-            If Not pembanding_sub = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 2) Then
-                add_row(XTableAktiva, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "sub_name").ToString, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "sub_desc").ToString, 7, False, "", "")
+            If Not pembanding_sub = FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "sub_name").ToString Then
+                add_row(XTableAktiva, "", FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "sub_desc").ToString, 7, False, "", "")
             End If
 
-            pembanding = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 1)
-            pembanding_sub = Strings.Left(FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "acc_name").ToString, 2)
+            '
+            If pembanding = "0" Then
+                CellFooterAsset.Text = "Total " & FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "head_desc").ToString
+            End If
+            '
+
+            pembanding = FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "head_name").ToString
+            pembanding_sub = FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "sub_name").ToString
 
             'detail
             Dim row_det As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
@@ -90,7 +121,7 @@
             XTableAktiva.Rows.Add(row_det)
             '
             If i = FormReportBalanceSheet.GVAktiva.RowCount - 1 - GetGroupRowCount(FormReportBalanceSheet.GVAktiva) Then
-                add_row(XTableAktiva, FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "sub_name").ToString, "Total " & FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "sub_desc").ToString, 7, True, Decimal.Parse(sub_prev_month_value.ToString).ToString("N2"), Decimal.Parse(sub_this_month_value.ToString).ToString("N2"))
+                add_row(XTableAktiva, "", "Total " & FormReportBalanceSheet.GVAktiva.GetRowCellValue(i, "sub_desc").ToString, 7, True, Decimal.Parse(sub_prev_month_value.ToString).ToString("N2"), Decimal.Parse(sub_this_month_value.ToString).ToString("N2"))
             End If
         Next
         XTableAktiva.DeleteRow(Xrowaktiva)
@@ -103,29 +134,57 @@
         For i = 0 To FormReportBalanceSheet.GVPasiva.RowCount - 1 - GetGroupRowCount(FormReportBalanceSheet.GVPasiva)
             'header/sub header or footer
             'head footer
-            If Not pembanding = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 1) And Not pembanding = "0" Then
-                add_row(XTablePasiva, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i - 1, "head_name").ToString, "Total " & FormReportBalanceSheet.GVPasiva.GetRowCellValue(i - 1, "head_desc").ToString, 5, True, "", "")
+            'If Not pembanding = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 1) And Not pembanding = "0" Then
+            '    add_row(XTablePasiva, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i - 1, "head_name").ToString, "Total " & FormReportBalanceSheet.GVPasiva.GetRowCellValue(i - 1, "head_desc").ToString, 5, True, "", "")
+            'End If
+
+            ''sub footer
+            'If Not pembanding_sub = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 2) And Not pembanding_sub = "0" Then
+            '    add_row(XTablePasiva, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i - 1, "sub_name").ToString, "Total " & FormReportBalanceSheet.GVPasiva.GetRowCellValue(i - 1, "sub_desc").ToString, 7, True, Decimal.Parse(sub_prev_month_value.ToString).ToString("N2"), Decimal.Parse(sub_this_month_value.ToString).ToString("N2"))
+            '    sub_this_month_value = 0.0
+            '    sub_prev_month_value = 0.0
+            'End If
+
+            ''header
+            'If Not pembanding = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 1) Then
+            '    add_row(XTablePasiva, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "head_name").ToString, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "head_desc").ToString, 5, False, "", "")
+            'End If
+
+            ''sub header
+            'If Not pembanding_sub = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 2) Then
+            '    add_row(XTablePasiva, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "sub_name").ToString, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "sub_desc").ToString, 7, False, "", "")
+            'End If
+
+            'pembanding = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 1)
+            'pembanding_sub = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 2)
+
+            If Not pembanding = FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "head_name").ToString And Not pembanding = "0" Then
+                add_row(XTablePasiva, "", "Total " & FormReportBalanceSheet.GVPasiva.GetRowCellValue(i - 1, "head_desc").ToString, 5, True, "", "")
             End If
 
             'sub footer
-            If Not pembanding_sub = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 2) And Not pembanding_sub = "0" Then
-                add_row(XTablePasiva, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i - 1, "sub_name").ToString, "Total " & FormReportBalanceSheet.GVPasiva.GetRowCellValue(i - 1, "sub_desc").ToString, 7, True, Decimal.Parse(sub_prev_month_value.ToString).ToString("N2"), Decimal.Parse(sub_this_month_value.ToString).ToString("N2"))
+            If Not pembanding_sub = FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "sub_name").ToString And Not pembanding_sub = "0" Then
+                add_row(XTablePasiva, "", "Total " & FormReportBalanceSheet.GVPasiva.GetRowCellValue(i - 1, "sub_desc").ToString, 7, True, Decimal.Parse(sub_prev_month_value.ToString).ToString("N2"), Decimal.Parse(sub_this_month_value.ToString).ToString("N2"))
                 sub_this_month_value = 0.0
                 sub_prev_month_value = 0.0
             End If
 
             'header
-            If Not pembanding = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 1) Then
-                add_row(XTablePasiva, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "head_name").ToString, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "head_desc").ToString, 5, False, "", "")
+            If Not pembanding = FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "head_name").ToString Then
+                add_row(XTablePasiva, "", FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "head_desc").ToString, 5, False, "", "")
             End If
 
             'sub header
-            If Not pembanding_sub = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 2) Then
-                add_row(XTablePasiva, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "sub_name").ToString, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "sub_desc").ToString, 7, False, "", "")
+            If Not pembanding_sub = FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "sub_name").ToString Then
+                add_row(XTablePasiva, "", FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "sub_desc").ToString, 7, False, "", "")
             End If
 
-            pembanding = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 1)
-            pembanding_sub = Strings.Left(FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "acc_name").ToString, 2)
+            If pembanding = "0" Then
+                CellFooterLiability.Text = "Total " & FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "head_desc").ToString
+            End If
+
+            pembanding = FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "head_name").ToString
+            pembanding_sub = FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "sub_name").ToString
 
             'detail
             Dim row_det As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
@@ -183,7 +242,7 @@
             XTablePasiva.Rows.Add(row_det)
             '
             If i = FormReportBalanceSheet.GVPasiva.RowCount - 1 - GetGroupRowCount(FormReportBalanceSheet.GVPasiva) Then
-                add_row(XTablePasiva, FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "sub_name").ToString, "Total " & FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "sub_desc").ToString, 7, True, Decimal.Parse(sub_prev_month_value.ToString).ToString("N2"), Decimal.Parse(sub_this_month_value.ToString).ToString("N2"))
+                add_row(XTablePasiva, "", "Total " & FormReportBalanceSheet.GVPasiva.GetRowCellValue(i, "sub_desc").ToString, 7, True, Decimal.Parse(sub_prev_month_value.ToString).ToString("N2"), Decimal.Parse(sub_this_month_value.ToString).ToString("N2"))
             End If
         Next
         XTablePasiva.DeleteRow(XRowPasiva)
