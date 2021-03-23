@@ -313,7 +313,7 @@ GROUP BY dnd.id_report"
                                 newRow("val_bef_kurs") = If(dtd.Rows(k)("id_currency").ToString = "1", dtd.Rows(k)("balance"), dtd.Rows(k)("value_bef_kurs"))
                                 newRow("value_view") = dtd.Rows(k)("balance")
                                 newRow("balance_due") = dtd.Rows(k)("balance")
-                                newRow("note") = dtd.Rows(k)("type").ToString & " - " & dtd.Rows(k)("inv_number").ToString
+                                newRow("note") = dtd.Rows(k)("type").ToString & " - " & dtd.Rows(k)("inv_number").ToString & " - " & dtd.Rows(k)("po_number").ToString
                                 TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                             Next
                         Else

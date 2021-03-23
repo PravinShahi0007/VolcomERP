@@ -1287,9 +1287,59 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
         End Try
     End Sub
 
+    Dim cost As Decimal = 0.00
+    Dim cost_total As Decimal = 0.00
+
+    Dim cur_cost As Decimal = 0.00
+    Dim cur_tot As Decimal = 0.00
+
+    Dim cur_cost2 As Decimal = 0.00
+    Dim cur_tot2 As Decimal = 0.00
+
     Private Sub GVMAktiva_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVMAktiva.CustomSummaryCalculate
-        Dim cost As Decimal = CDec(myCoalesce(GVMAktiva.GetRowCellValue(e.RowHandle, "this_month").ToString, "0.00"))
-        Dim cost_total As Decimal = CDec(myCoalesce(GVMAktiva.GetRowCellValue(e.RowHandle, "total_asset").ToString, "0.00"))
-        e.TotalValue = cost / cost_total
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            cur_tot = 0.00
+            cur_cost = 0.00
+            cur_tot2 = 0.00
+            cur_cost2 = 0.00
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            cost = GVMAktiva.GetRowCellValue(e.RowHandle, "this_month")
+            cost_total = GVMAktiva.GetRowCellValue(e.RowHandle, "total_asset")
+            Select Case summaryID
+                Case 1 'total summary estimate
+                    cur_tot = cost_total
+                    cur_cost += cost
+                Case 2
+                    cur_tot2 = cost_total
+                    cur_cost2 += cost
+            End Select
+        End If
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1 'total summary estimate
+                    Dim tot_cur_cost As Decimal = 0.00
+                    Try
+                        tot_cur_cost = cur_cost / cur_tot
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_cur_cost
+                Case 2 'total summary estimate
+                    Dim tot_cur_cost2 As Decimal = 0.00
+                    Try
+                        tot_cur_cost2 = cur_cost2 / cur_tot2
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_cur_cost2
+            End Select
+        End If
     End Sub
 End Class
