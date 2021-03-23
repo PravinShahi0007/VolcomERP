@@ -2380,7 +2380,7 @@ Partial Class FormReportBalanceSheet
         Me.GVMAktiva.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.BandedGridColumn35, Me.BandedGridColumn26, Me.BandedGridColumn36, Me.BandedGridColumn30, Me.BandedGridColumn37, Me.BandedGridColumn31, Me.BandedGridColumn32, Me.BandedGridColumn34, Me.BandedGridColumnPercentage, Me.BandedGridColumn33})
         Me.GVMAktiva.GridControl = Me.GCMAktiva
         Me.GVMAktiva.GroupCount = 2
-        Me.GVMAktiva.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", Me.BandedGridColumn34, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", Me.BandedGridColumn33, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percentage", Me.BandedGridColumnPercentage, "{0:N2} %")})
+        Me.GVMAktiva.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", Me.BandedGridColumn34, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", Me.BandedGridColumn33, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percentage", Me.BandedGridColumnPercentage, "{0:N2} %", 1)})
         Me.GVMAktiva.Name = "GVMAktiva"
         Me.GVMAktiva.OptionsView.ShowFooter = True
         Me.GVMAktiva.OptionsView.ShowGroupPanel = False
@@ -2467,7 +2467,7 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumnPercentage.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnPercentage.FieldName = "percentage"
         Me.BandedGridColumnPercentage.Name = "BandedGridColumnPercentage"
-        Me.BandedGridColumnPercentage.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percentage", "100 %")})
+        Me.BandedGridColumnPercentage.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percentage", "{0:N2} %", 2)})
         Me.BandedGridColumnPercentage.Visible = True
         Me.BandedGridColumnPercentage.VisibleIndex = 3
         Me.BandedGridColumnPercentage.Width = 102
