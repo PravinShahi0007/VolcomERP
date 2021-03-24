@@ -170,7 +170,7 @@
             End If
         Next
         '
-        pre_load_list_horz("303", 2, 1, XrTable1)
+        pre_load_list_horz("303", 2, 1, XRTableMark)
     End Sub
 
     Sub add_head(ByVal desc As String, ByVal amountx As String, ByVal percentage As String)
