@@ -116,7 +116,7 @@ Partial Public Class ReportMonthlyIS
         'ReportHeader
         '
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LTitle, Me.XrPictureBox1})
-        Me.ReportHeader.HeightF = 118.6459!
+        Me.ReportHeader.HeightF = 120.0!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'LTitle
@@ -204,13 +204,13 @@ Partial Public Class ReportMonthlyIS
         'ReportFooter
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XRTableMark})
-        Me.ReportFooter.HeightF = 25.0!
+        Me.ReportFooter.HeightF = 39.58333!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XRTableMark
         '
         Me.XRTableMark.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XRTableMark.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XRTableMark.LocationFloat = New DevExpress.Utils.PointFloat(0!, 14.58333!)
         Me.XRTableMark.Name = "XRTableMark"
         Me.XRTableMark.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3})
         Me.XRTableMark.SizeF = New System.Drawing.SizeF(722.9998!, 25.0!)

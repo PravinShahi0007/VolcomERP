@@ -225,7 +225,7 @@ Public Class FormSalesDelOrderSlip
                 ReportSalesDelOrderOwnStore2.is_use_unique_code = is_use_unique_code
                 ReportSalesDelOrderOwnStore2.is_no_print = "-1"
                 Dim Report As New ReportSalesDelOrderOwnStore2()
-
+                Report.XRBarcode.Text = TxtSalesDelOrderNumber.Text
 
                 'Grid Detail
                 'ReportStyleGridviewBlackLine(Report.GVItemList)
@@ -255,7 +255,7 @@ Public Class FormSalesDelOrderSlip
                 ReportSalesDelOrderOwnStore.is_use_unique_code = is_use_unique_code
                 ReportSalesDelOrderOwnStore.is_no_print = "-1"
                 Dim Report As New ReportSalesDelOrderOwnStore()
-
+                Report.XRBarcode.Text = TxtSalesDelOrderNumber.Text
 
                 'Grid Detail
                 'ReportStyleGridviewBlackLine(Report.GVItemList)

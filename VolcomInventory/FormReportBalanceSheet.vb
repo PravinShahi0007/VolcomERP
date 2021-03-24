@@ -1275,6 +1275,10 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             load_report_pl(GCMProfitLoss, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0")
             GVMProfitLoss.BestFitColumns()
             GVMProfitLoss.ExpandAllGroups()
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 2 Then
+            load_report(GCMBSvsPrevMonth, "-", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_month")
+            GVMBSvsPrevMonth.BestFitColumns()
+            GVMBSvsPrevMonth.ExpandAllGroups()
         End If
     End Sub
 
@@ -1457,18 +1461,89 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
         If XTCMonthlyReport.SelectedTabPageIndex = 0 Then
 
         ElseIf XTCMonthlyReport.SelectedTabPageIndex = 1 Then
-            Cursor = Cursors.WaitCursor
+            If GVMProfitLoss.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
 
-            Dim Report As New ReportMonthlyIS()
-            Report.dt = GCMProfitLoss.DataSource
-            Report.languange = "eng"
-            Report.LTitle.Text = "PT. Volcom Indonesia Income Statement for Period Ending " & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("MMMM yyyy")
+                Dim Report As New ReportMonthlyIS()
+                Report.dt = GCMProfitLoss.DataSource
+                Report.languange = "eng"
+                Report.LTitle.Text = "PT. Volcom Indonesia Income Statement for Period Ending " & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("MMMM yyyy")
 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreviewDialog()
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
 
-            Cursor = Cursors.Default
+                Cursor = Cursors.Default
+            End If
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 2 Then
+            If GVMBSvsPrevMonth.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+
+                Dim Report As New ReportMonthlyBSvs()
+                Report.dt = GCMBSvsPrevMonth.DataSource
+                Report.languange = "eng"
+
+                Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%M %Y') AS this_month,DATE_FORMAT(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%M %Y') AS prev_month "
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+                Report.DataSource = dt
+
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+
+                Cursor = Cursors.Default
+            End If
         End If
 
+    End Sub
+
+    Dim bs_vpm_t_sum As Decimal = 0.00
+    Dim bs_vpm_t_group As Decimal = 0.00
+
+    Dim bs_vpm_p_sum As Decimal = 0.00
+    Dim bs_vpm_p_group As Decimal = 0.00
+
+    Private Sub GVMBSvsPrevMonth_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVMBSvsPrevMonth.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            bs_vpm_t_sum = 0.00
+            bs_vpm_t_group = 0.00
+            bs_vpm_p_sum = 0.00
+            bs_vpm_p_group = 0.00
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Select Case summaryID
+                Case 1 'group
+                    bs_vpm_t_group += GVMBSvsPrevMonth.GetRowCellValue(e.RowHandle, "this_month")
+                    bs_vpm_p_group += GVMBSvsPrevMonth.GetRowCellValue(e.RowHandle, "prev_month")
+                Case 2 'sum
+                    bs_vpm_t_sum += GVMBSvsPrevMonth.GetRowCellValue(e.RowHandle, "this_month")
+                    bs_vpm_p_sum += GVMBSvsPrevMonth.GetRowCellValue(e.RowHandle, "prev_month")
+            End Select
+        End If
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1 'group
+                    Dim tot_group As Decimal = 0.00
+                    Try
+                        tot_group = ((bs_vpm_t_group - bs_vpm_p_group) / bs_vpm_t_group) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_group
+                Case 2 'sum
+                    Dim tot_sum As Decimal = 0.00
+                    Try
+                        tot_sum = ((bs_vpm_t_sum - bs_vpm_p_sum) / bs_vpm_t_sum) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_sum
+            End Select
+        End If
     End Sub
 End Class
