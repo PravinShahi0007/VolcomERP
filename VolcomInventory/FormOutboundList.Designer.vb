@@ -55,6 +55,7 @@ Partial Class FormOutboundList
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -64,7 +65,7 @@ Partial Class FormOutboundList
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BRefreshHistory = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOutbound.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -378,6 +379,14 @@ Partial Class FormOutboundList
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 9
         '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "3PL"
+        Me.GridColumn22.FieldName = "cargo"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 10
+        '
         'GridColumn17
         '
         Me.GridColumn17.Caption = "AWB"
@@ -404,11 +413,12 @@ Partial Class FormOutboundList
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BRefreshHistory)
+        Me.PanelControl2.Controls.Add(Me.BPrint)
         Me.PanelControl2.Controls.Add(Me.DETo)
         Me.PanelControl2.Controls.Add(Me.LabelControl19)
         Me.PanelControl2.Controls.Add(Me.LabelControl18)
         Me.PanelControl2.Controls.Add(Me.DEFrom)
-        Me.PanelControl2.Controls.Add(Me.BRefreshHistory)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
@@ -459,19 +469,21 @@ Partial Class FormOutboundList
         '
         Me.BRefreshHistory.Dock = System.Windows.Forms.DockStyle.Right
         Me.BRefreshHistory.Image = CType(resources.GetObject("BRefreshHistory.Image"), System.Drawing.Image)
-        Me.BRefreshHistory.Location = New System.Drawing.Point(796, 2)
+        Me.BRefreshHistory.Location = New System.Drawing.Point(684, 2)
         Me.BRefreshHistory.Name = "BRefreshHistory"
         Me.BRefreshHistory.Size = New System.Drawing.Size(112, 42)
         Me.BRefreshHistory.TabIndex = 3
         Me.BRefreshHistory.Text = "Refresh"
         '
-        'GridColumn22
+        'BPrint
         '
-        Me.GridColumn22.Caption = "3PL"
-        Me.GridColumn22.FieldName = "cargo"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 10
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
+        Me.BPrint.Location = New System.Drawing.Point(796, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(112, 42)
+        Me.BPrint.TabIndex = 8930
+        Me.BPrint.Text = "Print"
         '
         'FormOutboundList
         '
@@ -553,4 +565,5 @@ Partial Class FormOutboundList
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
 End Class

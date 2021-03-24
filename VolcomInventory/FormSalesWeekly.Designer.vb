@@ -152,6 +152,7 @@ Partial Class FormSalesWeekly
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCInvoiceWeek = New DevExpress.XtraGrid.GridControl()
         Me.GVInvoiceWeek = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.RepositoryItemHyperLinkEdit = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.DEInvoiceTo = New DevExpress.XtraEditors.DateEdit()
         Me.SBInvoiceExportExcel = New DevExpress.XtraEditors.SimpleButton()
@@ -268,6 +269,7 @@ Partial Class FormSalesWeekly
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.GCInvoiceWeek, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVInvoiceWeek, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
         CType(Me.DEInvoiceTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1550,6 +1552,7 @@ Partial Class FormSalesWeekly
         Me.GCInvoiceWeek.Location = New System.Drawing.Point(0, 0)
         Me.GCInvoiceWeek.MainView = Me.GVInvoiceWeek
         Me.GCInvoiceWeek.Name = "GCInvoiceWeek"
+        Me.GCInvoiceWeek.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit})
         Me.GCInvoiceWeek.Size = New System.Drawing.Size(1103, 430)
         Me.GCInvoiceWeek.TabIndex = 0
         Me.GCInvoiceWeek.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoiceWeek})
@@ -1560,12 +1563,16 @@ Partial Class FormSalesWeekly
         Me.GVInvoiceWeek.Appearance.BandPanel.Options.UseFont = True
         Me.GVInvoiceWeek.GridControl = Me.GCInvoiceWeek
         Me.GVInvoiceWeek.Name = "GVInvoiceWeek"
-        Me.GVInvoiceWeek.OptionsBehavior.Editable = False
         Me.GVInvoiceWeek.OptionsPrint.UsePrintStyles = False
         Me.GVInvoiceWeek.OptionsView.AllowCellMerge = True
         Me.GVInvoiceWeek.OptionsView.ColumnAutoWidth = False
         Me.GVInvoiceWeek.OptionsView.ShowFooter = True
         Me.GVInvoiceWeek.OptionsView.ShowGroupPanel = False
+        '
+        'RepositoryItemHyperLinkEdit
+        '
+        Me.RepositoryItemHyperLinkEdit.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit.Name = "RepositoryItemHyperLinkEdit"
         '
         'GroupControl4
         '
@@ -1989,6 +1996,7 @@ Partial Class FormSalesWeekly
         Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.GCInvoiceWeek, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVInvoiceWeek, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         Me.GroupControl4.PerformLayout()
@@ -2179,4 +2187,5 @@ Partial Class FormSalesWeekly
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemHyperLinkEdit As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class

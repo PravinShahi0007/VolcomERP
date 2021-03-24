@@ -8667,6 +8667,12 @@
     <Compile Include="ReportMemoUnpaidLeave.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMonthlyIS.Designer.vb">
+      <DependentUpon>ReportMonthlyIS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMonthlyIS.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportODMScan.Designer.vb">
       <DependentUpon>ReportODMScan.vb</DependentUpon>
     </Compile>
@@ -14137,6 +14143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMemoUnpaidLeave.resx">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMonthlyIS.resx">
+      <DependentUpon>ReportMonthlyIS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportODMScan.resx">
       <DependentUpon>ReportODMScan.vb</DependentUpon>
