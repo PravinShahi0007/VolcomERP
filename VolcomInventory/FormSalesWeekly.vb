@@ -1331,6 +1331,7 @@
             column_desc.Caption = list_caption(i)
             column_desc.FieldName = list_fieldname(i)
             column_desc.VisibleIndex = i
+            column_desc.OptionsColumn.AllowEdit = False
 
             If list_fieldname(i) = "total_qty" Or
                 list_fieldname(i) = "sales_pos_total_retail" Or
@@ -1363,6 +1364,7 @@
                 column.FieldName = list_detail(l)
                 column.VisibleIndex = j + list_fieldname.Count
                 column.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False
+                column.ColumnEdit = RepositoryItemHyperLinkEdit
 
                 band.Columns.Add(column)
 
@@ -1528,5 +1530,14 @@
 
     Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
         view_usa_sales()
+    End Sub
+
+    Private Sub RepositoryItemHyperLinkEdit_Click(sender As Object, e As EventArgs) Handles RepositoryItemHyperLinkEdit.Click
+        If Not GVInvoiceWeek.GetFocusedRowCellValue("id_sales_pos").ToString = "0" Then
+            FormViewSalesPOS.id_sales_pos = GVInvoiceWeek.GetFocusedRowCellValue("id_sales_pos").ToString
+            FormViewSalesPOS.ShowDialog()
+        Else
+            stopCustom("No invoice selected.")
+        End If
     End Sub
 End Class
