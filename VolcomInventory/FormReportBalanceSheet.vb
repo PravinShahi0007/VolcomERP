@@ -170,7 +170,7 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
             If XTCProfitAndLoss.SelectedTabPageIndex = 0 Then
                 CreateNodes(TLProfitAndLoss, " WHERE b.is_profit_loss='1'", Date.Parse(DEUntil.EditValue.ToString), SLEUnit.EditValue.ToString)
             ElseIf XTCProfitAndLoss.SelectedTabPageIndex = 1 Then
-                load_report_pl(GCProfitAndLoss, Date.Parse(DEUntil.EditValue.ToString), SLEUnit.EditValue.ToString)
+                load_report_pl(GCProfitAndLoss, Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd"), SLEUnit.EditValue.ToString)
                 GVProfitAndLoss.BestFitColumns()
                 GVProfitAndLoss.ExpandAllGroups()
             End If
