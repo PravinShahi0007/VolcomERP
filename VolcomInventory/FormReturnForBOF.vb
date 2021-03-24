@@ -27,7 +27,7 @@
             FROM tb_sales_return r
             INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = r.id_store_contact_from
             INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
-            WHERE r.sales_return_date>='" + date_from + "' AND r.sales_return_date<='" + date_to + "' AND s.id_comp_group='" + id_comp_group + "' AND r.id_report_status NOT IN (5, 6))
+            WHERE r.sales_return_date>='" + date_from + "' AND r.sales_return_date<='" + date_to + "' AND s.id_comp_group='" + id_comp_group + "' AND r.id_report_status NOT IN (5, 6) AND r.id_ret_type <> 2)
         "
 
         Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
@@ -54,7 +54,7 @@
                 INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
                 INNER JOIN tb_m_product p ON p.id_product = rd.id_product
                 WHERE r.sales_return_date>='" + date_from + "' AND r.sales_return_date<='" + date_to + "'
-                AND s.id_comp_group='" + id_comp_group + "' AND r.id_report_status=6 
+                AND s.id_comp_group='" + id_comp_group + "' AND r.id_report_status=6 AND r.id_ret_type <> 2
             "
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
