@@ -183,6 +183,7 @@
         End If
 
         XRCompany.Text = execute_query("SELECT comp_name FROM tb_m_comp WHERE id_comp = (SELECT id_own_company FROM tb_opt LIMIT 1)", 0, True, "", "", "", "")
+
     End Sub
 
     Sub viewDetail()

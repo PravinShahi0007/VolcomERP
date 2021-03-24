@@ -116,7 +116,7 @@ Partial Public Class ReportMonthlyIS
         'ReportHeader
         '
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LTitle, Me.XrPictureBox1})
-        Me.ReportHeader.HeightF = 118.6459!
+        Me.ReportHeader.HeightF = 120.0!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'LTitle
