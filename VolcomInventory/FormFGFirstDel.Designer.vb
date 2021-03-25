@@ -29,13 +29,23 @@ Partial Class FormFGFirstDel
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfirst_del = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDesignCode = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnView)
+        Me.PanelControl1.Controls.Add(Me.TxtDesignCode)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
@@ -54,9 +64,12 @@ Partial Class FormFGFirstDel
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumnfirst_del, Me.GridColumnnote})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.ReadOnly = True
+        Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -117,7 +130,48 @@ Partial Class FormFGFirstDel
         Me.GridColumn7.FieldName = "input_date"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.VisibleIndex = 7
+        '
+        'GridColumnfirst_del
+        '
+        Me.GridColumnfirst_del.Caption = "First Del."
+        Me.GridColumnfirst_del.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnfirst_del.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnfirst_del.FieldName = "first_del"
+        Me.GridColumnfirst_del.Name = "GridColumnfirst_del"
+        Me.GridColumnfirst_del.Visible = True
+        Me.GridColumnfirst_del.VisibleIndex = 6
+        '
+        'GridColumnnote
+        '
+        Me.GridColumnnote.Caption = "Note"
+        Me.GridColumnnote.FieldName = "note"
+        Me.GridColumnnote.Name = "GridColumnnote"
+        Me.GridColumnnote.Visible = True
+        Me.GridColumnnote.VisibleIndex = 8
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(15, 19)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Design Code"
+        '
+        'TxtDesignCode
+        '
+        Me.TxtDesignCode.Location = New System.Drawing.Point(81, 16)
+        Me.TxtDesignCode.Name = "TxtDesignCode"
+        Me.TxtDesignCode.Size = New System.Drawing.Size(161, 20)
+        Me.TxtDesignCode.TabIndex = 1
+        '
+        'BtnView
+        '
+        Me.BtnView.Location = New System.Drawing.Point(248, 14)
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(60, 23)
+        Me.BtnView.TabIndex = 2
+        Me.BtnView.Text = "View"
         '
         'FormFGFirstDel
         '
@@ -130,8 +184,11 @@ Partial Class FormFGFirstDel
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "First Delivery"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -146,4 +203,9 @@ Partial Class FormFGFirstDel
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtDesignCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnfirst_del As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
 End Class
