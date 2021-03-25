@@ -271,11 +271,6 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn49 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn50 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn51 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.PCFilterMonthly = New DevExpress.XtraEditors.PanelControl()
-        Me.BPrintMonthlyReport = New DevExpress.XtraEditors.SimpleButton()
-        Me.BViewMonthlyReport = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEMonthlyReport = New DevExpress.XtraEditors.DateEdit()
         Me.XTPMBSvsMonth = New DevExpress.XtraTab.XtraTabPage()
         Me.GCMBSvsPrevMonth = New DevExpress.XtraGrid.GridControl()
         Me.GVMBSvsPrevMonth = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -287,8 +282,33 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn71 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn72 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn71 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPMPLvsMonth = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCMPLvsPrevMonth = New DevExpress.XtraGrid.GridControl()
+        Me.GVMPLvsPrevMonth = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn52 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn53 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn54 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn55 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn56 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn57 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn58 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn59 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn60 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn61 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn62 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn63 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn64 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn65 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn66 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.PCFilterMonthly = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintMonthlyReport = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewMonthlyReport = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEMonthlyReport = New DevExpress.XtraEditors.DateEdit()
         CType(Me.PCFilterUpper, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterUpper.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -376,13 +396,16 @@ Partial Class FormReportBalanceSheet
         Me.XTPMProfitLoss.SuspendLayout()
         CType(Me.GCMProfitLoss, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMProfitLoss, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPMBSvsMonth.SuspendLayout()
+        CType(Me.GCMBSvsPrevMonth, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVMBSvsPrevMonth, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPMPLvsMonth.SuspendLayout()
+        CType(Me.GCMPLvsPrevMonth, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVMPLvsPrevMonth, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCFilterMonthly, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterMonthly.SuspendLayout()
         CType(Me.DEMonthlyReport.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEMonthlyReport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPMBSvsMonth.SuspendLayout()
-        CType(Me.GCMBSvsPrevMonth, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVMBSvsPrevMonth, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCFilterUpper
@@ -2350,7 +2373,7 @@ Partial Class FormReportBalanceSheet
         Me.XTCMonthlyReport.SelectedTabPage = Me.XTPMBS
         Me.XTCMonthlyReport.Size = New System.Drawing.Size(1015, 396)
         Me.XTCMonthlyReport.TabIndex = 0
-        Me.XTCMonthlyReport.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMBS, Me.XTPMProfitLoss, Me.XTPMBSvsMonth})
+        Me.XTCMonthlyReport.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMBS, Me.XTPMProfitLoss, Me.XTPMBSvsMonth, Me.XTPMPLvsMonth})
         '
         'XTPMBS
         '
@@ -2776,7 +2799,7 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumnMISPercent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnMISPercent.FieldName = "percent_this_month"
         Me.BandedGridColumnMISPercent.Name = "BandedGridColumnMISPercent"
-        Me.BandedGridColumnMISPercent.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_this_month", "{0:N0}", 2)})
+        Me.BandedGridColumnMISPercent.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_this_month", "{0:N0} %", 2)})
         Me.BandedGridColumnMISPercent.Visible = True
         '
         'BandedGridColumn46
@@ -2829,54 +2852,6 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn51.Caption = "Report Group No"
         Me.BandedGridColumn51.FieldName = "id_consolidation_report_sub"
         Me.BandedGridColumn51.Name = "BandedGridColumn51"
-        '
-        'PCFilterMonthly
-        '
-        Me.PCFilterMonthly.Controls.Add(Me.BPrintMonthlyReport)
-        Me.PCFilterMonthly.Controls.Add(Me.BViewMonthlyReport)
-        Me.PCFilterMonthly.Controls.Add(Me.LabelControl8)
-        Me.PCFilterMonthly.Controls.Add(Me.DEMonthlyReport)
-        Me.PCFilterMonthly.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCFilterMonthly.Location = New System.Drawing.Point(0, 0)
-        Me.PCFilterMonthly.Name = "PCFilterMonthly"
-        Me.PCFilterMonthly.Size = New System.Drawing.Size(1015, 48)
-        Me.PCFilterMonthly.TabIndex = 1
-        '
-        'BPrintMonthlyReport
-        '
-        Me.BPrintMonthlyReport.Location = New System.Drawing.Point(274, 13)
-        Me.BPrintMonthlyReport.Name = "BPrintMonthlyReport"
-        Me.BPrintMonthlyReport.Size = New System.Drawing.Size(50, 23)
-        Me.BPrintMonthlyReport.TabIndex = 6
-        Me.BPrintMonthlyReport.Text = "print"
-        '
-        'BViewMonthlyReport
-        '
-        Me.BViewMonthlyReport.Location = New System.Drawing.Point(218, 13)
-        Me.BViewMonthlyReport.Name = "BViewMonthlyReport"
-        Me.BViewMonthlyReport.Size = New System.Drawing.Size(50, 23)
-        Me.BViewMonthlyReport.TabIndex = 3
-        Me.BViewMonthlyReport.Text = "view"
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(10, 18)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl8.TabIndex = 2
-        Me.LabelControl8.Text = "Date"
-        '
-        'DEMonthlyReport
-        '
-        Me.DEMonthlyReport.EditValue = Nothing
-        Me.DEMonthlyReport.Location = New System.Drawing.Point(39, 15)
-        Me.DEMonthlyReport.Name = "DEMonthlyReport"
-        Me.DEMonthlyReport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEMonthlyReport.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEMonthlyReport.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEMonthlyReport.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEMonthlyReport.Size = New System.Drawing.Size(173, 20)
-        Me.DEMonthlyReport.TabIndex = 1
         '
         'XTPMBSvsMonth
         '
@@ -2974,6 +2949,22 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn70.VisibleIndex = 2
         Me.GridColumn70.Width = 292
         '
+        'GridColumn72
+        '
+        Me.GridColumn72.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn72.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn72.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn72.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn72.Caption = "Prev Month"
+        Me.GridColumn72.DisplayFormat.FormatString = "N2"
+        Me.GridColumn72.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn72.FieldName = "prev_month"
+        Me.GridColumn72.Name = "GridColumn72"
+        Me.GridColumn72.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", "{0:N2}")})
+        Me.GridColumn72.Visible = True
+        Me.GridColumn72.VisibleIndex = 1
+        Me.GridColumn72.Width = 354
+        '
         'GridColumn71
         '
         Me.GridColumn71.AppearanceCell.Options.UseTextOptions = True
@@ -2990,21 +2981,251 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn71.VisibleIndex = 3
         Me.GridColumn71.Width = 261
         '
-        'GridColumn72
+        'XTPMPLvsMonth
         '
-        Me.GridColumn72.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn72.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn72.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn72.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn72.Caption = "Prev Month"
-        Me.GridColumn72.DisplayFormat.FormatString = "N2"
-        Me.GridColumn72.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn72.FieldName = "prev_month"
-        Me.GridColumn72.Name = "GridColumn72"
-        Me.GridColumn72.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", "{0:N2}")})
-        Me.GridColumn72.Visible = True
-        Me.GridColumn72.VisibleIndex = 1
-        Me.GridColumn72.Width = 354
+        Me.XTPMPLvsMonth.Controls.Add(Me.GCMPLvsPrevMonth)
+        Me.XTPMPLvsMonth.Name = "XTPMPLvsMonth"
+        Me.XTPMPLvsMonth.Size = New System.Drawing.Size(1009, 368)
+        Me.XTPMPLvsMonth.Text = "Income Statement vs last Month"
+        '
+        'GCMPLvsPrevMonth
+        '
+        Me.GCMPLvsPrevMonth.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCMPLvsPrevMonth.Location = New System.Drawing.Point(0, 0)
+        Me.GCMPLvsPrevMonth.MainView = Me.GVMPLvsPrevMonth
+        Me.GCMPLvsPrevMonth.Name = "GCMPLvsPrevMonth"
+        Me.GCMPLvsPrevMonth.Size = New System.Drawing.Size(1009, 368)
+        Me.GCMPLvsPrevMonth.TabIndex = 3
+        Me.GCMPLvsPrevMonth.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMPLvsPrevMonth})
+        '
+        'GVMPLvsPrevMonth
+        '
+        Me.GVMPLvsPrevMonth.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand9, Me.GridBand10})
+        Me.GVMPLvsPrevMonth.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn63, Me.BandedGridColumn52, Me.BandedGridColumn64, Me.BandedGridColumn53, Me.BandedGridColumn65, Me.BandedGridColumn66, Me.BandedGridColumn54, Me.BandedGridColumn55, Me.BandedGridColumn56, Me.BandedGridColumn59, Me.BandedGridColumn57, Me.BandedGridColumn61, Me.BandedGridColumn60, Me.BandedGridColumn58, Me.BandedGridColumn62})
+        Me.GVMPLvsPrevMonth.GridControl = Me.GCMPLvsPrevMonth
+        Me.GVMPLvsPrevMonth.GroupCount = 3
+        Me.GVMPLvsPrevMonth.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", Me.BandedGridColumn59, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", Me.BandedGridColumn57, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_year_to_date", Me.BandedGridColumn61, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "percent_this_month", Me.BandedGridColumn60, "{0:N0} %", 1)})
+        Me.GVMPLvsPrevMonth.Name = "GVMPLvsPrevMonth"
+        Me.GVMPLvsPrevMonth.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVMPLvsPrevMonth.OptionsView.ShowFooter = True
+        Me.GVMPLvsPrevMonth.OptionsView.ShowGroupPanel = False
+        Me.GVMPLvsPrevMonth.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn54, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn52, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn53, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridBand9
+        '
+        Me.GridBand9.Caption = "Account"
+        Me.GridBand9.Columns.Add(Me.BandedGridColumn52)
+        Me.GridBand9.Columns.Add(Me.BandedGridColumn53)
+        Me.GridBand9.Columns.Add(Me.BandedGridColumn54)
+        Me.GridBand9.Columns.Add(Me.BandedGridColumn55)
+        Me.GridBand9.Columns.Add(Me.BandedGridColumn56)
+        Me.GridBand9.Name = "GridBand9"
+        Me.GridBand9.VisibleIndex = 0
+        Me.GridBand9.Width = 158
+        '
+        'BandedGridColumn52
+        '
+        Me.BandedGridColumn52.Caption = "Head"
+        Me.BandedGridColumn52.FieldName = "head_desc"
+        Me.BandedGridColumn52.FieldNameSortGroup = "head_name"
+        Me.BandedGridColumn52.Name = "BandedGridColumn52"
+        '
+        'BandedGridColumn53
+        '
+        Me.BandedGridColumn53.Caption = "Sub"
+        Me.BandedGridColumn53.FieldName = "sub_desc"
+        Me.BandedGridColumn53.FieldNameSortGroup = "sub_name"
+        Me.BandedGridColumn53.Name = "BandedGridColumn53"
+        '
+        'BandedGridColumn54
+        '
+        Me.BandedGridColumn54.Caption = "Group"
+        Me.BandedGridColumn54.FieldName = "report_sub"
+        Me.BandedGridColumn54.FieldNameSortGroup = "id_consolidation_report_sub"
+        Me.BandedGridColumn54.Name = "BandedGridColumn54"
+        Me.BandedGridColumn54.Width = 83
+        '
+        'BandedGridColumn55
+        '
+        Me.BandedGridColumn55.Caption = "No"
+        Me.BandedGridColumn55.FieldName = "acc_name"
+        Me.BandedGridColumn55.Name = "BandedGridColumn55"
+        Me.BandedGridColumn55.Visible = True
+        Me.BandedGridColumn55.Width = 83
+        '
+        'BandedGridColumn56
+        '
+        Me.BandedGridColumn56.Caption = "Name"
+        Me.BandedGridColumn56.FieldName = "acc_description"
+        Me.BandedGridColumn56.Name = "BandedGridColumn56"
+        Me.BandedGridColumn56.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "acc_description", "Net Profit After Tax")})
+        Me.BandedGridColumn56.Visible = True
+        '
+        'GridBand10
+        '
+        Me.GridBand10.Caption = "Amount"
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn57)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn58)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn59)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn60)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn61)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn62)
+        Me.GridBand10.Name = "GridBand10"
+        Me.GridBand10.VisibleIndex = 1
+        Me.GridBand10.Width = 225
+        '
+        'BandedGridColumn57
+        '
+        Me.BandedGridColumn57.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn57.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn57.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn57.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn57.Caption = "Prev Month"
+        Me.BandedGridColumn57.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn57.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn57.FieldName = "prev_month"
+        Me.BandedGridColumn57.Name = "BandedGridColumn57"
+        Me.BandedGridColumn57.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_month", "{0:N2}")})
+        Me.BandedGridColumn57.Visible = True
+        '
+        'BandedGridColumn58
+        '
+        Me.BandedGridColumn58.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn58.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn58.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn58.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn58.Caption = "%"
+        Me.BandedGridColumn58.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn58.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn58.FieldName = "percent_prev_month"
+        Me.BandedGridColumn58.Name = "BandedGridColumn58"
+        '
+        'BandedGridColumn59
+        '
+        Me.BandedGridColumn59.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn59.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn59.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn59.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn59.Caption = "This Month"
+        Me.BandedGridColumn59.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn59.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn59.FieldName = "this_month"
+        Me.BandedGridColumn59.Name = "BandedGridColumn59"
+        Me.BandedGridColumn59.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", "{0:N2}")})
+        Me.BandedGridColumn59.Visible = True
+        '
+        'BandedGridColumn60
+        '
+        Me.BandedGridColumn60.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn60.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn60.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn60.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn60.Caption = "% to Prev Month"
+        Me.BandedGridColumn60.DisplayFormat.FormatString = "{0:N0} %"
+        Me.BandedGridColumn60.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn60.FieldName = "percentage"
+        Me.BandedGridColumn60.Name = "BandedGridColumn60"
+        Me.BandedGridColumn60.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_this_month", "{0:N0} %", 2)})
+        Me.BandedGridColumn60.Visible = True
+        '
+        'BandedGridColumn61
+        '
+        Me.BandedGridColumn61.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn61.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn61.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn61.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn61.Caption = "Year to Date"
+        Me.BandedGridColumn61.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn61.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn61.FieldName = "this_year_to_date"
+        Me.BandedGridColumn61.Name = "BandedGridColumn61"
+        Me.BandedGridColumn61.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_year_to_date", "{0:N2}")})
+        '
+        'BandedGridColumn62
+        '
+        Me.BandedGridColumn62.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn62.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn62.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn62.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn62.Caption = "%"
+        Me.BandedGridColumn62.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn62.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn62.FieldName = "percent_this_year_to_date"
+        Me.BandedGridColumn62.Name = "BandedGridColumn62"
+        '
+        'BandedGridColumn63
+        '
+        Me.BandedGridColumn63.Caption = "Head Name"
+        Me.BandedGridColumn63.FieldName = "head_name"
+        Me.BandedGridColumn63.Name = "BandedGridColumn63"
+        Me.BandedGridColumn63.Visible = True
+        '
+        'BandedGridColumn64
+        '
+        Me.BandedGridColumn64.Caption = "Sub Name"
+        Me.BandedGridColumn64.FieldName = "sub_name"
+        Me.BandedGridColumn64.Name = "BandedGridColumn64"
+        Me.BandedGridColumn64.Visible = True
+        '
+        'BandedGridColumn65
+        '
+        Me.BandedGridColumn65.Caption = "ID Acc"
+        Me.BandedGridColumn65.FieldName = "id_acc"
+        Me.BandedGridColumn65.Name = "BandedGridColumn65"
+        '
+        'BandedGridColumn66
+        '
+        Me.BandedGridColumn66.Caption = "Report Group No"
+        Me.BandedGridColumn66.FieldName = "id_consolidation_report_sub"
+        Me.BandedGridColumn66.Name = "BandedGridColumn66"
+        '
+        'PCFilterMonthly
+        '
+        Me.PCFilterMonthly.Controls.Add(Me.BPrintMonthlyReport)
+        Me.PCFilterMonthly.Controls.Add(Me.BViewMonthlyReport)
+        Me.PCFilterMonthly.Controls.Add(Me.LabelControl8)
+        Me.PCFilterMonthly.Controls.Add(Me.DEMonthlyReport)
+        Me.PCFilterMonthly.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCFilterMonthly.Location = New System.Drawing.Point(0, 0)
+        Me.PCFilterMonthly.Name = "PCFilterMonthly"
+        Me.PCFilterMonthly.Size = New System.Drawing.Size(1015, 48)
+        Me.PCFilterMonthly.TabIndex = 1
+        '
+        'BPrintMonthlyReport
+        '
+        Me.BPrintMonthlyReport.Location = New System.Drawing.Point(274, 13)
+        Me.BPrintMonthlyReport.Name = "BPrintMonthlyReport"
+        Me.BPrintMonthlyReport.Size = New System.Drawing.Size(50, 23)
+        Me.BPrintMonthlyReport.TabIndex = 6
+        Me.BPrintMonthlyReport.Text = "print"
+        '
+        'BViewMonthlyReport
+        '
+        Me.BViewMonthlyReport.Location = New System.Drawing.Point(218, 13)
+        Me.BViewMonthlyReport.Name = "BViewMonthlyReport"
+        Me.BViewMonthlyReport.Size = New System.Drawing.Size(50, 23)
+        Me.BViewMonthlyReport.TabIndex = 3
+        Me.BViewMonthlyReport.Text = "view"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(10, 18)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl8.TabIndex = 2
+        Me.LabelControl8.Text = "Date"
+        '
+        'DEMonthlyReport
+        '
+        Me.DEMonthlyReport.EditValue = Nothing
+        Me.DEMonthlyReport.Location = New System.Drawing.Point(39, 15)
+        Me.DEMonthlyReport.Name = "DEMonthlyReport"
+        Me.DEMonthlyReport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEMonthlyReport.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEMonthlyReport.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEMonthlyReport.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEMonthlyReport.Size = New System.Drawing.Size(173, 20)
+        Me.DEMonthlyReport.TabIndex = 1
         '
         'FormReportBalanceSheet
         '
@@ -3108,14 +3329,17 @@ Partial Class FormReportBalanceSheet
         Me.XTPMProfitLoss.ResumeLayout(False)
         CType(Me.GCMProfitLoss, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMProfitLoss, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPMBSvsMonth.ResumeLayout(False)
+        CType(Me.GCMBSvsPrevMonth, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVMBSvsPrevMonth, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPMPLvsMonth.ResumeLayout(False)
+        CType(Me.GCMPLvsPrevMonth, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVMPLvsPrevMonth, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCFilterMonthly, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCFilterMonthly.ResumeLayout(False)
         Me.PCFilterMonthly.PerformLayout()
         CType(Me.DEMonthlyReport.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEMonthlyReport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPMBSvsMonth.ResumeLayout(False)
-        CType(Me.GCMBSvsPrevMonth, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVMBSvsPrevMonth, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3389,4 +3613,24 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents GridColumn70 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn71 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn72 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPMPLvsMonth As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCMPLvsPrevMonth As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVMPLvsPrevMonth As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn52 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn53 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn54 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn55 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn56 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn57 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn58 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn59 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn60 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn61 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn62 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn63 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn64 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn65 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn66 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
