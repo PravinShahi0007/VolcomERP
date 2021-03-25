@@ -19,6 +19,7 @@ Partial Public Class ReportSalesDelOrderOwnStore2
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim Code128Generator1 As DevExpress.XtraPrinting.BarCode.Code128Generator = New DevExpress.XtraPrinting.BarCode.Code128Generator()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.XTable = New DevExpress.XtraReports.UI.XRTable()
         Me.XTRow = New DevExpress.XtraReports.UI.XRTableRow()
@@ -76,6 +77,7 @@ Partial Public Class ReportSalesDelOrderOwnStore2
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XRBarcode = New DevExpress.XtraReports.UI.XRBarCode()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -352,7 +354,7 @@ Partial Public Class ReportSalesDelOrderOwnStore2
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.PanelUni, Me.LRecDate, Me.XrLabel4, Me.XrLabel5, Me.LabelPrepare, Me.XrLabel8, Me.XrLabel13, Me.XrLabel16, Me.XrLabel17, Me.LabelCat, Me.XrLabel3, Me.XrLabel2, Me.LabelFrom, Me.LabelTo, Me.XrLabel10, Me.XrLabel11, Me.XrLabel6, Me.XrLabel7, Me.LabelAddress, Me.XRCompany, Me.LRecNumber, Me.LTitle})
+        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XRBarcode, Me.PanelUni, Me.LRecDate, Me.XrLabel4, Me.XrLabel5, Me.LabelPrepare, Me.XrLabel8, Me.XrLabel13, Me.XrLabel16, Me.XrLabel17, Me.LabelCat, Me.XrLabel3, Me.XrLabel2, Me.LabelFrom, Me.LabelTo, Me.XrLabel10, Me.XrLabel11, Me.XrLabel6, Me.XrLabel7, Me.LabelAddress, Me.XRCompany, Me.LRecNumber, Me.LTitle})
         Me.TopMargin.HeightF = 163.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -852,6 +854,18 @@ Partial Public Class ReportSalesDelOrderOwnStore2
         Me.XrLabel15.Text = "Note :"
         Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
+        'XRBarcode
+        '
+        Me.XRBarcode.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XRBarcode.LocationFloat = New DevExpress.Utils.PointFloat(0!, 50.08335!)
+        Me.XRBarcode.Name = "XRBarcode"
+        Me.XRBarcode.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
+        Me.XRBarcode.ShowText = False
+        Me.XRBarcode.SizeF = New System.Drawing.SizeF(390.0!, 25.0!)
+        Me.XRBarcode.StylePriority.UseBorders = False
+        Me.XRBarcode.Symbology = Code128Generator1
+        Me.XRBarcode.Text = "1231225"
+        '
         'ReportSalesDelOrderOwnStore2
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter})
@@ -922,4 +936,5 @@ Partial Public Class ReportSalesDelOrderOwnStore2
     Friend WithEvents LabelPrintedByTitle As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelPrintedBy As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XRBarcode As DevExpress.XtraReports.UI.XRBarCode
 End Class

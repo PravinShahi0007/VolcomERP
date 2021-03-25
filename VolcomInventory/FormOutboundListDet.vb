@@ -6,8 +6,13 @@
         Dispose()
     End Sub
 
-    Sub view_del_type()
-        Dim q As String = "SELECT id_del_type, del_type, is_no_weight,volume_divide_by FROM tb_lookup_del_type"
+    Sub view_del_type(ByVal opt As String)
+        Dim q As String = ""
+        If opt = "marketplace" Then
+            q = "SELECT id_del_type, del_type, is_no_weight,volume_divide_by FROM tb_lookup_del_type WHERE is_marketplace_only='1'"
+        Else
+            q = "SELECT id_del_type, del_type, is_no_weight,volume_divide_by FROM tb_lookup_del_type WHERE is_marketplace_only='2'"
+        End If
         viewSearchLookupQuery(SLEDelType, q, "id_del_type", "del_type", "id_del_type")
         SLEDelType.EditValue = Nothing
     End Sub
@@ -19,9 +24,7 @@
         TEDimWeight.EditValue = 0
         TEActWeight.EditValue = 0
         '
-        view_del_type()
-        '
-        Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) AS qty,dis.sub_district,IFNULL(c.comp_name,cg.description) AS comp_name,awb.ol_number
+        Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) AS qty,dis.sub_district,IFNULL(c.comp_name,cg.description) AS comp_name,awb.ol_number,cg.is_marketplace
 FROM `tb_wh_awbill` awb 
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awb.id_sub_district
 INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
@@ -38,6 +41,12 @@ WHERE awb.id_awbill='" & id_awb & "'"
             TEStore.Text = dt.Rows(0)("comp_name").ToString
             '
             view_do()
+            '
+            If dt.Rows(0)("is_marketplace").ToString = "1" Then
+                view_del_type("marketplace")
+            Else
+                view_del_type("not_marketplace")
+            End If
         End If
     End Sub
 

@@ -170,7 +170,7 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
             If XTCProfitAndLoss.SelectedTabPageIndex = 0 Then
                 CreateNodes(TLProfitAndLoss, " WHERE b.is_profit_loss='1'", Date.Parse(DEUntil.EditValue.ToString), SLEUnit.EditValue.ToString)
             ElseIf XTCProfitAndLoss.SelectedTabPageIndex = 1 Then
-                load_report_pl(GCProfitAndLoss)
+                load_report_pl(GCProfitAndLoss, Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd"), SLEUnit.EditValue.ToString)
                 GVProfitAndLoss.BestFitColumns()
                 GVProfitAndLoss.ExpandAllGroups()
             End If
@@ -184,10 +184,8 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
         gc.DataSource = execute_query(query, -1, True, "", "", "", "")
     End Sub
 
-    Sub load_report_pl(ByVal gc As DevExpress.XtraGrid.GridControl)
-        Dim date_str As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim unit_str As String = SLEUnit.EditValue.ToString
-        Dim query As String = "CALL acc_report_profit_loss('" & date_str & "','" & unit_str & "')"
+    Sub load_report_pl(ByVal gc As DevExpress.XtraGrid.GridControl, ByVal date_until As String, ByVal unit_str As String)
+        Dim query As String = "CALL acc_report_profit_loss('" & date_until & "','" & unit_str & "')"
         gc.DataSource = execute_query(query, -1, True, "", "", "", "")
     End Sub
 
@@ -1267,16 +1265,20 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
 
     Private Sub BViewMonthlyReport_Click(sender As Object, e As EventArgs) Handles BViewMonthlyReport.Click
         If XTCMonthlyReport.SelectedTabPageIndex = 0 Then
-            load_report(GCMAktiva, "1", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), SLEUnit.EditValue.ToString)
+            load_report(GCMAktiva, "1", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0")
             GVMAktiva.BestFitColumns()
             GVMAktiva.ExpandAllGroups()
-            load_report(GCMPasiva, "2", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), SLEUnit.EditValue.ToString)
+            load_report(GCMPasiva, "2", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0")
             GVMPasiva.BestFitColumns()
             GVMPasiva.ExpandAllGroups()
         ElseIf XTCMonthlyReport.SelectedTabPageIndex = 1 Then
-            load_report_pl(GCMProfitLoss)
-            GVProfitAndLoss.BestFitColumns()
-            GVProfitAndLoss.ExpandAllGroups()
+            load_report_pl(GCMProfitLoss, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0")
+            GVMProfitLoss.BestFitColumns()
+            GVMProfitLoss.ExpandAllGroups()
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 2 Then
+            load_report(GCMBSvsPrevMonth, "-", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_month")
+            GVMBSvsPrevMonth.BestFitColumns()
+            GVMBSvsPrevMonth.ExpandAllGroups()
         End If
     End Sub
 
@@ -1285,5 +1287,263 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             DEMonthlyReport.EditValue = New DateTime(DEMonthlyReport.EditValue.Year, DEMonthlyReport.EditValue.Month, Date.DaysInMonth(DEMonthlyReport.EditValue.Year, DEMonthlyReport.EditValue.Month))
         Catch ex As Exception
         End Try
+    End Sub
+
+    Dim cost As Decimal = 0.00
+    Dim cost_total As Decimal = 0.00
+
+    Dim cur_cost As Decimal = 0.00
+    Dim cur_tot As Decimal = 0.00
+
+    Dim cur_cost2 As Decimal = 0.00
+    Dim cur_tot2 As Decimal = 0.00
+
+    Private Sub GVMAktiva_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVMAktiva.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            cur_tot = 0.00
+            cur_cost = 0.00
+            cur_tot2 = 0.00
+            cur_cost2 = 0.00
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            cost = GVMAktiva.GetRowCellValue(e.RowHandle, "this_month")
+            cost_total = GVMAktiva.GetRowCellValue(e.RowHandle, "total_asset")
+            Select Case summaryID
+                Case 1 'total summary estimate
+                    cur_tot = cost_total
+                    cur_cost += cost
+                Case 2
+                    cur_tot2 = cost_total
+                    cur_cost2 += cost
+            End Select
+        End If
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1 'total summary estimate
+                    Dim tot_cur_cost As Decimal = 0.00
+                    Try
+                        tot_cur_cost = cur_cost / cur_tot
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_cur_cost * 100
+                Case 2 'total summary estimate
+                    Dim tot_cur_cost2 As Decimal = 0.00
+                    Try
+                        tot_cur_cost2 = cur_cost2 / cur_tot2
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_cur_cost2 * 100
+            End Select
+        End If
+    End Sub
+
+    Dim pcost As Decimal = 0.00
+    Dim pcost_total As Decimal = 0.00
+
+    Dim pcur_cost As Decimal = 0.00
+    Dim pcur_tot As Decimal = 0.00
+
+    Dim pcur_cost2 As Decimal = 0.00
+    Dim pcur_tot2 As Decimal = 0.00
+
+    Private Sub GVMPasiva_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVMPasiva.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            pcur_tot = 0.00
+            pcur_cost = 0.00
+            pcur_tot2 = 0.00
+            pcur_cost2 = 0.00
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            pcost = GVMPasiva.GetRowCellValue(e.RowHandle, "this_month")
+            pcost_total = GVMPasiva.GetRowCellValue(e.RowHandle, "total_asset")
+            Select Case summaryID
+                Case 1 'total summary estimate
+                    pcur_tot = pcost_total
+                    pcur_cost += pcost
+                Case 2
+                    pcur_tot2 = pcost_total
+                    pcur_cost2 += pcost
+            End Select
+        End If
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1 'total summary estimate
+                    Dim tot_cur_cost As Decimal = 0.00
+                    Try
+                        tot_cur_cost = pcur_cost / pcur_tot
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_cur_cost * 100
+                Case 2 'total summary estimate
+                    Dim tot_cur_cost2 As Decimal = 0.00
+                    Try
+                        tot_cur_cost2 = pcur_cost2 / pcur_tot2
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_cur_cost2 * 100
+            End Select
+        End If
+    End Sub
+
+    Dim pl_month_group As Decimal = 0.00
+    Dim pl_month_footer As Decimal = 0.00
+    '
+    Dim pl_month_group_sum As Decimal = 0.00
+    Dim pl_month_footer_sum As Decimal = 0.00
+    '
+    Dim pl_sales_tot As Decimal = 0.00
+
+    Private Sub GVMProfitLoss_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVMProfitLoss.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            pl_month_group = 0.00
+            pl_month_footer = 0.00
+            '
+            pl_month_group_sum = 0.00
+            pl_month_footer_sum = 0.00
+            pl_sales_tot = 0.00
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            pl_month_group = GVMProfitLoss.GetRowCellValue(e.RowHandle, "this_month")
+            pl_month_footer = GVMProfitLoss.GetRowCellValue(e.RowHandle, "this_month")
+            pl_sales_tot = GVMProfitLoss.GetRowCellValue(e.RowHandle, "this_month_sale")
+            Select Case summaryID
+                Case 1
+                    pl_month_group_sum += pl_month_group
+                Case 2
+                    pl_month_footer_sum += pl_month_footer
+            End Select
+        End If
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1
+                    Dim tot_group As Decimal = 0.00
+                    Try
+                        tot_group = pl_month_group_sum / pl_sales_tot
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_group * 100
+                Case 2
+                    Dim tot_footer As Decimal = 0.00
+                    Try
+                        tot_footer = pl_month_footer_sum / pl_sales_tot
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_footer * 100
+            End Select
+        End If
+    End Sub
+
+    Private Sub BPrintMonthlyReport_Click(sender As Object, e As EventArgs) Handles BPrintMonthlyReport.Click
+        If XTCMonthlyReport.SelectedTabPageIndex = 0 Then
+
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 1 Then
+            If GVMProfitLoss.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+
+                Dim Report As New ReportMonthlyIS()
+                Report.dt = GCMProfitLoss.DataSource
+                Report.languange = "eng"
+                Report.LTitle.Text = "PT. Volcom Indonesia Income Statement for Period Ending " & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("MMMM yyyy")
+
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+
+                Cursor = Cursors.Default
+            End If
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 2 Then
+            If GVMBSvsPrevMonth.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+
+                Dim Report As New ReportMonthlyBSvs()
+                Report.dt = GCMBSvsPrevMonth.DataSource
+                Report.languange = "eng"
+
+                Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%M %Y') AS this_month,DATE_FORMAT(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%M %Y') AS prev_month "
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+                Report.DataSource = dt
+
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+
+                Cursor = Cursors.Default
+            End If
+        End If
+
+    End Sub
+
+    Dim bs_vpm_t_sum As Decimal = 0.00
+    Dim bs_vpm_t_group As Decimal = 0.00
+
+    Dim bs_vpm_p_sum As Decimal = 0.00
+    Dim bs_vpm_p_group As Decimal = 0.00
+
+    Private Sub GVMBSvsPrevMonth_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVMBSvsPrevMonth.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            bs_vpm_t_sum = 0.00
+            bs_vpm_t_group = 0.00
+            bs_vpm_p_sum = 0.00
+            bs_vpm_p_group = 0.00
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Select Case summaryID
+                Case 1 'group
+                    bs_vpm_t_group += GVMBSvsPrevMonth.GetRowCellValue(e.RowHandle, "this_month")
+                    bs_vpm_p_group += GVMBSvsPrevMonth.GetRowCellValue(e.RowHandle, "prev_month")
+                Case 2 'sum
+                    bs_vpm_t_sum += GVMBSvsPrevMonth.GetRowCellValue(e.RowHandle, "this_month")
+                    bs_vpm_p_sum += GVMBSvsPrevMonth.GetRowCellValue(e.RowHandle, "prev_month")
+            End Select
+        End If
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1 'group
+                    Dim tot_group As Decimal = 0.00
+                    Try
+                        tot_group = ((bs_vpm_t_group - bs_vpm_p_group) / bs_vpm_t_group) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_group
+                Case 2 'sum
+                    Dim tot_sum As Decimal = 0.00
+                    Try
+                        tot_sum = ((bs_vpm_t_sum - bs_vpm_p_sum) / bs_vpm_t_sum) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_sum
+            End Select
+        End If
     End Sub
 End Class
