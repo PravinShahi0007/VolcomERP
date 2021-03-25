@@ -27,7 +27,6 @@ Partial Class FormODM
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCManifestScan = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPManifestList = New DevExpress.XtraTab.XtraTabPage()
@@ -109,6 +108,7 @@ Partial Class FormODM
         Me.GCListODM = New DevExpress.XtraGrid.GridControl()
         Me.GVListODM = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -139,7 +139,6 @@ Partial Class FormODM
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.DETo = New DevExpress.XtraEditors.DateEdit()
         Me.BViewHistoryList = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEAWB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -187,7 +186,6 @@ Partial Class FormODM
         Me.PanelControl1.Controls.Add(Me.TEAWB)
         Me.PanelControl1.Controls.Add(Me.LabelControl6)
         Me.PanelControl1.Controls.Add(Me.SLUE3PL)
-        Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -239,15 +237,6 @@ Partial Class FormODM
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
-        '
-        'BView
-        '
-        Me.BView.Location = New System.Drawing.Point(521, 11)
-        Me.BView.Name = "BView"
-        Me.BView.Size = New System.Drawing.Size(54, 23)
-        Me.BView.TabIndex = 9
-        Me.BView.Text = "view"
-        Me.BView.Visible = False
         '
         'LabelControl1
         '
@@ -1087,6 +1076,14 @@ Partial Class FormODM
         Me.GridColumn35.FieldName = "id_odm_print"
         Me.GridColumn35.Name = "GridColumn35"
         '
+        'GridColumn50
+        '
+        Me.GridColumn50.Caption = "3PL"
+        Me.GridColumn50.FieldName = "comp_name"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 0
+        '
         'GridColumn36
         '
         Me.GridColumn36.Caption = "Number"
@@ -1338,14 +1335,6 @@ Partial Class FormODM
         Me.BViewHistoryList.TabIndex = 13
         Me.BViewHistoryList.Text = "view"
         '
-        'GridColumn50
-        '
-        Me.GridColumn50.Caption = "3PL"
-        Me.GridColumn50.FieldName = "comp_name"
-        Me.GridColumn50.Name = "GridColumn50"
-        Me.GridColumn50.Visible = True
-        Me.GridColumn50.VisibleIndex = 0
-        '
         'FormODM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1411,7 +1400,6 @@ Partial Class FormODM
     Friend WithEvents XTCManifestScan As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPManifestList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PCScan As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TEScan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
