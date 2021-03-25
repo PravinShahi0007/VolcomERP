@@ -1551,4 +1551,57 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             End Select
         End If
     End Sub
+
+    Dim plvsp_this_month_group As Decimal = 0.00
+    Dim plvsp_this_month_footer As Decimal = 0.00
+    '
+    Dim plvsp_prev_month_group As Decimal = 0.00
+    Dim plvsp_prev_month_footer As Decimal = 0.00
+    '
+
+    Private Sub GVMPLvsPrevMonth_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVMPLvsPrevMonth.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            plvsp_this_month_group = 0.00
+            plvsp_this_month_footer = 0.00
+            '
+            plvsp_prev_month_group = 0.00
+            plvsp_prev_month_footer = 0.00
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Select Case summaryID
+                Case 1
+                    plvsp_this_month_group += GVMPLvsPrevMonth.GetRowCellValue(e.RowHandle, "this_month")
+                    plvsp_prev_month_group += GVMPLvsPrevMonth.GetRowCellValue(e.RowHandle, "prev_month")
+                Case 2
+                    plvsp_this_month_footer += GVMPLvsPrevMonth.GetRowCellValue(e.RowHandle, "this_month")
+                    plvsp_prev_month_footer += GVMPLvsPrevMonth.GetRowCellValue(e.RowHandle, "prev_month")
+            End Select
+        End If
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1
+                    Dim tot_group As Decimal = 0.00
+                    Try
+                        tot_group = ((plvsp_this_month_group - plvsp_prev_month_group) / plvsp_this_month_group) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_group
+                Case 2
+                    Dim tot_footer As Decimal = 0.00
+                    Try
+                        tot_footer = ((plvsp_this_month_footer - plvsp_prev_month_footer) / plvsp_this_month_footer) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_footer
+            End Select
+        End If
+    End Sub
 End Class

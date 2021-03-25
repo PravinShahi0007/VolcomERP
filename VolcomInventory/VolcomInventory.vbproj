@@ -8679,6 +8679,12 @@
     <Compile Include="ReportMonthlyIS.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMonthlyISVs.Designer.vb">
+      <DependentUpon>ReportMonthlyISVs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMonthlyISVs.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportODMScan.Designer.vb">
       <DependentUpon>ReportODMScan.vb</DependentUpon>
     </Compile>
@@ -14155,6 +14161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMonthlyIS.resx">
       <DependentUpon>ReportMonthlyIS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMonthlyISVs.resx">
+      <DependentUpon>ReportMonthlyISVs.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportODMScan.resx">
       <DependentUpon>ReportODMScan.vb</DependentUpon>
