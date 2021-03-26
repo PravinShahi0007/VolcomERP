@@ -194,9 +194,21 @@
 
             Dim data_tmp As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-            'tags
+            'title, handle, tags
             For i = 0 To data_tmp.Rows.Count - 1
-                data_tmp.Rows(i)("Tags") = data_tmp.Rows(i)("Tag 1").ToString + ", " + data_tmp.Rows(i)("Tag 2").ToString + ", " + data_tmp.Rows(i)("Tag 3").ToString + ", " + data_tmp.Rows(i)("Tag 4").ToString + ", " + data_tmp.Rows(i)("Tag 5").ToString.Replace(" ", "") + ", " + data_tmp.Rows(i)("Tag 6").ToString + ", " + data_tmp.Rows(i)("Tag 7").ToString + ", " + data_tmp.Rows(i)("Tag 8").ToString
+                data_tmp.Rows(i)("Title") = data_tmp.Rows(i)("Title").ToString.Replace("[silhouette]", data_tmp.Rows(i)("Silhouette"))
+
+                data_tmp.Rows(i)("Handle") = data_tmp.Rows(i)("Handle").ToString.Replace("[silhouette]", data_tmp.Rows(i)("Silhouette"))
+
+                Dim list_tag As List(Of String) = New List(Of String)
+
+                For n = 1 To 8
+                    If Not data_tmp.Rows(i)("Tag " + n.ToString).ToString = "" Then
+                        list_tag.Add(data_tmp.Rows(i)("Tag " + n.ToString).ToString)
+                    End If
+                Next
+
+                data_tmp.Rows(i)("Tags") = String.Join(", ", list_tag)
             Next
 
             'remove same
@@ -318,6 +330,7 @@
                 data.Columns.Remove(data.Columns("Tag 6"))
                 data.Columns.Remove(data.Columns("Tag 7"))
                 data.Columns.Remove(data.Columns("Tag 8"))
+                data.Columns.Remove(data.Columns("Silhouette"))
             End If
         End If
 

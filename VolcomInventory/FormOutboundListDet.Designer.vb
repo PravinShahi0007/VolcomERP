@@ -49,6 +49,7 @@ Partial Class FormOutboundListDet
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCDO = New DevExpress.XtraGrid.GridControl()
         Me.GVDO = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -60,7 +61,6 @@ Partial Class FormOutboundListDet
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.BNotApprove = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TESubDistrict.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -300,6 +300,7 @@ Partial Class FormOutboundListDet
         Me.TETinggi.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.TETinggi.Properties.Mask.EditMask = "N2"
         Me.TETinggi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TETinggi.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TETinggi.Size = New System.Drawing.Size(76, 20)
         Me.TETinggi.TabIndex = 4
         '
@@ -380,6 +381,15 @@ Partial Class FormOutboundListDet
         Me.GVDO.OptionsView.ShowFooter = True
         Me.GVDO.OptionsView.ShowGroupPanel = False
         Me.GVDO.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdDelERP, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Combine Number"
+        Me.GridColumn8.FieldName = "combine_number"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
         '
         'GridColumn4
         '
@@ -501,15 +511,6 @@ Partial Class FormOutboundListDet
         Me.BNotApprove.Size = New System.Drawing.Size(508, 32)
         Me.BNotApprove.TabIndex = 21
         Me.BNotApprove.Text = "Not Approve"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Combine Number"
-        Me.GridColumn8.FieldName = "combine_number"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
         '
         'FormOutboundListDet
         '

@@ -3,7 +3,7 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
 
-    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+    Private Sub BView_Click(sender As Object, e As EventArgs)
         'view()
     End Sub
 
@@ -51,7 +51,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
         Else
             TEAWB.Enabled = False
             SLUE3PL.Properties.ReadOnly = True
-            BView.Visible = False
+            'BView.Visible = False
             BComplete.Visible = True
             TEScan.Focus()
         End If
@@ -146,7 +146,7 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
 
     Sub reset()
         SLUE3PL.Properties.ReadOnly = False
-        BView.Visible = True
+        'BView.Visible = True
         TEScan.Text = ""
         BComplete.Visible = False
         '
