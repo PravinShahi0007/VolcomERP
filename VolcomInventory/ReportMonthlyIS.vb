@@ -30,7 +30,7 @@
 
             'Amount
             Dim amount As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-            amount.Text = Decimal.Parse(Math.Abs(dt.Rows(i)("this_month")).ToString).ToString("N2")
+            amount.Text = Decimal.Parse((dt.Rows(i)("this_month") * dt.Rows(i)("factored")).ToString).ToString("N2")
             amount.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             amount.BackColor = Color.Transparent
             amount.Font = font_row_style
@@ -44,7 +44,7 @@
 
             'Percentage
             Dim percent As DevExpress.XtraReports.UI.XRTableCell = New DevExpress.XtraReports.UI.XRTableCell
-            percent.Text = Decimal.Parse(Math.Abs(dt.Rows(i)("percent_this_month")).ToString).ToString("N0") & " % "
+            percent.Text = Decimal.Parse((dt.Rows(i)("percent_this_month") * dt.Rows(i)("factored")).ToString).ToString("N0") & " % "
             percent.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             percent.BackColor = Color.Transparent
             percent.Font = font_row_style
@@ -61,12 +61,12 @@
                 If Not dt.Rows(i)("sub_desc").ToString = dt.Rows(i + 1)("sub_desc").ToString Then
                     tot_sub += dt.Rows(i)("this_month")
 
-                    Dim percentage As Decimal = (tot_sub / dt.Rows(i)("this_month_sale")) * 100
+                    Dim percentage As Decimal = (tot_sub / dt.Rows(i)("this_month_sale")) * 100 * dt.Rows(i)("factored")
 
                     If dt.Rows(i)("sub_name").ToString = "8" Or dt.Rows(i)("sub_name").ToString = "6" Then
                         'other income + cogs skip
                     Else
-                        add_head(dt.Rows(i)("sub_desc").ToString, Decimal.Parse(Math.Abs(tot_sub).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                        add_head(dt.Rows(i)("sub_desc").ToString, Decimal.Parse((tot_sub * dt.Rows(i)("factored")).ToString).ToString("N2"), Decimal.Parse(percentage.ToString).ToString("N0"))
                     End If
 
                     tot_sub = 0
@@ -82,7 +82,7 @@
                     If dt.Rows(i)("head_name").ToString = "4" Then
                         'biaya skip
                     Else
-                        add_head(dt.Rows(i)("head_desc").ToString, Decimal.Parse(Math.Abs(tot_head).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                        add_head(dt.Rows(i)("head_desc").ToString, Decimal.Parse(tot_head.ToString).ToString("N2"), Decimal.Parse(percentage.ToString).ToString("N0"))
                     End If
 
                     tot_head = 0
@@ -98,29 +98,29 @@
                     If dt.Rows(i)("id_consolidation_report_sub").ToString = "1" Then 'operasional
                         If languange = "ind" Then
                             If tot_report_sub > 0 Then
-                                add_head("Keuntungan Operasional", Decimal.Parse(Math.Abs(tot_report_sub).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                                add_head("Keuntungan Operasional", Decimal.Parse((tot_report_sub).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                             Else
-                                add_head("Kerugian Operasional", Decimal.Parse(Math.Abs(tot_report_sub).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                                add_head("Kerugian Operasional", Decimal.Parse((tot_report_sub).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                             End If
                         Else
                             If tot_report_sub > 0 Then
-                                add_head("Operational Profit", Decimal.Parse(Math.Abs(tot_report_sub).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                                add_head("Operational Profit", Decimal.Parse((tot_report_sub).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                             Else
-                                add_head("Operational Loss", Decimal.Parse(Math.Abs(tot_report_sub).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                                add_head("Operational Loss", Decimal.Parse((tot_report_sub).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                             End If
                         End If
                     ElseIf dt.Rows(i)("id_consolidation_report_sub").ToString = "1" Then 'biaya/pendapatan 
                         If languange = "ind" Then
                             If tot_report_sub > 0 Then
-                                add_head("Pendapatan Lain-lain", Decimal.Parse(Math.Abs(tot_report_sub).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                                add_head("Pendapatan Lain-lain", Decimal.Parse((tot_report_sub).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                             Else
-                                add_head("Biaya Lain-lain", Decimal.Parse(Math.Abs(tot_report_sub).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                                add_head("Biaya Lain-lain", Decimal.Parse((tot_report_sub).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                             End If
                         Else
                             If tot_report_sub > 0 Then
-                                add_head("Other Income", Decimal.Parse(Math.Abs(tot_report_sub).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                                add_head("Other Income", Decimal.Parse((tot_report_sub).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                             Else
-                                add_head("Other Expense", Decimal.Parse(Math.Abs(tot_report_sub).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                                add_head("Other Expense", Decimal.Parse((tot_report_sub).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                             End If
                         End If
                     End If
@@ -136,15 +136,15 @@
                     Dim percentage As Decimal = (tot_report_head / dt.Rows(i)("this_month_sale")) * 100
                     If languange = "ind" Then
                         If tot_report_head > 0 Then
-                            add_head("Keuntungan Bersih Sebelum Pajak", Decimal.Parse(Math.Abs(tot_report_head).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                            add_head("Keuntungan Bersih Sebelum Pajak", Decimal.Parse((tot_report_head).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                         Else
-                            add_head("Kerugian Bersih Sebelum Pajak", Decimal.Parse(Math.Abs(tot_report_head).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                            add_head("Kerugian Bersih Sebelum Pajak", Decimal.Parse((tot_report_head).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                         End If
                     Else
                         If tot_report_head > 0 Then
-                            add_head("Net Profit Before Tax", Decimal.Parse(Math.Abs(tot_report_head).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                            add_head("Net Profit Before Tax", Decimal.Parse((tot_report_head).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                         Else
-                            add_head("Net Loss Before Tax", Decimal.Parse(Math.Abs(tot_report_head).ToString).ToString("N2"), Decimal.Parse(Math.Abs(percentage).ToString).ToString("N0"))
+                            add_head("Net Loss Before Tax", Decimal.Parse((tot_report_head).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                         End If
                     End If
 
@@ -154,17 +154,18 @@
                 End If
             ElseIf i = dt.Rows.Count - 1 Then
                 'end footer net profit after tax
+                Dim percentage As Decimal = (total / dt.Rows(i)("this_month_sale")) * 100
                 If languange = "ind" Then
                     If total > 0 Then
-                        add_head("Keuntungan Bersih Setelah Pajak", Decimal.Parse(Math.Abs(total).ToString).ToString("N2"), "100")
+                        add_head("Keuntungan Bersih Setelah Pajak", Decimal.Parse((total).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                     Else
-                        add_head("Kerugian Bersih Setelah Pajak", Decimal.Parse(Math.Abs(total).ToString).ToString("N2"), "100")
+                        add_head("Kerugian Bersih Setelah Pajak", Decimal.Parse((total).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                     End If
                 Else
                     If total > 0 Then
-                        add_head("Net Profit After Tax", Decimal.Parse(Math.Abs(total).ToString).ToString("N2"), "100")
+                        add_head("Net Profit After Tax", Decimal.Parse((total).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                     Else
-                        add_head("Net Loss After Tax", Decimal.Parse(Math.Abs(total).ToString).ToString("N2"), "100")
+                        add_head("Net Loss After Tax", Decimal.Parse((total).ToString).ToString("N2"), Decimal.Parse((percentage).ToString).ToString("N0"))
                     End If
                 End If
             End If
