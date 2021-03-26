@@ -186,7 +186,6 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
 
     Sub load_report_pl(ByVal gc As DevExpress.XtraGrid.GridControl, ByVal date_until As String, ByVal unit_str As String)
         Dim query As String = "CALL acc_report_profit_loss('" & date_until & "','" & unit_str & "')"
-        Console.WriteLine(query)
         gc.DataSource = execute_query(query, -1, True, "", "", "", "")
     End Sub
 
@@ -1485,6 +1484,24 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
 
                 Dim Report As New ReportMonthlyBSvs()
                 Report.dt = GCMBSvsPrevMonth.DataSource
+                Report.languange = "eng"
+
+                Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%M %Y') AS this_month,DATE_FORMAT(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%M %Y') AS prev_month "
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+                Report.DataSource = dt
+
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+
+                Cursor = Cursors.Default
+            End If
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 3 Then
+            If GVMPLvsPrevMonth.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+
+                Dim Report As New ReportMonthlyISVs()
+                Report.dt = GCMPLvsPrevMonth.DataSource
                 Report.languange = "eng"
 
                 Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%M %Y') AS this_month,DATE_FORMAT(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%M %Y') AS prev_month "

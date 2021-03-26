@@ -459,7 +459,7 @@ FROM (
 ) z
 INNER JOIN tb_payout_zalora_cat c ON c.id_payout_zalora_cat = z.id_payout_zalora_cat
 LEFT JOIN (
-	SELECT typ.id_payout_zalora_cat, SUM(d.erp_amount + IFNULL(a.erp_amount_add,0.00)) AS `erp_amount`
+	SELECT typ.id_payout_zalora_cat, (SUM(d.erp_amount) + IFNULL(SUM(a.erp_amount_add),0.00)) AS `erp_amount`
 	FROM tb_payout_zalora_det d
 	INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = d.transaction_type
     LEFT JOIN (
@@ -468,7 +468,7 @@ LEFT JOIN (
         INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
         INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = pd.transaction_type
         WHERE pd.id_payout_zalora=" + id + "
-        GROUP BY typ.id_payout_zalora_cat
+        GROUP BY d.id_payout_zalora_det
     ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
 	WHERE d.id_payout_zalora=" + id + " AND d.amount=(d.erp_amount+IFNULL(a.erp_amount_add,0.00)) AND !ISNULL(d.id_acc)
 	GROUP BY typ.id_payout_zalora_cat
