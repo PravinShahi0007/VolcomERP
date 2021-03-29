@@ -299,6 +299,7 @@
     </Compile>
     <Compile Include="ClassPayoutVer.vb" />
     <Compile Include="ClassPayoutZalora.vb" />
+    <Compile Include="ClassPricePolicy.vb" />
     <Compile Include="ClassProdDemand.vb" />
     <Compile Include="ClassProdOverMemo.vb" />
     <Compile Include="ClassProductionAssembly.vb" />
@@ -3545,6 +3546,18 @@
       <DependentUpon>FormPriceForSync.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPriceForSync.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPricePolicyCode.Designer.vb">
+      <DependentUpon>FormPricePolicyCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPricePolicyCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPricePolicyCodeDet.Designer.vb">
+      <DependentUpon>FormPricePolicyCodeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPricePolicyCodeDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProdClosing.Designer.vb">
@@ -11153,6 +11166,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPriceForSync.resx">
       <DependentUpon>FormPriceForSync.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPricePolicyCode.resx">
+      <DependentUpon>FormPricePolicyCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPricePolicyCodeDet.resx">
+      <DependentUpon>FormPricePolicyCodeDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdClosing.resx">
       <DependentUpon>FormProdClosing.vb</DependentUpon>
