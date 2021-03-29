@@ -245,6 +245,19 @@ Partial Class FormDesignImages
         Me.BtnExportToXLSRec = New DevExpress.XtraEditors.SimpleButton()
         Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPDropImages = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDropImages = New DevExpress.XtraGrid.GridControl()
+        Me.GVDropImages = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBDropImages = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -271,6 +284,16 @@ Partial Class FormDesignImages
         CType(Me.SLUESeasonLL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPDropImages.SuspendLayout()
+        CType(Me.GCDropImages, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDropImages, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -486,7 +509,7 @@ Partial Class FormDesignImages
         Me.XtraTabControl.SelectedTabPage = Me.XTPDesignImages
         Me.XtraTabControl.Size = New System.Drawing.Size(1008, 729)
         Me.XtraTabControl.TabIndex = 2
-        Me.XtraTabControl.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesignImages, Me.XTPLineList})
+        Me.XtraTabControl.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesignImages, Me.XTPLineList, Me.XTPDropImages})
         '
         'XTPDesignImages
         '
@@ -2458,6 +2481,122 @@ Partial Class FormDesignImages
         Me.BtnView.TabIndex = 1
         Me.BtnView.Text = "View"
         '
+        'XTPDropImages
+        '
+        Me.XTPDropImages.Controls.Add(Me.GCDropImages)
+        Me.XTPDropImages.Controls.Add(Me.PanelControl3)
+        Me.XTPDropImages.Name = "XTPDropImages"
+        Me.XTPDropImages.Size = New System.Drawing.Size(1002, 701)
+        Me.XTPDropImages.Text = "Drop Images"
+        '
+        'GCDropImages
+        '
+        Me.GCDropImages.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDropImages.Location = New System.Drawing.Point(0, 49)
+        Me.GCDropImages.MainView = Me.GVDropImages
+        Me.GCDropImages.Name = "GCDropImages"
+        Me.GCDropImages.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemCheckEdit2})
+        Me.GCDropImages.Size = New System.Drawing.Size(1002, 652)
+        Me.GCDropImages.TabIndex = 3
+        Me.GCDropImages.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDropImages})
+        '
+        'GVDropImages
+        '
+        Me.GVDropImages.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
+        Me.GVDropImages.GridControl = Me.GCDropImages
+        Me.GVDropImages.Name = "GVDropImages"
+        Me.GVDropImages.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDropImages.OptionsBehavior.Editable = False
+        Me.GVDropImages.OptionsBehavior.ReadOnly = True
+        Me.GVDropImages.OptionsFind.AlwaysVisible = True
+        Me.GVDropImages.OptionsView.ShowGroupedColumns = True
+        Me.GVDropImages.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Number"
+        Me.GridColumn16.FieldName = "number"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Reason"
+        Me.GridColumn17.FieldName = "reason"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Created At"
+        Me.GridColumn18.FieldName = "created_at"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 2
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Created By"
+        Me.GridColumn19.FieldName = "created_by"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit1.PictureGrayed = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureGrayed"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit1.PictureUnchecked = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureUnchecked"), System.Drawing.Image)
+        '
+        'RepositoryItemHyperLinkEdit1
+        '
+        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
+        '
+        'RepositoryItemDateEdit1
+        '
+        Me.RepositoryItemDateEdit1.AutoHeight = False
+        Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.RepositoryItemDateEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit1.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.RepositoryItemDateEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit1.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
+        Me.RepositoryItemDateEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit2.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.SBDropImages)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1002, 49)
+        Me.PanelControl3.TabIndex = 2
+        '
+        'SBDropImages
+        '
+        Me.SBDropImages.Location = New System.Drawing.Point(11, 11)
+        Me.SBDropImages.Name = "SBDropImages"
+        Me.SBDropImages.Size = New System.Drawing.Size(133, 23)
+        Me.SBDropImages.TabIndex = 0
+        Me.SBDropImages.Text = "Drop Images"
+        '
         'FormDesignImages
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2494,6 +2633,16 @@ Partial Class FormDesignImages
         CType(Me.SLUESeasonLL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPDropImages.ResumeLayout(False)
+        CType(Me.GCDropImages, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDropImages, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -2723,4 +2872,17 @@ Partial Class FormDesignImages
     Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandPD As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandActual As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents XTPDropImages As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCDropImages As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDropImages As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBDropImages As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

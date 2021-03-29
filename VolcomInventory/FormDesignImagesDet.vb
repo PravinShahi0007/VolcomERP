@@ -56,6 +56,8 @@
         If confirm = DialogResult.Yes Then
             FormMain.SplashScreenManager1.ShowWaitForm()
 
+            Dim design_replace As String = ""
+
             Dim group_upload As String = execute_query("SELECT (MAX(group_upload) + 1) AS group_upload FROM tb_design_images", 0, True, "", "", "", "")
 
             Dim design_code As DataTable = execute_query("SELECT id_design, design_code FROM tb_m_design WHERE design_code <> '' ORDER BY id_design DESC", -1, True, "", "", "", "")
@@ -105,6 +107,10 @@
                     'store database
                     If GVList.GetRowCellValue(i, "status").ToString.Contains("Warning") Then
                         execute_non_query("UPDATE tb_design_images SET created_at = NOW(), created_by = " + id_user + ", group_upload = " + group_upload + " WHERE id_design_images = " + GVList.GetRowCellValue(i, "id_design_images").ToString, True, "", "", "", "")
+
+                        If Not design_replace.Contains(array_name(1)) Then
+                            design_replace += array_name(1) + ", "
+                        End If
                     Else
                         execute_non_query("INSERT INTO tb_design_images (id_design, store, file_name, sort, created_at, created_by, group_upload) VALUES (" + dv_design(0)("id_design").ToString + ", '" + array_name(0) + "', '" + IO.Path.GetFileName(GVList.GetRowCellValue(i, "file_name").ToString) + "', " + array_name(2) + ", NOW(), " + id_user + ", " + group_upload + ")", True, "", "", "", "")
                     End If
@@ -113,6 +119,69 @@
 
             sftp.Disconnect()
             sftp.Dispose()
+
+            If get_setup_field("is_notif_replace_images") = "1" Then
+                If Not design_replace = "" Then
+                    'email
+                    Dim c_email As ClassFunctionEmail = New ClassFunctionEmail
+
+                    Dim e_from As String() = {"system@volcom.co.id", "Replace Images - Volcom ERP"}
+                    Dim e_to As List(Of String()) = New List(Of String())
+                    Dim e_cc As List(Of String()) = New List(Of String())
+
+                    Dim e_query As String = "SELECT e.email_external, e.employee_name, i.type FROM tb_design_images_email AS i LEFT JOIN tb_m_employee AS e ON i.id_employee = e.id_employee"
+                    Dim e_data As DataTable = execute_query(e_query, -1, True, "", "", "", "")
+
+                    For i = 0 To e_data.Rows.Count - 1
+                        If e_data.Rows(i)("type").ToString = "to" Then
+                            e_to.Add({e_data.Rows(i)("email_external").ToString, e_data.Rows(i)("employee_name").ToString})
+                        End If
+
+                        If e_data.Rows(i)("type").ToString = "cc" Then
+                            e_cc.Add({e_data.Rows(i)("email_external").ToString, e_data.Rows(i)("employee_name").ToString})
+                        End If
+                    Next
+
+                    Dim body As String = "
+                        <table cellpadding='0' cellspacing='0' width='100%' style='background-color: #EEEEEE; border-collapse: collapse; padding: 30pt;'>
+                            <tr>
+                                <td align='center'>
+                                    <table cellpadding='0' cellspacing='0' width='700' style='background-color: #FFFFFF; border-collapse: collapse;'>
+                                        <tr>
+                                            <td style='text-align: center; padding: 30pt 0pt;'>
+                                                <a href='http://www.volcom.co.id' title='Volcom' target='_blank'>
+                                                    <img src='https://d3k81ch9hvuctc.cloudfront.net/company/VFgA3P/images/de2b6f13-9275-426d-ae31-640f3dcfc744.jpeg' alt='Volcom' height='142' width='200'>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style='background-color: #EEEEEE; padding: 5pt 0pt;'></td>
+                                        </tr>
+                                        <tr>
+                                            <td style='padding: 30pt;'>
+                                                <p style='font-size: 12pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt 0pt 10pt 0pt;'>Dear Team,</p>
+                                                <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 5pt 0pt;'>" + get_emp(id_employee_user, "2") + " has replaced design images " + design_replace.Substring(0, design_replace.Length - 2) + ".</p>
+                                                <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 25pt 0pt 10pt 0pt;'>Thank you</p>
+                                                <p style='font-size: 12pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt;'>Volcom ERP</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style='background-color: #EEEEEE; padding: 5pt 0pt;'></td>
+                                        </tr>
+                                        <tr>
+                                            <td style='text-align: center; padding: 30pt 0pt;'>
+                                                <p style='font-size: 9pt; font-family: Arial, sans-serif; color: #A0A0A0;'>This email send directly from system. Do not reply.</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    "
+
+                    c_email.send_email(e_from, e_to, e_cc, "Replace Images", body)
+                End If
+            End If
 
             FormMain.SplashScreenManager1.CloseWaitForm()
 
