@@ -1898,6 +1898,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Cursor = Cursors.Default
                 End If
             End If
+        ElseIf formName = "FormPricePolicyCode" Then
+            FormPricePolicyCodeDet.action = "ins"
+            FormPricePolicyCodeDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3162,6 +3165,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
                     'no action
                 End If
+            ElseIf formName = "FormPricePolicyCode" Then
+                FormPricePolicyCodeDet.id = FormPricePolicyCode.GVData.GetFocusedRowCellValue("id_code_detail").ToString
+                FormPricePolicyCodeDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
