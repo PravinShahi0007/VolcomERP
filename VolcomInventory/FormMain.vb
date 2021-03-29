@@ -15937,6 +15937,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     End Sub
 
     Private Sub NBPricePolicyCode_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPricePolicyCode.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPricePolicyCode.MdiParent = Me
+            FormPricePolicyCode.Show()
+            FormPricePolicyCode.WindowState = FormWindowState.Maximized
+            FormPricePolicyCode.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
