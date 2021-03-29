@@ -161,7 +161,7 @@
             stopCustom("Code already exist")
         ElseIf cond_used Then
             stopCustom("Can't update because this code already used")
-        ElseIf TxtNormalUntil.EditValue <> 0 Or Txt30Until.EditValue <> 0 Or Txt50Until.EditValue <> 0 Or Txt70Until.EditValue <> 0 Or TxtFixUntil.EditValue <> 0 Then
+        ElseIf TxtNormalUntil.EditValue = 0 Or Txt30Until.EditValue = 0 Or Txt50Until.EditValue = 0 Or Txt70Until.EditValue = 0 Or TxtFixUntil.EditValue = 0 Then
             stopCustom("Please input all data")
         Else
             If action = "ins" Then
@@ -180,18 +180,22 @@
                     infoCustom("Please setup detail aging")
                 End If
             Else
-                Dim query As String = "UPDATE tb_m_code_detail SET code='" + code_check + "',display_name='" + code_check + "',code_detail_name='" + addSlashes(TxtDesc.Text) + "'   
-                WHERE id_code_detail='" + id + "'; UPDATE tb_m_design_price_policy SET normal='" + decimalSQL(TxtNormalUntil.EditValue.tos) + "',
-                mkd_30='" + decimalSQL(Txt30Until.EditValue.ToString) + "', mkd_50='" + decimalSQL(Txt50Until.EditValue.ToString) + "',
-                mkd_70='" + decimalSQL(Txt70Until.EditValue.ToString) + "', mkd_fix='" + decimalSQL(TxtFixUntil.EditValue.ToString) + "'
-                WHERE id_code_detail='" + id + "'; "
-                execute_non_query(query, True, "", "", "", "")
-                'refresh
-                FormPricePolicyCode.viewData()
-                FormPricePolicyCode.GVData.FocusedRowHandle = find_row(FormPricePolicyCode.GVData, "id_code_detail", id)
-                action = "upd"
-                actionLoad()
-                infoCustom("Save changes successfully")
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to update this rule?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim query As String = "UPDATE tb_m_code_detail SET code='" + code_check + "',display_name='" + code_check + "',code_detail_name='" + addSlashes(TxtDesc.Text) + "'   
+                    WHERE id_code_detail='" + id + "'; UPDATE tb_m_design_price_policy SET normal='" + decimalSQL(TxtNormalUntil.EditValue.ToString) + "',
+                    mkd_30='" + decimalSQL(Txt30Until.EditValue.ToString) + "', mkd_50='" + decimalSQL(Txt50Until.EditValue.ToString) + "',
+                    mkd_70='" + decimalSQL(Txt70Until.EditValue.ToString) + "', mkd_fix='" + decimalSQL(TxtFixUntil.EditValue.ToString) + "'
+                    WHERE id_code_detail='" + id + "'; "
+                    execute_non_query(query, True, "", "", "", "")
+                    'refresh
+                    FormPricePolicyCode.viewData()
+                    FormPricePolicyCode.GVData.FocusedRowHandle = find_row(FormPricePolicyCode.GVData, "id_code_detail", id)
+                    action = "upd"
+                    actionLoad()
+                    infoCustom("Save changes successfully")
+                    Close()
+                End If
             End If
         End If
         Cursor = Cursors.Default
@@ -200,6 +204,7 @@
     Private Sub TxtNormalUntil_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNormalUntil.EditValueChanged
         Try
             Txt30From.EditValue = TxtNormalUntil.EditValue + 1
+            Txt30Until.EditValue = TxtNormalUntil.EditValue + 1
         Catch ex As Exception
 
         End Try
@@ -209,6 +214,7 @@
     Private Sub Txt30Until_EditValueChanged(sender As Object, e As EventArgs) Handles Txt30Until.EditValueChanged
         Try
             Txt50From.EditValue = Txt30Until.EditValue + 1
+            Txt50Until.EditValue = Txt30Until.EditValue + 1
         Catch ex As Exception
 
         End Try
@@ -218,6 +224,7 @@
     Private Sub Txt50Until_EditValueChanged(sender As Object, e As EventArgs) Handles Txt50Until.EditValueChanged
         Try
             Txt70From.EditValue = Txt50Until.EditValue + 1
+            Txt70Until.EditValue = Txt50Until.EditValue + 1
         Catch ex As Exception
 
         End Try
@@ -226,6 +233,7 @@
     Private Sub Txt70Until_EditValueChanged(sender As Object, e As EventArgs) Handles Txt70Until.EditValueChanged
         Try
             TxtFixFrom.EditValue = Txt70Until.EditValue + 1
+            TxtFixUntil.EditValue = Txt70Until.EditValue + 1
         Catch ex As Exception
 
         End Try
@@ -237,6 +245,6 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-
+        saveChanges()
     End Sub
 End Class
