@@ -149,7 +149,12 @@
                     Dim design_list As String = ""
 
                     For i = 0 To GVDesignList.RowCount - 1
-                        design_list += GVDesignList.GetRowCellValue(i, "design_code").ToString + ", "
+                        design_list += "
+                            <tr>
+                                <td><p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 5pt 0pt;'>" + GVDesignList.GetRowCellValue(i, "design_code").ToString + "</p></td>
+                                <td><p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 5pt 0pt;'>" + GVDesignList.GetRowCellValue(i, "design_display_name").ToString + "</p></td>
+                            </tr>
+                        "
                     Next
 
                     Dim body As String = "
@@ -170,7 +175,15 @@
                                         <tr>
                                             <td style='padding: 30pt;'>
                                                 <p style='font-size: 12pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt 0pt 10pt 0pt;'>Dear Team,</p>
-                                                <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 5pt 0pt;'>" + TECreatedBy.Text + " has dropped design images " + design_list.Substring(0, design_list.Length - 2) + ", reason " + TEReason.Text + "</p>
+                                                <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 5pt 0pt;'>" + TECreatedBy.Text + " has dropped design images:</p>
+                                                <table border='1' width='100%'>
+                                                    <tr>
+                                                        <td><p style='font-size: 10pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt 0pt 5pt 0pt;'>Code</p></td>
+                                                        <td><p style='font-size: 10pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt 0pt 5pt 0pt;'>Design</p></td>
+                                                    </tr>
+                                                    " + design_list + "
+                                                </table>
+                                                <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 5pt 0pt 5pt 0pt;'>Reason: " + TEReason.Text + "</p>
                                                 <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 25pt 0pt 10pt 0pt;'>Thank you</p>
                                                 <p style='font-size: 12pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt;'>Volcom ERP</p>
                                             </td>
