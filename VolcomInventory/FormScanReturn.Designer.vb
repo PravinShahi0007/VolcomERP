@@ -43,6 +43,7 @@ Partial Class FormScanReturn
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCScanReturn = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScanReturn = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPBAP = New DevExpress.XtraTab.XtraTabPage()
@@ -84,7 +85,7 @@ Partial Class FormScanReturn
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.DEStartScan = New DevExpress.XtraEditors.DateEdit()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -375,6 +376,18 @@ Partial Class FormScanReturn
         Me.GridColumn10.VisibleIndex = 11
         Me.GridColumn10.Width = 125
         '
+        'GridColumn33
+        '
+        Me.GridColumn33.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn33.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn33.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn33.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn33.Caption = "Void"
+        Me.GridColumn33.FieldName = "sts_void"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 12
+        '
         'XTCScanReturn
         '
         Me.XTCScanReturn.Dock = System.Windows.Forms.DockStyle.Fill
@@ -585,7 +598,7 @@ Partial Class FormScanReturn
         '
         Me.GVListProduct.Appearance.FooterPanel.Font = New System.Drawing.Font("Tahoma", 11.0!)
         Me.GVListProduct.Appearance.FooterPanel.Options.UseFont = True
-        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
+        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn26, Me.GridColumn34, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
         Me.GVListProduct.GridControl = Me.GCListProduct
         Me.GVListProduct.Name = "GVListProduct"
         Me.GVListProduct.OptionsBehavior.Editable = False
@@ -659,7 +672,7 @@ Partial Class FormScanReturn
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "product_display_name", "Total Qty Scan")})
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 4
+        Me.GridColumn27.VisibleIndex = 5
         Me.GridColumn27.Width = 241
         '
         'GridColumn28
@@ -673,7 +686,7 @@ Partial Class FormScanReturn
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "size", "{0}")})
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 5
+        Me.GridColumn28.VisibleIndex = 6
         Me.GridColumn28.Width = 59
         '
         'GridColumn29
@@ -682,7 +695,7 @@ Partial Class FormScanReturn
         Me.GridColumn29.FieldName = "notes"
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 6
+        Me.GridColumn29.VisibleIndex = 7
         Me.GridColumn29.Width = 226
         '
         'PanelControl3
@@ -761,17 +774,14 @@ Partial Class FormScanReturn
         Me.DEStartScan.Size = New System.Drawing.Size(136, 20)
         Me.DEStartScan.TabIndex = 8920
         '
-        'GridColumn33
+        'GridColumn34
         '
-        Me.GridColumn33.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn33.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn33.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn33.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn33.Caption = "Void"
-        Me.GridColumn33.FieldName = "sts_void"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 12
+        Me.GridColumn34.Caption = "Scanned Code"
+        Me.GridColumn34.FieldName = "scanned_code"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 4
+        Me.GridColumn34.Width = 136
         '
         'FormScanReturn
         '
@@ -890,4 +900,5 @@ Partial Class FormScanReturn
     Friend WithEvents RepositoryItemMemoEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents BPrintScan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
