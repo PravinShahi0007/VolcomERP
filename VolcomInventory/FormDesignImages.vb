@@ -512,7 +512,18 @@
         "
 
         viewSearchLookupQuery(SLUESeason, query, "id_season", "season", "id_season")
-        viewSearchLookupQuery(SLUESeasonLL, query, "id_season", "season", "id_season")
+
+        Dim query_s As String = "
+            (SELECT 'ALL' AS id_season, 'ALL' AS `range`, 'ALL' AS season)
+            UNION ALL
+            (SELECT a.id_season, b.range, a.season
+            FROM tb_season AS a 
+            INNER JOIN tb_range b ON a.id_range = b.id_range 
+            WHERE b.id_range > 0 AND b.is_md = 1 
+            ORDER BY b.range DESC)
+        "
+
+        viewSearchLookupQuery(SLUESeasonLL, query_s, "id_season", "season", "id_season")
     End Sub
 
     Private Sub SLUESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLUESeason.EditValueChanged
@@ -540,6 +551,11 @@
         ElseIf XtraTabControl.SelectedTabPageIndex = 1 Then
             checkFormAccess(Name)
             button_main("0", "0", "0")
+        ElseIf XtraTabControl.SelectedTabPageIndex = 2 Then
+            checkFormAccess(Name)
+            button_main("0", "0", "0")
+
+            view_drop_images()
         End If
     End Sub
 
@@ -709,5 +725,29 @@
                 e.Value = images(fileName)
             End If
         Next
+    End Sub
+
+    Sub view_drop_images()
+        Dim query As String = "
+            SELECT d.id_design_images_drop, d.number, d.reason, DATE_FORMAT(d.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by
+            FROM tb_design_images_drop AS d
+            LEFT JOIN tb_m_employee AS e ON d.created_by = e.id_employee
+            ORDER BY d.id_design_images_drop DESC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCDropImages.DataSource = data
+
+        GVDropImages.BestFitColumns()
+    End Sub
+
+    Private Sub SBDropImages_Click(sender As Object, e As EventArgs) Handles SBDropImages.Click
+        FormDesignImagesDrop.ShowDialog()
+    End Sub
+
+    Private Sub GVDropImages_DoubleClick(sender As Object, e As EventArgs) Handles GVDropImages.DoubleClick
+        FormDesignImagesDrop.id_design_images_drop = GVDropImages.GetFocusedRowCellValue("id_design_images_drop")
+        FormDesignImagesDrop.ShowDialog()
     End Sub
 End Class

@@ -1898,6 +1898,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Cursor = Cursors.Default
                 End If
             End If
+        ElseIf formName = "FormPricePolicyCode" Then
+            FormPricePolicyCodeDet.action = "ins"
+            FormPricePolicyCodeDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3162,6 +3165,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
                     'no action
                 End If
+            ElseIf formName = "FormPricePolicyCode" Then
+                FormPricePolicyCodeDet.id = FormPricePolicyCode.GVData.GetFocusedRowCellValue("id_code_detail").ToString
+                FormPricePolicyCodeDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6568,6 +6574,22 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormOLReturnRefuse" Then
             'no action
+        ElseIf formName = "FormPricePolicyCode" Then
+            If FormPricePolicyCode.GVData.RowCount > 0 And FormPricePolicyCode.GVData.FocusedRowHandle >= 0 Then
+                Dim confirm_delm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this code ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                Dim id_code_detail As String = FormPricePolicyCode.GVData.GetFocusedRowCellValue("id_code_detail").ToString
+                If confirm_delm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    Try
+                        Dim query_delm As String = String.Format("DELETE FROM tb_m_code_detail WHERE id_code_detail = '{0}'", id_code_detail)
+                        execute_non_query(query_delm, True, "", "", "", "")
+                        FormPricePolicyCode.viewData()
+                    Catch ex As Exception
+                        DevExpress.XtraEditors.XtraMessageBox.Show("This code already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+                    Cursor = Cursors.Default
+                End If
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -8570,6 +8592,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
                 print(FormOLReturnRefuse.GCOrder, "Order List")
             End If
+        ElseIf formName = "FormPricePolicyCode" Then
+            print(FormPricePolicyCode.GCData, "Price Policy Code")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9537,6 +9561,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormOLReturnRefuse" Then
             FormOLReturnRefuse.Close()
             FormOLReturnRefuse.Dispose()
+        ElseIf formName = "FormPricePolicyCode" Then
+            FormPricePolicyCode.Close()
+            FormPricePolicyCode.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10541,6 +10568,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormOLReturnRefuse.XTCData.SelectedTabPageIndex = 1 Then
                 FormOLReturnRefuse.viewOrderList()
             End If
+        ElseIf formName = "FormPricePolicyCode" Then
+            FormPricePolicyCode.viewData()
         End If
     End Sub
     'Switch
@@ -15930,6 +15959,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBiayaSewa.Show()
             FormBiayaSewa.WindowState = FormWindowState.Maximized
             FormBiayaSewa.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPricePolicyCode_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPricePolicyCode.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPricePolicyCode.MdiParent = Me
+            FormPricePolicyCode.Show()
+            FormPricePolicyCode.WindowState = FormWindowState.Maximized
+            FormPricePolicyCode.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

@@ -131,7 +131,7 @@
                     'build concat
                     For k = 0 To l_list_all.Count - 1
                         If l_list_all(k).Contains("`") Then
-                            q_concat += "IFNULL(" + l_list_all(k) + ", ''), "
+                            q_concat += "IFNULL(CAST(" + l_list_all(k) + " AS CHAR), ''), "
                         Else
                             q_concat += "'" + l_list_all(k) + "', "
                         End If
@@ -404,7 +404,7 @@
                     'build concat
                     For k = 0 To l_list_all.Count - 1
                         If l_list_all(k).Contains("`") Then
-                            q_concat += "IFNULL(CAST(" + l_list_all(k) + " AS CHAR CHARACTER SET utf8), ''), "
+                            q_concat += "IFNULL(CAST(" + l_list_all(k) + " AS CHAR), ''), "
                         Else
                             q_concat += "'" + l_list_all(k) + "', "
                         End If
@@ -554,7 +554,7 @@
                     'build concat
                     For k = 0 To l_list_all.Count - 1
                         If l_list_all(k).Contains("`") Then
-                            q_concat += "IFNULL(" + l_list_all(k) + ", ''), "
+                            q_concat += "IFNULL(CAST(" + l_list_all(k) + " AS CHAR), ''), "
                         Else
                             q_concat += "'" + l_list_all(k) + "', "
                         End If
@@ -704,7 +704,7 @@
                     'build concat
                     For k = 0 To l_list_all.Count - 1
                         If l_list_all(k).Contains("`") Then
-                            q_concat += "IFNULL(" + l_list_all(k) + ", ''), "
+                            q_concat += "IFNULL(CAST(" + l_list_all(k) + " AS CHAR), ''), "
                         Else
                             q_concat += "'" + l_list_all(k) + "', "
                         End If
