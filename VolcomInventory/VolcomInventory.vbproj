@@ -1137,6 +1137,12 @@
     <Compile Include="FormDeliveryCargoDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDeliveryMonitoring.Designer.vb">
+      <DependentUpon>FormDeliveryMonitoring.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeliveryMonitoring.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDelManifest.Designer.vb">
       <DependentUpon>FormDelManifest.vb</DependentUpon>
     </Compile>
@@ -3326,16 +3332,16 @@
     <Compile Include="FormOptView.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormOptViewSingle.Designer.vb">
-      <DependentUpon>FormOptViewSingle.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormOptViewSingle.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="FormOutboundCheckFisik.Designer.vb">
       <DependentUpon>FormOutboundCheckFisik.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOutboundCheckFisik.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOptViewSingle.Designer.vb">
+      <DependentUpon>FormOptViewSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOptViewSingle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOutboundLabel.Designer.vb">
@@ -9954,6 +9960,9 @@
     <EmbeddedResource Include="FormDeliveryCargoDet.resx">
       <DependentUpon>FormDeliveryCargoDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDeliveryMonitoring.resx">
+      <DependentUpon>FormDeliveryMonitoring.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDelManifest.resx">
       <DependentUpon>FormDelManifest.vb</DependentUpon>
     </EmbeddedResource>
@@ -11061,11 +11070,11 @@
     <EmbeddedResource Include="FormOptView.resx">
       <DependentUpon>FormOptView.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormOptViewSingle.resx">
-      <DependentUpon>FormOptViewSingle.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormOutboundCheckFisik.resx">
       <DependentUpon>FormOutboundCheckFisik.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOptViewSingle.resx">
+      <DependentUpon>FormOptViewSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutboundLabel.resx">
       <DependentUpon>FormOutboundLabel.vb</DependentUpon>
