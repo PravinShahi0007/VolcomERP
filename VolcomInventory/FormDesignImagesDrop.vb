@@ -133,7 +133,7 @@
                     Dim e_to As List(Of String()) = New List(Of String())
                     Dim e_cc As List(Of String()) = New List(Of String())
 
-                    Dim e_query As String = "SELECT e.email_external, e.employee_name, i.type FROM tb_design_images_email AS i LEFT JOIN tb_m_employee AS e ON i.id_employee = e.id_employee"
+                    Dim e_query As String = "SELECT email_external, employee_name, 'cc' AS `type` FROM tb_m_employee WHERE id_employee = " + id_employee_user + " UNION ALL SELECT e.email_external, e.employee_name, i.type FROM tb_design_images_email AS i LEFT JOIN tb_m_employee AS e ON i.id_employee = e.id_employee"
                     Dim e_data As DataTable = execute_query(e_query, -1, True, "", "", "", "")
 
                     For i = 0 To e_data.Rows.Count - 1
