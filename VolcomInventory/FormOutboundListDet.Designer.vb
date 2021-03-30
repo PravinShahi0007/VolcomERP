@@ -35,11 +35,8 @@ Partial Class FormOutboundListDet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PCWeight = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TEActWeight = New DevExpress.XtraEditors.TextEdit()
-        Me.TEDimWeight = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TETinggi = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -52,7 +49,7 @@ Partial Class FormOutboundListDet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDelERP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -73,7 +70,6 @@ Partial Class FormOutboundListDet
         CType(Me.PCWeight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCWeight.SuspendLayout()
         CType(Me.TEActWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDimWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETinggi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TELebar.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPanjang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -157,6 +153,7 @@ Partial Class FormOutboundListDet
         Me.PCType.Name = "PCType"
         Me.PCType.Size = New System.Drawing.Size(508, 71)
         Me.PCType.TabIndex = 1
+        Me.PCType.Visible = False
         '
         'SLEDelType
         '
@@ -166,6 +163,7 @@ Partial Class FormOutboundListDet
         Me.SLEDelType.Properties.View = Me.SearchLookUpEdit1View
         Me.SLEDelType.Size = New System.Drawing.Size(480, 20)
         Me.SLEDelType.TabIndex = 1
+        Me.SLEDelType.TabStop = False
         '
         'SearchLookUpEdit1View
         '
@@ -207,11 +205,8 @@ Partial Class FormOutboundListDet
         'PCWeight
         '
         Me.PCWeight.Controls.Add(Me.LabelControl9)
-        Me.PCWeight.Controls.Add(Me.LabelControl8)
-        Me.PCWeight.Controls.Add(Me.LabelControl7)
         Me.PCWeight.Controls.Add(Me.LabelControl6)
         Me.PCWeight.Controls.Add(Me.TEActWeight)
-        Me.PCWeight.Controls.Add(Me.TEDimWeight)
         Me.PCWeight.Controls.Add(Me.LabelControl5)
         Me.PCWeight.Controls.Add(Me.TETinggi)
         Me.PCWeight.Controls.Add(Me.LabelControl4)
@@ -223,7 +218,7 @@ Partial Class FormOutboundListDet
         Me.PCWeight.Name = "PCWeight"
         Me.PCWeight.Size = New System.Drawing.Size(508, 60)
         Me.PCWeight.TabIndex = 2
-        Me.PCWeight.Visible = False
+        Me.PCWeight.TabStop = True
         '
         'LabelControl9
         '
@@ -232,22 +227,6 @@ Partial Class FormOutboundListDet
         Me.LabelControl9.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl9.TabIndex = 11
         Me.LabelControl9.Text = "|"
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(258, 33)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl8.TabIndex = 10
-        Me.LabelControl8.Text = "|"
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Location = New System.Drawing.Point(268, 11)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(116, 13)
-        Me.LabelControl7.TabIndex = 9
-        Me.LabelControl7.Text = "Dimensional Weight (Kg)"
         '
         'LabelControl6
         '
@@ -266,27 +245,13 @@ Partial Class FormOutboundListDet
         Me.TEActWeight.Properties.Mask.EditMask = "N2"
         Me.TEActWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEActWeight.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEActWeight.Properties.NullText = "blank"
         Me.TEActWeight.Size = New System.Drawing.Size(95, 20)
-        Me.TEActWeight.TabIndex = 7
-        '
-        'TEDimWeight
-        '
-        Me.TEDimWeight.Location = New System.Drawing.Point(268, 30)
-        Me.TEDimWeight.Name = "TEDimWeight"
-        Me.TEDimWeight.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEDimWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.TEDimWeight.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TEDimWeight.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.TEDimWeight.Properties.Mask.EditMask = "N2"
-        Me.TEDimWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEDimWeight.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEDimWeight.Properties.ReadOnly = True
-        Me.TEDimWeight.Size = New System.Drawing.Size(113, 20)
-        Me.TEDimWeight.TabIndex = 6
+        Me.TEActWeight.TabIndex = 3
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(194, 11)
+        Me.LabelControl5.Location = New System.Drawing.Point(300, 11)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl5.TabIndex = 5
@@ -294,19 +259,20 @@ Partial Class FormOutboundListDet
         '
         'TETinggi
         '
-        Me.TETinggi.Location = New System.Drawing.Point(176, 30)
+        Me.TETinggi.Location = New System.Drawing.Point(260, 30)
         Me.TETinggi.Name = "TETinggi"
         Me.TETinggi.Properties.Appearance.Options.UseTextOptions = True
         Me.TETinggi.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.TETinggi.Properties.Mask.EditMask = "N2"
         Me.TETinggi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TETinggi.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TETinggi.Size = New System.Drawing.Size(76, 20)
-        Me.TETinggi.TabIndex = 4
+        Me.TETinggi.Properties.NullText = "blank"
+        Me.TETinggi.Size = New System.Drawing.Size(121, 20)
+        Me.TETinggi.TabIndex = 2
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(112, 11)
+        Me.LabelControl4.Location = New System.Drawing.Point(177, 11)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl4.TabIndex = 3
@@ -314,19 +280,20 @@ Partial Class FormOutboundListDet
         '
         'TELebar
         '
-        Me.TELebar.Location = New System.Drawing.Point(94, 30)
+        Me.TELebar.Location = New System.Drawing.Point(141, 30)
         Me.TELebar.Name = "TELebar"
         Me.TELebar.Properties.Appearance.Options.UseTextOptions = True
         Me.TELebar.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.TELebar.Properties.Mask.EditMask = "N2"
         Me.TELebar.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TELebar.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TELebar.Size = New System.Drawing.Size(76, 20)
-        Me.TELebar.TabIndex = 2
+        Me.TELebar.Properties.NullText = "blank"
+        Me.TELebar.Size = New System.Drawing.Size(113, 20)
+        Me.TELebar.TabIndex = 1
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(23, 11)
+        Me.LabelControl3.Location = New System.Drawing.Point(45, 11)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(55, 13)
         Me.LabelControl3.TabIndex = 1
@@ -341,7 +308,8 @@ Partial Class FormOutboundListDet
         Me.TEPanjang.Properties.Mask.EditMask = "N2"
         Me.TEPanjang.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPanjang.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEPanjang.Size = New System.Drawing.Size(76, 20)
+        Me.TEPanjang.Properties.NullText = "blank"
+        Me.TEPanjang.Size = New System.Drawing.Size(123, 20)
         Me.TEPanjang.TabIndex = 0
         '
         'GroupControl1
@@ -362,11 +330,12 @@ Partial Class FormOutboundListDet
         Me.GCDO.Name = "GCDO"
         Me.GCDO.Size = New System.Drawing.Size(504, 173)
         Me.GCDO.TabIndex = 2
+        Me.GCDO.TabStop = False
         Me.GCDO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDO})
         '
         'GVDO
         '
-        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnIdDelERP, Me.GridColumn7})
+        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn4, Me.GridColumn5, Me.GridColumnQty, Me.GridColumnIdDelERP, Me.GridColumn7})
         Me.GVDO.GridControl = Me.GCDO
         Me.GVDO.Name = "GVDO"
         Me.GVDO.OptionsBehavior.ReadOnly = True
@@ -378,6 +347,7 @@ Partial Class FormOutboundListDet
         Me.GVDO.OptionsCustomization.AllowRowSizing = True
         Me.GVDO.OptionsCustomization.AllowSort = False
         Me.GVDO.OptionsCustomization.CustomizationFormSearchBoxVisible = True
+        Me.GVDO.OptionsView.AllowCellMerge = True
         Me.GVDO.OptionsView.ShowFooter = True
         Me.GVDO.OptionsView.ShowGroupPanel = False
         Me.GVDO.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdDelERP, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Ascending)})
@@ -402,19 +372,21 @@ Partial Class FormOutboundListDet
         Me.GridColumn5.Caption = "Delivery Order Number"
         Me.GridColumn5.FieldName = "do_no"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 1
         '
-        'GridColumn6
+        'GridColumnQty
         '
-        Me.GridColumn6.Caption = "Qty"
-        Me.GridColumn6.DisplayFormat.FormatString = "N0"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "qty"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 2
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "qty", "{0:N0}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 2
         '
         'GridColumnIdDelERP
         '
@@ -456,7 +428,7 @@ Partial Class FormOutboundListDet
         Me.BPrintLabel.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BPrintLabel.Name = "BPrintLabel"
         Me.BPrintLabel.Size = New System.Drawing.Size(504, 32)
-        Me.BPrintLabel.TabIndex = 21
+        Me.BPrintLabel.TabIndex = 7
         Me.BPrintLabel.Text = "Print Label"
         '
         'MENote
@@ -464,7 +436,7 @@ Partial Class FormOutboundListDet
         Me.MENote.Location = New System.Drawing.Point(12, 32)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(480, 49)
-        Me.MENote.TabIndex = 2
+        Me.MENote.TabIndex = 4
         '
         'LabelControl10
         '
@@ -490,7 +462,7 @@ Partial Class FormOutboundListDet
         Me.BApprove.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BApprove.Name = "BApprove"
         Me.BApprove.Size = New System.Drawing.Size(508, 32)
-        Me.BApprove.TabIndex = 20
+        Me.BApprove.TabIndex = 5
         Me.BApprove.Text = "Approve"
         '
         'BNotApprove
@@ -509,7 +481,7 @@ Partial Class FormOutboundListDet
         Me.BNotApprove.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BNotApprove.Name = "BNotApprove"
         Me.BNotApprove.Size = New System.Drawing.Size(508, 32)
-        Me.BNotApprove.TabIndex = 21
+        Me.BNotApprove.TabIndex = 6
         Me.BNotApprove.Text = "Not Approve"
         '
         'FormOutboundListDet
@@ -545,7 +517,6 @@ Partial Class FormOutboundListDet
         Me.PCWeight.ResumeLayout(False)
         Me.PCWeight.PerformLayout()
         CType(Me.TEActWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDimWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETinggi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TELebar.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPanjang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -573,11 +544,8 @@ Partial Class FormOutboundListDet
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCWeight As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEActWeight As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TEDimWeight As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TETinggi As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
@@ -589,7 +557,7 @@ Partial Class FormOutboundListDet
     Friend WithEvents GVDO As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDelERP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit

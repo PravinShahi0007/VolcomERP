@@ -164,6 +164,9 @@ Partial Class FormWHAWBill
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BGenerateAWBRef = New DevExpress.XtraEditors.SimpleButton()
         Me.BExportToCS3 = New DevExpress.XtraEditors.SimpleButton()
@@ -187,6 +190,9 @@ Partial Class FormWHAWBill
         Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelAllDO = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BGenerateKolie = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEComp = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -297,12 +303,6 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
-        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
-        Me.CESelAllDO = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -338,6 +338,11 @@ Partial Class FormWHAWBill
         CType(Me.RICEPickSOR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCSelAll.SuspendLayout()
+        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -346,6 +351,11 @@ Partial Class FormWHAWBill
         CType(Me.GCDOERP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDOERP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.CESelAllDO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -376,16 +386,6 @@ Partial Class FormWHAWBill
         CType(Me.DEInStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEInNoEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEInNoStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCSelAll.SuspendLayout()
-        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl6.SuspendLayout()
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl7.SuspendLayout()
-        CType(Me.CESelAllDO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCAWBill
@@ -1796,6 +1796,33 @@ Partial Class FormWHAWBill
         Me.GridView2.GridControl = Me.GCOnlineOrder
         Me.GridView2.Name = "GridView2"
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.PCSelAll)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 411)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1267, 39)
+        Me.PanelControl3.TabIndex = 3
+        '
+        'PCSelAll
+        '
+        Me.PCSelAll.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCSelAll.Controls.Add(Me.CheckEditSelAll)
+        Me.PCSelAll.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCSelAll.Location = New System.Drawing.Point(2, 2)
+        Me.PCSelAll.Name = "PCSelAll"
+        Me.PCSelAll.Size = New System.Drawing.Size(104, 35)
+        Me.PCSelAll.TabIndex = 104
+        '
+        'CheckEditSelAll
+        '
+        Me.CheckEditSelAll.Location = New System.Drawing.Point(8, 9)
+        Me.CheckEditSelAll.Name = "CheckEditSelAll"
+        Me.CheckEditSelAll.Properties.Caption = "Select All Item"
+        Me.CheckEditSelAll.Size = New System.Drawing.Size(92, 19)
+        Me.CheckEditSelAll.TabIndex = 102
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BGenerateAWBRef)
@@ -1816,6 +1843,7 @@ Partial Class FormWHAWBill
         Me.BGenerateAWBRef.Size = New System.Drawing.Size(151, 23)
         Me.BGenerateAWBRef.TabIndex = 15
         Me.BGenerateAWBRef.Text = "Generate Kolie From AWB"
+        Me.BGenerateAWBRef.Visible = False
         '
         'BExportToCS3
         '
@@ -1886,6 +1914,7 @@ Partial Class FormWHAWBill
         Me.XTPDO.Controls.Add(Me.PanelControl6)
         Me.XTPDO.Controls.Add(Me.PanelControl4)
         Me.XTPDO.Name = "XTPDO"
+        Me.XTPDO.PageVisible = False
         Me.XTPDO.Size = New System.Drawing.Size(1267, 450)
         Me.XTPDO.Text = "From DO"
         '
@@ -2012,6 +2041,33 @@ Partial Class FormWHAWBill
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 7
         '
+        'PanelControl6
+        '
+        Me.PanelControl6.Controls.Add(Me.PanelControl7)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 411)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(1267, 39)
+        Me.PanelControl6.TabIndex = 5
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Controls.Add(Me.CESelAllDO)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl7.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(99, 35)
+        Me.PanelControl7.TabIndex = 104
+        '
+        'CESelAllDO
+        '
+        Me.CESelAllDO.Location = New System.Drawing.Point(5, 7)
+        Me.CESelAllDO.Name = "CESelAllDO"
+        Me.CESelAllDO.Properties.Caption = "Select All Item"
+        Me.CESelAllDO.Size = New System.Drawing.Size(92, 19)
+        Me.CESelAllDO.TabIndex = 102
+        '
         'PanelControl4
         '
         Me.PanelControl4.Controls.Add(Me.BGenerateKolie)
@@ -2094,6 +2150,7 @@ Partial Class FormWHAWBill
         Me.XTPRet.Controls.Add(Me.GCRet)
         Me.XTPRet.Controls.Add(Me.PanelControl5)
         Me.XTPRet.Name = "XTPRet"
+        Me.XTPRet.PageVisible = False
         Me.XTPRet.Size = New System.Drawing.Size(1267, 450)
         Me.XTPRet.Text = "From Return Request"
         '
@@ -3150,60 +3207,6 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.PCSelAll)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 411)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1267, 39)
-        Me.PanelControl3.TabIndex = 3
-        '
-        'PCSelAll
-        '
-        Me.PCSelAll.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PCSelAll.Controls.Add(Me.CheckEditSelAll)
-        Me.PCSelAll.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCSelAll.Location = New System.Drawing.Point(2, 2)
-        Me.PCSelAll.Name = "PCSelAll"
-        Me.PCSelAll.Size = New System.Drawing.Size(104, 35)
-        Me.PCSelAll.TabIndex = 104
-        '
-        'CheckEditSelAll
-        '
-        Me.CheckEditSelAll.Location = New System.Drawing.Point(8, 9)
-        Me.CheckEditSelAll.Name = "CheckEditSelAll"
-        Me.CheckEditSelAll.Properties.Caption = "Select All Item"
-        Me.CheckEditSelAll.Size = New System.Drawing.Size(92, 19)
-        Me.CheckEditSelAll.TabIndex = 102
-        '
-        'PanelControl6
-        '
-        Me.PanelControl6.Controls.Add(Me.PanelControl7)
-        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl6.Location = New System.Drawing.Point(0, 411)
-        Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(1267, 39)
-        Me.PanelControl6.TabIndex = 5
-        '
-        'PanelControl7
-        '
-        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl7.Controls.Add(Me.CESelAllDO)
-        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl7.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(99, 35)
-        Me.PanelControl7.TabIndex = 104
-        '
-        'CESelAllDO
-        '
-        Me.CESelAllDO.Location = New System.Drawing.Point(5, 7)
-        Me.CESelAllDO.Name = "CESelAllDO"
-        Me.CESelAllDO.Properties.Caption = "Select All Item"
-        Me.CESelAllDO.Size = New System.Drawing.Size(92, 19)
-        Me.CESelAllDO.TabIndex = 102
-        '
         'FormWHAWBill
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3257,6 +3260,11 @@ Partial Class FormWHAWBill
         CType(Me.RICEPickSOR, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCSelAll.ResumeLayout(False)
+        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -3266,6 +3274,11 @@ Partial Class FormWHAWBill
         CType(Me.GCDOERP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDOERP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        CType(Me.CESelAllDO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
@@ -3299,16 +3312,6 @@ Partial Class FormWHAWBill
         CType(Me.DEInStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEInNoEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEInNoStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCSelAll.ResumeLayout(False)
-        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl6.ResumeLayout(False)
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl7.ResumeLayout(False)
-        CType(Me.CESelAllDO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

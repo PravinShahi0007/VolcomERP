@@ -106,17 +106,21 @@ WHERE awbd.`id_pl_sales_order_del` IN (" & id & ") "
                         End If
                         query += "('" + id_awb + "'," + id_pl_sales_order_del + "," + id_ol_store_cust_ret + ",'" + GVDOERP.GetRowCellValue(i, "do_no").ToString + "','" + GVDOERP.GetRowCellValue(i, "qty").ToString + "')"
                     Else
-                        Dim q As String = "SELECT id_pl_sales_order_del,pl_sales_order_del_number FROM tb_pl_sales_order_del WHERE id_combine='" & GVDOERP.GetRowCellValue(i, "id_combine").ToString & "'"
+                        Dim q As String = "SELECT pl.id_pl_sales_order_del,pl.pl_sales_order_del_number,SUM(pld.pl_sales_order_del_det_qty) AS qty
+FROM tb_pl_sales_order_del pl 
+INNER JOIN tb_pl_sales_order_del_det pld ON pld.id_pl_sales_order_del=pl.id_pl_sales_order_del
+WHERE pl.id_combine='" & GVDOERP.GetRowCellValue(i, "id_combine").ToString & "'
+GROUP BY pl.id_pl_sales_order_del"
                         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
                         For j = 0 To dt.Rows.Count - 1
                             If Not i + j = 0 Then
                                 query += ","
                             End If
-                            ' INI QTY salah perbaiki
-                            query += "('" + id_awb + "'," + dt.Rows(j)("id_pl_sales_order_del").ToString + ",NULL,'" + dt.Rows(j)("pl_sales_order_del_number").ToString + "','" + GVDOERP.GetRowCellValue(i, "qty").ToString + "')"
+                            query += "('" + id_awb + "'," + dt.Rows(j)("id_pl_sales_order_del").ToString + ",NULL,'" + dt.Rows(j)("pl_sales_order_del_number").ToString + "','" + dt.Rows(j)("qty").ToString + "')"
                         Next
                     End If
                 Next
+
                 execute_non_query(query, True, "", "", "", "")
 
                 warningCustom("Outbound Number " & olnumber & " created")

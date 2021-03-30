@@ -18,7 +18,7 @@
         '
         form_load()
 
-
+        TEComp.Focus()
         loaded = True
     End Sub
 
@@ -152,6 +152,12 @@ GROUP BY cg.`id_comp_group`"
             TEOrderNumber.EditValue = data.Rows(0)("ol_order").ToString
             SLEComp.EditValue = data.Rows(0)("id_store_offline").ToString
 
+            Try
+                TEComp.Text = get_company_x(data.Rows(0)("id_store_offline").ToString, "2")
+                TEComp.Properties.ReadOnly = True
+            Catch ex As Exception
+            End Try
+
             'footer
             'sub district
             load_sub_dsitrict_filter("")
@@ -247,8 +253,8 @@ GROUP BY cg.`id_comp_group`"
 
             SBCancel.Enabled = False
 
-            BGenOffline.Visible = True
-            BGenOnline.Visible = True
+            'BGenOffline.Visible = True
+            'BGenOnline.Visible = True
 
             If id_del_manifest <> "0" Then
                 SBCancel.Enabled = True
@@ -266,8 +272,8 @@ GROUP BY cg.`id_comp_group`"
                 SLEStoreGroup.ReadOnly = True
                 TEOrderNumber.Enabled = False
 
-                BGenOffline.Visible = False
-                BGenOnline.Visible = False
+                'BGenOffline.Visible = False
+                'BGenOnline.Visible = False
                 '
                 SBPrint.Visible = False
                 SBPrePrint.Visible = False
@@ -280,8 +286,8 @@ GROUP BY cg.`id_comp_group`"
             SLEStoreGroup.ReadOnly = True
             TEOrderNumber.Enabled = False
 
-            BGenOffline.Visible = False
-            BGenOnline.Visible = False
+            'BGenOffline.Visible = False
+            'BGenOnline.Visible = False
 
             TERemarkDiff.Enabled = False
             TEAwb.Enabled = False
@@ -310,6 +316,12 @@ GROUP BY cg.`id_comp_group`"
     Sub save(ByVal type As String)
         '
         Dim order As String = ""
+        Dim div_by As String = 1
+        Try
+            div_by = GridView4.GetFocusedRowCellValue("volume_divide_by").ToString()
+        Catch ex As Exception
+
+        End Try
 
         Try
             If SLEStoreGroup.EditValue.ToString = "64" Then 'ZA
@@ -356,11 +368,18 @@ SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text
 
             If type = "cancel" Then
                 Dim query As String = ""
+
+                query = "UPDATE tb_wh_awbill awb
+INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
+INNER JOIN tb_del_manifest_det dd ON dd.id_wh_awb_det=awbd.id_wh_awb_det
+SET awb.id_del_type=NULL,awb.awbill_no='',awb.weight_calc=null WHERE dd.id_del_manifest = " + id_del_manifest
+                execute_non_query(query, True, "", "", "", "")
+
                 query = "UPDATE tb_del_manifest SET id_report_status=5,awbill_no='' WHERE id_del_manifest = " + id_del_manifest
                 execute_non_query(query, True, "", "", "", "")
                 query = "DELETE FROM tb_del_manifest_det WHERE id_del_manifest = " + id_del_manifest
                 execute_non_query(query, True, "", "", "", "")
-
+                '
                 Close()
             Else
                 If continue_save Then
@@ -407,7 +426,7 @@ WHERE id_del_manifest = " + id_del_manifest
 INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill`
 INNER JOIN `tb_del_manifest_det` dmd ON dmd.`id_wh_awb_det`=awbd.`id_wh_awb_det`
 INNER JOIN tb_del_manifest dm ON dm.id_del_manifest=dmd.`id_del_manifest`
-SET awb.`awbill_no`=dm.`awbill_no`
+SET awb.`awbill_no`=dm.`awbill_no`,awb.id_del_type=dm.id_del_type,awb.weight_calc=ROUND((awb.length*awb.width*awb.height)/" & div_by & ",2)
 WHERE dmd.`id_del_manifest`='" & id_del_manifest & "'"
                     execute_non_query(query, True, "", "", "", "")
                     '
@@ -691,9 +710,11 @@ WHERE dmd.`id_del_manifest`='" & id_del_manifest & "'"
         If SLEOnlineShop.EditValue.ToString = "1" Then
             PCOnline.Visible = True
             PCOffline.Visible = False
+            TEOrderNumber.Focus()
         ElseIf SLEOnlineShop.EditValue.ToString = "2" Then
             PCOnline.Visible = False
             PCOffline.Visible = True
+            TEComp.Focus()
         End If
     End Sub
 
@@ -752,8 +773,11 @@ WHERE ISNULL(tb_c.id_wh_awb_det) AND c.`id_comp_group`='" & SLEStoreGroup.EditVa
             TEOrderNumber.Enabled = False
             '
             PCRate.Visible = True
+            '
+            TEAwb.Focus()
         Else
-            warningCustom("Outbound number not found or already created")
+            FormError.LabelContent.Text = "Outbound number not found or already created"
+            FormError.ShowDialog()
         End If
     End Sub
 
@@ -762,10 +786,21 @@ WHERE ISNULL(tb_c.id_wh_awb_det) AND c.`id_comp_group`='" & SLEStoreGroup.EditVa
     End Sub
 
     Sub gen_offline()
+        Dim div_by As String = 1
+        Try
+            div_by = GridView4.GetFocusedRowCellValue("volume_divide_by").ToString()
+        Catch ex As Exception
+
+        End Try
+
         Dim q As String = "SELECT 0 AS `no`,awb.ol_number,awbd.id_wh_awb_det,c.id_comp_group,awb.`awbill_date`,awb.`id_awbill`,IFNULL(pdelc.combine_number, awbd.do_no) AS combine_number,awbd.`do_no`,pl.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`
-,CONCAT((ROUND(IF(pdelc.combine_number IS NULL, awbd.qty, z.qty), 0)), ' ') AS qty,ct.`city` AS city,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume,c.id_sub_district
+,CONCAT((ROUND(IF(pdelc.combine_number IS NULL, awbd.qty, z.qty), 0)), ' ') AS qty,ct.`city` AS city,awb.weight, awb.width, awb.length, awb.height
+-- ,awb.`weight_calc` AS volume
+,ROUND((awb.width* awb.length* awb.height)/" & div_by & ",2) AS volume
+,c.id_sub_district
 FROM tb_wh_awbill_det awbd
-INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_del_type='" & SLEDelType.EditValue.ToString & "'
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 
+-- AND awb.id_del_type='" & SLEDelType.EditValue.ToString & "'
 INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
 LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pl.id_combine = pdelc.id_combine
 LEFT JOIN (
@@ -799,10 +834,16 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb
             SLEDelType.Properties.ReadOnly = True
             SLEOnlineShop.Properties.ReadOnly = True
             SLEComp.Properties.ReadOnly = True
+            TEComp.Enabled = False
             '
             PCRate.Visible = True
+            '
+            TEAwb.Focus()
         Else
-            warningCustom("Outbound number not found or already created")
+            FormError.LabelContent.Text = "Outbound number not found or already created"
+            FormError.ShowDialog()
+            TEComp.Text = ""
+            TEComp.Focus()
         End If
     End Sub
 
@@ -842,6 +883,13 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb
                 id_awb += GVList.GetRowCellValue(i, "id_awbill").ToString
             Next
 
+            Dim div_by As String = 1
+            Try
+                div_by = GridView4.GetFocusedRowCellValue("volume_divide_by").ToString()
+            Catch ex As Exception
+
+            End Try
+
             If SLEOnlineShop.EditValue.ToString = "1" Then
                 'online
                 q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
@@ -849,7 +897,9 @@ FROM
 (
 	SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height, SUM(awb.`volume`) AS volume
 	FROM (
-        SELECT awb.id_awbill,awb.weight AS weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
+        SELECT awb.id_awbill,awb.weight AS weight, awb.width, awb.length, awb.height
+        ,ROUND((awb.width* awb.length*awb.height)/" & div_by & ",2) AS volume
+        --,awb.`weight_calc` AS volume
         FROM tb_wh_awbill_det awbd
         INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_awbill IN (" & id_awb & ")
         INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
@@ -869,7 +919,9 @@ FROM
 (
     SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height, SUM(awb.`volume`) AS volume
 	FROM (
-	    SELECT awb.id_awbill,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
+	    SELECT awb.id_awbill,awb.weight, awb.width, awb.length, awb.height
+        ,ROUND((awb.width* awb.length*awb.height)/" & div_by & ",2) AS volume
+        -- ,awb.`weight_calc` AS volume
 	    FROM tb_wh_awbill_det awbd
 	    INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_awbill IN (" & id_awb & ")
 	    INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
@@ -963,6 +1015,8 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
             End If
             '
             GVCargoRate.FocusedRowHandle = find_row(GVCargoRate, "id_3pl_rate", SLUE3PL.EditValue.ToString)
+            '
+            TERemarkDiff.Focus()
         Catch ex As Exception
 
         End Try
@@ -1017,5 +1071,37 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
         If e.KeyCode = Keys.Enter Then
             gen_online()
         End If
+    End Sub
+
+    Private Sub TEComp_KeyUp(sender As Object, e As KeyEventArgs) Handles TEComp.KeyUp
+        If e.KeyCode = Keys.Enter Then
+            '
+            Dim qc As String = "SELECT * FROM tb_m_comp c WHERE c.comp_number='" & addSlashes(TEComp.Text) & "' AND c.id_comp_cat='6'"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                SLEComp.EditValue = dtc.Rows(0)("id_comp").ToString
+                gen_offline()
+            Else
+                FormError.LabelContent.Text = "Store not found."
+                FormError.ShowDialog()
+                TEComp.Text = ""
+                TEComp.Focus()
+            End If
+            '
+        End If
+    End Sub
+
+    Private Sub SLEDelType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEDelType.EditValueChanged
+        If loaded = True Then
+            If SLEOnlineShop.EditValue.ToString = "1" Then
+                TEOrderNumber.Focus()
+            ElseIf SLEOnlineShop.EditValue.ToString = "2" Then
+                TEComp.Focus()
+            End If
+        End If
+    End Sub
+
+    Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
+        TEOrderNumber.Focus()
     End Sub
 End Class

@@ -250,4 +250,8 @@ WHERE awb.id_awbill='" & id_awbill & "'"
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         print_raw(GCHistory, "List Outbound")
     End Sub
+
+    Private Sub BCheckFisik_Click(sender As Object, e As EventArgs) Handles BCheckFisik.Click
+        FormOutboundCheckFisik.ShowDialog()
+    End Sub
 End Class

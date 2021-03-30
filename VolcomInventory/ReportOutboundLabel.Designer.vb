@@ -198,7 +198,7 @@ Partial Public Class ReportOutboundLabel
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 50.0!
+        Me.TopMargin.HeightF = 20.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -213,7 +213,7 @@ Partial Public Class ReportOutboundLabel
         'ReportOutboundLabel
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 50, 50)
+        Me.Margins = New System.Drawing.Printing.Margins(230, 100, 20, 50)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
