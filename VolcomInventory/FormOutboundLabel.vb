@@ -120,6 +120,7 @@ GROUP BY pl.id_pl_sales_order_del"
                         Next
                     End If
                 Next
+
                 execute_non_query(query, True, "", "", "", "")
 
                 warningCustom("Outbound Number " & olnumber & " created")

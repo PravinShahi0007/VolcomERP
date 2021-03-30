@@ -250,6 +250,7 @@ Partial Class FormOutboundList
         Me.BCheckFisik.Size = New System.Drawing.Size(910, 33)
         Me.BCheckFisik.TabIndex = 3
         Me.BCheckFisik.Text = "Proses Cek Fisik"
+        Me.BCheckFisik.Visible = False
         '
         'BRefresh
         '

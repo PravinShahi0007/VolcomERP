@@ -1,4 +1,6 @@
 ﻿Public Class FormOutboundCheckFisik
+    Dim dt As DataTable
+    Public id_cek_fisik As String = "-1"
     Private Sub TEOutboundNumber_KeyDown(sender As Object, e As KeyEventArgs) Handles TEOutboundNumber.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) AS qty,dis.sub_district,IFNULL(c.comp_number,cg.comp_group) AS comp_number,IFNULL(c.comp_name,cg.description) AS comp_name,awb.ol_number
@@ -30,8 +32,14 @@ INNER JOIN tb_m_product p ON p.`id_product`=deld.`id_product`
 INNER JOIN `tb_pl_sales_order_del_det_counting` delc ON delc.`id_pl_sales_order_del_det`=deld.`id_pl_sales_order_del_det`
 GROUP BY full_code"
                 Dim dt_item As DataTable = execute_query(q_item, -1, True, "", "", "", "")
+                dt = dt_item
                 GCItemList.DataSource = dt_item
                 GVItemList.BestFitColumns()
+                '
+                q_item = "SELECT id_product,scanned_code FROM `tb_cek_fisik_del_scan`
+WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
+                dt_item = execute_query(q_item, -1, True, "", "", "", "")
+                GCScanList.DataSource = dt_item
             Else
                 warningCustom("Outbound number not found")
             End If
@@ -42,7 +50,31 @@ GROUP BY full_code"
 
     End Sub
 
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BReset.Click
+    Private Sub BReset_Click(sender As Object, e As EventArgs) Handles BReset.Click
+        TEOutboundNumber.Properties.ReadOnly = False
+        '
+        BReset.Visible = False
+        TEOutboundNumber.Focus()
+    End Sub
 
+    Private Sub TEScannedCode_KeyUp(sender As Object, e As KeyEventArgs) Handles TEScannedCode.KeyUp
+        If e.KeyCode = Keys.Enter Then
+            'check
+            Dim code_check As String = addSlashes(TEScannedCode.Text)
+            Dim code_found As Boolean = False
+            Dim id_product As String = ""
+            'check available code
+            Dim dt_filter As DataRow() = dt.Select("[product_full_code]='" + code_check + "' ")
+            If dt_filter.Length > 0 Then
+                id_product = dt_filter(0)("id_product").ToString()
+                'insert
+
+                'count up
+            Else
+                FormError.LabelContent.Text = "Code not found"
+                TEScannedCode.Text = ""
+                TEScannedCode.Focus()
+            End If
+        End If
     End Sub
 End Class
