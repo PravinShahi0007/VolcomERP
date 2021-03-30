@@ -3560,6 +3560,12 @@
     <Compile Include="FormPricePolicyCodeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPricePolicyCodeSingle.Designer.vb">
+      <DependentUpon>FormPricePolicyCodeSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPricePolicyCodeSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdClosing.Designer.vb">
       <DependentUpon>FormProdClosing.vb</DependentUpon>
     </Compile>
@@ -11172,6 +11178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPricePolicyCodeDet.resx">
       <DependentUpon>FormPricePolicyCodeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPricePolicyCodeSingle.resx">
+      <DependentUpon>FormPricePolicyCodeSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdClosing.resx">
       <DependentUpon>FormProdClosing.vb</DependentUpon>

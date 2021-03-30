@@ -5,14 +5,15 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT p.id_code_detail, cd.display_name AS `code`, cd.code_detail_name AS `description`,
+        Dim query As String = "SELECT cd.id_code_detail, cd.display_name AS `code`, cd.code_detail_name AS `description`,
         CONCAT(CAST(MAX(CASE WHEN p.id_disc_type=1 THEN p.age_min END) AS DECIMAL(5,0)),'-',CAST(MAX(CASE WHEN p.id_disc_type=1 THEN p.age_max END) AS DECIMAL(5,0))) AS `normal_view`,
         CONCAT(CAST(MAX(CASE WHEN p.id_disc_type=2 THEN p.age_min END) AS DECIMAL(5,0)),'-',CAST(MAX(CASE WHEN p.id_disc_type=2 THEN p.age_max END) AS DECIMAL(5,0))) AS `mkd_30_view`,
         CONCAT(CAST(MAX(CASE WHEN p.id_disc_type=3 THEN p.age_min END) AS DECIMAL(5,0)),'-',CAST(MAX(CASE WHEN p.id_disc_type=3 THEN p.age_max END) AS DECIMAL(5,0))) AS `mkd_50_view`,
         CONCAT(CAST(MAX(CASE WHEN p.id_disc_type=4 THEN p.age_min END) AS DECIMAL(5,0)),'-',CAST(MAX(CASE WHEN p.id_disc_type=4 THEN p.age_max END) AS DECIMAL(5,0))) AS `mkd_70_view`
-        FROM tb_m_design_price_policy p
-        INNER JOIN tb_lookup_disc_type dt ON dt.id_disc_type = p.id_disc_type
-        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = p.id_code_detail
+        FROM tb_m_code_detail cd
+        LEFT JOIN tb_m_design_price_policy p ON p.id_code_detail = cd.id_code_detail
+        LEFT JOIN tb_lookup_disc_type dt ON dt.id_disc_type = p.id_disc_type
+        WHERE cd.id_code IN (SELECT id_code_price_policy FROM tb_opt)
         GROUP BY p.id_code_detail
         ORDER BY cd.display_name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

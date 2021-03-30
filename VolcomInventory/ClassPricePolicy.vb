@@ -12,15 +12,9 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT cd.id_code_detail, cd.`code`, cd.code_detail_name AS `description`,
-        pp.normal, pp.mkd_30, pp.mkd_50, pp.mkd_70, pp.mkd_fix,
-        CONCAT(0,'-',CAST(pp.normal AS DECIMAL(10,0))) AS `normal_view`,
-        CONCAT(CAST(pp.normal AS DECIMAL(10,0))+1,'-',CAST(pp.mkd_30 AS DECIMAL(10,0))) AS `mkd_30_view`,
-        CONCAT(CAST(pp.mkd_30 AS DECIMAL(10,0))+1,'-',CAST(pp.mkd_50 AS DECIMAL(10,0))) AS `mkd_50_view`,
-        CONCAT(CAST(pp.mkd_50 AS DECIMAL(10,0))+1,'-',CAST(pp.mkd_70 AS DECIMAL(10,0))) AS `mkd_70_view`,
-        CONCAT(CAST(pp.mkd_70 AS DECIMAL(10,0))+1,'-',CAST(pp.mkd_fix AS DECIMAL(10,0))) AS `mkd_fix_view`
+        Dim query As String = "SELECT cd.id_code_detail, cd.`code`, cd.code_detail_name AS `description`
         FROM tb_m_code_detail cd
-        INNER JOIN tb_m_design_price_policy pp ON pp.id_code_detail = cd.id_code_detail
+        LEFT JOIN tb_m_design_price_policy pp ON pp.id_code_detail = cd.id_code_detail
         WHERE cd.id_code IN (SELECT id_code_price_policy FROM tb_opt) "
         query += condition + " "
         query += "ORDER BY cd.code " + order_type
