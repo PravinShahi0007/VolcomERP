@@ -512,7 +512,18 @@
         "
 
         viewSearchLookupQuery(SLUESeason, query, "id_season", "season", "id_season")
-        viewSearchLookupQuery(SLUESeasonLL, query, "id_season", "season", "id_season")
+
+        Dim query_s As String = "
+            (SELECT 'ALL' AS id_season, 'ALL' AS `range`, 'ALL' AS season)
+            UNION ALL
+            (SELECT a.id_season, b.range, a.season
+            FROM tb_season AS a 
+            INNER JOIN tb_range b ON a.id_range = b.id_range 
+            WHERE b.id_range > 0 AND b.is_md = 1 
+            ORDER BY b.range DESC)
+        "
+
+        viewSearchLookupQuery(SLUESeasonLL, query_s, "id_season", "season", "id_season")
     End Sub
 
     Private Sub SLUESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLUESeason.EditValueChanged
