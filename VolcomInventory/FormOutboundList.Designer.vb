@@ -37,6 +37,8 @@ Partial Class FormOutboundList
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCheckFisik = New DevExpress.XtraEditors.SimpleButton()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BOutboundLabel = New DevExpress.XtraEditors.SimpleButton()
@@ -60,12 +62,12 @@ Partial Class FormOutboundList
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefreshHistory = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.DETo = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.BRefreshHistory = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOutbound.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -100,6 +102,7 @@ Partial Class FormOutboundList
         'XTPPending
         '
         Me.XTPPending.Controls.Add(Me.GCOutbound)
+        Me.XTPPending.Controls.Add(Me.BCheckFisik)
         Me.XTPPending.Controls.Add(Me.BRefresh)
         Me.XTPPending.Controls.Add(Me.PanelControl1)
         Me.XTPPending.Name = "XTPPending"
@@ -113,7 +116,7 @@ Partial Class FormOutboundList
         Me.GCOutbound.Location = New System.Drawing.Point(0, 46)
         Me.GCOutbound.MainView = Me.GVOutbound
         Me.GCOutbound.Name = "GCOutbound"
-        Me.GCOutbound.Size = New System.Drawing.Size(910, 415)
+        Me.GCOutbound.Size = New System.Drawing.Size(910, 382)
         Me.GCOutbound.TabIndex = 1
         Me.GCOutbound.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOutbound})
         '
@@ -143,7 +146,7 @@ Partial Class FormOutboundList
         '
         'GVOutbound
         '
-        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn20, Me.GridColumn2, Me.GridColumn4, Me.GridColumn6, Me.GridColumn18, Me.GridColumn5, Me.GridColumn3})
+        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn20, Me.GridColumn2, Me.GridColumn4, Me.GridColumn6, Me.GridColumn18, Me.GridColumn5, Me.GridColumn3, Me.GridColumn23})
         Me.GVOutbound.GridControl = Me.GCOutbound
         Me.GVOutbound.Name = "GVOutbound"
         Me.GVOutbound.OptionsBehavior.Editable = False
@@ -211,12 +214,42 @@ Partial Class FormOutboundList
         '
         'GridColumn3
         '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn3.Caption = "Qty"
         Me.GridColumn3.FieldName = "qty"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 7
         Me.GridColumn3.Width = 132
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn23.Caption = "Satus Cek Fisik"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 8
+        '
+        'BCheckFisik
+        '
+        Me.BCheckFisik.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BCheckFisik.Appearance.BackColor2 = System.Drawing.Color.Blue
+        Me.BCheckFisik.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCheckFisik.Appearance.Options.UseBackColor = True
+        Me.BCheckFisik.Appearance.Options.UseForeColor = True
+        Me.BCheckFisik.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BCheckFisik.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCheckFisik.Location = New System.Drawing.Point(0, 428)
+        Me.BCheckFisik.Name = "BCheckFisik"
+        Me.BCheckFisik.Size = New System.Drawing.Size(910, 33)
+        Me.BCheckFisik.TabIndex = 3
+        Me.BCheckFisik.Text = "Proses Cek Fisik"
         '
         'BRefresh
         '
@@ -425,6 +458,26 @@ Partial Class FormOutboundList
         Me.PanelControl2.Size = New System.Drawing.Size(910, 46)
         Me.PanelControl2.TabIndex = 1
         '
+        'BRefreshHistory
+        '
+        Me.BRefreshHistory.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefreshHistory.Image = CType(resources.GetObject("BRefreshHistory.Image"), System.Drawing.Image)
+        Me.BRefreshHistory.Location = New System.Drawing.Point(684, 2)
+        Me.BRefreshHistory.Name = "BRefreshHistory"
+        Me.BRefreshHistory.Size = New System.Drawing.Size(112, 42)
+        Me.BRefreshHistory.TabIndex = 3
+        Me.BRefreshHistory.Text = "Refresh"
+        '
+        'BPrint
+        '
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
+        Me.BPrint.Location = New System.Drawing.Point(796, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(112, 42)
+        Me.BPrint.TabIndex = 8930
+        Me.BPrint.Text = "Print"
+        '
         'DETo
         '
         Me.DETo.EditValue = Nothing
@@ -464,26 +517,6 @@ Partial Class FormOutboundList
         Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEFrom.Size = New System.Drawing.Size(158, 20)
         Me.DEFrom.TabIndex = 8926
-        '
-        'BRefreshHistory
-        '
-        Me.BRefreshHistory.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRefreshHistory.Image = CType(resources.GetObject("BRefreshHistory.Image"), System.Drawing.Image)
-        Me.BRefreshHistory.Location = New System.Drawing.Point(684, 2)
-        Me.BRefreshHistory.Name = "BRefreshHistory"
-        Me.BRefreshHistory.Size = New System.Drawing.Size(112, 42)
-        Me.BRefreshHistory.TabIndex = 3
-        Me.BRefreshHistory.Text = "Refresh"
-        '
-        'BPrint
-        '
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
-        Me.BPrint.Location = New System.Drawing.Point(796, 2)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(112, 42)
-        Me.BPrint.TabIndex = 8930
-        Me.BPrint.Text = "Print"
         '
         'FormOutboundList
         '
@@ -566,4 +599,6 @@ Partial Class FormOutboundList
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCheckFisik As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -3332,6 +3332,12 @@
     <Compile Include="FormOptViewSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOutboundCheckFisik.Designer.vb">
+      <DependentUpon>FormOutboundCheckFisik.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOutboundCheckFisik.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOutboundLabel.Designer.vb">
       <DependentUpon>FormOutboundLabel.vb</DependentUpon>
     </Compile>
@@ -11057,6 +11063,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOptViewSingle.resx">
       <DependentUpon>FormOptViewSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOutboundCheckFisik.resx">
+      <DependentUpon>FormOutboundCheckFisik.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutboundLabel.resx">
       <DependentUpon>FormOutboundLabel.vb</DependentUpon>
