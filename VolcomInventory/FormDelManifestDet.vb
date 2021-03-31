@@ -427,10 +427,10 @@ INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill`
 INNER JOIN `tb_del_manifest_det` dmd ON dmd.`id_wh_awb_det`=awbd.`id_wh_awb_det`
 INNER JOIN tb_del_manifest dm ON dm.id_del_manifest=dmd.`id_del_manifest`
 SET awb.`awbill_no`=dm.`awbill_no`,awb.id_del_type=dm.id_del_type,awb.weight_calc=ROUND((awb.length*awb.width*awb.height)/" & div_by & ",2)
+,awb.c_weight=IF(ROUND((awb.length*awb.width*awb.height)/" & div_by & ",2)>awb.weight,ROUND((awb.length*awb.width*awb.height)/" & div_by & ",2),awb.weight)
 WHERE dmd.`id_del_manifest`='" & id_del_manifest & "'"
                     execute_non_query(query, True, "", "", "", "")
                     '
-
                     execute_non_query("CALL gen_number(" + id_del_manifest + ", '232')", True, "", "", "", "")
 
                     If type = "save" Then
@@ -738,7 +738,7 @@ WHERE dmd.`id_del_manifest`='" & id_del_manifest & "'"
         Dim q As String = "SELECT 0 AS `no`,awb.id_sub_district,awb.ol_number,awbd.id_wh_awb_det,c.id_comp_group,awb.`awbill_date`,awb.`id_awbill`,IFNULL(pdelc.combine_number, awbd.do_no) AS combine_number,awbd.`do_no`,pl.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`
 ,CONCAT((ROUND(IF(pdelc.combine_number IS NULL, awbd.qty, z.qty), 0)), ' ') AS qty,so.`shipping_city` AS city,awb.weight, awb.width, awb.length, awb.height,awb.`weight_calc` AS volume
 FROM tb_wh_awbill_det awbd
-INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_del_type=" & SLEDelType.EditValue.ToString & "
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 
 INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
 LEFT JOIN tb_pl_sales_order_del_combine AS pdelc ON pl.id_combine = pdelc.id_combine
 LEFT JOIN (
@@ -899,7 +899,7 @@ FROM
 	FROM (
         SELECT awb.id_awbill,awb.weight AS weight, awb.width, awb.length, awb.height
         ,ROUND((awb.width* awb.length*awb.height)/" & div_by & ",2) AS volume
-        --,awb.`weight_calc` AS volume
+        -- ,awb.`weight_calc` AS volume
         FROM tb_wh_awbill_det awbd
         INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_awbill IN (" & id_awb & ")
         INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
@@ -1070,6 +1070,7 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
     Private Sub TEOrderNumber_KeyUp(sender As Object, e As KeyEventArgs) Handles TEOrderNumber.KeyUp
         If e.KeyCode = Keys.Enter Then
             gen_online()
+            TEAwb.Focus()
         End If
     End Sub
 

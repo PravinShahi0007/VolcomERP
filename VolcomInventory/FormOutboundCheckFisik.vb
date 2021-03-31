@@ -1,5 +1,5 @@
 ﻿Public Class FormOutboundCheckFisik
-    Dim dt As DataTable
+    Dim dtu As DataTable
     Public id_cek_fisik As String = "-1"
     Private Sub TEOutboundNumber_KeyDown(sender As Object, e As KeyEventArgs) Handles TEOutboundNumber.KeyDown
         If e.KeyCode = Keys.Enter Then
@@ -21,6 +21,7 @@ GROUP BY awb.id_awbill"
             If dt.Rows.Count > 0 Then
                 BReset.Visible = True
                 TEOutboundNumber.Properties.ReadOnly = True
+                TEScannedCode.Focus()
                 '
                 Dim q_item As String = "SELECT p.`id_product`,CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting) AS full_code,COUNT(CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting)) AS qty
 ,0 AS qty_scan
@@ -32,7 +33,7 @@ INNER JOIN tb_m_product p ON p.`id_product`=deld.`id_product`
 INNER JOIN `tb_pl_sales_order_del_det_counting` delc ON delc.`id_pl_sales_order_del_det`=deld.`id_pl_sales_order_del_det`
 GROUP BY full_code"
                 Dim dt_item As DataTable = execute_query(q_item, -1, True, "", "", "", "")
-                dt = dt_item
+                dtu = dt_item
                 GCItemList.DataSource = dt_item
                 GVItemList.BestFitColumns()
                 '
@@ -64,17 +65,38 @@ WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
             Dim code_found As Boolean = False
             Dim id_product As String = ""
             'check available code
-            Dim dt_filter As DataRow() = dt.Select("[product_full_code]='" + code_check + "' ")
+            Dim dt_filter As DataRow() = dtu.Select("[full_code]='" + code_check + "' ")
             If dt_filter.Length > 0 Then
                 id_product = dt_filter(0)("id_product").ToString()
                 'insert
-
+                newrow(id_product, code_check)
                 'count up
+                countQty(code_check)
             Else
                 FormError.LabelContent.Text = "Code not found"
+                FormError.ShowDialog()
                 TEScannedCode.Text = ""
                 TEScannedCode.Focus()
             End If
         End If
+    End Sub
+
+    Sub countQty(ByVal code_check As String)
+        Dim jml As Integer = 0
+        GVScanList.ActiveFilterString = "[scanned_code]='" & code_check & "'"
+        jml = GVScanList.RowCount
+        GVScanList.ActiveFilterString = ""
+
+        GVItemList.ActiveFilterString = "[full_code]='" & code_check & "'"
+        GVItemList.SetFocusedRowCellValue("qty_scan", jml)
+        GVItemList.ActiveFilterString = ""
+    End Sub
+
+    Sub newrow(ByVal id_product As String, ByVal scanned_code As String)
+        Dim newRow As DataRow = (TryCast(GCScanList.DataSource, DataTable)).NewRow()
+        newRow("id_product") = id_product
+        newRow("scanned_code") = scanned_code
+        TryCast(GCScanList.DataSource, DataTable).Rows.Add(newRow)
+        GVScanList.RefreshData()
     End Sub
 End Class
