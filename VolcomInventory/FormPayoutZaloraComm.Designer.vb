@@ -40,9 +40,6 @@ Partial Class FormPayoutZaloraComm
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_zalora_comm_addition = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -54,6 +51,9 @@ Partial Class FormPayoutZaloraComm
         Me.GridColumnacc_description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnvalue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -69,10 +69,10 @@ Partial Class FormPayoutZaloraComm
         Me.PanelControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -254,41 +254,11 @@ Partial Class FormPayoutZaloraComm
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl1.Controls.Add(Me.GCData)
         Me.GroupControl1.Controls.Add(Me.PanelControl4)
-        Me.GroupControl1.Location = New System.Drawing.Point(12, 127)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 127)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(485, 222)
+        Me.GroupControl1.Size = New System.Drawing.Size(511, 222)
         Me.GroupControl1.TabIndex = 22
         Me.GroupControl1.Text = "Additional Setup"
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.Controls.Add(Me.BtnDelete)
-        Me.PanelControl4.Controls.Add(Me.BtnAdd)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl4.Location = New System.Drawing.Point(20, 2)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(463, 38)
-        Me.PanelControl4.TabIndex = 0
-        '
-        'BtnDelete
-        '
-        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(311, 2)
-        Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(75, 34)
-        Me.BtnDelete.TabIndex = 23
-        Me.BtnDelete.Text = "Delete"
-        '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(386, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(75, 34)
-        Me.BtnAdd.TabIndex = 22
-        Me.BtnAdd.Text = "Add"
         '
         'GCData
         '
@@ -296,7 +266,7 @@ Partial Class FormPayoutZaloraComm
         Me.GCData.Location = New System.Drawing.Point(20, 40)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(463, 180)
+        Me.GCData.Size = New System.Drawing.Size(489, 180)
         Me.GCData.TabIndex = 20
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -304,7 +274,6 @@ Partial Class FormPayoutZaloraComm
         '
         Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_zalora_comm_addition, Me.GridColumnid_payout_zalora, Me.GridColumnid_zalora_comm_type, Me.GridColumnzalora_comm_type, Me.GridColumnid_acc, Me.GridColumnacc_name, Me.GridColumnacc_description, Me.GridColumnvalue, Me.GridColumnnote})
         Me.GVData.GridControl = Me.GCData
-        Me.GVData.GroupCount = 1
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", Me.GridColumnvalue, "{0:N2}")})
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -312,7 +281,6 @@ Partial Class FormPayoutZaloraComm
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnzalora_comm_type, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnid_zalora_comm_addition
         '
@@ -381,6 +349,36 @@ Partial Class FormPayoutZaloraComm
         Me.GridColumnnote.Visible = True
         Me.GridColumnnote.VisibleIndex = 3
         '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.BtnDelete)
+        Me.PanelControl4.Controls.Add(Me.BtnAdd)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(489, 38)
+        Me.PanelControl4.TabIndex = 0
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
+        Me.BtnDelete.Location = New System.Drawing.Point(337, 2)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(75, 34)
+        Me.BtnDelete.TabIndex = 23
+        Me.BtnDelete.Text = "Delete"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(412, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(75, 34)
+        Me.BtnAdd.TabIndex = 22
+        Me.BtnAdd.Text = "Add"
+        '
         'FormPayoutZaloraComm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -421,10 +419,10 @@ Partial Class FormPayoutZaloraComm
         Me.PanelControl3.PerformLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

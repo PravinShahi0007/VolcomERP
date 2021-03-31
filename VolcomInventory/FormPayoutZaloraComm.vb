@@ -67,7 +67,12 @@
 
     Sub getTotal()
         Cursor = Cursors.WaitCursor
-        TxtTotalCommInput.EditValue = TxtCommReff.EditValue + TxtOtherExpense.EditValue + TxtComm.EditValue + TxtCommTax.EditValue
+        Dim add_amount As Decimal = 0.00
+        Try
+            add_amount = GVData.Columns("value").SummaryItem.SummaryValue
+        Catch ex As Exception
+        End Try
+        TxtTotalCommInput.EditValue = TxtCommReff.EditValue + TxtOtherExpense.EditValue + add_amount + TxtComm.EditValue + TxtCommTax.EditValue
         Cursor = Cursors.Default
     End Sub
 
@@ -109,12 +114,15 @@
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim id_zalora_comm_addition As String = GVData.GetFocusedRowCellValue("id_zalora_comm_addition").ToString
-            Dim query As String = "DELETE FROM tb_payout_zalora_comm_addition WHERE id_zalora_comm_addition='" + id_zalora_comm_addition + "' "
-            execute_non_query(query, True, "", "", "", "")
-            viewAddition()
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id_zalora_comm_addition As String = GVData.GetFocusedRowCellValue("id_zalora_comm_addition").ToString
+                Dim query As String = "DELETE FROM tb_payout_zalora_comm_addition WHERE id_zalora_comm_addition='" + id_zalora_comm_addition + "' "
+                execute_non_query(query, True, "", "", "", "")
+                viewAddition()
+                getTotal()
+            End If
         End If
     End Sub
 

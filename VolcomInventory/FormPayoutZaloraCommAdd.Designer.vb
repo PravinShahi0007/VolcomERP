@@ -26,23 +26,23 @@ Partial Class FormPayoutZaloraCommAdd
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECOA = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnacc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LEType = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.TxtAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TxtAmount
@@ -98,14 +98,6 @@ Partial Class FormPayoutZaloraCommAdd
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(20, 139)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(22, 13)
-        Me.LabelControl2.TabIndex = 45
-        Me.LabelControl2.Text = "COA"
-        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Id"
@@ -132,6 +124,14 @@ Partial Class FormPayoutZaloraCommAdd
         Me.GridColumnacc.Name = "GridColumnacc"
         Me.GridColumnacc.Visible = True
         Me.GridColumnacc.VisibleIndex = 0
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(20, 139)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl2.TabIndex = 45
+        Me.LabelControl2.Text = "COA"
         '
         'PanelControl1
         '
@@ -175,20 +175,20 @@ Partial Class FormPayoutZaloraCommAdd
         Me.LabelControl4.TabIndex = 52
         Me.LabelControl4.Text = "Type"
         '
-        'LookUpEdit1
+        'LEType
         '
-        Me.LookUpEdit1.Location = New System.Drawing.Point(20, 113)
-        Me.LookUpEdit1.Name = "LookUpEdit1"
-        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit1.Size = New System.Drawing.Size(299, 20)
-        Me.LookUpEdit1.TabIndex = 53
+        Me.LEType.Location = New System.Drawing.Point(20, 113)
+        Me.LEType.Name = "LEType"
+        Me.LEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEType.Size = New System.Drawing.Size(299, 20)
+        Me.LEType.TabIndex = 53
         '
         'FormPayoutZaloraCommAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(343, 295)
-        Me.Controls.Add(Me.LookUpEdit1)
+        Me.Controls.Add(Me.LEType)
         Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.TxtAmount)
@@ -209,7 +209,7 @@ Partial Class FormPayoutZaloraCommAdd
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -229,5 +229,5 @@ Partial Class FormPayoutZaloraCommAdd
     Friend WithEvents BtnDiscard As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LEType As DevExpress.XtraEditors.LookUpEdit
 End Class
