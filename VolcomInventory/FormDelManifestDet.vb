@@ -853,7 +853,7 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb
     '
     Sub load_cargo_rate()
         Dim berat_terpakai As Decimal = 0.00
-        Dimgen berat_dim As Decimal = 0.00
+        Dim berat_dim As Decimal = 0.00
         Dim berat_aktual As Decimal = 0.00
         '
         Dim order As String = ""
