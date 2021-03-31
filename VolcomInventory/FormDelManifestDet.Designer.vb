@@ -129,6 +129,7 @@ Partial Class FormDelManifestDet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PCOffline = New DevExpress.XtraEditors.PanelControl()
+        Me.TEComp = New DevExpress.XtraEditors.TextEdit()
         Me.SLEComp = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -176,6 +177,7 @@ Partial Class FormDelManifestDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCOffline, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCOffline.SuspendLayout()
+        CType(Me.TEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -323,7 +325,7 @@ Partial Class FormDelManifestDet
         Me.TERemarkDiff.Location = New System.Drawing.Point(850, 48)
         Me.TERemarkDiff.Name = "TERemarkDiff"
         Me.TERemarkDiff.Size = New System.Drawing.Size(146, 20)
-        Me.TERemarkDiff.TabIndex = 97
+        Me.TERemarkDiff.TabIndex = 19
         '
         'LRemarkDiff
         '
@@ -354,6 +356,7 @@ Partial Class FormDelManifestDet
         Me.SLESubDistrict.Properties.Appearance.Options.UseFont = True
         Me.SLESubDistrict.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESubDistrict.Properties.NullText = "-"
+        Me.SLESubDistrict.Properties.ReadOnly = True
         Me.SLESubDistrict.Properties.View = Me.GridView5
         Me.SLESubDistrict.Size = New System.Drawing.Size(157, 20)
         Me.SLESubDistrict.TabIndex = 94
@@ -435,7 +438,7 @@ Partial Class FormDelManifestDet
         Me.TEAwb.Location = New System.Drawing.Point(638, 165)
         Me.TEAwb.Name = "TEAwb"
         Me.TEAwb.Size = New System.Drawing.Size(267, 20)
-        Me.TEAwb.TabIndex = 26
+        Me.TEAwb.TabIndex = 20
         '
         'Label11
         '
@@ -514,6 +517,7 @@ Partial Class FormDelManifestDet
         Me.GCCargoRate.Name = "GCCargoRate"
         Me.GCCargoRate.Size = New System.Drawing.Size(517, 201)
         Me.GCCargoRate.TabIndex = 1
+        Me.GCCargoRate.TabStop = False
         Me.GCCargoRate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCargoRate})
         '
         'GVCargoRate
@@ -706,6 +710,7 @@ Partial Class FormDelManifestDet
         Me.GCList.Name = "GCList"
         Me.GCList.Size = New System.Drawing.Size(1008, 267)
         Me.GCList.TabIndex = 6
+        Me.GCList.TabStop = False
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
         'ContextMenuStrip1
@@ -769,7 +774,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnCreatedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnCreatedDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 11
+        Me.GridColumnCreatedDate.VisibleIndex = 10
         '
         'GridColumnCollie
         '
@@ -869,7 +874,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnWeight.OptionsColumn.AllowEdit = False
         Me.GridColumnWeight.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnWeight.Visible = True
-        Me.GridColumnWeight.VisibleIndex = 7
+        Me.GridColumnWeight.VisibleIndex = 6
         '
         'GridColumnP
         '
@@ -881,7 +886,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnP.OptionsColumn.AllowEdit = False
         Me.GridColumnP.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnP.Visible = True
-        Me.GridColumnP.VisibleIndex = 8
+        Me.GridColumnP.VisibleIndex = 7
         '
         'GridColumnL
         '
@@ -893,7 +898,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnL.OptionsColumn.AllowEdit = False
         Me.GridColumnL.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnL.Visible = True
-        Me.GridColumnL.VisibleIndex = 9
+        Me.GridColumnL.VisibleIndex = 8
         '
         'GridColumnT
         '
@@ -905,7 +910,7 @@ Partial Class FormDelManifestDet
         Me.GridColumnT.OptionsColumn.AllowEdit = False
         Me.GridColumnT.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnT.Visible = True
-        Me.GridColumnT.VisibleIndex = 10
+        Me.GridColumnT.VisibleIndex = 9
         '
         'GridColumnDim
         '
@@ -1149,6 +1154,7 @@ Partial Class FormDelManifestDet
         Me.BGenOnline.Size = New System.Drawing.Size(60, 23)
         Me.BGenOnline.TabIndex = 21
         Me.BGenOnline.Text = "generate"
+        Me.BGenOnline.Visible = False
         '
         'TEOrderNumber
         '
@@ -1206,6 +1212,7 @@ Partial Class FormDelManifestDet
         '
         'PCOffline
         '
+        Me.PCOffline.Controls.Add(Me.TEComp)
         Me.PCOffline.Controls.Add(Me.SLEComp)
         Me.PCOffline.Controls.Add(Me.BGenOffline)
         Me.PCOffline.Controls.Add(Me.LabelControl2)
@@ -1216,11 +1223,19 @@ Partial Class FormDelManifestDet
         Me.PCOffline.TabIndex = 12
         Me.PCOffline.Visible = False
         '
+        'TEComp
+        '
+        Me.TEComp.Location = New System.Drawing.Point(63, 11)
+        Me.TEComp.Name = "TEComp"
+        Me.TEComp.Size = New System.Drawing.Size(76, 20)
+        Me.TEComp.TabIndex = 1
+        '
         'SLEComp
         '
-        Me.SLEComp.Location = New System.Drawing.Point(59, 11)
+        Me.SLEComp.Location = New System.Drawing.Point(145, 11)
         Me.SLEComp.Name = "SLEComp"
         Me.SLEComp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEComp.Properties.ReadOnly = True
         Me.SLEComp.Properties.View = Me.GridView3
         Me.SLEComp.Size = New System.Drawing.Size(227, 20)
         Me.SLEComp.TabIndex = 23
@@ -1259,11 +1274,12 @@ Partial Class FormDelManifestDet
         '
         'BGenOffline
         '
-        Me.BGenOffline.Location = New System.Drawing.Point(292, 9)
+        Me.BGenOffline.Location = New System.Drawing.Point(378, 9)
         Me.BGenOffline.Name = "BGenOffline"
         Me.BGenOffline.Size = New System.Drawing.Size(60, 23)
         Me.BGenOffline.TabIndex = 22
         Me.BGenOffline.Text = "generate"
+        Me.BGenOffline.Visible = False
         '
         'LabelControl2
         '
@@ -1333,6 +1349,7 @@ Partial Class FormDelManifestDet
         CType(Me.PCOffline, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCOffline.ResumeLayout(False)
         Me.PCOffline.PerformLayout()
+        CType(Me.TEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -1454,4 +1471,5 @@ Partial Class FormDelManifestDet
     Friend WithEvents LRemarkDiff As Label
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents BBRemove As ToolStripMenuItem
+    Friend WithEvents TEComp As DevExpress.XtraEditors.TextEdit
 End Class
