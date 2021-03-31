@@ -112,8 +112,6 @@ Partial Class FormPricePolicyCode
         Me.GridColumnmkd_fix_view.Caption = "Disc. Fixed Price"
         Me.GridColumnmkd_fix_view.FieldName = "mkd_fix_view"
         Me.GridColumnmkd_fix_view.Name = "GridColumnmkd_fix_view"
-        Me.GridColumnmkd_fix_view.Visible = True
-        Me.GridColumnmkd_fix_view.VisibleIndex = 6
         '
         'FormPricePolicyCode
         '

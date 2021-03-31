@@ -8594,6 +8594,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormPricePolicyCode" Then
             print(FormPricePolicyCode.GCData, "Price Policy Code")
+        ElseIf formName = "FormDeliveryMonitoring" Then
+            FormDeliveryMonitoring.print_outbound()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9564,6 +9566,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPricePolicyCode" Then
             FormPricePolicyCode.Close()
             FormPricePolicyCode.Dispose()
+        ElseIf formName = "FormDeliveryMonitoring" Then
+            FormDeliveryMonitoring.Close()
+            FormDeliveryMonitoring.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10570,6 +10575,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormPricePolicyCode" Then
             FormPricePolicyCode.viewData()
+        ElseIf formName = "FormDeliveryMonitoring" Then
+            FormDeliveryMonitoring.view_outbound()
         End If
     End Sub
     'Switch
@@ -15972,6 +15979,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPricePolicyCode.Show()
             FormPricePolicyCode.WindowState = FormWindowState.Maximized
             FormPricePolicyCode.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDeliveryMonitoring_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDeliveryMonitoring.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDeliveryMonitoring.MdiParent = Me
+            FormDeliveryMonitoring.Show()
+            FormDeliveryMonitoring.WindowState = FormWindowState.Maximized
+            FormDeliveryMonitoring.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
