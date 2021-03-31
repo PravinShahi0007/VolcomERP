@@ -899,7 +899,7 @@ FROM
 	FROM (
         SELECT awb.id_awbill,awb.weight AS weight, awb.width, awb.length, awb.height
         ,ROUND((awb.width* awb.length*awb.height)/" & div_by & ",2) AS volume
-        --,awb.`weight_calc` AS volume
+        -- ,awb.`weight_calc` AS volume
         FROM tb_wh_awbill_det awbd
         INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 AND awb.id_awbill IN (" & id_awb & ")
         INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
