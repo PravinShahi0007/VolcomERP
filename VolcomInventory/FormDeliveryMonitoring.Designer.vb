@@ -20,6 +20,7 @@ Partial Class FormDeliveryMonitoring
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAWBRec = New DevExpress.XtraEditors.SimpleButton()
         Me.SBViewOutbound = New DevExpress.XtraEditors.SimpleButton()
         Me.DETo = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
@@ -70,6 +71,7 @@ Partial Class FormDeliveryMonitoring
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BAWBRec)
         Me.PanelControl1.Controls.Add(Me.SBViewOutbound)
         Me.PanelControl1.Controls.Add(Me.DETo)
         Me.PanelControl1.Controls.Add(Me.LabelControl19)
@@ -79,6 +81,14 @@ Partial Class FormDeliveryMonitoring
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 44)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BAWBRec
+        '
+        Me.BAWBRec.Location = New System.Drawing.Point(533, 10)
+        Me.BAWBRec.Name = "BAWBRec"
+        Me.BAWBRec.Size = New System.Drawing.Size(107, 23)
+        Me.BAWBRec.TabIndex = 8934
+        Me.BAWBRec.Text = "Import AWB Invoice"
         '
         'SBViewOutbound
         '
@@ -386,7 +396,7 @@ Partial Class FormDeliveryMonitoring
         Me.XTPOutbound.Controls.Add(Me.GCOutbound)
         Me.XTPOutbound.Name = "XTPOutbound"
         Me.XTPOutbound.Size = New System.Drawing.Size(778, 489)
-        Me.XTPOutbound.Text = "Outbount Delivery Monitoring"
+        Me.XTPOutbound.Text = "Outbound Delivery Monitoring"
         '
         'FormDeliveryMonitoring
         '
@@ -451,4 +461,5 @@ Partial Class FormDeliveryMonitoring
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPOutbound As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents BAWBRec As DevExpress.XtraEditors.SimpleButton
 End Class
