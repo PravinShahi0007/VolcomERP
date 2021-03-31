@@ -89,6 +89,11 @@ FROM (
     WHERE d.id_payout_zalora=" + id + " AND a.is_use_ref=1 AND a.rmt_ref IN (48,118,292)
     GROUP BY a.rmt_ref, a.id_ref_det)
     UNION ALL
+    (SELECT a.note AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, a.value AS `amo`, a.id_acc, 'Manual' AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp, cf.comp_number, 3 AS `indeks` 
+    FROM tb_payout_zalora_comm_addition a
+    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+    WHERE a.id_payout_zalora=" + id + " AND a.id_zalora_comm_type=1)
+    UNION ALL
     (SELECT d.manual_recon_reason AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, d.erp_amount AS `amo`, d.id_acc, 'Manual' AS `recon_type`, d.manual_recon_reason AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 3 AS `indeks`
     FROM tb_payout_zalora_det d 
     INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
@@ -101,6 +106,11 @@ FROM (
     INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
     INNER JOIN tb_m_comp cf ON cf.id_comp=1
     WHERE d.id_payout_zalora='" + id + "' AND (t.id_payout_zalora_cat=3 OR t.id_payout_zalora_cat=5) AND a.id_acc<>'" + id_acc_default_comm + "' AND a.is_use_ref=2)
+    UNION ALL
+    (SELECT a.note AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, a.value AS `amo`, a.id_acc, 'Manual' AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp, cf.comp_number, 3 AS `indeks` 
+    FROM tb_payout_zalora_comm_addition a
+    INNER JOIN tb_m_comp cf ON cf.id_comp=1
+    WHERE a.id_payout_zalora=" + id + " AND a.id_zalora_comm_type=2)
     UNION ALL
 	(SELECT 'Komisi penjualan Zalora' AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, m.comm AS `amo`, d.id_acc, d.recon_type AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 3 AS `indeks`
 	FROM tb_payout_zalora m
