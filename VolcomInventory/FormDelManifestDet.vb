@@ -853,7 +853,7 @@ WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb
     '
     Sub load_cargo_rate()
         Dim berat_terpakai As Decimal = 0.00
-        Dim berat_dim As Decimal = 0.00
+        Dimgen berat_dim As Decimal = 0.00
         Dim berat_aktual As Decimal = 0.00
         '
         Dim order As String = ""
@@ -1070,6 +1070,7 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
     Private Sub TEOrderNumber_KeyUp(sender As Object, e As KeyEventArgs) Handles TEOrderNumber.KeyUp
         If e.KeyCode = Keys.Enter Then
             gen_online()
+            TEAwb.Focus()
         End If
     End Sub
 
