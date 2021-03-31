@@ -475,9 +475,7 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
     End Sub
 
     Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
-        If Not id_user = get_opt_prod_field("id_user_ast_mngr_prod") Then
-            stopCustom("You have no right to do this.")
-        Else
+        If id_user = get_opt_prod_field("id_user_ast_mngr_prod") Or id_role_login = get_opt_prod_field("id_role_prod_manager") Then
             If BLock.Text = "Lock" Then
                 If GVCOPComponent.RowCount <= 0 Then
                     warningCustom("Please input COP component.")
@@ -566,6 +564,8 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & id_design & "'"
                     load_form()
                 End If
             End If
+        Else
+            stopCustom("You have no right to do this.")
         End If
     End Sub
 End Class
