@@ -5899,6 +5899,10 @@ INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`='" & id_report & "' AND nu
             q = "SELECT 'Need PR Fixed Asset to Verify by IC' AS title,'FormPurcReqList' AS form_name,CONCAT('Need PR Fixed Asset (',fcs.`purc_req_number`,') to Verify by IC ') AS description, nu.id_user , fcs.`purc_req_number` AS report_number
 FROM tb_notif_user nu
 INNER JOIN tb_purc_req fcs ON fcs.`id_purc_req`='" & id_report & "' AND nu.`report_mark_type`='201'"
+        ElseIf rmt = "304" Then 'Scan Fisik
+            q = "SELECT 'Scan cek fisik delivery' AS title,'FormOutboundList' AS form_name,'Scan cek fisik delviery tidak balance' AS description, nu.id_user , awb.`ol_number` AS report_number
+FROM tb_notif_user nu
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`='" & id_report & "' AND nu.`report_mark_type`='304'"
         End If
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -7181,6 +7185,16 @@ INNER JOIN tb_purc_req fcs ON fcs.`id_purc_req`='" & id_report & "' AND nu.`repo
                 FormPurcReqList.Show()
                 FormPurcReqList.WindowState = FormWindowState.Maximized
                 FormPurcReqList.Focus()
+            Catch ex As Exception
+                errorProcess()
+            End Try
+        ElseIf form_par = "FormOutboundList" Then
+            'Cek Fisik Outbound
+            Try
+                FormOutboundList.MdiParent = FormMain
+                FormOutboundList.Show()
+                FormOutboundList.WindowState = FormWindowState.Maximized
+                FormOutboundList.Focus()
             Catch ex As Exception
                 errorProcess()
             End Try

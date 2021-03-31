@@ -29,6 +29,7 @@
     Sub load_list(ByVal id As String, ByVal opt As String)
         Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) AS qty,dis.sub_district,IFNULL(c.comp_number,cg.comp_group) AS comp_number,IFNULL(c.comp_name,cg.description) AS comp_name,awb.ol_number
 ,GROUP_CONCAT(DISTINCT pl.`pl_sales_order_del_number`) AS sdo_number,GROUP_CONCAT(DISTINCT cb.`combine_number`) AS combine_number,GROUP_CONCAT(DISTINCT so.sales_order_ol_shop_number) AS online_order_number
+,IF(awb.status_check_fisik=1,'Not Checked',IF(awb.status_check_fisik=2,'Not Balance','Done')) AS sts_cek_fisik,awb.status_check_fisik
 FROM `tb_wh_awbill` awb 
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awb.id_sub_district
 INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
@@ -77,8 +78,22 @@ WHERE awb.is_old_ways!=1 AND awb.id_report_status!=5 AND awb.id_report_status!=6
                 Else
                     FormOutboundListDet.BApprove.Visible = True
                 End If
-                FormOutboundListDet.id_awb = dt.Rows(0)("id_awbill").ToString
-                FormOutboundListDet.ShowDialog()
+                'check cek fisik dulu
+                If get_opt_general_field("is_need_check_fisik") = "1" Then
+                    If dt.Rows(0)("status_check_fisik").ToString = "3" Then
+                        FormOutboundListDet.id_awb = dt.Rows(0)("id_awbill").ToString
+                        FormOutboundListDet.ShowDialog()
+                    ElseIf dt.Rows(0)("status_check_fisik").ToString = "1" Then
+                        FormError.LabelContent.Text = "Check fisik belum dilakukan"
+                        FormError.ShowDialog()
+                    ElseIf dt.Rows(0)("status_check_fisik").ToString = "2" Then
+                        FormError.LabelContent.Text = "Check fisik belum balance"
+                        FormError.ShowDialog()
+                    End If
+                Else
+                    FormOutboundListDet.id_awb = dt.Rows(0)("id_awbill").ToString
+                    FormOutboundListDet.ShowDialog()
+                End If
             End If
         End If
         TEOutboundNumber.Text = ""
