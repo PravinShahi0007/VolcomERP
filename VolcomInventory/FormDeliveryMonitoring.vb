@@ -4,6 +4,7 @@
         DETo.EditValue = Now
 
         view_type()
+        view3pl()
     End Sub
 
     Private Sub FormDeliveryMonitoring_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -51,6 +52,15 @@
             data.Merge(data_old)
         End If
 
+        'filter 3pl
+        If Not SLUE3PL.EditValue.ToString = "0" Then
+            Dim dv As DataView = New DataView(data)
+
+            dv.RowFilter = "cargo = '" + SLUE3PL.Text.ToString + "'"
+
+            data = dv.ToTable
+        End If
+
         'numbering
         For i = 0 To data.Rows.Count - 1
             data.Rows(i)("no") = i + 1
@@ -84,5 +94,17 @@
         "
 
         viewSearchLookupQuery(SLUEType, query, "id_type", "type", "id_type")
+    End Sub
+
+    Sub view3pl()
+        Dim query As String = "
+            SELECT 0 AS id_3pl, 'All' AS 3pl
+            UNION ALL
+            SELECT id_comp AS id_3pl, comp_name AS 3pl
+            FROM tb_m_comp
+            WHERE id_comp_cat = 7
+        "
+
+        viewSearchLookupQuery(SLUE3PL, query, "id_3pl", "3pl", "id_3pl")
     End Sub
 End Class

@@ -146,16 +146,50 @@ WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
             Dim dt_filter As DataRow() = dtu.Select("[full_code]='" + code_check + "' ")
             If dt_filter.Length > 0 Then
                 id_product = dt_filter(0)("id_product").ToString()
-                'insert
-                newrow(id_product, code_check)
-                'count up
-                countQty(code_check)
-                TEScannedCode.Text = ""
+
+                If get_opt_general_field("is_strict_check_fisik").ToString = "1" Then
+                    'cek dulu
+                    Dim is_over As Boolean = False
+                    GVItemList.ActiveFilterString = "[full_code]='" & code_check & "'"
+                    If GVItemList.GetRowCellValue(0, "qty") = GVItemList.GetRowCellValue(0, "qty_scan") Then
+                        is_over = True
+                    End If
+                    GVItemList.ActiveFilterString = ""
+
+                    If is_over Then
+                        FormError.LabelContent.Text = "Over Qty, please ask dept head to unlock"
+                        FormError.ShowDialog()
+
+                        'save
+                        save(False)
+                    Else
+                        'insert
+                        newrow(id_product, code_check)
+                        'count up
+                        countQty(code_check)
+                        TEScannedCode.Text = ""
+                    End If
+                Else
+                    'insert
+                    newrow(id_product, code_check)
+                    'count up
+                    countQty(code_check)
+                    TEScannedCode.Text = ""
+                End If
             Else
-                FormError.LabelContent.Text = "Code not found"
-                FormError.ShowDialog()
-                TEScannedCode.Text = ""
-                TEScannedCode.Focus()
+                If get_opt_general_field("is_strict_check_fisik").ToString = "1" Then
+                    FormError.LabelContent.Text = "Code not found, please ask dept head to unlock"
+                    FormError.ShowDialog()
+                    TEScannedCode.Text = ""
+                    TEScannedCode.Focus()
+                    'save
+                    save(False)
+                Else
+                    FormError.LabelContent.Text = "Code not found."
+                    FormError.ShowDialog()
+                    TEScannedCode.Text = ""
+                    TEScannedCode.Focus()
+                End If
             End If
         End If
     End Sub
@@ -181,6 +215,30 @@ WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
         GVScanList.RefreshData()
     End Sub
 
+    Sub save(ByVal is_popup As Boolean)
+        Dim q As String = ""
+        q = "INSERT INTO tb_cek_fisik_del(id_awbill,created_date,created_by) VALUES('" & id_awbill & "',NOW(),'" & id_user & "'); SELECT LAST_INSERT_ID();"
+        id_cek_fisik = execute_query(q, 0, True, "", "", "", "")
+        'detail
+        If GVScanList.RowCount > 0 Then
+            q = "INSERT INTO tb_cek_fisik_del_scan(`id_cek_fisik_del`,`id_product`,`scanned_code`) VALUES"
+            For i As Integer = 0 To GVScanList.RowCount - 1
+                If Not i = 0 Then
+                    q += ","
+                End If
+
+                q += "('" & id_cek_fisik & "','" & GVScanList.GetRowCellValue(i, "id_product").ToString & "','" & GVScanList.GetRowCellValue(i, "scanned_code").ToString & "')"
+            Next
+            execute_non_query(q, True, "", "", "", "")
+        End If
+
+        'notify head if not balance
+        valid_check(is_popup)
+        FormOutboundList.load_list("", "")
+        '
+        Close()
+    End Sub
+
     Private Sub BComplete_Click(sender As Object, e As EventArgs) Handles BComplete.Click
         Dim confirm As DialogResult
         confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to " & BComplete.Text & " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -191,24 +249,7 @@ WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
                         warningCustom("List scan kosong")
                     Else
                         'new
-                        Dim q As String = ""
-                        q = "INSERT INTO tb_cek_fisik_del(id_awbill,created_date,created_by) VALUES('" & id_awbill & "',NOW(),'" & id_user & "'); SELECT LAST_INSERT_ID();"
-                        id_cek_fisik = execute_query(q, 0, True, "", "", "", "")
-                        'detail
-                        q = "INSERT INTO tb_cek_fisik_del_scan(`id_cek_fisik_del`,`id_product`,`scanned_code`) VALUES"
-                        For i As Integer = 0 To GVScanList.RowCount - 1
-                            If Not i = 0 Then
-                                q += ","
-                            End If
-
-                            q += "('" & id_cek_fisik & "','" & GVScanList.GetRowCellValue(i, "id_product").ToString & "','" & GVScanList.GetRowCellValue(i, "scanned_code").ToString & "')"
-                        Next
-                        execute_non_query(q, True, "", "", "", "")
-                        'notify head if not balance
-                        valid_check()
-                        FormOutboundList.load_list("", "")
-                        '
-                        Close()
+                        save(True)
                     End If
                 End If
             Else
@@ -260,7 +301,7 @@ WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
         Next
     End Sub
 
-    Sub valid_check()
+    Sub valid_check(ByVal is_popup As Boolean)
         Dim q As String = "
 SELECT * FROM (
 SELECT p.`id_product`,CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting) AS full_code,COUNT(CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting)) AS qty
@@ -286,7 +327,9 @@ GROUP BY full_code
             q = "UPDATE tb_wh_awbill SET status_check_fisik=2 WHERE id_awbill='" & id_awbill & "'"
             execute_non_query(q, True, "", "", "", "")
             pushNotifFromDb(id_awbill, "304")
-            warningCustom("Scan fisik tidak balance")
+            If is_popup Then
+                warningCustom("Scan fisik tidak balance")
+            End If
         Else
             q = "UPDATE tb_wh_awbill SET status_check_fisik=3 WHERE id_awbill='" & id_awbill & "'"
             execute_non_query(q, True, "", "", "", "")
