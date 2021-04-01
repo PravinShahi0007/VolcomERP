@@ -17,7 +17,7 @@
 FROM tb_prod_order_rec_det recd 
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=recd.`id_prod_order_det`
-INNER JOIN tb_prod_order po ON po.`id_prod_order`=pod.`id_prod_order`
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=pod.`id_prod_order` AND YEAR(po.prod_order_date)=YEAR('" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy-MM-dd") & "')
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 WHERE po.`id_report_status`='6'
@@ -452,6 +452,9 @@ HAVING qty_rec_remaining > 0"
     Private Sub FormInvoiceFGPONew_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CEPreRec.Checked = True
         CEPreRec.Enabled = False
+        '
+        DEYearBudget.EditValue = Now
+        '
         view_det()
 
         view_type()
@@ -710,5 +713,13 @@ WHERE pn.`type`=1 AND pnd.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' A
         End If
         '
         load_po()
+    End Sub
+
+    Private Sub DEYearBudget_EditValueChanged(sender As Object, e As EventArgs) Handles DEYearBudget.EditValueChanged
+        Try
+            view_fgpo()
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
