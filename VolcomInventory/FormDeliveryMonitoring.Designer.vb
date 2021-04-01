@@ -56,6 +56,11 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
+        Me.SLUEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,10 +72,14 @@ Partial Class FormDeliveryMonitoring
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPOutbound.SuspendLayout()
+        CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.SLUEType)
         Me.PanelControl1.Controls.Add(Me.BAWBRec)
         Me.PanelControl1.Controls.Add(Me.SBViewOutbound)
         Me.PanelControl1.Controls.Add(Me.DETo)
@@ -79,12 +88,12 @@ Partial Class FormDeliveryMonitoring
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 44)
+        Me.PanelControl1.Size = New System.Drawing.Size(1008, 44)
         Me.PanelControl1.TabIndex = 0
         '
         'BAWBRec
         '
-        Me.BAWBRec.Location = New System.Drawing.Point(533, 10)
+        Me.BAWBRec.Location = New System.Drawing.Point(689, 10)
         Me.BAWBRec.Name = "BAWBRec"
         Me.BAWBRec.Size = New System.Drawing.Size(107, 23)
         Me.BAWBRec.TabIndex = 8934
@@ -92,7 +101,7 @@ Partial Class FormDeliveryMonitoring
         '
         'SBViewOutbound
         '
-        Me.SBViewOutbound.Location = New System.Drawing.Point(452, 10)
+        Me.SBViewOutbound.Location = New System.Drawing.Point(608, 10)
         Me.SBViewOutbound.Name = "SBViewOutbound"
         Me.SBViewOutbound.Size = New System.Drawing.Size(75, 23)
         Me.SBViewOutbound.TabIndex = 8933
@@ -136,7 +145,7 @@ Partial Class FormDeliveryMonitoring
         Me.GCOutbound.Location = New System.Drawing.Point(0, 0)
         Me.GCOutbound.MainView = Me.GVOutbound
         Me.GCOutbound.Name = "GCOutbound"
-        Me.GCOutbound.Size = New System.Drawing.Size(778, 489)
+        Me.GCOutbound.Size = New System.Drawing.Size(1002, 657)
         Me.GCOutbound.TabIndex = 1
         Me.GCOutbound.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOutbound})
         '
@@ -387,7 +396,7 @@ Partial Class FormDeliveryMonitoring
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 44)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPOutbound
-        Me.XtraTabControl1.Size = New System.Drawing.Size(784, 517)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1008, 685)
         Me.XtraTabControl1.TabIndex = 3
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOutbound})
         '
@@ -395,14 +404,52 @@ Partial Class FormDeliveryMonitoring
         '
         Me.XTPOutbound.Controls.Add(Me.GCOutbound)
         Me.XTPOutbound.Name = "XTPOutbound"
-        Me.XTPOutbound.Size = New System.Drawing.Size(778, 489)
+        Me.XTPOutbound.Size = New System.Drawing.Size(1002, 657)
         Me.XTPOutbound.Text = "Outbound Delivery Monitoring"
+        '
+        'SLUEType
+        '
+        Me.SLUEType.Location = New System.Drawing.Point(492, 12)
+        Me.SLUEType.Name = "SLUEType"
+        Me.SLUEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEType.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUEType.Size = New System.Drawing.Size(100, 20)
+        Me.SLUEType.TabIndex = 8935
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn29})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(462, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl1.TabIndex = 8936
+        Me.LabelControl1.Text = "Type"
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.FieldName = "id_type"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Type"
+        Me.GridColumn29.FieldName = "type"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
         '
         'FormDeliveryMonitoring
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
@@ -421,6 +468,8 @@ Partial Class FormDeliveryMonitoring
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPOutbound.ResumeLayout(False)
+        CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -462,4 +511,9 @@ Partial Class FormDeliveryMonitoring
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPOutbound As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents BAWBRec As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLUEType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
