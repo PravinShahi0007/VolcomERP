@@ -103,6 +103,7 @@ Partial Class FormOutboundListDet
         Me.TESubDistrict.Properties.ReadOnly = True
         Me.TESubDistrict.Size = New System.Drawing.Size(478, 20)
         Me.TESubDistrict.TabIndex = 5
+        Me.TESubDistrict.TabStop = False
         '
         'LabelControl12
         '
@@ -119,6 +120,7 @@ Partial Class FormOutboundListDet
         Me.TEStore.Properties.ReadOnly = True
         Me.TEStore.Size = New System.Drawing.Size(329, 20)
         Me.TEStore.TabIndex = 3
+        Me.TEStore.TabStop = False
         '
         'LabelControl11
         '
@@ -135,6 +137,7 @@ Partial Class FormOutboundListDet
         Me.TEOutboundNumber.Properties.ReadOnly = True
         Me.TEOutboundNumber.Size = New System.Drawing.Size(145, 20)
         Me.TEOutboundNumber.TabIndex = 1
+        Me.TEOutboundNumber.TabStop = False
         '
         'LabelControl1
         '
@@ -247,7 +250,7 @@ Partial Class FormOutboundListDet
         Me.TEActWeight.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEActWeight.Properties.NullText = "blank"
         Me.TEActWeight.Size = New System.Drawing.Size(95, 20)
-        Me.TEActWeight.TabIndex = 3
+        Me.TEActWeight.TabIndex = 9
         '
         'LabelControl5
         '
@@ -268,7 +271,7 @@ Partial Class FormOutboundListDet
         Me.TETinggi.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TETinggi.Properties.NullText = "blank"
         Me.TETinggi.Size = New System.Drawing.Size(121, 20)
-        Me.TETinggi.TabIndex = 2
+        Me.TETinggi.TabIndex = 8
         '
         'LabelControl4
         '
@@ -289,7 +292,7 @@ Partial Class FormOutboundListDet
         Me.TELebar.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TELebar.Properties.NullText = "blank"
         Me.TELebar.Size = New System.Drawing.Size(113, 20)
-        Me.TELebar.TabIndex = 1
+        Me.TELebar.TabIndex = 7
         '
         'LabelControl3
         '
@@ -310,7 +313,7 @@ Partial Class FormOutboundListDet
         Me.TEPanjang.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEPanjang.Properties.NullText = "blank"
         Me.TEPanjang.Size = New System.Drawing.Size(123, 20)
-        Me.TEPanjang.TabIndex = 0
+        Me.TEPanjang.TabIndex = 6
         '
         'GroupControl1
         '
@@ -428,7 +431,7 @@ Partial Class FormOutboundListDet
         Me.BPrintLabel.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BPrintLabel.Name = "BPrintLabel"
         Me.BPrintLabel.Size = New System.Drawing.Size(504, 32)
-        Me.BPrintLabel.TabIndex = 7
+        Me.BPrintLabel.TabIndex = 11
         Me.BPrintLabel.Text = "Print Label"
         '
         'MENote
@@ -436,7 +439,7 @@ Partial Class FormOutboundListDet
         Me.MENote.Location = New System.Drawing.Point(12, 32)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(480, 49)
-        Me.MENote.TabIndex = 4
+        Me.MENote.TabIndex = 10
         '
         'LabelControl10
         '
@@ -462,7 +465,7 @@ Partial Class FormOutboundListDet
         Me.BApprove.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BApprove.Name = "BApprove"
         Me.BApprove.Size = New System.Drawing.Size(508, 32)
-        Me.BApprove.TabIndex = 5
+        Me.BApprove.TabIndex = 12
         Me.BApprove.Text = "Approve"
         '
         'BNotApprove
@@ -481,7 +484,7 @@ Partial Class FormOutboundListDet
         Me.BNotApprove.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BNotApprove.Name = "BNotApprove"
         Me.BNotApprove.Size = New System.Drawing.Size(508, 32)
-        Me.BNotApprove.TabIndex = 6
+        Me.BNotApprove.TabIndex = 13
         Me.BNotApprove.Text = "Not Approve"
         '
         'FormOutboundListDet

@@ -232,6 +232,7 @@ Partial Class FormOutboundList
         Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn23.Caption = "Satus Cek Fisik"
+        Me.GridColumn23.FieldName = "sts_cek_fisik"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 8
@@ -250,7 +251,6 @@ Partial Class FormOutboundList
         Me.BCheckFisik.Size = New System.Drawing.Size(910, 33)
         Me.BCheckFisik.TabIndex = 3
         Me.BCheckFisik.Text = "Proses Cek Fisik"
-        Me.BCheckFisik.Visible = False
         '
         'BRefresh
         '
