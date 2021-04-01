@@ -289,7 +289,8 @@
 
                 FormEmpUniCreditNote.view_form()
                 FormEmpUniCreditNote.GVData.FocusedRowHandle = find_row(FormEmpUniCreditNote.GVData, "id_emp_uni_ex", id_emp_uni_ex)
-
+                infoCustom("Propose created. Waiting for approval")
+                viewDraft()
                 Cursor = Cursors.Default
             End If
         End If
@@ -345,6 +346,10 @@
     End Sub
 
     Private Sub BtnDraftJournal_Click(sender As Object, e As EventArgs) Handles BtnDraftJournal.Click
+        viewDraft()
+    End Sub
+
+    Sub viewDraft()
         Cursor = Cursors.WaitCursor
         FormAccountingDraftJournal.is_view = If(is_view, "1", "-1")
         FormAccountingDraftJournal.id_report = id_emp_uni_ex
