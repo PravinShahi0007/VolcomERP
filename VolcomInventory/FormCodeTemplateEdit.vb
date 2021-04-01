@@ -1,6 +1,7 @@
 ﻿Public Class FormCodeTemplateEdit 
     Public id_template_code As String = "-1"
     Public id_pop_up As String = "-1"
+    Dim id_code_price_policy As String = get_setup_field("id_code_price_policy")
 
     Private Sub FormCodeTemplateEdit_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         view_code()
@@ -196,5 +197,17 @@
 
     Private Sub FormCodeTemplateEdit_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub XTCCode_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCCode.SelectedPageChanged
+        If XTCCode.SelectedTabPageIndex = 1 Then
+            If id_code_price_policy = GVCode.GetFocusedRowCellValue("id_code").ToString Then
+                Cursor = Cursors.WaitCursor
+                FormPricePolicyCode.is_single = True
+                FormPricePolicyCode.ShowDialog()
+                XTCCode.SelectedTabPageIndex = 0
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 End Class
