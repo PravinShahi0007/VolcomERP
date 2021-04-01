@@ -19,6 +19,7 @@ Partial Class FormPricePolicyCode
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPricePolicyCode))
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_code_detail = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -29,17 +30,23 @@ Partial Class FormPricePolicyCode
         Me.GridColumnmkd_50_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmkd_70_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmkd_fix_view = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PCDeliveryTitle = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCDeliveryTitle, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCDeliveryTitle.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 0)
+        Me.GCData.Location = New System.Drawing.Point(0, 46)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(695, 449)
+        Me.GCData.Size = New System.Drawing.Size(695, 403)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -113,17 +120,72 @@ Partial Class FormPricePolicyCode
         Me.GridColumnmkd_fix_view.FieldName = "mkd_fix_view"
         Me.GridColumnmkd_fix_view.Name = "GridColumnmkd_fix_view"
         '
+        'PCDeliveryTitle
+        '
+        Me.PCDeliveryTitle.Appearance.BackColor = System.Drawing.Color.White
+        Me.PCDeliveryTitle.Appearance.Options.UseBackColor = True
+        Me.PCDeliveryTitle.Controls.Add(Me.BDelete)
+        Me.PCDeliveryTitle.Controls.Add(Me.BEdit)
+        Me.PCDeliveryTitle.Controls.Add(Me.BAdd)
+        Me.PCDeliveryTitle.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCDeliveryTitle.Location = New System.Drawing.Point(0, 0)
+        Me.PCDeliveryTitle.LookAndFeel.SkinName = "iMaginary"
+        Me.PCDeliveryTitle.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PCDeliveryTitle.Name = "PCDeliveryTitle"
+        Me.PCDeliveryTitle.Size = New System.Drawing.Size(695, 46)
+        Me.PCDeliveryTitle.TabIndex = 6
+        Me.PCDeliveryTitle.Visible = False
+        '
+        'BDelete
+        '
+        Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelete.Image = CType(resources.GetObject("BDelete.Image"), System.Drawing.Image)
+        Me.BDelete.ImageIndex = 1
+        Me.BDelete.Location = New System.Drawing.Point(450, 2)
+        Me.BDelete.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.BDelete.Name = "BDelete"
+        Me.BDelete.Size = New System.Drawing.Size(81, 42)
+        Me.BDelete.TabIndex = 2
+        Me.BDelete.Text = "Delete"
+        '
+        'BEdit
+        '
+        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BEdit.Image = CType(resources.GetObject("BEdit.Image"), System.Drawing.Image)
+        Me.BEdit.ImageIndex = 2
+        Me.BEdit.Location = New System.Drawing.Point(531, 2)
+        Me.BEdit.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.BEdit.Name = "BEdit"
+        Me.BEdit.Size = New System.Drawing.Size(81, 42)
+        Me.BEdit.TabIndex = 1
+        Me.BEdit.Text = "Edit"
+        '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
+        Me.BAdd.ImageIndex = 0
+        Me.BAdd.Location = New System.Drawing.Point(612, 2)
+        Me.BAdd.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(81, 42)
+        Me.BAdd.TabIndex = 0
+        Me.BAdd.Text = "Add"
+        '
         'FormPricePolicyCode
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(695, 449)
         Me.Controls.Add(Me.GCData)
+        Me.Controls.Add(Me.PCDeliveryTitle)
         Me.Name = "FormPricePolicyCode"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Price Policy Code"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCDeliveryTitle, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCDeliveryTitle.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -138,4 +200,8 @@ Partial Class FormPricePolicyCode
     Friend WithEvents GridColumnmkd_50_view As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmkd_70_view As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnmkd_fix_view As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PCDeliveryTitle As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
 End Class
