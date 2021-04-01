@@ -102,6 +102,12 @@ WHERE awb.is_old_ways!=1 AND awb.id_report_status!=5 AND awb.id_report_status!=6
     Private Sub FormOutboundList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEFrom.EditValue = Now
         DETo.EditValue = Now
+
+        If get_opt_general_field("is_need_check_fisik").ToString = "1" Then
+            BCheckFisik.Visible = True
+        Else
+            BCheckFisik.Visible = False
+        End If
     End Sub
 
     Private Sub TEOutboundNumber_KeyUp(sender As Object, e As KeyEventArgs) Handles TEOutboundNumber.KeyUp
