@@ -5668,7 +5668,7 @@ FROM
                 SELECT " + id_acc_trans + " AS id_acc_trans,IF(po.id_coa_tag=1,o.id_acc_pend_lain_ppn_gung,o.id_acc_pendapatan_lain_cabang) AS `id_acc`,cont.id_comp AS id_vendor, dep.id_main_comp,  
                 SUM(rd.qty) AS `qty`,
                 0 AS `debit`,
-                0.9 * SUM(rd.qty * pod.discount)+((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `credit`,i.item_desc AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number,po.id_coa_tag
+                ((100/110) * SUM(rd.qty * pod.discount)+((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value)) AS `credit`,i.item_desc AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number,po.id_coa_tag
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -5695,7 +5695,7 @@ FROM
                 SELECT " + id_acc_trans + " AS id_acc_trans,IF(po.id_coa_tag=1,o.id_acc_ppn_lain,o.id_acc_ppn_lain) AS `id_acc`,cont.id_comp AS id_vendor, dep.id_main_comp,  
                 SUM(rd.qty) AS `qty`,
                 0 AS `debit`,
-                0.1 * SUM(rd.qty * pod.discount)+((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) AS `credit`,i.item_desc AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number,po.id_coa_tag
+                SUM(rd.qty * pod.discount)+((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value) - ((100/110) * SUM(rd.qty * pod.discount)+((SUM(rd.qty * (pod.`value`-pod.discount))/(poall.`value`))*poall.disc_value)) AS `credit`,i.item_desc AS `note`,148,rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number,po.id_coa_tag
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order

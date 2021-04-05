@@ -73,6 +73,8 @@ Partial Class FormItemReqDet
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCombine = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNavDetail = New DevExpress.XtraEditors.PanelControl()
+        Me.BImportExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPickPR = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddDetail = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -625,6 +627,8 @@ Partial Class FormItemReqDet
         'PanelControlNavDetail
         '
         Me.PanelControlNavDetail.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNavDetail.Controls.Add(Me.BImportExcel)
+        Me.PanelControlNavDetail.Controls.Add(Me.BPickPR)
         Me.PanelControlNavDetail.Controls.Add(Me.BtnDelDetail)
         Me.PanelControlNavDetail.Controls.Add(Me.BtnAddDetail)
         Me.PanelControlNavDetail.Dock = System.Windows.Forms.DockStyle.Top
@@ -632,6 +636,26 @@ Partial Class FormItemReqDet
         Me.PanelControlNavDetail.Name = "PanelControlNavDetail"
         Me.PanelControlNavDetail.Size = New System.Drawing.Size(813, 40)
         Me.PanelControlNavDetail.TabIndex = 15
+        '
+        'BImportExcel
+        '
+        Me.BImportExcel.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BImportExcel.Image = CType(resources.GetObject("BImportExcel.Image"), System.Drawing.Image)
+        Me.BImportExcel.Location = New System.Drawing.Point(114, 0)
+        Me.BImportExcel.Name = "BImportExcel"
+        Me.BImportExcel.Size = New System.Drawing.Size(117, 40)
+        Me.BImportExcel.TabIndex = 18
+        Me.BImportExcel.Text = "Bulk with Excel"
+        '
+        'BPickPR
+        '
+        Me.BPickPR.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPickPR.Image = CType(resources.GetObject("BPickPR.Image"), System.Drawing.Image)
+        Me.BPickPR.Location = New System.Drawing.Point(0, 0)
+        Me.BPickPR.Name = "BPickPR"
+        Me.BPickPR.Size = New System.Drawing.Size(114, 40)
+        Me.BPickPR.TabIndex = 17
+        Me.BPickPR.Text = "Data From PR"
         '
         'BtnDelDetail
         '
@@ -761,4 +785,6 @@ Partial Class FormItemReqDet
     Friend WithEvents RICEPurcStorage As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEditStoreFromPurcStorage As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BImportExcel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPickPR As DevExpress.XtraEditors.SimpleButton
 End Class

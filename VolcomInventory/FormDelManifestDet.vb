@@ -756,7 +756,8 @@ LEFT JOIN (
     FROM `tb_del_manifest_det` deld 
     INNER JOIN tb_del_manifest del ON del.id_del_manifest=deld.id_del_manifest AND del.id_report_status!=5
 ) tb_c ON tb_c.id_wh_awb_det=awbd.id_wh_awb_det
-WHERE ISNULL(tb_c.id_wh_awb_det) AND c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & order & "'"
+WHERE ISNULL(tb_c.id_wh_awb_det) AND c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & order & "'
+ORDER BY awbd.id_awbill ASC,awbd.id_pl_sales_del_order ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
@@ -820,7 +821,8 @@ LEFT JOIN (
     INNER JOIN tb_del_manifest del ON del.id_del_manifest=deld.id_del_manifest 
     AND (del.id_report_status!=5 OR ISNULL(id_report_status))
 ) tb_c ON tb_c.id_wh_awb_det=awbd.id_wh_awb_det
-WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb_det)"
+WHERE c.`id_comp`='" & SLEComp.EditValue.ToString & "' AND ISNULL(tb_c.id_wh_awb_det)
+ORDER BY awbd.id_awbill ASC,awbd.id_pl_sales_del_order ASC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()

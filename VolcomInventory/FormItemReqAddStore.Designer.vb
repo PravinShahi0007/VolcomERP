@@ -129,9 +129,12 @@ Partial Class FormItemReqAddStore
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "Id"
+        Me.GridColumn1.Caption = "Kode"
         Me.GridColumn1.FieldName = "id_item"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 359
         '
         'GridColumnItemDesc
         '
@@ -139,7 +142,8 @@ Partial Class FormItemReqAddStore
         Me.GridColumnItemDesc.FieldName = "item_desc"
         Me.GridColumnItemDesc.Name = "GridColumnItemDesc"
         Me.GridColumnItemDesc.Visible = True
-        Me.GridColumnItemDesc.VisibleIndex = 0
+        Me.GridColumnItemDesc.VisibleIndex = 1
+        Me.GridColumnItemDesc.Width = 1257
         '
         'PanelControl1
         '
