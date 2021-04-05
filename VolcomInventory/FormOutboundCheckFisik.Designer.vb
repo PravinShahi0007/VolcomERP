@@ -20,7 +20,7 @@ Partial Class FormOutboundCheckFisik
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BCheckFisik = New DevExpress.XtraEditors.SimpleButton()
+        Me.BComplete = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BReset = New DevExpress.XtraEditors.SimpleButton()
         Me.TEOutboundNumber = New DevExpress.XtraEditors.TextEdit()
@@ -40,14 +40,17 @@ Partial Class FormOutboundCheckFisik
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PCScan = New DevExpress.XtraEditors.PanelControl()
+        Me.TEScannedCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPScanList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScanList = New DevExpress.XtraGrid.GridControl()
         Me.GVScanList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.TEScannedCode = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LStatus = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,40 +67,43 @@ Partial Class FormOutboundCheckFisik
         Me.XTPList.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCScan, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCScan.SuspendLayout()
+        CType(Me.TEScannedCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPScanList.SuspendLayout()
         CType(Me.GCScanList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScanList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.TEScannedCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BCheckFisik)
+        Me.PanelControl1.Controls.Add(Me.BComplete)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 556)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(935, 45)
         Me.PanelControl1.TabIndex = 0
         '
-        'BCheckFisik
+        'BComplete
         '
-        Me.BCheckFisik.Appearance.BackColor = System.Drawing.Color.Blue
-        Me.BCheckFisik.Appearance.BackColor2 = System.Drawing.Color.Blue
-        Me.BCheckFisik.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCheckFisik.Appearance.Options.UseBackColor = True
-        Me.BCheckFisik.Appearance.Options.UseForeColor = True
-        Me.BCheckFisik.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
-        Me.BCheckFisik.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BCheckFisik.Location = New System.Drawing.Point(2, 2)
-        Me.BCheckFisik.Name = "BCheckFisik"
-        Me.BCheckFisik.Size = New System.Drawing.Size(931, 41)
-        Me.BCheckFisik.TabIndex = 4
-        Me.BCheckFisik.Text = "Complete"
+        Me.BComplete.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BComplete.Appearance.BackColor2 = System.Drawing.Color.Blue
+        Me.BComplete.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BComplete.Appearance.Options.UseBackColor = True
+        Me.BComplete.Appearance.Options.UseForeColor = True
+        Me.BComplete.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BComplete.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BComplete.Location = New System.Drawing.Point(2, 2)
+        Me.BComplete.Name = "BComplete"
+        Me.BComplete.Size = New System.Drawing.Size(931, 41)
+        Me.BComplete.TabIndex = 4
+        Me.BComplete.Text = "Complete"
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.PanelControl4)
         Me.PanelControl3.Controls.Add(Me.BReset)
         Me.PanelControl3.Controls.Add(Me.TEOutboundNumber)
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
@@ -162,6 +168,11 @@ Partial Class FormOutboundCheckFisik
         Me.TETotScan.Name = "TETotScan"
         Me.TETotScan.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.TETotScan.Properties.Appearance.Options.UseFont = True
+        Me.TETotScan.Properties.Appearance.Options.UseTextOptions = True
+        Me.TETotScan.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TETotScan.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TETotScan.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TETotScan.Properties.ReadOnly = True
         Me.TETotScan.Size = New System.Drawing.Size(124, 28)
         Me.TETotScan.TabIndex = 2
         '
@@ -171,6 +182,7 @@ Partial Class FormOutboundCheckFisik
         Me.TETotQty.Name = "TETotQty"
         Me.TETotQty.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.TETotQty.Properties.Appearance.Options.UseFont = True
+        Me.TETotQty.Properties.ReadOnly = True
         Me.TETotQty.Size = New System.Drawing.Size(124, 28)
         Me.TETotQty.TabIndex = 4
         '
@@ -206,7 +218,7 @@ Partial Class FormOutboundCheckFisik
         'XTPList
         '
         Me.XTPList.Controls.Add(Me.GCItemList)
-        Me.XTPList.Controls.Add(Me.PanelControl4)
+        Me.XTPList.Controls.Add(Me.PCScan)
         Me.XTPList.Name = "XTPList"
         Me.XTPList.Size = New System.Drawing.Size(929, 436)
         Me.XTPList.Text = "List All"
@@ -223,6 +235,12 @@ Partial Class FormOutboundCheckFisik
         '
         'GVItemList
         '
+        Me.GVItemList.Appearance.FocusedCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GVItemList.Appearance.FocusedCell.Options.UseBackColor = True
+        Me.GVItemList.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GVItemList.Appearance.FocusedRow.Options.UseBackColor = True
+        Me.GVItemList.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GVItemList.Appearance.SelectedRow.Options.UseBackColor = True
         Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn4})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
@@ -287,9 +305,39 @@ Partial Class FormOutboundCheckFisik
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.UnboundExpression = "Iif([qty] - [qty_scan] > 0, 'Missing', Iif([qty] - [qty_scan] < 0, 'Over', 'Balan" &
     "ce'))"
+        Me.GridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
         Me.GridColumn4.Width = 189
+        '
+        'PCScan
+        '
+        Me.PCScan.Controls.Add(Me.TEScannedCode)
+        Me.PCScan.Controls.Add(Me.LabelControl3)
+        Me.PCScan.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCScan.Location = New System.Drawing.Point(0, 0)
+        Me.PCScan.Name = "PCScan"
+        Me.PCScan.Size = New System.Drawing.Size(929, 46)
+        Me.PCScan.TabIndex = 3
+        Me.PCScan.Visible = False
+        '
+        'TEScannedCode
+        '
+        Me.TEScannedCode.Location = New System.Drawing.Point(50, 9)
+        Me.TEScannedCode.Name = "TEScannedCode"
+        Me.TEScannedCode.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.TEScannedCode.Properties.Appearance.Options.UseFont = True
+        Me.TEScannedCode.Size = New System.Drawing.Size(433, 28)
+        Me.TEScannedCode.TabIndex = 1
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 12)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(33, 21)
+        Me.LabelControl3.TabIndex = 0
+        Me.LabelControl3.Text = "Scan"
         '
         'XTPScanList
         '
@@ -324,7 +372,7 @@ Partial Class FormOutboundCheckFisik
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Code"
-        Me.GridColumn6.FieldName = "scan_code"
+        Me.GridColumn6.FieldName = "scanned_code"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
@@ -332,31 +380,32 @@ Partial Class FormOutboundCheckFisik
         '
         'PanelControl4
         '
-        Me.PanelControl4.Controls.Add(Me.TEScannedCode)
-        Me.PanelControl4.Controls.Add(Me.LabelControl3)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.LStatus)
+        Me.PanelControl4.Controls.Add(Me.LabelControl5)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl4.Location = New System.Drawing.Point(646, 2)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(929, 46)
-        Me.PanelControl4.TabIndex = 3
+        Me.PanelControl4.Size = New System.Drawing.Size(287, 42)
+        Me.PanelControl4.TabIndex = 6
         '
-        'TEScannedCode
+        'LabelControl5
         '
-        Me.TEScannedCode.Location = New System.Drawing.Point(50, 9)
-        Me.TEScannedCode.Name = "TEScannedCode"
-        Me.TEScannedCode.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.TEScannedCode.Properties.Appearance.Options.UseFont = True
-        Me.TEScannedCode.Size = New System.Drawing.Size(433, 28)
-        Me.TEScannedCode.TabIndex = 1
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.LabelControl5.Location = New System.Drawing.Point(12, 9)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(54, 21)
+        Me.LabelControl5.TabIndex = 3
+        Me.LabelControl5.Text = "Status : "
         '
-        'LabelControl3
+        'LStatus
         '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.LabelControl3.Location = New System.Drawing.Point(11, 12)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(33, 21)
-        Me.LabelControl3.TabIndex = 0
-        Me.LabelControl3.Text = "Scan"
+        Me.LStatus.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.LStatus.Location = New System.Drawing.Point(72, 10)
+        Me.LStatus.Name = "LStatus"
+        Me.LStatus.Size = New System.Drawing.Size(6, 21)
+        Me.LStatus.TabIndex = 4
+        Me.LStatus.Text = "-"
         '
         'FormOutboundCheckFisik
         '
@@ -391,13 +440,16 @@ Partial Class FormOutboundCheckFisik
         Me.XTPList.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCScan, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCScan.ResumeLayout(False)
+        Me.PCScan.PerformLayout()
+        CType(Me.TEScannedCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPScanList.ResumeLayout(False)
         CType(Me.GCScanList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScanList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.TEScannedCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -416,7 +468,7 @@ Partial Class FormOutboundCheckFisik
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCScan As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TEScannedCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
@@ -427,8 +479,11 @@ Partial Class FormOutboundCheckFisik
     Friend WithEvents TETotQty As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TETotScan As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents BCheckFisik As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BComplete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BReset As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LStatus As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -28,7 +28,7 @@
         TEUnitPrice.EditValue = 0.0
         TEKurs.EditValue = 1.0
 
-        LabelProductCode.Text = FormBOM.GVDesign.GetFocusedRowCellDisplayText("design_name").ToString
+        LabelProductCode.Text = FormBOM.GVDesign.GetFocusedRowCellDisplayText("design_display_name").ToString
 
         If id_pop_up = "1" Then 'edit
             Dim query As String = "SELECT "

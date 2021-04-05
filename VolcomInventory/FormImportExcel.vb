@@ -136,6 +136,9 @@ Public Class FormImportExcel
                 'shopee
                 MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE not ([No# Pesanan]='')", oledbconn)
             End If
+        ElseIf id_pop_up = "55" Then
+            '
+            MyCommand = New OleDbDataAdapter("select [kode] AS kode,[store] as store,[qty] AS qty,[dari purchasing store] as from_ps from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([kode]='') ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -3665,11 +3668,57 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.BestFitColumns()
             GVData.Columns("sales_order_det_qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("sales_order_det_qty").SummaryItem.DisplayFormat = "{0:n2}"
-        ElseIf id_pop_up = "55" Then
-            GCData.DataSource = Nothing
-            GCData.DataSource = data_temp
-            GCData.RefreshDataSource()
-            GVData.PopulateColumns()
+        ElseIf id_pop_up = "55" Then 'import data
+            Try
+                Dim queryx As String = "SELECT id_item,item_desc,def_desc FROM tb_item"
+                Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+                Dim query_store As String = "SELECT id_comp,comp_number,comp_display_name FROM tb_m_comp
+WHERE id_comp_cat='6'"
+                Dim dt_store As DataTable = execute_query(query_store, -1, True, "", "", "", "")
+
+                Dim tb1 = data_temp.AsEnumerable()
+                Dim tb_item = dt.AsEnumerable()
+                Dim tb_store = dt_store.AsEnumerable()
+
+                Dim query = From table1 In tb1
+                            Group Join tb_join_item In tb_item On table1("kode").ToString.ToLower Equals tb_join_item("id_item").ToString.ToLower Into item = Group
+                            From result_item In item.DefaultIfEmpty()
+                            Group Join tb_join_store In tb_store On table1("store").ToString.ToUpper Equals tb_join_store("comp_number").ToString.ToUpper Into str = Group
+                            From result_store In str.DefaultIfEmpty
+                            Select New With
+                                {
+                                    .kode = If(result_item Is Nothing, "0", result_item("id_item")),
+                                    .item = If(result_item Is Nothing, "", result_item("item_desc")),
+                                    .description = If(result_item Is Nothing, "", result_item("def_desc")),
+                                    .id_comp = If(result_store Is Nothing, "", result_store("id_comp")),
+                                    .store_number = If(result_store Is Nothing, table1("store"), result_store("comp_number")),
+                                    .store = If(result_store Is Nothing, "", result_store("comp_display_name")),
+                                    .qty = If(table1("qty").ToString = "", "0", table1("qty"))
+                                }
+
+                GCData.DataSource = Nothing
+                GCData.DataSource = query.ToList()
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+
+                'Customize column
+                GVData.Columns("id_comp").Visible = False
+                GVData.Columns("kode").Caption = "Kode Barang"
+                GVData.Columns("item").Caption = "Item"
+                GVData.Columns("description").Caption = "Description"
+                GVData.Columns("store_number").Caption = "Store Code"
+                GVData.Columns("store").Caption = "Store"
+                GVData.Columns("qty").Caption = "Qty"
+
+                GVData.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("qty").DisplayFormat.FormatString = "N2"
+
+                GVData.OptionsView.ColumnAutoWidth = False
+                GVData.BestFitColumns()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
         ElseIf id_pop_up = "56" Then
             'import excel ol promo replace
             Dim dt_promo As DataTable = execute_query("SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 

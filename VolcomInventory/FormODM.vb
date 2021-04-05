@@ -448,4 +448,8 @@ ORDER BY od.id_odm_print DESC"
         GCHistoryList.DataSource = execute_query(query, -1, True, "", "", "", "")
         GVHistoryList.BestFitColumns()
     End Sub
+
+    Private Sub SLUE3PL_EditValueChanged(sender As Object, e As EventArgs) Handles SLUE3PL.EditValueChanged
+        TEAWB.Focus()
+    End Sub
 End Class

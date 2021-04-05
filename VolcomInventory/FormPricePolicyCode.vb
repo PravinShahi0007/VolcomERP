@@ -1,6 +1,11 @@
 ﻿Public Class FormPricePolicyCode
+    Public is_single As Boolean = False
+
     Private Sub FormPricePolicyCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewData()
+        If is_single Then
+            PCDeliveryTitle.Visible = True
+        End If
     End Sub
 
     Sub viewData()
@@ -32,8 +37,41 @@
     End Sub
 
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        upd()
+    End Sub
+
+    Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
+        upd()
+    End Sub
+
+    Sub upd()
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             FormMain.but_edit()
+        End If
+    End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        Cursor = Cursors.WaitCursor
+        FormPricePolicyCodeDet.action = "ins"
+        FormPricePolicyCodeDet.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BDelete.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim confirm_delm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this code ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim id_code_detail As String = GVData.GetFocusedRowCellValue("id_code_detail").ToString
+            If confirm_delm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Try
+                    Dim query_delm As String = String.Format("DELETE FROM tb_m_code_detail WHERE id_code_detail = '{0}'", id_code_detail)
+                    execute_non_query(query_delm, True, "", "", "", "")
+                    viewData()
+                Catch ex As Exception
+                    DevExpress.XtraEditors.XtraMessageBox.Show("This code already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 End Class
