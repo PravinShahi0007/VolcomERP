@@ -4107,6 +4107,9 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         ) sod ON sod.id_design = d.id_design 
                         WHERE t.id_fg_repair_rec=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 "
                 execute_non_query(quniq, True, "", "", "", "")
+                'complete datetime
+                Dim q As String = "UPDATE tb_fg_repair_rec SET complete_date=NOW() WHERE id_fg_repair_rec='" & id_report & "'"
+                execute_non_query(q, True, "", "", "", "")
             ElseIf id_status_reportx = "5" Then
                 'cancel reserved unique code
                 'Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_fg_repair_rec_det`,`id_type`,`unique_code`,
