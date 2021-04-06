@@ -9,6 +9,7 @@
         viewType()
         TxtAgeMin.EditValue = 0
         TxtAgeMax.EditValue = 0
+        TxtSalThru.EditValue = 0
     End Sub
 
     Sub viewType()
@@ -26,8 +27,8 @@
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         If LEType.EditValue <> Nothing And TxtAgeMax.EditValue <> 0 Then
-            Dim query As String = "INSERT INTO tb_m_design_price_policy(id_code_detail, id_disc_type, age_min, age_max) 
-            VALUES('" + id_code_detail + "', '" + LEType.EditValue.ToString + "', '" + decimalSQL(TxtAgeMin.EditValue.ToString) + "', '" + decimalSQL(TxtAgeMax.EditValue.ToString) + "'); "
+            Dim query As String = "INSERT INTO tb_m_design_price_policy(id_code_detail, id_disc_type, age_min, age_max, target_sal_thru) 
+            VALUES('" + id_code_detail + "', '" + LEType.EditValue.ToString + "', '" + decimalSQL(TxtAgeMin.EditValue.ToString) + "', '" + decimalSQL(TxtAgeMax.EditValue.ToString) + "', '" + decimalSQL(TxtSalThru.EditValue.ToString) + "'); "
             execute_non_query(query, True, "", "", "", "")
             FormPricePolicyCodeDet.actionLoad()
             FormPricePolicyCodeDet.refreshMain()
