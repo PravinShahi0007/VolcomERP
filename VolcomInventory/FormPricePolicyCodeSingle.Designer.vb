@@ -26,15 +26,18 @@ Partial Class FormPricePolicyCodeSingle
         Me.TxtAgeMin = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAgeMax = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtSalThru = New DevExpress.XtraEditors.TextEdit()
         CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAgeMin.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAgeMax.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtSalThru.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BtnAdd
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnAdd.Location = New System.Drawing.Point(0, 164)
+        Me.BtnAdd.Location = New System.Drawing.Point(0, 212)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(284, 23)
         Me.BtnAdd.TabIndex = 0
@@ -94,11 +97,32 @@ Partial Class FormPricePolicyCodeSingle
         Me.TxtAgeMax.Size = New System.Drawing.Size(245, 20)
         Me.TxtAgeMax.TabIndex = 6
         '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(16, 150)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(74, 13)
+        Me.LabelControl4.TabIndex = 7
+        Me.LabelControl4.Text = "Target Sal Thru"
+        '
+        'TxtSalThru
+        '
+        Me.TxtSalThru.Location = New System.Drawing.Point(16, 169)
+        Me.TxtSalThru.Name = "TxtSalThru"
+        Me.TxtSalThru.Properties.DisplayFormat.FormatString = "N0"
+        Me.TxtSalThru.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtSalThru.Properties.Mask.EditMask = "N0"
+        Me.TxtSalThru.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtSalThru.Size = New System.Drawing.Size(245, 20)
+        Me.TxtSalThru.TabIndex = 8
+        '
         'FormPricePolicyCodeSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 187)
+        Me.ClientSize = New System.Drawing.Size(284, 235)
+        Me.Controls.Add(Me.TxtSalThru)
+        Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.TxtAgeMax)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.TxtAgeMin)
@@ -115,6 +139,7 @@ Partial Class FormPricePolicyCodeSingle
         CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAgeMin.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAgeMax.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtSalThru.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -127,4 +152,6 @@ Partial Class FormPricePolicyCodeSingle
     Friend WithEvents TxtAgeMin As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtAgeMax As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtSalThru As DevExpress.XtraEditors.TextEdit
 End Class

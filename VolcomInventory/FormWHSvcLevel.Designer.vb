@@ -24,6 +24,7 @@ Partial Class FormWHSvcLevel
         Me.GCBySO = New DevExpress.XtraGrid.GridControl()
         Me.GVBySO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnPrepNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOnlineOrderDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrepDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,6 +43,12 @@ Partial Class FormWHSvcLevel
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_amo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnscan_amo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndel_amo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnscan_diff_amo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndel_diff_amo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnExportToXLSSO = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -134,12 +141,6 @@ Partial Class FormWHSvcLevel
         Me.DEFromReturn = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnorder_amo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnscan_amo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndel_amo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnscan_diff_amo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndel_diff_amo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSvcLelel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLelel.SuspendLayout()
         Me.XTPBySO.SuspendLayout()
@@ -217,7 +218,7 @@ Partial Class FormWHSvcLevel
         '
         'GVBySO
         '
-        Me.GVBySO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPrepNumber, Me.GridColumnPrepDate, Me.GridColumnBarcode, Me.GridColumnDesignCode, Me.GridColumnClass, Me.GridColumnDsgName, Me.GridColumnSize, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnOrderQty, Me.GridColumnScannedQty, Me.GridColumnDelQty, Me.GridColumnDiffSc, Me.GridColumnDiff, Me.GridColumnCat, Me.GridColumnReff, Me.GridColumnStatus, Me.GridColumnNote, Me.GridColumnorder_type, Me.GridColumndesign_price, Me.GridColumnorder_amo, Me.GridColumnscan_amo, Me.GridColumndel_amo, Me.GridColumnscan_diff_amo, Me.GridColumndel_diff_amo})
+        Me.GVBySO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPrepNumber, Me.GridColumnOnlineOrderDate, Me.GridColumnPrepDate, Me.GridColumnBarcode, Me.GridColumnDesignCode, Me.GridColumnClass, Me.GridColumnDsgName, Me.GridColumnSize, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnOrderQty, Me.GridColumnScannedQty, Me.GridColumnDelQty, Me.GridColumnDiffSc, Me.GridColumnDiff, Me.GridColumnCat, Me.GridColumnReff, Me.GridColumnStatus, Me.GridColumnNote, Me.GridColumnorder_type, Me.GridColumndesign_price, Me.GridColumnorder_amo, Me.GridColumnscan_amo, Me.GridColumndel_amo, Me.GridColumnscan_diff_amo, Me.GridColumndel_diff_amo})
         Me.GVBySO.GridControl = Me.GCBySO
         Me.GVBySO.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", Me.GridColumnOrderQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumnDelQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty_sc", Me.GridColumnScannedQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", Me.GridColumnDiff, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_diff_qty", Me.GridColumnDiffSc, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_amo", Me.GridColumnorder_amo, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_amo", Me.GridColumnscan_amo, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_amo", Me.GridColumndel_amo, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_diff_amo", Me.GridColumnscan_diff_amo, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_diff_amo", Me.GridColumndel_diff_amo, "{0:N0}")})
         Me.GVBySO.Name = "GVBySO"
@@ -236,6 +237,16 @@ Partial Class FormWHSvcLevel
         Me.GridColumnPrepNumber.Visible = True
         Me.GridColumnPrepNumber.VisibleIndex = 0
         '
+        'GridColumnOnlineOrderDate
+        '
+        Me.GridColumnOnlineOrderDate.Caption = "Online Order Date"
+        Me.GridColumnOnlineOrderDate.DisplayFormat.FormatString = "dd\/MM\/yyyy HH:mm:ss"
+        Me.GridColumnOnlineOrderDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnOnlineOrderDate.FieldName = "sales_order_ol_shop_date"
+        Me.GridColumnOnlineOrderDate.Name = "GridColumnOnlineOrderDate"
+        Me.GridColumnOnlineOrderDate.Visible = True
+        Me.GridColumnOnlineOrderDate.VisibleIndex = 3
+        '
         'GridColumnPrepDate
         '
         Me.GridColumnPrepDate.Caption = "Date"
@@ -244,7 +255,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnPrepDate.FieldName = "sales_order_date"
         Me.GridColumnPrepDate.Name = "GridColumnPrepDate"
         Me.GridColumnPrepDate.Visible = True
-        Me.GridColumnPrepDate.VisibleIndex = 3
+        Me.GridColumnPrepDate.VisibleIndex = 4
         '
         'GridColumnBarcode
         '
@@ -252,7 +263,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnBarcode.FieldName = "product_full_code"
         Me.GridColumnBarcode.Name = "GridColumnBarcode"
         Me.GridColumnBarcode.Visible = True
-        Me.GridColumnBarcode.VisibleIndex = 5
+        Me.GridColumnBarcode.VisibleIndex = 6
         '
         'GridColumnDesignCode
         '
@@ -260,7 +271,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDesignCode.FieldName = "design_code"
         Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
         Me.GridColumnDesignCode.Visible = True
-        Me.GridColumnDesignCode.VisibleIndex = 6
+        Me.GridColumnDesignCode.VisibleIndex = 7
         '
         'GridColumnClass
         '
@@ -268,7 +279,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnClass.FieldName = "class_display"
         Me.GridColumnClass.Name = "GridColumnClass"
         Me.GridColumnClass.Visible = True
-        Me.GridColumnClass.VisibleIndex = 7
+        Me.GridColumnClass.VisibleIndex = 8
         '
         'GridColumnDsgName
         '
@@ -276,7 +287,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDsgName.FieldName = "design_display_name"
         Me.GridColumnDsgName.Name = "GridColumnDsgName"
         Me.GridColumnDsgName.Visible = True
-        Me.GridColumnDsgName.VisibleIndex = 8
+        Me.GridColumnDsgName.VisibleIndex = 9
         '
         'GridColumnSize
         '
@@ -284,7 +295,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnSize.FieldName = "size"
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 9
+        Me.GridColumnSize.VisibleIndex = 10
         '
         'GridColumnFrom
         '
@@ -292,7 +303,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnFrom.FieldName = "comp_name_from"
         Me.GridColumnFrom.Name = "GridColumnFrom"
         Me.GridColumnFrom.Visible = True
-        Me.GridColumnFrom.VisibleIndex = 10
+        Me.GridColumnFrom.VisibleIndex = 11
         '
         'GridColumnTo
         '
@@ -300,7 +311,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnTo.FieldName = "comp_name_to"
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.Visible = True
-        Me.GridColumnTo.VisibleIndex = 11
+        Me.GridColumnTo.VisibleIndex = 12
         '
         'GridColumnOrderQty
         '
@@ -316,7 +327,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:n0}")})
         Me.GridColumnOrderQty.Visible = True
-        Me.GridColumnOrderQty.VisibleIndex = 13
+        Me.GridColumnOrderQty.VisibleIndex = 14
         Me.GridColumnOrderQty.Width = 49
         '
         'GridColumnScannedQty
@@ -333,7 +344,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnScannedQty.Name = "GridColumnScannedQty"
         Me.GridColumnScannedQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty_sc", "{0:n0}")})
         Me.GridColumnScannedQty.Visible = True
-        Me.GridColumnScannedQty.VisibleIndex = 14
+        Me.GridColumnScannedQty.VisibleIndex = 15
         Me.GridColumnScannedQty.Width = 65
         '
         'GridColumnDelQty
@@ -350,7 +361,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDelQty.Name = "GridColumnDelQty"
         Me.GridColumnDelQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", "{0:n0}")})
         Me.GridColumnDelQty.Visible = True
-        Me.GridColumnDelQty.VisibleIndex = 15
+        Me.GridColumnDelQty.VisibleIndex = 16
         Me.GridColumnDelQty.Width = 64
         '
         'GridColumnDiffSc
@@ -369,7 +380,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDiffSc.UnboundExpression = "[sales_order_det_qty] - [pl_sales_order_del_det_qty_sc]"
         Me.GridColumnDiffSc.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffSc.Visible = True
-        Me.GridColumnDiffSc.VisibleIndex = 16
+        Me.GridColumnDiffSc.VisibleIndex = 17
         Me.GridColumnDiffSc.Width = 50
         '
         'GridColumnDiff
@@ -387,7 +398,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDiff.UnboundExpression = "[sales_order_det_qty] - [pl_sales_order_del_det_qty]"
         Me.GridColumnDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiff.Visible = True
-        Me.GridColumnDiff.VisibleIndex = 17
+        Me.GridColumnDiff.VisibleIndex = 18
         Me.GridColumnDiff.Width = 43
         '
         'GridColumnCat
@@ -396,7 +407,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnCat.FieldName = "so_status"
         Me.GridColumnCat.Name = "GridColumnCat"
         Me.GridColumnCat.Visible = True
-        Me.GridColumnCat.VisibleIndex = 4
+        Me.GridColumnCat.VisibleIndex = 5
         '
         'GridColumnReff
         '
@@ -412,7 +423,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnStatus.FieldName = "prepare_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 23
+        Me.GridColumnStatus.VisibleIndex = 24
         '
         'GridColumnNote
         '
@@ -420,7 +431,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnNote.FieldName = "final_comment"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 24
+        Me.GridColumnNote.VisibleIndex = 25
         '
         'GridColumnorder_type
         '
@@ -429,6 +440,81 @@ Partial Class FormWHSvcLevel
         Me.GridColumnorder_type.Name = "GridColumnorder_type"
         Me.GridColumnorder_type.Visible = True
         Me.GridColumnorder_type.VisibleIndex = 1
+        '
+        'GridColumndesign_price
+        '
+        Me.GridColumndesign_price.Caption = "Unit Price"
+        Me.GridColumndesign_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price.FieldName = "design_price"
+        Me.GridColumndesign_price.Name = "GridColumndesign_price"
+        Me.GridColumndesign_price.Visible = True
+        Me.GridColumndesign_price.VisibleIndex = 13
+        '
+        'GridColumnorder_amo
+        '
+        Me.GridColumnorder_amo.Caption = "Order Amount"
+        Me.GridColumnorder_amo.DisplayFormat.FormatString = "N0"
+        Me.GridColumnorder_amo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnorder_amo.FieldName = "order_amo"
+        Me.GridColumnorder_amo.Name = "GridColumnorder_amo"
+        Me.GridColumnorder_amo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_amo", "{0:N0}")})
+        Me.GridColumnorder_amo.UnboundExpression = "[design_price] * [sales_order_det_qty]"
+        Me.GridColumnorder_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnorder_amo.Visible = True
+        Me.GridColumnorder_amo.VisibleIndex = 19
+        '
+        'GridColumnscan_amo
+        '
+        Me.GridColumnscan_amo.Caption = "Scan Amount"
+        Me.GridColumnscan_amo.DisplayFormat.FormatString = "N0"
+        Me.GridColumnscan_amo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnscan_amo.FieldName = "scan_amo"
+        Me.GridColumnscan_amo.Name = "GridColumnscan_amo"
+        Me.GridColumnscan_amo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_amo", "{0:N0}")})
+        Me.GridColumnscan_amo.UnboundExpression = "[design_price] * [pl_sales_order_del_det_qty_sc]"
+        Me.GridColumnscan_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnscan_amo.Visible = True
+        Me.GridColumnscan_amo.VisibleIndex = 20
+        '
+        'GridColumndel_amo
+        '
+        Me.GridColumndel_amo.Caption = "Del Amount"
+        Me.GridColumndel_amo.DisplayFormat.FormatString = "N0"
+        Me.GridColumndel_amo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndel_amo.FieldName = "del_amo"
+        Me.GridColumndel_amo.Name = "GridColumndel_amo"
+        Me.GridColumndel_amo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_amo", "{0:N0}")})
+        Me.GridColumndel_amo.UnboundExpression = "[design_price] * [pl_sales_order_del_det_qty]"
+        Me.GridColumndel_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumndel_amo.Visible = True
+        Me.GridColumndel_amo.VisibleIndex = 21
+        '
+        'GridColumnscan_diff_amo
+        '
+        Me.GridColumnscan_diff_amo.Caption = "Scan Diff Amount"
+        Me.GridColumnscan_diff_amo.DisplayFormat.FormatString = "N0"
+        Me.GridColumnscan_diff_amo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnscan_diff_amo.FieldName = "scan_diff_amo"
+        Me.GridColumnscan_diff_amo.Name = "GridColumnscan_diff_amo"
+        Me.GridColumnscan_diff_amo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_diff_amo", "{0:N0}")})
+        Me.GridColumnscan_diff_amo.UnboundExpression = "[design_price] * [scan_diff_qty]"
+        Me.GridColumnscan_diff_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnscan_diff_amo.Visible = True
+        Me.GridColumnscan_diff_amo.VisibleIndex = 22
+        '
+        'GridColumndel_diff_amo
+        '
+        Me.GridColumndel_diff_amo.Caption = "Del Diff Amount"
+        Me.GridColumndel_diff_amo.DisplayFormat.FormatString = "N0"
+        Me.GridColumndel_diff_amo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndel_diff_amo.FieldName = "del_diff_amo"
+        Me.GridColumndel_diff_amo.Name = "GridColumndel_diff_amo"
+        Me.GridColumndel_diff_amo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_diff_amo", "{0:N0}")})
+        Me.GridColumndel_diff_amo.UnboundExpression = "[design_price] * [diff_qty]"
+        Me.GridColumndel_diff_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumndel_diff_amo.Visible = True
+        Me.GridColumndel_diff_amo.VisibleIndex = 23
         '
         'GCFilter
         '
@@ -1420,81 +1506,6 @@ Partial Class FormWHSvcLevel
         Me.LabelControl8.TabIndex = 8892
         Me.LabelControl8.Text = "From"
         '
-        'GridColumndesign_price
-        '
-        Me.GridColumndesign_price.Caption = "Unit Price"
-        Me.GridColumndesign_price.DisplayFormat.FormatString = "N0"
-        Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumndesign_price.FieldName = "design_price"
-        Me.GridColumndesign_price.Name = "GridColumndesign_price"
-        Me.GridColumndesign_price.Visible = True
-        Me.GridColumndesign_price.VisibleIndex = 12
-        '
-        'GridColumnorder_amo
-        '
-        Me.GridColumnorder_amo.Caption = "Order Amount"
-        Me.GridColumnorder_amo.DisplayFormat.FormatString = "N0"
-        Me.GridColumnorder_amo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnorder_amo.FieldName = "order_amo"
-        Me.GridColumnorder_amo.Name = "GridColumnorder_amo"
-        Me.GridColumnorder_amo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_amo", "{0:N0}")})
-        Me.GridColumnorder_amo.UnboundExpression = "[design_price] * [sales_order_det_qty]"
-        Me.GridColumnorder_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnorder_amo.Visible = True
-        Me.GridColumnorder_amo.VisibleIndex = 18
-        '
-        'GridColumnscan_amo
-        '
-        Me.GridColumnscan_amo.Caption = "Scan Amount"
-        Me.GridColumnscan_amo.DisplayFormat.FormatString = "N0"
-        Me.GridColumnscan_amo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnscan_amo.FieldName = "scan_amo"
-        Me.GridColumnscan_amo.Name = "GridColumnscan_amo"
-        Me.GridColumnscan_amo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_amo", "{0:N0}")})
-        Me.GridColumnscan_amo.UnboundExpression = "[design_price] * [pl_sales_order_del_det_qty_sc]"
-        Me.GridColumnscan_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnscan_amo.Visible = True
-        Me.GridColumnscan_amo.VisibleIndex = 19
-        '
-        'GridColumndel_amo
-        '
-        Me.GridColumndel_amo.Caption = "Del Amount"
-        Me.GridColumndel_amo.DisplayFormat.FormatString = "N0"
-        Me.GridColumndel_amo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumndel_amo.FieldName = "del_amo"
-        Me.GridColumndel_amo.Name = "GridColumndel_amo"
-        Me.GridColumndel_amo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_amo", "{0:N0}")})
-        Me.GridColumndel_amo.UnboundExpression = "[design_price] * [pl_sales_order_del_det_qty]"
-        Me.GridColumndel_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumndel_amo.Visible = True
-        Me.GridColumndel_amo.VisibleIndex = 20
-        '
-        'GridColumnscan_diff_amo
-        '
-        Me.GridColumnscan_diff_amo.Caption = "Scan Diff Amount"
-        Me.GridColumnscan_diff_amo.DisplayFormat.FormatString = "N0"
-        Me.GridColumnscan_diff_amo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnscan_diff_amo.FieldName = "scan_diff_amo"
-        Me.GridColumnscan_diff_amo.Name = "GridColumnscan_diff_amo"
-        Me.GridColumnscan_diff_amo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_diff_amo", "{0:N0}")})
-        Me.GridColumnscan_diff_amo.UnboundExpression = "[design_price] * [scan_diff_qty]"
-        Me.GridColumnscan_diff_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnscan_diff_amo.Visible = True
-        Me.GridColumnscan_diff_amo.VisibleIndex = 21
-        '
-        'GridColumndel_diff_amo
-        '
-        Me.GridColumndel_diff_amo.Caption = "Del Diff Amount"
-        Me.GridColumndel_diff_amo.DisplayFormat.FormatString = "N0"
-        Me.GridColumndel_diff_amo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumndel_diff_amo.FieldName = "del_diff_amo"
-        Me.GridColumndel_diff_amo.Name = "GridColumndel_diff_amo"
-        Me.GridColumndel_diff_amo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_diff_amo", "{0:N0}")})
-        Me.GridColumndel_diff_amo.UnboundExpression = "[design_price] * [diff_qty]"
-        Me.GridColumndel_diff_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumndel_diff_amo.Visible = True
-        Me.GridColumndel_diff_amo.VisibleIndex = 22
-        '
         'FormWHSvcLevel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1678,4 +1689,5 @@ Partial Class FormWHSvcLevel
     Friend WithEvents GridColumndel_amo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnscan_diff_amo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndel_diff_amo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOnlineOrderDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class

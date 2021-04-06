@@ -163,7 +163,7 @@
         so.id_prepare_status, ps.prepare_status, so.final_comment, so.final_date, ef.employee_name AS `final_by_name`,
         CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`, CONCAT(s.comp_number, ' - ', s.comp_name) AS `destination`,
         SUM(sod.sales_order_det_qty) AS `total_order`, IFNULL(scan.total_trs,0) AS `total_scan`, IFNULL(comp.total_trs,0) AS `total_completed`
-        ,scan_date.first_scan_date,scan_date.last_scan_date
+        ,scan_date.first_scan_date,scan_date.last_scan_date, so.sales_order_ol_shop_date
         FROM tb_sales_order so
         LEFT JOIN tb_sales_order_gen sog ON sog.id_sales_order_gen = so.id_sales_order_gen
         INNER JOIN tb_lookup_so_status so_stt ON so_stt.id_so_status = so.id_so_status
