@@ -240,7 +240,7 @@ Partial Class FormWHSvcLevel
         'GridColumnOnlineOrderDate
         '
         Me.GridColumnOnlineOrderDate.Caption = "Online Order Date"
-        Me.GridColumnOnlineOrderDate.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.GridColumnOnlineOrderDate.DisplayFormat.FormatString = "dd\/MM\/yyyy HH:mm:ss"
         Me.GridColumnOnlineOrderDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnOnlineOrderDate.FieldName = "sales_order_ol_shop_date"
         Me.GridColumnOnlineOrderDate.Name = "GridColumnOnlineOrderDate"

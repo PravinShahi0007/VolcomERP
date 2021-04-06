@@ -54,6 +54,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumnid_sales_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_gen_reff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_ol_shop_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnprepare_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnwh = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -84,7 +85,6 @@ Partial Class FormSalesOrderReport
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnViewAll = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnsales_order_ol_shop_date = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSO.SuspendLayout()
         Me.XTPNew.SuspendLayout()
@@ -455,6 +455,17 @@ Partial Class FormSalesOrderReport
         Me.GridColumnsales_order_gen_reff.Visible = True
         Me.GridColumnsales_order_gen_reff.VisibleIndex = 2
         '
+        'GridColumnsales_order_ol_shop_date
+        '
+        Me.GridColumnsales_order_ol_shop_date.Caption = "Online Order Date"
+        Me.GridColumnsales_order_ol_shop_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnsales_order_ol_shop_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_order_ol_shop_date.FieldName = "sales_order_ol_shop_date"
+        Me.GridColumnsales_order_ol_shop_date.Name = "GridColumnsales_order_ol_shop_date"
+        Me.GridColumnsales_order_ol_shop_date.Visible = True
+        Me.GridColumnsales_order_ol_shop_date.VisibleIndex = 3
+        Me.GridColumnsales_order_ol_shop_date.Width = 97
+        '
         'GridColumnsales_order_date
         '
         Me.GridColumnsales_order_date.Caption = "Order Date"
@@ -751,17 +762,6 @@ Partial Class FormSalesOrderReport
         Me.SimpleButton2.TabIndex = 8898
         Me.SimpleButton2.Text = "Hide All Detail"
         Me.SimpleButton2.Visible = False
-        '
-        'GridColumnsales_order_ol_shop_date
-        '
-        Me.GridColumnsales_order_ol_shop_date.Caption = "Online Order Date"
-        Me.GridColumnsales_order_ol_shop_date.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnsales_order_ol_shop_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnsales_order_ol_shop_date.FieldName = "sales_order_ol_shop_date"
-        Me.GridColumnsales_order_ol_shop_date.Name = "GridColumnsales_order_ol_shop_date"
-        Me.GridColumnsales_order_ol_shop_date.Visible = True
-        Me.GridColumnsales_order_ol_shop_date.VisibleIndex = 3
-        Me.GridColumnsales_order_ol_shop_date.Width = 97
         '
         'FormSalesOrderReport
         '
