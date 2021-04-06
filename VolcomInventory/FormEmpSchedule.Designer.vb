@@ -30,10 +30,10 @@ Partial Class FormEmpSchedule
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BSetSchedule = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BViewSchedule = New DevExpress.XtraEditors.SimpleButton()
         Me.BTableInsert = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BSetSchedule = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewSchedule = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,16 +122,16 @@ Partial Class FormEmpSchedule
         Me.PanelControl1.Size = New System.Drawing.Size(766, 38)
         Me.PanelControl1.TabIndex = 1
         '
-        'BSetSchedule
+        'BTableInsert
         '
-        Me.BSetSchedule.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BSetSchedule.ImageIndex = 14
-        Me.BSetSchedule.ImageList = Me.LargeImageCollection
-        Me.BSetSchedule.Location = New System.Drawing.Point(2, 2)
-        Me.BSetSchedule.Name = "BSetSchedule"
-        Me.BSetSchedule.Size = New System.Drawing.Size(127, 34)
-        Me.BSetSchedule.TabIndex = 2
-        Me.BSetSchedule.Text = "Bulk Set Schedule"
+        Me.BTableInsert.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BTableInsert.ImageIndex = 19
+        Me.BTableInsert.ImageList = Me.LargeImageCollection
+        Me.BTableInsert.Location = New System.Drawing.Point(129, 2)
+        Me.BTableInsert.Name = "BTableInsert"
+        Me.BTableInsert.Size = New System.Drawing.Size(117, 34)
+        Me.BTableInsert.TabIndex = 3
+        Me.BTableInsert.Text = "Schedule Table"
         '
         'LargeImageCollection
         '
@@ -158,27 +158,27 @@ Partial Class FormEmpSchedule
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
+        'BSetSchedule
+        '
+        Me.BSetSchedule.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BSetSchedule.ImageIndex = 14
+        Me.BSetSchedule.ImageList = Me.LargeImageCollection
+        Me.BSetSchedule.Location = New System.Drawing.Point(2, 2)
+        Me.BSetSchedule.Name = "BSetSchedule"
+        Me.BSetSchedule.Size = New System.Drawing.Size(127, 34)
+        Me.BSetSchedule.TabIndex = 2
+        Me.BSetSchedule.Text = "Bulk Set Schedule"
+        '
         'BViewSchedule
         '
         Me.BViewSchedule.Dock = System.Windows.Forms.DockStyle.Right
         Me.BViewSchedule.ImageIndex = 15
         Me.BViewSchedule.ImageList = Me.LargeImageCollection
-        Me.BViewSchedule.Location = New System.Drawing.Point(651, 2)
+        Me.BViewSchedule.Location = New System.Drawing.Point(634, 2)
         Me.BViewSchedule.Name = "BViewSchedule"
-        Me.BViewSchedule.Size = New System.Drawing.Size(113, 34)
+        Me.BViewSchedule.Size = New System.Drawing.Size(130, 34)
         Me.BViewSchedule.TabIndex = 1
-        Me.BViewSchedule.Text = "View Schedule"
-        '
-        'BTableInsert
-        '
-        Me.BTableInsert.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BTableInsert.ImageIndex = 19
-        Me.BTableInsert.ImageList = Me.LargeImageCollection
-        Me.BTableInsert.Location = New System.Drawing.Point(129, 2)
-        Me.BTableInsert.Name = "BTableInsert"
-        Me.BTableInsert.Size = New System.Drawing.Size(117, 34)
-        Me.BTableInsert.TabIndex = 3
-        Me.BTableInsert.Text = "Schedule Table"
+        Me.BViewSchedule.Text = "View Attendance"
         '
         'FormEmpSchedule
         '

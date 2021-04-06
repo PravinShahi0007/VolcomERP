@@ -521,4 +521,9 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
             generateSummary()
         End If
     End Sub
+
+    Private Sub BImportExcel_Click(sender As Object, e As EventArgs) Handles BImportExcel.Click
+        FormImportExcel.id_pop_up = "55"
+        FormImportExcel.ShowDialog()
+    End Sub
 End Class
