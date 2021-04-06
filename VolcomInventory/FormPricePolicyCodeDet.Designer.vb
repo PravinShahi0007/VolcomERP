@@ -33,10 +33,11 @@ Partial Class FormPricePolicyCodeDet
         Me.GridColumndisc_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnage_min = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnage_max = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_design_price_policy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnid_design_price_policy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntarget_sal_thru = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,7 +130,7 @@ Partial Class FormPricePolicyCodeDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_code_detail, Me.GridColumnid_disc_type, Me.GridColumndisc_type, Me.GridColumnage_min, Me.GridColumnage_max, Me.GridColumnid_design_price_policy})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_code_detail, Me.GridColumnid_disc_type, Me.GridColumndisc_type, Me.GridColumnage_min, Me.GridColumnage_max, Me.GridColumnid_design_price_policy, Me.GridColumntarget_sal_thru})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -180,6 +181,13 @@ Partial Class FormPricePolicyCodeDet
         Me.GridColumnage_max.Visible = True
         Me.GridColumnage_max.VisibleIndex = 2
         '
+        'GridColumnid_design_price_policy
+        '
+        Me.GridColumnid_design_price_policy.Caption = "id_design_price_policy"
+        Me.GridColumnid_design_price_policy.FieldName = "id_design_price_policy"
+        Me.GridColumnid_design_price_policy.Name = "GridColumnid_design_price_policy"
+        Me.GridColumnid_design_price_policy.OptionsColumn.ReadOnly = True
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BtnDelete)
@@ -211,12 +219,15 @@ Partial Class FormPricePolicyCodeDet
         Me.BtnAdd.TabIndex = 3
         Me.BtnAdd.Text = "Add"
         '
-        'GridColumnid_design_price_policy
+        'GridColumntarget_sal_thru
         '
-        Me.GridColumnid_design_price_policy.Caption = "id_design_price_policy"
-        Me.GridColumnid_design_price_policy.FieldName = "id_design_price_policy"
-        Me.GridColumnid_design_price_policy.Name = "GridColumnid_design_price_policy"
-        Me.GridColumnid_design_price_policy.OptionsColumn.ReadOnly = True
+        Me.GridColumntarget_sal_thru.Caption = "Target Sal Thru"
+        Me.GridColumntarget_sal_thru.DisplayFormat.FormatString = "{0:n2} %"
+        Me.GridColumntarget_sal_thru.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.GridColumntarget_sal_thru.FieldName = "target_sal_thru"
+        Me.GridColumntarget_sal_thru.Name = "GridColumntarget_sal_thru"
+        Me.GridColumntarget_sal_thru.Visible = True
+        Me.GridColumntarget_sal_thru.VisibleIndex = 3
         '
         'FormPricePolicyCodeDet
         '
@@ -263,4 +274,5 @@ Partial Class FormPricePolicyCodeDet
     Friend WithEvents GridColumnage_min As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnage_max As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_design_price_policy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntarget_sal_thru As DevExpress.XtraGrid.Columns.GridColumn
 End Class
