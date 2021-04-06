@@ -29,6 +29,7 @@
         Dim query As String = "CALL view_svc_level_so('" + date_from_selected + "','" + date_until_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBySO.DataSource = data
+        GVBySO.BestFitColumns()
     End Sub
 
     Sub viewSvcByCode()
