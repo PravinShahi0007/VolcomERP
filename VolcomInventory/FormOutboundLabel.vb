@@ -139,18 +139,22 @@ GROUP BY pl.id_pl_sales_order_del"
     Sub print_ol(ByVal id_awbill As String)
         Dim report As ReportOutboundLabel = New ReportOutboundLabel
         '
-        Dim q As String = "(SELECT c.`comp_number`,c.`comp_name` ,IFNULL(cb.combine_number,pl.`pl_sales_order_del_number`) AS number,SUM(pld.`pl_sales_order_del_det_qty`) AS qty
+        Dim q As String = "(SELECT c.`comp_number`,c.`comp_name` ,IFNULL(cb.combine_number,pl.`pl_sales_order_del_number`) AS number,SUM(pld.`pl_sales_order_del_det_qty`) AS qty, c.address_primary, i.city, d.sub_district, i.id_state, s.state, cc.contact_person, cc.contact_number, g.is_marketplace
 FROM tb_wh_awbill_det awbd
 INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del`
 LEFT JOIN `tb_pl_sales_order_del_combine` cb ON cb.id_combine=pl.id_combine
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=pl.`id_store_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.id_comp
 INNER JOIN tb_pl_sales_order_del_det pld ON pld.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del`
+LEFT JOIN tb_m_city AS i ON c.id_city = i.id_city
+LEFT JOIN tb_m_state AS s ON i.id_state = s.id_state
+LEFT JOIN tb_m_sub_district AS d ON c.id_sub_district = d.id_sub_district
+LEFT JOIN tb_m_comp_group AS g ON c.id_comp_group = g.id_comp_group
 WHERE id_awbill='" & id_awbill & "'
 GROUP BY IFNULL(cb.id_combine,pld.`id_pl_sales_order_del`)
 ORDER BY pl.id_pl_sales_order_del ASC)
 UNION ALL
-(SELECT '' AS `comp_number`,pl.shipping_name AS `comp_name` ,pl.`number` AS number,COUNT(pld.`id_ol_store_ret_list`) AS qty
+(SELECT '' AS `comp_number`,pl.shipping_name AS `comp_name` ,pl.`number` AS number,COUNT(pld.`id_ol_store_ret_list`) AS qty, '' AS address_primary, '' city, '' sub_district, 0 id_state, '' state, '' contact_person, '' contact_number, 2 is_marketplace
 FROM tb_wh_awbill_det awbd
 INNER JOIN tb_ol_store_cust_ret pl ON pl.`id_ol_store_cust_ret`=awbd.`id_ol_store_cust_ret`
 INNER JOIN tb_ol_store_cust_ret_det pld ON pld.`id_ol_store_cust_ret`=pl.`id_ol_store_cust_ret`
@@ -167,8 +171,38 @@ ORDER BY pl.id_ol_store_cust_ret ASC)"
         report.ol_number = olnumber
         report.dt = dt
 
-        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
-        tool.ShowPreview()
+        'Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+        'tool.ShowPreview()
+
+        report.CreateDocument()
+
+        '
+        Dim report_outbound As ReportOutboundLabelOfline = New ReportOutboundLabelOfline
+
+        report_outbound.XLStoreCode.Text = dt.Rows(0)("comp_number").ToString
+        report_outbound.XLStoreName.Text = dt.Rows(0)("comp_name").ToString
+        report_outbound.XLAddress.Text = dt.Rows(0)("address_primary").ToString + Environment.NewLine + dt.Rows(0)("sub_district").ToString + ", " + dt.Rows(0)("city").ToString + Environment.NewLine + dt.Rows(0)("state").ToString + Environment.NewLine + "Attn: " + dt.Rows(0)("contact_person").ToString + " " + dt.Rows(0)("contact_number").ToString
+
+        report_outbound.CreateDocument()
+
+        'combine
+        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+
+        For i = 0 To report.Pages.Count - 1
+            list.Add(report.Pages(i))
+        Next
+
+        If dt.Rows(0)("is_marketplace").ToString = "2" And Not dt.Rows(0)("id_state").ToString = "20" Then
+            For i = 0 To report_outbound.Pages.Count - 1
+                list.Add(report_outbound.Pages(i))
+            Next
+        End If
+
+        report.Pages.AddRange(list)
+
+        Dim tool_outbound As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool_outbound.ShowPreview()
     End Sub
 
     Private Sub FormOutboundLabel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
