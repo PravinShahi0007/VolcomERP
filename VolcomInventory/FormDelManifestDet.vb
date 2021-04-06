@@ -1091,6 +1091,15 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
                 TEComp.Focus()
             End If
             '
+            If SLEDelType.EditValue.ToString = "6" Then
+                TEAwb.EditValue = GVList.GetRowCellValue(0, "ol_number").ToString
+
+                TEAwb.ReadOnly = True
+            Else
+                TEAwb.EditValue = ""
+
+                TEAwb.ReadOnly = False
+            End If
         End If
     End Sub
 
