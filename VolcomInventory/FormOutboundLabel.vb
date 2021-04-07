@@ -544,6 +544,9 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country` " & filter
 
                 If GVDOERP.RowCount = 0 Then
                     reset_sdo()
+
+                    SLEComp.EditValue = data.Rows(0)("id_comp").ToString
+                    SLESubDistrict.EditValue = data.Rows(0)("id_sub_district").ToString
                 Else
                     If Not data.Rows(0)("id_comp").ToString = GVDOERP.GetRowCellValue(0, "id_comp").ToString Then
                         err_message = "Store is different."
