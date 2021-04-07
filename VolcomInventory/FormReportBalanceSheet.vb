@@ -441,12 +441,12 @@ WHERE ISNULL(atx.`date_tax_report`) AND DATE(atx.`date_reference`)>='" + Date.Pa
                 End If
 
                 Dim q As String = ""
-                q = "-- expense input manual
+                q = "-- expense input manual grup per report
 SELECT 'no' AS is_check,rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent,-SUM(ied.`amount`) AS dpp,-SUM(ied.`amount`) AS pph 
 FROM tb_item_expense_det ied
 INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`=6
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc` 
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.is_group_per_item=2
 INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
 LEFT JOIN
 ( 
@@ -454,19 +454,19 @@ LEFT JOIN
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
     INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1 AND t.is_group_per_item=2
     WHERE atd.`report_mark_type`='157'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_item_expense`
 WHERE ISNULL(atx.`date_tax_report`) AND DATE(atx.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 GROUP BY ie.id_item_expense,ied.id_acc
 UNION ALL
--- expense percent
-SELECT 'no' AS is_check,rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,SUM(ied.`amount`) AS dpp,SUM(ied.`pph`) AS pph 
+-- expense input manual grup per description
+SELECT 'no' AS is_check,rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent,-SUM(ied.`amount`) AS dpp,-SUM(ied.`amount`) AS pph 
 FROM tb_item_expense_det ied
 INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`=6
-INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc_pph`
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
+INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc` 
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.is_group_per_item=1
 INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
 LEFT JOIN
 ( 
@@ -474,12 +474,52 @@ LEFT JOIN
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
     INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1 AND t.is_group_per_item=1
+    WHERE atd.`report_mark_type`='157'
+    GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
+) atx ON atx.id_report=ie.`id_item_expense`
+WHERE ISNULL(atx.`date_tax_report`) AND DATE(atx.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
+GROUP BY ie.id_item_expense,ied.description,ied.id_acc
+UNION ALL
+-- expense percent grup per report
+SELECT 'no' AS is_check,rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,SUM(ied.`amount`) AS dpp,SUM(ied.`pph`) AS pph 
+FROM tb_item_expense_det ied
+INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`=6
+INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc_pph`
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.is_group_per_item=2
+INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
+LEFT JOIN
+( 
+    SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
+    FROM tb_a_acc_trans_det atd 
+    INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1  AND t.is_group_per_item=2
     WHERE atd.`report_mark_type`='157'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_item_expense`
 WHERE ISNULL(atx.`date_tax_report`) AND DATE(atx.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 GROUP BY ie.id_item_expense,ied.id_acc_pph
+UNION ALL
+-- expense percent grup per description
+SELECT 'no' AS is_check,rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,SUM(ied.`amount`) AS dpp,SUM(ied.`pph`) AS pph 
+FROM tb_item_expense_det ied
+INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`=6
+INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc_pph`
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.is_group_per_item=1
+INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
+LEFT JOIN
+( 
+    SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
+    FROM tb_a_acc_trans_det atd 
+    INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1  AND t.is_group_per_item=1
+    WHERE atd.`report_mark_type`='157'
+    GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
+) atx ON atx.id_report=ie.`id_item_expense`
+WHERE ISNULL(atx.`date_tax_report`) AND DATE(atx.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
+GROUP BY ie.id_item_expense,ied.description,ied.id_acc_pph
 UNION ALL
 -- bpl
 SELECT 'no' AS is_check,rpt.tax_report,189 AS report_mark_type,atx.id_acc_trans,ied.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_pn_fgpo` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.info_design AS description,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,SUM(ied.`value`) AS dpp,SUM(ied.`pph`) AS pph 
@@ -694,25 +734,45 @@ WHERE DATE(ie.`date_payment`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToS
                 End If
 
                 Dim q As String = ""
-                q = "-- expense input manual
+                q = "-- expense input manual grup per report
 SELECT rpt.tax_report,157 AS report_mark_type,ie.inv_number AS inv_number,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,ie.`date_reff` AS date_reference,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent,SUM(ied.`amount`) AS dpp,SUM(ied.`amount`) AS pph 
 FROM tb_item_expense_det ied
 INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`!=6 AND ie.`id_report_status`!=5 " + where_coa_tag + "
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc`
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.is_group_per_item=2
 INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
 WHERE DATE(ie.`date_reff`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(ie.`date_reff`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 GROUP BY ie.id_item_expense,ied.id_acc
 UNION ALL
--- expense dari percent
+-- expense input manual grup per desc
+SELECT rpt.tax_report,157 AS report_mark_type,ie.inv_number AS inv_number,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,ie.`date_reff` AS date_reference,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent,SUM(ied.`amount`) AS dpp,SUM(ied.`amount`) AS pph 
+FROM tb_item_expense_det ied
+INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`!=6 AND ie.`id_report_status`!=5 " + where_coa_tag + "
+INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc`
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.is_group_per_item=1
+INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
+WHERE DATE(ie.`date_reff`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(ie.`date_reff`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
+GROUP BY ie.id_item_expense,ied.description,ied.id_acc
+UNION ALL
+-- expense dari percent grup per report
 SELECT rpt.tax_report,157 AS report_mark_type,ie.inv_number AS inv_number,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,ie.`date_reff` AS date_reference,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,SUM(ied.`amount`) AS dpp,SUM(ied.`pph`) AS pph 
 FROM tb_item_expense_det ied
 INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`!=6 AND ie.`id_report_status`!=5 " + where_coa_tag + "
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc_pph` AND ied.pph_percent>0
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.is_group_per_item=2
 INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
 WHERE DATE(ie.`date_reff`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(ie.`date_reff`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 GROUP BY ie.id_item_expense,ied.id_acc
+UNION ALL
+-- expense dari percent grup per description
+SELECT rpt.tax_report,157 AS report_mark_type,ie.inv_number AS inv_number,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,ie.`date_reff` AS date_reference,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,SUM(ied.`amount`) AS dpp,SUM(ied.`pph`) AS pph 
+FROM tb_item_expense_det ied
+INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`!=6 AND ie.`id_report_status`!=5 " + where_coa_tag + "
+INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc_pph` AND ied.pph_percent>0
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.is_group_per_item=1
+INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
+WHERE DATE(ie.`date_reff`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(ie.`date_reff`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
+GROUP BY ie.id_item_expense,ied.description,ied.id_acc
 UNION ALL
 -- bpl
 SELECT rpt.tax_report,189 AS report_mark_type,ied.inv_number AS inv_number,ie.`id_pn_fgpo` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,ie.`ref_date` AS date_reference,ied.info_design AS description,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,ied.`value` AS dpp,ied.`pph` AS pph 
@@ -955,12 +1015,12 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
                 End If
 
                 Dim q As String = ""
-                q = "-- expense input manual
+                q = "-- expense input manual grup per report
 SELECT 'no' AS is_check,rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent,SUM(-ied.`amount`) AS dpp,SUM(-ied.`amount`) AS pph 
 FROM tb_item_expense_det ied
 INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`=6
 INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc` 
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.`is_group_per_item`=2
 INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
 LEFT JOIN
 ( 
@@ -968,19 +1028,19 @@ LEFT JOIN
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
     INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1 AND t.`is_group_per_item`=2
     WHERE atd.`report_mark_type`='157'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_item_expense`
 WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_tax_report`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 GROUP BY ie.id_item_expense,ied.id_acc
 UNION ALL
--- expense percent
-SELECT 'no' AS is_check,rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,SUM(ied.`amount`) AS dpp,SUM(ied.`pph`) AS pph 
+-- expense input manual grup per description
+SELECT 'no' AS is_check,rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent,SUM(-ied.`amount`) AS dpp,SUM(-ied.`amount`) AS pph 
 FROM tb_item_expense_det ied
 INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`=6
-INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc_pph`
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
+INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc` 
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.`is_group_per_item`=1
 INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
 LEFT JOIN
 ( 
@@ -988,12 +1048,52 @@ LEFT JOIN
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
     INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1 AND t.`is_group_per_item`=1
+    WHERE atd.`report_mark_type`='157'
+    GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
+) atx ON atx.id_report=ie.`id_item_expense`
+WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_tax_report`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
+GROUP BY ie.id_item_expense,ied.description,ied.id_acc
+UNION ALL
+-- expense percent grup per report
+SELECT 'no' AS is_check,rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,SUM(ied.`amount`) AS dpp,SUM(ied.`pph`) AS pph 
+FROM tb_item_expense_det ied
+INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`=6
+INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc_pph`
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.`is_group_per_item`=2
+INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
+LEFT JOIN
+( 
+    SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
+    FROM tb_a_acc_trans_det atd 
+    INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1 AND t.`is_group_per_item`=2
     WHERE atd.`report_mark_type`='157'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_item_expense`
 WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_tax_report`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 GROUP BY ie.id_item_expense,ied.id_acc_pph
+UNION ALL
+-- expense percent grup per description
+SELECT 'no' AS is_check,rpt.tax_report,157 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_item_expense` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.`description`,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,SUM(ied.`amount`) AS dpp,SUM(ied.`pph`) AS pph 
+FROM tb_item_expense_det ied
+INNER JOIN tb_item_expense ie ON ie.`id_item_expense`=ied.`id_item_expense` AND ie.`id_report_status`=6
+INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc_pph`
+INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1 AND rpt.`is_group_per_item`=1
+INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
+LEFT JOIN
+( 
+    SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
+    FROM tb_a_acc_trans_det atd 
+    INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=1 AND t.`is_group_per_item`=1
+    WHERE atd.`report_mark_type`='157'
+    GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
+) atx ON atx.id_report=ie.`id_item_expense`
+WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_tax_report`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
+GROUP BY ied.id_item_expense,ied.`description`,ied.id_acc_pph
 UNION ALL
 -- bpl
 SELECT 'no' AS is_check,rpt.tax_report,189 AS report_mark_type,atx.id_acc_trans,ied.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,ie.`id_pn_fgpo` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`number`,atx.`date_reference`,ied.info_design AS description,ied.`id_acc_pph`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ied.`pph_percent` AS pph_percent,SUM(ied.`value`) AS dpp,SUM(ied.`pph`) AS pph 
