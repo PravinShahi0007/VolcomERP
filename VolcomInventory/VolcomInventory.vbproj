@@ -7748,6 +7748,12 @@
     <Compile Include="FormWHCargoRateDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormWHCekFisik.Designer.vb">
+      <DependentUpon>FormWHCekFisik.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWHCekFisik.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormWHDelEmpty.Designer.vb">
       <DependentUpon>FormWHDelEmpty.vb</DependentUpon>
     </Compile>
@@ -13705,6 +13711,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHCargoRateDet.resx">
       <DependentUpon>FormWHCargoRateDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWHCekFisik.resx">
+      <DependentUpon>FormWHCekFisik.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHDelEmpty.resx">
       <DependentUpon>FormWHDelEmpty.vb</DependentUpon>

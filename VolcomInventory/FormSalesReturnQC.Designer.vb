@@ -33,11 +33,14 @@ Partial Class FormSalesReturnQC
         Me.GridColumnLastUser = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PrintDetailScanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XTCReturnQC = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPReturnQC = New DevExpress.XtraTab.XtraTabPage()
+        Me.BCheckFisik = New DevExpress.XtraEditors.SimpleButton()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
@@ -83,7 +86,6 @@ Partial Class FormSalesReturnQC
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrintDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
-        Me.PrintDetailScanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCSalesReturnQC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesReturnQC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
@@ -119,13 +121,13 @@ Partial Class FormSalesReturnQC
         Me.GCSalesReturnQC.Location = New System.Drawing.Point(0, 39)
         Me.GCSalesReturnQC.MainView = Me.GVSalesReturnQC
         Me.GCSalesReturnQC.Name = "GCSalesReturnQC"
-        Me.GCSalesReturnQC.Size = New System.Drawing.Size(762, 442)
+        Me.GCSalesReturnQC.Size = New System.Drawing.Size(762, 409)
         Me.GCSalesReturnQC.TabIndex = 0
         Me.GCSalesReturnQC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesReturnQC})
         '
         'GVSalesReturnQC
         '
-        Me.GVSalesReturnQC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnQCNumber, Me.GridColumnSalesReturnNumber, Me.GridColumnStoreNameFrom, Me.GridColumnCreatedDate, Me.GridColumnQCCategory, Me.GridColumnReportStatus, Me.GridColumnCompTo, Me.GridColumnLastUpdate, Me.GridColumnLastUser, Me.GridColumnTotal, Me.GridColumnPreparedBy})
+        Me.GVSalesReturnQC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnQCNumber, Me.GridColumnSalesReturnNumber, Me.GridColumnStoreNameFrom, Me.GridColumnCreatedDate, Me.GridColumnQCCategory, Me.GridColumnReportStatus, Me.GridColumnCompTo, Me.GridColumnLastUpdate, Me.GridColumnLastUser, Me.GridColumnTotal, Me.GridColumnPreparedBy, Me.GridColumn3})
         Me.GVSalesReturnQC.GridControl = Me.GCSalesReturnQC
         Me.GVSalesReturnQC.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotal, "{0:n0}")})
         Me.GVSalesReturnQC.Name = "GVSalesReturnQC"
@@ -235,11 +237,19 @@ Partial Class FormSalesReturnQC
         Me.GridColumnPreparedBy.Visible = True
         Me.GridColumnPreparedBy.VisibleIndex = 6
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Status Cek Fisik"
+        Me.GridColumn3.FieldName = "sts_cek_fisik"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 10
+        '
         'ViewMenu
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMPrePrint, Me.SMPrint, Me.PrintDetailScanToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(161, 92)
+        Me.ViewMenu.Size = New System.Drawing.Size(161, 70)
         '
         'SMPrePrint
         '
@@ -252,6 +262,12 @@ Partial Class FormSalesReturnQC
         Me.SMPrint.Name = "SMPrint"
         Me.SMPrint.Size = New System.Drawing.Size(160, 22)
         Me.SMPrint.Text = "Print"
+        '
+        'PrintDetailScanToolStripMenuItem
+        '
+        Me.PrintDetailScanToolStripMenuItem.Name = "PrintDetailScanToolStripMenuItem"
+        Me.PrintDetailScanToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.PrintDetailScanToolStripMenuItem.Text = "Print Detail Scan"
         '
         'XTCReturnQC
         '
@@ -267,10 +283,26 @@ Partial Class FormSalesReturnQC
         'XTPReturnQC
         '
         Me.XTPReturnQC.Controls.Add(Me.GCSalesReturnQC)
+        Me.XTPReturnQC.Controls.Add(Me.BCheckFisik)
         Me.XTPReturnQC.Controls.Add(Me.GCFilter)
         Me.XTPReturnQC.Name = "XTPReturnQC"
         Me.XTPReturnQC.Size = New System.Drawing.Size(762, 481)
         Me.XTPReturnQC.Text = "Transaction List"
+        '
+        'BCheckFisik
+        '
+        Me.BCheckFisik.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BCheckFisik.Appearance.BackColor2 = System.Drawing.Color.Blue
+        Me.BCheckFisik.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCheckFisik.Appearance.Options.UseBackColor = True
+        Me.BCheckFisik.Appearance.Options.UseForeColor = True
+        Me.BCheckFisik.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BCheckFisik.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCheckFisik.Location = New System.Drawing.Point(0, 448)
+        Me.BCheckFisik.Name = "BCheckFisik"
+        Me.BCheckFisik.Size = New System.Drawing.Size(762, 33)
+        Me.BCheckFisik.TabIndex = 7
+        Me.BCheckFisik.Text = "Proses Cek Fisik"
         '
         'GCFilter
         '
@@ -721,12 +753,6 @@ Partial Class FormSalesReturnQC
         Me.BAccept.TabIndex = 139
         Me.BAccept.Text = "View Detail"
         '
-        'PrintDetailScanToolStripMenuItem
-        '
-        Me.PrintDetailScanToolStripMenuItem.Name = "PrintDetailScanToolStripMenuItem"
-        Me.PrintDetailScanToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
-        Me.PrintDetailScanToolStripMenuItem.Text = "Print Detail Scan"
-        '
         'FormSalesReturnQC
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -835,4 +861,6 @@ Partial Class FormSalesReturnQC
     Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPreparedBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PrintDetailScanToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BCheckFisik As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
