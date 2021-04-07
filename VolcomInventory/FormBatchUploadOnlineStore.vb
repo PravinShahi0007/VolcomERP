@@ -200,6 +200,10 @@
 
                 data_tmp.Rows(i)("Handle") = data_tmp.Rows(i)("Handle").ToString.Replace("[silhouette]", data_tmp.Rows(i)("Silhouette"))
 
+                data_tmp.Rows(i)("Image Alt Text") = data_tmp.Rows(i)("Image Alt Text").ToString.Replace("[silhouette]", data_tmp.Rows(i)("Silhouette"))
+
+                data_tmp.Rows(i)("SEO Title") = data_tmp.Rows(i)("SEO Title").ToString.Replace("[silhouette]", data_tmp.Rows(i)("Silhouette"))
+
                 Dim list_tag As List(Of String) = New List(Of String)
 
                 For n = 1 To 8

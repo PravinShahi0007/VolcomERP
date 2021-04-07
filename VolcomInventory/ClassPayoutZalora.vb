@@ -112,7 +112,7 @@ FROM (
     INNER JOIN tb_m_comp cf ON cf.id_comp=1
     WHERE a.id_payout_zalora=" + id + " AND a.id_zalora_comm_type=2)
     UNION ALL
-	(SELECT 'Komisi penjualan Zalora' AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, m.comm AS `amo`, d.id_acc, d.recon_type AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 3 AS `indeks`
+	(SELECT 'Komisi penjualan Zalora' AS `name`, 2 AS `id_group`, 'Commision' AS `group`, 0 AS `id_ref`, 0 AS `rmt_ref`, '' AS `ref`, m.comm AS `amo`, '" + id_acc_default_comm + "' AS id_acc, d.recon_type AS `recon_type`, '' AS manual_recon_reason, 0 AS `id_payout_zalora_det_adj`, cf.id_comp,cf.comp_number, 3 AS `indeks`
 	FROM tb_payout_zalora m
 	LEFT JOIN (
 		SELECT  d.id_payout_zalora, GROUP_CONCAT(DISTINCT IF(d.is_manual_recon=2,'Auto', 'Manual')) AS `recon_type`, GROUP_CONCAT(DISTINCT d.id_acc) AS `id_acc`

@@ -28,7 +28,7 @@
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT dpp.id_design_price_policy,dpp.id_code_detail, dpp.id_disc_type, dt.disc_type, dpp.age_min, dpp.age_max 
+        Dim query As String = "SELECT dpp.id_design_price_policy,dpp.id_code_detail, dpp.id_disc_type, dt.disc_type, dpp.age_min, dpp.age_max, dpp.target_sal_thru
         FROM tb_m_design_price_policy dpp
         INNER JOIN tb_lookup_disc_type dt ON dt.id_disc_type = dpp.id_disc_type
         WHERE dpp.id_code_detail='" + id + "' "
