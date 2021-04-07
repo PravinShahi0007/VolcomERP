@@ -129,21 +129,21 @@ Partial Class FormWHCekFisik
         '
         'TEOutboundNumber
         '
-        Me.TEOutboundNumber.Location = New System.Drawing.Point(150, 9)
+        Me.TEOutboundNumber.Location = New System.Drawing.Point(188, 9)
         Me.TEOutboundNumber.Name = "TEOutboundNumber"
         Me.TEOutboundNumber.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.TEOutboundNumber.Properties.Appearance.Options.UseFont = True
-        Me.TEOutboundNumber.Size = New System.Drawing.Size(334, 28)
+        Me.TEOutboundNumber.Size = New System.Drawing.Size(296, 28)
         Me.TEOutboundNumber.TabIndex = 1
         '
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 11)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(133, 21)
+        Me.LabelControl1.Size = New System.Drawing.Size(171, 21)
         Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "Outbound Number"
+        Me.LabelControl1.Text = "Scan Document Number"
         '
         'PanelControl1
         '
@@ -352,11 +352,11 @@ Partial Class FormWHCekFisik
         '
         'TEScannedCode
         '
-        Me.TEScannedCode.Location = New System.Drawing.Point(50, 9)
+        Me.TEScannedCode.Location = New System.Drawing.Point(108, 9)
         Me.TEScannedCode.Name = "TEScannedCode"
         Me.TEScannedCode.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.TEScannedCode.Properties.Appearance.Options.UseFont = True
-        Me.TEScannedCode.Size = New System.Drawing.Size(433, 28)
+        Me.TEScannedCode.Size = New System.Drawing.Size(375, 28)
         Me.TEScannedCode.TabIndex = 1
         '
         'LabelControl6
@@ -364,15 +364,15 @@ Partial Class FormWHCekFisik
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.LabelControl6.Location = New System.Drawing.Point(11, 12)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(33, 21)
+        Me.LabelControl6.Size = New System.Drawing.Size(91, 21)
         Me.LabelControl6.TabIndex = 0
-        Me.LabelControl6.Text = "Scan"
+        Me.LabelControl6.Text = "Scan Product"
         '
         'XTPScanList
         '
         Me.XTPScanList.Controls.Add(Me.GCScanList)
         Me.XTPScanList.Name = "XTPScanList"
-        Me.XTPScanList.Size = New System.Drawing.Size(929, 436)
+        Me.XTPScanList.Size = New System.Drawing.Size(960, 378)
         Me.XTPScanList.Text = "Scan List"
         '
         'GCScanList
@@ -381,7 +381,7 @@ Partial Class FormWHCekFisik
         Me.GCScanList.Location = New System.Drawing.Point(0, 0)
         Me.GCScanList.MainView = Me.GVScanList
         Me.GCScanList.Name = "GCScanList"
-        Me.GCScanList.Size = New System.Drawing.Size(929, 436)
+        Me.GCScanList.Size = New System.Drawing.Size(960, 378)
         Me.GCScanList.TabIndex = 4
         Me.GCScanList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScanList})
         '

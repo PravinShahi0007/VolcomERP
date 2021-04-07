@@ -10,22 +10,19 @@
         If report_mark_type = "return_transfer" Then
             'ret transfer
             If Not id_report = "-1" Then
-                Dim q_item As String = "SELECT p.`id_product`,CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting) AS full_code,COUNT(CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting)) AS qty
+                Dim q_item As String = "SELECT p.`id_product`,CONCAT(p.`product_full_code`,delc.sales_return_qc_det_counting) AS full_code,COUNT(CONCAT(p.`product_full_code`,delc.sales_return_qc_det_counting)) AS qty
 ,IFNULL(sc.qty_scan,0) AS qty_scan
-FROM tb_wh_awbill awb 
-INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill` AND awb.`id_awbill`='" & id_report & "'
-INNER JOIN `tb_pl_sales_order_del` del ON del.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del`
-INNER JOIN `tb_pl_sales_order_del_det` deld ON deld.`id_pl_sales_order_del`=del.`id_pl_sales_order_del`
-INNER JOIN tb_m_product p ON p.`id_product`=deld.`id_product`
-INNER JOIN `tb_pl_sales_order_del_det_counting` delc ON delc.`id_pl_sales_order_del_det`=deld.`id_pl_sales_order_del_det`
+FROM `tb_sales_return_qc_det` deld 
+INNER JOIN tb_m_product p ON p.`id_product`=deld.`id_product` AND deld.`id_sales_return_qc`='" & id_report & "'
+INNER JOIN `tb_sales_return_qc_det_counting` delc ON delc.`id_sales_return_qc_det`=deld.`id_sales_return_qc_det`
 LEFT JOIN
 (
-    SELECT dd.id_product,dd.scanned_code,COUNT(dd.scanned_code) as qty_scan
-    FROM `tb_cek_fisik_del_scan` dd
-    INNER JOIN tb_cek_fisik_del d ON d.id_cek_fisik_del=dd.id_cek_fisik_del
-    WHERE id_awbill='" & id_report & "' AND id_report_status!=5
+    SELECT dd.id_product,dd.scanned_code,COUNT(dd.scanned_code) AS qty_scan
+    FROM `tb_wh_cek_fisik_scan` dd
+    INNER JOIN tb_wh_cek_fisik d ON d.id_wh_cek_fisik=dd.id_wh_cek_fisik
+    WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_report_status!=5
     GROUP BY dd.scanned_code
-)sc ON sc.scanned_code=CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting)
+)sc ON sc.scanned_code=CONCAT(p.`product_full_code`,delc.sales_return_qc_det_counting)
 GROUP BY full_code"
                 Dim dt_item As DataTable = execute_query(q_item, -1, True, "", "", "", "")
                 dtu = dt_item
@@ -33,9 +30,9 @@ GROUP BY full_code"
                 GVItemList.BestFitColumns()
 
                 q_item = "SELECT dd.id_product,dd.scanned_code
-FROM `tb_cek_fisik_del_scan` dd
-INNER JOIN tb_cek_fisik_del d ON d.id_cek_fisik_del=dd.id_cek_fisik_del
-WHERE id_awbill='" & id_report & "' AND id_report_status!=5"
+FROM `tb_wh_cek_fisik_scan` dd
+INNER JOIN tb_wh_cek_fisik d ON d.id_wh_cek_fisik=dd.id_wh_cek_fisik
+WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_report_status!=5"
                 dt_item = execute_query(q_item, -1, True, "", "", "", "")
                 GCScanList.DataSource = dt_item
                 get_total()
@@ -48,21 +45,10 @@ WHERE id_awbill='" & id_report & "' AND id_report_status!=5"
 
     Private Sub TEOutboundNumber_KeyUp(sender As Object, e As KeyEventArgs) Handles TEOutboundNumber.KeyUp
         If e.KeyCode = Keys.Enter And id_cek_fisik = "-1" Then
-            Dim q As String = "SELECT awb.id_awbill,SUM(awbd.qty) AS qty,dis.sub_district,IFNULL(c.comp_number,cg.comp_group) AS comp_number,IFNULL(c.comp_name,cg.description) AS comp_name,awb.ol_number
-,GROUP_CONCAT(DISTINCT pl.`pl_sales_order_del_number`) AS sdo_number,GROUP_CONCAT(DISTINCT cb.`combine_number`) AS combine_number,GROUP_CONCAT(DISTINCT so.sales_order_ol_shop_number) AS online_order_number
-,awb.status_check_fisik
-FROM `tb_wh_awbill` awb 
-INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awb.id_sub_district
-INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
-LEFT JOIN tb_m_comp c ON c.id_comp=awb.id_store
-INNER JOIN tb_pl_sales_order_del pl ON pl.id_pl_sales_order_del=awbd.id_pl_sales_order_del
-LEFT JOIN `tb_pl_sales_order_del_combine` cb ON cb.id_combine=pl.id_combine
-INNER JOIN tb_sales_order so ON so.id_sales_order=pl.id_sales_order
-INNER JOIN tb_m_comp_contact ccx ON ccx.id_comp_contact = pl.id_store_contact_to
-INNER JOIN tb_m_comp cx ON cx.id_comp = ccx.id_comp
-INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=cx.`id_comp_group`
-WHERE awb.is_old_ways!=1 AND awb.id_report_status!=5 AND awb.id_report_status!=6 AND awb.step=1 AND awb.ol_number='" & addSlashes(TEOutboundNumber.Text) & "'
-GROUP BY awb.id_awbill"
+            Dim q As String = ""
+            If report_mark_type = "return_transfer" Then
+                q = "SELECT id_sales_return_qc AS id_report,status_check_fisik FROM `tb_sales_return_qc` reqc WHERE reqc.sales_return_qc_number='" & addSlashes(TEOutboundNumber.Text) & "'"
+            End If
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 If dt.Rows(0)("status_check_fisik").ToString = "3" Then
@@ -70,7 +56,7 @@ GROUP BY awb.id_awbill"
                     FormError.ShowDialog()
                     TEOutboundNumber.Text = ""
                 ElseIf dt.Rows(0)("status_check_fisik").ToString = "2" Then
-                    id_report = dt.Rows(0)("id_awbill").ToString
+                    id_report = dt.Rows(0)("id_report").ToString
                     BReset.Visible = False
                     TEOutboundNumber.Properties.ReadOnly = True
                     '
@@ -80,35 +66,44 @@ GROUP BY awb.id_awbill"
                     LStatus.Text = "Tidak Balance"
                     PCScan.Visible = False
                 ElseIf dt.Rows(0)("status_check_fisik").ToString = "1" Then
-                    id_report = dt.Rows(0)("id_awbill").ToString
+                    id_report = dt.Rows(0)("id_report").ToString
                     BReset.Visible = True
                     TEOutboundNumber.Properties.ReadOnly = True
                     LStatus.Text = "Belum Cek Fisik"
                     PCScan.Visible = True
                     '
-                    Dim q_item As String = "SELECT p.`id_product`,CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting) AS full_code,COUNT(CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting)) AS qty
-,0 AS qty_scan
-FROM tb_wh_awbill awb 
-INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill` AND awb.`id_awbill`='" & id_report & "'
-INNER JOIN `tb_pl_sales_order_del` del ON del.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del`
-INNER JOIN `tb_pl_sales_order_del_det` deld ON deld.`id_pl_sales_order_del`=del.`id_pl_sales_order_del`
-INNER JOIN tb_m_product p ON p.`id_product`=deld.`id_product`
-INNER JOIN `tb_pl_sales_order_del_det_counting` delc ON delc.`id_pl_sales_order_del_det`=deld.`id_pl_sales_order_del_det`
+                    Dim q_item As String = ""
+                    If report_mark_type = "return_transfer" Then
+                        q_item = "SELECT p.`id_product`,CONCAT(p.`product_full_code`,delc.sales_return_qc_det_counting) AS full_code,COUNT(CONCAT(p.`product_full_code`,delc.sales_return_qc_det_counting)) AS qty
+,IFNULL(sc.qty_scan,0) AS qty_scan
+FROM `tb_sales_return_qc_det` deld 
+INNER JOIN tb_m_product p ON p.`id_product`=deld.`id_product` AND deld.`id_sales_return_qc`='" & id_report & "'
+INNER JOIN `tb_sales_return_qc_det_counting` delc ON delc.`id_sales_return_qc_det`=deld.`id_sales_return_qc_det`
+LEFT JOIN
+(
+    SELECT dd.id_product,dd.scanned_code,COUNT(dd.scanned_code) AS qty_scan
+    FROM `tb_wh_cek_fisik_scan` dd
+    INNER JOIN tb_wh_cek_fisik d ON d.id_wh_cek_fisik=dd.id_wh_cek_fisik
+    WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_report_status!=5
+    GROUP BY dd.scanned_code
+)sc ON sc.scanned_code=CONCAT(p.`product_full_code`,delc.sales_return_qc_det_counting)
 GROUP BY full_code"
+                    End If
+
                     Dim dt_item As DataTable = execute_query(q_item, -1, True, "", "", "", "")
                     dtu = dt_item
                     GCItemList.DataSource = dt_item
                     GVItemList.BestFitColumns()
                     '
-                    q_item = "SELECT id_product,scanned_code FROM `tb_cek_fisik_del_scan`
-WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
+                    q_item = "SELECT id_product,scanned_code FROM `tb_wh_cek_fisik_scan`
+WHERE `id_wh_cek_fisik`='" & id_cek_fisik & "'"
                     dt_item = execute_query(q_item, -1, True, "", "", "", "")
                     GCScanList.DataSource = dt_item
 
                     TEScannedCode.Focus()
                 End If
             Else
-                FormError.LabelContent.Text = "Outbound label tidak ditemukan"
+                FormError.LabelContent.Text = "Nomor dokumen tidak ditemukan"
                 FormError.ShowDialog()
                 TEOutboundNumber.Text = ""
             End If
@@ -226,11 +221,11 @@ WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
 
     Sub save(ByVal is_popup As Boolean)
         Dim q As String = ""
-        q = "INSERT INTO tb_cek_fisik_del(id_awbill,created_date,created_by) VALUES('" & id_report & "',NOW(),'" & id_user & "'); SELECT LAST_INSERT_ID();"
+        q = "INSERT INTO tb_wh_cek_fisik(id_report,report_mark_type,created_date,created_by) VALUES('" & id_report & "','" & report_mark_type & "',NOW(),'" & id_user & "'); SELECT LAST_INSERT_ID();"
         id_cek_fisik = execute_query(q, 0, True, "", "", "", "")
         'detail
         If GVScanList.RowCount > 0 Then
-            q = "INSERT INTO tb_cek_fisik_del_scan(`id_cek_fisik_del`,`id_product`,`scanned_code`) VALUES"
+            q = "INSERT INTO tb_wh_cek_fisik_scan(`id_wh_cek_fisik`,`id_product`,`scanned_code`) VALUES"
             For i As Integer = 0 To GVScanList.RowCount - 1
                 If Not i = 0 Then
                     q += ","
@@ -243,7 +238,10 @@ WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
 
         'notify head if not balance
         valid_check(is_popup)
-        FormOutboundList.load_list("", "")
+        '
+        If report_mark_type = "return_transfer" Then
+            FormSalesReturnQC.viewSalesReturnQC()
+        End If
         '
         Close()
     End Sub
@@ -263,15 +261,18 @@ WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
                 End If
             Else
                 'pakai login dept head 
-                FormMenuAuth.type = "17"
+                FormMenuAuth.type = "18"
                 FormMenuAuth.ShowDialog()
                 If is_able_reopen Then
                     're open
                     Dim q As String = ""
-                    q = "UPDATE tb_cek_fisik_del SET id_report_status=5,cancel_date=NOW(),cancel_by='' WHERE id_awbill='" & id_report & "' AND id_report_status!=5"
+                    q = "UPDATE tb_wh_cek_fisik SET id_report_status=5,cancel_date=NOW(),cancel_by='' WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_report_status!=5"
                     execute_non_query(q, True, "", "", "", "")
                     '
-                    q = "UPDATE tb_wh_awbill SET status_check_fisik=1 WHERE id_awbill='" & id_report & "'"
+                    If report_mark_type = "return_transfer" Then
+                        q = "UPDATE tb_sales_return_qc SET status_check_fisik=1 WHERE id_sales_return_qc='" & id_report & "'"
+                    End If
+
                     execute_non_query(q, True, "", "", "", "")
                     '
                     TETotQty.EditValue = 0
@@ -311,37 +312,40 @@ WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
     End Sub
 
     Sub valid_check(ByVal is_popup As Boolean)
-        Dim q As String = "
+        If report_mark_type = "return_transfer" Then
+            Dim q As String = "
 SELECT * FROM (
-SELECT p.`id_product`,CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting) AS full_code,COUNT(CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting)) AS qty
-,IFNULL(sc.qty_scan,0) AS qty_scan
-FROM tb_wh_awbill awb 
-INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill` AND awb.`id_awbill`='" & id_report & "'
-INNER JOIN `tb_pl_sales_order_del` del ON del.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del`
-INNER JOIN `tb_pl_sales_order_del_det` deld ON deld.`id_pl_sales_order_del`=del.`id_pl_sales_order_del`
-INNER JOIN tb_m_product p ON p.`id_product`=deld.`id_product`
-INNER JOIN `tb_pl_sales_order_del_det_counting` delc ON delc.`id_pl_sales_order_del_det`=deld.`id_pl_sales_order_del_det`
-LEFT JOIN
-(
-    SELECT dd.id_product,dd.scanned_code,COUNT(dd.scanned_code) as qty_scan
-    FROM `tb_cek_fisik_del_scan` dd
-    INNER JOIN tb_cek_fisik_del d ON d.id_cek_fisik_del=dd.id_cek_fisik_del
-    WHERE id_awbill='" & id_report & "' AND id_report_status!=5
-    GROUP BY dd.scanned_code
-)sc ON sc.scanned_code=CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting)
-GROUP BY full_code
+	SELECT p.`id_product`,CONCAT(p.`product_full_code`,delc.sales_return_qc_det_counting) AS full_code,COUNT(CONCAT(p.`product_full_code`,delc.sales_return_qc_det_counting)) AS qty
+	,IFNULL(sc.qty_scan,0) AS qty_scan
+	FROM `tb_sales_return_qc` awb 
+	INNER JOIN tb_sales_return_qc_det awbd ON awbd.`id_sales_return_qc`=awb.`id_sales_return_qc` AND awb.`id_sales_return_qc`='" & id_report & "'
+	INNER JOIN tb_m_product p ON p.`id_product`=awbd.`id_product`
+	INNER JOIN `tb_sales_return_qc_det_counting` delc ON delc.`id_sales_return_qc_det`=awbd.`id_sales_return_qc_det`
+	LEFT JOIN
+	(
+	    SELECT dd.id_product,dd.scanned_code,COUNT(dd.scanned_code) AS qty_scan
+	    FROM `tb_wh_cek_fisik_scan` dd
+	    INNER JOIN tb_wh_cek_fisik d ON d.id_wh_cek_fisik=dd.id_wh_cek_fisik
+	    WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_report_status!=5
+	    GROUP BY dd.scanned_code
+	)sc ON sc.scanned_code=CONCAT(p.`product_full_code`,delc.sales_return_qc_det_counting)
+	GROUP BY full_code
 ) tt WHERE tt.qty-tt.qty_scan!=0"
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-        If dt.Rows.Count > 0 Then
-            q = "UPDATE tb_wh_awbill SET status_check_fisik=2 WHERE id_awbill='" & id_report & "'"
-            execute_non_query(q, True, "", "", "", "")
-            pushNotifFromDb(id_report, "304")
-            If is_popup Then
-                warningCustom("Scan fisik tidak balance")
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                q = "UPDATE tb_sales_return_qc SET status_check_fisik=2 WHERE id_sales_return_qc='" & id_report & "'"
+                execute_non_query(q, True, "", "", "", "")
+                pushNotifFromDb(id_report, "305")
+                If is_popup Then
+                    warningCustom("Scan fisik return transfer tidak balance")
+                End If
+            Else
+                q = "UPDATE tb_sales_return_qc SET status_check_fisik=3,id_report_status=3 WHERE id_sales_return_qc='" & id_report & "'"
+                execute_non_query(q, True, "", "", "", "")
+                'Reset approval
+                q = String.Format("UPDATE tb_report_mark SET report_mark_start_datetime=NULL,report_mark_lead_time=NULL WHERE id_report='{0}' AND (report_mark_type='49' OR report_mark_type='106')", id_report)
+                execute_non_query(q, True, "", "", "", "")
             End If
-        Else
-            q = "UPDATE tb_wh_awbill SET status_check_fisik=3 WHERE id_awbill='" & id_report & "'"
-            execute_non_query(q, True, "", "", "", "")
         End If
     End Sub
 
