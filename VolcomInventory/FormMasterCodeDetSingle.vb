@@ -9,10 +9,22 @@
 
     Private Sub TECodeDet_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TECodeDet.Validating
         EP_TE_cant_blank(ErrorProviderCodeDet, TECodeDet)
+        '
+        Dim query_jml As String = String.Format("SELECT COUNT(id_code_detail) FROM tb_m_code_detail WHERE code_detail_name='{0}' AND id_code='{1}' AND id_code_detail !='{2}'", TECodeDet.Text, id_code, id_code_det)
+        Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
+        If Not jml < 1 Then
+            EP_TE_already_used(ErrorProviderCodeDet, TECodeDet, "1")
+        End If
     End Sub
 
     Private Sub TEPrintedCode_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEPrintedCode.Validating
         EP_TE_cant_blank(ErrorProviderCodeDet, TEPrintedCode)
+        '
+        Dim query_jml As String = String.Format("SELECT COUNT(id_code_detail) FROM tb_m_code_detail WHERE display_name='{0}' AND id_code='{1}' AND id_code_detail !='{2}'", TEPrintedCode.Text, id_code, id_code_det)
+        Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
+        If Not jml < 1 Then
+            EP_TE_already_used(ErrorProviderCodeDet, TEPrintedCode, "1")
+        End If
     End Sub
 
     Private Sub TECode_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TECode.Validating

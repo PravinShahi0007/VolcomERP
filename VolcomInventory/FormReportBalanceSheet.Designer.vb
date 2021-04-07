@@ -150,6 +150,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAlamatNPWP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn73 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BReported = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -309,6 +310,8 @@ Partial Class FormReportBalanceSheet
         Me.BViewMonthlyReport = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.DEMonthlyReport = New DevExpress.XtraEditors.DateEdit()
+        Me.GridColumn74 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PCFilterUpper, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFilterUpper.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1397,7 +1400,7 @@ Partial Class FormReportBalanceSheet
         '
         'GVTaxReport
         '
-        Me.GVTaxReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn52, Me.GridColumnTaxCat, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn24, Me.GridColumnDesc, Me.GridColumnVendorCode, Me.GridColumn23, Me.GridColumnPPNPPH, Me.GridColumnTarif, Me.GridColumnDPP, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumnAlamatNPWP, Me.GridColumn17})
+        Me.GVTaxReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn52, Me.GridColumnTaxCat, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn24, Me.GridColumnDesc, Me.GridColumnVendorCode, Me.GridColumn23, Me.GridColumnPPNPPH, Me.GridColumnTarif, Me.GridColumnDPP, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumnAlamatNPWP, Me.GridColumn17, Me.GridColumn73})
         Me.GVTaxReport.GridControl = Me.GCTaxReport
         Me.GVTaxReport.GroupCount = 1
         Me.GVTaxReport.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph", Me.GridColumnTarif, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dpp", Me.GridColumnDPP, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Max, "tax_report", Me.GridColumnDesc, "Total {0} :")})
@@ -1432,6 +1435,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.GridColumnTaxCat.Caption = "Tax Category"
         Me.GridColumnTaxCat.FieldName = "tax_report"
+        Me.GridColumnTaxCat.FieldNameSortGroup = "sorting"
         Me.GridColumnTaxCat.MinWidth = 55
         Me.GridColumnTaxCat.Name = "GridColumnTaxCat"
         Me.GridColumnTaxCat.OptionsColumn.AllowEdit = False
@@ -1617,6 +1621,12 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.OptionsColumn.ReadOnly = True
         '
+        'GridColumn73
+        '
+        Me.GridColumn73.Caption = "Order Cat"
+        Me.GridColumn73.FieldName = "sorting"
+        Me.GridColumn73.Name = "GridColumn73"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BReported)
@@ -1678,7 +1688,7 @@ Partial Class FormReportBalanceSheet
         '
         'GVTaxPending
         '
-        Me.GVTaxPending.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn16, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35})
+        Me.GVTaxPending.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn16, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn74})
         Me.GVTaxPending.GridControl = Me.GCTaxPending
         Me.GVTaxPending.GroupCount = 1
         Me.GVTaxPending.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph", Me.GridColumn29, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dpp", Me.GridColumn30, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Max, "tax_report", Me.GridColumn25, "Total {0} :")})
@@ -1694,6 +1704,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.GridColumn8.Caption = "Tax Category"
         Me.GridColumn8.FieldName = "tax_report"
+        Me.GridColumn8.FieldNameSortGroup = "sorting"
         Me.GridColumn8.MinWidth = 55
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
@@ -1889,7 +1900,7 @@ Partial Class FormReportBalanceSheet
         '
         'GVActiveTax
         '
-        Me.GVActiveTax.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumnActiveTaxCat, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51})
+        Me.GVActiveTax.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumnActiveTaxCat, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51, Me.GridColumn75})
         Me.GVActiveTax.GridControl = Me.GCActiveTax
         Me.GVActiveTax.GroupCount = 1
         Me.GVActiveTax.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph", Me.GridColumn45, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dpp", Me.GridColumn46, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Max, "tax_report", Me.GridColumn41, "Total {0} :")})
@@ -1923,6 +1934,7 @@ Partial Class FormReportBalanceSheet
         '
         Me.GridColumnActiveTaxCat.Caption = "Tax Category"
         Me.GridColumnActiveTaxCat.FieldName = "tax_report"
+        Me.GridColumnActiveTaxCat.FieldNameSortGroup = "sorting"
         Me.GridColumnActiveTaxCat.MinWidth = 55
         Me.GridColumnActiveTaxCat.Name = "GridColumnActiveTaxCat"
         Me.GridColumnActiveTaxCat.OptionsColumn.AllowEdit = False
@@ -3227,6 +3239,18 @@ Partial Class FormReportBalanceSheet
         Me.DEMonthlyReport.Size = New System.Drawing.Size(173, 20)
         Me.DEMonthlyReport.TabIndex = 1
         '
+        'GridColumn74
+        '
+        Me.GridColumn74.Caption = "Order Cat"
+        Me.GridColumn74.FieldName = "sorting"
+        Me.GridColumn74.Name = "GridColumn74"
+        '
+        'GridColumn75
+        '
+        Me.GridColumn75.Caption = "Order Cat"
+        Me.GridColumn75.FieldName = "sorting"
+        Me.GridColumn75.Name = "GridColumn75"
+        '
         'FormReportBalanceSheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3633,4 +3657,7 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents BandedGridColumn64 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn65 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn66 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn73 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn74 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn75 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -43,8 +43,11 @@ Partial Class FormTrackingReturn
         Me.GVList = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -72,9 +75,8 @@ Partial Class FormTrackingReturn
         Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.PanelControlFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlFilter.SuspendLayout()
         CType(Me.CheckEdit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,10 +90,10 @@ Partial Class FormTrackingReturn
         CType(Me.SLUEViewStore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlFilter
@@ -292,7 +294,7 @@ Partial Class FormTrackingReturn
         'GVList
         '
         Me.GVList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.GBSelect})
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn19, Me.BandedGridColumn17, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn24, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn23, Me.BandedGridColumn22, Me.BandedGridColumn21, Me.BandedGridColumn20, Me.BandedGridColumn25, Me.BandedGridColumn18})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn19, Me.BandedGridColumn17, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn24, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn27, Me.BandedGridColumn26, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn23, Me.BandedGridColumn22, Me.BandedGridColumn21, Me.BandedGridColumn20, Me.BandedGridColumn25, Me.BandedGridColumn18})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.BandedGridColumn4, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "act_qty", Me.BandedGridColumn5, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", Me.BandedGridColumn6, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", Me.BandedGridColumn7, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_problem_qty", Me.BandedGridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty_ret", Me.BandedGridColumn9, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_g78", Me.BandedGridColumn10, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_s78", Me.BandedGridColumn11, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_rm2", Me.BandedGridColumn12, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_gc1", Me.BandedGridColumn13, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_trf", Me.BandedGridColumn14, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_return", Me.BandedGridColumn15, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_sj_fisik", Me.BandedGridColumn16, "{0:N2}")})
         Me.GVList.Name = "GVList"
@@ -327,6 +329,10 @@ Partial Class FormTrackingReturn
         Me.BandedGridColumn17.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn17.Visible = True
         '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
         'BandedGridColumn1
         '
         Me.BandedGridColumn1.Caption = "Store Account"
@@ -337,6 +343,10 @@ Partial Class FormTrackingReturn
         Me.BandedGridColumn1.Visible = True
         Me.BandedGridColumn1.Width = 78
         '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        '
         'BandedGridColumn2
         '
         Me.BandedGridColumn2.Caption = "Store"
@@ -345,6 +355,10 @@ Partial Class FormTrackingReturn
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
         Me.BandedGridColumn2.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn2.Visible = True
+        '
+        'RepositoryItemMemoEdit3
+        '
+        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
         '
         'BandedGridColumn3
         '
@@ -452,12 +466,14 @@ Partial Class FormTrackingReturn
         Me.gridBand3.Columns.Add(Me.BandedGridColumn11)
         Me.gridBand3.Columns.Add(Me.BandedGridColumn12)
         Me.gridBand3.Columns.Add(Me.BandedGridColumn13)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn27)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn26)
         Me.gridBand3.Columns.Add(Me.BandedGridColumn14)
         Me.gridBand3.Columns.Add(Me.BandedGridColumn15)
         Me.gridBand3.Columns.Add(Me.BandedGridColumn16)
         Me.gridBand3.Name = "gridBand3"
         Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 525
+        Me.gridBand3.Width = 675
         '
         'BandedGridColumn10
         '
@@ -513,7 +529,8 @@ Partial Class FormTrackingReturn
         Me.BandedGridColumn14.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_trf", "{0:N0}")})
         Me.BandedGridColumn14.UnboundExpression = "[sales_return_qc_det_qty_g78] + [sales_return_qc_det_qty_s78] + [sales_return_qc_" &
-    "det_qty_rm2] + [sales_return_qc_det_qty_gc1]"
+    "det_qty_rm2] + [sales_return_qc_det_qty_gc1] + [sales_return_qc_det_qty_gon] + [" &
+    "sales_return_qc_det_qty_gos]"
         Me.BandedGridColumn14.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumn14.Visible = True
         '
@@ -625,17 +642,25 @@ Partial Class FormTrackingReturn
         Me.BandedGridColumn23.Name = "BandedGridColumn23"
         Me.BandedGridColumn23.OptionsColumn.ReadOnly = True
         '
-        'RepositoryItemMemoEdit1
+        'BandedGridColumn26
         '
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        Me.BandedGridColumn26.Caption = "GOS"
+        Me.BandedGridColumn26.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn26.FieldName = "sales_return_qc_det_qty_gos"
+        Me.BandedGridColumn26.Name = "BandedGridColumn26"
+        Me.BandedGridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_gos", "{0:N0}")})
+        Me.BandedGridColumn26.Visible = True
         '
-        'RepositoryItemMemoEdit2
+        'BandedGridColumn27
         '
-        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
-        '
-        'RepositoryItemMemoEdit3
-        '
-        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
+        Me.BandedGridColumn27.Caption = "GON"
+        Me.BandedGridColumn27.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn27.FieldName = "sales_return_qc_det_qty_gon"
+        Me.BandedGridColumn27.Name = "BandedGridColumn27"
+        Me.BandedGridColumn27.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_gon", "{0:N0}")})
+        Me.BandedGridColumn27.Visible = True
         '
         'FormTrackingReturn
         '
@@ -660,10 +685,10 @@ Partial Class FormTrackingReturn
         CType(Me.SLUEViewStore, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -724,4 +749,6 @@ Partial Class FormTrackingReturn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents RepositoryItemMemoEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents BandedGridColumn27 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn26 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

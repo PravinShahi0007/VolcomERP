@@ -8759,6 +8759,12 @@
     <Compile Include="ReportOutboundLabel.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportOutboundLabelOfline.Designer.vb">
+      <DependentUpon>ReportOutboundLabelOfline.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportOutboundLabelOfline.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportOutboundManifest.Designer.vb">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
     </Compile>

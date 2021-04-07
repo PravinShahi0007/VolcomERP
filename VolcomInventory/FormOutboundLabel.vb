@@ -139,18 +139,22 @@ GROUP BY pl.id_pl_sales_order_del"
     Sub print_ol(ByVal id_awbill As String)
         Dim report As ReportOutboundLabel = New ReportOutboundLabel
         '
-        Dim q As String = "(SELECT c.`comp_number`,c.`comp_name` ,IFNULL(cb.combine_number,pl.`pl_sales_order_del_number`) AS number,SUM(pld.`pl_sales_order_del_det_qty`) AS qty
+        Dim q As String = "(SELECT c.`comp_number`,c.`comp_name` ,IFNULL(cb.combine_number,pl.`pl_sales_order_del_number`) AS number,SUM(pld.`pl_sales_order_del_det_qty`) AS qty, c.address_primary, i.city, d.sub_district, i.id_state, s.state, cc.contact_person, cc.contact_number, g.is_marketplace
 FROM tb_wh_awbill_det awbd
 INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del`
 LEFT JOIN `tb_pl_sales_order_del_combine` cb ON cb.id_combine=pl.id_combine
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=pl.`id_store_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.id_comp
 INNER JOIN tb_pl_sales_order_del_det pld ON pld.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del`
+LEFT JOIN tb_m_city AS i ON c.id_city = i.id_city
+LEFT JOIN tb_m_state AS s ON i.id_state = s.id_state
+LEFT JOIN tb_m_sub_district AS d ON c.id_sub_district = d.id_sub_district
+LEFT JOIN tb_m_comp_group AS g ON c.id_comp_group = g.id_comp_group
 WHERE id_awbill='" & id_awbill & "'
 GROUP BY IFNULL(cb.id_combine,pld.`id_pl_sales_order_del`)
 ORDER BY pl.id_pl_sales_order_del ASC)
 UNION ALL
-(SELECT '' AS `comp_number`,pl.shipping_name AS `comp_name` ,pl.`number` AS number,COUNT(pld.`id_ol_store_ret_list`) AS qty
+(SELECT '' AS `comp_number`,pl.shipping_name AS `comp_name` ,pl.`number` AS number,COUNT(pld.`id_ol_store_ret_list`) AS qty, '' AS address_primary, '' city, '' sub_district, 0 id_state, '' state, '' contact_person, '' contact_number, 2 is_marketplace
 FROM tb_wh_awbill_det awbd
 INNER JOIN tb_ol_store_cust_ret pl ON pl.`id_ol_store_cust_ret`=awbd.`id_ol_store_cust_ret`
 INNER JOIN tb_ol_store_cust_ret_det pld ON pld.`id_ol_store_cust_ret`=pl.`id_ol_store_cust_ret`
@@ -167,14 +171,46 @@ ORDER BY pl.id_ol_store_cust_ret ASC)"
         report.ol_number = olnumber
         report.dt = dt
 
-        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
-        tool.ShowPreview()
+        'Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+        'tool.ShowPreview()
+
+        report.CreateDocument()
+
+        '
+        Dim report_outbound As ReportOutboundLabelOfline = New ReportOutboundLabelOfline
+
+        report_outbound.XLStoreCode.Text = dt.Rows(0)("comp_number").ToString
+        report_outbound.XLStoreName.Text = dt.Rows(0)("comp_name").ToString
+        report_outbound.XLAddress.Text = dt.Rows(0)("address_primary").ToString + Environment.NewLine + dt.Rows(0)("sub_district").ToString + ", " + dt.Rows(0)("city").ToString + Environment.NewLine + dt.Rows(0)("state").ToString + Environment.NewLine + "Attn: " + dt.Rows(0)("contact_person").ToString + " " + dt.Rows(0)("contact_number").ToString
+
+        report_outbound.CreateDocument()
+
+        'combine
+        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+
+        For i = 0 To report.Pages.Count - 1
+            list.Add(report.Pages(i))
+        Next
+
+        If dt.Rows(0)("is_marketplace").ToString = "2" And Not dt.Rows(0)("id_state").ToString = "20" Then
+            For i = 0 To report_outbound.Pages.Count - 1
+                list.Add(report_outbound.Pages(i))
+            Next
+        End If
+
+        report.Pages.AddRange(list)
+
+        Dim tool_outbound As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool_outbound.ShowPreview()
     End Sub
 
     Private Sub FormOutboundLabel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_comp()
         view_comp_group()
         load_sub_dsitrict()
+
+        TEBarcodeScan.Focus()
     End Sub
 
     Sub load_sub_dsitrict()
@@ -478,6 +514,103 @@ INNER JOIN tb_m_country c ON c.`id_country`=reg.`id_country` " & filter
     Private Sub TEOrderOnline_KeyUp(sender As Object, e As KeyEventArgs) Handles TEOrderOnline.KeyUp
         If e.KeyCode = Keys.Enter Then
             view_ol()
+        End If
+    End Sub
+
+    Private Sub TEBarcodeScan_KeyUp(sender As Object, e As KeyEventArgs) Handles TEBarcodeScan.KeyUp
+        If e.KeyCode = Keys.Enter Then
+            Dim q_where As String = "AND IFNULL(comb.combine_number, d.pl_sales_order_del_number) = '" + addSlashes(TEBarcodeScan.EditValue.ToString) + "'"
+
+            Dim query As String = "
+                SELECT 'yes' AS is_check, d.id_combine, d.id_pl_sales_order_del, IFNULL(comb.combine_number, d.pl_sales_order_del_number) AS do_no, comb.combine_number, d.pl_sales_order_del_date AS scan_date, c.comp_number AS store_number, c.id_commerce_type, c.id_sub_district, c.id_comp, c.comp_name AS store_name, SUM(dd.pl_sales_order_del_det_qty) AS qty, stt.report_status, so.shipping_city, c.id_commerce_type
+                FROM tb_pl_sales_order_del AS d
+                INNER JOIN tb_sales_order AS so ON so.id_sales_order = d.id_sales_order
+                LEFT JOIN tb_pl_sales_order_del_combine AS comb ON comb.id_combine = d.id_combine
+                INNER JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = d.id_store_contact_to
+                INNER JOIN tb_m_comp AS c ON c.id_comp = cc.id_comp
+                LEFT JOIN tb_pl_sales_order_del_det AS dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+                LEFT JOIN tb_wh_awbill_det AS awb ON awb.id_pl_sales_order_del = d.id_pl_sales_order_del
+                LEFT JOIN tb_wh_awbill AS awbh ON awbh.id_awbill = awb.id_awbill
+                INNER JOIN tb_lookup_report_status AS stt ON stt.id_report_status = d.id_report_status
+                WHERE d.id_report_status = 1 AND so.is_export_awb = 2 AND ISNULL(awbh.id_awbill) " + q_where + "
+                GROUP BY IFNULL(d.id_combine, d.id_pl_sales_order_del)
+                ORDER BY d.id_pl_sales_order_del DESC
+            "
+
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            If data.Rows.Count > 0 Then
+                Dim err_message As String = ""
+
+                If GVDOERP.RowCount = 0 Then
+                    reset_sdo()
+
+                    SLEComp.EditValue = data.Rows(0)("id_comp").ToString
+                    SLESubDistrict.EditValue = data.Rows(0)("id_sub_district").ToString
+                Else
+                    If Not data.Rows(0)("id_comp").ToString = GVDOERP.GetRowCellValue(0, "id_comp").ToString Then
+                        err_message = "Store is different."
+                    End If
+                End If
+
+                For i = 0 To GVDOERP.RowCount - 1
+                    If GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString = data.Rows(0)("id_pl_sales_order_del").ToString Then
+                        err_message = "SDO already scanned."
+                    End If
+                Next
+
+                If err_message = "" Then
+                    Dim data_a As DataTable = GCDOERP.DataSource
+
+                    Dim row_a As DataRow = data_a.NewRow
+
+                    row_a("is_check") = data.Rows(0)("is_check")
+                    row_a("id_combine") = data.Rows(0)("id_combine")
+                    row_a("id_pl_sales_order_del") = data.Rows(0)("id_pl_sales_order_del")
+                    row_a("do_no") = data.Rows(0)("do_no")
+                    row_a("combine_number") = data.Rows(0)("combine_number")
+                    row_a("scan_date") = data.Rows(0)("store_number")
+                    row_a("store_number") = data.Rows(0)("store_number")
+                    row_a("id_commerce_type") = data.Rows(0)("id_commerce_type")
+                    row_a("id_sub_district") = data.Rows(0)("id_sub_district")
+                    row_a("id_comp") = data.Rows(0)("id_comp")
+                    row_a("store_name") = data.Rows(0)("store_name")
+                    row_a("qty") = data.Rows(0)("qty")
+                    row_a("report_status") = data.Rows(0)("report_status")
+                    row_a("shipping_city") = data.Rows(0)("shipping_city")
+                    row_a("id_commerce_type") = data.Rows(0)("id_commerce_type")
+
+                    data_a.Rows.Add(row_a)
+
+                    GCDOERP.DataSource = data_a
+                Else
+                    stopCustomDialog(err_message)
+                End If
+            Else
+                stopCustomDialog("SDO Not Found.")
+            End If
+
+            TEBarcodeScan.EditValue = ""
+
+            TEBarcodeScan.Focus()
+        End If
+    End Sub
+
+    Sub reset_sdo()
+        GCDOERP.DataSource = execute_query("
+            SELECT NULL AS is_check, NULL AS id_combine, NULL AS id_pl_sales_order_del, NULL AS do_no, NULL AS combine_number, NULL AS scan_date, NULL AS store_number, NULL AS id_commerce_type, NULL AS id_sub_district, NULL AS id_comp, NULL AS store_name, NULL AS qty, NULL AS report_status, NULL AS shipping_city, NULL AS id_commerce_type
+            FROM tb_pl_sales_order_del
+            WHERE id_pl_sales_order_del = -1
+        ", -1, True, "", "", "", "")
+    End Sub
+
+    Private Sub SBReset_Click(sender As Object, e As EventArgs) Handles SBReset.Click
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to reset?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = DialogResult.Yes Then
+            reset_sdo()
         End If
     End Sub
 End Class

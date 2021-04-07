@@ -563,24 +563,9 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
 
     Sub view_zalora_payout()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT m.id_payout_zalora, m.statement_number, m.zalora_created_at, m.sync_date, IFNULL(d.amo,0.00) AS `amount`
+        Dim query As String = "SELECT m.id_payout_zalora, m.statement_number, m.zalora_created_at, m.sync_date, m.total_payout AS `amount`
         FROM tb_payout_zalora m
         LEFT JOIN tb_rec_payment b ON b.id_payout_zalora = m.id_payout_zalora AND b.id_report_status!=5
-        LEFT JOIN (
-	        SELECT a.id_payout_zalora, SUM(amo) AS `amo`
-	        FROM (
-		        SELECT d.id_payout_zalora, SUM(d.erp_amount) AS `amo` 
-		        FROM tb_payout_zalora_det d
-		        INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
-		        WHERE m.id_report_status=6
-		        UNION ALL
-		        SELECT d.id_payout_zalora, SUM(d.adj_value) AS `amo` 
-		        FROM tb_payout_zalora_det_adj d
-		        INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
-		        WHERE m.id_report_status=6
-	        ) a 
-	        GROUP BY a.id_payout_zalora
-        ) d ON d.id_payout_zalora = m.id_payout_zalora
         WHERE m.id_report_status=6 AND ISNULL(b.id_payout_zalora)
         GROUP BY m.id_payout_zalora "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
