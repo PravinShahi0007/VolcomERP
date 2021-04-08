@@ -94,8 +94,10 @@
             ElseIf type = "16" Then 'show cost trans summary
                 FormFGTransSummary.is_view_cost = True
                 FormFGTransSummary.viewAmoType()
-            ElseIf type = "17" Then 'able not approve
+            ElseIf type = "17" Then 'able reopen cek fisik delivery
                 FormOutboundCheckFisik.is_able_reopen = True
+            ElseIf type = "18" Then 'able reopen cek fisik
+                FormWHCekFisik.is_able_reopen = True
             End If
             Close()
         Else

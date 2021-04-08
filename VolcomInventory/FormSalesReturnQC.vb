@@ -255,4 +255,9 @@
         FormMain.but_edit()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BCheckFisik_Click(sender As Object, e As EventArgs) Handles BCheckFisik.Click
+        FormWHCekFisik.report_mark_type = "return_transfer"
+        FormWHCekFisik.ShowDialog()
+    End Sub
 End Class

@@ -1360,6 +1360,7 @@ Public Class FormSalesReturnQCDet
         Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
         Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
         Report.LRecDate.Text = DEForm.Text
+        Report.XRBarcode.Text = TxtSalesReturnQCNumber.Text
         Report.LRecNumber.Text = "NO. " + TxtSalesReturnQCNumber.Text
         Report.LabelReturn.Text = TxtSalesReturnNumber.Text
         Report.LabelNote.Text = MENote.Text

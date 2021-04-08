@@ -15,6 +15,7 @@
     Public dt As New DataTable
     Public id_comp_to As String = "-1"
     Public id_comp_to_return As String = "-1"
+    Dim sts_cek_fisik As Boolean = False
     'Dim is_scan As Boolean = False
 
     'var check qty
@@ -48,7 +49,7 @@
 
         'query view based on edit id's
         Dim query As String = "SELECT drw.wh_drawer_code, (a.id_wh_drawer) AS id_wh_drawer_to,b.id_sales_return,b.id_wh_drawer, (c2.id_comp) AS id_comp_to_return,(b.id_comp_contact_to) AS id_comp_contact_to_return,a.id_store_contact_from, a.id_comp_contact_to, (d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to, get_custom_rmk(d1.id_wh_type,49) AS `report_mark_type`, (d2.comp_name) AS comp_name_to_return, (d.comp_number) AS store_number_from, (d1.comp_number) AS comp_number_to, (d2.comp_number) AS comp_number_to_return,(d.address_primary) AS store_address_from, a.id_report_status, f.report_status, "
-        query += "a.sales_return_qc_note,a.sales_return_qc_date, a.sales_return_qc_number, b.sales_return_number, "
+        query += "a.status_check_fisik,a.sales_return_qc_note,a.sales_return_qc_date, a.sales_return_qc_number, b.sales_return_number, "
         query += "DATE_FORMAT(a.sales_return_qc_date,'%Y-%m-%d') AS sales_return_qc_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, a.id_pl_category  "
         query += "FROM tb_sales_return_qc a "
         query += "INNER JOIN tb_sales_return b ON a.id_sales_return = b.id_sales_return "
@@ -84,7 +85,11 @@
         id_comp_contact_to_return = data.Rows(0)("id_comp_contact_to_return").ToString
         id_comp_to_return = data.Rows(0)("id_comp_to_return").ToString
         id_drawer = data.Rows(0)("id_wh_drawer").ToString
-
+        '
+        If data.Rows(0)("status_check_fisik").ToString = "3" Then
+            sts_cek_fisik = True
+        End If
+        '
         TEDrawer.Text = data.Rows(0)("wh_drawer_code").ToString
         id_wh_drawer_to = data.Rows(0)("id_wh_drawer_to").ToString
         report_mark_type_loc = data.Rows(0)("report_mark_type").ToString
@@ -364,12 +369,18 @@
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.id_report = id_sales_return_qc
-        FormReportMark.is_view = "1"
-        FormReportMark.report_mark_type = report_mark_type_loc
-        FormReportMark.form_origin = Name
-        FormReportMark.is_view_finalize = "1"
-        FormReportMark.ShowDialog()
+        'check fisik first
+        If sts_cek_fisik Then
+            FormReportMark.id_report = id_sales_return_qc
+            FormReportMark.is_view = "1"
+            FormReportMark.report_mark_type = report_mark_type_loc
+            FormReportMark.form_origin = Name
+            FormReportMark.is_view_finalize = "1"
+            FormReportMark.ShowDialog()
+        Else
+            warningCustom("Selesaikan proses cek fisik terlebih dahulu")
+        End If
+
         Cursor = Cursors.Default
     End Sub
 
