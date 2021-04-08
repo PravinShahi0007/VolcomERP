@@ -7,6 +7,7 @@
         If e.KeyCode = Keys.F2 Then
             startScan()
             defaultInput()
+
         End If
     End Sub
 
@@ -27,5 +28,23 @@
         LabelClass.Text = ""
         LabelColor.Text = ""
         LabelSeason.Text = ""
+    End Sub
+
+    Private Sub TxtScannedCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScannedCode.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            viewPrice()
+        End If
+    End Sub
+
+    Sub viewPrice()
+        Cursor = Cursors.WaitCursor
+        Dim code As String = ""
+        If TxtScannedCode.Text.Length > 9 Then
+            code = addSlashes(TxtScannedCode.Text)
+        Else
+            code = addSlashes(TxtScannedCode.Text.Substring(0, 9))
+        End If
+        Dim query As String = ""
+        Cursor = Cursors.Default
     End Sub
 End Class
