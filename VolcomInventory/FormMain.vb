@@ -2910,7 +2910,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormReportMarkCancel.id_report_mark_cancel = FormReportMarkCancelList.GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString
                 FormReportMarkCancel.ShowDialog()
             ElseIf formName = "FormPurcReceive" Then
-                If FormPurcReceive.XTCRec.SelectedTabPageIndex = 0 Then
+                If FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
                     FormPurcReceiveDet.action = "upd"
                     FormPurcReceiveDet.id = FormPurcReceive.GVReceive.GetFocusedRowCellValue("id_purc_rec").ToString
                     FormPurcReceiveDet.ShowDialog()
