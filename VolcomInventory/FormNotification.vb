@@ -170,7 +170,7 @@
                     FormWork.WindowState = FormWindowState.Maximized
                     FormWork.Focus()
                     FormWork.XTCGeneral.SelectedTabPageIndex = 0
-                    FormWork.view_mark_need()
+                    'FormWork.view_mark_need()
                 ElseIf id_type = "3" Then
                     Try
                         FormFGDesignList.MdiParent = FormMain

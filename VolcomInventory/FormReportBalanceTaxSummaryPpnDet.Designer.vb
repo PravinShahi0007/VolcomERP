@@ -45,6 +45,7 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,6 +170,7 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BAttachment)
         Me.PanelControl2.Controls.Add(Me.SBMark)
         Me.PanelControl2.Controls.Add(Me.SBPrint)
         Me.PanelControl2.Controls.Add(Me.SBSubmit)
@@ -271,6 +273,7 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
         Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn3, Me.GridColumn4})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupCount = 1
+        Me.GVSummary.GroupFormat = "[#image]{1} {2}"
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", Me.GridColumn4, "{0:N2}")})
         Me.GVSummary.Name = "GVSummary"
         Me.GVSummary.OptionsBehavior.AutoExpandAllGroups = True
@@ -336,6 +339,16 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
         Me.PanelControl1.Size = New System.Drawing.Size(784, 102)
         Me.PanelControl1.TabIndex = 3
         '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.Image = CType(resources.GetObject("BAttachment.Image"), System.Drawing.Image)
+        Me.BAttachment.Location = New System.Drawing.Point(495, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(107, 45)
+        Me.BAttachment.TabIndex = 3
+        Me.BAttachment.Text = "Attachment"
+        '
         'FormReportBalanceTaxSummaryPpnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -392,4 +405,5 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
 End Class

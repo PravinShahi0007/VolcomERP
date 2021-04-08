@@ -5696,6 +5696,7 @@ FROM
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec_det, rq.id_departement
                 HAVING debit!=0 OR credit!=0
+                UNION ALL
                 /*PPN Discount ke pendapatan lain-lain PPN digungung*/
                 SELECT " + id_acc_trans + " AS id_acc_trans,IF(po.id_coa_tag=1,o.id_acc_ppn_lain,o.id_acc_ppn_lain) AS `id_acc`,cont.id_comp AS id_vendor, dep.id_main_comp,  
                 SUM(rd.qty) AS `qty`,
@@ -6128,15 +6129,22 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
                 Dim report_number As String = du.Rows(0)("report_number").ToString
 
-                'main journal
-                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                'cek value
+                Dim qcv As String = "SELECT SUM(dd.qty*getAvgCost(dd.id_item)) AS amo
+FROM tb_item_del_det dd
+WHERE dd.id_item_del='" + id_report + "'
+HAVING amo>0"
+                Dim dtv As DataTable = execute_query(qcv, -1, True, "", "", "", "")
+                If dtv.Rows.Count > 0 Then
+                    'main journal
+                    Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
                 VALUES ('','" + report_number + "','0','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
-                execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
+                    Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                    execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
-                'det journal
-                If FormItemDelDetail.is_for_store = "1" Then
-                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp)
+                    'det journal
+                    If FormItemDelDetail.is_for_store = "1" Then
+                        Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp)
                     SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`,
                     CONCAT('Expense : ',cat.item_cat,' (',c.comp_number,'), ',d.note) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, c.id_comp
                     FROM tb_item_del_det_alloc dd
@@ -6181,9 +6189,9 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     JOIN tb_opt_purchasing o
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY dd.id_item_del "
-                    execute_non_query(qjd, True, "", "", "", "")
-                ElseIf FormItemDelDetail.is_for_store = "2" Then
-                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_comp,id_coa_tag)
+                        execute_non_query(qjd, True, "", "", "", "")
+                    ElseIf FormItemDelDetail.is_for_store = "2" Then
+                        Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_comp,id_coa_tag)
                     SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`, i.`item_desc` AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`,dep.id_coa_tag
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
@@ -6205,7 +6213,8 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     JOIN tb_opt_purchasing o
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY dd.id_item_del_det "
-                    execute_non_query(qjd, True, "", "", "", "")
+                        execute_non_query(qjd, True, "", "", "", "")
+                    End If
                 End If
             End If
 

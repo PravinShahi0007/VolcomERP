@@ -75,7 +75,9 @@
     End Sub
 
     Private Sub RICE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RICE.Click
+        Dim FILE_NAME As String = ""
         Try
+
             Dim path As String = Application.StartupPath & "\download\"
             'create directory if not exist
             If Not IO.Directory.Exists(path) Then
@@ -94,13 +96,17 @@
 
             'open folder
             If IO.File.Exists(path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString) Then
-                Dim FILE_NAME As String = path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString
+                FILE_NAME = ""
+                FILE_NAME = path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString
+
+                Dim small_filename As String = ""
+                small_filename = GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString
 
                 If IO.File.Exists(FILE_NAME) = True Then
                     Dim processinfo As ProcessStartInfo = New ProcessStartInfo()
                     processinfo.WindowStyle = ProcessWindowStyle.Maximized
-                    processinfo.FileName = FILE_NAME
                     processinfo.WorkingDirectory = path
+                    processinfo.FileName = small_filename
                     Process.Start(processinfo)
                 Else
                     MsgBox("File Does Not Exist")
@@ -109,7 +115,7 @@
                 stopCustom("No Supporting Document !")
             End If
         Catch ex As Exception
-            log_error(ex.ToString)
+            log_error("Path : " & FILE_NAME & vbNewLine & "Errornya : " & ex.ToString)
         End Try
     End Sub
 
@@ -195,6 +201,7 @@
                 stopCustom("No Supporting Document !")
             End If
         Catch ex As Exception
+
         End Try
     End Sub
 End Class
