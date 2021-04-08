@@ -117,7 +117,7 @@
             End If
         Next
         view_mark_need()
-        FormWork.view_mark_need()
+        'FormWork.view_mark_need()
         SplashScreenManager1.CloseWaitForm()
     End Sub
 

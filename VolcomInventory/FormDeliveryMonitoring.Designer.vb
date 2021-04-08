@@ -20,6 +20,15 @@ Partial Class FormDeliveryMonitoring
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEOnlineOffline = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLUEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -61,13 +70,13 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEOnlineOffline.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,12 +88,11 @@ Partial Class FormDeliveryMonitoring
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPOutbound.SuspendLayout()
-        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLEOnlineOffline)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.SLUE3PL)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -100,9 +108,77 @@ Partial Class FormDeliveryMonitoring
         Me.PanelControl1.Size = New System.Drawing.Size(1008, 44)
         Me.PanelControl1.TabIndex = 0
         '
+        'SLEOnlineOffline
+        '
+        Me.SLEOnlineOffline.Location = New System.Drawing.Point(491, 12)
+        Me.SLEOnlineOffline.Name = "SLEOnlineOffline"
+        Me.SLEOnlineOffline.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEOnlineOffline.Properties.View = Me.GridView2
+        Me.SLEOnlineOffline.Size = New System.Drawing.Size(100, 20)
+        Me.SLEOnlineOffline.TabIndex = 8939
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.FieldName = "id_type"
+        Me.GridColumn32.Name = "GridColumn32"
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Type"
+        Me.GridColumn33.FieldName = "type"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 0
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(597, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(17, 13)
+        Me.LabelControl2.TabIndex = 8938
+        Me.LabelControl2.Text = "3PL"
+        '
+        'SLUE3PL
+        '
+        Me.SLUE3PL.Location = New System.Drawing.Point(620, 12)
+        Me.SLUE3PL.Name = "SLUE3PL"
+        Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUE3PL.Properties.View = Me.GridView1
+        Me.SLUE3PL.Size = New System.Drawing.Size(100, 20)
+        Me.SLUE3PL.TabIndex = 8937
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn30, Me.GridColumn31})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.FieldName = "id_3pl"
+        Me.GridColumn30.Name = "GridColumn30"
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "3PL"
+        Me.GridColumn31.FieldName = "3pl"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 0
+        '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(462, 15)
+        Me.LabelControl1.Location = New System.Drawing.Point(355, 15)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl1.TabIndex = 8936
@@ -110,7 +186,7 @@ Partial Class FormDeliveryMonitoring
         '
         'SLUEType
         '
-        Me.SLUEType.Location = New System.Drawing.Point(492, 12)
+        Me.SLUEType.Location = New System.Drawing.Point(385, 12)
         Me.SLUEType.Name = "SLUEType"
         Me.SLUEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEType.Properties.View = Me.SearchLookUpEdit1View
@@ -140,7 +216,7 @@ Partial Class FormDeliveryMonitoring
         '
         'BAWBRec
         '
-        Me.BAWBRec.Location = New System.Drawing.Point(818, 10)
+        Me.BAWBRec.Location = New System.Drawing.Point(807, 10)
         Me.BAWBRec.Name = "BAWBRec"
         Me.BAWBRec.Size = New System.Drawing.Size(107, 23)
         Me.BAWBRec.TabIndex = 8934
@@ -148,7 +224,7 @@ Partial Class FormDeliveryMonitoring
         '
         'SBViewOutbound
         '
-        Me.SBViewOutbound.Location = New System.Drawing.Point(737, 10)
+        Me.SBViewOutbound.Location = New System.Drawing.Point(726, 10)
         Me.SBViewOutbound.Name = "SBViewOutbound"
         Me.SBViewOutbound.Size = New System.Drawing.Size(75, 23)
         Me.SBViewOutbound.TabIndex = 8933
@@ -157,18 +233,18 @@ Partial Class FormDeliveryMonitoring
         'DETo
         '
         Me.DETo.EditValue = Nothing
-        Me.DETo.Location = New System.Drawing.Point(246, 12)
+        Me.DETo.Location = New System.Drawing.Point(197, 12)
         Me.DETo.Name = "DETo"
         Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DETo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DETo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DETo.Size = New System.Drawing.Size(200, 20)
+        Me.DETo.Size = New System.Drawing.Size(152, 20)
         Me.DETo.TabIndex = 8932
         '
         'LabelControl19
         '
-        Me.LabelControl19.Location = New System.Drawing.Point(223, 15)
+        Me.LabelControl19.Location = New System.Drawing.Point(179, 15)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(12, 13)
         Me.LabelControl19.TabIndex = 8931
@@ -183,7 +259,7 @@ Partial Class FormDeliveryMonitoring
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFrom.Size = New System.Drawing.Size(200, 20)
+        Me.DEFrom.Size = New System.Drawing.Size(161, 20)
         Me.DEFrom.TabIndex = 8930
         '
         'GCOutbound
@@ -198,7 +274,7 @@ Partial Class FormDeliveryMonitoring
         '
         'GVOutbound
         '
-        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27})
+        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn34, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27})
         Me.GVOutbound.GridControl = Me.GCOutbound
         Me.GVOutbound.Name = "GVOutbound"
         Me.GVOutbound.OptionsBehavior.ReadOnly = True
@@ -281,7 +357,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
+        Me.GridColumn9.VisibleIndex = 9
         '
         'GridColumn10
         '
@@ -289,7 +365,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn10.FieldName = "online_order_number"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 9
+        Me.GridColumn10.VisibleIndex = 10
         '
         'GridColumn11
         '
@@ -297,7 +373,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn11.FieldName = "sub_district"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 10
+        Me.GridColumn11.VisibleIndex = 11
         '
         'GridColumn12
         '
@@ -305,7 +381,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn12.FieldName = "city"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 11
+        Me.GridColumn12.VisibleIndex = 12
         '
         'GridColumn13
         '
@@ -313,7 +389,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn13.FieldName = "comp_number"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 12
+        Me.GridColumn13.VisibleIndex = 13
         '
         'GridColumn14
         '
@@ -321,7 +397,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn14.FieldName = "comp_name"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 13
+        Me.GridColumn14.VisibleIndex = 14
         '
         'GridColumn15
         '
@@ -337,7 +413,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn16.FieldName = "weight"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 14
+        Me.GridColumn16.VisibleIndex = 15
         '
         'GridColumn17
         '
@@ -347,7 +423,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn17.FieldName = "length"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 15
+        Me.GridColumn17.VisibleIndex = 16
         '
         'GridColumn18
         '
@@ -357,7 +433,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn18.FieldName = "width"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 16
+        Me.GridColumn18.VisibleIndex = 17
         '
         'GridColumn19
         '
@@ -367,7 +443,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn19.FieldName = "height"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 17
+        Me.GridColumn19.VisibleIndex = 18
         '
         'GridColumn20
         '
@@ -375,7 +451,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn20.FieldName = "weight_calc"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 18
+        Me.GridColumn20.VisibleIndex = 19
         '
         'GridColumn21
         '
@@ -383,7 +459,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn21.FieldName = "c_weight"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 19
+        Me.GridColumn21.VisibleIndex = 20
         '
         'GridColumn22
         '
@@ -391,7 +467,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn22.FieldName = "ol_store_status"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 20
+        Me.GridColumn22.VisibleIndex = 21
         '
         'GridColumn23
         '
@@ -401,7 +477,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn23.FieldName = "rec_by_store_date"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 21
+        Me.GridColumn23.VisibleIndex = 22
         '
         'GridColumn24
         '
@@ -409,7 +485,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn24.FieldName = "rec_by_store_person"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 22
+        Me.GridColumn24.VisibleIndex = 23
         '
         'GridColumn25
         '
@@ -417,7 +493,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn25.FieldName = "lead_time"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 23
+        Me.GridColumn25.VisibleIndex = 24
         '
         'GridColumn26
         '
@@ -425,7 +501,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn26.FieldName = "cargo_lead_time"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 24
+        Me.GridColumn26.VisibleIndex = 25
         '
         'GridColumn27
         '
@@ -433,7 +509,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn27.FieldName = "lead_time_diff"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 25
+        Me.GridColumn27.VisibleIndex = 26
         '
         'XtraTabControl1
         '
@@ -452,43 +528,14 @@ Partial Class FormDeliveryMonitoring
         Me.XTPOutbound.Size = New System.Drawing.Size(1002, 657)
         Me.XTPOutbound.Text = "Outbound Delivery Monitoring"
         '
-        'LabelControl2
+        'GridColumn34
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(608, 15)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(17, 13)
-        Me.LabelControl2.TabIndex = 8938
-        Me.LabelControl2.Text = "3PL"
-        '
-        'SLUE3PL
-        '
-        Me.SLUE3PL.Location = New System.Drawing.Point(631, 12)
-        Me.SLUE3PL.Name = "SLUE3PL"
-        Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUE3PL.Properties.View = Me.GridView1
-        Me.SLUE3PL.Size = New System.Drawing.Size(100, 20)
-        Me.SLUE3PL.TabIndex = 8937
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn30, Me.GridColumn31})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.FieldName = "id_3pl"
-        Me.GridColumn30.Name = "GridColumn30"
-        '
-        'GridColumn31
-        '
-        Me.GridColumn31.Caption = "3PL"
-        Me.GridColumn31.FieldName = "3pl"
-        Me.GridColumn31.Name = "GridColumn31"
-        Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 0
+        Me.GridColumn34.Caption = "Combine Number"
+        Me.GridColumn34.FieldName = "combine_number"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 8
+        Me.GridColumn34.Width = 86
         '
         'FormDeliveryMonitoring
         '
@@ -504,6 +551,10 @@ Partial Class FormDeliveryMonitoring
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLEOnlineOffline.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -515,8 +566,6 @@ Partial Class FormDeliveryMonitoring
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPOutbound.ResumeLayout(False)
-        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -568,4 +617,9 @@ Partial Class FormDeliveryMonitoring
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLEOnlineOffline As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
