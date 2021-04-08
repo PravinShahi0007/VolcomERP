@@ -65,6 +65,7 @@ ORDER BY req.`id_purc_req` DESC"
                 FormItemReqDet.GCDetail.RefreshDataSource()
                 FormItemReqDet.GVDetail.RefreshData()
             Next
+            Close()
         Else
             warningCustom("Please fill qty and choose the item")
         End If
