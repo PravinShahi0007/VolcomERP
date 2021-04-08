@@ -22,7 +22,7 @@ Partial Class FormPriceChecker
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPriceChecker))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtScannedCode = New DevExpress.XtraEditors.TextEdit()
         Me.BtnStartScan = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelPrice = New DevExpress.XtraEditors.LabelControl()
         Me.LabelDesc = New DevExpress.XtraEditors.LabelControl()
@@ -44,12 +44,12 @@ Partial Class FormPriceChecker
         Me.LabelColor = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelSeason = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtScannedCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,7 +61,7 @@ Partial Class FormPriceChecker
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnStartScan)
-        Me.PanelControl1.Controls.Add(Me.TextEdit1)
+        Me.PanelControl1.Controls.Add(Me.TxtScannedCode)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -78,15 +78,15 @@ Partial Class FormPriceChecker
         Me.LabelControl1.TabIndex = 1
         Me.LabelControl1.Text = "Scanned Code"
         '
-        'TextEdit1
+        'TxtScannedCode
         '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(125, 18)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit1.Size = New System.Drawing.Size(190, 26)
-        Me.TextEdit1.TabIndex = 1
+        Me.TxtScannedCode.EditValue = ""
+        Me.TxtScannedCode.Location = New System.Drawing.Point(125, 18)
+        Me.TxtScannedCode.Name = "TxtScannedCode"
+        Me.TxtScannedCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtScannedCode.Properties.Appearance.Options.UseFont = True
+        Me.TxtScannedCode.Size = New System.Drawing.Size(190, 26)
+        Me.TxtScannedCode.TabIndex = 1
         '
         'BtnStartScan
         '
@@ -232,7 +232,7 @@ Partial Class FormPriceChecker
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Top
         Me.GroupControl2.Controls.Add(Me.LabelControl6)
         Me.GroupControl2.Controls.Add(Me.LabelControl5)
-        Me.GroupControl2.Controls.Add(Me.LabelControl2)
+        Me.GroupControl2.Controls.Add(Me.LabelSeason)
         Me.GroupControl2.Controls.Add(Me.LabelColor)
         Me.GroupControl2.Controls.Add(Me.LabelControl17)
         Me.GroupControl2.Controls.Add(Me.LabelControl18)
@@ -303,14 +303,14 @@ Partial Class FormPriceChecker
         Me.LabelControl18.TabIndex = 18
         Me.LabelControl18.Text = "Product Color"
         '
-        'LabelControl2
+        'LabelSeason
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(155, 120)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(6, 19)
-        Me.LabelControl2.TabIndex = 21
-        Me.LabelControl2.Text = "-"
+        Me.LabelSeason.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSeason.Location = New System.Drawing.Point(155, 120)
+        Me.LabelSeason.Name = "LabelSeason"
+        Me.LabelSeason.Size = New System.Drawing.Size(6, 19)
+        Me.LabelSeason.TabIndex = 21
+        Me.LabelSeason.Text = "-"
         '
         'LabelControl5
         '
@@ -346,7 +346,7 @@ Partial Class FormPriceChecker
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtScannedCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -362,7 +362,7 @@ Partial Class FormPriceChecker
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnStartScan As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtScannedCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelPrice As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelDesc As DevExpress.XtraEditors.LabelControl
@@ -386,5 +386,5 @@ Partial Class FormPriceChecker
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelSeason As DevExpress.XtraEditors.LabelControl
 End Class

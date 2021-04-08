@@ -6,6 +6,7 @@
     Private Sub FormPriceChecker_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.F2 Then
             startScan()
+            defaultInput()
         End If
     End Sub
 
@@ -21,5 +22,10 @@
         LabelDesc.Text = "-"
         LabelPrice.Text = "Rp. 0"
         LabelPriceType.Text = "-"
+        LabelEffectiveDate.Text = "-"
+        LabelCode.Text = ""
+        LabelClass.Text = ""
+        LabelColor.Text = ""
+        LabelSeason.Text = ""
     End Sub
 End Class
