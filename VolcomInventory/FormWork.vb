@@ -21,11 +21,17 @@
         Else
             XTPCancelApproval.PageVisible = False
         End If
+        '
+        If is_auto_load_workplace Then
+            CEAutoRefresh.Checked = True
+        Else
+            CEAutoRefresh.Checked = False
+        End If
     End Sub
     '=============== begin mark tab =======================
     Private Sub BViewApproval_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BViewApproval.Click
         Cursor = Cursors.WaitCursor
-        view_mark_need()
+        view_mark_need(False)
         Cursor = Cursors.Default
     End Sub
 
@@ -34,8 +40,19 @@
         view_mark_history()
         Cursor = Cursors.Default
     End Sub
-    Sub view_mark_need()
-        Dim query = "SELECT a.id_mark, a.info , a.info_design ,a.info_design_code ,a.info_report , a.report_mark_type , a.id_report , a.id_report_status , c.report_status , b.report_mark_type_name 
+    Sub view_mark_need(ByVal check As Boolean)
+        Dim is_ok As Boolean = True
+
+        If check Then
+            If CEAutoRefresh.Checked = True Then
+                is_ok = True
+            Else
+                is_ok = False
+            End If
+        End If
+
+        If is_ok Then
+            Dim query = "SELECT a.id_mark, a.info , a.info_design ,a.info_design_code ,a.info_report , a.report_mark_type , a.id_report , a.id_report_status , c.report_status , b.report_mark_type_name 
                     ,a.report_mark_start_datetime AS date_time_start 
                     ,ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS lead_time 
                     ,ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS raw_lead_time 
@@ -58,18 +75,19 @@
                     -- ini yang ngurangi requisite dulu
                     AND IF(a.is_requisite=2,(IFNULL(req.jml_approve,0) = IFNULL(req.jml_req,0)),TRUE)
                     AND a.is_on_hold=2"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-        GCMarkNeed.DataSource = data
-        GVMarkNeed.BestFitColumns()
-        Try
-            FormMain.checkNumberNotif()
-        Catch ex As Exception
-        End Try
-        Try
-            'FormNotification.viewNotif()
-        Catch ex As Exception
-        End Try
+            GCMarkNeed.DataSource = data
+            GVMarkNeed.BestFitColumns()
+            'Try
+            '    FormMain.checkNumberNotif()
+            'Catch ex As Exception
+            'End Try
+            'Try
+            '    'FormNotification.viewNotif()
+            'Catch ex As Exception
+            'End Try
+        End If
     End Sub
     Sub view_mark_history()
         Dim date_start, date_until As String

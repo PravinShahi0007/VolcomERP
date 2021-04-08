@@ -61,6 +61,15 @@
             data = dv.ToTable
         End If
 
+        'filter offline online
+        If Not SLEOnlineOffline.EditValue.ToString = "3" Then
+            Dim dv As DataView = New DataView(data)
+
+            dv.RowFilter = "id_commerce_type = '" + SLEOnlineOffline.EditValue.ToString + "'"
+
+            data = dv.ToTable
+        End If
+
         'numbering
         For i = 0 To data.Rows.Count - 1
             data.Rows(i)("no") = i + 1
@@ -94,6 +103,14 @@
         "
 
         viewSearchLookupQuery(SLUEType, query, "id_type", "type", "id_type")
+
+        Dim q2 As String = "
+            SELECT 3 AS id_type, 'Offline + Online' `type` UNION ALL
+            SELECT 1 AS id_type, 'Offline' `type` UNION ALL
+            SELECT 2 AS id_type, 'Online' `type`
+        "
+
+        viewSearchLookupQuery(SLEOnlineOffline, q2, "id_type", "type", "id_type")
     End Sub
 
     Sub view3pl()

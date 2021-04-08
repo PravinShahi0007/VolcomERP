@@ -5696,6 +5696,7 @@ FROM
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec_det, rq.id_departement
                 HAVING debit!=0 OR credit!=0
+                UNION ALL
                 /*PPN Discount ke pendapatan lain-lain PPN digungung*/
                 SELECT " + id_acc_trans + " AS id_acc_trans,IF(po.id_coa_tag=1,o.id_acc_ppn_lain,o.id_acc_ppn_lain) AS `id_acc`,cont.id_comp AS id_vendor, dep.id_main_comp,  
                 SUM(rd.qty) AS `qty`,

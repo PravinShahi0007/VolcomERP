@@ -220,7 +220,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark
             GVDetail.BestFitColumns()
         ElseIf action = "upd" Then
             query = "SELECT rd.id_purc_order_det,reqd.ship_destination,reqd.ship_address,req.purc_req_number,d.departement, 
-            rd.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, rd.qty ,CONCAT(rd.item_detail,IF(ISNULL(rd.remark) OR rd.remark='','',CONCAT('\r\n',rd.remark))) AS item_detail
+            rd.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, rd.qty ,CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) AS item_detail
             ,CONCAT('1:',i.stock_convertion) AS stock_convertion_view, (rd.qty*i.stock_convertion) AS `qty_stock`,u_st.uom AS uom_stock
             FROM tb_purc_rec_det rd
             INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
