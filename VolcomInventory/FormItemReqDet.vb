@@ -526,4 +526,17 @@ INNER JOIN tb_item i ON ic.id_item_cat=i.id_item_cat AND ic.id_departement='" & 
         FormImportExcel.id_pop_up = "58"
         FormImportExcel.ShowDialog()
     End Sub
+
+    Private Sub BPickPR_Click(sender As Object, e As EventArgs) Handles BPickPR.Click
+        Dim id_dep As String = "-1"
+        If get_opt_purchasing_field("is_can_all_dep") = "1" And Not FormItemReq.SLEDepartement.EditValue.ToString = "0" Then
+            id_dep = FormItemReq.SLEDepartement.EditValue.ToString
+        Else
+            'id_dep = id_departement_user
+            id_dep = FormItemReq.SLEDepartement.EditValue.ToString
+        End If
+
+        FormPickFromPR.id_departement = id_dep
+        FormPickFromPR.ShowDialog()
+    End Sub
 End Class

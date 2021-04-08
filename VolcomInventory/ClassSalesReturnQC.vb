@@ -14,7 +14,7 @@
 
         Dim query As String = ""
         query += "SELECT a.id_comp_contact_to, a.id_report_status, a.id_sales_return_qc, a.id_sales_return, DATE_FORMAT(a.sales_return_qc_date, '%d %M %Y') AS sales_return_qc_date, "
-        query += "a.sales_return_qc_note, a.sales_return_qc_number, "
+        query += "a.sales_return_qc_note, a.sales_return_qc_number,IF(a.status_check_fisik=1,'Not Checked',IF(a.status_check_fisik=2,'Not Balance','Done')) AS sts_cek_fisik, "
         query += "CONCAT(c.comp_number,' - ',c.comp_name) AS store_name_from, (c.comp_number) AS store_number_from, "
         query += "CONCAT(e.comp_number,' - ',e.comp_name) AS comp_name_to, (e.comp_number) AS comp_number_to, get_custom_rmk(e.id_wh_type,49) AS `rmk`, "
         query += "f.sales_return_number, g.report_status, h.pl_category, det.`total`, "
