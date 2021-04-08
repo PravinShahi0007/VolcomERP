@@ -3668,7 +3668,11 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.BestFitColumns()
             GVData.Columns("sales_order_det_qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("sales_order_det_qty").SummaryItem.DisplayFormat = "{0:n2}"
-
+        ElseIf id_pop_up = "55" Then
+            GCData.DataSource = Nothing
+            GCData.DataSource = data_temp
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
         ElseIf id_pop_up = "56" Then
             'import excel ol promo replace
             Dim dt_promo As DataTable = execute_query("SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 

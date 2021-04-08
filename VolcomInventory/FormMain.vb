@@ -155,7 +155,7 @@ Public Class FormMain
                 FormWork.WindowState = FormWindowState.Maximized
                 FormWork.Focus()
                 FormWork.XTCGeneral.SelectedTabPageIndex = 0
-                FormWork.view_mark_need()
+                'FormWork.view_mark_need()
             Catch ex As Exception
                 errorProcess()
             End Try
