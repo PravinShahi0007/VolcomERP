@@ -3482,6 +3482,12 @@
     <Compile Include="FormPayoutZaloraReconSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPickFromPR.Designer.vb">
+      <DependentUpon>FormPickFromPR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPickFromPR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPolis.Designer.vb">
       <DependentUpon>FormPolis.vb</DependentUpon>
     </Compile>
@@ -11162,6 +11168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutZaloraReconSummary.resx">
       <DependentUpon>FormPayoutZaloraReconSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPickFromPR.resx">
+      <DependentUpon>FormPickFromPR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPolis.resx">
       <DependentUpon>FormPolis.vb</DependentUpon>
