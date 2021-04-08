@@ -149,7 +149,7 @@
 
             'slow but..
             If is_auto_load_workplace = "1" Then
-                FormWork.view_mark_need()
+                FormWork.view_mark_need(True)
             End If
 
             'FormWork.view_mark_history()
@@ -189,7 +189,7 @@
             FormReportMark.GVMark.FocusedRowHandle = find_row(FormReportMark.GVMark, "id_report_mark", id_report_mark)
             FormReportMark.GVMark.ExpandAllGroups()
             '...
-            FormWork.view_mark_need()
+            FormWork.view_mark_need(True)
             'cancel dan email nolak
             Dim report_mark_type As String = FormReportMark.GVMark.GetFocusedRowCellDisplayText("report_mark_type").ToString
             Dim id_report As String = FormReportMark.GVMark.GetFocusedRowCellDisplayText("id_report").ToString

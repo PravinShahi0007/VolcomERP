@@ -3828,7 +3828,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
             FormMain.SplashScreenManager1.CloseWaitForm()
-        ElseIf id_pop_up = "58" Then 'import data
+        ElseIf id_pop_up = "58" Then 'import data item req
             Try
                 Dim queryx As String = "SELECT id_item,item_desc,def_desc FROM tb_item"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
@@ -3850,13 +3850,14 @@ WHERE id_comp_cat='6'"
                                 {
                                     .kode = If(result_item Is Nothing, "0", result_item("id_item")),
                                     .item = If(result_item Is Nothing, "", result_item("item_desc")),
-                                    .description = If(result_item Is Nothing, "", result_item("def_desc")),
                                     .id_comp = If(result_store Is Nothing, "", result_store("id_comp")),
                                     .store_number = If(result_store Is Nothing, table1("store"), result_store("comp_number")),
                                     .store = If(result_store Is Nothing, "", result_store("comp_display_name")),
-                                    .qty = If(table1("qty").ToString = "", "0", table1("qty"))
+                                    .qty = If(table1("qty").ToString = "", "0", table1("qty")),
+                                    .status = If(result_item Is Nothing Or result_store Is Nothing, "Not Ok", "Ok")
                                 }
 
+                '.description = If(result_item Is Nothing, "", result_item("def_desc")),
                 GCData.DataSource = Nothing
                 GCData.DataSource = query.ToList()
                 GCData.RefreshDataSource()
@@ -3865,11 +3866,12 @@ WHERE id_comp_cat='6'"
                 'Customize column
                 GVData.Columns("id_comp").Visible = False
                 GVData.Columns("kode").Caption = "Kode Barang"
-                GVData.Columns("item").Caption = "Item"
-                GVData.Columns("description").Caption = "Description"
+                GVData.Columns("item").Caption = "Description"
+                'GVData.Columns("description").Caption = "Description"
                 GVData.Columns("store_number").Caption = "Store Code"
                 GVData.Columns("store").Caption = "Store"
                 GVData.Columns("qty").Caption = "Qty"
+                GVData.Columns("status").Caption = "Status"
 
                 GVData.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GVData.Columns("qty").DisplayFormat.FormatString = "N2"
@@ -6623,7 +6625,51 @@ WHERE id_comp_cat='6'"
                     End If
                 End If
             ElseIf id_pop_up = "58" Then
+                'too for product promo
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only status Ok will imported, Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    FormSalesOrderDet.viewDetail(FormSalesOrderDet.id_sales_order)
 
+                    GVData.ActiveFilterString = "[status] = 'Ok' "
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+
+                    If GVData.RowCount > 0 Then
+                        FormSalesOrderDet.delNotFoundMyRow()
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim newRow As DataRow = (TryCast(FormItemReqDet.GCDetail.DataSource, DataTable)).NewRow()
+                            newRow("id_item") = GVData.GetRowCellValue(i, "kode").ToString
+                            newRow("item_desc") = GVData.GetRowCellValue(i, "item").ToString
+                            newRow("id_comp") = GVData.GetRowCellValue(i, "id_comp").ToString
+                            newRow("comp_number") = GVData.GetRowCellValue(i, "store_number").ToString
+                            newRow("comp_name") = GVData.GetRowCellValue(i, "store").ToString
+                            newRow("qty") = GVData.GetRowCellValue(i, "qty")
+                            '
+                            newRow("is_store_request") = "no"
+                            'If CEStoreRequest.Checked = True Then
+                            '    newRow("is_store_request") = "yes"
+                            'Else
+                            '    newRow("is_store_request") = "no"
+                            'End If
+                            '
+                            newRow("remark") = ""
+                            TryCast(FormItemReqDet.GCDetail.DataSource, DataTable).Rows.Add(newRow)
+                            FormItemReqDet.GCDetail.RefreshDataSource()
+                            FormItemReqDet.GVDetail.RefreshData()
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormSalesOrderDet.BtnAddV2.Visible = False
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                End If
             End If
         End If
         Cursor = Cursors.Default

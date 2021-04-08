@@ -19,6 +19,7 @@ Partial Class FormOutboundLabel
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOutboundLabel))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -55,6 +56,9 @@ Partial Class FormOutboundLabel
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOffline = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBReset = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEBarcodeScan = New DevExpress.XtraEditors.TextEdit()
         Me.XTPOnline = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDOOnline = New DevExpress.XtraGrid.GridControl()
         Me.GVDOOnline = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -91,6 +95,7 @@ Partial Class FormOutboundLabel
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewDOOnline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,6 +115,9 @@ Partial Class FormOutboundLabel
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPOffline.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.TEBarcodeScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOnline.SuspendLayout()
         CType(Me.GCDOOnline, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDOOnline, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,6 +146,7 @@ Partial Class FormOutboundLabel
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(863, 48)
         Me.PanelControl1.TabIndex = 1
+        Me.PanelControl1.Visible = False
         '
         'PanelControl4
         '
@@ -319,6 +328,7 @@ Partial Class FormOutboundLabel
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(115, 44)
         Me.PanelControl7.TabIndex = 5
+        Me.PanelControl7.Visible = False
         '
         'CESelAll
         '
@@ -331,11 +341,11 @@ Partial Class FormOutboundLabel
         'GCDOERP
         '
         Me.GCDOERP.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDOERP.Location = New System.Drawing.Point(0, 48)
+        Me.GCDOERP.Location = New System.Drawing.Point(0, 96)
         Me.GCDOERP.MainView = Me.GVDOERP
         Me.GCDOERP.Name = "GCDOERP"
         Me.GCDOERP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCDOERP.Size = New System.Drawing.Size(863, 321)
+        Me.GCDOERP.Size = New System.Drawing.Size(863, 273)
         Me.GCDOERP.TabIndex = 5
         Me.GCDOERP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDOERP})
         '
@@ -344,6 +354,7 @@ Partial Class FormOutboundLabel
         Me.GVDOERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumnIdDel, Me.GridColumnreport_status})
         Me.GVDOERP.GridControl = Me.GCDOERP
         Me.GVDOERP.Name = "GVDOERP"
+        Me.GVDOERP.OptionsBehavior.ReadOnly = True
         Me.GVDOERP.OptionsCustomization.AllowColumnMoving = False
         Me.GVDOERP.OptionsCustomization.AllowColumnResizing = False
         Me.GVDOERP.OptionsCustomization.AllowGroup = False
@@ -456,11 +467,40 @@ Partial Class FormOutboundLabel
         'XTPOffline
         '
         Me.XTPOffline.Controls.Add(Me.GCDOERP)
+        Me.XTPOffline.Controls.Add(Me.PanelControl3)
         Me.XTPOffline.Controls.Add(Me.PanelControl1)
         Me.XTPOffline.Controls.Add(Me.PanelControlFooterOffline)
         Me.XTPOffline.Name = "XTPOffline"
         Me.XTPOffline.Size = New System.Drawing.Size(863, 417)
         Me.XTPOffline.Text = "Store"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.LabelControl5)
+        Me.PanelControl3.Controls.Add(Me.SBReset)
+        Me.PanelControl3.Controls.Add(Me.TEBarcodeScan)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 48)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(863, 48)
+        Me.PanelControl3.TabIndex = 6
+        '
+        'SBReset
+        '
+        Me.SBReset.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBReset.Image = CType(resources.GetObject("SBReset.Image"), System.Drawing.Image)
+        Me.SBReset.Location = New System.Drawing.Point(758, 2)
+        Me.SBReset.Name = "SBReset"
+        Me.SBReset.Size = New System.Drawing.Size(103, 44)
+        Me.SBReset.TabIndex = 3
+        Me.SBReset.Text = "Reset"
+        '
+        'TEBarcodeScan
+        '
+        Me.TEBarcodeScan.Location = New System.Drawing.Point(93, 14)
+        Me.TEBarcodeScan.Name = "TEBarcodeScan"
+        Me.TEBarcodeScan.Size = New System.Drawing.Size(259, 20)
+        Me.TEBarcodeScan.TabIndex = 0
         '
         'XTPOnline
         '
@@ -786,6 +826,14 @@ Partial Class FormOutboundLabel
         Me.LabelControl4.TabIndex = 1
         Me.LabelControl4.Text = "Order#"
         '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(13, 17)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl5.TabIndex = 4
+        Me.LabelControl5.Text = "Scanned Code"
+        '
         'FormOutboundLabel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -818,6 +866,10 @@ Partial Class FormOutboundLabel
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPOffline.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.TEBarcodeScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOnline.ResumeLayout(False)
         CType(Me.GCDOOnline, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDOOnline, System.ComponentModel.ISupportInitialize).EndInit()
@@ -910,4 +962,8 @@ Partial Class FormOutboundLabel
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CESelAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TEBarcodeScan As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SBReset As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class
