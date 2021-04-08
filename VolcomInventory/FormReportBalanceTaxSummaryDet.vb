@@ -184,4 +184,16 @@
 
         tool.ShowPreviewDialog()
     End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        FormDocumentUpload.report_mark_type = "284"
+        FormDocumentUpload.id_report = id_summary
+
+        FormDocumentUpload.is_no_delete = "1"
+
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
