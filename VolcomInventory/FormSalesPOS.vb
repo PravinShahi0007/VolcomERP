@@ -1040,8 +1040,8 @@
         End If
         'store
         Dim cond_store As String = ""
-        If SLEStoreNoStock.EditValue.ToString <> "0" Then
-            cond_store = "AND c.id_comp='" + SLEStoreNoStock.EditValue.ToString + "' "
+        If SLEStoreNewItem.EditValue.ToString <> "0" Then
+            cond_store = "AND c.id_comp='" + SLEStoreNewItem.EditValue.ToString + "' "
         End If
         'period
         Dim cond_period As String = ""
