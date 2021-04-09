@@ -14275,6 +14275,9 @@
     <EmbeddedResource Include="ReportOutboundLabel.resx">
       <DependentUpon>ReportOutboundLabel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportOutboundLabelOfline.resx">
+      <DependentUpon>ReportOutboundLabelOfline.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportOutboundManifest.resx">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
     </EmbeddedResource>
