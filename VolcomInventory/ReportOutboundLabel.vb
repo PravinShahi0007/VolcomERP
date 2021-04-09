@@ -23,7 +23,7 @@
 
             row.HeightF = 15
             row.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-            row.Font = New Font(XrTable.Font.FontFamily, XrTable.Font.Size, FontStyle.Regular)
+            row.Font = New Font(XrTable.Font.FontFamily, XrTable.Font.Size, FontStyle.Bold)
 
             'no
             Dim no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
