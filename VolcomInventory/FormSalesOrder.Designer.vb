@@ -83,6 +83,7 @@ Partial Class FormSalesOrder
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlAlloc = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAllocHist = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnReplacePromo = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNewAlloc = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
@@ -91,7 +92,6 @@ Partial Class FormSalesOrder
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnReplacePromo = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesOrder.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -241,7 +241,7 @@ Partial Class FormSalesOrder
         Me.GridColumnTo.FieldName = "store_name_to"
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.Visible = True
-        Me.GridColumnTo.VisibleIndex = 4
+        Me.GridColumnTo.VisibleIndex = 5
         Me.GridColumnTo.Width = 174
         '
         'GridColumnSalesTargetDate
@@ -318,7 +318,7 @@ Partial Class FormSalesOrder
         Me.GridColumn10.FieldName = "warehouse_name_to"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 5
+        Me.GridColumn10.VisibleIndex = 4
         Me.GridColumn10.Width = 118
         '
         'GridColumnReff
@@ -706,6 +706,16 @@ Partial Class FormSalesOrder
         Me.BtnAllocHist.TabIndex = 8900
         Me.BtnAllocHist.Text = "Allocation History"
         '
+        'BtnReplacePromo
+        '
+        Me.BtnReplacePromo.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnReplacePromo.Image = CType(resources.GetObject("BtnReplacePromo.Image"), System.Drawing.Image)
+        Me.BtnReplacePromo.Location = New System.Drawing.Point(188, 0)
+        Me.BtnReplacePromo.Name = "BtnReplacePromo"
+        Me.BtnReplacePromo.Size = New System.Drawing.Size(138, 35)
+        Me.BtnReplacePromo.TabIndex = 8901
+        Me.BtnReplacePromo.Text = "Replace OL Promo"
+        '
         'BtnCreateNewAlloc
         '
         Me.BtnCreateNewAlloc.Dock = System.Windows.Forms.DockStyle.Right
@@ -787,16 +797,6 @@ Partial Class FormSalesOrder
         Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl3.TabIndex = 8892
         Me.LabelControl3.Text = "From"
-        '
-        'BtnReplacePromo
-        '
-        Me.BtnReplacePromo.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnReplacePromo.Image = CType(resources.GetObject("BtnReplacePromo.Image"), System.Drawing.Image)
-        Me.BtnReplacePromo.Location = New System.Drawing.Point(188, 0)
-        Me.BtnReplacePromo.Name = "BtnReplacePromo"
-        Me.BtnReplacePromo.Size = New System.Drawing.Size(138, 35)
-        Me.BtnReplacePromo.TabIndex = 8901
-        Me.BtnReplacePromo.Text = "Replace OL Promo"
         '
         'FormSalesOrder
         '

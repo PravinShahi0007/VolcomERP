@@ -3482,6 +3482,12 @@
     <Compile Include="FormPayoutZaloraReconSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPickFromPR.Designer.vb">
+      <DependentUpon>FormPickFromPR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPickFromPR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPolis.Designer.vb">
       <DependentUpon>FormPolis.vb</DependentUpon>
     </Compile>
@@ -7754,6 +7760,12 @@
     <Compile Include="FormWHCargoRateDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormWHCekFisik.Designer.vb">
+      <DependentUpon>FormWHCekFisik.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWHCekFisik.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormWHDelEmpty.Designer.vb">
       <DependentUpon>FormWHDelEmpty.vb</DependentUpon>
     </Compile>
@@ -11169,6 +11181,9 @@
     <EmbeddedResource Include="FormPayoutZaloraReconSummary.resx">
       <DependentUpon>FormPayoutZaloraReconSummary.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPickFromPR.resx">
+      <DependentUpon>FormPickFromPR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPolis.resx">
       <DependentUpon>FormPolis.vb</DependentUpon>
     </EmbeddedResource>
@@ -13720,6 +13735,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHCargoRateDet.resx">
       <DependentUpon>FormWHCargoRateDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWHCekFisik.resx">
+      <DependentUpon>FormWHCekFisik.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHDelEmpty.resx">
       <DependentUpon>FormWHDelEmpty.vb</DependentUpon>
