@@ -341,8 +341,6 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnPrice.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnPrice.OptionsColumn.AllowShowHide = False
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
-        Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 7
         Me.GridColumnPrice.Width = 108
         '
         'GridColumnAmount
@@ -356,8 +354,6 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnAmount.OptionsColumn.AllowShowHide = False
         Me.GridColumnAmount.OptionsColumn.ReadOnly = True
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_amount", "{0:n2}")})
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 8
         Me.GridColumnAmount.Width = 194
         '
         'GridColumnRemark
@@ -366,7 +362,7 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnRemark.FieldName = "pl_sales_order_del_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 9
+        Me.GridColumnRemark.VisibleIndex = 7
         Me.GridColumnRemark.Width = 200
         '
         'GridColumnUOM
