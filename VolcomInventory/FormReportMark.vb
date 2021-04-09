@@ -5784,7 +5784,7 @@ FROM
                 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`=6  AND rec.`id_purc_rec`!='" + id_report + "' AND rec.`id_purc_order`='" + FormPurcReceiveDet.id_purc_order + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
@@ -5793,7 +5793,7 @@ FROM
                 )already_rec ON already_rec.id_purc_order=pnd.id_report
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_purc_rec`='" + id_report + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
@@ -5815,7 +5815,7 @@ FROM
                 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`=6  AND rec.`id_purc_rec`!='" + id_report + "' AND rec.`id_purc_order`='" + FormPurcReceiveDet.id_purc_order + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
@@ -5824,7 +5824,7 @@ FROM
                 )already_rec ON already_rec.id_purc_order=pnd.id_report
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_purc_rec`='" + id_report + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
