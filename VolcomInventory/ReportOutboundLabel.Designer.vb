@@ -64,7 +64,7 @@ Partial Public Class ReportOutboundLabel
         Me.XRNumber.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XRNumber.Dpi = 254.0!
         Me.XRNumber.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XRNumber.LocationFloat = New DevExpress.Utils.PointFloat(128.0584!, 14.60501!)
+        Me.XRNumber.LocationFloat = New DevExpress.Utils.PointFloat(114.0584!, 14.60501!)
         Me.XRNumber.Name = "XRNumber"
         Me.XRNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XRNumber.SizeF = New System.Drawing.SizeF(743.4791!, 58.42!)
@@ -79,7 +79,7 @@ Partial Public Class ReportOutboundLabel
         Me.XrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel1.Dpi = 254.0!
         Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(25.40002!, 14.60501!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(11.40002!, 14.60501!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(102.6584!, 58.42!)
@@ -93,7 +93,7 @@ Partial Public Class ReportOutboundLabel
         '
         Me.XRBarcode.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XRBarcode.Dpi = 254.0!
-        Me.XRBarcode.LocationFloat = New DevExpress.Utils.PointFloat(25.40002!, 73.02502!)
+        Me.XRBarcode.LocationFloat = New DevExpress.Utils.PointFloat(11.40002!, 73.02502!)
         Me.XRBarcode.Module = 5.08!
         Me.XRBarcode.Name = "XRBarcode"
         Me.XRBarcode.Padding = New DevExpress.XtraPrinting.PaddingInfo(25, 25, 0, 0, 254.0!)
@@ -107,8 +107,8 @@ Partial Public Class ReportOutboundLabel
         '
         Me.XrTable.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTable.Dpi = 254.0!
-        Me.XrTable.Font = New System.Drawing.Font("Segoe UI", 6.0!, System.Drawing.FontStyle.Bold)
-        Me.XrTable.LocationFloat = New DevExpress.Utils.PointFloat(25.40002!, 178.6467!)
+        Me.XrTable.Font = New System.Drawing.Font("Tahoma", 6.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTable.LocationFloat = New DevExpress.Utils.PointFloat(11.40002!, 178.6467!)
         Me.XrTable.Name = "XrTable"
         Me.XrTable.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow, Me.XrTableRowTotal})
         Me.XrTable.SizeF = New System.Drawing.SizeF(902.4585!, 96.66109!)
@@ -234,7 +234,7 @@ Partial Public Class ReportOutboundLabel
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
         Me.Dpi = 254.0!
-        Me.Margins = New System.Drawing.Printing.Margins(50, 0, 30, 30)
+        Me.Margins = New System.Drawing.Printing.Margins(30, 0, 30, 30)
         Me.PageHeight = 500
         Me.PageWidth = 1000
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
