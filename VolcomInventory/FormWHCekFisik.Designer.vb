@@ -419,6 +419,7 @@ Partial Class FormWHCekFisik
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormWHCekFisik"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Proses Cek Fisik"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
