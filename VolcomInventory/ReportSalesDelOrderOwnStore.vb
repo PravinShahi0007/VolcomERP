@@ -249,24 +249,11 @@
             type.BorderWidth = 0
             type.Font = New Font(type.Font.FontFamily, type.Font.Size, FontStyle.Regular)
 
-            'price
-            Dim price As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
-            price.Text = Format(data.Rows(i)("design_price"), "##,##0")
-            price.BorderWidth = 0
-            price.Font = New Font(price.Font.FontFamily, price.Font.Size, FontStyle.Regular)
-
-            'ammount
-            Dim ammount As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
-            ammount.Text = Format(data.Rows(i)("qty") * data.Rows(i)("design_price"), "##,##0")
-            ammount.BorderWidth = 0
-            ammount.Font = New Font(price.Font.FontFamily, price.Font.Size, FontStyle.Regular)
-
             total_qty = total_qty + data.Rows(i)("qty")
             total_amount = total_amount + (data.Rows(i)("qty") * data.Rows(i)("design_price"))
         Next
 
         RowTotalQty.Text = Decimal.Round(total_qty, 0)
-        RowTotalAmount.Text = Format(total_amount, "##,##0")
     End Sub
 
     Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)

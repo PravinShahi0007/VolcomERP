@@ -4,6 +4,8 @@
     Dim status_order As String = "pending"
     Dim id_store_group As String = get_setup_field("zalora_comp_group")
     Dim data_size As New DataTable
+    Dim zalora_sleep_req_time As Integer = 0
+    Dim zalora_apply_break As Integer = 0
     'testing environment
     'Public api_key As String = "769595ee282d1a51c09f7bf4921866c86d54125a"
     'Public user_id As String = "septian@volcom.co.id"
@@ -13,6 +15,8 @@
         Dim id_code_detail_size As String = get_setup_field("id_code_product_size")
         Dim query As String = "SELECT cd.id_code_detail,cd.code, cd.code_detail_name FROM tb_m_code_detail cd WHERE cd.id_code=" + id_code_detail_size + " "
         data_size = execute_query(query, -1, True, "", "", "", "")
+        zalora_sleep_req_time = get_setup_field("zalora_sleep_req_time")
+        zalora_apply_break = get_setup_field("zalora_apply_break")
     End Sub
 
     Function get_signature(ByVal parameter As DataTable) As String
@@ -617,35 +621,37 @@
 
     Sub setInvoiceNumber(ByVal id_order_par As String, ByVal order_number_par As String)
         Dim dtd As DataTable = get_order_detail(id_order_par)
-        For y As Integer = 0 To dtd.Rows.Count - 1
-            Dim item_id As String = dtd.Rows(y)("item_id").ToString
+        If dtd.Rows.Count > 0 Then
+            For y As Integer = 0 To 0
+                Dim item_id As String = dtd.Rows(y)("item_id").ToString
 
-            Dim parameter As DataTable = New DataTable
-            parameter.Columns.Add("key", GetType(String))
-            parameter.Columns.Add("value", GetType(String))
-            parameter.Rows.Add("Action", "SetInvoiceNumber")
-            parameter.Rows.Add("Format", "JSON")
-            parameter.Rows.Add("InvoiceNumber", "INV" + order_number_par)
-            parameter.Rows.Add("OrderItemId", item_id)
-            parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
-            parameter.Rows.Add("UserID", Uri.EscapeDataString(user_id))
-            parameter.Rows.Add("Version", "1.0")
-            Dim signature As String = get_signature(parameter)
-            parameter.Rows.Add("Signature", signature)
-            Dim url As String = "https://sellercenter-api.zalora.co.id?"
-            For i = 0 To parameter.Rows.Count - 1
-                url += parameter.Rows(i)("key").ToString + "=" + parameter.Rows(i)("value").ToString + "&"
+                Dim parameter As DataTable = New DataTable
+                parameter.Columns.Add("key", GetType(String))
+                parameter.Columns.Add("value", GetType(String))
+                parameter.Rows.Add("Action", "SetInvoiceNumber")
+                parameter.Rows.Add("Format", "JSON")
+                parameter.Rows.Add("InvoiceNumber", "INV" + order_number_par)
+                parameter.Rows.Add("OrderItemId", item_id)
+                parameter.Rows.Add("Timestamp", Uri.EscapeDataString(DateTime.Parse(Now().ToUniversalTime().ToString).ToString("yyyy-MM-ddTHH:mm:ss+00:00")))
+                parameter.Rows.Add("UserID", Uri.EscapeDataString(user_id))
+                parameter.Rows.Add("Version", "1.0")
+                Dim signature As String = get_signature(parameter)
+                parameter.Rows.Add("Signature", signature)
+                Dim url As String = "https://sellercenter-api.zalora.co.id?"
+                For i = 0 To parameter.Rows.Count - 1
+                    url += parameter.Rows(i)("key").ToString + "=" + parameter.Rows(i)("value").ToString + "&"
+                Next
+                url = url.Substring(0, url.Length - 1)
+                Dim request As Net.HttpWebRequest = Net.WebRequest.Create(url)
+                request.Method = "POST"
+                Dim response As Net.HttpWebResponse = request.GetResponse()
+                Using dataStream As IO.Stream = response.GetResponseStream()
+                    Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+                    Dim responseFromServer As String = reader.ReadToEnd()
+                End Using
+                response.Close()
             Next
-            url = url.Substring(0, url.Length - 1)
-            Dim request As Net.HttpWebRequest = Net.WebRequest.Create(url)
-            request.Method = "POST"
-            Dim response As Net.HttpWebResponse = request.GetResponse()
-            Using dataStream As IO.Stream = response.GetResponseStream()
-                Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
-                Dim responseFromServer As String = reader.ReadToEnd()
-            End Using
-            response.Close()
-        Next
+        End If
     End Sub
 
     Sub setReadyToShip(ByVal item_id_par As String, ByVal shipment_provider_par As String, ByVal tracking_no_par As String)
