@@ -143,6 +143,10 @@ Partial Class FormPromoCollectionDet
         Me.CMSDiscCode = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CEAllCollection = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControlAllPromo = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControlAllPromo = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtDiscountTitle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -187,6 +191,9 @@ Partial Class FormPromoCollectionDet
         CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMSDiscCode.SuspendLayout()
+        CType(Me.CEAllCollection.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlAllPromo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlAllPromo.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -216,7 +223,7 @@ Partial Class FormPromoCollectionDet
         'TxtDiscountTitle
         '
         Me.TxtDiscountTitle.Enabled = False
-        Me.TxtDiscountTitle.Location = New System.Drawing.Point(200, 14)
+        Me.TxtDiscountTitle.Location = New System.Drawing.Point(175, 14)
         Me.TxtDiscountTitle.Name = "TxtDiscountTitle"
         Me.TxtDiscountTitle.Size = New System.Drawing.Size(216, 20)
         Me.TxtDiscountTitle.TabIndex = 163
@@ -235,21 +242,21 @@ Partial Class FormPromoCollectionDet
         Me.TxtUseDiscountCode.Enabled = False
         Me.TxtUseDiscountCode.Location = New System.Drawing.Point(115, 14)
         Me.TxtUseDiscountCode.Name = "TxtUseDiscountCode"
-        Me.TxtUseDiscountCode.Size = New System.Drawing.Size(79, 20)
+        Me.TxtUseDiscountCode.Size = New System.Drawing.Size(54, 20)
         Me.TxtUseDiscountCode.TabIndex = 161
         '
         'TxtPromoName
         '
         Me.TxtPromoName.Location = New System.Drawing.Point(115, 40)
         Me.TxtPromoName.Name = "TxtPromoName"
-        Me.TxtPromoName.Size = New System.Drawing.Size(301, 20)
+        Me.TxtPromoName.Size = New System.Drawing.Size(276, 20)
         Me.TxtPromoName.TabIndex = 160
         '
         'TxtTag
         '
         Me.TxtTag.Location = New System.Drawing.Point(115, 66)
         Me.TxtTag.Name = "TxtTag"
-        Me.TxtTag.Size = New System.Drawing.Size(301, 20)
+        Me.TxtTag.Size = New System.Drawing.Size(276, 20)
         Me.TxtTag.TabIndex = 159
         '
         'LabelControl8
@@ -292,7 +299,7 @@ Partial Class FormPromoCollectionDet
         Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
         Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEEnd.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
-        Me.DEEnd.Size = New System.Drawing.Size(301, 20)
+        Me.DEEnd.Size = New System.Drawing.Size(276, 20)
         Me.DEEnd.TabIndex = 156
         '
         'DEStart
@@ -308,7 +315,7 @@ Partial Class FormPromoCollectionDet
         Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEStart.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
-        Me.DEStart.Size = New System.Drawing.Size(301, 20)
+        Me.DEStart.Size = New System.Drawing.Size(276, 20)
         Me.DEStart.TabIndex = 155
         '
         'LabelControl5
@@ -351,7 +358,7 @@ Partial Class FormPromoCollectionDet
         '
         Me.MENote.Location = New System.Drawing.Point(115, 144)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(301, 41)
+        Me.MENote.Size = New System.Drawing.Size(276, 41)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
         '
@@ -491,7 +498,7 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 561)
+        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 717)
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(915, 44)
         Me.PanelControlBottom.TabIndex = 15
@@ -588,7 +595,7 @@ Partial Class FormPromoCollectionDet
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICReplace})
-        Me.GCData.Size = New System.Drawing.Size(909, 290)
+        Me.GCData.Size = New System.Drawing.Size(909, 395)
         Me.GCData.TabIndex = 16
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -735,8 +742,9 @@ Partial Class FormPromoCollectionDet
         '
         'PanelControlNav
         '
-        Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
+        Me.PanelControlNav.Controls.Add(Me.CEAllCollection)
         Me.PanelControlNav.Controls.Add(Me.PanelControlAdd)
+        Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 204)
         Me.PanelControlNav.Name = "PanelControlNav"
@@ -747,9 +755,9 @@ Partial Class FormPromoCollectionDet
         '
         Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(673, 2)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(801, 2)
         Me.BtnExportToXLS.Name = "BtnExportToXLS"
-        Me.BtnExportToXLS.Size = New System.Drawing.Size(126, 35)
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(112, 35)
         Me.BtnExportToXLS.TabIndex = 9
         Me.BtnExportToXLS.Text = "Export to XLS"
         Me.BtnExportToXLS.Visible = False
@@ -759,7 +767,7 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlAdd.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlAdd.Controls.Add(Me.BtnImportExcel)
         Me.PanelControlAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlAdd.Location = New System.Drawing.Point(799, 2)
+        Me.PanelControlAdd.Location = New System.Drawing.Point(687, 2)
         Me.PanelControlAdd.Name = "PanelControlAdd"
         Me.PanelControlAdd.Size = New System.Drawing.Size(114, 35)
         Me.PanelControlAdd.TabIndex = 6
@@ -777,10 +785,10 @@ Partial Class FormPromoCollectionDet
         'XTCData
         '
         Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCData.Location = New System.Drawing.Point(0, 243)
+        Me.XTCData.Location = New System.Drawing.Point(0, 294)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPDesign
-        Me.XTCData.Size = New System.Drawing.Size(915, 318)
+        Me.XTCData.Size = New System.Drawing.Size(915, 423)
         Me.XTCData.TabIndex = 18
         Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPProduct, Me.XtraTabPage1, Me.XTPDiscountCode})
         '
@@ -788,14 +796,14 @@ Partial Class FormPromoCollectionDet
         '
         Me.XTPDesign.Controls.Add(Me.GCData)
         Me.XTPDesign.Name = "XTPDesign"
-        Me.XTPDesign.Size = New System.Drawing.Size(909, 290)
+        Me.XTPDesign.Size = New System.Drawing.Size(909, 395)
         Me.XTPDesign.Text = "Product List"
         '
         'XTPProduct
         '
         Me.XTPProduct.Controls.Add(Me.GCProduct)
         Me.XTPProduct.Name = "XTPProduct"
-        Me.XTPProduct.Size = New System.Drawing.Size(909, 290)
+        Me.XTPProduct.Size = New System.Drawing.Size(909, 395)
         Me.XTPProduct.Text = "Product List by SKU"
         '
         'GCProduct
@@ -804,7 +812,7 @@ Partial Class FormPromoCollectionDet
         Me.GCProduct.Location = New System.Drawing.Point(0, 0)
         Me.GCProduct.MainView = Me.GVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(909, 290)
+        Me.GCProduct.Size = New System.Drawing.Size(909, 395)
         Me.GCProduct.TabIndex = 0
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProduct})
         '
@@ -953,7 +961,7 @@ Partial Class FormPromoCollectionDet
         '
         Me.XtraTabPage1.Controls.Add(Me.GCBySizeType)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(909, 290)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(909, 395)
         Me.XtraTabPage1.Text = "Product List By Sizetype"
         '
         'GCBySizeType
@@ -962,7 +970,7 @@ Partial Class FormPromoCollectionDet
         Me.GCBySizeType.Location = New System.Drawing.Point(0, 0)
         Me.GCBySizeType.MainView = Me.GVBySizeType
         Me.GCBySizeType.Name = "GCBySizeType"
-        Me.GCBySizeType.Size = New System.Drawing.Size(909, 290)
+        Me.GCBySizeType.Size = New System.Drawing.Size(909, 395)
         Me.GCBySizeType.TabIndex = 17
         Me.GCBySizeType.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBySizeType})
         '
@@ -1243,7 +1251,7 @@ Partial Class FormPromoCollectionDet
         Me.XTPDiscountCode.Controls.Add(Me.GCDiscountCode)
         Me.XTPDiscountCode.Controls.Add(Me.BtnSync)
         Me.XTPDiscountCode.Name = "XTPDiscountCode"
-        Me.XTPDiscountCode.Size = New System.Drawing.Size(909, 290)
+        Me.XTPDiscountCode.Size = New System.Drawing.Size(909, 395)
         Me.XTPDiscountCode.Text = "Discount Code List"
         '
         'GCDiscountCode
@@ -1253,7 +1261,7 @@ Partial Class FormPromoCollectionDet
         Me.GCDiscountCode.MainView = Me.GVDiscountCode
         Me.GCDiscountCode.Name = "GCDiscountCode"
         Me.GCDiscountCode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCDiscountCode.Size = New System.Drawing.Size(909, 258)
+        Me.GCDiscountCode.Size = New System.Drawing.Size(909, 363)
         Me.GCDiscountCode.TabIndex = 17
         Me.GCDiscountCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDiscountCode})
         '
@@ -1341,7 +1349,7 @@ Partial Class FormPromoCollectionDet
         Me.BtnSync.Appearance.Options.UseFont = True
         Me.BtnSync.Appearance.Options.UseForeColor = True
         Me.BtnSync.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnSync.Location = New System.Drawing.Point(0, 258)
+        Me.BtnSync.Location = New System.Drawing.Point(0, 363)
         Me.BtnSync.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnSync.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnSync.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -1355,26 +1363,73 @@ Partial Class FormPromoCollectionDet
         '
         Me.CMSDiscCode.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.CMSDiscCode.Name = "ContextMenuStrip1"
-        Me.CMSDiscCode.Size = New System.Drawing.Size(153, 70)
+        Me.CMSDiscCode.Size = New System.Drawing.Size(108, 48)
         '
         'AddToolStripMenuItem
         '
         Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
-        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AddToolStripMenuItem.Text = "Add"
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
+        '
+        'CEAllCollection
+        '
+        Me.CEAllCollection.Location = New System.Drawing.Point(587, 9)
+        Me.CEAllCollection.Name = "CEAllCollection"
+        Me.CEAllCollection.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CEAllCollection.Properties.Appearance.Options.UseFont = True
+        Me.CEAllCollection.Properties.Caption = "All Collection"
+        Me.CEAllCollection.Size = New System.Drawing.Size(98, 20)
+        Me.CEAllCollection.TabIndex = 164
+        '
+        'PanelControlAllPromo
+        '
+        Me.PanelControlAllPromo.Controls.Add(Me.LabelControlAllPromo)
+        Me.PanelControlAllPromo.Controls.Add(Me.LabelControl12)
+        Me.PanelControlAllPromo.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlAllPromo.Location = New System.Drawing.Point(0, 243)
+        Me.PanelControlAllPromo.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.PanelControlAllPromo.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PanelControlAllPromo.Name = "PanelControlAllPromo"
+        Me.PanelControlAllPromo.Size = New System.Drawing.Size(915, 51)
+        Me.PanelControlAllPromo.TabIndex = 20
+        Me.PanelControlAllPromo.Visible = False
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.LabelControl12.Location = New System.Drawing.Point(10, 16)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(149, 15)
+        Me.LabelControl12.TabIndex = 0
+        Me.LabelControl12.Text = "ALL COLLECTION PROMO : "
+        '
+        'LabelControlAllPromo
+        '
+        Me.LabelControlAllPromo.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControlAllPromo.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.LabelControlAllPromo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.LabelControlAllPromo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControlAllPromo.Location = New System.Drawing.Point(166, 10)
+        Me.LabelControlAllPromo.Name = "LabelControlAllPromo"
+        Me.LabelControlAllPromo.Size = New System.Drawing.Size(737, 33)
+        Me.LabelControlAllPromo.TabIndex = 1
+        Me.LabelControlAllPromo.Text = "Termasuk semua produk yang sudah ada di akun GVN/GVS serta termasuk semua produk " &
+    "yang baru diupload (ditambah) ke akun GVN/GVS  selama masa promo ini berlaku"
         '
         'FormPromoCollectionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(915, 605)
+        Me.ClientSize = New System.Drawing.Size(915, 761)
         Me.Controls.Add(Me.XTCData)
+        Me.Controls.Add(Me.PanelControlAllPromo)
         Me.Controls.Add(Me.PanelControlNav)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.GroupControlHead)
@@ -1429,6 +1484,10 @@ Partial Class FormPromoCollectionDet
         CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMSDiscCode.ResumeLayout(False)
+        CType(Me.CEAllCollection.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlAllPromo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlAllPromo.ResumeLayout(False)
+        Me.PanelControlAllPromo.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1555,4 +1614,8 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents CMSDiscCode As ContextMenuStrip
     Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CEAllCollection As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControlAllPromo As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControlAllPromo As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
 End Class

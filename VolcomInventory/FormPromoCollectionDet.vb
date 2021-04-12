@@ -10,6 +10,7 @@
     Dim id_price_rule As String = "-1"
     Dim id_comp_group As String = "-1"
     Dim id_api_type As String = "-1"
+    Public is_all_collection As String = "-1"
 
     Private Sub FormPromoCollectionDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -72,6 +73,17 @@
             id_price_rule = data.Rows(0)("price_rule_id").ToString
             rmt = data.Rows(0)("report_mark_type").ToString
             id_api_type = data.Rows(0)("id_api_type").ToString
+            Dim sk_all_promo_coll As String = get_setup_field("sk_all_promo_coll")
+            is_all_collection = data.Rows(0)("is_all_collection").ToString
+            If is_all_collection = "1" Then
+                CEAllCollection.EditValue = True
+                PanelControlAllPromo.Visible = True
+                LabelControlAllPromo.Text = sk_all_promo_coll
+            Else
+                CEAllCollection.EditValue = False
+                PanelControlAllPromo.Visible = False
+                LabelControlAllPromo.Text = ""
+            End If
             '
 
             'properti
@@ -223,6 +235,7 @@
             End If
             TxtPromoName.Enabled = True
             GCDiscountCode.ContextMenuStrip = CMSDiscCode
+            CEAllCollection.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -238,6 +251,7 @@
             DEEnd.Enabled = False
             TxtPromoName.Enabled = False
             GCDiscountCode.ContextMenuStrip = Nothing
+            CEAllCollection.Enabled = False
         End If
 
         'reset propose
@@ -288,6 +302,12 @@
         Dim end_period As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
         Dim note As String = addSlashes(MENote.Text)
         Dim promo_name As String = addSlashes(TxtPromoName.Text)
+        Dim is_all_collection As String = ""
+        If CEAllCollection.EditValue = True Then
+            is_all_collection = "1"
+        Else
+            is_all_collection = "2"
+        End If
         If action = "ins" Then
             'Dim query As String = "INSERT INTO tb_ol_promo_collection(id_promo, created_date, created_by, start_period, end_period, id_report_status, note)
             'VALUES('" + id_promo + "', NOW(), '" + id_user + "', '" + start_period + "', '" + end_period + "',1, '" + note + "');SELECT LAST_INSERT_ID(); "
@@ -296,7 +316,7 @@
             ''refresh
             'refreshData()
         ElseIf action = "upd" Then
-            Dim query_head As String = "UPDATE tb_ol_promo_collection SET id_promo='" + id_promo + "',start_period='" + start_period + "', end_period='" + end_period + "', tag='" + tag + "',note='" + note + "',promo_name='" + promo_name + "'
+            Dim query_head As String = "UPDATE tb_ol_promo_collection SET id_promo='" + id_promo + "',start_period='" + start_period + "', end_period='" + end_period + "', tag='" + tag + "',note='" + note + "',promo_name='" + promo_name + "', is_all_collection='" + is_all_collection + "'
             WHERE id_ol_promo_collection='" + id + "' "
             execute_non_query(query_head, True, "", "", "", "")
             'refresh
@@ -322,7 +342,7 @@
         makeSafeGV(GVData)
         makeSafeGV(GVProduct)
 
-        If GVData.RowCount <= 0 Then
+        If GVData.RowCount <= 0 And CEAllCollection.EditValue = False Then
             stopCustom("No propose were made. If you want to cancel this propose, please click 'Cancel Propose'")
         ElseIf Not validateInput() Then
             stopCustom("Please complete all data")
@@ -509,9 +529,13 @@
 
     Private Sub BtnImportExcel_Click(sender As Object, e As EventArgs) Handles BtnImportExcel.Click
         Cursor = Cursors.WaitCursor
-        XTCData.SelectedTabPageIndex = 0
-        FormImportExcel.id_pop_up = "51"
-        FormImportExcel.ShowDialog()
+        If CEAllCollection.EditValue = True Then
+            warningCustom("This action not available for all collection promo")
+        Else
+            XTCData.SelectedTabPageIndex = 0
+            FormImportExcel.id_pop_up = "51"
+            FormImportExcel.ShowDialog()
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -645,6 +669,20 @@ WHERE c.id_ol_promo_collection = '" + id + "' "
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         If id_api_type = "2" Then
 
+        End If
+    End Sub
+
+    Private Sub CEAllCollection_EditValueChanged(sender As Object, e As EventArgs) Handles CEAllCollection.EditValueChanged
+        If is_confirm = 2 And is_view = "-1" Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset product list. Are you sure you want to continue this action?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim query As String = "DELETE FROM tb_ol_promo_collection_sku WHERE id_ol_promo_collection='" + id + "'; "
+                execute_non_query(query, True, "", "", "", "")
+                refreshData()
+                viewDetail()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 End Class
