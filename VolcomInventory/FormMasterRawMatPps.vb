@@ -427,7 +427,7 @@ SELECT COUNT(id_mat_det_pps) AS jml FROM tb_m_mat_det_pps WHERE mat_det_code='{0
             Dim query As String
             Dim mat_det_display_name As String = addSlashes(TxtDisplayName.Text)
             Dim mat_det_name As String = addSlashes(TxtName.Text)
-            Dim mat_det_code As String = addSlashes(TxtMaterialFullCode.Text)
+            Dim mat_det_code As String = addSlashes(TxtMaterialFullCode.Text.Replace(" ", ""))
             Dim id_method As String = "3" 'average
             Dim lifetime As String = TxtLifetime.Text
 
