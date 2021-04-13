@@ -301,11 +301,11 @@
         Dim end_period As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
         Dim note As String = addSlashes(MENote.Text)
         Dim promo_name As String = addSlashes(TxtPromoName.Text)
-        Dim is_all_collection As String = ""
+        Dim is_all_collection_input As String = ""
         If CEAllCollection.EditValue = True Then
-            is_all_collection = "1"
+            is_all_collection_input = "1"
         Else
-            is_all_collection = "2"
+            is_all_collection_input = "2"
         End If
         If action = "ins" Then
             'Dim query As String = "INSERT INTO tb_ol_promo_collection(id_promo, created_date, created_by, start_period, end_period, id_report_status, note)
@@ -315,7 +315,7 @@
             ''refresh
             'refreshData()
         ElseIf action = "upd" Then
-            Dim query_head As String = "UPDATE tb_ol_promo_collection SET id_promo='" + id_promo + "',start_period='" + start_period + "', end_period='" + end_period + "', tag='" + tag + "',note='" + note + "',promo_name='" + promo_name + "', is_all_collection='" + is_all_collection + "'
+            Dim query_head As String = "UPDATE tb_ol_promo_collection SET id_promo='" + id_promo + "',start_period='" + start_period + "', end_period='" + end_period + "', tag='" + tag + "',note='" + note + "',promo_name='" + promo_name + "', is_all_collection='" + is_all_collection_input + "'
             WHERE id_ol_promo_collection='" + id + "' "
             execute_non_query(query_head, True, "", "", "", "")
             'refresh
