@@ -512,13 +512,9 @@
             Report.LNote.Text = MENote.Text.ToUpper
             Report.LabelDiscountCode.Text = TxtUseDiscountCode.Text.ToUpper + If(is_use_discount_code = "1", " - ", "") + TxtDiscountTitle.Text.ToUpper
             If is_all_collection = "1" Then
-                Report.LabelNoteCollection.Text = "ALL ITEMS"
                 Report.LabelNoteCollection2.Text = LabelControlAllPromo.Text
-                Report.GCData.Visible = False
             Else
-                Report.LabelNoteCollection.Text = "SELECTED ITEMS"
                 Report.LabelNoteCollection2.Text = ""
-                Report.GCData.Visible = True
             End If
 
             ' Show the report's preview. 

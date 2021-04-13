@@ -76,9 +76,10 @@ Partial Class FormPromoCollectionDet
         Me.GridColumnis_block_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICReplace = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.CEAllCollection = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlAdd = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPProduct = New DevExpress.XtraTab.XtraTabPage()
@@ -143,10 +144,10 @@ Partial Class FormPromoCollectionDet
         Me.CMSDiscCode = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CEAllCollection = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlAllPromo = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControlAllPromo = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtDiscountTitle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,6 +176,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.RICReplace, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.CEAllCollection.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlAdd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlAdd.SuspendLayout()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -191,9 +193,10 @@ Partial Class FormPromoCollectionDet
         CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMSDiscCode.SuspendLayout()
-        CType(Me.CEAllCollection.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlAllPromo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlAllPromo.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -742,7 +745,7 @@ Partial Class FormPromoCollectionDet
         '
         'PanelControlNav
         '
-        Me.PanelControlNav.Controls.Add(Me.CEAllCollection)
+        Me.PanelControlNav.Controls.Add(Me.PanelControl2)
         Me.PanelControlNav.Controls.Add(Me.PanelControlAdd)
         Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
@@ -751,16 +754,15 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlNav.Size = New System.Drawing.Size(915, 39)
         Me.PanelControlNav.TabIndex = 17
         '
-        'BtnExportToXLS
+        'CEAllCollection
         '
-        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(801, 2)
-        Me.BtnExportToXLS.Name = "BtnExportToXLS"
-        Me.BtnExportToXLS.Size = New System.Drawing.Size(112, 35)
-        Me.BtnExportToXLS.TabIndex = 9
-        Me.BtnExportToXLS.Text = "Export to XLS"
-        Me.BtnExportToXLS.Visible = False
+        Me.CEAllCollection.Location = New System.Drawing.Point(3, 7)
+        Me.CEAllCollection.Name = "CEAllCollection"
+        Me.CEAllCollection.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CEAllCollection.Properties.Appearance.Options.UseFont = True
+        Me.CEAllCollection.Properties.Caption = "All Collection"
+        Me.CEAllCollection.Size = New System.Drawing.Size(98, 20)
+        Me.CEAllCollection.TabIndex = 164
         '
         'PanelControlAdd
         '
@@ -781,6 +783,17 @@ Partial Class FormPromoCollectionDet
         Me.BtnImportExcel.Size = New System.Drawing.Size(112, 35)
         Me.BtnImportExcel.TabIndex = 8
         Me.BtnImportExcel.Text = "Import XLS"
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(801, 2)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(112, 35)
+        Me.BtnExportToXLS.TabIndex = 9
+        Me.BtnExportToXLS.Text = "Export to XLS"
+        Me.BtnExportToXLS.Visible = False
         '
         'XTCData
         '
@@ -1377,16 +1390,6 @@ Partial Class FormPromoCollectionDet
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
-        'CEAllCollection
-        '
-        Me.CEAllCollection.Location = New System.Drawing.Point(587, 9)
-        Me.CEAllCollection.Name = "CEAllCollection"
-        Me.CEAllCollection.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CEAllCollection.Properties.Appearance.Options.UseFont = True
-        Me.CEAllCollection.Properties.Caption = "All Collection"
-        Me.CEAllCollection.Size = New System.Drawing.Size(98, 20)
-        Me.CEAllCollection.TabIndex = 164
-        '
         'PanelControlAllPromo
         '
         Me.PanelControlAllPromo.Controls.Add(Me.LabelControlAllPromo)
@@ -1400,16 +1403,6 @@ Partial Class FormPromoCollectionDet
         Me.PanelControlAllPromo.TabIndex = 20
         Me.PanelControlAllPromo.Visible = False
         '
-        'LabelControl12
-        '
-        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LabelControl12.Location = New System.Drawing.Point(10, 16)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(149, 15)
-        Me.LabelControl12.TabIndex = 0
-        Me.LabelControl12.Text = "ALL COLLECTION PROMO : "
-        '
         'LabelControlAllPromo
         '
         Me.LabelControlAllPromo.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1422,6 +1415,26 @@ Partial Class FormPromoCollectionDet
         Me.LabelControlAllPromo.TabIndex = 1
         Me.LabelControlAllPromo.Text = "Termasuk semua produk yang sudah ada di akun GVN/GVS serta termasuk semua produk " &
     "yang baru diupload (ditambah) ke akun GVN/GVS  selama masa promo ini berlaku"
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.LabelControl12.Location = New System.Drawing.Point(10, 16)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(140, 15)
+        Me.LabelControl12.TabIndex = 0
+        Me.LabelControl12.Text = "ALL COLLECTION ITEMS : "
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.CEAllCollection)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl2.Location = New System.Drawing.Point(587, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(100, 35)
+        Me.PanelControl2.TabIndex = 165
         '
         'FormPromoCollectionDet
         '
@@ -1468,6 +1481,7 @@ Partial Class FormPromoCollectionDet
         CType(Me.RICReplace, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
+        CType(Me.CEAllCollection.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlAdd, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlAdd.ResumeLayout(False)
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1484,10 +1498,11 @@ Partial Class FormPromoCollectionDet
         CType(Me.GVDiscountCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMSDiscCode.ResumeLayout(False)
-        CType(Me.CEAllCollection.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlAllPromo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlAllPromo.ResumeLayout(False)
         Me.PanelControlAllPromo.PerformLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1618,4 +1633,5 @@ Partial Class FormPromoCollectionDet
     Friend WithEvents PanelControlAllPromo As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControlAllPromo As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
 End Class
