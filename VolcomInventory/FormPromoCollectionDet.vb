@@ -75,14 +75,13 @@
             id_api_type = data.Rows(0)("id_api_type").ToString
             Dim sk_all_promo_coll As String = get_setup_field("sk_all_promo_coll")
             is_all_collection = data.Rows(0)("is_all_collection").ToString
+            LabelControlAllPromo.Text = sk_all_promo_coll
             If is_all_collection = "1" Then
                 CEAllCollection.EditValue = True
                 PanelControlAllPromo.Visible = True
-                LabelControlAllPromo.Text = sk_all_promo_coll
             Else
                 CEAllCollection.EditValue = False
                 PanelControlAllPromo.Visible = False
-                LabelControlAllPromo.Text = ""
             End If
             '
 
@@ -679,7 +678,16 @@ WHERE c.id_ol_promo_collection = '" + id + "' "
     End Sub
 
     Private Sub CEAllCollection_EditValueChanged(sender As Object, e As EventArgs) Handles CEAllCollection.EditValueChanged
-        If is_confirm = 2 And is_view = "-1" Then
+        Dim check_val As Boolean = False
+        If CEAllCollection.EditValue = True Then
+            PanelControlAllPromo.Visible = True
+            check_val = True
+        Else
+            PanelControlAllPromo.Visible = False
+            check_val = False
+        End If
+
+        If is_confirm = 2 And is_view = "-1" And GVData.RowCount > 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset product list. Are you sure you want to continue this action?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
@@ -687,6 +695,7 @@ WHERE c.id_ol_promo_collection = '" + id + "' "
                 execute_non_query(query, True, "", "", "", "")
                 refreshData()
                 viewDetail()
+                CEAllCollection.EditValue = check_val
                 Cursor = Cursors.Default
             End If
         End If
