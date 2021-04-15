@@ -38,6 +38,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.RowTotalAmount = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.XRBarcode = New DevExpress.XtraReports.UI.XRBarCode()
         Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.LRecNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.XRCompany = New DevExpress.XtraReports.UI.XRLabel()
@@ -77,7 +78,6 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LabelCompleted = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelNote = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XRBarcode = New DevExpress.XtraReports.UI.XRBarCode()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -360,6 +360,18 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.StylePriority.UseTextAlignment = False
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
+        '
+        'XRBarcode
+        '
+        Me.XRBarcode.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XRBarcode.LocationFloat = New DevExpress.Utils.PointFloat(0!, 50.08329!)
+        Me.XRBarcode.Name = "XRBarcode"
+        Me.XRBarcode.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
+        Me.XRBarcode.ShowText = False
+        Me.XRBarcode.SizeF = New System.Drawing.SizeF(390.0!, 25.0!)
+        Me.XRBarcode.StylePriority.UseBorders = False
+        Me.XRBarcode.Symbology = Code128Generator1
+        Me.XRBarcode.Text = "1231225"
         '
         'LTitle
         '
@@ -846,7 +858,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         'LabelNote
         '
         Me.LabelNote.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.LabelNote.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelNote.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelNote.KeepTogether = True
         Me.LabelNote.LocationFloat = New DevExpress.Utils.PointFloat(0!, 33.00001!)
         Me.LabelNote.Name = "LabelNote"
@@ -855,18 +867,6 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.LabelNote.StylePriority.UseBorders = False
         Me.LabelNote.StylePriority.UseFont = False
         Me.LabelNote.Text = "[note]"
-        '
-        'XRBarcode
-        '
-        Me.XRBarcode.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XRBarcode.LocationFloat = New DevExpress.Utils.PointFloat(0!, 50.08329!)
-        Me.XRBarcode.Name = "XRBarcode"
-        Me.XRBarcode.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
-        Me.XRBarcode.ShowText = False
-        Me.XRBarcode.SizeF = New System.Drawing.SizeF(390.0!, 25.0!)
-        Me.XRBarcode.StylePriority.UseBorders = False
-        Me.XRBarcode.Symbology = Code128Generator1
-        Me.XRBarcode.Text = "1231225"
         '
         'ReportSalesDelOrderOwnStore
         '
