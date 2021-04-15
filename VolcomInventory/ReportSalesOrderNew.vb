@@ -43,6 +43,9 @@
             LabelOLStoreOrder.Visible = True
             LabelTitleOLStoreOrder.Visible = True
             LabelDotOLStoreOrder.Visible = True
+            XRBarcode.Text = data.Rows(0)("ol_order_number").ToString
+        Else
+            XRBarcode.Text = data.Rows(0)("order_number").ToString
         End If
 
         'detail
