@@ -3572,6 +3572,12 @@
     <Compile Include="FormPopUpSalesDel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPriceChecker.Designer.vb">
+      <DependentUpon>FormPriceChecker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPriceChecker.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPriceForSync.Designer.vb">
       <DependentUpon>FormPriceForSync.vb</DependentUpon>
     </Compile>
@@ -11239,6 +11245,9 @@
     <EmbeddedResource Include="FormPopUpSalesDel.resx">
       <DependentUpon>FormPopUpSalesDel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPriceChecker.resx">
+      <DependentUpon>FormPriceChecker.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPriceForSync.resx">
       <DependentUpon>FormPriceForSync.vb</DependentUpon>
     </EmbeddedResource>
@@ -14298,6 +14307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOutboundLabel.resx">
       <DependentUpon>ReportOutboundLabel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportOutboundLabelOfline.resx">
+      <DependentUpon>ReportOutboundLabelOfline.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOutboundManifest.resx">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>

@@ -5,9 +5,22 @@
     Public Shared is_pre As String = "-1"
     Public Shared is_hidden_mark As String = "-1"
     Public Shared id_report_status As String = "-1"
+    Public Shared is_all_collection As String = "-1"
 
     Private Sub ReportPromoCollection_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GCData.DataSource = dt
+        If is_all_collection = "1" Then
+            Detail.Visible = False
+            LabelNoteCollection.Visible = True
+            LabelNoteCollection2.Visible = True
+            LabelPromoDot.Visible = True
+        Else
+            Detail.Visible = True
+            LabelNoteCollection.Visible = False
+            LabelNoteCollection2.Visible = False
+            LabelPromoDot.Visible = False
+        End If
+
         If is_hidden_mark = "-1" Then
             If is_pre = "1" Then
                 pre_load_mark_horz(rmt, id, "2", "2", XrTable1)

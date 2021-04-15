@@ -5784,7 +5784,7 @@ FROM
                 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`=6  AND rec.`id_purc_rec`!='" + id_report + "' AND rec.`id_purc_order`='" + FormPurcReceiveDet.id_purc_order + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
@@ -5793,7 +5793,7 @@ FROM
                 )already_rec ON already_rec.id_purc_order=pnd.id_report
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_purc_rec`='" + id_report + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
@@ -5815,7 +5815,7 @@ FROM
                 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`=6  AND rec.`id_purc_rec`!='" + id_report + "' AND rec.`id_purc_order`='" + FormPurcReceiveDet.id_purc_order + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
@@ -5824,7 +5824,7 @@ FROM
                 )already_rec ON already_rec.id_purc_order=pnd.id_report
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_purc_rec`='" + id_report + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
@@ -8764,48 +8764,50 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
             End If
 
             If id_status_reportx = "6" Then
-                'delete log
+                If FormPromoCollectionDet.is_all_collection = "2" Then
+                    'delete log
 
-                'set tag
-                Dim ql As String = "DELETE FROM tb_ol_promo_collection_log WHERE id_ol_promo_collection='" + id_report + "';
-                SELECT s.id_prod_shopify, p.id_design , m.tag
-                FROM tb_ol_promo_collection_sku s
-                INNER JOIN tb_ol_promo_collection m ON m.id_ol_promo_collection = s.id_ol_promo_collection
-                INNER JOIN tb_m_product p ON p.id_product = s.id_product
-                WHERE s.id_ol_promo_collection=" + id_report + "
-                GROUP BY s.id_prod_shopify "
-                Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
-                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
-                    FormMain.SplashScreenManager1.ShowWaitForm()
-                End If
-                For l As Integer = 0 To dl.Rows.Count - 1
-                    FormMain.SplashScreenManager1.SetWaitFormDescription((l + 1).ToString + " of " + dl.Rows.Count.ToString)
-                    Dim prod_id As String = dl.Rows(l)("id_prod_shopify").ToString
-                    Dim id_design_curr As String = dl.Rows(l)("id_design").ToString
-                    Try
-                        Dim s As New ClassShopifyApi()
-                        Dim tag As String = s.get_tag(prod_id)
-                        Dim tag_save As String = ""
-                        If tag <> "" Then
-                            tag_save = tag + "," + dl.Rows(l)("tag").ToString
-                        Else
-                            tag_save = dl.Rows(l)("tag").ToString
-                        End If
-                        s.set_tag(prod_id, tag_save)
-                        execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
+                    'set tag
+                    Dim ql As String = "DELETE FROM tb_ol_promo_collection_log WHERE id_ol_promo_collection='" + id_report + "';
+                    SELECT s.id_prod_shopify, p.id_design , m.tag
+                    FROM tb_ol_promo_collection_sku s
+                    INNER JOIN tb_ol_promo_collection m ON m.id_ol_promo_collection = s.id_ol_promo_collection
+                    INNER JOIN tb_m_product p ON p.id_product = s.id_product
+                    WHERE s.id_ol_promo_collection=" + id_report + "
+                    GROUP BY s.id_prod_shopify "
+                    Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
+                    For l As Integer = 0 To dl.Rows.Count - 1
+                        FormMain.SplashScreenManager1.SetWaitFormDescription((l + 1).ToString + " of " + dl.Rows.Count.ToString)
+                        Dim prod_id As String = dl.Rows(l)("id_prod_shopify").ToString
+                        Dim id_design_curr As String = dl.Rows(l)("id_design").ToString
+                        Try
+                            Dim s As New ClassShopifyApi()
+                            Dim tag As String = s.get_tag(prod_id)
+                            Dim tag_save As String = ""
+                            If tag <> "" Then
+                                tag_save = tag + "," + dl.Rows(l)("tag").ToString
+                            Else
+                                tag_save = dl.Rows(l)("tag").ToString
+                            End If
+                            s.set_tag(prod_id, tag_save)
+                            execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
                         VALUES('" + id_report + "', 1, '" + id_design_curr + "', 'OK', NOW()); ", True, "", "", "", "")
-                    Catch ex As Exception
-                        execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
+                        Catch ex As Exception
+                            execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
                         VALUES('" + id_report + "', 1, '" + id_design_curr + "', '" + addSlashes(ex.ToString) + "', NOW()); ", True, "", "", "", "")
-                    End Try
-                Next
-                FormMain.SplashScreenManager1.CloseWaitForm()
+                        End Try
+                    Next
+                    FormMain.SplashScreenManager1.CloseWaitForm()
 
-                'cek log
-                Dim qlog As String = "SELECT * FROM tb_ol_promo_collection_log l WHERE l.id_ol_promo_collection=" + id_report + " AND l.log<>'OK'"
-                Dim dlog As DataTable = execute_query(qlog, -1, True, "", "", "", "")
-                If dlog.Rows.Count > 0 Then
-                    stopCustom("Some product failed to sync. Please contact administrator")
+                    'cek log
+                    Dim qlog As String = "SELECT * FROM tb_ol_promo_collection_log l WHERE l.id_ol_promo_collection=" + id_report + " AND l.log<>'OK'"
+                    Dim dlog As DataTable = execute_query(qlog, -1, True, "", "", "", "")
+                    If dlog.Rows.Count > 0 Then
+                        stopCustom("Some product failed to sync. Please contact administrator")
+                    End If
                 End If
             End If
 
