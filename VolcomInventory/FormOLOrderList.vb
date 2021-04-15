@@ -135,4 +135,18 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub PrintToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PrintToolStripMenuItem.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id As String = GVData.GetFocusedRowCellValue("id_sales_order").ToString
+            Dim sales_order_ol_shop_number As String = GVData.GetFocusedRowCellValue("sales_order_ol_shop_number").ToString
+            FormViewSalesOrderOnline.id_sales_order = id
+            FormViewSalesOrderOnline.is_print = "1"
+            FormViewSalesOrderOnline.ShowDialog()
+            viewData()
+            GVData.FocusedRowHandle = find_row(GVData, "sales_order_ol_shop_number", sales_order_ol_shop_number)
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class

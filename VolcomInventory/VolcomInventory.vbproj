@@ -7556,6 +7556,12 @@
     <Compile Include="FormViewSalesOrderGen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormViewSalesOrderOnline.Designer.vb">
+      <DependentUpon>FormViewSalesOrderOnline.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormViewSalesOrderOnline.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormViewSalesPOS.Designer.vb">
       <DependentUpon>FormViewSalesPOS.vb</DependentUpon>
     </Compile>
@@ -13613,6 +13619,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormViewSalesOrderGen.resx">
       <DependentUpon>FormViewSalesOrderGen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormViewSalesOrderOnline.resx">
+      <DependentUpon>FormViewSalesOrderOnline.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormViewSalesPOS.resx">
       <DependentUpon>FormViewSalesPOS.vb</DependentUpon>

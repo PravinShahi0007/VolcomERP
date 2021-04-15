@@ -23,6 +23,9 @@ Partial Class FormOLOrderList
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLOrderList))
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.PrintToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FileAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DownloadShippingLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnsales_order_ol_shop_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -30,6 +33,10 @@ Partial Class FormOLOrderList
         Me.GridColumnid_sales_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_group_desc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnprinted_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnprinted_by = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_comp_group2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_sales_order_single = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -38,13 +45,6 @@ Partial Class FormOLOrderList
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnprinted_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnprinted_by = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PrintToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FileAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DownloadShippingLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnid_comp_group2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_sales_order_single = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,7 +71,25 @@ Partial Class FormOLOrderList
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripMenuItem, Me.FileAttachmentToolStripMenuItem, Me.DownloadShippingLabelToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(210, 92)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(210, 70)
+        '
+        'PrintToolStripMenuItem
+        '
+        Me.PrintToolStripMenuItem.Name = "PrintToolStripMenuItem"
+        Me.PrintToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
+        Me.PrintToolStripMenuItem.Text = "Print"
+        '
+        'FileAttachmentToolStripMenuItem
+        '
+        Me.FileAttachmentToolStripMenuItem.Name = "FileAttachmentToolStripMenuItem"
+        Me.FileAttachmentToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
+        Me.FileAttachmentToolStripMenuItem.Text = "File Attachment"
+        '
+        'DownloadShippingLabelToolStripMenuItem
+        '
+        Me.DownloadShippingLabelToolStripMenuItem.Name = "DownloadShippingLabelToolStripMenuItem"
+        Me.DownloadShippingLabelToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
+        Me.DownloadShippingLabelToolStripMenuItem.Text = "Download Shipping Label"
         '
         'GVData
         '
@@ -134,6 +152,36 @@ Partial Class FormOLOrderList
         Me.GridColumncomp_group_desc.Name = "GridColumncomp_group_desc"
         Me.GridColumncomp_group_desc.Visible = True
         Me.GridColumncomp_group_desc.VisibleIndex = 0
+        '
+        'GridColumnprinted_date
+        '
+        Me.GridColumnprinted_date.Caption = "Last Printed"
+        Me.GridColumnprinted_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnprinted_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnprinted_date.FieldName = "printed_date"
+        Me.GridColumnprinted_date.Name = "GridColumnprinted_date"
+        Me.GridColumnprinted_date.Visible = True
+        Me.GridColumnprinted_date.VisibleIndex = 5
+        '
+        'GridColumnprinted_by
+        '
+        Me.GridColumnprinted_by.Caption = "Last Printed by"
+        Me.GridColumnprinted_by.FieldName = "printed_by"
+        Me.GridColumnprinted_by.Name = "GridColumnprinted_by"
+        Me.GridColumnprinted_by.Visible = True
+        Me.GridColumnprinted_by.VisibleIndex = 6
+        '
+        'GridColumnid_comp_group2
+        '
+        Me.GridColumnid_comp_group2.Caption = "id_comp_group"
+        Me.GridColumnid_comp_group2.FieldName = "id_comp_group"
+        Me.GridColumnid_comp_group2.Name = "GridColumnid_comp_group2"
+        '
+        'GridColumnid_sales_order_single
+        '
+        Me.GridColumnid_sales_order_single.Caption = "id_sales_order_single"
+        Me.GridColumnid_sales_order_single.FieldName = "id_sales_order_single"
+        Me.GridColumnid_sales_order_single.Name = "GridColumnid_sales_order_single"
         '
         'LabelControl7
         '
@@ -205,54 +253,6 @@ Partial Class FormOLOrderList
         Me.SimpleButton1.Size = New System.Drawing.Size(85, 43)
         Me.SimpleButton1.TabIndex = 11
         Me.SimpleButton1.Text = "View"
-        '
-        'GridColumnprinted_date
-        '
-        Me.GridColumnprinted_date.Caption = "Last Printed"
-        Me.GridColumnprinted_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.GridColumnprinted_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnprinted_date.FieldName = "printed_date"
-        Me.GridColumnprinted_date.Name = "GridColumnprinted_date"
-        Me.GridColumnprinted_date.Visible = True
-        Me.GridColumnprinted_date.VisibleIndex = 5
-        '
-        'GridColumnprinted_by
-        '
-        Me.GridColumnprinted_by.Caption = "Last Printed by"
-        Me.GridColumnprinted_by.FieldName = "printed_by"
-        Me.GridColumnprinted_by.Name = "GridColumnprinted_by"
-        Me.GridColumnprinted_by.Visible = True
-        Me.GridColumnprinted_by.VisibleIndex = 6
-        '
-        'PrintToolStripMenuItem
-        '
-        Me.PrintToolStripMenuItem.Name = "PrintToolStripMenuItem"
-        Me.PrintToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
-        Me.PrintToolStripMenuItem.Text = "Print"
-        '
-        'FileAttachmentToolStripMenuItem
-        '
-        Me.FileAttachmentToolStripMenuItem.Name = "FileAttachmentToolStripMenuItem"
-        Me.FileAttachmentToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
-        Me.FileAttachmentToolStripMenuItem.Text = "File Attachment"
-        '
-        'DownloadShippingLabelToolStripMenuItem
-        '
-        Me.DownloadShippingLabelToolStripMenuItem.Name = "DownloadShippingLabelToolStripMenuItem"
-        Me.DownloadShippingLabelToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
-        Me.DownloadShippingLabelToolStripMenuItem.Text = "Download Shipping Label"
-        '
-        'GridColumnid_comp_group2
-        '
-        Me.GridColumnid_comp_group2.Caption = "id_comp_group"
-        Me.GridColumnid_comp_group2.FieldName = "id_comp_group"
-        Me.GridColumnid_comp_group2.Name = "GridColumnid_comp_group2"
-        '
-        'GridColumnid_sales_order_single
-        '
-        Me.GridColumnid_sales_order_single.Caption = "id_sales_order_single"
-        Me.GridColumnid_sales_order_single.FieldName = "id_sales_order_single"
-        Me.GridColumnid_sales_order_single.Name = "GridColumnid_sales_order_single"
         '
         'FormOLOrderList
         '
