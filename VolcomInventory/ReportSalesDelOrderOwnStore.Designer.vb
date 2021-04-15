@@ -784,7 +784,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         'LabelNote
         '
         Me.LabelNote.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.LabelNote.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelNote.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelNote.KeepTogether = True
         Me.LabelNote.LocationFloat = New DevExpress.Utils.PointFloat(0!, 33.00001!)
         Me.LabelNote.Name = "LabelNote"

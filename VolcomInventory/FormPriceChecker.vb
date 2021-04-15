@@ -1,4 +1,6 @@
 ﻿Public Class FormPriceChecker
+    Dim dir As String = get_setup_field("cloud_image_url")
+    Dim dir_def As String = get_setup_field("pic_path_design")
     Private Sub FormPriceChecker_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -28,6 +30,7 @@
         LabelClass.Text = ""
         LabelColor.Text = ""
         LabelSeason.Text = ""
+        PictureEdit1.EditValue = Nothing
     End Sub
 
     Private Sub TxtScannedCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScannedCode.KeyDown
@@ -89,6 +92,23 @@
             LabelColor.Text = data.Rows(0)("color").ToString + " (" + data.Rows(0)("color_display").ToString + ")"
             LabelSeason.Text = data.Rows(0)("season").ToString
             TxtScannedCode.Focus()
+
+            'image
+            Dim qimg As String = "SELECT * FROM tb_design_images WHERE id_design='" + data.Rows(0)("id_design").ToString + "' AND store='TH' LIMIT 1"
+            Dim dimg As DataTable = execute_query(qimg, -1, True, "", "", "", "")
+            If dimg.Rows.Count > 0 Then
+                Try
+                    PictureEdit1.LoadAsync(dir + "/" + dimg.Rows(0)("file_name").ToString)
+                Catch ex As Exception
+                    warningCustom("Failed load image : " + ex.ToString)
+                End Try
+            Else
+                Try
+                    PictureEdit1.LoadAsync(dir_def + "\" + "default.jpg")
+                Catch ex As Exception
+                    warningCustom("Failed load image : " + ex.ToString)
+                End Try
+            End If
         Else
             defaultInput()
             FormError.LabelContent.Text = "Product not found"

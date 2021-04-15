@@ -86,6 +86,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumnOLStoreDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnOnlineOrderList = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnSyncOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCombineDel = New DevExpress.XtraEditors.SimpleButton()
@@ -126,6 +128,8 @@ Partial Class FormSalesDelOrder
         CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlNavPrepare, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -477,6 +481,7 @@ Partial Class FormSalesDelOrder
         'XTPSOList
         '
         Me.XTPSOList.Controls.Add(Me.GCSalesOrder)
+        Me.XTPSOList.Controls.Add(Me.PanelControl3)
         Me.XTPSOList.Controls.Add(Me.PanelControl1)
         Me.XTPSOList.Controls.Add(Me.PanelControlNavPrepare)
         Me.XTPSOList.Name = "XTPSOList"
@@ -487,11 +492,11 @@ Partial Class FormSalesDelOrder
         '
         Me.GCSalesOrder.ContextMenuStrip = Me.ViewMenu
         Me.GCSalesOrder.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSalesOrder.Location = New System.Drawing.Point(0, 0)
+        Me.GCSalesOrder.Location = New System.Drawing.Point(0, 41)
         Me.GCSalesOrder.MainView = Me.GVSalesOrder
         Me.GCSalesOrder.Name = "GCSalesOrder"
         Me.GCSalesOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
-        Me.GCSalesOrder.Size = New System.Drawing.Size(793, 403)
+        Me.GCSalesOrder.Size = New System.Drawing.Size(793, 362)
         Me.GCSalesOrder.TabIndex = 5
         Me.GCSalesOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesOrder, Me.GridView2})
         '
@@ -726,6 +731,25 @@ Partial Class FormSalesDelOrder
         '
         Me.GridView2.GridControl = Me.GCSalesOrder
         Me.GridView2.Name = "GridView2"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BtnOnlineOrderList)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(793, 41)
+        Me.PanelControl3.TabIndex = 142
+        '
+        'BtnOnlineOrderList
+        '
+        Me.BtnOnlineOrderList.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnOnlineOrderList.Image = CType(resources.GetObject("BtnOnlineOrderList.Image"), System.Drawing.Image)
+        Me.BtnOnlineOrderList.Location = New System.Drawing.Point(663, 2)
+        Me.BtnOnlineOrderList.Name = "BtnOnlineOrderList"
+        Me.BtnOnlineOrderList.Size = New System.Drawing.Size(128, 37)
+        Me.BtnOnlineOrderList.TabIndex = 0
+        Me.BtnOnlineOrderList.Text = "Online Order List"
         '
         'PanelControl1
         '
@@ -965,6 +989,8 @@ Partial Class FormSalesDelOrder
         CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PanelControlNavPrepare, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1065,4 +1091,6 @@ Partial Class FormSalesDelOrder
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DownloadShippingLabelToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnOnlineOrderList As DevExpress.XtraEditors.SimpleButton
 End Class
