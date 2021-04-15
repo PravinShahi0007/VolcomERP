@@ -572,4 +572,10 @@
         SMPrint.Visible = True
         SMPrePrint.Visible = True
     End Sub
+
+    Private Sub BtnOnlineOrderList_Click(sender As Object, e As EventArgs) Handles BtnOnlineOrderList.Click
+        Cursor = Cursors.WaitCursor
+        FormOLOrderList.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

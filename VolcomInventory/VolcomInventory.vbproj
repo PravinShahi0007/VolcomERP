@@ -3146,6 +3146,12 @@
     <Compile Include="FormODMPrintPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLOrderList.Designer.vb">
+      <DependentUpon>FormOLOrderList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLOrderList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLReturnRefuse.Designer.vb">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
     </Compile>
@@ -11009,6 +11015,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormODMPrintPick.resx">
       <DependentUpon>FormODMPrintPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLOrderList.resx">
+      <DependentUpon>FormOLOrderList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLReturnRefuse.resx">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
