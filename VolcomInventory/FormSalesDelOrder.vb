@@ -576,6 +576,7 @@
     Private Sub BtnOnlineOrderList_Click(sender As Object, e As EventArgs) Handles BtnOnlineOrderList.Click
         Cursor = Cursors.WaitCursor
         FormOLOrderList.ShowDialog()
+        viewSalesOrder()
         Cursor = Cursors.Default
     End Sub
 End Class

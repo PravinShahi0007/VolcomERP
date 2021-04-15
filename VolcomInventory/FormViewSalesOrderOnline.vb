@@ -46,13 +46,13 @@
         query += "WHERE a.id_sales_order IN(" + id_sales_order + ") "
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
         For i As Integer = 0 To data.Rows.Count - 1
-            id_commerce_type = data.Rows("id_commerce_type").ToString
-            Dim id_so_status As String = data.Rows("id_so_status").ToString
+            id_commerce_type = data.Rows(0)("id_commerce_type").ToString
+            Dim id_so_status As String = data.Rows(0)("id_so_status").ToString
 
             GCItemList.DataSource = Nothing
             viewDetail()
             ReportSalesOrder.dt = GCItemList.DataSource
-            ReportSalesOrder.id_sales_order = data.Rows("id_sales_order").ToString
+            ReportSalesOrder.id_sales_order = data.Rows(0)("id_sales_order").ToString
             Dim Report As New ReportSalesOrder()
 
             'Grid Detail
@@ -61,7 +61,7 @@
             'parse val
             Report.LabelTo.Text = data.Rows(0)("store_number_to").ToString + "-" + data.Rows(0)("store_name_to").ToString
             Report.LabelWarehouse.Text = data.Rows(0)("warehouse_number_to").ToString + "-" + data.Rows(0)("warehouse_name_to").ToString
-            Report.LabelCategory.Text = data.Rows("so_status").ToString
+            Report.LabelCategory.Text = data.Rows(0)("so_status").ToString
             Report.LabelReff.Text = data.Rows(0)("fg_so_reff_number").ToString
             Report.LRecDate.Text = view_date_from(data.Rows(0)("sales_order_datex").ToString, 0)
             Report.LRecNumber.Text = data.Rows(0)("sales_order_number").ToString
@@ -114,5 +114,11 @@
 
     Private Sub FormViewSalesOrderOnline_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class

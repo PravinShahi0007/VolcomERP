@@ -82,18 +82,17 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 1
+        Me.GridColumnCode.VisibleIndex = 3
         Me.GridColumnCode.Width = 69
         '
         'GridColumnName
         '
         Me.GridColumnName.Caption = "Description"
         Me.GridColumnName.FieldName = "name"
-        Me.GridColumnName.FieldNameSortGroup = "id_design"
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
+        Me.GridColumnName.VisibleIndex = 4
         Me.GridColumnName.Width = 142
         '
         'GridColumnSize
@@ -107,7 +106,7 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
+        Me.GridColumnSize.VisibleIndex = 5
         Me.GridColumnSize.Width = 53
         '
         'GridColumnPriceType
@@ -118,7 +117,7 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnPriceType.OptionsColumn.AllowEdit = False
         Me.GridColumnPriceType.OptionsColumn.ReadOnly = True
         Me.GridColumnPriceType.Visible = True
-        Me.GridColumnPriceType.VisibleIndex = 4
+        Me.GridColumnPriceType.VisibleIndex = 6
         Me.GridColumnPriceType.Width = 98
         '
         'GridColumnQty
@@ -138,7 +137,7 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:f2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 7
         Me.GridColumnQty.Width = 88
         '
         'GridColumnPrice
@@ -154,7 +153,7 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 6
+        Me.GridColumnPrice.VisibleIndex = 8
         Me.GridColumnPrice.Width = 106
         '
         'GridColumnAmount
@@ -171,7 +170,7 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnAmount.OptionsColumn.ReadOnly = True
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.VisibleIndex = 9
         Me.GridColumnAmount.Width = 121
         '
         'GridColumnRemark
@@ -180,7 +179,7 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnRemark.FieldName = "sales_order_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 8
+        Me.GridColumnRemark.VisibleIndex = 10
         Me.GridColumnRemark.Width = 225
         '
         'GridColumnUOM
@@ -257,12 +256,16 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnItemId.Caption = "Item Id"
         Me.GridColumnItemId.FieldName = "item_id"
         Me.GridColumnItemId.Name = "GridColumnItemId"
+        Me.GridColumnItemId.Visible = True
+        Me.GridColumnItemId.VisibleIndex = 1
         '
         'GridColumnOLStoreId
         '
         Me.GridColumnOLStoreId.Caption = "OL Store Id"
         Me.GridColumnOLStoreId.FieldName = "ol_store_id"
         Me.GridColumnOLStoreId.Name = "GridColumnOLStoreId"
+        Me.GridColumnOLStoreId.Visible = True
+        Me.GridColumnOLStoreId.VisibleIndex = 2
         '
         'GCItemList
         '

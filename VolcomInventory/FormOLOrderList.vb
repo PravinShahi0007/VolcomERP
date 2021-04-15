@@ -1,6 +1,7 @@
 ﻿Public Class FormOLOrderList
     Private Sub FormOLOrderList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCompGroup()
+        viewData()
     End Sub
 
 
@@ -136,17 +137,52 @@
         End If
     End Sub
 
+    Dim tool_detail As DevExpress.XtraReports.UI.ReportPrintTool
+    Dim id_sor_selected As String = ""
     Private Sub PrintToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PrintToolStripMenuItem.Click
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
+            id_sor_selected = ""
+            Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+            Dim rpt As New ReportSalesOrderNew()
             Dim id As String = GVData.GetFocusedRowCellValue("id_sales_order").ToString
+            id_sor_selected = id
+            Dim qso As String = "SELECT * FROM tb_sales_order so WHERE so.id_sales_order IN(" + id + ") "
+            Dim dso As DataTable = execute_query(qso, -1, True, "", "", "", "")
+            For i As Integer = 0 To dso.Rows.Count - 1
+                ReportSalesOrderNew.id_sales_order = dso.Rows(i)("id_sales_order").ToString
+                Dim Report As New ReportSalesOrderNew()
+                'Grid Detail
+                ReportStyleGridview(Report.GVItemList)
+
+                Report.PrintingSystem.ContinuousPageNumbering = False
+                Report.CreateDocument()
+
+                For j = 0 To Report.Pages.Count - 1
+                    list.Add(Report.Pages(j))
+                Next
+            Next
+            rpt.Pages.AddRange(list)
+            tool_detail = New DevExpress.XtraReports.UI.ReportPrintTool(rpt)
+            AddHandler tool_detail.PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
+            tool_detail.ShowPreviewDialog()
+
+            'refresh
             Dim sales_order_ol_shop_number As String = GVData.GetFocusedRowCellValue("sales_order_ol_shop_number").ToString
-            FormViewSalesOrderOnline.id_sales_order = id
-            FormViewSalesOrderOnline.is_print = "1"
-            FormViewSalesOrderOnline.ShowDialog()
             viewData()
             GVData.FocusedRowHandle = find_row(GVData, "sales_order_ol_shop_number", sales_order_ol_shop_number)
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub PrintingSystem_EndPrint(ByVal sender As Object, ByVal e As EventArgs)
+        'insert log
+        If id_sor_selected <> "" Then
+            Dim query As String = "INSERT INTO tb_sales_order_log_print(id_sales_order, id_user, log_date) 
+            SELECT so.id_sales_order, '" + id_user + "', NOW() 
+            FROM tb_sales_order so WHERE so.id_sales_order IN(" + id_sor_selected + "); "
+            execute_non_query(query, True, "", "", "", "")
+        End If
+        tool_detail.ClosePreview()
     End Sub
 End Class

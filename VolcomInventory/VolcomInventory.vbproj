@@ -9201,6 +9201,12 @@
     <Compile Include="ReportSalesOrderGen.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesOrderNew.Designer.vb">
+      <DependentUpon>ReportSalesOrderNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesOrderNew.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesOrderViewRef.Designer.vb">
       <DependentUpon>ReportSalesOrderViewRef.vb</DependentUpon>
     </Compile>
@@ -14514,6 +14520,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesOrderGen.resx">
       <DependentUpon>ReportSalesOrderGen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesOrderNew.resx">
+      <DependentUpon>ReportSalesOrderNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesOrderViewRef.resx">
       <DependentUpon>ReportSalesOrderViewRef.vb</DependentUpon>
