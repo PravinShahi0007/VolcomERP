@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormPriceChecker
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormPriceChecker
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPriceChecker))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -47,6 +47,8 @@ Partial Class FormPriceChecker
         Me.LabelClass = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControlImg = New DevExpress.XtraEditors.PanelControl()
+        Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtScannedCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,6 +58,9 @@ Partial Class FormPriceChecker
         Me.GroupControl1.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.PanelControlImg, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlImg.SuspendLayout()
+        CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -104,7 +109,7 @@ Partial Class FormPriceChecker
         Me.LabelPrice.Appearance.BackColor = System.Drawing.Color.SteelBlue
         Me.LabelPrice.Appearance.Font = New System.Drawing.Font("Tahoma", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelPrice.Appearance.ForeColor = System.Drawing.Color.White
-        Me.LabelPrice.Location = New System.Drawing.Point(16, 70)
+        Me.LabelPrice.Location = New System.Drawing.Point(180, 76)
         Me.LabelPrice.Name = "LabelPrice"
         Me.LabelPrice.Size = New System.Drawing.Size(90, 42)
         Me.LabelPrice.TabIndex = 2
@@ -114,7 +119,7 @@ Partial Class FormPriceChecker
         '
         Me.LabelDesc.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.LabelDesc.Appearance.Font = New System.Drawing.Font("Tahoma", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDesc.Location = New System.Drawing.Point(15, 20)
+        Me.LabelDesc.Location = New System.Drawing.Point(179, 26)
         Me.LabelDesc.Name = "LabelDesc"
         Me.LabelDesc.Size = New System.Drawing.Size(16, 45)
         Me.LabelDesc.TabIndex = 6
@@ -122,12 +127,13 @@ Partial Class FormPriceChecker
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.PanelControlImg)
         Me.PanelControl2.Controls.Add(Me.LabelDesc)
         Me.PanelControl2.Controls.Add(Me.LabelPrice)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 61)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(762, 157)
+        Me.PanelControl2.Size = New System.Drawing.Size(762, 184)
         Me.PanelControl2.TabIndex = 7
         '
         'LabelControl3
@@ -221,7 +227,7 @@ Partial Class FormPriceChecker
         Me.GroupControl1.Controls.Add(Me.LabelControl10)
         Me.GroupControl1.Controls.Add(Me.LabelControl12)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 218)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 245)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(762, 108)
         Me.GroupControl1.TabIndex = 24
@@ -243,9 +249,9 @@ Partial Class FormPriceChecker
         Me.GroupControl2.Controls.Add(Me.LabelControl8)
         Me.GroupControl2.Controls.Add(Me.LabelCode)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 326)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 353)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(762, 247)
+        Me.GroupControl2.Size = New System.Drawing.Size(762, 220)
         Me.GroupControl2.TabIndex = 26
         Me.GroupControl2.Text = "Product Information"
         '
@@ -330,6 +336,27 @@ Partial Class FormPriceChecker
         Me.LabelControl13.TabIndex = 15
         Me.LabelControl13.Text = "Product Class"
         '
+        'PanelControlImg
+        '
+        Me.PanelControlImg.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlImg.Controls.Add(Me.PictureEdit1)
+        Me.PanelControlImg.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlImg.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControlImg.Name = "PanelControlImg"
+        Me.PanelControlImg.Size = New System.Drawing.Size(157, 180)
+        Me.PanelControlImg.TabIndex = 24
+        '
+        'PictureEdit1
+        '
+        Me.PictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureEdit1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureEdit1.Name = "PictureEdit1"
+        Me.PictureEdit1.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.Image
+        Me.PictureEdit1.Properties.ReadOnly = True
+        Me.PictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        Me.PictureEdit1.Size = New System.Drawing.Size(157, 180)
+        Me.PictureEdit1.TabIndex = 100
+        '
         'FormPriceChecker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -356,6 +383,9 @@ Partial Class FormPriceChecker
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.PanelControlImg, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlImg.ResumeLayout(False)
+        CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -387,4 +417,6 @@ Partial Class FormPriceChecker
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelSeason As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControlImg As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PictureEdit1 As DevExpress.XtraEditors.PictureEdit
 End Class

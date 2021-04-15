@@ -3146,6 +3146,12 @@
     <Compile Include="FormODMPrintPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLOrderList.Designer.vb">
+      <DependentUpon>FormOLOrderList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLOrderList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLReturnRefuse.Designer.vb">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
     </Compile>
@@ -7556,6 +7562,12 @@
     <Compile Include="FormViewSalesOrderGen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormViewSalesOrderOnline.Designer.vb">
+      <DependentUpon>FormViewSalesOrderOnline.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormViewSalesOrderOnline.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormViewSalesPOS.Designer.vb">
       <DependentUpon>FormViewSalesPOS.vb</DependentUpon>
     </Compile>
@@ -9193,6 +9205,12 @@
       <DependentUpon>ReportSalesOrderGen.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSalesOrderGen.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalesOrderNew.Designer.vb">
+      <DependentUpon>ReportSalesOrderNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesOrderNew.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSalesOrderViewRef.Designer.vb">
@@ -11015,6 +11033,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormODMPrintPick.resx">
       <DependentUpon>FormODMPrintPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLOrderList.resx">
+      <DependentUpon>FormOLOrderList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLReturnRefuse.resx">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
@@ -13614,6 +13635,9 @@
     <EmbeddedResource Include="FormViewSalesOrderGen.resx">
       <DependentUpon>FormViewSalesOrderGen.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormViewSalesOrderOnline.resx">
+      <DependentUpon>FormViewSalesOrderOnline.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormViewSalesPOS.resx">
       <DependentUpon>FormViewSalesPOS.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -14508,6 +14532,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesOrderGen.resx">
       <DependentUpon>ReportSalesOrderGen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesOrderNew.resx">
+      <DependentUpon>ReportSalesOrderNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesOrderViewRef.resx">
       <DependentUpon>ReportSalesOrderViewRef.vb</DependentUpon>

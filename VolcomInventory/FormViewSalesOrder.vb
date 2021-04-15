@@ -158,6 +158,9 @@ Public Class FormViewSalesOrder
             Report.LabelTitleOLStoreOrder.Visible = True
             Report.LabelDotOLStoreOrder.Visible = True
             Report.LabelOLStoreOrder.Text = TxtOLShopNumber.Text
+            Report.XRBarcode.Text = TxtOLShopNumber.Text
+        Else
+            Report.XRBarcode.Text = TxtSalesOrderNumber.Text
         End If
 
         AddHandler Report.PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
