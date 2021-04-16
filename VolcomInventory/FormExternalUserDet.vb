@@ -25,6 +25,13 @@
             messages = "Username already use."
         End If
 
+        'check duplicate code
+        Dim total_code As String = execute_query("SELECT COUNT(*) FROM tb_st_user WHERE st_user_code = '" + addSlashes(TECode.EditValue.ToString) + "' AND id_user <> '" + id_user + "'", 0, True, "", "", "", "")
+
+        If Not total_code = "0" Then
+            messages = "Code already use."
+        End If
+
         'check empty
         If id_user = "-1" Then
             If TEName.Text = "" Or TEPosition.Text = "" Or TEUsername.Text = "" Or TEPassword.Text = "" Or TECode.Text = "" Then

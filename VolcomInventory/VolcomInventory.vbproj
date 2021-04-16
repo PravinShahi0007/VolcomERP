@@ -307,6 +307,7 @@
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
     <Compile Include="ClassPromoCollection.vb" />
+    <Compile Include="ClassProposePriceMKD.vb" />
     <Compile Include="ClassPurcAsset.vb" />
     <Compile Include="ClassPurcItemStock.vb" />
     <Compile Include="ClassPurcOrder.vb" />
@@ -3972,6 +3973,18 @@
       <DependentUpon>FormProposeEmpSalaryPick.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProposeEmpSalaryPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposePriceMKD.Designer.vb">
+      <DependentUpon>FormProposePriceMKD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePriceMKD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposePriceMKDDet.Designer.vb">
+      <DependentUpon>FormProposePriceMKDDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePriceMKDDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurcAsset.Designer.vb">
@@ -11445,6 +11458,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposeEmpSalaryPick.resx">
       <DependentUpon>FormProposeEmpSalaryPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePriceMKD.resx">
+      <DependentUpon>FormProposePriceMKD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePriceMKDDet.resx">
+      <DependentUpon>FormProposePriceMKDDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAsset.resx">
       <DependentUpon>FormPurcAsset.vb</DependentUpon>
