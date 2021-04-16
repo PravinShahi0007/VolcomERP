@@ -679,7 +679,7 @@ Partial Class FormSalesDelOrderSlip
         '
         Me.XTPDetail.Controls.Add(Me.GCItemList)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(926, 389)
+        Me.XTPDetail.Size = New System.Drawing.Size(925, 389)
         Me.XTPDetail.Text = "Detail Item"
         '
         'GCItemList
@@ -690,7 +690,7 @@ Partial Class FormSalesDelOrderSlip
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(926, 389)
+        Me.GCItemList.Size = New System.Drawing.Size(925, 389)
         Me.GCItemList.TabIndex = 4
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -783,8 +783,6 @@ Partial Class FormSalesDelOrderSlip
         Me.GridColumnPrice.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnPrice.OptionsColumn.AllowShowHide = False
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
-        Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 4
         Me.GridColumnPrice.Width = 135
         '
         'GridColumnAmount
@@ -798,8 +796,6 @@ Partial Class FormSalesDelOrderSlip
         Me.GridColumnAmount.OptionsColumn.AllowShowHide = False
         Me.GridColumnAmount.OptionsColumn.ReadOnly = True
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_amount", "{0:n2}")})
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 5
         Me.GridColumnAmount.Width = 155
         '
         'GridColumnEanCode

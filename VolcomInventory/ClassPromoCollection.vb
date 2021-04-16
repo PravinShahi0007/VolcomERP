@@ -14,7 +14,8 @@
 
         Dim query As String = "SELECT p.id_ol_promo_collection, cg.id_comp_group, cg.comp_group, cg.id_api_type, p.id_promo, prm.promo, p.promo_name, p.discount_title, p.`number`, p.created_date, 
         p.created_by, e.employee_name AS `created_by_name`, p.tag,
-        p.start_period, p.end_period, p.id_report_status, stt.report_status, p.note, p.is_confirm, p.is_use_discount_code, IF(p.is_use_discount_code=1,'Active', 'Not Active') AS `use_discount_code`, p.price_rule_id, p.report_mark_type
+        p.start_period, p.end_period, p.id_report_status, stt.report_status, p.note, p.is_confirm, p.is_use_discount_code, IF(p.is_use_discount_code=1,'Active', 'Not Active') AS `use_discount_code`, p.price_rule_id, p.report_mark_type,
+        p.is_all_collection, IF(p.is_all_collection=1,'Yes', 'No') AS `is_all_collection_view`
         FROM tb_ol_promo_collection p
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = p.id_comp_group
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = p.id_report_status

@@ -5899,10 +5899,14 @@ INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`='" & id_report & "' AND nu
             q = "SELECT 'Need PR Fixed Asset to Verify by IC' AS title,'FormPurcReqList' AS form_name,CONCAT('Need PR Fixed Asset (',fcs.`purc_req_number`,') to Verify by IC ') AS description, nu.id_user , fcs.`purc_req_number` AS report_number
 FROM tb_notif_user nu
 INNER JOIN tb_purc_req fcs ON fcs.`id_purc_req`='" & id_report & "' AND nu.`report_mark_type`='201'"
-        ElseIf rmt = "304" Then 'Scan Fisik
+        ElseIf rmt = "304" Then 'Scan Fisik delivery
             q = "SELECT 'Scan cek fisik delivery' AS title,'FormOutboundList' AS form_name,'Scan cek fisik delviery tidak balance' AS description, nu.id_user , awb.`ol_number` AS report_number
 FROM tb_notif_user nu
 INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`='" & id_report & "' AND nu.`report_mark_type`='304'"
+        ElseIf rmt = "305" Then 'Scan Fisik WH
+            q = "SELECT 'Cek fisik return transfer' AS title,'FormSalesReturnQC' AS form_name,'Scan cek fisik return transfer tidak balance' AS description, nu.id_user , awb.`sales_return_qc_number` AS report_number
+FROM tb_notif_user nu
+INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "' AND nu.`report_mark_type`='305'"
         End If
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -7195,6 +7199,16 @@ INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`='" & id_report & "' AND nu.`repor
                 FormOutboundList.Show()
                 FormOutboundList.WindowState = FormWindowState.Maximized
                 FormOutboundList.Focus()
+            Catch ex As Exception
+                errorProcess()
+            End Try
+        ElseIf form_par = "FormSalesReturnQC" Then
+            'Cek Fisik Return Transfer
+            Try
+                FormSalesReturnQC.MdiParent = FormMain
+                FormSalesReturnQC.Show()
+                FormSalesReturnQC.WindowState = FormWindowState.Maximized
+                FormSalesReturnQC.Focus()
             Catch ex As Exception
                 errorProcess()
             End Try

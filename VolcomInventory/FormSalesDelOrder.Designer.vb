@@ -86,6 +86,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumnOLStoreDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnOnlineOrderList = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnSyncOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCombineDel = New DevExpress.XtraEditors.SimpleButton()
@@ -126,6 +128,8 @@ Partial Class FormSalesDelOrder
         CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlNavPrepare, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -227,7 +231,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumn3.FieldName = "pl_sales_order_del_date"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 11
+        Me.GridColumn3.VisibleIndex = 10
         Me.GridColumn3.Width = 96
         '
         'GridColumn4
@@ -242,7 +246,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumn5.FieldName = "report_status"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 15
+        Me.GridColumn5.VisibleIndex = 14
         Me.GridColumn5.Width = 185
         '
         'GridColumn8
@@ -299,7 +303,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnLastUpdate.FieldName = "last_update"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
         Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 14
+        Me.GridColumnLastUpdate.VisibleIndex = 13
         Me.GridColumnLastUpdate.Width = 88
         '
         'GridColumnUpdBy
@@ -308,7 +312,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnUpdBy.FieldName = "last_user"
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 13
+        Me.GridColumnUpdBy.VisibleIndex = 12
         Me.GridColumnUpdBy.Width = 88
         '
         'GridColumnTotal
@@ -339,7 +343,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnPreparedBy.FieldName = "prepared_by"
         Me.GridColumnPreparedBy.Name = "GridColumnPreparedBy"
         Me.GridColumnPreparedBy.Visible = True
-        Me.GridColumnPreparedBy.VisibleIndex = 12
+        Me.GridColumnPreparedBy.VisibleIndex = 11
         Me.GridColumnPreparedBy.Width = 87
         '
         'GridColumntracking_code
@@ -368,8 +372,6 @@ Partial Class FormSalesDelOrder
         Me.GridColumntotal_amount.FieldName = "total_amount"
         Me.GridColumntotal_amount.Name = "GridColumntotal_amount"
         Me.GridColumntotal_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N0}")})
-        Me.GridColumntotal_amount.Visible = True
-        Me.GridColumntotal_amount.VisibleIndex = 10
         '
         'GridView3
         '
@@ -479,6 +481,7 @@ Partial Class FormSalesDelOrder
         'XTPSOList
         '
         Me.XTPSOList.Controls.Add(Me.GCSalesOrder)
+        Me.XTPSOList.Controls.Add(Me.PanelControl3)
         Me.XTPSOList.Controls.Add(Me.PanelControl1)
         Me.XTPSOList.Controls.Add(Me.PanelControlNavPrepare)
         Me.XTPSOList.Name = "XTPSOList"
@@ -489,11 +492,11 @@ Partial Class FormSalesDelOrder
         '
         Me.GCSalesOrder.ContextMenuStrip = Me.ViewMenu
         Me.GCSalesOrder.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSalesOrder.Location = New System.Drawing.Point(0, 0)
+        Me.GCSalesOrder.Location = New System.Drawing.Point(0, 41)
         Me.GCSalesOrder.MainView = Me.GVSalesOrder
         Me.GCSalesOrder.Name = "GCSalesOrder"
         Me.GCSalesOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
-        Me.GCSalesOrder.Size = New System.Drawing.Size(793, 403)
+        Me.GCSalesOrder.Size = New System.Drawing.Size(793, 362)
         Me.GCSalesOrder.TabIndex = 5
         Me.GCSalesOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesOrder, Me.GridView2})
         '
@@ -728,6 +731,25 @@ Partial Class FormSalesDelOrder
         '
         Me.GridView2.GridControl = Me.GCSalesOrder
         Me.GridView2.Name = "GridView2"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BtnOnlineOrderList)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(793, 41)
+        Me.PanelControl3.TabIndex = 142
+        '
+        'BtnOnlineOrderList
+        '
+        Me.BtnOnlineOrderList.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnOnlineOrderList.Image = CType(resources.GetObject("BtnOnlineOrderList.Image"), System.Drawing.Image)
+        Me.BtnOnlineOrderList.Location = New System.Drawing.Point(663, 2)
+        Me.BtnOnlineOrderList.Name = "BtnOnlineOrderList"
+        Me.BtnOnlineOrderList.Size = New System.Drawing.Size(128, 37)
+        Me.BtnOnlineOrderList.TabIndex = 0
+        Me.BtnOnlineOrderList.Text = "Online Order List"
         '
         'PanelControl1
         '
@@ -967,6 +989,8 @@ Partial Class FormSalesDelOrder
         CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PanelControlNavPrepare, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1067,4 +1091,6 @@ Partial Class FormSalesDelOrder
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DownloadShippingLabelToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnOnlineOrderList As DevExpress.XtraEditors.SimpleButton
 End Class

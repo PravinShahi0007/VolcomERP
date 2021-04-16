@@ -3146,6 +3146,12 @@
     <Compile Include="FormODMPrintPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLOrderList.Designer.vb">
+      <DependentUpon>FormOLOrderList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLOrderList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLReturnRefuse.Designer.vb">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
     </Compile>
@@ -3482,6 +3488,12 @@
     <Compile Include="FormPayoutZaloraReconSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPickFromPR.Designer.vb">
+      <DependentUpon>FormPickFromPR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPickFromPR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPolis.Designer.vb">
       <DependentUpon>FormPolis.vb</DependentUpon>
     </Compile>
@@ -3558,6 +3570,12 @@
       <DependentUpon>FormPopUpSalesDel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPopUpSalesDel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPriceChecker.Designer.vb">
+      <DependentUpon>FormPriceChecker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPriceChecker.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPriceForSync.Designer.vb">
@@ -7544,6 +7562,12 @@
     <Compile Include="FormViewSalesOrderGen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormViewSalesOrderOnline.Designer.vb">
+      <DependentUpon>FormViewSalesOrderOnline.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormViewSalesOrderOnline.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormViewSalesPOS.Designer.vb">
       <DependentUpon>FormViewSalesPOS.vb</DependentUpon>
     </Compile>
@@ -7746,6 +7770,12 @@
       <DependentUpon>FormWHCargoRateDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormWHCargoRateDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWHCekFisik.Designer.vb">
+      <DependentUpon>FormWHCekFisik.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWHCekFisik.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormWHDelEmpty.Designer.vb">
@@ -9175,6 +9205,12 @@
       <DependentUpon>ReportSalesOrderGen.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSalesOrderGen.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalesOrderNew.Designer.vb">
+      <DependentUpon>ReportSalesOrderNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesOrderNew.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSalesOrderViewRef.Designer.vb">
@@ -10998,6 +11034,9 @@
     <EmbeddedResource Include="FormODMPrintPick.resx">
       <DependentUpon>FormODMPrintPick.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormOLOrderList.resx">
+      <DependentUpon>FormOLOrderList.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOLReturnRefuse.resx">
       <DependentUpon>FormOLReturnRefuse.vb</DependentUpon>
     </EmbeddedResource>
@@ -11163,6 +11202,9 @@
     <EmbeddedResource Include="FormPayoutZaloraReconSummary.resx">
       <DependentUpon>FormPayoutZaloraReconSummary.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPickFromPR.resx">
+      <DependentUpon>FormPickFromPR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPolis.resx">
       <DependentUpon>FormPolis.vb</DependentUpon>
     </EmbeddedResource>
@@ -11202,6 +11244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpSalesDel.resx">
       <DependentUpon>FormPopUpSalesDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPriceChecker.resx">
+      <DependentUpon>FormPriceChecker.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPriceForSync.resx">
       <DependentUpon>FormPriceForSync.vb</DependentUpon>
@@ -13590,6 +13635,9 @@
     <EmbeddedResource Include="FormViewSalesOrderGen.resx">
       <DependentUpon>FormViewSalesOrderGen.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormViewSalesOrderOnline.resx">
+      <DependentUpon>FormViewSalesOrderOnline.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormViewSalesPOS.resx">
       <DependentUpon>FormViewSalesPOS.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -13711,6 +13759,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHCargoRateDet.resx">
       <DependentUpon>FormWHCargoRateDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWHCekFisik.resx">
+      <DependentUpon>FormWHCekFisik.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHDelEmpty.resx">
       <DependentUpon>FormWHDelEmpty.vb</DependentUpon>
@@ -14257,6 +14308,9 @@
     <EmbeddedResource Include="ReportOutboundLabel.resx">
       <DependentUpon>ReportOutboundLabel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportOutboundLabelOfline.resx">
+      <DependentUpon>ReportOutboundLabelOfline.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportOutboundManifest.resx">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
     </EmbeddedResource>
@@ -14478,6 +14532,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesOrderGen.resx">
       <DependentUpon>ReportSalesOrderGen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesOrderNew.resx">
+      <DependentUpon>ReportSalesOrderNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesOrderViewRef.resx">
       <DependentUpon>ReportSalesOrderViewRef.vb</DependentUpon>

@@ -103,6 +103,7 @@ Partial Class FormWork
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.CEAutoRefresh = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.RepositoryItemSpinEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,6 +143,7 @@ Partial Class FormWork
         CType(Me.DEEndCancel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCancel.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCancel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEAutoRefresh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemSpinEdit6
@@ -345,6 +347,7 @@ Partial Class FormWork
         '
         'PanelControl10
         '
+        Me.PanelControl10.Controls.Add(Me.CEAutoRefresh)
         Me.PanelControl10.Controls.Add(Me.BViewApproval)
         Me.PanelControl10.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl10.Location = New System.Drawing.Point(0, 0)
@@ -882,6 +885,15 @@ Partial Class FormWork
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = -1
         '
+        'CEAutoRefresh
+        '
+        Me.CEAutoRefresh.EditValue = True
+        Me.CEAutoRefresh.Location = New System.Drawing.Point(10, 8)
+        Me.CEAutoRefresh.Name = "CEAutoRefresh"
+        Me.CEAutoRefresh.Properties.Caption = "Auto Refresh List After Approval"
+        Me.CEAutoRefresh.Size = New System.Drawing.Size(230, 19)
+        Me.CEAutoRefresh.TabIndex = 1
+        '
         'FormWork
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -937,6 +949,7 @@ Partial Class FormWork
         CType(Me.DEEndCancel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCancel.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCancel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEAutoRefresh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1022,4 +1035,5 @@ Partial Class FormWork
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCompleteName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCompleteDatetime As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CEAutoRefresh As DevExpress.XtraEditors.CheckEdit
 End Class

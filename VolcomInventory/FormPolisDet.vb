@@ -2,7 +2,12 @@
     Dim id_pps As String = "-1"
     Dim steps As Integer = 1
     Private Sub BLoadPolis_Click(sender As Object, e As EventArgs) Handles BLoadPolis.Click
-        Dim q As String = "SELECT 
+        load_polis()
+    End Sub
+
+    Sub load_polis()
+        If id_pps = "-1" Then 'new
+            Dim q As String = "SELECT 
 p.id_polis AS old_id_polis,p.end_date,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`
 ,p.`nilai_stock` AS old_nilai_stock,p.`nilai_fit_out` AS old_nilai_fit_out,p.`nilai_peralatan` AS old_nilai_peralatan,p.`nilai_building` AS old_nilai_building,p.`nilai_public_liability` AS old_nilai_public_liability,p.`nilai_total` AS old_nilai_total,pol_by.`comp_name` AS old_vendor,pd.`premi` AS old_premi
 ,pd.description AS old_type
@@ -18,12 +23,18 @@ LEFT JOIN
     GROUP BY ppsd.`id_comp`
 )pps ON pps.id_comp=p.id_reff
 WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45 AND ISNULL(pps.id_comp)"
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-        If dt.Rows.Count > 0 Then
-            GCSummary.DataSource = dt
-            BGVSummary.BestFitColumns()
-            GridColumnAlamat.Width = 100
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                GCSummary.DataSource = dt
+                BGVSummary.BestFitColumns()
+                GridColumnAlamat.Width = 100
+                '
+
+            End If
+        Else
+
         End If
+
     End Sub
 
     Sub load_nilai_stock()
@@ -71,8 +82,10 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                         q += ","
                     End If
 
-                    q += "('" & id_pps & "','" & BGVSummary.GetFocusedRowCellValue("old_id_polis") & "',`old_nilai_stock`,`old_nilai_fit_out`,`old_nilai_building`,`old_nilai_peralatan`,`old_nilai_public_liability`,`old_nilai_total`,`old_polis_vendor`)"
+                    q += "('" & id_pps & "','" & BGVSummary.GetRowCellValue(i, "old_id_polis") & "'," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_stock").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_fit_out").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_building").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_peralatan").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_public_liability").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_total").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_vendor").ToString).ToString()) & ")"
                 Next
+                execute_non_query(q, True, "", "", "", "")
+                load_polis()
             Else
 
             End If

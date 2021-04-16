@@ -135,6 +135,9 @@ Public Class FormImportExcel
             If FormOLStore.SLEOLStore.EditValue = "77" Then
                 'shopee
                 MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE not ([No# Pesanan]='')", oledbconn)
+            ElseIf FormOLStore.SLEOLStore.EditValue = "64" Then
+                'zalora
+                MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
             End If
         ElseIf id_pop_up = "58" Then
             '
@@ -3637,6 +3640,59 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                 GCData.DataSource = query.ToList()
                 GCData.RefreshDataSource()
                 GVData.PopulateColumns()
+            ElseIf FormOLStore.SLEOLStore.EditValue = "64" Then
+                'zalora
+                'get size
+                Dim query_size As String = "SELECT d.id_code_detail, d.id_code, d.code, IF(d.code_detail_name='ALL', 'One Size', d.code_detail_name) AS  code_detail_name
+                FROM tb_m_code_detail d WHERE d.id_code IN (SELECT o.id_code_product_size FROM tb_opt o) "
+                Dim dt_size As DataTable = execute_query(query_size, -1, True, "", "", "", "")
+                'get order yang tersimpan
+                Dim query_order As String = "SELECT d.sales_order_ol_shop_number 
+                FROM tb_ol_store_order d WHERE d.id_comp_group=64
+                GROUP BY d.sales_order_ol_shop_number "
+                Dim dt_order As DataTable = execute_query(query_order, -1, True, "", "", "", "")
+                Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
+                Dim tb2 = dt_size.AsEnumerable()
+                Dim tb3 = dt_order.AsEnumerable()
+                Dim query = From table1 In tb1
+                            Group Join table_ord In tb3 On table_ord("sales_order_ol_shop_number").ToString Equals table1("Order Number").ToString
+                            Into join_ord = Group
+                            From o1 In join_ord.DefaultIfEmpty()
+                            Select New With {
+                                .id_comp_group = "64",
+                                .sales_order_ol_shop_number = table1("Order Number").ToString,
+                                .ol_store_sku = table1("Zalora SKU").ToString,
+                                .ol_store_id = table1("Zalora Id").ToString,
+                                .item_id = table1("Order Item Id").ToString,
+                                .checkout_id = "",
+                                .tracking_code = table1("Tracking Code").ToString,
+                                .shipment_provider = table1("Shipping Provider").ToString,
+                                .sales_order_ol_shop_date = table1("Created at").ToString,
+                                .product_name = table1("Item Name").ToString,
+                                .sku = table1("Seller SKU").ToString,
+                                .design_price = table1("Unit Price").ToString,
+                                .sales_order_det_qty = 1,
+                                .grams = 0,
+                                .total_disc_order = 0,
+                                .discount_allocations_amo = 0,
+                                .discount_allocations_ol_shop = 0,
+                                .customer_name = table1("Customer Name").ToString,
+                                .shipping_name = table1("Shipping Name").ToString,
+                                .shipping_address = table1("Shipping Address").ToString,
+                                .shipping_address1 = "",
+                                .shipping_address2 = "",
+                                .shipping_phone = table1("Shipping Phone Number").ToString,
+                                .shipping_city = table1("Shipping City").ToString,
+                                .shipping_post_code = table1("Shipping Postcode").ToString,
+                                .shipping_region = table1("Shipping Region").ToString,
+                                .shipping_district = "",
+                                .payment_method = table1("Payment Method").ToString,
+                                .Status = If(Not o1 Is Nothing Or table1("Tracking Code").ToString = "", If(Not o1 Is Nothing, "Order already exist;", "") + If(table1("Tracking Code").ToString = "", "Tracking code not found;", ""), "OK")
+                            }
+                GCData.DataSource = Nothing
+                GCData.DataSource = query.ToList()
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
             End If
             'Customize column
             GVData.Columns("id_comp_group").Visible = False
@@ -3645,7 +3701,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("sales_order_det_qty").Caption = "Qty"
             GVData.Columns("total_disc_order").Caption = "Total Discount"
             GVData.Columns("discount_allocations_amo").Caption = "Discount Allocation (Seller)"
-            GVData.Columns("discount_allocations_ol_shop").Caption = "Discount Allocation (Shopee)"
+            GVData.Columns("discount_allocations_ol_shop").Caption = "Discount Allocation (Zalora)"
             GVData.Columns("Status").Caption = "Format Status"
             'display form
             GVData.Columns("design_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -3658,8 +3714,11 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("discount_allocations_amo").DisplayFormat.FormatString = "N2"
             GVData.Columns("discount_allocations_ol_shop").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("discount_allocations_ol_shop").DisplayFormat.FormatString = "N2"
-            GVData.Columns("sales_order_ol_shop_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-            GVData.Columns("sales_order_ol_shop_date").DisplayFormat.FormatString = "{dd MMMM yyyy HH:mm:ss}"
+            If FormOLStore.SLEOLStore.EditValue = "77" Then
+                GVData.Columns("sales_order_ol_shop_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("sales_order_ol_shop_date").DisplayFormat.FormatString = "{dd MMMM yyyy HH:mm:ss}"
+            End If
+
             'summary
             GVData.OptionsView.ShowFooter = True
             GVData.OptionsCustomization.AllowSort = False
@@ -3668,7 +3727,11 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.BestFitColumns()
             GVData.Columns("sales_order_det_qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("sales_order_det_qty").SummaryItem.DisplayFormat = "{0:n2}"
-
+        ElseIf id_pop_up = "55" Then
+            GCData.DataSource = Nothing
+            GCData.DataSource = data_temp
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
         ElseIf id_pop_up = "56" Then
             'import excel ol promo replace
             Dim dt_promo As DataTable = execute_query("SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
@@ -3828,7 +3891,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
             FormMain.SplashScreenManager1.CloseWaitForm()
-        ElseIf id_pop_up = "58" Then 'import data
+        ElseIf id_pop_up = "58" Then 'import data item req
             Try
                 Dim queryx As String = "SELECT id_item,item_desc,def_desc FROM tb_item"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
@@ -3850,13 +3913,14 @@ WHERE id_comp_cat='6'"
                                 {
                                     .kode = If(result_item Is Nothing, "0", result_item("id_item")),
                                     .item = If(result_item Is Nothing, "", result_item("item_desc")),
-                                    .description = If(result_item Is Nothing, "", result_item("def_desc")),
                                     .id_comp = If(result_store Is Nothing, "", result_store("id_comp")),
                                     .store_number = If(result_store Is Nothing, table1("store"), result_store("comp_number")),
                                     .store = If(result_store Is Nothing, "", result_store("comp_display_name")),
-                                    .qty = If(table1("qty").ToString = "", "0", table1("qty"))
+                                    .qty = If(table1("qty").ToString = "", "0", table1("qty")),
+                                    .status = If(result_item Is Nothing Or result_store Is Nothing, "Not Ok", "Ok")
                                 }
 
+                '.description = If(result_item Is Nothing, "", result_item("def_desc")),
                 GCData.DataSource = Nothing
                 GCData.DataSource = query.ToList()
                 GCData.RefreshDataSource()
@@ -3865,11 +3929,12 @@ WHERE id_comp_cat='6'"
                 'Customize column
                 GVData.Columns("id_comp").Visible = False
                 GVData.Columns("kode").Caption = "Kode Barang"
-                GVData.Columns("item").Caption = "Item"
-                GVData.Columns("description").Caption = "Description"
+                GVData.Columns("item").Caption = "Description"
+                'GVData.Columns("description").Caption = "Description"
                 GVData.Columns("store_number").Caption = "Store Code"
                 GVData.Columns("store").Caption = "Store"
                 GVData.Columns("qty").Caption = "Qty"
+                GVData.Columns("status").Caption = "Status"
 
                 GVData.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GVData.Columns("qty").DisplayFormat.FormatString = "N2"
@@ -6394,7 +6459,12 @@ WHERE id_comp_cat='6'"
                                 Dim item_id As String = GVData.GetRowCellValue(i, "item_id").ToString
                                 Dim checkout_id As String = GVData.GetRowCellValue(i, "checkout_id").ToString
                                 Dim tracking_code As String = GVData.GetRowCellValue(i, "tracking_code").ToString
-                                Dim sales_order_ol_shop_date As String = DateTime.Parse(GVData.GetRowCellValue(i, "sales_order_ol_shop_date").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                                Dim sales_order_ol_shop_date As String = ""
+                                If FormOLStore.SLEOLStore.EditValue = "77" Then
+                                    sales_order_ol_shop_date = DateTime.Parse(GVData.GetRowCellValue(i, "sales_order_ol_shop_date").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                                ElseIf FormOLStore.SLEOLStore.EditValue = "64" Then
+                                    sales_order_ol_shop_date = GVData.GetRowCellValue(i, "sales_order_ol_shop_date").ToString
+                                End If
                                 Dim sku As String = GVData.GetRowCellValue(i, "sku").ToString
                                 Dim design_price As String = decimalSQL(GVData.GetRowCellValue(i, "design_price").ToString)
                                 Dim sales_order_det_qty As String = decimalSQL(GVData.GetRowCellValue(i, "sales_order_det_qty").ToString)
@@ -6413,6 +6483,16 @@ WHERE id_comp_cat='6'"
                                 Dim shipping_region As String = addSlashes(GVData.GetRowCellValue(i, "shipping_region").ToString)
                                 Dim shipping_district As String = addSlashes(GVData.GetRowCellValue(i, "shipping_district").ToString)
                                 Dim payment_method As String = addSlashes(GVData.GetRowCellValue(i, "payment_method").ToString)
+                                Dim fail_reason As String = ""
+                                Dim shipment_provider As String = ""
+                                If FormOLStore.SLEOLStore.EditValue = "77" Then
+                                    'shopee
+                                ElseIf FormOLStore.SLEOLStore.EditValue = "64" Then
+                                    'zalora
+                                    fail_reason = "import xls"
+                                    shipment_provider = addSlashes(GVData.GetRowCellValue(i, "shipment_provider").ToString)
+                                End If
+
                                 Dim query As String = "INSERT INTO tb_ol_store_order(
                                 id,
                                 id_comp_group, 
@@ -6440,7 +6520,9 @@ WHERE id_comp_cat='6'"
                                 shipping_city ,
                                 shipping_region ,
                                 shipping_district ,
-                                payment_method 
+                                payment_method,
+                                fail_reason,
+                                shipment_provider
                                 )
                                 VALUES(
                                 '" + id + "',
@@ -6469,7 +6551,9 @@ WHERE id_comp_cat='6'"
                                 '" + shipping_city + "',
                                 '" + shipping_region + "',
                                 '" + shipping_district + "',
-                                '" + payment_method + "' 
+                                '" + payment_method + "' ,
+                                '" + fail_reason + "',
+                                '" + shipment_provider + "'
                                 );"
                                 execute_non_query(query, True, "", "", "", "")
                                 PBC.PerformStep()
@@ -6623,7 +6707,51 @@ WHERE id_comp_cat='6'"
                     End If
                 End If
             ElseIf id_pop_up = "58" Then
+                'too for product promo
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only status Ok will imported, Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    FormSalesOrderDet.viewDetail(FormSalesOrderDet.id_sales_order)
 
+                    GVData.ActiveFilterString = "[status] = 'Ok' "
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+
+                    If GVData.RowCount > 0 Then
+                        FormSalesOrderDet.delNotFoundMyRow()
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim newRow As DataRow = (TryCast(FormItemReqDet.GCDetail.DataSource, DataTable)).NewRow()
+                            newRow("id_item") = GVData.GetRowCellValue(i, "kode").ToString
+                            newRow("item_desc") = GVData.GetRowCellValue(i, "item").ToString
+                            newRow("id_comp") = GVData.GetRowCellValue(i, "id_comp").ToString
+                            newRow("comp_number") = GVData.GetRowCellValue(i, "store_number").ToString
+                            newRow("comp_name") = GVData.GetRowCellValue(i, "store").ToString
+                            newRow("qty") = GVData.GetRowCellValue(i, "qty")
+                            '
+                            newRow("is_store_request") = "no"
+                            'If CEStoreRequest.Checked = True Then
+                            '    newRow("is_store_request") = "yes"
+                            'Else
+                            '    newRow("is_store_request") = "no"
+                            'End If
+                            '
+                            newRow("remark") = ""
+                            TryCast(FormItemReqDet.GCDetail.DataSource, DataTable).Rows.Add(newRow)
+                            FormItemReqDet.GCDetail.RefreshDataSource()
+                            FormItemReqDet.GVDetail.RefreshData()
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormSalesOrderDet.BtnAddV2.Visible = False
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                End If
             End If
         End If
         Cursor = Cursors.Default

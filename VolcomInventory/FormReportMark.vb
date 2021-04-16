@@ -5696,6 +5696,7 @@ FROM
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY rd.id_purc_rec_det, rq.id_departement
                 HAVING debit!=0 OR credit!=0
+                UNION ALL
                 /*PPN Discount ke pendapatan lain-lain PPN digungung*/
                 SELECT " + id_acc_trans + " AS id_acc_trans,IF(po.id_coa_tag=1,o.id_acc_ppn_lain,o.id_acc_ppn_lain) AS `id_acc`,cont.id_comp AS id_vendor, dep.id_main_comp,  
                 SUM(rd.qty) AS `qty`,
@@ -5783,7 +5784,7 @@ FROM
                 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`=6  AND rec.`id_purc_rec`!='" + id_report + "' AND rec.`id_purc_order`='" + FormPurcReceiveDet.id_purc_order + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
@@ -5792,7 +5793,7 @@ FROM
                 )already_rec ON already_rec.id_purc_order=pnd.id_report
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_purc_rec`='" + id_report + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
@@ -5814,7 +5815,7 @@ FROM
                 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`=6  AND rec.`id_purc_rec`!='" + id_report + "' AND rec.`id_purc_order`='" + FormPurcReceiveDet.id_purc_order + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
@@ -5823,7 +5824,7 @@ FROM
                 )already_rec ON already_rec.id_purc_order=pnd.id_report
                 LEFT JOIN 
                 (
-	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((100+po.`vat_percent`)/100)) AS rec_val
+	                SELECT rec.id_purc_order ,SUM(recd.`qty`*pod.`value`)+SUM(recd.`qty`*pod.`value`*(po.dpp_percent/100)*((po.`vat_percent`)/100)) AS rec_val
 	                FROM tb_purc_rec_det recd
 	                INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_purc_rec`='" + id_report + "'
 	                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
@@ -6128,15 +6129,22 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
                 Dim report_number As String = du.Rows(0)("report_number").ToString
 
-                'main journal
-                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
+                'cek value
+                Dim qcv As String = "SELECT SUM(dd.qty*getAvgCost(dd.id_item)) AS amo
+FROM tb_item_del_det dd
+WHERE dd.id_item_del='" + id_report + "'
+HAVING amo>0"
+                Dim dtv As DataTable = execute_query(qcv, -1, True, "", "", "", "")
+                If dtv.Rows.Count > 0 Then
+                    'main journal
+                    Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
                 VALUES ('','" + report_number + "','0','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
-                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
-                execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
+                    Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                    execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
-                'det journal
-                If FormItemDelDetail.is_for_store = "1" Then
-                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp)
+                    'det journal
+                    If FormItemDelDetail.is_for_store = "1" Then
+                        Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp)
                     SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`,
                     CONCAT('Expense : ',cat.item_cat,' (',c.comp_number,'), ',d.note) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, c.id_comp
                     FROM tb_item_del_det_alloc dd
@@ -6181,9 +6189,9 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     JOIN tb_opt_purchasing o
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY dd.id_item_del "
-                    execute_non_query(qjd, True, "", "", "", "")
-                ElseIf FormItemDelDetail.is_for_store = "2" Then
-                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_comp,id_coa_tag)
+                        execute_non_query(qjd, True, "", "", "", "")
+                    ElseIf FormItemDelDetail.is_for_store = "2" Then
+                        Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_comp,id_coa_tag)
                     SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`, i.`item_desc` AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`,dep.id_coa_tag
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
@@ -6205,7 +6213,8 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                     JOIN tb_opt_purchasing o
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY dd.id_item_del_det "
-                    execute_non_query(qjd, True, "", "", "", "")
+                        execute_non_query(qjd, True, "", "", "", "")
+                    End If
                 End If
             End If
 
@@ -8755,48 +8764,50 @@ WHERE invd.`id_inv_mat`='" & id_report & "'"
             End If
 
             If id_status_reportx = "6" Then
-                'delete log
+                If FormPromoCollectionDet.is_all_collection = "2" Then
+                    'delete log
 
-                'set tag
-                Dim ql As String = "DELETE FROM tb_ol_promo_collection_log WHERE id_ol_promo_collection='" + id_report + "';
-                SELECT s.id_prod_shopify, p.id_design , m.tag
-                FROM tb_ol_promo_collection_sku s
-                INNER JOIN tb_ol_promo_collection m ON m.id_ol_promo_collection = s.id_ol_promo_collection
-                INNER JOIN tb_m_product p ON p.id_product = s.id_product
-                WHERE s.id_ol_promo_collection=" + id_report + "
-                GROUP BY s.id_prod_shopify "
-                Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
-                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
-                    FormMain.SplashScreenManager1.ShowWaitForm()
-                End If
-                For l As Integer = 0 To dl.Rows.Count - 1
-                    FormMain.SplashScreenManager1.SetWaitFormDescription((l + 1).ToString + " of " + dl.Rows.Count.ToString)
-                    Dim prod_id As String = dl.Rows(l)("id_prod_shopify").ToString
-                    Dim id_design_curr As String = dl.Rows(l)("id_design").ToString
-                    Try
-                        Dim s As New ClassShopifyApi()
-                        Dim tag As String = s.get_tag(prod_id)
-                        Dim tag_save As String = ""
-                        If tag <> "" Then
-                            tag_save = tag + "," + dl.Rows(l)("tag").ToString
-                        Else
-                            tag_save = dl.Rows(l)("tag").ToString
-                        End If
-                        s.set_tag(prod_id, tag_save)
-                        execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
+                    'set tag
+                    Dim ql As String = "DELETE FROM tb_ol_promo_collection_log WHERE id_ol_promo_collection='" + id_report + "';
+                    SELECT s.id_prod_shopify, p.id_design , m.tag
+                    FROM tb_ol_promo_collection_sku s
+                    INNER JOIN tb_ol_promo_collection m ON m.id_ol_promo_collection = s.id_ol_promo_collection
+                    INNER JOIN tb_m_product p ON p.id_product = s.id_product
+                    WHERE s.id_ol_promo_collection=" + id_report + "
+                    GROUP BY s.id_prod_shopify "
+                    Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
+                    For l As Integer = 0 To dl.Rows.Count - 1
+                        FormMain.SplashScreenManager1.SetWaitFormDescription((l + 1).ToString + " of " + dl.Rows.Count.ToString)
+                        Dim prod_id As String = dl.Rows(l)("id_prod_shopify").ToString
+                        Dim id_design_curr As String = dl.Rows(l)("id_design").ToString
+                        Try
+                            Dim s As New ClassShopifyApi()
+                            Dim tag As String = s.get_tag(prod_id)
+                            Dim tag_save As String = ""
+                            If tag <> "" Then
+                                tag_save = tag + "," + dl.Rows(l)("tag").ToString
+                            Else
+                                tag_save = dl.Rows(l)("tag").ToString
+                            End If
+                            s.set_tag(prod_id, tag_save)
+                            execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
                         VALUES('" + id_report + "', 1, '" + id_design_curr + "', 'OK', NOW()); ", True, "", "", "", "")
-                    Catch ex As Exception
-                        execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
+                        Catch ex As Exception
+                            execute_non_query("INSERT tb_ol_promo_collection_log(id_ol_promo_collection, type, id_design, log, log_date)
                         VALUES('" + id_report + "', 1, '" + id_design_curr + "', '" + addSlashes(ex.ToString) + "', NOW()); ", True, "", "", "", "")
-                    End Try
-                Next
-                FormMain.SplashScreenManager1.CloseWaitForm()
+                        End Try
+                    Next
+                    FormMain.SplashScreenManager1.CloseWaitForm()
 
-                'cek log
-                Dim qlog As String = "SELECT * FROM tb_ol_promo_collection_log l WHERE l.id_ol_promo_collection=" + id_report + " AND l.log<>'OK'"
-                Dim dlog As DataTable = execute_query(qlog, -1, True, "", "", "", "")
-                If dlog.Rows.Count > 0 Then
-                    stopCustom("Some product failed to sync. Please contact administrator")
+                    'cek log
+                    Dim qlog As String = "SELECT * FROM tb_ol_promo_collection_log l WHERE l.id_ol_promo_collection=" + id_report + " AND l.log<>'OK'"
+                    Dim dlog As DataTable = execute_query(qlog, -1, True, "", "", "", "")
+                    If dlog.Rows.Count > 0 Then
+                        stopCustom("Some product failed to sync. Please contact administrator")
+                    End If
                 End If
             End If
 

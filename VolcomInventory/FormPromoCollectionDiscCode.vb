@@ -14,6 +14,7 @@
     Sub choose()
         Cursor = Cursors.WaitCursor
         If GVData.RowCount > 0 Then
+            FormPromoCollectionDet.action = "upd"
             FormPromoCollectionDet.id = GVData.GetFocusedRowCellValue("id_ol_promo_collection").ToString
             FormPromoCollectionDet.ShowDialog()
             Close()
