@@ -16015,6 +16015,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
     End Sub
 
     Private Sub NBProposePriceMKD_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposePriceMKD.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProposePriceMKD.MdiParent = Me
+            FormProposePriceMKD.Show()
+            FormProposePriceMKD.WindowState = FormWindowState.Maximized
+            FormProposePriceMKD.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
