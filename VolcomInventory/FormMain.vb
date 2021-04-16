@@ -1901,6 +1901,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPricePolicyCode" Then
             FormPricePolicyCodeDet.action = "ins"
             FormPricePolicyCodeDet.ShowDialog()
+        ElseIf formName = "FormProposePriceMKD" Then
+            FormProposePriceMKD.id_mkd = "-1"
+            FormProposePriceMKD.XTPDetail.PageEnabled = True
+            FormProposePriceMKD.XTCData.SelectedTabPageIndex = 1
         Else
             RPSubMenu.Visible = False
         End If
@@ -3168,6 +3172,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormPricePolicyCode" Then
                 FormPricePolicyCodeDet.id = FormPricePolicyCode.GVData.GetFocusedRowCellValue("id_code_detail").ToString
                 FormPricePolicyCodeDet.ShowDialog()
+            ElseIf formName = "FormProposePriceMKD" Then
+                FormProposePriceMKD.id_mkd = FormProposePriceMKD.GVSummary.GetFocusedRowCellValue("id_pp_change").ToString
+                FormProposePriceMKD.XTCData.SelectedTabPageIndex = 1
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6590,6 +6597,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Cursor = Cursors.Default
                 End If
             End If
+        ElseIf formName = "FormProposePriceMKD" Then
         Else
             RPSubMenu.Visible = False
         End If
@@ -8596,6 +8604,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormPricePolicyCode.GCData, "Price Policy Code")
         ElseIf formName = "FormDeliveryMonitoring" Then
             FormDeliveryMonitoring.print_outbound()
+        ElseIf formName = "FormProposePriceMKD" Then
+            If FormProposePriceMKD.XTCData.SelectedTabPageIndex = 0 Then
+                print_raw(FormProposePriceMKD.GCSummary, "")
+            ElseIf FormProposePriceMKD.XTCData.SelectedTabPageIndex = 1 Then
+
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -9572,6 +9586,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPriceChecker" Then
             FormPriceChecker.Close()
             FormPriceChecker.Dispose()
+        ElseIf formName = "FormProposePriceMKD" Then
+            FormProposePriceMKD.Close()
+            FormProposePriceMKD.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10580,6 +10597,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPricePolicyCode.viewData()
         ElseIf formName = "FormDeliveryMonitoring" Then
             FormDeliveryMonitoring.view_outbound()
+        ElseIf formName = "FormProposePriceMKD" Then
+            If FormProposePriceMKD.XTCData.SelectedTabPageIndex = 0 Then
+                FormProposePriceMKD.viewSummary()
+            ElseIf FormProposePriceMKD.XTCData.SelectedTabPageIndex = 1 Then
+                FormProposePriceMKD.viewDetail()
+            End If
         End If
     End Sub
     'Switch
@@ -16008,6 +16031,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPriceChecker.Show()
             FormPriceChecker.WindowState = FormWindowState.Maximized
             FormPriceChecker.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposePriceMKD_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposePriceMKD.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProposePriceMKD.MdiParent = Me
+            FormProposePriceMKD.Show()
+            FormProposePriceMKD.WindowState = FormWindowState.Maximized
+            FormProposePriceMKD.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
