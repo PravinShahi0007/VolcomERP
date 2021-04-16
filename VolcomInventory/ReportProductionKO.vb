@@ -42,7 +42,7 @@
             Dim tb_desc As New DevExpress.XtraReports.UI.XRLabel
 
             tb_desc.Text = dt_det.Rows(i)("class_dsg").ToString
-            tb_desc.SizeF = New Size(200, row_po_height)
+            tb_desc.SizeF = New Size(187.5, row_po_height)
             tb_desc.LocationF = New Point(115, po_height)
             tb_desc.Font = New Font("Calibri", 11, FontStyle.Bold)
             tb_desc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -55,7 +55,7 @@
 
             tb_color.Text = dt_det.Rows(i)("color").ToString
             tb_color.SizeF = New Size(52, row_po_height)
-            tb_color.LocationF = New Point(315, po_height)
+            tb_color.LocationF = New Point(302.5, po_height)
             tb_color.Font = New Font("Calibri", 11, FontStyle.Bold)
             tb_color.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             tb_color.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
@@ -66,8 +66,8 @@
             Dim tb_qty As New DevExpress.XtraReports.UI.XRLabel
 
             tb_qty.Text = Decimal.Parse(dt_det.Rows(i)("qty_order").ToString).ToString("N0")
-            tb_qty.SizeF = New Size(52, row_po_height)
-            tb_qty.LocationF = New Point(367, po_height)
+            tb_qty.SizeF = New Size(64.5, row_po_height)
+            tb_qty.LocationF = New Point(354.5, po_height)
             tb_qty.Font = New Font("Calibri", 11, FontStyle.Bold)
             tb_qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             tb_qty.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
