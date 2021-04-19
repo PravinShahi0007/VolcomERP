@@ -31,7 +31,6 @@ Partial Class FormProposePriceMKD
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
@@ -46,15 +45,15 @@ Partial Class FormProposePriceMKD
         Me.XTCData.Location = New System.Drawing.Point(0, 0)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPSummary
-        Me.XTCData.Size = New System.Drawing.Size(752, 501)
+        Me.XTCData.Size = New System.Drawing.Size(884, 567)
         Me.XTCData.TabIndex = 0
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary})
         '
         'XTPSummary
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(746, 473)
+        Me.XTPSummary.Size = New System.Drawing.Size(878, 539)
         Me.XTPSummary.Text = "Summary"
         '
         'GCSummary
@@ -63,7 +62,7 @@ Partial Class FormProposePriceMKD
         Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(746, 473)
+        Me.GCSummary.Size = New System.Drawing.Size(878, 539)
         Me.GCSummary.TabIndex = 0
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -142,18 +141,11 @@ Partial Class FormProposePriceMKD
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 5
         '
-        'XTPDetail
-        '
-        Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.PageEnabled = False
-        Me.XTPDetail.Size = New System.Drawing.Size(746, 473)
-        Me.XTPDetail.Text = "Detail"
-        '
         'FormProposePriceMKD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(752, 501)
+        Me.ClientSize = New System.Drawing.Size(884, 567)
         Me.Controls.Add(Me.XTCData)
         Me.MinimizeBox = False
         Me.Name = "FormProposePriceMKD"
@@ -170,7 +162,6 @@ Partial Class FormProposePriceMKD
 
     Friend WithEvents XTCData As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnid_pp_change As DevExpress.XtraGrid.Columns.GridColumn
