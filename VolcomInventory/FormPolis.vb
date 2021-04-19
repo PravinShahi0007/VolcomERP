@@ -68,4 +68,18 @@ WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45"
     Private Sub BProposePolis_Click(sender As Object, e As EventArgs) Handles BProposePolis.Click
         FormPolisDet.ShowDialog()
     End Sub
+
+    Private Sub GVPolisPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVPolisPPS.DoubleClick
+        If GVPolisPPS.RowCount > 0 Then
+            FormPolisDet.id_pps = GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString
+            FormPolisDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BRefreshPolisPPS_Click(sender As Object, e As EventArgs) Handles BRefreshPolisPPS.Click
+        Dim q As String = "SELECT * FROM tb_polis_pps"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCPolisPPS.DataSource = dt
+        GVPolisPPS.BestFitColumns()
+    End Sub
 End Class

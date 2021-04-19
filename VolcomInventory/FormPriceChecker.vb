@@ -85,7 +85,7 @@
             TxtScannedCode.Text = ""
             LabelDesc.Text = data.Rows(0)("design_display_name").ToString
             LabelPrice.Text = "Rp. " + Decimal.Parse(data.Rows(0)("design_price").ToString).ToString("N0")
-            LabelPriceType.Text = data.Rows(0)("design_price_type").ToString
+            LabelPriceType.Text = data.Rows(0)("design_price_type").ToString.ToUpper + " PRICE"
             LabelEffectiveDate.Text = data.Rows(0)("price_effective_date").ToString
             LabelCode.Text = data.Rows(0)("design_code").ToString
             LabelClass.Text = data.Rows(0)("class").ToString + " (" + data.Rows(0)("class_display").ToString + ")"
