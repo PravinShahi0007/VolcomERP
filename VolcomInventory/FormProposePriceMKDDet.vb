@@ -32,17 +32,39 @@
 
     Sub actionLoad()
         If action = "ins" Then
+            'option
             Width = 501
-            Height = 296
+            Height = 250
             WindowState = FormWindowState.Normal
+            MaximizeBox = False
+            FormBorderStyle = FormBorderStyle.FixedDialog
+            StartPosition = FormStartPosition.CenterScreen
             PanelControl1.Visible = False
             PanelControlBottom.Visible = False
+            'location form
+            Dim r As Rectangle
+            If Parent IsNot Nothing Then
+                r = Parent.RectangleToScreen(Parent.ClientRectangle)
+            Else
+                r = Screen.FromPoint(Location).WorkingArea
+            End If
+
+            Dim x = r.Left + (r.Width - Width) \ 2
+            Dim y = r.Top + (r.Height - Height) \ 2
+            Location = New Point(x, y)
+            'default date
+            Dim curr_date As DateTime = getTimeDB()
+            DEEffectDate.EditValue = curr_date
+            DESOHDate.EditValue = curr_date
+            TxtNumber.Text = "[auto generated]"
+        ElseIf action = "upd" Then
+
         End If
     End Sub
 
     Sub saveHead()
         'head
-        Dim id_design_price_type As String = addSlashes(MENote.Text)
+        Dim id_design_price_type As String = LEPriceType.EditValue.ToString
         Dim effective_date As String = DateTime.Parse(DEEffectDate.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim soh_sal_date As String = DateTime.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim note As String = addSlashes(MENote.Text)
@@ -50,10 +72,32 @@
             Dim query_head As String = "INSERT INTO tb_pp_change(id_design_price_type, created_date, effective_date, soh_sal_date, note, id_report_status)
             VALUES('" + id_design_price_type + "', NOW(), '" + effective_date + "', '" + soh_sal_date + "','" + note + "', 1); SELECT LAST_INSERT_ID(); "
             id = execute_query(query_head, 0, True, "", "", "", "")
+            'update number
+            execute_non_query("CALL gen_number('" + id + "', '" + rmt + "');", True, "", "", "", "")
             FormProposePriceMKD.viewSummary()
             FormProposePriceMKD.GVSummary.FocusedRowHandle = find_row(FormProposePriceMKD.GVSummary, "id_pp_change", id)
             FormProposePriceMKD.is_load_new = True
             Close()
         End If
+    End Sub
+
+    Function checkHead()
+        If LEPriceType.EditValue <> Nothing And DEEffectDate.EditValue <> Nothing And DESOHDate.EditValue <> Nothing And MENote.Text <> "" Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnCreateNew.Click
+        If Not checkHead() Then
+            warningCustom("Please input all data")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create new propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                saveHead()
+            End If
+        End If
+
     End Sub
 End Class

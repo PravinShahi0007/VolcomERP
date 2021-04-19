@@ -31,6 +31,7 @@ Partial Class FormProposePriceMKD
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
@@ -68,7 +69,7 @@ Partial Class FormProposePriceMKD
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pp_change, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumneffective_date, Me.GridColumnsoh_sal_date, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pp_change, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumneffective_date, Me.GridColumnsoh_sal_date, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumndesign_price_type})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.Name = "GVSummary"
         Me.GVSummary.OptionsBehavior.ReadOnly = True
@@ -107,7 +108,7 @@ Partial Class FormProposePriceMKD
         Me.GridColumneffective_date.FieldName = "effective_date"
         Me.GridColumneffective_date.Name = "GridColumneffective_date"
         Me.GridColumneffective_date.Visible = True
-        Me.GridColumneffective_date.VisibleIndex = 2
+        Me.GridColumneffective_date.VisibleIndex = 3
         '
         'GridColumnsoh_sal_date
         '
@@ -117,7 +118,7 @@ Partial Class FormProposePriceMKD
         Me.GridColumnsoh_sal_date.FieldName = "soh_sal_date"
         Me.GridColumnsoh_sal_date.Name = "GridColumnsoh_sal_date"
         Me.GridColumnsoh_sal_date.Visible = True
-        Me.GridColumnsoh_sal_date.VisibleIndex = 3
+        Me.GridColumnsoh_sal_date.VisibleIndex = 4
         '
         'GridColumnnote
         '
@@ -125,7 +126,7 @@ Partial Class FormProposePriceMKD
         Me.GridColumnnote.FieldName = "note"
         Me.GridColumnnote.Name = "GridColumnnote"
         Me.GridColumnnote.Visible = True
-        Me.GridColumnnote.VisibleIndex = 4
+        Me.GridColumnnote.VisibleIndex = 5
         '
         'GridColumnid_report_status
         '
@@ -139,7 +140,15 @@ Partial Class FormProposePriceMKD
         Me.GridColumnreport_status.FieldName = "report_status"
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
-        Me.GridColumnreport_status.VisibleIndex = 5
+        Me.GridColumnreport_status.VisibleIndex = 6
+        '
+        'GridColumndesign_price_type
+        '
+        Me.GridColumndesign_price_type.Caption = "Price Type"
+        Me.GridColumndesign_price_type.FieldName = "design_price_type"
+        Me.GridColumndesign_price_type.Name = "GridColumndesign_price_type"
+        Me.GridColumndesign_price_type.Visible = True
+        Me.GridColumndesign_price_type.VisibleIndex = 2
         '
         'FormProposePriceMKD
         '
@@ -172,4 +181,5 @@ Partial Class FormProposePriceMKD
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_price_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class

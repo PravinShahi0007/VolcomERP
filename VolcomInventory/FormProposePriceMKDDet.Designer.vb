@@ -21,6 +21,12 @@ Partial Class FormProposePriceMKDDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProposePriceMKDDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.DESOHDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelEffectiveDate = New DevExpress.XtraEditors.LabelControl()
+        Me.DEEffectDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LEPriceType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -187,14 +193,13 @@ Partial Class FormProposePriceMKDDet
         Me.GridColumnStyle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnbefore_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnafter_price = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LEPriceType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.DEEffectDate = New DevExpress.XtraEditors.DateEdit()
-        Me.DEEffectiveDate = New DevExpress.XtraEditors.LabelControl()
-        Me.DESOHDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
+        CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DESOHDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEffectDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEffectDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -236,20 +241,15 @@ Partial Class FormProposePriceMKDDet
         CType(Me.GCRev, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRev, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEEffectDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEEffectDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DESOHDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControlHead.Controls.Add(Me.SimpleButton1)
+        Me.GroupControlHead.Controls.Add(Me.BtnCreateNew)
         Me.GroupControlHead.Controls.Add(Me.LabelControl1)
         Me.GroupControlHead.Controls.Add(Me.DESOHDate)
-        Me.GroupControlHead.Controls.Add(Me.DEEffectiveDate)
+        Me.GroupControlHead.Controls.Add(Me.LabelEffectiveDate)
         Me.GroupControlHead.Controls.Add(Me.DEEffectDate)
         Me.GroupControlHead.Controls.Add(Me.LEPriceType)
         Me.GroupControlHead.Controls.Add(Me.LabelControl5)
@@ -263,6 +263,81 @@ Partial Class FormProposePriceMKDDet
         Me.GroupControlHead.Name = "GroupControlHead"
         Me.GroupControlHead.Size = New System.Drawing.Size(882, 211)
         Me.GroupControlHead.TabIndex = 10
+        '
+        'BtnCreateNew
+        '
+        Me.BtnCreateNew.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnCreateNew.Image = CType(resources.GetObject("BtnCreateNew.Image"), System.Drawing.Image)
+        Me.BtnCreateNew.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnCreateNew.Location = New System.Drawing.Point(20, 177)
+        Me.BtnCreateNew.Name = "BtnCreateNew"
+        Me.BtnCreateNew.Size = New System.Drawing.Size(656, 32)
+        Me.BtnCreateNew.TabIndex = 8925
+        Me.BtnCreateNew.Text = "Create New"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(36, 95)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl1.TabIndex = 8924
+        Me.LabelControl1.Text = "SOH/SAL Date"
+        '
+        'DESOHDate
+        '
+        Me.DESOHDate.EditValue = Nothing
+        Me.DESOHDate.Location = New System.Drawing.Point(116, 92)
+        Me.DESOHDate.Name = "DESOHDate"
+        Me.DESOHDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DESOHDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DESOHDate.Properties.Appearance.Options.UseFont = True
+        Me.DESOHDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DESOHDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DESOHDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DESOHDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DESOHDate.Size = New System.Drawing.Size(330, 20)
+        Me.DESOHDate.TabIndex = 8923
+        '
+        'LabelEffectiveDate
+        '
+        Me.LabelEffectiveDate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelEffectiveDate.Location = New System.Drawing.Point(36, 69)
+        Me.LabelEffectiveDate.Name = "LabelEffectiveDate"
+        Me.LabelEffectiveDate.Size = New System.Drawing.Size(69, 13)
+        Me.LabelEffectiveDate.TabIndex = 8922
+        Me.LabelEffectiveDate.Text = "Effective Date"
+        '
+        'DEEffectDate
+        '
+        Me.DEEffectDate.EditValue = Nothing
+        Me.DEEffectDate.Location = New System.Drawing.Point(116, 66)
+        Me.DEEffectDate.Name = "DEEffectDate"
+        Me.DEEffectDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEEffectDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEEffectDate.Properties.Appearance.Options.UseFont = True
+        Me.DEEffectDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEffectDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEffectDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEEffectDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEffectDate.Size = New System.Drawing.Size(330, 20)
+        Me.DEEffectDate.TabIndex = 145
+        '
+        'LEPriceType
+        '
+        Me.LEPriceType.Location = New System.Drawing.Point(116, 40)
+        Me.LEPriceType.Name = "LEPriceType"
+        Me.LEPriceType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEPriceType.Properties.Appearance.Options.UseFont = True
+        Me.LEPriceType.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPriceType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPriceType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPriceType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_design_price_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("design_price_type", "Price Type")})
+        Me.LEPriceType.Properties.NullText = ""
+        Me.LEPriceType.Properties.ShowFooter = False
+        Me.LEPriceType.Size = New System.Drawing.Size(330, 20)
+        Me.LEPriceType.TabIndex = 145
         '
         'LabelControl5
         '
@@ -1346,7 +1421,7 @@ Partial Class FormProposePriceMKDDet
         '
         Me.XTPAnalysis.Controls.Add(Me.GCAnalysis)
         Me.XTPAnalysis.Name = "XTPAnalysis"
-        Me.XTPAnalysis.Size = New System.Drawing.Size(653, 0)
+        Me.XTPAnalysis.Size = New System.Drawing.Size(847, 254)
         Me.XTPAnalysis.Text = "Analysis"
         '
         'GCAnalysis
@@ -1356,7 +1431,7 @@ Partial Class FormProposePriceMKDDet
         Me.GCAnalysis.MainView = Me.GVAnalysis
         Me.GCAnalysis.Name = "GCAnalysis"
         Me.GCAnalysis.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2})
-        Me.GCAnalysis.Size = New System.Drawing.Size(653, 0)
+        Me.GCAnalysis.Size = New System.Drawing.Size(847, 254)
         Me.GCAnalysis.TabIndex = 18
         Me.GCAnalysis.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAnalysis})
         '
@@ -2049,7 +2124,7 @@ Partial Class FormProposePriceMKDDet
         Me.XTPRevision.Controls.Add(Me.GCRev)
         Me.XTPRevision.Name = "XTPRevision"
         Me.XTPRevision.PageVisible = False
-        Me.XTPRevision.Size = New System.Drawing.Size(682, 0)
+        Me.XTPRevision.Size = New System.Drawing.Size(876, 260)
         Me.XTPRevision.Text = "Revision"
         '
         'GCRev
@@ -2059,7 +2134,7 @@ Partial Class FormProposePriceMKDDet
         Me.GCRev.MainView = Me.GVRev
         Me.GCRev.Name = "GCRev"
         Me.GCRev.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1})
-        Me.GCRev.Size = New System.Drawing.Size(682, 0)
+        Me.GCRev.Size = New System.Drawing.Size(876, 260)
         Me.GCRev.TabIndex = 0
         Me.GCRev.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRev})
         '
@@ -2141,81 +2216,6 @@ Partial Class FormProposePriceMKDDet
         Me.GridColumnafter_price.Visible = True
         Me.GridColumnafter_price.VisibleIndex = 4
         '
-        'LEPriceType
-        '
-        Me.LEPriceType.Location = New System.Drawing.Point(116, 40)
-        Me.LEPriceType.Name = "LEPriceType"
-        Me.LEPriceType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LEPriceType.Properties.Appearance.Options.UseFont = True
-        Me.LEPriceType.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEPriceType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEPriceType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPriceType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_design_price_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("design_price_type", "Price Type")})
-        Me.LEPriceType.Properties.NullText = ""
-        Me.LEPriceType.Properties.ShowFooter = False
-        Me.LEPriceType.Size = New System.Drawing.Size(330, 20)
-        Me.LEPriceType.TabIndex = 145
-        '
-        'DEEffectDate
-        '
-        Me.DEEffectDate.EditValue = Nothing
-        Me.DEEffectDate.Enabled = False
-        Me.DEEffectDate.Location = New System.Drawing.Point(116, 66)
-        Me.DEEffectDate.Name = "DEEffectDate"
-        Me.DEEffectDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DEEffectDate.Properties.Appearance.Options.UseFont = True
-        Me.DEEffectDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEEffectDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEEffectDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEEffectDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEEffectDate.Size = New System.Drawing.Size(330, 20)
-        Me.DEEffectDate.TabIndex = 145
-        '
-        'DEEffectiveDate
-        '
-        Me.DEEffectiveDate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DEEffectiveDate.Location = New System.Drawing.Point(36, 69)
-        Me.DEEffectiveDate.Name = "DEEffectiveDate"
-        Me.DEEffectiveDate.Size = New System.Drawing.Size(69, 13)
-        Me.DEEffectiveDate.TabIndex = 8922
-        Me.DEEffectiveDate.Text = "Effective Date"
-        '
-        'DESOHDate
-        '
-        Me.DESOHDate.EditValue = Nothing
-        Me.DESOHDate.Enabled = False
-        Me.DESOHDate.Location = New System.Drawing.Point(116, 92)
-        Me.DESOHDate.Name = "DESOHDate"
-        Me.DESOHDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DESOHDate.Properties.Appearance.Options.UseFont = True
-        Me.DESOHDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DESOHDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DESOHDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DESOHDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DESOHDate.Size = New System.Drawing.Size(330, 20)
-        Me.DESOHDate.TabIndex = 8923
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(36, 95)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(69, 13)
-        Me.LabelControl1.TabIndex = 8924
-        Me.LabelControl1.Text = "SOH/SAL Date"
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.SimpleButton1.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.SimpleButton1.Location = New System.Drawing.Point(20, 165)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(656, 44)
-        Me.SimpleButton1.TabIndex = 8925
-        Me.SimpleButton1.Text = "Create New"
-        '
         'FormProposePriceMKDDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2232,6 +2232,11 @@ Partial Class FormProposePriceMKDDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
+        CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DESOHDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEffectDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEffectDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2274,11 +2279,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.GCRev, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRev, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEEffectDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEEffectDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DESOHDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2451,9 +2451,9 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents GridColumnbefore_price As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnafter_price As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LEPriceType As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents DEEffectiveDate As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelEffectiveDate As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEEffectDate As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnCreateNew As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DESOHDate As DevExpress.XtraEditors.DateEdit
 End Class
