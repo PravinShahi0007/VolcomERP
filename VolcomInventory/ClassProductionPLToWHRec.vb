@@ -40,6 +40,7 @@
         query += "GROUP BY det.id_pl_prod_order_rec "
         query += ") det On det.id_pl_prod_order_rec = a0.id_pl_prod_order_rec 
         LEFT JOIN (
+            SELECT rm.id_report, e.employee_name AS `prepared_by`, rm.report_mark_datetime
             FROM tb_report_mark rm
             INNER JOIN tb_m_employee e ON e.id_employee = rm.id_employee
             WHERE rm.report_mark_type=37 AND rm.id_report_status=1
