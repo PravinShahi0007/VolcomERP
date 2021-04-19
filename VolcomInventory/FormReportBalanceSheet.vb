@@ -1383,6 +1383,14 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             load_report_pl(GCMPLvsPrevMonth, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_month_ind")
             GVMPLvsPrevMonth.BestFitColumns()
             GVMPLvsPrevMonth.ExpandAllGroups()
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 4 Then
+            load_report_pl(GCMPLvsPrevYear, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_year_ind")
+            GVMPLvsPrevYear.BestFitColumns()
+            GVMPLvsPrevYear.ExpandAllGroups()
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 5 Then
+            load_report_pl(GCMPLvsYTD, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_ytd_ind")
+            GVMPLvsYTD.BestFitColumns()
+            GVMPLvsYTD.ExpandAllGroups()
         End If
     End Sub
 
@@ -1714,6 +1722,212 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
                     Dim tot_footer As Decimal = 0.00
                     Try
                         tot_footer = ((plvsp_this_month_footer - plvsp_prev_month_footer) / plvsp_this_month_footer) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_footer
+            End Select
+        End If
+    End Sub
+
+    'vs last year income statement
+    Dim plvsy_tm_group As Decimal = 0.00 'this month
+    Dim plvsy_tm_footer As Decimal = 0.00
+    '
+    Dim plvsy_py_group As Decimal = 0.00 'prev year
+    Dim plvsy_py_footer As Decimal = 0.00
+    '
+    Dim plvsy_py_tot_group As Decimal = 0.00 'percentage total
+    Dim plvsy_py_tot_footer As Decimal = 0.00
+    Dim plvsy_tm_tot_group As Decimal = 0.00
+    Dim plvsy_tm_tot_footer As Decimal = 0.00
+    '
+    Private Sub GVMPLvsPrevYear_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVMPLvsPrevYear.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            plvsy_tm_group = 0.00
+            plvsy_tm_footer = 0.00
+            '
+            plvsy_py_group = 0.00
+            plvsy_py_footer = 0.00
+            '
+            plvsy_py_tot_group = 0.00
+            plvsy_py_tot_footer = 0.00
+            plvsy_tm_tot_group = 0.00
+            plvsy_tm_tot_footer = 0.00
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Select Case summaryID
+                Case 1
+                    plvsy_py_tot_group += GVMPLvsPrevYear.GetRowCellValue(e.RowHandle, "prev_year")
+                    plvsy_tm_tot_group += GVMPLvsPrevYear.GetRowCellValue(e.RowHandle, "this_month")
+                Case 2
+                    plvsy_py_tot_footer += GVMPLvsPrevYear.GetRowCellValue(e.RowHandle, "prev_year")
+                    plvsy_tm_tot_footer += GVMPLvsPrevYear.GetRowCellValue(e.RowHandle, "this_month")
+                Case 3
+                    plvsy_py_group += GVMPLvsPrevYear.GetRowCellValue(e.RowHandle, "prev_year")
+                Case 4
+                    plvsy_py_footer += GVMPLvsPrevYear.GetRowCellValue(e.RowHandle, "prev_year")
+                Case 5
+                    plvsy_tm_group += GVMPLvsPrevYear.GetRowCellValue(e.RowHandle, "this_month")
+                Case 6
+                    plvsy_tm_footer += GVMPLvsPrevYear.GetRowCellValue(e.RowHandle, "this_month")
+            End Select
+        End If
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1
+                    Dim tot_group As Decimal = 0.00
+                    Try
+                        tot_group = ((plvsy_tm_tot_group - plvsy_py_tot_group) / plvsy_tm_tot_group) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_group
+                Case 2
+                    Dim tot_footer As Decimal = 0.00
+                    Try
+                        tot_footer = ((plvsy_tm_tot_footer - plvsy_py_tot_footer) / plvsy_tm_tot_footer) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_footer
+                Case 3
+                    Dim tot_group As Decimal = 0.00
+                    Try
+                        tot_group = (plvsy_py_group / GVMPLvsPrevYear.GetRowCellValue(0, "prev_year_sales")) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_group
+                Case 4
+                    Dim tot_footer As Decimal = 0.00
+                    Try
+                        tot_footer = (plvsy_py_footer / GVMPLvsPrevYear.GetRowCellValue(0, "prev_year_sales")) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_footer
+                Case 5
+                    Dim tot_group As Decimal = 0.00
+                    Try
+                        tot_group = (plvsy_tm_group / GVMPLvsPrevYear.GetRowCellValue(0, "this_month_sales")) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_group
+                Case 6
+                    Dim tot_footer As Decimal = 0.00
+                    Try
+                        tot_footer = (plvsy_tm_footer / GVMPLvsPrevYear.GetRowCellValue(0, "this_month_sales")) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_footer
+            End Select
+        End If
+    End Sub
+
+    'vs ytd income statement
+    Dim plvsytd_tm_group As Decimal = 0.00 'this month
+    Dim plvsytd_tm_footer As Decimal = 0.00
+    '
+    Dim plvsytd_py_group As Decimal = 0.00 'prev year
+    Dim plvsytd_py_footer As Decimal = 0.00
+    '
+    Dim plvsytd_py_tot_group As Decimal = 0.00 'percentage total
+    Dim plvsytd_py_tot_footer As Decimal = 0.00
+    Dim plvsytd_tm_tot_group As Decimal = 0.00
+    Dim plvsytd_tm_tot_footer As Decimal = 0.00
+    '
+    Private Sub GVMPLvsYTD_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVMPLvsYTD.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            plvsytd_tm_group = 0.00
+            plvsytd_tm_footer = 0.00
+            '
+            plvsytd_py_group = 0.00
+            plvsytd_py_footer = 0.00
+            '
+            plvsytd_py_tot_group = 0.00
+            plvsytd_py_tot_footer = 0.00
+            plvsytd_tm_tot_group = 0.00
+            plvsytd_tm_tot_footer = 0.00
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Select Case summaryID
+                Case 1
+                    plvsytd_py_tot_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "last_year_to_date")
+                    plvsytd_tm_tot_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_year_to_date")
+                Case 2
+                    plvsytd_py_tot_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "last_year_to_date")
+                    plvsytd_tm_tot_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_year_to_date")
+                Case 3
+                    plvsytd_py_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "last_year_to_date")
+                Case 4
+                    plvsytd_py_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "last_year_to_date")
+                Case 5
+                    plvsytd_tm_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_year_to_date")
+                Case 6
+                    plvsytd_tm_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_year_to_date")
+            End Select
+        End If
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1
+                    Dim tot_group As Decimal = 0.00
+                    Try
+                        tot_group = ((plvsytd_tm_tot_group - plvsytd_py_tot_group) / plvsytd_tm_tot_group) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_group
+                Case 2
+                    Dim tot_footer As Decimal = 0.00
+                    Try
+                        tot_footer = ((plvsytd_tm_tot_footer - plvsytd_py_tot_footer) / plvsytd_tm_tot_footer) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_footer
+                Case 3
+                    Dim tot_group As Decimal = 0.00
+                    Try
+                        tot_group = (plvsytd_py_group / GVMPLvsYTD.GetRowCellValue(0, "sales_last_year_to_date")) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_group
+                Case 4
+                    Dim tot_footer As Decimal = 0.00
+                    Try
+                        tot_footer = (plvsytd_py_footer / GVMPLvsYTD.GetRowCellValue(0, "sales_last_year_to_date")) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_footer
+                Case 5
+                    Dim tot_group As Decimal = 0.00
+                    Try
+                        tot_group = (plvsytd_tm_group / GVMPLvsYTD.GetRowCellValue(0, "sales_year_to_date")) * 100
+                    Catch ex As Exception
+
+                    End Try
+                    e.TotalValue = tot_group
+                Case 6
+                    Dim tot_footer As Decimal = 0.00
+                    Try
+                        tot_footer = (plvsytd_tm_footer / GVMPLvsYTD.GetRowCellValue(0, "sales_year_to_date")) * 100
                     Catch ex As Exception
 
                     End Try
