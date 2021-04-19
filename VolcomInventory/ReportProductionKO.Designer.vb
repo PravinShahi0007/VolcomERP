@@ -209,10 +209,10 @@ Partial Public Class ReportProductionKO
         Me.XrLabel26.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel26.CanGrow = False
         Me.XrLabel26.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(366.9999!, 83.00001!)
+        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(354.5001!, 82.99999!)
         Me.XrLabel26.Name = "XrLabel26"
         Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel26.SizeF = New System.Drawing.SizeF(51.99997!, 44.99996!)
+        Me.XrLabel26.SizeF = New System.Drawing.SizeF(64.49988!, 44.99996!)
         Me.XrLabel26.StylePriority.UseBorders = False
         Me.XrLabel26.StylePriority.UseFont = False
         Me.XrLabel26.StylePriority.UseTextAlignment = False
@@ -223,7 +223,7 @@ Partial Public Class ReportProductionKO
         Me.XrLabel25.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel25.CanGrow = False
         Me.XrLabel25.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(314.9999!, 68.00002!)
+        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(302.5!, 68.00002!)
         Me.XrLabel25.Name = "XrLabel25"
         Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel25.SizeF = New System.Drawing.SizeF(51.99997!, 59.99997!)
@@ -236,11 +236,11 @@ Partial Public Class ReportProductionKO
         '
         Me.LQtyOrder.CanGrow = False
         Me.LQtyOrder.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.LQtyOrder.LocationFloat = New DevExpress.Utils.PointFloat(366.9999!, 68.00002!)
+        Me.LQtyOrder.LocationFloat = New DevExpress.Utils.PointFloat(354.5001!, 68.00003!)
         Me.LQtyOrder.Multiline = True
         Me.LQtyOrder.Name = "LQtyOrder"
         Me.LQtyOrder.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LQtyOrder.SizeF = New System.Drawing.SizeF(52.0!, 15.0!)
+        Me.LQtyOrder.SizeF = New System.Drawing.SizeF(64.49985!, 15.0!)
         Me.LQtyOrder.StylePriority.UseFont = False
         Me.LQtyOrder.StylePriority.UseTextAlignment = False
         Me.LQtyOrder.Text = "[qty_order]"
@@ -251,11 +251,11 @@ Partial Public Class ReportProductionKO
         Me.XrLabel23.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel23.CanGrow = False
         Me.XrLabel23.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(0.00009349747!, 68.00002!)
+        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(0.00009536743!, 68.00003!)
         Me.XrLabel23.Multiline = True
         Me.XrLabel23.Name = "XrLabel23"
         Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel23.SizeF = New System.Drawing.SizeF(314.9999!, 59.99997!)
+        Me.XrLabel23.SizeF = New System.Drawing.SizeF(302.4999!, 59.99997!)
         Me.XrLabel23.StylePriority.UseBorders = False
         Me.XrLabel23.StylePriority.UseFont = False
         Me.XrLabel23.StylePriority.UseTextAlignment = False
@@ -351,11 +351,11 @@ Partial Public Class ReportProductionKO
         Me.XrLabel17.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel17.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(367.0!, 0!)
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(354.5!, 0!)
         Me.XrLabel17.Multiline = True
         Me.XrLabel17.Name = "XrLabel17"
         Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel17.SizeF = New System.Drawing.SizeF(52.0!, 48.0!)
+        Me.XrLabel17.SizeF = New System.Drawing.SizeF(64.5!, 48.0!)
         Me.XrLabel17.StylePriority.UseBorders = False
         Me.XrLabel17.StylePriority.UseFont = False
         Me.XrLabel17.StylePriority.UseTextAlignment = False
@@ -367,7 +367,7 @@ Partial Public Class ReportProductionKO
         Me.XrLabel16.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel16.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(315.0!, 0!)
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(302.5!, 0!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel16.SizeF = New System.Drawing.SizeF(51.99997!, 48.0!)
@@ -385,7 +385,7 @@ Partial Public Class ReportProductionKO
         Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(115.0!, 0!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel15.SizeF = New System.Drawing.SizeF(200.0!, 48.0!)
+        Me.XrLabel15.SizeF = New System.Drawing.SizeF(187.5!, 48.0!)
         Me.XrLabel15.StylePriority.UseBorders = False
         Me.XrLabel15.StylePriority.UseFont = False
         Me.XrLabel15.StylePriority.UseTextAlignment = False
