@@ -8766,6 +8766,12 @@
     <Compile Include="ReportMatWO.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMBalanceSheet.Designer.vb">
+      <DependentUpon>ReportMBalanceSheet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMBalanceSheet.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMemoUnpaidLeave.Designer.vb">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
     </Compile>
@@ -14317,6 +14323,9 @@
     <EmbeddedResource Include="ReportMatWO.resx">
       <DependentUpon>ReportMatWO.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMBalanceSheet.resx">
+      <DependentUpon>ReportMBalanceSheet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMemoUnpaidLeave.resx">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
