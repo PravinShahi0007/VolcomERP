@@ -3975,6 +3975,12 @@
     <Compile Include="FormProposeEmpSalaryPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProposePriceChangeEffective.Designer.vb">
+      <DependentUpon>FormProposePriceChangeEffective.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePriceChangeEffective.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProposePriceMKD.Designer.vb">
       <DependentUpon>FormProposePriceMKD.vb</DependentUpon>
     </Compile>
@@ -11464,6 +11470,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposeEmpSalaryPick.resx">
       <DependentUpon>FormProposeEmpSalaryPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePriceChangeEffective.resx">
+      <DependentUpon>FormProposePriceChangeEffective.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposePriceMKD.resx">
       <DependentUpon>FormProposePriceMKD.vb</DependentUpon>

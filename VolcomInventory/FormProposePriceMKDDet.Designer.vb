@@ -56,7 +56,7 @@ Partial Class FormProposePriceMKDDet
         Me.CEFreeze = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnChangeEffectiveDate = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,7 +94,7 @@ Partial Class FormProposePriceMKDDet
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControlHead.Controls.Add(Me.SimpleButton1)
+        Me.GroupControlHead.Controls.Add(Me.BtnChangeEffectiveDate)
         Me.GroupControlHead.Controls.Add(Me.BtnCreateNew)
         Me.GroupControlHead.Controls.Add(Me.LabelControl1)
         Me.GroupControlHead.Controls.Add(Me.DESOHDate)
@@ -487,13 +487,14 @@ Partial Class FormProposePriceMKDDet
         Me.CESelAll.Size = New System.Drawing.Size(68, 19)
         Me.CESelAll.TabIndex = 2
         '
-        'SimpleButton1
+        'BtnChangeEffectiveDate
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(371, 43)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(75, 23)
-        Me.SimpleButton1.TabIndex = 8926
-        Me.SimpleButton1.Text = "change"
+        Me.BtnChangeEffectiveDate.Enabled = False
+        Me.BtnChangeEffectiveDate.Location = New System.Drawing.Point(371, 43)
+        Me.BtnChangeEffectiveDate.Name = "BtnChangeEffectiveDate"
+        Me.BtnChangeEffectiveDate.Size = New System.Drawing.Size(75, 23)
+        Me.BtnChangeEffectiveDate.TabIndex = 8926
+        Me.BtnChangeEffectiveDate.Text = "change"
         '
         'FormProposePriceMKDDet
         '
@@ -582,5 +583,5 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents CESelAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnChangeEffectiveDate As DevExpress.XtraEditors.SimpleButton
 End Class

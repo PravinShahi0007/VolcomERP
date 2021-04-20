@@ -79,33 +79,41 @@
     End Sub
 
     Sub viewDetail()
-
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT * FROM tb_pp_change_det WHERE id_pp_change='" + id + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Sub allowStatus()
         BtnCreateNew.Visible = False
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
+        DEEffectDate.Enabled = False
         If is_confirm = "2" And is_view = "-1" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
             MENote.Enabled = False
-            PanelControlNav.Visible = True
             BtnPrint.Visible = False
             BtnSaveChanges.Visible = True
             MENote.Enabled = True
             PanelControlSelAll.Visible = True
             GVData.OptionsBehavior.ReadOnly = False
+            BtnChangeEffectiveDate.Enabled = True
+            DESOHDate.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             MENote.Enabled = False
-            PanelControlNav.Visible = False
             BtnPrint.Visible = True
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
             PanelControlSelAll.Visible = False
             GVData.OptionsBehavior.ReadOnly = True
+            BtnChangeEffectiveDate.Enabled = False
+            DESOHDate.Enabled = False
         End If
 
         'reset propose
@@ -125,7 +133,6 @@
             BtnConfirm.Visible = False
             MENote.Enabled = False
             BtnPrint.Visible = False
-            PanelControlNav.Visible = False
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
             PanelControlSelAll.Visible = False
@@ -144,7 +151,7 @@
             VALUES('" + id_design_price_type + "', NOW(), '" + effective_date + "', '" + soh_sal_date + "','" + note + "', 1); SELECT LAST_INSERT_ID(); "
             id = execute_query(query_head, 0, True, "", "", "", "")
             'update number
-            execute_non_query("CALL gen_number('" + id + "', '" + rmt + "');", True, "", "", "", "")
+            execute_non_query("CALL gen_number('" + id + "', '" + rmt + "');CALL gen_pp_change(" + id + ", '" + effective_date + "');", True, "", "", "", "")
             FormProposePriceMKD.viewSummary()
             FormProposePriceMKD.GVSummary.FocusedRowHandle = find_row(FormProposePriceMKD.GVSummary, "id_pp_change", id)
             FormProposePriceMKD.is_load_new = True
@@ -361,6 +368,13 @@
         FormReportMark.is_view = is_view
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnChangeEffectiveDate_Click(sender As Object, e As EventArgs) Handles BtnChangeEffectiveDate.Click
+        Cursor = Cursors.WaitCursor
+        FormProposePriceChangeEffective.id = id
+        FormProposePriceChangeEffective.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class
