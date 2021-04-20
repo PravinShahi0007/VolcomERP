@@ -2459,7 +2459,7 @@ Partial Class FormReportBalanceSheet
         Me.XTPMonthlyReport.Controls.Add(Me.PCFilterMonthly)
         Me.XTPMonthlyReport.Name = "XTPMonthlyReport"
         Me.XTPMonthlyReport.Size = New System.Drawing.Size(1015, 444)
-        Me.XTPMonthlyReport.Text = "Monthly Report"
+        Me.XTPMonthlyReport.Text = "Comparation Report"
         '
         'XTCMonthlyReport
         '
@@ -3782,7 +3782,6 @@ Partial Class FormReportBalanceSheet
         Me.GVMBSvsPrevYear.GroupCount = 2
         Me.GVMBSvsPrevYear.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", Me.GridColumn83, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_year", Me.GridColumn84, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_asset_tm", Me.GridColumn85, "{0:N2} %", 1), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_asset_py", Me.BandedGridColumn90, "{0:N2} %", "3")})
         Me.GVMBSvsPrevYear.Name = "GVMBSvsPrevYear"
-        Me.GVMBSvsPrevYear.OptionsView.ShowFooter = True
         Me.GVMBSvsPrevYear.OptionsView.ShowGroupPanel = False
         Me.GVMBSvsPrevYear.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn77, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn79, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
