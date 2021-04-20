@@ -83,6 +83,7 @@
     End Sub
 
     Sub allowStatus()
+        BtnCreateNew.Visible = False
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
         If is_confirm = "2" And is_view = "-1" Then
@@ -151,7 +152,7 @@
         ElseIf action = "upd" Then
             Dim query As String = "UPDATE tb_pp_change SET id_design_price_type='" + id_design_price_type + "',
             effective_date='" + effective_date + "',soh_sal_date='" + soh_sal_date + "', note='" + note + "' WHERE id_pp_change='" + id + "' "
-            execute_non_query("CALL gen_number('" + id + "', '" + rmt + "');", True, "", "", "", "")
+            execute_non_query(query, True, "", "", "", "")
             FormProposePriceMKD.viewSummary()
             FormProposePriceMKD.GVSummary.FocusedRowHandle = find_row(FormProposePriceMKD.GVSummary, "id_pp_change", id)
             actionLoad()
@@ -209,7 +210,7 @@
     End Sub
 
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
-        If GVData.RowCount <= 0 Or Not checkHead() Then
+        If Not checkHead() Then
             stopCustom("Please input all data")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
