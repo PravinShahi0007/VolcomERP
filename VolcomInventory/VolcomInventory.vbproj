@@ -8586,6 +8586,12 @@
     <Compile Include="ReportMasterEmployeeSuratKeteranganBansos.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMasterEmployeeSuratKeteranganKerja.Designer.vb">
+      <DependentUpon>ReportMasterEmployeeSuratKeteranganKerja.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterEmployeeSuratKeteranganKerja.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.Designer.vb">
       <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
     </Compile>
@@ -14202,6 +14208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterEmployeeSuratKeteranganBansos.resx">
       <DependentUpon>ReportMasterEmployeeSuratKeteranganBansos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMasterEmployeeSuratKeteranganKerja.resx">
+      <DependentUpon>ReportMasterEmployeeSuratKeteranganKerja.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.resx">
       <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
