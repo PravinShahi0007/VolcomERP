@@ -1902,9 +1902,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPricePolicyCodeDet.action = "ins"
             FormPricePolicyCodeDet.ShowDialog()
         ElseIf formName = "FormProposePriceMKD" Then
-            FormProposePriceMKD.id_mkd = "-1"
-            FormProposePriceMKD.XTPDetail.PageEnabled = True
-            FormProposePriceMKD.XTCData.SelectedTabPageIndex = 1
+            FormProposePriceMKDDet.id = "-1"
+            FormProposePriceMKDDet.action = "ins"
+            FormProposePriceMKDDet.ShowDialog()
+            FormProposePriceMKD.loadNewDetail()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3173,8 +3174,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormPricePolicyCodeDet.id = FormPricePolicyCode.GVData.GetFocusedRowCellValue("id_code_detail").ToString
                 FormPricePolicyCodeDet.ShowDialog()
             ElseIf formName = "FormProposePriceMKD" Then
-                FormProposePriceMKD.id_mkd = FormProposePriceMKD.GVSummary.GetFocusedRowCellValue("id_pp_change").ToString
-                FormProposePriceMKD.XTCData.SelectedTabPageIndex = 1
+                FormProposePriceMKDDet.id = FormProposePriceMKD.GVSummary.GetFocusedRowCellValue("id_pp_change").ToString
+                FormProposePriceMKDDet.action = "upd"
+                FormProposePriceMKDDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If

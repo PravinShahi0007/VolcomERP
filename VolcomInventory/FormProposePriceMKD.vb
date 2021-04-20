@@ -1,5 +1,5 @@
 ﻿Public Class FormProposePriceMKD
-    Public id_mkd As String = "-1"
+    Public is_load_new As Boolean = False
     Private Sub FormProposePriceMKD_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSummary()
     End Sub
@@ -28,10 +28,21 @@
     End Sub
 
     Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
-        If XTCData.SelectedTabPageIndex = 0 Then
-            XTPDetail.PageEnabled = False
-        Else
-            XTPDetail.PageEnabled = True
+
+    End Sub
+
+    Sub loadNewDetail()
+        If is_load_new Then
+            is_load_new = False
+            FormMain.but_edit()
         End If
     End Sub
+
+    Private Sub GVSummary_DoubleClick(sender As Object, e As EventArgs) Handles GVSummary.DoubleClick
+        If GVSummary.RowCount > 0 And GVSummary.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
+
+
 End Class

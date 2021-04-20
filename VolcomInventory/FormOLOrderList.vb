@@ -29,11 +29,12 @@
             cond_group = "AND d.id_comp_group='" + SLECompGroup.EditValue.ToString + "' "
         End If
         Dim query As String = "SELECT a.sales_order_ol_shop_number,a.customer_name, a.sales_order_ol_shop_date, a.id_sales_order AS `id_sales_order_single`,GROUP_CONCAT(DISTINCT a.id_sales_order) AS `id_sales_order`,
-        GROUP_CONCAT(DISTINCT a.sales_order_number) AS `sales_order_number`, a.id_comp_group, a.comp_group_desc, a.printed_date, a.printed_by
+        GROUP_CONCAT(DISTINCT a.sales_order_number) AS `sales_order_number`, a.id_comp_group, a.comp_group_desc, a.printed_date, a.printed_by,
+        GROUP_CONCAT(DISTINCT a.tracking_code) AS `tracking_code`
         FROM (
 	        SELECT a.id_sales_order, a.sales_order_number, a.sales_order_ol_shop_number, a.customer_name, a.sales_order_ol_shop_date, cg.id_comp_group,cg.comp_group, cg.description AS `comp_group_desc`,
 	        CAST((IFNULL(dord_item.tot_do, 0.00)/IFNULL(so_item.tot_so,0.00)*100) AS DECIMAL(5,2)) AS so_completness,
-	        IFNULL(pri.indeks_order,0) AS `indeks_order`, lp.printed_date, IFNULL(lp.printed_by,'-') AS `printed_by`
+	        IFNULL(pri.indeks_order,0) AS `indeks_order`, lp.printed_date, IFNULL(lp.printed_by,'-') AS `printed_by`, a.tracking_code
 	        FROM tb_sales_order a 
 	        INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
 	        INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
