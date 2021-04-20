@@ -31,6 +31,7 @@
     End Sub
 
     Sub actionLoad()
+        Cursor = Cursors.WaitCursor
         If action = "ins" Then
             'option
             Width = 501
@@ -58,7 +59,78 @@
             DESOHDate.EditValue = curr_date
             TxtNumber.Text = "[auto generated]"
         ElseIf action = "upd" Then
+            Dim mkd As New ClassProposePriceMKD()
+            Dim query As String = mkd.queryMain("AND  p.id_pp_change='" + id + "' ", "1")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            TxtNumber.Text = data.Rows(0)("number").ToString
+            LEPriceType.ItemIndex = LEPriceType.Properties.GetDataSourceRowIndex("id_design_price_type", data.Rows(0)("id_design_price_type").ToString)
+            DEEffectDate.EditValue = data.Rows(0)("effective_date")
+            DESOHDate.EditValue = data.Rows(0)("soh_sal_date")
+            MENote.Text = data.Rows(0)("note").ToString
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            id_report_status = data.Rows(0)("id_report_status").ToString
+            DECreated.EditValue = data.Rows(0)("created_date")
 
+            'detail
+            viewDetail()
+            allowStatus()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewDetail()
+
+    End Sub
+
+    Sub allowStatus()
+        BtnAttachment.Visible = True
+        BtnCancell.Visible = True
+        If is_confirm = "2" And is_view = "-1" Then
+            BtnConfirm.Visible = True
+            BtnMark.Visible = False
+            MENote.Enabled = False
+            PanelControlNav.Visible = True
+            BtnPrint.Visible = False
+            BtnSaveChanges.Visible = True
+            MENote.Enabled = True
+            PanelControlSelAll.Visible = True
+            GVData.OptionsBehavior.ReadOnly = False
+        Else
+            BtnConfirm.Visible = False
+            BtnMark.Visible = True
+            MENote.Enabled = False
+            PanelControlNav.Visible = False
+            BtnPrint.Visible = True
+            BtnSaveChanges.Visible = False
+            MENote.Enabled = False
+            PanelControlSelAll.Visible = False
+            GVData.OptionsBehavior.ReadOnly = True
+        End If
+
+        'reset propose
+        If is_view = "-1" And is_confirm = "1" Then
+            BtnResetPropose.Visible = True
+        Else
+            BtnResetPropose.Visible = False
+        End If
+
+        If id_report_status = "6" Then
+            BtnCancell.Visible = False
+            BtnResetPropose.Visible = False
+            PanelControlShowNonActive.Visible = True
+            XTPRevision.PageVisible = True
+        ElseIf id_report_status = "5" Then
+            BtnCancell.Visible = False
+            BtnResetPropose.Visible = False
+            BtnConfirm.Visible = False
+            MENote.Enabled = False
+            BtnPrint.Visible = False
+            PanelControlNav.Visible = False
+            BtnSaveChanges.Visible = False
+            MENote.Enabled = False
+            GridColumnIsSelect.Visible = False
+            PanelControlSelAll.Visible = False
+            GVData.OptionsBehavior.ReadOnly = True
         End If
     End Sub
 
