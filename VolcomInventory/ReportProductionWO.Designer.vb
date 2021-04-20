@@ -1161,7 +1161,7 @@ Partial Public Class ReportProductionWO
         'PageFooter
         '
         Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LCur_3, Me.LCur_2, Me.LCur_1, Me.LLTotal, Me.XrLabel28, Me.LDelivery, Me.LGrossTot, Me.LTot, Me.LLVat, Me.LRange, Me.LKurs, Me.LLKurs, Me.XrLabel16, Me.XrLabel31, Me.LSeason, Me.LLGrosTot, Me.LLNote, Me.LPNote, Me.LNote, Me.XrTable1, Me.LLSay, Me.LVat, Me.LVatTot, Me.LPVat, Me.LPSay, Me.LSay})
-        Me.PageFooter.HeightF = 125.0001!
+        Me.PageFooter.HeightF = 120.0001!
         Me.PageFooter.Name = "PageFooter"
         '
         'LCur_3
@@ -1239,11 +1239,11 @@ Partial Public Class ReportProductionWO
         Me.XrLabel28.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel28.BorderWidth = 2.0!
-        Me.XrLabel28.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel28.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(0!, 79.99998!)
         Me.XrLabel28.Name = "XrLabel28"
         Me.XrLabel28.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel28.SizeF = New System.Drawing.SizeF(57.2083!, 20.00002!)
+        Me.XrLabel28.SizeF = New System.Drawing.SizeF(57.2083!, 15.0!)
         Me.XrLabel28.StylePriority.UseBorderColor = False
         Me.XrLabel28.StylePriority.UseBorders = False
         Me.XrLabel28.StylePriority.UseBorderWidth = False
@@ -1258,11 +1258,11 @@ Partial Public Class ReportProductionWO
         Me.LDelivery.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LDelivery.BorderWidth = 2.0!
-        Me.LDelivery.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LDelivery.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LDelivery.LocationFloat = New DevExpress.Utils.PointFloat(499.9996!, 80.00007!)
         Me.LDelivery.Name = "LDelivery"
         Me.LDelivery.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LDelivery.SizeF = New System.Drawing.SizeF(280.0005!, 19.99998!)
+        Me.LDelivery.SizeF = New System.Drawing.SizeF(280.0005!, 15.0!)
         Me.LDelivery.StylePriority.UseBorderColor = False
         Me.LDelivery.StylePriority.UseBorders = False
         Me.LDelivery.StylePriority.UseBorderWidth = False
@@ -1327,11 +1327,11 @@ Partial Public Class ReportProductionWO
         Me.LRange.BorderColor = System.Drawing.Color.DimGray
         Me.LRange.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LRange.BorderWidth = 2.0!
-        Me.LRange.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LRange.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LRange.LocationFloat = New DevExpress.Utils.PointFloat(57.20844!, 80.00002!)
         Me.LRange.Name = "LRange"
         Me.LRange.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LRange.SizeF = New System.Drawing.SizeF(165.7078!, 19.99998!)
+        Me.LRange.SizeF = New System.Drawing.SizeF(165.7078!, 15.0!)
         Me.LRange.StylePriority.UseBorderColor = False
         Me.LRange.StylePriority.UseBorders = False
         Me.LRange.StylePriority.UseBorderWidth = False
@@ -1379,11 +1379,11 @@ Partial Public Class ReportProductionWO
         Me.XrLabel16.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel16.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel16.BorderWidth = 2.0!
-        Me.XrLabel16.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel16.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(222.9162!, 80.00002!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel16.SizeF = New System.Drawing.SizeF(59.29172!, 20.00002!)
+        Me.XrLabel16.SizeF = New System.Drawing.SizeF(59.29172!, 15.0!)
         Me.XrLabel16.StylePriority.UseBorderColor = False
         Me.XrLabel16.StylePriority.UseBorders = False
         Me.XrLabel16.StylePriority.UseBorderWidth = False
@@ -1397,11 +1397,11 @@ Partial Public Class ReportProductionWO
         Me.XrLabel31.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel31.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel31.BorderWidth = 2.0!
-        Me.XrLabel31.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel31.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(433.3328!, 80.00002!)
         Me.XrLabel31.Name = "XrLabel31"
         Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel31.SizeF = New System.Drawing.SizeF(66.66705!, 20.00005!)
+        Me.XrLabel31.SizeF = New System.Drawing.SizeF(66.66705!, 15.0!)
         Me.XrLabel31.StylePriority.UseBorderColor = False
         Me.XrLabel31.StylePriority.UseBorders = False
         Me.XrLabel31.StylePriority.UseBorderWidth = False
@@ -1415,11 +1415,11 @@ Partial Public Class ReportProductionWO
         Me.LSeason.BorderColor = System.Drawing.Color.DimGray
         Me.LSeason.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LSeason.BorderWidth = 2.0!
-        Me.LSeason.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LSeason.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LSeason.LocationFloat = New DevExpress.Utils.PointFloat(282.2079!, 80.00002!)
         Me.LSeason.Name = "LSeason"
         Me.LSeason.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LSeason.SizeF = New System.Drawing.SizeF(151.1248!, 20.00005!)
+        Me.LSeason.SizeF = New System.Drawing.SizeF(151.1248!, 15.0!)
         Me.LSeason.StylePriority.UseBorderColor = False
         Me.LSeason.StylePriority.UseBorders = False
         Me.LSeason.StylePriority.UseBorderWidth = False
@@ -1495,7 +1495,7 @@ Partial Public Class ReportProductionWO
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 100.0001!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 95.00007!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(780.0!, 25.0!)
