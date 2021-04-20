@@ -47,6 +47,8 @@ Partial Class FormProposePriceMKDDet
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCPP = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlShowNonActive = New DevExpress.XtraEditors.PanelControl()
         Me.CEShowNonActive = New DevExpress.XtraEditors.CheckEdit()
@@ -57,8 +59,6 @@ Partial Class FormProposePriceMKDDet
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +78,8 @@ Partial Class FormProposePriceMKDDet
         CType(Me.XTCPP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPP.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControlShowNonActive, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,8 +93,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -406,6 +406,22 @@ Partial Class FormProposePriceMKDDet
         Me.XTPDetail.Size = New System.Drawing.Size(876, 307)
         Me.XTPDetail.Text = "Detail"
         '
+        'GCData
+        '
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 39)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(876, 268)
+        Me.GCData.TabIndex = 18
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'GVData
+        '
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.PanelControlShowNonActive)
@@ -506,22 +522,6 @@ Partial Class FormProposePriceMKDDet
         Me.BtnAdd.TabIndex = 6
         Me.BtnAdd.Text = "Add"
         '
-        'GCData
-        '
-        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 39)
-        Me.GCData.MainView = Me.GVData
-        Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(876, 268)
-        Me.GCData.TabIndex = 18
-        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
-        '
-        'GVData
-        '
-        Me.GVData.GridControl = Me.GCData
-        Me.GVData.Name = "GVData"
-        Me.GVData.OptionsView.ShowGroupPanel = False
-        '
         'FormProposePriceMKDDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -556,6 +556,8 @@ Partial Class FormProposePriceMKDDet
         CType(Me.XTCPP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPP.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControlShowNonActive, System.ComponentModel.ISupportInitialize).EndInit()
@@ -569,8 +571,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
