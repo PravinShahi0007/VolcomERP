@@ -120,6 +120,8 @@
                 TENumberBack.EditValue = "/EXT/HRD-SR/" + month + "/" + Date.Now.ToString("yy")
             ElseIf SLUEType.EditValue.ToString = "6" Then
                 TENumberBack.EditValue = "/INT/HRD-KK/" + month + "/" + Date.Now.ToString("yy")
+            ElseIf SLUEType.EditValue.ToString = "7" Then
+                TENumberBack.EditValue = "/INT/HRD-SK/" + month + "/" + Date.Now.ToString("yy")
             End If
         Catch ex As Exception
         End Try
