@@ -56,9 +56,7 @@ Partial Class FormProposePriceMKDDet
         Me.CEFreeze = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
-        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,13 +89,12 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlSelAll.SuspendLayout()
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlNav.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlHead.Controls.Add(Me.SimpleButton1)
         Me.GroupControlHead.Controls.Add(Me.BtnCreateNew)
         Me.GroupControlHead.Controls.Add(Me.LabelControl1)
         Me.GroupControlHead.Controls.Add(Me.DESOHDate)
@@ -131,7 +128,7 @@ Partial Class FormProposePriceMKDDet
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(36, 95)
+        Me.LabelControl1.Location = New System.Drawing.Point(36, 75)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(69, 13)
         Me.LabelControl1.TabIndex = 8924
@@ -140,7 +137,7 @@ Partial Class FormProposePriceMKDDet
         'DESOHDate
         '
         Me.DESOHDate.EditValue = Nothing
-        Me.DESOHDate.Location = New System.Drawing.Point(116, 92)
+        Me.DESOHDate.Location = New System.Drawing.Point(116, 72)
         Me.DESOHDate.Name = "DESOHDate"
         Me.DESOHDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DESOHDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -155,7 +152,7 @@ Partial Class FormProposePriceMKDDet
         'LabelEffectiveDate
         '
         Me.LabelEffectiveDate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEffectiveDate.Location = New System.Drawing.Point(36, 69)
+        Me.LabelEffectiveDate.Location = New System.Drawing.Point(36, 48)
         Me.LabelEffectiveDate.Name = "LabelEffectiveDate"
         Me.LabelEffectiveDate.Size = New System.Drawing.Size(69, 13)
         Me.LabelEffectiveDate.TabIndex = 8922
@@ -164,7 +161,7 @@ Partial Class FormProposePriceMKDDet
         'DEEffectDate
         '
         Me.DEEffectDate.EditValue = Nothing
-        Me.DEEffectDate.Location = New System.Drawing.Point(116, 66)
+        Me.DEEffectDate.Location = New System.Drawing.Point(116, 45)
         Me.DEEffectDate.Name = "DEEffectDate"
         Me.DEEffectDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEEffectDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -173,12 +170,12 @@ Partial Class FormProposePriceMKDDet
         Me.DEEffectDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEEffectDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEEffectDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEEffectDate.Size = New System.Drawing.Size(330, 20)
+        Me.DEEffectDate.Size = New System.Drawing.Size(249, 20)
         Me.DEEffectDate.TabIndex = 145
         '
         'LEPriceType
         '
-        Me.LEPriceType.Location = New System.Drawing.Point(116, 40)
+        Me.LEPriceType.Location = New System.Drawing.Point(288, 14)
         Me.LEPriceType.Name = "LEPriceType"
         Me.LEPriceType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEPriceType.Properties.Appearance.Options.UseFont = True
@@ -188,13 +185,13 @@ Partial Class FormProposePriceMKDDet
         Me.LEPriceType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_design_price_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("design_price_type", "Price Type")})
         Me.LEPriceType.Properties.NullText = ""
         Me.LEPriceType.Properties.ShowFooter = False
-        Me.LEPriceType.Size = New System.Drawing.Size(330, 20)
+        Me.LEPriceType.Size = New System.Drawing.Size(158, 20)
         Me.LEPriceType.TabIndex = 145
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(36, 43)
+        Me.LabelControl5.Location = New System.Drawing.Point(258, 17)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl5.TabIndex = 8921
@@ -202,7 +199,7 @@ Partial Class FormProposePriceMKDDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(116, 118)
+        Me.MENote.Location = New System.Drawing.Point(116, 98)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(330, 41)
         Me.MENote.TabIndex = 151
@@ -211,7 +208,7 @@ Partial Class FormProposePriceMKDDet
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(36, 120)
+        Me.LabelControl7.Location = New System.Drawing.Point(36, 100)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 150
@@ -224,7 +221,7 @@ Partial Class FormProposePriceMKDDet
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtNumber.Size = New System.Drawing.Size(330, 20)
+        Me.TxtNumber.Size = New System.Drawing.Size(136, 20)
         Me.TxtNumber.TabIndex = 147
         '
         'LabelControl2
@@ -427,7 +424,6 @@ Partial Class FormProposePriceMKDDet
         Me.PanelControl3.Controls.Add(Me.PanelControlShowNonActive)
         Me.PanelControl3.Controls.Add(Me.PanelControlFreeze)
         Me.PanelControl3.Controls.Add(Me.PanelControlSelAll)
-        Me.PanelControl3.Controls.Add(Me.PanelControlNav)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
@@ -491,36 +487,13 @@ Partial Class FormProposePriceMKDDet
         Me.CESelAll.Size = New System.Drawing.Size(68, 19)
         Me.CESelAll.TabIndex = 2
         '
-        'PanelControlNav
+        'SimpleButton1
         '
-        Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlNav.Controls.Add(Me.BtnDel)
-        Me.PanelControlNav.Controls.Add(Me.BtnAdd)
-        Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlNav.Location = New System.Drawing.Point(517, 2)
-        Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(357, 35)
-        Me.PanelControlNav.TabIndex = 6
-        '
-        'BtnDel
-        '
-        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDel.Image = CType(resources.GetObject("BtnDel.Image"), System.Drawing.Image)
-        Me.BtnDel.Location = New System.Drawing.Point(194, 0)
-        Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(86, 35)
-        Me.BtnDel.TabIndex = 7
-        Me.BtnDel.Text = "Delete"
-        '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(280, 0)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(77, 35)
-        Me.BtnAdd.TabIndex = 6
-        Me.BtnAdd.Text = "Add"
+        Me.SimpleButton1.Location = New System.Drawing.Point(371, 43)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(75, 23)
+        Me.SimpleButton1.TabIndex = 8926
+        Me.SimpleButton1.Text = "change"
         '
         'FormProposePriceMKDDet
         '
@@ -569,8 +542,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlSelAll.ResumeLayout(False)
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlNav.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -609,9 +580,7 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents CEFreeze As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents PanelControlSelAll As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CESelAll As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

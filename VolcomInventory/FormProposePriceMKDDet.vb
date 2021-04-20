@@ -151,7 +151,7 @@
             Close()
         ElseIf action = "upd" Then
             Dim query As String = "UPDATE tb_pp_change SET id_design_price_type='" + id_design_price_type + "',
-            effective_date='" + effective_date + "',soh_sal_date='" + soh_sal_date + "', note='" + note + "' WHERE id_pp_change='" + id + "' "
+            soh_sal_date='" + soh_sal_date + "', note='" + note + "' WHERE id_pp_change='" + id + "' "
             execute_non_query(query, True, "", "", "", "")
             FormProposePriceMKD.viewSummary()
             FormProposePriceMKD.GVSummary.FocusedRowHandle = find_row(FormProposePriceMKD.GVSummary, "id_pp_change", id)
