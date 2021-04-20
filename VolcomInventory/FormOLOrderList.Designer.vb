@@ -45,6 +45,7 @@ Partial Class FormOLOrderList
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumntracking_code = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,7 +94,7 @@ Partial Class FormOLOrderList
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnsales_order_ol_shop_number, Me.GridColumncustomer_name, Me.GridColumnsales_order_ol_shop_date, Me.GridColumnid_sales_order, Me.GridColumnsales_order_number, Me.GridColumncomp_group_desc, Me.GridColumnprinted_date, Me.GridColumnprinted_by, Me.GridColumnid_comp_group2, Me.GridColumnid_sales_order_single})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnsales_order_ol_shop_number, Me.GridColumncustomer_name, Me.GridColumnsales_order_ol_shop_date, Me.GridColumnid_sales_order, Me.GridColumnsales_order_number, Me.GridColumncomp_group_desc, Me.GridColumnprinted_date, Me.GridColumnprinted_by, Me.GridColumnid_comp_group2, Me.GridColumnid_sales_order_single, Me.GridColumntracking_code})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -142,7 +143,7 @@ Partial Class FormOLOrderList
         Me.GridColumnsales_order_number.FieldName = "sales_order_number"
         Me.GridColumnsales_order_number.Name = "GridColumnsales_order_number"
         Me.GridColumnsales_order_number.Visible = True
-        Me.GridColumnsales_order_number.VisibleIndex = 4
+        Me.GridColumnsales_order_number.VisibleIndex = 5
         Me.GridColumnsales_order_number.Width = 171
         '
         'GridColumncomp_group_desc
@@ -161,7 +162,7 @@ Partial Class FormOLOrderList
         Me.GridColumnprinted_date.FieldName = "printed_date"
         Me.GridColumnprinted_date.Name = "GridColumnprinted_date"
         Me.GridColumnprinted_date.Visible = True
-        Me.GridColumnprinted_date.VisibleIndex = 5
+        Me.GridColumnprinted_date.VisibleIndex = 6
         '
         'GridColumnprinted_by
         '
@@ -169,7 +170,7 @@ Partial Class FormOLOrderList
         Me.GridColumnprinted_by.FieldName = "printed_by"
         Me.GridColumnprinted_by.Name = "GridColumnprinted_by"
         Me.GridColumnprinted_by.Visible = True
-        Me.GridColumnprinted_by.VisibleIndex = 6
+        Me.GridColumnprinted_by.VisibleIndex = 7
         '
         'GridColumnid_comp_group2
         '
@@ -254,6 +255,15 @@ Partial Class FormOLOrderList
         Me.SimpleButton1.TabIndex = 11
         Me.SimpleButton1.Text = "View"
         '
+        'GridColumntracking_code
+        '
+        Me.GridColumntracking_code.Caption = "Tracking Code"
+        Me.GridColumntracking_code.FieldName = "tracking_code"
+        Me.GridColumntracking_code.Name = "GridColumntracking_code"
+        Me.GridColumntracking_code.Visible = True
+        Me.GridColumntracking_code.VisibleIndex = 4
+        Me.GridColumntracking_code.Width = 94
+        '
         'FormOLOrderList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -303,4 +313,5 @@ Partial Class FormOLOrderList
     Friend WithEvents DownloadShippingLabelToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumnid_comp_group2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_sales_order_single As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntracking_code As DevExpress.XtraGrid.Columns.GridColumn
 End Class
