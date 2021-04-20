@@ -1391,6 +1391,10 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             load_report_pl(GCMPLvsYTD, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_ytd_ind")
             GVMPLvsYTD.BestFitColumns()
             GVMPLvsYTD.ExpandAllGroups()
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 6 Then
+            load_report(GCMBSvsPrevYear, "-", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_year")
+            GVMBSvsPrevYear.BestFitColumns()
+            GVMBSvsPrevYear.ExpandAllGroups()
         End If
     End Sub
 
