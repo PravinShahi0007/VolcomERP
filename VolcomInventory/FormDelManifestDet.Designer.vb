@@ -735,7 +735,6 @@ Partial Class FormDelManifestDet
         Me.GVList.LevelIndent = 0
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVList.OptionsFind.AlwaysVisible = True
         Me.GVList.OptionsView.AllowCellMerge = True
         Me.GVList.OptionsView.ColumnAutoWidth = False
         Me.GVList.OptionsView.ShowFooter = True
