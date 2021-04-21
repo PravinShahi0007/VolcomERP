@@ -8778,6 +8778,12 @@
     <Compile Include="ReportMemoUnpaidLeave.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMISVsYear.Designer.vb">
+      <DependentUpon>ReportMISVsYear.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMISVsYear.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMonthlyBSvs.Designer.vb">
       <DependentUpon>ReportMonthlyBSvs.vb</DependentUpon>
     </Compile>
