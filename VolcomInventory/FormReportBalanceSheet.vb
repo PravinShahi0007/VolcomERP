@@ -1575,7 +1575,20 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
 
     Private Sub BPrintMonthlyReport_Click(sender As Object, e As EventArgs) Handles BPrintMonthlyReport.Click
         If XTCMonthlyReport.SelectedTabPageIndex = 0 Then
+            If GVMAktiva.RowCount > 0 And GVMPasiva.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
 
+                Dim Report As New ReportMBalanceSheet()
+                Report.dt_aktiva = GCMAktiva.DataSource
+                Report.dt_pasiva = GCMPasiva.DataSource
+                Report.languange = "eng"
+                Report.LTitle.Text = "PT. Volcom Indonesia Balance Sheet for Period Ending " & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("MMMM yyyy")
+
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+
+                Cursor = Cursors.Default
+            End If
         ElseIf XTCMonthlyReport.SelectedTabPageIndex = 1 Then
             If GVMProfitLoss.RowCount > 0 Then
                 Cursor = Cursors.WaitCursor
