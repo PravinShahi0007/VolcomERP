@@ -48,7 +48,7 @@
                 newRow("id_sales_return_order_det") = "0"
                 newRow("id_sales_pos_det_cn") = "0"
                 newRow("id_product") = dtf(0)("id_product").ToString
-                newRow("id_pl_prod_order_rec_det_unique") = dtf(0)("id_pl_sales_order_del_det_counting").ToString
+                newRow("id_pl_prod_order_rec_det_unique") = dtf(0)("id_pl_prod_order_rec_det_unique").ToString
                 newRow("scanned_code") = dtf(0)("code_list").ToString
                 newRow("name") = dtf(0)("name").ToString
                 newRow("size") = dtf(0)("size").ToString
