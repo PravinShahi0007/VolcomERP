@@ -14336,6 +14336,9 @@
     <EmbeddedResource Include="ReportMemoUnpaidLeave.resx">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportMISVsYear.resx">
+      <DependentUpon>ReportMISVsYear.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportMonthlyBSvs.resx">
       <DependentUpon>ReportMonthlyBSvs.vb</DependentUpon>
     </EmbeddedResource>

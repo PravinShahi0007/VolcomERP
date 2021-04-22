@@ -1639,6 +1639,42 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
 
                 Cursor = Cursors.Default
             End If
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 4 Then
+            If GVMPLvsPrevYear.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+
+                Dim Report As New ReportMISVsYear()
+                Report.dt = GCMPLvsPrevYear.DataSource
+                Report.languange = "eng"
+
+                Dim q As String = "SELECT '' AS ytd,DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%d %M %Y') AS prev_year "
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+                Report.DataSource = dt
+
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+
+                Cursor = Cursors.Default
+            End If
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 5 Then
+            If GVMPLvsYTD.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+
+                Dim Report As New ReportMISVsYear()
+                Report.dt = GCMPLvsYTD.DataSource
+                Report.languange = "eng"
+
+                Dim q As String = "SELECT 'YTD' AS ytd,DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%d %M %Y') AS prev_year "
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+                Report.DataSource = dt
+
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+
+                Cursor = Cursors.Default
+            End If
         End If
 
     End Sub
@@ -1883,19 +1919,19 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
         If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
             Select Case summaryID
                 Case 1
-                    plvsytd_py_tot_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "last_year_to_date")
-                    plvsytd_tm_tot_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_year_to_date")
+                    plvsytd_py_tot_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "prev_year")
+                    plvsytd_tm_tot_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_month")
                 Case 2
-                    plvsytd_py_tot_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "last_year_to_date")
-                    plvsytd_tm_tot_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_year_to_date")
+                    plvsytd_py_tot_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "prev_year")
+                    plvsytd_tm_tot_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_month")
                 Case 3
-                    plvsytd_py_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "last_year_to_date")
+                    plvsytd_py_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "prev_year")
                 Case 4
-                    plvsytd_py_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "last_year_to_date")
+                    plvsytd_py_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "prev_year")
                 Case 5
-                    plvsytd_tm_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_year_to_date")
+                    plvsytd_tm_group += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_month")
                 Case 6
-                    plvsytd_tm_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_year_to_date")
+                    plvsytd_tm_footer += GVMPLvsYTD.GetRowCellValue(e.RowHandle, "this_month")
             End Select
         End If
 
@@ -1920,7 +1956,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
                 Case 3
                     Dim tot_group As Decimal = 0.00
                     Try
-                        tot_group = (plvsytd_py_group / GVMPLvsYTD.GetRowCellValue(0, "sales_last_year_to_date")) * 100
+                        tot_group = (plvsytd_py_group / GVMPLvsYTD.GetRowCellValue(0, "prev_year_sales")) * 100
                     Catch ex As Exception
 
                     End Try
@@ -1928,7 +1964,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
                 Case 4
                     Dim tot_footer As Decimal = 0.00
                     Try
-                        tot_footer = (plvsytd_py_footer / GVMPLvsYTD.GetRowCellValue(0, "sales_last_year_to_date")) * 100
+                        tot_footer = (plvsytd_py_footer / GVMPLvsYTD.GetRowCellValue(0, "prev_year_sales")) * 100
                     Catch ex As Exception
 
                     End Try
@@ -1936,7 +1972,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
                 Case 5
                     Dim tot_group As Decimal = 0.00
                     Try
-                        tot_group = (plvsytd_tm_group / GVMPLvsYTD.GetRowCellValue(0, "sales_year_to_date")) * 100
+                        tot_group = (plvsytd_tm_group / GVMPLvsYTD.GetRowCellValue(0, "this_month_sales")) * 100
                     Catch ex As Exception
 
                     End Try
@@ -1944,7 +1980,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
                 Case 6
                     Dim tot_footer As Decimal = 0.00
                     Try
-                        tot_footer = (plvsytd_tm_footer / GVMPLvsYTD.GetRowCellValue(0, "sales_year_to_date")) * 100
+                        tot_footer = (plvsytd_tm_footer / GVMPLvsYTD.GetRowCellValue(0, "this_month_sales")) * 100
                     Catch ex As Exception
 
                     End Try
