@@ -66,7 +66,7 @@
         End If
 
         Dim query_c As ClassReturn = New ClassReturn()
-        Dim query As String = query_c.queryMain("AND a.id_report_status='6' AND (a.sales_return_order_date>='" + date_from_selected + "' AND a.sales_return_order_date<='" + date_until_selected + "') " + cond_status + where_id_comp, "1")
+        Dim query As String = query_c.queryMain("AND a.id_report_status='6' AND (a.sales_return_order_date>='" + date_from_selected + "' AND a.sales_return_order_date<='" + date_until_selected + "') AND dg.is_auto_cn_ror = 2 " + cond_status + where_id_comp, "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesReturnOrder.DataSource = data
         GVSalesReturnOrder.BestFitColumns()
