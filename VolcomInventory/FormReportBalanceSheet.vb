@@ -1675,8 +1675,25 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
 
                 Cursor = Cursors.Default
             End If
-        End If
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 6 Then
+            If GVMBSvsPrevYear.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
 
+                Dim Report As New ReportMBSVsYear()
+                Report.dt = GCMBSvsPrevYear.DataSource
+                Report.languange = "eng"
+
+                Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%d %M %Y') AS prev_year "
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+                Report.DataSource = dt
+
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 
     Dim bs_vpm_t_sum As Decimal = 0.00
