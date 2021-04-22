@@ -274,7 +274,8 @@ GROUP BY pnd.kurs"
                             Dim qd As String = "SELECT 'Debit Note' AS `type`,dnd.id_debit_note,2 AS is_dc,'221' AS report_mark_type,GROUP_CONCAT(DISTINCT(dnd.report_number)) AS po_number,GROUP_CONCAT(DISTINCT(dn.number)) AS inv_number
 ,-SUM(ROUND(dnd.`unit_price`*((dnd.claim_percent)/100),2)*dnd.`qty`) AS amount 
 ,0 AS vat
-,-IF(dn.id_dn_type=4,SUM(ROUND((dnd.`claim_percent`/100)*dnd.`unit_price_usd`,2) * dnd.`qty`),SUM(ROUND(dnd.`unit_price`*((dnd.claim_percent)/100),2)*dnd.`qty`)) AS value_bef_kurs
+,-IF(dn.id_dn_type=4,SUM(ROUND((dnd.`claim_percent`/100)*dnd.`unit_price_usd`,2) * dnd.`qty`)
+,-SUM(ROUND(dnd.`unit_price`*((dnd.claim_percent)/100),2)*dnd.`qty`)) AS value_bef_kurs
 ,-CAST(SUM(IF(dnd.id_currency=2,(ROUND((dnd.`claim_percent`/100)*dnd.`unit_price`,2) * dnd.`qty`)-((ROUND((dnd.`claim_percent`/100)*dnd.`unit_price_usd`,2) * dnd.`qty`)*" & decimalSQL(FormBankWithdrawal.TEKurs.EditValue.ToString) & "),0)) AS DECIMAL(13,2)) AS amount_selisih_kurs 		
 ,-CAST(IF(dn.id_dn_type=4,SUM(dnd.`unit_price_usd`*dnd.`qty`*((dnd.claim_percent)/100))*" & decimalSQL(FormBankWithdrawal.TEKurs.EditValue.ToString) & ",SUM(dnd.`unit_price`*dnd.`qty`*((dnd.claim_percent)/100))) AS DECIMAL(13,2)) AS amount_now_kurs
 ,cur.`id_currency`,cur.`currency`,dnd.`kurs`

@@ -3945,9 +3945,9 @@ Partial Class FormReportBalanceSheet
         '
         Me.BPrintMonthlyReport.Location = New System.Drawing.Point(274, 13)
         Me.BPrintMonthlyReport.Name = "BPrintMonthlyReport"
-        Me.BPrintMonthlyReport.Size = New System.Drawing.Size(50, 23)
+        Me.BPrintMonthlyReport.Size = New System.Drawing.Size(76, 23)
         Me.BPrintMonthlyReport.TabIndex = 6
-        Me.BPrintMonthlyReport.Text = "print"
+        Me.BPrintMonthlyReport.Text = "print (eng)"
         '
         'BViewMonthlyReport
         '
