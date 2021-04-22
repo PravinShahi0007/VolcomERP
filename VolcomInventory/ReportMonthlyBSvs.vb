@@ -26,7 +26,6 @@
                 End If
             End If
 
-
             'detail
             Dim row_det As DevExpress.XtraReports.UI.XRTableRow = New DevExpress.XtraReports.UI.XRTableRow
             row_det.HeightF = 25

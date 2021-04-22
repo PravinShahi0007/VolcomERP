@@ -8586,6 +8586,12 @@
     <Compile Include="ReportMasterEmployeeSuratKeteranganBansos.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMasterEmployeeSuratKeteranganKerja.Designer.vb">
+      <DependentUpon>ReportMasterEmployeeSuratKeteranganKerja.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterEmployeeSuratKeteranganKerja.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.Designer.vb">
       <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
     </Compile>
@@ -8758,6 +8764,12 @@
       <DependentUpon>ReportMatWO.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportMatWO.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportMBalanceSheet.Designer.vb">
+      <DependentUpon>ReportMBalanceSheet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMBalanceSheet.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportMemoUnpaidLeave.Designer.vb">
@@ -14203,6 +14215,9 @@
     <EmbeddedResource Include="ReportMasterEmployeeSuratKeteranganBansos.resx">
       <DependentUpon>ReportMasterEmployeeSuratKeteranganBansos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportMasterEmployeeSuratKeteranganKerja.resx">
+      <DependentUpon>ReportMasterEmployeeSuratKeteranganKerja.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterEmployeeSuratKeteranganPenangguhanBank.resx">
       <DependentUpon>ReportMasterEmployeeSuratKeteranganPenangguhanBank.vb</DependentUpon>
     </EmbeddedResource>
@@ -14308,6 +14323,9 @@
     <EmbeddedResource Include="ReportMatWO.resx">
       <DependentUpon>ReportMatWO.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMBalanceSheet.resx">
+      <DependentUpon>ReportMBalanceSheet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMemoUnpaidLeave.resx">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
