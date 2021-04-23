@@ -80,7 +80,13 @@
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT * FROM tb_pp_change_det WHERE id_pp_change='" + id + "' "
+        Dim is_show_all As String = ""
+        If is_confirm = "2" Then
+            is_show_all = "1"
+        Else
+            is_show_all = "2"
+        End If
+        Dim query As String = "CALL view_pp_change(" + id + "," + is_show_all + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
@@ -376,5 +382,11 @@
         FormProposePriceChangeEffective.id = id
         FormProposePriceChangeEffective.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class

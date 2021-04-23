@@ -49,7 +49,37 @@ Partial Class FormProposePriceMKDDet
         Me.XTCPP = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBandno = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumndesign_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumndisc_desc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnmkd_normal_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnmkd_30_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnmkd_50_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnmkd_70_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumndesign_cat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnprice_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumndesign_cop = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumndesign_price_normal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumndesign_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumncurr_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnage = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandPropose = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnerp_discount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnpropose_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnpropose_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnpropose_price_final = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnnote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_pp_change_det = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_design = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnfirst_del = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_design_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_design_price_normal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlShowNonActive = New DevExpress.XtraEditors.PanelControl()
         Me.CEShowNonActive = New DevExpress.XtraEditors.CheckEdit()
@@ -424,9 +454,402 @@ Partial Class FormProposePriceMKDDet
         '
         'GVData
         '
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandno, Me.gridBandDetail, Me.gridBandPropose})
+        Me.GVData.ColumnPanelRowHeight = 40
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnno, Me.BandedGridColumnid_pp_change_det, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_code, Me.BandedGridColumnname, Me.BandedGridColumnclass, Me.BandedGridColumnid_disc, Me.BandedGridColumndisc_desc, Me.BandedGridColumnmkd_normal_view, Me.BandedGridColumnmkd_30_view, Me.BandedGridColumnmkd_50_view, Me.BandedGridColumnmkd_70_view, Me.BandedGridColumnfirst_del, Me.BandedGridColumnage, Me.BandedGridColumndesign_cop, Me.BandedGridColumnid_design_price, Me.BandedGridColumndesign_price, Me.BandedGridColumnprice_type, Me.BandedGridColumndesign_cat, Me.BandedGridColumnid_design_price_normal, Me.BandedGridColumndesign_price_normal, Me.BandedGridColumncurr_disc, Me.BandedGridColumnpropose_disc, Me.BandedGridColumnpropose_price, Me.BandedGridColumnpropose_price_final, Me.BandedGridColumnerp_discount, Me.BandedGridColumnnote})
         Me.GVData.GridControl = Me.GCData
+        Me.GVData.GroupCount = 1
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
+        Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnclass, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridBandno
+        '
+        Me.GridBandno.Columns.Add(Me.BandedGridColumnno)
+        Me.GridBandno.Name = "GridBandno"
+        Me.GridBandno.VisibleIndex = 0
+        Me.GridBandno.Width = 47
+        '
+        'BandedGridColumnno
+        '
+        Me.BandedGridColumnno.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnno.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnno.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnno.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnno.Caption = "No"
+        Me.BandedGridColumnno.FieldName = "no"
+        Me.BandedGridColumnno.Name = "BandedGridColumnno"
+        Me.BandedGridColumnno.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnno.Visible = True
+        Me.BandedGridColumnno.Width = 47
+        '
+        'gridBandDetail
+        '
+        Me.gridBandDetail.Caption = "PRODUCT DETAIL"
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_code)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnname)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnclass)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndisc_desc)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_normal_view)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_30_view)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_50_view)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_70_view)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_cat)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnprice_type)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_cop)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_price_normal)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_price)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumncurr_disc)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnage)
+        Me.gridBandDetail.Name = "gridBandDetail"
+        Me.gridBandDetail.VisibleIndex = 1
+        Me.gridBandDetail.Width = 1125
+        '
+        'BandedGridColumndesign_code
+        '
+        Me.BandedGridColumndesign_code.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_code.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_code.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_code.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_code.Caption = "Code"
+        Me.BandedGridColumndesign_code.FieldName = "design_code"
+        Me.BandedGridColumndesign_code.Name = "BandedGridColumndesign_code"
+        Me.BandedGridColumndesign_code.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumndesign_code.Visible = True
+        '
+        'BandedGridColumnname
+        '
+        Me.BandedGridColumnname.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnname.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnname.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnname.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnname.Caption = "Description"
+        Me.BandedGridColumnname.FieldName = "name"
+        Me.BandedGridColumnname.Name = "BandedGridColumnname"
+        Me.BandedGridColumnname.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnname.Visible = True
+        '
+        'BandedGridColumnclass
+        '
+        Me.BandedGridColumnclass.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnclass.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnclass.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnclass.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnclass.Caption = "Class"
+        Me.BandedGridColumnclass.FieldName = "class"
+        Me.BandedGridColumnclass.Name = "BandedGridColumnclass"
+        Me.BandedGridColumnclass.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnclass.Visible = True
+        '
+        'BandedGridColumndisc_desc
+        '
+        Me.BandedGridColumndisc_desc.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumndisc_desc.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndisc_desc.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumndisc_desc.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndisc_desc.Caption = "Tipe Umur Diskon"
+        Me.BandedGridColumndisc_desc.FieldName = "disc_desc"
+        Me.BandedGridColumndisc_desc.Name = "BandedGridColumndisc_desc"
+        Me.BandedGridColumndisc_desc.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumndisc_desc.Visible = True
+        '
+        'BandedGridColumnmkd_normal_view
+        '
+        Me.BandedGridColumnmkd_normal_view.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnmkd_normal_view.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnmkd_normal_view.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnmkd_normal_view.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnmkd_normal_view.Caption = "Normal"
+        Me.BandedGridColumnmkd_normal_view.FieldName = "mkd_normal_view"
+        Me.BandedGridColumnmkd_normal_view.Name = "BandedGridColumnmkd_normal_view"
+        Me.BandedGridColumnmkd_normal_view.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnmkd_normal_view.Visible = True
+        '
+        'BandedGridColumnmkd_30_view
+        '
+        Me.BandedGridColumnmkd_30_view.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnmkd_30_view.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnmkd_30_view.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnmkd_30_view.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnmkd_30_view.Caption = "Diskon 30%"
+        Me.BandedGridColumnmkd_30_view.FieldName = "mkd_30_view"
+        Me.BandedGridColumnmkd_30_view.Name = "BandedGridColumnmkd_30_view"
+        Me.BandedGridColumnmkd_30_view.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnmkd_30_view.Visible = True
+        '
+        'BandedGridColumnmkd_50_view
+        '
+        Me.BandedGridColumnmkd_50_view.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnmkd_50_view.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnmkd_50_view.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnmkd_50_view.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnmkd_50_view.Caption = "Diskon 50%"
+        Me.BandedGridColumnmkd_50_view.FieldName = "mkd_50_view"
+        Me.BandedGridColumnmkd_50_view.Name = "BandedGridColumnmkd_50_view"
+        Me.BandedGridColumnmkd_50_view.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnmkd_50_view.Visible = True
+        '
+        'BandedGridColumnmkd_70_view
+        '
+        Me.BandedGridColumnmkd_70_view.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnmkd_70_view.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnmkd_70_view.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnmkd_70_view.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnmkd_70_view.Caption = "Diskon 70%"
+        Me.BandedGridColumnmkd_70_view.FieldName = "mkd_70_view"
+        Me.BandedGridColumnmkd_70_view.Name = "BandedGridColumnmkd_70_view"
+        Me.BandedGridColumnmkd_70_view.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnmkd_70_view.Visible = True
+        '
+        'BandedGridColumndesign_cat
+        '
+        Me.BandedGridColumndesign_cat.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_cat.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_cat.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_cat.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_cat.Caption = "Status"
+        Me.BandedGridColumndesign_cat.FieldName = "design_cat"
+        Me.BandedGridColumndesign_cat.Name = "BandedGridColumndesign_cat"
+        Me.BandedGridColumndesign_cat.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumndesign_cat.Visible = True
+        '
+        'BandedGridColumnprice_type
+        '
+        Me.BandedGridColumnprice_type.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnprice_type.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnprice_type.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnprice_type.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnprice_type.Caption = "Price Type"
+        Me.BandedGridColumnprice_type.FieldName = "price_type"
+        Me.BandedGridColumnprice_type.Name = "BandedGridColumnprice_type"
+        Me.BandedGridColumnprice_type.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnprice_type.Visible = True
+        '
+        'BandedGridColumndesign_cop
+        '
+        Me.BandedGridColumndesign_cop.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_cop.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_cop.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_cop.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_cop.Caption = "Cost Price"
+        Me.BandedGridColumndesign_cop.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumndesign_cop.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumndesign_cop.FieldName = "design_cop"
+        Me.BandedGridColumndesign_cop.Name = "BandedGridColumndesign_cop"
+        Me.BandedGridColumndesign_cop.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumndesign_cop.Visible = True
+        '
+        'BandedGridColumndesign_price_normal
+        '
+        Me.BandedGridColumndesign_price_normal.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_price_normal.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_price_normal.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_price_normal.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_price_normal.Caption = "Normal Price"
+        Me.BandedGridColumndesign_price_normal.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumndesign_price_normal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumndesign_price_normal.FieldName = "design_price_normal"
+        Me.BandedGridColumndesign_price_normal.Name = "BandedGridColumndesign_price_normal"
+        Me.BandedGridColumndesign_price_normal.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumndesign_price_normal.Visible = True
+        '
+        'BandedGridColumndesign_price
+        '
+        Me.BandedGridColumndesign_price.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_price.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_price.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_price.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_price.Caption = "Current Price"
+        Me.BandedGridColumndesign_price.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumndesign_price.FieldName = "design_price"
+        Me.BandedGridColumndesign_price.Name = "BandedGridColumndesign_price"
+        Me.BandedGridColumndesign_price.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumndesign_price.Visible = True
+        '
+        'BandedGridColumncurr_disc
+        '
+        Me.BandedGridColumncurr_disc.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumncurr_disc.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumncurr_disc.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumncurr_disc.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumncurr_disc.Caption = "Current Disc"
+        Me.BandedGridColumncurr_disc.DisplayFormat.FormatString = "{0:n0}%"
+        Me.BandedGridColumncurr_disc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumncurr_disc.FieldName = "curr_disc"
+        Me.BandedGridColumncurr_disc.Name = "BandedGridColumncurr_disc"
+        Me.BandedGridColumncurr_disc.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumncurr_disc.Visible = True
+        '
+        'BandedGridColumnage
+        '
+        Me.BandedGridColumnage.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnage.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnage.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnage.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnage.Caption = "Age"
+        Me.BandedGridColumnage.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnage.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnage.FieldName = "age"
+        Me.BandedGridColumnage.Name = "BandedGridColumnage"
+        Me.BandedGridColumnage.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnage.Visible = True
+        '
+        'gridBandPropose
+        '
+        Me.gridBandPropose.Caption = "PROPOSE PRICE"
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnerp_discount)
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_disc)
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_price)
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_price_final)
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnnote)
+        Me.gridBandPropose.Name = "gridBandPropose"
+        Me.gridBandPropose.VisibleIndex = 2
+        Me.gridBandPropose.Width = 396
+        '
+        'BandedGridColumnerp_discount
+        '
+        Me.BandedGridColumnerp_discount.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnerp_discount.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnerp_discount.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnerp_discount.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnerp_discount.Caption = "Rekomendasi Disc"
+        Me.BandedGridColumnerp_discount.DisplayFormat.FormatString = "{0:n0}%"
+        Me.BandedGridColumnerp_discount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnerp_discount.FieldName = "erp_discount"
+        Me.BandedGridColumnerp_discount.Name = "BandedGridColumnerp_discount"
+        Me.BandedGridColumnerp_discount.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnerp_discount.Visible = True
+        Me.BandedGridColumnerp_discount.Width = 96
+        '
+        'BandedGridColumnpropose_disc
+        '
+        Me.BandedGridColumnpropose_disc.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_disc.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_disc.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_disc.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_disc.Caption = "Propose Disc"
+        Me.BandedGridColumnpropose_disc.DisplayFormat.FormatString = "{0:n0}%"
+        Me.BandedGridColumnpropose_disc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnpropose_disc.FieldName = "propose_disc"
+        Me.BandedGridColumnpropose_disc.Name = "BandedGridColumnpropose_disc"
+        Me.BandedGridColumnpropose_disc.Visible = True
+        '
+        'BandedGridColumnpropose_price
+        '
+        Me.BandedGridColumnpropose_price.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_price.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_price.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_price.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_price.Caption = "Propose Price"
+        Me.BandedGridColumnpropose_price.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnpropose_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnpropose_price.FieldName = "propose_price"
+        Me.BandedGridColumnpropose_price.Name = "BandedGridColumnpropose_price"
+        Me.BandedGridColumnpropose_price.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnpropose_price.Visible = True
+        '
+        'BandedGridColumnpropose_price_final
+        '
+        Me.BandedGridColumnpropose_price_final.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_price_final.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_price_final.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_price_final.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_price_final.Caption = "Propose Final"
+        Me.BandedGridColumnpropose_price_final.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnpropose_price_final.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnpropose_price_final.FieldName = "propose_price_final"
+        Me.BandedGridColumnpropose_price_final.Name = "BandedGridColumnpropose_price_final"
+        Me.BandedGridColumnpropose_price_final.Visible = True
+        '
+        'BandedGridColumnnote
+        '
+        Me.BandedGridColumnnote.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnnote.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnnote.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnnote.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnnote.Caption = "Note"
+        Me.BandedGridColumnnote.FieldName = "note"
+        Me.BandedGridColumnnote.Name = "BandedGridColumnnote"
+        Me.BandedGridColumnnote.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnnote.Visible = True
+        '
+        'BandedGridColumnid_pp_change_det
+        '
+        Me.BandedGridColumnid_pp_change_det.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnid_pp_change_det.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_pp_change_det.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnid_pp_change_det.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_pp_change_det.Caption = "id_pp_change_det"
+        Me.BandedGridColumnid_pp_change_det.FieldName = "id_pp_change_det"
+        Me.BandedGridColumnid_pp_change_det.Name = "BandedGridColumnid_pp_change_det"
+        Me.BandedGridColumnid_pp_change_det.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnid_pp_change_det.Visible = True
+        '
+        'BandedGridColumnid_design
+        '
+        Me.BandedGridColumnid_design.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnid_design.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_design.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnid_design.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_design.Caption = "id_design"
+        Me.BandedGridColumnid_design.FieldName = "id_design"
+        Me.BandedGridColumnid_design.Name = "BandedGridColumnid_design"
+        Me.BandedGridColumnid_design.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnid_design.Visible = True
+        '
+        'BandedGridColumnid_disc
+        '
+        Me.BandedGridColumnid_disc.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnid_disc.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_disc.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnid_disc.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_disc.Caption = "id_disc"
+        Me.BandedGridColumnid_disc.FieldName = "id_disc"
+        Me.BandedGridColumnid_disc.Name = "BandedGridColumnid_disc"
+        Me.BandedGridColumnid_disc.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnid_disc.Visible = True
+        '
+        'BandedGridColumnfirst_del
+        '
+        Me.BandedGridColumnfirst_del.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnfirst_del.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnfirst_del.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnfirst_del.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnfirst_del.Caption = "First Delivery Date"
+        Me.BandedGridColumnfirst_del.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumnfirst_del.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumnfirst_del.FieldName = "first_del"
+        Me.BandedGridColumnfirst_del.Name = "BandedGridColumnfirst_del"
+        Me.BandedGridColumnfirst_del.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnfirst_del.Visible = True
+        '
+        'BandedGridColumnid_design_price
+        '
+        Me.BandedGridColumnid_design_price.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnid_design_price.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_design_price.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnid_design_price.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_design_price.Caption = "id_design_price"
+        Me.BandedGridColumnid_design_price.FieldName = "id_design_price"
+        Me.BandedGridColumnid_design_price.Name = "BandedGridColumnid_design_price"
+        Me.BandedGridColumnid_design_price.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnid_design_price.Visible = True
+        '
+        'BandedGridColumnid_design_price_normal
+        '
+        Me.BandedGridColumnid_design_price_normal.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnid_design_price_normal.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_design_price_normal.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnid_design_price_normal.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_design_price_normal.Caption = "id_design_price_normal"
+        Me.BandedGridColumnid_design_price_normal.FieldName = "id_design_price_normal"
+        Me.BandedGridColumnid_design_price_normal.Name = "BandedGridColumnid_design_price_normal"
+        Me.BandedGridColumnid_design_price_normal.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnid_design_price_normal.Visible = True
         '
         'PanelControl3
         '
@@ -582,6 +1005,36 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents PanelControlSelAll As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CESelAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents BtnChangeEffectiveDate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridBandno As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnno As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumndesign_code As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnname As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnclass As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumndisc_desc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnmkd_normal_view As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnmkd_30_view As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnmkd_50_view As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnmkd_70_view As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumndesign_cat As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnprice_type As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumndesign_cop As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumndesign_price_normal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumndesign_price As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumncurr_disc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnage As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnerp_discount As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnpropose_disc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnpropose_price As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnpropose_price_final As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnnote As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnid_pp_change_det As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnid_design As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnid_disc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnfirst_del As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnid_design_price As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnid_design_price_normal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
