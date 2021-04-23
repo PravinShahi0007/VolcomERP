@@ -75,6 +75,7 @@ Partial Class FormProposePriceMKDDet
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BandedGridColumnpropose_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpropose_price_final = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BandedGridColumnnote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_pp_change_det = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_design = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -83,13 +84,13 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnid_design_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_design_price_normal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlShowNonActive = New DevExpress.XtraEditors.PanelControl()
         Me.CEShowNonActive = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlFreeze = New DevExpress.XtraEditors.PanelControl()
         Me.CEFreeze = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,6 +114,7 @@ Partial Class FormProposePriceMKDDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControlShowNonActive, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,7 +126,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlSelAll.SuspendLayout()
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -776,8 +777,12 @@ Partial Class FormProposePriceMKDDet
         '
         'BandedGridColumnpropose_price_final
         '
+        Me.BandedGridColumnpropose_price_final.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnpropose_price_final.AppearanceCell.Options.UseFont = True
         Me.BandedGridColumnpropose_price_final.AppearanceCell.Options.UseTextOptions = True
         Me.BandedGridColumnpropose_price_final.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_price_final.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnpropose_price_final.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnpropose_price_final.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumnpropose_price_final.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumnpropose_price_final.Caption = "Propose Final"
@@ -788,6 +793,13 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnpropose_price_final.Name = "BandedGridColumnpropose_price_final"
         Me.BandedGridColumnpropose_price_final.Visible = True
         '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N0"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
         'BandedGridColumnnote
         '
         Me.BandedGridColumnnote.AppearanceCell.Options.UseTextOptions = True
@@ -797,7 +809,6 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnnote.Caption = "Note"
         Me.BandedGridColumnnote.FieldName = "note"
         Me.BandedGridColumnnote.Name = "BandedGridColumnnote"
-        Me.BandedGridColumnnote.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnnote.Visible = True
         '
         'BandedGridColumnid_pp_change_det
@@ -876,6 +887,7 @@ Partial Class FormProposePriceMKDDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControl3.Controls.Add(Me.PanelControlShowNonActive)
         Me.PanelControl3.Controls.Add(Me.PanelControlFreeze)
         Me.PanelControl3.Controls.Add(Me.PanelControlSelAll)
@@ -884,6 +896,17 @@ Partial Class FormProposePriceMKDDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(876, 39)
         Me.PanelControl3.TabIndex = 17
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(762, 2)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(112, 35)
+        Me.BtnExportToXLS.TabIndex = 11
+        Me.BtnExportToXLS.Text = "Export to XLS"
+        Me.BtnExportToXLS.Visible = False
         '
         'PanelControlShowNonActive
         '
@@ -942,13 +965,6 @@ Partial Class FormProposePriceMKDDet
         Me.CESelAll.Size = New System.Drawing.Size(68, 19)
         Me.CESelAll.TabIndex = 2
         '
-        'RepositoryItemTextEdit1
-        '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.Mask.EditMask = "N0"
-        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        '
         'FormProposePriceMKDDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -987,6 +1003,7 @@ Partial Class FormProposePriceMKDDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControlShowNonActive, System.ComponentModel.ISupportInitialize).EndInit()
@@ -998,7 +1015,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlSelAll.ResumeLayout(False)
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1073,4 +1089,5 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents RepositoryItemDisc As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
 End Class

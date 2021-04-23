@@ -20,8 +20,7 @@
 
     Sub viewDisc()
         Dim query As String = "SELECT CAST(d.value AS DECIMAL(5,0)) AS `propose_disc`, CONCAT((SELECT propose_disc),'%') AS `propose_disc_display`
-        FROM tb_lookup_disc_type d
-        WHERE d.id_disc_type>1 "
+        FROM tb_lookup_disc_type d "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         RepositoryItemDisc.DataSource = Nothing
         RepositoryItemDisc.DataSource = data
@@ -185,7 +184,47 @@
     End Sub
 
     Sub saveChangesDetail()
+        If action = "upd" Then
+            GVData.ActiveFilterString = "[id_pp_change_det]>0"
+            For u As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
+                Cursor = Cursors.WaitCursor
+                Dim id_pp_chenge_det As String = GVData.GetRowCellValue(u, "id_pp_change_det").ToString
+                Dim propose_discount As String = decimalSQL(GVData.GetRowCellValue(u, "propose_disc").ToString)
+                Dim propose_price As String = decimalSQL(GVData.GetRowCellValue(u, "propose_price").ToString)
+                Dim propose_price_final As String = decimalSQL(GVData.GetRowCellValue(u, "propose_price_final").ToString)
+                Dim note As String = addSlashes(GVData.GetRowCellValue(u, "note").ToString)
+                Dim qupd As String = "UPDATE tb_pp_change_det SET propose_discount='" + propose_discount + "',
+                propose_price='" + propose_price + "', propose_price_final='" + propose_price_final + "', 
+                note='" + note + "' WHERE id_pp_change_det='" + id_pp_chenge_det + "'"
+                execute_non_query_long(qupd, True, "", "", "", "")
+                Cursor = Cursors.Default
+            Next
 
+            'Cursor = Cursors.WaitCursor
+            'GVData.ActiveFilterString = ""
+            'GVData.ActiveFilterString = "[id_pp_change_det]=0 AND [propose_disc]>0 "
+            'Dim qins As String = "INSERT INTO tb_pp_change_det(id_pp_change, id_design, id_design_price, design_price, age, erp_discount, propose_discount, propose_price, propose_price_final, note) VALUES "
+            'For i As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
+            '    Dim id_design As String = GVData.GetRowCellValue(i, "id_design").ToString
+            '    Dim id_design_price As String = GVData.GetRowCellValue(i, "id_design_price").ToString
+            '    Dim design_price As String = decimalSQL(GVData.GetRowCellValue(i, "design_price").ToString)
+            '    Dim age As String = decimalSQL(GVData.GetRowCellValue(i, "age").ToString)
+            '    Dim erp_discount As String = decimalSQL(GVData.GetRowCellValue(i, "erp_discount").ToString)
+            '    Dim propose_discount As String = decimalSQL(GVData.GetRowCellValue(i, "propose_disc").ToString)
+            '    Dim propose_price As String = decimalSQL(GVData.GetRowCellValue(i, "propose_price").ToString)
+            '    Dim propose_price_final As String = decimalSQL(GVData.GetRowCellValue(i, "propose_price_final").ToString)
+            '    Dim note As String = addSlashes(GVData.GetRowCellValue(i, "note").ToString)
+            '    If i > 0 Then
+            '        qins += ","
+            '    End If
+            '    qins += "('" + id + "', '" + id_design + "', '" + id_design_price + "', '" + design_price + "', '" + age + "', '" + erp_discount + "', '" + propose_discount + "', '" + propose_price + "', '" + propose_price_final + "', '" + note + "') "
+            'Next
+            'If GVData.RowCount > 0 Then
+            '    execute_non_query_long(qins, True, "", "", "", "")
+            'End If
+            'GVData.ActiveFilterString = ""
+            'Cursor = Cursors.Default
+        End If
     End Sub
 
     Function checkHead()
@@ -240,15 +279,20 @@
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
+                'Try
                 'head
                 saveHead()
 
-                'detail
-                saveChangesDetail()
+                    'detail
+                    saveChangesDetail()
 
-                actionLoad()
-                FormProposePriceMKD.viewSummary()
-                FormProposePriceMKD.GVSummary.FocusedRowHandle = find_row(FormProposePriceMKD.GVSummary, "id_pp_change", id)
+                    actionLoad()
+                    FormProposePriceMKD.viewSummary()
+                    FormProposePriceMKD.GVSummary.FocusedRowHandle = find_row(FormProposePriceMKD.GVSummary, "id_pp_change", id)
+                    infoCustom("Save changes success")
+                'Catch ex As Exception
+                '    stopCustom("Error save changes, please contact administrator. " + ex.ToString)
+                'End Try
             End If
         End If
     End Sub
@@ -400,5 +444,77 @@
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+    Dim t As Integer = 0
+    Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
+        Dim rh As Integer = e.RowHandle
+        If e.Column.FieldName.ToString = "propose_disc" Then
+            Cursor = Cursors.WaitCursor
+            If e.Value > 0 Then
+                Dim dt As DataTable = getPP(GVData.GetRowCellValue(rh, "design_price_normal"), e.Value)
+                If dt.Rows.Count > 0 Then
+                    GVData.SetRowCellValue(rh, "propose_price", dt.Rows(0)("propose_price"))
+                    GVData.SetRowCellValue(rh, "propose_price_final", dt.Rows(0)("propose_price_final"))
+                Else
+                    GVData.SetRowCellValue(rh, "propose_price", 0)
+                    GVData.SetRowCellValue(rh, "propose_price_final", 0)
+                End If
+                GCData.RefreshDataSource()
+                GVData.RefreshData()
+                GVData.BestFitColumns()
+            Else
+                GVData.SetRowCellValue(rh, "propose_price", 0)
+                GVData.SetRowCellValue(rh, "propose_price_final", 0)
+                GCData.RefreshDataSource()
+                GVData.RefreshData()
+                GVData.BestFitColumns()
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Function getPP(ByVal normal_price As Decimal, ByVal disc As Decimal) As DataTable
+        Dim query As String = "SELECT CAST(" + decimalSQL(normal_price.ToString) + " * ((100-" + decimalSQL(disc.ToString) + ")/100) AS DECIMAL(15,0)) AS `propose_price`,
+        TRUNCATE((SELECT propose_price),-3) AS `propose_price_final` "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
+
+    Private Sub BtnExportToXLS_Click(sender As Object, e As EventArgs) Handles BtnExportToXLS.Click
+        If GVData.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "pth_" + id + ".xlsx"
+            exportToXLS(path, "pth_" + id, GCData)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
