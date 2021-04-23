@@ -71,6 +71,8 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandPropose = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnerp_discount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpropose_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemDisc = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BandedGridColumnpropose_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpropose_price_final = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnnote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -87,6 +89,7 @@ Partial Class FormProposePriceMKDDet
         Me.CEFreeze = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,6 +111,8 @@ Partial Class FormProposePriceMKDDet
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControlShowNonActive, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,6 +124,7 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlSelAll.SuspendLayout()
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -448,6 +454,7 @@ Partial Class FormProposePriceMKDDet
         Me.GCData.Location = New System.Drawing.Point(0, 39)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDisc, Me.RepositoryItemTextEdit1})
         Me.GCData.Size = New System.Drawing.Size(876, 291)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -732,11 +739,26 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnpropose_disc.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumnpropose_disc.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumnpropose_disc.Caption = "Propose Disc"
+        Me.BandedGridColumnpropose_disc.ColumnEdit = Me.RepositoryItemDisc
         Me.BandedGridColumnpropose_disc.DisplayFormat.FormatString = "{0:n0}%"
         Me.BandedGridColumnpropose_disc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnpropose_disc.FieldName = "propose_disc"
         Me.BandedGridColumnpropose_disc.Name = "BandedGridColumnpropose_disc"
         Me.BandedGridColumnpropose_disc.Visible = True
+        '
+        'RepositoryItemDisc
+        '
+        Me.RepositoryItemDisc.AutoHeight = False
+        Me.RepositoryItemDisc.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDisc.Name = "RepositoryItemDisc"
+        Me.RepositoryItemDisc.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'BandedGridColumnpropose_price
         '
@@ -759,6 +781,7 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnpropose_price_final.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumnpropose_price_final.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumnpropose_price_final.Caption = "Propose Final"
+        Me.BandedGridColumnpropose_price_final.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnpropose_price_final.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnpropose_price_final.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnpropose_price_final.FieldName = "propose_price_final"
@@ -919,6 +942,13 @@ Partial Class FormProposePriceMKDDet
         Me.CESelAll.Size = New System.Drawing.Size(68, 19)
         Me.CESelAll.TabIndex = 2
         '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N0"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
         'FormProposePriceMKDDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -955,6 +985,8 @@ Partial Class FormProposePriceMKDDet
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControlShowNonActive, System.ComponentModel.ISupportInitialize).EndInit()
@@ -966,6 +998,7 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlSelAll.ResumeLayout(False)
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1037,4 +1070,7 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents BandedGridColumnfirst_del As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_design_price As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_design_price_normal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepositoryItemDisc As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

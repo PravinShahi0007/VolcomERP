@@ -10,11 +10,23 @@
     Private Sub FormProposePriceMKDDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         viewPriceType()
+        viewDisc()
         actionLoad()
     End Sub
 
     Private Sub FormProposePriceMKDDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Sub viewDisc()
+        Dim query As String = "SELECT CAST(d.value AS DECIMAL(5,0)) AS `propose_disc`, CONCAT((SELECT propose_disc),'%') AS `propose_disc_display`
+        FROM tb_lookup_disc_type d
+        WHERE d.id_disc_type>1 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        RepositoryItemDisc.DataSource = Nothing
+        RepositoryItemDisc.DataSource = data
+        RepositoryItemDisc.DisplayMember = "propose_disc_display"
+        RepositoryItemDisc.ValueMember = "propose_disc"
     End Sub
 
     Sub viewPriceType()
