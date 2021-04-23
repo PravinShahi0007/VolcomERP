@@ -35,19 +35,21 @@
             Dim do_no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
 
             do_no.Text = dt.Rows(i)("number").ToString
+            do_no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
 
             'store account
             Dim comp_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
 
             comp_number.Text = dt.Rows(i)("comp_number").ToString
+            comp_number.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
 
-            'store name
-            Dim comp_name As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+            ''store name
+            'Dim comp_name As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
 
-            comp_name.Text = dt.Rows(i)("comp_name").ToString
+            'comp_name.Text = dt.Rows(i)("comp_name").ToString
 
             'qty
-            Dim qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+            Dim qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
 
             qty.Text = Decimal.Parse(dt.Rows(i)("qty").ToString).ToString("N0")
             qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight

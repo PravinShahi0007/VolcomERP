@@ -45,6 +45,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumntracking_code = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_amount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BOutboundLabel = New DevExpress.XtraEditors.SimpleButton()
@@ -194,7 +195,7 @@ Partial Class FormSalesDelOrder
         '
         'GVSalesDelOrder
         '
-        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumnOLStoreOrder, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumnLastUpdate, Me.GridColumnUpdBy, Me.GridColumnTotal, Me.GridColumnCombineNumber, Me.GridColumnPreparedBy, Me.GridColumntracking_code, Me.GridColumncustomer_name, Me.GridColumntotal_amount})
+        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumnOLStoreOrder, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumnLastUpdate, Me.GridColumnUpdBy, Me.GridColumnTotal, Me.GridColumnCombineNumber, Me.GridColumnPreparedBy, Me.GridColumntracking_code, Me.GridColumncustomer_name, Me.GridColumntotal_amount, Me.GridColumn6})
         Me.GVSalesDelOrder.GridControl = Me.GCSalesDelOrder
         Me.GVSalesDelOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotal, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", Me.GridColumntotal_amount, "{0:N0}")})
         Me.GVSalesDelOrder.Name = "GVSalesDelOrder"
@@ -239,6 +240,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumn4.Caption = "Note"
         Me.GridColumn4.FieldName = "pl_sales_order_del_note"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 15
         '
         'GridColumn5
         '
@@ -372,6 +375,14 @@ Partial Class FormSalesDelOrder
         Me.GridColumntotal_amount.FieldName = "total_amount"
         Me.GridColumntotal_amount.Name = "GridColumntotal_amount"
         Me.GridColumntotal_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N0}")})
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Combine Note"
+        Me.GridColumn6.FieldName = "combine_note"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 16
         '
         'GridView3
         '
@@ -1093,4 +1104,5 @@ Partial Class FormSalesDelOrder
     Friend WithEvents DownloadShippingLabelToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnOnlineOrderList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -35,7 +35,7 @@
 
     Sub form_print(ByVal id_letter_of_statement As String)
         Dim query As String = "
-            SELECT s.id_letter_of_statement, s.id_popup, p.popup, s.number, s.date, s.id_employee, IF(s.id_popup = 6, s.employee_name, e.employee_name) AS employee_name, IF(s.id_popup = 6, NULL, e.employee_code) AS employee_code, IF(s.id_popup = 6, s.address_primary, e.address_primary) AS address_primary, IF(s.id_popup = 6, NULL, e.employee_pob) AS employee_pob, e.employee_dob, IF(s.id_popup = 6, s.employee_position, e.employee_position) AS employee_position, IF(s.id_popup = 6, s.id_departement, e.id_departement) AS id_departement, IF(s.id_popup = 6, r.departement, d.departement) AS departement, s.id_departement_sub, t.departement_sub, s.created_date, IF(s.id_popup = 6, NULL, e.employee_actual_join_date) AS employee_actual_join_date, IF(s.id_popup = 6, NULL, e.employee_last_date) AS employee_last_date, IF(s.id_popup = 6, NULL, e.id_sex) AS id_sex, s.address_primary, IF(s.id_popup = 6, r.is_store, d.is_store) AS is_store, IF(s.id_popup = 6, s.start_period, NULL) AS start_period, IF(s.id_popup = 6, s.end_period, NULL) AS end_period, IF(s.id_popup = 6, FLOOR((TIMESTAMPDIFF(DAY, s.start_period, s.end_period)) / 30), NULL) AS contract_length, ROUND(s.basic_salary) AS basic_salary, ROUND(s.allow_job) AS allow_job, ROUND(s.allow_meal) AS allow_meal, ROUND(s.allow_trans) AS allow_trans, ROUND(s.allow_house) AS allow_house, ROUND(s.allow_car) AS allow_car, ROUND((s.basic_salary + s.allow_job + s.allow_meal + s.allow_trans + s.allow_house + s.allow_car)) AS total_salary
+            SELECT s.id_letter_of_statement, s.id_popup, p.popup, s.number, s.date, s.id_employee, IF(s.id_popup = 6, s.employee_name, e.employee_name) AS employee_name, IF(s.id_popup = 6, NULL, e.employee_code) AS employee_code, IF(s.id_popup = 6, s.address_primary, e.address_primary) AS address_primary, IF(s.id_popup = 6, NULL, e.employee_pob) AS employee_pob, e.employee_dob, IF(s.id_popup = 6, s.employee_position, e.employee_position) AS employee_position, IF(s.id_popup = 6, s.id_departement, e.id_departement) AS id_departement, IF(s.id_popup = 6, r.departement, d.departement) AS departement, s.id_departement_sub, t.departement_sub, s.created_date, IF(s.id_popup = 6, NULL, e.employee_actual_join_date) AS employee_actual_join_date, IF(s.id_popup = 6, NULL, e.employee_last_date) AS employee_last_date, IF(s.id_popup = 6, NULL, e.id_sex) AS id_sex, s.address_primary, IF(s.id_popup = 6, r.is_store, d.is_store) AS is_store, IF(s.id_popup = 6, s.start_period, NULL) AS start_period, IF(s.id_popup = 6, s.end_period, NULL) AS end_period, IF(s.id_popup = 6, FLOOR((TIMESTAMPDIFF(DAY, s.start_period, s.end_period)) / 30), NULL) AS contract_length, ROUND(s.basic_salary) AS basic_salary, ROUND(s.allow_job) AS allow_job, ROUND(s.allow_meal) AS allow_meal, ROUND(s.allow_trans) AS allow_trans, ROUND(s.allow_house) AS allow_house, ROUND(s.allow_car) AS allow_car, ROUND((s.basic_salary + s.allow_job + s.allow_meal + s.allow_trans + s.allow_house + s.allow_car)) AS total_salary, e.employee_ktp
             FROM tb_letter_of_statement AS s
             LEFT JOIN tb_letter_of_statement_popup AS p ON s.id_popup = p.id_letter_of_statement_popup
             LEFT JOIN tb_m_employee AS e ON s.id_employee = e.id_employee
@@ -313,6 +313,25 @@ cc.
                 <p style=""font-family: 'Times New Roman'; font-size: 13pt; text-align: center;""><b>Pasal 6 – Lain-lain</b></p>
                 <p style=""margin: 0; font-family: 'Times New Roman'; font-size: 12pt; text-align: justify;"">Perjanjian ini dibuat dalam rangkap dua (2) dan ditandatangani oleh kedua belah pihak serta masing-masing mempunyai kekuatan hukum yang sama dan setiap perubahan / penambahan terhadap ketentuan Perjanjian ini harus dilakukan secara tertulis dan disepakati oleh kedua belah pihak.</p>
             "
+
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        ElseIf data.Rows(0)("id_popup").ToString = "7" Then
+            Dim Report As New ReportMasterEmployeeSuratKeteranganKerja()
+
+            Dim template As String = execute_query("SELECT template FROM `tb_letter_of_statement_popup` WHERE id_letter_of_statement_popup = 7", 0, True, "", "", "", "")
+
+            template = template.Replace("[number]", data.Rows(0)("number").ToString)
+            template = template.Replace("[hrd_manager_name]", hrd_manager.Rows(0)("employee_name").ToString)
+            template = template.Replace("[hrd_manager_position]", hrd_manager.Rows(0)("employee_position").ToString)
+            template = template.Replace("[employee_name]", data.Rows(0)("employee_name").ToString)
+            template = template.Replace("[employee_ktp]", data.Rows(0)("employee_ktp").ToString)
+            template = template.Replace("[address_primary]", data.Rows(0)("address_primary").ToString)
+            template = template.Replace("[employee_position]", data.Rows(0)("employee_position").ToString)
+            template = template.Replace("[created_at]", Date.Parse(data.Rows(0)("created_date").ToString).ToString("dd MMMM yyyy"))
+            template = template.Replace("[employee_actual_join_date]", Date.Parse(data.Rows(0)("employee_actual_join_date").ToString).ToString("dd MMMM yyyy"))
+
+            Report.XrRichText.Html = template
 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()
