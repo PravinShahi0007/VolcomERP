@@ -3546,7 +3546,7 @@ Partial Class FormReportBalanceSheet
         Me.GVMPLvsYTD.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn95, Me.BandedGridColumn82, Me.BandedGridColumn96, Me.BandedGridColumn83, Me.BandedGridColumn97, Me.BandedGridColumn98, Me.BandedGridColumn84, Me.BandedGridColumn85, Me.BandedGridColumn86, Me.BandedGridColumn92, Me.BandedGridColumn87, Me.BandedGridColumn94, Me.BandedGridColumn89, Me.BandedGridColumn91, Me.BandedGridColumn88, Me.BandedGridColumn93})
         Me.GVMPLvsYTD.GridControl = Me.GCMPLvsYTD
         Me.GVMPLvsYTD.GroupCount = 3
-        Me.GVMPLvsYTD.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_year_to_date", Me.BandedGridColumn92, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_year_to_date", Me.BandedGridColumn87, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percentage", Me.BandedGridColumn94, "{0:N0} %", 1), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_last_year_to_date", Me.BandedGridColumn88, "{0:N0} %", "3"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_this_year_to_date", Me.BandedGridColumn93, "{0:N0} %", "5")})
+        Me.GVMPLvsYTD.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", Me.BandedGridColumn92, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_year", Me.BandedGridColumn87, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percentage", Me.BandedGridColumn94, "{0:N0} %", 1), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_sales_prev_year", Me.BandedGridColumn88, "{0:N0} %", "3"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_sales_this_month", Me.BandedGridColumn93, "{0:N0} %", "5")})
         Me.GVMPLvsYTD.Name = "GVMPLvsYTD"
         Me.GVMPLvsYTD.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVMPLvsYTD.OptionsView.ShowFooter = True
@@ -3625,9 +3625,9 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn87.Caption = "Prev Year"
         Me.BandedGridColumn87.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumn87.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn87.FieldName = "last_year_to_date"
+        Me.BandedGridColumn87.FieldName = "prev_year"
         Me.BandedGridColumn87.Name = "BandedGridColumn87"
-        Me.BandedGridColumn87.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "last_year_to_date", "{0:N2}")})
+        Me.BandedGridColumn87.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prev_year", "{0:N2}")})
         Me.BandedGridColumn87.Visible = True
         Me.BandedGridColumn87.Width = 113
         '
@@ -3640,9 +3640,9 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn88.Caption = "% To Sales"
         Me.BandedGridColumn88.DisplayFormat.FormatString = "{0:N0} %"
         Me.BandedGridColumn88.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn88.FieldName = "percent_last_year_to_date"
+        Me.BandedGridColumn88.FieldName = "percent_sales_prev_year"
         Me.BandedGridColumn88.Name = "BandedGridColumn88"
-        Me.BandedGridColumn88.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_last_year_to_date", "{0:N0} %", "4")})
+        Me.BandedGridColumn88.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_sales_prev_year", "{0:N0} %", "4")})
         Me.BandedGridColumn88.Visible = True
         '
         'BandedGridColumn89
@@ -3689,9 +3689,9 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn92.Caption = "This Month"
         Me.BandedGridColumn92.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumn92.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn92.FieldName = "this_year_to_date"
+        Me.BandedGridColumn92.FieldName = "this_month"
         Me.BandedGridColumn92.Name = "BandedGridColumn92"
-        Me.BandedGridColumn92.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_year_to_date", "{0:N2}")})
+        Me.BandedGridColumn92.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "this_month", "{0:N2}")})
         Me.BandedGridColumn92.Visible = True
         Me.BandedGridColumn92.Width = 112
         '
@@ -3704,9 +3704,9 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn93.Caption = "% To Sales"
         Me.BandedGridColumn93.DisplayFormat.FormatString = "{0:N0} %"
         Me.BandedGridColumn93.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn93.FieldName = "percent_this_year_to_date"
+        Me.BandedGridColumn93.FieldName = "percent_sales_this_month"
         Me.BandedGridColumn93.Name = "BandedGridColumn93"
-        Me.BandedGridColumn93.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_this_year_to_date", "{0:N0} %", "6")})
+        Me.BandedGridColumn93.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "percent_sales_this_month", "{0:N0} %", "6")})
         Me.BandedGridColumn93.Visible = True
         '
         'GridBand16

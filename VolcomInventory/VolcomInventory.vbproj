@@ -8772,6 +8772,12 @@
     <Compile Include="ReportMBalanceSheet.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMBSVsYear.Designer.vb">
+      <DependentUpon>ReportMBSVsYear.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMBSVsYear.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMemoUnpaidLeave.Designer.vb">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
     </Compile>
@@ -14333,8 +14339,14 @@
     <EmbeddedResource Include="ReportMBalanceSheet.resx">
       <DependentUpon>ReportMBalanceSheet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportMBSVsYear.resx">
+      <DependentUpon>ReportMBSVsYear.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportMemoUnpaidLeave.resx">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMISVsYear.resx">
+      <DependentUpon>ReportMISVsYear.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMonthlyBSvs.resx">
       <DependentUpon>ReportMonthlyBSvs.vb</DependentUpon>
