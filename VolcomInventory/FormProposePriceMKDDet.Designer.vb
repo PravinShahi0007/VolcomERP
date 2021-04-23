@@ -21,6 +21,7 @@ Partial Class FormProposePriceMKDDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProposePriceMKDDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnChangeEffectiveDate = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.DESOHDate = New DevExpress.XtraEditors.DateEdit()
@@ -56,7 +57,6 @@ Partial Class FormProposePriceMKDDet
         Me.CEFreeze = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
-        Me.BtnChangeEffectiveDate = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,8 +110,17 @@ Partial Class FormProposePriceMKDDet
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(882, 205)
+        Me.GroupControlHead.Size = New System.Drawing.Size(882, 182)
         Me.GroupControlHead.TabIndex = 10
+        '
+        'BtnChangeEffectiveDate
+        '
+        Me.BtnChangeEffectiveDate.Enabled = False
+        Me.BtnChangeEffectiveDate.Location = New System.Drawing.Point(371, 40)
+        Me.BtnChangeEffectiveDate.Name = "BtnChangeEffectiveDate"
+        Me.BtnChangeEffectiveDate.Size = New System.Drawing.Size(75, 23)
+        Me.BtnChangeEffectiveDate.TabIndex = 8926
+        Me.BtnChangeEffectiveDate.Text = "change"
         '
         'BtnCreateNew
         '
@@ -119,16 +128,16 @@ Partial Class FormProposePriceMKDDet
         Me.BtnCreateNew.Image = CType(resources.GetObject("BtnCreateNew.Image"), System.Drawing.Image)
         Me.BtnCreateNew.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
         Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.BtnCreateNew.Location = New System.Drawing.Point(20, 171)
+        Me.BtnCreateNew.Location = New System.Drawing.Point(20, 151)
         Me.BtnCreateNew.Name = "BtnCreateNew"
-        Me.BtnCreateNew.Size = New System.Drawing.Size(656, 32)
+        Me.BtnCreateNew.Size = New System.Drawing.Size(656, 29)
         Me.BtnCreateNew.TabIndex = 8925
         Me.BtnCreateNew.Text = "Create New"
         '
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(36, 75)
+        Me.LabelControl1.Location = New System.Drawing.Point(36, 72)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(69, 13)
         Me.LabelControl1.TabIndex = 8924
@@ -137,7 +146,7 @@ Partial Class FormProposePriceMKDDet
         'DESOHDate
         '
         Me.DESOHDate.EditValue = Nothing
-        Me.DESOHDate.Location = New System.Drawing.Point(116, 72)
+        Me.DESOHDate.Location = New System.Drawing.Point(116, 69)
         Me.DESOHDate.Name = "DESOHDate"
         Me.DESOHDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DESOHDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -152,7 +161,7 @@ Partial Class FormProposePriceMKDDet
         'LabelEffectiveDate
         '
         Me.LabelEffectiveDate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEffectiveDate.Location = New System.Drawing.Point(36, 48)
+        Me.LabelEffectiveDate.Location = New System.Drawing.Point(36, 45)
         Me.LabelEffectiveDate.Name = "LabelEffectiveDate"
         Me.LabelEffectiveDate.Size = New System.Drawing.Size(69, 13)
         Me.LabelEffectiveDate.TabIndex = 8922
@@ -161,7 +170,7 @@ Partial Class FormProposePriceMKDDet
         'DEEffectDate
         '
         Me.DEEffectDate.EditValue = Nothing
-        Me.DEEffectDate.Location = New System.Drawing.Point(116, 45)
+        Me.DEEffectDate.Location = New System.Drawing.Point(116, 42)
         Me.DEEffectDate.Name = "DEEffectDate"
         Me.DEEffectDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEEffectDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -199,7 +208,7 @@ Partial Class FormProposePriceMKDDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(116, 98)
+        Me.MENote.Location = New System.Drawing.Point(116, 95)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(330, 41)
         Me.MENote.TabIndex = 151
@@ -208,7 +217,7 @@ Partial Class FormProposePriceMKDDet
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(36, 100)
+        Me.LabelControl7.Location = New System.Drawing.Point(36, 97)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 150
@@ -243,7 +252,7 @@ Partial Class FormProposePriceMKDDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(676, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(204, 201)
+        Me.PanelControl1.Size = New System.Drawing.Size(204, 178)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl21
@@ -388,10 +397,10 @@ Partial Class FormProposePriceMKDDet
         'XTCPP
         '
         Me.XTCPP.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCPP.Location = New System.Drawing.Point(0, 205)
+        Me.XTCPP.Location = New System.Drawing.Point(0, 182)
         Me.XTCPP.Name = "XTCPP"
         Me.XTCPP.SelectedTabPage = Me.XTPDetail
-        Me.XTCPP.Size = New System.Drawing.Size(882, 335)
+        Me.XTCPP.Size = New System.Drawing.Size(882, 358)
         Me.XTCPP.TabIndex = 19
         Me.XTCPP.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail})
         '
@@ -400,7 +409,7 @@ Partial Class FormProposePriceMKDDet
         Me.XTPDetail.Controls.Add(Me.GCData)
         Me.XTPDetail.Controls.Add(Me.PanelControl3)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(876, 307)
+        Me.XTPDetail.Size = New System.Drawing.Size(876, 330)
         Me.XTPDetail.Text = "Detail"
         '
         'GCData
@@ -409,7 +418,7 @@ Partial Class FormProposePriceMKDDet
         Me.GCData.Location = New System.Drawing.Point(0, 39)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(876, 268)
+        Me.GCData.Size = New System.Drawing.Size(876, 291)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -486,15 +495,6 @@ Partial Class FormProposePriceMKDDet
         Me.CESelAll.Properties.Caption = "Select All"
         Me.CESelAll.Size = New System.Drawing.Size(68, 19)
         Me.CESelAll.TabIndex = 2
-        '
-        'BtnChangeEffectiveDate
-        '
-        Me.BtnChangeEffectiveDate.Enabled = False
-        Me.BtnChangeEffectiveDate.Location = New System.Drawing.Point(371, 43)
-        Me.BtnChangeEffectiveDate.Name = "BtnChangeEffectiveDate"
-        Me.BtnChangeEffectiveDate.Size = New System.Drawing.Size(75, 23)
-        Me.BtnChangeEffectiveDate.TabIndex = 8926
-        Me.BtnChangeEffectiveDate.Text = "change"
         '
         'FormProposePriceMKDDet
         '
