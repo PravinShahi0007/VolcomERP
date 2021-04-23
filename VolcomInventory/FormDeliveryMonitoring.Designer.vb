@@ -54,6 +54,8 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -71,8 +73,6 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEOnlineOffline.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -280,6 +280,7 @@ Partial Class FormDeliveryMonitoring
         Me.GVOutbound.GridControl = Me.GCOutbound
         Me.GVOutbound.Name = "GVOutbound"
         Me.GVOutbound.OptionsBehavior.ReadOnly = True
+        Me.GVOutbound.OptionsFind.AlwaysVisible = True
         Me.GVOutbound.OptionsView.ColumnAutoWidth = False
         Me.GVOutbound.OptionsView.ShowFooter = True
         Me.GVOutbound.OptionsView.ShowGroupPanel = False
@@ -393,6 +394,22 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 12
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Group Code"
+        Me.GridColumn36.FieldName = "comp_group"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 13
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Group Name"
+        Me.GridColumn35.FieldName = "comp_group_description"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 14
         '
         'GridColumn13
         '
@@ -538,22 +555,6 @@ Partial Class FormDeliveryMonitoring
         Me.XTPOutbound.Name = "XTPOutbound"
         Me.XTPOutbound.Size = New System.Drawing.Size(1002, 657)
         Me.XTPOutbound.Text = "Outbound Delivery Monitoring"
-        '
-        'GridColumn35
-        '
-        Me.GridColumn35.Caption = "Group Name"
-        Me.GridColumn35.FieldName = "comp_group_description"
-        Me.GridColumn35.Name = "GridColumn35"
-        Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 14
-        '
-        'GridColumn36
-        '
-        Me.GridColumn36.Caption = "Group Code"
-        Me.GridColumn36.FieldName = "comp_group"
-        Me.GridColumn36.Name = "GridColumn36"
-        Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 13
         '
         'FormDeliveryMonitoring
         '
