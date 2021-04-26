@@ -2076,4 +2076,194 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             End Select
         End If
     End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Dim report As ReportFinReportCover = New ReportFinReportCover
+
+        Dim q As String = "SELECT UCASE(DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%M')) AS this_month,UCASE(DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y')) AS this_year,UCASE(DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%Y')) AS last_year,UCASE(DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH)),'%M %Y')) AS last_month "
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        report.DataSource = dt
+        report.CreateDocument()
+
+        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+        For i = 0 To report.Pages.Count - 1
+            list.Add(report.Pages(i))
+        Next
+
+        'BS this  month
+        load_report(GCMAktiva, "1", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0")
+        GVMAktiva.BestFitColumns()
+        GVMAktiva.ExpandAllGroups()
+        load_report(GCMPasiva, "2", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0")
+        GVMPasiva.BestFitColumns()
+        GVMPasiva.ExpandAllGroups()
+
+        Dim RBSTM As New ReportMBalanceSheet()
+        RBSTM.dt_aktiva = GCMAktiva.DataSource
+        RBSTM.dt_pasiva = GCMPasiva.DataSource
+        RBSTM.languange = "eng"
+        RBSTM.LTitle.Text = "PT. Volcom Indonesia Balance Sheet for Period Ending " & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("MMMM yyyy")
+
+        RBSTM.CreateDocument()
+        For i = 0 To RBSTM.Pages.Count - 1
+            list.Add(RBSTM.Pages(i))
+        Next
+
+        'PL this month
+        load_report_pl(GCMProfitLoss, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0")
+        GVMProfitLoss.BestFitColumns()
+        GVMProfitLoss.ExpandAllGroups()
+
+        Dim RPLTM As New ReportMonthlyIS()
+        RPLTM.dt = GCMProfitLoss.DataSource
+        RPLTM.languange = "eng"
+        RPLTM.LTitle.Text = "PT. Volcom Indonesia Income Statement for Period Ending " & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("MMMM yyyy")
+
+        RPLTM.CreateDocument()
+        For i = 0 To RPLTM.Pages.Count - 1
+            list.Add(RPLTM.Pages(i))
+        Next
+
+        'BS YTD
+        load_report(GCMBSvsPrevYear, "-", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_year")
+        GVMBSvsPrevYear.BestFitColumns()
+        GVMBSvsPrevYear.ExpandAllGroups()
+        'IS vs last year
+        load_report_pl(GCMPLvsPrevYear, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_year_ind")
+        GVMPLvsPrevYear.BestFitColumns()
+        GVMPLvsPrevYear.ExpandAllGroups()
+        'IS ytd
+        load_report_pl(GCMPLvsYTD, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_ytd_ind")
+        GVMPLvsYTD.BestFitColumns()
+        GVMPLvsYTD.ExpandAllGroups()
+        'BS prev month
+        load_report(GCMBSvsPrevMonth, "-", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_month")
+        GVMBSvsPrevMonth.BestFitColumns()
+        GVMBSvsPrevMonth.ExpandAllGroups()
+        'IS prev month
+        load_report_pl(GCMPLvsPrevMonth, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_month_ind")
+        GVMPLvsPrevMonth.BestFitColumns()
+        GVMPLvsPrevMonth.ExpandAllGroups()
+        '
+
+        report.Pages.AddRange(list)
+        Dim tool_detail As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+        tool_detail.ShowPreview()
+
+        'For i = 0 To report_detail.Pages.Count - 1
+        '    list.Add(report_detail.Pages(i))
+        'Next
+
+        'report.Pages.AddRange(list)
+
+        'Dim tool_detail As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        'tool_detail.ShowPreview()
+        'ElseIf XTCMonthlyReport.SelectedTabPageIndex = 1 Then
+        'If GVMProfitLoss.RowCount > 0 Then
+        '    Cursor = Cursors.WaitCursor
+
+        '    Dim Report As New ReportMonthlyIS()
+        '    Report.dt = GCMProfitLoss.DataSource
+        '    Report.languange = "eng"
+        '    Report.LTitle.Text = "PT. Volcom Indonesia Income Statement for Period Ending " & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("MMMM yyyy")
+
+        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '    Tool.ShowPreviewDialog()
+
+        '    Cursor = Cursors.Default
+        'End If
+        'ElseIf XTCMonthlyReport.SelectedTabPageIndex = 2 Then
+        'If GVMBSvsPrevMonth.RowCount > 0 Then
+        '    Cursor = Cursors.WaitCursor
+
+        '    Dim Report As New ReportMonthlyBSvs()
+        '    Report.dt = GCMBSvsPrevMonth.DataSource
+        '    Report.languange = "eng"
+
+        '    Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%M %Y') AS this_month,DATE_FORMAT(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%M %Y') AS prev_month "
+        '    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        '    Report.DataSource = dt
+
+        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '    Tool.ShowPreviewDialog()
+
+        '    Cursor = Cursors.Default
+        'End If
+        'ElseIf XTCMonthlyReport.SelectedTabPageIndex = 3 Then
+        'If GVMPLvsPrevMonth.RowCount > 0 Then
+        '    Cursor = Cursors.WaitCursor
+
+        '    Dim Report As New ReportMonthlyISVs()
+        '    Report.dt = GCMPLvsPrevMonth.DataSource
+        '    Report.languange = "eng"
+
+        '    Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%M %Y') AS this_month,DATE_FORMAT(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%M %Y') AS prev_month "
+        '    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        '    Report.DataSource = dt
+
+        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '    Tool.ShowPreviewDialog()
+
+        '    Cursor = Cursors.Default
+        'End If
+        'ElseIf XTCMonthlyReport.SelectedTabPageIndex = 4 Then
+        'If GVMPLvsPrevYear.RowCount > 0 Then
+        '    Cursor = Cursors.WaitCursor
+
+        '    Dim Report As New ReportMISVsYear()
+        '    Report.dt = GCMPLvsPrevYear.DataSource
+        '    Report.languange = "eng"
+
+        '    Dim q As String = "SELECT '' AS ytd,DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%d %M %Y') AS prev_year "
+        '    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        '    Report.DataSource = dt
+
+        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '    Tool.ShowPreviewDialog()
+
+        '    Cursor = Cursors.Default
+        'End If
+        'ElseIf XTCMonthlyReport.SelectedTabPageIndex = 5 Then
+        'If GVMPLvsYTD.RowCount > 0 Then
+        '    Cursor = Cursors.WaitCursor
+
+        '    Dim Report As New ReportMISVsYear()
+        '    Report.dt = GCMPLvsYTD.DataSource
+        '    Report.languange = "eng"
+
+        '    Dim q As String = "SELECT 'YTD' AS ytd,DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%d %M %Y') AS prev_year "
+        '    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        '    Report.DataSource = dt
+
+        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '    Tool.ShowPreviewDialog()
+
+        '    Cursor = Cursors.Default
+        'End If
+        'ElseIf XTCMonthlyReport.SelectedTabPageIndex = 6 Then
+        'If GVMBSvsPrevYear.RowCount > 0 Then
+        '    Cursor = Cursors.WaitCursor
+
+        '    Dim Report As New ReportMBSVsYear()
+        '    Report.dt = GCMBSvsPrevYear.DataSource
+        '    Report.languange = "eng"
+
+        '    Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%d %M %Y') AS prev_year "
+        '    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        '    Report.DataSource = dt
+
+        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '    Tool.ShowPreviewDialog()
+
+        '    Cursor = Cursors.Default
+        'End If
+        'End If
+    End Sub
 End Class

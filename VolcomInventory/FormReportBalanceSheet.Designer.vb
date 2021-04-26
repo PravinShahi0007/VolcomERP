@@ -372,6 +372,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn83 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn85 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PCFilterMonthly = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintMonthlyReport = New DevExpress.XtraEditors.SimpleButton()
         Me.BViewMonthlyReport = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -3931,6 +3932,7 @@ Partial Class FormReportBalanceSheet
         '
         'PCFilterMonthly
         '
+        Me.PCFilterMonthly.Controls.Add(Me.SimpleButton1)
         Me.PCFilterMonthly.Controls.Add(Me.BPrintMonthlyReport)
         Me.PCFilterMonthly.Controls.Add(Me.BViewMonthlyReport)
         Me.PCFilterMonthly.Controls.Add(Me.LabelControl8)
@@ -3940,6 +3942,14 @@ Partial Class FormReportBalanceSheet
         Me.PCFilterMonthly.Name = "PCFilterMonthly"
         Me.PCFilterMonthly.Size = New System.Drawing.Size(1015, 48)
         Me.PCFilterMonthly.TabIndex = 1
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Location = New System.Drawing.Point(356, 13)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(76, 23)
+        Me.SimpleButton1.TabIndex = 7
+        Me.SimpleButton1.Text = "print all (eng)"
         '
         'BPrintMonthlyReport
         '
@@ -4459,4 +4469,5 @@ Partial Class FormReportBalanceSheet
     Friend WithEvents gridBand19 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn83 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn85 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class
