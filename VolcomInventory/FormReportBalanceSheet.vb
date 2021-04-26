@@ -2243,7 +2243,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
         FormMain.SplashScreenManager1.SetWaitFormDescription("9/9 Creating Sales Achievement (ytd)..")
         'Sales Achievement
 
-
+        FormMain.SplashScreenManager1.CloseWaitForm()
 
         report.Pages.AddRange(list)
         Dim tool_detail As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
