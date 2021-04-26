@@ -177,31 +177,33 @@
             Dim query As String = "UPDATE tb_pp_change SET id_design_price_type='" + id_design_price_type + "',
             soh_sal_date='" + soh_sal_date + "', note='" + note + "' WHERE id_pp_change='" + id + "' "
             execute_non_query(query, True, "", "", "", "")
-            FormProposePriceMKD.viewSummary()
-            FormProposePriceMKD.GVSummary.FocusedRowHandle = find_row(FormProposePriceMKD.GVSummary, "id_pp_change", id)
-            actionLoad()
         End If
     End Sub
 
     Sub saveChangesDetail()
         If action = "upd" Then
-            GVData.ActiveFilterString = "[id_pp_change_det]>0"
-            For u As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
-                Cursor = Cursors.WaitCursor
-                Dim id_pp_chenge_det As String = GVData.GetRowCellValue(u, "id_pp_change_det").ToString
-                Dim propose_discount As String = decimalSQL(GVData.GetRowCellValue(u, "propose_disc").ToString)
-                Dim propose_price As String = decimalSQL(GVData.GetRowCellValue(u, "propose_price").ToString)
-                Dim propose_price_final As String = decimalSQL(GVData.GetRowCellValue(u, "propose_price_final").ToString)
-                Dim note As String = addSlashes(GVData.GetRowCellValue(u, "note").ToString)
-                Dim qupd As String = "UPDATE tb_pp_change_det SET propose_discount='" + propose_discount + "',
-                propose_price='" + propose_price + "', propose_price_final='" + propose_price_final + "', 
-                note='" + note + "' WHERE id_pp_change_det='" + id_pp_chenge_det + "'"
-                execute_non_query_long(qupd, True, "", "", "", "")
-                Cursor = Cursors.Default
-            Next
+            'FormMain.SplashScreenManager1.ShowWaitForm()
+            '[propose_disc]<>[propose_disc_old] OR [propose_price]<>[propose_price_old] OR [propose_price_final]<>[propose_price_final_old] OR
+            GVData.ActiveFilterString = "[id_pp_change_det]>0 AND ([note]<>[note_old]) "
+            'For u As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
+            '    Cursor = Cursors.WaitCursor
+            '    FormMain.SplashScreenManager1.SetWaitFormDescription("Update Detail " + (u + 1).ToString + "/" + GVData.RowCount.ToString)
+            '    Dim id_pp_change_det As String = GVData.GetRowCellValue(u, "id_pp_change_det").ToString
+            '    Dim propose_discount As String = decimalSQL(GVData.GetRowCellValue(u, "propose_disc").ToString)
+            '    Dim propose_price As String = decimalSQL(GVData.GetRowCellValue(u, "propose_price").ToString)
+            '    Dim propose_price_final As String = decimalSQL(GVData.GetRowCellValue(u, "propose_price_final").ToString)
+            '    Dim note As String = addSlashes(GVData.GetRowCellValue(u, "note").ToString)
+            '    Dim qupd As String = "UPDATE tb_pp_change_det SET propose_discount='" + propose_discount + "',
+            '    propose_price='" + propose_price + "', propose_price_final='" + propose_price_final + "', 
+            '    note='" + note + "' WHERE id_pp_change_det='" + id_pp_change_det + "'"
+            '    execute_non_query_long(qupd, True, "", "", "", "")
+            '    Cursor = Cursors.Default
+            'Next
+            'GVData.ActiveFilterString = ""
+            'FormMain.SplashScreenManager1.CloseWaitForm()
 
             'Cursor = Cursors.WaitCursor
-            'GVData.ActiveFilterString = ""
+
             'GVData.ActiveFilterString = "[id_pp_change_det]=0 AND [propose_disc]>0 "
             'Dim qins As String = "INSERT INTO tb_pp_change_det(id_pp_change, id_design, id_design_price, design_price, age, erp_discount, propose_discount, propose_price, propose_price_final, note) VALUES "
             'For i As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
@@ -281,15 +283,15 @@
             If confirm = Windows.Forms.DialogResult.Yes Then
                 'Try
                 'head
-                saveHead()
+                'saveHead()
 
-                    'detail
-                    saveChangesDetail()
+                'detail
+                saveChangesDetail()
 
-                    actionLoad()
-                    FormProposePriceMKD.viewSummary()
-                    FormProposePriceMKD.GVSummary.FocusedRowHandle = find_row(FormProposePriceMKD.GVSummary, "id_pp_change", id)
-                    infoCustom("Save changes success")
+                'actionLoad()
+                'FormProposePriceMKD.viewSummary()
+                ' FormProposePriceMKD.GVSummary.FocusedRowHandle = find_row(FormProposePriceMKD.GVSummary, "id_pp_change", id)
+                'infoCustom("Save changes success")
                 'Catch ex As Exception
                 '    stopCustom("Error save changes, please contact administrator. " + ex.ToString)
                 'End Try
@@ -451,6 +453,7 @@
         If e.Column.FieldName.ToString = "propose_disc" Then
             Cursor = Cursors.WaitCursor
             If e.Value > 0 Then
+                'get price from db 
                 Dim dt As DataTable = getPP(GVData.GetRowCellValue(rh, "design_price_normal"), e.Value)
                 If dt.Rows.Count > 0 Then
                     GVData.SetRowCellValue(rh, "propose_price", dt.Rows(0)("propose_price"))
