@@ -83,25 +83,27 @@
             id_report_status = data.Rows(0)("id_report_status").ToString
             DECreated.EditValue = data.Rows(0)("created_date")
             is_confirm = data.Rows(0)("is_confirm").ToString
+            Dim is_show_all As String = ""
+            If is_confirm = "2" And id_report_status = "1" Then
+                is_show_all = "1"
+            Else
+                is_show_all = "2"
+            End If
+
             'detail
-            viewDetail()
+            viewDetail(is_show_all)
             allowStatus()
         End If
         Cursor = Cursors.Default
     End Sub
 
-    Sub viewDetail()
+    Sub viewDetail(ByVal is_show_all As String)
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading detail")
         Cursor = Cursors.WaitCursor
-        Dim is_show_all As String = ""
-        If is_confirm = "2" Then
-            is_show_all = "1"
-        Else
-            is_show_all = "2"
-        End If
+
         Dim query As String = "CALL view_pp_change(" + id + "," + is_show_all + ")"
         Dim data As DataTable = execute_query_no_pooling(query, -1, True, "", "", "", "")
         GCData.DataSource = data
@@ -122,10 +124,11 @@
             BtnPrint.Visible = False
             BtnSaveChanges.Visible = True
             MENote.Enabled = True
-            PanelControlSelAll.Visible = True
             GVData.OptionsBehavior.ReadOnly = False
             BtnChangeEffectiveDate.Enabled = True
             DESOHDate.Enabled = True
+            BtnAllProduct.Visible = False
+            BtnFinalPropose.Visible = False
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -133,10 +136,11 @@
             BtnPrint.Visible = True
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
-            PanelControlSelAll.Visible = False
             GVData.OptionsBehavior.ReadOnly = True
             BtnChangeEffectiveDate.Enabled = False
             DESOHDate.Enabled = False
+            BtnAllProduct.Visible = True
+            BtnFinalPropose.Visible = True
         End If
 
         'reset propose
@@ -149,7 +153,6 @@
         If id_report_status = "6" Then
             BtnCancell.Visible = False
             BtnResetPropose.Visible = False
-            PanelControlShowNonActive.Visible = True
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
             BtnResetPropose.Visible = False
@@ -158,8 +161,9 @@
             BtnPrint.Visible = False
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
-            PanelControlSelAll.Visible = False
             GVData.OptionsBehavior.ReadOnly = True
+            BtnAllProduct.Visible = False
+            BtnFinalPropose.Visible = False
         End If
     End Sub
 
@@ -630,5 +634,17 @@
                     e.TotalValue = sum_res
             End Select
         End If
+    End Sub
+
+    Private Sub BtnAllProduct_Click(sender As Object, e As EventArgs) Handles BtnAllProduct.Click
+        viewDetail(1)
+    End Sub
+
+    Private Sub PanelControl3_Paint(sender As Object, e As PaintEventArgs) Handles PanelControl3.Paint
+
+    End Sub
+
+    Private Sub BtnFinalPropose_Click(sender As Object, e As EventArgs) Handles BtnFinalPropose.Click
+        viewDetail(2)
     End Sub
 End Class

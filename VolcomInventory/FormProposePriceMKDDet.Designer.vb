@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormProposePriceMKDDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormProposePriceMKDDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProposePriceMKDDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
@@ -50,9 +50,8 @@ Partial Class FormProposePriceMKDDet
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBandno = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -104,13 +103,9 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnis_edit = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnnote_old = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnFinalPropose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAllProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControlShowNonActive = New DevExpress.XtraEditors.PanelControl()
-        Me.CEShowNonActive = New DevExpress.XtraEditors.CheckEdit()
-        Me.PanelControlFreeze = New DevExpress.XtraEditors.PanelControl()
-        Me.CEFreeze = New DevExpress.XtraEditors.CheckEdit()
-        Me.PanelControlSelAll = New DevExpress.XtraEditors.PanelControl()
-        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,15 +133,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.RepositoryItemTENote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.PanelControlShowNonActive, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlShowNonActive.SuspendLayout()
-        CType(Me.CEShowNonActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlFreeze, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlFreeze.SuspendLayout()
-        CType(Me.CEFreeze.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlSelAll.SuspendLayout()
-        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -484,7 +470,7 @@ Partial Class FormProposePriceMKDDet
         '
         'GVData
         '
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandno, Me.gridBandDetail, Me.gridBandPropose, Me.gridBandTotalValue, Me.gridBandOther})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandDetail, Me.gridBandPropose, Me.gridBandTotalValue, Me.gridBandOther})
         Me.GVData.ColumnPanelRowHeight = 40
         Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnno, Me.BandedGridColumnid_pp_change_det, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_code, Me.BandedGridColumnname, Me.BandedGridColumnclass, Me.BandedGridColumnid_disc, Me.BandedGridColumndisc_desc, Me.BandedGridColumnmkd_normal_view, Me.BandedGridColumnmkd_30_view, Me.BandedGridColumnmkd_50_view, Me.BandedGridColumnmkd_70_view, Me.BandedGridColumnfirst_del, Me.BandedGridColumnage, Me.BandedGridColumndesign_cop, Me.BandedGridColumnid_design_price, Me.BandedGridColumndesign_price, Me.BandedGridColumnprice_type, Me.BandedGridColumndesign_cat, Me.BandedGridColumnid_design_price_normal, Me.BandedGridColumndesign_price_normal, Me.BandedGridColumncurr_disc, Me.BandedGridColumnpropose_disc, Me.BandedGridColumnpropose_price, Me.BandedGridColumnpropose_price_final, Me.BandedGridColumnerp_discount, Me.BandedGridColumnnote, Me.BandedGridColumnpropose_disc_old, Me.BandedGridColumnpropose_price_old, Me.BandedGridColumnpropose_price_final_old, Me.BandedGridColumnis_edit, Me.BandedGridColumnnote_old, Me.BandedGridColumnpropose_disc_group, Me.BandedGridColumnpropose_status, Me.BandedGridColumntotal_sal, Me.BandedGridColumntotal_soh, Me.BandedGridColumntotal_bos, Me.BandedGridColumnsas, Me.BandedGridColumntotal_normal_value, Me.BandedGridColumntotal_current_value, Me.BandedGridColumntotal_propose_value, Me.BandedGridColumntotal_cost, Me.BandedGridColumnmarked_down_value, Me.BandedGridColumnmark_up})
         Me.GVData.GridControl = Me.GCData
@@ -497,29 +483,10 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnclass, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
-        'GridBandno
-        '
-        Me.GridBandno.Columns.Add(Me.BandedGridColumnno)
-        Me.GridBandno.Name = "GridBandno"
-        Me.GridBandno.VisibleIndex = 0
-        Me.GridBandno.Width = 47
-        '
-        'BandedGridColumnno
-        '
-        Me.BandedGridColumnno.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnno.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnno.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumnno.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnno.Caption = "No"
-        Me.BandedGridColumnno.FieldName = "no"
-        Me.BandedGridColumnno.Name = "BandedGridColumnno"
-        Me.BandedGridColumnno.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnno.Visible = True
-        Me.BandedGridColumnno.Width = 47
-        '
         'gridBandDetail
         '
         Me.gridBandDetail.Caption = "PRODUCT DETAIL"
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnno)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_code)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumnname)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumnclass)
@@ -539,9 +506,23 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_soh)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_bos)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumnsas)
+        Me.gridBandDetail.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gridBandDetail.Name = "gridBandDetail"
-        Me.gridBandDetail.VisibleIndex = 1
-        Me.gridBandDetail.Width = 1425
+        Me.gridBandDetail.VisibleIndex = 0
+        Me.gridBandDetail.Width = 1472
+        '
+        'BandedGridColumnno
+        '
+        Me.BandedGridColumnno.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnno.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnno.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnno.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnno.Caption = "No"
+        Me.BandedGridColumnno.FieldName = "no"
+        Me.BandedGridColumnno.Name = "BandedGridColumnno"
+        Me.BandedGridColumnno.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnno.Visible = True
+        Me.BandedGridColumnno.Width = 47
         '
         'BandedGridColumndesign_code
         '
@@ -807,7 +788,7 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_disc_group)
         Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_status)
         Me.gridBandPropose.Name = "gridBandPropose"
-        Me.gridBandPropose.VisibleIndex = 2
+        Me.gridBandPropose.VisibleIndex = 1
         Me.gridBandPropose.Width = 471
         '
         'BandedGridColumnerp_discount
@@ -926,7 +907,7 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumnmarked_down_value)
         Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumnmark_up)
         Me.gridBandTotalValue.Name = "gridBandTotalValue"
-        Me.gridBandTotalValue.VisibleIndex = 3
+        Me.gridBandTotalValue.VisibleIndex = 2
         Me.gridBandTotalValue.Width = 450
         '
         'BandedGridColumntotal_normal_value
@@ -1035,7 +1016,7 @@ Partial Class FormProposePriceMKDDet
         '
         Me.gridBandOther.Columns.Add(Me.BandedGridColumnnote)
         Me.gridBandOther.Name = "gridBandOther"
-        Me.gridBandOther.VisibleIndex = 4
+        Me.gridBandOther.VisibleIndex = 3
         Me.gridBandOther.Width = 75
         '
         'BandedGridColumnnote
@@ -1193,15 +1174,36 @@ Partial Class FormProposePriceMKDDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnFinalPropose)
+        Me.PanelControl3.Controls.Add(Me.BtnAllProduct)
         Me.PanelControl3.Controls.Add(Me.BtnExportToXLS)
-        Me.PanelControl3.Controls.Add(Me.PanelControlShowNonActive)
-        Me.PanelControl3.Controls.Add(Me.PanelControlFreeze)
-        Me.PanelControl3.Controls.Add(Me.PanelControlSelAll)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(876, 39)
         Me.PanelControl3.TabIndex = 17
+        '
+        'BtnFinalPropose
+        '
+        Me.BtnFinalPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnFinalPropose.Image = CType(resources.GetObject("BtnFinalPropose.Image"), System.Drawing.Image)
+        Me.BtnFinalPropose.Location = New System.Drawing.Point(538, 2)
+        Me.BtnFinalPropose.Name = "BtnFinalPropose"
+        Me.BtnFinalPropose.Size = New System.Drawing.Size(112, 35)
+        Me.BtnFinalPropose.TabIndex = 13
+        Me.BtnFinalPropose.Text = "Final Propose"
+        Me.BtnFinalPropose.Visible = False
+        '
+        'BtnAllProduct
+        '
+        Me.BtnAllProduct.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAllProduct.Image = CType(resources.GetObject("BtnAllProduct.Image"), System.Drawing.Image)
+        Me.BtnAllProduct.Location = New System.Drawing.Point(650, 2)
+        Me.BtnAllProduct.Name = "BtnAllProduct"
+        Me.BtnAllProduct.Size = New System.Drawing.Size(112, 35)
+        Me.BtnAllProduct.TabIndex = 12
+        Me.BtnAllProduct.Text = "Proposal List"
+        Me.BtnAllProduct.Visible = False
         '
         'BtnExportToXLS
         '
@@ -1212,64 +1214,6 @@ Partial Class FormProposePriceMKDDet
         Me.BtnExportToXLS.Size = New System.Drawing.Size(112, 35)
         Me.BtnExportToXLS.TabIndex = 11
         Me.BtnExportToXLS.Text = "Export to XLS"
-        Me.BtnExportToXLS.Visible = False
-        '
-        'PanelControlShowNonActive
-        '
-        Me.PanelControlShowNonActive.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlShowNonActive.Controls.Add(Me.CEShowNonActive)
-        Me.PanelControlShowNonActive.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControlShowNonActive.Location = New System.Drawing.Point(182, 2)
-        Me.PanelControlShowNonActive.Name = "PanelControlShowNonActive"
-        Me.PanelControlShowNonActive.Size = New System.Drawing.Size(121, 35)
-        Me.PanelControlShowNonActive.TabIndex = 10
-        Me.PanelControlShowNonActive.Visible = False
-        '
-        'CEShowNonActive
-        '
-        Me.CEShowNonActive.Location = New System.Drawing.Point(3, 8)
-        Me.CEShowNonActive.Name = "CEShowNonActive"
-        Me.CEShowNonActive.Properties.Caption = "Show Non Active"
-        Me.CEShowNonActive.Size = New System.Drawing.Size(102, 19)
-        Me.CEShowNonActive.TabIndex = 7
-        '
-        'PanelControlFreeze
-        '
-        Me.PanelControlFreeze.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlFreeze.Controls.Add(Me.CEFreeze)
-        Me.PanelControlFreeze.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControlFreeze.Location = New System.Drawing.Point(76, 2)
-        Me.PanelControlFreeze.Name = "PanelControlFreeze"
-        Me.PanelControlFreeze.Size = New System.Drawing.Size(106, 35)
-        Me.PanelControlFreeze.TabIndex = 9
-        Me.PanelControlFreeze.Visible = False
-        '
-        'CEFreeze
-        '
-        Me.CEFreeze.Location = New System.Drawing.Point(3, 8)
-        Me.CEFreeze.Name = "CEFreeze"
-        Me.CEFreeze.Properties.Caption = "Freeze Column"
-        Me.CEFreeze.Size = New System.Drawing.Size(95, 19)
-        Me.CEFreeze.TabIndex = 7
-        '
-        'PanelControlSelAll
-        '
-        Me.PanelControlSelAll.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlSelAll.Controls.Add(Me.CESelAll)
-        Me.PanelControlSelAll.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControlSelAll.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControlSelAll.Name = "PanelControlSelAll"
-        Me.PanelControlSelAll.Size = New System.Drawing.Size(74, 35)
-        Me.PanelControlSelAll.TabIndex = 8
-        Me.PanelControlSelAll.Visible = False
-        '
-        'CESelAll
-        '
-        Me.CESelAll.Location = New System.Drawing.Point(9, 8)
-        Me.CESelAll.Name = "CESelAll"
-        Me.CESelAll.Properties.Caption = "Select All"
-        Me.CESelAll.Size = New System.Drawing.Size(68, 19)
-        Me.CESelAll.TabIndex = 2
         '
         'FormProposePriceMKDDet
         '
@@ -1313,15 +1257,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.RepositoryItemTENote, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.PanelControlShowNonActive, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlShowNonActive.ResumeLayout(False)
-        CType(Me.CEShowNonActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlFreeze, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlFreeze.ResumeLayout(False)
-        CType(Me.CEFreeze.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlSelAll.ResumeLayout(False)
-        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1354,12 +1289,6 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DESOHDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControlShowNonActive As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents CEShowNonActive As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents PanelControlFreeze As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents CEFreeze As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents PanelControlSelAll As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents CESelAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents BtnChangeEffectiveDate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
@@ -1406,15 +1335,16 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents BandedGridColumntotal_soh As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumntotal_bos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnsas As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBandno As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumntotal_normal_value As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumntotal_current_value As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumntotal_propose_value As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumntotal_cost As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnmarked_down_value As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnmark_up As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandOther As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BtnFinalPropose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAllProduct As DevExpress.XtraEditors.SimpleButton
 End Class
