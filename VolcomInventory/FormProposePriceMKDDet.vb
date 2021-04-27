@@ -45,6 +45,7 @@
         Cursor = Cursors.WaitCursor
         If action = "ins" Then
             'option
+            BtnCreateNew.Visible = True
             Width = 501
             Height = 250
             WindowState = FormWindowState.Normal
@@ -547,5 +548,87 @@
             stopCustom(ex.ToString)
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Dim tot_sal As Decimal
+    Dim tot_bos As Decimal
+    Dim tot_sal_grp As Decimal
+    Dim tot_bos_grp As Decimal
+    Dim tot_price As Decimal
+    Dim tot_cost As Decimal
+    Dim tot_price_grp As Decimal
+    Dim tot_cost_grp As Decimal
+    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
+        Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            tot_sal = 0.0
+            tot_bos = 0.0
+            tot_sal_grp = 0.0
+            tot_bos_grp = 0.0
+
+            tot_price = 0.0
+            tot_cost = 0.0
+            tot_price_grp = 0.0
+            tot_cost_grp = 0.0
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim sal As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_sal").ToString, "0.00"))
+            Dim bos As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_bos").ToString, "0.00"))
+            Dim price As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_propose_value").ToString, "0.00"))
+            Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_cost").ToString, "0.00"))
+            Select Case summaryID
+                Case "sas_sum"
+                    tot_sal += sal
+                    tot_bos += bos
+                Case "sas_grp_sum"
+                    tot_sal_grp += sal
+                    tot_bos_grp += bos
+                Case "markup_sum"
+                    tot_price += price
+                    tot_cost += cost
+                Case "markup_grp_sum"
+                    tot_price_grp += price
+                    tot_cost_grp += cost
+            End Select
+        End If
+
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case "sas_sum" 'total summary
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = (tot_sal / tot_bos) * 100
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "sas_grp_sum" 'group summary
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = (tot_sal_grp / tot_bos_grp) * 100
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "markup_sum"
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = (tot_price / tot_cost)
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "markup_grp_sum"
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = (tot_price_grp / tot_cost_grp)
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+            End Select
+        End If
     End Sub
 End Class
