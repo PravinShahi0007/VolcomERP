@@ -1395,7 +1395,17 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             load_report(GCMBSvsPrevYear, "-", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_year")
             GVMBSvsPrevYear.BestFitColumns()
             GVMBSvsPrevYear.ExpandAllGroups()
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 7 Then
+            load_report_sales_achiv()
         End If
+    End Sub
+
+    Sub load_report_sales_achiv()
+        Dim date_str As String = Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim query As String = ""
+
+        GCMTargetUSA.DataSource = execute_query("CALL sales_achivment('" & date_str & "','target_usa')", -1, True, "", "", "", "")
+        GCSalesRealization.DataSource = execute_query("CALL sales_achivment('" & date_str & "','sales_realization')", -1, True, "", "", "", "")
     End Sub
 
     Private Sub DEMonthlyReport_EditValueChanged(sender As Object, e As EventArgs) Handles DEMonthlyReport.EditValueChanged
