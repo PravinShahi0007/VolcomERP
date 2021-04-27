@@ -24,7 +24,7 @@ Module Database
             Console.WriteLine(command_text)
         End If
 
-        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True; Allow User Variables=True;", host, username, password, database)
+        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True; Allow User Variables=True;Pooling=False;", host, username, password, database)
 
         Dim connection As MySqlConnection = New MySqlConnection(connection_string)
         connection.Open()
@@ -59,7 +59,7 @@ Module Database
             Console.WriteLine(command_text)
         End If
 
-        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True; Allow User Variables=True;", host, username, password, database)
+        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True; Allow User Variables=True;Pooling=False;", host, username, password, database)
 
         Dim connection As MySqlConnection = New MySqlConnection(connection_string)
         connection.Open()
@@ -90,7 +90,7 @@ Module Database
             database = app_database
         End If
 
-        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True; Allow User Variables=True;", host, username, password, database)
+        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True; Allow User Variables=True;Pooling=False;", host, username, password, database)
 
         'Enable when developing
         If is_test = "1" Then
