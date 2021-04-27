@@ -58,10 +58,14 @@ Partial Public Class ReportMBalanceSheet
         Me.XRTotalAsset = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XRTotalAssetPercent = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell22 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XRTableMark = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XTPasiva, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTAktiva, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XRTableMark, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -318,8 +322,8 @@ Partial Public Class ReportMBalanceSheet
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2, Me.XrTable1})
-        Me.ReportFooter.HeightF = 15.0!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XRTableMark, Me.XrTable2, Me.XrTable1})
+        Me.ReportFooter.HeightF = 57.05128!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable2
@@ -440,6 +444,34 @@ Partial Public Class ReportMBalanceSheet
         Me.XrTableCell22.StylePriority.UseBorders = False
         Me.XrTableCell22.Weight = 0.053491864595908482R
         '
+        'XRTableMark
+        '
+        Me.XRTableMark.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XRTableMark.Font = New System.Drawing.Font("Consolas", 8.0!)
+        Me.XRTableMark.LocationFloat = New DevExpress.Utils.PointFloat(0!, 32.05128!)
+        Me.XRTableMark.Name = "XRTableMark"
+        Me.XRTableMark.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
+        Me.XRTableMark.SizeF = New System.Drawing.SizeF(726.0!, 25.0!)
+        Me.XRTableMark.StylePriority.UseBorders = False
+        Me.XRTableMark.StylePriority.UseFont = False
+        '
+        'XrTableRow1
+        '
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell15})
+        Me.XrTableRow1.Name = "XrTableRow1"
+        Me.XrTableRow1.Weight = 1.0R
+        '
+        'XrTableCell15
+        '
+        Me.XrTableCell15.Font = New System.Drawing.Font("Lucida Console", 8.0!)
+        Me.XrTableCell15.Name = "XrTableCell15"
+        Me.XrTableCell15.StylePriority.UseFont = False
+        Me.XrTableCell15.Text = "Here Table Mark Goes, Please Ignore This"
+        Me.XrTableCell15.Visible = False
+        Me.XrTableCell15.Weight = 2.99999986405489R
+        '
         'ReportMBalanceSheet
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.ReportFooter})
@@ -453,6 +485,7 @@ Partial Public Class ReportMBalanceSheet
         CType(Me.XTAktiva, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XRTableMark, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -494,4 +527,7 @@ Partial Public Class ReportMBalanceSheet
     Friend WithEvents XRTotalAssetPercent As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell22 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents XRTableMark As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
 End Class

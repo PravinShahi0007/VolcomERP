@@ -234,7 +234,7 @@ Partial Public Class ReportSalesAchievement
         'XrPictureBox1
         '
         Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(605.2083!, 5.0!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(512.2686!, 10.00002!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
         Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(88.54163!, 72.04168!)
         Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze
@@ -245,7 +245,7 @@ Partial Public Class ReportSalesAchievement
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 39.25002!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(551.0417!, 29.25!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(512.2686!, 29.25!)
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.StylePriority.UseTextAlignment = False
         Me.XrLabel2.Text = "MINIMUM NET SALES [this_year] VS REALIZATION [this_year]"

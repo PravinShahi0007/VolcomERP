@@ -83,6 +83,8 @@
             'XRTotalAsset.Text = Decimal.Parse(total.ToString).ToString("N2")
             'XRTotalAssetPercent.Text = Decimal.Parse((total / dt.Rows(0)("total_asset") * 100).ToString).ToString("N2") & " %"
         End If
+
+        pre_load_list_horz("303", 2, 1, XRTableMark)
     End Sub
 
     Sub insert_row(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal opt As String, ByVal xtable As DevExpress.XtraReports.UI.XRTable, ByVal descvar As String, ByVal amo_py_var As String, ByVal percent_py_var As String, ByVal amo_tm_var As String, ByVal percent_tm_var As String)
