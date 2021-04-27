@@ -354,7 +354,7 @@
         Dim condc As Boolean = True
         For i = 0 To GVListPurchase.RowCount - 1
             If GVListPurchase.IsValidRowHandle(i) Then
-                If GVListPurchase.GetRowCellValue(i, "cost") = 0 Then
+                If GVListPurchase.GetRowCellValue(i, "cost") = 0 And GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty") > 0 Then
                     condc = False
                 End If
             End If
@@ -379,7 +379,7 @@
                     'rec detail
                     For i As Integer = 0 To GVListPurchase.RowCount - 1
                         Try
-                            If Not GVListPurchase.GetRowCellValue(i, "id_mat_purc_det").ToString = "" And isDecimal(nominalWrite(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString)) Then
+                            If Not GVListPurchase.GetRowCellValue(i, "id_mat_purc_det").ToString = "" And isDecimal(nominalWrite(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString)) And Decimal.Parse(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString) > 0 Then
                                 query = String.Format("INSERT INTO tb_mat_purc_rec_det(id_mat_purc_det,id_mat_purc_rec,mat_purc_rec_det_qty,mat_purc_rec_det_note) VALUES('{0}','{1}','{2}','{3}')", GVListPurchase.GetRowCellValue(i, "id_mat_purc_det").ToString, id_rec_new, nominalWrite(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString), GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_note").ToString)
                                 execute_non_query(query, True, "", "", "", "")
                             End If

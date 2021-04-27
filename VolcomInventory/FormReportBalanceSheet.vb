@@ -2076,4 +2076,177 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             End Select
         End If
     End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("1/9 Creating report cover..")
+
+        Dim report As ReportFinReportCover = New ReportFinReportCover
+
+        Dim q As String = "SELECT UCASE(DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%M')) AS this_month,UCASE(DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y')) AS this_year,UCASE(DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%Y')) AS last_year,UCASE(DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH)),'%M %Y')) AS last_month "
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        report.DataSource = dt
+        report.CreateDocument()
+
+        Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
+        For i = 0 To report.Pages.Count - 1
+            list.Add(report.Pages(i))
+        Next
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("2/9 Creating balance sheet this month..")
+
+        'BS this  month
+        load_report(GCMAktiva, "1", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0")
+        GVMAktiva.BestFitColumns()
+        GVMAktiva.ExpandAllGroups()
+        load_report(GCMPasiva, "2", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0")
+        GVMPasiva.BestFitColumns()
+        GVMPasiva.ExpandAllGroups()
+
+        Dim RBSTM As New ReportMBalanceSheet()
+        RBSTM.dt_aktiva = GCMAktiva.DataSource
+        RBSTM.dt_pasiva = GCMPasiva.DataSource
+        RBSTM.languange = "eng"
+        RBSTM.LTitle.Text = "PT. Volcom Indonesia Balance Sheet for Period Ending " & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("MMMM yyyy")
+
+        RBSTM.CreateDocument()
+        For i = 0 To RBSTM.Pages.Count - 1
+            list.Add(RBSTM.Pages(i))
+        Next
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("3/9 Creating income statement this month..")
+
+        'PL this month
+        load_report_pl(GCMProfitLoss, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0")
+        GVMProfitLoss.BestFitColumns()
+        GVMProfitLoss.ExpandAllGroups()
+
+        Dim RPLTM As New ReportMonthlyIS()
+        RPLTM.dt = GCMProfitLoss.DataSource
+        RPLTM.languange = "eng"
+        RPLTM.LTitle.Text = "PT. Volcom Indonesia Income Statement for Period Ending " & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("MMMM yyyy")
+
+        RPLTM.CreateDocument()
+        For i = 0 To RPLTM.Pages.Count - 1
+            list.Add(RPLTM.Pages(i))
+        Next
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("4/9 Creating balance sheet vs previous year..")
+
+        'BS YTD
+        load_report(GCMBSvsPrevYear, "-", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_year")
+        GVMBSvsPrevYear.BestFitColumns()
+        GVMBSvsPrevYear.ExpandAllGroups()
+
+        Dim RBSYTD As New ReportMBSVsYear()
+        RBSYTD.dt = GCMBSvsPrevYear.DataSource
+        RBSYTD.languange = "eng"
+
+        Dim RBSYTD_q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%d %M %Y') AS prev_year "
+        Dim RBSYTD_dt As DataTable = execute_query(RBSYTD_q, -1, True, "", "", "", "")
+
+        RBSYTD.DataSource = RBSYTD_dt
+
+        RBSYTD.CreateDocument()
+        For i = 0 To RBSYTD.Pages.Count - 1
+            list.Add(RBSYTD.Pages(i))
+        Next
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("5/9 Creating income statement vs previous year..")
+
+        'IS vs last year
+        load_report_pl(GCMPLvsPrevYear, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_year_ind")
+        GVMPLvsPrevYear.BestFitColumns()
+        GVMPLvsPrevYear.ExpandAllGroups()
+
+        Dim RISPY As New ReportMISVsYear()
+        RISPY.dt = GCMPLvsPrevYear.DataSource
+        RISPY.languange = "eng"
+
+        Dim RISPY_q As String = "SELECT '' AS ytd,DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%d %M %Y') AS prev_year "
+        Dim RISPY_dt As DataTable = execute_query(RISPY_q, -1, True, "", "", "", "")
+
+        RISPY.DataSource = RISPY_dt
+
+        RISPY.CreateDocument()
+        For i = 0 To RISPY.Pages.Count - 1
+            list.Add(RISPY.Pages(i))
+        Next
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("6/9 Creating income statement vs previous year (ytd)..")
+
+        'IS ytd
+        load_report_pl(GCMPLvsYTD, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_ytd_ind")
+        GVMPLvsYTD.BestFitColumns()
+        GVMPLvsYTD.ExpandAllGroups()
+
+        Dim RPLYTD As New ReportMISVsYear()
+        RPLYTD.dt = GCMPLvsYTD.DataSource
+        RPLYTD.languange = "eng"
+
+        Dim RPLYTD_q As String = "SELECT 'YTD' AS ytd,DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%d %M %Y') AS prev_year "
+        Dim RPLYTD_dt As DataTable = execute_query(RPLYTD_q, -1, True, "", "", "", "")
+
+        RPLYTD.DataSource = RPLYTD_dt
+
+        RPLYTD.CreateDocument()
+        For i = 0 To RPLYTD.Pages.Count - 1
+            list.Add(RPLYTD.Pages(i))
+        Next
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("7/9 Creating balance sheet vs previous month..")
+
+        'BS prev month
+        load_report(GCMBSvsPrevMonth, "-", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_month")
+        GVMBSvsPrevMonth.BestFitColumns()
+        GVMBSvsPrevMonth.ExpandAllGroups()
+
+        Dim RBSPM As New ReportMonthlyBSvs()
+        RBSPM.dt = GCMBSvsPrevMonth.DataSource
+        RBSPM.languange = "eng"
+
+        Dim RBSPM_q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%M %Y') AS this_month,DATE_FORMAT(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%M %Y') AS prev_month "
+        Dim RBSPM_dt As DataTable = execute_query(RBSPM_q, -1, True, "", "", "", "")
+
+        RBSPM.DataSource = RBSPM_dt
+
+        RBSPM.CreateDocument()
+        For i = 0 To RBSPM.Pages.Count - 1
+            list.Add(RBSPM.Pages(i))
+        Next
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("8/9 Creating income statement vs previous month..")
+
+        'IS prev month
+        load_report_pl(GCMPLvsPrevMonth, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_month_ind")
+        GVMPLvsPrevMonth.BestFitColumns()
+        GVMPLvsPrevMonth.ExpandAllGroups()
+
+        Dim RPLPM As New ReportMonthlyISVs()
+        RPLPM.dt = GCMPLvsPrevMonth.DataSource
+        RPLPM.languange = "eng"
+
+        Dim RPLPM_q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%M %Y') AS this_month,DATE_FORMAT(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%M %Y') AS prev_month "
+        Dim RPLPM_dt As DataTable = execute_query(RPLPM_q, -1, True, "", "", "", "")
+
+        RPLPM.DataSource = RPLPM_dt
+
+        RPLPM.CreateDocument()
+        For i = 0 To RPLPM.Pages.Count - 1
+            list.Add(RPLPM.Pages(i))
+        Next
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("9/9 Creating Sales Achievement (ytd)..")
+        'Sales Achievement
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
+
+        report.Pages.AddRange(list)
+        Dim tool_detail As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+        tool_detail.ShowPreview()
+    End Sub
 End Class
