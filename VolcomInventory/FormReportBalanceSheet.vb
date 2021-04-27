@@ -1403,9 +1403,19 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
     Sub load_report_sales_achiv()
         Dim date_str As String = Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim query As String = ""
+        Dim dt As DataTable = execute_query("CALL sales_achivment('" & date_str & "','ALL')", -1, True, "", "", "", "")
 
-        GCMTargetUSA.DataSource = execute_query("CALL sales_achivment('" & date_str & "','target_usa')", -1, True, "", "", "", "")
-        GCSalesRealization.DataSource = execute_query("CALL sales_achivment('" & date_str & "','sales_realization')", -1, True, "", "", "", "")
+        'GCMTargetUSA.DataSource = execute_query("CALL sales_achivment('" & date_str & "','target_usa')", -1, True, "", "", "", "")
+        'GCSalesRealization.DataSource = execute_query("CALL sales_achivment('" & date_str & "','sales_realization')", -1, True, "", "", "", "")
+        'GCOverUnderTarget.DataSource = execute_query("CALL sales_achivment('" & date_str & "','sales_realization')", -1, True, "", "", "", "")
+        'GCSalLastYear.DataSource = execute_query("CALL sales_achivment('" & date_str & "','last_year')", -1, True, "", "", "", "")
+        'GCSalVsLastYear.DataSource = execute_query("CALL sales_achivment('" & date_str & "','vs_last_year')", -1, True, "", "", "", "")
+
+        GCMTargetUSA.DataSource = dt
+        GCSalesRealization.DataSource = dt
+        GCOverUnderTarget.DataSource = dt
+        GCSalLastYear.DataSource = dt
+        GCSalVsLastYear.DataSource = dt
     End Sub
 
     Private Sub DEMonthlyReport_EditValueChanged(sender As Object, e As EventArgs) Handles DEMonthlyReport.EditValueChanged
