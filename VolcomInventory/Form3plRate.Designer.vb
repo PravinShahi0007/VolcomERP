@@ -52,6 +52,7 @@ Partial Class Form3plRate
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDelType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,14 +103,14 @@ Partial Class Form3plRate
         '
         'SLEDelType
         '
-        Me.SLEDelType.Location = New System.Drawing.Point(257, 13)
+        Me.SLEDelType.Location = New System.Drawing.Point(259, 13)
         Me.SLEDelType.Name = "SLEDelType"
         Me.SLEDelType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEDelType.Properties.Appearance.Options.UseFont = True
         Me.SLEDelType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDelType.Properties.NullText = "-"
         Me.SLEDelType.Properties.View = Me.GridView1
-        Me.SLEDelType.Size = New System.Drawing.Size(172, 20)
+        Me.SLEDelType.Size = New System.Drawing.Size(176, 20)
         Me.SLEDelType.TabIndex = 15
         '
         'GridView1
@@ -136,14 +137,14 @@ Partial Class Form3plRate
         '
         'SLEInboundOutbound
         '
-        Me.SLEInboundOutbound.Location = New System.Drawing.Point(435, 13)
+        Me.SLEInboundOutbound.Location = New System.Drawing.Point(441, 13)
         Me.SLEInboundOutbound.Name = "SLEInboundOutbound"
         Me.SLEInboundOutbound.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEInboundOutbound.Properties.Appearance.Options.UseFont = True
         Me.SLEInboundOutbound.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEInboundOutbound.Properties.NullText = "-"
         Me.SLEInboundOutbound.Properties.View = Me.GridView2
-        Me.SLEInboundOutbound.Size = New System.Drawing.Size(172, 20)
+        Me.SLEInboundOutbound.Size = New System.Drawing.Size(166, 20)
         Me.SLEInboundOutbound.TabIndex = 14
         '
         'GridView2
@@ -194,7 +195,7 @@ Partial Class Form3plRate
         Me.SLECargo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECargo.Properties.NullText = "-"
         Me.SLECargo.Properties.View = Me.SLVCargo
-        Me.SLECargo.Size = New System.Drawing.Size(199, 20)
+        Me.SLECargo.Size = New System.Drawing.Size(201, 20)
         Me.SLECargo.TabIndex = 8
         '
         'SLVCargo
@@ -252,7 +253,7 @@ Partial Class Form3plRate
         '
         'GVListRate
         '
-        Me.GVListRate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn13, Me.GridColumn12, Me.GridColumn6, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.GVListRate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn16, Me.GridColumn3, Me.GridColumn13, Me.GridColumn12, Me.GridColumn6, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
         Me.GVListRate.GridControl = Me.GCListRate
         Me.GVListRate.Name = "GVListRate"
         Me.GVListRate.OptionsBehavior.Editable = False
@@ -278,7 +279,7 @@ Partial Class Form3plRate
         Me.GridColumn3.FieldName = "sub_district"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 3
         '
         'GridColumn13
         '
@@ -294,7 +295,7 @@ Partial Class Form3plRate
         Me.GridColumn12.FieldName = "state"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 3
+        Me.GridColumn12.VisibleIndex = 4
         '
         'GridColumn6
         '
@@ -302,7 +303,7 @@ Partial Class Form3plRate
         Me.GridColumn6.FieldName = "cargo_code"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
+        Me.GridColumn6.VisibleIndex = 1
         '
         'GridColumn4
         '
@@ -312,7 +313,7 @@ Partial Class Form3plRate
         Me.GridColumn4.FieldName = "cargo_rate"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 5
         '
         'GridColumn5
         '
@@ -322,7 +323,7 @@ Partial Class Form3plRate
         Me.GridColumn5.FieldName = "cargo_lead_time"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 6
         '
         'GridColumn7
         '
@@ -332,7 +333,7 @@ Partial Class Form3plRate
         Me.GridColumn7.FieldName = "cargo_min_weight"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.VisibleIndex = 7
         '
         'GridColumn8
         '
@@ -342,7 +343,7 @@ Partial Class Form3plRate
         Me.GridColumn8.FieldName = "input_datetime"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.VisibleIndex = 8
         '
         'GridColumn9
         '
@@ -350,7 +351,15 @@ Partial Class Form3plRate
         Me.GridColumn9.FieldName = "employee_name"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
+        Me.GridColumn9.VisibleIndex = 9
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "3PL"
+        Me.GridColumn16.FieldName = "comp_name"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
         '
         'Form3plRate
         '
@@ -412,4 +421,5 @@ Partial Class Form3plRate
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BImport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

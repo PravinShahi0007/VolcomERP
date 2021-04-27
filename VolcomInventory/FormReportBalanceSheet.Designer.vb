@@ -4004,7 +4004,7 @@ Partial Class FormReportBalanceSheet
         Me.XTPSalesAchievement.Controls.Add(Me.XtraScrollableControl2)
         Me.XTPSalesAchievement.Name = "XTPSalesAchievement"
         Me.XTPSalesAchievement.Size = New System.Drawing.Size(1009, 368)
-        Me.XTPSalesAchievement.Text = "Sales Achivment"
+        Me.XTPSalesAchievement.Text = "Sales Achievement"
         '
         'XtraScrollableControl2
         '
@@ -4064,8 +4064,9 @@ Partial Class FormReportBalanceSheet
         'BandedGridColumn112
         '
         Me.BandedGridColumn112.Caption = "MONTH"
+        Me.BandedGridColumn112.FieldName = "month_desc"
         Me.BandedGridColumn112.Name = "BandedGridColumn112"
-        Me.BandedGridColumn112.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "", "GRAND TOTAL")})
+        Me.BandedGridColumn112.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "month_desc", "GRAND TOTAL")})
         Me.BandedGridColumn112.Visible = True
         '
         'GridBand29
@@ -4152,8 +4153,9 @@ Partial Class FormReportBalanceSheet
         'BandedGridColumn108
         '
         Me.BandedGridColumn108.Caption = "MONTH"
+        Me.BandedGridColumn108.FieldName = "month_desc"
         Me.BandedGridColumn108.Name = "BandedGridColumn108"
-        Me.BandedGridColumn108.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "", "GRAND TOTAL")})
+        Me.BandedGridColumn108.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "month_desc", "GRAND TOTAL")})
         Me.BandedGridColumn108.Visible = True
         '
         'GridBand27
@@ -4240,8 +4242,9 @@ Partial Class FormReportBalanceSheet
         'BandedGridColumn104
         '
         Me.BandedGridColumn104.Caption = "MONTH"
+        Me.BandedGridColumn104.FieldName = "month_desc"
         Me.BandedGridColumn104.Name = "BandedGridColumn104"
-        Me.BandedGridColumn104.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "", "GRAND TOTAL")})
+        Me.BandedGridColumn104.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "month_desc", "GRAND TOTAL")})
         Me.BandedGridColumn104.Visible = True
         '
         'GridBand25
@@ -4328,8 +4331,9 @@ Partial Class FormReportBalanceSheet
         'BandedGridColumn100
         '
         Me.BandedGridColumn100.Caption = "MONTH"
+        Me.BandedGridColumn100.FieldName = "month_desc"
         Me.BandedGridColumn100.Name = "BandedGridColumn100"
-        Me.BandedGridColumn100.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "", "GRAND TOTAL")})
+        Me.BandedGridColumn100.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "month_desc", "GRAND TOTAL")})
         Me.BandedGridColumn100.Visible = True
         '
         'GridBand23
@@ -4416,7 +4420,7 @@ Partial Class FormReportBalanceSheet
         'GridColumn87
         '
         Me.GridColumn87.Caption = "MONTH"
-        Me.GridColumn87.FieldName = "month"
+        Me.GridColumn87.FieldName = "month_desc"
         Me.GridColumn87.Name = "GridColumn87"
         Me.GridColumn87.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "month", "GRAND TOTAL")})
         Me.GridColumn87.Visible = True
