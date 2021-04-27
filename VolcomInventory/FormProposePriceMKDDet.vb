@@ -102,7 +102,7 @@
             is_show_all = "2"
         End If
         Dim query As String = "CALL view_pp_change(" + id + "," + is_show_all + ")"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query_no_pooling(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
         Cursor = Cursors.Default
