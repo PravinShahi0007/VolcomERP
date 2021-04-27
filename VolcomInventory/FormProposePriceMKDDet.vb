@@ -90,6 +90,7 @@
     End Sub
 
     Sub viewDetail()
+        FormMain.SplashScreenManager1.ShowWaitForm()
         Cursor = Cursors.WaitCursor
         Dim is_show_all As String = ""
         If is_confirm = "2" Then
@@ -102,6 +103,7 @@
         GCData.DataSource = data
         GVData.BestFitColumns()
         Cursor = Cursors.Default
+        FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
 
     Sub allowStatus()
