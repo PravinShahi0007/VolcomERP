@@ -90,7 +90,10 @@
     End Sub
 
     Sub viewDetail()
-        FormMain.SplashScreenManager1.ShowWaitForm()
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading detail")
         Cursor = Cursors.WaitCursor
         Dim is_show_all As String = ""
         If is_confirm = "2" Then
@@ -184,7 +187,9 @@
 
     Sub saveChangesDetail()
         If action = "upd" Then
-            FormMain.SplashScreenManager1.ShowWaitForm()
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            End If
             GVData.ActiveFilterString = "[id_pp_change_det]>0 AND ([propose_disc]<>[propose_disc_old] OR [propose_price]<>[propose_price_old] OR [propose_price_final]<>[propose_price_final_old] OR [note]<>[note_old]) "
             For u As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
                 Cursor = Cursors.WaitCursor
@@ -203,7 +208,9 @@
             GVData.ActiveFilterString = ""
             FormMain.SplashScreenManager1.CloseWaitForm()
 
-            FormMain.SplashScreenManager1.ShowWaitForm()
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            End If
             GVData.ActiveFilterString = "[id_pp_change_det]=0 AND ([propose_disc]>0 OR [propose_price]>0 OR [propose_price_final]>0 OR [note]<>'') "
             Dim qins As String = "INSERT INTO tb_pp_change_det(id_pp_change, id_design, id_design_price, design_price, age, erp_discount, propose_discount, propose_price, propose_price_final, note) VALUES "
             For i As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
