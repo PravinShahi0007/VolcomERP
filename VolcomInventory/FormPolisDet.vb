@@ -7,6 +7,7 @@
 
     Sub load_polis()
         If id_pps = "-1" Then 'new
+            'yang belum di propose dan mau jatuh tempo
             Dim q As String = "SELECT 
 p.id_polis AS old_id_polis,p.end_date,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`,c.`id_comp`
 ,p.`nilai_stock` AS old_nilai_stock,p.`nilai_fit_out` AS old_nilai_fit_out,p.`nilai_peralatan` AS old_nilai_peralatan,p.`nilai_building` AS old_nilai_building,p.`nilai_public_liability` AS old_nilai_public_liability,p.`nilai_total` AS old_nilai_total,pol_by.`id_comp` AS old_id_vendor,pol_by.`comp_name` AS old_vendor,pd.`premi` AS old_premi
@@ -22,7 +23,7 @@ LEFT JOIN
     INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps` AND pps.`id_report_status`!=6 AND pps.`id_report_status`!=5
     GROUP BY ppsd.`id_comp`
 )pps ON pps.id_comp=p.id_reff
-WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45 AND ISNULL(pps.id_comp)"
+WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45 AND ISNULL(pps.id_polis_pps)"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 GCSummary.DataSource = dt
@@ -39,8 +40,22 @@ WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45 AND ISNULL(pps.id_
             Dim q As String = "SELECT * FROM tb_polis_pps pps WHERE pps.id_polis_pps='" & id_pps & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
+                'load tab pertama
+                BLoadPolis.Visible = False
+                Dim qh As String = "
+SELECT ppsd.old_id_polis,p.end_date,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`,c.`id_comp`
+,ppsd.old_nilai_stock,ppsd.old_nilai_fit_out,ppsd.old_nilai_peralatan,ppsd.old_nilai_building,ppsd.old_nilai_public_liability,ppsd.old_nilai_total
+,pol_by.`id_comp` AS old_id_vendor,pol_by.`comp_name` AS old_vendor,ppsd.old_premi
+,ppsd.old_id_polis_type
+FROM tb_polis_pps_det ppsd
+INNER JOIN tb_polis p ON p.`id_polis`=ppsd.`old_id_polis`
+INNER JOIN tb_m_comp c ON c.`id_comp`=p.`id_reff` AND p.`id_polis_cat`=1
+INNER JOIN tb_m_comp pol_by ON pol_by.id_comp=p.id_polis_by
+WHERE ppsd.id_polis_pps='" & id_pps & "'"
+                Dim dth As DataTable = execute_query(qh, -1, True, "", "", "", "")
+                GCSummary.DataSource = dth
+                'steps
                 steps = dt.Rows(0)("step").ToString
-                '
                 If steps = "1" Then
                     'isi nilai stok
                     XTPNilaiStock.PageVisible = True
@@ -123,7 +138,17 @@ GROUP BY ppsd.`id_comp`"
                     '
                     If is_ok Then
                         'lanjut
-
+                        If GVNilaiStock.RowCount > 0 Then
+                            Dim q As String = ""
+                            For i As Integer = 0 To GVNilaiStock.RowCount - 1
+                                q += "UPDATE tb_polis_pps_det SET nilai_stock='" & decimalSQL(GVNilaiStock.GetRowCellValue(i, "nilai_stock").ToString) & "' WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVNilaiStock.GetRowCellValue(i, "id_comp").ToString & "';"
+                            Next
+                            execute_non_query(q, True, "", "", "", "")
+                            q = "UPDATE tb_polis_pps SET step=2 WHERE id_polis_pps='" & id_pps & "'"
+                            execute_non_query(q, True, "", "", "", "")
+                            infoCustom("Nilai stok sudah tersubmit, menunggu proses selanjutnya.")
+                            Close()
+                        End If
                     Else
                         warningCustom("Pastikan nilai stock tidak ada yang 0")
                     End If

@@ -1339,7 +1339,8 @@
                 Dim bpjskes As Decimal = data_sum.Rows(i)("d_bpjskes")
                 Dim bpjstk As Decimal = data_sum.Rows(i)("d_bpjstk")
                 Dim jp As Decimal = data_sum.Rows(i)("d_jaminan_pensiun")
-                Dim balance As Decimal = data_sum.Rows(i)("salary") - data_sum.Rows(i)("d_bpjskes") - data_sum.Rows(i)("d_bpjstk") - data_sum.Rows(i)("d_jaminan_pensiun")
+                Dim missing As Decimal = data_sum.Rows(i)("d_missing")
+                Dim balance As Decimal = data_sum.Rows(i)("salary") - data_sum.Rows(i)("d_bpjskes") - data_sum.Rows(i)("d_bpjstk") - data_sum.Rows(i)("d_jaminan_pensiun") - data_sum.Rows(i)("d_missing")
 
                 Dim id_coa_tag As String = execute_query("SELECT id_coa_tag FROM tb_coa_tag WHERE id_departement = " + data_sum.Rows(i)("id_departement").ToString, 0, True, "", "", "", "")
 
@@ -1361,6 +1362,8 @@
                     insert_detail = insert_detail + "('" + id_acc_trans + "', '3669', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(jp) + ", 0, 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + " - pot. JP', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
 
                     insert_detail = insert_detail + "('" + id_acc_trans + "', '3669', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(bpjstk) + ", 0, 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + " - pot. BPJST', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
+
+                    insert_detail = insert_detail + "('" + id_acc_trans + "', '3671', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(missing) + ", 0, 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + " - pot. Tab. Missing', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
                 End If
 
                 insert_detail = insert_detail + "('" + id_acc_trans + "', '3680', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(balance) + ", 0, '" + desc + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "')"
