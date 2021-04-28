@@ -2120,7 +2120,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
 
-        FormMain.SplashScreenManager1.SetWaitFormDescription("1/9 Creating report cover..")
+        FormMain.SplashScreenManager1.SetWaitFormDescription("1/9 Creating report cover.. ")
 
         Dim report As ReportFinReportCover = New ReportFinReportCover
 
@@ -2156,7 +2156,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             list.Add(RBSTM.Pages(i))
         Next
 
-        FormMain.SplashScreenManager1.SetWaitFormDescription("3/9 Creating income statement this month..")
+        FormMain.SplashScreenManager1.SetWaitFormDescription("3/9 Creating income statement this month.. ")
 
         'PL this month
         load_report_pl(GCMProfitLoss, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0")
@@ -2173,7 +2173,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             list.Add(RPLTM.Pages(i))
         Next
 
-        FormMain.SplashScreenManager1.SetWaitFormDescription("4/9 Creating balance sheet vs previous year..")
+        FormMain.SplashScreenManager1.SetWaitFormDescription("4/9 Creating balance sheet vs previous year.. ")
 
         'BS YTD
         load_report(GCMBSvsPrevYear, "-", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_year")
@@ -2194,7 +2194,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             list.Add(RBSYTD.Pages(i))
         Next
 
-        FormMain.SplashScreenManager1.SetWaitFormDescription("5/9 Creating income statement vs previous year..")
+        FormMain.SplashScreenManager1.SetWaitFormDescription("5/9 Creating income statement vs previous year.. ")
 
         'IS vs last year
         load_report_pl(GCMPLvsPrevYear, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_year_ind")
@@ -2215,7 +2215,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             list.Add(RISPY.Pages(i))
         Next
 
-        FormMain.SplashScreenManager1.SetWaitFormDescription("6/9 Creating income statement vs previous year (ytd)..")
+        FormMain.SplashScreenManager1.SetWaitFormDescription("6/9 Creating income statement vs previous year (ytd).. ")
 
         'IS ytd
         load_report_pl(GCMPLvsYTD, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_ytd_ind")
@@ -2236,7 +2236,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             list.Add(RPLYTD.Pages(i))
         Next
 
-        FormMain.SplashScreenManager1.SetWaitFormDescription("7/9 Creating balance sheet vs previous month..")
+        FormMain.SplashScreenManager1.SetWaitFormDescription("7/9 Creating balance sheet vs previous month.. ")
 
         'BS prev month
         load_report(GCMBSvsPrevMonth, "-", Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_month")
@@ -2257,7 +2257,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             list.Add(RBSPM.Pages(i))
         Next
 
-        FormMain.SplashScreenManager1.SetWaitFormDescription("8/9 Creating income statement vs previous month..")
+        FormMain.SplashScreenManager1.SetWaitFormDescription("8/9 Creating income statement vs previous month.. ")
 
         'IS prev month
         load_report_pl(GCMPLvsPrevMonth, Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd"), "0_vs_prev_month_ind")
@@ -2278,7 +2278,7 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             list.Add(RPLPM.Pages(i))
         Next
 
-        FormMain.SplashScreenManager1.SetWaitFormDescription("9/9 Creating Sales Achievement (ytd)..")
+        FormMain.SplashScreenManager1.SetWaitFormDescription("9/9 Creating Sales Achievement.. ")
 
         'Sales Achievement
         load_report_sales_achiv()

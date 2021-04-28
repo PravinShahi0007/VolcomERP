@@ -137,6 +137,8 @@
             Next
             XRTotalPasiva.Text = Decimal.Parse(total.ToString).ToString("N2")
             XRTotalPasivaPercent.Text = Decimal.Parse((total / dt_pasiva.Rows(0)("total_asset") * 100).ToString).ToString("N2") & " %"
+
+            pre_load_list_horz("303", 2, 1, XRTableMark)
         End If
     End Sub
     '
