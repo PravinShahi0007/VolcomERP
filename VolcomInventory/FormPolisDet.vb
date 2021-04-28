@@ -130,6 +130,10 @@ LEFT JOIN
         Next
         qs = "SELECT ppsd.id_polis_pps,ppsd.id_comp" & qh & "
 FROM tb_polis_pps_det ppsd " & qj
+        dt = execute_query(qs, -1, True, "", "", "", "")
+
+        GCPenawaran.DataSource = dt
+        GVPenawaran.BestFitColumns()
     End Sub
 
     Sub load_nilai_lainnya()
