@@ -1713,6 +1713,24 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
 
                 Cursor = Cursors.Default
             End If
+        ElseIf XTCMonthlyReport.SelectedTabPageIndex = 7 Then
+            If GVSalesRealization.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+
+                Dim Report As New ReportSalesAchievement()
+                Report.dt = GCSalesRealization.DataSource
+                Report.languange = "eng"
+
+                Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y') AS this_year,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%Y') AS last_year "
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+                Report.DataSource = dt
+
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
@@ -2261,7 +2279,22 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
         Next
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("9/9 Creating Sales Achievement (ytd)..")
+
         'Sales Achievement
+        load_report_sales_achiv()
+
+        Dim RSA As New ReportSalesAchievement()
+        RSA.dt = GCSalesRealization.DataSource
+        RSA.languange = "eng"
+
+        Dim RSA_q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y') AS this_year,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%Y') AS last_year "
+        Dim RSA_dt As DataTable = execute_query(RSA_q, -1, True, "", "", "", "")
+
+        RSA.DataSource = dt
+        RSA.CreateDocument()
+        For i = 0 To RSA.Pages.Count - 1
+            list.Add(RSA.Pages(i))
+        Next
 
         FormMain.SplashScreenManager1.CloseWaitForm()
 

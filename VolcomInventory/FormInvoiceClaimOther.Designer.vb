@@ -110,6 +110,7 @@ Partial Class FormInvoiceClaimOther
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BPrintDolar = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -354,6 +355,7 @@ Partial Class FormInvoiceClaimOther
         '
         'PanelControl7
         '
+        Me.PanelControl7.Controls.Add(Me.BPrintDolar)
         Me.PanelControl7.Controls.Add(Me.BMark)
         Me.PanelControl7.Controls.Add(Me.BAttachment)
         Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
@@ -1046,6 +1048,18 @@ Partial Class FormInvoiceClaimOther
         Me.GridColumncc.VisibleIndex = 1
         Me.GridColumncc.Width = 39
         '
+        'BPrintDolar
+        '
+        Me.BPrintDolar.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintDolar.Image = CType(resources.GetObject("BPrintDolar.Image"), System.Drawing.Image)
+        Me.BPrintDolar.ImageIndex = 6
+        Me.BPrintDolar.Location = New System.Drawing.Point(384, 2)
+        Me.BPrintDolar.Name = "BPrintDolar"
+        Me.BPrintDolar.Size = New System.Drawing.Size(122, 42)
+        Me.BPrintDolar.TabIndex = 23
+        Me.BPrintDolar.TabStop = False
+        Me.BPrintDolar.Text = "Print Dolar"
+        '
         'FormInvoiceClaimOther
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1208,4 +1222,5 @@ Partial Class FormInvoiceClaimOther
     Friend WithEvents GridColumndebit_draft As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncredit_draft As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BPrintDolar As DevExpress.XtraEditors.SimpleButton
 End Class
