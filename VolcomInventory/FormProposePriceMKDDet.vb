@@ -129,6 +129,7 @@
             DESOHDate.Enabled = True
             BtnAllProduct.Visible = False
             BtnFinalPropose.Visible = False
+            gridBandAction.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -141,6 +142,7 @@
             DESOHDate.Enabled = False
             BtnAllProduct.Visible = True
             BtnFinalPropose.Visible = True
+            gridBandAction.Visible = False
         End If
 
         'reset propose
@@ -164,6 +166,7 @@
             GVData.OptionsBehavior.ReadOnly = True
             BtnAllProduct.Visible = False
             BtnFinalPropose.Visible = False
+            gridBandAction.Visible = False
         End If
     End Sub
 
@@ -278,7 +281,7 @@
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
-        makeSafeGV(GVData)
+        GVData.ActiveFilterString = ""
         If GVData.RowCount <= 0 Or Not checkHead() Then
             stopCustom("Please input all data")
         Else

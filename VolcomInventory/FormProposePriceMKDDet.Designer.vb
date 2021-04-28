@@ -51,9 +51,10 @@ Partial Class FormProposePriceMKDDet
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.gridBandDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandAction = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnbtn_edit_propose = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoBtnEditPropose = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.gridBandDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -475,7 +476,7 @@ Partial Class FormProposePriceMKDDet
         '
         'GVData
         '
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandDetail, Me.gridBandHist, Me.gridBandPropose, Me.gridBandTotalValue, Me.gridBandOther})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandAction, Me.gridBandDetail, Me.gridBandHist, Me.gridBandPropose, Me.gridBandTotalValue, Me.gridBandOther})
         Me.GVData.ColumnPanelRowHeight = 40
         Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnno, Me.BandedGridColumnid_pp_change_det, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_code, Me.BandedGridColumnname, Me.BandedGridColumnclass, Me.BandedGridColumnid_disc, Me.BandedGridColumndisc_desc, Me.BandedGridColumnmkd_normal_view, Me.BandedGridColumnmkd_30_view, Me.BandedGridColumnmkd_50_view, Me.BandedGridColumnmkd_70_view, Me.BandedGridColumnfirst_del, Me.BandedGridColumnage, Me.BandedGridColumndesign_cop, Me.BandedGridColumnid_design_price, Me.BandedGridColumndesign_price, Me.BandedGridColumnprice_type, Me.BandedGridColumndesign_cat, Me.BandedGridColumnid_design_price_normal, Me.BandedGridColumndesign_price_normal, Me.BandedGridColumncurr_disc, Me.BandedGridColumnpropose_disc, Me.BandedGridColumnpropose_price, Me.BandedGridColumnpropose_price_final, Me.BandedGridColumnerp_discount, Me.BandedGridColumnnote, Me.BandedGridColumnpropose_disc_old, Me.BandedGridColumnpropose_price_old, Me.BandedGridColumnpropose_price_final_old, Me.BandedGridColumnis_edit, Me.BandedGridColumnnote_old, Me.BandedGridColumnpropose_disc_group, Me.BandedGridColumnpropose_status, Me.BandedGridColumntotal_sal, Me.BandedGridColumntotal_soh, Me.BandedGridColumntotal_bos, Me.BandedGridColumnsas, Me.BandedGridColumntotal_normal_value, Me.BandedGridColumntotal_current_value, Me.BandedGridColumntotal_propose_value, Me.BandedGridColumntotal_cost, Me.BandedGridColumnmarked_down_value, Me.BandedGridColumnmark_up, Me.BandedGridColumnbtn_edit_propose})
         Me.GVData.GridControl = Me.GCData
@@ -489,10 +490,41 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnclass, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
+        'gridBandAction
+        '
+        Me.gridBandAction.Caption = "ACTION"
+        Me.gridBandAction.Columns.Add(Me.BandedGridColumnbtn_edit_propose)
+        Me.gridBandAction.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBandAction.Name = "gridBandAction"
+        Me.gridBandAction.VisibleIndex = 0
+        Me.gridBandAction.Width = 75
+        '
+        'BandedGridColumnbtn_edit_propose
+        '
+        Me.BandedGridColumnbtn_edit_propose.Caption = "  "
+        Me.BandedGridColumnbtn_edit_propose.ColumnEdit = Me.RepoBtnEditPropose
+        Me.BandedGridColumnbtn_edit_propose.FieldName = "btn_edit_propose"
+        Me.BandedGridColumnbtn_edit_propose.Name = "BandedGridColumnbtn_edit_propose"
+        Me.BandedGridColumnbtn_edit_propose.Visible = True
+        '
+        'RepoBtnEditPropose
+        '
+        Me.RepoBtnEditPropose.AutoHeight = False
+        Me.RepoBtnEditPropose.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        SerializableAppearanceObject1.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject1.Options.UseBackColor = True
+        SerializableAppearanceObject1.Options.UseFont = True
+        SerializableAppearanceObject1.Options.UseForeColor = True
+        Me.RepoBtnEditPropose.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Edit", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.RepoBtnEditPropose.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.RepoBtnEditPropose.Name = "RepoBtnEditPropose"
+        Me.RepoBtnEditPropose.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
         'gridBandDetail
         '
         Me.gridBandDetail.Caption = "PRODUCT DETAIL"
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnbtn_edit_propose)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumnno)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_code)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumnname)
@@ -515,31 +547,8 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumnsas)
         Me.gridBandDetail.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gridBandDetail.Name = "gridBandDetail"
-        Me.gridBandDetail.VisibleIndex = 0
-        Me.gridBandDetail.Width = 1547
-        '
-        'BandedGridColumnbtn_edit_propose
-        '
-        Me.BandedGridColumnbtn_edit_propose.Caption = "  "
-        Me.BandedGridColumnbtn_edit_propose.ColumnEdit = Me.RepoBtnEditPropose
-        Me.BandedGridColumnbtn_edit_propose.FieldName = "btn_edit_propose"
-        Me.BandedGridColumnbtn_edit_propose.Name = "BandedGridColumnbtn_edit_propose"
-        Me.BandedGridColumnbtn_edit_propose.Visible = True
-        '
-        'RepoBtnEditPropose
-        '
-        Me.RepoBtnEditPropose.AutoHeight = False
-        Me.RepoBtnEditPropose.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        SerializableAppearanceObject1.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject1.Options.UseBackColor = True
-        SerializableAppearanceObject1.Options.UseFont = True
-        SerializableAppearanceObject1.Options.UseForeColor = True
-        Me.RepoBtnEditPropose.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Edit", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
-        Me.RepoBtnEditPropose.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.RepoBtnEditPropose.Name = "RepoBtnEditPropose"
-        Me.RepoBtnEditPropose.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        Me.gridBandDetail.VisibleIndex = 1
+        Me.gridBandDetail.Width = 1472
         '
         'BandedGridColumnno
         '
@@ -825,7 +834,7 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_disc_group)
         Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_status)
         Me.gridBandPropose.Name = "gridBandPropose"
-        Me.gridBandPropose.VisibleIndex = 1
+        Me.gridBandPropose.VisibleIndex = 2
         Me.gridBandPropose.Width = 471
         '
         'BandedGridColumnerp_discount
@@ -947,7 +956,7 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumnmarked_down_value)
         Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumnmark_up)
         Me.gridBandTotalValue.Name = "gridBandTotalValue"
-        Me.gridBandTotalValue.VisibleIndex = 2
+        Me.gridBandTotalValue.VisibleIndex = 3
         Me.gridBandTotalValue.Width = 450
         '
         'BandedGridColumntotal_normal_value
@@ -1056,7 +1065,7 @@ Partial Class FormProposePriceMKDDet
         '
         Me.gridBandOther.Columns.Add(Me.BandedGridColumnnote)
         Me.gridBandOther.Name = "gridBandOther"
-        Me.gridBandOther.VisibleIndex = 3
+        Me.gridBandOther.VisibleIndex = 4
         Me.gridBandOther.Width = 75
         '
         'BandedGridColumnnote
@@ -1385,9 +1394,10 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents BandedGridColumnmark_up As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BtnFinalPropose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAllProduct As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents gridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnbtn_edit_propose As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepoBtnEditPropose As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents gridBandAction As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandHist As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
