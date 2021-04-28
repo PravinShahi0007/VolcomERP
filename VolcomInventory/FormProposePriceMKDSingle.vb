@@ -102,5 +102,20 @@
         End If
 
         'update
+        Dim propose_price As Decimal = 0
+        Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
+        gv.SetFocusedRowCellValue("propose_price", propose_price)
+        gv.SetFocusedRowCellValue("propose_price_final", propose_price_final)
+        If propose_disc > 0 Then
+            gv.SetFocusedRowCellValue("propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
+            gv.SetFocusedRowCellValue("propose_status", "Turun")
+        Else
+            gv.SetFocusedRowCellValue("propose_disc_group", "")
+            gv.SetFocusedRowCellValue("propose_status", "")
+        End If
+
+        FormProposePriceMKDDet.GCData.RefreshDataSource()
+        FormProposePriceMKDDet.GVData.RefreshData()
+        FormProposePriceMKDDet.GVData.BestFitColumns()
     End Sub
 End Class
