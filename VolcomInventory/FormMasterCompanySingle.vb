@@ -1179,7 +1179,7 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
 
     Private Sub BApproval_Click_1(sender As Object, e As EventArgs) Handles BApproval.Click
         'check coa first
-        Dim q_check As String = "SELECT * FROM tb_m_comp WHERE id_comp='" & id_company & "' AND ISNULL(id_acc_ap) AND ISNULL(id_acc_ar) AND ISNULL(id_acc_dp)"
+        Dim q_check As String = "SELECT * FROM tb_m_comp WHERE id_comp='" & id_company & "' AND ISNULL(id_acc_ap) AND ISNULL(id_acc_ar) AND ISNULL(id_acc_dp) AND ISNULL(id_acc_cabang_ap) AND ISNULL(id_acc_cabang_ar) AND ISNULL(id_acc_cabang_dp)"
         Dim dt_check As DataTable = execute_query(q_check, -1, True, "", "", "", "")
 
         If BApproval.Text.ToString = "Submit" And dt_check.Rows.Count > 0 Then
