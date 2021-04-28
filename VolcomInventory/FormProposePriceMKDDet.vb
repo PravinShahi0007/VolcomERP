@@ -226,14 +226,26 @@
                 Dim design_price As String = decimalSQL(GVData.GetRowCellValue(i, "design_price").ToString)
                 Dim age As String = decimalSQL(GVData.GetRowCellValue(i, "age").ToString)
                 Dim erp_discount As String = decimalSQL(GVData.GetRowCellValue(i, "erp_discount").ToString)
+                If erp_discount = "" Then
+                    erp_discount = "NULL"
+                End If
                 Dim propose_discount As String = decimalSQL(GVData.GetRowCellValue(i, "propose_disc").ToString)
+                If propose_discount = "" Then
+                    propose_discount = "NULL"
+                End If
                 Dim propose_price As String = decimalSQL(GVData.GetRowCellValue(i, "propose_price").ToString)
+                If propose_price = "" Then
+                    propose_price = "NULL"
+                End If
                 Dim propose_price_final As String = decimalSQL(GVData.GetRowCellValue(i, "propose_price_final").ToString)
+                If propose_price_final = "" Then
+                    propose_price_final = "NULL"
+                End If
                 Dim note As String = addSlashes(GVData.GetRowCellValue(i, "note").ToString)
                 If i > 0 Then
                     qins += ","
                 End If
-                qins += "('" + id + "', '" + id_design + "', '" + id_design_price + "', '" + design_price + "', '" + age + "', '" + erp_discount + "', '" + propose_discount + "', '" + propose_price + "', '" + propose_price_final + "', '" + note + "') "
+                qins += "('" + id + "', '" + id_design + "', '" + id_design_price + "', '" + design_price + "', '" + age + "', " + erp_discount + ", " + propose_discount + ", " + propose_price + ", " + propose_price_final + ", '" + note + "') "
                 Cursor = Cursors.Default
             Next
             If GVData.RowCount > 0 Then
@@ -646,5 +658,15 @@
 
     Private Sub BtnFinalPropose_Click(sender As Object, e As EventArgs) Handles BtnFinalPropose.Click
         viewDetail(2)
+    End Sub
+
+    Private Sub RepoBtnEditPropose_Click(sender As Object, e As EventArgs) Handles RepoBtnEditPropose.Click
+
+    End Sub
+
+    Private Sub RepoBtnEditPropose_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnEditPropose.ButtonClick
+        Cursor = Cursors.WaitCursor
+        FormProposePriceMKDSingle.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
