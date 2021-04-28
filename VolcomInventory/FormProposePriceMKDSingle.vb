@@ -84,11 +84,11 @@
         End If
 
         'cek valid note 
-        Dim erp_disc As Decimal
+        Dim erp_discount As Decimal
         If IsDBNull(TxtRekomendasiDisc.EditValue) Then
-            erp_disc = -1
+            erp_discount = -1
         Else
-            erp_disc = TxtRekomendasiDisc.EditValue
+            erp_discount = TxtRekomendasiDisc.EditValue
         End If
         Dim propose_disc As Decimal
         If SLEProposeDisc.EditValue = Nothing Then
@@ -96,16 +96,32 @@
         Else
             propose_disc = SLEProposeDisc.EditValue
         End If
-        If erp_disc <> propose_disc And MENote.Text = "" Then
+        If erp_discount <> propose_disc And MENote.Text = "" Then
             warningCustom("Please input note")
             Exit Sub
         End If
 
         'update
-        Dim propose_price As Decimal = 0
-        Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
-        gv.SetFocusedRowCellValue("propose_price", propose_price)
-        gv.SetFocusedRowCellValue("propose_price_final", propose_price_final)
+        If erp_discount = -1 Then
+            gv.SetFocusedRowCellValue("erp_discount", Nothing)
+        Else
+            gv.SetFocusedRowCellValue("erp_discount", erp_discount)
+        End If
+        If propose_disc = -1 Then
+            gv.SetFocusedRowCellValue("propose_disc", Nothing)
+        Else
+            gv.SetFocusedRowCellValue("propose_disc", propose_disc)
+        End If
+        If TxtProposePrice.EditValue = Nothing Then
+            gv.SetFocusedRowCellValue("propose_price", Nothing)
+        Else
+            gv.SetFocusedRowCellValue("propose_price", TxtProposePrice.EditValue)
+        End If
+        If TxtProposeFinal.EditValue = Nothing Then
+            gv.SetFocusedRowCellValue("propose_price_final", Nothing)
+        Else
+            gv.SetFocusedRowCellValue("propose_price_final", TxtProposeFinal.EditValue)
+        End If
         If propose_disc > 0 Then
             gv.SetFocusedRowCellValue("propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
             gv.SetFocusedRowCellValue("propose_status", "Turun")
@@ -113,9 +129,11 @@
             gv.SetFocusedRowCellValue("propose_disc_group", "")
             gv.SetFocusedRowCellValue("propose_status", "")
         End If
+        gv.SetFocusedRowCellValue("note", MENote.Text)
 
         FormProposePriceMKDDet.GCData.RefreshDataSource()
         FormProposePriceMKDDet.GVData.RefreshData()
         FormProposePriceMKDDet.GVData.BestFitColumns()
+        Close()
     End Sub
 End Class

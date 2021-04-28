@@ -21,8 +21,8 @@ Partial Class FormProposePriceMKDSingle
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProposePriceMKDSingle))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCode = New DevExpress.XtraEditors.TextEdit()
         Me.TxtDescription = New DevExpress.XtraEditors.TextEdit()
@@ -66,18 +66,6 @@ Partial Class FormProposePriceMKDSingle
         Me.PanelControl1.Size = New System.Drawing.Size(521, 43)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnConfirm
-        '
-        Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(428, 2)
-        Me.BtnConfirm.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.BtnConfirm.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnConfirm.Name = "BtnConfirm"
-        Me.BtnConfirm.Size = New System.Drawing.Size(91, 39)
-        Me.BtnConfirm.TabIndex = 0
-        Me.BtnConfirm.Text = "Confirm"
-        '
         'BtnDiscard
         '
         Me.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Right
@@ -89,6 +77,18 @@ Partial Class FormProposePriceMKDSingle
         Me.BtnDiscard.Size = New System.Drawing.Size(91, 39)
         Me.BtnDiscard.TabIndex = 1
         Me.BtnDiscard.Text = "Discard"
+        '
+        'BtnConfirm
+        '
+        Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
+        Me.BtnConfirm.Location = New System.Drawing.Point(428, 2)
+        Me.BtnConfirm.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BtnConfirm.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnConfirm.Name = "BtnConfirm"
+        Me.BtnConfirm.Size = New System.Drawing.Size(91, 39)
+        Me.BtnConfirm.TabIndex = 0
+        Me.BtnConfirm.Text = "Confirm"
         '
         'LabelControl1
         '
@@ -201,6 +201,7 @@ Partial Class FormProposePriceMKDSingle
         Me.SLEProposeDisc.Location = New System.Drawing.Point(121, 94)
         Me.SLEProposeDisc.Name = "SLEProposeDisc"
         Me.SLEProposeDisc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEProposeDisc.Properties.NullText = ""
         Me.SLEProposeDisc.Properties.View = Me.SearchLookUpEdit1View
         Me.SLEProposeDisc.Size = New System.Drawing.Size(290, 20)
         Me.SLEProposeDisc.TabIndex = 14

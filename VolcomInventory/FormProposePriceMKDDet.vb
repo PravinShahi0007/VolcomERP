@@ -479,46 +479,46 @@
     Dim t As Integer = 0
     Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
         Dim rh As Integer = e.RowHandle
-        If e.Column.FieldName.ToString = "propose_disc" Then
-            Cursor = Cursors.WaitCursor
-            Dim disc_old As Decimal = GVData.ActiveEditor.OldEditValue
-            Dim curr_disc As Decimal = GVData.GetRowCellValue(rh, "curr_disc")
-            If e.Value <= curr_disc Then
-                stopCustom("Diskon tidak valid")
-                GVData.SetRowCellValue(rh, "propose_disc", disc_old)
-                Exit Sub
-            End If
+        'If e.Column.FieldName.ToString = "propose_disc" Then
+        '    Cursor = Cursors.WaitCursor
+        '    Dim disc_old As Decimal = GVData.ActiveEditor.OldEditValue
+        '    Dim curr_disc As Decimal = GVData.GetRowCellValue(rh, "curr_disc")
+        '    If e.Value <= curr_disc Then
+        '        stopCustom("Diskon tidak valid")
+        '        GVData.SetRowCellValue(rh, "propose_disc", disc_old)
+        '        Exit Sub
+        '    End If
 
-            If e.Value > 0 Then
-                'calculate price
-                Dim disc As Decimal = e.Value
-                Dim normal_price As Decimal = GVData.GetRowCellValue(rh, "design_price_normal")
-                Dim propose_price As Decimal = normal_price * ((100 - disc) / 100)
-                Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
-                GVData.SetRowCellValue(rh, "propose_price", propose_price)
-                GVData.SetRowCellValue(rh, "propose_price_final", propose_price_final)
-                If disc > 0 Then
-                    GVData.SetRowCellValue(rh, "propose_disc_group", "Up to " + Decimal.Parse(disc.ToString).ToString("N0") + "%")
-                    GVData.SetRowCellValue(rh, "propose_status", "Turun")
-                Else
-                    GVData.SetRowCellValue(rh, "propose_disc_group", "")
-                    GVData.SetRowCellValue(rh, "propose_status", "")
-                End If
+        '    If e.Value > 0 Then
+        '        'calculate price
+        '        Dim disc As Decimal = e.Value
+        '        Dim normal_price As Decimal = GVData.GetRowCellValue(rh, "design_price_normal")
+        '        Dim propose_price As Decimal = normal_price * ((100 - disc) / 100)
+        '        Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
+        '        GVData.SetRowCellValue(rh, "propose_price", propose_price)
+        '        GVData.SetRowCellValue(rh, "propose_price_final", propose_price_final)
+        '        If disc > 0 Then
+        '            GVData.SetRowCellValue(rh, "propose_disc_group", "Up to " + Decimal.Parse(disc.ToString).ToString("N0") + "%")
+        '            GVData.SetRowCellValue(rh, "propose_status", "Turun")
+        '        Else
+        '            GVData.SetRowCellValue(rh, "propose_disc_group", "")
+        '            GVData.SetRowCellValue(rh, "propose_status", "")
+        '        End If
 
-                GCData.RefreshDataSource()
-                GVData.RefreshData()
-                GVData.BestFitColumns()
-            Else
-                GVData.SetRowCellValue(rh, "propose_price", 0)
-                GVData.SetRowCellValue(rh, "propose_price_final", 0)
-                GVData.SetRowCellValue(rh, "propose_disc_group", "")
-                GVData.SetRowCellValue(rh, "propose_status", "")
-                GCData.RefreshDataSource()
-                GVData.RefreshData()
-                GVData.BestFitColumns()
-            End If
-            Cursor = Cursors.Default
-        End If
+        '        GCData.RefreshDataSource()
+        '        GVData.RefreshData()
+        '        GVData.BestFitColumns()
+        '    Else
+        '        GVData.SetRowCellValue(rh, "propose_price", 0)
+        '        GVData.SetRowCellValue(rh, "propose_price_final", 0)
+        '        GVData.SetRowCellValue(rh, "propose_disc_group", "")
+        '        GVData.SetRowCellValue(rh, "propose_status", "")
+        '        GCData.RefreshDataSource()
+        '        GVData.RefreshData()
+        '        GVData.BestFitColumns()
+        '    End If
+        '    Cursor = Cursors.Default
+        'End If
     End Sub
 
     Function getPP(ByVal normal_price As Decimal, ByVal disc As Decimal) As DataTable

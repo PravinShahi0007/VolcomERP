@@ -863,6 +863,7 @@ Partial Class FormProposePriceMKDDet
         Me.RepositoryItemDisc.AutoHeight = False
         Me.RepositoryItemDisc.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDisc.Name = "RepositoryItemDisc"
+        Me.RepositoryItemDisc.NullText = ""
         Me.RepositoryItemDisc.View = Me.RepositoryItemSearchLookUpEdit1View
         '
         'RepositoryItemSearchLookUpEdit1View
