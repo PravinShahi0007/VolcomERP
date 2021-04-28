@@ -77,7 +77,7 @@ WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45"
     End Sub
 
     Private Sub BRefreshPolisPPS_Click(sender As Object, e As EventArgs) Handles BRefreshPolisPPS.Click
-        Dim q As String = "SELECT pps.id_polis_pps,pps.number,sts.report_status,IF(pps.step=1,'Waiting nilai stock',IF(pps.step=2,'','Next'))
+        Dim q As String = "SELECT pps.id_polis_pps,pps.number,sts.report_status,IF(pps.step=1,'Waiting nilai stock',IF(pps.step=2,'','Next')) as step_desc
 FROM tb_polis_pps pps
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")

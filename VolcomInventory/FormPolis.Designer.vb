@@ -47,10 +47,10 @@ Partial Class FormPolis
         Me.GVPolisPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BRefreshPolisPPS = New DevExpress.XtraEditors.SimpleButton()
-        Me.XTPFixedAsset = New DevExpress.XtraTab.XtraTabPage()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BRefreshPolisPPS = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPFixedAsset = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCPolisToko, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -321,6 +321,22 @@ Partial Class FormPolis
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 0
         '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Step"
+        Me.GridColumn14.FieldName = "step_desc"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Report Status"
+        Me.GridColumn15.FieldName = "report_status"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 2
+        '
         'BRefreshPolisPPS
         '
         Me.BRefreshPolisPPS.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
@@ -340,22 +356,6 @@ Partial Class FormPolis
         Me.XTPFixedAsset.Name = "XTPFixedAsset"
         Me.XTPFixedAsset.Size = New System.Drawing.Size(1003, 463)
         Me.XTPFixedAsset.Text = "Fixed Asset"
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Step"
-        Me.GridColumn14.FieldName = "step_desc"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 1
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Report Status"
-        Me.GridColumn15.FieldName = "status"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 2
         '
         'FormPolis
         '

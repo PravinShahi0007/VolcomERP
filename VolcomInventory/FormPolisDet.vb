@@ -54,6 +54,7 @@ INNER JOIN tb_m_comp pol_by ON pol_by.id_comp=p.id_polis_by
 WHERE ppsd.id_polis_pps='" & id_pps & "'"
                 Dim dth As DataTable = execute_query(qh, -1, True, "", "", "", "")
                 GCSummary.DataSource = dth
+                BGVSummary.BestFitColumns()
                 'steps
                 steps = dt.Rows(0)("step").ToString
                 If steps = "1" Then
@@ -67,10 +68,79 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                     '
                     load_nilai_stock()
                 ElseIf steps = "2" Then
+                    XTPNilaiStock.PageVisible = True
+                    XTPDetail.PageVisible = True
+                    XTPPenawaran.PageVisible = False
+                    BSaveDraft.Visible = True
 
+                    XTCPolis.SelectedTabPageIndex = 2
+                    load_nilai_stock()
+                    load_nilai_lainnya()
+                ElseIf steps = "3" Then
+                    XTPNilaiStock.PageVisible = True
+                    XTPDetail.PageVisible = True
+                    XTPPenawaran.PageVisible = True
+                    BSaveDraft.Visible = True
+                    '
+                    view_vendor_penawaran()
+                    '
+                    XTCPolis.SelectedTabPageIndex = 3
+                    load_nilai_stock()
+                    load_nilai_lainnya()
+                    load_nilai_penawaran()
                 End If
             End If
         End If
+    End Sub
+
+    Sub view_vendor_penawaran()
+        Dim q As String = "SELECT id_comp,comp_name,comp_number FROM tb_m_comp WHERE id_comp_cat='2' AND is_active=1"
+        viewSearchLookupQuery(SLEPenawaranAdd, q, "id_comp", "comp_name", "id_comp")
+        '
+        q = "SELECT c.id_comp,c.comp_number,c.comp_name 
+FROM tb_polis_pps_vendor ppsv
+INNER JOIN tb_m_comp c ON c.id_comp=ppsv.id_vendor
+WHERE ppsv.id_polis_pps='" & id_pps & "'
+GROUP BY ppsv.id_vendor"
+        viewSearchLookupQuery(SLEPenawaranDel, q, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Sub load_nilai_penawaran()
+        Dim q As String = "SELECT c.id_comp,c.comp_number,c.comp_name 
+FROM tb_polis_pps_vendor ppsv
+INNER JOIN tb_m_comp c ON c.id_comp=ppsv.id_vendor
+WHERE ppsv.id_polis_pps='" & id_pps & "'
+GROUP BY ppsv.id_vendor"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        Dim qs As String = ""
+        Dim qh As String = ""
+        Dim qj As String = ""
+        For i = 0 To dt.Rows.Count - 1
+            'generate query
+            qh += ",(tb_" & dt.Rows(i)("id_comp").ToString & ".price) AS vendor_" & dt.Rows(i)("comp_name").ToString & ""
+            qj += "
+LEFT JOIN 
+(
+	SELECT id_comp,price
+	FROM `tb_polis_pps_vendor` 
+	WHERE id_polis_pps='" & id_pps & "' AND id_vendor=" & dt.Rows(i)("id_comp").ToString & "
+)tb_" & dt.Rows(i)("id_comp").ToString & " ON tb_" & dt.Rows(i)("id_comp").ToString & ".id_comp=ppsd.id_comp
+"
+        Next
+        qs = "SELECT ppsd.id_polis_pps,ppsd.id_comp" & qh & "
+FROM tb_polis_pps_det ppsd " & qj
+    End Sub
+
+    Sub load_nilai_lainnya()
+        Dim q As String = "SELECT ppsd.`id_comp`,c.`comp_name`,c.`comp_number`,c.`address_primary`,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`
+FROM `tb_polis_pps_det` ppsd
+INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
+WHERE ppsd.id_polis_pps='" & id_pps & "'
+GROUP BY ppsd.`id_comp`"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCNilaiLainnya.DataSource = dt
+        GVNilaiLainnya.BestFitColumns()
     End Sub
 
     Sub load_nilai_stock()
@@ -152,6 +222,36 @@ GROUP BY ppsd.`id_comp`"
                     Else
                         warningCustom("Pastikan nilai stock tidak ada yang 0")
                     End If
+                ElseIf steps = "2" Then
+                    'check all input
+                    Dim is_ok As Boolean = True
+                    GVNilaiLainnya.ActiveFilterString = "[nilai_total]<=0"
+                    If GVNilaiLainnya.RowCount > 0 Then
+                        is_ok = False
+                    End If
+                    GVNilaiLainnya.ActiveFilterString = ""
+                    '
+                    If is_ok Then
+                        'lanjut
+                        If GVNilaiLainnya.RowCount > 0 Then
+                            Dim q As String = ""
+                            For i As Integer = 0 To GVNilaiLainnya.RowCount - 1
+                                q += "UPDATE tb_polis_pps_det SET nilai_fit_out='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_fit_out").ToString) & "'
+,nilai_building='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_building").ToString) & "'
+,nilai_peralatan='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_peralatan").ToString) & "'
+,nilai_public_liability='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_public_liability").ToString) & "'
+,nilai_total='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_total").ToString) & "'
+WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVNilaiLainnya.GetRowCellValue(i, "id_comp").ToString & "';"
+                            Next
+                            execute_non_query(q, True, "", "", "", "")
+                            q = "UPDATE tb_polis_pps SET step=3 WHERE id_polis_pps='" & id_pps & "'"
+                            execute_non_query(q, True, "", "", "", "")
+                            infoCustom("Nilai lainnya sudah tersubmit, menunggu proses selanjutnya.")
+                            Close()
+                        End If
+                    Else
+                        warningCustom("Pastikan nilai total tidak ada yang 0")
+                    End If
                 End If
             End If
         End If
@@ -167,10 +267,28 @@ GROUP BY ppsd.`id_comp`"
                 execute_non_query(q, True, "", "", "", "")
                 infoCustom("Draft saved.")
             End If
+        ElseIf steps = "2" Then
+            If GVNilaiLainnya.RowCount > 0 Then
+                Dim q As String = ""
+                For i As Integer = 0 To GVNilaiLainnya.RowCount - 1
+                    q += "UPDATE tb_polis_pps_det SET nilai_fit_out='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_fit_out").ToString) & "'
+,nilai_building='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_building").ToString) & "'
+,nilai_peralatan='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_peralatan").ToString) & "'
+,nilai_public_liability='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_public_liability").ToString) & "'
+,nilai_total='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_total").ToString) & "' WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVNilaiLainnya.GetRowCellValue(i, "id_comp").ToString & "';"
+                Next
+                execute_non_query(q, True, "", "", "", "")
+                infoCustom("Draft saved.")
+            End If
         End If
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
+    End Sub
+
+    Private Sub BRefreshPenawaran_Click(sender As Object, e As EventArgs) Handles BRefreshPenawaran.Click
+        view_vendor_penawaran()
+        load_nilai_penawaran()
     End Sub
 End Class
