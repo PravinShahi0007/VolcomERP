@@ -653,6 +653,8 @@ Partial Class FormFGTransList
         Me.DEFromAdjOut = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumncombine_note = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncombine_note_main = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -1701,7 +1703,7 @@ Partial Class FormFGTransList
         '
         'GVSalesDelOrder
         '
-        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn55, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumn26, Me.GridColumnUpdBy, Me.GridColumnSelect, Me.GridColumnGroupStoreDel, Me.GridColumnCodeDel, Me.GridColumnNameDel, Me.GridColumnSizeDel, Me.GridColumnClass, Me.GridColumnQtyDel, Me.GridColumnPriceDel, Me.GridColumnPriceTypeDel, Me.GridColumnAmountDel, Me.GridColumnOLNumber, Me.GridColumncustomer_name, Me.GridColumnawbill_no, Me.GridColumnmanifest_number})
+        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn55, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumn26, Me.GridColumnUpdBy, Me.GridColumnSelect, Me.GridColumnGroupStoreDel, Me.GridColumnCodeDel, Me.GridColumnNameDel, Me.GridColumnSizeDel, Me.GridColumnClass, Me.GridColumnQtyDel, Me.GridColumnPriceDel, Me.GridColumnPriceTypeDel, Me.GridColumnAmountDel, Me.GridColumnOLNumber, Me.GridColumncustomer_name, Me.GridColumnawbill_no, Me.GridColumnmanifest_number, Me.GridColumncombine_note})
         Me.GVSalesDelOrder.GridControl = Me.GCSalesDelOrder
         Me.GVSalesDelOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumnQtyDel, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmountDel, "{0:n2}")})
         Me.GVSalesDelOrder.Name = "GVSalesDelOrder"
@@ -1762,6 +1764,8 @@ Partial Class FormFGTransList
         Me.GridColumn23.FieldName = "pl_sales_order_del_note"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.AllowEdit = False
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 20
         '
         'GridColumn24
         '
@@ -1999,7 +2003,7 @@ Partial Class FormFGTransList
         'GVSalesDelOrderMain
         '
         Me.GVSalesDelOrderMain.ColumnPanelRowHeight = 35
-        Me.GVSalesDelOrderMain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn125, Me.GridColumn126, Me.GridColumn127, Me.GridColumn128, Me.GridColumn129, Me.GridColumn130, Me.GridColumn131, Me.GridColumn132, Me.GridColumn133, Me.GridColumn134, Me.GridColumn135, Me.GridColumn136, Me.GridColumn137, Me.GridColumn138, Me.GridColumn139, Me.GridColumn140, Me.GridColumn142, Me.GridColumn143, Me.GridColumn144, Me.GridColumn145, Me.GridColumn146, Me.GridColumnqty1_del, Me.GridColumnqty2_del, Me.GridColumnqty3_del, Me.GridColumnqty4_del, Me.GridColumnqty5_del, Me.GridColumnqty6_del, Me.GridColumnqty7_del, Me.GridColumqty8_del, Me.GridColumnqty9_del, Me.GridColumnqty0_del, Me.GridColumnsizetype_del, Me.GridColumnsales_order_ol_shop_number, Me.GridColumncustomer_name_main_code, Me.GridColumnawbill_no_code})
+        Me.GVSalesDelOrderMain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn125, Me.GridColumn126, Me.GridColumn127, Me.GridColumn128, Me.GridColumn129, Me.GridColumn130, Me.GridColumn131, Me.GridColumn132, Me.GridColumn133, Me.GridColumn134, Me.GridColumn135, Me.GridColumn136, Me.GridColumn137, Me.GridColumn138, Me.GridColumn139, Me.GridColumn140, Me.GridColumn142, Me.GridColumn143, Me.GridColumn144, Me.GridColumn145, Me.GridColumn146, Me.GridColumnqty1_del, Me.GridColumnqty2_del, Me.GridColumnqty3_del, Me.GridColumnqty4_del, Me.GridColumnqty5_del, Me.GridColumnqty6_del, Me.GridColumnqty7_del, Me.GridColumqty8_del, Me.GridColumnqty9_del, Me.GridColumnqty0_del, Me.GridColumnsizetype_del, Me.GridColumnsales_order_ol_shop_number, Me.GridColumncustomer_name_main_code, Me.GridColumnawbill_no_code, Me.GridColumncombine_note_main})
         Me.GVSalesDelOrderMain.GridControl = Me.GCSalesDelOrderMain
         Me.GVSalesDelOrderMain.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumn143, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumn146, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty1", Me.GridColumnqty1_del, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty2", Me.GridColumnqty2_del, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty3", Me.GridColumnqty3_del, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty4", Me.GridColumnqty4_del, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty5", Me.GridColumnqty5_del, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty6", Me.GridColumnqty6_del, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty7", Me.GridColumnqty7_del, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty8", Me.GridColumqty8_del, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty9", Me.GridColumnqty9_del, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty0", Me.GridColumnqty0_del, "{0:N0}")})
         Me.GVSalesDelOrderMain.Name = "GVSalesDelOrderMain"
@@ -2061,6 +2065,8 @@ Partial Class FormFGTransList
         Me.GridColumn129.FieldName = "pl_sales_order_del_note"
         Me.GridColumn129.Name = "GridColumn129"
         Me.GridColumn129.OptionsColumn.AllowEdit = False
+        Me.GridColumn129.Visible = True
+        Me.GridColumn129.VisibleIndex = 29
         '
         'GridColumn130
         '
@@ -6902,6 +6908,22 @@ Partial Class FormFGTransList
         Me.LabelControl28.TabIndex = 8892
         Me.LabelControl28.Text = "From"
         '
+        'GridColumncombine_note
+        '
+        Me.GridColumncombine_note.Caption = "Combine Note"
+        Me.GridColumncombine_note.FieldName = "combine_note"
+        Me.GridColumncombine_note.Name = "GridColumncombine_note"
+        Me.GridColumncombine_note.Visible = True
+        Me.GridColumncombine_note.VisibleIndex = 21
+        '
+        'GridColumncombine_note_main
+        '
+        Me.GridColumncombine_note_main.Caption = "Combine Note"
+        Me.GridColumncombine_note_main.FieldName = "combine_note"
+        Me.GridColumncombine_note_main.Name = "GridColumncombine_note_main"
+        Me.GridColumncombine_note_main.Visible = True
+        Me.GridColumncombine_note_main.VisibleIndex = 30
+        '
         'FormFGTransList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -7733,4 +7755,6 @@ Partial Class FormFGTransList
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumnmanifest_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncombine_note As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncombine_note_main As DevExpress.XtraGrid.Columns.GridColumn
 End Class
