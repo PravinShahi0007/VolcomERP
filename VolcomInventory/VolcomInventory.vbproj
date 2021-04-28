@@ -9114,6 +9114,12 @@
     <Compile Include="ReportProposeEmpSalaryCompare.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProposePriceMKD.Designer.vb">
+      <DependentUpon>ReportProposePriceMKD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProposePriceMKD.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPurcAssetDep.Designer.vb">
       <DependentUpon>ReportPurcAssetDep.vb</DependentUpon>
     </Compile>
@@ -14549,6 +14555,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProposeEmpSalaryCompare.resx">
       <DependentUpon>ReportProposeEmpSalaryCompare.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProposePriceMKD.resx">
+      <DependentUpon>ReportProposePriceMKD.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcAssetDep.resx">
       <DependentUpon>ReportPurcAssetDep.vb</DependentUpon>

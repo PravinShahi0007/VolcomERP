@@ -19,18 +19,43 @@ Partial Public Class ReportProposePriceMKD
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
-        Me.Detail = New DevExpress.XtraReports.UI.DetailBand
-        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand
-        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand
+        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        '
+        'Detail
+        '
+        Me.Detail.HeightF = 100.0!
         Me.Detail.Name = "Detail"
-        Me.TopMargin.Height = 100
+        Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'TopMargin
+        '
+        Me.TopMargin.HeightF = 100.0!
         Me.TopMargin.Name = "TopMargin"
-        Me.BottomMargin.Height = 100
+        Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'BottomMargin
+        '
+        Me.BottomMargin.HeightF = 100.0!
         Me.BottomMargin.Name = "BottomMargin"
+        Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'ReportProposePriceMKD
+        '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
+        Me.Landscape = True
+        Me.PageHeight = 1488
+        Me.PageWidth = 1100
+        Me.PaperKind = System.Drawing.Printing.PaperKind.USStandardFanfold
+        Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
+        Me.Version = "15.1"
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
+
     End Sub
     Friend WithEvents Detail As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
