@@ -84,9 +84,23 @@
         End If
 
         'cek valid note 
-        If TxtRekomendasiDisc.EditValue = Nothing <> SLEProposeDisc.EditValue.ToString And MENote.Text = "" Then
+        Dim erp_disc As Decimal
+        If IsDBNull(TxtRekomendasiDisc.EditValue) Then
+            erp_disc = -1
+        Else
+            erp_disc = TxtRekomendasiDisc.EditValue
+        End If
+        Dim propose_disc As Decimal
+        If SLEProposeDisc.EditValue = Nothing Then
+            propose_disc = -1
+        Else
+            propose_disc = SLEProposeDisc.EditValue
+        End If
+        If erp_disc <> propose_disc And MENote.Text = "" Then
             warningCustom("Please input note")
             Exit Sub
         End If
+
+        'update
     End Sub
 End Class
