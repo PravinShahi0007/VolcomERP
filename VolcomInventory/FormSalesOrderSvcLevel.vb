@@ -1270,7 +1270,13 @@
         FormSalesReturnOrderMail.ShowDialog()
     End Sub
 
-    Private Sub GroupControl4_Paint(sender As Object, e As PaintEventArgs) Handles GroupControl4.Paint
+    Private Sub CancelSDOToolStripMenuItem_Click(sender As Object, e As EventArgs)
+        Dim qc As String = "SELECT * FROM tb_wh_awbill_det awbd
+INNER JOIN tb_wh_awbill awb ON awb.id_awbill=awbd.`id_awbill` AND awb.`id_report_status`!=5
+WHERE awbd.`id_pl_sales_order_del`='" & GVSalesDelOrder.GetFocusedRowCellValue("id_pl_sales_order_del").ToString & "'"
+        Dim dt As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
 
+        End If
     End Sub
 End Class
