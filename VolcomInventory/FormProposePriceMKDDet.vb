@@ -676,4 +676,26 @@
         FormProposePriceMKDSingle.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVData_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVData.RowCellStyle
+        'If e.RowHandle >= 0 Then
+        '    Dim col As String = e.Column.FieldName
+        '    If (col = "no" Or col = "design_code" Or col = "name") Then
+        '        ' Or col = "class" Or col = "disc_desc" Or col.Contains("mkd") Or col = "first_del" Or col = "age" Or col = "design_cop" Or col = "design_price" Or col = "price_type" Or col = "design_cat" Or col = "design_price_normal" Or col = "curr_disc" Or col = "total_sal" Or col = "total_soh" Or col = "total_bos" Or col = "sas"
+        '        Dim check_stt As String = ""
+        '        Try
+        '            check_stt = sender.GetRowCellValue(e.RowHandle, sender.Columns("check_stt"))
+        '        Catch ex As Exception
+        '        End Try
+
+        '        If check_stt = "1" Then
+        '            e.Appearance.BackColor = Color.Yellow
+        '            e.Appearance.BackColor2 = Color.Yellow
+        '        Else
+        '            e.Appearance.BackColor = Color.Empty
+        '            e.Appearance.BackColor2 = Color.Empty
+        '        End If
+        '    End If
+        'End If
+    End Sub
 End Class
