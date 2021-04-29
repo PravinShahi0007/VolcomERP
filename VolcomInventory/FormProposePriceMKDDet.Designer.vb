@@ -35,6 +35,8 @@ Partial Class FormProposePriceMKDDet
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEConfirmDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
@@ -122,6 +124,8 @@ Partial Class FormProposePriceMKDDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.DEConfirmDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEConfirmDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,7 +184,7 @@ Partial Class FormProposePriceMKDDet
         Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
         Me.BtnCreateNew.Location = New System.Drawing.Point(20, 151)
         Me.BtnCreateNew.Name = "BtnCreateNew"
-        Me.BtnCreateNew.Size = New System.Drawing.Size(656, 29)
+        Me.BtnCreateNew.Size = New System.Drawing.Size(598, 29)
         Me.BtnCreateNew.TabIndex = 8925
         Me.BtnCreateNew.Text = "Create New"
         Me.BtnCreateNew.Visible = False
@@ -296,15 +300,41 @@ Partial Class FormProposePriceMKDDet
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.DEConfirmDate)
         Me.PanelControl1.Controls.Add(Me.LabelControl21)
         Me.PanelControl1.Controls.Add(Me.LabelControl4)
         Me.PanelControl1.Controls.Add(Me.LEReportStatus)
         Me.PanelControl1.Controls.Add(Me.DECreated)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(676, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(618, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(204, 178)
+        Me.PanelControl1.Size = New System.Drawing.Size(262, 178)
         Me.PanelControl1.TabIndex = 4
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(10, 66)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl3.TabIndex = 146
+        Me.LabelControl3.Text = "Confirm Date"
+        '
+        'DEConfirmDate
+        '
+        Me.DEConfirmDate.EditValue = Nothing
+        Me.DEConfirmDate.Enabled = False
+        Me.DEConfirmDate.Location = New System.Drawing.Point(80, 63)
+        Me.DEConfirmDate.Name = "DEConfirmDate"
+        Me.DEConfirmDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEConfirmDate.Properties.Appearance.Options.UseFont = True
+        Me.DEConfirmDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEConfirmDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEConfirmDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.DEConfirmDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEConfirmDate.Size = New System.Drawing.Size(172, 20)
+        Me.DEConfirmDate.TabIndex = 145
         '
         'LabelControl21
         '
@@ -327,7 +357,7 @@ Partial Class FormProposePriceMKDDet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(56, 38)
+        Me.LEReportStatus.Location = New System.Drawing.Point(80, 38)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
@@ -337,14 +367,14 @@ Partial Class FormProposePriceMKDDet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(136, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(172, 20)
         Me.LEReportStatus.TabIndex = 7
         '
         'DECreated
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(56, 12)
+        Me.DECreated.Location = New System.Drawing.Point(80, 12)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DECreated.Properties.Appearance.Options.UseFont = True
@@ -352,7 +382,7 @@ Partial Class FormProposePriceMKDDet
         Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreated.Size = New System.Drawing.Size(136, 20)
+        Me.DECreated.Size = New System.Drawing.Size(172, 20)
         Me.DECreated.TabIndex = 6
         '
         'PanelControlBottom
@@ -1291,6 +1321,8 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.DEConfirmDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEConfirmDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1402,4 +1434,6 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandOther As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEConfirmDate As DevExpress.XtraEditors.DateEdit
 End Class

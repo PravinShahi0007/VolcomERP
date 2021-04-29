@@ -83,6 +83,7 @@
             id_report_status = data.Rows(0)("id_report_status").ToString
             DECreated.EditValue = data.Rows(0)("created_date")
             is_confirm = data.Rows(0)("is_confirm").ToString
+            DEConfirmDate.EditValue = data.Rows(0)("confirm_date")
             Dim is_show_all As String = ""
             If is_confirm = "2" And id_report_status = "1" Then
                 is_show_all = "1"
@@ -130,6 +131,7 @@
             BtnAllProduct.Visible = False
             BtnFinalPropose.Visible = False
             gridBandAction.Visible = True
+            LEPriceType.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -143,6 +145,7 @@
             BtnAllProduct.Visible = True
             BtnFinalPropose.Visible = True
             gridBandAction.Visible = False
+            LEPriceType.Enabled = False
         End If
 
         'reset propose
@@ -167,6 +170,7 @@
             BtnAllProduct.Visible = False
             BtnFinalPropose.Visible = False
             gridBandAction.Visible = False
+            LEPriceType.Enabled = False
         End If
     End Sub
 
@@ -293,7 +297,7 @@
                 saveChangesDetail()
 
                 'update confirm
-                Dim query As String = "UPDATE tb_pp_change SET is_confirm=1 WHERE id_pp_change='" + id + "'"
+                Dim query As String = "UPDATE tb_pp_change SET is_confirm=1, confirm_date=NOW(), confirm_by='" + id_user + "' WHERE id_pp_change='" + id + "'"
                 execute_non_query(query, True, "", "", "", "")
 
                 'submit approval 
@@ -341,7 +345,7 @@
                 Dim query_upd As String = "-- delete report mark
                 DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt + " AND id_report=" + id + "; 
                 -- reset confirm
-                UPDATE tb_pp_change SET is_confirm=2 WHERE id_pp_change=" + id + "; "
+                UPDATE tb_pp_change SET is_confirm=2, confirm_date=NULL, confirm_by=NULL WHERE id_pp_change=" + id + "; "
                 execute_non_query(query_upd, True, "", "", "", "")
 
                 'refresh
