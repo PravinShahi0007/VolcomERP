@@ -8496,6 +8496,12 @@
     <Compile Include="ReportFGWoffList.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFinReportCover.Designer.vb">
+      <DependentUpon>ReportFinReportCover.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFinReportCover.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFollowUpAR.Designer.vb">
       <DependentUpon>ReportFollowUpAR.vb</DependentUpon>
     </Compile>
@@ -8770,6 +8776,12 @@
       <DependentUpon>ReportMBalanceSheet.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportMBalanceSheet.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportMBSVsYear.Designer.vb">
+      <DependentUpon>ReportMBSVsYear.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMBSVsYear.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportMemoUnpaidLeave.Designer.vb">
@@ -9148,6 +9160,12 @@
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSalarySlip.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalesAchievement.Designer.vb">
+      <DependentUpon>ReportSalesAchievement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesAchievement.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSalesBranch.designer.vb">
@@ -14176,6 +14194,9 @@
       <DependentUpon>ReportFGWoffList.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportFinReportCover.resx">
+      <DependentUpon>ReportFinReportCover.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportFollowUpAR.resx">
       <DependentUpon>ReportFollowUpAR.vb</DependentUpon>
     </EmbeddedResource>
@@ -14333,8 +14354,14 @@
     <EmbeddedResource Include="ReportMBalanceSheet.resx">
       <DependentUpon>ReportMBalanceSheet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportMBSVsYear.resx">
+      <DependentUpon>ReportMBSVsYear.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportMemoUnpaidLeave.resx">
       <DependentUpon>ReportMemoUnpaidLeave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMISVsYear.resx">
+      <DependentUpon>ReportMISVsYear.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMonthlyBSvs.resx">
       <DependentUpon>ReportMonthlyBSvs.vb</DependentUpon>
@@ -14534,6 +14561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalarySlip.resx">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesAchievement.resx">
+      <DependentUpon>ReportSalesAchievement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesBranch.resx">
       <DependentUpon>ReportSalesBranch.vb</DependentUpon>

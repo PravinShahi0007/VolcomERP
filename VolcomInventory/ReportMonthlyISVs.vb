@@ -1,6 +1,7 @@
 ﻿Public Class ReportMonthlyISVs
     Public dt As DataTable
     Public languange As String = "eng"
+
     Private Sub Detail_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles Detail.BeforePrint
         Dim font_row_style As New Font("Segoe UI", 9, FontStyle.Regular)
 

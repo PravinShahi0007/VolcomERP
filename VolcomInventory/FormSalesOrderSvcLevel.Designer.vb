@@ -2394,14 +2394,12 @@ Partial Class FormSalesOrderSvcLevel
         '
         'BtnUpdateDO
         '
-        Me.BtnUpdateDO.Enabled = False
         Me.BtnUpdateDO.Location = New System.Drawing.Point(572, 11)
         Me.BtnUpdateDO.LookAndFeel.SkinName = "Blue"
         Me.BtnUpdateDO.Name = "BtnUpdateDO"
         Me.BtnUpdateDO.Size = New System.Drawing.Size(84, 20)
         Me.BtnUpdateDO.TabIndex = 8900
         Me.BtnUpdateDO.Text = "Update Status"
-        Me.BtnUpdateDO.Visible = False
         '
         'SLEStatusDO
         '

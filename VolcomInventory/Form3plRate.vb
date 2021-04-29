@@ -27,7 +27,9 @@
     End Sub
 
     Sub load_vendor()
-        Dim q As String = "SELECT id_comp,comp_name FROM tb_m_comp WHERE id_comp_cat='7' AND is_active='1'"
+        Dim q As String = "SELECT 'ALL' AS id_comp,'ALL' comp_name
+UNION ALL
+SELECT id_comp,comp_name FROM tb_m_comp WHERE id_comp_cat='7' AND is_active='1'"
         viewSearchLookupQuery(SLECargo, q, "id_comp", "comp_name", "id_comp")
     End Sub
 
@@ -48,7 +50,16 @@ SELECT 2 AS id_type,'Inbound' AS type"
     End Sub
 
     Sub load_list()
-        Dim q As String = "SELECT 3pl.`id_3pl_rate`,IF(3pl.id_type=1,'Outbound','Inbound') AS `type`,sub.sub_district,ct.`city`,c.`comp_name`,emp.`employee_name`
+        Dim q As String = ""
+        Dim qw As String = ""
+
+        If SLECargo.EditValue.ToString = "ALL" Then
+            qw = ""
+        Else
+            qw = "AND 3pl.id_comp='" & SLECargo.EditValue.ToString & "'"
+        End If
+
+        q = "SELECT 3pl.`id_3pl_rate`,IF(3pl.id_type=1,'Outbound','Inbound') AS `type`,sub.sub_district,ct.`city`,c.`comp_name`,emp.`employee_name`
 ,3pl.`cargo_code`,3pl.`cargo_lead_time`,3pl.`cargo_min_weight`,3pl.`cargo_rate`,3pl.`input_datetime`,state.state
 FROM tb_3pl_rate 3pl
 INNER JOIN tb_m_sub_district sub ON sub.id_sub_district=3pl.id_sub_district
@@ -57,7 +68,8 @@ INNER JOIN tb_m_state state ON state.`id_state`=ct.`id_state`
 INNER JOIN tb_m_comp c ON c.`id_comp`=3pl.`id_comp`
 INNER JOIN tb_m_user usr ON usr.`id_user`=3pl.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-WHERE 3pl.id_del_type = '" + SLEDelType.EditValue.ToString + "' AND 3pl.is_active=1 AND 3pl.id_comp='" & SLECargo.EditValue.ToString & "' AND 3pl.id_type='" & SLEInboundOutbound.EditValue.ToString & "'"
+WHERE 3pl.id_del_type = '" + SLEDelType.EditValue.ToString + "' AND 3pl.is_active=1 " & qw & " AND 3pl.id_type='" & SLEInboundOutbound.EditValue.ToString & "'"
+
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCListRate.DataSource = dt
         GVListRate.BestFitColumns()

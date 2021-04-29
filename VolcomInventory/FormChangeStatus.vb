@@ -12,7 +12,11 @@
     '6 = non stock
 
     Sub viewReportStatus()
-        Dim query As String = "SELECT id_report_status, report_status FROM tb_lookup_report_status WHERE id_report_status=5 OR id_report_status=6 ORDER BY id_report_status DESC "
+        Dim qw As String = ""
+        If Not id_pop_up = "2" Then
+            qw = " OR id_report_status=6 "
+        End If
+        Dim query As String = "SELECT id_report_status, report_status FROM tb_lookup_report_status WHERE id_report_status=5 " & qw & " ORDER BY id_report_status DESC "
         viewSearchLookupQuery(SLEStatusRec, query, "id_report_status", "report_status", "id_report_status")
     End Sub
 
@@ -65,16 +69,46 @@
 
         'blocking cancel
         If id_pop_up = "2" And SLEStatusRec.EditValue.ToString = "5" Then
-            Dim am As String = ""
+            'Dim am As String = ""
+            'For a As Integer = 0 To ((gv.RowCount - 1) - GetGroupRowCount(gv))
+            '    Dim id_del_manifest As String = gv.GetRowCellValue(a, "id_del_manifest").ToString
+            '    Dim del_number As String = gv.GetRowCellValue(a, "pl_sales_order_del_number").ToString
+            '    If id_del_manifest <> "0" Then
+            '        am += "- " + del_number + System.Environment.NewLine
+            '    End If
+            'Next
+            'If am <> "" Then
+            '    stopCustom("Some delivery number already created on Outbound Delivery Manifest" + System.Environment.NewLine + am)
+            '    Cursor = Cursors.Default
+            '    Exit Sub
+            'End If
+            '
+            Dim awbm As String = ""
             For a As Integer = 0 To ((gv.RowCount - 1) - GetGroupRowCount(gv))
-                Dim id_del_manifest As String = gv.GetRowCellValue(a, "id_del_manifest").ToString
-                Dim del_number As String = gv.GetRowCellValue(a, "pl_sales_order_del_number").ToString
-                If id_del_manifest <> "0" Then
-                    am += "- " + del_number + System.Environment.NewLine
+                Dim qc As String = "SELECT * FROM tb_wh_awbill_det awbd
+INNER JOIN tb_wh_awbill awb ON awb.id_awbill=awbd.`id_awbill` AND awb.`id_report_status`!=5
+WHERE awbd.`id_pl_sales_order_del`='" & gv.GetRowCellValue(a, "id_pl_sales_order_del").ToString & "'"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                If dtc.Rows.Count > 0 Then
+                    Dim del_number As String = gv.GetRowCellValue(a, "pl_sales_order_del_number").ToString
+                    awbm += "- " + del_number + System.Environment.NewLine
                 End If
             Next
-            If am <> "" Then
-                stopCustom("Some delivery number already created on Outbound Delivery Manifest" + System.Environment.NewLine + am)
+            If awbm <> "" Then
+                stopCustom("Some delivery number already created on Outbound Label" + System.Environment.NewLine + awbm)
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+            '
+            Dim grbm As String = ""
+            For a As Integer = 0 To ((gv.RowCount - 1) - GetGroupRowCount(gv))
+                If Not gv.GetRowCellValue(a, "combine_number").ToString = "-" Then
+                    Dim del_number As String = gv.GetRowCellValue(a, "pl_sales_order_del_number").ToString
+                    grbm += "- " + del_number + System.Environment.NewLine
+                End If
+            Next
+            If grbm <> "" Then
+                stopCustom("Some delivery number already Combined" + System.Environment.NewLine + awbm)
                 Cursor = Cursors.Default
                 Exit Sub
             End If
@@ -171,9 +205,7 @@
                         Cursor = Cursors.WaitCursor
                         BtnUpdateRec.Enabled = False
                         For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVSalesDelOrder.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVSalesDelOrder))
-                            Dim id_combine As String = FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_combine").ToString
                             Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
-                            '
                             stt.changeStatus(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, SLEStatusRec.EditValue.ToString)
                             'If id_combine = "0" Then
                             '    'jika delivery single

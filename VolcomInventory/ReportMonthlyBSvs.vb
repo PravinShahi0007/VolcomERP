@@ -38,7 +38,7 @@
             desc_.Font = font_row_style
             desc_.WidthF = 220
             desc_.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-            desc_.Padding = 10
+            desc_.Padding = 5
 
             row_det.Cells.Add(desc_)
 
@@ -50,7 +50,7 @@
             prev_month.Font = font_row_style
             prev_month.WidthF = 190
             prev_month.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-            prev_month.Padding = 10
+            prev_month.Padding = 5
             '
             total_p += dt.Rows(i)("prev_month")
             '
@@ -64,7 +64,7 @@
             this_month.Font = font_row_style
             this_month.WidthF = 190
             this_month.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-            this_month.Padding = 10
+            this_month.Padding = 5
             '
             total_t += dt.Rows(i)("this_month")
             '
@@ -78,7 +78,7 @@
             percent.Font = font_row_style
             percent.WidthF = 123
             percent.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom Or DevExpress.XtraPrinting.BorderSide.Right
-            percent.Padding = 10
+            percent.Padding = 5
 
             row_det.Cells.Add(percent)
             XrTable2.Rows.Add(row_det)
@@ -170,7 +170,7 @@
         desc_.Font = font_row_style
         desc_.WidthF = 220
         desc_.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-        desc_.Padding = 10
+        desc_.Padding = 5
 
         row_det.Cells.Add(desc_)
 
@@ -182,7 +182,7 @@
         prev_month.Font = font_row_style
         prev_month.WidthF = 190
         prev_month.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-        prev_month.Padding = 10
+        prev_month.Padding = 5
 
         row_det.Cells.Add(prev_month)
 
@@ -194,7 +194,7 @@
         this_month.Font = font_row_style
         this_month.WidthF = 190
         this_month.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-        this_month.Padding = 10
+        this_month.Padding = 5
 
         row_det.Cells.Add(this_month)
 
@@ -211,7 +211,7 @@
         percent.Font = font_row_style
         percent.WidthF = 123
         percent.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom Or DevExpress.XtraPrinting.BorderSide.Right
-        percent.Padding = 10
+        percent.Padding = 5
 
         row_det.Cells.Add(percent)
 

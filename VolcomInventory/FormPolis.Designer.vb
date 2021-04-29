@@ -40,7 +40,6 @@ Partial Class FormPolis
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCPolis = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPToko = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPFixedAsset = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListPolis = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPPolisPPS = New DevExpress.XtraTab.XtraTabPage()
@@ -48,7 +47,10 @@ Partial Class FormPolis
         Me.GVPolisPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BRefreshPolisPPS = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPFixedAsset = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCPolisToko, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -261,12 +263,6 @@ Partial Class FormPolis
         Me.XTPToko.Size = New System.Drawing.Size(1003, 463)
         Me.XTPToko.Text = "Toko"
         '
-        'XTPFixedAsset
-        '
-        Me.XTPFixedAsset.Name = "XTPFixedAsset"
-        Me.XTPFixedAsset.Size = New System.Drawing.Size(1003, 417)
-        Me.XTPFixedAsset.Text = "Fixed Asset"
-        '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -306,24 +302,40 @@ Partial Class FormPolis
         '
         'GVPolisPPS
         '
-        Me.GVPolisPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn13})
+        Me.GVPolisPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
         Me.GVPolisPPS.GridControl = Me.GCPolisPPS
         Me.GVPolisPPS.Name = "GVPolisPPS"
+        Me.GVPolisPPS.OptionsView.ShowGroupPanel = False
         '
         'GridColumn12
         '
         Me.GridColumn12.Caption = "ID"
         Me.GridColumn12.FieldName = "id_polis_pps"
         Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 0
         '
         'GridColumn13
         '
-        Me.GridColumn13.Caption = "GridColumn13"
+        Me.GridColumn13.Caption = "Number"
+        Me.GridColumn13.FieldName = "number"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 1
+        Me.GridColumn13.VisibleIndex = 0
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Step"
+        Me.GridColumn14.FieldName = "step_desc"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Report Status"
+        Me.GridColumn15.FieldName = "report_status"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 2
         '
         'BRefreshPolisPPS
         '
@@ -338,6 +350,12 @@ Partial Class FormPolis
         Me.BRefreshPolisPPS.Size = New System.Drawing.Size(997, 36)
         Me.BRefreshPolisPPS.TabIndex = 1
         Me.BRefreshPolisPPS.Text = "Refresh"
+        '
+        'XTPFixedAsset
+        '
+        Me.XTPFixedAsset.Name = "XTPFixedAsset"
+        Me.XTPFixedAsset.Size = New System.Drawing.Size(1003, 463)
+        Me.XTPFixedAsset.Text = "Fixed Asset"
         '
         'FormPolis
         '
@@ -396,4 +414,6 @@ Partial Class FormPolis
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BRefreshPolisPPS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

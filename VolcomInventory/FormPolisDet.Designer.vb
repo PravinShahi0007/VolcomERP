@@ -75,15 +75,41 @@ Partial Class FormPolisDet
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITENilaiStock = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCNilaiLainnya = New DevExpress.XtraGrid.GridControl()
+        Me.GVNilaiLainnya = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPPenawaran = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPenawaran = New DevExpress.XtraGrid.GridControl()
+        Me.GVPenawaran = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BRefreshPenawaran = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelPenawaran = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddPenawaran = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEPenawaranDel = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.SLEPenawaranAdd = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -103,8 +129,19 @@ Partial Class FormPolisDet
         CType(Me.GVNilaiStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITENilaiStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDetail.SuspendLayout()
-        CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCNilaiLainnya, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVNilaiLainnya, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPenawaran.SuspendLayout()
+        CType(Me.GCPenawaran, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPenawaran, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.SLEPenawaranDel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -730,27 +767,29 @@ Partial Class FormPolisDet
         '
         'XTPDetail
         '
-        Me.XTPDetail.Controls.Add(Me.GridControl3)
+        Me.XTPDetail.Controls.Add(Me.GCNilaiLainnya)
         Me.XTPDetail.Name = "XTPDetail"
         Me.XTPDetail.Size = New System.Drawing.Size(909, 363)
         Me.XTPDetail.Text = "Nilai Lainnya"
         '
-        'GridControl3
+        'GCNilaiLainnya
         '
-        Me.GridControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl3.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl3.MainView = Me.GridView3
-        Me.GridControl3.Name = "GridControl3"
-        Me.GridControl3.Size = New System.Drawing.Size(909, 363)
-        Me.GridControl3.TabIndex = 11
-        Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
+        Me.GCNilaiLainnya.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCNilaiLainnya.Location = New System.Drawing.Point(0, 0)
+        Me.GCNilaiLainnya.MainView = Me.GVNilaiLainnya
+        Me.GCNilaiLainnya.Name = "GCNilaiLainnya"
+        Me.GCNilaiLainnya.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
+        Me.GCNilaiLainnya.Size = New System.Drawing.Size(909, 363)
+        Me.GCNilaiLainnya.TabIndex = 11
+        Me.GCNilaiLainnya.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVNilaiLainnya})
         '
-        'GridView3
+        'GVNilaiLainnya
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23})
-        Me.GridView3.GridControl = Me.GridControl3
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsView.ShowGroupPanel = False
+        Me.GVNilaiLainnya.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn23, Me.GridColumn25, Me.GridColumn24, Me.GridColumn4, Me.GridColumn22, Me.GridColumn26})
+        Me.GVNilaiLainnya.GridControl = Me.GCNilaiLainnya
+        Me.GVNilaiLainnya.Name = "GVNilaiLainnya"
+        Me.GVNilaiLainnya.OptionsView.ColumnAutoWidth = False
+        Me.GVNilaiLainnya.OptionsView.ShowGroupPanel = False
         '
         'GridColumn18
         '
@@ -790,21 +829,6 @@ Partial Class FormPolisDet
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 2
         '
-        'GridColumn22
-        '
-        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn22.Caption = "Nilai Stock Sebelumnya"
-        Me.GridColumn22.DisplayFormat.FormatString = "N2"
-        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.OptionsColumn.AllowEdit = False
-        Me.GridColumn22.OptionsColumn.ReadOnly = True
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 3
-        '
         'GridColumn23
         '
         Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
@@ -814,15 +838,350 @@ Partial Class FormPolisDet
         Me.GridColumn23.Caption = "Nilai Stock"
         Me.GridColumn23.DisplayFormat.FormatString = "N2"
         Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn23.FieldName = "nilai_stock"
         Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.AllowEdit = False
+        Me.GridColumn23.OptionsColumn.ReadOnly = True
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 4
+        Me.GridColumn23.VisibleIndex = 3
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.Caption = "Nilai Fitout"
+        Me.GridColumn25.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn25.DisplayFormat.FormatString = "N2"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn25.FieldName = "nilai_fit_out"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 4
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn24.Caption = "Nilai Building"
+        Me.GridColumn24.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn24.DisplayFormat.FormatString = "N2"
+        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn24.FieldName = "nilai_building"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 5
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.Caption = "Nilai Peralatan"
+        Me.GridColumn4.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "nilai_peralatan"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 6
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.Caption = "Nilai Public Liability"
+        Me.GridColumn22.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "nilai_public_liability"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 7
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.Caption = "Nilai Total"
+        Me.GridColumn26.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn26.DisplayFormat.FormatString = "N2"
+        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn26.FieldName = "nilai_total"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.OptionsColumn.AllowEdit = False
+        Me.GridColumn26.OptionsColumn.ReadOnly = True
+        Me.GridColumn26.UnboundExpression = "[nilai_stock] + [nilai_building] + [nilai_fit_out] + [nilai_peralatan] + [nilai_p" &
+    "ublic_liability]"
+        Me.GridColumn26.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 8
         '
         'XTPPenawaran
         '
+        Me.XTPPenawaran.Controls.Add(Me.GCPenawaran)
+        Me.XTPPenawaran.Controls.Add(Me.BRefreshPenawaran)
+        Me.XTPPenawaran.Controls.Add(Me.PanelControl3)
         Me.XTPPenawaran.Name = "XTPPenawaran"
         Me.XTPPenawaran.Size = New System.Drawing.Size(909, 363)
         Me.XTPPenawaran.Text = "Penawaran Vendor"
+        '
+        'GCPenawaran
+        '
+        Me.GCPenawaran.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPenawaran.Location = New System.Drawing.Point(0, 51)
+        Me.GCPenawaran.MainView = Me.GVPenawaran
+        Me.GCPenawaran.Name = "GCPenawaran"
+        Me.GCPenawaran.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
+        Me.GCPenawaran.Size = New System.Drawing.Size(909, 280)
+        Me.GCPenawaran.TabIndex = 12
+        Me.GCPenawaran.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPenawaran})
+        '
+        'GVPenawaran
+        '
+        Me.GVPenawaran.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36})
+        Me.GVPenawaran.GridControl = Me.GCPenawaran
+        Me.GVPenawaran.Name = "GVPenawaran"
+        Me.GVPenawaran.OptionsView.ColumnAutoWidth = False
+        Me.GVPenawaran.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "ID Store"
+        Me.GridColumn27.FieldName = "id_comp"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.OptionsColumn.AllowEdit = False
+        Me.GridColumn27.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Kode Toko"
+        Me.GridColumn28.FieldName = "comp_number"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.OptionsColumn.AllowEdit = False
+        Me.GridColumn28.OptionsColumn.ReadOnly = True
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 0
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Nama Toko"
+        Me.GridColumn29.FieldName = "comp_name"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.OptionsColumn.AllowEdit = False
+        Me.GridColumn29.OptionsColumn.ReadOnly = True
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 1
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Alamat"
+        Me.GridColumn30.FieldName = "primary_address"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.AllowEdit = False
+        Me.GridColumn30.OptionsColumn.ReadOnly = True
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 2
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn31.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn31.Caption = "Nilai Stock"
+        Me.GridColumn31.DisplayFormat.FormatString = "N2"
+        Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn31.FieldName = "nilai_stock"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.OptionsColumn.AllowEdit = False
+        Me.GridColumn31.OptionsColumn.ReadOnly = True
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 3
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn32.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn32.Caption = "Nilai Fitout"
+        Me.GridColumn32.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn32.DisplayFormat.FormatString = "N2"
+        Me.GridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn32.FieldName = "nilai_fit_out"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 4
+        '
+        'RepositoryItemTextEdit2
+        '
+        Me.RepositoryItemTextEdit2.AutoHeight = False
+        Me.RepositoryItemTextEdit2.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn33.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn33.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn33.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn33.Caption = "Nilai Building"
+        Me.GridColumn33.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn33.DisplayFormat.FormatString = "N2"
+        Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn33.FieldName = "nilai_building"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 5
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn34.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn34.Caption = "Nilai Peralatan"
+        Me.GridColumn34.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn34.DisplayFormat.FormatString = "N2"
+        Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn34.FieldName = "nilai_peralatan"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 6
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn35.Caption = "Nilai Public Liability"
+        Me.GridColumn35.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn35.DisplayFormat.FormatString = "N2"
+        Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn35.FieldName = "nilai_public_liability"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 7
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn36.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn36.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn36.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn36.Caption = "Nilai Total"
+        Me.GridColumn36.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn36.DisplayFormat.FormatString = "N2"
+        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn36.FieldName = "nilai_total"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.OptionsColumn.AllowEdit = False
+        Me.GridColumn36.OptionsColumn.ReadOnly = True
+        Me.GridColumn36.UnboundExpression = "[nilai_stock] + [nilai_building] + [nilai_fit_out] + [nilai_peralatan] + [nilai_p" &
+    "ublic_liability]"
+        Me.GridColumn36.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 8
+        '
+        'BRefreshPenawaran
+        '
+        Me.BRefreshPenawaran.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
+        Me.BRefreshPenawaran.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BRefreshPenawaran.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BRefreshPenawaran.Appearance.Options.UseBackColor = True
+        Me.BRefreshPenawaran.Appearance.Options.UseFont = True
+        Me.BRefreshPenawaran.Appearance.Options.UseForeColor = True
+        Me.BRefreshPenawaran.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BRefreshPenawaran.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BRefreshPenawaran.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BRefreshPenawaran.Location = New System.Drawing.Point(0, 331)
+        Me.BRefreshPenawaran.LookAndFeel.SkinName = "Metropolis"
+        Me.BRefreshPenawaran.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BRefreshPenawaran.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BRefreshPenawaran.Name = "BRefreshPenawaran"
+        Me.BRefreshPenawaran.Size = New System.Drawing.Size(909, 32)
+        Me.BRefreshPenawaran.TabIndex = 143
+        Me.BRefreshPenawaran.Text = "Refresh"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BDelPenawaran)
+        Me.PanelControl3.Controls.Add(Me.BAddPenawaran)
+        Me.PanelControl3.Controls.Add(Me.SLEPenawaranDel)
+        Me.PanelControl3.Controls.Add(Me.SLEPenawaranAdd)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(909, 51)
+        Me.PanelControl3.TabIndex = 13
+        '
+        'BDelPenawaran
+        '
+        Me.BDelPenawaran.Location = New System.Drawing.Point(510, 15)
+        Me.BDelPenawaran.Name = "BDelPenawaran"
+        Me.BDelPenawaran.Size = New System.Drawing.Size(55, 23)
+        Me.BDelPenawaran.TabIndex = 3
+        Me.BDelPenawaran.Text = "Drop"
+        '
+        'BAddPenawaran
+        '
+        Me.BAddPenawaran.Location = New System.Drawing.Point(218, 15)
+        Me.BAddPenawaran.Name = "BAddPenawaran"
+        Me.BAddPenawaran.Size = New System.Drawing.Size(75, 23)
+        Me.BAddPenawaran.TabIndex = 2
+        Me.BAddPenawaran.Text = "Add"
+        '
+        'SLEPenawaranDel
+        '
+        Me.SLEPenawaranDel.Location = New System.Drawing.Point(308, 17)
+        Me.SLEPenawaranDel.Name = "SLEPenawaranDel"
+        Me.SLEPenawaranDel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPenawaranDel.Properties.View = Me.GridView1
+        Me.SLEPenawaranDel.Size = New System.Drawing.Size(196, 20)
+        Me.SLEPenawaranDel.TabIndex = 1
+        '
+        'GridView1
+        '
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'SLEPenawaranAdd
+        '
+        Me.SLEPenawaranAdd.Location = New System.Drawing.Point(11, 17)
+        Me.SLEPenawaranAdd.Name = "SLEPenawaranAdd"
+        Me.SLEPenawaranAdd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPenawaranAdd.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEPenawaranAdd.Size = New System.Drawing.Size(201, 20)
+        Me.SLEPenawaranAdd.TabIndex = 0
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'FormPolisDet
         '
@@ -856,8 +1215,19 @@ Partial Class FormPolisDet
         CType(Me.GVNilaiStock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITENilaiStock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDetail.ResumeLayout(False)
-        CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCNilaiLainnya, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVNilaiLainnya, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPenawaran.ResumeLayout(False)
+        CType(Me.GCPenawaran, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPenawaran, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.SLEPenawaranDel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -891,13 +1261,12 @@ Partial Class FormPolisDet
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridControl3 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCNilaiLainnya As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVNilaiLainnya As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BGVSummary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -925,4 +1294,31 @@ Partial Class FormPolisDet
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RITENilaiStock As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents BSaveDraft As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPenawaran As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPenawaran As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BDelPenawaran As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddPenawaran As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEPenawaranDel As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SLEPenawaranAdd As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BRefreshPenawaran As DevExpress.XtraEditors.SimpleButton
 End Class

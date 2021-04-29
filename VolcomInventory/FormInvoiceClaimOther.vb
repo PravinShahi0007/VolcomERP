@@ -479,4 +479,84 @@ VALUES('" & id_invoice & "','" & GVList.GetRowCellValue(i, "id_acc").ToString & 
     Private Sub FormInvoiceClaimOther_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub BPrintDolar_Click(sender As Object, e As EventArgs) Handles BPrintDolar.Click
+        Cursor = Cursors.WaitCursor
+        ReportInvoiceClaimOther.id_invoice = id_invoice
+        Dim q_print As String = "SELECT pnd.id_acc,pnd.`id_report` AS id_report,pnd.report_mark_type, pnd.`report_number`,  pnd.`id_inv_claim_other_det`, pnd.`qty`,pnd.`vat`,pnd.value_bef_kurs,pnd.kurs,pnd.id_currency,cur.currency
+, pnd.`note`
+FROM tb_inv_claim_other_det pnd
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
+WHERE pnd.`id_inv_claim_other`='" & id_invoice & "'"
+        Dim dt As DataTable = execute_query(q_print, -1, True, "", "", "", "")
+        'ReportFGPODP.dt = GCList.DataSource
+        ReportInvoiceClaimOther.dt = dt
+        Dim Report As New ReportInvoiceClaimOther()
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        For i = 0 To GVList.RowCount - 1
+            GVList.SetRowCellValue(i, "currency", GVList.GetRowCellDisplayText(0, "id_currency").ToString)
+        Next
+
+        GCCur.VisibleIndex = -1
+        GCCurHide.VisibleIndex = 4
+        GridColumnAccPick.VisibleIndex = -1
+        GridColumnNote.VisibleIndex = -1
+        GCReff.VisibleIndex = 1
+        GCKurs.VisibleIndex = -1
+        GridColumnPayment.VisibleIndex = -1
+        '
+        'GridColumnPPHDesc.VisibleIndex = 10
+
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVList)
+        Report.GVList.OptionsPrint.PrintFooter = False
+
+        GridColumnAccPick.VisibleIndex = 0
+        GCCur.VisibleIndex = 4
+        GCCurHide.VisibleIndex = -1
+        GridColumnNote.VisibleIndex = 10
+        GCReff.VisibleIndex = -1
+        GCKurs.VisibleIndex = 6
+        GridColumnPayment.VisibleIndex = 7
+        '
+
+        'search total
+        Dim tot As String = Decimal.Parse("0").ToString("N2")
+        Dim tot_vat As String = Decimal.Parse("0").ToString("N2")
+        Dim grand_tot As String = Decimal.Parse("0").ToString("N2")
+        Dim q_tot As String = "SELECT IFNULL(SUM(pnd.value_bef_kurs),0) AS tot,IFNULL(SUM(pnd.vat),0) AS tot_vat 
+FROM tb_inv_claim_other_det pnd 
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency 
+WHERE pnd.`id_inv_claim_other`='" & id_invoice & "'"
+        Dim dt_tot As DataTable = execute_query(q_tot, -1, True, "", "", "", "")
+        If dt_tot.Rows.Count > 0 Then
+            tot = Decimal.Parse(dt_tot.Rows(0)("tot").ToString).ToString("N2")
+            tot_vat = Decimal.Parse(dt_tot.Rows(0)("tot_vat").ToString).ToString("N2")
+            grand_tot = Decimal.Parse((dt_tot.Rows(0)("tot") + dt_tot.Rows(0)("tot_vat")).ToString).ToString("N2")
+        End If
+
+        'Parse val
+        Dim query As String = "SELECT '" & TENumber.Text & "' AS number,'" & addSlashes(MENote.Text) & "' AS note,'" & ConvertCurrencyToEnglish(Decimal.Parse(grand_tot), "") & "' AS tot_say,'" & SLEVendor.Text & "' AS comp_name,'" & DERefDate.Text & "' AS ref_date,'" & DEDueDateInvoice.Text & "' AS due_date,'" & tot & "' AS total_amount,'" & tot_vat & "' AS total_vat,'" & grand_tot & "' AS total_after_vat,'" & DEDateCreated.Text & "' AS date_created,DATE_FORMAT(NOW(),'%d %M %Y') AS printed_date"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Report.DataSource = data
+
+        If Not id_report_status = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
+    End Sub
 End Class

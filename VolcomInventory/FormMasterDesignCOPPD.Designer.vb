@@ -45,6 +45,11 @@ Partial Class FormMasterDesignCOPPD
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TETargetCost = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLECOO = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LStorage = New DevExpress.XtraEditors.LabelControl()
         Me.SLECoolStorage = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -68,6 +73,9 @@ Partial Class FormMasterDesignCOPPD
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPUpdateCOP = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.MEECOPNote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.GCCOPComponent = New DevExpress.XtraGrid.GridControl()
         Me.GVCOPComponent = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -89,14 +97,6 @@ Partial Class FormMasterDesignCOPPD
         Me.TETodayKurs = New DevExpress.XtraEditors.TextEdit()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.MEECOPNote = New DevExpress.XtraEditors.MemoEdit()
-        Me.SLECOO = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +111,8 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.TETargetCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLECOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECoolStorage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,6 +125,9 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.RISLE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPUpdateCOP.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.MEECOPNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCOPComponent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCOPComponent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEComp, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,11 +135,6 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TETodayKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
-        CType(Me.MEECOPNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLECOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -460,6 +460,45 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl1.Size = New System.Drawing.Size(827, 151)
         Me.PanelControl1.TabIndex = 8910
         '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(373, 73)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl10.TabIndex = 8911
+        Me.LabelControl10.Text = "COO"
+        '
+        'SLECOO
+        '
+        Me.SLECOO.Location = New System.Drawing.Point(451, 70)
+        Me.SLECOO.Name = "SLECOO"
+        Me.SLECOO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECOO.Properties.View = Me.GridView2
+        Me.SLECOO.Size = New System.Drawing.Size(177, 20)
+        Me.SLECOO.TabIndex = 8910
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "ID Country"
+        Me.GridColumn23.FieldName = "id_country"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Country"
+        Me.GridColumn24.FieldName = "country"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 0
+        '
         'LStorage
         '
         Me.LStorage.Location = New System.Drawing.Point(303, 13)
@@ -525,7 +564,7 @@ Partial Class FormMasterDesignCOPPD
         '
         Me.XTPCurrent.Controls.Add(Me.GCCOPCurrent)
         Me.XTPCurrent.Name = "XTPCurrent"
-        Me.XTPCurrent.Size = New System.Drawing.Size(817, 337)
+        Me.XTPCurrent.Size = New System.Drawing.Size(817, 370)
         Me.XTPCurrent.Text = "Current"
         '
         'GCCOPCurrent
@@ -535,7 +574,7 @@ Partial Class FormMasterDesignCOPPD
         Me.GCCOPCurrent.MainView = Me.GVCOPCurrent
         Me.GCCOPCurrent.Name = "GCCOPCurrent"
         Me.GCCOPCurrent.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLE})
-        Me.GCCOPCurrent.Size = New System.Drawing.Size(817, 337)
+        Me.GCCOPCurrent.Size = New System.Drawing.Size(817, 370)
         Me.GCCOPCurrent.TabIndex = 1
         Me.GCCOPCurrent.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCOPCurrent})
         '
@@ -629,7 +668,7 @@ Partial Class FormMasterDesignCOPPD
         Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn13.Caption = "Before Kurs"
-        Me.GridColumn13.DisplayFormat.FormatString = "N2"
+        Me.GridColumn13.DisplayFormat.FormatString = "N4"
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn13.FieldName = "before_kurs"
         Me.GridColumn13.Name = "GridColumn13"
@@ -704,6 +743,31 @@ Partial Class FormMasterDesignCOPPD
         Me.XTPUpdateCOP.Name = "XTPUpdateCOP"
         Me.XTPUpdateCOP.Size = New System.Drawing.Size(817, 370)
         Me.XTPUpdateCOP.Text = "Input COP"
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.MEECOPNote)
+        Me.PanelControl5.Controls.Add(Me.LabelControl9)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 256)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(817, 85)
+        Me.PanelControl5.TabIndex = 3
+        '
+        'MEECOPNote
+        '
+        Me.MEECOPNote.Location = New System.Drawing.Point(55, 4)
+        Me.MEECOPNote.Name = "MEECOPNote"
+        Me.MEECOPNote.Size = New System.Drawing.Size(757, 75)
+        Me.MEECOPNote.TabIndex = 1
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(7, 6)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl9.TabIndex = 0
+        Me.LabelControl9.Text = "Note"
         '
         'GCCOPComponent
         '
@@ -803,7 +867,7 @@ Partial Class FormMasterDesignCOPPD
         Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn5.Caption = "Before Kurs"
-        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatString = "N4"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "before_kurs"
         Me.GridColumn5.Name = "GridColumn5"
@@ -945,70 +1009,6 @@ Partial Class FormMasterDesignCOPPD
         Me.BAdd.TabIndex = 0
         Me.BAdd.Text = "Add"
         '
-        'PanelControl5
-        '
-        Me.PanelControl5.Controls.Add(Me.MEECOPNote)
-        Me.PanelControl5.Controls.Add(Me.LabelControl9)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 256)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(817, 85)
-        Me.PanelControl5.TabIndex = 3
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Location = New System.Drawing.Point(7, 6)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl9.TabIndex = 0
-        Me.LabelControl9.Text = "Note"
-        '
-        'MEECOPNote
-        '
-        Me.MEECOPNote.Location = New System.Drawing.Point(55, 4)
-        Me.MEECOPNote.Name = "MEECOPNote"
-        Me.MEECOPNote.Size = New System.Drawing.Size(757, 75)
-        Me.MEECOPNote.TabIndex = 1
-        '
-        'SLECOO
-        '
-        Me.SLECOO.Location = New System.Drawing.Point(451, 70)
-        Me.SLECOO.Name = "SLECOO"
-        Me.SLECOO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLECOO.Properties.View = Me.GridView2
-        Me.SLECOO.Size = New System.Drawing.Size(177, 20)
-        Me.SLECOO.TabIndex = 8910
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Location = New System.Drawing.Point(373, 73)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl10.TabIndex = 8911
-        Me.LabelControl10.Text = "COO"
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "ID Country"
-        Me.GridColumn23.FieldName = "id_country"
-        Me.GridColumn23.Name = "GridColumn23"
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "Country"
-        Me.GridColumn24.FieldName = "country"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 0
-        '
         'FormMasterDesignCOPPD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1039,6 +1039,8 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLECOO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECoolStorage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1051,6 +1053,10 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.RISLE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPUpdateCOP.ResumeLayout(False)
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.MEECOPNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCCOPComponent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCOPComponent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEComp, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1059,12 +1065,6 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
         CType(Me.TETodayKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
-        Me.PanelControl5.PerformLayout()
-        CType(Me.MEECOPNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLECOO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

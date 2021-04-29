@@ -328,7 +328,7 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 4
         Me.GridColumnQty.Width = 61
         '
         'GridColumnPrice
@@ -362,7 +362,7 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnRemark.FieldName = "pl_sales_order_del_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 7
+        Me.GridColumnRemark.VisibleIndex = 6
         Me.GridColumnRemark.Width = 200
         '
         'GridColumnUOM
@@ -438,8 +438,6 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnOrderRemain.Name = "GridColumnOrderRemain"
         Me.GridColumnOrderRemain.OptionsColumn.AllowEdit = False
         Me.GridColumnOrderRemain.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_remaining", "{0:n0}")})
-        Me.GridColumnOrderRemain.Visible = True
-        Me.GridColumnOrderRemain.VisibleIndex = 4
         Me.GridColumnOrderRemain.Width = 94
         '
         'GridColumnPriceType
@@ -448,7 +446,7 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnPriceType.FieldName = "design_price_type"
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.Visible = True
-        Me.GridColumnPriceType.VisibleIndex = 6
+        Me.GridColumnPriceType.VisibleIndex = 5
         Me.GridColumnPriceType.Width = 107
         '
         'RepositoryItemSpinEdit1

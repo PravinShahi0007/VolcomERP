@@ -49,10 +49,13 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -70,7 +73,8 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEOnlineOffline.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -274,10 +278,11 @@ Partial Class FormDeliveryMonitoring
         '
         'GVOutbound
         '
-        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn34, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27})
+        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn34, Me.GridColumn9, Me.GridColumn38, Me.GridColumn37, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn36, Me.GridColumn35, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27})
         Me.GVOutbound.GridControl = Me.GCOutbound
         Me.GVOutbound.Name = "GVOutbound"
         Me.GVOutbound.OptionsBehavior.ReadOnly = True
+        Me.GVOutbound.OptionsFind.AlwaysVisible = True
         Me.GVOutbound.OptionsView.ColumnAutoWidth = False
         Me.GVOutbound.OptionsView.ShowFooter = True
         Me.GVOutbound.OptionsView.ShowGroupPanel = False
@@ -348,6 +353,15 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 7
         '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Combine Number"
+        Me.GridColumn34.FieldName = "combine_number"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 8
+        Me.GridColumn34.Width = 86
+        '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Qty"
@@ -365,7 +379,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn10.FieldName = "online_order_number"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 10
+        Me.GridColumn10.VisibleIndex = 12
         '
         'GridColumn11
         '
@@ -373,7 +387,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn11.FieldName = "sub_district"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 11
+        Me.GridColumn11.VisibleIndex = 13
         '
         'GridColumn12
         '
@@ -381,7 +395,23 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn12.FieldName = "city"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 12
+        Me.GridColumn12.VisibleIndex = 14
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Group Code"
+        Me.GridColumn36.FieldName = "comp_group"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 15
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Group Name"
+        Me.GridColumn35.FieldName = "comp_group_description"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 16
         '
         'GridColumn13
         '
@@ -389,7 +419,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn13.FieldName = "comp_number"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 13
+        Me.GridColumn13.VisibleIndex = 17
         '
         'GridColumn14
         '
@@ -397,7 +427,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn14.FieldName = "comp_name"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 14
+        Me.GridColumn14.VisibleIndex = 18
         '
         'GridColumn15
         '
@@ -413,7 +443,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn16.FieldName = "weight"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 15
+        Me.GridColumn16.VisibleIndex = 19
         '
         'GridColumn17
         '
@@ -423,7 +453,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn17.FieldName = "length"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 16
+        Me.GridColumn17.VisibleIndex = 20
         '
         'GridColumn18
         '
@@ -433,7 +463,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn18.FieldName = "width"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 17
+        Me.GridColumn18.VisibleIndex = 21
         '
         'GridColumn19
         '
@@ -443,7 +473,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn19.FieldName = "height"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 18
+        Me.GridColumn19.VisibleIndex = 22
         '
         'GridColumn20
         '
@@ -451,7 +481,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn20.FieldName = "weight_calc"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 19
+        Me.GridColumn20.VisibleIndex = 23
         '
         'GridColumn21
         '
@@ -459,7 +489,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn21.FieldName = "c_weight"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 20
+        Me.GridColumn21.VisibleIndex = 24
         '
         'GridColumn22
         '
@@ -467,7 +497,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn22.FieldName = "ol_store_status"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 21
+        Me.GridColumn22.VisibleIndex = 25
         '
         'GridColumn23
         '
@@ -477,7 +507,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn23.FieldName = "rec_by_store_date"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 22
+        Me.GridColumn23.VisibleIndex = 26
         '
         'GridColumn24
         '
@@ -485,7 +515,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn24.FieldName = "rec_by_store_person"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 23
+        Me.GridColumn24.VisibleIndex = 27
         '
         'GridColumn25
         '
@@ -493,7 +523,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn25.FieldName = "lead_time"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 24
+        Me.GridColumn25.VisibleIndex = 28
         '
         'GridColumn26
         '
@@ -501,7 +531,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn26.FieldName = "cargo_lead_time"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 25
+        Me.GridColumn26.VisibleIndex = 29
         '
         'GridColumn27
         '
@@ -509,7 +539,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn27.FieldName = "lead_time_diff"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 26
+        Me.GridColumn27.VisibleIndex = 30
         '
         'XtraTabControl1
         '
@@ -528,14 +558,21 @@ Partial Class FormDeliveryMonitoring
         Me.XTPOutbound.Size = New System.Drawing.Size(1002, 657)
         Me.XTPOutbound.Text = "Outbound Delivery Monitoring"
         '
-        'GridColumn34
+        'GridColumn37
         '
-        Me.GridColumn34.Caption = "Combine Number"
-        Me.GridColumn34.FieldName = "combine_number"
-        Me.GridColumn34.Name = "GridColumn34"
-        Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 8
-        Me.GridColumn34.Width = 86
+        Me.GridColumn37.Caption = "Qty Breakdown"
+        Me.GridColumn37.FieldName = "qty_list"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 11
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "DO List (Combine+Non Combine)"
+        Me.GridColumn38.FieldName = "do_list"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 10
         '
         'FormDeliveryMonitoring
         '
@@ -622,4 +659,8 @@ Partial Class FormDeliveryMonitoring
     Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
