@@ -42,28 +42,6 @@ Partial Class FormProposePriceMKDDet
         Dim FormatConditionRuleValue10 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim GridFormatRule11 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleValue11 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule12 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue12 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule13 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue13 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule14 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue14 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule15 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue15 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule16 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue16 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule17 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue17 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule18 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue18 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule19 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue19 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule20 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue20 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule21 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue21 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule22 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue22 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.BandedGridColumncheck_stt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -71,8 +49,14 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncurr_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumndesign_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnerp_discount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnpropose_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemDisc = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BandedGridColumndesign_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnpropose_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnpropose_price_final = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
         Me.BtnChangeEffectiveDate = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
@@ -125,12 +109,6 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnsas = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandHist = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandPropose = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumnpropose_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepositoryItemDisc = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BandedGridColumnpropose_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnpropose_price_final = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BandedGridColumnpropose_disc_group = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpropose_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandTotalValue = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -163,6 +141,9 @@ Partial Class FormProposePriceMKDDet
         Me.BtnFinalPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -187,9 +168,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnEditPropose, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTENote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -266,20 +244,6 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumncurr_disc.OptionsColumn.ReadOnly = True
         Me.BandedGridColumncurr_disc.Visible = True
         '
-        'BandedGridColumndesign_price
-        '
-        Me.BandedGridColumndesign_price.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumndesign_price.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumndesign_price.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumndesign_price.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumndesign_price.Caption = "Current Price"
-        Me.BandedGridColumndesign_price.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumndesign_price.FieldName = "design_price"
-        Me.BandedGridColumndesign_price.Name = "BandedGridColumndesign_price"
-        Me.BandedGridColumndesign_price.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumndesign_price.Visible = True
-        '
         'BandedGridColumnerp_discount
         '
         Me.BandedGridColumnerp_discount.AppearanceCell.Options.UseTextOptions = True
@@ -294,6 +258,90 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnerp_discount.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnerp_discount.Visible = True
         Me.BandedGridColumnerp_discount.Width = 96
+        '
+        'BandedGridColumnpropose_disc
+        '
+        Me.BandedGridColumnpropose_disc.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_disc.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_disc.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_disc.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_disc.Caption = "Propose Disc"
+        Me.BandedGridColumnpropose_disc.ColumnEdit = Me.RepositoryItemDisc
+        Me.BandedGridColumnpropose_disc.DisplayFormat.FormatString = "{0:n0}%"
+        Me.BandedGridColumnpropose_disc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnpropose_disc.FieldName = "propose_disc"
+        Me.BandedGridColumnpropose_disc.Name = "BandedGridColumnpropose_disc"
+        Me.BandedGridColumnpropose_disc.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnpropose_disc.Visible = True
+        '
+        'RepositoryItemDisc
+        '
+        Me.RepositoryItemDisc.AutoHeight = False
+        Me.RepositoryItemDisc.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDisc.Name = "RepositoryItemDisc"
+        Me.RepositoryItemDisc.NullText = ""
+        Me.RepositoryItemDisc.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'BandedGridColumndesign_price
+        '
+        Me.BandedGridColumndesign_price.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_price.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_price.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumndesign_price.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumndesign_price.Caption = "Current Price"
+        Me.BandedGridColumndesign_price.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumndesign_price.FieldName = "design_price"
+        Me.BandedGridColumndesign_price.Name = "BandedGridColumndesign_price"
+        Me.BandedGridColumndesign_price.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumndesign_price.Visible = True
+        '
+        'BandedGridColumnpropose_price
+        '
+        Me.BandedGridColumnpropose_price.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_price.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_price.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_price.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_price.Caption = "Propose Price"
+        Me.BandedGridColumnpropose_price.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnpropose_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnpropose_price.FieldName = "propose_price"
+        Me.BandedGridColumnpropose_price.Name = "BandedGridColumnpropose_price"
+        Me.BandedGridColumnpropose_price.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnpropose_price.Visible = True
+        '
+        'BandedGridColumnpropose_price_final
+        '
+        Me.BandedGridColumnpropose_price_final.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridColumnpropose_price_final.AppearanceCell.Options.UseFont = True
+        Me.BandedGridColumnpropose_price_final.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_price_final.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_price_final.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridColumnpropose_price_final.AppearanceHeader.Options.UseFont = True
+        Me.BandedGridColumnpropose_price_final.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_price_final.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_price_final.Caption = "Propose Final"
+        Me.BandedGridColumnpropose_price_final.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.BandedGridColumnpropose_price_final.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnpropose_price_final.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnpropose_price_final.FieldName = "propose_price_final"
+        Me.BandedGridColumnpropose_price_final.Name = "BandedGridColumnpropose_price_final"
+        Me.BandedGridColumnpropose_price_final.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnpropose_price_final.Visible = True
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N0"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'GroupControlHead
         '
@@ -660,8 +708,8 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.ColumnPanelRowHeight = 40
         Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnno, Me.BandedGridColumnid_pp_change_det, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_code, Me.BandedGridColumnname, Me.BandedGridColumnclass, Me.BandedGridColumnid_disc, Me.BandedGridColumndisc_desc, Me.BandedGridColumnmkd_normal_view, Me.BandedGridColumnmkd_30_view, Me.BandedGridColumnmkd_50_view, Me.BandedGridColumnmkd_70_view, Me.BandedGridColumnfirst_del, Me.BandedGridColumnage, Me.BandedGridColumndesign_cop, Me.BandedGridColumnid_design_price, Me.BandedGridColumndesign_price, Me.BandedGridColumnprice_type, Me.BandedGridColumndesign_cat, Me.BandedGridColumnid_design_price_normal, Me.BandedGridColumndesign_price_normal, Me.BandedGridColumncurr_disc, Me.BandedGridColumnpropose_disc, Me.BandedGridColumnpropose_price, Me.BandedGridColumnpropose_price_final, Me.BandedGridColumnerp_discount, Me.BandedGridColumnnote, Me.BandedGridColumnpropose_disc_old, Me.BandedGridColumnpropose_price_old, Me.BandedGridColumnpropose_price_final_old, Me.BandedGridColumnis_edit, Me.BandedGridColumnnote_old, Me.BandedGridColumnpropose_disc_group, Me.BandedGridColumnpropose_status, Me.BandedGridColumntotal_sal, Me.BandedGridColumntotal_soh, Me.BandedGridColumntotal_bos, Me.BandedGridColumnsas, Me.BandedGridColumntotal_normal_value, Me.BandedGridColumntotal_current_value, Me.BandedGridColumntotal_propose_value, Me.BandedGridColumntotal_cost, Me.BandedGridColumnmarked_down_value, Me.BandedGridColumnmark_up, Me.BandedGridColumnbtn_edit_propose, Me.BandedGridColumncheck_stt})
         GridFormatRule1.Column = Me.BandedGridColumncheck_stt
-        GridFormatRule1.ColumnApplyTo = Me.BandedGridColumnno
-        GridFormatRule1.Name = "Format0"
+        GridFormatRule1.ColumnApplyTo = Me.BandedGridColumndesign_code
+        GridFormatRule1.Name = "Format1"
         FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         FormatConditionRuleValue1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
@@ -670,8 +718,8 @@ Partial Class FormProposePriceMKDDet
         FormatConditionRuleValue1.Value1 = "1"
         GridFormatRule1.Rule = FormatConditionRuleValue1
         GridFormatRule2.Column = Me.BandedGridColumncheck_stt
-        GridFormatRule2.ColumnApplyTo = Me.BandedGridColumndesign_code
-        GridFormatRule2.Name = "Format1"
+        GridFormatRule2.ColumnApplyTo = Me.BandedGridColumnname
+        GridFormatRule2.Name = "Format2"
         FormatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         FormatConditionRuleValue2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         FormatConditionRuleValue2.Appearance.Options.UseBackColor = True
@@ -679,41 +727,45 @@ Partial Class FormProposePriceMKDDet
         FormatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Equal
         FormatConditionRuleValue2.Value1 = "1"
         GridFormatRule2.Rule = FormatConditionRuleValue2
-        GridFormatRule3.Column = Me.BandedGridColumncheck_stt
-        GridFormatRule3.ColumnApplyTo = Me.BandedGridColumnname
-        GridFormatRule3.Name = "Format2"
-        FormatConditionRuleValue3.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        GridFormatRule3.Column = Me.BandedGridColumncurr_disc
+        GridFormatRule3.ColumnApplyTo = Me.BandedGridColumncurr_disc
+        GridFormatRule3.Name = "Format4"
+        FormatConditionRuleValue3.Appearance.BackColor = System.Drawing.Color.Yellow
+        FormatConditionRuleValue3.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         FormatConditionRuleValue3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         FormatConditionRuleValue3.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue3.Appearance.Options.UseBorderColor = True
         FormatConditionRuleValue3.Appearance.Options.UseFont = True
-        FormatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Equal
-        FormatConditionRuleValue3.Value1 = "1"
+        FormatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue3.Expression = "Iif([curr_disc] > 0 And [curr_disc] <= 30, True, False)"
         GridFormatRule3.Rule = FormatConditionRuleValue3
-        GridFormatRule4.Column = Me.BandedGridColumncheck_stt
-        GridFormatRule4.ColumnApplyTo = Me.BandedGridColumnclass
-        GridFormatRule4.Name = "Format3"
-        FormatConditionRuleValue4.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        GridFormatRule4.Column = Me.BandedGridColumncurr_disc
+        GridFormatRule4.ColumnApplyTo = Me.BandedGridColumncurr_disc
+        GridFormatRule4.Name = "Format6"
+        FormatConditionRuleValue4.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        FormatConditionRuleValue4.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         FormatConditionRuleValue4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         FormatConditionRuleValue4.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue4.Appearance.Options.UseBorderColor = True
         FormatConditionRuleValue4.Appearance.Options.UseFont = True
-        FormatConditionRuleValue4.Condition = DevExpress.XtraEditors.FormatCondition.Equal
-        FormatConditionRuleValue4.Value1 = "1"
+        FormatConditionRuleValue4.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue4.Expression = "Iif([curr_disc] > 31 And [curr_disc] <= 50, True, False)"
         GridFormatRule4.Rule = FormatConditionRuleValue4
         GridFormatRule5.Column = Me.BandedGridColumncurr_disc
         GridFormatRule5.ColumnApplyTo = Me.BandedGridColumncurr_disc
-        GridFormatRule5.Name = "Format4"
-        FormatConditionRuleValue5.Appearance.BackColor = System.Drawing.Color.Yellow
-        FormatConditionRuleValue5.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        GridFormatRule5.Name = "Format8"
+        FormatConditionRuleValue5.Appearance.BackColor = System.Drawing.Color.Lime
+        FormatConditionRuleValue5.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         FormatConditionRuleValue5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         FormatConditionRuleValue5.Appearance.Options.UseBackColor = True
         FormatConditionRuleValue5.Appearance.Options.UseBorderColor = True
         FormatConditionRuleValue5.Appearance.Options.UseFont = True
         FormatConditionRuleValue5.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue5.Expression = "Iif([curr_disc] > 0 And [curr_disc] <= 30, True, False)"
+        FormatConditionRuleValue5.Expression = "Iif([curr_disc] > 51, True, False)"
         GridFormatRule5.Rule = FormatConditionRuleValue5
-        GridFormatRule6.Column = Me.BandedGridColumncurr_disc
-        GridFormatRule6.ColumnApplyTo = Me.BandedGridColumndesign_price
-        GridFormatRule6.Name = "Format5"
+        GridFormatRule6.Column = Me.BandedGridColumnerp_discount
+        GridFormatRule6.ColumnApplyTo = Me.BandedGridColumnerp_discount
+        GridFormatRule6.Name = "Format10"
         FormatConditionRuleValue6.Appearance.BackColor = System.Drawing.Color.Yellow
         FormatConditionRuleValue6.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         FormatConditionRuleValue6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -721,11 +773,11 @@ Partial Class FormProposePriceMKDDet
         FormatConditionRuleValue6.Appearance.Options.UseBorderColor = True
         FormatConditionRuleValue6.Appearance.Options.UseFont = True
         FormatConditionRuleValue6.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue6.Expression = "Iif([curr_disc] > 0 And [curr_disc] <= 30, True, False)"
+        FormatConditionRuleValue6.Expression = "Iif([erp_discount] > 0 And [erp_discount] <= 30, True, False)"
         GridFormatRule6.Rule = FormatConditionRuleValue6
-        GridFormatRule7.Column = Me.BandedGridColumncurr_disc
-        GridFormatRule7.ColumnApplyTo = Me.BandedGridColumncurr_disc
-        GridFormatRule7.Name = "Format6"
+        GridFormatRule7.Column = Me.BandedGridColumnerp_discount
+        GridFormatRule7.ColumnApplyTo = Me.BandedGridColumnerp_discount
+        GridFormatRule7.Name = "Format11"
         FormatConditionRuleValue7.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         FormatConditionRuleValue7.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         FormatConditionRuleValue7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -733,170 +785,50 @@ Partial Class FormProposePriceMKDDet
         FormatConditionRuleValue7.Appearance.Options.UseBorderColor = True
         FormatConditionRuleValue7.Appearance.Options.UseFont = True
         FormatConditionRuleValue7.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue7.Expression = "Iif([curr_disc] > 31 And [curr_disc] <= 50, True, False)"
+        FormatConditionRuleValue7.Expression = "Iif([erp_discount] > 31 And [erp_discount] <= 50, True, False)"
         GridFormatRule7.Rule = FormatConditionRuleValue7
-        GridFormatRule8.Column = Me.BandedGridColumncurr_disc
-        GridFormatRule8.ColumnApplyTo = Me.BandedGridColumndesign_price
-        GridFormatRule8.Name = "Format7"
-        FormatConditionRuleValue8.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue8.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        GridFormatRule8.Column = Me.BandedGridColumnerp_discount
+        GridFormatRule8.ColumnApplyTo = Me.BandedGridColumnerp_discount
+        GridFormatRule8.Name = "Format12"
+        FormatConditionRuleValue8.Appearance.BackColor = System.Drawing.Color.Lime
+        FormatConditionRuleValue8.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         FormatConditionRuleValue8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         FormatConditionRuleValue8.Appearance.Options.UseBackColor = True
         FormatConditionRuleValue8.Appearance.Options.UseBorderColor = True
         FormatConditionRuleValue8.Appearance.Options.UseFont = True
         FormatConditionRuleValue8.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue8.Expression = "Iif([curr_disc] > 31 And [curr_disc] <= 50, True, False)"
+        FormatConditionRuleValue8.Expression = "Iif([erp_discount] > 51, True, False)"
         GridFormatRule8.Rule = FormatConditionRuleValue8
-        GridFormatRule9.Column = Me.BandedGridColumncurr_disc
-        GridFormatRule9.ColumnApplyTo = Me.BandedGridColumncurr_disc
-        GridFormatRule9.Name = "Format8"
-        FormatConditionRuleValue9.Appearance.BackColor = System.Drawing.Color.Lime
-        FormatConditionRuleValue9.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        GridFormatRule9.Column = Me.BandedGridColumnpropose_disc
+        GridFormatRule9.ColumnApplyTo = Me.BandedGridColumnpropose_disc
+        GridFormatRule9.Name = "Format13"
+        FormatConditionRuleValue9.Appearance.BackColor = System.Drawing.Color.Yellow
+        FormatConditionRuleValue9.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         FormatConditionRuleValue9.Appearance.Options.UseBackColor = True
         FormatConditionRuleValue9.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue9.Appearance.Options.UseFont = True
         FormatConditionRuleValue9.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue9.Expression = "Iif([curr_disc] > 51, True, False)"
+        FormatConditionRuleValue9.Expression = "Iif([propose_disc] > 0 And [propose_disc] <= 30, True, False)"
         GridFormatRule9.Rule = FormatConditionRuleValue9
-        GridFormatRule10.Column = Me.BandedGridColumncurr_disc
-        GridFormatRule10.ColumnApplyTo = Me.BandedGridColumndesign_price
-        GridFormatRule10.Name = "Format9"
-        FormatConditionRuleValue10.Appearance.BackColor = System.Drawing.Color.Lime
-        FormatConditionRuleValue10.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        GridFormatRule10.Column = Me.BandedGridColumnpropose_disc
+        GridFormatRule10.ColumnApplyTo = Me.BandedGridColumnpropose_disc
+        GridFormatRule10.Name = "Format16"
+        FormatConditionRuleValue10.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        FormatConditionRuleValue10.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         FormatConditionRuleValue10.Appearance.Options.UseBackColor = True
         FormatConditionRuleValue10.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue10.Appearance.Options.UseFont = True
         FormatConditionRuleValue10.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue10.Expression = "Iif([curr_disc] > 51, True, False)"
+        FormatConditionRuleValue10.Expression = "Iif([propose_disc] > 31 And [propose_disc] <= 50, True, False)"
         GridFormatRule10.Rule = FormatConditionRuleValue10
-        GridFormatRule11.Column = Me.BandedGridColumnerp_discount
-        GridFormatRule11.ColumnApplyTo = Me.BandedGridColumnerp_discount
-        GridFormatRule11.Name = "Format10"
-        FormatConditionRuleValue11.Appearance.BackColor = System.Drawing.Color.Yellow
-        FormatConditionRuleValue11.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        GridFormatRule11.Column = Me.BandedGridColumnpropose_disc
+        GridFormatRule11.ColumnApplyTo = Me.BandedGridColumnpropose_disc
+        GridFormatRule11.Name = "Format19"
+        FormatConditionRuleValue11.Appearance.BackColor = System.Drawing.Color.Lime
+        FormatConditionRuleValue11.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         FormatConditionRuleValue11.Appearance.Options.UseBackColor = True
         FormatConditionRuleValue11.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue11.Appearance.Options.UseFont = True
         FormatConditionRuleValue11.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue11.Expression = "Iif([erp_discount] > 0 And [erp_discount] <= 30, True, False)"
+        FormatConditionRuleValue11.Expression = "Iif([propose_disc] > 51, True, False)"
         GridFormatRule11.Rule = FormatConditionRuleValue11
-        GridFormatRule12.Column = Me.BandedGridColumnerp_discount
-        GridFormatRule12.ColumnApplyTo = Me.BandedGridColumnerp_discount
-        GridFormatRule12.Name = "Format11"
-        FormatConditionRuleValue12.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue12.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        FormatConditionRuleValue12.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue12.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue12.Appearance.Options.UseFont = True
-        FormatConditionRuleValue12.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue12.Expression = "Iif([erp_discount] > 31 And [erp_discount] <= 50, True, False)"
-        GridFormatRule12.Rule = FormatConditionRuleValue12
-        GridFormatRule13.Column = Me.BandedGridColumnerp_discount
-        GridFormatRule13.ColumnApplyTo = Me.BandedGridColumnerp_discount
-        GridFormatRule13.Name = "Format12"
-        FormatConditionRuleValue13.Appearance.BackColor = System.Drawing.Color.Lime
-        FormatConditionRuleValue13.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        FormatConditionRuleValue13.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue13.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue13.Appearance.Options.UseFont = True
-        FormatConditionRuleValue13.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue13.Expression = "Iif([erp_discount] > 51, True, False)"
-        GridFormatRule13.Rule = FormatConditionRuleValue13
-        GridFormatRule14.Column = Me.BandedGridColumnpropose_disc
-        GridFormatRule14.ColumnApplyTo = Me.BandedGridColumnpropose_disc
-        GridFormatRule14.Name = "Format13"
-        FormatConditionRuleValue14.Appearance.BackColor = System.Drawing.Color.Yellow
-        FormatConditionRuleValue14.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue14.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue14.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue14.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue14.Expression = "Iif([propose_disc] > 0 And [propose_disc] <= 30, True, False)"
-        GridFormatRule14.Rule = FormatConditionRuleValue14
-        GridFormatRule15.Column = Me.BandedGridColumnpropose_disc
-        GridFormatRule15.ColumnApplyTo = Me.BandedGridColumnpropose_price
-        GridFormatRule15.Name = "Format14"
-        FormatConditionRuleValue15.Appearance.BackColor = System.Drawing.Color.Yellow
-        FormatConditionRuleValue15.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue15.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue15.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue15.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue15.Expression = "Iif([propose_disc] > 0 And [propose_disc] <= 30, True, False)"
-        GridFormatRule15.Rule = FormatConditionRuleValue15
-        GridFormatRule16.Column = Me.BandedGridColumnpropose_disc
-        GridFormatRule16.ColumnApplyTo = Me.BandedGridColumnpropose_price_final
-        GridFormatRule16.Name = "Format15"
-        FormatConditionRuleValue16.Appearance.BackColor = System.Drawing.Color.Yellow
-        FormatConditionRuleValue16.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue16.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue16.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue16.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue16.Expression = "Iif([propose_disc] > 0 And [propose_disc] <= 30, True, False)"
-        GridFormatRule16.Rule = FormatConditionRuleValue16
-        GridFormatRule17.Column = Me.BandedGridColumnpropose_disc
-        GridFormatRule17.ColumnApplyTo = Me.BandedGridColumnpropose_disc
-        GridFormatRule17.Name = "Format16"
-        FormatConditionRuleValue17.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue17.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue17.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue17.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue17.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue17.Expression = "Iif([propose_disc] > 31 And [propose_disc] <= 50, True, False)"
-        GridFormatRule17.Rule = FormatConditionRuleValue17
-        GridFormatRule18.Column = Me.BandedGridColumnpropose_disc
-        GridFormatRule18.ColumnApplyTo = Me.BandedGridColumnpropose_price
-        GridFormatRule18.Name = "Format17"
-        FormatConditionRuleValue18.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue18.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue18.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue18.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue18.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue18.Expression = "Iif([propose_disc] > 31 And [propose_disc] <= 50, True, False)"
-        GridFormatRule18.Rule = FormatConditionRuleValue18
-        GridFormatRule19.Column = Me.BandedGridColumnpropose_disc
-        GridFormatRule19.ColumnApplyTo = Me.BandedGridColumnpropose_price_final
-        GridFormatRule19.Name = "Format18"
-        FormatConditionRuleValue19.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue19.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue19.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue19.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue19.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue19.Expression = "Iif([propose_disc] > 31 And [propose_disc] <= 50, True, False)"
-        GridFormatRule19.Rule = FormatConditionRuleValue19
-        GridFormatRule20.Column = Me.BandedGridColumnpropose_disc
-        GridFormatRule20.ColumnApplyTo = Me.BandedGridColumnpropose_disc
-        GridFormatRule20.Name = "Format19"
-        FormatConditionRuleValue20.Appearance.BackColor = System.Drawing.Color.Lime
-        FormatConditionRuleValue20.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue20.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue20.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue20.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue20.Expression = "Iif([propose_disc] > 51, True, False)"
-        GridFormatRule20.Rule = FormatConditionRuleValue20
-        GridFormatRule21.Column = Me.BandedGridColumnpropose_disc
-        GridFormatRule21.ColumnApplyTo = Me.BandedGridColumnpropose_price
-        GridFormatRule21.Name = "Format20"
-        FormatConditionRuleValue21.Appearance.BackColor = System.Drawing.Color.Lime
-        FormatConditionRuleValue21.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue21.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue21.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue21.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue21.Expression = "Iif([propose_disc] > 51, True, False)"
-        GridFormatRule21.Rule = FormatConditionRuleValue21
-        GridFormatRule22.Column = Me.BandedGridColumnpropose_disc
-        GridFormatRule22.ColumnApplyTo = Me.BandedGridColumnpropose_price_final
-        GridFormatRule22.Name = "Format21"
-        FormatConditionRuleValue22.Appearance.BackColor = System.Drawing.Color.Lime
-        FormatConditionRuleValue22.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue22.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue22.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue22.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue22.Expression = "Iif([propose_disc] > 51, True, False)"
-        GridFormatRule22.Rule = FormatConditionRuleValue22
         Me.GVData.FormatRules.Add(GridFormatRule1)
         Me.GVData.FormatRules.Add(GridFormatRule2)
         Me.GVData.FormatRules.Add(GridFormatRule3)
@@ -908,23 +840,11 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.FormatRules.Add(GridFormatRule9)
         Me.GVData.FormatRules.Add(GridFormatRule10)
         Me.GVData.FormatRules.Add(GridFormatRule11)
-        Me.GVData.FormatRules.Add(GridFormatRule12)
-        Me.GVData.FormatRules.Add(GridFormatRule13)
-        Me.GVData.FormatRules.Add(GridFormatRule14)
-        Me.GVData.FormatRules.Add(GridFormatRule15)
-        Me.GVData.FormatRules.Add(GridFormatRule16)
-        Me.GVData.FormatRules.Add(GridFormatRule17)
-        Me.GVData.FormatRules.Add(GridFormatRule18)
-        Me.GVData.FormatRules.Add(GridFormatRule19)
-        Me.GVData.FormatRules.Add(GridFormatRule20)
-        Me.GVData.FormatRules.Add(GridFormatRule21)
-        Me.GVData.FormatRules.Add(GridFormatRule22)
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupCount = 1
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_sal", Me.BandedGridColumntotal_sal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_soh", Me.BandedGridColumntotal_soh, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_bos", Me.BandedGridColumntotal_bos, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_normal_value", Me.BandedGridColumntotal_normal_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_current_value", Me.BandedGridColumntotal_current_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_propose_value", Me.BandedGridColumntotal_propose_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Me.BandedGridColumntotal_cost, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "marked_down_value", Me.BandedGridColumnmarked_down_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", Me.BandedGridColumnmark_up, "{0:n2}", "markup_grp_sum"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "sas", Me.BandedGridColumnsas, "{0:n0}%", "sas_grp_sum")})
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVData.OptionsMenu.ShowConditionalFormattingItem = True
         Me.GVData.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
@@ -1201,76 +1121,6 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandPropose.Name = "gridBandPropose"
         Me.gridBandPropose.VisibleIndex = 2
         Me.gridBandPropose.Width = 471
-        '
-        'BandedGridColumnpropose_disc
-        '
-        Me.BandedGridColumnpropose_disc.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnpropose_disc.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnpropose_disc.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumnpropose_disc.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnpropose_disc.Caption = "Propose Disc"
-        Me.BandedGridColumnpropose_disc.ColumnEdit = Me.RepositoryItemDisc
-        Me.BandedGridColumnpropose_disc.DisplayFormat.FormatString = "{0:n0}%"
-        Me.BandedGridColumnpropose_disc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnpropose_disc.FieldName = "propose_disc"
-        Me.BandedGridColumnpropose_disc.Name = "BandedGridColumnpropose_disc"
-        Me.BandedGridColumnpropose_disc.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnpropose_disc.Visible = True
-        '
-        'RepositoryItemDisc
-        '
-        Me.RepositoryItemDisc.AutoHeight = False
-        Me.RepositoryItemDisc.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemDisc.Name = "RepositoryItemDisc"
-        Me.RepositoryItemDisc.NullText = ""
-        Me.RepositoryItemDisc.View = Me.RepositoryItemSearchLookUpEdit1View
-        '
-        'RepositoryItemSearchLookUpEdit1View
-        '
-        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
-        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'BandedGridColumnpropose_price
-        '
-        Me.BandedGridColumnpropose_price.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnpropose_price.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnpropose_price.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumnpropose_price.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnpropose_price.Caption = "Propose Price"
-        Me.BandedGridColumnpropose_price.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnpropose_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnpropose_price.FieldName = "propose_price"
-        Me.BandedGridColumnpropose_price.Name = "BandedGridColumnpropose_price"
-        Me.BandedGridColumnpropose_price.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnpropose_price.Visible = True
-        '
-        'BandedGridColumnpropose_price_final
-        '
-        Me.BandedGridColumnpropose_price_final.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BandedGridColumnpropose_price_final.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumnpropose_price_final.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnpropose_price_final.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnpropose_price_final.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BandedGridColumnpropose_price_final.AppearanceHeader.Options.UseFont = True
-        Me.BandedGridColumnpropose_price_final.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumnpropose_price_final.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnpropose_price_final.Caption = "Propose Final"
-        Me.BandedGridColumnpropose_price_final.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.BandedGridColumnpropose_price_final.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnpropose_price_final.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnpropose_price_final.FieldName = "propose_price_final"
-        Me.BandedGridColumnpropose_price_final.Name = "BandedGridColumnpropose_price_final"
-        Me.BandedGridColumnpropose_price_final.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnpropose_price_final.Visible = True
-        '
-        'RepositoryItemTextEdit1
-        '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.Mask.EditMask = "N0"
-        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'BandedGridColumnpropose_disc_group
         '
@@ -1698,6 +1548,9 @@ Partial Class FormProposePriceMKDDet
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Create New"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
@@ -1724,9 +1577,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnEditPropose, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTENote, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
