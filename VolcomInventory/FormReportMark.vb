@@ -2499,7 +2499,7 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
 
             'crek trf data
             If Not cond_valid_trf_data Then
-                stopCustom("Invalid Transaction, please contact administrator")
+                stopCustom("Invalid Transaction. Mohon jangan lanjutkan transaksi ini dan segera hubungi administrator")
                 Cursor = Cursors.Default
                 Exit Sub
             End If
