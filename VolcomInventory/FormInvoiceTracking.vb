@@ -177,7 +177,7 @@
 	            SUM(pyd.value) AS  `value`
 	            FROM tb_rec_payment_det pyd
 	            INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
-	            WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183)
+	            WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183,292)
                 " + cond_period_bbm + "
 	            GROUP BY pyd.id_report, pyd.report_mark_type
             ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
@@ -187,7 +187,7 @@
 	            SUM(pyd.value) AS  `value`
 	            FROM tb_rec_payment_det pyd
 	            INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
-	            WHERE py.`id_report_status`<5 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183)
+	            WHERE py.`id_report_status`<5 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183,292)
 	            GROUP BY pyd.id_report, pyd.report_mark_type
             ) pyd_op ON pyd_op.id_report = sp.id_sales_pos AND pyd_op.report_mark_type = sp.report_mark_type
             LEFT JOIN (
@@ -233,7 +233,7 @@
 		            r.date_received AS `bbm_received_date`
 		            FROM tb_rec_payment_det rd
 		            INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
-		            WHERE rd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183) AND r.id_report_status=6
+		            WHERE rd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183,292) AND r.id_report_status=6
 		            ORDER BY r.id_rec_payment DESC
 	            ) rm
 	            GROUP BY rm.id_report
@@ -371,7 +371,7 @@
                 INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
                 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
                 INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
-	            WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183)
+	            WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183,292)
                 " + cond_group + " 
                 " + cond_store + "
                 " + cond_status + "
