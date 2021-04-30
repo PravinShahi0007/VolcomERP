@@ -344,6 +344,8 @@ UNION ALL
 SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text) & "' AND id_report_status!=5 AND id_del_manifest!='" & id_del_manifest & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
+        'check manifest
+
         If GVList.RowCount < 1 Then
             stopCustom("DO not found.")
         ElseIf TERemarkDiff.Visible = True And TERemarkDiff.Text = "" Then
