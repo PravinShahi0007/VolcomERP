@@ -11,6 +11,7 @@
 
         TxtCode.Text = gv.GetFocusedRowCellValue("design_code").ToString
         TxtDescription.Text = gv.GetFocusedRowCellValue("name").ToString
+        TxtNormalPrice.EditValue = gv.GetFocusedRowCellValue("design_price_normal")
         TxtCurrDisc.EditValue = gv.GetFocusedRowCellValue("curr_disc")
         TxtCurrPrice.EditValue = gv.GetFocusedRowCellValue("design_price")
         TxtRekomendasiDisc.EditValue = gv.GetFocusedRowCellValue("erp_discount")
@@ -150,6 +151,11 @@
             gv.SetFocusedRowCellValue("propose_status", "")
         End If
         gv.SetFocusedRowCellValue("note", MENote.Text)
+        If propose_disc <> erp_discount Then
+            gv.SetFocusedRowCellValue("check_stt", "1")
+        Else
+            gv.SetFocusedRowCellValue("check_stt", "2")
+        End If
 
         FormProposePriceMKDDet.GCData.RefreshDataSource()
         FormProposePriceMKDDet.GVData.RefreshData()

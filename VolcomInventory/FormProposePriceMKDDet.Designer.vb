@@ -44,15 +44,15 @@ Partial Class FormProposePriceMKDDet
         Dim FormatConditionRuleValue11 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.BandedGridColumncheck_stt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncurr_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnerp_discount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpropose_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemDisc = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpropose_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpropose_price_final = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -181,19 +181,6 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumncheck_stt.OptionsColumn.ReadOnly = True
         Me.BandedGridColumncheck_stt.Visible = True
         '
-        'BandedGridColumnno
-        '
-        Me.BandedGridColumnno.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnno.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnno.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumnno.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnno.Caption = "No"
-        Me.BandedGridColumnno.FieldName = "no"
-        Me.BandedGridColumnno.Name = "BandedGridColumnno"
-        Me.BandedGridColumnno.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnno.Visible = True
-        Me.BandedGridColumnno.Width = 47
-        '
         'BandedGridColumndesign_code
         '
         Me.BandedGridColumndesign_code.AppearanceCell.Options.UseTextOptions = True
@@ -217,18 +204,6 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnname.Name = "BandedGridColumnname"
         Me.BandedGridColumnname.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnname.Visible = True
-        '
-        'BandedGridColumnclass
-        '
-        Me.BandedGridColumnclass.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnclass.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnclass.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumnclass.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnclass.Caption = "Class"
-        Me.BandedGridColumnclass.FieldName = "class"
-        Me.BandedGridColumnclass.Name = "BandedGridColumnclass"
-        Me.BandedGridColumnclass.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnclass.Visible = True
         '
         'BandedGridColumncurr_disc
         '
@@ -288,6 +263,31 @@ Partial Class FormProposePriceMKDDet
         Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
         Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'BandedGridColumnno
+        '
+        Me.BandedGridColumnno.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnno.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnno.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnno.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnno.Caption = "No"
+        Me.BandedGridColumnno.FieldName = "no"
+        Me.BandedGridColumnno.Name = "BandedGridColumnno"
+        Me.BandedGridColumnno.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnno.Visible = True
+        Me.BandedGridColumnno.Width = 47
+        '
+        'BandedGridColumnclass
+        '
+        Me.BandedGridColumnclass.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnclass.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnclass.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnclass.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnclass.Caption = "Class"
+        Me.BandedGridColumnclass.FieldName = "class"
+        Me.BandedGridColumnclass.Name = "BandedGridColumnclass"
+        Me.BandedGridColumnclass.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnclass.Visible = True
         '
         'BandedGridColumndesign_price
         '
@@ -845,6 +845,8 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_sal", Me.BandedGridColumntotal_sal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_soh", Me.BandedGridColumntotal_soh, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_bos", Me.BandedGridColumntotal_bos, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_normal_value", Me.BandedGridColumntotal_normal_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_current_value", Me.BandedGridColumntotal_current_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_propose_value", Me.BandedGridColumntotal_propose_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Me.BandedGridColumntotal_cost, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "marked_down_value", Me.BandedGridColumnmarked_down_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", Me.BandedGridColumnmark_up, "{0:n2}", "markup_grp_sum"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "sas", Me.BandedGridColumnsas, "{0:n0}%", "sas_grp_sum")})
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVData.OptionsCustomization.AllowSort = False
+        Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
