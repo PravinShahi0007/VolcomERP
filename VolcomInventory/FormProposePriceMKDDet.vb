@@ -199,6 +199,8 @@
 
     Sub saveChangesDetail()
         If action = "upd" Then
+            GVData.ApplyFindFilter("")
+            GVData.ActiveFilterString = ""
             If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
                 FormMain.SplashScreenManager1.ShowWaitForm()
             End If
@@ -208,11 +210,20 @@
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Update Detail " + (u + 1).ToString + "/" + GVData.RowCount.ToString)
                 Dim id_pp_change_det As String = GVData.GetRowCellValue(u, "id_pp_change_det").ToString
                 Dim propose_discount As String = decimalSQL(GVData.GetRowCellValue(u, "propose_disc").ToString)
+                If propose_discount = "" Then
+                    propose_discount = "NULL"
+                End If
                 Dim propose_price As String = decimalSQL(GVData.GetRowCellValue(u, "propose_price").ToString)
+                If propose_price = "" Then
+                    propose_price = "NULL"
+                End If
                 Dim propose_price_final As String = decimalSQL(GVData.GetRowCellValue(u, "propose_price_final").ToString)
+                If propose_price_final = "" Then
+                    propose_price_final = "NULL"
+                End If
                 Dim note As String = addSlashes(GVData.GetRowCellValue(u, "note").ToString)
-                Dim qupd As String = "UPDATE tb_pp_change_det SET propose_discount='" + propose_discount + "',
-                propose_price='" + propose_price + "', propose_price_final='" + propose_price_final + "', 
+                Dim qupd As String = "UPDATE tb_pp_change_det SET propose_discount=" + propose_discount + ",
+                propose_price=" + propose_price + ", propose_price_final=" + propose_price_final + ", 
                 note='" + note + "' WHERE id_pp_change_det='" + id_pp_change_det + "'"
                 execute_non_query_long(qupd, True, "", "", "", "")
                 Cursor = Cursors.Default
