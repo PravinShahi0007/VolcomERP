@@ -159,12 +159,16 @@
             '
 
             Dim query As String = String.Format("SELECT comp.*,acc_ap.acc_name AS ap_name,acc_ar.acc_name AS ar_name,acc_dp.acc_name As dp_name,ccat.is_need_bank_account,ccat.is_advance_setup,drawer.wh_drawer 
+,acc_ap_cabang.acc_name AS ap_cabang_name,acc_ar_cabang.acc_name AS ar_cabang_name,acc_dp_cabang.acc_name As dp_cabang_name
 FROM tb_m_comp comp 
 LEFT JOIN tb_m_wh_drawer drawer ON drawer.id_wh_drawer=comp.id_drawer_def 
 INNER JOIN tb_m_comp_cat ccat ON ccat.id_comp_cat=comp.id_comp_cat
 LEFT JOIN tb_a_acc acc_ap ON acc_ap.id_acc=comp.id_acc_ap
 LEFT JOIN tb_a_acc acc_dp ON acc_dp.id_acc=comp.id_acc_dp
 LEFT JOIN tb_a_acc acc_ar ON acc_ar.id_acc=comp.id_acc_ar 
+LEFT JOIN tb_a_acc acc_ap_cabang ON acc_ap_cabang.id_acc=comp.id_acc_cabang_ap
+LEFT JOIN tb_a_acc acc_dp_cabang ON acc_dp_cabang.id_acc=comp.id_acc_cabang_dp
+LEFT JOIN tb_a_acc acc_ar_cabang ON acc_ar_cabang.id_acc=comp.id_acc_cabang_ar 
 WHERE comp.id_comp = '{0}'", id_company)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -195,6 +199,27 @@ WHERE comp.id_comp = '{0}'", id_company)
             Else
                 SLEDP.EditValue = data.Rows(0)("id_acc_dp").ToString
                 TxtDPCode.Text = data.Rows(0)("dp_name").ToString
+            End If
+
+            If data.Rows(0)("id_acc_cabang_ar").ToString = "" Then
+                SLEARCabang.EditValue = Nothing
+            Else
+                SLEARCabang.EditValue = data.Rows(0)("id_acc_cabang_ar").ToString
+                TxtARCodeCabang.Text = data.Rows(0)("ar_cabang_name").ToString
+            End If
+            '
+            If data.Rows(0)("id_acc_cabang_ap").ToString = "" Then
+                SLEAPCabang.EditValue = Nothing
+            Else
+                SLEAPCabang.EditValue = data.Rows(0)("id_acc_cabang_ap").ToString
+                TxtAPCodeCabang.Text = data.Rows(0)("ap_cabang_name").ToString
+            End If
+            '
+            If data.Rows(0)("id_acc_cabang_dp").ToString = "" Then
+                SLEDPCabang.EditValue = Nothing
+            Else
+                SLEDPCabang.EditValue = data.Rows(0)("id_acc_cabang_dp").ToString
+                TxtDPCodeCabang.Text = data.Rows(0)("dp_cabang_name").ToString
             End If
 
             Dim id_city As String = data.Rows(0)("id_city").ToString
@@ -1490,6 +1515,39 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
         Else
             Try
                 TxtDPCode.Text = SLEDP.Properties.View.GetFocusedRowCellValue("acc_name").ToString
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+    Private Sub SLEARCabang_EditValueChanged(sender As Object, e As EventArgs) Handles SLEARCabang.EditValueChanged
+        If SLEARCabang.EditValue = Nothing Then
+            TxtARCodeCabang.Text = ""
+        Else
+            Try
+                TxtARCodeCabang.Text = SLEARCabang.Properties.View.GetFocusedRowCellValue("acc_name").ToString
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+    Private Sub SLEAPCabang_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAPCabang.EditValueChanged
+        If SLEAPCabang.EditValue = Nothing Then
+            TxtAPCodeCabang.Text = ""
+        Else
+            Try
+                TxtAPCodeCabang.Text = SLEAPCabang.Properties.View.GetFocusedRowCellValue("acc_name").ToString
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+    Private Sub SLEDPCabang_EditValueChanged(sender As Object, e As EventArgs) Handles SLEDPCabang.EditValueChanged
+        If SLEDPCabang.EditValue = Nothing Then
+            TxtDPCodeCabang.Text = ""
+        Else
+            Try
+                TxtDPCode.Text = SLEDPCabang.Properties.View.GetFocusedRowCellValue("acc_name").ToString
             Catch ex As Exception
             End Try
         End If
