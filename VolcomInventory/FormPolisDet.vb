@@ -47,7 +47,9 @@ GROUP BY pd.id_polis"
 ,ppsd.old_nilai_stock,ppsd.old_nilai_fit_out,ppsd.old_nilai_peralatan,ppsd.old_nilai_building,ppsd.old_nilai_public_liability,ppsd.old_nilai_total
 ,ppsd.nilai_stock,ppsd.nilai_fit_out,ppsd.nilai_peralatan,ppsd.nilai_building,ppsd.nilai_public_liability,ppsd.nilai_total
 ,pol_by.`id_comp` AS old_id_vendor,pol_by.`comp_name` AS old_vendor,ppsd.old_premi
+,v.comp_name AS polis_vendor,ppsd.premi
 FROM tb_polis_pps_det ppsd
+INNER JOIN tb_m_comp v ON v.id_comp=ppsd.polis_vendor
 INNER JOIN tb_polis p ON p.`id_polis`=ppsd.`old_id_polis`
 INNER JOIN tb_m_comp c ON c.`id_comp`=p.`id_reff` AND p.`id_polis_cat`=1
 INNER JOIN tb_m_comp pol_by ON pol_by.id_comp=p.id_polis_by
@@ -305,7 +307,24 @@ WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVNilaiLainnya.GetRowCellVa
                         warningCustom("Pastikan nilai total tidak ada yang 0")
                     End If
                 ElseIf steps = "3" Then
-
+                    save_draft_penawaran()
+                    Dim is_ok As Boolean = True
+                    Dim qc As String = "SELECT * FROM tb_polis_pps_det WHERE id_polis_pps='" & id_pps & "' AND (ISNULL(polis_vendor) or premi<=0)"
+                    Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    If dtc.Rows.Count > 0 Then
+                        is_ok = False
+                    End If
+                    If is_ok Then
+                        'next step
+                        Dim q As String = "UPDATE tb_polis_pps SET step=4 WHERE id_polis_pps='" & id_pps & "'"
+                        execute_non_query(q, True, "", "", "", "")
+                        'mark
+                        submit_who_prepared("307", id_pps, id_user)
+                        infoCustom("Penawaran disubmit, menunggu persetujuan.")
+                        Close()
+                    Else
+                        warningCustom("Pastikan semua memiliki vendor yang dipilih dan memiliki penawaran harga")
+                    End If
                 End If
             End If
         End If
