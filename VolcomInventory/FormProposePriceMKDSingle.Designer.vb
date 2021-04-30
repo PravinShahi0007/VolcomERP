@@ -41,6 +41,8 @@ Partial Class FormProposePriceMKDSingle
         Me.TxtCurrDisc = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCurrPrice = New DevExpress.XtraEditors.TextEdit()
         Me.CENoPropose = New DevExpress.XtraEditors.CheckEdit()
+        Me.TxtNormalPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +56,7 @@ Partial Class FormProposePriceMKDSingle
         CType(Me.TxtCurrDisc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCurrPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CENoPropose.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNormalPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -61,7 +64,7 @@ Partial Class FormProposePriceMKDSingle
         Me.PanelControl1.Controls.Add(Me.BtnDiscard)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 245)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 262)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(521, 43)
         Me.PanelControl1.TabIndex = 0
@@ -118,7 +121,7 @@ Partial Class FormProposePriceMKDSingle
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(18, 71)
+        Me.LabelControl2.Location = New System.Drawing.Point(18, 98)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(89, 13)
         Me.LabelControl2.TabIndex = 4
@@ -127,7 +130,7 @@ Partial Class FormProposePriceMKDSingle
         'TxtRekomendasiDisc
         '
         Me.TxtRekomendasiDisc.Enabled = False
-        Me.TxtRekomendasiDisc.Location = New System.Drawing.Point(121, 68)
+        Me.TxtRekomendasiDisc.Location = New System.Drawing.Point(121, 95)
         Me.TxtRekomendasiDisc.Name = "TxtRekomendasiDisc"
         Me.TxtRekomendasiDisc.Properties.DisplayFormat.FormatString = "{0:n0}%"
         Me.TxtRekomendasiDisc.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -136,7 +139,7 @@ Partial Class FormProposePriceMKDSingle
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(18, 97)
+        Me.LabelControl3.Location = New System.Drawing.Point(18, 124)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl3.TabIndex = 7
@@ -145,7 +148,7 @@ Partial Class FormProposePriceMKDSingle
         'TxtProposePrice
         '
         Me.TxtProposePrice.Enabled = False
-        Me.TxtProposePrice.Location = New System.Drawing.Point(121, 120)
+        Me.TxtProposePrice.Location = New System.Drawing.Point(121, 147)
         Me.TxtProposePrice.Name = "TxtProposePrice"
         Me.TxtProposePrice.Properties.DisplayFormat.FormatString = "N0"
         Me.TxtProposePrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -154,7 +157,7 @@ Partial Class FormProposePriceMKDSingle
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(18, 123)
+        Me.LabelControl4.Location = New System.Drawing.Point(18, 150)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl4.TabIndex = 9
@@ -162,7 +165,8 @@ Partial Class FormProposePriceMKDSingle
         '
         'TxtProposeFinal
         '
-        Me.TxtProposeFinal.Location = New System.Drawing.Point(121, 146)
+        Me.TxtProposeFinal.Enabled = False
+        Me.TxtProposeFinal.Location = New System.Drawing.Point(121, 173)
         Me.TxtProposeFinal.Name = "TxtProposeFinal"
         Me.TxtProposeFinal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtProposeFinal.Properties.Appearance.Options.UseFont = True
@@ -174,7 +178,7 @@ Partial Class FormProposePriceMKDSingle
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(18, 149)
+        Me.LabelControl5.Location = New System.Drawing.Point(18, 176)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(75, 13)
         Me.LabelControl5.TabIndex = 11
@@ -182,7 +186,7 @@ Partial Class FormProposePriceMKDSingle
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(121, 172)
+        Me.MENote.Location = New System.Drawing.Point(121, 199)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
         Me.MENote.Size = New System.Drawing.Size(371, 43)
@@ -190,7 +194,7 @@ Partial Class FormProposePriceMKDSingle
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(18, 174)
+        Me.LabelControl6.Location = New System.Drawing.Point(18, 201)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl6.TabIndex = 13
@@ -198,7 +202,7 @@ Partial Class FormProposePriceMKDSingle
         '
         'SLEProposeDisc
         '
-        Me.SLEProposeDisc.Location = New System.Drawing.Point(121, 94)
+        Me.SLEProposeDisc.Location = New System.Drawing.Point(121, 121)
         Me.SLEProposeDisc.Name = "SLEProposeDisc"
         Me.SLEProposeDisc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEProposeDisc.Properties.NullText = ""
@@ -215,7 +219,7 @@ Partial Class FormProposePriceMKDSingle
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(18, 45)
+        Me.LabelControl7.Location = New System.Drawing.Point(18, 72)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl7.TabIndex = 15
@@ -225,7 +229,7 @@ Partial Class FormProposePriceMKDSingle
         '
         Me.TxtCurrDisc.EditValue = ""
         Me.TxtCurrDisc.Enabled = False
-        Me.TxtCurrDisc.Location = New System.Drawing.Point(121, 42)
+        Me.TxtCurrDisc.Location = New System.Drawing.Point(121, 69)
         Me.TxtCurrDisc.Name = "TxtCurrDisc"
         Me.TxtCurrDisc.Properties.DisplayFormat.FormatString = "{0:n0}%"
         Me.TxtCurrDisc.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -236,7 +240,7 @@ Partial Class FormProposePriceMKDSingle
         '
         Me.TxtCurrPrice.EditValue = ""
         Me.TxtCurrPrice.Enabled = False
-        Me.TxtCurrPrice.Location = New System.Drawing.Point(203, 42)
+        Me.TxtCurrPrice.Location = New System.Drawing.Point(203, 69)
         Me.TxtCurrPrice.Name = "TxtCurrPrice"
         Me.TxtCurrPrice.Properties.DisplayFormat.FormatString = "{0:n0}"
         Me.TxtCurrPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -245,17 +249,38 @@ Partial Class FormProposePriceMKDSingle
         '
         'CENoPropose
         '
-        Me.CENoPropose.Location = New System.Drawing.Point(417, 94)
+        Me.CENoPropose.Location = New System.Drawing.Point(417, 121)
         Me.CENoPropose.Name = "CENoPropose"
         Me.CENoPropose.Properties.Caption = "No Propose"
         Me.CENoPropose.Size = New System.Drawing.Size(75, 19)
         Me.CENoPropose.TabIndex = 18
         '
+        'TxtNormalPrice
+        '
+        Me.TxtNormalPrice.EditValue = ""
+        Me.TxtNormalPrice.Enabled = False
+        Me.TxtNormalPrice.Location = New System.Drawing.Point(121, 43)
+        Me.TxtNormalPrice.Name = "TxtNormalPrice"
+        Me.TxtNormalPrice.Properties.DisplayFormat.FormatString = "{0:n0}"
+        Me.TxtNormalPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtNormalPrice.Size = New System.Drawing.Size(371, 20)
+        Me.TxtNormalPrice.TabIndex = 19
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(18, 46)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(59, 13)
+        Me.LabelControl8.TabIndex = 20
+        Me.LabelControl8.Text = "Normal Price"
+        '
         'FormProposePriceMKDSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(521, 288)
+        Me.ClientSize = New System.Drawing.Size(521, 305)
+        Me.Controls.Add(Me.LabelControl8)
+        Me.Controls.Add(Me.TxtNormalPrice)
         Me.Controls.Add(Me.CENoPropose)
         Me.Controls.Add(Me.TxtCurrPrice)
         Me.Controls.Add(Me.TxtCurrDisc)
@@ -293,6 +318,7 @@ Partial Class FormProposePriceMKDSingle
         CType(Me.TxtCurrDisc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCurrPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CENoPropose.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNormalPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -319,4 +345,6 @@ Partial Class FormProposePriceMKDSingle
     Friend WithEvents TxtCurrDisc As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtCurrPrice As DevExpress.XtraEditors.TextEdit
     Friend WithEvents CENoPropose As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents TxtNormalPrice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
 End Class

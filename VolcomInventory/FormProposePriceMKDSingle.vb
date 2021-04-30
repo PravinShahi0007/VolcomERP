@@ -44,10 +44,8 @@
         SLEProposeDisc.EditValue = Nothing
         If CENoPropose.EditValue = True Then
             SLEProposeDisc.Enabled = False
-            TxtProposeFinal.Enabled = False
         Else
             SLEProposeDisc.Enabled = True
-            TxtProposeFinal.Enabled = True
             If gv.GetFocusedRowCellValue("propose_disc").ToString <> "" Then
                 SLEProposeDisc.EditValue = gv.GetFocusedRowCellValue("propose_disc")
             End If
@@ -108,21 +106,20 @@
             Exit Sub
         End If
 
-        'cek 
-        If CENoPropose.EditValue = False Then
-            Dim qcek As String = "SELECT d.value FROM tb_lookup_disc_type d WHERE d.value>0 AND d.value>'" + SLEProposeDisc.EditValue.ToString + "' ORDER BY d.value ASC LIMIT 1 "
-            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
-            If dcek.Rows.Count > 0 Then
-                Dim disc_bawah As Decimal = dcek.Rows(0)("value")
-                Dim normal_price As Decimal = gv.GetFocusedRowCellValue("design_price_normal")
-                Dim limit_bawah As Decimal = normal_price * ((100 - disc_bawah) / 100)
-                MsgBox(limit_bawah.ToString)
-                If TxtProposePrice.EditValue <= limit_bawah Then
-                    warningCustom("Final Price is not valid : less than propose price (" + disc_bawah + "%)")
-                    Exit Sub
-                End If
-            End If
-        End If
+        'cek - sementara gak dipake
+        'If CENoPropose.EditValue = False Then
+        '    Dim qcek As String = "SELECT d.value FROM tb_lookup_disc_type d WHERE d.value>0 AND d.value>'" + SLEProposeDisc.EditValue.ToString + "' ORDER BY d.value ASC LIMIT 1 "
+        '    Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        '    If dcek.Rows.Count > 0 Then
+        '        Dim disc_bawah As Decimal = dcek.Rows(0)("value")
+        '        Dim normal_price As Decimal = gv.GetFocusedRowCellValue("design_price_normal")
+        '        Dim limit_bawah As Decimal = normal_price * ((100 - disc_bawah) / 100)
+        '        If TxtProposeFinal.EditValue <= limit_bawah Then
+        '            warningCustom("Final Price is not valid : less than propose price (" + disc_bawah.ToString + "%)")
+        '            Exit Sub
+        '        End If
+        '    End If
+        'End If
 
         'update
         If erp_discount = -1 Then
@@ -156,7 +153,7 @@
 
         FormProposePriceMKDDet.GCData.RefreshDataSource()
         FormProposePriceMKDDet.GVData.RefreshData()
-        FormProposePriceMKDDet.GVData.BestFitColumns()
+        'FormProposePriceMKDDet.GVData.BestFitColumns()
         Close()
     End Sub
 End Class
