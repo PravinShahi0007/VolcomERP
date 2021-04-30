@@ -3375,6 +3375,12 @@
     <Compile Include="FormOutboundManifest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOutboundPOD.Designer.vb">
+      <DependentUpon>FormOutboundPOD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOutboundPOD.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOutlet.Designer.vb">
       <DependentUpon>FormOutlet.vb</DependentUpon>
     </Compile>
@@ -11199,6 +11205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutboundManifest.resx">
       <DependentUpon>FormOutboundManifest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOutboundPOD.resx">
+      <DependentUpon>FormOutboundPOD.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutlet.resx">
       <DependentUpon>FormOutlet.vb</DependentUpon>
