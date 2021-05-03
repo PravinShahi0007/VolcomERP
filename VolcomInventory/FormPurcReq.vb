@@ -44,6 +44,9 @@
         load_status()
         '
         check_menu()
+        '
+        DEStart.EditValue = Now
+        DEUntil.EditValue = Now
     End Sub
 
     Sub load_status()
@@ -63,7 +66,7 @@
         viewSearchLookupQuery(SLEStatus, query, "id_status", "status", "id_status")
     End Sub
 
-    Sub load_item_list()
+    Sub load_item_list(ByVal opt As String)
         Dim query_where As String = ""
         '
         If SLEStatus.EditValue.ToString = "1" Then 'waiting PO
@@ -81,12 +84,11 @@
         End If
         '
         If Not SLEDepartement.EditValue.ToString = "0" Then
-            If SLEStatus.EditValue.ToString = "0" Then
-                query_where += " WHERE "
-            Else
-                query_where += " AND "
-            End If
-            query_where += " pr.id_departement='" & SLEDepartement.EditValue.ToString & "'"
+            query_where += " AND pr.id_departement='" & SLEDepartement.EditValue.ToString & "'"
+        End If
+        '
+        If opt = "with_date" Then
+            query_where += " AND pr.date_created>='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND pr.date_created<='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' "
         End If
         '
         Dim query As String = "SELECT 'no' AS is_check,prd.`id_purc_req_det`,prd.value AS val_pr,dep.departement,pr.date_created,prd.`id_purc_req`,prd.qty AS qty_pr,pr.`purc_req_number`,it.id_item,it.item_desc,uom.uom,cat.item_cat
@@ -129,7 +131,8 @@ LEFT JOIN
     INNER JOIN tb_purc_order_det pod ON prd.id_purc_order_det=pod.id_purc_order_det
     INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`!='5'
     GROUP BY pod.`id_purc_req_det`
-)ret ON ret.id_purc_req_det=prd.`id_purc_req_det`  " & query_where
+)ret ON ret.id_purc_req_det=prd.`id_purc_req_det` 
+WHERE 1=1 " & query_where
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemReqList.DataSource = data
         GVItemReqList.BestFitColumns()
@@ -179,7 +182,7 @@ WHERE ext.id_user='" & id_user & "' "
     End Sub
 
     Private Sub BViewReqList_Click(sender As Object, e As EventArgs) Handles BViewReqList.Click
-        load_item_list()
+        load_item_list("")
     End Sub
 
     Private Sub BBUpdateBudget_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBUpdateBudget.ItemClick
@@ -269,5 +272,17 @@ WHERE bex.`id_b_expense` = '" & GVItemReqList.GetRowCellValue(i, "id_b_expense")
         FormPurcReqDet.id_req = GVPurcReq.GetFocusedRowCellValue("id_purc_req").ToString
         FormPurcReqDet.is_duplicate = "1"
         FormPurcReqDet.ShowDialog()
+    End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        DEUntil.Properties.MinValue = DEStart.EditValue
+    End Sub
+
+    Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
+        DEStart.Properties.MaxValue = DEUntil.EditValue
+    End Sub
+
+    Private Sub BViewWithDate_Click(sender As Object, e As EventArgs) Handles BViewWithDate.Click
+        load_item_list("with_date")
     End Sub
 End Class
