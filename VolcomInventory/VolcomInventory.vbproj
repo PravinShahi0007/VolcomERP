@@ -8904,6 +8904,12 @@
     <Compile Include="ReportPLSample.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPolis.Designer.vb">
+      <DependentUpon>ReportPolis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPolis.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPOSClosingNoStock.Designer.vb">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>
     </Compile>
@@ -14424,6 +14430,9 @@
     <EmbeddedResource Include="ReportPLSample.resx">
       <DependentUpon>ReportPLSample.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPolis.resx">
+      <DependentUpon>ReportPolis.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPOSClosingNoStock.resx">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>

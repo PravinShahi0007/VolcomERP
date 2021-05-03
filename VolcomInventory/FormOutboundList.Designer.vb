@@ -124,7 +124,7 @@ Partial Class FormOutboundList
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem, Me.CancelOutboundLabelToolStripMenuItem, Me.CancelOutboundLabelToolStripMenuItem1})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(200, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(200, 92)
         '
         'ViewDocumentToolStripMenuItem
         '
@@ -143,6 +143,7 @@ Partial Class FormOutboundList
         Me.CancelOutboundLabelToolStripMenuItem1.Name = "CancelOutboundLabelToolStripMenuItem1"
         Me.CancelOutboundLabelToolStripMenuItem1.Size = New System.Drawing.Size(199, 22)
         Me.CancelOutboundLabelToolStripMenuItem1.Text = "Cancel Outbound Label"
+        Me.CancelOutboundLabelToolStripMenuItem1.Visible = False
         '
         'GVOutbound
         '

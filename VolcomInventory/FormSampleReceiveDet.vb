@@ -544,20 +544,23 @@
         Dim index_atas As Integer = 0
 
         'check available code
-        For i As Integer = 0 To (GVListPurchase.RowCount - 1)
-            Dim code As String = GVListPurchase.GetRowCellValue(i, "code").ToString
-            id_sample = GVListPurchase.GetRowCellValue(i, "id_sample").ToString
-            If code = code_check Then
-                'cek qty
-                index_atas = i
-                code_found = True
-                Exit For
-            End If
-        Next
+        If Not code_check = "" Then
+            For i As Integer = 0 To (GVListPurchase.RowCount - 1)
+
+                Dim code As String = GVListPurchase.GetRowCellValue(i, "code").ToString
+                id_sample = GVListPurchase.GetRowCellValue(i, "id_sample").ToString
+                If code = code_check Then
+                    'cek qty
+                    index_atas = i
+                    code_found = True
+                    Exit For
+                End If
+            Next
+        End If
 
         If Not code_found Then
             GVBarcode.SetFocusedRowCellValue("code", "")
-            stopCustom("Data not found or duplicate!")
+            stopCustom("Data not found,empty, or duplicate!")
         Else
             If GVListPurchase.GetRowCellValue(index_atas, "sample_purc_rec_det_qty") >= GVListPurchase.GetRowCellValue(index_atas, "qty") Then
                 GVBarcode.SetFocusedRowCellValue("code", "")

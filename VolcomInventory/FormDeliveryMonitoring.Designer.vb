@@ -51,6 +51,8 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -73,8 +75,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEOnlineOffline.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,6 +97,7 @@ Partial Class FormDeliveryMonitoring
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.SLEOnlineOffline)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.SLUE3PL)
@@ -220,7 +222,7 @@ Partial Class FormDeliveryMonitoring
         '
         'BAWBRec
         '
-        Me.BAWBRec.Location = New System.Drawing.Point(807, 10)
+        Me.BAWBRec.Location = New System.Drawing.Point(888, 10)
         Me.BAWBRec.Name = "BAWBRec"
         Me.BAWBRec.Size = New System.Drawing.Size(107, 23)
         Me.BAWBRec.TabIndex = 8934
@@ -372,6 +374,22 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 9
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "DO List (Combine+Non Combine)"
+        Me.GridColumn38.FieldName = "do_list"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 10
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Qty Breakdown"
+        Me.GridColumn37.FieldName = "qty_list"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 11
         '
         'GridColumn10
         '
@@ -558,21 +576,13 @@ Partial Class FormDeliveryMonitoring
         Me.XTPOutbound.Size = New System.Drawing.Size(1002, 657)
         Me.XTPOutbound.Text = "Outbound Delivery Monitoring"
         '
-        'GridColumn37
+        'SimpleButton1
         '
-        Me.GridColumn37.Caption = "Qty Breakdown"
-        Me.GridColumn37.FieldName = "qty_list"
-        Me.GridColumn37.Name = "GridColumn37"
-        Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 11
-        '
-        'GridColumn38
-        '
-        Me.GridColumn38.Caption = "DO List (Combine+Non Combine)"
-        Me.GridColumn38.FieldName = "do_list"
-        Me.GridColumn38.Name = "GridColumn38"
-        Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 10
+        Me.SimpleButton1.Location = New System.Drawing.Point(807, 10)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(75, 23)
+        Me.SimpleButton1.TabIndex = 8940
+        Me.SimpleButton1.Text = "View per DO"
         '
         'FormDeliveryMonitoring
         '
@@ -663,4 +673,5 @@ Partial Class FormDeliveryMonitoring
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class
