@@ -140,6 +140,7 @@
             BtnAllProduct.Visible = False
             BtnFinalPropose.Visible = False
             gridBandAction.Visible = True
+            BtnBulkEdit.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -153,6 +154,7 @@
             BtnAllProduct.Visible = True
             BtnFinalPropose.Visible = True
             gridBandAction.Visible = False
+            BtnBulkEdit.Visible = False
         End If
 
         'reset propose
@@ -178,6 +180,7 @@
             BtnFinalPropose.Visible = False
             gridBandAction.Visible = False
             LEPriceType.Enabled = False
+            BtnBulkEdit.Visible = False
         End If
     End Sub
 

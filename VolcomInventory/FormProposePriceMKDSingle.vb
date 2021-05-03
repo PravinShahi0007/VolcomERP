@@ -1,8 +1,15 @@
 ﻿Public Class FormProposePriceMKDSingle
     Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = FormProposePriceMKDDet.GVData
+    Dim id_mkd_type As String = FormProposePriceMKDDet.LEMKDType.EditValue.ToString
     Sub viewDisc()
+        Dim cond As String = ""
+        If id_mkd_type = "1" Then
+            cond = "AND d.value=30 "
+        Else
+            cond = "AND d.value>30 "
+        End If
         Dim query As String = "SELECT CAST(d.value AS DECIMAL(5,0)) AS `propose_disc`, CONCAT((SELECT propose_disc),'%') AS `propose_disc_display`
-        FROM tb_lookup_disc_type d WHERE d.value>0 "
+        FROM tb_lookup_disc_type d WHERE d.value>0 " + cond
         viewSearchLookupQuery(SLEProposeDisc, query, "propose_disc", "propose_disc_display", "propose_disc")
     End Sub
 
