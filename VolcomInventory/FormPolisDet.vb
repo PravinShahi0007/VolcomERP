@@ -84,12 +84,33 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                     XTPPenawaran.PageVisible = True
                     BSaveDraft.Visible = True
                     '
-                    view_vendor_penawaran()
-                    '
+
                     XTCPolis.SelectedTabPageIndex = 3
                     load_nilai_stock()
                     load_nilai_lainnya()
+
+                    view_vendor_penawaran()
                     load_nilai_penawaran()
+                    load_nilai_penawaran()
+                ElseIf steps = "4" Then
+                    XTPNilaiStock.PageVisible = True
+                    XTPDetail.PageVisible = True
+                    XTPPenawaran.PageVisible = True
+                    BSaveDraft.Visible = True
+                    '
+
+                    XTCPolis.SelectedTabPageIndex = 3
+                    load_nilai_stock()
+                    load_nilai_lainnya()
+
+                    view_vendor_penawaran()
+                    load_nilai_penawaran()
+                    load_nilai_penawaran()
+                    '
+                    PCPenawaran.Visible = False
+                    BtnPrint.Visible = True
+                    BSaveDraft.Visible = False
+                    BtnSave.Visible = False
                 End If
             End If
         End If
