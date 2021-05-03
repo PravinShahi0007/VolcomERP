@@ -29,6 +29,8 @@ Partial Class FormPurcReq
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GCPurcReq = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DuplicateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPurcReq = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -89,13 +91,21 @@ Partial Class FormPurcReq
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.DuplicateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.BViewWithDate = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip.SuspendLayout()
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,7 +125,10 @@ Partial Class FormPurcReq
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip.SuspendLayout()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -187,6 +200,18 @@ Partial Class FormPurcReq
         Me.GCPurcReq.Size = New System.Drawing.Size(899, 417)
         Me.GCPurcReq.TabIndex = 9
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
+        '
+        'ContextMenuStrip
+        '
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DuplicateToolStripMenuItem})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(125, 26)
+        '
+        'DuplicateToolStripMenuItem
+        '
+        Me.DuplicateToolStripMenuItem.Name = "DuplicateToolStripMenuItem"
+        Me.DuplicateToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
+        Me.DuplicateToolStripMenuItem.Text = "Duplicate"
         '
         'GVPurcReq
         '
@@ -335,9 +360,11 @@ Partial Class FormPurcReq
         '
         'GVItemReqList
         '
-        Me.GVItemReqList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn11, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn15, Me.GridColumn44, Me.GridColumn40, Me.GridColumn16, Me.GridColumn12, Me.GridColumn17, Me.GridColumn19, Me.GridColumn10, Me.GridColumn25, Me.GridColumn26, Me.GridColumn18, Me.GridColumn30, Me.GridColumn27, Me.GridColumn24})
+        Me.GVItemReqList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn11, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn15, Me.GridColumn44, Me.GridColumn40, Me.GridColumn16, Me.GridColumn12, Me.GridColumn17, Me.GridColumn19, Me.GridColumn10, Me.GridColumn25, Me.GridColumn26, Me.GridColumn18, Me.GridColumn30, Me.GridColumn33, Me.GridColumn27, Me.GridColumn24, Me.GridColumn36, Me.GridColumn31, Me.GridColumn35})
         Me.GVItemReqList.GridControl = Me.GCItemReqList
         Me.GVItemReqList.Name = "GVItemReqList"
+        Me.GVItemReqList.OptionsBehavior.Editable = False
+        Me.GVItemReqList.OptionsBehavior.ReadOnly = True
         Me.GVItemReqList.OptionsFind.AlwaysVisible = True
         Me.GVItemReqList.OptionsView.ColumnAutoWidth = False
         Me.GVItemReqList.OptionsView.ShowGroupPanel = False
@@ -384,7 +411,7 @@ Partial Class FormPurcReq
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
+        Me.GridColumn9.VisibleIndex = 1
         Me.GridColumn9.Width = 98
         '
         'GridColumn20
@@ -401,7 +428,7 @@ Partial Class FormPurcReq
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 3
+        Me.GridColumn21.VisibleIndex = 4
         Me.GridColumn21.Width = 78
         '
         'GridColumn34
@@ -410,7 +437,7 @@ Partial Class FormPurcReq
         Me.GridColumn34.FieldName = "uom"
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 4
+        Me.GridColumn34.VisibleIndex = 5
         '
         'GridColumn22
         '
@@ -421,7 +448,7 @@ Partial Class FormPurcReq
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.VisibleIndex = 6
         Me.GridColumn22.Width = 78
         '
         'GridColumn15
@@ -450,7 +477,7 @@ Partial Class FormPurcReq
         Me.GridColumn16.FieldName = "po_qty"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 7
+        Me.GridColumn16.VisibleIndex = 9
         '
         'GridColumn12
         '
@@ -462,7 +489,7 @@ Partial Class FormPurcReq
         Me.GridColumn12.UnboundExpression = "[po_qty] - [qty_pr]"
         Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 8
+        Me.GridColumn12.VisibleIndex = 10
         '
         'GridColumn17
         '
@@ -472,7 +499,7 @@ Partial Class FormPurcReq
         Me.GridColumn17.FieldName = "rec_qty"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 10
+        Me.GridColumn17.VisibleIndex = 12
         '
         'GridColumn19
         '
@@ -484,7 +511,7 @@ Partial Class FormPurcReq
         Me.GridColumn19.UnboundExpression = "[rec_qty] - [qty_pr]"
         Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 11
+        Me.GridColumn19.VisibleIndex = 13
         '
         'GridColumn10
         '
@@ -495,7 +522,7 @@ Partial Class FormPurcReq
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.VisibleIndex = 2
         Me.GridColumn10.Width = 81
         '
         'GridColumn25
@@ -505,7 +532,7 @@ Partial Class FormPurcReq
         Me.GridColumn25.FieldName = "unable_fulfill"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 12
+        Me.GridColumn25.VisibleIndex = 14
         Me.GridColumn25.Width = 99
         '
         'RICEUnableToFulfill
@@ -523,14 +550,14 @@ Partial Class FormPurcReq
         '
         'GridColumn18
         '
-        Me.GridColumn18.Caption = "Estimate Receive Date"
+        Me.GridColumn18.Caption = "Estimate Receive Date (PO)"
         Me.GridColumn18.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn18.FieldName = "est_rec_date"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 9
-        Me.GridColumn18.Width = 134
+        Me.GridColumn18.VisibleIndex = 11
+        Me.GridColumn18.Width = 146
         '
         'GridColumn30
         '
@@ -540,7 +567,7 @@ Partial Class FormPurcReq
         Me.GridColumn30.FieldName = "po_date"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 6
+        Me.GridColumn30.VisibleIndex = 8
         '
         'GridColumn27
         '
@@ -548,7 +575,7 @@ Partial Class FormPurcReq
         Me.GridColumn27.FieldName = "unable_fulfill_reason"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 13
+        Me.GridColumn27.VisibleIndex = 15
         '
         'GridColumn24
         '
@@ -556,7 +583,7 @@ Partial Class FormPurcReq
         Me.GridColumn24.FieldName = "workstatus"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 14
+        Me.GridColumn24.VisibleIndex = 16
         '
         'RepositoryItemCheckEdit1
         '
@@ -576,6 +603,11 @@ Partial Class FormPurcReq
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BViewWithDate)
+        Me.PanelControl2.Controls.Add(Me.DEUntil)
+        Me.PanelControl2.Controls.Add(Me.LabelControl3)
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Controls.Add(Me.DEStart)
         Me.PanelControl2.Controls.Add(Me.SLEStatus)
         Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Controls.Add(Me.BViewReqList)
@@ -628,9 +660,9 @@ Partial Class FormPurcReq
         '
         Me.BViewReqList.Location = New System.Drawing.Point(225, 8)
         Me.BViewReqList.Name = "BViewReqList"
-        Me.BViewReqList.Size = New System.Drawing.Size(128, 23)
+        Me.BViewReqList.Size = New System.Drawing.Size(64, 23)
         Me.BViewReqList.TabIndex = 8922
-        Me.BViewReqList.Text = "view all item requested"
+        Me.BViewReqList.Text = "view"
         '
         'PUDD
         '
@@ -703,17 +735,102 @@ Partial Class FormPurcReq
         Me.LargeImageCollection.Images.SetKeyName(3, "safari (4).png")
         Me.LargeImageCollection.Images.SetKeyName(4, "31-Document_32x32.png")
         '
-        'ContextMenuStrip
+        'DEStart
         '
-        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DuplicateToolStripMenuItem})
-        Me.ContextMenuStrip.Name = "ContextMenuStrip"
-        Me.ContextMenuStrip.Size = New System.Drawing.Size(125, 26)
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(383, 10)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEStart.Properties.Appearance.Options.UseFont = True
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Size = New System.Drawing.Size(174, 20)
+        Me.DEStart.TabIndex = 8925
         '
-        'DuplicateToolStripMenuItem
+        'LabelControl1
         '
-        Me.DuplicateToolStripMenuItem.Name = "DuplicateToolStripMenuItem"
-        Me.DuplicateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.DuplicateToolStripMenuItem.Text = "Duplicate"
+        Me.LabelControl1.Location = New System.Drawing.Point(295, 13)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(82, 13)
+        Me.LabelControl1.TabIndex = 8926
+        Me.LabelControl1.Text = "PR Created From"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(563, 13)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl3.TabIndex = 8927
+        Me.LabelControl3.Text = "Until"
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(590, 10)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEUntil.Properties.Appearance.Options.UseFont = True
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Size = New System.Drawing.Size(174, 20)
+        Me.DEUntil.TabIndex = 8928
+        '
+        'BViewWithDate
+        '
+        Me.BViewWithDate.Location = New System.Drawing.Point(770, 8)
+        Me.BViewWithDate.Name = "BViewWithDate"
+        Me.BViewWithDate.Size = New System.Drawing.Size(64, 23)
+        Me.BViewWithDate.TabIndex = 8929
+        Me.BViewWithDate.Text = "view"
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn31.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn31.Caption = "VS Est Rec Date PO"
+        Me.GridColumn31.FieldName = "status_rec"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 17
+        Me.GridColumn31.Width = 92
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "PO Number"
+        Me.GridColumn33.FieldName = "po_number"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 7
+        Me.GridColumn33.Width = 101
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn35.Caption = "VS Requirement Date"
+        Me.GridColumn35.FieldName = "status_req_date"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 18
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Requirement Date"
+        Me.GridColumn36.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn36.FieldName = "requirement_date"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 3
+        Me.GridColumn36.Width = 102
         '
         'FormPurcReq
         '
@@ -738,6 +855,7 @@ Partial Class FormPurcReq
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip.ResumeLayout(False)
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -758,7 +876,10 @@ Partial Class FormPurcReq
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BMDD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip.ResumeLayout(False)
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -834,4 +955,13 @@ Partial Class FormPurcReq
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ContextMenuStrip As ContextMenuStrip
     Friend WithEvents DuplicateToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BViewWithDate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
