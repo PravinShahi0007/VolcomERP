@@ -67,6 +67,7 @@ Partial Class FormOutboundPOD
         Me.DETo = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.GridColumnis_combine = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,7 +98,7 @@ Partial Class FormOutboundPOD
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumnso_status, Me.GridColumndel_number, Me.GridColumndel_date, Me.GridColumnlast_update, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumncomp_group1, Me.GridColumncomp_group_desc, Me.GridColumnreport_mark_type, Me.GridColumnsales_order_number, Me.GridColumnsales_order_ol_shop_number, Me.GridColumncustomer_name, Me.GridColumntotal_qty, Me.GridColumnnote, Me.GridColumnawbill_no, Me.GridColumncargo_name, Me.GridColumnsub_district, Me.GridColumncity, Me.GridColumnpick_up_date, Me.GridColumnrec_by_store_date, Me.GridColumnrec_by_store_person})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumnso_status, Me.GridColumndel_number, Me.GridColumndel_date, Me.GridColumnlast_update, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumncomp_group1, Me.GridColumncomp_group_desc, Me.GridColumnreport_mark_type, Me.GridColumnsales_order_number, Me.GridColumnsales_order_ol_shop_number, Me.GridColumncustomer_name, Me.GridColumntotal_qty, Me.GridColumnnote, Me.GridColumnawbill_no, Me.GridColumncargo_name, Me.GridColumnsub_district, Me.GridColumncity, Me.GridColumnpick_up_date, Me.GridColumnrec_by_store_date, Me.GridColumnrec_by_store_person, Me.GridColumnis_combine})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -503,6 +504,13 @@ Partial Class FormOutboundPOD
         Me.DEFrom.Size = New System.Drawing.Size(161, 20)
         Me.DEFrom.TabIndex = 8930
         '
+        'GridColumnis_combine
+        '
+        Me.GridColumnis_combine.Caption = "is_combine"
+        Me.GridColumnis_combine.FieldName = "is_combine"
+        Me.GridColumnis_combine.Name = "GridColumnis_combine"
+        Me.GridColumnis_combine.OptionsColumn.ReadOnly = True
+        '
         'FormOutboundPOD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -582,4 +590,5 @@ Partial Class FormOutboundPOD
     Friend WithEvents GridColumnpick_up_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrec_by_store_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrec_by_store_person As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_combine As DevExpress.XtraGrid.Columns.GridColumn
 End Class
