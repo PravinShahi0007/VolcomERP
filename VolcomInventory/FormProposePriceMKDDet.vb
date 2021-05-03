@@ -9,6 +9,7 @@
 
     Private Sub FormProposePriceMKDDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
+        viewMKDType()
         viewPriceType()
         viewDisc()
         actionLoad()
@@ -26,6 +27,11 @@
         RepositoryItemDisc.DataSource = data
         RepositoryItemDisc.DisplayMember = "propose_disc_display"
         RepositoryItemDisc.ValueMember = "propose_disc"
+    End Sub
+
+    Sub viewMKDType()
+        Dim query As String = "SELECT mkd.id_design_mkd, mkd.design_mkd FROM tb_lookup_design_mkd mkd"
+        viewLookupQuery(LEMKDType, query, 0, "design_mkd", "id_design_mkd")
     End Sub
 
     Sub viewPriceType()
@@ -75,6 +81,7 @@
             Dim query As String = mkd.queryMain("AND  p.id_pp_change='" + id + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             TxtNumber.Text = data.Rows(0)("number").ToString
+            LEMKDType.ItemIndex = LEMKDType.Properties.GetDataSourceRowIndex("id_design_mkd", data.Rows(0)("id_design_mkd").ToString)
             LEPriceType.ItemIndex = LEPriceType.Properties.GetDataSourceRowIndex("id_design_price_type", data.Rows(0)("id_design_price_type").ToString)
             DEEffectDate.EditValue = data.Rows(0)("effective_date")
             DESOHDate.EditValue = data.Rows(0)("soh_sal_date")
@@ -118,6 +125,8 @@
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
         DEEffectDate.Enabled = False
+        LEMKDType.Enabled = False
+        LEPriceType.Enabled = False
         If is_confirm = "2" And is_view = "-1" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
@@ -131,7 +140,6 @@
             BtnAllProduct.Visible = False
             BtnFinalPropose.Visible = False
             gridBandAction.Visible = True
-            LEPriceType.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -145,7 +153,6 @@
             BtnAllProduct.Visible = True
             BtnFinalPropose.Visible = True
             gridBandAction.Visible = False
-            LEPriceType.Enabled = False
         End If
 
         'reset propose
@@ -176,13 +183,14 @@
 
     Sub saveHead()
         'head
+        Dim id_design_mkd As String = LEMKDType.EditValue.ToString
         Dim id_design_price_type As String = LEPriceType.EditValue.ToString
         Dim effective_date As String = DateTime.Parse(DEEffectDate.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim soh_sal_date As String = DateTime.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim note As String = addSlashes(MENote.Text)
         If action = "ins" Then
-            Dim query_head As String = "INSERT INTO tb_pp_change(id_design_price_type, created_date, effective_date, soh_sal_date, note, id_report_status)
-            VALUES('" + id_design_price_type + "', NOW(), '" + effective_date + "', '" + soh_sal_date + "','" + note + "', 1); SELECT LAST_INSERT_ID(); "
+            Dim query_head As String = "INSERT INTO tb_pp_change(id_design_mkd,id_design_price_type, created_date, effective_date, soh_sal_date, note, id_report_status)
+            VALUES('" + id_design_mkd + "','" + id_design_price_type + "', NOW(), '" + effective_date + "', '" + soh_sal_date + "','" + note + "', 1); SELECT LAST_INSERT_ID(); "
             id = execute_query(query_head, 0, True, "", "", "", "")
             'update number
             execute_non_query("CALL gen_number('" + id + "', '" + rmt + "');CALL gen_pp_change(" + id + ", '" + effective_date + "');", True, "", "", "", "")
@@ -708,5 +716,15 @@
         '        End If
         '    End If
         'End If
+    End Sub
+
+    Private Sub LEMKDType_EditValueChanged(sender As Object, e As EventArgs) Handles LEMKDType.EditValueChanged
+        If action = "ins" Then
+            If LEMKDType.EditValue.ToString = "1" Then
+                LEPriceType.ItemIndex = LEPriceType.Properties.GetDataSourceRowIndex("id_design_price_type", "3")
+            Else
+                LEPriceType.ItemIndex = LEPriceType.Properties.GetDataSourceRowIndex("id_design_price_type", "4")
+            End If
+        End If
     End Sub
 End Class
