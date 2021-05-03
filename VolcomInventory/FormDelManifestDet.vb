@@ -369,20 +369,27 @@ SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text
             End If
 
             If type = "cancel" Then
-                Dim query As String = ""
+                'check first
+                Dim qcsd As String = "SELECT * FROM tb_odm_sc_det WHERE id_del_manifest='" & id_del_manifest & "'"
+                Dim dtsd As DataTable = execute_query(qcsd, -1, True, "", "", "", "")
+                If dtsd.Rows.Count > 0 Then
+                    warningCustom("Already scanned by security")
+                Else
+                    Dim query As String = ""
 
-                query = "UPDATE tb_wh_awbill awb
+                    query = "UPDATE tb_wh_awbill awb
 INNER JOIN tb_wh_awbill_det awbd ON awbd.id_awbill=awb.id_awbill
 INNER JOIN tb_del_manifest_det dd ON dd.id_wh_awb_det=awbd.id_wh_awb_det
 SET awb.id_del_type=NULL,awb.awbill_no='',awb.weight_calc=null WHERE dd.id_del_manifest = " + id_del_manifest
-                execute_non_query(query, True, "", "", "", "")
+                    execute_non_query(query, True, "", "", "", "")
 
-                query = "UPDATE tb_del_manifest SET id_report_status=5,awbill_no='' WHERE id_del_manifest = " + id_del_manifest
-                execute_non_query(query, True, "", "", "", "")
-                query = "DELETE FROM tb_del_manifest_det WHERE id_del_manifest = " + id_del_manifest
-                execute_non_query(query, True, "", "", "", "")
-                '
-                Close()
+                    query = "UPDATE tb_del_manifest SET id_report_status=5,awbill_no='' WHERE id_del_manifest = " + id_del_manifest
+                    execute_non_query(query, True, "", "", "", "")
+                    query = "DELETE FROM tb_del_manifest_det WHERE id_del_manifest = " + id_del_manifest
+                    execute_non_query(query, True, "", "", "", "")
+                    '
+                    Close()
+                End If
             Else
                 If continue_save Then
                     Dim query As String = ""
