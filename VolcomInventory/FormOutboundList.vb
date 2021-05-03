@@ -263,13 +263,12 @@ GROUP BY awb.id_awbill "
             Dim confirm As DialogResult
 
             confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to drop outbound label ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim id_awbill As String = ""
                 If XTCOutbound.SelectedTabPageIndex = 0 Then
                     id_awbill = GVOutbound.GetFocusedRowCellValue("id_awbill").ToString
                 ElseIf XTCOutbound.SelectedTabPageIndex = 1 Then
-                    id_awbill = GVHistory.GetFocusedRowCellValue("id_awbill").ToString
+                    warningCustom("Gunakan cancel SDO untuk outbound label yang sudah di approve.")
                 End If
 
                 Dim qc As String = "SELECT *
@@ -281,6 +280,8 @@ WHERE awb.id_awbill='" & id_awbill & "'"
                 Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
                 If dtc.Rows.Count > 0 Then
                     warningCustom("Already created draft manifest.")
+                ElseIf dtc.Rows(0)("step").ToString = "2" Then
+                    warningCustom("Gunakan cancel SDO untuk outbound label yang sudah di approve.")
                 Else
                     'cancel
                     Dim qu As String = "UPDATE tb_wh_awbill SET id_report_status=5 WHERE id_awbill='" & id_awbill & "'"
@@ -308,5 +309,15 @@ WHERE awb.id_awbill='" & id_awbill & "'"
 
     Private Sub BCheckFisik_Click(sender As Object, e As EventArgs) Handles BCheckFisik.Click
         FormOutboundCheckFisik.ShowDialog()
+    End Sub
+
+    Private Sub ContextMenuStrip1_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip1.Opening
+        If XTCOutbound.SelectedTabPageIndex = 0 Then
+            CancelOutboundLabelToolStripMenuItem.Visible = False
+            CancelOutboundLabelToolStripMenuItem1.Visible = True
+        Else
+            CancelOutboundLabelToolStripMenuItem.Visible = True
+            CancelOutboundLabelToolStripMenuItem1.Visible = False
+        End If
     End Sub
 End Class

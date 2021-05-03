@@ -8612,6 +8612,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormProposePriceMKD.XTCData.SelectedTabPageIndex = 1 Then
 
             End If
+        ElseIf formName = "FormOutboundPOD" Then
+            print_raw(FormOutboundPOD.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9591,6 +9593,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormProposePriceMKD" Then
             FormProposePriceMKD.Close()
             FormProposePriceMKD.Dispose()
+        ElseIf formName = "FormOutboundPOD" Then
+            FormOutboundPOD.Close()
+            FormOutboundPOD.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10605,6 +10610,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf FormProposePriceMKD.XTCData.SelectedTabPageIndex = 1 Then
                 FormProposePriceMKD.viewDetail()
             End If
+        ElseIf formName = "FormOutboundPOD" Then
+            FormOutboundPOD.viewData()
         End If
     End Sub
     'Switch
@@ -16046,6 +16053,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormProposePriceMKD.Show()
             FormProposePriceMKD.WindowState = FormWindowState.Maximized
             FormProposePriceMKD.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPODReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPODReport.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOutboundPOD.MdiParent = Me
+            FormOutboundPOD.Show()
+            FormOutboundPOD.WindowState = FormWindowState.Maximized
+            FormOutboundPOD.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
