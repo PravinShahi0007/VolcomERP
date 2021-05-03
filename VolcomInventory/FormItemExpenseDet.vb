@@ -177,6 +177,9 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
             SLEPayFrom.Focus()
             TxtNumber.Text = "[auto generate]"
             DECreated.EditValue = getTimeDB()
+            '
+            DEDateReff.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
+            '
             viewDetail()
         Else
             GVData.OptionsCustomization.AllowSort = True
@@ -1145,6 +1148,11 @@ WHERE c.id_comp='" + id_comp + "' "
         id_comp = "-1"
         TxtCompNumber.Text = ""
         TxtCompName.Text = ""
+        '
+        Try
+            execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
+        Catch ex As Exception
+        End Try
         '
         viewCOA()
         viewCOARepo()

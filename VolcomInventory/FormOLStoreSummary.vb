@@ -91,6 +91,7 @@
         INNER JOIN tb_m_comp c ON c.id_comp_group = cg.id_comp_group AND c.id_commerce_type=2
         GROUP BY cg.id_comp_group "
         viewSearchLookupQuery(SLECompGroup, query, "id_comp_group", "description", "id_comp_group")
+        viewSearchLookupQuery(SLEGroupOOS, query, "id_comp_group", "description", "id_comp_group")
         Cursor = Cursors.Default
     End Sub
 
@@ -1476,6 +1477,45 @@
             FormSalesReturnOrderOLDet.id_sales_return_order = GVROR.GetFocusedRowCellValue("id_sales_return_order").ToString()
             FormSalesReturnOrderOLDet.is_detail_soh = "1"
             FormSalesReturnOrderOLDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BtnViewOOS_Click(sender As Object, e As EventArgs) Handles BtnViewOOS.Click
+        viewOOSList()
+    End Sub
+
+    Sub viewOOSList()
+        Cursor = Cursors.WaitCursor
+        Dim cond As String = ""
+        If SLEGroupOOS.EditValue.ToString <> "0" Then
+            cond = "AND od.id_comp_group='" + SLEGroupOOS.EditValue.ToString + "' "
+        End If
+        Dim query As String = "SELECT od.id_comp_group, cg.description AS `comp_group_desc`, od.sales_order_ol_shop_number, od.sales_order_ol_shop_date,	od.customer_name, 
+od.id_product, od.ol_store_id, od.item_id, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+od.ol_order_qty, od.sales_order_det_qty, IF(od.ol_order_qty>1,1,2) AS `is_cancel_cn` 
+FROM tb_ol_store_order od 
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = od.id_comp_group
+LEFT JOIN tb_m_product p ON p.id_product = od.id_product
+LEFT JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+WHERE !ISNULL(od.id_ol_store_oos) AND od.sales_order_det_qty!= od.ol_order_qty " + cond
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCOOS.DataSource = data
+        GVOOS.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportToXLSOOS_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSOOS.Click
+        If GVOOS.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "ol_store_oos_list.xlsx"
+            exportToXLS(path, "ol_store_oos_list", GCOOS)
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

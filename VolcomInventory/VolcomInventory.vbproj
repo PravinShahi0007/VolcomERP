@@ -3375,6 +3375,12 @@
     <Compile Include="FormOutboundManifest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOutboundPOD.Designer.vb">
+      <DependentUpon>FormOutboundPOD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOutboundPOD.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOutlet.Designer.vb">
       <DependentUpon>FormOutlet.vb</DependentUpon>
     </Compile>
@@ -8910,6 +8916,12 @@
     <Compile Include="ReportPLSample.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPolis.Designer.vb">
+      <DependentUpon>ReportPolis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPolis.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPOSClosingNoStock.Designer.vb">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>
     </Compile>
@@ -11217,6 +11229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutboundManifest.resx">
       <DependentUpon>FormOutboundManifest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOutboundPOD.resx">
+      <DependentUpon>FormOutboundPOD.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutlet.resx">
       <DependentUpon>FormOutlet.vb</DependentUpon>
@@ -14439,6 +14454,9 @@
     <EmbeddedResource Include="ReportPLSample.resx">
       <DependentUpon>ReportPLSample.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPolis.resx">
+      <DependentUpon>ReportPolis.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPOSClosingNoStock.resx">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>
