@@ -112,7 +112,7 @@
 
         'vendor tahun lalu
         Dim old_vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(11)
-        old_vendor.Text = Decimal.Parse(dt.Rows(row_i)("old_vendor").ToString).ToString("N2")
+        old_vendor.Text = dt.Rows(row_i)("old_vendor").ToString
         old_vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         old_vendor.Font = font_row_style
 
