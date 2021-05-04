@@ -6,6 +6,7 @@
     Dim is_confirm As String = "-1"
     Dim is_load_break_size As Boolean = False
     Dim rmt As String = "306"
+    Dim dvs As System.IO.Stream
 
     Private Sub FormProposePriceMKDDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -98,6 +99,11 @@
                 is_show_all = "2"
             End If
 
+            'save default view
+            dvs = New System.IO.MemoryStream()
+            GVData.SaveLayoutToStream(dvs, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            dvs.Seek(0, System.IO.SeekOrigin.Begin)
+
             'detail
             viewDetail(is_show_all)
             allowStatus()
@@ -115,6 +121,21 @@
         Dim query As String = "CALL view_pp_change(" + id + "," + is_show_all + ")"
         Dim data As DataTable = execute_query_no_pooling(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+
+        'column option
+        If is_show_all = "1" Then
+            GVData.RestoreLayoutFromStream(dvs, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            dvs.Seek(0, System.IO.SeekOrigin.Begin)
+        Else
+            gridBandAction.Visible = False
+            gridBandOther.Visible = False
+            BandedGridColumndisc_desc.Visible = False
+            BandedGridColumnmkd_normal_view.Visible = False
+            BandedGridColumnmkd_30_view.Visible = False
+            BandedGridColumnmkd_50_view.Visible = False
+            BandedGridColumnmkd_70_view.Visible = False
+            BandedGridColumnerp_discount.Visible = False
+        End If
         GVData.BestFitColumns()
         Cursor = Cursors.Default
         FormMain.SplashScreenManager1.CloseWaitForm()
