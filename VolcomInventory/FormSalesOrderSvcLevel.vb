@@ -1,4 +1,6 @@
 ﻿Public Class FormSalesOrderSvcLevel
+    Dim last_view_order As DateTime
+    Dim expired_close_too As Integer = 0
     Sub viewSalesOrder()
         CheckSelAll.Checked = False
 
@@ -35,6 +37,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesOrder.DataSource = data
         GVSalesOrder.BestFitColumns()
+        last_view_order = Now
     End Sub
 
     Sub viewReturnOrder()
@@ -291,6 +294,11 @@
         DEUntilTrf.EditValue = data_dt.Rows(0)("dt")
         DEFromNonStock.EditValue = data_dt.Rows(0)("dt")
         DEUntilNonStock.EditValue = data_dt.Rows(0)("dt")
+
+        'load expire
+        Dim qex As String = "SELECT expired_close_too FROM tb_opt"
+        Dim dex As DataTable = execute_query(qex, -1, True, "", "", "", "")
+        expired_close_too = dex.Rows(0)("expired_close_too")
 
         load_surat_jalan()
     End Sub
@@ -764,6 +772,17 @@
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         Cursor = Cursors.WaitCursor
+
+        'cek expired view
+        Dim result As TimeSpan = Now() - last_view_order
+        'MsgBox(result.TotalSeconds.ToString)
+        If result.TotalSeconds > expired_close_too Then
+            stopCustom("Order List is expired, please click 'View' again")
+            GCSalesOrder.DataSource = Nothing
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+
         GVSalesOrder.ActiveFilterString = ""
         GVSalesOrder.ActiveFilterString = "[is_select]='Yes' "
         If GVSalesOrder.RowCount = 0 Then
