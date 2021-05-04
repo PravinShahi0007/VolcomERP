@@ -134,7 +134,9 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnpropose_price_final_old = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnis_edit = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnnote_old = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnis_select = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnBulkEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
@@ -143,8 +145,6 @@ Partial Class FormProposePriceMKDDet
         Me.BtnFinalPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnBulkEdit = New DevExpress.XtraEditors.SimpleButton()
-        Me.BandedGridColumnis_select = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -874,6 +874,7 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupCount = 1
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_sal", Me.BandedGridColumntotal_sal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_soh", Me.BandedGridColumntotal_soh, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_bos", Me.BandedGridColumntotal_bos, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_normal_value", Me.BandedGridColumntotal_normal_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_current_value", Me.BandedGridColumntotal_current_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_propose_value", Me.BandedGridColumntotal_propose_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Me.BandedGridColumntotal_cost, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "marked_down_value", Me.BandedGridColumnmarked_down_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", Me.BandedGridColumnmark_up, "{0:n2}", "markup_grp_sum"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "sas", Me.BandedGridColumnsas, "{0:n0}%", "sas_grp_sum")})
+        Me.GVData.LevelIndent = 0
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsCustomization.AllowSort = False
@@ -1455,6 +1456,13 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnnote_old.Name = "BandedGridColumnnote_old"
         Me.BandedGridColumnnote_old.OptionsColumn.ReadOnly = True
         '
+        'BandedGridColumnis_select
+        '
+        Me.BandedGridColumnis_select.Caption = "  "
+        Me.BandedGridColumnis_select.FieldName = "is_select"
+        Me.BandedGridColumnis_select.Name = "BandedGridColumnis_select"
+        Me.BandedGridColumnis_select.Visible = True
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BtnBulkEdit)
@@ -1471,6 +1479,17 @@ Partial Class FormProposePriceMKDDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(876, 39)
         Me.PanelControl3.TabIndex = 17
+        '
+        'BtnBulkEdit
+        '
+        Me.BtnBulkEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnBulkEdit.Image = CType(resources.GetObject("BtnBulkEdit.Image"), System.Drawing.Image)
+        Me.BtnBulkEdit.Location = New System.Drawing.Point(445, 2)
+        Me.BtnBulkEdit.Name = "BtnBulkEdit"
+        Me.BtnBulkEdit.Size = New System.Drawing.Size(93, 35)
+        Me.BtnBulkEdit.TabIndex = 8931
+        Me.BtnBulkEdit.Text = "Bulk Edit"
+        Me.BtnBulkEdit.Visible = False
         '
         'LabelControl11
         '
@@ -1569,24 +1588,6 @@ Partial Class FormProposePriceMKDDet
         Me.BtnExportToXLS.TabIndex = 11
         Me.BtnExportToXLS.Text = "Export to XLS"
         '
-        'BtnBulkEdit
-        '
-        Me.BtnBulkEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnBulkEdit.Image = CType(resources.GetObject("BtnBulkEdit.Image"), System.Drawing.Image)
-        Me.BtnBulkEdit.Location = New System.Drawing.Point(445, 2)
-        Me.BtnBulkEdit.Name = "BtnBulkEdit"
-        Me.BtnBulkEdit.Size = New System.Drawing.Size(93, 35)
-        Me.BtnBulkEdit.TabIndex = 8931
-        Me.BtnBulkEdit.Text = "Bulk Edit"
-        Me.BtnBulkEdit.Visible = False
-        '
-        'BandedGridColumnis_select
-        '
-        Me.BandedGridColumnis_select.Caption = "  "
-        Me.BandedGridColumnis_select.FieldName = "is_select"
-        Me.BandedGridColumnis_select.Name = "BandedGridColumnis_select"
-        Me.BandedGridColumnis_select.Visible = True
-        '
         'FormProposePriceMKDDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1678,7 +1679,6 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents BandedGridColumnmkd_30_view As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnmkd_50_view As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnmkd_70_view As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumndesign_cat As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnprice_type As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumndesign_cop As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumndesign_price_normal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1740,4 +1740,5 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnBulkEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumnis_select As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumndesign_cat As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
