@@ -72,12 +72,12 @@ WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
             AND !ISNULL(ap.id_acc) "
                 Dim dcoa_vendor As DataTable = execute_query(qcoa_vendor, -1, True, "", "", "", "")
                 If dcoa_vendor.Rows.Count <= 0 Then
-                    err_coa += "- COA : Account Payable Vendor " + System.Environment.NewLine
+                    err_coa += "- COA Vendor : AP " & TxtVendor.Text & " " + System.Environment.NewLine
                     cond_coa_vendor = False
                 End If
 
                 If Not cond_coa Or Not cond_coa_vendor Or Not cond_coa_biaya Then
-                    warningCustom("Please contact Accounting Department to setup : " + System.Environment.NewLine + err_coa)
+                    warningCustom("Hubungi Departemen Akunting untuk setup : " + System.Environment.NewLine + err_coa)
                     Close()
                 End If
             Else
@@ -120,12 +120,12 @@ WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
             AND !ISNULL(ap.id_acc) "
                 Dim dcoa_vendor As DataTable = execute_query(qcoa_vendor, -1, True, "", "", "", "")
                 If dcoa_vendor.Rows.Count <= 0 Then
-                    err_coa += "- COA : Account Payable Vendor Cabang " + System.Environment.NewLine
+                    err_coa += "- COA Vendor : AP (Cabang) " + System.Environment.NewLine
                     cond_coa_vendor = False
                 End If
 
                 If Not cond_coa Or Not cond_coa_vendor Or Not cond_coa_biaya Then
-                    warningCustom("Please contact Accounting Department to setup : " + System.Environment.NewLine + err_coa)
+                    warningCustom("Hubungi Departemen Akunting untuk setup : " + System.Environment.NewLine + err_coa)
                     Close()
                 End If
             End If

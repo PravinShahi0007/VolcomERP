@@ -43,6 +43,7 @@ Partial Class FormOutboundPOD
         Me.GridColumnpick_up_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrec_by_store_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrec_by_store_person = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_combine = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLECity = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -67,7 +68,6 @@ Partial Class FormOutboundPOD
         Me.DETo = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.GridColumnis_combine = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,6 +112,7 @@ Partial Class FormOutboundPOD
         Me.GridColumnno.Caption = "No"
         Me.GridColumnno.FieldName = "no"
         Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnno.Visible = True
         Me.GridColumnno.VisibleIndex = 0
         '
@@ -120,6 +121,7 @@ Partial Class FormOutboundPOD
         Me.GridColumnso_status.Caption = "Category"
         Me.GridColumnso_status.FieldName = "so_status"
         Me.GridColumnso_status.Name = "GridColumnso_status"
+        Me.GridColumnso_status.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnso_status.Visible = True
         Me.GridColumnso_status.VisibleIndex = 1
         '
@@ -128,6 +130,7 @@ Partial Class FormOutboundPOD
         Me.GridColumndel_number.Caption = "Delivery Slip"
         Me.GridColumndel_number.FieldName = "del_number"
         Me.GridColumndel_number.Name = "GridColumndel_number"
+        Me.GridColumndel_number.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumndel_number.Visible = True
         Me.GridColumndel_number.VisibleIndex = 2
         '
@@ -138,6 +141,7 @@ Partial Class FormOutboundPOD
         Me.GridColumndel_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumndel_date.FieldName = "del_date"
         Me.GridColumndel_date.Name = "GridColumndel_date"
+        Me.GridColumndel_date.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumndel_date.Visible = True
         Me.GridColumndel_date.VisibleIndex = 3
         '
@@ -148,12 +152,14 @@ Partial Class FormOutboundPOD
         Me.GridColumnlast_update.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnlast_update.FieldName = "last_update"
         Me.GridColumnlast_update.Name = "GridColumnlast_update"
+        Me.GridColumnlast_update.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'GridColumncomp_number
         '
         Me.GridColumncomp_number.Caption = "Store Acc."
         Me.GridColumncomp_number.FieldName = "comp_number"
         Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumncomp_number.Visible = True
         Me.GridColumncomp_number.VisibleIndex = 4
         '
@@ -162,6 +168,7 @@ Partial Class FormOutboundPOD
         Me.GridColumncomp_name.Caption = "Store"
         Me.GridColumncomp_name.FieldName = "comp_name"
         Me.GridColumncomp_name.Name = "GridColumncomp_name"
+        Me.GridColumncomp_name.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumncomp_name.Visible = True
         Me.GridColumncomp_name.VisibleIndex = 5
         '
@@ -170,6 +177,7 @@ Partial Class FormOutboundPOD
         Me.GridColumncomp_group1.Caption = "Store Group"
         Me.GridColumncomp_group1.FieldName = "comp_group"
         Me.GridColumncomp_group1.Name = "GridColumncomp_group1"
+        Me.GridColumncomp_group1.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumncomp_group1.Visible = True
         Me.GridColumncomp_group1.VisibleIndex = 6
         '
@@ -178,6 +186,7 @@ Partial Class FormOutboundPOD
         Me.GridColumncomp_group_desc.Caption = "Store Group Desc."
         Me.GridColumncomp_group_desc.FieldName = "comp_group_desc"
         Me.GridColumncomp_group_desc.Name = "GridColumncomp_group_desc"
+        Me.GridColumncomp_group_desc.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumncomp_group_desc.Visible = True
         Me.GridColumncomp_group_desc.VisibleIndex = 7
         Me.GridColumncomp_group_desc.Width = 91
@@ -187,14 +196,15 @@ Partial Class FormOutboundPOD
         Me.GridColumnreport_mark_type.Caption = "report_mark_type"
         Me.GridColumnreport_mark_type.FieldName = "report_mark_type"
         Me.GridColumnreport_mark_type.Name = "GridColumnreport_mark_type"
+        Me.GridColumnreport_mark_type.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'GridColumnsales_order_number
         '
         Me.GridColumnsales_order_number.Caption = "Prepare Order"
         Me.GridColumnsales_order_number.FieldName = "sales_order_number"
         Me.GridColumnsales_order_number.Name = "GridColumnsales_order_number"
-        Me.GridColumnsales_order_number.Visible = True
-        Me.GridColumnsales_order_number.VisibleIndex = 8
+        Me.GridColumnsales_order_number.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumnsales_order_number.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnsales_order_number.Width = 94
         '
         'GridColumnsales_order_ol_shop_number
@@ -202,8 +212,9 @@ Partial Class FormOutboundPOD
         Me.GridColumnsales_order_ol_shop_number.Caption = "OL. Store Order"
         Me.GridColumnsales_order_ol_shop_number.FieldName = "sales_order_ol_shop_number"
         Me.GridColumnsales_order_ol_shop_number.Name = "GridColumnsales_order_ol_shop_number"
+        Me.GridColumnsales_order_ol_shop_number.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnsales_order_ol_shop_number.Visible = True
-        Me.GridColumnsales_order_ol_shop_number.VisibleIndex = 9
+        Me.GridColumnsales_order_ol_shop_number.VisibleIndex = 8
         Me.GridColumnsales_order_ol_shop_number.Width = 94
         '
         'GridColumncustomer_name
@@ -211,8 +222,9 @@ Partial Class FormOutboundPOD
         Me.GridColumncustomer_name.Caption = "Customer"
         Me.GridColumncustomer_name.FieldName = "customer_name"
         Me.GridColumncustomer_name.Name = "GridColumncustomer_name"
+        Me.GridColumncustomer_name.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumncustomer_name.Visible = True
-        Me.GridColumncustomer_name.VisibleIndex = 10
+        Me.GridColumncustomer_name.VisibleIndex = 9
         '
         'GridColumntotal_qty
         '
@@ -221,49 +233,55 @@ Partial Class FormOutboundPOD
         Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumntotal_qty.FieldName = "total_qty"
         Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
+        Me.GridColumntotal_qty.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
         Me.GridColumntotal_qty.Visible = True
-        Me.GridColumntotal_qty.VisibleIndex = 11
+        Me.GridColumntotal_qty.VisibleIndex = 10
         '
         'GridColumnnote
         '
         Me.GridColumnnote.Caption = "Note"
         Me.GridColumnnote.FieldName = "note"
         Me.GridColumnnote.Name = "GridColumnnote"
+        Me.GridColumnnote.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnnote.Visible = True
-        Me.GridColumnnote.VisibleIndex = 12
+        Me.GridColumnnote.VisibleIndex = 11
         '
         'GridColumnawbill_no
         '
         Me.GridColumnawbill_no.Caption = "AWB"
         Me.GridColumnawbill_no.FieldName = "awbill_no"
         Me.GridColumnawbill_no.Name = "GridColumnawbill_no"
+        Me.GridColumnawbill_no.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnawbill_no.Visible = True
-        Me.GridColumnawbill_no.VisibleIndex = 13
+        Me.GridColumnawbill_no.VisibleIndex = 12
         '
         'GridColumncargo_name
         '
         Me.GridColumncargo_name.Caption = "3PL"
         Me.GridColumncargo_name.FieldName = "cargo_name"
         Me.GridColumncargo_name.Name = "GridColumncargo_name"
+        Me.GridColumncargo_name.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumncargo_name.Visible = True
-        Me.GridColumncargo_name.VisibleIndex = 14
+        Me.GridColumncargo_name.VisibleIndex = 13
         '
         'GridColumnsub_district
         '
         Me.GridColumnsub_district.Caption = "Sub District"
         Me.GridColumnsub_district.FieldName = "sub_district"
         Me.GridColumnsub_district.Name = "GridColumnsub_district"
+        Me.GridColumnsub_district.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnsub_district.Visible = True
-        Me.GridColumnsub_district.VisibleIndex = 15
+        Me.GridColumnsub_district.VisibleIndex = 14
         '
         'GridColumncity
         '
         Me.GridColumncity.Caption = "City"
         Me.GridColumncity.FieldName = "city"
         Me.GridColumncity.Name = "GridColumncity"
+        Me.GridColumncity.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumncity.Visible = True
-        Me.GridColumncity.VisibleIndex = 16
+        Me.GridColumncity.VisibleIndex = 15
         '
         'GridColumnpick_up_date
         '
@@ -272,8 +290,9 @@ Partial Class FormOutboundPOD
         Me.GridColumnpick_up_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnpick_up_date.FieldName = "pick_up_date"
         Me.GridColumnpick_up_date.Name = "GridColumnpick_up_date"
+        Me.GridColumnpick_up_date.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnpick_up_date.Visible = True
-        Me.GridColumnpick_up_date.VisibleIndex = 17
+        Me.GridColumnpick_up_date.VisibleIndex = 16
         '
         'GridColumnrec_by_store_date
         '
@@ -282,16 +301,26 @@ Partial Class FormOutboundPOD
         Me.GridColumnrec_by_store_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnrec_by_store_date.FieldName = "rec_by_store_date"
         Me.GridColumnrec_by_store_date.Name = "GridColumnrec_by_store_date"
+        Me.GridColumnrec_by_store_date.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnrec_by_store_date.Visible = True
-        Me.GridColumnrec_by_store_date.VisibleIndex = 18
+        Me.GridColumnrec_by_store_date.VisibleIndex = 17
         '
         'GridColumnrec_by_store_person
         '
         Me.GridColumnrec_by_store_person.Caption = "Received by"
         Me.GridColumnrec_by_store_person.FieldName = "rec_by_store_person"
         Me.GridColumnrec_by_store_person.Name = "GridColumnrec_by_store_person"
+        Me.GridColumnrec_by_store_person.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.GridColumnrec_by_store_person.Visible = True
-        Me.GridColumnrec_by_store_person.VisibleIndex = 19
+        Me.GridColumnrec_by_store_person.VisibleIndex = 18
+        '
+        'GridColumnis_combine
+        '
+        Me.GridColumnis_combine.Caption = "is_combine"
+        Me.GridColumnis_combine.FieldName = "is_combine"
+        Me.GridColumnis_combine.Name = "GridColumnis_combine"
+        Me.GridColumnis_combine.OptionsColumn.ReadOnly = True
+        Me.GridColumnis_combine.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
         'PanelControl1
         '
@@ -503,13 +532,6 @@ Partial Class FormOutboundPOD
         Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEFrom.Size = New System.Drawing.Size(161, 20)
         Me.DEFrom.TabIndex = 8930
-        '
-        'GridColumnis_combine
-        '
-        Me.GridColumnis_combine.Caption = "is_combine"
-        Me.GridColumnis_combine.FieldName = "is_combine"
-        Me.GridColumnis_combine.Name = "GridColumnis_combine"
-        Me.GridColumnis_combine.OptionsColumn.ReadOnly = True
         '
         'FormOutboundPOD
         '

@@ -102,7 +102,7 @@
         FormDocumentUpload.report_mark_type = "170"
         FormDocumentUpload.id_report = id
         If is_confirm = "1" Then
-            FormDocumentUpload.is_view = "1"
+            FormDocumentUpload.is_no_delete = "1"
         End If
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
@@ -113,7 +113,7 @@
         FormDocumentUpload.report_mark_type = "171"
         FormDocumentUpload.id_report = id
         If is_confirm = "1" Then
-            FormDocumentUpload.is_view = "1"
+            FormDocumentUpload.is_no_delete = "1"
         End If
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
