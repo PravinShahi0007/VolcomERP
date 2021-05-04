@@ -161,13 +161,15 @@ LEFT JOIN
 "
         Next
 
-        qs = "SELECT ppsd.`id_comp`,c.`comp_name`,c.`comp_number`,c.`address_primary`
+        qs = "SELECT ppsd.`id_comp`,pol.end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
 ,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`
-,ppsd.old_nilai_total,ppsd.old_premi,ppsd.old_polis_vendor,v_old.comp_name AS old_vendor
+,ppsd.old_nilai_total,ppsd.nilai_total,ppsd.old_premi,ppsd.old_polis_vendor,v_old.comp_name AS old_vendor
+,ppsd.old_premi
 ,ppsd.polis_vendor,ppsd.premi,v.comp_name AS vendor
 " & qh & "
 FROM tb_polis_pps_det ppsd 
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
+INNER JOIN tb_polis pol ON pol.id_polis=ppsd.old_id_polis
 LEFT JOIN tb_m_comp v_old ON v_old.id_comp=ppsd.old_polis_vendor
 LEFT JOIN tb_m_comp v ON v.id_comp=ppsd.polis_vendor
 " & qj & "
@@ -398,6 +400,12 @@ WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVNilaiLainnya.GetRowCellVa
                 q += "('" & id_pps & "','" & GVPenawaran.GetRowCellValue(i, "id_comp").ToString & "','" & id_vendor & "','" & decimalSQL(Decimal.Parse(GVPenawaran.GetRowCellValue(i, GVPenawaran.Columns(j).FieldName.ToString).ToString)) & "')"
             Next
             execute_non_query(q, True, "", "", "", "")
+            '
+            q = "UPDATE tb_polis_pps_det ppsd
+INNER JOIN tb_polis_pps_vendor ppsv ON ppsd.polis_vendor=ppsv.id_vendor AND ppsd.id_polis_pps=ppsv.id_polis_pps AND ppsd.id_comp=ppsv.id_comp
+SET ppsd.premi=ppsv.price
+WHERE ppsd.id_polis_pps='" & id_pps & "'"
+            execute_non_query(q, True, "", "", "", "")
         Next
     End Sub
 
@@ -455,5 +463,13 @@ WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVNilaiLainnya.GetRowCellVa
                 MsgBox("Please pick on vendor column")
             End If
         End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        ReportPolis.dt = GCPenawaran.DataSource
+        Dim Report As New ReportPolis()
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
     End Sub
 End Class
