@@ -770,6 +770,23 @@
             stopCustom("Please select order first.")
             GVSalesOrder.ActiveFilterString = ""
         Else
+            Dim order_under_100 As String = ""
+            Dim order_ix As Integer = 0
+            For c As Integer = 0 To GVSalesOrder.RowCount - 1
+                Dim so_number As String = GVSalesOrder.GetRowCellValue(c, "sales_order_number").ToString
+                Dim lvl As Decimal = GVSalesOrder.GetRowCellValue(c, "so_completness")
+                If lvl < 100 Then
+                    If order_ix > 0 Then
+                        order_under_100 += ","
+                    End If
+                    order_under_100 += so_number
+                    order_ix += 1
+                End If
+            Next
+            If order_ix > 0 Then
+                FormError.LabelContent.Text = "Be careful ! Service level under 100% : " + System.Environment.NewLine + order_under_100
+                FormError.ShowDialog()
+            End If
             FormSalesOrderPacking.id_pop_up = "4"
             FormSalesOrderPacking.ShowDialog()
         End If
