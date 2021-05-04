@@ -61,6 +61,7 @@ Partial Public Class ReportProdBOM
         Me.LPONo = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrLabel38 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -84,7 +85,6 @@ Partial Public Class ReportProdBOM
         Me.Lqty = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LUnitCost = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel38 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,7 +139,7 @@ Partial Public Class ReportProdBOM
         Me.GVBOM.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
         Me.GVBOM.AppearancePrint.GroupRow.BackColor2 = System.Drawing.Color.White
         Me.GVBOM.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Transparent
-        Me.GVBOM.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.GVBOM.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.GVBOM.AppearancePrint.GroupRow.ForeColor = System.Drawing.Color.Black
         Me.GVBOM.AppearancePrint.GroupRow.Options.UseBackColor = True
         Me.GVBOM.AppearancePrint.GroupRow.Options.UseBorderColor = True
@@ -152,11 +152,14 @@ Partial Public Class ReportProdBOM
         Me.GVBOM.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVBOM.AppearancePrint.HeaderPanel.Options.UseFont = True
         Me.GVBOM.AppearancePrint.HeaderPanel.Options.UseForeColor = True
+        Me.GVBOM.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.GVBOM.AppearancePrint.Row.Options.UseFont = True
         Me.GVBOM.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003
         Me.GVBOM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn18, Me.GridColumn22, Me.GridColumn23, Me.GridColumn36, Me.GridColumn35, Me.GridColumn34, Me.GridColumn24, Me.ColTotal, Me.Cat, Me.ColIDCat, Me.GridColumn25, Me.GridColumnUOM, Me.GridColumn26, Me.GridColumnIsCost})
         Me.GVBOM.GridControl = Me.GCBOM
         Me.GVBOM.GroupCount = 1
         Me.GVBOM.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.ColTotal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "price", Me.GridColumn24, "Sub Total{0}")})
+        Me.GVBOM.LevelIndent = 0
         Me.GVBOM.Name = "GVBOM"
         Me.GVBOM.OptionsBehavior.Editable = False
         Me.GVBOM.OptionsPrint.PrintVertLines = False
@@ -642,6 +645,22 @@ Partial Public Class ReportProdBOM
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrLabel38
+        '
+        Me.XrLabel38.Dpi = 254.0!
+        Me.XrLabel38.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Italic)
+        Me.XrLabel38.ForeColor = System.Drawing.Color.Gray
+        Me.XrLabel38.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel38.Name = "XrLabel38"
+        Me.XrLabel38.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
+        Me.XrLabel38.SizeF = New System.Drawing.SizeF(1211.58!, 40.74584!)
+        Me.XrLabel38.StylePriority.UseBorderColor = False
+        Me.XrLabel38.StylePriority.UseFont = False
+        Me.XrLabel38.StylePriority.UseForeColor = False
+        Me.XrLabel38.StylePriority.UseTextAlignment = False
+        Me.XrLabel38.Text = "Printed from Volcom ERP ([printed_date])"
+        Me.XrLabel38.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'XrPageInfo1
         '
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
@@ -992,22 +1011,6 @@ Partial Public Class ReportProdBOM
         Me.LUnitCost.StylePriority.UseFont = False
         Me.LUnitCost.StylePriority.UseTextAlignment = False
         Me.LUnitCost.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
-        'XrLabel38
-        '
-        Me.XrLabel38.Dpi = 254.0!
-        Me.XrLabel38.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Italic)
-        Me.XrLabel38.ForeColor = System.Drawing.Color.Gray
-        Me.XrLabel38.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel38.Name = "XrLabel38"
-        Me.XrLabel38.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel38.SizeF = New System.Drawing.SizeF(1211.58!, 40.74584!)
-        Me.XrLabel38.StylePriority.UseBorderColor = False
-        Me.XrLabel38.StylePriority.UseFont = False
-        Me.XrLabel38.StylePriority.UseForeColor = False
-        Me.XrLabel38.StylePriority.UseTextAlignment = False
-        Me.XrLabel38.Text = "Printed from Volcom ERP ([printed_date])"
-        Me.XrLabel38.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportProdBOM
         '

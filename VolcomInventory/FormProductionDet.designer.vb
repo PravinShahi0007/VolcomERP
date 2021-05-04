@@ -602,7 +602,7 @@ Partial Class FormProductionDet
         Me.GVBOM.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
         Me.GVBOM.AppearancePrint.FooterPanel.BackColor2 = System.Drawing.Color.White
         Me.GVBOM.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Transparent
-        Me.GVBOM.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVBOM.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.5!, System.Drawing.FontStyle.Bold)
         Me.GVBOM.AppearancePrint.FooterPanel.ForeColor = System.Drawing.Color.Black
         Me.GVBOM.AppearancePrint.FooterPanel.Options.UseBackColor = True
         Me.GVBOM.AppearancePrint.FooterPanel.Options.UseBorderColor = True
@@ -611,7 +611,7 @@ Partial Class FormProductionDet
         Me.GVBOM.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
         Me.GVBOM.AppearancePrint.GroupFooter.BackColor2 = System.Drawing.Color.White
         Me.GVBOM.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Transparent
-        Me.GVBOM.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVBOM.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 8.5!, System.Drawing.FontStyle.Bold)
         Me.GVBOM.AppearancePrint.GroupFooter.ForeColor = System.Drawing.Color.Black
         Me.GVBOM.AppearancePrint.GroupFooter.Options.UseBackColor = True
         Me.GVBOM.AppearancePrint.GroupFooter.Options.UseBorderColor = True
@@ -638,6 +638,7 @@ Partial Class FormProductionDet
         Me.GVBOM.GridControl = Me.GCBOM
         Me.GVBOM.GroupCount = 1
         Me.GVBOM.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.ColTotal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "price", Me.GridColumn24, "Sub Total{0}")})
+        Me.GVBOM.LevelIndent = 0
         Me.GVBOM.Name = "GVBOM"
         Me.GVBOM.OptionsBehavior.Editable = False
         Me.GVBOM.OptionsPrint.PrintVertLines = False
@@ -650,9 +651,9 @@ Partial Class FormProductionDet
         'GridColumn14
         '
         Me.GridColumn14.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.GridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn14.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.GridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn14.Caption = "Code"
         Me.GridColumn14.FieldName = "code"
         Me.GridColumn14.Name = "GridColumn14"
@@ -742,6 +743,8 @@ Partial Class FormProductionDet
         '
         'GridColumn24
         '
+        Me.GridColumn24.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.5!)
+        Me.GridColumn24.AppearanceCell.Options.UseFont = True
         Me.GridColumn24.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
@@ -758,6 +761,8 @@ Partial Class FormProductionDet
         '
         'ColTotal
         '
+        Me.ColTotal.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.5!)
+        Me.ColTotal.AppearanceCell.Options.UseFont = True
         Me.ColTotal.AppearanceCell.Options.UseTextOptions = True
         Me.ColTotal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColTotal.AppearanceHeader.Options.UseTextOptions = True
