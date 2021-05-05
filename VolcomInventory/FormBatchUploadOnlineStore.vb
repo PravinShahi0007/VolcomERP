@@ -1123,9 +1123,12 @@
         End If
 
         If SLUEOnlineStore.EditValue.ToString = "5" Then
-            If e.RowHandle = 0 Or e.RowHandle = 1 Then
+            If e.RowHandle = 0 Or e.RowHandle = 1 Or e.RowHandle = 2 Then
                 e.Appearance.BackColor = Color.Silver
-                e.Appearance.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
+
+                If e.RowHandle = 0 Or e.RowHandle = 1 Then
+                    e.Appearance.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
+                End If
             End If
         End If
 
