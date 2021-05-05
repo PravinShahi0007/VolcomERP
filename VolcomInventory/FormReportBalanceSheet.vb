@@ -1340,7 +1340,43 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
     End Sub
 
     Private Sub BMoveActiveTax_Click(sender As Object, e As EventArgs) Handles BMoveActiveTax.Click
-        FormReportBalanceSheetTax.ShowDialog()
+        'check first
+        Dim err_text As String = ""
+        GVActiveTax.RefreshData()
+        GVActiveTax.ActiveFilterString = "[is_check] = 'yes'"
+        GridColumnActiveTaxCat.GroupIndex = -1
+        '
+        If GVActiveTax.RowCount > 0 Then
+            Dim id As String = ""
+
+            For i As Integer = 0 To GVActiveTax.RowCount - 1
+                If Not i = 0 Then
+                    id += ","
+                End If
+                id += GVActiveTax.GetRowCellValue(i, "id_acc_trans").ToString
+            Next
+
+            Dim q As String = "SELECT GROUP_CONCAT(acc_trans_number) AS err
+FROM tb_a_acc_trans trx 
+INNER JOIN `tb_tax_pph_summary` pphs ON trx.date_tax_report=pphs.`period_from` AND pphs.id_report_status=6
+WHERE id_acc_trans IN (" & id & ")"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If Not dt.Rows(0)("err").ToString = "" Then
+                err_text = "Laporan tax untuk jurnal nomor " & dt.Rows(0)("err").ToString & " sudah terkunci"
+            End If
+        Else
+            err_text = "Tidak ada dokumen yang dipilih"
+        End If
+        '
+        GridColumnActiveTaxCat.GroupIndex = 0
+        GVActiveTax.ActiveFilterString = ""
+        GVActiveTax.ExpandAllGroups()
+
+        If err_text = "" Then
+            FormReportBalanceSheetTax.ShowDialog()
+        Else
+            warningCustom(err_text)
+        End If
     End Sub
 
     Private Sub DETaxFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DETaxFrom.EditValueChanged

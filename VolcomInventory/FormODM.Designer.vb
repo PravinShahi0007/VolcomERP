@@ -62,10 +62,11 @@ Partial Class FormODM
         Me.TEScan = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCListHistory = New DevExpress.XtraGrid.GridControl()
-        Me.GVListHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GCHChecklist = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCWaitingToScan = New DevExpress.XtraGrid.GridControl()
+        Me.GVWaitingToScan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -74,36 +75,7 @@ Partial Class FormODM
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHStoreAccount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BCompleteHistory = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.L3PL = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEScanList = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BViewHistory = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.BRefreshWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPrint = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListODM = New DevExpress.XtraGrid.GridControl()
         Me.GVListODM = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -154,15 +126,8 @@ Partial Class FormODM
         Me.PCScan.SuspendLayout()
         CType(Me.TEScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPHistory.SuspendLayout()
-        CType(Me.GCListHistory, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVListHistory, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.SLEScanList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCWaitingToScan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVWaitingToScan, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPrint.SuspendLayout()
         CType(Me.GCListODM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListODM, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -266,7 +231,7 @@ Partial Class FormODM
         Me.XTPManifestList.Controls.Add(Me.PanelControl1)
         Me.XTPManifestList.Name = "XTPManifestList"
         Me.XTPManifestList.Size = New System.Drawing.Size(1072, 556)
-        Me.XTPManifestList.Text = "Waiting to Scan "
+        Me.XTPManifestList.Text = "Scan"
         '
         'GCList
         '
@@ -607,393 +572,42 @@ Partial Class FormODM
         '
         'XTPHistory
         '
-        Me.XTPHistory.Controls.Add(Me.GCListHistory)
-        Me.XTPHistory.Controls.Add(Me.BPrint)
-        Me.XTPHistory.Controls.Add(Me.BCompleteHistory)
-        Me.XTPHistory.Controls.Add(Me.PanelControl2)
+        Me.XTPHistory.Controls.Add(Me.GCWaitingToScan)
+        Me.XTPHistory.Controls.Add(Me.BRefreshWaiting)
         Me.XTPHistory.Name = "XTPHistory"
-        Me.XTPHistory.PageVisible = False
         Me.XTPHistory.Size = New System.Drawing.Size(1072, 556)
-        Me.XTPHistory.Text = "Already Scan"
+        Me.XTPHistory.Text = "Waiting to scan"
         '
-        'GCListHistory
+        'GCWaitingToScan
         '
-        Me.GCListHistory.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCListHistory.Location = New System.Drawing.Point(0, 44)
-        Me.GCListHistory.MainView = Me.GVListHistory
-        Me.GCListHistory.Name = "GCListHistory"
-        Me.GCListHistory.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCListHistory.Size = New System.Drawing.Size(1072, 448)
-        Me.GCListHistory.TabIndex = 17
-        Me.GCListHistory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListHistory})
+        Me.GCWaitingToScan.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCWaitingToScan.Location = New System.Drawing.Point(0, 0)
+        Me.GCWaitingToScan.MainView = Me.GVWaitingToScan
+        Me.GCWaitingToScan.Name = "GCWaitingToScan"
+        Me.GCWaitingToScan.Size = New System.Drawing.Size(1072, 524)
+        Me.GCWaitingToScan.TabIndex = 16
+        Me.GCWaitingToScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWaitingToScan})
         '
-        'GVListHistory
+        'GVWaitingToScan
         '
-        Me.GVListHistory.Appearance.GroupPanel.ForeColor = System.Drawing.Color.Black
-        Me.GVListHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHChecklist, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GCHStoreAccount, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
-        Me.GVListHistory.GridControl = Me.GCListHistory
-        Me.GVListHistory.GroupCount = 1
-        Me.GVListHistory.GroupFormat = "[#image]{1} {2}"
-        Me.GVListHistory.LevelIndent = 1
-        Me.GVListHistory.Name = "GVListHistory"
-        Me.GVListHistory.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVListHistory.OptionsBehavior.Editable = False
-        Me.GVListHistory.OptionsBehavior.ReadOnly = True
-        Me.GVListHistory.OptionsFind.AllowFindPanel = False
-        Me.GVListHistory.OptionsView.AllowCellMerge = True
-        Me.GVListHistory.OptionsView.ColumnAutoWidth = False
-        Me.GVListHistory.OptionsView.ShowFooter = True
-        Me.GVListHistory.OptionsView.ShowGroupExpandCollapseButtons = False
-        Me.GVListHistory.OptionsView.ShowGroupPanel = False
-        Me.GVListHistory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn8, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GCHChecklist
-        '
-        Me.GCHChecklist.AppearanceCell.Options.UseTextOptions = True
-        Me.GCHChecklist.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCHChecklist.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCHChecklist.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCHChecklist.Caption = "Checklist"
-        Me.GCHChecklist.FieldName = "is_check"
-        Me.GCHChecklist.Name = "GCHChecklist"
-        Me.GCHChecklist.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCHChecklist.Visible = True
-        Me.GCHChecklist.VisibleIndex = 0
+        Me.GVWaitingToScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn5, Me.GridColumn6, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
+        Me.GVWaitingToScan.GridControl = Me.GCWaitingToScan
+        Me.GVWaitingToScan.Name = "GVWaitingToScan"
+        Me.GVWaitingToScan.OptionsBehavior.Editable = False
+        Me.GVWaitingToScan.OptionsView.ShowGroupPanel = False
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "ODM Number"
-        Me.GridColumn8.FieldName = "number"
+        Me.GridColumn8.FieldName = "id_del_manifest"
         Me.GridColumn8.Name = "GridColumn8"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Outbound Delivery Manifest"
-        Me.GridColumn11.FieldName = "number"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowEdit = False
-        Me.GridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 1
-        Me.GridColumn11.Width = 176
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Report Status"
-        Me.GridColumn12.FieldName = "report_status"
-        Me.GridColumn12.Name = "GridColumn12"
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.FieldName = "id_wh_awb_det"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.OptionsColumn.AllowEdit = False
-        Me.GridColumn13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.FieldName = "id_comp_group"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Created Date"
-        Me.GridColumn15.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn15.FieldName = "awbill_date"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.AllowEdit = False
-        Me.GridColumn15.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 15
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Outbound Label Number"
-        Me.GridColumn16.FieldName = "ol_number"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.OptionsColumn.AllowEdit = False
-        Me.GridColumn16.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 2
-        Me.GridColumn16.Width = 141
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Delivery Slip"
-        Me.GridColumn17.FieldName = "combine_number"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.OptionsColumn.AllowEdit = False
-        Me.GridColumn17.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 3
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Delivery Slip"
-        Me.GridColumn18.FieldName = "do_no"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.OptionsColumn.AllowEdit = False
-        Me.GridColumn18.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "No. SDO"
-        Me.GridColumn19.FieldName = "pl_sales_order_del_number"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.OptionsColumn.AllowEdit = False
-        Me.GridColumn19.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "AWB Number"
-        Me.GridColumn20.FieldName = "awbill_no"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 4
-        '
-        'GCHStoreAccount
-        '
-        Me.GCHStoreAccount.Caption = "Store Account"
-        Me.GCHStoreAccount.FieldName = "comp_number"
-        Me.GCHStoreAccount.Name = "GCHStoreAccount"
-        Me.GCHStoreAccount.OptionsColumn.AllowEdit = False
-        Me.GCHStoreAccount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GCHStoreAccount.Visible = True
-        Me.GCHStoreAccount.VisibleIndex = 5
-        Me.GCHStoreAccount.Width = 78
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Store Name"
-        Me.GridColumn22.FieldName = "comp_name"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.OptionsColumn.AllowEdit = False
-        Me.GridColumn22.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 6
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "Qty"
-        Me.GridColumn23.FieldName = "qty"
-        Me.GridColumn23.MaxWidth = 50
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.OptionsColumn.AllowEdit = False
-        Me.GridColumn23.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 7
-        Me.GridColumn23.Width = 50
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "Destination"
-        Me.GridColumn24.FieldName = "city"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.OptionsColumn.AllowEdit = False
-        Me.GridColumn24.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 8
-        Me.GridColumn24.Width = 77
-        '
-        'GridColumn25
-        '
-        Me.GridColumn25.Caption = "Weight"
-        Me.GridColumn25.DisplayFormat.FormatString = "N2"
-        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn25.FieldName = "weight"
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.OptionsColumn.AllowEdit = False
-        Me.GridColumn25.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 9
-        '
-        'GridColumn26
-        '
-        Me.GridColumn26.Caption = "P"
-        Me.GridColumn26.DisplayFormat.FormatString = "N2"
-        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn26.FieldName = "width"
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.OptionsColumn.AllowEdit = False
-        Me.GridColumn26.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 10
-        '
-        'GridColumn27
-        '
-        Me.GridColumn27.Caption = "L"
-        Me.GridColumn27.DisplayFormat.FormatString = "N2"
-        Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn27.FieldName = "length"
-        Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.OptionsColumn.AllowEdit = False
-        Me.GridColumn27.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 11
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "T"
-        Me.GridColumn28.DisplayFormat.FormatString = "N2"
-        Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn28.FieldName = "height"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.OptionsColumn.AllowEdit = False
-        Me.GridColumn28.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 12
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "Dim"
-        Me.GridColumn29.DisplayFormat.FormatString = "N2"
-        Me.GridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn29.FieldName = "volume"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.OptionsColumn.AllowEdit = False
-        Me.GridColumn29.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 13
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.Caption = "Final Weight"
-        Me.GridColumn30.DisplayFormat.FormatString = "N2"
-        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn30.FieldName = "c_weight"
-        Me.GridColumn30.Name = "GridColumn30"
-        Me.GridColumn30.OptionsColumn.AllowEdit = False
-        Me.GridColumn30.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 14
-        '
-        'GridColumn31
-        '
-        Me.GridColumn31.Caption = "Remark"
-        Me.GridColumn31.Name = "GridColumn31"
-        Me.GridColumn31.OptionsColumn.AllowEdit = False
-        Me.GridColumn31.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 16
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
-        '
-        'BPrint
-        '
-        Me.BPrint.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BPrint.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BPrint.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BPrint.Appearance.Options.UseBackColor = True
-        Me.BPrint.Appearance.Options.UseFont = True
-        Me.BPrint.Appearance.Options.UseForeColor = True
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BPrint.Location = New System.Drawing.Point(0, 492)
-        Me.BPrint.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BPrint.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BPrint.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BPrint.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(1072, 32)
-        Me.BPrint.TabIndex = 18
-        Me.BPrint.Text = "PRINT"
-        '
-        'BCompleteHistory
-        '
-        Me.BCompleteHistory.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BCompleteHistory.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCompleteHistory.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCompleteHistory.Appearance.Options.UseBackColor = True
-        Me.BCompleteHistory.Appearance.Options.UseFont = True
-        Me.BCompleteHistory.Appearance.Options.UseForeColor = True
-        Me.BCompleteHistory.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCompleteHistory.Location = New System.Drawing.Point(0, 524)
-        Me.BCompleteHistory.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCompleteHistory.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCompleteHistory.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCompleteHistory.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCompleteHistory.Name = "BCompleteHistory"
-        Me.BCompleteHistory.Size = New System.Drawing.Size(1072, 32)
-        Me.BCompleteHistory.TabIndex = 15
-        Me.BCompleteHistory.Text = "COMPLETE"
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.PanelControl3)
-        Me.PanelControl2.Controls.Add(Me.SLEScanList)
-        Me.PanelControl2.Controls.Add(Me.BViewHistory)
-        Me.PanelControl2.Controls.Add(Me.LabelControl3)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1072, 44)
-        Me.PanelControl2.TabIndex = 1
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.L3PL)
-        Me.PanelControl3.Controls.Add(Me.LabelControl5)
-        Me.PanelControl3.Controls.Add(Me.LabelControl4)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(764, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(306, 40)
-        Me.PanelControl3.TabIndex = 11
-        '
-        'L3PL
-        '
-        Me.L3PL.Location = New System.Drawing.Point(46, 14)
-        Me.L3PL.Name = "L3PL"
-        Me.L3PL.Size = New System.Drawing.Size(0, 13)
-        Me.L3PL.TabIndex = 3
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(36, 14)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl5.TabIndex = 2
-        Me.LabelControl5.Text = ":"
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(13, 14)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(17, 13)
-        Me.LabelControl4.TabIndex = 1
-        Me.LabelControl4.Text = "3PL"
-        '
-        'SLEScanList
-        '
-        Me.SLEScanList.Location = New System.Drawing.Point(108, 13)
-        Me.SLEScanList.Name = "SLEScanList"
-        Me.SLEScanList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEScanList.Properties.View = Me.GridView1
-        Me.SLEScanList.Size = New System.Drawing.Size(211, 20)
-        Me.SLEScanList.TabIndex = 10
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "ID"
-        Me.GridColumn5.FieldName = "id_odm_sc"
+        Me.GridColumn5.Caption = "3PL"
+        Me.GridColumn5.FieldName = "comp_name"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
         '
         'GridColumn6
         '
@@ -1001,47 +615,82 @@ Partial Class FormODM
         Me.GridColumn6.FieldName = "number"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
+        Me.GridColumn6.VisibleIndex = 1
         '
-        'GridColumn32
+        'GridColumn11
         '
-        Me.GridColumn32.Caption = "3PL"
-        Me.GridColumn32.FieldName = "comp_name"
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 1
+        Me.GridColumn11.Caption = "Created Date"
+        Me.GridColumn11.FieldName = "created_date"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 3
         '
-        'GridColumn33
+        'GridColumn12
         '
-        Me.GridColumn33.Caption = "Date Created"
-        Me.GridColumn33.FieldName = "created_date"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 2
+        Me.GridColumn12.Caption = "Created By"
+        Me.GridColumn12.FieldName = "created_by"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 4
         '
-        'GridColumn34
+        'GridColumn13
         '
-        Me.GridColumn34.Caption = "Created By"
-        Me.GridColumn34.FieldName = "employee_name"
-        Me.GridColumn34.Name = "GridColumn34"
-        Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 3
+        Me.GridColumn13.Caption = "Updated Date"
+        Me.GridColumn13.FieldName = "updated_date"
+        Me.GridColumn13.Name = "GridColumn13"
         '
-        'BViewHistory
+        'GridColumn14
         '
-        Me.BViewHistory.Location = New System.Drawing.Point(325, 11)
-        Me.BViewHistory.Name = "BViewHistory"
-        Me.BViewHistory.Size = New System.Drawing.Size(54, 23)
-        Me.BViewHistory.TabIndex = 9
-        Me.BViewHistory.Text = "view"
+        Me.GridColumn14.Caption = "Updated By"
+        Me.GridColumn14.FieldName = "updated_by"
+        Me.GridColumn14.Name = "GridColumn14"
         '
-        'LabelControl3
+        'GridColumn15
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(14, 16)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(88, 13)
-        Me.LabelControl3.TabIndex = 0
-        Me.LabelControl3.Text = "Document Number"
+        Me.GridColumn15.Caption = "Scan Manifest"
+        Me.GridColumn15.FieldName = "scan_manifest"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Print Manifest"
+        Me.GridColumn16.FieldName = "print_manifest"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Report Status"
+        Me.GridColumn17.FieldName = "report_status"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 5
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "AWB/Resi"
+        Me.GridColumn18.FieldName = "awbill_no"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 2
+        '
+        'BRefreshWaiting
+        '
+        Me.BRefreshWaiting.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BRefreshWaiting.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BRefreshWaiting.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BRefreshWaiting.Appearance.Options.UseBackColor = True
+        Me.BRefreshWaiting.Appearance.Options.UseFont = True
+        Me.BRefreshWaiting.Appearance.Options.UseForeColor = True
+        Me.BRefreshWaiting.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BRefreshWaiting.Location = New System.Drawing.Point(0, 524)
+        Me.BRefreshWaiting.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BRefreshWaiting.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BRefreshWaiting.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BRefreshWaiting.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BRefreshWaiting.Name = "BRefreshWaiting"
+        Me.BRefreshWaiting.Size = New System.Drawing.Size(1072, 32)
+        Me.BRefreshWaiting.TabIndex = 15
+        Me.BRefreshWaiting.Text = "Refresh List"
         '
         'XTPPrint
         '
@@ -1363,17 +1012,8 @@ Partial Class FormODM
         Me.PCScan.PerformLayout()
         CType(Me.TEScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPHistory.ResumeLayout(False)
-        CType(Me.GCListHistory, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVListHistory, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
-        CType(Me.SLEScanList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCWaitingToScan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVWaitingToScan, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPrint.ResumeLayout(False)
         CType(Me.GCListODM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListODM, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1436,48 +1076,6 @@ Partial Class FormODM
     Friend WithEvents RICEODM As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPHistory As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCListHistory As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVListHistory As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GCHChecklist As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHStoreAccount As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents BCompleteHistory As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SLEScanList As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BViewHistory As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents L3PL As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEAWB As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTPPrint As DevExpress.XtraTab.XtraTabPage
@@ -1515,4 +1113,18 @@ Partial Class FormODM
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BRefreshWaiting As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCWaitingToScan As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVWaitingToScan As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
