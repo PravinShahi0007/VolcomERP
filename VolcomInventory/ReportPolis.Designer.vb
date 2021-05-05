@@ -59,7 +59,7 @@ Partial Public Class ReportPolis
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XTPolisPPS})
-        Me.Detail.HeightF = 40.0!
+        Me.Detail.HeightF = 51.45833!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -71,7 +71,7 @@ Partial Public Class ReportPolis
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XTPolisPPS.BorderWidth = 1.0!
         Me.XTPolisPPS.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XTPolisPPS.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XTPolisPPS.LocationFloat = New DevExpress.Utils.PointFloat(0!, 8.333328!)
         Me.XTPolisPPS.Name = "XTPolisPPS"
         Me.XTPolisPPS.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XTPolisPPS.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XRRowHead})
@@ -268,7 +268,7 @@ Partial Public Class ReportPolis
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel5, Me.XrLabel6, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1, Me.LTitle})
-        Me.PageHeader.HeightF = 100.0!
+        Me.PageHeader.HeightF = 106.9583!
         Me.PageHeader.Name = "PageHeader"
         '
         'XrLabel9
