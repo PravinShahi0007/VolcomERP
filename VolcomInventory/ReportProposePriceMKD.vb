@@ -107,6 +107,8 @@
                     Catch ex As Exception
                     End Try
                     e.TotalValue = sum_res
+                Case "class_sum"
+                    e.TotalValue = GVData.GetGroupRowValue(e.RowHandle).ToString + " Total"
             End Select
         End If
     End Sub

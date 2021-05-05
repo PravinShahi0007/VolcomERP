@@ -455,6 +455,37 @@
             ReportProposePriceMKD.rmt = rmt
             Dim Report As New ReportProposePriceMKD()
 
+            'option col
+            BandedGridColumnno.Width = 23
+            BandedGridColumndesign_code.Width = 44
+            BandedGridColumnname.Width = 84
+            BandedGridColumnclass.Width = 26
+            BandedGridColumnage.Width = 20
+            BandedGridColumndesign_cop.Width = 45
+            BandedGridColumndesign_price.Width = 40
+            BandedGridColumnprice_type.Width = 20
+            BandedGridColumndesign_cat.Width = 26
+            BandedGridColumndesign_price_normal.Width = 43
+            BandedGridColumncurr_disc.Width = 30
+            BandedGridColumnpropose_disc.Width = 43
+            BandedGridColumnpropose_price.Width = 62
+            BandedGridColumnpropose_price_final.Width = 73
+            BandedGridColumntotal_sal.Width = 38
+            BandedGridColumntotal_soh.Width = 38
+            BandedGridColumntotal_bos.Width = 38
+            BandedGridColumnsas.Width = 45
+            BandedGridColumntotal_normal_value.Width = 97
+            BandedGridColumntotal_current_value.Width = 101
+            BandedGridColumntotal_propose_value.Width = 103
+            BandedGridColumntotal_cost.Width = 87
+            BandedGridColumnmarked_down_value.Width = 114
+            BandedGridColumnmark_up.Width = 59
+            BandedGridColumnpropose_price_final.AppearanceCell.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+            BandedGridColumnpropose_price_final.AppearanceCell.ForeColor = Color.Black
+            For Each c In GVData.FormatRules
+                c.Enabled = False
+            Next
+
             '... 
             ' creating And saving the view's layout to a new memory stream 
             Dim str As System.IO.Stream
@@ -502,61 +533,30 @@
             Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
             Report.LNote.Text = MENote.Text
 
-            'option col
-            'no: 23
-            'id_pp_change_det: 109
-            'id_design: 65
-            'design_code: 40
-            'name: 84
-            'Class :  26
-            'id_disc: 52
-            'first_del: 109
-            'age: 20
-            'design_cop: 45
-            'id_design_price: 94
-            'design_price: 40
-            'price_type: 20
-            'design_cat: 20
-            'id_design_price_normal: 132
-            'design_price_normal: 43
-            'curr_disc: 24
-            'propose_disc: 81
-            'propose_price: 85
-            'propose_price_final: 95
-            'note: 43
-            'total_sal: 29
-            'total_soh: 28
-            'total_bos: 43
-            'sas: 45
-            'total_normal_value: 97
-            'total_current_value: 101
-            'total_propose_value: 103
-            'total_cost: 87
-            'marked_down_value: 114
-            'mark_up: 59
-            'btn_edit_propose: 39
-            'check_stt: 66
-            'is_select: 26
-
             ' Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()
+
+            BandedGridColumnpropose_price_final.AppearanceCell.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
+            For Each c In GVData.FormatRules
+                c.Enabled = True
+            Next
         End If
         Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
         Cursor = Cursors.WaitCursor
-        For i As Integer = 0 To GVData.Columns.Count - 1
-            If GVData.Columns(i).Visible = True Then
-                Console.WriteLine(GVData.Columns(i).FieldName.ToString + " : " + GVData.Columns(i).Width.ToString)
-            End If
-        Next
-        'FormReportMark.report_mark_type = rmt
-        'FormReportMark.id_report = id
-        'FormReportMark.is_view = is_view
-        'FormReportMark.form_origin = Name
-        'FormReportMark.ShowDialog()
+        'For i As Integer = 0 To GVData.Columns.Count - 1
+        '    If GVData.Columns(i).Visible = True Then
+        '        Console.WriteLine(GVData.Columns(i).FieldName.ToString + " : " + GVData.Columns(i).Width.ToString)
+        '    End If
+        'Next
+        FormReportMark.report_mark_type = rmt
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 
@@ -740,6 +740,8 @@
                     Catch ex As Exception
                     End Try
                     e.TotalValue = sum_res
+                Case "class_sum"
+                    e.TotalValue = GVData.GetGroupRowValue(e.RowHandle).ToString + " Total"
             End Select
         End If
     End Sub
@@ -798,5 +800,19 @@
                 LEPriceType.ItemIndex = LEPriceType.Properties.GetDataSourceRowIndex("id_design_price_type", "4")
             End If
         End If
+    End Sub
+
+    Private Sub GVData_CustomDrawFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVData.CustomDrawFooter
+        e.Graphics.FillRectangle(New SolidBrush(Color.White), e.Bounds)
+
+        Dim format As StringFormat = e.Appearance.GetStringFormat.Clone
+
+        format.Alignment = StringAlignment.Near
+
+        If GVData.GetGroupRowDisplayText(e.RowHandle).Contains("class") Then
+            e.Graphics.DrawString(GVData.GetGroupRowValue(e.RowHandle) + " Total", e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
+        End If
+
+        e.Handled = True
     End Sub
 End Class
