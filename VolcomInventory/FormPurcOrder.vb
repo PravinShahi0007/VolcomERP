@@ -355,12 +355,13 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
         GVPurcReq.ActiveFilterString = ""
     End Sub
 
-    Private Sub SMClose_Click(sender As Object, e As EventArgs) Handles SMClose.Click
-        GVPO.ActiveFilterString = ""
-        GVPO.ActiveFilterString = "[is_check]='yes'"
-        FormPurcReqItemUnableFulfill.id_popup = "2"
-        FormPurcReqItemUnableFulfill.ShowDialog()
-        GVPO.ActiveFilterString = ""
+    Private Sub SMClose_Click(sender As Object, e As EventArgs)
+        'GVPO.ActiveFilterString = ""
+        'GVPO.ActiveFilterString = "[is_check]='yes'"
+        'FormPurcReqItemUnableFulfill.id_popup = "2"
+        'FormPurcReqItemUnableFulfill.ShowDialog()
+        'GVPO.ActiveFilterString = ""
+        warningCustom("Please use close form")
     End Sub
 
     Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged

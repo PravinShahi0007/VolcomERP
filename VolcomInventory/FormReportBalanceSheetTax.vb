@@ -46,6 +46,13 @@
     End Sub
 
     Private Sub FormReportBalanceSheetTax_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim q As String = "SELECT DATE_ADD(MAX(period_to),INTERVAL 1 DAY) AS min_date
+FROM tb_tax_pph_summary
+WHERE id_report_status=6"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            DETaxMonth.Properties.MinValue = Date.Parse(dt.Rows(0)("min_date").ToString).ToString("yyyy-MM-dd")
+        End If
         DETaxMonth.EditValue = FormReportBalanceSheet.DETaxFrom.EditValue
     End Sub
 

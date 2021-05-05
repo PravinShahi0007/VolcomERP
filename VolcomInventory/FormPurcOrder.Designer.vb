@@ -176,8 +176,6 @@ Partial Class FormPurcOrder
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnDropQuickMenu = New DevExpress.XtraEditors.DropDownButton()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMClose = New System.Windows.Forms.ToolStripMenuItem()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BBDropPOItem = New DevExpress.XtraBars.BarButtonItem()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
@@ -272,7 +270,6 @@ Partial Class FormPurcOrder
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCSelAll.SuspendLayout()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewMenu.SuspendLayout()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1016,7 +1013,7 @@ Partial Class FormPurcOrder
         '
         Me.MenuGCPO.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseReceivingToolStripMenuItem})
         Me.MenuGCPO.Name = "MenuGCPO"
-        Me.MenuGCPO.Size = New System.Drawing.Size(158, 26)
+        Me.MenuGCPO.Size = New System.Drawing.Size(158, 48)
         '
         'CloseReceivingToolStripMenuItem
         '
@@ -1770,7 +1767,6 @@ Partial Class FormPurcOrder
         '
         'BtnDropQuickMenu
         '
-        Me.BtnDropQuickMenu.ContextMenuStrip = Me.ViewMenu
         Me.BtnDropQuickMenu.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDropQuickMenu.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Hide
         Me.BtnDropQuickMenu.DropDownControl = Me.PopupMenu1
@@ -1782,18 +1778,6 @@ Partial Class FormPurcOrder
         Me.BtnDropQuickMenu.TabIndex = 107
         Me.BtnDropQuickMenu.Text = "Quick Menu"
         Me.BtnDropQuickMenu.Visible = False
-        '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMClose})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(177, 26)
-        '
-        'SMClose
-        '
-        Me.SMClose.Name = "SMClose"
-        Me.SMClose.Size = New System.Drawing.Size(176, 22)
-        Me.SMClose.Text = "Close PO Receiving"
         '
         'PopupMenu1
         '
@@ -2219,7 +2203,6 @@ Partial Class FormPurcOrder
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCSelAll.ResumeLayout(False)
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewMenu.ResumeLayout(False)
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2339,8 +2322,6 @@ Partial Class FormPurcOrder
     Friend WithEvents BtnDropQuickMenu As DevExpress.XtraEditors.DropDownButton
     Friend WithEvents PCSelAll As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CheckEditSelAll As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents ViewMenu As ContextMenuStrip
-    Friend WithEvents SMClose As ToolStripMenuItem
     Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
     Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl

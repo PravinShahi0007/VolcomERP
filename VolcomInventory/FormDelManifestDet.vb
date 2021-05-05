@@ -579,14 +579,13 @@ WHERE dmd.`id_del_manifest`='" & id_del_manifest & "'"
 
     Private Sub FormDelManifestDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Try
-            FormDelManifest.form_load()
+            'FormDelManifest.form_load()
 
-            If Not id_del_manifest = "0" Then
-                FormDelManifest.GVList.FocusedRowHandle = find_row(FormDelManifest.GVList, "id_del_manifest", id_del_manifest)
-            End If
+            'If Not id_del_manifest = "0" Then
+            '    FormDelManifest.GVList.FocusedRowHandle = find_row(FormDelManifest.GVList, "id_del_manifest", id_del_manifest)
+            'End If
         Catch ex As Exception
         End Try
-
         Dispose()
     End Sub
 
