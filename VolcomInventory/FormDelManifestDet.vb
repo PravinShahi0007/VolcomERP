@@ -763,7 +763,8 @@ INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 LEFT JOIN (
     SELECT id_wh_awb_det 
     FROM `tb_del_manifest_det` deld 
-    INNER JOIN tb_del_manifest del ON del.id_del_manifest=deld.id_del_manifest AND del.id_report_status!=5
+    INNER JOIN tb_del_manifest del ON del.id_del_manifest=deld.id_del_manifest 
+    AND (del.id_report_status!=5 OR ISNULL(del.id_report_status))
 ) tb_c ON tb_c.id_wh_awb_det=awbd.id_wh_awb_det
 WHERE ISNULL(tb_c.id_wh_awb_det) AND c.`id_comp_group`='" & SLEStoreGroup.EditValue.ToString & "' AND so.`sales_order_ol_shop_number`='" & order & "'
 ORDER BY awbd.id_awbill ASC,awbd.id_pl_sales_order_del ASC"
