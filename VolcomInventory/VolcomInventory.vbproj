@@ -3993,6 +3993,12 @@
     <Compile Include="FormProposePriceMKD.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProposePriceMKDBulk.Designer.vb">
+      <DependentUpon>FormProposePriceMKDBulk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePriceMKDBulk.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProposePriceMKDDet.Designer.vb">
       <DependentUpon>FormProposePriceMKDDet.vb</DependentUpon>
     </Compile>
@@ -11539,6 +11545,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposePriceMKD.resx">
       <DependentUpon>FormProposePriceMKD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePriceMKDBulk.resx">
+      <DependentUpon>FormProposePriceMKDBulk.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposePriceMKDDet.resx">
       <DependentUpon>FormProposePriceMKDDet.vb</DependentUpon>

@@ -815,4 +815,21 @@
 
         e.Handled = True
     End Sub
+
+    Private Sub BtnBulkEdit_Click(sender As Object, e As EventArgs) Handles BtnBulkEdit.Click
+        Cursor = Cursors.WaitCursor
+        Dim last_filter As String = GVData.ActiveFilterString.ToString
+        Dim ftr As String = "[is_select]='Yes' "
+        If last_filter <> "" Then
+            ftr += "AND " + last_filter
+        End If
+        GVData.ActiveFilterString = ftr
+        If GVData.RowCount > 0 Then
+            FormProposePriceMKDBulk.ShowDialog()
+        Else
+            stopCustom("No selected items")
+        End If
+        GVData.ActiveFilterString = "" + last_filter
+        Cursor = Cursors.Default
+    End Sub
 End Class

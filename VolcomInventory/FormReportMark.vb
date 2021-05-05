@@ -9792,7 +9792,7 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
                 FROM tb_pp_change_det pd
                 INNER JOIN tb_pp_change p ON p.id_pp_change = pd.id_pp_change
                 INNER JOIN tb_lookup_design_mkd t ON t.id_design_mkd = p.id_design_mkd
-                WHERE pd.id_pp_change='" + id_report + "' AND (pd.propose_price_final>0 OR !ISNULL(pd.propose_price_final)) "
+                WHERE pd.id_pp_change='" + id_report + "' AND !ISNULL(pd.propose_price_final) AND pd.propose_price_final>0 "
                 execute_non_query(qm, True, "", "", "", "")
             End If
 
