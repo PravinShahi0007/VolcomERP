@@ -444,6 +444,9 @@
         ElseIf report_mark_type = "300" Then
             'foc og
             FormPurcReceiveFOCDet.Close()
+        ElseIf report_mark_type = "307" Then
+            'polis propose
+            FormPolisDet.Close()
         End If
     End Sub
     Sub show()
@@ -1465,6 +1468,10 @@ GROUP BY rec.`id_prod_order`"
             FormPurcReceiveFOCDet.id = id_report
             FormPurcReceiveFOCDet.action = "upd"
             FormPurcReceiveFOCDet.ShowDialog()
+        ElseIf report_mark_type = "307" Then
+            FormPolisDet.id_pps = id_report
+            FormPolisDet.is_view = "1"
+            FormPolisDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2620,6 +2627,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_purc_rec_foc"
             field_number = "purc_rec_foc_number"
             field_date = "date_created"
+        ElseIf report_mark_type = "307" Then
+            'polis
+            table_name = "tb_polis_pps"
+            field_id = "id_polis_pps"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
