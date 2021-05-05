@@ -2629,6 +2629,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_purc_rec_foc"
             field_number = "purc_rec_foc_number"
             field_date = "date_created"
+        ElseIf report_mark_type = "306" Then
+            'propose turun harga
+            table_name = "tb_pp_change"
+            field_id = "id_pp_change"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
