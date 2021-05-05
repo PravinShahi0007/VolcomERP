@@ -444,6 +444,9 @@
         ElseIf report_mark_type = "300" Then
             'foc og
             FormPurcReceiveFOCDet.Close()
+        ElseIf report_mark_type = "306" Then
+            'propose turun harga
+            FormProposePriceMKDDet.Close()
         End If
     End Sub
     Sub show()
@@ -1465,6 +1468,12 @@ GROUP BY rec.`id_prod_order`"
             FormPurcReceiveFOCDet.id = id_report
             FormPurcReceiveFOCDet.action = "upd"
             FormPurcReceiveFOCDet.ShowDialog()
+        ElseIf report_mark_type = "306" Then
+            'propose turun harga
+            FormProposePriceMKDDet.id = id_report
+            FormProposePriceMKDDet.action = "upd"
+            FormProposePriceMKDDet.is_view = "1"
+            FormProposePriceMKDDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
