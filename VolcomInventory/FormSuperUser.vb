@@ -246,6 +246,44 @@
         'f.id_volcomstore_sale = id_volcomstore_sale
         'f.updateStatusOnlineStore(data.Rows(0)("id_commerce_type").ToString, data.Rows(0)("id_store").ToString, data.Rows(0)("id_report").ToString, data.Rows(0)("id_web_order").ToString)
 
+        'manual fullfilled bulk
+        'Cursor = Cursors.WaitCursor
+        'Dim q As String = "SELECT 
+        '-- od.sales_order_ol_shop_number
+        'od.id AS `id_web_order`,od.sales_order_ol_shop_number, del.id_pl_sales_order_del AS `id_report`,del.pl_sales_order_del_number AS `report_number`, c.id_commerce_type, c.id_comp AS `id_store`
+        'FROM (
+        '  SELECT od.id,od.sales_order_ol_shop_number
+        '  -- ,l.*
+        '  FROM tb_ol_store_order_log l 
+        '  LEFT JOIN (
+        '     SELECT od.id, od.sales_order_ol_shop_number FROM tb_ol_store_order od 
+        '     WHERE od.id_comp_group=76 
+        '     GROUP BY od.id
+        '  ) od ON od.id = l.id
+        '  WHERE l.id_comp_group=76 AND DATE(l.log_date)='2021-05-04' AND l.log_note LIKE '%Error Set Fullfil%'
+        '  GROUP BY od.sales_order_ol_shop_number
+        '  ORDER BY sales_order_ol_shop_number ASC 
+        ') od
+        'INNER JOIN tb_sales_order so ON so.sales_order_ol_shop_number = od.sales_order_ol_shop_number
+        'INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+        'INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        'INNER JOIN tb_pl_sales_order_del del ON del.id_sales_order = so.id_sales_order
+        'INNER JOIN tb_lookup_so_status cat ON cat.id_so_status = so.id_so_status
+        'WHERE cat.id_order_type=1 AND del.id_report_status=6
+        'GROUP BY del.id_pl_sales_order_del
+        'ORDER BY od.sales_order_ol_shop_number ASC "
+        'Dim data As DataTable = execute_query(q, -1, True, "", "", "", "")
+        'For i As Integer = 0 To data.Rows.Count - 1
+        '    Dim f As New FormChangeStatus()
+        '    f.id_pop_up = "2"
+        '    Dim id_volcomstore_normal As String = execute_query("SELECT v.id_store FROM tb_m_comp_volcom_ol v WHERE v.id_design_cat=1", 0, True, "", "", "", "")
+        '    Dim id_volcomstore_sale As String = execute_query("SELECT v.id_store FROM tb_m_comp_volcom_ol v WHERE v.id_design_cat=2", 0, True, "", "", "", "")
+        '    f.id_volcomstore_normal = id_volcomstore_normal
+        '    f.id_volcomstore_sale = id_volcomstore_sale
+        '    f.updateStatusOnlineStore(data.Rows(i)("id_commerce_type").ToString, data.Rows(i)("id_store").ToString, data.Rows(i)("id_report").ToString, data.Rows(i)("id_web_order").ToString)
+        'Next
+        'Cursor = Cursors.Default
+
         'create ship invoice
         'Dim shp As New ClassShipInvoice()
         'shp.id_invoice_ship = "-1"
