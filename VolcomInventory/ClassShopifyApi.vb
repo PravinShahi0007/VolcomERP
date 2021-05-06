@@ -3,12 +3,14 @@
     Public password As String = get_setup_field("shopify_api_password")
     Public shop As String = get_setup_field("shopify_api_shop")
     Public id_comp_group As String = get_setup_field("shopify_comp_group")
+    Public api_new_version As String = get_setup_field("shopify_api_version")
+
 
     Function get_location_id() As String
         Net.ServicePointManager.Expect100Continue = True
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
 
-        Dim request As Net.WebRequest = Net.WebRequest.Create("https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/locations.json")
+        Dim request As Net.WebRequest = Net.WebRequest.Create("https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/locations.json")
 
         request.Method = "GET"
 
@@ -49,7 +51,7 @@
         data.Columns.Add("design_price", GetType(String))
         data.Columns.Add("inventory_quantity", GetType(String))
 
-        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/products.json?limit=250"
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/products.json?limit=250"
 
         Dim page_info As String = ""
 
@@ -112,7 +114,7 @@
         Net.ServicePointManager.Expect100Continue = True
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
 
-        Dim request As Net.WebRequest = Net.WebRequest.Create("https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/inventory_levels/adjust.json")
+        Dim request As Net.WebRequest = Net.WebRequest.Create("https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/inventory_levels/adjust.json")
 
         request.Method = "POST"
 
@@ -645,7 +647,7 @@ GROUP BY p.sku"
   }
 }")
         'Console.WriteLine(tracking_url + tracking_number)
-        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2020-04/orders/" & id_order & "/fulfillments.json", data, "application/json", "POST", username, password)
+        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/" + api_new_version + "/orders/" & id_order & "/fulfillments.json", data, "application/json", "POST", username, password)
     End Sub
 
     Function get_tag(ByVal product_id As String) As String
