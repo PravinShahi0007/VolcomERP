@@ -65,9 +65,6 @@ WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45"
         End If
     End Sub
 
-    Private Sub BProposePolis_Click(sender As Object, e As EventArgs) Handles BProposePolis.Click
-        FormPolisDet.ShowDialog()
-    End Sub
 
     Private Sub GVPolisPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVPolisPPS.DoubleClick
         If GVPolisPPS.RowCount > 0 Then
@@ -87,5 +84,13 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_sta
 
     Private Sub BRefreshRegisterPolis_Click(sender As Object, e As EventArgs) Handles BRefreshRegisterPolis.Click
 
+    End Sub
+
+    Private Sub BCreatePolis_Click(sender As Object, e As EventArgs) Handles BCreatePolis.Click
+        FormPolisDet.ShowDialog()
+    End Sub
+
+    Private Sub BCreateNewReg_Click(sender As Object, e As EventArgs) Handles BCreateNewReg.Click
+        FormPolisReg.ShowDialog()
     End Sub
 End Class
