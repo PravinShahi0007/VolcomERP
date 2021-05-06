@@ -88,28 +88,38 @@
                     erp_discount = FormProposePriceMKDDet.GVData.GetRowCellValue(i, "erp_discount")
                 End If
 
+                Dim propose_disc_selected As Decimal
                 If CENoPropose.EditValue = False Then
                     If propose_disc > curr_disc Then
                         'isi
+                        propose_disc_selected = propose_disc
                         Dim propose_price As Decimal = normal_price * ((100 - propose_disc) / 100)
                         Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
                         FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc", propose_disc)
                         FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price", propose_price)
                         FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", propose_price_final)
+                        FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
+                        FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_status", "Turun")
                     Else
                         'no propose
+                        propose_disc_selected = -1
                         FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc", Nothing)
                         FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price", Nothing)
                         FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", Nothing)
+                        FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc_group", "")
+                        FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_status", "")
                     End If
                 Else
                     'no propose
+                    propose_disc_selected = -1
                     FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc", Nothing)
                     FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price", Nothing)
                     FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", Nothing)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc_group", "")
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_status", "")
                 End If
                 FormProposePriceMKDDet.GVData.SetRowCellValue(i, "note", MENote.Text)
-                If propose_disc <> erp_discount Then
+                If propose_disc_selected <> erp_discount Then
                     FormProposePriceMKDDet.GVData.SetRowCellValue(i, "check_stt", "1")
                 Else
                     FormProposePriceMKDDet.GVData.SetRowCellValue(i, "check_stt", "2")
@@ -130,6 +140,8 @@
                 Else
                     FormProposePriceMKDDet.GVData.SetRowCellValue(i, "check_stt", "2")
                 End If
+                FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc_group", "")
+                FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_status", "")
                 FormProposePriceMKDDet.GVData.SetRowCellValue(i, "is_select", "No")
             End If
         Next
