@@ -318,4 +318,9 @@
         Catch ex As Exception
         End Try
     End Sub
+
+    Private Sub GVMat_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVMat.ColumnFilterChanged
+        view_image()
+        view_mat_price(GVMat.GetFocusedRowCellDisplayText("id_mat_det").ToString)
+    End Sub
 End Class

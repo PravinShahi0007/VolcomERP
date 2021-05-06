@@ -21,7 +21,6 @@ Partial Class FormPolis
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPolis))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BProposePolis = New DevExpress.XtraEditors.SimpleButton()
         Me.BExpiredSoon = New DevExpress.XtraEditors.SimpleButton()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPolisToko = New DevExpress.XtraGrid.GridControl()
@@ -49,17 +48,19 @@ Partial Class FormPolis
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCreatePolis = New DevExpress.XtraEditors.SimpleButton()
         Me.BRefreshPolisPPS = New DevExpress.XtraEditors.SimpleButton()
-        Me.XTPFixedAsset = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPPolisRegister = New DevExpress.XtraTab.XtraTabPage()
-        Me.BRefreshRegisterPolis = New DevExpress.XtraEditors.SimpleButton()
         Me.GCRegisterPolis = New DevExpress.XtraGrid.GridControl()
         Me.GVRegisterPolis = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCreateNewReg = New DevExpress.XtraEditors.SimpleButton()
+        Me.BRefreshRegisterPolis = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPFixedAsset = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCPolisToko, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,7 +82,6 @@ Partial Class FormPolis
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BProposePolis)
         Me.PanelControl1.Controls.Add(Me.BExpiredSoon)
         Me.PanelControl1.Controls.Add(Me.BRefresh)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -90,29 +90,17 @@ Partial Class FormPolis
         Me.PanelControl1.Size = New System.Drawing.Size(997, 46)
         Me.PanelControl1.TabIndex = 0
         '
-        'BProposePolis
-        '
-        Me.BProposePolis.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BProposePolis.Image = CType(resources.GetObject("BProposePolis.Image"), System.Drawing.Image)
-        Me.BProposePolis.ImageIndex = 13
-        Me.BProposePolis.Location = New System.Drawing.Point(2, 2)
-        Me.BProposePolis.Name = "BProposePolis"
-        Me.BProposePolis.Size = New System.Drawing.Size(116, 42)
-        Me.BProposePolis.TabIndex = 20
-        Me.BProposePolis.TabStop = False
-        Me.BProposePolis.Text = "Propose Polis"
-        '
         'BExpiredSoon
         '
         Me.BExpiredSoon.Dock = System.Windows.Forms.DockStyle.Right
         Me.BExpiredSoon.Image = CType(resources.GetObject("BExpiredSoon.Image"), System.Drawing.Image)
         Me.BExpiredSoon.ImageIndex = 13
-        Me.BExpiredSoon.Location = New System.Drawing.Point(757, 2)
+        Me.BExpiredSoon.Location = New System.Drawing.Point(726, 2)
         Me.BExpiredSoon.Name = "BExpiredSoon"
-        Me.BExpiredSoon.Size = New System.Drawing.Size(116, 42)
+        Me.BExpiredSoon.Size = New System.Drawing.Size(147, 42)
         Me.BExpiredSoon.TabIndex = 19
         Me.BExpiredSoon.TabStop = False
-        Me.BExpiredSoon.Text = "Expired Soon"
+        Me.BExpiredSoon.Text = "View Expired Soon"
         '
         'BRefresh
         '
@@ -297,6 +285,7 @@ Partial Class FormPolis
         'XTPPolisPPS
         '
         Me.XTPPolisPPS.Controls.Add(Me.GCPolisPPS)
+        Me.XTPPolisPPS.Controls.Add(Me.BCreatePolis)
         Me.XTPPolisPPS.Controls.Add(Me.BRefreshPolisPPS)
         Me.XTPPolisPPS.Name = "XTPPolisPPS"
         Me.XTPPolisPPS.Size = New System.Drawing.Size(997, 435)
@@ -308,7 +297,7 @@ Partial Class FormPolis
         Me.GCPolisPPS.Location = New System.Drawing.Point(0, 0)
         Me.GCPolisPPS.MainView = Me.GVPolisPPS
         Me.GCPolisPPS.Name = "GCPolisPPS"
-        Me.GCPolisPPS.Size = New System.Drawing.Size(997, 399)
+        Me.GCPolisPPS.Size = New System.Drawing.Size(997, 359)
         Me.GCPolisPPS.TabIndex = 0
         Me.GCPolisPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPolisPPS})
         '
@@ -351,6 +340,20 @@ Partial Class FormPolis
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 2
         '
+        'BCreatePolis
+        '
+        Me.BCreatePolis.Appearance.BackColor = System.Drawing.Color.DarkBlue
+        Me.BCreatePolis.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreatePolis.Appearance.Options.UseBackColor = True
+        Me.BCreatePolis.Appearance.Options.UseForeColor = True
+        Me.BCreatePolis.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BCreatePolis.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreatePolis.Location = New System.Drawing.Point(0, 359)
+        Me.BCreatePolis.Name = "BCreatePolis"
+        Me.BCreatePolis.Size = New System.Drawing.Size(997, 40)
+        Me.BCreatePolis.TabIndex = 5
+        Me.BCreatePolis.Text = "Create New Proposal"
+        '
         'BRefreshPolisPPS
         '
         Me.BRefreshPolisPPS.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
@@ -365,33 +368,14 @@ Partial Class FormPolis
         Me.BRefreshPolisPPS.TabIndex = 1
         Me.BRefreshPolisPPS.Text = "Refresh"
         '
-        'XTPFixedAsset
-        '
-        Me.XTPFixedAsset.Name = "XTPFixedAsset"
-        Me.XTPFixedAsset.Size = New System.Drawing.Size(1003, 463)
-        Me.XTPFixedAsset.Text = "Fixed Asset"
-        '
         'XTPPolisRegister
         '
         Me.XTPPolisRegister.Controls.Add(Me.GCRegisterPolis)
+        Me.XTPPolisRegister.Controls.Add(Me.BCreateNewReg)
         Me.XTPPolisRegister.Controls.Add(Me.BRefreshRegisterPolis)
         Me.XTPPolisRegister.Name = "XTPPolisRegister"
         Me.XTPPolisRegister.Size = New System.Drawing.Size(997, 435)
         Me.XTPPolisRegister.Text = "Pendaftaran Nomor Polis"
-        '
-        'BRefreshRegisterPolis
-        '
-        Me.BRefreshRegisterPolis.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BRefreshRegisterPolis.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BRefreshRegisterPolis.Appearance.Options.UseBackColor = True
-        Me.BRefreshRegisterPolis.Appearance.Options.UseForeColor = True
-        Me.BRefreshRegisterPolis.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
-        Me.BRefreshRegisterPolis.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BRefreshRegisterPolis.Location = New System.Drawing.Point(0, 399)
-        Me.BRefreshRegisterPolis.Name = "BRefreshRegisterPolis"
-        Me.BRefreshRegisterPolis.Size = New System.Drawing.Size(997, 36)
-        Me.BRefreshRegisterPolis.TabIndex = 2
-        Me.BRefreshRegisterPolis.Text = "Refresh"
         '
         'GCRegisterPolis
         '
@@ -399,7 +383,7 @@ Partial Class FormPolis
         Me.GCRegisterPolis.Location = New System.Drawing.Point(0, 0)
         Me.GCRegisterPolis.MainView = Me.GVRegisterPolis
         Me.GCRegisterPolis.Name = "GCRegisterPolis"
-        Me.GCRegisterPolis.Size = New System.Drawing.Size(997, 399)
+        Me.GCRegisterPolis.Size = New System.Drawing.Size(997, 357)
         Me.GCRegisterPolis.TabIndex = 3
         Me.GCRegisterPolis.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRegisterPolis})
         '
@@ -426,6 +410,13 @@ Partial Class FormPolis
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 0
         '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Propossal Number"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 1
+        '
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Step"
@@ -440,12 +431,39 @@ Partial Class FormPolis
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 2
         '
-        'GridColumn20
+        'BCreateNewReg
         '
-        Me.GridColumn20.Caption = "Propossal Number"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 1
+        Me.BCreateNewReg.Appearance.BackColor = System.Drawing.Color.DarkBlue
+        Me.BCreateNewReg.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateNewReg.Appearance.Options.UseBackColor = True
+        Me.BCreateNewReg.Appearance.Options.UseForeColor = True
+        Me.BCreateNewReg.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BCreateNewReg.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreateNewReg.Location = New System.Drawing.Point(0, 357)
+        Me.BCreateNewReg.Name = "BCreateNewReg"
+        Me.BCreateNewReg.Size = New System.Drawing.Size(997, 42)
+        Me.BCreateNewReg.TabIndex = 4
+        Me.BCreateNewReg.Text = "Register Polis from Proposal"
+        '
+        'BRefreshRegisterPolis
+        '
+        Me.BRefreshRegisterPolis.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BRefreshRegisterPolis.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BRefreshRegisterPolis.Appearance.Options.UseBackColor = True
+        Me.BRefreshRegisterPolis.Appearance.Options.UseForeColor = True
+        Me.BRefreshRegisterPolis.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BRefreshRegisterPolis.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BRefreshRegisterPolis.Location = New System.Drawing.Point(0, 399)
+        Me.BRefreshRegisterPolis.Name = "BRefreshRegisterPolis"
+        Me.BRefreshRegisterPolis.Size = New System.Drawing.Size(997, 36)
+        Me.BRefreshRegisterPolis.TabIndex = 2
+        Me.BRefreshRegisterPolis.Text = "Refresh"
+        '
+        'XTPFixedAsset
+        '
+        Me.XTPFixedAsset.Name = "XTPFixedAsset"
+        Me.XTPFixedAsset.Size = New System.Drawing.Size(1003, 463)
+        Me.XTPFixedAsset.Text = "Fixed Asset"
         '
         'FormPolis
         '
@@ -498,7 +516,6 @@ Partial Class FormPolis
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIMemoLocation As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BProposePolis As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPListPolis As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPPolisPPS As DevExpress.XtraTab.XtraTabPage
@@ -518,4 +535,6 @@ Partial Class FormPolis
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BRefreshRegisterPolis As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCreatePolis As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCreateNewReg As DevExpress.XtraEditors.SimpleButton
 End Class
