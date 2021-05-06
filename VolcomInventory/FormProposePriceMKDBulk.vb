@@ -1,6 +1,6 @@
 ﻿Public Class FormProposePriceMKDBulk
     Dim id_mkd_type As String = FormProposePriceMKDDet.LEMKDType.EditValue.ToString
-    Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = FormProposePriceMKDDet.GVData
+    'Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = FormProposePriceMKDDet.GVData
 
     Sub viewDisc()
         Dim cond As String = ""
@@ -69,27 +69,23 @@
         End If
 
         Cursor = Cursors.WaitCursor
-        For i As Integer = 0 To (gv.RowCount - 1) - GetGroupRowCount(gv)
+        For i As Integer = (FormProposePriceMKDDet.GVData.RowCount - 1) - GetGroupRowCount(FormProposePriceMKDDet.GVData) To 0 Step -1
             Dim propose_disc As Decimal
             Dim erp_discount As Decimal
             If id_mkd_type <> "3" Then
                 'selain internal sale
-                Dim curr_disc As Decimal = gv.GetRowCellValue(i, "curr_disc")
-                Dim normal_price As Decimal = gv.GetRowCellValue(i, "design_price_normal")
+                Dim curr_disc As Decimal = FormProposePriceMKDDet.GVData.GetRowCellValue(i, "curr_disc")
+                Dim normal_price As Decimal = FormProposePriceMKDDet.GVData.GetRowCellValue(i, "design_price_normal")
                 If SLEProposeDisc.EditValue = Nothing Then
                     propose_disc = -1
                 Else
                     propose_disc = SLEProposeDisc.EditValue
                 End If
-                Console.WriteLine(curr_disc.ToString)
-                Console.WriteLine("rh:" + i.ToString)
-                Console.WriteLine(gv.GetRowCellValue(i, "name").ToString)
-                Dim erp_discount_cek As String = gv.GetRowCellValue(i, "erp_discount").ToString
-                Console.WriteLine(erp_discount_cek.ToString)
+                Dim erp_discount_cek As String = FormProposePriceMKDDet.GVData.GetRowCellValue(i, "erp_discount").ToString
                 If erp_discount_cek = "" Then
                     erp_discount = -1
                 Else
-                    erp_discount = gv.GetRowCellValue(i, "erp_discount")
+                    erp_discount = FormProposePriceMKDDet.GVData.GetRowCellValue(i, "erp_discount")
                 End If
 
                 If CENoPropose.EditValue = False Then
@@ -97,48 +93,46 @@
                         'isi
                         Dim propose_price As Decimal = normal_price * ((100 - propose_disc) / 100)
                         Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
-                        gv.SetRowCellValue(i, "propose_disc", propose_disc)
-                        gv.SetRowCellValue(i, "propose_price", propose_price)
-                        gv.SetRowCellValue(i, "propose_price_final", propose_price_final)
+                        FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc", propose_disc)
+                        FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price", propose_price)
+                        FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", propose_price_final)
                     Else
                         'no propose
-                        gv.SetRowCellValue(i, "propose_disc", Nothing)
-                        gv.SetRowCellValue(i, "propose_price", Nothing)
-                        gv.SetRowCellValue(i, "propose_price_final", Nothing)
+                        FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc", Nothing)
+                        FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price", Nothing)
+                        FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", Nothing)
                     End If
                 Else
                     'no propose
-                    gv.SetRowCellValue(i, "propose_disc", Nothing)
-                    gv.SetRowCellValue(i, "propose_price", Nothing)
-                    gv.SetRowCellValue(i, "propose_price_final", Nothing)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc", Nothing)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price", Nothing)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", Nothing)
                 End If
-                gv.SetRowCellValue(i, "note", MENote.Text)
-                gv.SetRowCellValue(i, "is_select", "No")
+                FormProposePriceMKDDet.GVData.SetRowCellValue(i, "note", MENote.Text)
                 If propose_disc <> erp_discount Then
-                    gv.SetFocusedRowCellValue("check_stt", "1")
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "check_stt", "1")
                 Else
-                    gv.SetFocusedRowCellValue("check_stt", "2")
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "check_stt", "2")
                 End If
+                FormProposePriceMKDDet.GVData.SetRowCellValue(i, "is_select", "No")
             Else
                 'internal sale
                 If CENoPropose.EditValue = False Then
                     'propose
-                    gv.SetRowCellValue(i, "propose_price_final", TxtProposeFinal.EditValue)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", TxtProposeFinal.EditValue)
                 Else
                     'no propose
-                    gv.SetRowCellValue(i, "propose_price_final", Nothing)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", Nothing)
                 End If
-                gv.SetRowCellValue(i, "note", MENote.Text)
-                gv.SetRowCellValue(i, "is_select", "No")
+                FormProposePriceMKDDet.GVData.SetRowCellValue(i, "note", MENote.Text)
                 If propose_disc <> erp_discount Then
-                    gv.SetFocusedRowCellValue("check_stt", "1")
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "check_stt", "1")
                 Else
-                    gv.SetFocusedRowCellValue("check_stt", "2")
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "check_stt", "2")
                 End If
+                FormProposePriceMKDDet.GVData.SetRowCellValue(i, "is_select", "No")
             End If
         Next
-        'FormProposePriceMKDDet.GCData.RefreshDataSource()
-        'FormProposePriceMKDDet.GVData.RefreshData()
         Close()
         Cursor = Cursors.Default
     End Sub

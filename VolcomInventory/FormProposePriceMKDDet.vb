@@ -574,7 +574,7 @@
     End Sub
     Dim t As Integer = 0
     Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
-        Dim rh As Integer = e.RowHandle
+        'Dim rh As Integer = e.RowHandle
         'If e.Column.FieldName.ToString = "propose_disc" Then
         '    Cursor = Cursors.WaitCursor
         '    Dim disc_old As Decimal = GVData.ActiveEditor.OldEditValue
@@ -670,79 +670,82 @@
     Dim tot_cost As Decimal
     Dim tot_price_grp As Decimal
     Dim tot_cost_grp As Decimal
+    Dim is_enable_custom_calc As Boolean = True
     Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
-        Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
-        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        If is_enable_custom_calc Then
+            Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+            Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
 
-        ' Initialization 
-        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
-            tot_sal = 0.0
-            tot_bos = 0.0
-            tot_sal_grp = 0.0
-            tot_bos_grp = 0.0
+            ' Initialization 
+            If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+                tot_sal = 0.0
+                tot_bos = 0.0
+                tot_sal_grp = 0.0
+                tot_bos_grp = 0.0
 
-            tot_price = 0.0
-            tot_cost = 0.0
-            tot_price_grp = 0.0
-            tot_cost_grp = 0.0
-        End If
+                tot_price = 0.0
+                tot_cost = 0.0
+                tot_price_grp = 0.0
+                tot_cost_grp = 0.0
+            End If
 
-        ' Calculation 
-        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
-            Dim sal As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_sal").ToString, "0.00"))
-            Dim bos As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_bos").ToString, "0.00"))
-            Dim price As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_propose_value").ToString, "0.00"))
-            Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_cost").ToString, "0.00"))
-            Select Case summaryID
-                Case "sas_sum"
-                    tot_sal += sal
-                    tot_bos += bos
-                Case "sas_grp_sum"
-                    tot_sal_grp += sal
-                    tot_bos_grp += bos
-                Case "markup_sum"
-                    tot_price += price
-                    tot_cost += cost
-                Case "markup_grp_sum"
-                    tot_price_grp += price
-                    tot_cost_grp += cost
-            End Select
-        End If
+            ' Calculation 
+            If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+                Dim sal As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_sal").ToString, "0.00"))
+                Dim bos As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_bos").ToString, "0.00"))
+                Dim price As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_propose_value").ToString, "0.00"))
+                Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_cost").ToString, "0.00"))
+                Select Case summaryID
+                    Case "sas_sum"
+                        tot_sal += sal
+                        tot_bos += bos
+                    Case "sas_grp_sum"
+                        tot_sal_grp += sal
+                        tot_bos_grp += bos
+                    Case "markup_sum"
+                        tot_price += price
+                        tot_cost += cost
+                    Case "markup_grp_sum"
+                        tot_price_grp += price
+                        tot_cost_grp += cost
+                End Select
+            End If
 
-        ' Finalization 
-        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
-            Select Case summaryID
-                Case "sas_sum" 'total summary
-                    Dim sum_res As Decimal = 0.0
-                    Try
-                        sum_res = (tot_sal / tot_bos) * 100
-                    Catch ex As Exception
-                    End Try
-                    e.TotalValue = sum_res
-                Case "sas_grp_sum" 'group summary
-                    Dim sum_res As Decimal = 0.0
-                    Try
-                        sum_res = (tot_sal_grp / tot_bos_grp) * 100
-                    Catch ex As Exception
-                    End Try
-                    e.TotalValue = sum_res
-                Case "markup_sum"
-                    Dim sum_res As Decimal = 0.0
-                    Try
-                        sum_res = (tot_price / tot_cost)
-                    Catch ex As Exception
-                    End Try
-                    e.TotalValue = sum_res
-                Case "markup_grp_sum"
-                    Dim sum_res As Decimal = 0.0
-                    Try
-                        sum_res = (tot_price_grp / tot_cost_grp)
-                    Catch ex As Exception
-                    End Try
-                    e.TotalValue = sum_res
-                Case "class_sum"
-                    e.TotalValue = GVData.GetGroupRowValue(e.RowHandle).ToString + " Total"
-            End Select
+            ' Finalization 
+            If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+                Select Case summaryID
+                    Case "sas_sum" 'total summary
+                        Dim sum_res As Decimal = 0.0
+                        Try
+                            sum_res = (tot_sal / tot_bos) * 100
+                        Catch ex As Exception
+                        End Try
+                        e.TotalValue = sum_res
+                    Case "sas_grp_sum" 'group summary
+                        Dim sum_res As Decimal = 0.0
+                        Try
+                            sum_res = (tot_sal_grp / tot_bos_grp) * 100
+                        Catch ex As Exception
+                        End Try
+                        e.TotalValue = sum_res
+                    Case "markup_sum"
+                        Dim sum_res As Decimal = 0.0
+                        Try
+                            sum_res = (tot_price / tot_cost)
+                        Catch ex As Exception
+                        End Try
+                        e.TotalValue = sum_res
+                    Case "markup_grp_sum"
+                        Dim sum_res As Decimal = 0.0
+                        Try
+                            sum_res = (tot_price_grp / tot_cost_grp)
+                        Catch ex As Exception
+                        End Try
+                        e.TotalValue = sum_res
+                    Case "class_sum"
+                        e.TotalValue = GVData.GetGroupRowValue(e.RowHandle).ToString + " Total"
+                End Select
+            End If
         End If
     End Sub
 
@@ -771,25 +774,7 @@
     End Sub
 
     Private Sub GVData_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVData.RowCellStyle
-        'If e.RowHandle >= 0 Then
-        '    Dim col As String = e.Column.FieldName
-        '    If (col = "no" Or col = "design_code" Or col = "name") Then
-        '        ' Or col = "class" Or col = "disc_desc" Or col.Contains("mkd") Or col = "first_del" Or col = "age" Or col = "design_cop" Or col = "design_price" Or col = "price_type" Or col = "design_cat" Or col = "design_price_normal" Or col = "curr_disc" Or col = "total_sal" Or col = "total_soh" Or col = "total_bos" Or col = "sas"
-        '        Dim check_stt As String = ""
-        '        Try
-        '            check_stt = sender.GetRowCellValue(e.RowHandle, sender.Columns("check_stt"))
-        '        Catch ex As Exception
-        '        End Try
 
-        '        If check_stt = "1" Then
-        '            e.Appearance.BackColor = Color.Yellow
-        '            e.Appearance.BackColor2 = Color.Yellow
-        '        Else
-        '            e.Appearance.BackColor = Color.Empty
-        '            e.Appearance.BackColor2 = Color.Empty
-        '        End If
-        '    End If
-        'End If
     End Sub
 
     Private Sub LEMKDType_EditValueChanged(sender As Object, e As EventArgs) Handles LEMKDType.EditValueChanged
@@ -803,17 +788,7 @@
     End Sub
 
     Private Sub GVData_CustomDrawFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVData.CustomDrawFooter
-        e.Graphics.FillRectangle(New SolidBrush(Color.White), e.Bounds)
 
-        Dim format As StringFormat = e.Appearance.GetStringFormat.Clone
-
-        format.Alignment = StringAlignment.Near
-
-        If GVData.GetGroupRowDisplayText(e.RowHandle).Contains("class") Then
-            e.Graphics.DrawString(GVData.GetGroupRowValue(e.RowHandle) + " Total", e.Appearance.GetFont, e.Appearance.GetForeBrush(e.Cache), e.Bounds, format)
-        End If
-
-        e.Handled = True
     End Sub
 
     Private Sub BtnBulkEdit_Click(sender As Object, e As EventArgs) Handles BtnBulkEdit.Click
@@ -825,7 +800,11 @@
         End If
         GVData.ActiveFilterString = ftr
         If GVData.RowCount > 0 Then
+            is_enable_custom_calc = False
             FormProposePriceMKDBulk.ShowDialog()
+            is_enable_custom_calc = True
+            GCData.RefreshDataSource()
+            GVData.RefreshData()
         Else
             stopCustom("No selected items")
         End If
