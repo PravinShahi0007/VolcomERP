@@ -51,17 +51,24 @@
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
         'cek inputan slain internal sale
-        If CENoPropose.EditValue = False And id_mkd_type <> "3" And SLEProposeDisc.EditValue = Nothing And MENote.Text = "" Then
+        If CENoPropose.EditValue = False And id_mkd_type <> "3" And SLEProposeDisc.EditValue = Nothing Then
             warningCustom("Please input propose disc")
             Exit Sub
         End If
 
         'cek inputan slain internal sale
-        If CENoPropose.EditValue = False And id_mkd_type = "3" And TxtProposeFinal.EditValue = Nothing And MENote.Text = "" Then
+        If CENoPropose.EditValue = False And id_mkd_type = "3" And TxtProposeFinal.EditValue = Nothing Then
             warningCustom("Please input fixed price")
             Exit Sub
         End If
 
+        'cek note
+        If MENote.Text = "" Then
+            warningCustom("Please input note")
+            Exit Sub
+        End If
+
+        Cursor = Cursors.WaitCursor
         For i As Integer = 0 To (gv.RowCount - 1) - GetGroupRowCount(gv)
             Dim propose_disc As Decimal
             Dim erp_discount As Decimal
@@ -74,7 +81,12 @@
                 Else
                     propose_disc = SLEProposeDisc.EditValue
                 End If
-                If gv.GetRowCellValue(i, "erp_discount").ToString = "" Then
+                Console.WriteLine(curr_disc.ToString)
+                Console.WriteLine("rh:" + i.ToString)
+                Console.WriteLine(gv.GetRowCellValue(i, "name").ToString)
+                Dim erp_discount_cek As String = gv.GetRowCellValue(i, "erp_discount").ToString
+                Console.WriteLine(erp_discount_cek.ToString)
+                If erp_discount_cek = "" Then
                     erp_discount = -1
                 Else
                     erp_discount = gv.GetRowCellValue(i, "erp_discount")
@@ -107,8 +119,6 @@
                 Else
                     gv.SetFocusedRowCellValue("check_stt", "2")
                 End If
-                FormProposePriceMKDDet.GCData.RefreshDataSource()
-                FormProposePriceMKDDet.GVData.RefreshData()
             Else
                 'internal sale
                 If CENoPropose.EditValue = False Then
@@ -125,9 +135,11 @@
                 Else
                     gv.SetFocusedRowCellValue("check_stt", "2")
                 End If
-                FormProposePriceMKDDet.GCData.RefreshDataSource()
-                FormProposePriceMKDDet.GVData.RefreshData()
             End If
         Next
+        'FormProposePriceMKDDet.GCData.RefreshDataSource()
+        'FormProposePriceMKDDet.GVData.RefreshData()
+        Close()
+        Cursor = Cursors.Default
     End Sub
 End Class
