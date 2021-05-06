@@ -444,6 +444,9 @@
         ElseIf report_mark_type = "300" Then
             'foc og
             FormPurcReceiveFOCDet.Close()
+        ElseIf report_mark_type = "306" Then
+            'propose turun harga
+            FormProposePriceMKDDet.Close()
         ElseIf report_mark_type = "307" Then
             'polis propose
             FormPolisDet.Close()
@@ -1468,6 +1471,12 @@ GROUP BY rec.`id_prod_order`"
             FormPurcReceiveFOCDet.id = id_report
             FormPurcReceiveFOCDet.action = "upd"
             FormPurcReceiveFOCDet.ShowDialog()
+        ElseIf report_mark_type = "306" Then
+            'propose turun harga
+            FormProposePriceMKDDet.id = id_report
+            FormProposePriceMKDDet.action = "upd"
+            FormProposePriceMKDDet.is_view = "1"
+            FormProposePriceMKDDet.ShowDialog()
         ElseIf report_mark_type = "307" Then
             FormPolisDet.id_pps = id_report
             FormPolisDet.is_view = "1"
@@ -2627,6 +2636,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_purc_rec_foc"
             field_number = "purc_rec_foc_number"
             field_date = "date_created"
+        ElseIf report_mark_type = "306" Then
+            'propose turun harga
+            table_name = "tb_pp_change"
+            field_id = "id_pp_change"
+            field_number = "number"
+            field_date = "created_date"
         ElseIf report_mark_type = "307" Then
             'polis
             table_name = "tb_polis_pps"
