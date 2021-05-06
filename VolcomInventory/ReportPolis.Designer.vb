@@ -304,7 +304,7 @@ Partial Public Class ReportPolis
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(213.8486!, 20.0!)
         Me.XrLabel7.StylePriority.UseFont = False
         Me.XrLabel7.StylePriority.UseTextAlignment = False
-        Me.XrLabel7.Text = "[date_created]"
+        Me.XrLabel7.Text = "[created_date]"
         Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel5
