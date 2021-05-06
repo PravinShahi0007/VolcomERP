@@ -1,5 +1,6 @@
 ﻿Public Class ReportPolis
     Public Shared dt As DataTable
+    Public Shared id_pps As String = "-1"
     Private Sub ReportPolis_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         'add column
         Dim font_rowhead_style As New Font(XTPolisPPS.Font.FontFamily, XTPolisPPS.Font.Size, FontStyle.Bold)
@@ -33,6 +34,8 @@
         For i = 0 To dt.Rows.Count - 1
             insert_row(row_baru, dt, i)
         Next
+
+        pre_load_mark_horz("307", id_pps, "2", "2", XRTableMark)
     End Sub
     '
     Sub insert_row(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
@@ -135,5 +138,10 @@
             End If
         Next
 
+        'vendor dipilih
+        Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(j)
+        vendor.Text = dt.Rows(row_i)("vendor").ToString
+        vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        vendor.Font = font_row_style
     End Sub
 End Class

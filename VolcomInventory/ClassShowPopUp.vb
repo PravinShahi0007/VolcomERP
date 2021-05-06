@@ -447,6 +447,9 @@
         ElseIf report_mark_type = "306" Then
             'propose turun harga
             FormProposePriceMKDDet.Close()
+        ElseIf report_mark_type = "307" Then
+            'polis propose
+            FormPolisDet.Close()
         End If
     End Sub
     Sub show()
@@ -1474,6 +1477,10 @@ GROUP BY rec.`id_prod_order`"
             FormProposePriceMKDDet.action = "upd"
             FormProposePriceMKDDet.is_view = "1"
             FormProposePriceMKDDet.ShowDialog()
+        ElseIf report_mark_type = "307" Then
+            FormPolisDet.id_pps = id_report
+            FormPolisDet.is_view = "1"
+            FormPolisDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2633,6 +2640,12 @@ GROUP BY rec.`id_prod_order`"
             'propose turun harga
             table_name = "tb_pp_change"
             field_id = "id_pp_change"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "307" Then
+            'polis
+            table_name = "tb_polis_pps"
+            field_id = "id_polis_pps"
             field_number = "number"
             field_date = "created_date"
         Else

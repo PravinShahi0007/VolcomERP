@@ -9799,6 +9799,15 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
             'update status
             query = String.Format("UPDATE tb_pp_change SET id_report_status='{0}' WHERE id_pp_change ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "307" Then
+            'polis
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_polis_pps SET id_report_status='{0}' WHERE id_polis_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time

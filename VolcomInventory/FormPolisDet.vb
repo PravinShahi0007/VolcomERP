@@ -1,6 +1,7 @@
 ﻿Public Class FormPolisDet
     Public id_pps As String = "-1"
     Dim steps As Integer = "0"
+    Public is_view As String = "-1"
     Private Sub BLoadPolis_Click(sender As Object, e As EventArgs) Handles BLoadPolis.Click
         load_polis()
     End Sub
@@ -467,9 +468,21 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         ReportPolis.dt = GCPenawaran.DataSource
+        ReportPolis.id_pps = id_pps
         Dim Report As New ReportPolis()
-
+        '
+        Dim q As String = "SELECT created_date,created_by,YEAR(created_date) AS this_year FROM tb_polis_pps WHERE id_polis_pps='" & id_pps & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        Report.DataSource = dt
+        '
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "307"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_pps
+        FormReportMark.ShowDialog()
     End Sub
 End Class
