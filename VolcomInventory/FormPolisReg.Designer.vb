@@ -58,6 +58,8 @@ Partial Class FormPolisReg
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.RegisterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,6 +71,7 @@ Partial Class FormPolisReg
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -249,6 +252,7 @@ Partial Class FormPolisReg
         '
         'GCSummary
         '
+        Me.GCSummary.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSummary.Location = New System.Drawing.Point(0, 96)
         Me.GCSummary.MainView = Me.BGVSummary
@@ -263,6 +267,8 @@ Partial Class FormPolisReg
         Me.BGVSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnAlamat, Me.GridColumn5, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn9, Me.BandedGridColumn1, Me.BandedGridColumn2})
         Me.BGVSummary.GridControl = Me.GCSummary
         Me.BGVSummary.Name = "BGVSummary"
+        Me.BGVSummary.OptionsBehavior.Editable = False
+        Me.BGVSummary.OptionsBehavior.ReadOnly = True
         Me.BGVSummary.OptionsView.AllowCellMerge = True
         Me.BGVSummary.OptionsView.ColumnAutoWidth = False
         Me.BGVSummary.OptionsView.ShowGroupPanel = False
@@ -485,6 +491,18 @@ Partial Class FormPolisReg
         Me.BandedGridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BandedGridColumn2.Visible = True
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RegisterToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        '
+        'RegisterToolStripMenuItem
+        '
+        Me.RegisterToolStripMenuItem.Name = "RegisterToolStripMenuItem"
+        Me.RegisterToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RegisterToolStripMenuItem.Text = "Register"
+        '
         'FormPolisReg
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -498,6 +516,7 @@ Partial Class FormPolisReg
         Me.Name = "FormPolisReg"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Register Polis"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -510,6 +529,7 @@ Partial Class FormPolisReg
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -551,4 +571,6 @@ Partial Class FormPolisReg
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents RegisterToolStripMenuItem As ToolStripMenuItem
 End Class

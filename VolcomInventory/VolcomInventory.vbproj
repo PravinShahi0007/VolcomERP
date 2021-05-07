@@ -3543,6 +3543,12 @@
     <Compile Include="FormPolisRegPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPolisRegSplit.Designer.vb">
+      <DependentUpon>FormPolisRegSplit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPolisRegSplit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpDept.Designer.vb">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>
     </Compile>
@@ -11349,6 +11355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPolisRegPick.resx">
       <DependentUpon>FormPolisRegPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPolisRegSplit.resx">
+      <DependentUpon>FormPolisRegSplit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpDept.resx">
       <DependentUpon>FormPopUpDept.vb</DependentUpon>

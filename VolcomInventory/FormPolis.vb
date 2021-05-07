@@ -87,7 +87,7 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_sta
     End Sub
 
     Sub load_polis_reg()
-        Dim q As String = "SELECT reg.number,reg.id_polis_reg,reg.id_polis_pps,pps.number AS pps_number
+        Dim q As String = "SELECT reg.number,reg.id_polis_reg,reg.id_polis_pps,pps.number AS pps_number,sts.report_status
 FROM tb_polis_reg reg
 INNER JOIN tb_polis_pps pps ON pps.id_polis_pps=reg.id_polis_pps
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=reg.id_report_status"

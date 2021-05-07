@@ -29,14 +29,22 @@ INNER JOIN tb_m_comp v ON v.`id_comp`=ppsd.`polis_vendor`"
         Else
             Dim q As String = "SELECT pol.end_date,pps.id_polis_pps,ppsd.`id_polis_pps_det`,ppsd.`nilai_stock`,ppsd.`nilai_building`,ppsd.`nilai_fit_out`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`
 ,ppsd.`id_comp`,c.`comp_name`,c.`comp_number`,ppsd.`premi`,ppsd.`polis_vendor`,v.`comp_name` AS vendor
+,regd.premi AS premi_det,regd.polis_number,regd.description
 FROM `tb_polis_pps_det` ppsd
 INNER JOIN tb_polis pol ON pol.`id_polis`=ppsd.`old_id_polis`
 INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps` AND ppsd.`id_polis_pps`='" & id_polis_pps & "' AND pps.id_report_status=6
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
-INNER JOIN tb_m_comp v ON v.`id_comp`=ppsd.`polis_vendor`"
+INNER JOIN tb_m_comp v ON v.`id_comp`=ppsd.`polis_vendor`
+LEFT JOIN `tb_polis_reg_det` regd ON ppsd.`id_polis_pps_det`=regd.id_polis_pps_det AND regd.`id_polis_reg`='" & id_reg & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCSummary.DataSource = dt
             BGVSummary.BestFitColumns()
+        End If
+    End Sub
+
+    Private Sub RegisterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RegisterToolStripMenuItem.Click
+        If BGVSummary.RowCount > 0 Then
+            FormPolisRegSplit.ShowDialog()
         End If
     End Sub
 End Class
