@@ -56,6 +56,7 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumncurr_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnerp_discount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpropose_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnpropose_discount_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemDisc = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -120,7 +121,7 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnsas = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandHistory = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnnumber_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnpropose_discount_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLinkHist = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnpropose_price_final_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnbtn_more_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoBtnHist = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -188,6 +189,7 @@ Partial Class FormProposePriceMKDDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoCESelAll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnEditPropose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkHist, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnHist, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTENote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -268,6 +270,19 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnpropose_disc.Name = "BandedGridColumnpropose_disc"
         Me.BandedGridColumnpropose_disc.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnpropose_disc.Visible = True
+        '
+        'BandedGridColumnpropose_discount_hist
+        '
+        Me.BandedGridColumnpropose_discount_hist.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_discount_hist.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_discount_hist.Caption = "Last Propose Disc"
+        Me.BandedGridColumnpropose_discount_hist.DisplayFormat.FormatString = "{0:n0}%"
+        Me.BandedGridColumnpropose_discount_hist.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnpropose_discount_hist.FieldName = "propose_discount_hist"
+        Me.BandedGridColumnpropose_discount_hist.Name = "BandedGridColumnpropose_discount_hist"
+        Me.BandedGridColumnpropose_discount_hist.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnpropose_discount_hist.Visible = True
+        Me.BandedGridColumnpropose_discount_hist.Width = 48
         '
         'RepositoryItemDisc
         '
@@ -743,7 +758,7 @@ Partial Class FormProposePriceMKDDet
         Me.GCData.Location = New System.Drawing.Point(0, 39)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDisc, Me.RepositoryItemTextEdit1, Me.RepositoryItemTENote, Me.RepoBtnEditPropose, Me.RepoCESelAll, Me.RepoBtnHist})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDisc, Me.RepositoryItemTextEdit1, Me.RepositoryItemTENote, Me.RepoBtnEditPropose, Me.RepoCESelAll, Me.RepoBtnHist, Me.RepoLinkHist})
         Me.GCData.Size = New System.Drawing.Size(876, 258)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -1219,31 +1234,24 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BandedGridColumnnumber_hist.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumnnumber_hist.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnnumber_hist.Caption = "Number"
+        Me.BandedGridColumnnumber_hist.Caption = "Last Propose No."
+        Me.BandedGridColumnnumber_hist.ColumnEdit = Me.RepoLinkHist
         Me.BandedGridColumnnumber_hist.FieldName = "number_hist"
         Me.BandedGridColumnnumber_hist.Name = "BandedGridColumnnumber_hist"
         Me.BandedGridColumnnumber_hist.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnnumber_hist.Visible = True
         Me.BandedGridColumnnumber_hist.Width = 52
         '
-        'BandedGridColumnpropose_discount_hist
+        'RepoLinkHist
         '
-        Me.BandedGridColumnpropose_discount_hist.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumnpropose_discount_hist.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnpropose_discount_hist.Caption = "Propose Disc"
-        Me.BandedGridColumnpropose_discount_hist.DisplayFormat.FormatString = "{0:n0}%"
-        Me.BandedGridColumnpropose_discount_hist.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnpropose_discount_hist.FieldName = "propose_discount_hist"
-        Me.BandedGridColumnpropose_discount_hist.Name = "BandedGridColumnpropose_discount_hist"
-        Me.BandedGridColumnpropose_discount_hist.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnpropose_discount_hist.Visible = True
-        Me.BandedGridColumnpropose_discount_hist.Width = 48
+        Me.RepoLinkHist.AutoHeight = False
+        Me.RepoLinkHist.Name = "RepoLinkHist"
         '
         'BandedGridColumnpropose_price_final_hist
         '
         Me.BandedGridColumnpropose_price_final_hist.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumnpropose_price_final_hist.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnpropose_price_final_hist.Caption = "Propose Final"
+        Me.BandedGridColumnpropose_price_final_hist.Caption = "Last Propose Final"
         Me.BandedGridColumnpropose_price_final_hist.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnpropose_price_final_hist.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnpropose_price_final_hist.FieldName = "propose_price_final_hist"
@@ -1271,7 +1279,7 @@ Partial Class FormProposePriceMKDDet
         SerializableAppearanceObject2.Options.UseBackColor = True
         SerializableAppearanceObject2.Options.UseFont = True
         SerializableAppearanceObject2.Options.UseForeColor = True
-        Me.RepoBtnHist.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "More Hist.", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        Me.RepoBtnHist.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View More", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.RepoBtnHist.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnHist.Name = "RepoBtnHist"
         Me.RepoBtnHist.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -1768,6 +1776,7 @@ Partial Class FormProposePriceMKDDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoCESelAll, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnEditPropose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkHist, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnHist, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTENote, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1886,4 +1895,5 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandOther As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents RepoLinkHist As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class

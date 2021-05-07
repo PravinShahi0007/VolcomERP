@@ -812,4 +812,26 @@
         GVData.ActiveFilterString = "" + last_filter
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub RepoLinkHist_Click(sender As Object, e As EventArgs) Handles RepoLinkHist.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And GVData.GetFocusedRowCellValue("id_pp_change_hist").ToString <> "0" Then
+            Cursor = Cursors.WaitCursor
+            Dim mkd As New FormProposePriceMKDDet()
+            mkd.is_view = "1"
+            mkd.action = "upd"
+            mkd.id = GVData.GetFocusedRowCellValue("id_pp_change_hist").ToString
+            mkd.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnHist_Click(sender As Object, e As EventArgs) Handles RepoBtnHist.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormProposePriceMKDHist.id = id
+            FormProposePriceMKDHist.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormProposePriceMKDHist.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
