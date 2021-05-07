@@ -32,6 +32,7 @@ Partial Class FormProposePriceMKD
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnemployee_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
@@ -69,7 +70,7 @@ Partial Class FormProposePriceMKD
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pp_change, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumneffective_date, Me.GridColumnsoh_sal_date, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumndesign_price_type})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pp_change, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumneffective_date, Me.GridColumnsoh_sal_date, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumndesign_price_type, Me.GridColumnemployee_name})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.Name = "GVSummary"
         Me.GVSummary.OptionsBehavior.ReadOnly = True
@@ -150,6 +151,14 @@ Partial Class FormProposePriceMKD
         Me.GridColumndesign_price_type.Visible = True
         Me.GridColumndesign_price_type.VisibleIndex = 2
         '
+        'GridColumnemployee_name
+        '
+        Me.GridColumnemployee_name.Caption = "Last Approved By"
+        Me.GridColumnemployee_name.FieldName = "employee_name"
+        Me.GridColumnemployee_name.Name = "GridColumnemployee_name"
+        Me.GridColumnemployee_name.Visible = True
+        Me.GridColumnemployee_name.VisibleIndex = 7
+        '
         'FormProposePriceMKD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -182,4 +191,5 @@ Partial Class FormProposePriceMKD
     Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndesign_price_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnemployee_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -42,13 +42,21 @@ Partial Class FormProposePriceMKDDet
         Dim FormatConditionRuleValue10 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim GridFormatRule11 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleValue11 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Dim GridFormatRule12 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue12 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Dim GridFormatRule13 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue13 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Dim GridFormatRule14 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue14 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.BandedGridColumncheck_stt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncurr_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnerp_discount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpropose_disc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnpropose_discount_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemDisc = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -91,8 +99,12 @@ Partial Class FormProposePriceMKDDet
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBandAction = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnis_select = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoCESelAll = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumnbtn_edit_propose = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoBtnEditPropose = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.gridBandDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumndisc_desc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmkd_normal_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmkd_30_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -107,14 +119,23 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumntotal_soh = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_bos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsas = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandHistory = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnnumber_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLinkHist = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.BandedGridColumnpropose_price_final_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnbtn_more_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoBtnHist = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.gridBandPropose = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnpropose_disc_group = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpropose_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandTotalValue = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumntotal_normal_value = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_current_value = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_propose_value = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_cost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmarked_down_value = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmark_up = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandOther = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnnote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTENote = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BandedGridColumnid_pp_change_det = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -128,7 +149,7 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnpropose_price_final_old = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnis_edit = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnnote_old = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnis_select = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_pp_change_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnBulkEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
@@ -139,13 +160,6 @@ Partial Class FormProposePriceMKDDet
         Me.BtnFinalPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
-        Me.RepoCESelAll = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.gridBandAction = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandHist = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandPropose = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandTotalValue = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandOther = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -173,11 +187,13 @@ Partial Class FormProposePriceMKDDet
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoCESelAll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnEditPropose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkHist, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoBtnHist, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTENote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.RepoCESelAll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BandedGridColumncheck_stt
@@ -254,6 +270,19 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnpropose_disc.Name = "BandedGridColumnpropose_disc"
         Me.BandedGridColumnpropose_disc.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnpropose_disc.Visible = True
+        '
+        'BandedGridColumnpropose_discount_hist
+        '
+        Me.BandedGridColumnpropose_discount_hist.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_discount_hist.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_discount_hist.Caption = "Last Propose Disc"
+        Me.BandedGridColumnpropose_discount_hist.DisplayFormat.FormatString = "{0:n0}%"
+        Me.BandedGridColumnpropose_discount_hist.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnpropose_discount_hist.FieldName = "propose_discount_hist"
+        Me.BandedGridColumnpropose_discount_hist.Name = "BandedGridColumnpropose_discount_hist"
+        Me.BandedGridColumnpropose_discount_hist.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnpropose_discount_hist.Visible = True
+        Me.BandedGridColumnpropose_discount_hist.Width = 48
         '
         'RepositoryItemDisc
         '
@@ -729,7 +758,7 @@ Partial Class FormProposePriceMKDDet
         Me.GCData.Location = New System.Drawing.Point(0, 39)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDisc, Me.RepositoryItemTextEdit1, Me.RepositoryItemTENote, Me.RepoBtnEditPropose, Me.RepoCESelAll})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDisc, Me.RepositoryItemTextEdit1, Me.RepositoryItemTENote, Me.RepoBtnEditPropose, Me.RepoCESelAll, Me.RepoBtnHist, Me.RepoLinkHist})
         Me.GCData.Size = New System.Drawing.Size(876, 258)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -739,9 +768,9 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandAction, Me.gridBandDetail, Me.gridBandHist, Me.gridBandPropose, Me.gridBandTotalValue, Me.gridBandOther})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandAction, Me.gridBandDetail, Me.gridBandHistory, Me.gridBandPropose, Me.gridBandTotalValue, Me.gridBandOther})
         Me.GVData.ColumnPanelRowHeight = 40
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnno, Me.BandedGridColumnid_pp_change_det, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_code, Me.BandedGridColumnname, Me.BandedGridColumnclass, Me.BandedGridColumnid_disc, Me.BandedGridColumndisc_desc, Me.BandedGridColumnmkd_normal_view, Me.BandedGridColumnmkd_30_view, Me.BandedGridColumnmkd_50_view, Me.BandedGridColumnmkd_70_view, Me.BandedGridColumnfirst_del, Me.BandedGridColumnage, Me.BandedGridColumndesign_cop, Me.BandedGridColumnid_design_price, Me.BandedGridColumndesign_price, Me.BandedGridColumnprice_type, Me.BandedGridColumndesign_cat, Me.BandedGridColumnid_design_price_normal, Me.BandedGridColumndesign_price_normal, Me.BandedGridColumncurr_disc, Me.BandedGridColumnpropose_disc, Me.BandedGridColumnpropose_price, Me.BandedGridColumnpropose_price_final, Me.BandedGridColumnerp_discount, Me.BandedGridColumnnote, Me.BandedGridColumnpropose_disc_old, Me.BandedGridColumnpropose_price_old, Me.BandedGridColumnpropose_price_final_old, Me.BandedGridColumnis_edit, Me.BandedGridColumnnote_old, Me.BandedGridColumnpropose_disc_group, Me.BandedGridColumnpropose_status, Me.BandedGridColumntotal_sal, Me.BandedGridColumntotal_soh, Me.BandedGridColumntotal_bos, Me.BandedGridColumnsas, Me.BandedGridColumntotal_normal_value, Me.BandedGridColumntotal_current_value, Me.BandedGridColumntotal_propose_value, Me.BandedGridColumntotal_cost, Me.BandedGridColumnmarked_down_value, Me.BandedGridColumnmark_up, Me.BandedGridColumnbtn_edit_propose, Me.BandedGridColumncheck_stt, Me.BandedGridColumnis_select})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnno, Me.BandedGridColumnid_pp_change_det, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_code, Me.BandedGridColumnname, Me.BandedGridColumnclass, Me.BandedGridColumnid_disc, Me.BandedGridColumndisc_desc, Me.BandedGridColumnmkd_normal_view, Me.BandedGridColumnmkd_30_view, Me.BandedGridColumnmkd_50_view, Me.BandedGridColumnmkd_70_view, Me.BandedGridColumnfirst_del, Me.BandedGridColumnage, Me.BandedGridColumndesign_cop, Me.BandedGridColumnid_design_price, Me.BandedGridColumndesign_price, Me.BandedGridColumnprice_type, Me.BandedGridColumndesign_cat, Me.BandedGridColumnid_design_price_normal, Me.BandedGridColumndesign_price_normal, Me.BandedGridColumncurr_disc, Me.BandedGridColumnpropose_disc, Me.BandedGridColumnpropose_price, Me.BandedGridColumnpropose_price_final, Me.BandedGridColumnerp_discount, Me.BandedGridColumnnote, Me.BandedGridColumnpropose_disc_old, Me.BandedGridColumnpropose_price_old, Me.BandedGridColumnpropose_price_final_old, Me.BandedGridColumnis_edit, Me.BandedGridColumnnote_old, Me.BandedGridColumnpropose_disc_group, Me.BandedGridColumnpropose_status, Me.BandedGridColumntotal_sal, Me.BandedGridColumntotal_soh, Me.BandedGridColumntotal_bos, Me.BandedGridColumnsas, Me.BandedGridColumntotal_normal_value, Me.BandedGridColumntotal_current_value, Me.BandedGridColumntotal_propose_value, Me.BandedGridColumntotal_cost, Me.BandedGridColumnmarked_down_value, Me.BandedGridColumnmark_up, Me.BandedGridColumnbtn_edit_propose, Me.BandedGridColumncheck_stt, Me.BandedGridColumnis_select, Me.BandedGridColumnid_pp_change_hist, Me.BandedGridColumnnumber_hist, Me.BandedGridColumnpropose_discount_hist, Me.BandedGridColumnpropose_price_final_hist, Me.BandedGridColumnbtn_more_hist})
         GridFormatRule1.Column = Me.BandedGridColumncheck_stt
         GridFormatRule1.ColumnApplyTo = Me.BandedGridColumndesign_code
         GridFormatRule1.Name = "Format1"
@@ -864,6 +893,36 @@ Partial Class FormProposePriceMKDDet
         FormatConditionRuleValue11.Condition = DevExpress.XtraEditors.FormatCondition.Expression
         FormatConditionRuleValue11.Expression = "Iif([propose_disc] > 51, True, False)"
         GridFormatRule11.Rule = FormatConditionRuleValue11
+        GridFormatRule12.Column = Me.BandedGridColumnpropose_discount_hist
+        GridFormatRule12.ColumnApplyTo = Me.BandedGridColumnpropose_discount_hist
+        GridFormatRule12.Name = "Format0"
+        FormatConditionRuleValue12.Appearance.BackColor = System.Drawing.Color.Yellow
+        FormatConditionRuleValue12.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        FormatConditionRuleValue12.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue12.Appearance.Options.UseBorderColor = True
+        FormatConditionRuleValue12.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue12.Expression = "Iif([propose_disc_hist] > 0 And [propose_disc_hist] <= 30, True, False)"
+        GridFormatRule12.Rule = FormatConditionRuleValue12
+        GridFormatRule13.Column = Me.BandedGridColumnpropose_discount_hist
+        GridFormatRule13.ColumnApplyTo = Me.BandedGridColumnpropose_discount_hist
+        GridFormatRule13.Name = "Format3"
+        FormatConditionRuleValue13.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        FormatConditionRuleValue13.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        FormatConditionRuleValue13.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue13.Appearance.Options.UseBorderColor = True
+        FormatConditionRuleValue13.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue13.Expression = "Iif([propose_disc_hist] > 31 And [propose_disc_hist] <= 50, True, False)"
+        GridFormatRule13.Rule = FormatConditionRuleValue13
+        GridFormatRule14.Column = Me.BandedGridColumnpropose_discount_hist
+        GridFormatRule14.ColumnApplyTo = Me.BandedGridColumnpropose_discount_hist
+        GridFormatRule14.Name = "Format5"
+        FormatConditionRuleValue14.Appearance.BackColor = System.Drawing.Color.Lime
+        FormatConditionRuleValue14.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        FormatConditionRuleValue14.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue14.Appearance.Options.UseBorderColor = True
+        FormatConditionRuleValue14.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue14.Expression = "Iif([propose_disc_hist] > 51, True, False)"
+        GridFormatRule14.Rule = FormatConditionRuleValue14
         Me.GVData.FormatRules.Add(GridFormatRule1)
         Me.GVData.FormatRules.Add(GridFormatRule2)
         Me.GVData.FormatRules.Add(GridFormatRule3)
@@ -875,6 +934,9 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.FormatRules.Add(GridFormatRule9)
         Me.GVData.FormatRules.Add(GridFormatRule10)
         Me.GVData.FormatRules.Add(GridFormatRule11)
+        Me.GVData.FormatRules.Add(GridFormatRule12)
+        Me.GVData.FormatRules.Add(GridFormatRule13)
+        Me.GVData.FormatRules.Add(GridFormatRule14)
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupCount = 1
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_sal", Me.BandedGridColumntotal_sal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_soh", Me.BandedGridColumntotal_soh, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_bos", Me.BandedGridColumntotal_bos, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_normal_value", Me.BandedGridColumntotal_normal_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_current_value", Me.BandedGridColumntotal_current_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_propose_value", Me.BandedGridColumntotal_propose_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Me.BandedGridColumntotal_cost, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "marked_down_value", Me.BandedGridColumnmarked_down_value, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", Me.BandedGridColumnmark_up, "{0:n2}", "markup_grp_sum"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "sas", Me.BandedGridColumnsas, "{0:n0}%", "sas_grp_sum"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "name", Me.BandedGridColumnname, "", "class_sum")})
@@ -890,6 +952,31 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnclass, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'gridBandAction
+        '
+        Me.gridBandAction.Caption = "ACTION"
+        Me.gridBandAction.Columns.Add(Me.BandedGridColumnis_select)
+        Me.gridBandAction.Columns.Add(Me.BandedGridColumnbtn_edit_propose)
+        Me.gridBandAction.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBandAction.Name = "gridBandAction"
+        Me.gridBandAction.VisibleIndex = 0
+        Me.gridBandAction.Width = 150
+        '
+        'BandedGridColumnis_select
+        '
+        Me.BandedGridColumnis_select.Caption = "Select"
+        Me.BandedGridColumnis_select.ColumnEdit = Me.RepoCESelAll
+        Me.BandedGridColumnis_select.FieldName = "is_select"
+        Me.BandedGridColumnis_select.Name = "BandedGridColumnis_select"
+        Me.BandedGridColumnis_select.Visible = True
+        '
+        'RepoCESelAll
+        '
+        Me.RepoCESelAll.AutoHeight = False
+        Me.RepoCESelAll.Name = "RepoCESelAll"
+        Me.RepoCESelAll.ValueChecked = "Yes"
+        Me.RepoCESelAll.ValueUnchecked = "No"
         '
         'BandedGridColumnbtn_edit_propose
         '
@@ -913,6 +1000,34 @@ Partial Class FormProposePriceMKDDet
         Me.RepoBtnEditPropose.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnEditPropose.Name = "RepoBtnEditPropose"
         Me.RepoBtnEditPropose.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
+        'gridBandDetail
+        '
+        Me.gridBandDetail.Caption = "PRODUCT DETAIL"
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnno)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_code)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnname)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnclass)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndisc_desc)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_normal_view)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_30_view)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_50_view)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_70_view)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_cat)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnprice_type)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_cop)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_price_normal)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_price)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumncurr_disc)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnage)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_sal)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_soh)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_bos)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnsas)
+        Me.gridBandDetail.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBandDetail.Name = "gridBandDetail"
+        Me.gridBandDetail.VisibleIndex = 1
+        Me.gridBandDetail.Width = 1472
         '
         'BandedGridColumndisc_desc
         '
@@ -1104,6 +1219,84 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnsas.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnsas.Visible = True
         '
+        'gridBandHistory
+        '
+        Me.gridBandHistory.Caption = "HISTORY"
+        Me.gridBandHistory.Columns.Add(Me.BandedGridColumnnumber_hist)
+        Me.gridBandHistory.Columns.Add(Me.BandedGridColumnpropose_discount_hist)
+        Me.gridBandHistory.Columns.Add(Me.BandedGridColumnpropose_price_final_hist)
+        Me.gridBandHistory.Columns.Add(Me.BandedGridColumnbtn_more_hist)
+        Me.gridBandHistory.Name = "gridBandHistory"
+        Me.gridBandHistory.VisibleIndex = 2
+        Me.gridBandHistory.Width = 247
+        '
+        'BandedGridColumnnumber_hist
+        '
+        Me.BandedGridColumnnumber_hist.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnnumber_hist.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnnumber_hist.Caption = "Last Propose No."
+        Me.BandedGridColumnnumber_hist.ColumnEdit = Me.RepoLinkHist
+        Me.BandedGridColumnnumber_hist.FieldName = "number_hist"
+        Me.BandedGridColumnnumber_hist.Name = "BandedGridColumnnumber_hist"
+        Me.BandedGridColumnnumber_hist.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnnumber_hist.Visible = True
+        Me.BandedGridColumnnumber_hist.Width = 52
+        '
+        'RepoLinkHist
+        '
+        Me.RepoLinkHist.AutoHeight = False
+        Me.RepoLinkHist.Name = "RepoLinkHist"
+        '
+        'BandedGridColumnpropose_price_final_hist
+        '
+        Me.BandedGridColumnpropose_price_final_hist.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnpropose_price_final_hist.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnpropose_price_final_hist.Caption = "Last Propose Final"
+        Me.BandedGridColumnpropose_price_final_hist.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnpropose_price_final_hist.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnpropose_price_final_hist.FieldName = "propose_price_final_hist"
+        Me.BandedGridColumnpropose_price_final_hist.Name = "BandedGridColumnpropose_price_final_hist"
+        Me.BandedGridColumnpropose_price_final_hist.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnpropose_price_final_hist.Visible = True
+        Me.BandedGridColumnpropose_price_final_hist.Width = 73
+        '
+        'BandedGridColumnbtn_more_hist
+        '
+        Me.BandedGridColumnbtn_more_hist.Caption = "  "
+        Me.BandedGridColumnbtn_more_hist.ColumnEdit = Me.RepoBtnHist
+        Me.BandedGridColumnbtn_more_hist.FieldName = "btn_more_hist"
+        Me.BandedGridColumnbtn_more_hist.Name = "BandedGridColumnbtn_more_hist"
+        Me.BandedGridColumnbtn_more_hist.Visible = True
+        Me.BandedGridColumnbtn_more_hist.Width = 74
+        '
+        'RepoBtnHist
+        '
+        Me.RepoBtnHist.AutoHeight = False
+        Me.RepoBtnHist.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        SerializableAppearanceObject2.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject2.Options.UseBackColor = True
+        SerializableAppearanceObject2.Options.UseFont = True
+        SerializableAppearanceObject2.Options.UseForeColor = True
+        Me.RepoBtnHist.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View More", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        Me.RepoBtnHist.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.RepoBtnHist.Name = "RepoBtnHist"
+        Me.RepoBtnHist.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
+        'gridBandPropose
+        '
+        Me.gridBandPropose.Caption = "PROPOSE PRICE"
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnerp_discount)
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_disc)
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_price)
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_price_final)
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_disc_group)
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_status)
+        Me.gridBandPropose.Name = "gridBandPropose"
+        Me.gridBandPropose.VisibleIndex = 3
+        Me.gridBandPropose.Width = 471
+        '
         'BandedGridColumnpropose_disc_group
         '
         Me.BandedGridColumnpropose_disc_group.AppearanceCell.Options.UseTextOptions = True
@@ -1127,6 +1320,19 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnpropose_status.Name = "BandedGridColumnpropose_status"
         Me.BandedGridColumnpropose_status.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnpropose_status.Visible = True
+        '
+        'gridBandTotalValue
+        '
+        Me.gridBandTotalValue.Caption = "TOTAL VALUE"
+        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumntotal_normal_value)
+        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumntotal_current_value)
+        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumntotal_propose_value)
+        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumntotal_cost)
+        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumnmarked_down_value)
+        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumnmark_up)
+        Me.gridBandTotalValue.Name = "gridBandTotalValue"
+        Me.gridBandTotalValue.VisibleIndex = 4
+        Me.gridBandTotalValue.Width = 450
         '
         'BandedGridColumntotal_normal_value
         '
@@ -1229,6 +1435,13 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnmark_up.UnboundExpression = "Iif([total_cost] > 0, [total_propose_value] / [total_cost], 0)"
         Me.BandedGridColumnmark_up.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnmark_up.Visible = True
+        '
+        'gridBandOther
+        '
+        Me.gridBandOther.Columns.Add(Me.BandedGridColumnnote)
+        Me.gridBandOther.Name = "gridBandOther"
+        Me.gridBandOther.VisibleIndex = 5
+        Me.gridBandOther.Width = 75
         '
         'BandedGridColumnnote
         '
@@ -1384,13 +1597,15 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnnote_old.Name = "BandedGridColumnnote_old"
         Me.BandedGridColumnnote_old.OptionsColumn.ReadOnly = True
         '
-        'BandedGridColumnis_select
+        'BandedGridColumnid_pp_change_hist
         '
-        Me.BandedGridColumnis_select.Caption = "Select"
-        Me.BandedGridColumnis_select.ColumnEdit = Me.RepoCESelAll
-        Me.BandedGridColumnis_select.FieldName = "is_select"
-        Me.BandedGridColumnis_select.Name = "BandedGridColumnis_select"
-        Me.BandedGridColumnis_select.Visible = True
+        Me.BandedGridColumnid_pp_change_hist.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnid_pp_change_hist.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_pp_change_hist.Caption = "id_pp_change_hist"
+        Me.BandedGridColumnid_pp_change_hist.FieldName = "id_pp_change_hist"
+        Me.BandedGridColumnid_pp_change_hist.Name = "BandedGridColumnid_pp_change_hist"
+        Me.BandedGridColumnid_pp_change_hist.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnid_pp_change_hist.Visible = True
         '
         'PanelControl3
         '
@@ -1517,91 +1732,6 @@ Partial Class FormProposePriceMKDDet
         Me.BtnExportToXLS.TabIndex = 11
         Me.BtnExportToXLS.Text = "Export to XLS"
         '
-        'RepoCESelAll
-        '
-        Me.RepoCESelAll.AutoHeight = False
-        Me.RepoCESelAll.Name = "RepoCESelAll"
-        Me.RepoCESelAll.ValueChecked = "Yes"
-        Me.RepoCESelAll.ValueUnchecked = "No"
-        '
-        'gridBandAction
-        '
-        Me.gridBandAction.Caption = "ACTION"
-        Me.gridBandAction.Columns.Add(Me.BandedGridColumnis_select)
-        Me.gridBandAction.Columns.Add(Me.BandedGridColumnbtn_edit_propose)
-        Me.gridBandAction.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.gridBandAction.Name = "gridBandAction"
-        Me.gridBandAction.VisibleIndex = 0
-        Me.gridBandAction.Width = 150
-        '
-        'gridBandDetail
-        '
-        Me.gridBandDetail.Caption = "PRODUCT DETAIL"
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnno)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_code)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnname)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnclass)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndisc_desc)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_normal_view)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_30_view)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_50_view)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_70_view)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_cat)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnprice_type)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_cop)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_price_normal)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_price)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumncurr_disc)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnage)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_sal)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_soh)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_bos)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnsas)
-        Me.gridBandDetail.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.gridBandDetail.Name = "gridBandDetail"
-        Me.gridBandDetail.VisibleIndex = 1
-        Me.gridBandDetail.Width = 1472
-        '
-        'gridBandHist
-        '
-        Me.gridBandHist.Caption = "HISTORICAL"
-        Me.gridBandHist.Name = "gridBandHist"
-        Me.gridBandHist.Visible = False
-        Me.gridBandHist.VisibleIndex = -1
-        '
-        'gridBandPropose
-        '
-        Me.gridBandPropose.Caption = "PROPOSE PRICE"
-        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnerp_discount)
-        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_disc)
-        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_price)
-        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_price_final)
-        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_disc_group)
-        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_status)
-        Me.gridBandPropose.Name = "gridBandPropose"
-        Me.gridBandPropose.VisibleIndex = 2
-        Me.gridBandPropose.Width = 471
-        '
-        'gridBandTotalValue
-        '
-        Me.gridBandTotalValue.Caption = "TOTAL VALUE"
-        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumntotal_normal_value)
-        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumntotal_current_value)
-        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumntotal_propose_value)
-        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumntotal_cost)
-        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumnmarked_down_value)
-        Me.gridBandTotalValue.Columns.Add(Me.BandedGridColumnmark_up)
-        Me.gridBandTotalValue.Name = "gridBandTotalValue"
-        Me.gridBandTotalValue.VisibleIndex = 3
-        Me.gridBandTotalValue.Width = 450
-        '
-        'gridBandOther
-        '
-        Me.gridBandOther.Columns.Add(Me.BandedGridColumnnote)
-        Me.gridBandOther.Name = "gridBandOther"
-        Me.gridBandOther.VisibleIndex = 4
-        Me.gridBandOther.Width = 75
-        '
         'FormProposePriceMKDDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1644,12 +1774,14 @@ Partial Class FormProposePriceMKDDet
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoCESelAll, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnEditPropose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkHist, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoBtnHist, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTENote, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.RepoCESelAll, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1750,11 +1882,18 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents BtnBulkEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumnis_select As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumndesign_cat As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandAction As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RepoCESelAll As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BandedGridColumnnumber_hist As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnpropose_discount_hist As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnpropose_price_final_hist As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnbtn_more_hist As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepoBtnHist As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents BandedGridColumnid_pp_change_hist As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandAction As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandHist As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandHistory As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandOther As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents RepoLinkHist As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class

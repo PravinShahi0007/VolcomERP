@@ -279,6 +279,12 @@
         Else
             If GVSalesOrder.FocusedRowHandle >= 0 And GVSalesOrder.RowCount > 0 Then
                 Dim id As String = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                Dim ol_order_no As String = GVSalesOrder.GetFocusedRowCellValue("sales_order_ol_shop_number").ToString
+                If ol_order_no <> "" Then
+                    Cursor = Cursors.Default
+                    warningCustom("Please print via menu 'Online Order List'")
+                    Exit Sub
+                End If
                 FormViewSalesOrder.id_sales_order = id
                 FormViewSalesOrder.is_print = "1"
                 FormViewSalesOrder.ShowDialog()
