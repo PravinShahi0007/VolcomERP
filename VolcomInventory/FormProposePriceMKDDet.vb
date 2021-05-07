@@ -9,6 +9,11 @@
     Dim dvs As System.IO.Stream
 
     Private Sub FormProposePriceMKDDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'save default view
+        dvs = New System.IO.MemoryStream()
+        GVData.SaveLayoutToStream(dvs, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        dvs.Seek(0, System.IO.SeekOrigin.Begin)
+
         viewReportStatus()
         viewMKDType()
         viewPriceType()
@@ -50,11 +55,6 @@
 
     Sub actionLoad()
         Cursor = Cursors.WaitCursor
-
-        'save default view
-        dvs = New System.IO.MemoryStream()
-        GVData.SaveLayoutToStream(dvs, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        dvs.Seek(0, System.IO.SeekOrigin.Begin)
         If action = "ins" Then
             'option
             BtnCreateNew.Visible = True
@@ -129,6 +129,7 @@
         Else
             gridBandAction.Visible = False
             gridBandOther.Visible = False
+            gridBandHistory.Visible = False
             BandedGridColumndisc_desc.Visible = False
             BandedGridColumnmkd_normal_view.Visible = False
             BandedGridColumnmkd_30_view.Visible = False
