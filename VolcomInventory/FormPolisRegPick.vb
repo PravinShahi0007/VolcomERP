@@ -23,7 +23,16 @@ WHERE pps.id_report_status=6 AND ISNULL(reg.id_polis_reg)"
     Private Sub BPick_Click(sender As Object, e As EventArgs) Handles BPick.Click
         If GVPolisPPS.RowCount > 0 Then
             FormPolisReg.id_polis_pps = GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString
+            '
+            Dim id_reg As String = ""
+            Dim q As String = "INSERT INTO tb_polis_reg(id_polis_pps,created_date,created_by,id_report_status) VALUES(" & GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString & ",NOW(),'" & id_user & "',1); SELECT LAST_INSERT_ID(); "
+            id_reg = execute_query(q, -1, True, "", "", "", "")
+            '
             Close()
         End If
+    End Sub
+
+    Private Sub FormPolisRegPick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_pps()
     End Sub
 End Class

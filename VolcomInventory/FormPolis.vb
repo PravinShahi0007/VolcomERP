@@ -83,7 +83,17 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_sta
     End Sub
 
     Private Sub BRefreshRegisterPolis_Click(sender As Object, e As EventArgs) Handles BRefreshRegisterPolis.Click
+        load_polis_reg()
+    End Sub
 
+    Sub load_polis_reg()
+        Dim q As String = "SELECT reg.number,reg.id_polis_reg,reg.id_polis_pps,pps.number AS pps_number
+FROM tb_polis_reg reg
+INNER JOIN tb_polis_pps pps ON pps.id_polis_pps=reg.id_polis_pps
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=reg.id_report_status"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCRegisterPolis.DataSource = dt
+        GVRegisterPolis.BestFitColumns()
     End Sub
 
     Private Sub BCreatePolis_Click(sender As Object, e As EventArgs) Handles BCreatePolis.Click
@@ -92,5 +102,13 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_sta
 
     Private Sub BCreateNewReg_Click(sender As Object, e As EventArgs) Handles BCreateNewReg.Click
         FormPolisReg.ShowDialog()
+    End Sub
+
+    Private Sub GVRegisterPolis_DoubleClick(sender As Object, e As EventArgs) Handles GVRegisterPolis.DoubleClick
+        If GVRegisterPolis.RowCount > 0 Then
+            FormPolisReg.id_polis_pps = GVRegisterPolis.GetFocusedRowCellValue("id_polis_pps").ToString
+            FormPolisReg.id_reg = GVRegisterPolis.GetFocusedRowCellValue("id_polis_reg").ToString
+            FormPolisReg.ShowDialog()
+        End If
     End Sub
 End Class
