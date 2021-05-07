@@ -433,6 +433,7 @@ Partial Class FormPolisReg
         Me.BandedGridColumn11.Caption = "Vendor Yang dipilih"
         Me.BandedGridColumn11.FieldName = "vendor"
         Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BandedGridColumn11.Visible = True
         Me.BandedGridColumn11.Width = 107
         '
@@ -447,6 +448,7 @@ Partial Class FormPolisReg
         Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn10.FieldName = "premi"
         Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BandedGridColumn10.Visible = True
         '
         'gridBand4
@@ -470,8 +472,9 @@ Partial Class FormPolisReg
         'BandedGridColumn1
         '
         Me.BandedGridColumn1.Caption = "Premi"
-        Me.BandedGridColumn1.FieldName = "premi"
+        Me.BandedGridColumn1.FieldName = "premi_det"
         Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BandedGridColumn1.Visible = True
         '
         'BandedGridColumn2
@@ -479,6 +482,7 @@ Partial Class FormPolisReg
         Me.BandedGridColumn2.Caption = "Nomor Polis"
         Me.BandedGridColumn2.FieldName = "polis_number"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BandedGridColumn2.Visible = True
         '
         'FormPolisReg

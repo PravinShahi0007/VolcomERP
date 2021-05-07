@@ -56,11 +56,11 @@ Partial Class FormPolis
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreateNewReg = New DevExpress.XtraEditors.SimpleButton()
         Me.BRefreshRegisterPolis = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPFixedAsset = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCPolisToko, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -389,7 +389,7 @@ Partial Class FormPolis
         '
         'GVRegisterPolis
         '
-        Me.GVRegisterPolis.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17, Me.GridColumn20, Me.GridColumn18, Me.GridColumn19})
+        Me.GVRegisterPolis.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn21, Me.GridColumn17, Me.GridColumn20, Me.GridColumn19})
         Me.GVRegisterPolis.GridControl = Me.GCRegisterPolis
         Me.GVRegisterPolis.Name = "GVRegisterPolis"
         Me.GVRegisterPolis.OptionsBehavior.Editable = False
@@ -399,7 +399,7 @@ Partial Class FormPolis
         'GridColumn16
         '
         Me.GridColumn16.Caption = "ID"
-        Me.GridColumn16.FieldName = "id_polis_pps"
+        Me.GridColumn16.FieldName = "id_polis_reg"
         Me.GridColumn16.Name = "GridColumn16"
         '
         'GridColumn17
@@ -413,15 +413,10 @@ Partial Class FormPolis
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Propossal Number"
+        Me.GridColumn20.FieldName = "pps_number"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 1
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Step"
-        Me.GridColumn18.FieldName = "step_desc"
-        Me.GridColumn18.Name = "GridColumn18"
         '
         'GridColumn19
         '
@@ -464,6 +459,12 @@ Partial Class FormPolis
         Me.XTPFixedAsset.Name = "XTPFixedAsset"
         Me.XTPFixedAsset.Size = New System.Drawing.Size(1003, 463)
         Me.XTPFixedAsset.Text = "Fixed Asset"
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "ID PPS"
+        Me.GridColumn21.FieldName = "id_polis_pps"
+        Me.GridColumn21.Name = "GridColumn21"
         '
         'FormPolis
         '
@@ -532,9 +533,9 @@ Partial Class FormPolis
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BRefreshRegisterPolis As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BCreatePolis As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BCreateNewReg As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

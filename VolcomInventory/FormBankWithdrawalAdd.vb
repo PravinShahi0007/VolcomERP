@@ -190,7 +190,7 @@
 
     Sub calculate()
         Try
-            TxtAmount.EditValue = TEBeforeKurs.EditValue * TEKurs.EditValue
+            TxtAmount.EditValue = Math.Round(TEBeforeKurs.EditValue * TEKurs.EditValue, 2)
         Catch ex As Exception
         End Try
     End Sub
@@ -261,5 +261,15 @@
                 Close()
             End If
         End If
+    End Sub
+
+    Private Sub LECurrency_EditValueChanged(sender As Object, e As EventArgs) Handles LECurrency.EditValueChanged
+        Try
+            If Not LECurrency.EditValue.ToString = "1" Then
+                TEKurs.EditValue = FormBankWithdrawal.TEKurs.EditValue
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
