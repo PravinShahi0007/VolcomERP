@@ -58,6 +58,21 @@
 
         selectYearAll = selectYearAll.Substring(0, selectYearAll.Length - 2)
 
+        'stock date
+        Dim dateStockDate As String = "" + year_to.ToString + "-" + month_to.ToString.PadLeft(2, "0") + "-" + Date.DaysInMonth(year_to, month_to).ToString + ""
+
+        Dim queryStockDate As String = "
+            SELECT STR_TO_DATE(CONCAT(YEAR('" + dateStockDate + "'), '-', MONTH('" + dateStockDate + "'), '-', '01'), '%Y-%m-%d') AS cm_beg_startd, STR_TO_DATE(DATE_SUB(CONCAT(YEAR('" + dateStockDate + "'), '-', MONTH('" + dateStockDate + "'), '-', '01'), INTERVAL 1 DAY), '%Y-%m-%d') AS beg_date, YEAR((SELECT beg_date)) AS beg_year, MONTH((SELECT beg_date)) AS beg_month
+        "
+
+        Dim dataStockDate As DataTable = execute_query(queryStockDate, -1, True, "", "", "", "")
+
+        Dim compG78 As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 371", 0, True, "", "", "", "")
+        Dim compGON As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 1251", 0, True, "", "", "", "")
+        Dim compS78 As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 429", 0, True, "", "", "", "")
+        Dim compGOS As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 1255", 0, True, "", "", "", "")
+        Dim compREJ As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_type IN (3, 4)", 0, True, "", "", "", "")
+
         'where
         Dim where As String = ""
 
@@ -121,7 +136,8 @@
                 ROUND((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0))) AS `Total Sales|Grand Total`,
                 (IFNULL(sales_normal.qty, 0) / IFNULL(wh_rec_normal.qty, 0)) AS `Sell Thru|Normal`, 
                 (IFNULL(sales_sale.qty, 0) / (IFNULL(wh_rec_normal.qty, 0) - IFNULL(sales_normal.qty, 0))) AS `Sell Thru|Sale`,
-                ((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0)) / IFNULL(wh_rec_normal.qty, 0)) AS `Sell Thru|Total`
+                ((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0)) / IFNULL(wh_rec_normal.qty, 0)) AS `Sell Thru|Total`,
+                ROUND(IFNULL(stock_g78.qty, 0)) AS `Stock Gudang Normal|G78`, ROUND(IFNULL(stock_gon.qty, 0)) AS `Stock Gudang Normal|GON`, ROUND(IFNULL(stock_s78.qty, 0)) AS `Stock Gudang Sale|S78`, ROUND(IFNULL(stock_gos.qty, 0)) AS `Stock Gudang Sale|GOS`, ROUND(IFNULL(stock_rej.qty, 0)) AS `Stock Gudang Non Aktive|Reject`
             FROM tb_m_design AS design
             LEFT JOIN (
 	            SELECT c.id_design, d.id_code_detail, d.display_name
@@ -276,6 +292,101 @@
                 WHERE s.id_report_status = 6 " + whereSalesPos + " AND (t.id_store_type <> 1 OR t.id_store_type IS NULL)
                 GROUP BY p.id_design
             ) AS sales_sale ON design.id_design = sales_sale.id_design
+            LEFT JOIN (
+                SELECT p.id_design, SUM(a.qty_ttl) AS qty
+				FROM (
+					SELECT f.id_wh_drawer, f.id_product, f.qty_ttl
+					FROM tb_storage_fg_" + dataStockDate.Rows(0)("beg_year").ToString + " AS f
+					WHERE f.month = '" + dataStockDate.Rows(0)("beg_month").ToString + "'
+					UNION ALL
+					SELECT f.id_wh_drawer, f.id_product, SUM(IF(f.id_stock_status = 1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl
+					FROM tb_storage_fg AS f
+					WHERE f.storage_product_datetime >= '" + Date.Parse(dataStockDate.Rows(0)("cm_beg_startd").ToString).ToString("yyyy-MM-dd") + " 00:00:00'  AND f.storage_product_datetime <= '" + dateStockDate + " 23:59:59' 
+					GROUP BY f.id_wh_drawer, f.id_product
+				) AS a
+				INNER JOIN tb_m_wh_drawer AS d ON  d.id_wh_drawer= a.id_wh_drawer
+				INNER JOIN tb_m_wh_rack AS r ON r.id_wh_rack = d.id_wh_rack
+				INNER JOIN tb_m_wh_locator AS l ON l.id_wh_locator = r.id_wh_locator AND l.id_comp IN (" + compG78 + ")
+				INNER JOIN tb_m_comp AS c ON c.id_comp = l.id_comp
+                INNER JOIN tb_m_product AS p ON p.id_product = a.id_product
+				GROUP BY p.id_design
+            ) AS stock_g78 ON design.id_design = stock_g78.id_design
+            LEFT JOIN (
+                SELECT p.id_design, SUM(a.qty_ttl) AS qty
+				FROM (
+					SELECT f.id_wh_drawer, f.id_product, f.qty_ttl
+					FROM tb_storage_fg_" + dataStockDate.Rows(0)("beg_year").ToString + " AS f
+					WHERE f.month = '" + dataStockDate.Rows(0)("beg_month").ToString + "'
+					UNION ALL
+					SELECT f.id_wh_drawer, f.id_product, SUM(IF(f.id_stock_status = 1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl
+					FROM tb_storage_fg AS f
+					WHERE f.storage_product_datetime >= '" + Date.Parse(dataStockDate.Rows(0)("cm_beg_startd").ToString).ToString("yyyy-MM-dd") + " 00:00:00'  AND f.storage_product_datetime <= '" + dateStockDate + " 23:59:59' 
+					GROUP BY f.id_wh_drawer, f.id_product
+				) AS a
+				INNER JOIN tb_m_wh_drawer AS d ON  d.id_wh_drawer= a.id_wh_drawer
+				INNER JOIN tb_m_wh_rack AS r ON r.id_wh_rack = d.id_wh_rack
+				INNER JOIN tb_m_wh_locator AS l ON l.id_wh_locator = r.id_wh_locator AND l.id_comp IN (" + compGON + ")
+				INNER JOIN tb_m_comp AS c ON c.id_comp = l.id_comp
+                INNER JOIN tb_m_product AS p ON p.id_product = a.id_product
+				GROUP BY p.id_design
+            ) AS stock_gon ON design.id_design = stock_gon.id_design
+            LEFT JOIN (
+                SELECT p.id_design, SUM(a.qty_ttl) AS qty
+				FROM (
+					SELECT f.id_wh_drawer, f.id_product, f.qty_ttl
+					FROM tb_storage_fg_" + dataStockDate.Rows(0)("beg_year").ToString + " AS f
+					WHERE f.month = '" + dataStockDate.Rows(0)("beg_month").ToString + "'
+					UNION ALL
+					SELECT f.id_wh_drawer, f.id_product, SUM(IF(f.id_stock_status = 1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl
+					FROM tb_storage_fg AS f
+					WHERE f.storage_product_datetime >= '" + Date.Parse(dataStockDate.Rows(0)("cm_beg_startd").ToString).ToString("yyyy-MM-dd") + " 00:00:00'  AND f.storage_product_datetime <= '" + dateStockDate + " 23:59:59' 
+					GROUP BY f.id_wh_drawer, f.id_product
+				) AS a
+				INNER JOIN tb_m_wh_drawer AS d ON  d.id_wh_drawer= a.id_wh_drawer
+				INNER JOIN tb_m_wh_rack AS r ON r.id_wh_rack = d.id_wh_rack
+				INNER JOIN tb_m_wh_locator AS l ON l.id_wh_locator = r.id_wh_locator AND l.id_comp IN (" + compS78 + ")
+				INNER JOIN tb_m_comp AS c ON c.id_comp = l.id_comp
+                INNER JOIN tb_m_product AS p ON p.id_product = a.id_product
+				GROUP BY p.id_design
+            ) AS stock_s78 ON design.id_design = stock_s78.id_design
+            LEFT JOIN (
+                SELECT p.id_design, SUM(a.qty_ttl) AS qty
+				FROM (
+					SELECT f.id_wh_drawer, f.id_product, f.qty_ttl
+					FROM tb_storage_fg_" + dataStockDate.Rows(0)("beg_year").ToString + " AS f
+					WHERE f.month = '" + dataStockDate.Rows(0)("beg_month").ToString + "'
+					UNION ALL
+					SELECT f.id_wh_drawer, f.id_product, SUM(IF(f.id_stock_status = 1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl
+					FROM tb_storage_fg AS f
+					WHERE f.storage_product_datetime >= '" + Date.Parse(dataStockDate.Rows(0)("cm_beg_startd").ToString).ToString("yyyy-MM-dd") + " 00:00:00'  AND f.storage_product_datetime <= '" + dateStockDate + " 23:59:59' 
+					GROUP BY f.id_wh_drawer, f.id_product
+				) AS a
+				INNER JOIN tb_m_wh_drawer AS d ON  d.id_wh_drawer= a.id_wh_drawer
+				INNER JOIN tb_m_wh_rack AS r ON r.id_wh_rack = d.id_wh_rack
+				INNER JOIN tb_m_wh_locator AS l ON l.id_wh_locator = r.id_wh_locator AND l.id_comp IN (" + compGOS + ")
+				INNER JOIN tb_m_comp AS c ON c.id_comp = l.id_comp
+                INNER JOIN tb_m_product AS p ON p.id_product = a.id_product
+				GROUP BY p.id_design
+            ) AS stock_gos ON design.id_design = stock_gos.id_design
+            LEFT JOIN (
+                SELECT p.id_design, SUM(a.qty_ttl) AS qty
+				FROM (
+					SELECT f.id_wh_drawer, f.id_product, f.qty_ttl
+					FROM tb_storage_fg_" + dataStockDate.Rows(0)("beg_year").ToString + " AS f
+					WHERE f.month = '" + dataStockDate.Rows(0)("beg_month").ToString + "'
+					UNION ALL
+					SELECT f.id_wh_drawer, f.id_product, SUM(IF(f.id_stock_status = 1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl
+					FROM tb_storage_fg AS f
+					WHERE f.storage_product_datetime >= '" + Date.Parse(dataStockDate.Rows(0)("cm_beg_startd").ToString).ToString("yyyy-MM-dd") + " 00:00:00'  AND f.storage_product_datetime <= '" + dateStockDate + " 23:59:59' 
+					GROUP BY f.id_wh_drawer, f.id_product
+				) AS a
+				INNER JOIN tb_m_wh_drawer AS d ON  d.id_wh_drawer= a.id_wh_drawer
+				INNER JOIN tb_m_wh_rack AS r ON r.id_wh_rack = d.id_wh_rack
+				INNER JOIN tb_m_wh_locator AS l ON l.id_wh_locator = r.id_wh_locator AND l.id_comp IN (" + compREJ + ")
+				INNER JOIN tb_m_comp AS c ON c.id_comp = l.id_comp
+                INNER JOIN tb_m_product AS p ON p.id_product = a.id_product
+				GROUP BY p.id_design
+            ) AS stock_rej ON design.id_design = stock_rej.id_design
             WHERE design.id_lookup_status_order <> 2 AND design.design_code <> '' " + where + "
             ORDER BY design.design_first_rec_wh ASC
         "
@@ -446,9 +557,15 @@
         Dim last_year As Integer = Date.Now.Year
 
         For i = last_year To first_year Step -1
-            For j = 12 To 1 Step -1
-                data.Rows.Add(i.ToString + "-" + j.ToString, month(j - 1) + " " + i.ToString)
-            Next
+            If i = last_year Then
+                For j = Date.Now.Month To 1 Step -1
+                    data.Rows.Add(i.ToString + "-" + j.ToString, month(j - 1) + " " + i.ToString)
+                Next
+            Else
+                For j = 12 To 1 Step -1
+                    data.Rows.Add(i.ToString + "-" + j.ToString, month(j - 1) + " " + i.ToString)
+                Next
+            End If
         Next
 
         SLUEMonthFrom.Properties.DataSource = data
@@ -460,7 +577,7 @@
         SLUEMonthTo.Properties.ValueMember = "month_code"
 
         SLUEMonthFrom.EditValue = Date.Now.Year.ToString + "-1"
-        SLUEMonthTo.EditValue = Date.Now.Year.ToString + "-12"
+        SLUEMonthTo.EditValue = Date.Now.Year.ToString + "-" + Date.Now.Month.ToString
     End Sub
 
     Sub view_national()
