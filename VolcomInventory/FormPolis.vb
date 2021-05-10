@@ -65,9 +65,6 @@ WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45"
         End If
     End Sub
 
-    Private Sub BProposePolis_Click(sender As Object, e As EventArgs) Handles BProposePolis.Click
-        FormPolisDet.ShowDialog()
-    End Sub
 
     Private Sub GVPolisPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVPolisPPS.DoubleClick
         If GVPolisPPS.RowCount > 0 Then
@@ -77,11 +74,41 @@ WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45"
     End Sub
 
     Private Sub BRefreshPolisPPS_Click(sender As Object, e As EventArgs) Handles BRefreshPolisPPS.Click
-        Dim q As String = "SELECT pps.id_polis_pps,pps.number,sts.report_status,IF(pps.step=1,'Waiting nilai stock',IF(pps.step=2,'Waiting nilai lainnya',IF(pps.step=3,'Waiting penawaran vendor','Waiting approval'))) as step_desc
+        Dim q As String = "SELECT pps.id_polis_pps,pps.number,sts.report_status,IF(pps.id_report_status=6 OR pps.id_report_status=5,'',IF(pps.step=1,'Waiting nilai stock',IF(pps.step=2,'Waiting nilai lainnya',IF(pps.step=3,'Waiting penawaran vendor','Waiting approval')))) as step_desc
 FROM tb_polis_pps pps
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCPolisPPS.DataSource = dt
         GVPolisPPS.BestFitColumns()
+    End Sub
+
+    Private Sub BRefreshRegisterPolis_Click(sender As Object, e As EventArgs) Handles BRefreshRegisterPolis.Click
+        load_polis_reg()
+    End Sub
+
+    Sub load_polis_reg()
+        Dim q As String = "SELECT reg.number,reg.id_polis_reg,reg.id_polis_pps,pps.number AS pps_number,sts.report_status
+FROM tb_polis_reg reg
+INNER JOIN tb_polis_pps pps ON pps.id_polis_pps=reg.id_polis_pps
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=reg.id_report_status"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCRegisterPolis.DataSource = dt
+        GVRegisterPolis.BestFitColumns()
+    End Sub
+
+    Private Sub BCreatePolis_Click(sender As Object, e As EventArgs) Handles BCreatePolis.Click
+        FormPolisDet.ShowDialog()
+    End Sub
+
+    Private Sub BCreateNewReg_Click(sender As Object, e As EventArgs) Handles BCreateNewReg.Click
+        FormPolisReg.ShowDialog()
+    End Sub
+
+    Private Sub GVRegisterPolis_DoubleClick(sender As Object, e As EventArgs) Handles GVRegisterPolis.DoubleClick
+        If GVRegisterPolis.RowCount > 0 Then
+            FormPolisReg.id_polis_pps = GVRegisterPolis.GetFocusedRowCellValue("id_polis_pps").ToString
+            FormPolisReg.id_reg = GVRegisterPolis.GetFocusedRowCellValue("id_polis_reg").ToString
+            FormPolisReg.ShowDialog()
+        End If
     End Sub
 End Class

@@ -100,6 +100,8 @@ Partial Class FormViewFGTrf
         Me.GridColumnIdProductScan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LinkTOO = New DevExpress.XtraEditors.HyperLinkEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,11 +143,14 @@ Partial Class FormViewFGTrf
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LinkTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LinkTOO)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl3)
         Me.GroupGeneralHeader.Controls.Add(Me.PanelHeaderLeft)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtCodeCompTo)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtNameCompFrom)
@@ -156,7 +161,7 @@ Partial Class FormViewFGTrf
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(951, 67)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(951, 92)
         Me.GroupGeneralHeader.TabIndex = 186
         '
         'PanelHeaderLeft
@@ -169,7 +174,7 @@ Partial Class FormViewFGTrf
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelHeaderLeft.Location = New System.Drawing.Point(563, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
-        Me.PanelHeaderLeft.Size = New System.Drawing.Size(386, 63)
+        Me.PanelHeaderLeft.Size = New System.Drawing.Size(386, 88)
         Me.PanelHeaderLeft.TabIndex = 8899
         '
         'TxtNumber
@@ -410,13 +415,13 @@ Partial Class FormViewFGTrf
         '
         Me.SCCTrf.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SCCTrf.Horizontal = False
-        Me.SCCTrf.Location = New System.Drawing.Point(0, 67)
+        Me.SCCTrf.Location = New System.Drawing.Point(0, 92)
         Me.SCCTrf.Name = "SCCTrf"
         Me.SCCTrf.Panel1.Controls.Add(Me.GroupControlListItem)
         Me.SCCTrf.Panel1.Text = "Panel1"
         Me.SCCTrf.Panel2.Controls.Add(Me.XTCDONew)
         Me.SCCTrf.Panel2.Text = "Panel2"
-        Me.SCCTrf.Size = New System.Drawing.Size(951, 421)
+        Me.SCCTrf.Size = New System.Drawing.Size(951, 396)
         Me.SCCTrf.SplitterPosition = 240
         Me.SCCTrf.TabIndex = 194
         Me.SCCTrf.Text = "SplitContainerControl1"
@@ -668,7 +673,7 @@ Partial Class FormViewFGTrf
         Me.XTCDONew.Location = New System.Drawing.Point(0, 0)
         Me.XTCDONew.Name = "XTCDONew"
         Me.XTCDONew.SelectedTabPage = Me.XTPOutboundItemNew
-        Me.XTCDONew.Size = New System.Drawing.Size(951, 176)
+        Me.XTCDONew.Size = New System.Drawing.Size(951, 151)
         Me.XTCDONew.TabIndex = 1
         Me.XTCDONew.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOutboundItemNew, Me.XTPOutboundScanNew})
         '
@@ -677,7 +682,7 @@ Partial Class FormViewFGTrf
         Me.XTPOutboundItemNew.Controls.Add(Me.GroupControlDrawerDetail)
         Me.XTPOutboundItemNew.Name = "XTPOutboundItemNew"
         Me.XTPOutboundItemNew.PageVisible = False
-        Me.XTPOutboundItemNew.Size = New System.Drawing.Size(945, 148)
+        Me.XTPOutboundItemNew.Size = New System.Drawing.Size(945, 123)
         Me.XTPOutboundItemNew.Text = "Outbound Item"
         '
         'GroupControlDrawerDetail
@@ -688,7 +693,7 @@ Partial Class FormViewFGTrf
         Me.GroupControlDrawerDetail.Enabled = False
         Me.GroupControlDrawerDetail.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlDrawerDetail.Name = "GroupControlDrawerDetail"
-        Me.GroupControlDrawerDetail.Size = New System.Drawing.Size(945, 148)
+        Me.GroupControlDrawerDetail.Size = New System.Drawing.Size(945, 123)
         Me.GroupControlDrawerDetail.TabIndex = 1
         Me.GroupControlDrawerDetail.Text = "Drawer Detail"
         '
@@ -700,7 +705,7 @@ Partial Class FormViewFGTrf
         Me.GCDrawer.MainView = Me.GVDrawer
         Me.GCDrawer.Name = "GCDrawer"
         Me.GCDrawer.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit3})
-        Me.GCDrawer.Size = New System.Drawing.Size(923, 144)
+        Me.GCDrawer.Size = New System.Drawing.Size(923, 119)
         Me.GCDrawer.TabIndex = 3
         Me.GCDrawer.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDrawer})
         '
@@ -948,6 +953,23 @@ Partial Class FormViewFGTrf
         Me.RepositoryItemSpinEdit2.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
         Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
         '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(30, 62)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl3.TabIndex = 8900
+        Me.LabelControl3.Text = "TOO"
+        '
+        'LinkTOO
+        '
+        Me.LinkTOO.Location = New System.Drawing.Point(90, 59)
+        Me.LinkTOO.Name = "LinkTOO"
+        Me.LinkTOO.Properties.ReadOnly = True
+        Me.LinkTOO.Size = New System.Drawing.Size(309, 20)
+        Me.LinkTOO.TabIndex = 8901
+        '
         'FormViewFGTrf
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1007,6 +1029,7 @@ Partial Class FormViewFGTrf
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LinkTOO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1091,4 +1114,6 @@ Partial Class FormViewFGTrf
     Friend WithEvents GridColumnPriceType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LinkTOO As DevExpress.XtraEditors.HyperLinkEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class

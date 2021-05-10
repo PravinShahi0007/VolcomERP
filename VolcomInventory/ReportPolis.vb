@@ -1,5 +1,6 @@
 ﻿Public Class ReportPolis
     Public Shared dt As DataTable
+    Public Shared id_pps As String = "-1"
     Private Sub ReportPolis_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         'add column
         Dim font_rowhead_style As New Font(XTPolisPPS.Font.FontFamily, XTPolisPPS.Font.Size, FontStyle.Bold)
@@ -33,13 +34,15 @@
         For i = 0 To dt.Rows.Count - 1
             insert_row(row_baru, dt, i)
         Next
+
+        pre_load_mark_horz("307", id_pps, "2", "2", XRTableMark)
     End Sub
     '
     Sub insert_row(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
         Dim font_row_style As New Font(XTPolisPPS.Font.FontFamily, XTPolisPPS.Font.Size - 1, FontStyle.Regular)
 
         row = XTPolisPPS.InsertRowBelow(row)
-        row.Borders = DevExpress.XtraPrinting.BorderSide.All
+        row.Borders = DevExpress.XtraPrinting.BorderSide.Bottom Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Top
         row.BorderWidth = 1
         row.HeightF = 15
         row.Font = font_row_style
@@ -113,7 +116,7 @@
         'vendor tahun lalu
         Dim old_vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(11)
         old_vendor.Text = dt.Rows(row_i)("old_vendor").ToString
-        old_vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        old_vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         old_vendor.Font = font_row_style
 
         'harga tahun lalu
@@ -122,10 +125,23 @@
         old_premi.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         old_premi.Font = font_row_style
 
+        Dim j As Integer = 13
+        For i = 0 To dt.Columns.Count - 1
+            If dt.Columns(i).ColumnName.ToString.Contains("vendor_") Then
+                'harga per vendor
+                Dim price As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(j)
+                price.Text = Decimal.Parse(dt.Rows(row_i)(dt.Columns(i).ColumnName.ToString).ToString).ToString("N2")
+                price.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+                price.Font = font_row_style
+
+                j += 1
+            End If
+        Next
+
+        'vendor dipilih
+        Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(j)
+        vendor.Text = dt.Rows(row_i)("vendor").ToString
+        vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        vendor.Font = font_row_style
     End Sub
-
-    ',ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`
-    ',ppsd.old_nilai_total,ppsd.old_premi,ppsd.old_polis_vendor,v_old.comp_name AS old_vendor
-    ',ppsd.polis_vendor,ppsd.premi,v.comp_name AS vendor
-
 End Class

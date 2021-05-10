@@ -124,6 +124,9 @@ Partial Class FormPolisDet
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PCSummary = New DevExpress.XtraEditors.PanelControl()
+        Me.BDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -157,6 +160,8 @@ Partial Class FormPolisDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCSummary.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -338,10 +343,10 @@ Partial Class FormPolisDet
         'GCSummary
         '
         Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSummary.Location = New System.Drawing.Point(0, 0)
+        Me.GCSummary.Location = New System.Drawing.Point(0, 46)
         Me.GCSummary.MainView = Me.BGVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(909, 325)
+        Me.GCSummary.Size = New System.Drawing.Size(909, 279)
         Me.GCSummary.TabIndex = 9
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVSummary})
         '
@@ -693,6 +698,7 @@ Partial Class FormPolisDet
         'XTPSummary
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
+        Me.XTPSummary.Controls.Add(Me.PCSummary)
         Me.XTPSummary.Controls.Add(Me.BLoadPolis)
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(909, 363)
@@ -1353,6 +1359,36 @@ Partial Class FormPolisDet
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 1
         '
+        'PCSummary
+        '
+        Me.PCSummary.Controls.Add(Me.BDel)
+        Me.PCSummary.Controls.Add(Me.BAdd)
+        Me.PCSummary.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCSummary.Location = New System.Drawing.Point(0, 0)
+        Me.PCSummary.Name = "PCSummary"
+        Me.PCSummary.Size = New System.Drawing.Size(909, 46)
+        Me.PCSummary.TabIndex = 143
+        '
+        'BDel
+        '
+        Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDel.Image = CType(resources.GetObject("BDel.Image"), System.Drawing.Image)
+        Me.BDel.Location = New System.Drawing.Point(737, 2)
+        Me.BDel.Name = "BDel"
+        Me.BDel.Size = New System.Drawing.Size(87, 42)
+        Me.BDel.TabIndex = 3
+        Me.BDel.Text = "Delete"
+        '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
+        Me.BAdd.Location = New System.Drawing.Point(824, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(83, 42)
+        Me.BAdd.TabIndex = 2
+        Me.BAdd.Text = "Add"
+        '
         'FormPolisDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1399,6 +1435,8 @@ Partial Class FormPolisDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCSummary.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1506,4 +1544,7 @@ Partial Class FormPolisDet
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents PCSummary As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
 End Class

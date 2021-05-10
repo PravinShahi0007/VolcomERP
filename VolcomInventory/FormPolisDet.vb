@@ -1,6 +1,7 @@
 ﻿Public Class FormPolisDet
     Public id_pps As String = "-1"
     Dim steps As Integer = "0"
+    Public is_view As String = "-1"
     Private Sub BLoadPolis_Click(sender As Object, e As EventArgs) Handles BLoadPolis.Click
         load_polis()
     End Sub
@@ -9,7 +10,7 @@
         If id_pps = "-1" Then 'new
             'yang belum di propose dan mau jatuh tempo
             Dim q As String = "SELECT 
-p.id_polis AS old_id_polis,p.end_date,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`,c.`id_comp`
+p.id_polis AS old_id_polis,p.end_date AS old_end_date,p.end_date,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`,c.`id_comp`
 ,p.`nilai_stock` AS old_nilai_stock,p.`nilai_fit_out` AS old_nilai_fit_out,p.`nilai_peralatan` AS old_nilai_peralatan,p.`nilai_building` AS old_nilai_building,p.`nilai_public_liability` AS old_nilai_public_liability,p.`nilai_total` AS old_nilai_total,pol_by.`id_comp` AS old_id_vendor,pol_by.`comp_name` AS old_vendor
 ,SUM(pd.`premi`) AS old_premi
 FROM tb_polis_det pd
@@ -263,13 +264,13 @@ GROUP BY ppsd.`id_comp`"
                 Dim q As String = ""
                 q = "INSERT INTO tb_polis_pps(`created_by`,`created_date`,`last_update_by`,`last_update_date`,`id_report_status`,`step`) VALUES('" & id_user & "',NOW(),'" & id_user & "',NOW(),'1','1'); SELECT LAST_INSERT_ID();"
                 id_pps = execute_query(q, 0, True, "", "", "", "")
-                q = "INSERT INTO tb_polis_pps_det(`id_polis_pps`,`id_comp`,`old_id_polis`,`old_nilai_stock`,`old_nilai_fit_out`,`old_nilai_building`,`old_nilai_peralatan`,`old_nilai_public_liability`,`old_nilai_total`,`old_polis_vendor`,`old_premi`) VALUES"
+                q = "INSERT INTO tb_polis_pps_det(`id_polis_pps`,`id_comp`,`old_id_polis`,`old_end_date`,`old_nilai_stock`,`old_nilai_fit_out`,`old_nilai_building`,`old_nilai_peralatan`,`old_nilai_public_liability`,`old_nilai_total`,`old_polis_vendor`,`old_premi`) VALUES"
                 For i = 0 To BGVSummary.RowCount - 1
                     If Not i = 0 Then
                         q += ","
                     End If
 
-                    q += "('" & id_pps & "','" & BGVSummary.GetRowCellValue(i, "id_comp") & "','" & BGVSummary.GetRowCellValue(i, "old_id_polis") & "'," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_stock").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_fit_out").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_building").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_peralatan").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_public_liability").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_total").ToString).ToString()) & ",'" & BGVSummary.GetRowCellValue(i, "old_id_vendor").ToString & "'," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_premi").ToString).ToString()) & ")"
+                    q += "('" & id_pps & "','" & BGVSummary.GetRowCellValue(i, "id_comp") & "','" & BGVSummary.GetRowCellValue(i, "old_id_polis") & "','" & BGVSummary.GetRowCellValue(i, "old_end_date") & "'," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_stock").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_fit_out").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_building").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_peralatan").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_public_liability").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_total").ToString).ToString()) & ",'" & BGVSummary.GetRowCellValue(i, "old_id_vendor").ToString & "'," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_premi").ToString).ToString()) & ")"
                 Next
                 execute_non_query(q, True, "", "", "", "")
                 load_form()
@@ -467,9 +468,27 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         ReportPolis.dt = GCPenawaran.DataSource
+        ReportPolis.id_pps = id_pps
         Dim Report As New ReportPolis()
-
+        '
+        Dim q As String = "SELECT created_date,created_by,YEAR(created_date) AS this_year FROM tb_polis_pps WHERE id_polis_pps='" & id_pps & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        Report.DataSource = dt
+        '
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "307"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_pps
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
+        If BGVSummary.RowCount > 0 Then
+            BGVSummary.DeleteSelectedRows()
+        End If
     End Sub
 End Class

@@ -504,7 +504,7 @@
         Dim q_select As String = ""
 
         Dim data_column As DataTable = execute_query("
-            SELECT cl.column_list_1, cl.column_list_2, IF(cf.id_design_column_list_custom_fixed IS NULL, cl.column_mapping, CONCAT('custom_', cf.id_design_column_list_fixed)) AS column_mapping
+            SELECT cl.column_list_1, cl.column_list_2, cl.column_list_3, IF(cf.id_design_column_list_custom_fixed IS NULL, cl.column_mapping, CONCAT('custom_', cf.id_design_column_list_fixed)) AS column_mapping
             FROM tb_design_column_list_fixed AS cl
             LEFT JOIN tb_design_column_list_custom_fixed AS cf ON cl.id_design_column_list_fixed = cf.id_design_column_list_fixed
             WHERE cl.id_design_column_type = " + SLUEOnlineStore.EditValue.ToString + "
@@ -582,7 +582,7 @@
             data.Columns.Add(data_column.Rows(i)("column_list_2").ToString, GetType(String))
         Next
 
-        For x = 1 To 2
+        For x = 1 To 3
             Dim row As DataRow = data.NewRow
 
             For i = 0 To data_column.Rows.Count - 1
@@ -1027,8 +1027,8 @@
                 xlsWorkBook = xls.Workbooks.Open("\\192.168.1.2\dataapp$\batchupload\template-blibli.xlsx")
                 xlsWorkSheet = xlsWorkBook.Sheets("Data")
 
-                Dim x As Integer = 2
-                Dim row As Integer = 3
+                Dim x As Integer = 3
+                Dim row As Integer = 5
 
                 Dim d_total As Integer = (GVBatchUpload.Columns.Count) * (GVBatchUpload.RowCount)
                 Dim d_current As Integer = 1
@@ -1123,9 +1123,12 @@
         End If
 
         If SLUEOnlineStore.EditValue.ToString = "5" Then
-            If e.RowHandle = 0 Or e.RowHandle = 1 Then
+            If e.RowHandle = 0 Or e.RowHandle = 1 Or e.RowHandle = 2 Then
                 e.Appearance.BackColor = Color.Silver
-                e.Appearance.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
+
+                If e.RowHandle = 0 Or e.RowHandle = 1 Then
+                    e.Appearance.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
+                End If
             End If
         End If
 

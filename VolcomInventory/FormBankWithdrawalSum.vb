@@ -144,6 +144,13 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
         Dim qc As String = "SELECT id_pn_summary FROM tb_pn_summary WHERE id_pn_summary!='" & id_sum & "' AND id_coa_type='" & id_coa_type & "' AND id_currency='" & SLEType.EditValue.ToString & "' AND id_report_status!=5 AND id_report_status!=6 AND DATE(date_payment)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count = 0 Then
+            Dim qw As String = ""
+            If Not SLEType.EditValue.ToString = "1" Then
+                qw = " ISNULL(py.id_valas_bank) AND "
+            Else
+                qw = " NOT ISNULL(py.id_valas_bank) AND "
+            End If
+
             Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment,1 AS id_pn_summary_type
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
@@ -153,10 +160,10 @@ INNER JOIN `tb_lookup_pay_type` pt ON pt.`id_pay_type`=py.`id_pay_type`
 INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
-INNER JOIN tb_pn_det pyd ON pyd.id_pn=py.id_pn AND pyd.`id_currency`='" & SLEType.EditValue.ToString & "' AND pyd.`is_include_total`=1
+INNER JOIN tb_pn_det pyd ON pyd.id_pn=py.id_pn AND pyd.`is_include_total`=1
 INNER JOIN tb_a_acc acc ON acc.id_acc=pyd.id_acc AND acc.is_no_summary=2
 INNER JOIN tb_coa_tag ct ON ct.id_coa_tag=py.id_coa_tag AND ct.id_coa_type='" & id_coa_type & "'
-WHERE py.`id_report_status`!='5' AND py.`id_report_status`='3' AND py.is_auto_debet='2' AND py.`id_report_status`!='6' AND  DATE(py.`date_payment`)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+WHERE  py.`id_report_status`!='5' AND py.`id_report_status`='3' AND py.is_auto_debet='2' AND py.`id_report_status`!='6' AND  DATE(py.`date_payment`)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
             q += " GROUP BY py.id_pn "
 
             'If SLEType.EditValue.ToString = "1" Then
