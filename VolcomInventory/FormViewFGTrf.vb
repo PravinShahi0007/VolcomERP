@@ -16,6 +16,7 @@
     Public id_type As String = "-1"
     Dim is_new_rec As Boolean = False
     Dim is_only_for_alloc As String = "-1"
+    Dim id_sales_order As String = "-1"
 
     Private Sub FormFGTrfDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -41,13 +42,14 @@
         query += "IF(ISNULL(trf.fg_trf_date_rec), DATE_FORMAT(NOW(), '%Y-%m-%d'),  DATE_FORMAT(trf.fg_trf_date_rec, '%Y-%m-%d')) AS fg_trf_date_recx, "
         query += "(comp_from.id_comp) AS id_comp_from, (comp_from.comp_number) AS comp_number_from, (comp_from.comp_name) AS comp_name_from, "
         query += "(comp_to.id_comp) AS id_comp_to, (comp_to.comp_number) AS comp_number_to, (comp_to.comp_name) AS comp_name_to, comp_to.is_only_for_alloc, "
-        query += "trf.id_comp_contact_from, trf.id_comp_contact_to "
+        query += "trf.id_comp_contact_from, trf.id_comp_contact_to, trf.id_sales_order, so.sales_order_number "
         query += "FROM tb_fg_trf trf "
         query += "INNER JOIN tb_m_comp_contact comp_con_from ON trf.id_comp_contact_from = comp_con_from.id_comp_contact "
         query += "INNER JOIN tb_m_comp comp_from ON comp_con_from.id_comp = comp_from.id_comp "
         query += "INNER JOIN tb_m_comp_contact comp_con_to ON trf.id_comp_contact_to = comp_con_to.id_comp_contact "
         query += "INNER JOIN tb_m_comp comp_to ON comp_con_to.id_comp = comp_to.id_comp "
         query += "INNER JOIN tb_lookup_report_status rep_status ON trf.id_report_status = rep_status.id_report_status "
+        query += "INNER JOIN tb_sales_order so ON so.id_sales_order = trf.id_sales_order "
         query += "WHERE trf.id_fg_trf = '" + id_fg_trf + "' "
         query += "ORDER BY trf.id_fg_trf DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -67,6 +69,8 @@
         DEForm.Text = view_date_from(data.Rows(0)("fg_trf_datex").ToString, 0)
         MENote.Text = data.Rows(0)("fg_trf_note").ToString
         is_only_for_alloc = data.Rows(0)("is_only_for_alloc").ToString
+        LinkTOO.Text = data.Rows(0)("sales_order_number").ToString
+        id_sales_order = data.Rows(0)("id_sales_order").ToString
 
         'Receive TRF
         If id_type = "1" Then
@@ -327,6 +331,15 @@
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LinkTOO_OpenLink(sender As Object, e As DevExpress.XtraEditors.Controls.OpenLinkEventArgs) Handles LinkTOO.OpenLink
+        Cursor = Cursors.WaitCursor
+        Dim so As New FormViewSalesOrder()
+        so.id_sales_order = id_sales_order
+        so.action = "upd"
+        so.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

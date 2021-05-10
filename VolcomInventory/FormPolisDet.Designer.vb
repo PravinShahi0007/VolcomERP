@@ -66,6 +66,9 @@ Partial Class FormPolisDet
         Me.BLoadPolis = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCPolis = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.PCSummary = New DevExpress.XtraEditors.PanelControl()
+        Me.BDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPNilaiStock = New DevExpress.XtraTab.XtraTabPage()
         Me.GCNilaiStock = New DevExpress.XtraGrid.GridControl()
         Me.GVNilaiStock = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -138,6 +141,8 @@ Partial Class FormPolisDet
         CType(Me.XTCPolis, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPolis.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
+        CType(Me.PCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCSummary.SuspendLayout()
         Me.XTPNilaiStock.SuspendLayout()
         CType(Me.GCNilaiStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVNilaiStock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -338,10 +343,10 @@ Partial Class FormPolisDet
         'GCSummary
         '
         Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSummary.Location = New System.Drawing.Point(0, 0)
+        Me.GCSummary.Location = New System.Drawing.Point(0, 46)
         Me.GCSummary.MainView = Me.BGVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(909, 325)
+        Me.GCSummary.Size = New System.Drawing.Size(909, 279)
         Me.GCSummary.TabIndex = 9
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVSummary})
         '
@@ -405,7 +410,7 @@ Partial Class FormPolisDet
         Me.GridColumn5.Caption = "Jatuh Tempo"
         Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn5.FieldName = "end_date"
+        Me.GridColumn5.FieldName = "old_end_date"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn5.Visible = True
@@ -693,10 +698,41 @@ Partial Class FormPolisDet
         'XTPSummary
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
+        Me.XTPSummary.Controls.Add(Me.PCSummary)
         Me.XTPSummary.Controls.Add(Me.BLoadPolis)
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(909, 363)
         Me.XTPSummary.Text = "Summary"
+        '
+        'PCSummary
+        '
+        Me.PCSummary.Controls.Add(Me.BDel)
+        Me.PCSummary.Controls.Add(Me.BAdd)
+        Me.PCSummary.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCSummary.Location = New System.Drawing.Point(0, 0)
+        Me.PCSummary.Name = "PCSummary"
+        Me.PCSummary.Size = New System.Drawing.Size(909, 46)
+        Me.PCSummary.TabIndex = 143
+        '
+        'BDel
+        '
+        Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDel.Image = CType(resources.GetObject("BDel.Image"), System.Drawing.Image)
+        Me.BDel.Location = New System.Drawing.Point(737, 2)
+        Me.BDel.Name = "BDel"
+        Me.BDel.Size = New System.Drawing.Size(87, 42)
+        Me.BDel.TabIndex = 3
+        Me.BDel.Text = "Delete"
+        '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
+        Me.BAdd.Location = New System.Drawing.Point(824, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(83, 42)
+        Me.BAdd.TabIndex = 2
+        Me.BAdd.Text = "Add"
         '
         'XTPNilaiStock
         '
@@ -759,7 +795,7 @@ Partial Class FormPolisDet
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Alamat"
-        Me.GridColumn15.FieldName = "primary_address"
+        Me.GridColumn15.FieldName = "address_primary"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.OptionsColumn.AllowFocus = False
@@ -867,7 +903,7 @@ Partial Class FormPolisDet
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Alamat"
-        Me.GridColumn21.FieldName = "primary_address"
+        Me.GridColumn21.FieldName = "address_primary"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.OptionsColumn.ReadOnly = True
@@ -1055,7 +1091,7 @@ Partial Class FormPolisDet
         'GridColumn30
         '
         Me.GridColumn30.Caption = "Alamat"
-        Me.GridColumn30.FieldName = "primary_address"
+        Me.GridColumn30.FieldName = "address_primary"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.OptionsColumn.AllowFocus = False
@@ -1380,6 +1416,8 @@ Partial Class FormPolisDet
         CType(Me.XTCPolis, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPolis.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
+        CType(Me.PCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCSummary.ResumeLayout(False)
         Me.XTPNilaiStock.ResumeLayout(False)
         CType(Me.GCNilaiStock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVNilaiStock, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1506,4 +1544,7 @@ Partial Class FormPolisDet
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents PCSummary As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
 End Class
