@@ -1156,6 +1156,10 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
         Cursor = Cursors.WaitCursor
         Try
             Dim path As String = Application.StartupPath & "\download\"
+            'delete all file first
+            For Each deleteFile In IO.Directory.GetFiles(path, "*.*", IO.SearchOption.TopDirectoryOnly)
+                IO.File.Delete(deleteFile)
+            Next
             'create directory if not exist
             If Not IO.Directory.Exists(path) Then
                 System.IO.Directory.CreateDirectory(path)
