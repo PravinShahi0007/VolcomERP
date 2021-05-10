@@ -1,7 +1,7 @@
 ﻿Public Class FormPolisReg
     Public id_polis_pps As String = "-1"
     Public id_reg As String = "-1"
-    Private Sub BSaveDraft_Click(sender As Object, e As EventArgs) Handles BSaveDraft.Click
+    Private Sub BSaveDraft_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -46,5 +46,25 @@ LEFT JOIN `tb_polis_reg_det` regd ON ppsd.`id_polis_pps_det`=regd.id_polis_pps_d
         If BGVSummary.RowCount > 0 Then
             FormPolisRegSplit.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BGVSummary_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles BGVSummary.CellMerge
+        If e.Column.FieldName.ToString = "comp_number" Or e.Column.FieldName.ToString = "comp_name" Or e.Column.FieldName.ToString = "address_primary" Or e.Column.FieldName.ToString = "end_date" Or e.Column.FieldName.ToString = "nilai_stock" Or e.Column.FieldName.ToString = "nilai_building" Or e.Column.FieldName.ToString = "nilai_fit_out" Or e.Column.FieldName.ToString = "nilai_peralatan" Or e.Column.FieldName.ToString = "nilai_public_liability" Or e.Column.FieldName.ToString = "nilai_total" Or e.Column.FieldName.ToString = "vendor" Or e.Column.FieldName.ToString = "premi" Then
+            If BGVSummary.GetRowCellValue(e.RowHandle1, "id_polis_pps_det").ToString = BGVSummary.GetRowCellValue(e.RowHandle2, "id_polis_pps_det").ToString Then
+                e.Merge = True
+                e.Handled = True
+            Else
+                e.Merge = False
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Close()
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+
     End Sub
 End Class

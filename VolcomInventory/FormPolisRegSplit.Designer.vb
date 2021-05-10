@@ -19,6 +19,7 @@ Partial Class FormPolisRegSplit
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPolisRegSplit))
         Me.BSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -33,15 +34,16 @@ Partial Class FormPolisRegSplit
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.RISLEDesc = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITE = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,11 +53,11 @@ Partial Class FormPolisRegSplit
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
         CType(Me.RISLEDesc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITE, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'BSubmit
@@ -184,6 +186,29 @@ Partial Class FormPolisRegSplit
         Me.GridColumn2.VisibleIndex = 0
         Me.GridColumn2.Width = 313
         '
+        'RISLEDesc
+        '
+        Me.RISLEDesc.AutoHeight = False
+        Me.RISLEDesc.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLEDesc.Name = "RISLEDesc"
+        Me.RISLEDesc.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Description"
+        Me.GridColumn5.FieldName = "description"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "No Polis"
@@ -210,6 +235,14 @@ Partial Class FormPolisRegSplit
         Me.GridColumn4.VisibleIndex = 2
         Me.GridColumn4.Width = 239
         '
+        'RITE
+        '
+        Me.RITE.AutoHeight = False
+        Me.RITE.Mask.EditMask = "N2"
+        Me.RITE.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITE.Mask.UseMaskAsDisplayFormat = True
+        Me.RITE.Name = "RITE"
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BDel)
@@ -219,16 +252,6 @@ Partial Class FormPolisRegSplit
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(786, 44)
         Me.PanelControl3.TabIndex = 1
-        '
-        'BAdd
-        '
-        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
-        Me.BAdd.Location = New System.Drawing.Point(709, 2)
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(75, 40)
-        Me.BAdd.TabIndex = 0
-        Me.BAdd.Text = "Add"
         '
         'BDel
         '
@@ -240,36 +263,20 @@ Partial Class FormPolisRegSplit
         Me.BDel.TabIndex = 1
         Me.BDel.Text = "Delete"
         '
-        'RISLEDesc
+        'BAdd
         '
-        Me.RISLEDesc.AutoHeight = False
-        Me.RISLEDesc.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RISLEDesc.Name = "RISLEDesc"
-        Me.RISLEDesc.View = Me.RepositoryItemSearchLookUpEdit1View
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
+        Me.BAdd.Location = New System.Drawing.Point(709, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(75, 40)
+        Me.BAdd.TabIndex = 0
+        Me.BAdd.Text = "Add"
         '
-        'RepositoryItemSearchLookUpEdit1View
+        'ContextMenuStrip1
         '
-        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5})
-        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
-        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Description"
-        Me.GridColumn5.FieldName = "description"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
-        '
-        'RITE
-        '
-        Me.RITE.AutoHeight = False
-        Me.RITE.Mask.EditMask = "N2"
-        Me.RITE.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RITE.Mask.UseMaskAsDisplayFormat = True
-        Me.RITE.Name = "RITE"
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
         '
         'FormPolisRegSplit
         '
@@ -294,11 +301,11 @@ Partial Class FormPolisRegSplit
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
         CType(Me.RISLEDesc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITE, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -325,4 +332,5 @@ Partial Class FormPolisRegSplit
     Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RITE As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
 End Class
