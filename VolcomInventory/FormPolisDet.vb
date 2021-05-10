@@ -50,10 +50,10 @@ GROUP BY pd.id_polis"
 ,pol_by.`id_comp` AS old_id_vendor,pol_by.`comp_name` AS old_vendor,ppsd.old_premi
 ,v.comp_name AS polis_vendor,ppsd.premi
 FROM tb_polis_pps_det ppsd
-INNER JOIN tb_m_comp v ON v.id_comp=ppsd.polis_vendor
-INNER JOIN tb_polis p ON p.`id_polis`=ppsd.`old_id_polis`
-INNER JOIN tb_m_comp c ON c.`id_comp`=p.`id_reff` AND p.`id_polis_cat`=1
-INNER JOIN tb_m_comp pol_by ON pol_by.id_comp=p.id_polis_by
+LEFT JOIN tb_m_comp v ON v.id_comp=ppsd.polis_vendor
+LEFT JOIN tb_polis p ON p.`id_polis`=ppsd.`old_id_polis`
+LEFT JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp` 
+LEFT JOIN tb_m_comp pol_by ON pol_by.id_comp=p.id_polis_by
 WHERE ppsd.id_polis_pps='" & id_pps & "'"
                 Dim dth As DataTable = execute_query(qh, -1, True, "", "", "", "")
                 GCSummary.DataSource = dth
@@ -170,7 +170,7 @@ LEFT JOIN
 " & qh & "
 FROM tb_polis_pps_det ppsd 
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
-INNER JOIN tb_polis pol ON pol.id_polis=ppsd.old_id_polis
+LEFT JOIN tb_polis pol ON pol.id_polis=ppsd.old_id_polis
 LEFT JOIN tb_m_comp v_old ON v_old.id_comp=ppsd.old_polis_vendor
 LEFT JOIN tb_m_comp v ON v.id_comp=ppsd.polis_vendor
 " & qj & "

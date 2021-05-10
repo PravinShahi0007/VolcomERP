@@ -795,7 +795,7 @@ Partial Class FormPolisDet
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Alamat"
-        Me.GridColumn15.FieldName = "primary_address"
+        Me.GridColumn15.FieldName = "address_primary"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.OptionsColumn.AllowFocus = False
@@ -903,7 +903,7 @@ Partial Class FormPolisDet
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Alamat"
-        Me.GridColumn21.FieldName = "primary_address"
+        Me.GridColumn21.FieldName = "address_primary"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.OptionsColumn.ReadOnly = True
@@ -1091,7 +1091,7 @@ Partial Class FormPolisDet
         'GridColumn30
         '
         Me.GridColumn30.Caption = "Alamat"
-        Me.GridColumn30.FieldName = "primary_address"
+        Me.GridColumn30.FieldName = "address_primary"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.OptionsColumn.AllowFocus = False
