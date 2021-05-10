@@ -10,7 +10,7 @@
         If id_pps = "-1" Then 'new
             'yang belum di propose dan mau jatuh tempo
             Dim q As String = "SELECT 
-p.id_polis AS old_id_polis,p.end_date AS old_end_date,p.end_date,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`,c.`id_comp`
+p.id_polis AS old_id_polis,p.end_date AS old_end_date,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`,c.`id_comp`
 ,p.`nilai_stock` AS old_nilai_stock,p.`nilai_fit_out` AS old_nilai_fit_out,p.`nilai_peralatan` AS old_nilai_peralatan,p.`nilai_building` AS old_nilai_building,p.`nilai_public_liability` AS old_nilai_public_liability,p.`nilai_total` AS old_nilai_total,pol_by.`id_comp` AS old_id_vendor,pol_by.`comp_name` AS old_vendor
 ,SUM(pd.`premi`) AS old_premi
 FROM tb_polis_det pd
@@ -44,7 +44,7 @@ GROUP BY pd.id_polis"
             If dt.Rows.Count > 0 Then
                 'load tab pertama
                 BLoadPolis.Visible = False
-                Dim qh As String = "SELECT ppsd.old_id_polis,p.end_date,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`,c.`id_comp`
+                Dim qh As String = "SELECT ppsd.old_end_date,ppsd.old_id_polis,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`,c.`id_comp`
 ,ppsd.old_nilai_stock,ppsd.old_nilai_fit_out,ppsd.old_nilai_peralatan,ppsd.old_nilai_building,ppsd.old_nilai_public_liability,ppsd.old_nilai_total
 ,ppsd.nilai_stock,ppsd.nilai_fit_out,ppsd.nilai_peralatan,ppsd.nilai_building,ppsd.nilai_public_liability,ppsd.nilai_total
 ,pol_by.`id_comp` AS old_id_vendor,pol_by.`comp_name` AS old_vendor,ppsd.old_premi
@@ -269,8 +269,22 @@ GROUP BY ppsd.`id_comp`"
                     If Not i = 0 Then
                         q += ","
                     End If
+                    Dim old_polis As String = ""
+                    Dim old_polis_vendor As String = ""
 
-                    q += "('" & id_pps & "','" & BGVSummary.GetRowCellValue(i, "id_comp") & "','" & BGVSummary.GetRowCellValue(i, "old_id_polis") & "','" & BGVSummary.GetRowCellValue(i, "old_end_date") & "'," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_stock").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_fit_out").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_building").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_peralatan").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_public_liability").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_total").ToString).ToString()) & ",'" & BGVSummary.GetRowCellValue(i, "old_id_vendor").ToString & "'," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_premi").ToString).ToString()) & ")"
+                    If BGVSummary.GetRowCellValue(i, "old_id_polis").ToString = "" Then
+                        old_polis = "NULL"
+                    Else
+                        old_polis = "'" & BGVSummary.GetRowCellValue(i, "old_id_polis").ToString & "'"
+                    End If
+
+                    If BGVSummary.GetRowCellValue(i, "old_id_vendor").ToString = "" Then
+                        old_polis_vendor = "NULL"
+                    Else
+                        old_polis_vendor = "'" & BGVSummary.GetRowCellValue(i, "old_id_vendor").ToString & "'"
+                    End If
+
+                    q += "('" & id_pps & "','" & BGVSummary.GetRowCellValue(i, "id_comp") & "'," & old_polis & ",'" & Date.Parse(BGVSummary.GetRowCellValue(i, "old_end_date").ToString).ToString("yyyy-MM-dd") & "'," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_stock").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_fit_out").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_building").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_peralatan").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_public_liability").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_total").ToString).ToString()) & "," & old_polis_vendor & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_premi").ToString).ToString()) & ")"
                 Next
                 execute_non_query(q, True, "", "", "", "")
                 load_form()
@@ -490,5 +504,9 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
         If BGVSummary.RowCount > 0 Then
             BGVSummary.DeleteSelectedRows()
         End If
+    End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        FormPolisDetAdd.ShowDialog()
     End Sub
 End Class
