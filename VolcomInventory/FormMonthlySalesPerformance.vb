@@ -94,6 +94,58 @@
             whereComp += " AND c.id_comp = " + SLUEStore.EditValue.ToString
         End If
 
+        'volcom
+        If SLUECompGroup.EditValue.ToString = "76" Then
+            whereComp = " AND c.id_comp IN (1252, 1210, 1256, 1211)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1212" Then
+            whereComp = " AND c.id_comp IN (1252, 1210)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1213" Then
+            whereComp = " AND c.id_comp IN (1256, 1211)"
+        End If
+
+        'zalora
+        If SLUECompGroup.EditValue.ToString = "64" Then
+            whereComp = " AND c.id_comp IN (1254, 968, 1258, 1012)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "989" Then
+            whereComp = " AND c.id_comp IN (1254, 968)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1014" Then
+            whereComp = " AND c.id_comp IN (1258, 1012)"
+        End If
+
+        'blibli
+        If SLUECompGroup.EditValue.ToString = "75" Then
+            whereComp = " AND c.id_comp IN (1253, 1180, 1257, 1181)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1177" Then
+            whereComp = " AND c.id_comp IN (1253, 1180)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1179" Then
+            whereComp = " AND c.id_comp IN (1257, 1181)"
+        End If
+
+        'shopee
+        If SLUECompGroup.EditValue.ToString = "77" Then
+            whereComp = " AND c.id_comp IN (1284, 1285)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1286" Then
+            whereComp = " AND c.id_comp IN (1284)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1287" Then
+            whereComp = " AND c.id_comp IN (1285)"
+        End If
+
         Dim whereLocation As String = ""
 
         If Not SLUENational.EditValue.ToString = "0" Then
