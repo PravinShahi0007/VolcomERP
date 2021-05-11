@@ -34,7 +34,6 @@ Partial Class FormMonthlySalesPerformance
         Me.Label10 = New System.Windows.Forms.Label()
         Me.SLUEIsland = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.SBClear = New DevExpress.XtraEditors.SimpleButton()
@@ -250,17 +249,11 @@ Partial Class FormMonthlySalesPerformance
         '
         'GridView9
         '
-        Me.GridView9.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16})
+        Me.GridView9.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16})
         Me.GridView9.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView9.Name = "GridView9"
         Me.GridView9.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView9.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "GridColumn19"
-        Me.GridColumn15.FieldName = "id_island"
-        Me.GridColumn15.Name = "GridColumn15"
         '
         'GridColumn16
         '
@@ -778,7 +771,6 @@ Partial Class FormMonthlySalesPerformance
     Friend WithEvents Label10 As Label
     Friend WithEvents SLUEIsland As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView9 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label9 As Label
     Friend WithEvents SLUECompGroup As DevExpress.XtraEditors.SearchLookUpEdit
