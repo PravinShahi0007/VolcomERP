@@ -58,8 +58,8 @@ Partial Class FormPolisReg
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -306,7 +306,7 @@ Partial Class FormPolisReg
         Me.GridColumn5.Caption = "Jatuh Tempo"
         Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn5.FieldName = "end_date"
+        Me.GridColumn5.FieldName = "old_end_date"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         '
@@ -471,15 +471,6 @@ Partial Class FormPolisReg
         Me.BandedGridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BandedGridColumn2.Visible = True
         '
-        'BandedGridColumn12
-        '
-        Me.BandedGridColumn12.Caption = "End Date"
-        Me.BandedGridColumn12.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.BandedGridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.BandedGridColumn12.FieldName = "v_end_date"
-        Me.BandedGridColumn12.Name = "BandedGridColumn12"
-        Me.BandedGridColumn12.Visible = True
-        '
         'BandedGridColumn13
         '
         Me.BandedGridColumn13.Caption = "Start Date"
@@ -488,6 +479,15 @@ Partial Class FormPolisReg
         Me.BandedGridColumn13.FieldName = "v_start_date"
         Me.BandedGridColumn13.Name = "BandedGridColumn13"
         Me.BandedGridColumn13.Visible = True
+        '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.Caption = "End Date"
+        Me.BandedGridColumn12.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn12.FieldName = "v_end_date"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.Visible = True
         '
         'FormPolisReg
         '
