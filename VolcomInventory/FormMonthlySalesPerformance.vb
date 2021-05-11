@@ -2,6 +2,8 @@
     Public month As List(Of String) = New List(Of String)
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
         Dim selectDate1 As String = ""
         Dim selectDate2 As String = ""
 
@@ -73,6 +75,142 @@
         Dim compGOS As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 1255", 0, True, "", "", "", "")
         Dim compREJ As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_type IN (3, 4)", 0, True, "", "", "", "")
 
+        'stock month
+        i = year_from
+        j = month_from
+
+        Dim stockMonthQuery1 As String = ""
+        Dim stockMonthQuery2 As String = ""
+        Dim stockMonthQuery3 As String = ""
+        Dim stockMonthQueryAll As String = ""
+
+        While i <= year_to
+            Dim stockMonthFirst As String = "" + i.ToString + "-" + j.ToString.PadLeft(2, "0") + "-01"
+            Dim stockMonthDate As String = "" + i.ToString + "-" + j.ToString.PadLeft(2, "0") + "-" + Date.DaysInMonth(i, j).ToString + ""
+
+            Dim queryMonthDate As String = "
+                SELECT STR_TO_DATE(CONCAT(YEAR('" + stockMonthDate + "'), '-', MONTH('" + stockMonthDate + "'), '-', '01'), '%Y-%m-%d') AS cm_beg_startd, STR_TO_DATE(DATE_SUB(CONCAT(YEAR('" + stockMonthDate + "'), '-', MONTH('" + stockMonthDate + "'), '-', '01'), INTERVAL 1 DAY), '%Y-%m-%d') AS beg_date, YEAR((SELECT beg_date)) AS beg_year, MONTH((SELECT beg_date)) AS beg_month
+            "
+
+            Dim dataMonthDate As DataTable = execute_query(queryMonthDate, -1, True, "", "", "", "")
+
+            stockMonthQuery1 += "
+                (
+                    SELECT d.id_design, IFNULL(inv.inv_qty_ttl, 0) AS inv_qty_ttl, " + i.ToString + " AS `year`, " + j.ToString + " AS `month`
+                    FROM tb_m_design d
+                    LEFT JOIN (
+                        SELECT p.id_design, SUM(a.qty_ttl) AS inv_qty_ttl
+                        FROM (
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, f.qty_ttl
+                                FROM tb_storage_fg_" + dataMonthDate.Rows(0)("beg_year").ToString + " AS f
+                                WHERE f.month = '" + dataMonthDate.Rows(0)("beg_month").ToString + "'
+                            )
+                            UNION ALL 
+                            -- beginning sal tanpa online
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, SUM(IF(f.id_stock_status = 1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl
+                                FROM (
+                                    SELECT * FROM tb_storage_fg AS f
+                                    WHERE f.storage_product_datetime >= '" + stockMonthFirst + " 00:00:00' AND f.id_stock_status = 1
+                                    AND f.report_mark_type IN (48, 66, 54, 67, 118, 117, 183, 116, 292)
+                                ) AS f
+                                INNER JOIN tb_sales_pos AS sp ON sp.id_sales_pos = f.id_report AND sp.report_mark_type = f.report_mark_type
+                                INNER JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = IF(sp.id_memo_type = 8 OR sp.id_memo_type = 9, sp.id_comp_contact_bill, sp.id_store_contact_from)
+                                INNER JOIN tb_m_comp AS c ON c.id_comp = cc.id_comp
+                                WHERE sp.id_report_status = 6
+                                AND c.id_comp NOT IN (1212, 1213)
+                                AND sp.sales_pos_end_period < '" + stockMonthFirst + "' 
+                                GROUP BY f.id_product, f.id_wh_drawer
+                            )
+                            UNION ALL
+                            -- beginning CN VIOS
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, SUM(IF(f.id_stock_status = 1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl
+                                FROM (
+                                    SELECT * FROM tb_storage_fg f
+                                    WHERE f.storage_product_datetime >= '" + stockMonthFirst + " 00:00:00' AND f.id_stock_status = 1
+                                    AND f.report_mark_type = 118
+                                ) f
+                                INNER JOIN tb_sales_pos AS sp ON sp.id_sales_pos = f.id_report AND sp.report_mark_type = f.report_mark_type
+                                INNER JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = IF(sp.id_memo_type = 8 OR sp.id_memo_type = 9, sp.id_comp_contact_bill, sp.id_store_contact_from)
+                                INNER JOIN tb_m_comp AS c ON c.id_comp = cc.id_comp
+                                WHERE sp.id_report_status = 6
+                                AND c.id_comp IN (1212, 1213)
+                                AND sp.sales_pos_end_period < '" + stockMonthFirst + "' 
+                                GROUP BY f.id_product, f.id_wh_drawer
+                            )
+                            UNION ALL 
+                            -- stok tanpa sal
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS qty_ttl
+                                FROM tb_storage_fg AS f
+                                WHERE f.id_stock_status = 1 
+                                AND (f.storage_product_datetime >= '" + stockMonthFirst + " 00:00:00' AND f.storage_product_datetime <= '" + stockMonthDate + " 23:59:59')
+                                AND f.report_mark_type NOT IN (48, 66, 54, 67, 118, 117, 183, 116, 292)
+                                GROUP BY f.id_product, f.id_wh_drawer 
+                            )
+                            -- sal 
+                            UNION ALL
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, SUM(IF(f.id_stock_status = 1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl
+                                FROM tb_storage_fg AS f
+                                INNER JOIN tb_sales_pos AS sp ON sp.id_sales_pos = f.id_report AND sp.report_mark_type = f.report_mark_type
+                                INNER JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact= IF(sp.id_memo_type = 8 OR sp.id_memo_type = 9, sp.id_comp_contact_bill, sp.id_store_contact_from)
+                                INNER JOIN tb_m_comp AS c ON c.id_comp = cc.id_comp
+                                WHERE f.id_stock_status = 1
+                                AND f.report_mark_type IN (48, 66, 54, 67, 118, 117, 183, 116, 292) AND sp.id_report_status = 6
+                                AND c.id_comp NOT IN (1212, 1213)
+                                AND sp.sales_pos_end_period >= '" + stockMonthFirst + "' AND sp.sales_pos_end_period <= '" + stockMonthDate + "' 
+                                GROUP BY f.id_product, f.id_wh_drawer
+                            )
+                            -- CN VIOS
+                            UNION ALL 
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, 
+                                SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl 
+                                FROM tb_storage_fg AS f
+                                INNER JOIN tb_sales_pos AS sp ON sp.id_sales_pos = f.id_report AND sp.report_mark_type = f.report_mark_type
+                                INNER JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = IF(sp.id_memo_type = 8 OR sp.id_memo_type = 9, sp.id_comp_contact_bill, sp.id_store_contact_from)
+                                INNER JOIN tb_m_comp AS c ON c.id_comp = cc.id_comp
+                                WHERE f.id_stock_status = 1
+                                AND f.report_mark_type = 118 AND sp.id_report_status=6
+                                AND c.id_comp IN (1212, 1213)
+                                AND sp.sales_pos_end_period >= '" + stockMonthFirst + "' AND sp.sales_pos_end_period <= '" + stockMonthDate + "' 
+                                GROUP BY f.id_product, f.id_wh_drawer
+                            )
+                        ) a
+                        INNER JOIN tb_m_product p ON p.id_product = a.id_product
+                        GROUP BY p.id_design
+                    ) inv ON inv.id_design = d.id_design
+                    WHERE d.id_lookup_status_order <> 2
+                    GROUP BY d.id_design
+                )
+                UNION ALL
+            "
+
+            stockMonthQuery2 += "IF(t.year = " + i.ToString + " AND t.month = " + j.ToString + ", inv_qty_ttl, 0) AS `" + month(j - 1) + " " + i.ToString + "`, "
+            stockMonthQuery3 += "MAX(`" + month(j - 1) + " " + i.ToString + "`) AS `" + month(j - 1) + " " + i.ToString + "`, "
+            stockMonthQueryAll += "CONCAT((ROUND((IFNULL(sales_month.`" + month(j - 1) + " " + i.ToString + "`, 0) / (IFNULL(sales_month.`" + month(j - 1) + " " + i.ToString + "`, 0) + IFNULL(stock_month.`" + month(j - 1) + " " + i.ToString + "`, 0))) * 100)), '%') AS `Monthly SAS " + i.ToString + "|" + month(j - 1) + " " + i.ToString + "`, "
+
+            If j = 12 Then
+                j = 1
+
+                i = i + 1
+            Else
+                j = j + 1
+            End If
+
+            If i = year_to And j > month_to Then
+                Exit While
+            End If
+        End While
+
+        stockMonthQuery1 = stockMonthQuery1.Substring(0, stockMonthQuery1.Length - 25)
+        stockMonthQuery2 = stockMonthQuery2.Substring(0, stockMonthQuery2.Length - 2)
+        stockMonthQuery3 = stockMonthQuery3.Substring(0, stockMonthQuery3.Length - 2)
+        stockMonthQueryAll = stockMonthQueryAll.Substring(0, stockMonthQueryAll.Length - 2)
+
         'where
         Dim where As String = ""
 
@@ -136,7 +274,8 @@
                 ROUND((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0))) AS `Total Sales|Grand Total`,
                 CONCAT(ROUND((IFNULL(sales_normal.qty, 0) / IFNULL(wh_rec_normal.qty, 0) * 100)), '%') AS `Sell Thru|Normal`, 
                 CONCAT(ROUND((IFNULL(sales_sale.qty, 0) / (IFNULL(wh_rec_normal.qty, 0) - IFNULL(sales_normal.qty, 0)) * 100)), '%') AS `Sell Thru|Sale`,
-                CONCAT(ROUND(((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0)) / IFNULL(wh_rec_normal.qty, 0) * 100)), '%') AS `Sell Thru|Total`,
+                CONCAT(ROUND(((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0)) / IFNULL(wh_rec_normal.qty, 0) * 100)), '%') AS `Sell Thru|Total`, 
+                " + stockMonthQueryAll + ",
                 ROUND(IFNULL(stock_g78.qty, 0)) AS `Stock Gudang Normal|G78`, ROUND(IFNULL(stock_gon.qty, 0)) AS `Stock Gudang Normal|GON`, ROUND(IFNULL(stock_s78.qty, 0)) AS `Stock Gudang Sale|S78`, ROUND(IFNULL(stock_gos.qty, 0)) AS `Stock Gudang Sale|GOS`, ROUND(IFNULL(stock_rej.qty, 0)) AS `Stock Gudang Non Aktive|Reject`
             FROM tb_m_design AS design
             LEFT JOIN (
@@ -293,6 +432,16 @@
                 GROUP BY p.id_design
             ) AS sales_sale ON design.id_design = sales_sale.id_design
             LEFT JOIN (
+                SELECT t.id_design, " + stockMonthQuery3 + "
+                FROM (
+                    SELECT t.id_design, " + stockMonthQuery2 + "
+                    FROM (
+                        " + stockMonthQuery1 + "
+                    ) AS t
+                ) AS t
+                GROUP BY t.id_design
+            ) AS stock_month ON design.id_design = stock_month.id_design
+            LEFT JOIN (
                 SELECT p.id_design, SUM(a.qty_ttl) AS qty
 				FROM (
 					SELECT f.id_wh_drawer, f.id_product, f.qty_ttl
@@ -441,7 +590,12 @@
                         GVData.GroupSummary.Add(summary)
                     End If
 
-                    If bandName.Contains("Sell Thru") Then
+                    If bandName = "Price" Then
+                        col.DisplayFormat.FormatString = "N2"
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    End If
+
+                    If bandName.Contains("Sell Thru") Or bandName.Contains("Monthly SAS") Then
                         col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
                     End If
                 End If
@@ -451,6 +605,8 @@
         GCData.DataSource = data
 
         GVData.BestFitColumns()
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
 
     Private Sub SBExportExcel_Click(sender As Object, e As EventArgs) Handles SBExportExcel.Click
