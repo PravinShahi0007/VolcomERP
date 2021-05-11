@@ -917,4 +917,14 @@
         view_group_store()
         view_store()
     End Sub
+
+    Private Sub FormMonthlySalesPerformance_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+        button_main("0", "0", "0")
+    End Sub
+
+    Private Sub FormMonthlySalesPerformance_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
 End Class
