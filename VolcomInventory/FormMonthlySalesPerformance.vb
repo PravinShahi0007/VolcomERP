@@ -134,9 +134,9 @@
                 " + selectDateAll + ", " + selectYearAll + ", 
                 ROUND(IFNULL(sales_normal.qty, 0)) AS `Total Sales|Sales Toko Normal`, ROUND(IFNULL(sales_sale.qty, 0)) AS `Total Sales|Sales Toko Sale`,
                 ROUND((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0))) AS `Total Sales|Grand Total`,
-                (IFNULL(sales_normal.qty, 0) / IFNULL(wh_rec_normal.qty, 0)) AS `Sell Thru|Normal`, 
-                (IFNULL(sales_sale.qty, 0) / (IFNULL(wh_rec_normal.qty, 0) - IFNULL(sales_normal.qty, 0))) AS `Sell Thru|Sale`,
-                ((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0)) / IFNULL(wh_rec_normal.qty, 0)) AS `Sell Thru|Total`,
+                CONCAT(ROUND((IFNULL(sales_normal.qty, 0) / IFNULL(wh_rec_normal.qty, 0) * 100)), '%') AS `Sell Thru|Normal`, 
+                CONCAT(ROUND((IFNULL(sales_sale.qty, 0) / (IFNULL(wh_rec_normal.qty, 0) - IFNULL(sales_normal.qty, 0)) * 100)), '%') AS `Sell Thru|Sale`,
+                CONCAT(ROUND(((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0)) / IFNULL(wh_rec_normal.qty, 0) * 100)), '%') AS `Sell Thru|Total`,
                 ROUND(IFNULL(stock_g78.qty, 0)) AS `Stock Gudang Normal|G78`, ROUND(IFNULL(stock_gon.qty, 0)) AS `Stock Gudang Normal|GON`, ROUND(IFNULL(stock_s78.qty, 0)) AS `Stock Gudang Sale|S78`, ROUND(IFNULL(stock_gos.qty, 0)) AS `Stock Gudang Sale|GOS`, ROUND(IFNULL(stock_rej.qty, 0)) AS `Stock Gudang Non Aktive|Reject`
             FROM tb_m_design AS design
             LEFT JOIN (
@@ -430,7 +430,7 @@
                         col.Group()
                     End If
 
-                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("Sales") Then
+                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("Sales") Or bandName.Contains("Stock Gudang") Then
                         Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
 
                         summary.DisplayFormat = "{0:N0}"
@@ -439,6 +439,10 @@
                         summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
 
                         GVData.GroupSummary.Add(summary)
+                    End If
+
+                    If bandName.Contains("Sell Thru") Then
+                        col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
                     End If
                 End If
             Next
