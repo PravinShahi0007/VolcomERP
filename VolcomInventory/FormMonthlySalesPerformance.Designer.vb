@@ -21,6 +21,12 @@ Partial Class FormMonthlySalesPerformance
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMonthlySalesPerformance))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView11 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.SLUEProvince = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView10 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -82,6 +88,9 @@ Partial Class FormMonthlySalesPerformance
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEProvince.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEIsland.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,6 +118,9 @@ Partial Class FormMonthlySalesPerformance
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.PanelControl2)
+        Me.PanelControl1.Controls.Add(Me.SLUECompGroup)
+        Me.PanelControl1.Controls.Add(Me.Label11)
         Me.PanelControl1.Controls.Add(Me.SLUEProvince)
         Me.PanelControl1.Controls.Add(Me.Label10)
         Me.PanelControl1.Controls.Add(Me.SLUEIsland)
@@ -137,16 +149,63 @@ Partial Class FormMonthlySalesPerformance
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1008, 179)
+        Me.PanelControl1.Size = New System.Drawing.Size(1008, 193)
         Me.PanelControl1.TabIndex = 0
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Location = New System.Drawing.Point(15, 121)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(277, 2)
+        Me.PanelControl2.TabIndex = 37
+        '
+        'SLUECompGroup
+        '
+        Me.SLUECompGroup.Location = New System.Drawing.Point(92, 133)
+        Me.SLUECompGroup.Name = "SLUECompGroup"
+        Me.SLUECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUECompGroup.Properties.View = Me.GridView11
+        Me.SLUECompGroup.Size = New System.Drawing.Size(200, 20)
+        Me.SLUECompGroup.TabIndex = 36
+        '
+        'GridView11
+        '
+        Me.GridView11.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn22})
+        Me.GridView11.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView11.Name = "GridView11"
+        Me.GridView11.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView11.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "GridColumn23"
+        Me.GridColumn21.FieldName = "id_comp_group"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Group Store"
+        Me.GridColumn22.FieldName = "comp_group"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 0
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(12, 136)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(65, 13)
+        Me.Label11.TabIndex = 35
+        Me.Label11.Text = "Group Store"
         '
         'SLUEProvince
         '
-        Me.SLUEProvince.Location = New System.Drawing.Point(64, 92)
+        Me.SLUEProvince.Location = New System.Drawing.Point(92, 92)
         Me.SLUEProvince.Name = "SLUEProvince"
         Me.SLUEProvince.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEProvince.Properties.View = Me.GridView10
-        Me.SLUEProvince.Size = New System.Drawing.Size(228, 20)
+        Me.SLUEProvince.Size = New System.Drawing.Size(200, 20)
         Me.SLUEProvince.TabIndex = 34
         '
         'GridView10
@@ -182,11 +241,11 @@ Partial Class FormMonthlySalesPerformance
         '
         'SLUEIsland
         '
-        Me.SLUEIsland.Location = New System.Drawing.Point(64, 66)
+        Me.SLUEIsland.Location = New System.Drawing.Point(92, 66)
         Me.SLUEIsland.Name = "SLUEIsland"
         Me.SLUEIsland.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEIsland.Properties.View = Me.GridView9
-        Me.SLUEIsland.Size = New System.Drawing.Size(228, 20)
+        Me.SLUEIsland.Size = New System.Drawing.Size(200, 20)
         Me.SLUEIsland.TabIndex = 32
         '
         'GridView9
@@ -256,11 +315,11 @@ Partial Class FormMonthlySalesPerformance
         '
         'SLUEMonthTo
         '
-        Me.SLUEMonthTo.Location = New System.Drawing.Point(181, 15)
+        Me.SLUEMonthTo.Location = New System.Drawing.Point(194, 15)
         Me.SLUEMonthTo.Name = "SLUEMonthTo"
         Me.SLUEMonthTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEMonthTo.Properties.View = Me.GridView6
-        Me.SLUEMonthTo.Size = New System.Drawing.Size(111, 20)
+        Me.SLUEMonthTo.Size = New System.Drawing.Size(98, 20)
         Me.SLUEMonthTo.TabIndex = 26
         '
         'GridView6
@@ -287,11 +346,11 @@ Partial Class FormMonthlySalesPerformance
         '
         'SLUEStore
         '
-        Me.SLUEStore.Location = New System.Drawing.Point(64, 118)
+        Me.SLUEStore.Location = New System.Drawing.Point(92, 159)
         Me.SLUEStore.Name = "SLUEStore"
         Me.SLUEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEStore.Properties.View = Me.GridView8
-        Me.SLUEStore.Size = New System.Drawing.Size(228, 20)
+        Me.SLUEStore.Size = New System.Drawing.Size(200, 20)
         Me.SLUEStore.TabIndex = 25
         '
         'GridView8
@@ -319,7 +378,7 @@ Partial Class FormMonthlySalesPerformance
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(12, 121)
+        Me.Label7.Location = New System.Drawing.Point(12, 162)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(33, 13)
         Me.Label7.TabIndex = 24
@@ -327,11 +386,11 @@ Partial Class FormMonthlySalesPerformance
         '
         'SLUENational
         '
-        Me.SLUENational.Location = New System.Drawing.Point(64, 40)
+        Me.SLUENational.Location = New System.Drawing.Point(92, 40)
         Me.SLUENational.Name = "SLUENational"
         Me.SLUENational.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUENational.Properties.View = Me.GridView7
-        Me.SLUENational.Size = New System.Drawing.Size(228, 20)
+        Me.SLUENational.Size = New System.Drawing.Size(200, 20)
         Me.SLUENational.TabIndex = 23
         '
         'GridView7
@@ -367,11 +426,11 @@ Partial Class FormMonthlySalesPerformance
         '
         'SLUEMonthFrom
         '
-        Me.SLUEMonthFrom.Location = New System.Drawing.Point(64, 15)
+        Me.SLUEMonthFrom.Location = New System.Drawing.Point(92, 15)
         Me.SLUEMonthFrom.Name = "SLUEMonthFrom"
         Me.SLUEMonthFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEMonthFrom.Properties.View = Me.GridView5
-        Me.SLUEMonthFrom.Size = New System.Drawing.Size(111, 20)
+        Me.SLUEMonthFrom.Size = New System.Drawing.Size(96, 20)
         Me.SLUEMonthFrom.TabIndex = 20
         '
         'GridView5
@@ -601,10 +660,10 @@ Partial Class FormMonthlySalesPerformance
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 179)
+        Me.GCData.Location = New System.Drawing.Point(0, 193)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(1008, 550)
+        Me.GCData.Size = New System.Drawing.Size(1008, 536)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -632,6 +691,9 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEProvince.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEIsland.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -719,4 +781,10 @@ Partial Class FormMonthlySalesPerformance
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label9 As Label
+    Friend WithEvents SLUECompGroup As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView11 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label11 As Label
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
 End Class

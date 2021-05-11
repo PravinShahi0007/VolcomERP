@@ -84,6 +84,16 @@
         Dim stockMonthQuery3 As String = ""
         Dim stockMonthQueryAll As String = ""
 
+        Dim whereComp As String = ""
+
+        If Not SLUECompGroup.EditValue.ToString = "0" Then
+            whereComp += " AND c.id_comp_group = " + SLUECompGroup.EditValue.ToString
+        End If
+
+        If Not SLUEStore.EditValue.ToString = "0" Then
+            whereComp += " AND c.id_comp = " + SLUEStore.EditValue.ToString
+        End If
+
         While i <= year_to
             Dim stockMonthFirst As String = "" + i.ToString + "-" + j.ToString.PadLeft(2, "0") + "-01"
             Dim stockMonthDate As String = "" + i.ToString + "-" + j.ToString.PadLeft(2, "0") + "-" + Date.DaysInMonth(i, j).ToString + ""
@@ -181,6 +191,11 @@
                             )
                         ) a
                         INNER JOIN tb_m_product p ON p.id_product = a.id_product
+                        INNER JOIN tb_m_wh_drawer AS d ON d.id_wh_drawer = a.id_wh_drawer
+                        INNER JOIN tb_m_wh_rack AS r ON d.id_wh_rack = r.id_wh_rack
+                        INNER JOIN tb_m_wh_locator AS l ON r.id_wh_locator = l.id_wh_locator
+                        INNER JOIN tb_m_comp AS c ON l.id_comp = c.id_comp
+                        WHERE 1 " + whereComp + "
                         GROUP BY p.id_design
                     ) inv ON inv.id_design = d.id_design
                     WHERE d.id_lookup_status_order <> 2
@@ -248,6 +263,10 @@
             whereSalesPos += " AND t.id_comp = " + SLUEStore.EditValue.ToString
         End If
 
+        If Not SLUECompGroup.EditValue.ToString = "0" Then
+            whereSalesPos += " AND t.id_comp_group = " + SLUECompGroup.EditValue.ToString
+        End If
+
         Dim query As String = "
             SELECT design.design_code AS `Product Info|Code`, division.display_name AS `Product Info|Division`,
 	            category.display_name AS `Product Info|Category`, class.display_name AS `Product Info|Class`,
@@ -267,8 +286,8 @@
 	            DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 5), 45), '%d %M %Y') AS `Price Update Dates|Price U5`,
 	            DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 6), 56), '%d %M %Y') AS `Price Update Dates|Price U6`,
 	            price_type.design_price_type AS `Price Update Dates|Current Status`, ROUND(wh_rec_normal.qty) AS `WH Received|Normal (BOS)`, ROUND(wh_rec_defect.qty) AS `WH Received|Defect`,
-	            ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`,
-	            0 AS `Store Received|Total`,
+	            ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`, 
+                " + If(Not SLUEStore.EditValue.ToString = "0" Or Not SLUECompGroup.EditValue.ToString = "0", "0 AS `Store Received|Total`, ", "") + "
                 " + selectDateAll + ", " + selectYearAll + ", 
                 ROUND(IFNULL(sales_normal.qty, 0)) AS `Total Sales|Sales Toko Normal`, ROUND(IFNULL(sales_sale.qty, 0)) AS `Total Sales|Sales Toko Sale`,
                 ROUND((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0))) AS `Total Sales|Grand Total`,
@@ -648,6 +667,7 @@
         view_national()
         'view_island()
         view_province()
+        view_group_store()
         view_store()
         view_season()
         view_division()
@@ -767,13 +787,17 @@
         Dim where As String = ""
 
         If Not SLUEProvince.EditValue.ToString = "0" Then
-            where = " AND s.id_state = " + SLUEProvince.EditValue.ToString
+            where += " AND s.id_state = " + SLUEProvince.EditValue.ToString
+        End If
+
+        If Not SLUECompGroup.EditValue.ToString = "0" Then
+            where += " AND p.id_comp_group = " + SLUECompGroup.EditValue.ToString
         End If
 
         Dim query As String = "
             (SELECT 0 AS id_comp, 'ALL' AS comp_name)
             UNION ALL
-            (SELECT p.id_comp, p.comp_name
+            (SELECT p.id_comp, CONCAT(p.comp_number, ' - ', p.comp_name) AS comp_name
             FROM tb_m_comp AS p
             LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city
             LEFT JOIN tb_m_state AS s ON c.id_state = s.id_state
@@ -781,6 +805,26 @@
         "
 
         viewSearchLookupQuery(SLUEStore, query, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Sub view_group_store()
+        Dim where As String = ""
+
+        If Not SLUEProvince.EditValue.ToString = "0" Then
+            where += "
+                AND id_comp_group IN (SELECT p.id_comp_group FROM tb_m_comp AS p LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city LEFT JOIN tb_m_state AS s ON c.id_state = s.id_state WHERE s.id_state = " + SLUEProvince.EditValue.ToString + " AND p.id_comp_cat = 6)
+            "
+        End If
+
+        Dim query As String = "
+            (SELECT 0 AS id_comp_group, 'ALL' AS comp_group)
+            UNION ALL
+            (SELECT id_comp_group, CONCAT(comp_group, ' - ', description) AS comp_group
+            FROM tb_m_comp_group
+            WHERE 1 " + where + ")
+        "
+
+        viewSearchLookupQuery(SLUECompGroup, query, "id_comp_group", "comp_group", "id_comp_group")
     End Sub
 
     Private Sub SBSearch_Click(sender As Object, e As EventArgs) Handles SBSearch.Click
@@ -796,6 +840,11 @@
     End Sub
 
     Private Sub SLUEProvince_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEProvince.EditValueChanged
+        view_group_store()
+        view_store()
+    End Sub
+
+    Private Sub SLUECompGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLUECompGroup.EditValueChanged
         view_store()
     End Sub
 End Class
