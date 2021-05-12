@@ -2,6 +2,8 @@
     Public month As List(Of String) = New List(Of String)
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
         Dim selectDate1 As String = ""
         Dim selectDate2 As String = ""
 
@@ -73,6 +75,226 @@
         Dim compGOS As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 1255", 0, True, "", "", "", "")
         Dim compREJ As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_type IN (3, 4)", 0, True, "", "", "", "")
 
+        'stock month
+        i = year_from
+        j = month_from
+
+        Dim stockMonthQuery1 As String = ""
+        Dim stockMonthQuery2 As String = ""
+        Dim stockMonthQuery3 As String = ""
+        Dim stockMonthQueryAll As String = ""
+
+        Dim whereComp As String = ""
+
+        If Not SLUECompGroup.EditValue.ToString = "0" Then
+            whereComp += " AND c.id_comp_group = " + SLUECompGroup.EditValue.ToString
+        End If
+
+        If Not SLUEStore.EditValue.ToString = "0" Then
+            whereComp += " AND c.id_comp = " + SLUEStore.EditValue.ToString
+        End If
+
+        'volcom
+        If SLUECompGroup.EditValue.ToString = "76" Then
+            whereComp = " AND c.id_comp IN (1252, 1210, 1256, 1211)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1212" Then
+            whereComp = " AND c.id_comp IN (1252, 1210)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1213" Then
+            whereComp = " AND c.id_comp IN (1256, 1211)"
+        End If
+
+        'zalora
+        If SLUECompGroup.EditValue.ToString = "64" Then
+            whereComp = " AND c.id_comp IN (1254, 968, 1258, 1012)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "989" Then
+            whereComp = " AND c.id_comp IN (1254, 968)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1014" Then
+            whereComp = " AND c.id_comp IN (1258, 1012)"
+        End If
+
+        'blibli
+        If SLUECompGroup.EditValue.ToString = "75" Then
+            whereComp = " AND c.id_comp IN (1253, 1180, 1257, 1181)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1177" Then
+            whereComp = " AND c.id_comp IN (1253, 1180)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1179" Then
+            whereComp = " AND c.id_comp IN (1257, 1181)"
+        End If
+
+        'shopee
+        If SLUECompGroup.EditValue.ToString = "77" Then
+            whereComp = " AND c.id_comp IN (1284, 1285)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1286" Then
+            whereComp = " AND c.id_comp IN (1284)"
+        End If
+
+        If SLUEStore.EditValue.ToString = "1287" Then
+            whereComp = " AND c.id_comp IN (1285)"
+        End If
+
+        Dim whereLocation As String = ""
+
+        If Not SLUENational.EditValue.ToString = "0" Then
+            whereLocation += " AND g.id_country = " + SLUENational.EditValue.ToString
+        End If
+
+        If Not SLUEIsland.EditValue.ToString = "ALL" Then
+            whereLocation += " AND t.island = '" + SLUEIsland.EditValue.ToString + "'"
+        End If
+
+        If Not SLUEProvince.EditValue.ToString = "0" Then
+            whereLocation += " AND t.id_state = " + SLUEProvince.EditValue.ToString
+        End If
+
+        While i <= year_to
+            Dim stockMonthFirst As String = "" + i.ToString + "-" + j.ToString.PadLeft(2, "0") + "-01"
+            Dim stockMonthDate As String = "" + i.ToString + "-" + j.ToString.PadLeft(2, "0") + "-" + Date.DaysInMonth(i, j).ToString + ""
+
+            Dim queryMonthDate As String = "
+                SELECT STR_TO_DATE(CONCAT(YEAR('" + stockMonthDate + "'), '-', MONTH('" + stockMonthDate + "'), '-', '01'), '%Y-%m-%d') AS cm_beg_startd, STR_TO_DATE(DATE_SUB(CONCAT(YEAR('" + stockMonthDate + "'), '-', MONTH('" + stockMonthDate + "'), '-', '01'), INTERVAL 1 DAY), '%Y-%m-%d') AS beg_date, YEAR((SELECT beg_date)) AS beg_year, MONTH((SELECT beg_date)) AS beg_month
+            "
+
+            Dim dataMonthDate As DataTable = execute_query(queryMonthDate, -1, True, "", "", "", "")
+
+            stockMonthQuery1 += "
+                (
+                    SELECT d.id_design, IFNULL(inv.inv_qty_ttl, 0) AS inv_qty_ttl, " + i.ToString + " AS `year`, " + j.ToString + " AS `month`
+                    FROM tb_m_design d
+                    LEFT JOIN (
+                        SELECT p.id_design, SUM(a.qty_ttl) AS inv_qty_ttl
+                        FROM (
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, f.qty_ttl
+                                FROM tb_storage_fg_" + dataMonthDate.Rows(0)("beg_year").ToString + " AS f
+                                WHERE f.month = '" + dataMonthDate.Rows(0)("beg_month").ToString + "'
+                            )
+                            UNION ALL 
+                            -- beginning sal tanpa online
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, SUM(IF(f.id_stock_status = 1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl
+                                FROM (
+                                    SELECT * FROM tb_storage_fg AS f
+                                    WHERE f.storage_product_datetime >= '" + stockMonthFirst + " 00:00:00' AND f.id_stock_status = 1
+                                    AND f.report_mark_type IN (48, 66, 54, 67, 118, 117, 183, 116, 292)
+                                ) AS f
+                                INNER JOIN tb_sales_pos AS sp ON sp.id_sales_pos = f.id_report AND sp.report_mark_type = f.report_mark_type
+                                INNER JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = IF(sp.id_memo_type = 8 OR sp.id_memo_type = 9, sp.id_comp_contact_bill, sp.id_store_contact_from)
+                                INNER JOIN tb_m_comp AS c ON c.id_comp = cc.id_comp
+                                WHERE sp.id_report_status = 6
+                                AND c.id_comp NOT IN (1212, 1213)
+                                AND sp.sales_pos_end_period < '" + stockMonthFirst + "' 
+                                GROUP BY f.id_product, f.id_wh_drawer
+                            )
+                            UNION ALL
+                            -- beginning CN VIOS
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, SUM(IF(f.id_stock_status = 1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl
+                                FROM (
+                                    SELECT * FROM tb_storage_fg f
+                                    WHERE f.storage_product_datetime >= '" + stockMonthFirst + " 00:00:00' AND f.id_stock_status = 1
+                                    AND f.report_mark_type = 118
+                                ) f
+                                INNER JOIN tb_sales_pos AS sp ON sp.id_sales_pos = f.id_report AND sp.report_mark_type = f.report_mark_type
+                                INNER JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = IF(sp.id_memo_type = 8 OR sp.id_memo_type = 9, sp.id_comp_contact_bill, sp.id_store_contact_from)
+                                INNER JOIN tb_m_comp AS c ON c.id_comp = cc.id_comp
+                                WHERE sp.id_report_status = 6
+                                AND c.id_comp IN (1212, 1213)
+                                AND sp.sales_pos_end_period < '" + stockMonthFirst + "' 
+                                GROUP BY f.id_product, f.id_wh_drawer
+                            )
+                            UNION ALL 
+                            -- stok tanpa sal
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS qty_ttl
+                                FROM tb_storage_fg AS f
+                                WHERE f.id_stock_status = 1 
+                                AND (f.storage_product_datetime >= '" + stockMonthFirst + " 00:00:00' AND f.storage_product_datetime <= '" + stockMonthDate + " 23:59:59')
+                                AND f.report_mark_type NOT IN (48, 66, 54, 67, 118, 117, 183, 116, 292)
+                                GROUP BY f.id_product, f.id_wh_drawer 
+                            )
+                            -- sal 
+                            UNION ALL
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, SUM(IF(f.id_stock_status = 1, (IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl
+                                FROM tb_storage_fg AS f
+                                INNER JOIN tb_sales_pos AS sp ON sp.id_sales_pos = f.id_report AND sp.report_mark_type = f.report_mark_type
+                                INNER JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact= IF(sp.id_memo_type = 8 OR sp.id_memo_type = 9, sp.id_comp_contact_bill, sp.id_store_contact_from)
+                                INNER JOIN tb_m_comp AS c ON c.id_comp = cc.id_comp
+                                WHERE f.id_stock_status = 1
+                                AND f.report_mark_type IN (48, 66, 54, 67, 118, 117, 183, 116, 292) AND sp.id_report_status = 6
+                                AND c.id_comp NOT IN (1212, 1213)
+                                AND sp.sales_pos_end_period >= '" + stockMonthFirst + "' AND sp.sales_pos_end_period <= '" + stockMonthDate + "' 
+                                GROUP BY f.id_product, f.id_wh_drawer
+                            )
+                            -- CN VIOS
+                            UNION ALL 
+                            (
+                                SELECT f.id_product, f.id_wh_drawer, 
+                                SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)), 0)) AS qty_ttl 
+                                FROM tb_storage_fg AS f
+                                INNER JOIN tb_sales_pos AS sp ON sp.id_sales_pos = f.id_report AND sp.report_mark_type = f.report_mark_type
+                                INNER JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = IF(sp.id_memo_type = 8 OR sp.id_memo_type = 9, sp.id_comp_contact_bill, sp.id_store_contact_from)
+                                INNER JOIN tb_m_comp AS c ON c.id_comp = cc.id_comp
+                                WHERE f.id_stock_status = 1
+                                AND f.report_mark_type = 118 AND sp.id_report_status=6
+                                AND c.id_comp IN (1212, 1213)
+                                AND sp.sales_pos_end_period >= '" + stockMonthFirst + "' AND sp.sales_pos_end_period <= '" + stockMonthDate + "' 
+                                GROUP BY f.id_product, f.id_wh_drawer
+                            )
+                        ) a
+                        INNER JOIN tb_m_product p ON p.id_product = a.id_product
+                        INNER JOIN tb_m_wh_drawer AS d ON d.id_wh_drawer = a.id_wh_drawer
+                        INNER JOIN tb_m_wh_rack AS r ON d.id_wh_rack = r.id_wh_rack
+                        INNER JOIN tb_m_wh_locator AS l ON r.id_wh_locator = l.id_wh_locator
+                        INNER JOIN tb_m_comp AS c ON l.id_comp = c.id_comp
+                        INNER JOIN tb_m_city AS t ON c.id_city = t.id_city
+                        INNER JOIN tb_m_state AS e ON t.id_state = e.id_state
+                        INNER JOIN tb_m_region AS g ON e.id_region = g.id_region
+                        WHERE 1 " + whereComp + " " + whereLocation + "
+                        GROUP BY p.id_design
+                    ) inv ON inv.id_design = d.id_design
+                    WHERE d.id_lookup_status_order <> 2
+                    GROUP BY d.id_design
+                )
+                UNION ALL
+            "
+
+            stockMonthQuery2 += "IF(t.year = " + i.ToString + " AND t.month = " + j.ToString + ", inv_qty_ttl, 0) AS `" + month(j - 1) + " " + i.ToString + "`, "
+            stockMonthQuery3 += "MAX(`" + month(j - 1) + " " + i.ToString + "`) AS `" + month(j - 1) + " " + i.ToString + "`, "
+            stockMonthQueryAll += "CONCAT((ROUND((IFNULL(sales_month.`" + month(j - 1) + " " + i.ToString + "`, 0) / (IFNULL(sales_month.`" + month(j - 1) + " " + i.ToString + "`, 0) + IFNULL(stock_month.`" + month(j - 1) + " " + i.ToString + "`, 0))) * 100)), '%') AS `Monthly SAS " + i.ToString + "|" + month(j - 1) + " " + i.ToString + "`, "
+
+            If j = 12 Then
+                j = 1
+
+                i = i + 1
+            Else
+                j = j + 1
+            End If
+
+            If i = year_to And j > month_to Then
+                Exit While
+            End If
+        End While
+
+        stockMonthQuery1 = stockMonthQuery1.Substring(0, stockMonthQuery1.Length - 25)
+        stockMonthQuery2 = stockMonthQuery2.Substring(0, stockMonthQuery2.Length - 2)
+        stockMonthQuery3 = stockMonthQuery3.Substring(0, stockMonthQuery3.Length - 2)
+        stockMonthQueryAll = stockMonthQueryAll.Substring(0, stockMonthQueryAll.Length - 2)
+
         'where
         Dim where As String = ""
 
@@ -102,12 +324,20 @@
             whereSalesPos += " AND r.id_country = " + SLUENational.EditValue.ToString
         End If
 
+        If Not SLUEIsland.EditValue.ToString = "ALL" Then
+            whereSalesPos += " AND y.island = '" + SLUEIsland.EditValue.ToString + "'"
+        End If
+
         If Not SLUEProvince.EditValue.ToString = "0" Then
             whereSalesPos += " AND y.id_state = " + SLUEProvince.EditValue.ToString
         End If
 
         If Not SLUEStore.EditValue.ToString = "0" Then
             whereSalesPos += " AND t.id_comp = " + SLUEStore.EditValue.ToString
+        End If
+
+        If Not SLUECompGroup.EditValue.ToString = "0" Then
+            whereSalesPos += " AND t.id_comp_group = " + SLUECompGroup.EditValue.ToString
         End If
 
         Dim query As String = "
@@ -129,14 +359,15 @@
 	            DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 5), 45), '%d %M %Y') AS `Price Update Dates|Price U5`,
 	            DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 6), 56), '%d %M %Y') AS `Price Update Dates|Price U6`,
 	            price_type.design_price_type AS `Price Update Dates|Current Status`, ROUND(wh_rec_normal.qty) AS `WH Received|Normal (BOS)`, ROUND(wh_rec_defect.qty) AS `WH Received|Defect`,
-	            ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`,
-	            0 AS `Store Received|Total`,
+	            ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`, 
+                " + If(Not SLUEStore.EditValue.ToString = "0", "ROUND(store_rec.qty) AS `Store Received|Total`, ", "") + "
                 " + selectDateAll + ", " + selectYearAll + ", 
                 ROUND(IFNULL(sales_normal.qty, 0)) AS `Total Sales|Sales Toko Normal`, ROUND(IFNULL(sales_sale.qty, 0)) AS `Total Sales|Sales Toko Sale`,
                 ROUND((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0))) AS `Total Sales|Grand Total`,
                 CONCAT(ROUND((IFNULL(sales_normal.qty, 0) / IFNULL(wh_rec_normal.qty, 0) * 100)), '%') AS `Sell Thru|Normal`, 
                 CONCAT(ROUND((IFNULL(sales_sale.qty, 0) / (IFNULL(wh_rec_normal.qty, 0) - IFNULL(sales_normal.qty, 0)) * 100)), '%') AS `Sell Thru|Sale`,
-                CONCAT(ROUND(((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0)) / IFNULL(wh_rec_normal.qty, 0) * 100)), '%') AS `Sell Thru|Total`,
+                CONCAT(ROUND(((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0)) / IFNULL(wh_rec_normal.qty, 0) * 100)), '%') AS `Sell Thru|Total`, 
+                " + stockMonthQueryAll + ",
                 ROUND(IFNULL(stock_g78.qty, 0)) AS `Stock Gudang Normal|G78`, ROUND(IFNULL(stock_gon.qty, 0)) AS `Stock Gudang Normal|GON`, ROUND(IFNULL(stock_s78.qty, 0)) AS `Stock Gudang Sale|S78`, ROUND(IFNULL(stock_gos.qty, 0)) AS `Stock Gudang Sale|GOS`, ROUND(IFNULL(stock_rej.qty, 0)) AS `Stock Gudang Non Aktive|Reject`
             FROM tb_m_design AS design
             LEFT JOIN (
@@ -293,6 +524,16 @@
                 GROUP BY p.id_design
             ) AS sales_sale ON design.id_design = sales_sale.id_design
             LEFT JOIN (
+                SELECT t.id_design, " + stockMonthQuery3 + "
+                FROM (
+                    SELECT t.id_design, " + stockMonthQuery2 + "
+                    FROM (
+                        " + stockMonthQuery1 + "
+                    ) AS t
+                ) AS t
+                GROUP BY t.id_design
+            ) AS stock_month ON design.id_design = stock_month.id_design
+            LEFT JOIN (
                 SELECT p.id_design, SUM(a.qty_ttl) AS qty
 				FROM (
 					SELECT f.id_wh_drawer, f.id_product, f.qty_ttl
@@ -387,6 +628,16 @@
                 INNER JOIN tb_m_product AS p ON p.id_product = a.id_product
 				GROUP BY p.id_design
             ) AS stock_rej ON design.id_design = stock_rej.id_design
+            LEFT JOIN (
+                SELECT p.id_design, SUM(d.pl_sales_order_del_det_qty) AS qty
+                FROM tb_pl_sales_order_del AS s
+                LEFT JOIN tb_pl_sales_order_del_det AS d ON d.id_pl_sales_order_del = s.id_pl_sales_order_del
+                LEFT JOIN tb_m_comp_contact w ON w.id_comp_contact = s.id_store_contact_to
+                LEFT JOIN tb_m_comp c ON c.id_comp = w.id_comp
+                LEFT JOIN tb_m_product p ON p.id_product = d.id_product
+                WHERE s.id_pl_sales_order_del > 0 AND c.id_comp = " + SLUEStore.EditValue.ToString + "
+                GROUP BY p.id_design
+            ) AS store_rec ON store_rec.id_design = design.id_design
             WHERE design.id_lookup_status_order <> 2 AND design.design_code <> '' " + where + "
             ORDER BY design.design_first_rec_wh ASC
         "
@@ -441,7 +692,12 @@
                         GVData.GroupSummary.Add(summary)
                     End If
 
-                    If bandName.Contains("Sell Thru") Then
+                    If bandName = "Price" Then
+                        col.DisplayFormat.FormatString = "N2"
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    End If
+
+                    If bandName.Contains("Sell Thru") Or bandName.Contains("Monthly SAS") Then
                         col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
                     End If
                 End If
@@ -451,6 +707,8 @@
         GCData.DataSource = data
 
         GVData.BestFitColumns()
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
 
     Private Sub SBExportExcel_Click(sender As Object, e As EventArgs) Handles SBExportExcel.Click
@@ -490,8 +748,9 @@
 
         view_month()
         view_national()
-        'view_island()
+        view_island()
         view_province()
+        view_group_store()
         view_store()
         view_season()
         view_division()
@@ -594,14 +853,34 @@
         viewSearchLookupQuery(SLUENational, query, "id_national", "national", "id_national")
     End Sub
 
+    Sub view_island()
+        Dim query As String = "
+            (SELECT 'ALL' AS island)
+            UNION ALL
+            (SELECT DISTINCT(island) AS island
+            FROM tb_m_city AS c
+            LEFT JOIN tb_m_state AS s ON c.id_state = s.id_state
+            LEFT JOIN tb_m_region AS r ON s.id_region = r.id_region
+            WHERE r.id_country = " + SLUENational.EditValue.ToString + " AND island IS NOT NULL)
+        "
+
+        viewSearchLookupQuery(SLUEIsland, query, "island", "island", "island")
+    End Sub
+
     Sub view_province()
+        Dim where As String = ""
+
+        If Not SLUEIsland.EditValue = "ALL" Then
+            where = " AND s.id_state IN (SELECT id_state FROM tb_m_city WHERE island = '" + SLUEIsland.EditValue.ToString + "')"
+        End If
+
         Dim query As String = "
             (SELECT 0 AS id_province, 'ALL' AS province)
             UNION ALL
             (SELECT s.id_state AS id_province, s.state AS province
             FROM tb_m_state AS s
             LEFT JOIN tb_m_region AS r ON s.id_region = r.id_region
-            WHERE r.id_country = " + SLUENational.EditValue.ToString + ")
+            WHERE r.id_country = " + SLUENational.EditValue.ToString + where + ")
         "
 
         viewSearchLookupQuery(SLUEProvince, query, "id_province", "province", "id_province")
@@ -611,13 +890,21 @@
         Dim where As String = ""
 
         If Not SLUEProvince.EditValue.ToString = "0" Then
-            where = " AND s.id_state = " + SLUEProvince.EditValue.ToString
+            where += " AND s.id_state = " + SLUEProvince.EditValue.ToString
+        End If
+
+        If Not SLUECompGroup.EditValue.ToString = "0" Then
+            where += " AND p.id_comp_group = " + SLUECompGroup.EditValue.ToString
+        End If
+
+        If Not SLUEIsland.EditValue.ToString = "ALL" Then
+            where += " AND c.island = '" + SLUEIsland.EditValue.ToString + "'"
         End If
 
         Dim query As String = "
             (SELECT 0 AS id_comp, 'ALL' AS comp_name)
             UNION ALL
-            (SELECT p.id_comp, p.comp_name
+            (SELECT p.id_comp, CONCAT(p.comp_number, ' - ', p.comp_name) AS comp_name
             FROM tb_m_comp AS p
             LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city
             LEFT JOIN tb_m_state AS s ON c.id_state = s.id_state
@@ -625,6 +912,32 @@
         "
 
         viewSearchLookupQuery(SLUEStore, query, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Sub view_group_store()
+        Dim where As String = ""
+
+        If Not SLUEProvince.EditValue.ToString = "0" Then
+            where += "
+                AND id_comp_group IN (SELECT p.id_comp_group FROM tb_m_comp AS p LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city LEFT JOIN tb_m_state AS s ON c.id_state = s.id_state WHERE s.id_state = " + SLUEProvince.EditValue.ToString + " AND p.id_comp_cat = 6)
+            "
+        End If
+
+        If Not SLUEIsland.EditValue.ToString = "ALL" Then
+            where += "
+                AND id_comp_group IN (SELECT p.id_comp_group FROM tb_m_comp AS p LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city WHERE c.island = '" + SLUEIsland.EditValue.ToString + "' AND p.id_comp_cat = 6)
+            "
+        End If
+
+        Dim query As String = "
+            (SELECT 0 AS id_comp_group, 'ALL' AS comp_group)
+            UNION ALL
+            (SELECT id_comp_group, CONCAT(comp_group, ' - ', description) AS comp_group
+            FROM tb_m_comp_group
+            WHERE 1 " + where + ")
+        "
+
+        viewSearchLookupQuery(SLUECompGroup, query, "id_comp_group", "comp_group", "id_comp_group")
     End Sub
 
     Private Sub SBSearch_Click(sender As Object, e As EventArgs) Handles SBSearch.Click
@@ -636,10 +949,34 @@
     End Sub
 
     Private Sub SLUENational_EditValueChanged(sender As Object, e As EventArgs) Handles SLUENational.EditValueChanged
+        view_island()
         view_province()
+        view_group_store()
+        view_store()
     End Sub
 
     Private Sub SLUEProvince_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEProvince.EditValueChanged
+        view_group_store()
         view_store()
+    End Sub
+
+    Private Sub SLUECompGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLUECompGroup.EditValueChanged
+        view_store()
+    End Sub
+
+    Private Sub SLUEIsland_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEIsland.EditValueChanged
+        view_province()
+        view_group_store()
+        view_store()
+    End Sub
+
+    Private Sub FormMonthlySalesPerformance_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+        button_main("0", "0", "0")
+    End Sub
+
+    Private Sub FormMonthlySalesPerformance_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
     End Sub
 End Class

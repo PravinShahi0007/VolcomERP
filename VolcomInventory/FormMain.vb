@@ -9596,6 +9596,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormOutboundPOD" Then
             FormOutboundPOD.Close()
             FormOutboundPOD.Dispose()
+        ElseIf formName = "FormMonthlySalesPerformance" Then
+            FormMonthlySalesPerformance.Close()
+            FormMonthlySalesPerformance.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -16066,6 +16069,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormOutboundPOD.Show()
             FormOutboundPOD.WindowState = FormWindowState.Maximized
             FormOutboundPOD.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBMonthlySalesPerformance_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMonthlySalesPerformance.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMonthlySalesPerformance.MdiParent = Me
+            FormMonthlySalesPerformance.Show()
+            FormMonthlySalesPerformance.WindowState = FormWindowState.Maximized
+            FormMonthlySalesPerformance.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

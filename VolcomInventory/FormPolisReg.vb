@@ -1,9 +1,6 @@
 ﻿Public Class FormPolisReg
     Public id_polis_pps As String = "-1"
     Public id_reg As String = "-1"
-    Private Sub BSaveDraft_Click(sender As Object, e As EventArgs)
-
-    End Sub
 
     Private Sub FormPolisReg_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_pps_view()
@@ -15,10 +12,10 @@
             If id_polis_pps = "-1" Then
                 Close()
             Else
-                Dim q As String = "SELECT pol.end_date,pps.id_polis_pps,ppsd.`id_polis_pps_det`,ppsd.`nilai_stock`,ppsd.`nilai_building`,ppsd.`nilai_fit_out`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`
+                Dim q As String = "SELECT ppsd.old_end_date,pps.id_polis_pps,ppsd.`id_polis_pps_det`,ppsd.`nilai_stock`,ppsd.`nilai_building`,ppsd.`nilai_fit_out`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`
 ,ppsd.`id_comp`,c.`comp_name`,c.`comp_number`,ppsd.`premi`,ppsd.`polis_vendor`,v.`comp_name` AS vendor
 FROM `tb_polis_pps_det` ppsd
-INNER JOIN tb_polis pol ON pol.`id_polis`=ppsd.`old_id_polis`
+LEFT JOIN tb_polis pol ON pol.`id_polis`=ppsd.`old_id_polis`
 INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps` AND ppsd.`id_polis_pps`='" & id_polis_pps & "' AND pps.id_report_status=6
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
 INNER JOIN tb_m_comp v ON v.`id_comp`=ppsd.`polis_vendor`"
@@ -27,11 +24,27 @@ INNER JOIN tb_m_comp v ON v.`id_comp`=ppsd.`polis_vendor`"
                 BGVSummary.BestFitColumns()
             End If
         Else
-            Dim q As String = "SELECT pol.end_date,pps.id_polis_pps,ppsd.`id_polis_pps_det`,ppsd.`nilai_stock`,ppsd.`nilai_building`,ppsd.`nilai_fit_out`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`
+            'head
+            Dim qh As String = "SELECT reg.*,emp.`employee_name` FROM `tb_polis_reg` reg
+INNER JOIN tb_m_user usr ON usr.`id_user`=reg.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE reg.id_polis_reg='" & id_reg & "'"
+            Dim dth As DataTable = execute_query(qh, -1, True, "", "", "", "")
+            If dth.Rows.Count > 0 Then
+                TENumber.Text = dth.Rows(0)("number").ToString
+                DECreatedDate.EditValue = dth.Rows(0)("created_date")
+                TECreatedBy.Text = dth.Rows(0)("employee_name").ToString
+                '
+                If dth.Rows(0)("id_report_status").ToString = "6" Then
+                    BtnSave.Visible = False
+                End If
+            End If
+            '
+            Dim q As String = "SELECT ppsd.old_end_date,pps.id_polis_pps,ppsd.`id_polis_pps_det`,ppsd.`nilai_stock`,ppsd.`nilai_building`,ppsd.`nilai_fit_out`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`
 ,ppsd.`id_comp`,c.`comp_name`,c.`comp_number`,ppsd.`premi`,ppsd.`polis_vendor`,v.`comp_name` AS vendor
 ,regd.premi AS premi_det,regd.polis_number,regd.description
 FROM `tb_polis_pps_det` ppsd
-INNER JOIN tb_polis pol ON pol.`id_polis`=ppsd.`old_id_polis`
+LEFT JOIN tb_polis pol ON pol.`id_polis`=ppsd.`old_id_polis`
 INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps` AND ppsd.`id_polis_pps`='" & id_polis_pps & "' AND pps.id_report_status=6
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
 INNER JOIN tb_m_comp v ON v.`id_comp`=ppsd.`polis_vendor`
@@ -65,6 +78,53 @@ LEFT JOIN `tb_polis_reg_det` regd ON ppsd.`id_polis_pps_det`=regd.id_polis_pps_d
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        Dim is_ok As Boolean = True
 
+        Dim qc As String = "SELECT ppsd.`id_polis_pps_det`,ppsd.`premi` AS premi_pps,IFNULL(SUM(regd.`premi`),0) AS premi
+FROM tb_polis_pps_det ppsd
+LEFT JOIN tb_polis_reg_det regd ON regd.`id_polis_pps_det`=ppsd.`id_polis_pps_det`
+WHERE ppsd.id_polis_pps='" & id_polis_pps & "'
+GROUP BY ppsd.`id_polis_pps_det`
+HAVING NOT premi_pps=premi"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            warningCustom("Please register all polis")
+        Else
+            'loop
+            Dim qu As String = ""
+            Dim ql As String = "SELECT ppsd.`id_polis_pps_det`,IFNULL(ppsd.old_id_polis,0) AS old_id_polis,ppsd.`premi` AS premi_pps,IFNULL(SUM(regd.`premi`),0) AS premi
+FROM tb_polis_pps_det ppsd
+LEFT JOIN tb_polis_reg_det regd ON regd.`id_polis_pps_det`=ppsd.`id_polis_pps_det`
+WHERE ppsd.id_polis_pps='" & id_polis_pps & "'
+GROUP BY ppsd.`id_polis_pps_det`"
+            Dim dtl As DataTable = execute_query(ql, -1, True, "", "", "", "")
+
+            For i = 0 To dtl.Rows.Count - 1
+                'update non active old polis
+                qu = "UPDATE `tb_polis` SET is_active=2 WHERE id_polis='" & dtl.Rows(i)("old_id_polis").ToString & "'"
+                execute_non_query(qu, True, "", "", "", "")
+
+                'insert baru
+                Dim id_pps_baru As String = ""
+                qu = "INSERT INTO `tb_polis`(`id_polis_cat`,`id_polis_by`,`id_reff`,`description`,`location`,`start_date`,`end_date`,`nilai_stock`,`nilai_fit_out`,`nilai_building`,`nilai_peralatan`,`nilai_public_liability`,`nilai_total`,`is_active`)
+SELECT 1 AS id_polis_cat,ppsd.`polis_vendor`,ppsd.`id_comp`,c.comp_name,c.address_primary,ppsd.v_start_date,ppsd.v_end_date,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`,1 AS is_active
+FROM `tb_polis_pps_det` ppsd
+INNER JOIN tb_m_comp c ON c.id_comp=ppsd.id_comp
+WHERE ppsd.id_polis_pps_det='" & dtl.Rows(i)("id_polis_pps_det").ToString & "';SELECT LAST_INSERT_ID();"
+                id_pps_baru = execute_query(qu, 0, True, "", "", "", "")
+
+                'detail
+                qu = "INSERT INTO `tb_polis_det`(`id_polis`,`number`,`description`,`premi`) SELECT '" & id_pps_baru & "' AS id_polis,`polis_number`,`description`,`premi` FROM `tb_polis_reg_det` WHERE id_polis_pps_det='" & dtl.Rows(i)("id_polis_pps_det").ToString & "' AND id_polis_reg='" & id_reg & "'"
+                execute_non_query(qu, True, "", "", "", "")
+            Next
+
+            'complete
+            qu = "UPDATE tb_polis_reg 
+SET id_report_status=6
+WHERE id_polis_reg = '" & id_reg & "'"
+            execute_non_query(qu, True, "", "", "", "")
+            '
+            load_pps_view()
+        End If
     End Sub
 End Class

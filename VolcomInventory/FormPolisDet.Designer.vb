@@ -102,6 +102,8 @@ Partial Class FormPolisDet
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -1051,7 +1053,7 @@ Partial Class FormPolisDet
         '
         Me.GVPenawaran.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.GVPenawaran.Appearance.FocusedRow.Options.UseBackColor = True
-        Me.GVPenawaran.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn44, Me.GridColumn43, Me.GridColumn45, Me.GridColumn46})
+        Me.GVPenawaran.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn48, Me.GridColumn47, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn44, Me.GridColumn43, Me.GridColumn45, Me.GridColumn46})
         Me.GVPenawaran.GridControl = Me.GCPenawaran
         Me.GVPenawaran.Name = "GVPenawaran"
         Me.GVPenawaran.OptionsView.ColumnAutoWidth = False
@@ -1099,6 +1101,26 @@ Partial Class FormPolisDet
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 2
         '
+        'GridColumn48
+        '
+        Me.GridColumn48.Caption = "Start Date New"
+        Me.GridColumn48.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn48.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn48.FieldName = "v_start_date"
+        Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.Visible = True
+        Me.GridColumn48.VisibleIndex = 4
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "End Date New"
+        Me.GridColumn47.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn47.FieldName = "v_end_date"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 5
+        '
         'GridColumn31
         '
         Me.GridColumn31.AppearanceCell.Options.UseTextOptions = True
@@ -1132,7 +1154,7 @@ Partial Class FormPolisDet
         Me.GridColumn32.OptionsColumn.AllowFocus = False
         Me.GridColumn32.OptionsColumn.ReadOnly = True
         Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 4
+        Me.GridColumn32.VisibleIndex = 6
         '
         'RepositoryItemTextEdit2
         '
@@ -1158,7 +1180,7 @@ Partial Class FormPolisDet
         Me.GridColumn33.OptionsColumn.AllowFocus = False
         Me.GridColumn33.OptionsColumn.ReadOnly = True
         Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 5
+        Me.GridColumn33.VisibleIndex = 7
         '
         'GridColumn34
         '
@@ -1176,7 +1198,7 @@ Partial Class FormPolisDet
         Me.GridColumn34.OptionsColumn.AllowFocus = False
         Me.GridColumn34.OptionsColumn.ReadOnly = True
         Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 6
+        Me.GridColumn34.VisibleIndex = 8
         '
         'GridColumn35
         '
@@ -1194,7 +1216,7 @@ Partial Class FormPolisDet
         Me.GridColumn35.OptionsColumn.AllowFocus = False
         Me.GridColumn35.OptionsColumn.ReadOnly = True
         Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 7
+        Me.GridColumn35.VisibleIndex = 9
         '
         'GridColumn36
         '
@@ -1215,7 +1237,7 @@ Partial Class FormPolisDet
     "ublic_liability]"
         Me.GridColumn36.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 8
+        Me.GridColumn36.VisibleIndex = 10
         '
         'GridColumn44
         '
@@ -1224,8 +1246,10 @@ Partial Class FormPolisDet
         Me.GridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn44.FieldName = "old_nilai_total"
         Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.OptionsColumn.AllowEdit = False
+        Me.GridColumn44.OptionsColumn.AllowFocus = False
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 9
+        Me.GridColumn44.VisibleIndex = 11
         '
         'GridColumn43
         '
@@ -1233,6 +1257,7 @@ Partial Class FormPolisDet
         Me.GridColumn43.FieldName = "old_polis_vendor"
         Me.GridColumn43.Name = "GridColumn43"
         Me.GridColumn43.OptionsColumn.AllowEdit = False
+        Me.GridColumn43.OptionsColumn.AllowFocus = False
         Me.GridColumn43.OptionsColumn.ReadOnly = True
         '
         'GridColumn45
@@ -1243,7 +1268,7 @@ Partial Class FormPolisDet
         Me.GridColumn45.OptionsColumn.AllowEdit = False
         Me.GridColumn45.OptionsColumn.ReadOnly = True
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 10
+        Me.GridColumn45.VisibleIndex = 12
         '
         'GridColumn46
         '
@@ -1259,7 +1284,7 @@ Partial Class FormPolisDet
         Me.GridColumn46.OptionsColumn.AllowEdit = False
         Me.GridColumn46.OptionsColumn.ReadOnly = True
         Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 11
+        Me.GridColumn46.VisibleIndex = 13
         '
         'BRefreshPenawaran
         '
@@ -1547,4 +1572,6 @@ Partial Class FormPolisDet
     Friend WithEvents PCSummary As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

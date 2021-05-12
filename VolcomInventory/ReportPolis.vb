@@ -67,7 +67,12 @@
 
         'jatuh tempo
         Dim jatuh_tempo As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
-        jatuh_tempo.Text = Date.Parse(dt.Rows(row_i)("end_date").ToString).ToString("dd MMMM yyyy")
+        Try
+
+        Catch ex As Exception
+
+        End Try
+        jatuh_tempo.Text = Date.Parse(dt.Rows(row_i)("old_end_date").ToString).ToString("dd MMMM yyyy")
         jatuh_tempo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         jatuh_tempo.Font = font_row_style
 

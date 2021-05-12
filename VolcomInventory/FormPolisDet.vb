@@ -39,9 +39,16 @@ GROUP BY pd.id_polis"
 
     Sub load_form()
         If Not id_pps = "-1" Then
-            Dim q As String = "SELECT * FROM tb_polis_pps pps WHERE pps.id_polis_pps='" & id_pps & "'"
+            Dim q As String = "SELECT pps.*,emp.employee_name FROM tb_polis_pps pps 
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE pps.id_polis_pps='" & id_pps & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
+                'head
+                TENumber.Text = dt.Rows(0)("number").ToString
+                DECreatedDate.EditValue = dt.Rows(0)("created_date")
+                TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 'load tab pertama
                 BLoadPolis.Visible = False
                 Dim qh As String = "SELECT ppsd.old_end_date,ppsd.old_id_polis,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`,c.`id_comp`
@@ -162,11 +169,12 @@ LEFT JOIN
 "
         Next
 
-        qs = "SELECT ppsd.`id_comp`,pol.end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
+        qs = "SELECT ppsd.`id_comp`,ppsd.old_end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
 ,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`
 ,ppsd.old_nilai_total,ppsd.nilai_total,ppsd.old_premi,ppsd.old_polis_vendor,v_old.comp_name AS old_vendor
 ,ppsd.old_premi
 ,ppsd.polis_vendor,ppsd.premi,v.comp_name AS vendor
+,ppsd.v_start_date,ppsd.v_end_date
 " & qh & "
 FROM tb_polis_pps_det ppsd 
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
@@ -174,6 +182,7 @@ LEFT JOIN tb_polis pol ON pol.id_polis=ppsd.old_id_polis
 LEFT JOIN tb_m_comp v_old ON v_old.id_comp=ppsd.old_polis_vendor
 LEFT JOIN tb_m_comp v ON v.id_comp=ppsd.polis_vendor
 " & qj & "
+WHERE ppsd.id_polis_pps='" & id_pps & "'
 GROUP BY ppsd.`id_comp`"
 
         dt = execute_query(qs, -1, True, "", "", "", "")
@@ -203,6 +212,9 @@ GROUP BY ppsd.`id_comp`"
         GVPenawaran.Columns("vendor").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         GVPenawaran.Columns("vendor").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         GVPenawaran.Columns("vendor").DisplayFormat.FormatString = "N2"
+        GVPenawaran.Columns("vendor").OptionsColumn.AllowFocus = False
+        GVPenawaran.Columns("vendor").OptionsColumn.ReadOnly = True
+        GVPenawaran.Columns("vendor").OptionsColumn.AllowEdit = False
         '
         GVPenawaran.RefreshData()
 
@@ -287,6 +299,10 @@ GROUP BY ppsd.`id_comp`"
                     q += "('" & id_pps & "','" & BGVSummary.GetRowCellValue(i, "id_comp") & "'," & old_polis & ",'" & Date.Parse(BGVSummary.GetRowCellValue(i, "old_end_date").ToString).ToString("yyyy-MM-dd") & "'," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_stock").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_fit_out").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_building").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_peralatan").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_public_liability").ToString).ToString()) & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_nilai_total").ToString).ToString()) & "," & old_polis_vendor & "," & decimalSQL(Decimal.Parse(BGVSummary.GetRowCellValue(i, "old_premi").ToString).ToString()) & ")"
                 Next
                 execute_non_query(q, True, "", "", "", "")
+                '
+                q = "CALL gen_number('" & id_pps & "','307')"
+                execute_non_query(q, True, "", "", "", "")
+                '
                 load_form()
             Else
                 If steps = "1" Then
@@ -333,6 +349,7 @@ GROUP BY ppsd.`id_comp`"
 ,nilai_peralatan='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_peralatan").ToString) & "'
 ,nilai_public_liability='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_public_liability").ToString) & "'
 ,nilai_total='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_total").ToString) & "'
+,v_start_date=DATE_ADD(old_end_date,INTERVAL 1 DAY),v_end_date=DATE_ADD(old_end_date,INTERVAL 1 YEAR)
 WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVNilaiLainnya.GetRowCellValue(i, "id_comp").ToString & "';"
                             Next
                             execute_non_query(q, True, "", "", "", "")
@@ -485,7 +502,10 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
         ReportPolis.id_pps = id_pps
         Dim Report As New ReportPolis()
         '
-        Dim q As String = "SELECT created_date,created_by,YEAR(created_date) AS this_year FROM tb_polis_pps WHERE id_polis_pps='" & id_pps & "'"
+        Dim q As String = "SELECT DATE_FORMAT(pps.created_date,'%d %M %Y') AS created_date,emp.employee_name AS created_by,YEAR(pps.created_date) AS this_year,number FROM tb_polis_pps pps
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE pps.id_polis_pps='" & id_pps & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         Report.DataSource = dt
         '
@@ -508,5 +528,9 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         FormPolisDetAdd.ShowDialog()
+    End Sub
+
+    Private Sub FormPolisDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
