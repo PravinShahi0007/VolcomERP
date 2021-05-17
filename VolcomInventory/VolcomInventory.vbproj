@@ -9828,6 +9828,9 @@
     <EmbeddedResource Include="FormBudgetProdDemandNew.resx">
       <DependentUpon>FormBudgetProdDemandNew.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCatalogSpec.resx">
+      <DependentUpon>FormCatalogSpec.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCollie.resx">
       <DependentUpon>FormCollie.vb</DependentUpon>
     </EmbeddedResource>
