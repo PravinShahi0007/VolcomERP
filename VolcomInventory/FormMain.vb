@@ -8614,6 +8614,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormOutboundPOD" Then
             print_raw(FormOutboundPOD.GCData, "")
+        ElseIf formName = "FormCatalogSpec" Then
+            print_raw(FormCatalogSpec.GCDesign, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9599,6 +9601,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMonthlySalesPerformance" Then
             FormMonthlySalesPerformance.Close()
             FormMonthlySalesPerformance.Dispose()
+        ElseIf formName = "FormCatalogSpec" Then
+            FormCatalogSpec.Close()
+            FormCatalogSpec.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10615,6 +10620,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormOutboundPOD" Then
             FormOutboundPOD.viewData()
+        ElseIf formName = "FormCatalogSpec" Then
+            FormCatalogSpec.viewData()
         End If
     End Sub
     'Switch
