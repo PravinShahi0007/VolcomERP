@@ -105,6 +105,11 @@ Partial Class FormFGDesignList
         Me.GridColumnpd_created_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpd_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_receive_qc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSpesifikasi = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBahan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPetunjukPerawatan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUkuran = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnModelInfo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPProposeChanges = New DevExpress.XtraTab.XtraTabPage()
@@ -115,11 +120,6 @@ Partial Class FormFGDesignList
         Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSpesifikasi = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnBahan = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPetunjukPerawatan = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnUkuran = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnModelInfo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -969,6 +969,56 @@ Partial Class FormFGDesignList
         Me.GridColumntotal_receive_qc.VisibleIndex = 19
         Me.GridColumntotal_receive_qc.Width = 71
         '
+        'GridColumnSpesifikasi
+        '
+        Me.GridColumnSpesifikasi.Caption = "Spesifikasi"
+        Me.GridColumnSpesifikasi.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnSpesifikasi.FieldName = "Spesifikasi"
+        Me.GridColumnSpesifikasi.Name = "GridColumnSpesifikasi"
+        Me.GridColumnSpesifikasi.OptionsColumn.AllowEdit = False
+        Me.GridColumnSpesifikasi.Visible = True
+        Me.GridColumnSpesifikasi.VisibleIndex = 26
+        '
+        'GridColumnBahan
+        '
+        Me.GridColumnBahan.Caption = "Bahan"
+        Me.GridColumnBahan.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnBahan.FieldName = "Bahan"
+        Me.GridColumnBahan.Name = "GridColumnBahan"
+        Me.GridColumnBahan.OptionsColumn.AllowEdit = False
+        Me.GridColumnBahan.Visible = True
+        Me.GridColumnBahan.VisibleIndex = 27
+        '
+        'GridColumnPetunjukPerawatan
+        '
+        Me.GridColumnPetunjukPerawatan.Caption = "Petunjuk Perawatan"
+        Me.GridColumnPetunjukPerawatan.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnPetunjukPerawatan.FieldName = "Petunjuk Perawatan"
+        Me.GridColumnPetunjukPerawatan.Name = "GridColumnPetunjukPerawatan"
+        Me.GridColumnPetunjukPerawatan.OptionsColumn.AllowEdit = False
+        Me.GridColumnPetunjukPerawatan.Visible = True
+        Me.GridColumnPetunjukPerawatan.VisibleIndex = 28
+        '
+        'GridColumnUkuran
+        '
+        Me.GridColumnUkuran.Caption = "Ukuran"
+        Me.GridColumnUkuran.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnUkuran.FieldName = "Ukuran"
+        Me.GridColumnUkuran.Name = "GridColumnUkuran"
+        Me.GridColumnUkuran.OptionsColumn.AllowEdit = False
+        Me.GridColumnUkuran.Visible = True
+        Me.GridColumnUkuran.VisibleIndex = 29
+        '
+        'GridColumnModelInfo
+        '
+        Me.GridColumnModelInfo.Caption = "Model Info"
+        Me.GridColumnModelInfo.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnModelInfo.FieldName = "Model Info"
+        Me.GridColumnModelInfo.Name = "GridColumnModelInfo"
+        Me.GridColumnModelInfo.OptionsColumn.AllowEdit = False
+        Me.GridColumnModelInfo.Visible = True
+        Me.GridColumnModelInfo.VisibleIndex = 30
+        '
         'XTPDesign
         '
         Me.XTPDesign.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1055,56 +1105,6 @@ Partial Class FormFGDesignList
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 3
-        '
-        'GridColumnSpesifikasi
-        '
-        Me.GridColumnSpesifikasi.Caption = "Spesifikasi"
-        Me.GridColumnSpesifikasi.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.GridColumnSpesifikasi.FieldName = "Spesifikasi"
-        Me.GridColumnSpesifikasi.Name = "GridColumnSpesifikasi"
-        Me.GridColumnSpesifikasi.OptionsColumn.AllowEdit = False
-        Me.GridColumnSpesifikasi.Visible = True
-        Me.GridColumnSpesifikasi.VisibleIndex = 26
-        '
-        'GridColumnBahan
-        '
-        Me.GridColumnBahan.Caption = "Bahan"
-        Me.GridColumnBahan.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.GridColumnBahan.FieldName = "Bahan"
-        Me.GridColumnBahan.Name = "GridColumnBahan"
-        Me.GridColumnBahan.OptionsColumn.AllowEdit = False
-        Me.GridColumnBahan.Visible = True
-        Me.GridColumnBahan.VisibleIndex = 27
-        '
-        'GridColumnPetunjukPerawatan
-        '
-        Me.GridColumnPetunjukPerawatan.Caption = "Petunjuk Perawatan"
-        Me.GridColumnPetunjukPerawatan.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.GridColumnPetunjukPerawatan.FieldName = "Petunjuk Perawatan"
-        Me.GridColumnPetunjukPerawatan.Name = "GridColumnPetunjukPerawatan"
-        Me.GridColumnPetunjukPerawatan.OptionsColumn.AllowEdit = False
-        Me.GridColumnPetunjukPerawatan.Visible = True
-        Me.GridColumnPetunjukPerawatan.VisibleIndex = 28
-        '
-        'GridColumnUkuran
-        '
-        Me.GridColumnUkuran.Caption = "Ukuran"
-        Me.GridColumnUkuran.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.GridColumnUkuran.FieldName = "Ukuran"
-        Me.GridColumnUkuran.Name = "GridColumnUkuran"
-        Me.GridColumnUkuran.OptionsColumn.AllowEdit = False
-        Me.GridColumnUkuran.Visible = True
-        Me.GridColumnUkuran.VisibleIndex = 29
-        '
-        'GridColumnModelInfo
-        '
-        Me.GridColumnModelInfo.Caption = "Model Info"
-        Me.GridColumnModelInfo.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.GridColumnModelInfo.FieldName = "Model Info"
-        Me.GridColumnModelInfo.Name = "GridColumnModelInfo"
-        Me.GridColumnModelInfo.OptionsColumn.AllowEdit = False
-        Me.GridColumnModelInfo.Visible = True
-        Me.GridColumnModelInfo.VisibleIndex = 30
         '
         'FormFGDesignList
         '
