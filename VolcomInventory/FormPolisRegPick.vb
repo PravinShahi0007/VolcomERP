@@ -26,7 +26,12 @@ WHERE pps.id_report_status=6 AND ISNULL(reg.id_polis_reg)"
             '
             Dim id_reg As String = ""
             Dim q As String = "INSERT INTO tb_polis_reg(id_polis_pps,created_date,created_by,id_report_status) VALUES(" & GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString & ",NOW(),'" & id_user & "',1); SELECT LAST_INSERT_ID(); "
-            id_reg = execute_query(q, -1, True, "", "", "", "")
+            id_reg = execute_query(q, 0, True, "", "", "", "")
+            '
+            q = "CALL gen_number('" & id_reg & "','309')"
+            execute_non_query(q, True, "", "", "", "")
+            '
+            FormPolisReg.id_reg = id_reg
             '
             Close()
         End If

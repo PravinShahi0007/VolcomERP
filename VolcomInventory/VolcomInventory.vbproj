@@ -558,6 +558,12 @@
     <Compile Include="FormBudgetProdDemandNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCatalogSpec.Designer.vb">
+      <DependentUpon>FormCatalogSpec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCatalogSpec.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCollie.Designer.vb">
       <DependentUpon>FormCollie.vb</DependentUpon>
     </Compile>
