@@ -66,6 +66,9 @@ Partial Class FormPolisDet
         Me.BLoadPolis = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCPolis = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.PCSummary = New DevExpress.XtraEditors.PanelControl()
+        Me.BDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPNilaiStock = New DevExpress.XtraTab.XtraTabPage()
         Me.GCNilaiStock = New DevExpress.XtraGrid.GridControl()
         Me.GVNilaiStock = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -124,9 +127,6 @@ Partial Class FormPolisDet
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PCSummary = New DevExpress.XtraEditors.PanelControl()
-        Me.BDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -141,6 +141,8 @@ Partial Class FormPolisDet
         CType(Me.XTCPolis, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPolis.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
+        CType(Me.PCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCSummary.SuspendLayout()
         Me.XTPNilaiStock.SuspendLayout()
         CType(Me.GCNilaiStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVNilaiStock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -160,8 +162,6 @@ Partial Class FormPolisDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCSummary.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -410,7 +410,7 @@ Partial Class FormPolisDet
         Me.GridColumn5.Caption = "Jatuh Tempo"
         Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn5.FieldName = "end_date"
+        Me.GridColumn5.FieldName = "old_end_date"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn5.Visible = True
@@ -704,6 +704,36 @@ Partial Class FormPolisDet
         Me.XTPSummary.Size = New System.Drawing.Size(909, 363)
         Me.XTPSummary.Text = "Summary"
         '
+        'PCSummary
+        '
+        Me.PCSummary.Controls.Add(Me.BDel)
+        Me.PCSummary.Controls.Add(Me.BAdd)
+        Me.PCSummary.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCSummary.Location = New System.Drawing.Point(0, 0)
+        Me.PCSummary.Name = "PCSummary"
+        Me.PCSummary.Size = New System.Drawing.Size(909, 46)
+        Me.PCSummary.TabIndex = 143
+        '
+        'BDel
+        '
+        Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDel.Image = CType(resources.GetObject("BDel.Image"), System.Drawing.Image)
+        Me.BDel.Location = New System.Drawing.Point(737, 2)
+        Me.BDel.Name = "BDel"
+        Me.BDel.Size = New System.Drawing.Size(87, 42)
+        Me.BDel.TabIndex = 3
+        Me.BDel.Text = "Delete"
+        '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
+        Me.BAdd.Location = New System.Drawing.Point(824, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(83, 42)
+        Me.BAdd.TabIndex = 2
+        Me.BAdd.Text = "Add"
+        '
         'XTPNilaiStock
         '
         Me.XTPNilaiStock.Controls.Add(Me.GCNilaiStock)
@@ -765,7 +795,7 @@ Partial Class FormPolisDet
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Alamat"
-        Me.GridColumn15.FieldName = "primary_address"
+        Me.GridColumn15.FieldName = "address_primary"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.OptionsColumn.AllowFocus = False
@@ -873,7 +903,7 @@ Partial Class FormPolisDet
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Alamat"
-        Me.GridColumn21.FieldName = "primary_address"
+        Me.GridColumn21.FieldName = "address_primary"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.OptionsColumn.ReadOnly = True
@@ -1061,7 +1091,7 @@ Partial Class FormPolisDet
         'GridColumn30
         '
         Me.GridColumn30.Caption = "Alamat"
-        Me.GridColumn30.FieldName = "primary_address"
+        Me.GridColumn30.FieldName = "address_primary"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.OptionsColumn.AllowFocus = False
@@ -1359,36 +1389,6 @@ Partial Class FormPolisDet
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 1
         '
-        'PCSummary
-        '
-        Me.PCSummary.Controls.Add(Me.BDel)
-        Me.PCSummary.Controls.Add(Me.BAdd)
-        Me.PCSummary.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCSummary.Location = New System.Drawing.Point(0, 0)
-        Me.PCSummary.Name = "PCSummary"
-        Me.PCSummary.Size = New System.Drawing.Size(909, 46)
-        Me.PCSummary.TabIndex = 143
-        '
-        'BDel
-        '
-        Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDel.Image = CType(resources.GetObject("BDel.Image"), System.Drawing.Image)
-        Me.BDel.Location = New System.Drawing.Point(737, 2)
-        Me.BDel.Name = "BDel"
-        Me.BDel.Size = New System.Drawing.Size(87, 42)
-        Me.BDel.TabIndex = 3
-        Me.BDel.Text = "Delete"
-        '
-        'BAdd
-        '
-        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
-        Me.BAdd.Location = New System.Drawing.Point(824, 2)
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(83, 42)
-        Me.BAdd.TabIndex = 2
-        Me.BAdd.Text = "Add"
-        '
         'FormPolisDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1416,6 +1416,8 @@ Partial Class FormPolisDet
         CType(Me.XTCPolis, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPolis.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
+        CType(Me.PCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCSummary.ResumeLayout(False)
         Me.XTPNilaiStock.ResumeLayout(False)
         CType(Me.GCNilaiStock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVNilaiStock, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1435,8 +1437,6 @@ Partial Class FormPolisDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PCSummary, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCSummary.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
