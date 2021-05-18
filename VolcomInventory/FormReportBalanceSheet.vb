@@ -1356,10 +1356,14 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
                 id += GVActiveTax.GetRowCellValue(i, "id_acc_trans").ToString
             Next
 
-            Dim q As String = "SELECT GROUP_CONCAT(acc_trans_number) AS err
-FROM tb_a_acc_trans trx 
-INNER JOIN `tb_tax_pph_summary` pphs ON trx.date_tax_report=pphs.`period_from` AND pphs.id_report_status=6
-WHERE id_acc_trans IN (" & id & ")"
+            Dim q As String = "SELECT GROUP_CONCAT(DISTINCT t.acc_trans_number) AS err
+FROM tb_a_acc_trans_det AS d
+LEFT JOIN tb_a_acc_trans AS t ON d.id_acc_trans = t.id_acc_trans
+LEFT JOIN tb_a_acc AS a ON d.id_acc = a.id_acc
+LEFT JOIN tb_lookup_tax_report AS r ON a.id_tax_report = r.id_tax_report
+LEFT JOIN tb_tax_pph_summary_det AS s ON s.id_tax_report = r.id_tax_report
+LEFT JOIN tb_tax_pph_summary AS p ON t.date_tax_report = p.period_from AND p.id_report_status = 6
+WHERE t.id_acc_trans IN (" + id + ") AND r.id_type = 1"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If Not dt.Rows(0)("err").ToString = "" Then
                 err_text = "Laporan tax untuk jurnal nomor " & dt.Rows(0)("err").ToString & " sudah terkunci"

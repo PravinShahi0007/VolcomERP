@@ -112,14 +112,6 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        Try
-            Dim nm As New ClassSendEmail
-            nm.par1 = "5940"
-            nm.report_mark_type = "186"
-            nm.send_email()
-        Catch ex As Exception
-            execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send Pre final COP id_design = 5940')", -1, True, "", "", "", "")
-        End Try
 
         '        Dim id_report_par As String = "97043"
         '        Dim id_status_reportx_par As String = "6"

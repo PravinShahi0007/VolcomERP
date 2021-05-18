@@ -5996,35 +5996,35 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormWHAWBill" Then
             If FormWHAWBill.XTCAwb.SelectedTabPageIndex = 0 Then
-                confirm = XtraMessageBox.Show("Are you sure want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                Dim id_awbill As String = FormWHAWBill.GVAWBill.GetFocusedRowCellValue("id_awbill").ToString
+                'confirm = XtraMessageBox.Show("Are you sure want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                'Dim id_awbill As String = FormWHAWBill.GVAWBill.GetFocusedRowCellValue("id_awbill").ToString
 
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Cursor = Cursors.WaitCursor
-                    Try
-                        query = String.Format("DELETE FROM tb_wh_awbill WHERE id_awbill = '{0}'", id_awbill)
-                        execute_non_query(query, True, "", "", "", "")
-                        FormWHAWBill.load_outbound()
-                    Catch ex As Exception
-                        errorDelete()
-                    End Try
-                    Cursor = Cursors.Default
-                End If
+                'If confirm = Windows.Forms.DialogResult.Yes Then
+                '    Cursor = Cursors.WaitCursor
+                '    Try
+                '        query = String.Format("DELETE FROM tb_wh_awbill WHERE id_awbill = '{0}'", id_awbill)
+                '        execute_non_query(query, True, "", "", "", "")
+                '        FormWHAWBill.load_outbound()
+                '    Catch ex As Exception
+                '        errorDelete()
+                '    End Try
+                '    Cursor = Cursors.Default
+                'End If
             Else
-                confirm = XtraMessageBox.Show("Are you sure want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                Dim id_awbill As String = FormWHAWBill.GVAwbillIn.GetFocusedRowCellValue("id_awbill").ToString
+                'confirm = XtraMessageBox.Show("Are you sure want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                'Dim id_awbill As String = FormWHAWBill.GVAwbillIn.GetFocusedRowCellValue("id_awbill").ToString
 
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Cursor = Cursors.WaitCursor
-                    Try
-                        query = String.Format("DELETE FROM tb_wh_awbill WHERE id_awbill = '{0}'", id_awbill)
-                        execute_non_query(query, True, "", "", "", "")
-                        FormWHAWBill.load_inbound()
-                    Catch ex As Exception
-                        errorDelete()
-                    End Try
-                    Cursor = Cursors.Default
-                End If
+                'If confirm = Windows.Forms.DialogResult.Yes Then
+                '    Cursor = Cursors.WaitCursor
+                '    Try
+                '        query = String.Format("DELETE FROM tb_wh_awbill WHERE id_awbill = '{0}'", id_awbill)
+                '        execute_non_query(query, True, "", "", "", "")
+                '        FormWHAWBill.load_inbound()
+                '    Catch ex As Exception
+                '        errorDelete()
+                '    End Try
+                '    Cursor = Cursors.Default
+                'End If
             End If
         ElseIf formName = "FormMasterPrice" Then
             If check_edit_report_status(FormMasterPrice.GVPrice.GetFocusedRowCellValue("id_report_status").ToString, "82", FormMasterPrice.GVPrice.GetFocusedRowCellValue("id_fg_price")) Then
@@ -8614,6 +8614,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormOutboundPOD" Then
             print_raw(FormOutboundPOD.GCData, "")
+        ElseIf formName = "FormCatalogSpec" Then
+            print_raw(FormCatalogSpec.GCDesign, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9599,6 +9601,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMonthlySalesPerformance" Then
             FormMonthlySalesPerformance.Close()
             FormMonthlySalesPerformance.Dispose()
+        ElseIf formName = "FormCatalogSpec" Then
+            FormCatalogSpec.Close()
+            FormCatalogSpec.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10615,6 +10620,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormOutboundPOD" Then
             FormOutboundPOD.viewData()
+        ElseIf formName = "FormCatalogSpec" Then
+            FormCatalogSpec.viewData()
         End If
     End Sub
     'Switch
@@ -16082,6 +16089,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMonthlySalesPerformance.Show()
             FormMonthlySalesPerformance.WindowState = FormWindowState.Maximized
             FormMonthlySalesPerformance.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCatalogSpec_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCatalogSpec.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormCatalogSpec.MdiParent = Me
+            FormCatalogSpec.Show()
+            FormCatalogSpec.WindowState = FormWindowState.Maximized
+            FormCatalogSpec.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
