@@ -42,8 +42,11 @@ Partial Class FormOLStoreSummary
         Dim SerializableAppearanceObject20 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue2 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Me.GridColumnis_cancel_cn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4shipped_age = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -509,6 +512,9 @@ Partial Class FormOLStoreSummary
         Me.GridColumnol_store_idoos = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnitem_idoos = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnExportToXLSOOS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewOOS = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
@@ -516,9 +522,21 @@ Partial Class FormOLStoreSummary
         Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPZaloraShipReport = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCZaloraShip = New DevExpress.XtraGrid.GridControl()
+        Me.GVZaloraShip = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_sales_order_det_shp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnitem_idshp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnol_store_idshp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_dateshp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncustomer_nameshp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_numbershp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstatusshp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstatus_dateshp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl11 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExsportXlsZaloraShipOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewZaloraShipGreather30 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewZaloraShipAll = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -638,10 +656,15 @@ Partial Class FormOLStoreSummary
         CType(Me.GVOOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl9.SuspendLayout()
-        CType(Me.SLEGroupOOS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl10.SuspendLayout()
+        CType(Me.SLEGroupOOS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPZaloraShipReport.SuspendLayout()
+        CType(Me.GCZaloraShip, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVZaloraShip, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl11, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl11.SuspendLayout()
         Me.SuspendLayout()
         '
         'GridColumnis_cancel_cn
@@ -657,6 +680,16 @@ Partial Class FormOLStoreSummary
         Me.GridColumncode.Name = "GridColumncode"
         Me.GridColumncode.Visible = True
         Me.GridColumncode.VisibleIndex = 4
+        '
+        'GridColumn4shipped_age
+        '
+        Me.GridColumn4shipped_age.Caption = "Age"
+        Me.GridColumn4shipped_age.DisplayFormat.FormatString = "N0"
+        Me.GridColumn4shipped_age.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4shipped_age.FieldName = "shipped_age"
+        Me.GridColumn4shipped_age.Name = "GridColumn4shipped_age"
+        Me.GridColumn4shipped_age.Visible = True
+        Me.GridColumn4shipped_age.VisibleIndex = 7
         '
         'PanelControl1
         '
@@ -1085,7 +1118,7 @@ Partial Class FormOLStoreSummary
         Me.XTCOLStore.SelectedTabPage = Me.XTPDetail
         Me.XTCOLStore.Size = New System.Drawing.Size(1227, 495)
         Me.XTCOLStore.TabIndex = 2
-        Me.XTCOLStore.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail, Me.XTPPromoItem, Me.XtraTabPage1, Me.XTPRORList, Me.XTPOOS})
+        Me.XTCOLStore.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail, Me.XTPPromoItem, Me.XtraTabPage1, Me.XTPRORList, Me.XTPOOS, Me.XTPZaloraShipReport})
         '
         'XTPDetail
         '
@@ -5080,6 +5113,38 @@ Partial Class FormOLStoreSummary
         Me.PanelControl9.Size = New System.Drawing.Size(1225, 46)
         Me.PanelControl9.TabIndex = 0
         '
+        'PanelControl10
+        '
+        Me.PanelControl10.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl10.Controls.Add(Me.LabelControl20)
+        Me.PanelControl10.Controls.Add(Me.LabelControl19)
+        Me.PanelControl10.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl10.Location = New System.Drawing.Point(1061, 2)
+        Me.PanelControl10.Name = "PanelControl10"
+        Me.PanelControl10.Size = New System.Drawing.Size(162, 42)
+        Me.PanelControl10.TabIndex = 18
+        '
+        'LabelControl20
+        '
+        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl20.Location = New System.Drawing.Point(9, 14)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(28, 13)
+        Me.LabelControl20.TabIndex = 19
+        Me.LabelControl20.Text = "Ket : "
+        '
+        'LabelControl19
+        '
+        Me.LabelControl19.Appearance.BackColor = System.Drawing.Color.Yellow
+        Me.LabelControl19.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.LabelControl19.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl19.Location = New System.Drawing.Point(43, 10)
+        Me.LabelControl19.Name = "LabelControl19"
+        Me.LabelControl19.Padding = New System.Windows.Forms.Padding(3)
+        Me.LabelControl19.Size = New System.Drawing.Size(110, 21)
+        Me.LabelControl19.TabIndex = 17
+        Me.LabelControl19.Text = "Potentially Cancel CN"
+        '
         'BtnExportToXLSOOS
         '
         Me.BtnExportToXLSOOS.Image = CType(resources.GetObject("BtnExportToXLSOOS.Image"), System.Drawing.Image)
@@ -5140,37 +5205,159 @@ Partial Class FormOLStoreSummary
         Me.GridColumn41.Visible = True
         Me.GridColumn41.VisibleIndex = 0
         '
-        'LabelControl19
+        'XTPZaloraShipReport
         '
-        Me.LabelControl19.Appearance.BackColor = System.Drawing.Color.Yellow
-        Me.LabelControl19.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LabelControl19.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl19.Location = New System.Drawing.Point(43, 10)
-        Me.LabelControl19.Name = "LabelControl19"
-        Me.LabelControl19.Padding = New System.Windows.Forms.Padding(3)
-        Me.LabelControl19.Size = New System.Drawing.Size(110, 21)
-        Me.LabelControl19.TabIndex = 17
-        Me.LabelControl19.Text = "Potentially Cancel CN"
+        Me.XTPZaloraShipReport.Controls.Add(Me.GCZaloraShip)
+        Me.XTPZaloraShipReport.Controls.Add(Me.PanelControl11)
+        Me.XTPZaloraShipReport.Name = "XTPZaloraShipReport"
+        Me.XTPZaloraShipReport.Size = New System.Drawing.Size(1225, 469)
+        Me.XTPZaloraShipReport.Text = "Zalora Shipping Report"
         '
-        'PanelControl10
+        'GCZaloraShip
         '
-        Me.PanelControl10.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl10.Controls.Add(Me.LabelControl20)
-        Me.PanelControl10.Controls.Add(Me.LabelControl19)
-        Me.PanelControl10.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl10.Location = New System.Drawing.Point(1061, 2)
-        Me.PanelControl10.Name = "PanelControl10"
-        Me.PanelControl10.Size = New System.Drawing.Size(162, 42)
-        Me.PanelControl10.TabIndex = 18
+        Me.GCZaloraShip.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCZaloraShip.Location = New System.Drawing.Point(0, 47)
+        Me.GCZaloraShip.MainView = Me.GVZaloraShip
+        Me.GCZaloraShip.Name = "GCZaloraShip"
+        Me.GCZaloraShip.Size = New System.Drawing.Size(1225, 422)
+        Me.GCZaloraShip.TabIndex = 1
+        Me.GCZaloraShip.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVZaloraShip})
         '
-        'LabelControl20
+        'GVZaloraShip
         '
-        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl20.Location = New System.Drawing.Point(9, 14)
-        Me.LabelControl20.Name = "LabelControl20"
-        Me.LabelControl20.Size = New System.Drawing.Size(28, 13)
-        Me.LabelControl20.TabIndex = 19
-        Me.LabelControl20.Text = "Ket : "
+        Me.GVZaloraShip.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_order_det_shp, Me.GridColumnitem_idshp, Me.GridColumnol_store_idshp, Me.GridColumnorder_dateshp, Me.GridColumncustomer_nameshp, Me.GridColumnorder_numbershp, Me.GridColumnstatusshp, Me.GridColumnstatus_dateshp, Me.GridColumn4shipped_age})
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Column = Me.GridColumn4shipped_age
+        GridFormatRule2.ColumnApplyTo = Me.GridColumn4shipped_age
+        GridFormatRule2.Name = "Format0"
+        FormatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.Yellow
+        FormatConditionRuleValue2.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        FormatConditionRuleValue2.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue2.Appearance.Options.UseBorderColor = True
+        FormatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Greater
+        FormatConditionRuleValue2.Value1 = 30
+        GridFormatRule2.Rule = FormatConditionRuleValue2
+        Me.GVZaloraShip.FormatRules.Add(GridFormatRule2)
+        Me.GVZaloraShip.GridControl = Me.GCZaloraShip
+        Me.GVZaloraShip.Name = "GVZaloraShip"
+        Me.GVZaloraShip.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVZaloraShip.OptionsBehavior.ReadOnly = True
+        Me.GVZaloraShip.OptionsFind.AlwaysVisible = True
+        Me.GVZaloraShip.OptionsSelection.EnableAppearanceFocusedRow = False
+        Me.GVZaloraShip.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_sales_order_det_shp
+        '
+        Me.GridColumnid_sales_order_det_shp.Caption = "id_sales_order_det"
+        Me.GridColumnid_sales_order_det_shp.FieldName = "id_sales_order_det"
+        Me.GridColumnid_sales_order_det_shp.Name = "GridColumnid_sales_order_det_shp"
+        '
+        'GridColumnitem_idshp
+        '
+        Me.GridColumnitem_idshp.Caption = "Item Id"
+        Me.GridColumnitem_idshp.FieldName = "item_id"
+        Me.GridColumnitem_idshp.Name = "GridColumnitem_idshp"
+        Me.GridColumnitem_idshp.Visible = True
+        Me.GridColumnitem_idshp.VisibleIndex = 0
+        '
+        'GridColumnol_store_idshp
+        '
+        Me.GridColumnol_store_idshp.Caption = "OL. Store Id"
+        Me.GridColumnol_store_idshp.FieldName = "ol_store_id"
+        Me.GridColumnol_store_idshp.Name = "GridColumnol_store_idshp"
+        Me.GridColumnol_store_idshp.Visible = True
+        Me.GridColumnol_store_idshp.VisibleIndex = 1
+        '
+        'GridColumnorder_dateshp
+        '
+        Me.GridColumnorder_dateshp.Caption = "Order Date"
+        Me.GridColumnorder_dateshp.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnorder_dateshp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnorder_dateshp.FieldName = "order_date"
+        Me.GridColumnorder_dateshp.Name = "GridColumnorder_dateshp"
+        Me.GridColumnorder_dateshp.Visible = True
+        Me.GridColumnorder_dateshp.VisibleIndex = 2
+        '
+        'GridColumncustomer_nameshp
+        '
+        Me.GridColumncustomer_nameshp.Caption = "Customer"
+        Me.GridColumncustomer_nameshp.FieldName = "customer_name"
+        Me.GridColumncustomer_nameshp.Name = "GridColumncustomer_nameshp"
+        Me.GridColumncustomer_nameshp.Visible = True
+        Me.GridColumncustomer_nameshp.VisibleIndex = 3
+        '
+        'GridColumnorder_numbershp
+        '
+        Me.GridColumnorder_numbershp.Caption = "Order No."
+        Me.GridColumnorder_numbershp.FieldName = "order_number"
+        Me.GridColumnorder_numbershp.Name = "GridColumnorder_numbershp"
+        Me.GridColumnorder_numbershp.Visible = True
+        Me.GridColumnorder_numbershp.VisibleIndex = 4
+        '
+        'GridColumnstatusshp
+        '
+        Me.GridColumnstatusshp.Caption = "Status"
+        Me.GridColumnstatusshp.FieldName = "status"
+        Me.GridColumnstatusshp.Name = "GridColumnstatusshp"
+        Me.GridColumnstatusshp.Visible = True
+        Me.GridColumnstatusshp.VisibleIndex = 5
+        '
+        'GridColumnstatus_dateshp
+        '
+        Me.GridColumnstatus_dateshp.Caption = "Updated At"
+        Me.GridColumnstatus_dateshp.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnstatus_dateshp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnstatus_dateshp.FieldName = "status_date"
+        Me.GridColumnstatus_dateshp.Name = "GridColumnstatus_dateshp"
+        Me.GridColumnstatus_dateshp.Visible = True
+        Me.GridColumnstatus_dateshp.VisibleIndex = 6
+        '
+        'PanelControl11
+        '
+        Me.PanelControl11.Controls.Add(Me.BtnExsportXlsZaloraShipOrder)
+        Me.PanelControl11.Controls.Add(Me.BtnViewZaloraShipGreather30)
+        Me.PanelControl11.Controls.Add(Me.BtnViewZaloraShipAll)
+        Me.PanelControl11.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl11.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl11.Name = "PanelControl11"
+        Me.PanelControl11.Size = New System.Drawing.Size(1225, 47)
+        Me.PanelControl11.TabIndex = 0
+        '
+        'BtnExsportXlsZaloraShipOrder
+        '
+        Me.BtnExsportXlsZaloraShipOrder.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnExsportXlsZaloraShipOrder.Image = CType(resources.GetObject("BtnExsportXlsZaloraShipOrder.Image"), System.Drawing.Image)
+        Me.BtnExsportXlsZaloraShipOrder.Location = New System.Drawing.Point(379, 2)
+        Me.BtnExsportXlsZaloraShipOrder.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BtnExsportXlsZaloraShipOrder.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnExsportXlsZaloraShipOrder.Name = "BtnExsportXlsZaloraShipOrder"
+        Me.BtnExsportXlsZaloraShipOrder.Size = New System.Drawing.Size(123, 43)
+        Me.BtnExsportXlsZaloraShipOrder.TabIndex = 13
+        Me.BtnExsportXlsZaloraShipOrder.Text = "Export XLS"
+        '
+        'BtnViewZaloraShipGreather30
+        '
+        Me.BtnViewZaloraShipGreather30.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnViewZaloraShipGreather30.Image = CType(resources.GetObject("BtnViewZaloraShipGreather30.Image"), System.Drawing.Image)
+        Me.BtnViewZaloraShipGreather30.Location = New System.Drawing.Point(161, 2)
+        Me.BtnViewZaloraShipGreather30.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.BtnViewZaloraShipGreather30.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnViewZaloraShipGreather30.Name = "BtnViewZaloraShipGreather30"
+        Me.BtnViewZaloraShipGreather30.Size = New System.Drawing.Size(218, 43)
+        Me.BtnViewZaloraShipGreather30.TabIndex = 12
+        Me.BtnViewZaloraShipGreather30.Text = "View Shiped Order (Diatas 30 Hari)"
+        '
+        'BtnViewZaloraShipAll
+        '
+        Me.BtnViewZaloraShipAll.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnViewZaloraShipAll.Image = CType(resources.GetObject("BtnViewZaloraShipAll.Image"), System.Drawing.Image)
+        Me.BtnViewZaloraShipAll.Location = New System.Drawing.Point(2, 2)
+        Me.BtnViewZaloraShipAll.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.BtnViewZaloraShipAll.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnViewZaloraShipAll.Name = "BtnViewZaloraShipAll"
+        Me.BtnViewZaloraShipAll.Size = New System.Drawing.Size(159, 43)
+        Me.BtnViewZaloraShipAll.TabIndex = 11
+        Me.BtnViewZaloraShipAll.Text = "View All Shiped Order"
         '
         'FormOLStoreSummary
         '
@@ -5310,11 +5497,16 @@ Partial Class FormOLStoreSummary
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl9.ResumeLayout(False)
         Me.PanelControl9.PerformLayout()
-        CType(Me.SLEGroupOOS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl10.ResumeLayout(False)
         Me.PanelControl10.PerformLayout()
+        CType(Me.SLEGroupOOS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPZaloraShipReport.ResumeLayout(False)
+        CType(Me.GCZaloraShip, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVZaloraShip, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl11, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl11.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -5796,4 +5988,20 @@ Partial Class FormOLStoreSummary
     Friend WithEvents PanelControl10 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTPZaloraShipReport As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCZaloraShip As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVZaloraShip As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl11 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnExsportXlsZaloraShipOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnViewZaloraShipGreather30 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnViewZaloraShipAll As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_sales_order_det_shp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnitem_idshp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnol_store_idshp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnorder_dateshp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncustomer_nameshp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnorder_numbershp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstatusshp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstatus_dateshp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4shipped_age As DevExpress.XtraGrid.Columns.GridColumn
 End Class

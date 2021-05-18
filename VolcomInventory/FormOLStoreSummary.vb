@@ -1518,4 +1518,69 @@ WHERE !ISNULL(od.id_ol_store_oos) AND od.sales_order_det_qty!= od.ol_order_qty "
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnExsportXlsZaloraShipOrder_Click(sender As Object, e As EventArgs) Handles BtnExsportXlsZaloraShipOrder.Click
+        If GVZaloraShip.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "ol_store_zalora_ship_report.xlsx"
+            exportToXLS(path, "ol_store_zalora_ship_report", GCZaloraShip)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnViewZaloraShipAll_Click(sender As Object, e As EventArgs) Handles BtnViewZaloraShipAll.Click
+        viewZaloraShipReport(True)
+    End Sub
+
+    Sub viewZaloraShipReport(ByVal show_all As Boolean)
+        Cursor = Cursors.WaitCursor
+        Dim cond As String = ""
+        If Not show_all Then
+            cond = "AND shipped_age>30 "
+        End If
+        Dim query As String = "SELECT sod.id_sales_order_det, sod.item_id, sod.ol_store_id, DATE(so.sales_order_ol_shop_date) AS `order_date`, so.customer_name, so.sales_order_ol_shop_number AS `order_number`,
+        stt.`status`, stt.status_date, TIMESTAMPDIFF(DAY,stt.status_date, NOW()) AS `shipped_age`
+        FROM tb_sales_order so
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+        INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
+        INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+        LEFT JOIN (
+           SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
+	        FROM tb_sales_order_det_status stt
+	        INNER JOIN (
+		        SELECT stt.id_sales_order_det, MAX(stt.status_date) AS `status_date`
+		        FROM tb_sales_order_det_status stt
+		        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = stt.id_sales_order_det
+		        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+		        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+		        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+		        WHERE so.id_report_status=6 AND c.id_comp_group=64 
+		        GROUP BY stt.id_sales_order_det
+	        ) max_stt ON max_stt.id_sales_order_det = stt.id_sales_order_det AND max_stt.status_date = stt.status_date
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = stt.id_sales_order_det
+	        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        WHERE so.id_report_status=6 AND c.id_comp_group=64 
+	        GROUP BY stt.id_sales_order_det
+        ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
+        WHERE so.id_report_status=6 AND s.id_comp_group=64
+        AND !ISNULL(stt.id_sales_order_det) AND stt.`status`='shipped'
+        GROUP BY sod.id_sales_order_det
+        HAVING 1=1 " + cond + "
+        ORDER BY so.sales_order_ol_shop_date, so.sales_order_ol_shop_number ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCZaloraShip.DataSource = data
+        GVZaloraShip.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewZaloraShipGreather30_Click(sender As Object, e As EventArgs) Handles BtnViewZaloraShipGreather30.Click
+        viewZaloraShipReport(False)
+    End Sub
 End Class
