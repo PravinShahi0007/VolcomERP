@@ -1164,7 +1164,7 @@ Partial Class FormPayoutZaloraDet
         '
         'BandedGridColumnnote_unfulfilled
         '
-        Me.BandedGridColumnnote_unfulfilled.Caption = "Unfulfilled Note"
+        Me.BandedGridColumnnote_unfulfilled.Caption = "Other Note"
         Me.BandedGridColumnnote_unfulfilled.FieldName = "note_unfulfilled"
         Me.BandedGridColumnnote_unfulfilled.Name = "BandedGridColumnnote_unfulfilled"
         Me.BandedGridColumnnote_unfulfilled.OptionsColumn.ReadOnly = True
