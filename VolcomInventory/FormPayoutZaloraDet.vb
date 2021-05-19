@@ -174,6 +174,9 @@ FROM tb_payout_zalora_cat c"
         'check order tidak terpenuhi
         checkUnfulfilledOrder()
 
+        'check note
+        checkNoteOrder()
+
         'update komisi
         execute_non_query("UPDATE tb_payout_zalora SET comm=0, comm_tax=0 WHERE id_payout_zalora='" + id + "' ", True, "", "", "", "")
 
@@ -422,7 +425,22 @@ FROM tb_payout_zalora_cat c"
         Dim query As String = "UPDATE tb_payout_zalora_det d
 INNER JOIN tb_ol_store_order od ON od.sales_order_ol_shop_number = d.order_number AND od.item_id = d.item_id AND od.ol_store_id = d.ol_store_id
 SET d.id_ol_store_order = od.id_ol_store_order, d.id_ol_store_oos = od.id_ol_store_oos, d.id_product = od.id_product
-WHERE ISNULL(d.id_sales_pos_det) AND od.sales_order_det_qty=0 "
+WHERE d.id_payout_zalora='" + id + "' AND ISNULL(d.id_sales_pos_det) "
+        execute_non_query_long(query, True, "", "", "", "")
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub checkNoteOrder()
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Check note order")
+        Dim query As String = "UPDATE tb_payout_zalora_det d
+INNER JOIN tb_ol_store_order od ON od.sales_order_ol_shop_number = d.order_number AND od.item_id = d.item_id AND od.ol_store_id = d.ol_store_id
+SET d.id_ol_store_order = od.id_ol_store_order
+WHERE d.id_payout_zalora='" + id + "' AND !ISNULL(d.id_sales_pos_det) AND (od.fail_reason!='' OR !ISNULL(od.fail_reason))"
         execute_non_query_long(query, True, "", "", "", "")
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
