@@ -371,7 +371,7 @@
     End Sub
 
     Private Sub SelectPriceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectPriceToolStripMenuItem.Click
-        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And action = "ins" And GVData.GetFocusedRowCellValue("note") <> "OK" Then
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And action = "ins" Then
             FormSalesPosPrice.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
             FormSalesPosPrice.id_pop_up = "2"
             FormSalesPosPrice.ShowDialog()
