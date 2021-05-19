@@ -178,9 +178,10 @@ LEFT JOIN
     SELECT id_report
     FROM `tb_inv_mat_det` invd
     INNER JOIN tb_inv_mat inv ON inv.id_inv_mat=invd.id_inv_mat AND inv.id_report_status!=5 AND inv.id_inv_mat_type=2
-)inv ON inv.id_report=pl.id_mat_prod_ret_in
+)inv ON inv.id_report=ret.id_mat_prod_ret_in
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=ret.`id_prod_order`
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ret.`id_comp_contact_from` AND ret.`id_pl_mat_type`='2'
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
 WHERE ISNULL(inv.id_report)
