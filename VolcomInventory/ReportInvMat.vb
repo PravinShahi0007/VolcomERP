@@ -65,7 +65,7 @@ FROM tb_pl_mrs_det pld
 INNER JOIN tb_m_mat_det_price prc ON prc.`id_mat_det_price`=pld.`id_mat_det_price`
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=prc.`id_mat_det`
 WHERE pld.`id_pl_mrs`='" & dt.Rows(i)("id_report").ToString & "'"
-                ElseIf FormInvMatDet.SLEPayType.EditValue.ToString = "1" Then 'retur
+                ElseIf FormInvMatDet.SLEPayType.EditValue.ToString = "2" Then 'retur
                     query = "SELECT md.`mat_det_code`,md.`mat_det_name`,retd.`mat_prod_ret_in_det_qty` AS qty,retd.`mat_prod_ret_in_det_price` AS price,(retd.`mat_prod_ret_in_det_qty`*retd.`mat_prod_ret_in_det_price`) AS amount
 FROM tb_mat_prod_ret_in_det retd
 INNER JOIN tb_pl_mrs_det pld ON pld.`id_pl_mrs_det`=retd.`id_pl_mrs_det`
