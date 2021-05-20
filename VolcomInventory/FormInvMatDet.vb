@@ -151,6 +151,11 @@ WHERE inv.id_inv_mat='" & id_inv & "'"
             GridColumnPrice.Visible = False
             GridColumnAmount.Visible = False
         End If
+        If SLEPayType.EditValue.ToString = "1" Then
+            Text = "Invoice Material"
+        Else
+            Text = "Credit Note Material"
+        End If
     End Sub
 
     Private Sub FormInvMatDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
