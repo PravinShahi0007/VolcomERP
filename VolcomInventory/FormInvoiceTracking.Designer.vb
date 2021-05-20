@@ -163,6 +163,7 @@ Partial Class FormInvoiceTracking
         Me.RepositoryItemHyperLinkEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemHyperLinkEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -216,13 +217,12 @@ Partial Class FormInvoiceTracking
         CType(Me.RepositoryItemHyperLinkEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraScrollableControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.PanelControl2)
-        Me.PanelControl1.Controls.Add(Me.BtnExportToXLSTrf)
-        Me.PanelControl1.Controls.Add(Me.BView)
+        Me.PanelControl1.Controls.Add(Me.XtraScrollableControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
@@ -248,7 +248,7 @@ Partial Class FormInvoiceTracking
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.SLEStoreGroup)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(724, 100)
         Me.PanelControl2.TabIndex = 8931
@@ -487,7 +487,7 @@ Partial Class FormInvoiceTracking
         'BtnExportToXLSTrf
         '
         Me.BtnExportToXLSTrf.Image = CType(resources.GetObject("BtnExportToXLSTrf.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(807, 35)
+        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(797, 37)
         Me.BtnExportToXLSTrf.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSTrf.Name = "BtnExportToXLSTrf"
         Me.BtnExportToXLSTrf.Size = New System.Drawing.Size(106, 20)
@@ -497,7 +497,7 @@ Partial Class FormInvoiceTracking
         'BView
         '
         Me.BView.Image = CType(resources.GetObject("BView.Image"), System.Drawing.Image)
-        Me.BView.Location = New System.Drawing.Point(743, 35)
+        Me.BView.Location = New System.Drawing.Point(733, 37)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(60, 20)
         Me.BView.TabIndex = 8913
@@ -1515,6 +1515,17 @@ Partial Class FormInvoiceTracking
         Me.RepositoryItemHyperLinkEdit2.AutoHeight = False
         Me.RepositoryItemHyperLinkEdit2.Name = "RepositoryItemHyperLinkEdit2"
         '
+        'XtraScrollableControl1
+        '
+        Me.XtraScrollableControl1.Controls.Add(Me.PanelControl2)
+        Me.XtraScrollableControl1.Controls.Add(Me.BtnExportToXLSTrf)
+        Me.XtraScrollableControl1.Controls.Add(Me.BView)
+        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraScrollableControl1.Location = New System.Drawing.Point(2, 2)
+        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1169, 100)
+        Me.XtraScrollableControl1.TabIndex = 8932
+        '
         'FormInvoiceTracking
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1580,6 +1591,7 @@ Partial Class FormInvoiceTracking
         CType(Me.RepositoryItemHyperLinkEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraScrollableControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1724,4 +1736,5 @@ Partial Class FormInvoiceTracking
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnid_pl_sales_order_del As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
 End Class
