@@ -124,4 +124,8 @@
 
         viewSearchLookupQuery(SLUE3PL, query, "id_3pl", "3pl", "id_3pl")
     End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+
+    End Sub
 End Class
