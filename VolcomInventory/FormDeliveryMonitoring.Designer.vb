@@ -75,6 +75,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
@@ -306,7 +307,7 @@ Partial Class FormDeliveryMonitoring
         '
         'GVOutbound
         '
-        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn34, Me.GridColumn9, Me.GridColumn38, Me.GridColumn37, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn36, Me.GridColumn35, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27})
+        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn34, Me.GridColumn9, Me.GridColumn38, Me.GridColumn37, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn36, Me.GridColumn35, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn46})
         Me.GVOutbound.GridControl = Me.GCOutbound
         Me.GVOutbound.Name = "GVOutbound"
         Me.GVOutbound.OptionsBehavior.ReadOnly = True
@@ -585,6 +586,14 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 30
         '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Invoice Number"
+        Me.GridColumn46.FieldName = "awbill_inv_no"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 31
+        '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -608,7 +617,7 @@ Partial Class FormDeliveryMonitoring
         Me.XTPInvoice.Controls.Add(Me.PanelControl2)
         Me.XTPInvoice.Name = "XTPInvoice"
         Me.XTPInvoice.Size = New System.Drawing.Size(1002, 657)
-        Me.XTPInvoice.Text = "Invoice"
+        Me.XTPInvoice.Text = "Invoice Verification Report"
         '
         'GCInvoice
         '
@@ -687,11 +696,11 @@ Partial Class FormDeliveryMonitoring
         '
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
-        Me.BAdd.Location = New System.Drawing.Point(854, 2)
+        Me.BAdd.Location = New System.Drawing.Point(825, 2)
         Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(146, 50)
+        Me.BAdd.Size = New System.Drawing.Size(175, 50)
         Me.BAdd.TabIndex = 0
-        Me.BAdd.Text = "Insert Invoice"
+        Me.BAdd.Text = "Create Verification Report"
         '
         'FormDeliveryMonitoring
         '
@@ -800,4 +809,5 @@ Partial Class FormDeliveryMonitoring
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
