@@ -265,37 +265,38 @@ GROUP BY awb.id_awbill "
             confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to drop outbound label ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim id_awbill As String = ""
+
                 If XTCOutbound.SelectedTabPageIndex = 0 Then
                     id_awbill = GVOutbound.GetFocusedRowCellValue("id_awbill").ToString
+                    '
+                    Dim qc As String = "SELECT awb.*,dd.id_del_manifest
+FROM tb_wh_awbill awb
+LEFT JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill`
+LEFT JOIN tb_del_manifest_det dd ON dd.`id_wh_awb_det`=awbd.`id_wh_awb_det`
+LEFT JOIN tb_del_manifest d ON d.`id_del_manifest`=dd.`id_del_manifest` AND d.`id_report_status`!=5
+WHERE awb.id_awbill='" & id_awbill & "'"
+                    Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    If Not dtc.Rows(0)("id_del_manifest").ToString = "" Then
+                        warningCustom("Already created draft manifest.")
+                    ElseIf dtc.Rows(0)("step").ToString = "2" Then
+                        warningCustom("Gunakan cancel SDO untuk outbound label yang sudah di approve.")
+                    Else
+                        'cancel
+                        Dim qu As String = "UPDATE tb_wh_awbill SET id_report_status=5 WHERE id_awbill='" & id_awbill & "'"
+                        execute_non_query(qu, True, "", "", "", "")
+                        qu = "DELETE FROM tb_wh_awbill_det WHERE id_awbill='" & id_awbill & "'"
+                        execute_non_query(qu, True, "", "", "", "")
+
+                        warningCustom("Outbound cancelled.")
+
+                        If XTCOutbound.SelectedTabPageIndex = 0 Then
+                            load_list("", "")
+                        ElseIf XTCOutbound.SelectedTabPageIndex = 1 Then
+                            load_history()
+                        End If
+                    End If
                 ElseIf XTCOutbound.SelectedTabPageIndex = 1 Then
                     warningCustom("Gunakan cancel SDO untuk outbound label yang sudah di approve.")
-                End If
-
-                Dim qc As String = "SELECT *
-FROM tb_wh_awbill awb
-INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill`
-INNER JOIN tb_del_manifest_det dd ON dd.`id_wh_awb_det`=awbd.`id_wh_awb_det`
-INNER JOIN tb_del_manifest d ON d.`id_del_manifest`=dd.`id_del_manifest` AND d.`id_report_status`!=5
-WHERE awb.id_awbill='" & id_awbill & "'"
-                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-                If dtc.Rows.Count > 0 Then
-                    warningCustom("Already created draft manifest.")
-                ElseIf dtc.Rows(0)("step").ToString = "2" Then
-                    warningCustom("Gunakan cancel SDO untuk outbound label yang sudah di approve.")
-                Else
-                    'cancel
-                    Dim qu As String = "UPDATE tb_wh_awbill SET id_report_status=5 WHERE id_awbill='" & id_awbill & "'"
-                    execute_non_query(qu, True, "", "", "", "")
-                    qu = "DELETE FROM tb_wh_awbill_det WHERE id_awbill='" & id_awbill & "'"
-                    execute_non_query(qu, True, "", "", "", "")
-
-                    warningCustom("Outbound cancelled.")
-
-                    If XTCOutbound.SelectedTabPageIndex = 0 Then
-                        load_list("", "")
-                    ElseIf XTCOutbound.SelectedTabPageIndex = 1 Then
-                        load_history()
-                    End If
                 End If
             End If
         Else

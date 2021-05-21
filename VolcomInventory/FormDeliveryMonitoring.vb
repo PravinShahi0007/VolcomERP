@@ -126,6 +126,6 @@
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
-
+        FormAWBInv.ShowDialog()
     End Sub
 End Class
