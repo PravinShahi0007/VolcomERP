@@ -53,7 +53,7 @@ WHERE awb.id_awbill='" & id_awb & "'"
     End Sub
 
     Sub view_do()
-        Dim query As String = "SELECT awbd.* ,cb.combine_number
+        Dim query As String = "SELECT awbd.* ,cb.combine_number,cb.id_combine
 FROM tb_wh_awbill_det awbd
 LEFT JOIN tb_pl_sales_order_del pld ON pld.id_pl_sales_order_del=awbd.id_pl_sales_order_del
 LEFT JOIN `tb_pl_sales_order_del_combine` cb ON cb.id_combine=pld.id_combine
@@ -172,9 +172,15 @@ ORDER BY cb.combine_number"
                     End If
 
                     'Reset approval
+                    'normal
                     q = String.Format("UPDATE tb_report_mark SET report_mark_start_datetime=NULL,report_mark_lead_time=NULL WHERE id_report='{0}' AND report_mark_type='43'", GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
                     execute_non_query(q, True, "", "", "", "")
 
+                    'combine
+                    If Not GVDO.GetRowCellValue(i, "id_combine").ToString = "" Then
+                        q = String.Format("UPDATE tb_report_mark SET report_mark_start_datetime=NULL,report_mark_lead_time=NULL WHERE id_report='{0}' AND report_mark_type='103'", GVDO.GetRowCellValue(i, "id_combine").ToString)
+                        execute_non_query(q, True, "", "", "", "")
+                    End If
                 ElseIf Not GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString = "" And Not GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString = "NULL" Then
                     Dim query As String = String.Format("UPDATE tb_ol_store_cust_ret SET id_report_status='{0}' WHERE id_ol_store_cust_ret ='{1}'", "3", GVDO.GetRowCellValue(i, "id_ol_store_cust_ret").ToString)
                     execute_non_query(query, True, "", "", "", "")
