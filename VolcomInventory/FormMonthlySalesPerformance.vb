@@ -13,6 +13,9 @@
         Dim selectDateAll As String = ""
         Dim selectYearAll As String = ""
 
+        Dim selectSellThruMonth As String = ""
+        Dim selectSellThruAll As String = ""
+
         Dim year_from As Integer = Integer.Parse(SLUEMonthFrom.EditValue.ToString.Split("-")(0))
         Dim year_to As Integer = Integer.Parse(SLUEMonthTo.EditValue.ToString.Split("-")(0))
         Dim month_from As Integer = Integer.Parse(SLUEMonthFrom.EditValue.ToString.Split("-")(1))
@@ -24,11 +27,21 @@
         i = year_from
         j = month_from
 
+        Dim column_receive As String = "wh_rec_normal"
+
+        If Not SLUEStore.EditValue.ToString = "0" Or Not SLUECompGroup.EditValue.ToString = "0" Or Not SLUEProvince.EditValue.ToString = "0" Or Not SLUEIsland.EditValue.ToString = "ALL" Then
+            column_receive = "store_rec"
+        End If
+
         While i <= year_to
             selectDate1 += "IF(`year` = " + i.ToString + " AND `month` = " + j.ToString + ", qty, 0) AS `" + month(j - 1) + " " + i.ToString + "`, "
             selectDate2 += "MAX(`" + month(j - 1) + " " + i.ToString + "`) AS `" + month(j - 1) + " " + i.ToString + "`, "
 
             selectDateAll += "IFNULL(sales_month.`" + month(j - 1) + " " + i.ToString + "`, 0) AS `Sales " + i.ToString + "|" + month(j - 1) + " " + i.ToString + "`, "
+
+            selectSellThruMonth += "+ IFNULL(sales_month.`" + month(j - 1) + " " + i.ToString + "`, 0)"
+
+            selectSellThruAll += "CONCAT(ROUND((((IFNULL(sales_month_beg.qty, 0) " + selectSellThruMonth + ") / " + column_receive + ".qty) * 100), 2), '%') AS `Sell Thru " + i.ToString + "|" + month(j - 1) + " " + i.ToString + "`, "
 
             If j = 12 Then
                 j = 1
@@ -60,6 +73,8 @@
 
         selectYearAll = selectYearAll.Substring(0, selectYearAll.Length - 2)
 
+        selectSellThruAll = selectSellThruAll.Substring(0, selectSellThruAll.Length - 2)
+
         'stock date
         Dim dateStockDate As String = "" + year_to.ToString + "-" + month_to.ToString.PadLeft(2, "0") + "-" + Date.DaysInMonth(year_to, month_to).ToString + ""
 
@@ -83,15 +98,19 @@
         Dim stockMonthQuery2 As String = ""
         Dim stockMonthQuery3 As String = ""
         Dim stockMonthQueryAll As String = ""
+        Dim sohMonthQueryAll As String = ""
 
         Dim whereComp As String = ""
+        Dim whereComp2 As String = ""
 
         If Not SLUECompGroup.EditValue.ToString = "0" Then
             whereComp += " AND c.id_comp_group = " + SLUECompGroup.EditValue.ToString
+            whereComp2 += " AND c.id_comp_group = " + SLUECompGroup.EditValue.ToString
         End If
 
         If Not SLUEStore.EditValue.ToString = "0" Then
             whereComp += " AND c.id_comp = " + SLUEStore.EditValue.ToString
+            whereComp2 += " AND c.id_comp = " + SLUEStore.EditValue.ToString
         End If
 
         'volcom
@@ -275,7 +294,8 @@
 
             stockMonthQuery2 += "IF(t.year = " + i.ToString + " AND t.month = " + j.ToString + ", inv_qty_ttl, 0) AS `" + month(j - 1) + " " + i.ToString + "`, "
             stockMonthQuery3 += "MAX(`" + month(j - 1) + " " + i.ToString + "`) AS `" + month(j - 1) + " " + i.ToString + "`, "
-            stockMonthQueryAll += "CONCAT((ROUND((IFNULL(sales_month.`" + month(j - 1) + " " + i.ToString + "`, 0) / (IFNULL(sales_month.`" + month(j - 1) + " " + i.ToString + "`, 0) + IFNULL(stock_month.`" + month(j - 1) + " " + i.ToString + "`, 0))) * 100)), '%') AS `Monthly SAS " + i.ToString + "|" + month(j - 1) + " " + i.ToString + "`, "
+            stockMonthQueryAll += "CONCAT((ROUND((IFNULL(sales_month.`" + month(j - 1) + " " + i.ToString + "`, 0) / (IFNULL(sales_month.`" + month(j - 1) + " " + i.ToString + "`, 0) + IFNULL(stock_month.`" + month(j - 1) + " " + i.ToString + "`, 0))) * 100, 2)), '%') AS `Monthly SAS " + i.ToString + "|" + month(j - 1) + " " + i.ToString + "`, "
+            sohMonthQueryAll += "IFNULL(stock_month.`" + month(j - 1) + " " + i.ToString + "`, 0) AS `Monthly SOH " + i.ToString + "|" + month(j - 1) + " " + i.ToString + "`, "
 
             If j = 12 Then
                 j = 1
@@ -294,6 +314,7 @@
         stockMonthQuery2 = stockMonthQuery2.Substring(0, stockMonthQuery2.Length - 2)
         stockMonthQuery3 = stockMonthQuery3.Substring(0, stockMonthQuery3.Length - 2)
         stockMonthQueryAll = stockMonthQueryAll.Substring(0, stockMonthQueryAll.Length - 2)
+        sohMonthQueryAll = sohMonthQueryAll.Substring(0, sohMonthQueryAll.Length - 2)
 
         'where
         Dim where As String = ""
@@ -360,14 +381,16 @@
 	            DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 6), 56), '%d %M %Y') AS `Price Update Dates|Price U6`,
 	            price_type.design_price_type AS `Price Update Dates|Current Status`, ROUND(wh_rec_normal.qty) AS `WH Received|Normal (BOS)`, ROUND(wh_rec_defect.qty) AS `WH Received|Defect`,
 	            ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`, 
-                " + If(Not SLUEStore.EditValue.ToString = "0", "ROUND(store_rec.qty) AS `Store Received|Total`, ", "") + "
+                " + If(Not SLUEStore.EditValue.ToString = "0" Or Not SLUECompGroup.EditValue.ToString = "0" Or Not SLUEProvince.EditValue.ToString = "0" Or Not SLUEIsland.EditValue.ToString = "ALL", "ROUND(store_rec.qty) AS `Store Received|Total`, ", "") + "
                 " + selectDateAll + ", " + selectYearAll + ", 
                 ROUND(IFNULL(sales_normal.qty, 0)) AS `Total Sales|Sales Toko Normal`, ROUND(IFNULL(sales_sale.qty, 0)) AS `Total Sales|Sales Toko Sale`,
                 ROUND((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0))) AS `Total Sales|Grand Total`,
-                CONCAT(ROUND((IFNULL(sales_normal.qty, 0) / IFNULL(wh_rec_normal.qty, 0) * 100)), '%') AS `Sell Thru|Normal`, 
-                CONCAT(ROUND((IFNULL(sales_sale.qty, 0) / (IFNULL(wh_rec_normal.qty, 0) - IFNULL(sales_normal.qty, 0)) * 100)), '%') AS `Sell Thru|Sale`,
-                CONCAT(ROUND(((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0)) / IFNULL(wh_rec_normal.qty, 0) * 100)), '%') AS `Sell Thru|Total`, 
+                CONCAT(ROUND((IFNULL(sales_normal.qty, 0) / IFNULL(" + column_receive + ".qty, 0) * 100), 2), '%') AS `Sell Thru|Normal`, 
+                CONCAT(ROUND((IFNULL(sales_sale.qty, 0) / (IFNULL(" + column_receive + ".qty, 0) - IFNULL(sales_normal.qty, 0)) * 100), 2), '%') AS `Sell Thru|Sale`,
+                CONCAT(ROUND(((IFNULL(sales_normal.qty, 0) + IFNULL(sales_sale.qty, 0)) / IFNULL(" + column_receive + ".qty, 0) * 100), 2), '%') AS `Sell Thru|Total`, 
+                " + sohMonthQueryAll + ",
                 " + stockMonthQueryAll + ",
+                " + selectSellThruAll + ",
                 ROUND(IFNULL(stock_g78.qty, 0)) AS `Stock Gudang Normal|G78`, ROUND(IFNULL(stock_gon.qty, 0)) AS `Stock Gudang Normal|GON`, ROUND(IFNULL(stock_s78.qty, 0)) AS `Stock Gudang Sale|S78`, ROUND(IFNULL(stock_gos.qty, 0)) AS `Stock Gudang Sale|GOS`, ROUND(IFNULL(stock_rej.qty, 0)) AS `Stock Gudang Non Aktive|Reject`
             FROM tb_m_design AS design
             LEFT JOIN (
@@ -457,6 +480,14 @@
 	            WHERE r.id_report_status = 6 AND l.id_pl_category <> 1
 	            GROUP BY s.id_design
             ) AS wh_rec_defect ON design.id_design = wh_rec_defect.id_design
+            LEFT JOIN (
+                SELECT p.id_design, SUM(ROUND(d.sales_pos_det_qty)) AS qty
+                FROM tb_sales_pos_det AS d
+                LEFT JOIN tb_sales_pos AS s ON d.id_sales_pos = s.id_sales_pos
+                LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+                WHERE s.id_report_status = 6 AND s.sales_pos_end_period < '" + year_from.ToString + "-" + month_from.ToString.PadLeft(2, "0") + "-01'
+                GROUP BY p.id_design
+            ) sales_month_beg ON sales_month_beg.id_design = design.id_design
             LEFT JOIN (
                 SELECT id_design, " + selectDate2 + "
                 FROM (
@@ -635,7 +666,10 @@
                 LEFT JOIN tb_m_comp_contact w ON w.id_comp_contact = s.id_store_contact_to
                 LEFT JOIN tb_m_comp c ON c.id_comp = w.id_comp
                 LEFT JOIN tb_m_product p ON p.id_product = d.id_product
-                WHERE s.id_pl_sales_order_del > 0 AND c.id_comp = " + SLUEStore.EditValue.ToString + "
+                LEFT JOIN tb_m_city AS t ON c.id_city = t.id_city
+                LEFT JOIN tb_m_state AS e ON t.id_state = e.id_state
+                LEFT JOIN tb_m_region AS g ON e.id_region = g.id_region
+                WHERE s.id_pl_sales_order_del > 0 " + whereComp2 + " " + whereLocation + "
                 GROUP BY p.id_design
             ) AS store_rec ON store_rec.id_design = design.id_design
             WHERE design.id_lookup_status_order <> 2 AND design.design_code <> '' " + where + "
