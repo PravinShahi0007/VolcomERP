@@ -8037,6 +8037,12 @@
     <Compile Include="ReportAttnSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportAwbInv.Designer.vb">
+      <DependentUpon>ReportAwbInv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAwbInv.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBalanceSheet.Designer.vb">
       <DependentUpon>ReportBalanceSheet.vb</DependentUpon>
     </Compile>
