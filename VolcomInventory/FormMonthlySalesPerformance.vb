@@ -16,6 +16,9 @@
         Dim selectSellThruMonth As String = ""
         Dim selectSellThruAll As String = ""
 
+        Dim selectDeliveryAll As String = ""
+        Dim selectReturnAll As String = ""
+
         Dim year_from As Integer = Integer.Parse(SLUEMonthFrom.EditValue.ToString.Split("-")(0))
         Dim year_to As Integer = Integer.Parse(SLUEMonthTo.EditValue.ToString.Split("-")(0))
         Dim month_from As Integer = Integer.Parse(SLUEMonthFrom.EditValue.ToString.Split("-")(1))
@@ -41,7 +44,11 @@
 
             selectSellThruMonth += "+ IFNULL(sales_month.`" + month(j - 1) + " " + i.ToString + "`, 0)"
 
-            selectSellThruAll += "CONCAT(ROUND((((IFNULL(sales_month_beg.qty, 0) " + selectSellThruMonth + ") / " + column_receive + ".qty) * 100), 2), '%') AS `Sell Thru " + i.ToString + "|" + month(j - 1) + " " + i.ToString + "`, "
+            selectSellThruAll += "CONCAT(ROUND((((IFNULL(sales_month_beg.qty, 0) " + selectSellThruMonth + ") / " + column_receive + ".qty) * 100), 2), '%') AS `Monthly Sell Thru " + i.ToString + "|" + month(j - 1) + " " + i.ToString + "`, "
+
+            selectDeliveryAll += "ROUND(IFNULL(delivery.`" + month(j - 1) + " " + i.ToString + "`, 0)) AS `Monthly Delivery " + i.ToString + "|" + month(j - 1) + " " + i.ToString + "`, "
+
+            selectReturnAll += "ROUND(IFNULL(`return`.`" + month(j - 1) + " " + i.ToString + "`, 0)) AS `Monthly Return " + i.ToString + "|" + month(j - 1) + " " + i.ToString + "`, "
 
             If j = 12 Then
                 j = 1
@@ -74,6 +81,10 @@
         selectYearAll = selectYearAll.Substring(0, selectYearAll.Length - 2)
 
         selectSellThruAll = selectSellThruAll.Substring(0, selectSellThruAll.Length - 2)
+
+        selectDeliveryAll = selectDeliveryAll.Substring(0, selectDeliveryAll.Length - 2)
+
+        selectReturnAll = selectReturnAll.Substring(0, selectReturnAll.Length - 2)
 
         'stock date
         Dim dateStockDate As String = "" + year_to.ToString + "-" + month_to.ToString.PadLeft(2, "0") + "-" + Date.DaysInMonth(year_to, month_to).ToString + ""
@@ -283,7 +294,7 @@
                         INNER JOIN tb_m_city AS t ON c.id_city = t.id_city
                         INNER JOIN tb_m_state AS e ON t.id_state = e.id_state
                         INNER JOIN tb_m_region AS g ON e.id_region = g.id_region
-                        WHERE 1 " + whereComp + " " + whereLocation + "
+                        WHERE (c.id_wh_type IN (1, 2) OR c.id_wh_type IS NULL) " + whereComp + " " + whereLocation + "
                         GROUP BY p.id_design
                     ) inv ON inv.id_design = d.id_design
                     WHERE d.id_lookup_status_order <> 2
@@ -361,6 +372,9 @@
             whereSalesPos += " AND t.id_comp_group = " + SLUECompGroup.EditValue.ToString
         End If
 
+        Dim fromDate As String = "" + year_from.ToString + "-" + month_from.ToString.PadLeft(2, "0") + "-01"
+        Dim untilDate As String = "" + year_to.ToString + "-" + month_to.ToString.PadLeft(2, "0") + "-" + Date.DaysInMonth(year_to, month_to).ToString + ""
+
         Dim query As String = "
             SELECT design.design_code AS `Product Info|Code`, division.display_name AS `Product Info|Division`,
 	            category.display_name AS `Product Info|Category`, class.display_name AS `Product Info|Class`,
@@ -371,8 +385,8 @@
 	            DATE_FORMAT(first_del.first_del, '%d %M %Y') AS `Product Age|Del Date`,
 	            TIMESTAMPDIFF(MONTH, design.design_first_rec_wh, NOW()) AS `Product Age|WH Age`,
 	            TIMESTAMPDIFF(MONTH, first_del.first_del, NOW()) AS `Product Age|Del Age`,
-	            price_normal.design_price AS `Price|Normal`,
-	            IF(price_current.design_price = price_normal.design_price, '', price_current.design_price) AS `Price|Current`,
+	            FORMAT(price_normal.design_price, 2) AS `Price|Normal`,
+	            FORMAT(IF(price_current.design_price = price_normal.design_price, '', price_current.design_price), 2) AS `Price|Current`,
 	            DATE_FORMAT(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 1), '%d %M %Y') AS `Price Update Dates|Price U1`,
 	            DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 2), 12), '%d %M %Y') AS `Price Update Dates|Price U2`,
 	            DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 3), 23), '%d %M %Y') AS `Price Update Dates|Price U3`,
@@ -391,6 +405,8 @@
                 " + sohMonthQueryAll + ",
                 " + stockMonthQueryAll + ",
                 " + selectSellThruAll + ",
+                " + selectDeliveryAll + ",
+                " + selectReturnAll + ",
                 ROUND(IFNULL(stock_g78.qty, 0)) AS `Stock Gudang Normal|G78`, ROUND(IFNULL(stock_gon.qty, 0)) AS `Stock Gudang Normal|GON`, ROUND(IFNULL(stock_s78.qty, 0)) AS `Stock Gudang Sale|S78`, ROUND(IFNULL(stock_gos.qty, 0)) AS `Stock Gudang Sale|GOS`, ROUND(IFNULL(stock_rej.qty, 0)) AS `Stock Gudang Non Aktive|Reject`
             FROM tb_m_design AS design
             LEFT JOIN (
@@ -672,6 +688,46 @@
                 WHERE s.id_pl_sales_order_del > 0 " + whereComp2 + " " + whereLocation + "
                 GROUP BY p.id_design
             ) AS store_rec ON store_rec.id_design = design.id_design
+            LEFT JOIN (
+                SELECT id_design, " + selectDate2 + "
+                FROM (
+	                SELECT id_design, " + selectDate1 + "
+	                FROM (
+                        SELECT p.id_design, YEAR(d.pl_sales_order_del_date) AS `year`, MONTH(d.pl_sales_order_del_date) AS `month`, SUM(o.pl_sales_order_del_det_qty) AS qty
+                        FROM tb_pl_sales_order_del_det AS o
+                        LEFT JOIN tb_pl_sales_order_del AS d ON o.id_pl_sales_order_del = d.id_pl_sales_order_del
+                        LEFT JOIN tb_m_product AS p ON o.id_product = p.id_product
+                        LEFT JOIN tb_m_comp_contact AS w ON d.id_store_contact_to = w.id_comp_contact
+                        LEFT JOIN tb_m_comp AS c ON c.id_comp = w.id_comp
+                        LEFT JOIN tb_m_city AS t ON c.id_city = t.id_city
+                        LEFT JOIN tb_m_state AS e ON t.id_state = e.id_state
+                        LEFT JOIN tb_m_region AS g ON e.id_region = g.id_region
+                        WHERE d.id_report_status = 6 AND d.pl_sales_order_del_date BETWEEN '" + fromDate + "' AND '" + untilDate + "' " + whereComp2 + " " + whereLocation + "
+                        GROUP BY p.id_design, YEAR(d.pl_sales_order_del_date), MONTH(d.pl_sales_order_del_date)
+                    ) AS t
+                ) AS t
+                GROUP BY id_design
+            ) AS delivery ON design.id_design = delivery.id_design
+            LEFT JOIN (
+                SELECT id_design, " + selectDate2 + "
+                FROM (
+	                SELECT id_design, " + selectDate1 + "
+	                FROM (
+                        SELECT p.id_design, YEAR(r.sales_return_date) AS `year`, MONTH(r.sales_return_date) AS `month`, SUM(o.sales_return_det_qty) AS qty
+                        FROM tb_sales_return_det AS o
+                        LEFT JOIN tb_sales_return AS r ON o.id_sales_return = r.id_sales_return
+                        LEFT JOIN tb_m_product AS p ON o.id_product = p.id_product
+                        LEFT JOIN tb_m_comp_contact AS w ON r.id_comp_contact_to = w.id_comp_contact
+                        LEFT JOIN tb_m_comp AS c ON c.id_comp = w.id_comp
+                        LEFT JOIN tb_m_city AS t ON c.id_city = t.id_city
+                        LEFT JOIN tb_m_state AS e ON t.id_state = e.id_state
+                        LEFT JOIN tb_m_region AS g ON e.id_region = g.id_region
+                        WHERE r.id_report_status = 6 AND r.sales_return_date BETWEEN '" + fromDate + "' AND '" + untilDate + "' " + whereComp2 + " " + whereLocation + "
+                        GROUP BY p.id_design, YEAR(r.sales_return_date), MONTH(r.sales_return_date)
+                    ) AS t
+                ) AS t
+                GROUP BY id_design
+            ) AS `return` ON design.id_design = `return`.id_design
             WHERE design.id_lookup_status_order <> 2 AND design.design_code <> '' " + where + "
             ORDER BY design.design_first_rec_wh ASC
         "
@@ -726,13 +782,12 @@
                         GVData.GroupSummary.Add(summary)
                     End If
 
-                    If bandName = "Price" Then
-                        col.DisplayFormat.FormatString = "N2"
-                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    If bandName.Contains("Sell Thru") Or bandName.Contains("Monthly SAS") Or bandName = "Price" Then
+                        col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
                     End If
 
-                    If bandName.Contains("Sell Thru") Or bandName.Contains("Monthly SAS") Then
-                        col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                    If bandName = "Product Info" Then
+                        band.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                     End If
                 End If
             Next
