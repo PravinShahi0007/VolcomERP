@@ -76,12 +76,15 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
         Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
         Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -89,6 +92,7 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -307,7 +311,7 @@ Partial Class FormDeliveryMonitoring
         '
         'GVOutbound
         '
-        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn34, Me.GridColumn9, Me.GridColumn38, Me.GridColumn37, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn36, Me.GridColumn35, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn46})
+        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn34, Me.GridColumn9, Me.GridColumn38, Me.GridColumn37, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn36, Me.GridColumn35, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn46, Me.GridColumn48, Me.GridColumn49})
         Me.GVOutbound.GridControl = Me.GCOutbound
         Me.GVOutbound.Name = "GVOutbound"
         Me.GVOutbound.OptionsBehavior.ReadOnly = True
@@ -594,6 +598,34 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn46.Visible = True
         Me.GridColumn46.VisibleIndex = 31
         '
+        'GridColumn48
+        '
+        Me.GridColumn48.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn48.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn48.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn48.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn48.Caption = "Invoice Weight"
+        Me.GridColumn48.DisplayFormat.FormatString = "N2"
+        Me.GridColumn48.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn48.FieldName = "a_weight"
+        Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.Visible = True
+        Me.GridColumn48.VisibleIndex = 32
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn49.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn49.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn49.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn49.Caption = "Invoice Amount"
+        Me.GridColumn49.DisplayFormat.FormatString = "N2"
+        Me.GridColumn49.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn49.FieldName = "a_tot_price"
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.Visible = True
+        Me.GridColumn49.VisibleIndex = 33
+        '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -631,66 +663,100 @@ Partial Class FormDeliveryMonitoring
         '
         'GVInvoice
         '
-        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45})
+        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn39, Me.GridColumn47, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45})
         Me.GVInvoice.GridControl = Me.GCInvoice
         Me.GVInvoice.Name = "GVInvoice"
+        Me.GVInvoice.OptionsBehavior.Editable = False
+        Me.GVInvoice.OptionsBehavior.ReadOnly = True
         Me.GVInvoice.OptionsView.ShowGroupPanel = False
         '
         'GridColumn39
         '
         Me.GridColumn39.Caption = "ID Ivn AWB"
+        Me.GridColumn39.FieldName = "id_awb_inv_sum"
         Me.GridColumn39.Name = "GridColumn39"
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "3PL"
+        Me.GridColumn47.FieldName = "comp_name"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 0
         '
         'GridColumn40
         '
         Me.GridColumn40.Caption = "Invoice Number"
+        Me.GridColumn40.FieldName = "inv_number"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 0
+        Me.GridColumn40.VisibleIndex = 1
         '
         'GridColumn41
         '
         Me.GridColumn41.Caption = "Created By"
+        Me.GridColumn41.FieldName = "employee_name"
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 1
+        Me.GridColumn41.VisibleIndex = 2
         '
         'GridColumn42
         '
         Me.GridColumn42.Caption = "Created Date"
+        Me.GridColumn42.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn42.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn42.FieldName = "created_date"
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.Visible = True
-        Me.GridColumn42.VisibleIndex = 2
+        Me.GridColumn42.VisibleIndex = 3
         '
         'GridColumn43
         '
         Me.GridColumn43.Caption = "Report Status"
+        Me.GridColumn43.FieldName = "report_status"
         Me.GridColumn43.Name = "GridColumn43"
         Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 3
+        Me.GridColumn43.VisibleIndex = 4
         '
         'GridColumn44
         '
-        Me.GridColumn44.Caption = "Total Invoice"
+        Me.GridColumn44.Caption = "(Volcom) Total Invoice"
+        Me.GridColumn44.DisplayFormat.FormatString = "N2"
+        Me.GridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn44.FieldName = "c_tot"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 4
+        Me.GridColumn44.VisibleIndex = 5
         '
         'GridColumn45
         '
-        Me.GridColumn45.Caption = "Total By Volcom"
+        Me.GridColumn45.Caption = "(Cargo) Total Invoice"
+        Me.GridColumn45.DisplayFormat.FormatString = "N2"
+        Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn45.FieldName = "a_tot"
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 5
+        Me.GridColumn45.VisibleIndex = 6
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BRefresh)
         Me.PanelControl2.Controls.Add(Me.BAdd)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1002, 54)
         Me.PanelControl2.TabIndex = 1
+        '
+        'BRefresh
+        '
+        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
+        Me.BRefresh.Location = New System.Drawing.Point(2, 2)
+        Me.BRefresh.Name = "BRefresh"
+        Me.BRefresh.Size = New System.Drawing.Size(114, 50)
+        Me.BRefresh.TabIndex = 1
+        Me.BRefresh.Text = "Refresh"
         '
         'BAdd
         '
@@ -810,4 +876,8 @@ Partial Class FormDeliveryMonitoring
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
