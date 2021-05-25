@@ -2,6 +2,9 @@
     Public is_view As String = "2"
 
     Private Sub FormPurcAsset_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEFrom.EditValue = Now
+        DEUntil.EditValue = Now
+
         load_unit()
 
         If is_view = "1" Then
@@ -48,7 +51,7 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         If Not SLEUnit.EditValue.ToString = "0" Then
             qw = " AND a.id_coa_tag='" & SLEUnit.EditValue.ToString & "' "
         End If
-        Dim query As String = a.queryMain(qw & "AND a.id_report_status=6 AND a.is_active=1 AND a.is_value_added=2 ", "1", True)
+        Dim query As String = a.queryMain(qw & "AND a.id_report_status=6 AND a.is_active=1 AND a.is_value_added=2 AND DATE(a.acq_date)>=DATE('" & Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(a.acq_date)<=DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "') ", "1", True)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCActive.DataSource = data
         GVActive.BestFitColumns()
@@ -432,5 +435,13 @@ ORDER BY id_purc_rec_asset_disp DESC"
             FormPurcAssetDisp.id_trans = GVDisp.GetFocusedRowCellValue("is_sell").ToString()
             FormPurcAssetDisp.ShowDialog()
         End If
+    End Sub
+
+    Private Sub DEFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEFrom.EditValueChanged
+        DEUntil.Properties.MinValue = DEFrom.EditValue
+    End Sub
+
+    Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
+        DEFrom.Properties.MaxValue = DEUntil.EditValue
     End Sub
 End Class
