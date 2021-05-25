@@ -500,8 +500,13 @@
                 SELECT p.id_design, SUM(ROUND(d.sales_pos_det_qty)) AS qty
                 FROM tb_sales_pos_det AS d
                 LEFT JOIN tb_sales_pos AS s ON d.id_sales_pos = s.id_sales_pos
+                LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact = IF(s.id_memo_type = 8 OR s.id_memo_type = 9, s.id_comp_contact_bill, s.id_store_contact_from)
+                LEFT JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+                LEFT JOIN tb_m_city AS t ON c.id_city = t.id_city
+                LEFT JOIN tb_m_state AS e ON t.id_state = e.id_state
+                LEFT JOIN tb_m_region AS g ON e.id_region = g.id_region
                 LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
-                WHERE s.id_report_status = 6 AND s.sales_pos_end_period < '" + year_from.ToString + "-" + month_from.ToString.PadLeft(2, "0") + "-01'
+                WHERE s.id_report_status = 6 " + whereComp2 + " " + whereLocation + " AND s.sales_pos_end_period < '" + year_from.ToString + "-" + month_from.ToString.PadLeft(2, "0") + "-01'
                 GROUP BY p.id_design
             ) sales_month_beg ON sales_month_beg.id_design = design.id_design
             LEFT JOIN (
