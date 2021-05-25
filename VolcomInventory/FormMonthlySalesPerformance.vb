@@ -685,7 +685,7 @@
                 LEFT JOIN tb_m_city AS t ON c.id_city = t.id_city
                 LEFT JOIN tb_m_state AS e ON t.id_state = e.id_state
                 LEFT JOIN tb_m_region AS g ON e.id_region = g.id_region
-                WHERE s.id_pl_sales_order_del > 0 " + whereComp2 + " " + whereLocation + "
+                WHERE s.id_pl_sales_order_del > 0 AND s.id_report_status = 6 " + whereComp2 + " " + whereLocation + "
                 GROUP BY p.id_design
             ) AS store_rec ON store_rec.id_design = design.id_design
             LEFT JOIN (
