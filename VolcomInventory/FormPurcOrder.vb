@@ -221,7 +221,7 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
                                 INNER JOIN tb_vendor_type vt ON vt.id_vendor_type=icd.id_vendor_type
                                 LEFT JOIN 
                                 (
-	                                SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty, po.is_close_rec, SUM(rec.`qty_rec`) AS qty_rec 
+	                                SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty, po.is_close_rec, IFNULL(SUM(rec.`qty_rec`),0) AS qty_rec  
 	                                FROM tb_purc_order_det pod
 	                                INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
 	                                LEFT JOIN 
