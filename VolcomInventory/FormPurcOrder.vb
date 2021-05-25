@@ -199,6 +199,7 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
         '
         If Not LEPOStatus.EditValue.ToString = "3" Then 'item
             If LEPOStatus.EditValue.ToString = "1" Then 'Not created PO
+                'query_where += " AND (IFNULL(po.qty,0) = 0 OR (po.is_close_rec = 1 AND po.qty <> po.qty_rec))"
                 query_where += " AND (IFNULL(po.qty,0) = 0 OR (po.is_close_rec = 1 AND po.qty <> po.qty_rec))"
             Else 'PO created
                 query_where += " AND IFNULL(po.qty,0) > 0"
@@ -220,12 +221,18 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
                                 INNER JOIN tb_vendor_type vt ON vt.id_vendor_type=icd.id_vendor_type
                                 LEFT JOIN 
                                 (
-	                                SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty, po.is_close_rec, SUM(rec.`qty`) AS qty_rec 
-                                    FROM tb_purc_order_det pod
-                                    INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
-                                    LEFT JOIN `tb_purc_rec_det` rec ON pod.`id_purc_order_det` = rec.`id_purc_order_det`
-                                    WHERE po.`id_report_status`!='5' AND pod.is_drop='2'
-                                    GROUP BY pod.`id_purc_req_det`
+	                                SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty, po.is_close_rec, SUM(rec.`qty_rec`) AS qty_rec 
+	                                FROM tb_purc_order_det pod
+	                                INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	                                LEFT JOIN 
+	                                (
+		                                SELECT recd.id_purc_order_det,SUM(recd.qty) AS qty_rec
+		                                FROM `tb_purc_rec_det` recd 
+		                                INNER JOIN tb_purc_rec rec ON rec.id_purc_rec=recd.id_purc_rec AND rec.id_report_status!=5
+		                                GROUP BY recd.id_purc_order_det
+	                                ) rec ON pod.`id_purc_order_det` = rec.`id_purc_order_det`
+	                                WHERE po.`id_report_status`!='5' AND pod.is_drop='2'
+	                                GROUP BY pod.`id_purc_req_det`
                                 )po ON po.id_purc_req_det=rd.`id_purc_req_det`
                                 LEFT JOIN 
                                 (

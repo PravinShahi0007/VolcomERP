@@ -14043,6 +14043,9 @@
     <EmbeddedResource Include="ReportAttnSum.resx">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportAwbInv.resx">
+      <DependentUpon>ReportAwbInv.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportBalanceSheet.resx">
       <DependentUpon>ReportBalanceSheet.vb</DependentUpon>
     </EmbeddedResource>
