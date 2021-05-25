@@ -130,7 +130,7 @@ GROUP BY d.`id_del_manifest`"
                 submit_who_prepared("310", id_verification, id_user)
                 '
                 load_form()
-                FormDeliveryMonitoring.load_verification()
+                Form3PLInvoiceVerification.load_verification()
             Else
                 warningCustom("Please put note why different")
             End If
@@ -167,7 +167,7 @@ GROUP BY d.`id_del_manifest`"
                     Next
                     execute_non_query(q, True, "", "", "", "")
 
-                    FormDeliveryMonitoring.load_verification()
+                    Form3PLInvoiceVerification.load_verification()
 
                     Close()
                 End If
@@ -197,7 +197,7 @@ GROUP BY d.`id_del_manifest`"
                 execute_non_query(q, True, "", "", "", "")
 
                 load_form()
-                FormDeliveryMonitoring.load_verification()
+                Form3PLInvoiceVerification.load_verification()
             Else
                 warningCustom("No awb found")
             End If
