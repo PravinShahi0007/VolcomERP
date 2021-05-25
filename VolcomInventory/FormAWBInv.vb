@@ -236,4 +236,49 @@ GROUP BY d.`id_del_manifest`"
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
+
+    Private Sub BBrowse_Click(sender As Object, e As EventArgs) Handles BBrowse.Click
+        Cursor = Cursors.WaitCursor
+        Dim fdlg As OpenFileDialog = New OpenFileDialog()
+        fdlg.Title = "Select excel file To import"
+        fdlg.InitialDirectory = "C: \"
+        fdlg.Filter = "Excel File|*.xls; *.xlsx"
+        fdlg.FilterIndex = 0
+        fdlg.RestoreDirectory = True
+        Cursor = Cursors.Default
+        If fdlg.ShowDialog() = DialogResult.OK Then
+            'use save as
+            Dim open_file As String = ""
+
+            'If is_save_as Then
+            '    Cursor = Cursors.WaitCursor
+            '    Dim path As String = Application.StartupPath & "\download\"
+            '    'create directory if not exist
+            '    If Not IO.Directory.Exists(path) Then
+            '        System.IO.Directory.CreateDirectory(path)
+            '    End If
+            '    path = path + "file_temp.xls"
+            '    Dim app As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
+            '    Dim temp As Microsoft.Office.Interop.Excel.Workbook = app.Workbooks.Open(fdlg.FileName)
+            '    'delete file
+            '    Try
+            '        My.Computer.FileSystem.DeleteFile(path)
+            '    Catch ex As Exception
+            '    End Try
+            '    temp.SaveAs(path, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook)
+            '    temp.Close()
+            '    app.Quit()
+            '    open_file = path
+            '    Cursor = Cursors.Default
+            'Else
+            '    open_file = fdlg.FileName
+            'End If
+
+            open_file = fdlg.FileName
+
+            TBFileAddress.Text = ""
+            TBFileAddress.Text = open_file
+        End If
+        fdlg.Dispose()
+    End Sub
 End Class
