@@ -39,7 +39,7 @@ WHERE id_awb_inv_sum='" & id_verification & "'"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT d.`id_del_manifest`,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
+        Dim q As String = "SELECT '' AS no,d.`id_del_manifest`,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
 ,d.`awbill_inv_no`,d.`awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
 ,d.`cargo_rate`
 ,odm.created_date AS pickup_date
@@ -77,7 +77,7 @@ GROUP BY awbill_inv_no,id_comp"
     End Sub
 
     Private Sub Bload_Click(sender As Object, e As EventArgs) Handles Bload.Click
-        Dim q As String = "SELECT d.`id_del_manifest`,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
+        Dim q As String = "SELECT '' AS no,d.`id_del_manifest`,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
 ,d.`awbill_inv_no`,d.`awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
 ,d.`cargo_rate`
 ,odm.created_date AS pickup_date
@@ -205,6 +205,35 @@ GROUP BY d.`id_del_manifest`"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportAwbInv.id_ver = id_verification
+        ReportAwbInv.dt = GCInvoice.DataSource
+        Dim Report As New ReportAwbInv()
 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVInvoice.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVInvoice.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Grid Detail
+        ReportStyleGridview(Report.GVInvoice)
+        Report.GVInvoice.BestFitColumns()
+
+        'Parse val
+        Dim query As String = "SELECT"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Report.DataSource = data
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVInvoice_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVInvoice.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class
