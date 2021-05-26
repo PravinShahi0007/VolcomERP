@@ -20,16 +20,20 @@ Partial Class FormAWBInv
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAWBInv))
+        Me.GridColumnDiffAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SLUE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.TEInvoiceNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLE3PL = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Bload = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEInvoice = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
         Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -49,6 +53,7 @@ Partial Class FormAWBInv
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -60,7 +65,7 @@ Partial Class FormAWBInv
         Me.BSaveDraft = New DevExpress.XtraEditors.SimpleButton()
         Me.BSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
-        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPImport = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -80,6 +85,7 @@ Partial Class FormAWBInv
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BVerify = New DevExpress.XtraEditors.SimpleButton()
         Me.BImport = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -99,14 +105,15 @@ Partial Class FormAWBInv
         Me.TBFileAddress = New DevExpress.XtraEditors.TextEdit()
         Me.LWorksheetName = New DevExpress.XtraEditors.LabelControl()
         Me.BBrowse = New DevExpress.XtraEditors.SimpleButton()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPVerification = New DevExpress.XtraTab.XtraTabPage()
+        Me.BDownloadFileKonsolidasi = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEInvoiceNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,7 +121,7 @@ Partial Class FormAWBInv
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
-        Me.XtraTabPage1.SuspendLayout()
+        Me.XTPImport.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,14 +133,32 @@ Partial Class FormAWBInv
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CBWorksheetName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabPage2.SuspendLayout()
+        Me.XTPVerification.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'GridColumnDiffAmount
+        '
+        Me.GridColumnDiffAmount.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnDiffAmount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnDiffAmount.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnDiffAmount.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnDiffAmount.Caption = "Different Amount"
+        Me.GridColumnDiffAmount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDiffAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDiffAmount.FieldName = "diff_amount"
+        Me.GridColumnDiffAmount.Name = "GridColumnDiffAmount"
+        Me.GridColumnDiffAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GridColumn20", "{0:N2}")})
+        Me.GridColumnDiffAmount.UnboundExpression = "[c_tot_price] - [a_tot_price]"
+        Me.GridColumnDiffAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnDiffAmount.Visible = True
+        Me.GridColumnDiffAmount.VisibleIndex = 15
+        Me.GridColumnDiffAmount.Width = 65
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SLUE3PL)
-        Me.PanelControl1.Controls.Add(Me.Bload)
-        Me.PanelControl1.Controls.Add(Me.SLEInvoice)
+        Me.PanelControl1.Controls.Add(Me.TEInvoiceNumber)
+        Me.PanelControl1.Controls.Add(Me.SLEType)
+        Me.PanelControl1.Controls.Add(Me.SLE3PL)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -141,14 +166,51 @@ Partial Class FormAWBInv
         Me.PanelControl1.Size = New System.Drawing.Size(945, 42)
         Me.PanelControl1.TabIndex = 0
         '
-        'SLUE3PL
+        'TEInvoiceNumber
         '
-        Me.SLUE3PL.Location = New System.Drawing.Point(93, 12)
-        Me.SLUE3PL.Name = "SLUE3PL"
-        Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUE3PL.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLUE3PL.Size = New System.Drawing.Size(144, 20)
-        Me.SLUE3PL.TabIndex = 11
+        Me.TEInvoiceNumber.Location = New System.Drawing.Point(393, 12)
+        Me.TEInvoiceNumber.Name = "TEInvoiceNumber"
+        Me.TEInvoiceNumber.Size = New System.Drawing.Size(440, 20)
+        Me.TEInvoiceNumber.TabIndex = 99
+        '
+        'SLEType
+        '
+        Me.SLEType.Location = New System.Drawing.Point(93, 12)
+        Me.SLEType.Name = "SLEType"
+        Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEType.Properties.View = Me.GridView1
+        Me.SLEType.Size = New System.Drawing.Size(144, 20)
+        Me.SLEType.TabIndex = 98
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn44})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.FieldName = "id_comp"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "3PL"
+        Me.GridColumn44.FieldName = "comp_name"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 0
+        '
+        'SLE3PL
+        '
+        Me.SLE3PL.Location = New System.Drawing.Point(243, 12)
+        Me.SLE3PL.Name = "SLE3PL"
+        Me.SLE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLE3PL.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLE3PL.Size = New System.Drawing.Size(144, 20)
+        Me.SLE3PL.TabIndex = 11
         '
         'SearchLookUpEdit1View
         '
@@ -171,39 +233,6 @@ Partial Class FormAWBInv
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 0
         '
-        'Bload
-        '
-        Me.Bload.Location = New System.Drawing.Point(531, 10)
-        Me.Bload.Name = "Bload"
-        Me.Bload.Size = New System.Drawing.Size(57, 23)
-        Me.Bload.TabIndex = 3
-        Me.Bload.Text = "load"
-        '
-        'SLEInvoice
-        '
-        Me.SLEInvoice.Location = New System.Drawing.Point(243, 12)
-        Me.SLEInvoice.Name = "SLEInvoice"
-        Me.SLEInvoice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEInvoice.Properties.View = Me.GridView1
-        Me.SLEInvoice.Size = New System.Drawing.Size(282, 20)
-        Me.SLEInvoice.TabIndex = 2
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Invoice"
-        Me.GridColumn10.FieldName = "awbill_inv_no"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
-        '
         'LabelControl1
         '
         Me.LabelControl1.Location = New System.Drawing.Point(12, 15)
@@ -218,7 +247,7 @@ Partial Class FormAWBInv
         Me.GCInvoice.Location = New System.Drawing.Point(0, 42)
         Me.GCInvoice.MainView = Me.GVInvoice
         Me.GCInvoice.Name = "GCInvoice"
-        Me.GCInvoice.Size = New System.Drawing.Size(945, 387)
+        Me.GCInvoice.Size = New System.Drawing.Size(945, 356)
         Me.GCInvoice.TabIndex = 1
         Me.GCInvoice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoice})
         '
@@ -229,13 +258,25 @@ Partial Class FormAWBInv
         Me.GVInvoice.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVInvoice.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVInvoice.ColumnPanelRowHeight = 50
-        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn2, Me.GridColumn3, Me.GridColumn1, Me.GridColumn16, Me.GridColumn15, Me.GridColumn12, Me.GridColumn11, Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn4, Me.GridColumn5, Me.GridColumn19, Me.GridColumn18, Me.GridColumn13, Me.GridColumn20, Me.GridColumn14})
+        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn2, Me.GridColumn3, Me.GridColumn1, Me.GridColumn16, Me.GridColumn15, Me.GridColumn12, Me.GridColumn11, Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn4, Me.GridColumn5, Me.GridColumn19, Me.GridColumn18, Me.GridColumn13, Me.GridColumnDiffAmount, Me.GridColumn45, Me.GridColumn20, Me.GridColumn14})
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Column = Me.GridColumnDiffAmount
+        GridFormatRule1.Name = "FormatDiff"
+        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Red
+        FormatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.White
+        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue1.Appearance.Options.UseForeColor = True
+        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Less
+        FormatConditionRuleValue1.Value1 = New Decimal(New Integer() {0, 0, 0, 0})
+        GridFormatRule1.Rule = FormatConditionRuleValue1
+        Me.GVInvoice.FormatRules.Add(GridFormatRule1)
         Me.GVInvoice.GridControl = Me.GCInvoice
         Me.GVInvoice.Name = "GVInvoice"
         Me.GVInvoice.OptionsPrint.AllowMultilineHeaders = True
         Me.GVInvoice.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVInvoice.OptionsView.ShowFooter = True
         Me.GVInvoice.OptionsView.ShowGroupPanel = False
+        Me.GVInvoice.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnDiffAmount, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn21
         '
@@ -244,7 +285,7 @@ Partial Class FormAWBInv
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 0
-        Me.GridColumn21.Width = 40
+        Me.GridColumn21.Width = 20
         '
         'GridColumn2
         '
@@ -259,7 +300,7 @@ Partial Class FormAWBInv
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 152
+        Me.GridColumn3.Width = 79
         '
         'GridColumn1
         '
@@ -268,7 +309,7 @@ Partial Class FormAWBInv
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
-        Me.GridColumn1.Width = 86
+        Me.GridColumn1.Width = 44
         '
         'GridColumn16
         '
@@ -277,7 +318,7 @@ Partial Class FormAWBInv
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 3
-        Me.GridColumn16.Width = 49
+        Me.GridColumn16.Width = 25
         '
         'GridColumn15
         '
@@ -286,7 +327,7 @@ Partial Class FormAWBInv
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 4
-        Me.GridColumn15.Width = 176
+        Me.GridColumn15.Width = 91
         '
         'GridColumn12
         '
@@ -297,7 +338,7 @@ Partial Class FormAWBInv
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 5
-        Me.GridColumn12.Width = 80
+        Me.GridColumn12.Width = 41
         '
         'GridColumn11
         '
@@ -308,7 +349,7 @@ Partial Class FormAWBInv
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 6
-        Me.GridColumn11.Width = 80
+        Me.GridColumn11.Width = 41
         '
         'GridColumn6
         '
@@ -317,7 +358,7 @@ Partial Class FormAWBInv
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 7
-        Me.GridColumn6.Width = 80
+        Me.GridColumn6.Width = 41
         '
         'GridColumn8
         '
@@ -330,7 +371,7 @@ Partial Class FormAWBInv
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 8
-        Me.GridColumn8.Width = 80
+        Me.GridColumn8.Width = 41
         '
         'GridColumn17
         '
@@ -344,7 +385,7 @@ Partial Class FormAWBInv
         Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "collie", "{0:N2}")})
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 9
-        Me.GridColumn17.Width = 52
+        Me.GridColumn17.Width = 27
         '
         'GridColumn4
         '
@@ -361,7 +402,7 @@ Partial Class FormAWBInv
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "c_weight", "{0:N2}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 10
-        Me.GridColumn4.Width = 46
+        Me.GridColumn4.Width = 23
         '
         'GridColumn5
         '
@@ -378,7 +419,7 @@ Partial Class FormAWBInv
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_weight", "{0:N2}")})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 11
-        Me.GridColumn5.Width = 41
+        Me.GridColumn5.Width = 21
         '
         'GridColumn19
         '
@@ -395,7 +436,7 @@ Partial Class FormAWBInv
         Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "c_tot_price", "{0:N2}")})
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 12
-        Me.GridColumn19.Width = 46
+        Me.GridColumn19.Width = 23
         '
         'GridColumn18
         '
@@ -412,7 +453,7 @@ Partial Class FormAWBInv
         Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_tot_price", "{0:N2}")})
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 13
-        Me.GridColumn18.Width = 39
+        Me.GridColumn18.Width = 20
         '
         'GridColumn13
         '
@@ -430,25 +471,39 @@ Partial Class FormAWBInv
         Me.GridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 14
-        Me.GridColumn13.Width = 125
+        Me.GridColumn13.Width = 65
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn45.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn45.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn45.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn45.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn45.Caption = "(Final) Total Weight"
+        Me.GridColumn45.DisplayFormat.FormatString = "N2"
+        Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn45.FieldName = "berat_final"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 16
+        Me.GridColumn45.Width = 64
         '
         'GridColumn20
         '
         Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn20.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumn20.Caption = "Different Amount"
+        Me.GridColumn20.Caption = "(Final) Total Amount"
         Me.GridColumn20.DisplayFormat.FormatString = "N2"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "diff_amount"
+        Me.GridColumn20.FieldName = "amount_final"
         Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GridColumn20", "{0:N2}")})
-        Me.GridColumn20.UnboundExpression = "[c_tot_price] - [a_tot_price]"
-        Me.GridColumn20.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 15
-        Me.GridColumn20.Width = 125
+        Me.GridColumn20.VisibleIndex = 17
+        Me.GridColumn20.Width = 59
         '
         'GridColumn14
         '
@@ -456,8 +511,8 @@ Partial Class FormAWBInv
         Me.GridColumn14.FieldName = "note_wh"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 16
-        Me.GridColumn14.Width = 335
+        Me.GridColumn14.VisibleIndex = 18
+        Me.GridColumn14.Width = 137
         '
         'PanelControl2
         '
@@ -575,20 +630,20 @@ Partial Class FormAWBInv
         Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPImport
         Me.XtraTabControl1.Size = New System.Drawing.Size(951, 501)
         Me.XtraTabControl1.TabIndex = 3
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPImport, Me.XTPVerification})
         '
-        'XtraTabPage1
+        'XTPImport
         '
-        Me.XtraTabPage1.Controls.Add(Me.GCData)
-        Me.XtraTabPage1.Controls.Add(Me.BVerify)
-        Me.XtraTabPage1.Controls.Add(Me.BImport)
-        Me.XtraTabPage1.Controls.Add(Me.PanelControl3)
-        Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(945, 473)
-        Me.XtraTabPage1.Text = "Import Data"
+        Me.XTPImport.Controls.Add(Me.GCData)
+        Me.XTPImport.Controls.Add(Me.BVerify)
+        Me.XTPImport.Controls.Add(Me.BImport)
+        Me.XTPImport.Controls.Add(Me.PanelControl3)
+        Me.XTPImport.Name = "XTPImport"
+        Me.XTPImport.Size = New System.Drawing.Size(945, 473)
+        Me.XTPImport.Text = "Import Data"
         '
         'GCData
         '
@@ -614,6 +669,7 @@ Partial Class FormAWBInv
         Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
+        Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn43, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn22
         '
@@ -828,6 +884,14 @@ Partial Class FormAWBInv
         Me.GridColumn38.VisibleIndex = 15
         Me.GridColumn38.Width = 125
         '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Note Import"
+        Me.GridColumn43.FieldName = "note"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 16
+        '
         'BVerify
         '
         Me.BVerify.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -1013,22 +1077,32 @@ Partial Class FormAWBInv
         Me.BBrowse.TabIndex = 93
         Me.BBrowse.Text = "Browse"
         '
-        'XtraTabPage2
+        'XTPVerification
         '
-        Me.XtraTabPage2.Controls.Add(Me.GCInvoice)
-        Me.XtraTabPage2.Controls.Add(Me.PanelControl2)
-        Me.XtraTabPage2.Controls.Add(Me.PanelControl1)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(945, 473)
-        Me.XtraTabPage2.Text = "Verification"
+        Me.XTPVerification.Controls.Add(Me.GCInvoice)
+        Me.XTPVerification.Controls.Add(Me.BDownloadFileKonsolidasi)
+        Me.XTPVerification.Controls.Add(Me.PanelControl2)
+        Me.XTPVerification.Controls.Add(Me.PanelControl1)
+        Me.XTPVerification.Name = "XTPVerification"
+        Me.XTPVerification.Size = New System.Drawing.Size(945, 473)
+        Me.XTPVerification.Text = "Verification"
         '
-        'GridColumn43
+        'BDownloadFileKonsolidasi
         '
-        Me.GridColumn43.Caption = "Note Import"
-        Me.GridColumn43.FieldName = "note"
-        Me.GridColumn43.Name = "GridColumn43"
-        Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 16
+        Me.BDownloadFileKonsolidasi.Appearance.BackColor = System.Drawing.Color.Red
+        Me.BDownloadFileKonsolidasi.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BDownloadFileKonsolidasi.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BDownloadFileKonsolidasi.Appearance.Options.UseBackColor = True
+        Me.BDownloadFileKonsolidasi.Appearance.Options.UseFont = True
+        Me.BDownloadFileKonsolidasi.Appearance.Options.UseForeColor = True
+        Me.BDownloadFileKonsolidasi.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BDownloadFileKonsolidasi.Location = New System.Drawing.Point(0, 398)
+        Me.BDownloadFileKonsolidasi.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.BDownloadFileKonsolidasi.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BDownloadFileKonsolidasi.Name = "BDownloadFileKonsolidasi"
+        Me.BDownloadFileKonsolidasi.Size = New System.Drawing.Size(945, 31)
+        Me.BDownloadFileKonsolidasi.TabIndex = 91
+        Me.BDownloadFileKonsolidasi.Text = "Donwload File Konsolidasi"
         '
         'FormAWBInv
         '
@@ -1045,10 +1119,11 @@ Partial Class FormAWBInv
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEInvoiceNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1056,7 +1131,7 @@ Partial Class FormAWBInv
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
-        Me.XtraTabPage1.ResumeLayout(False)
+        Me.XTPImport.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1069,7 +1144,7 @@ Partial Class FormAWBInv
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CBWorksheetName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabPage2.ResumeLayout(False)
+        Me.XTPVerification.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1083,14 +1158,10 @@ Partial Class FormAWBInv
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Bload As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SLEInvoice As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SLUE3PL As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLE3PL As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1102,7 +1173,7 @@ Partial Class FormAWBInv
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDiffAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
@@ -1113,8 +1184,8 @@ Partial Class FormAWBInv
     Friend WithEvents BSubmit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPImport As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPVerification As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1154,4 +1225,12 @@ Partial Class FormAWBInv
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEInvNumberImport As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEInvoiceNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BDownloadFileKonsolidasi As DevExpress.XtraEditors.SimpleButton
 End Class

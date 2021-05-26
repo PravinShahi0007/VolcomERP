@@ -35,4 +35,9 @@ GROUP BY inv.id_awb_inv_sum"
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         FormAWBInv.ShowDialog()
     End Sub
+
+    Private Sub GVInvoice_DoubleClick(sender As Object, e As EventArgs) Handles GVInvoice.DoubleClick
+        FormAWBInv.id_verification = GVInvoice.GetFocusedRowCellValue("id_awb_inv_sum").ToString
+        FormAWBInv.ShowDialog()
+    End Sub
 End Class
