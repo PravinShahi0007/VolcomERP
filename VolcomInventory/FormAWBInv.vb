@@ -595,10 +595,11 @@ GROUP BY d.`id_inbound_awb`"
         If Not save.FileName = "" Then
             Dim opt As DevExpress.XtraPrinting.XlsxExportOptions = New DevExpress.XtraPrinting.XlsxExportOptions
             opt.SheetName = "Upload Template"
-
+            GridColumnNo.VisibleIndex = -1
             GVInvoice.ActiveFilterString = "[diff_amount]<0"
             GVInvoice.ExportToXlsx(save.FileName, opt)
             GVInvoice.ActiveFilterString = ""
+            GridColumnNo.VisibleIndex = 0
 
             Process.Start(save.FileName)
         End If
