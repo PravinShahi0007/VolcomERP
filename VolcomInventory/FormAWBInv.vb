@@ -587,16 +587,17 @@ GROUP BY d.`id_inbound_awb`"
         Dim save As SaveFileDialog = New SaveFileDialog
 
         save.Filter = "Excel File | *.xlsx"
-        save.ShowDialog()
         save.FileName = TEInvoiceNumber.Text
+        save.ShowDialog()
+
 
         If Not save.FileName = "" Then
             Dim opt As DevExpress.XtraPrinting.XlsxExportOptions = New DevExpress.XtraPrinting.XlsxExportOptions
             opt.SheetName = "Upload Template"
 
-            GVData.ActiveFilterString = "[diff_amount]<0"
-            GVData.ExportToXlsx(save.FileName, opt)
-            GVData.ActiveFilterString = ""
+            GVInvoice.ActiveFilterString = "[diff_amount]<0"
+            GVInvoice.ExportToXlsx(save.FileName, opt)
+            GVInvoice.ActiveFilterString = ""
         End If
     End Sub
 End Class
