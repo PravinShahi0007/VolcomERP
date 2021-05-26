@@ -37,7 +37,7 @@ Partial Class FormAWBInv
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
         Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -147,7 +147,10 @@ Partial Class FormAWBInv
         Me.GridColumnDiffAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnDiffAmount.FieldName = "diff_amount"
         Me.GridColumnDiffAmount.Name = "GridColumnDiffAmount"
-        Me.GridColumnDiffAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GridColumn20", "{0:N2}")})
+        Me.GridColumnDiffAmount.OptionsColumn.AllowEdit = False
+        Me.GridColumnDiffAmount.OptionsColumn.AllowFocus = False
+        Me.GridColumnDiffAmount.OptionsColumn.ReadOnly = True
+        Me.GridColumnDiffAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_amount", "{0:N2}")})
         Me.GridColumnDiffAmount.UnboundExpression = "[c_tot_price] - [a_tot_price]"
         Me.GridColumnDiffAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffAmount.Visible = True
@@ -258,7 +261,7 @@ Partial Class FormAWBInv
         Me.GVInvoice.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVInvoice.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVInvoice.ColumnPanelRowHeight = 50
-        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn2, Me.GridColumn3, Me.GridColumn1, Me.GridColumn16, Me.GridColumn15, Me.GridColumn12, Me.GridColumn11, Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn4, Me.GridColumn5, Me.GridColumn19, Me.GridColumn18, Me.GridColumn13, Me.GridColumnDiffAmount, Me.GridColumn45, Me.GridColumn20, Me.GridColumn14})
+        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumn2, Me.GridColumn3, Me.GridColumn1, Me.GridColumn16, Me.GridColumn15, Me.GridColumn12, Me.GridColumn11, Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn4, Me.GridColumn5, Me.GridColumn19, Me.GridColumn18, Me.GridColumn13, Me.GridColumnDiffAmount, Me.GridColumn45, Me.GridColumn20, Me.GridColumn14})
         GridFormatRule1.ApplyToRow = True
         GridFormatRule1.Column = Me.GridColumnDiffAmount
         GridFormatRule1.Name = "FormatDiff"
@@ -273,31 +276,41 @@ Partial Class FormAWBInv
         Me.GVInvoice.GridControl = Me.GCInvoice
         Me.GVInvoice.Name = "GVInvoice"
         Me.GVInvoice.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVInvoice.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVInvoice.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVInvoice.OptionsView.ShowFooter = True
         Me.GVInvoice.OptionsView.ShowGroupPanel = False
         Me.GVInvoice.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnDiffAmount, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
-        'GridColumn21
+        'GridColumnNo
         '
-        Me.GridColumn21.Caption = "No"
-        Me.GridColumn21.FieldName = "no"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 0
-        Me.GridColumn21.Width = 20
+        Me.GridColumnNo.Caption = "No"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.OptionsColumn.AllowEdit = False
+        Me.GridColumnNo.OptionsColumn.AllowFocus = False
+        Me.GridColumnNo.OptionsColumn.ReadOnly = True
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
+        Me.GridColumnNo.Width = 20
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "ID WH AWB"
         Me.GridColumn2.FieldName = "id_del_manifest"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.AllowFocus = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "AWB"
         Me.GridColumn3.FieldName = "awbill_no"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.AllowFocus = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 79
@@ -307,6 +320,9 @@ Partial Class FormAWBInv
         Me.GridColumn1.Caption = "Sub District"
         Me.GridColumn1.FieldName = "sub_district"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.AllowFocus = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
         Me.GridColumn1.Width = 44
@@ -316,6 +332,9 @@ Partial Class FormAWBInv
         Me.GridColumn16.Caption = "Store Code"
         Me.GridColumn16.FieldName = "comp_number"
         Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.AllowEdit = False
+        Me.GridColumn16.OptionsColumn.AllowFocus = False
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 3
         Me.GridColumn16.Width = 25
@@ -325,6 +344,9 @@ Partial Class FormAWBInv
         Me.GridColumn15.Caption = "Store Name"
         Me.GridColumn15.FieldName = "comp_name"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.OptionsColumn.AllowFocus = False
+        Me.GridColumn15.OptionsColumn.ReadOnly = True
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 4
         Me.GridColumn15.Width = 91
@@ -336,6 +358,9 @@ Partial Class FormAWBInv
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn12.FieldName = "pickup_date"
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
+        Me.GridColumn12.OptionsColumn.AllowFocus = False
+        Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 5
         Me.GridColumn12.Width = 41
@@ -347,6 +372,9 @@ Partial Class FormAWBInv
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn11.FieldName = "rec_by_store_date"
         Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.AllowFocus = False
+        Me.GridColumn11.OptionsColumn.ReadOnly = True
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 6
         Me.GridColumn11.Width = 41
@@ -356,6 +384,9 @@ Partial Class FormAWBInv
         Me.GridColumn6.Caption = "Received By"
         Me.GridColumn6.FieldName = "rec_by_store_person"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.AllowFocus = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 7
         Me.GridColumn6.Width = 41
@@ -369,6 +400,9 @@ Partial Class FormAWBInv
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn8.FieldName = "cargo_rate"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.AllowFocus = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 8
         Me.GridColumn8.Width = 41
@@ -382,6 +416,9 @@ Partial Class FormAWBInv
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "collie"
         Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
+        Me.GridColumn17.OptionsColumn.AllowFocus = False
+        Me.GridColumn17.OptionsColumn.ReadOnly = True
         Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "collie", "{0:N2}")})
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 9
@@ -399,6 +436,9 @@ Partial Class FormAWBInv
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "c_weight"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.AllowFocus = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "c_weight", "{0:N2}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 10
@@ -416,6 +456,9 @@ Partial Class FormAWBInv
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "a_weight"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.AllowFocus = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_weight", "{0:N2}")})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 11
@@ -433,6 +476,9 @@ Partial Class FormAWBInv
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "c_tot_price"
         Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
+        Me.GridColumn19.OptionsColumn.AllowFocus = False
+        Me.GridColumn19.OptionsColumn.ReadOnly = True
         Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "c_tot_price", "{0:N2}")})
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 12
@@ -450,6 +496,9 @@ Partial Class FormAWBInv
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn18.FieldName = "a_tot_price"
         Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
+        Me.GridColumn18.OptionsColumn.AllowFocus = False
+        Me.GridColumn18.OptionsColumn.ReadOnly = True
         Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_tot_price", "{0:N2}")})
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 13
@@ -466,7 +515,10 @@ Partial Class FormAWBInv
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn13.FieldName = "diff_weight"
         Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", "{0:N2}")})
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.OptionsColumn.AllowFocus = False
+        Me.GridColumn13.OptionsColumn.ReadOnly = True
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_weight", "{0:N2}")})
         Me.GridColumn13.UnboundExpression = "[c_weight] - [a_weight]"
         Me.GridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn13.Visible = True
@@ -485,6 +537,7 @@ Partial Class FormAWBInv
         Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn45.FieldName = "berat_final"
         Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "berat_final", "{0:N2}")})
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 16
         Me.GridColumn45.Width = 64
@@ -501,6 +554,7 @@ Partial Class FormAWBInv
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "amount_final"
         Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_final", "{0:N2}")})
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 17
         Me.GridColumn20.Width = 59
@@ -859,7 +913,7 @@ Partial Class FormAWBInv
         Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn37.FieldName = "diff_weight"
         Me.GridColumn37.Name = "GridColumn37"
-        Me.GridColumn37.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", "{0:N2}")})
+        Me.GridColumn37.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_weight", "{0:N2}")})
         Me.GridColumn37.UnboundExpression = "[c_weight] - [a_weight]"
         Me.GridColumn37.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn37.Visible = True
@@ -877,7 +931,7 @@ Partial Class FormAWBInv
         Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn38.FieldName = "diff_amount"
         Me.GridColumn38.Name = "GridColumn38"
-        Me.GridColumn38.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GridColumn20", "{0:N2}")})
+        Me.GridColumn38.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_amount", "{0:N2}")})
         Me.GridColumn38.UnboundExpression = "[c_tot_price] - [a_tot_price]"
         Me.GridColumn38.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn38.Visible = True
@@ -1182,7 +1236,7 @@ Partial Class FormAWBInv
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSaveDraft As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSubmit As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPImport As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPVerification As DevExpress.XtraTab.XtraTabPage

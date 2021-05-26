@@ -16,6 +16,7 @@ Public Class FormAWBInv
 UNION ALL
 SELECT 2 AS id_type,'Inbound' AS type"
         viewSearchLookupQuery(SLETypeImport, q, "id_type", "type", "id_type")
+        viewSearchLookupQuery(SLEType, q, "id_type", "type", "id_type")
     End Sub
 
     Sub load_form()
@@ -526,7 +527,7 @@ GROUP BY d.`id_inbound_awb`"
     Private Sub BVerify_Click(sender As Object, e As EventArgs) Handles BVerify.Click
         If GVData.RowCount > 0 Then
             'check first
-            Dim qc As String = "SELECT * FROM tb_awb_inv_sum WHERE id_comp='" & SLE3PLImport.EditValue.ToString & "' AND inv_number='" & addSlashes(TEInvoiceNumber.EditValue.ToString) & "' AND id_report_status!=5"
+            Dim qc As String = "SELECT * FROM tb_awb_inv_sum WHERE id_comp='" & SLE3PLImport.EditValue.ToString & "' AND inv_number='" & addSlashes(TEInvNumberImport.EditValue.ToString) & "' AND id_report_status!=5"
             Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
             If dtc.Rows.Count > 0 Then
                 'sudah ada
