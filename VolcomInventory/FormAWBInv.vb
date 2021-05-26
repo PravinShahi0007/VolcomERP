@@ -561,7 +561,7 @@ GROUP BY d.`id_inbound_awb`"
                     If Decimal.Parse(GVData.GetRowCellValue(i, "c_tot_price").ToString) - Decimal.Parse(GVData.GetRowCellValue(i, "a_tot_price").ToString) = 0 Then
                         berat_final = decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "a_weight").ToString).ToString)
                         amount_final = decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "a_tot_price").ToString).ToString)
-                    ElseIf Decimal.Parse(GVData.GetRowCellValue(i, "c_tot_price").ToString) - Decimal.Parse(GVData.GetRowCellValue(i, "a_tot_price").ToString) < 0 Then
+                    ElseIf Decimal.Parse(GVData.GetRowCellValue(i, "c_tot_price").ToString) - Decimal.Parse(GVData.GetRowCellValue(i, "a_tot_price").ToString) > 0 Then
                         'ditagih lebih murah
                         berat_final = decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "a_weight").ToString).ToString)
                         amount_final = decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "a_tot_price").ToString).ToString)
@@ -599,6 +599,8 @@ GROUP BY d.`id_inbound_awb`"
             GVInvoice.ActiveFilterString = "[diff_amount]<0"
             GVInvoice.ExportToXlsx(save.FileName, opt)
             GVInvoice.ActiveFilterString = ""
+
+            Process.Start(save.FileName)
         End If
     End Sub
 End Class
