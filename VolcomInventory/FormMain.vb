@@ -16107,4 +16107,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBInvoiceVerification_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvoiceVerification.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            Form3PLInvoiceVerification.MdiParent = Me
+            Form3PLInvoiceVerification.Show()
+            Form3PLInvoiceVerification.WindowState = FormWindowState.Maximized
+            Form3PLInvoiceVerification.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
