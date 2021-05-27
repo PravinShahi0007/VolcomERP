@@ -3,6 +3,7 @@
 Public Class FormAWBInv
     Public id_verification As String = "-1"
     Public copy_file_path As String = ""
+    Public is_view As String = "-1"
 
     Private Sub FormAWBInv_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_type()
@@ -25,7 +26,6 @@ SELECT 2 AS id_type,'Inbound' AS type"
             BSubmit.Visible = False
         Else
             'edit
-            BAttachment.Visible = True
 
             Dim q As String = "SELECT * 
 FROM `tb_awb_inv_sum`
@@ -188,6 +188,8 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
                 execute_non_query(q, True, "", "", "", "")
                 '
                 submit_who_prepared("310", id_verification, id_user)
+                '
+                infoCustom("Verification submitted")
                 '
                 load_form()
                 Form3PLInvoiceVerification.load_verification()
@@ -631,5 +633,13 @@ GROUP BY d.`id_inbound_awb`"
 
             Process.Start(save.FileName)
         End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.id_report = id_verification
+        FormReportMark.report_mark_type = "310"
+        FormReportMark.form_origin = Name
+        FormReportMark.is_view = is_view
+        FormReportMark.ShowDialog()
     End Sub
 End Class

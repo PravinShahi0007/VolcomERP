@@ -450,6 +450,9 @@
         ElseIf report_mark_type = "307" Then
             'polis propose
             FormPolisDet.Close()
+        ElseIf report_mark_type = "310" Then
+            'invoice verification
+            FormAWBInv.Close()
         End If
     End Sub
     Sub show()
@@ -1481,6 +1484,10 @@ GROUP BY rec.`id_prod_order`"
             FormPolisDet.id_pps = id_report
             FormPolisDet.is_view = "1"
             FormPolisDet.ShowDialog()
+        ElseIf report_mark_type = "310" Then
+            FormAWBInv.id_verification = id_report
+            FormAWBInv.is_view = "1"
+            FormAWBInv.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2647,6 +2654,12 @@ GROUP BY rec.`id_prod_order`"
             table_name = "tb_polis_pps"
             field_id = "id_polis_pps"
             field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "310" Then
+            'invoice verification
+            table_name = "tb_awb_inv_sum"
+            field_id = "id_awb_inv_sum"
+            field_number = "inv_number"
             field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
