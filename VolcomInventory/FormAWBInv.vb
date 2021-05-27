@@ -38,16 +38,18 @@ WHERE id_awb_inv_sum='" & id_verification & "'"
                 load_det()
                 '
                 XTPImport.PageVisible = False
+                SLE3PL.Properties.ReadOnly = True
+                SLEType.Properties.ReadOnly = True
+                TEInvoiceNumber.Enabled = False
                 '
                 If dt.Rows(0)("is_submit").ToString = "1" Then
                     BSaveDraft.Visible = False
                     BSubmit.Visible = False
                     BMark.Visible = True
                     BtnPrint.Visible = True
-                    '
-                    SLE3PL.Properties.ReadOnly = True
-                    SLEType.Properties.ReadOnly = True
-                    TEInvoiceNumber.Enabled = False
+                Else
+                    BSubmit.Visible = True
+                    BSaveDraft.Visible = True
                 End If
             End If
         End If
@@ -175,7 +177,7 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
             Dim is_ok As Boolean = True
 
             For i = 0 To GVInvoice.RowCount - 1
-                If (GVInvoice.GetRowCellValue(i, "diff_weight") > 0 Or GVInvoice.GetRowCellValue(i, "diff_amount") > 0) And GVInvoice.GetRowCellValue(i, "note_wh").ToString = "" Then
+                If (GVInvoice.GetRowCellValue(i, "diff_amount") < 0 And GVInvoice.GetRowCellValue(i, "note_wh").ToString = "") Or Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final")) = 0 Or Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final")) = 0 Then
                     is_ok = False
                     Exit For
                 End If
@@ -190,7 +192,7 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
                 load_form()
                 Form3PLInvoiceVerification.load_verification()
             Else
-                warningCustom("Please put note why different")
+                warningCustom("Please put note and final amount")
             End If
         Else
             warningCustom("No awb found")
@@ -244,15 +246,41 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
                 q = "DELETE FROM tb_awb_inv_sum_det WHERE id_awb_inv_sum='" & id_verification & "'"
                 execute_non_query(q, True, "", "", "", "")
                 'detail
-                q = "INSERT INTO tb_awb_inv_sum_det(`id_awb_inv_sum`,`id_del_manifest`,`berat_wh`,`berat_cargo`,`amount_wh`,`amount_cargo`,berat_final,amount_final,`note_wh`) VALUES"
-                For i As Integer = 0 To GVInvoice.RowCount - 1
-                    If Not i = 0 Then
-                        q += ","
-                    End If
+                If SLEType.EditValue.ToString = "1" Then
+                    q = "INSERT INTO tb_awb_inv_sum_det(awb_no,`id_awb_inv_sum`,`id_del_manifest`,`berat_wh`,`berat_cargo`,`amount_wh`,`amount_cargo`,berat_final,amount_final,`note_wh`) VALUES"
+                    For i As Integer = 0 To GVInvoice.RowCount - 1
+                        If Not i = 0 Then
+                            q += ","
+                        End If
 
-                    q += "('" & id_verification & "','" & GVInvoice.GetRowCellValue(i, "id_del_manifest").ToString & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "')"
-                Next
-                execute_non_query(q, True, "", "", "", "")
+                        Dim id_reff As String = ""
+                        If GVInvoice.GetRowCellValue(i, "id_del_manifest").ToString = "" Then
+                            id_reff = "NULL"
+                        Else
+                            id_reff = "'" & GVInvoice.GetRowCellValue(i, "id_del_manifest").ToString & "'"
+                        End If
+
+                        q += "('" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "','" & id_verification & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "')"
+                    Next
+                    execute_non_query(q, True, "", "", "", "")
+                Else
+                    q = "INSERT INTO tb_awb_inv_sum_det(awb_no,`id_awb_inv_sum`,`id_inbound_awb`,`berat_wh`,`berat_cargo`,`amount_wh`,`amount_cargo`,berat_final,amount_final,`note_wh`) VALUES"
+                    For i As Integer = 0 To GVInvoice.RowCount - 1
+                        If Not i = 0 Then
+                            q += ","
+                        End If
+
+                        Dim id_reff As String = ""
+                        If GVInvoice.GetRowCellValue(i, "id_inbound_awb").ToString = "" Then
+                            id_reff = "NULL"
+                        Else
+                            id_reff = "'" & GVInvoice.GetRowCellValue(i, "id_inbound_awb").ToString & "'"
+                        End If
+
+                        q += "('" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "','" & id_verification & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "')"
+                    Next
+                    execute_non_query(q, True, "", "", "", "")
+                End If
 
                 load_form()
                 Form3PLInvoiceVerification.load_verification()
@@ -420,7 +448,7 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
 ,COUNT(dd.`id_del_manifest_det`) AS collie
 ,d.`c_weight`,d.`c_tot_price`,d.`a_weight`,d.`a_tot_price`
 FROM tb_del_manifest_det dd 
-INNER JOIN `tb_del_manifest` d ON dd.`id_del_manifest`=d.`id_del_manifest`
+INNER JOIN `tb_del_manifest` d ON dd.`id_del_manifest`=d.`id_del_manifest` AND d.id_comp='" & SLE3PLImport.EditValue.ToString & "'
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=d.id_sub_district AND d.`id_report_status`=6
 INNER JOIN tb_m_comp store ON store.id_comp=id_store_offline 
 INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=d.id_comp_group
@@ -436,7 +464,7 @@ GROUP BY d.`id_del_manifest`"
 ,SUM(IF(dd.berat>dd.berat_dimensi,dd.berat,dd.berat_dimensi)) AS `c_weight`,SUM(IF(dd.berat>dd.berat_dimensi,dd.berat,dd.berat_dimensi)*rate.cargo_rate) AS `c_tot_price`,d.`a_weight`,d.`a_tot_price`
 FROM tb_inbound_koli dd 
 INNER JOIN `tb_inbound_awb` d ON dd.`id_inbound_awb`=d.`id_inbound_awb`
-INNER JOIN tb_3pl_rate rate ON rate.id_3pl_rate=d.id_3pl_rate
+INNER JOIN tb_3pl_rate rate ON rate.id_3pl_rate=d.id_3pl_rate AND rate.id_comp='" & SLE3PLImport.EditValue.ToString & "'
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=rate.id_sub_district
 INNER JOIN tb_m_user usr ON usr.id_user=d.`created_by`
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
