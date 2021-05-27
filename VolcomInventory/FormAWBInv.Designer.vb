@@ -61,10 +61,8 @@ Partial Class FormAWBInv
         Me.BSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -82,13 +80,27 @@ Partial Class FormAWBInv
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BVerify = New DevExpress.XtraEditors.SimpleButton()
+        Me.BImport = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEInvNumberImport = New DevExpress.XtraEditors.TextEdit()
+        Me.SLE3PLImport = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLETypeImport = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CBWorksheetName = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LFileAddress = New DevExpress.XtraEditors.LabelControl()
         Me.TBFileAddress = New DevExpress.XtraEditors.TextEdit()
         Me.LWorksheetName = New DevExpress.XtraEditors.LabelControl()
         Me.BBrowse = New DevExpress.XtraEditors.SimpleButton()
-        Me.BImport = New DevExpress.XtraEditors.SimpleButton()
-        Me.BVerify = New DevExpress.XtraEditors.SimpleButton()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,13 +115,18 @@ Partial Class FormAWBInv
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
-        Me.XtraTabPage2.SuspendLayout()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEInvNumberImport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLE3PLImport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLETypeImport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CBWorksheetName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -565,7 +582,7 @@ Partial Class FormAWBInv
         '
         'XtraTabPage1
         '
-        Me.XtraTabPage1.Controls.Add(Me.GridControl1)
+        Me.XtraTabPage1.Controls.Add(Me.GCData)
         Me.XtraTabPage1.Controls.Add(Me.BVerify)
         Me.XtraTabPage1.Controls.Add(Me.BImport)
         Me.XtraTabPage1.Controls.Add(Me.PanelControl3)
@@ -573,52 +590,30 @@ Partial Class FormAWBInv
         Me.XtraTabPage1.Size = New System.Drawing.Size(945, 473)
         Me.XtraTabPage1.Text = "Import Data"
         '
-        'XtraTabPage2
+        'GCData
         '
-        Me.XtraTabPage2.Controls.Add(Me.GCInvoice)
-        Me.XtraTabPage2.Controls.Add(Me.PanelControl2)
-        Me.XtraTabPage2.Controls.Add(Me.PanelControl1)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(945, 473)
-        Me.XtraTabPage2.Text = "Verification"
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 148)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(945, 286)
+        Me.GCData.TabIndex = 2
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
-        'PanelControl3
+        'GVData
         '
-        Me.PanelControl3.Controls.Add(Me.CBWorksheetName)
-        Me.PanelControl3.Controls.Add(Me.LFileAddress)
-        Me.PanelControl3.Controls.Add(Me.TBFileAddress)
-        Me.PanelControl3.Controls.Add(Me.LWorksheetName)
-        Me.PanelControl3.Controls.Add(Me.BBrowse)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(945, 67)
-        Me.PanelControl3.TabIndex = 0
-        '
-        'GridControl1
-        '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 98)
-        Me.GridControl1.MainView = Me.GridView2
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(945, 336)
-        Me.GridControl1.TabIndex = 2
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
-        '
-        'GridView2
-        '
-        Me.GridView2.Appearance.HeaderPanel.Options.UseTextOptions = True
-        Me.GridView2.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridView2.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
-        Me.GridView2.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridView2.ColumnPanelRowHeight = 50
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38})
-        Me.GridView2.GridControl = Me.GridControl1
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsPrint.AllowMultilineHeaders = True
-        Me.GridView2.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridView2.OptionsView.ShowFooter = True
-        Me.GridView2.OptionsView.ShowGroupPanel = False
+        Me.GVData.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GVData.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVData.ColumnPanelRowHeight = 50
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn43})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVData.OptionsView.ShowFooter = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'GridColumn22
         '
@@ -833,72 +828,6 @@ Partial Class FormAWBInv
         Me.GridColumn38.VisibleIndex = 15
         Me.GridColumn38.Width = 125
         '
-        'CBWorksheetName
-        '
-        Me.CBWorksheetName.Location = New System.Drawing.Point(106, 37)
-        Me.CBWorksheetName.Name = "CBWorksheetName"
-        Me.CBWorksheetName.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CBWorksheetName.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.CBWorksheetName.Size = New System.Drawing.Size(440, 20)
-        Me.CBWorksheetName.TabIndex = 94
-        '
-        'LFileAddress
-        '
-        Me.LFileAddress.Location = New System.Drawing.Point(11, 15)
-        Me.LFileAddress.Name = "LFileAddress"
-        Me.LFileAddress.Size = New System.Drawing.Size(83, 13)
-        Me.LFileAddress.TabIndex = 90
-        Me.LFileAddress.Text = "Excel file address"
-        '
-        'TBFileAddress
-        '
-        Me.TBFileAddress.Location = New System.Drawing.Point(106, 12)
-        Me.TBFileAddress.Name = "TBFileAddress"
-        Me.TBFileAddress.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TBFileAddress.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.TBFileAddress.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TBFileAddress.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.TBFileAddress.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
-        Me.TBFileAddress.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
-        Me.TBFileAddress.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.TBFileAddress.Properties.AppearanceReadOnly.Options.UseForeColor = True
-        Me.TBFileAddress.Properties.ReadOnly = True
-        Me.TBFileAddress.Size = New System.Drawing.Size(383, 20)
-        Me.TBFileAddress.TabIndex = 92
-        '
-        'LWorksheetName
-        '
-        Me.LWorksheetName.Location = New System.Drawing.Point(11, 40)
-        Me.LWorksheetName.Name = "LWorksheetName"
-        Me.LWorksheetName.Size = New System.Drawing.Size(81, 13)
-        Me.LWorksheetName.TabIndex = 91
-        Me.LWorksheetName.Text = "Worksheet name"
-        '
-        'BBrowse
-        '
-        Me.BBrowse.Location = New System.Drawing.Point(495, 9)
-        Me.BBrowse.Name = "BBrowse"
-        Me.BBrowse.Size = New System.Drawing.Size(51, 23)
-        Me.BBrowse.TabIndex = 93
-        Me.BBrowse.Text = "Browse"
-        '
-        'BImport
-        '
-        Me.BImport.Appearance.BackColor = System.Drawing.Color.Blue
-        Me.BImport.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BImport.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BImport.Appearance.Options.UseBackColor = True
-        Me.BImport.Appearance.Options.UseFont = True
-        Me.BImport.Appearance.Options.UseForeColor = True
-        Me.BImport.Dock = System.Windows.Forms.DockStyle.Top
-        Me.BImport.Location = New System.Drawing.Point(0, 67)
-        Me.BImport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
-        Me.BImport.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BImport.Name = "BImport"
-        Me.BImport.Size = New System.Drawing.Size(945, 31)
-        Me.BImport.TabIndex = 90
-        Me.BImport.Text = "Import"
-        '
         'BVerify
         '
         Me.BVerify.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -915,6 +844,191 @@ Partial Class FormAWBInv
         Me.BVerify.Size = New System.Drawing.Size(945, 39)
         Me.BVerify.TabIndex = 91
         Me.BVerify.Text = "Verify"
+        '
+        'BImport
+        '
+        Me.BImport.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BImport.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BImport.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BImport.Appearance.Options.UseBackColor = True
+        Me.BImport.Appearance.Options.UseFont = True
+        Me.BImport.Appearance.Options.UseForeColor = True
+        Me.BImport.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BImport.Location = New System.Drawing.Point(0, 117)
+        Me.BImport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.BImport.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BImport.Name = "BImport"
+        Me.BImport.Size = New System.Drawing.Size(945, 31)
+        Me.BImport.TabIndex = 90
+        Me.BImport.Text = "Import"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.LabelControl3)
+        Me.PanelControl3.Controls.Add(Me.TEInvNumberImport)
+        Me.PanelControl3.Controls.Add(Me.SLE3PLImport)
+        Me.PanelControl3.Controls.Add(Me.LabelControl2)
+        Me.PanelControl3.Controls.Add(Me.SLETypeImport)
+        Me.PanelControl3.Controls.Add(Me.CBWorksheetName)
+        Me.PanelControl3.Controls.Add(Me.LFileAddress)
+        Me.PanelControl3.Controls.Add(Me.TBFileAddress)
+        Me.PanelControl3.Controls.Add(Me.LWorksheetName)
+        Me.PanelControl3.Controls.Add(Me.BBrowse)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(945, 117)
+        Me.PanelControl3.TabIndex = 0
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 91)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl3.TabIndex = 99
+        Me.LabelControl3.Text = "Invoice Number"
+        '
+        'TEInvNumberImport
+        '
+        Me.TEInvNumberImport.Location = New System.Drawing.Point(107, 88)
+        Me.TEInvNumberImport.Name = "TEInvNumberImport"
+        Me.TEInvNumberImport.Size = New System.Drawing.Size(440, 20)
+        Me.TEInvNumberImport.TabIndex = 98
+        '
+        'SLE3PLImport
+        '
+        Me.SLE3PLImport.Location = New System.Drawing.Point(107, 62)
+        Me.SLE3PLImport.Name = "SLE3PLImport"
+        Me.SLE3PLImport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLE3PLImport.Properties.View = Me.GridView3
+        Me.SLE3PLImport.Size = New System.Drawing.Size(144, 20)
+        Me.SLE3PLImport.TabIndex = 97
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn41, Me.GridColumn42})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.FieldName = "id_comp"
+        Me.GridColumn41.Name = "GridColumn41"
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "3PL"
+        Me.GridColumn42.FieldName = "comp_name"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 0
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 65)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl2.TabIndex = 96
+        Me.LabelControl2.Text = "Type"
+        '
+        'SLETypeImport
+        '
+        Me.SLETypeImport.Location = New System.Drawing.Point(257, 62)
+        Me.SLETypeImport.Name = "SLETypeImport"
+        Me.SLETypeImport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLETypeImport.Properties.View = Me.GridView2
+        Me.SLETypeImport.Size = New System.Drawing.Size(290, 20)
+        Me.SLETypeImport.TabIndex = 95
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn39, Me.GridColumn40})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "ID"
+        Me.GridColumn39.FieldName = "id_type"
+        Me.GridColumn39.Name = "GridColumn39"
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "Type"
+        Me.GridColumn40.FieldName = "type"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 0
+        '
+        'CBWorksheetName
+        '
+        Me.CBWorksheetName.Location = New System.Drawing.Point(107, 36)
+        Me.CBWorksheetName.Name = "CBWorksheetName"
+        Me.CBWorksheetName.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CBWorksheetName.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.CBWorksheetName.Size = New System.Drawing.Size(440, 20)
+        Me.CBWorksheetName.TabIndex = 94
+        '
+        'LFileAddress
+        '
+        Me.LFileAddress.Location = New System.Drawing.Point(12, 14)
+        Me.LFileAddress.Name = "LFileAddress"
+        Me.LFileAddress.Size = New System.Drawing.Size(83, 13)
+        Me.LFileAddress.TabIndex = 90
+        Me.LFileAddress.Text = "Excel file address"
+        '
+        'TBFileAddress
+        '
+        Me.TBFileAddress.Location = New System.Drawing.Point(107, 11)
+        Me.TBFileAddress.Name = "TBFileAddress"
+        Me.TBFileAddress.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TBFileAddress.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.TBFileAddress.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TBFileAddress.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.TBFileAddress.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TBFileAddress.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
+        Me.TBFileAddress.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TBFileAddress.Properties.AppearanceReadOnly.Options.UseForeColor = True
+        Me.TBFileAddress.Properties.ReadOnly = True
+        Me.TBFileAddress.Size = New System.Drawing.Size(383, 20)
+        Me.TBFileAddress.TabIndex = 92
+        '
+        'LWorksheetName
+        '
+        Me.LWorksheetName.Location = New System.Drawing.Point(12, 39)
+        Me.LWorksheetName.Name = "LWorksheetName"
+        Me.LWorksheetName.Size = New System.Drawing.Size(81, 13)
+        Me.LWorksheetName.TabIndex = 91
+        Me.LWorksheetName.Text = "Worksheet name"
+        '
+        'BBrowse
+        '
+        Me.BBrowse.Location = New System.Drawing.Point(496, 8)
+        Me.BBrowse.Name = "BBrowse"
+        Me.BBrowse.Size = New System.Drawing.Size(51, 23)
+        Me.BBrowse.TabIndex = 93
+        Me.BBrowse.Text = "Browse"
+        '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Controls.Add(Me.GCInvoice)
+        Me.XtraTabPage2.Controls.Add(Me.PanelControl2)
+        Me.XtraTabPage2.Controls.Add(Me.PanelControl1)
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(945, 473)
+        Me.XtraTabPage2.Text = "Verification"
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Note Import"
+        Me.GridColumn43.FieldName = "note"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 16
         '
         'FormAWBInv
         '
@@ -943,14 +1057,19 @@ Partial Class FormAWBInv
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
-        Me.XtraTabPage2.ResumeLayout(False)
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEInvNumberImport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLE3PLImport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLETypeImport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CBWorksheetName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TBFileAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -997,8 +1116,8 @@ Partial Class FormAWBInv
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1023,4 +1142,16 @@ Partial Class FormAWBInv
     Friend WithEvents BBrowse As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BVerify As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BImport As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLETypeImport As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLE3PLImport As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEInvNumberImport As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
