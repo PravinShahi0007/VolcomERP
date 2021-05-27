@@ -33,6 +33,7 @@ Partial Class Form3PLInvoiceVerification
         Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,7 +82,7 @@ Partial Class Form3PLInvoiceVerification
         '
         'GVInvoice
         '
-        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn39, Me.GridColumn47, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45})
+        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn39, Me.GridColumn47, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn1})
         Me.GVInvoice.GridControl = Me.GCInvoice
         Me.GVInvoice.Name = "GVInvoice"
         Me.GVInvoice.OptionsBehavior.Editable = False
@@ -138,6 +139,10 @@ Partial Class Form3PLInvoiceVerification
         '
         'GridColumn44
         '
+        Me.GridColumn44.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn44.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn44.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn44.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn44.Caption = "(Volcom) Total Invoice"
         Me.GridColumn44.DisplayFormat.FormatString = "N2"
         Me.GridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -148,6 +153,10 @@ Partial Class Form3PLInvoiceVerification
         '
         'GridColumn45
         '
+        Me.GridColumn45.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn45.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn45.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn45.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn45.Caption = "(Cargo) Total Invoice"
         Me.GridColumn45.DisplayFormat.FormatString = "N2"
         Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -155,6 +164,20 @@ Partial Class Form3PLInvoiceVerification
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 6
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn1.Caption = "(Final) Total Invoice"
+        Me.GridColumn1.DisplayFormat.FormatString = "N2"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn1.FieldName = "final_tot"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 7
         '
         'Form3PLInvoiceVerification
         '
@@ -190,4 +213,5 @@ Partial Class Form3PLInvoiceVerification
     Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
