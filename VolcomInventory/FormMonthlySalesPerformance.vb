@@ -330,8 +330,8 @@
         'where
         Dim where As String = ""
 
-        If Not SLUESeason.EditValue.ToString = "0" Then
-            where += " AND design.id_season = " + SLUESeason.EditValue.ToString
+        If Not CCBESeason.EditValue.ToString = "" Then
+            where += " AND design.id_season IN (" + CCBESeason.EditValue.ToString + ")"
         End If
 
         If Not SLUEDivision.EditValue.ToString = "0" Then
@@ -854,15 +854,22 @@
 
     Sub view_season()
         Dim query As String = "
-            (SELECT 0 AS id_season, 'ALL' AS season, 0 AS id_range, 'ALL' AS `range`)
-            UNION ALL
-            (SELECT a.id_season, a.season, b.id_range, b.range
+            SELECT a.id_season, a.season
             FROM tb_season a 
             INNER JOIN tb_range b ON a.id_range = b.id_range 
-            ORDER BY b.range DESC)
+            ORDER BY b.range DESC
         "
 
-        viewSearchLookupQuery(SLUESeason, query, "id_season", "season", "id_season")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("season").ToString
+            c.Value = data.Rows(i)("id_season").ToString
+
+            CCBESeason.Properties.Items.Add(c)
+        Next
     End Sub
 
     Sub view_division()

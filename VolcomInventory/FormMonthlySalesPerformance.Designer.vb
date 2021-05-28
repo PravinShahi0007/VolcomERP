@@ -74,17 +74,12 @@ Partial Class FormMonthlySalesPerformance
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.SLUESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.SBView = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.CCBESeason = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,14 +104,14 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.CCBESeason)
         Me.PanelControl1.Controls.Add(Me.PanelControl2)
         Me.PanelControl1.Controls.Add(Me.SLUECompGroup)
         Me.PanelControl1.Controls.Add(Me.Label11)
@@ -141,7 +136,6 @@ Partial Class FormMonthlySalesPerformance
         Me.PanelControl1.Controls.Add(Me.Label1)
         Me.PanelControl1.Controls.Add(Me.SLUEDivision)
         Me.PanelControl1.Controls.Add(Me.Label3)
-        Me.PanelControl1.Controls.Add(Me.SLUESeason)
         Me.PanelControl1.Controls.Add(Me.Label2)
         Me.PanelControl1.Controls.Add(Me.SBExportExcel)
         Me.PanelControl1.Controls.Add(Me.SBView)
@@ -577,51 +571,6 @@ Partial Class FormMonthlySalesPerformance
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Division"
         '
-        'SLUESeason
-        '
-        Me.SLUESeason.Location = New System.Drawing.Point(414, 14)
-        Me.SLUESeason.Name = "SLUESeason"
-        Me.SLUESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUESeason.Properties.View = Me.GridView1
-        Me.SLUESeason.Size = New System.Drawing.Size(280, 20)
-        Me.SLUESeason.TabIndex = 12
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn7, Me.GridColumn8})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "GridColumn3"
-        Me.GridColumn3.FieldName = "id_season"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Season"
-        Me.GridColumn4.FieldName = "season"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "GridColumn5"
-        Me.GridColumn7.FieldName = "id_range"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Range"
-        Me.GridColumn8.FieldName = "range"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -670,6 +619,15 @@ Partial Class FormMonthlySalesPerformance
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
+        'CCBESeason
+        '
+        Me.CCBESeason.EditValue = ""
+        Me.CCBESeason.Location = New System.Drawing.Point(414, 14)
+        Me.CCBESeason.Name = "CCBESeason"
+        Me.CCBESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBESeason.Size = New System.Drawing.Size(280, 20)
+        Me.CCBESeason.TabIndex = 38
+        '
         'FormMonthlySalesPerformance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -706,10 +664,9 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -719,12 +676,6 @@ Partial Class FormMonthlySalesPerformance
     Friend WithEvents SBView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents SBExportExcel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SLUESeason As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label2 As Label
     Friend WithEvents SLUEClass As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -779,4 +730,5 @@ Partial Class FormMonthlySalesPerformance
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label11 As Label
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CCBESeason As DevExpress.XtraEditors.CheckedComboBoxEdit
 End Class
