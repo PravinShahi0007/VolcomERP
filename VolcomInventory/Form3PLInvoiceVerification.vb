@@ -18,7 +18,7 @@
     End Sub
 
     Sub load_verification()
-        Dim q As String = "SELECT inv.id_awb_inv_sum,sts.report_status,c.comp_name,inv.created_date,inv.inv_number,emp.employee_name,SUM(invd.amount_cargo) AS a_tot,SUM(invd.amount_wh) AS c_tot
+        Dim q As String = "SELECT inv.id_awb_inv_sum,sts.report_status,c.comp_name,inv.created_date,inv.inv_number,emp.employee_name,SUM(invd.amount_cargo) AS a_tot,SUM(invd.amount_wh) AS c_tot,SUM(invd.amount_final) AS final_tot
 FROM `tb_awb_inv_sum_det` invd
 INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invd.id_awb_inv_sum
 INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp

@@ -2,8 +2,8 @@
     Private Sub FormMonthlySalesPerformancePick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim where As String = ""
 
-        If Not FormMonthlySalesPerformance.SLUESeason.EditValue.ToString = "0" Then
-            where += " AND d.id_season = " + FormMonthlySalesPerformance.SLUESeason.EditValue.ToString
+        If Not FormMonthlySalesPerformance.CCBESeason.EditValue.ToString = "" Then
+            where += " AND d.id_season IN (" + FormMonthlySalesPerformance.CCBESeason.EditValue.ToString + ")"
         End If
 
         If Not FormMonthlySalesPerformance.SLUEDivision.EditValue.ToString = "0" Then

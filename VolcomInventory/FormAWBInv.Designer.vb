@@ -57,7 +57,6 @@ Partial Class FormAWBInv
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
@@ -154,7 +153,7 @@ Partial Class FormAWBInv
         Me.GridColumnDiffAmount.UnboundExpression = "[c_tot_price] - [a_tot_price]"
         Me.GridColumnDiffAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffAmount.Visible = True
-        Me.GridColumnDiffAmount.VisibleIndex = 15
+        Me.GridColumnDiffAmount.VisibleIndex = 14
         Me.GridColumnDiffAmount.Width = 65
         '
         'PanelControl1
@@ -195,13 +194,14 @@ Partial Class FormAWBInv
         '
         'GridColumn10
         '
-        Me.GridColumn10.FieldName = "id_comp"
+        Me.GridColumn10.Caption = "id_type"
+        Me.GridColumn10.FieldName = "id_type"
         Me.GridColumn10.Name = "GridColumn10"
         '
         'GridColumn44
         '
-        Me.GridColumn44.Caption = "3PL"
-        Me.GridColumn44.FieldName = "comp_name"
+        Me.GridColumn44.Caption = "Type"
+        Me.GridColumn44.FieldName = "type"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
         Me.GridColumn44.VisibleIndex = 0
@@ -290,8 +290,6 @@ Partial Class FormAWBInv
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.OptionsColumn.AllowFocus = False
         Me.GridColumnNo.OptionsColumn.ReadOnly = True
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 0
         Me.GridColumnNo.Width = 20
         '
         'GridColumn2
@@ -312,7 +310,7 @@ Partial Class FormAWBInv
         Me.GridColumn3.OptionsColumn.AllowFocus = False
         Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 0
         Me.GridColumn3.Width = 79
         '
         'GridColumn1
@@ -324,7 +322,7 @@ Partial Class FormAWBInv
         Me.GridColumn1.OptionsColumn.AllowFocus = False
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.VisibleIndex = 1
         Me.GridColumn1.Width = 44
         '
         'GridColumn16
@@ -336,7 +334,7 @@ Partial Class FormAWBInv
         Me.GridColumn16.OptionsColumn.AllowFocus = False
         Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 3
+        Me.GridColumn16.VisibleIndex = 2
         Me.GridColumn16.Width = 25
         '
         'GridColumn15
@@ -348,7 +346,7 @@ Partial Class FormAWBInv
         Me.GridColumn15.OptionsColumn.AllowFocus = False
         Me.GridColumn15.OptionsColumn.ReadOnly = True
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 4
+        Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 91
         '
         'GridColumn12
@@ -362,7 +360,7 @@ Partial Class FormAWBInv
         Me.GridColumn12.OptionsColumn.AllowFocus = False
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 5
+        Me.GridColumn12.VisibleIndex = 4
         Me.GridColumn12.Width = 41
         '
         'GridColumn11
@@ -376,7 +374,7 @@ Partial Class FormAWBInv
         Me.GridColumn11.OptionsColumn.AllowFocus = False
         Me.GridColumn11.OptionsColumn.ReadOnly = True
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 6
+        Me.GridColumn11.VisibleIndex = 5
         Me.GridColumn11.Width = 41
         '
         'GridColumn6
@@ -388,7 +386,7 @@ Partial Class FormAWBInv
         Me.GridColumn6.OptionsColumn.AllowFocus = False
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.VisibleIndex = 6
         Me.GridColumn6.Width = 41
         '
         'GridColumn8
@@ -404,7 +402,7 @@ Partial Class FormAWBInv
         Me.GridColumn8.OptionsColumn.AllowFocus = False
         Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 8
+        Me.GridColumn8.VisibleIndex = 7
         Me.GridColumn8.Width = 41
         '
         'GridColumn17
@@ -421,7 +419,7 @@ Partial Class FormAWBInv
         Me.GridColumn17.OptionsColumn.ReadOnly = True
         Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "collie", "{0:N2}")})
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 9
+        Me.GridColumn17.VisibleIndex = 8
         Me.GridColumn17.Width = 27
         '
         'GridColumn4
@@ -441,7 +439,7 @@ Partial Class FormAWBInv
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "c_weight", "{0:N2}")})
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 10
+        Me.GridColumn4.VisibleIndex = 9
         Me.GridColumn4.Width = 23
         '
         'GridColumn5
@@ -461,7 +459,7 @@ Partial Class FormAWBInv
         Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_weight", "{0:N2}")})
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 11
+        Me.GridColumn5.VisibleIndex = 10
         Me.GridColumn5.Width = 21
         '
         'GridColumn19
@@ -481,7 +479,7 @@ Partial Class FormAWBInv
         Me.GridColumn19.OptionsColumn.ReadOnly = True
         Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "c_tot_price", "{0:N2}")})
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 12
+        Me.GridColumn19.VisibleIndex = 11
         Me.GridColumn19.Width = 23
         '
         'GridColumn18
@@ -501,7 +499,7 @@ Partial Class FormAWBInv
         Me.GridColumn18.OptionsColumn.ReadOnly = True
         Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_tot_price", "{0:N2}")})
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 13
+        Me.GridColumn18.VisibleIndex = 12
         Me.GridColumn18.Width = 20
         '
         'GridColumn13
@@ -522,7 +520,7 @@ Partial Class FormAWBInv
         Me.GridColumn13.UnboundExpression = "[c_weight] - [a_weight]"
         Me.GridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 14
+        Me.GridColumn13.VisibleIndex = 13
         Me.GridColumn13.Width = 65
         '
         'GridColumn45
@@ -539,7 +537,7 @@ Partial Class FormAWBInv
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "berat_final", "{0:N2}")})
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 16
+        Me.GridColumn45.VisibleIndex = 15
         Me.GridColumn45.Width = 64
         '
         'GridColumn20
@@ -556,7 +554,7 @@ Partial Class FormAWBInv
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_final", "{0:N2}")})
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 17
+        Me.GridColumn20.VisibleIndex = 16
         Me.GridColumn20.Width = 59
         '
         'GridColumn14
@@ -565,12 +563,11 @@ Partial Class FormAWBInv
         Me.GridColumn14.FieldName = "note_wh"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 18
+        Me.GridColumn14.VisibleIndex = 17
         Me.GridColumn14.Width = 137
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.BAttachment)
         Me.PanelControl2.Controls.Add(Me.BtnPrint)
         Me.PanelControl2.Controls.Add(Me.BMark)
         Me.PanelControl2.Controls.Add(Me.BtnCancel)
@@ -581,19 +578,6 @@ Partial Class FormAWBInv
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(945, 44)
         Me.PanelControl2.TabIndex = 2
-        '
-        'BAttachment
-        '
-        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAttachment.ImageIndex = 13
-        Me.BAttachment.ImageList = Me.LargeImageCollection
-        Me.BAttachment.Location = New System.Drawing.Point(477, 2)
-        Me.BAttachment.Name = "BAttachment"
-        Me.BAttachment.Size = New System.Drawing.Size(106, 40)
-        Me.BAttachment.TabIndex = 23
-        Me.BAttachment.TabStop = False
-        Me.BAttachment.Text = "Attachment"
-        Me.BAttachment.Visible = False
         '
         'LargeImageCollection
         '
@@ -1228,7 +1212,6 @@ Partial Class FormAWBInv
     Friend WithEvents GridColumnDiffAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
