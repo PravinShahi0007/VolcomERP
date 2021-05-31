@@ -334,16 +334,16 @@
             where += " AND design.id_season IN (" + CCBESeason.EditValue.ToString + ")"
         End If
 
-        If Not SLUEDivision.EditValue.ToString = "0" Then
-            where += " AND division.id_code_detail = " + SLUEDivision.EditValue.ToString
+        If Not CCBEDivision.EditValue.ToString = "" Then
+            where += " AND division.id_code_detail IN (" + CCBEDivision.EditValue.ToString + ")"
         End If
 
-        If Not SLUECategory.EditValue.ToString = "0" Then
-            where += " AND category.id_code_detail = " + SLUECategory.EditValue.ToString
+        If Not CCBECategory.EditValue.ToString = "" Then
+            where += " AND category.id_code_detail IN (" + CCBECategory.EditValue.ToString + ")"
         End If
 
-        If Not SLUEClass.EditValue.ToString = "0" Then
-            where += " AND class.id_code_detail = " + SLUEClass.EditValue.ToString
+        If Not CCBEClass.EditValue.ToString = "" Then
+            where += " AND class.id_code_detail IN (" + CCBEClass.EditValue.ToString + ")"
         End If
 
         If Not TEProductCode.EditValue.ToString = "" Then
@@ -874,41 +874,62 @@
 
     Sub view_division()
         Dim query As String = "
-            (SELECT 0 AS id_code_detail, 'ALL' AS code)
-            UNION ALL
-            (SELECT id_code_detail, `code`
+            SELECT id_code_detail, `code`
             FROM tb_m_code_detail
             WHERE id_code = 32
-            ORDER BY id_code_detail ASC)
+            ORDER BY id_code_detail ASC
         "
 
-        viewSearchLookupQuery(SLUEDivision, query, "id_code_detail", "code", "id_code_detail")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("code").ToString
+            c.Value = data.Rows(i)("id_code_detail").ToString
+
+            CCBEDivision.Properties.Items.Add(c)
+        Next
     End Sub
 
     Sub view_category()
         Dim query As String = "
-            (SELECT 0 AS id_code_detail, 'ALL' AS code)
-            UNION ALL
-            (SELECT id_code_detail, display_name AS `code`
+            SELECT id_code_detail, display_name AS `code`
             FROM tb_m_code_detail
             WHERE id_code = 4
-            ORDER BY id_code_detail ASC)
+            ORDER BY id_code_detail ASC
         "
 
-        viewSearchLookupQuery(SLUECategory, query, "id_code_detail", "code", "id_code_detail")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("code").ToString
+            c.Value = data.Rows(i)("id_code_detail").ToString
+
+            CCBECategory.Properties.Items.Add(c)
+        Next
     End Sub
 
     Sub view_class()
         Dim query As String = "
-            (SELECT 0 AS id_code_detail, 'ALL' AS code)
-            UNION ALL
-            (SELECT id_code_detail, `code`
+            SELECT id_code_detail, `code`
             FROM tb_m_code_detail
             WHERE id_code = 30
-            ORDER BY id_code_detail ASC)
+            ORDER BY id_code_detail ASC
         "
 
-        viewSearchLookupQuery(SLUEClass, query, "id_code_detail", "code", "id_code_detail")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("code").ToString
+            c.Value = data.Rows(i)("id_code_detail").ToString
+
+            CCBEClass.Properties.Items.Add(c)
+        Next
     End Sub
 
     Sub view_month()

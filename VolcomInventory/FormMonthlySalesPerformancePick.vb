@@ -6,16 +6,16 @@
             where += " AND d.id_season IN (" + FormMonthlySalesPerformance.CCBESeason.EditValue.ToString + ")"
         End If
 
-        If Not FormMonthlySalesPerformance.SLUEDivision.EditValue.ToString = "0" Then
-            where += " AND v.id_code_detail = " + FormMonthlySalesPerformance.SLUEDivision.EditValue.ToString
+        If Not FormMonthlySalesPerformance.CCBEDivision.EditValue.ToString = "" Then
+            where += " AND v.id_code_detail IN (" + FormMonthlySalesPerformance.CCBEDivision.EditValue.ToString + ")"
         End If
 
-        If Not FormMonthlySalesPerformance.SLUECategory.EditValue.ToString = "0" Then
-            where += " AND c.id_code_detail = " + FormMonthlySalesPerformance.SLUECategory.EditValue.ToString
+        If Not FormMonthlySalesPerformance.CCBECategory.EditValue.ToString = "" Then
+            where += " AND c.id_code_detail IN (" + FormMonthlySalesPerformance.CCBECategory.EditValue.ToString + ")"
         End If
 
-        If Not FormMonthlySalesPerformance.SLUEClass.EditValue.ToString = "0" Then
-            where += " AND l.id_code_detail = " + FormMonthlySalesPerformance.SLUEClass.EditValue.ToString
+        If Not FormMonthlySalesPerformance.CCBEClass.EditValue.ToString = "" Then
+            where += " AND l.id_code_detail IN (" + FormMonthlySalesPerformance.CCBEClass.EditValue.ToString + ")"
         End If
 
         Dim query As String = "
