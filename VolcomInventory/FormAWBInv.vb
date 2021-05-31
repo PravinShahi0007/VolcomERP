@@ -177,24 +177,46 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
             Dim is_ok As Boolean = True
 
             For i = 0 To GVInvoice.RowCount - 1
-                If (GVInvoice.GetRowCellValue(i, "diff_amount") < 0 And GVInvoice.GetRowCellValue(i, "note_wh").ToString = "") Or Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final")) = 0 Or Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final")) = 0 Then
+                'If (GVInvoice.GetRowCellValue(i, "diff_amount") < 0 And GVInvoice.GetRowCellValue(i, "note_wh").ToString = "") Or Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final")) = 0 Or Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final")) = 0 Then
+                If (GVInvoice.GetRowCellValue(i, "diff_amount") < 0 And GVInvoice.GetRowCellValue(i, "note_wh").ToString = "") Then
                     is_ok = False
                     Exit For
                 End If
             Next
 
+            Dim is_zero As Boolean = False
+            For i = 0 To GVInvoice.RowCount - 1
+                If Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final")) = 0 Or Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final")) = 0 Then
+                    is_zero = True
+                    Exit For
+                End If
+            Next
+
             If is_ok Then
-                Dim q As String = "UPDATE tb_awb_inv_sum SET is_submit='1' WHERE id_awb_inv_sum='" & id_verification & "'"
-                execute_non_query(q, True, "", "", "", "")
-                '
-                submit_who_prepared("310", id_verification, id_user)
-                '
-                infoCustom("Verification submitted")
-                '
-                load_form()
-                Form3PLInvoiceVerification.load_verification()
+                Dim is_zero_ok As Boolean = True
+
+                If is_zero Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("There is zero amount for some awb, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        is_zero_ok = True
+                    Else
+                        is_zero_ok = False
+                    End If
+                End If
+
+                If is_zero_ok Then
+                    Dim q As String = "UPDATE tb_awb_inv_sum SET is_submit='1' WHERE id_awb_inv_sum='" & id_verification & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                    '
+                    submit_who_prepared("310", id_verification, id_user)
+                    '
+                    infoCustom("Verification submitted")
+                    '
+                    load_form()
+                    Form3PLInvoiceVerification.load_verification()
+                End If
             Else
-                warningCustom("Please put note and final amount")
+                warningCustom("Please put note")
             End If
         Else
             warningCustom("No awb found")
@@ -376,9 +398,6 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
         End If
     End Sub
 
-    Private Sub CBWorksheetName_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CBWorksheetName.EditValueChanged
-
-    End Sub
     Sub fill_combo_worksheet()
         Dim oledbconn As New OleDbConnection
         Dim strConn As String = ""
@@ -624,7 +643,7 @@ GROUP BY d.`id_inbound_awb`"
 
         If Not save.FileName = "" Then
             Dim opt As DevExpress.XtraPrinting.XlsxExportOptions = New DevExpress.XtraPrinting.XlsxExportOptions
-            opt.SheetName = "Upload Template"
+            opt.SheetName = "rekonsiliasi"
             GridColumnNo.VisibleIndex = -1
             GVInvoice.ActiveFilterString = "[diff_amount]<0"
             GVInvoice.ExportToXlsx(save.FileName, opt)
@@ -641,5 +660,110 @@ GROUP BY d.`id_inbound_awb`"
         FormReportMark.form_origin = Name
         FormReportMark.is_view = is_view
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BImportHasilRekon_Click(sender As Object, e As EventArgs) Handles BImportHasilRekon.Click
+        Dim file_rekon_name As String = ""
+
+        Cursor = Cursors.WaitCursor
+        Dim fdlg As OpenFileDialog = New OpenFileDialog()
+        fdlg.Title = "Select excel file To import"
+        fdlg.InitialDirectory = "C:\"
+        fdlg.Filter = "Excel File|*.xls; *.xlsx"
+        fdlg.FilterIndex = 0
+        fdlg.RestoreDirectory = True
+        Cursor = Cursors.Default
+        If fdlg.ShowDialog() = DialogResult.OK Then
+            'use save as
+            Dim open_file As String = ""
+
+            'If is_save_as Then
+            '    Cursor = Cursors.WaitCursor
+            '    Dim path As String = Application.StartupPath & "\download\"
+            '    'create directory if not exist
+            '    If Not IO.Directory.Exists(path) Then
+            '        System.IO.Directory.CreateDirectory(path)
+            '    End If
+            '    path = path + "file_temp.xls"
+            '    Dim app As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
+            '    Dim temp As Microsoft.Office.Interop.Excel.Workbook = app.Workbooks.Open(fdlg.FileName)
+            '    'delete file
+            '    Try
+            '        My.Computer.FileSystem.DeleteFile(path)
+            '    Catch ex As Exception
+            '    End Try
+            '    temp.SaveAs(path, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook)
+            '    temp.Close()
+            '    app.Quit()
+            '    open_file = path
+            '    Cursor = Cursors.Default
+            'Else
+            '    open_file = fdlg.FileName
+            'End If
+
+            open_file = fdlg.FileName
+            file_rekon_name = open_file
+
+            'TBFileAddress.Text = ""
+            'TBFileAddress.Text = open_file
+        Else
+            Exit Sub
+        End If
+        fdlg.Dispose()
+
+        'get data
+        Dim oledbconn As New OleDbConnection
+        Dim strConn As String = ""
+        Dim data_temp As New DataTable
+
+        copy_file_path = My.Application.Info.DirectoryPath.ToString & "\temp_import_xls." & IO.Path.GetExtension(file_rekon_name)
+        IO.File.Copy(file_rekon_name, copy_file_path, True)
+
+        strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & copy_file_path.ToLower & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text;"""
+        oledbconn.ConnectionString = strConn
+        Dim MyCommand As OleDbDataAdapter
+
+        MyCommand = New OleDbDataAdapter("select * from [rekonsiliasi] WHERE not ([AWB]='')", oledbconn)
+
+        Try
+            MyCommand.Fill(data_temp)
+            MyCommand.Dispose()
+        Catch ex As Exception
+            stopCustom("Input must be in accordance with the format specified !" + System.Environment.NewLine + ex.ToString)
+            Exit Sub
+        End Try
+
+        Try
+
+            Dim queryx As String = "SELECT id_awb_inv_sum_det,id_awb_inv_sum,awb_no,time_verification
+FROM `tb_awb_inv_sum_det` 
+WHERE id_awb_inv_sum='" & id_verification & "' AND (amount_cargo-amount_wh>0) "
+
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+
+            Dim query As DataTable = (From table1 In tb1
+                                      Group Join table_tmp In tb2
+                                      On table1("AWB").ToString.ToLower Equals table_tmp("awb_no").ToString.ToLower Into awb = Group
+                                      From result_awb In awb.DefaultIfEmpty()
+                                      Select New With
+                                      {
+                                        .id_awb_inv_sum_det = If(result_awb Is Nothing, "", result_awb("id_awb_inv_sum_det")),
+                                        .time_verification = If(result_awb Is Nothing, "", result_awb("time_verification")),
+                                        .berat_final = If(table1("(Final) Total Weight").ToString = "", 0, table1("(Final) Total Weight")),
+                                        .amount_final = If(table1("(Final) Total Amount").ToString = "", 0, table1("(Final) Total Amount")),
+                                        .note = If(table1("Note").ToString = "", 0, table1("Note"))
+                                      })
+
+            'Dim dtcek As DataTable = query.ToList().CopyTodatatable
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+
+        data_temp.Dispose()
+        oledbconn.Close()
+        oledbconn.Dispose()
     End Sub
 End Class

@@ -54,6 +54,7 @@ Partial Class FormSalesOrderSingleV2
         Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDesignType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -69,7 +70,6 @@ Partial Class FormSalesOrderSingleV2
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.GCDesignType = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -459,6 +459,14 @@ Partial Class FormSalesOrderSingleV2
         Me.GridColumnIdDesignCat.Name = "GridColumnIdDesignCat"
         Me.GridColumnIdDesignCat.OptionsColumn.AllowEdit = False
         '
+        'GCDesignType
+        '
+        Me.GCDesignType.Caption = "Design Type"
+        Me.GCDesignType.FieldName = "design_type"
+        Me.GCDesignType.Name = "GCDesignType"
+        Me.GCDesignType.Visible = True
+        Me.GCDesignType.VisibleIndex = 5
+        '
         'RepositoryItemTextEdit1
         '
         Me.RepositoryItemTextEdit1.AutoHeight = False
@@ -603,14 +611,6 @@ Partial Class FormSalesOrderSingleV2
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(995, 351)
         Me.PanelControl3.TabIndex = 101
-        '
-        'GCDesignType
-        '
-        Me.GCDesignType.Caption = "Design Type"
-        Me.GCDesignType.FieldName = "design_type"
-        Me.GCDesignType.Name = "GCDesignType"
-        Me.GCDesignType.Visible = True
-        Me.GCDesignType.VisibleIndex = 5
         '
         'FormSalesOrderSingleV2
         '
