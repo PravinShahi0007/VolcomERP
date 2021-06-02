@@ -3,6 +3,8 @@
         load_group_store()
         load_vendor_po()
         load_status_payment()
+        viewDK()
+        TxtAmount.EditValue = 0.00
     End Sub
 
     Private Sub FormBankDepositCaseKhusus_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -14,7 +16,7 @@
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        If GVInvoiceList.RowCount > 0 And GVInvoiceList.FocusedRowHandle >= 0 Then
+        If GVInvoiceList.RowCount > 0 And GVInvoiceList.FocusedRowHandle >= 0 And TxtAmount.EditValue > 0 Then
             Cursor = Cursors.WaitCursor
             Dim amo As Decimal = TxtAmount.EditValue
 
@@ -50,6 +52,10 @@
             Close()
             Cursor = Cursors.Default
         End If
+    End Sub
+    Sub viewDK()
+        Dim query As String = "SELECT * FROM tb_lookup_dc d WHERE d.id_dc=1 OR d.id_dc=2 "
+        viewLookupQuery(LEDK, query, 0, "dc_code", "id_dc")
     End Sub
 
     Sub load_group_store()

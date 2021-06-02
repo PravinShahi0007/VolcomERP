@@ -299,14 +299,21 @@ Public Class FormBankDepositDet
                 ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 5 Then
                     'zalora payout
                     'cek case khusus
+                    Cursor = Cursors.WaitCursor
                     Dim is_add_bbm_spesial_case As String = get_opt_acc_field("is_add_bbm_spesial_case")
                     If is_add_bbm_spesial_case = "1" Then
                         BtnAddCaseKhusus.Visible = True
                     End If
-
                     Dim pz As New ClassPayoutZalora()
                     Dim data As DataTable = pz.viewERPPayout(id_payout_zalora)
+                    Cursor = Cursors.Default
+
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
+                    Cursor = Cursors.WaitCursor
                     For i As Integer = 0 To data.Rows.Count - 1
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading " + (i + 1).ToString + "/" + data.Rows.Count.ToString)
                         Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                         newRow("id_report") = data.Rows(i)("id_ref").ToString
                         newRow("id_report_det") = "0"
@@ -337,6 +344,8 @@ Public Class FormBankDepositDet
                         'set default rec acc
                         SLEPayRecTo.EditValue = get_opt_acc_field("id_acc_rec_bbm_zalora")
                     Next
+                    Cursor = Cursors.Default
+                    FormMain.SplashScreenManager1.CloseWaitForm()
                 End If
             ElseIf type_rec = "3" Then
                 SLEAkunValas.Enabled = False
@@ -1008,6 +1017,15 @@ ORDER BY id_stock_valas DESC LIMIT 1"
     Private Sub BtnAddReference_Click(sender As Object, e As EventArgs) Handles BtnAddCaseKhusus.Click
         Cursor = Cursors.WaitCursor
         FormBankDepositCaseKhusus.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id_deposit
+        FormDocumentUpload.report_mark_type = "162"
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class
