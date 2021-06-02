@@ -31,7 +31,7 @@
                 "
             ElseIf id_comp = "1177" Then
                 query = "
-                    SELECT SellerSKU, HargaRp, HargaPenjualanRp, SellerSKU_erp, HargaRp_erp, HargaPenjualanRp_erp
+                    SELECT SellerSKU, NormalHargaRp, HargaPenjualanRp, SellerSKU_erp, NormalHargaRp_erp, HargaPenjualanRp_erp
                     FROM tb_verification_master_p_blibli
                     WHERE id_verification_master = '" + id_verification_master + "'
                 "
@@ -620,11 +620,11 @@
                 Dim column_check As List(Of String) = New List(Of String)
 
                 column_check.Add("SellerSKU")
-                column_check.Add("HargaRp")
+                column_check.Add("NormalHargaRp")
                 column_check.Add("HargaPenjualanRp")
 
                 'column
-                row = 1
+                row = 2
                 column = 1
 
                 continue_loop = True
@@ -646,7 +646,7 @@
                 'row
                 Dim id_product_in As String = ""
 
-                row = 2
+                row = 5
                 column = 1
 
                 continue_loop = True
@@ -729,7 +729,7 @@
                 Next
 
                 Dim query As String = "
-                    SELECT pro.product_full_code AS SellerSKU, FLOOR(de_pn.design_price) AS HargaRp, FLOOR(de_pc.design_price) AS HargaPenjualanRp " + column_is_valid + "
+                    SELECT pro.product_full_code AS SellerSKU, FLOOR(de_pn.design_price) AS NormalHargaRp, FLOOR(de_pc.design_price) AS HargaPenjualanRp " + column_is_valid + "
                     FROM tb_m_product AS pro
                     LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
                     LEFT JOIN (
@@ -860,11 +860,11 @@
                     id_verification_master = execute_query(query, 0, True, "", "", "", "")
 
                     'detail
-                    query = "INSERT INTO tb_verification_master_p_blibli (id_verification_master, SellerSKU, HargaRp, HargaPenjualanRp, SellerSKU_erp, HargaRp_erp, HargaPenjualanRp_erp) VALUES "
+                    query = "INSERT INTO tb_verification_master_p_blibli (id_verification_master, SellerSKU, NormalHargaRp, HargaPenjualanRp, SellerSKU_erp, NormalHargaRp_erp, HargaPenjualanRp_erp) VALUES "
 
                     For i = 0 To data_excel.Rows.Count - 1
                         Dim SellerSKU As String = data_excel.Rows(i)("SellerSKU").ToString
-                        Dim HargaRp As String = data_excel.Rows(i)("HargaRp").ToString
+                        Dim HargaRp As String = data_excel.Rows(i)("NormalHargaRp").ToString
                         Dim HargaPenjualanRp As String = data_excel.Rows(i)("HargaPenjualanRp").ToString
 
                         Dim SellerSKU_erp As String = ""
@@ -877,7 +877,7 @@
                         End Try
 
                         Try
-                            HargaRp_erp = data_erp.Rows(i)("HargaRp").ToString
+                            HargaRp_erp = data_erp.Rows(i)("NormalHargaRp").ToString
                         Catch ex As Exception
                         End Try
 

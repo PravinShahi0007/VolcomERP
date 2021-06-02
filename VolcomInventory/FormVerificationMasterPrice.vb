@@ -29,7 +29,7 @@
             LEFT JOIN (
                 (SELECT id_verification_master, LEAST(
                     MIN(IF(SellerSKU <> SellerSKU_erp, 0, 1)),
-                    MIN(IF(HargaRp <> HargaRp_erp, 0, 1)),
+                    MIN(IF(NormalHargaRp <> NormalHargaRp_erp, 0, 1)),
                     MIN(IF(HargaPenjualanRp <> HargaPenjualanRp_erp, 0, 1))
                 ) AS is_match
                 FROM tb_verification_master_p_blibli
