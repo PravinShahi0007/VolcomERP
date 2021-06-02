@@ -1522,8 +1522,7 @@ Public Class FormSalesPOSDet
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_sales_pos
-        FormDocumentUpload.report_mark_type = "162"
-        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.report_mark_type = report_mark_type
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
