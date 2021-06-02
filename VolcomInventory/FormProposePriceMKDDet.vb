@@ -139,13 +139,15 @@
             gridBandAction.Visible = False
             gridBandOther.Visible = False
             gridBandHistory.Visible = False
+            BandedGridColumnno.Visible = False
             BandedGridColumndisc_desc.Visible = False
             BandedGridColumnmkd_normal_view.Visible = False
             BandedGridColumnmkd_30_view.Visible = False
             BandedGridColumnmkd_50_view.Visible = False
             BandedGridColumnmkd_70_view.Visible = False
+            BandedGridColumndesign_cat.Visible = False
+            BandedGridColumndesign_price_normal.Visible = False
             BandedGridColumnerp_discount.Visible = False
-            BandedGridColumnpropose_disc_group.Visible = False
             BandedGridColumnpropose_status.Visible = False
         End If
         GVData.BestFitColumns()
@@ -174,6 +176,7 @@
             BtnFinalPropose.Visible = False
             gridBandAction.Visible = True
             BtnBulkEdit.Visible = True
+            PanelOpt.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -188,6 +191,7 @@
             BtnFinalPropose.Visible = True
             gridBandAction.Visible = False
             BtnBulkEdit.Visible = False
+            PanelOpt.Visible = False
         End If
 
         'reset propose
@@ -214,6 +218,7 @@
             gridBandAction.Visible = False
             LEPriceType.Enabled = False
             BtnBulkEdit.Visible = False
+            PanelOpt.Visible = False
         End If
     End Sub
 
@@ -444,114 +449,116 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        If Not check_allow_print(id_report_status, rmt, id) Then
-            warningCustom("Can't print, please complete all approval on system first")
-        Else
-            GVData.ActiveFilterString = "[id_pp_change_det]=0"
-            If GVData.RowCount > 1 Then
-                viewDetail(2)
-            End If
-            GVData.ActiveFilterString = ""
-            Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-            gv = GVData
-            ReportProposePriceMKD.dt = GCData.DataSource
-            ReportProposePriceMKD.id = id
-            If id_report_status <> "6" Then
-                ReportProposePriceMKD.is_pre = "1"
-            Else
-                ReportProposePriceMKD.is_pre = "-1"
-            End If
-            ReportProposePriceMKD.id_report_status = LEReportStatus.EditValue.ToString
-            ReportProposePriceMKD.rmt = rmt
-            Dim Report As New ReportProposePriceMKD()
-
-            'option col
-            BandedGridColumnno.Width = 23
-            BandedGridColumndesign_code.Width = 44
-            BandedGridColumnname.Width = 84
-            BandedGridColumnclass.Width = 26
-            BandedGridColumnage.Width = 20
-            BandedGridColumndesign_cop.Width = 45
-            BandedGridColumndesign_price.Width = 40
-            BandedGridColumnprice_type.Width = 20
-            BandedGridColumndesign_cat.Width = 26
-            BandedGridColumndesign_price_normal.Width = 43
-            BandedGridColumncurr_disc.Width = 30
-            BandedGridColumnpropose_disc.Width = 43
-            BandedGridColumnpropose_price.Width = 62
-            BandedGridColumnpropose_price_final.Width = 73
-            BandedGridColumntotal_sal.Width = 38
-            BandedGridColumntotal_soh.Width = 38
-            BandedGridColumntotal_bos.Width = 38
-            BandedGridColumnsas.Width = 45
-            BandedGridColumntotal_normal_value.Width = 97
-            BandedGridColumntotal_current_value.Width = 101
-            BandedGridColumntotal_propose_value.Width = 103
-            BandedGridColumntotal_cost.Width = 87
-            BandedGridColumnmarked_down_value.Width = 114
-            BandedGridColumnmark_up.Width = 59
-            BandedGridColumnpropose_price_final.AppearanceCell.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
-            BandedGridColumnpropose_price_final.AppearanceCell.ForeColor = Color.Black
-            For Each c In GVData.FormatRules
-                c.Enabled = False
-            Next
-
-            '... 
-            ' creating And saving the view's layout to a new memory stream 
-            Dim str As System.IO.Stream
-            str = New System.IO.MemoryStream()
-            gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-
-            'style
-            Report.GVData.OptionsPrint.UsePrintStyles = True
-            Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-            Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
-
-            Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
-            Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
-
-            Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
-            Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
-
-
-            Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-            Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
-
-            Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
-            Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
-            Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
-
-            Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
-
-            Report.GVData.OptionsPrint.ExpandAllDetails = True
-            Report.GVData.OptionsPrint.UsePrintStyles = True
-            Report.GVData.OptionsPrint.PrintDetails = True
-            Report.GVData.OptionsPrint.PrintFooter = True
-
-            Report.LabelNumber.Text = TxtNumber.Text
-            Report.LabelType.Text = LEMKDType.Text
-            Report.LabelEffectiveDate.Text = DEEffectDate.Text.ToUpper
-            Report.LabelSOHSalDate.Text = DESOHDate.Text.ToUpper
-            Report.LabelDate.Text = DECreated.Text.ToUpper
-            Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
-            Report.LNote.Text = MENote.Text
-
-            ' Show the report's preview. 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreviewDialog()
-
-            BandedGridColumnpropose_price_final.AppearanceCell.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
-            For Each c In GVData.FormatRules
-                c.Enabled = True
-            Next
+        GVData.ActiveFilterString = "[id_pp_change_det]=0"
+        If GVData.RowCount > 1 Then
+            viewDetail(2)
         End If
+        GVData.ActiveFilterString = ""
+        Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+        gv = GVData
+        ReportProposePriceMKD.dt = GCData.DataSource
+        ReportProposePriceMKD.id = id
+        If id_report_status <> "6" Then
+            ReportProposePriceMKD.is_pre = "1"
+        Else
+            ReportProposePriceMKD.is_pre = "-1"
+        End If
+        ReportProposePriceMKD.id_report_status = LEReportStatus.EditValue.ToString
+        ReportProposePriceMKD.rmt = rmt
+        Dim Report As New ReportProposePriceMKD()
+
+        'option col
+        BandedGridColumndesign_code.Width = 44
+        BandedGridColumnname.Width = 84
+        BandedGridColumnclass.Width = 26
+        BandedGridColumnage.Width = 20
+        BandedGridColumndesign_cop.Width = 45
+        BandedGridColumndesign_price.Width = 40
+        BandedGridColumnprice_type.Width = 20
+        BandedGridColumndesign_cat.Width = 26
+        BandedGridColumndesign_price_normal.Width = 43
+        BandedGridColumncurr_disc.Width = 30
+        BandedGridColumnpropose_disc.Width = 43
+        BandedGridColumnpropose_price.Width = 62
+        BandedGridColumnpropose_price_final.Width = 70
+        BandedGridColumnpropose_disc_group.Width = 30
+        BandedGridColumntotal_sal.Width = 38
+        BandedGridColumntotal_soh.Width = 38
+        BandedGridColumntotal_bos.Width = 38
+        BandedGridColumnsas.Width = 45
+        BandedGridColumntotal_normal_value.Width = 97
+        BandedGridColumntotal_current_value.Width = 100
+        BandedGridColumntotal_propose_value.Width = 100
+        BandedGridColumntotal_cost.Width = 87
+        BandedGridColumnmarked_down_value.Width = 114
+        BandedGridColumnmark_up.Width = 59
+        BandedGridColumnpropose_price_final.AppearanceCell.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+        BandedGridColumnpropose_price_final.AppearanceCell.ForeColor = Color.Black
+        For Each c In GVData.FormatRules
+            c.Enabled = False
+        Next
+
+        '... 
+        ' creating And saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'style
+        Report.GVData.OptionsPrint.UsePrintStyles = True
+        Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+
+        Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+        Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+        Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+
+        Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+        Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+        Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+
+        Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+
+        Report.GVData.OptionsPrint.ExpandAllDetails = True
+        Report.GVData.OptionsPrint.UsePrintStyles = True
+        Report.GVData.OptionsPrint.PrintDetails = True
+        Report.GVData.OptionsPrint.PrintFooter = True
+
+        Report.LabelNumber.Text = TxtNumber.Text
+        Report.LabelType.Text = LEMKDType.Text
+        Report.LabelEffectiveDate.Text = DEEffectDate.Text.ToUpper
+        Report.LabelSOHSalDate.Text = DESOHDate.Text.ToUpper
+        Report.LabelDate.Text = DECreated.Text.ToUpper
+        Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        Report.LNote.Text = MENote.Text
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+
+        BandedGridColumnpropose_price_final.AppearanceCell.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
+        For Each c In GVData.FormatRules
+            c.Enabled = True
+        Next
+
+        'If Not check_allow_print(id_report_status, rmt, id) Then
+        '    warningCustom("Can't print, please complete all approval on system first")
+        'Else
+
+        'End If
         Cursor = Cursors.Default
     End Sub
 
@@ -818,6 +825,7 @@
         Else
             stopCustom("No selected items")
         End If
+        CESelectAll.EditValue = False
         GVData.ActiveFilterString = "" + last_filter
         Cursor = Cursors.Default
     End Sub
@@ -840,6 +848,33 @@
             FormProposePriceMKDHist.id = id
             FormProposePriceMKDHist.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
             FormProposePriceMKDHist.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub CESelectAll_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAll.EditValueChanged
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        For i As Integer = 0 To GVData.RowCount - 1
+            If CESelectAll.EditValue = True Then
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Checking " + (i + 1).ToString + "/" + GVData.RowCount.ToString)
+                GVData.SetRowCellValue(i, "is_select", "Yes")
+            Else
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Unchecking " + (i + 1).ToString + "/" + GVData.RowCount.ToString)
+                GVData.SetRowCellValue(i, "is_select", "No")
+            End If
+        Next
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LinkDesignCode_Click(sender As Object, e As EventArgs) Handles LinkDesignCode.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormDesignInfo.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormDesignInfo.ShowDialog()
             Cursor = Cursors.Default
         End If
     End Sub
