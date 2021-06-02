@@ -342,6 +342,12 @@
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
     <Compile Include="ClassValidEAN13.vb" />
+    <Compile Include="Form3PLInvoiceVerification.Designer.vb">
+      <DependentUpon>Form3PLInvoiceVerification.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form3PLInvoiceVerification.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form3plRate.Designer.vb">
       <DependentUpon>Form3plRate.vb</DependentUpon>
     </Compile>
@@ -442,6 +448,12 @@
       <DependentUpon>FormAREvaluation.vb</DependentUpon>
     </Compile>
     <Compile Include="FormAREvaluation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAwbInv.Designer.vb">
+      <DependentUpon>FormAwbInv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAwbInv.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAREvaluationLog.Designer.vb">
@@ -8031,6 +8043,12 @@
     <Compile Include="ReportAttnSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportAwbInv.Designer.vb">
+      <DependentUpon>ReportAwbInv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAwbInv.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBalanceSheet.Designer.vb">
       <DependentUpon>ReportBalanceSheet.vb</DependentUpon>
     </Compile>
@@ -9720,6 +9738,9 @@
       <DependentUpon>barcodeaa.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form3PLInvoiceVerification.resx">
+      <DependentUpon>Form3PLInvoiceVerification.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form3plRate.resx">
       <DependentUpon>Form3plRate.vb</DependentUpon>
     </EmbeddedResource>
@@ -9770,6 +9791,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvaluation.resx">
       <DependentUpon>FormAREvaluation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAwbInv.resx">
+      <DependentUpon>FormAwbInv.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvaluationLog.resx">
       <DependentUpon>FormAREvaluationLog.vb</DependentUpon>
@@ -14027,6 +14051,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAttnSum.resx">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAwbInv.resx">
+      <DependentUpon>ReportAwbInv.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBalanceSheet.resx">
       <DependentUpon>ReportBalanceSheet.vb</DependentUpon>

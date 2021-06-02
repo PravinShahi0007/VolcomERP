@@ -9,6 +9,8 @@
 
     Public id_coa_tag As String = "1"
 
+    Public id_awb_inv_sum As String = "-1"
+
     Private Sub FormItemExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEDateReff.EditValue = Now()
         '
@@ -30,6 +32,125 @@
         GridColumnPPH.UnboundExpression = "Iif([id_acc_pph] = " & get_opt_acc_field("id_acc_skbp") & ", 0, floor([pph_percent] / 100 * [amount]))"
         CEPayLater.Checked = True
         CEPayLater.Enabled = False
+
+        If Not id_awb_inv_sum = "-1" Then
+            'generate
+            Dim qh As String = ""
+            Dim qg As String = ""
+            '
+            qh = "SELECT id_type,inv_number,id_comp FROM tb_awb_inv_sum WHERE id_awb_inv_sum='" & id_awb_inv_sum & "'"
+            Dim dth As DataTable = execute_query(qh, -1, True, "", "", "", "")
+            If dth.Rows.Count > 0 Then
+                TEInvNo.Text = dth.Rows(0)("inv_number").ToString
+                id_comp = dth.Rows(0)("id_comp").ToString
+                TxtCompNumber.Text = get_company_x(dth.Rows(0)("id_comp").ToString, "2")
+                TxtCompName.Text = get_company_x(dth.Rows(0)("id_comp").ToString, "1")
+
+                If dth.Rows(0)("id_type").ToString = "1" Then
+                    qg = "(SELECT '' AS no,d.`id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,store.id_comp AS id_store,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
+,d.`awbill_inv_no`,id.awb_no AS `awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
+,d.`cargo_rate`
+,odm.created_date AS pickup_date
+,COUNT(dd.`id_del_manifest_det`) AS collie
+,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
+,id.note_wh,id.berat_final,id.amount_final
+FROM tb_awb_inv_sum_det id
+INNER JOIN tb_del_manifest_det dd ON id.id_del_manifest=dd.id_del_manifest
+INNER JOIN `tb_del_manifest` d ON dd.`id_del_manifest`=d.`id_del_manifest`
+INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=d.id_sub_district AND d.`id_report_status`=6
+INNER JOIN tb_m_comp store ON store.id_comp=id_store_offline 
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=d.id_comp_group
+INNER JOIN tb_odm_sc_det odmd ON odmd.id_del_manifest=d.`id_del_manifest`
+INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmd.id_odm_sc
+WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND NOT ISNULL(id.id_del_manifest)
+GROUP BY d.`id_del_manifest`)
+UNION ALL
+(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,'' AS id_store,'' AS comp_number,'' AS comp_name
+,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,'' AS `rec_by_store_date`,'' AS `rec_by_store_person`
+,0 AS `cargo_rate`
+,'' AS pickup_date
+,1 AS collie
+,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
+,id.note_wh,id.berat_final,id.amount_final
+FROM tb_awb_inv_sum_det id
+WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
+                Else
+                    qg = "(SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,dis.sub_district,d.id_comp,store.id_comp AS id_store,store.comp_number AS comp_number,store.comp_name AS comp_name
+,d.`awb_inv_number` AS awbill_inv_no,id.awb_no AS `awbill_no`,d.`created_date` AS rec_by_store_date,emp.employee_name AS `rec_by_store_person`
+,rate.`cargo_rate`
+,rn.date_return_note AS pickup_date
+,COUNT(dd.`id_inbound_koli`) AS collie
+,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
+,id.note_wh,id.berat_final,id.amount_final
+FROM tb_awb_inv_sum_det id
+INNER JOIN tb_inbound_koli dd ON dd.`id_inbound_awb`=id.`id_inbound_awb`
+INNER JOIN `tb_inbound_awb` d ON dd.`id_inbound_awb`=d.`id_inbound_awb`
+INNER JOIN tb_3pl_rate rate ON rate.id_3pl_rate=d.id_3pl_rate
+INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=rate.id_sub_district
+INNER JOIN tb_m_user usr ON usr.id_user=d.`created_by`
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN 
+(
+	SELECT st.id_inbound_awb,st.id_comp,c.`comp_number`,c.`comp_name`
+	FROM `tb_inbound_store` st
+	INNER JOIN tb_m_comp c ON c.id_comp=st.`id_comp`
+	GROUP BY id_inbound_awb
+)store ON store.id_inbound_awb=d.id_inbound_awb 
+INNER JOIN
+(
+	SELECT rn.`id_inbound_awb`,rn.`date_return_note`
+	FROM tb_return_note rn 
+	GROUP BY rn.`id_inbound_awb`
+)rn ON rn.`id_inbound_awb`=d.id_inbound_awb 
+WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "'
+GROUP BY d.`id_inbound_awb`)
+UNION ALL
+(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,'' AS id_store,'' AS comp_number,'' AS comp_name
+,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,'' AS `rec_by_store_date`,'' AS `rec_by_store_person`
+,0 AS `cargo_rate`
+,'' AS pickup_date
+,1 AS collie
+,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
+,id.note_wh,id.berat_final,id.amount_final
+FROM tb_awb_inv_sum_det id
+WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
+                End If
+                Dim dtg As DataTable = execute_query(qg, -1, True, "", "", "", "")
+
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Generating from invoice..")
+
+                For i = 0 To dtg.Rows.Count - 1
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing expense " & i + 1 & " of " & (dtg.Rows.Count) & "  ")
+
+                    'insert 1 by 1
+                    GVData.AddNewRow()
+                    GVData.FocusedRowHandle = GVData.RowCount - 1
+                    '2246 acc WH id_acc
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc", "2246")
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_expense_type", "1")
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", "54")
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "cc", dtg.Rows(i)("id_store").ToString)
+                    '
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "description", FormItemExpense.TEDesc3PLInv.Text)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "amount", dtg.Rows(i)("amount_final"))
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", FormItemExpense.TEPPN3PLInv.EditValue)
+                    '
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc_pph", FormItemExpense.SLEPPH3PLInv.EditValue.ToString)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", FormItemExpense.TEPPH3PLInv.EditValue)
+                    '
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", dtg.Rows(i)("amount_final"))
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 1)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_currency", 1)
+                    '
+                Next
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                GVData.BestFitColumns()
+            End If
+        End If
     End Sub
 
     Sub load_unit()
@@ -857,13 +978,20 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
 
         If e.Column.FieldName = "id_currency" Or e.Column.FieldName = "kurs" Or e.Column.FieldName = "amount_before" Then
             'calculate amount in RP
-            For i = 0 To GVData.RowCount - 1
-                Try
-                    GVData.SetRowCellValue(i, "amount", If(GVData.GetRowCellValue(i, "id_currency").ToString = "1", GVData.GetRowCellValue(i, "amount_before"), GVData.GetRowCellValue(i, "amount_before") * GVData.GetRowCellValue(i, "kurs")))
-                Catch ex As Exception
-                    Console.WriteLine(ex.ToString)
-                End Try
-            Next
+            'For i = 0 To GVData.RowCount - 1
+            '    Try
+            '        GVData.SetRowCellValue(i, "amount", If(GVData.GetRowCellValue(i, "id_currency").ToString = "1", GVData.GetRowCellValue(i, "amount_before"), GVData.GetRowCellValue(i, "amount_before") * GVData.GetRowCellValue(i, "kurs")))
+            '    Catch ex As Exception
+            '        Console.WriteLine(ex.ToString)
+            '    End Try
+            'Next
+
+            Try
+                GVData.SetRowCellValue(e.RowHandle, "amount", If(GVData.GetRowCellValue(e.RowHandle, "id_currency").ToString = "1", GVData.GetRowCellValue(e.RowHandle, "amount_before"), GVData.GetRowCellValue(e.RowHandle, "amount_before") * GVData.GetRowCellValue(e.RowHandle, "kurs")))
+            Catch ex As Exception
+                'Console.WriteLine(ex.ToString)
+            End Try
+
         End If
 
         If e.Column.FieldName = "amount" Or e.Column.FieldName = "tax_percent" Or e.Column.FieldName = "pph_percent" Or e.Column.FieldName = "id_currency" Or e.Column.FieldName = "kurs" Or e.Column.FieldName = "amount_before" Then

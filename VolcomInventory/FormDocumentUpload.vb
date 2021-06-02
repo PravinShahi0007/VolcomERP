@@ -77,7 +77,6 @@
     Private Sub RICE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RICE.Click
         Dim FILE_NAME As String = ""
         Try
-
             Dim path As String = Application.StartupPath & "\download\"
             'create directory if not exist
             If Not IO.Directory.Exists(path) Then
@@ -176,9 +175,21 @@
         Try
             Dim path As String = Application.StartupPath & "\download\"
             'delete all file first
-            For Each deleteFile In IO.Directory.GetFiles(path, "*.*", IO.SearchOption.TopDirectoryOnly)
-                IO.File.Delete(deleteFile)
-            Next
+
+            Dim q As String = "SELECT is_clean_download_folder FROM tb_m_user WHERE id_user='" & id_user & "'"
+            Dim is_del As String = execute_query(q, 0, True, "", "", "", "")
+
+            If is_del = "1" Then
+                For Each deleteFile In IO.Directory.GetFiles(path, "*.*", IO.SearchOption.TopDirectoryOnly)
+                    Try
+                        IO.File.Delete(deleteFile)
+                    Catch ex As Exception
+
+                    End Try
+                Next
+            End If
+
+
             'create directory if not exist
             If Not IO.Directory.Exists(path) Then
                 System.IO.Directory.CreateDirectory(path)
@@ -200,12 +211,13 @@
                 open_folder.WindowStyle = ProcessWindowStyle.Maximized
                 open_folder.FileName = "explorer.exe"
                 open_folder.Arguments = "/select,""" & path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString & """"
+
                 Process.Start(open_folder)
             Else
                 stopCustom("No Supporting Document !")
             End If
         Catch ex As Exception
-
+            log_error("Errornya : " & ex.ToString)
         End Try
     End Sub
 End Class

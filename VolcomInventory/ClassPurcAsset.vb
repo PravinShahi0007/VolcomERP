@@ -36,7 +36,7 @@
         a.asset_number, a.asset_name, a.asset_note, a.acq_date, 
         a.acq_cost, IFNULL(apc.cost,0) AS `acq_cost_va`, a.is_non_depresiasi, a.useful_life, 
         IFNULL(a.id_acc_dep,0) AS id_acc_dep, dep.acc_name AS `dep_acc`, dep.acc_description AS `dep_acc_name`,
-        rqd.ship_to,
+        rqd.ship_to,catd.item_cat_detail,
         IFNULL(a.id_acc_dep_accum,0) AS id_acc_dep_accum,adep.acc_name AS `accum_dep_acc`, adep.acc_description AS `accum_dep_acc_name`, a.accum_dep, a.is_active, IFNULL(a.is_active,0) AS `is_active_v`, IFNULL(a.id_report_status,0) AS `id_report_status`, stt.report_status, a.is_confirm, a.id_employee_current, e_current.employee_name AS employee_name_current, a.id_departement_current, d_current.departement AS departement_current, a.location_current, a.location_date
         " + col_add + "
         FROM tb_purc_rec_asset a
@@ -49,6 +49,7 @@
         INNER JOIN tb_m_departement d ON d.id_departement = a.id_departement
         INNER JOIN tb_item i ON i.id_item = a.id_item
         INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+        INNER JOIN tb_item_cat_detail catd ON catd.id_item_cat_detail = i.id_item_cat_detail
         INNER JOIN tb_a_acc fa ON fa.id_acc = a.id_acc_fa
         LEFT JOIN tb_a_acc dep ON dep.id_acc = a.id_acc_dep
         LEFT JOIN tb_a_acc adep ON adep.id_acc = a.id_acc_dep_accum

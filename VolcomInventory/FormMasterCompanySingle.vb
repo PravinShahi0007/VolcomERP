@@ -1156,6 +1156,19 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
         Cursor = Cursors.WaitCursor
         Try
             Dim path As String = Application.StartupPath & "\download\"
+            'delete all file first
+            Dim q As String = "SELECT is_clean_download_folder FROM tb_m_user WHERE id_user='" & id_user & "'"
+            Dim is_del As String = execute_query(q, 0, True, "", "", "", "")
+
+            If is_del = "1" Then
+                For Each deleteFile In IO.Directory.GetFiles(path, "*.*", IO.SearchOption.TopDirectoryOnly)
+                    Try
+                        IO.File.Delete(deleteFile)
+                    Catch ex As Exception
+
+                    End Try
+                Next
+            End If
             'create directory if not exist
             If Not IO.Directory.Exists(path) Then
                 System.IO.Directory.CreateDirectory(path)

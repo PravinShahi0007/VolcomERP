@@ -683,6 +683,9 @@
         ElseIf report_mark_type = "307" Then
             'polis
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_polis_pps WHERE id_polis_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "310" Then
+            'invoice 3pl
+            query = String.Format("SELECT id_report_status, inv_number as report_number FROM tb_awb_inv_sum WHERE id_awb_inv_sum = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -9810,6 +9813,40 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
 
             'update status
             query = String.Format("UPDATE tb_polis_pps SET id_report_status='{0}' WHERE id_polis_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "310" Then
+            'invoice verification
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'update to each table
+                Dim q As String = "SELECT id_type FROM tb_awb_inv_sum WHERE id_awb_inv_sum='" & id_report & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    If dt.Rows(0)("id_type").ToString = "1" Then
+                        'outbound
+                        Dim qu As String = "UPDATE tb_del_manifest d
+INNER JOIN `tb_awb_inv_sum_det` aid ON aid.`id_del_manifest`=d.`id_del_manifest`
+INNER JOIN tb_awb_inv_sum ai ON ai.`id_awb_inv_sum`=aid.`id_awb_inv_sum` 
+SET d.`a_weight`=aid.`berat_final`,d.`a_tot_price`=aid.`amount_final`,d.`awbill_inv_no`=ai.`inv_number`
+WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
+                        execute_non_query(q, True, "", "", "", "")
+                    Else
+                        'inbound
+                        Dim qu As String = "UPDATE `tb_inbound_awb` ia
+INNER JOIN `tb_awb_inv_sum_det` aid ON aid.`id_inbound_awb`=ia.`id_inbound_awb`
+INNER JOIN tb_awb_inv_sum ai ON ai.`id_awb_inv_sum`=aid.`id_awb_inv_sum` 
+SET ia.`a_weight`=aid.`berat_final`,ia.`a_tot_price`=aid.`amount_final`,ia.`awb_inv_number`=ai.`inv_number`
+WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
+                        execute_non_query(q, True, "", "", "", "")
+                    End If
+                End If
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_awb_inv_sum SET id_report_status='{0}' WHERE id_awb_inv_sum ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

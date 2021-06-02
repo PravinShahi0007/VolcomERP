@@ -7,8 +7,21 @@
         DEBBKFrom.EditValue = Now
         DEBBKTo.EditValue = Now
         '
+        load_pph_account()
         load_unit()
         viewData()
+        '
+        TEPPH3PLInv.EditValue = 0.00
+        TEPPN3PLInv.EditValue = 0.00
+    End Sub
+
+    Sub load_pph_account()
+        Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, 
+        a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
+        FROM tb_a_acc a 
+INNER JOIN `tb_lookup_tax_report` tr ON tr.id_tax_report=a.id_tax_report AND tr.id_type=1
+WHERE a.id_status=1 AND a.id_is_det=2 AND a.id_coa_type='1'"
+        viewSearchLookupQuery(SLEPPH3PLInv, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
     Sub load_unit()
@@ -131,5 +144,33 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
 
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
         viewData()
+    End Sub
+
+    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+        load_verification()
+    End Sub
+
+    Sub load_verification()
+        Dim q As String = "SELECT inv.id_awb_inv_sum,sts.report_status,c.comp_name,inv.created_date,inv.inv_number,emp.employee_name,SUM(invd.amount_cargo) AS a_tot,SUM(invd.amount_wh) AS c_tot,SUM(invd.amount_final) AS final_tot
+FROM `tb_awb_inv_sum_det` invd
+INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invd.id_awb_inv_sum
+INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=inv.id_report_status
+INNER JOIN tb_m_user usr ON usr.id_user=inv.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE inv.id_report_status=6
+GROUP BY inv.id_awb_inv_sum"
+
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCInvoice.DataSource = dt
+        GVInvoice.BestFitColumns()
+    End Sub
+
+    Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
+        If GVInvoice.RowCount > 0 Then
+            FormItemExpenseDet.action = "ins"
+            FormItemExpenseDet.id_awb_inv_sum = GVInvoice.GetFocusedRowCellValue("id_awb_inv_sum").ToString
+            FormItemExpenseDet.ShowDialog()
+        End If
     End Sub
 End Class

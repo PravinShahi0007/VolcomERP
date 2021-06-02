@@ -19,7 +19,9 @@ Partial Class FormDeliveryMonitoring
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDeliveryMonitoring))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEOnlineOffline = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -75,7 +77,20 @@ Partial Class FormDeliveryMonitoring
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
+        Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEOnlineOffline.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,6 +108,11 @@ Partial Class FormDeliveryMonitoring
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPOutbound.SuspendLayout()
+        Me.XTPInvoice.SuspendLayout()
+        CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -113,6 +133,14 @@ Partial Class FormDeliveryMonitoring
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1008, 44)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Location = New System.Drawing.Point(807, 10)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(75, 23)
+        Me.SimpleButton1.TabIndex = 8940
+        Me.SimpleButton1.Text = "View per DO"
         '
         'SLEOnlineOffline
         '
@@ -567,7 +595,7 @@ Partial Class FormDeliveryMonitoring
         Me.XtraTabControl1.SelectedTabPage = Me.XTPOutbound
         Me.XtraTabControl1.Size = New System.Drawing.Size(1008, 685)
         Me.XtraTabControl1.TabIndex = 3
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOutbound})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOutbound, Me.XTPInvoice})
         '
         'XTPOutbound
         '
@@ -576,13 +604,131 @@ Partial Class FormDeliveryMonitoring
         Me.XTPOutbound.Size = New System.Drawing.Size(1002, 657)
         Me.XTPOutbound.Text = "Outbound Delivery Monitoring"
         '
-        'SimpleButton1
+        'XTPInvoice
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(807, 10)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(75, 23)
-        Me.SimpleButton1.TabIndex = 8940
-        Me.SimpleButton1.Text = "View per DO"
+        Me.XTPInvoice.Controls.Add(Me.GCInvoice)
+        Me.XTPInvoice.Controls.Add(Me.PanelControl2)
+        Me.XTPInvoice.Name = "XTPInvoice"
+        Me.XTPInvoice.PageVisible = False
+        Me.XTPInvoice.Size = New System.Drawing.Size(1002, 657)
+        Me.XTPInvoice.Text = "Invoice Verification Report"
+        '
+        'GCInvoice
+        '
+        Me.GCInvoice.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCInvoice.Location = New System.Drawing.Point(0, 54)
+        Me.GCInvoice.MainView = Me.GVInvoice
+        Me.GCInvoice.Name = "GCInvoice"
+        Me.GCInvoice.Size = New System.Drawing.Size(1002, 603)
+        Me.GCInvoice.TabIndex = 0
+        Me.GCInvoice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoice})
+        '
+        'GVInvoice
+        '
+        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn39, Me.GridColumn47, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45})
+        Me.GVInvoice.GridControl = Me.GCInvoice
+        Me.GVInvoice.Name = "GVInvoice"
+        Me.GVInvoice.OptionsBehavior.Editable = False
+        Me.GVInvoice.OptionsBehavior.ReadOnly = True
+        Me.GVInvoice.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "ID Ivn AWB"
+        Me.GridColumn39.FieldName = "id_awb_inv_sum"
+        Me.GridColumn39.Name = "GridColumn39"
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "3PL"
+        Me.GridColumn47.FieldName = "comp_name"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 0
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "Invoice Number"
+        Me.GridColumn40.FieldName = "inv_number"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 1
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.Caption = "Created By"
+        Me.GridColumn41.FieldName = "employee_name"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 2
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Created Date"
+        Me.GridColumn42.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn42.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn42.FieldName = "created_date"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 3
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Report Status"
+        Me.GridColumn43.FieldName = "report_status"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 4
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "(Volcom) Total Invoice"
+        Me.GridColumn44.DisplayFormat.FormatString = "N2"
+        Me.GridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn44.FieldName = "c_tot"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 5
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "(Cargo) Total Invoice"
+        Me.GridColumn45.DisplayFormat.FormatString = "N2"
+        Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn45.FieldName = "a_tot"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 6
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BRefresh)
+        Me.PanelControl2.Controls.Add(Me.BAdd)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1002, 54)
+        Me.PanelControl2.TabIndex = 1
+        '
+        'BRefresh
+        '
+        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
+        Me.BRefresh.Location = New System.Drawing.Point(2, 2)
+        Me.BRefresh.Name = "BRefresh"
+        Me.BRefresh.Size = New System.Drawing.Size(114, 50)
+        Me.BRefresh.TabIndex = 1
+        Me.BRefresh.Text = "Refresh"
+        '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
+        Me.BAdd.Location = New System.Drawing.Point(825, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(175, 50)
+        Me.BAdd.TabIndex = 0
+        Me.BAdd.Text = "Create Verification Report"
         '
         'FormDeliveryMonitoring
         '
@@ -613,6 +759,11 @@ Partial Class FormDeliveryMonitoring
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPOutbound.ResumeLayout(False)
+        Me.XTPInvoice.ResumeLayout(False)
+        CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -674,4 +825,18 @@ Partial Class FormDeliveryMonitoring
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPInvoice As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCInvoice As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVInvoice As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
