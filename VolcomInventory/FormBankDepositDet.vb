@@ -298,6 +298,12 @@ Public Class FormBankDepositDet
                     DERecDate.EditValue = dv.Rows(0)("trans_date")
                 ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 5 Then
                     'zalora payout
+                    'cek case khusus
+                    Dim is_add_bbm_spesial_case As String = get_opt_acc_field("is_add_bbm_spesial_case")
+                    If is_add_bbm_spesial_case = "1" Then
+                        BtnAddCaseKhusus.Visible = True
+                    End If
+
                     Dim pz As New ClassPayoutZalora()
                     Dim data As DataTable = pz.viewERPPayout(id_payout_zalora)
                     For i As Integer = 0 To data.Rows.Count - 1
@@ -996,5 +1002,11 @@ ORDER BY id_stock_valas DESC LIMIT 1"
     Private Sub BMutasiValas_Click(sender As Object, e As EventArgs) Handles BMutasiValas.Click
         FormStockValas.id_valas_bank = SLEAkunValas.EditValue.ToString
         FormStockValas.ShowDialog()
+    End Sub
+
+    Private Sub BtnAddReference_Click(sender As Object, e As EventArgs) Handles BtnAddCaseKhusus.Click
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
     End Sub
 End Class

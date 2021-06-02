@@ -43,6 +43,7 @@ Partial Class FormBankDepositDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BMutasiValas = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.SLEAkunValas = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -119,7 +120,7 @@ Partial Class FormBankDepositDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BMutasiValas = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddCaseKhusus = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -400,6 +401,14 @@ Partial Class FormBankDepositDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(390, 97)
         Me.PanelControl3.TabIndex = 165
+        '
+        'BMutasiValas
+        '
+        Me.BMutasiValas.Location = New System.Drawing.Point(286, 62)
+        Me.BMutasiValas.Name = "BMutasiValas"
+        Me.BMutasiValas.Size = New System.Drawing.Size(75, 23)
+        Me.BMutasiValas.TabIndex = 8923
+        Me.BMutasiValas.Text = "Mutasi Valas"
         '
         'LabelControl4
         '
@@ -1032,6 +1041,7 @@ Partial Class FormBankDepositDet
         '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.BtnAddCaseKhusus)
         Me.PanelControlNav.Controls.Add(Me.BtnDelete)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
@@ -1163,13 +1173,16 @@ Partial Class FormBankDepositDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
-        'BMutasiValas
+        'BtnAddCaseKhusus
         '
-        Me.BMutasiValas.Location = New System.Drawing.Point(286, 62)
-        Me.BMutasiValas.Name = "BMutasiValas"
-        Me.BMutasiValas.Size = New System.Drawing.Size(75, 23)
-        Me.BMutasiValas.TabIndex = 8923
-        Me.BMutasiValas.Text = "Mutasi Valas"
+        Me.BtnAddCaseKhusus.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddCaseKhusus.Image = CType(resources.GetObject("BtnAddCaseKhusus.Image"), System.Drawing.Image)
+        Me.BtnAddCaseKhusus.Location = New System.Drawing.Point(626, 2)
+        Me.BtnAddCaseKhusus.Name = "BtnAddCaseKhusus"
+        Me.BtnAddCaseKhusus.Size = New System.Drawing.Size(143, 38)
+        Me.BtnAddCaseKhusus.TabIndex = 2
+        Me.BtnAddCaseKhusus.Text = "Add (Case Khusus)"
+        Me.BtnAddCaseKhusus.Visible = False
         '
         'FormBankDepositDet
         '
@@ -1348,4 +1361,5 @@ Partial Class FormBankDepositDet
     Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnvalue_bef_kurs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BMutasiValas As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddCaseKhusus As DevExpress.XtraEditors.SimpleButton
 End Class
