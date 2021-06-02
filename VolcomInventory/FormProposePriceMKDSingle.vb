@@ -158,6 +158,13 @@
             gv.SetFocusedRowCellValue("propose_status", "")
         End If
         gv.SetFocusedRowCellValue("note", MENote.Text)
+
+        'cek not use recom
+        If id_mkd_type = "1" Then
+            If erp_discount > 30 Then
+                erp_discount = -1
+            End If
+        End If
         If propose_disc <> erp_discount Then
             gv.SetFocusedRowCellValue("check_stt", "1")
         Else
