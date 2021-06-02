@@ -43,6 +43,7 @@ Partial Class FormBankDepositDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BMutasiValas = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.SLEAkunValas = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -106,6 +107,7 @@ Partial Class FormBankDepositDet
         Me.XTCBBM = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAddCaseKhusus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDraft = New DevExpress.XtraTab.XtraTabPage()
@@ -119,7 +121,7 @@ Partial Class FormBankDepositDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BMutasiValas = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -401,6 +403,14 @@ Partial Class FormBankDepositDet
         Me.PanelControl3.Size = New System.Drawing.Size(390, 97)
         Me.PanelControl3.TabIndex = 165
         '
+        'BMutasiValas
+        '
+        Me.BMutasiValas.Location = New System.Drawing.Point(286, 62)
+        Me.BMutasiValas.Name = "BMutasiValas"
+        Me.BMutasiValas.Size = New System.Drawing.Size(75, 23)
+        Me.BMutasiValas.TabIndex = 8923
+        Me.BMutasiValas.Text = "Mutasi Valas"
+        '
         'LabelControl4
         '
         Me.LabelControl4.Location = New System.Drawing.Point(10, 67)
@@ -555,6 +565,7 @@ Partial Class FormBankDepositDet
         Me.PanelControl7.Controls.Add(Me.BtnPrint)
         Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl7.Controls.Add(Me.BMark)
+        Me.PanelControl7.Controls.Add(Me.BtnAttachment)
         Me.PanelControl7.Controls.Add(Me.BtnCancel)
         Me.PanelControl7.Controls.Add(Me.BtnSave)
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -568,7 +579,7 @@ Partial Class FormBankDepositDet
         Me.PanelControlPreview.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlPreview.Controls.Add(Me.CEPrintPreview)
         Me.PanelControlPreview.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlPreview.Location = New System.Drawing.Point(555, 2)
+        Me.PanelControlPreview.Location = New System.Drawing.Point(452, 2)
         Me.PanelControlPreview.Name = "PanelControlPreview"
         Me.PanelControlPreview.Size = New System.Drawing.Size(72, 36)
         Me.PanelControlPreview.TabIndex = 26
@@ -588,7 +599,7 @@ Partial Class FormBankDepositDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(627, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(524, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 36)
         Me.BtnPrint.TabIndex = 17
@@ -599,7 +610,7 @@ Partial Class FormBankDepositDet
         '
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(702, 2)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(599, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 36)
         Me.BtnViewJournal.TabIndex = 20
@@ -1032,6 +1043,7 @@ Partial Class FormBankDepositDet
         '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.BtnAddCaseKhusus)
         Me.PanelControlNav.Controls.Add(Me.BtnDelete)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
@@ -1039,6 +1051,17 @@ Partial Class FormBankDepositDet
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(953, 42)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'BtnAddCaseKhusus
+        '
+        Me.BtnAddCaseKhusus.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddCaseKhusus.Image = CType(resources.GetObject("BtnAddCaseKhusus.Image"), System.Drawing.Image)
+        Me.BtnAddCaseKhusus.Location = New System.Drawing.Point(626, 2)
+        Me.BtnAddCaseKhusus.Name = "BtnAddCaseKhusus"
+        Me.BtnAddCaseKhusus.Size = New System.Drawing.Size(143, 38)
+        Me.BtnAddCaseKhusus.TabIndex = 2
+        Me.BtnAddCaseKhusus.Text = "Add (Case Khusus)"
+        Me.BtnAddCaseKhusus.Visible = False
         '
         'BtnDelete
         '
@@ -1163,13 +1186,18 @@ Partial Class FormBankDepositDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
-        'BMutasiValas
+        'BtnAttachment
         '
-        Me.BMutasiValas.Location = New System.Drawing.Point(286, 62)
-        Me.BMutasiValas.Name = "BMutasiValas"
-        Me.BMutasiValas.Size = New System.Drawing.Size(75, 23)
-        Me.BMutasiValas.TabIndex = 8923
-        Me.BMutasiValas.Text = "Mutasi Valas"
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 16
+        Me.BtnAttachment.ImageList = Me.LargeImageCollection
+        Me.BtnAttachment.Location = New System.Drawing.Point(704, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(103, 36)
+        Me.BtnAttachment.TabIndex = 27
+        Me.BtnAttachment.TabStop = False
+        Me.BtnAttachment.Text = "Attachment"
+        Me.BtnAttachment.Visible = False
         '
         'FormBankDepositDet
         '
@@ -1348,4 +1376,6 @@ Partial Class FormBankDepositDet
     Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnvalue_bef_kurs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BMutasiValas As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddCaseKhusus As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -128,6 +128,52 @@ Module Database
         Return 0
     End Function
 
+    Function execute_query_log_time(ByVal command_text As String, ByVal col_index As Integer, ByVal is_local As Boolean, ByVal host As String, ByVal username As String, ByVal password As String, ByVal database As String)
+        If is_local = True Then
+            host = app_host
+            username = app_username
+            password = app_password
+            database = app_database
+        End If
+
+        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True; Allow User Variables=True;Pooling=False;", host, username, password, database)
+
+        'Enable when developing
+        If is_test = "1" Then
+            Console.WriteLine(command_text)
+        End If
+
+        If col_index < 0 Then 'return data table
+            Dim connection As New MySqlConnection(connection_string)
+            connection.Open()
+            Dim data As New DataTable
+            Dim adapter As New MySqlDataAdapter(command_text, connection)
+            adapter.SelectCommand.CommandTimeout = 900
+            adapter.Fill(data)
+            adapter.Dispose()
+            data.Dispose()
+            connection.Close()
+            connection.Dispose()
+
+            Return data
+        Else 'return reader
+            Dim connection As MySqlConnection = New MySqlConnection(connection_string)
+            connection.Open()
+            Dim command As MySqlCommand = connection.CreateCommand()
+            command.CommandText = command_text
+            Dim reader As MySqlDataReader = command.ExecuteReader()
+            reader.Read()
+            Dim result As String = reader.GetValue(col_index).ToString
+            command.Dispose()
+            connection.Close()
+            connection.Dispose()
+
+            Return result
+        End If
+
+        Return 0
+    End Function
+
     Function execute_query_no_pooling(ByVal command_text As String, ByVal col_index As Integer, ByVal is_local As Boolean, ByVal host As String, ByVal username As String, ByVal password As String, ByVal database As String)
         If is_local = True Then
             host = app_host

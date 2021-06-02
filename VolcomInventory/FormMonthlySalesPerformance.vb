@@ -737,7 +737,7 @@
             ORDER BY design.design_first_rec_wh ASC
         "
 
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
 
         GVData.Bands.Clear()
         GVData.Columns.Clear()

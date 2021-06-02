@@ -46,7 +46,9 @@
         DEVA.EditValue = dt_now.Rows(0)("tgl")
 
         'get id own online store
-        id_own_online_store = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_store) FROM tb_m_comp_volcom_ol c", 0, True, "", "", "", "")
+        id_own_online_store = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) FROM tb_m_comp c 
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+WHERE cg.is_use_payout=1", 0, True, "", "", "", "")
 
         load_vendor()
         load_status_payment()
