@@ -14,7 +14,42 @@
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        If GVInvoiceList.RowCount > 0 And GVInvoiceList.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim amo As Decimal = TxtAmount.EditValue
 
+            Dim newRow As DataRow = (TryCast(FormBankDepositDet.GCList.DataSource, DataTable)).NewRow()
+            newRow("id_report") = GVInvoiceList.GetFocusedRowCellValue("id_sales_pos").ToString
+            newRow("id_report_det") = "0"
+            newRow("report_mark_type") = GVInvoiceList.GetFocusedRowCellValue("report_mark_type").ToString
+            newRow("report_mark_type_name") = GVInvoiceList.GetFocusedRowCellValue("report_mark_type_name").ToString
+            newRow("number") = GVInvoiceList.GetFocusedRowCellValue("sales_pos_number").ToString
+            newRow("id_comp") = GVInvoiceList.GetFocusedRowCellValue("id_comp").ToString
+            newRow("vendor") = GVInvoiceList.GetFocusedRowCellValue("comp_number").ToString
+            newRow("id_acc") = GVInvoiceList.GetFocusedRowCellValue("id_acc").ToString
+            newRow("acc_name") = GVInvoiceList.GetFocusedRowCellValue("acc_name").ToString
+            newRow("acc_description") = GVInvoiceList.GetFocusedRowCellValue("acc_description").ToString
+            newRow("comp_number") = GVInvoiceList.GetFocusedRowCellValue("comp_number").ToString
+            newRow("total_rec") = 0
+            If LEDK.EditValue.ToString = "1" Then
+                newRow("value") = amo * -1
+                newRow("balance_due") = 0.00
+            Else
+                newRow("value") = amo
+                newRow("balance_due") = 0.00
+            End If
+            newRow("note") = addSlashes(GVInvoiceList.GetFocusedRowCellValue("note").ToString)
+            newRow("id_dc") = LEDK.EditValue.ToString
+            newRow("dc_code") = LEDK.Text
+            newRow("value_view") = amo
+            newRow("value_bef_kurs") = 0.00
+            TryCast(FormBankDepositDet.GCList.DataSource, DataTable).Rows.Add(newRow)
+            FormBankDepositDet.GCList.RefreshDataSource()
+            FormBankDepositDet.GVList.RefreshData()
+            FormBankDepositDet.calculate_amount()
+            Close()
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Sub load_group_store()
@@ -46,7 +81,7 @@
         SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
-                                WHERE c.id_comp_cat='6' " + cond_group + " AND c.id_comp NOT IN (" + id_own_online_store + ") "
+                                WHERE c.id_comp_cat='6' " + cond_group + " "
         viewSearchLookupQuery(SLEStoreInvoice, query, "id_comp_contact", "comp_name", "id_comp_contact")
         Cursor = Cursors.Default
     End Sub

@@ -419,6 +419,7 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
             SLEPayRecTo.Enabled = False
             MENote.Enabled = False
             PanelControlPreview.Visible = True
+            BtnAttachment.Visible = True
             '
             Dim query As String = "SELECT * FROM tb_rec_payment WHERE id_rec_payment='" & id_deposit & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -1006,7 +1007,7 @@ ORDER BY id_stock_valas DESC LIMIT 1"
 
     Private Sub BtnAddReference_Click(sender As Object, e As EventArgs) Handles BtnAddCaseKhusus.Click
         Cursor = Cursors.WaitCursor
-
+        FormBankDepositCaseKhusus.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class
