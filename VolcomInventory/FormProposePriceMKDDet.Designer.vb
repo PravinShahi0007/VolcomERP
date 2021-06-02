@@ -105,6 +105,7 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnbtn_edit_propose = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoBtnEditPropose = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.gridBandDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnage = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndisc_desc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmkd_normal_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmkd_30_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -114,7 +115,6 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnprice_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_cop = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_price_normal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnage = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_sal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_soh = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_bos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -151,6 +151,8 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnnote_old = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_pp_change_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnBulkEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
@@ -160,6 +162,7 @@ Partial Class FormProposePriceMKDDet
         Me.BtnFinalPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.LinkDesignCode = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,6 +197,10 @@ Partial Class FormProposePriceMKDDet
         CType(Me.RepositoryItemTENote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelOpt.SuspendLayout()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LinkDesignCode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BandedGridColumncheck_stt
@@ -211,6 +218,7 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumndesign_code.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumndesign_code.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumndesign_code.Caption = "Code"
+        Me.BandedGridColumndesign_code.ColumnEdit = Me.LinkDesignCode
         Me.BandedGridColumndesign_code.FieldName = "design_code"
         Me.BandedGridColumndesign_code.Name = "BandedGridColumndesign_code"
         Me.BandedGridColumndesign_code.OptionsColumn.ReadOnly = True
@@ -399,7 +407,7 @@ Partial Class FormProposePriceMKDDet
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(882, 215)
+        Me.GroupControlHead.Size = New System.Drawing.Size(1066, 215)
         Me.GroupControlHead.TabIndex = 10
         '
         'LEMKDType
@@ -442,7 +450,7 @@ Partial Class FormProposePriceMKDDet
         Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
         Me.BtnCreateNew.Location = New System.Drawing.Point(20, 184)
         Me.BtnCreateNew.Name = "BtnCreateNew"
-        Me.BtnCreateNew.Size = New System.Drawing.Size(598, 29)
+        Me.BtnCreateNew.Size = New System.Drawing.Size(782, 29)
         Me.BtnCreateNew.TabIndex = 8925
         Me.BtnCreateNew.Text = "Create New"
         Me.BtnCreateNew.Visible = False
@@ -566,7 +574,7 @@ Partial Class FormProposePriceMKDDet
         Me.PanelControl1.Controls.Add(Me.LEReportStatus)
         Me.PanelControl1.Controls.Add(Me.DECreated)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(618, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(802, 2)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(262, 211)
         Me.PanelControl1.TabIndex = 4
@@ -656,14 +664,14 @@ Partial Class FormProposePriceMKDDet
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 540)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(882, 44)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(1066, 44)
         Me.PanelControlBottom.TabIndex = 15
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(222, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(406, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -673,7 +681,7 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(309, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(493, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -695,7 +703,7 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(415, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(599, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
@@ -706,7 +714,7 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(541, 2)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(725, 2)
         Me.BtnResetPropose.Name = "BtnResetPropose"
         Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
         Me.BtnResetPropose.TabIndex = 9
@@ -716,7 +724,7 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(664, 2)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(848, 2)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
         Me.BtnSaveChanges.TabIndex = 8
@@ -727,7 +735,7 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(784, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(968, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
         Me.BtnConfirm.Size = New System.Drawing.Size(96, 40)
         Me.BtnConfirm.TabIndex = 6
@@ -740,7 +748,7 @@ Partial Class FormProposePriceMKDDet
         Me.XTCPP.Location = New System.Drawing.Point(0, 215)
         Me.XTCPP.Name = "XTCPP"
         Me.XTCPP.SelectedTabPage = Me.XTPDetail
-        Me.XTCPP.Size = New System.Drawing.Size(882, 325)
+        Me.XTCPP.Size = New System.Drawing.Size(1066, 325)
         Me.XTCPP.TabIndex = 19
         Me.XTCPP.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail})
         '
@@ -749,7 +757,7 @@ Partial Class FormProposePriceMKDDet
         Me.XTPDetail.Controls.Add(Me.GCData)
         Me.XTPDetail.Controls.Add(Me.PanelControl3)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(876, 297)
+        Me.XTPDetail.Size = New System.Drawing.Size(1060, 297)
         Me.XTPDetail.Text = "Detail"
         '
         'GCData
@@ -758,8 +766,8 @@ Partial Class FormProposePriceMKDDet
         Me.GCData.Location = New System.Drawing.Point(0, 39)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDisc, Me.RepositoryItemTextEdit1, Me.RepositoryItemTENote, Me.RepoBtnEditPropose, Me.RepoCESelAll, Me.RepoBtnHist, Me.RepoLinkHist})
-        Me.GCData.Size = New System.Drawing.Size(876, 258)
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDisc, Me.RepositoryItemTextEdit1, Me.RepositoryItemTENote, Me.RepoBtnEditPropose, Me.RepoCESelAll, Me.RepoBtnHist, Me.RepoLinkHist, Me.LinkDesignCode})
+        Me.GCData.Size = New System.Drawing.Size(1060, 258)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -1008,6 +1016,7 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_code)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumnname)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumnclass)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnage)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumndisc_desc)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_normal_view)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumnmkd_30_view)
@@ -1019,7 +1028,6 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_price_normal)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_price)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumncurr_disc)
-        Me.gridBandDetail.Columns.Add(Me.BandedGridColumnage)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_sal)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_soh)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_bos)
@@ -1028,6 +1036,20 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandDetail.Name = "gridBandDetail"
         Me.gridBandDetail.VisibleIndex = 1
         Me.gridBandDetail.Width = 1472
+        '
+        'BandedGridColumnage
+        '
+        Me.BandedGridColumnage.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnage.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnage.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnage.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnage.Caption = "Age"
+        Me.BandedGridColumnage.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnage.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnage.FieldName = "age"
+        Me.BandedGridColumnage.Name = "BandedGridColumnage"
+        Me.BandedGridColumnage.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnage.Visible = True
         '
         'BandedGridColumndisc_desc
         '
@@ -1140,20 +1162,6 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumndesign_price_normal.Name = "BandedGridColumndesign_price_normal"
         Me.BandedGridColumndesign_price_normal.OptionsColumn.ReadOnly = True
         Me.BandedGridColumndesign_price_normal.Visible = True
-        '
-        'BandedGridColumnage
-        '
-        Me.BandedGridColumnage.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnage.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnage.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumnage.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.BandedGridColumnage.Caption = "Age"
-        Me.BandedGridColumnage.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnage.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnage.FieldName = "age"
-        Me.BandedGridColumnage.Name = "BandedGridColumnage"
-        Me.BandedGridColumnage.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumnage.Visible = True
         '
         'BandedGridColumntotal_sal
         '
@@ -1609,6 +1617,7 @@ Partial Class FormProposePriceMKDDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.PanelOpt)
         Me.PanelControl3.Controls.Add(Me.BtnBulkEdit)
         Me.PanelControl3.Controls.Add(Me.LabelControl11)
         Me.PanelControl3.Controls.Add(Me.LabelControl10)
@@ -1621,14 +1630,32 @@ Partial Class FormProposePriceMKDDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(876, 39)
+        Me.PanelControl3.Size = New System.Drawing.Size(1060, 39)
         Me.PanelControl3.TabIndex = 17
+        '
+        'PanelOpt
+        '
+        Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelOpt.Controls.Add(Me.CESelectAll)
+        Me.PanelOpt.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelOpt.Location = New System.Drawing.Point(555, 2)
+        Me.PanelOpt.Name = "PanelOpt"
+        Me.PanelOpt.Size = New System.Drawing.Size(74, 35)
+        Me.PanelOpt.TabIndex = 8932
+        '
+        'CESelectAll
+        '
+        Me.CESelectAll.Location = New System.Drawing.Point(4, 8)
+        Me.CESelectAll.Name = "CESelectAll"
+        Me.CESelectAll.Properties.Caption = "Select All"
+        Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
+        Me.CESelectAll.TabIndex = 0
         '
         'BtnBulkEdit
         '
         Me.BtnBulkEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnBulkEdit.Image = CType(resources.GetObject("BtnBulkEdit.Image"), System.Drawing.Image)
-        Me.BtnBulkEdit.Location = New System.Drawing.Point(445, 2)
+        Me.BtnBulkEdit.Location = New System.Drawing.Point(629, 2)
         Me.BtnBulkEdit.Name = "BtnBulkEdit"
         Me.BtnBulkEdit.Size = New System.Drawing.Size(93, 35)
         Me.BtnBulkEdit.TabIndex = 8931
@@ -1704,7 +1731,7 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnFinalPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnFinalPropose.Image = CType(resources.GetObject("BtnFinalPropose.Image"), System.Drawing.Image)
-        Me.BtnFinalPropose.Location = New System.Drawing.Point(538, 2)
+        Me.BtnFinalPropose.Location = New System.Drawing.Point(722, 2)
         Me.BtnFinalPropose.Name = "BtnFinalPropose"
         Me.BtnFinalPropose.Size = New System.Drawing.Size(112, 35)
         Me.BtnFinalPropose.TabIndex = 13
@@ -1715,7 +1742,7 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnAllProduct.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAllProduct.Image = CType(resources.GetObject("BtnAllProduct.Image"), System.Drawing.Image)
-        Me.BtnAllProduct.Location = New System.Drawing.Point(650, 2)
+        Me.BtnAllProduct.Location = New System.Drawing.Point(834, 2)
         Me.BtnAllProduct.Name = "BtnAllProduct"
         Me.BtnAllProduct.Size = New System.Drawing.Size(112, 35)
         Me.BtnAllProduct.TabIndex = 12
@@ -1726,17 +1753,22 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(762, 2)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(946, 2)
         Me.BtnExportToXLS.Name = "BtnExportToXLS"
         Me.BtnExportToXLS.Size = New System.Drawing.Size(112, 35)
         Me.BtnExportToXLS.TabIndex = 11
         Me.BtnExportToXLS.Text = "Export to XLS"
         '
+        'LinkDesignCode
+        '
+        Me.LinkDesignCode.AutoHeight = False
+        Me.LinkDesignCode.Name = "LinkDesignCode"
+        '
         'FormProposePriceMKDDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(882, 584)
+        Me.ClientSize = New System.Drawing.Size(1066, 584)
         Me.Controls.Add(Me.XTCPP)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.GroupControlHead)
@@ -1782,6 +1814,10 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelOpt.ResumeLayout(False)
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LinkDesignCode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1889,11 +1925,14 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents BandedGridColumnbtn_more_hist As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepoBtnHist As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents BandedGridColumnid_pp_change_hist As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepoLinkHist As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents gridBandAction As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandHistory As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandOther As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents RepoLinkHist As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents PanelOpt As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LinkDesignCode As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class
