@@ -555,6 +555,7 @@
         TEVolumeAirport.EditValue = TECargoWeight.EditValue
         calculate_amount()
     End Sub
+
     Private Sub GVDO_KeyDown(sender As Object, e As KeyEventArgs) Handles GVDO.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim rh As Integer = GVDO.FocusedRowHandle

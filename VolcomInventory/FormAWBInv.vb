@@ -517,7 +517,7 @@ GROUP BY d.`id_inbound_awb`"
                         Select New With
                             {
                                 .id_del_manifest = If(result_awb Is Nothing, "", result_awb("id_del_manifest")),
-                                .inv_number = If(table1("Invoice Number").ToString = "", "", table1("Invoice Number")),
+                                .inv_number = If(table1("Nomor Invoice").ToString = "", "", table1("Nomor Invoice")),
                                 .id_inbound_awb = If(result_awb Is Nothing, "", result_awb("id_inbound_awb")),
                                 .awbill_no = If(result_awb Is Nothing, table1("AWB"), result_awb("awbill_no")),
                                 .sub_district = If(result_awb Is Nothing, "", result_awb("sub_district")),
@@ -762,11 +762,11 @@ WHERE id_awb_inv_sum='" & id_verification & "' AND (amount_cargo-amount_wh>0) "
             Dim tb1 = data_temp.AsEnumerable()
             Dim tb2 = dt.AsEnumerable()
 
-            Dim query As DataTable = (From table1 In tb1
-                                      Group Join table_tmp In tb2
-                                      On table1("AWB").ToString.ToLower Equals table_tmp("awb_no").ToString.ToLower Into awb = Group
-                                      From result_awb In awb.DefaultIfEmpty()
-                                      Select New With
+            Dim hasil_dt As DataTable = (From table1 In tb1
+                                         Group Join table_tmp In tb2
+                                         On table1("AWB").ToString.ToLower Equals table_tmp("awb_no").ToString.ToLower Into awb = Group
+                                         From result_awb In awb.DefaultIfEmpty()
+                                         Select New With
                                       {
                                         .id_awb_inv_sum_det = If(result_awb Is Nothing, "", result_awb("id_awb_inv_sum_det")),
                                         .time_verification = If(result_awb Is Nothing, "", result_awb("time_verification")),
@@ -776,6 +776,9 @@ WHERE id_awb_inv_sum='" & id_verification & "' AND (amount_cargo-amount_wh>0) "
                                       })
 
             'Dim dtcek As DataTable = query.ToList().CopyTodatatable
+            For i = 0 To hasil_dt.Rows.Count - 1
+                Console.WriteLine(hasil_dt(i)("berat_final").ToString)
+            Next
         Catch ex As Exception
             stopCustom(ex.ToString)
         End Try
