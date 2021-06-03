@@ -993,6 +993,7 @@ Partial Class FormAWBInv
         '
         Me.TEInvNumberImport.Location = New System.Drawing.Point(107, 88)
         Me.TEInvNumberImport.Name = "TEInvNumberImport"
+        Me.TEInvNumberImport.Properties.ReadOnly = True
         Me.TEInvNumberImport.Size = New System.Drawing.Size(440, 20)
         Me.TEInvNumberImport.TabIndex = 98
         '
