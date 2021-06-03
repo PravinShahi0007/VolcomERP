@@ -201,12 +201,13 @@ Partial Class FormBankDeposit
         Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BRecPayJualAsset = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.BViewListPenjAsset = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEUnitJualAsset = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.BViewListPenjAsset = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPUrban = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -284,7 +285,7 @@ Partial Class FormBankDeposit
         Me.XTCPO.SelectedTabPage = Me.XTPInvoice
         Me.XTCPO.Size = New System.Drawing.Size(1192, 561)
         Me.XTCPO.TabIndex = 3
-        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDeposit, Me.XTPInvoice, Me.XTPPayout, Me.XTPVA, Me.XTPVS, Me.XTPZalora, Me.XTPJualAsset})
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDeposit, Me.XTPInvoice, Me.XTPPayout, Me.XTPVA, Me.XTPVS, Me.XTPZalora, Me.XTPJualAsset, Me.XTPUrban})
         '
         'XTPInvoice
         '
@@ -2006,16 +2007,6 @@ Partial Class FormBankDeposit
         Me.PanelControl6.Size = New System.Drawing.Size(1186, 50)
         Me.PanelControl6.TabIndex = 1
         '
-        'BViewListPenjAsset
-        '
-        Me.BViewListPenjAsset.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BViewListPenjAsset.Image = CType(resources.GetObject("BViewListPenjAsset.Image"), System.Drawing.Image)
-        Me.BViewListPenjAsset.Location = New System.Drawing.Point(1070, 2)
-        Me.BViewListPenjAsset.Name = "BViewListPenjAsset"
-        Me.BViewListPenjAsset.Size = New System.Drawing.Size(114, 46)
-        Me.BViewListPenjAsset.TabIndex = 8933
-        Me.BViewListPenjAsset.Text = "Load List"
-        '
         'SLEUnitJualAsset
         '
         Me.SLEUnitJualAsset.Location = New System.Drawing.Point(49, 15)
@@ -2054,6 +2045,22 @@ Partial Class FormBankDeposit
         Me.LabelControl12.Size = New System.Drawing.Size(19, 13)
         Me.LabelControl12.TabIndex = 8934
         Me.LabelControl12.Text = "Unit"
+        '
+        'BViewListPenjAsset
+        '
+        Me.BViewListPenjAsset.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BViewListPenjAsset.Image = CType(resources.GetObject("BViewListPenjAsset.Image"), System.Drawing.Image)
+        Me.BViewListPenjAsset.Location = New System.Drawing.Point(1070, 2)
+        Me.BViewListPenjAsset.Name = "BViewListPenjAsset"
+        Me.BViewListPenjAsset.Size = New System.Drawing.Size(114, 46)
+        Me.BViewListPenjAsset.TabIndex = 8933
+        Me.BViewListPenjAsset.Text = "Load List"
+        '
+        'XTPUrban
+        '
+        Me.XTPUrban.Name = "XTPUrban"
+        Me.XTPUrban.Size = New System.Drawing.Size(0, 0)
+        Me.XTPUrban.Text = "Urban Group"
         '
         'FormBankDeposit
         '
@@ -2330,4 +2337,5 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTPUrban As DevExpress.XtraTab.XtraTabPage
 End Class
