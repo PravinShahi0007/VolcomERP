@@ -737,4 +737,67 @@ GROUP BY d.`id_purc_rec_asset_disp`"
     Private Sub CEUrbanAllOpen_EditValueChanged(sender As Object, e As EventArgs) Handles CEUrbanAllOpen.EditValueChanged
         GCUrban.DataSource = Nothing
     End Sub
+
+    Private Sub BtnRecPaymentUrban_Click(sender As Object, e As EventArgs) Handles BtnRecPaymentUrban.Click
+        makeSafeGV(GVUrban)
+
+        'check pending doc
+        GVUrban.ActiveFilterString = "[is_check]='yes' AND [total_pending]>0"
+        If GVUrban.RowCount > 0 Then
+            Dim err_pending As String = ""
+            For i As Integer = 0 To GVUrban.RowCount - 1
+                If i > 0 Then
+                    err_pending += System.Environment.NewLine
+                End If
+                err_pending += "- " + GVUrban.GetRowCellValue(i, "sales_pos_number").ToString
+            Next
+            warningCustom("Please process all pending receive payment for invoice number : " + System.Environment.NewLine + err_pending)
+            GVUrban.ActiveFilterString = ""
+            Exit Sub
+        End If
+
+        'check coa
+        makeSafeGV(GVInvoiceList)
+        GVUrban.ActiveFilterString = "[is_check]='yes' AND [id_acc]=0"
+        If GVUrban.RowCount > 0 Then
+            Dim err_coa As String = ""
+            For i As Integer = 0 To GVUrban.RowCount - 1
+                If i > 0 Then
+                    err_coa += System.Environment.NewLine
+                End If
+                err_coa += "- " + GVUrban.GetRowCellValue(i, "sales_pos_number").ToString
+            Next
+            warningCustom("AR account not found for invoice number : " + System.Environment.NewLine + err_coa)
+            GVUrban.ActiveFilterString = ""
+            Exit Sub
+        End If
+
+        If SLEPayType.EditValue.ToString = "1" Then
+            'process
+            GVUrban.ActiveFilterString = "[is_check]='yes'"
+            If GVUrban.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                FormBankDepositDet.ShowDialog()
+                Cursor = Cursors.Default
+            Else
+                warningCustom("No data selected")
+            End If
+        Else
+            If CEUrbanAllOpen.EditValue = False Then
+                'process
+                GVUrban.ActiveFilterString = "[is_check]='yes'"
+                If GVUrban.RowCount > 0 Then
+                    Cursor = Cursors.WaitCursor
+                    FormBankDepositDet.ShowDialog()
+                    Cursor = Cursors.Default
+                Else
+                    warningCustom("No data selected")
+                End If
+            Else
+                'cek ada yg blm dp
+
+            End If
+        End If
+        GVUrban.ActiveFilterString = ""
+    End Sub
 End Class

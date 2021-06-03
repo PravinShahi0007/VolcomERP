@@ -250,7 +250,7 @@ Partial Class FormBankDeposit
         Me.GridColumn72 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnViewUrbanList = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRecPaymentUrban = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -2113,7 +2113,7 @@ Partial Class FormBankDeposit
         '
         Me.XTPUrban.Controls.Add(Me.GCUrban)
         Me.XTPUrban.Controls.Add(Me.PanelControl7)
-        Me.XTPUrban.Controls.Add(Me.SimpleButton2)
+        Me.XTPUrban.Controls.Add(Me.BtnRecPaymentUrban)
         Me.XTPUrban.Name = "XTPUrban"
         Me.XTPUrban.Size = New System.Drawing.Size(1186, 533)
         Me.XTPUrban.Text = "Urban Group"
@@ -2496,24 +2496,24 @@ Partial Class FormBankDeposit
         Me.BtnViewUrbanList.TabIndex = 8913
         Me.BtnViewUrbanList.Text = "view"
         '
-        'SimpleButton2
+        'BtnRecPaymentUrban
         '
-        Me.SimpleButton2.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.SimpleButton2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton2.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton2.Appearance.Options.UseBackColor = True
-        Me.SimpleButton2.Appearance.Options.UseFont = True
-        Me.SimpleButton2.Appearance.Options.UseForeColor = True
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SimpleButton2.Location = New System.Drawing.Point(0, 501)
-        Me.SimpleButton2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.SimpleButton2.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.SimpleButton2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.SimpleButton2.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(1186, 32)
-        Me.SimpleButton2.TabIndex = 19
-        Me.SimpleButton2.Text = "Receive Payment"
+        Me.BtnRecPaymentUrban.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnRecPaymentUrban.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnRecPaymentUrban.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnRecPaymentUrban.Appearance.Options.UseBackColor = True
+        Me.BtnRecPaymentUrban.Appearance.Options.UseFont = True
+        Me.BtnRecPaymentUrban.Appearance.Options.UseForeColor = True
+        Me.BtnRecPaymentUrban.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnRecPaymentUrban.Location = New System.Drawing.Point(0, 501)
+        Me.BtnRecPaymentUrban.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnRecPaymentUrban.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnRecPaymentUrban.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnRecPaymentUrban.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnRecPaymentUrban.Name = "BtnRecPaymentUrban"
+        Me.BtnRecPaymentUrban.Size = New System.Drawing.Size(1186, 32)
+        Me.BtnRecPaymentUrban.TabIndex = 19
+        Me.BtnRecPaymentUrban.Text = "Receive Payment"
         '
         'FormBankDeposit
         '
@@ -2838,7 +2838,7 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumn70 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnViewUrbanList As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnRecPaymentUrban As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents CEUrbanAllOpen As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents SLEPayType As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView9 As DevExpress.XtraGrid.Views.Grid.GridView
