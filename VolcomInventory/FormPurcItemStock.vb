@@ -479,4 +479,15 @@ GROUP BY savg.`id_item`
         Catch ex As Exception
         End Try
     End Sub
+
+    Private Sub BViewStockKosong_Click(sender As Object, e As EventArgs) Handles BViewStockKosong.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim stc As New ClassPurcItemStock()
+        Dim query As String = stc.queryGetStockKosong()
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCStockKosong.DataSource = data
+        GVStockKosong.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
 End Class

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormPurcItemStock
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormPurcItemStock
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcItemStock))
@@ -130,6 +130,22 @@ Partial Class FormPurcItemStock
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPStockKosong = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCStockKosong = New DevExpress.XtraGrid.GridControl()
+        Me.GVStockKosong = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BViewStockKosong = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -166,6 +182,11 @@ Partial Class FormPurcItemStock
         CType(Me.LECatPemakaian.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPStockKosong.SuspendLayout()
+        CType(Me.GCStockKosong, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVStockKosong, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCStock
@@ -177,7 +198,7 @@ Partial Class FormPurcItemStock
         Me.XTCStock.SelectedTabPage = Me.XTPSOH
         Me.XTCStock.Size = New System.Drawing.Size(1064, 500)
         Me.XTCStock.TabIndex = 0
-        Me.XTCStock.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSOH, Me.XTPStockCard, Me.XTPUsage})
+        Me.XTCStock.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSOH, Me.XTPStockCard, Me.XTPUsage, Me.XTPStockKosong})
         '
         'XTPSOH
         '
@@ -1179,6 +1200,157 @@ Partial Class FormPurcItemStock
         Me.BView.TabIndex = 4
         Me.BView.Text = "view all"
         '
+        'XTPStockKosong
+        '
+        Me.XTPStockKosong.Controls.Add(Me.GCStockKosong)
+        Me.XTPStockKosong.Controls.Add(Me.PanelControl2)
+        Me.XTPStockKosong.Name = "XTPStockKosong"
+        Me.XTPStockKosong.Size = New System.Drawing.Size(1058, 472)
+        Me.XTPStockKosong.Text = "Stock Kosong"
+        '
+        'GCStockKosong
+        '
+        Me.GCStockKosong.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCStockKosong.Location = New System.Drawing.Point(0, 0)
+        Me.GCStockKosong.MainView = Me.GVStockKosong
+        Me.GCStockKosong.Name = "GCStockKosong"
+        Me.GCStockKosong.Size = New System.Drawing.Size(1058, 441)
+        Me.GCStockKosong.TabIndex = 2
+        Me.GCStockKosong.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStockKosong})
+        '
+        'GVStockKosong
+        '
+        Me.GVStockKosong.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn11, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
+        Me.GVStockKosong.GridControl = Me.GCStockKosong
+        Me.GVStockKosong.GroupCount = 1
+        Me.GVStockKosong.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn17, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumn18, "{0:N2}")})
+        Me.GVStockKosong.Name = "GVStockKosong"
+        Me.GVStockKosong.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVStockKosong.OptionsBehavior.Editable = False
+        Me.GVStockKosong.OptionsView.ShowFooter = True
+        Me.GVStockKosong.OptionsView.ShowGroupPanel = False
+        Me.GVStockKosong.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn20, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Id Item"
+        Me.GridColumn9.FieldName = "id_item"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Kode Item"
+        Me.GridColumn11.FieldName = "id_item"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 117
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Description"
+        Me.GridColumn14.FieldName = "item_desc"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
+        Me.GridColumn14.Width = 505
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Id Cat"
+        Me.GridColumn15.FieldName = "id_item_cat"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Category"
+        Me.GridColumn16.FieldName = "item_cat"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 2
+        Me.GridColumn16.Width = 505
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Qty"
+        Me.GridColumn17.DisplayFormat.FormatString = "N2"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn17.FieldName = "qty"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 3
+        Me.GridColumn17.Width = 505
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Amount"
+        Me.GridColumn18.DisplayFormat.FormatString = "N2"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn18.FieldName = "amount"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumn18.UnboundExpression = "[qty] * [value]"
+        Me.GridColumn18.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Id Departement"
+        Me.GridColumn19.FieldName = "id_departement"
+        Me.GridColumn19.Name = "GridColumn19"
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Departement"
+        Me.GridColumn20.FieldName = "departement"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Cost"
+        Me.GridColumn21.DisplayFormat.FormatString = "N2"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "value"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn22.Caption = "UOM"
+        Me.GridColumn22.FieldName = "uom"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 4
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BViewStockKosong)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 441)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1058, 31)
+        Me.PanelControl2.TabIndex = 1
+        '
+        'BViewStockKosong
+        '
+        Me.BViewStockKosong.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BViewStockKosong.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BViewStockKosong.Appearance.Options.UseBackColor = True
+        Me.BViewStockKosong.Appearance.Options.UseForeColor = True
+        Me.BViewStockKosong.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BViewStockKosong.Location = New System.Drawing.Point(2, 2)
+        Me.BViewStockKosong.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BViewStockKosong.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BViewStockKosong.Name = "BViewStockKosong"
+        Me.BViewStockKosong.Size = New System.Drawing.Size(1054, 27)
+        Me.BViewStockKosong.TabIndex = 23
+        Me.BViewStockKosong.Text = "View"
+        '
         'FormPurcItemStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1228,6 +1400,11 @@ Partial Class FormPurcItemStock
         CType(Me.LECatPemakaian.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPStockKosong.ResumeLayout(False)
+        CType(Me.GCStockKosong, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVStockKosong, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1341,4 +1518,20 @@ Partial Class FormPurcItemStock
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BandedGridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents XTPStockKosong As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCStockKosong As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVStockKosong As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BViewStockKosong As DevExpress.XtraEditors.SimpleButton
 End Class

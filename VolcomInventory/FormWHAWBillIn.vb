@@ -342,70 +342,81 @@
                 date_store = "'" + date_temp.ToString("yyyy-MM-dd") + "'"
             End If
 
-            If id_awb = "-1" Then 'new
-                query = "INSERT INTO tb_wh_awbill(is_paid_by_store,awbill_type,awbill_date,id_store,id_cargo,cargo_rate,cargo_lead_time,cargo_min_weight,weight,`length`,width,height,weight_calc,c_weight,c_tot_price,a_weight,a_tot_price,awbill_no,awbill_inv_no,pick_up_date,rec_by_store_date,awbill_note,id_cargo_best,cargo_rate_best,cargo_lead_time_best,cargo_min_weight_best)"
-                query += " VALUES('" + is_paid_by_store + "','" + id_awb_type + "',NOW(),'" + id_comp + "','" + SLECargo.EditValue.ToString + "','" + decimalSQL(TEChargeRate.EditValue.ToString) + "','" + decimalSQL(TECargoLeadTime.EditValue.ToString) + "','" + decimalSQL(TECargoMinWeight.EditValue.ToString) + "','" + decimalSQL(TEWeight.EditValue.ToString) + "','" + decimalSQL(TELength.EditValue.ToString) + "','" + decimalSQL(TEWidth.EditValue.ToString) + "','" + decimalSQL(TEHeight.EditValue.ToString) + "','" + decimalSQL(TEBeratTerpakai.EditValue.ToString) + "','" + decimalSQL(TEVolumeVolc.EditValue.ToString) + "','" + decimalSQL(TEPriceVolcom.EditValue.ToString) + "','" + decimalSQL(TEVolumeAirport.EditValue.ToString) + "','" + decimalSQL(TEPriceAirport.EditValue.ToString) + "','" + TEAWBNo.Text.ToString + "','" + TEInvNo.Text.ToString + "'," + date_pickup + "," + date_store + ",'" + MENote.Text + "','" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "'); SELECT LAST_INSERT_ID(); "
+            Dim date_ok As Boolean = True
+            If Not date_pickup = "NULL" And Not date_store = "NULL" Then
+                If DEPickUp.EditValue > DEStore.EditValue Then
+                    date_ok = False
+                End If
+            End If
 
-                id_awb = execute_query(query, 0, True, "", "", "", "")
-                'detail do
-                If GVDO.RowCount > 0 Then
-                    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty,act_qty,id_ol_store_ret_req) VALUES"
-                    For i As Integer = 0 To GVDO.RowCount - 1
-                        If Not i = 0 Then
-                            query += ","
-                        End If
-                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "','" + GVDO.GetRowCellValue(i, "act_qty").ToString + "'," + If(GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString = "0", "NULL", GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString) + ")"
-                    Next
+            If Not date_ok Then
+                warningCustom("Tanggal pick up lebih besar dari tanggal receiving pada WH.")
+            Else
+                If id_awb = "-1" Then 'new
+                    query = "INSERT INTO tb_wh_awbill(is_paid_by_store,awbill_type,awbill_date,id_store,id_cargo,cargo_rate,cargo_lead_time,cargo_min_weight,weight,`length`,width,height,weight_calc,c_weight,c_tot_price,a_weight,a_tot_price,awbill_no,awbill_inv_no,pick_up_date,rec_by_store_date,awbill_note,id_cargo_best,cargo_rate_best,cargo_lead_time_best,cargo_min_weight_best)"
+                    query += " VALUES('" + is_paid_by_store + "','" + id_awb_type + "',NOW(),'" + id_comp + "','" + SLECargo.EditValue.ToString + "','" + decimalSQL(TEChargeRate.EditValue.ToString) + "','" + decimalSQL(TECargoLeadTime.EditValue.ToString) + "','" + decimalSQL(TECargoMinWeight.EditValue.ToString) + "','" + decimalSQL(TEWeight.EditValue.ToString) + "','" + decimalSQL(TELength.EditValue.ToString) + "','" + decimalSQL(TEWidth.EditValue.ToString) + "','" + decimalSQL(TEHeight.EditValue.ToString) + "','" + decimalSQL(TEBeratTerpakai.EditValue.ToString) + "','" + decimalSQL(TEVolumeVolc.EditValue.ToString) + "','" + decimalSQL(TEPriceVolcom.EditValue.ToString) + "','" + decimalSQL(TEVolumeAirport.EditValue.ToString) + "','" + decimalSQL(TEPriceAirport.EditValue.ToString) + "','" + TEAWBNo.Text.ToString + "','" + TEInvNo.Text.ToString + "'," + date_pickup + "," + date_store + ",'" + MENote.Text + "','" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "'); SELECT LAST_INSERT_ID(); "
+
+                    id_awb = execute_query(query, 0, True, "", "", "", "")
+                    'detail do
+                    If GVDO.RowCount > 0 Then
+                        query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty,act_qty,id_ol_store_ret_req) VALUES"
+                        For i As Integer = 0 To GVDO.RowCount - 1
+                            If Not i = 0 Then
+                                query += ","
+                            End If
+                            query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "','" + GVDO.GetRowCellValue(i, "act_qty").ToString + "'," + If(GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString = "0", "NULL", GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString) + ")"
+                        Next
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
+
+                    '
+                    'infoCustom("AWB calculation saved.")
+
+                    If id_awb_type = "1" Then
+                        FormWHAWBill.DEStart.EditValue = Now
+                        FormWHAWBill.DEEnd.EditValue = Now
+                        FormWHAWBill.load_outbound()
+                        FormWHAWBill.GVAWBill.FocusedRowHandle = find_row(FormWHAWBill.GVAWBill, "id_awbill", id_awb)
+                    Else
+                        FormWHAWBill.DEStart.EditValue = Now
+                        FormWHAWBill.DEEnd.EditValue = Now
+                        FormWHAWBill.load_inbound()
+                        FormWHAWBill.GVAwbillIn.FocusedRowHandle = find_row(FormWHAWBill.GVAwbillIn, "id_awbill", id_awb)
+                    End If
+
+                    load_awb()
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Calculation saved. Do you want to create again ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        again_awb = "1"
+                    End If
+                    Close()
+                Else 'edit
+                    query = "UPDATE tb_wh_awbill SET is_paid_by_store='" + is_paid_by_store + "',id_store='" + id_comp + "',id_cargo='" + SLECargo.EditValue.ToString + "',cargo_rate='" + decimalSQL(TEChargeRate.EditValue.ToString) + "',cargo_lead_time='" + decimalSQL(TECargoLeadTime.EditValue.ToString) + "',cargo_min_weight='" + decimalSQL(TECargoMinWeight.EditValue.ToString) + "',weight='" + decimalSQL(TEWeight.EditValue.ToString) + "',`length`='" + decimalSQL(TELength.EditValue.ToString) + "',width='" + decimalSQL(TEWidth.EditValue.ToString) + "',height='" + decimalSQL(TEHeight.EditValue.ToString) + "',weight_calc='" + decimalSQL(TEBeratTerpakai.EditValue.ToString) + "',c_weight='" + decimalSQL(TEVolumeVolc.EditValue.ToString) + "',c_tot_price='" + decimalSQL(TEPriceVolcom.EditValue.ToString) + "',a_weight='" + decimalSQL(TEVolumeAirport.EditValue.ToString) + "',a_tot_price='" + decimalSQL(TEPriceAirport.EditValue.ToString) + "',awbill_inv_no='" + TEInvNo.Text.ToString + "',awbill_no='" + TEAWBNo.Text.ToString + "',pick_up_date=" + date_pickup + ",rec_by_store_date=" + date_store + ",awbill_note='" + MENote.Text + "',id_cargo_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "id_cargo").ToString) + "',cargo_rate_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "',cargo_lead_time_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "',cargo_min_weight_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "' WHERE id_awbill='" + id_awb + "'"
                     execute_non_query(query, True, "", "", "", "")
-                End If
-
-                '
-                'infoCustom("AWB calculation saved.")
-
-                If id_awb_type = "1" Then
-                    FormWHAWBill.DEStart.EditValue = Now
-                    FormWHAWBill.DEEnd.EditValue = Now
-                    FormWHAWBill.load_outbound()
-                    FormWHAWBill.GVAWBill.FocusedRowHandle = find_row(FormWHAWBill.GVAWBill, "id_awbill", id_awb)
-                Else
-                    FormWHAWBill.DEStart.EditValue = Now
-                    FormWHAWBill.DEEnd.EditValue = Now
-                    FormWHAWBill.load_inbound()
-                    FormWHAWBill.GVAwbillIn.FocusedRowHandle = find_row(FormWHAWBill.GVAwbillIn, "id_awbill", id_awb)
-                End If
-
-                load_awb()
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Calculation saved. Do you want to create again ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    again_awb = "1"
-                End If
-                Close()
-            Else 'edit
-                query = "UPDATE tb_wh_awbill SET is_paid_by_store='" + is_paid_by_store + "',id_store='" + id_comp + "',id_cargo='" + SLECargo.EditValue.ToString + "',cargo_rate='" + decimalSQL(TEChargeRate.EditValue.ToString) + "',cargo_lead_time='" + decimalSQL(TECargoLeadTime.EditValue.ToString) + "',cargo_min_weight='" + decimalSQL(TECargoMinWeight.EditValue.ToString) + "',weight='" + decimalSQL(TEWeight.EditValue.ToString) + "',`length`='" + decimalSQL(TELength.EditValue.ToString) + "',width='" + decimalSQL(TEWidth.EditValue.ToString) + "',height='" + decimalSQL(TEHeight.EditValue.ToString) + "',weight_calc='" + decimalSQL(TEBeratTerpakai.EditValue.ToString) + "',c_weight='" + decimalSQL(TEVolumeVolc.EditValue.ToString) + "',c_tot_price='" + decimalSQL(TEPriceVolcom.EditValue.ToString) + "',a_weight='" + decimalSQL(TEVolumeAirport.EditValue.ToString) + "',a_tot_price='" + decimalSQL(TEPriceAirport.EditValue.ToString) + "',awbill_inv_no='" + TEInvNo.Text.ToString + "',awbill_no='" + TEAWBNo.Text.ToString + "',pick_up_date=" + date_pickup + ",rec_by_store_date=" + date_store + ",awbill_note='" + MENote.Text + "',id_cargo_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "id_cargo").ToString) + "',cargo_rate_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "',cargo_lead_time_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "',cargo_min_weight_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "' WHERE id_awbill='" + id_awb + "'"
-                execute_non_query(query, True, "", "", "", "")
-                '
-                query = "DELETE FROM tb_wh_awbill_det_in WHERE id_awbill='" + id_awb + "'"
-                execute_non_query(query, True, "", "", "", "")
-                '
-                If GVDO.RowCount > 0 Then
-                    query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty,act_qty,id_ol_store_ret_req) VALUES"
-                    For i As Integer = 0 To GVDO.RowCount - 1
-                        If Not i = 0 Then
-                            query += ","
-                        End If
-                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "','" + GVDO.GetRowCellValue(i, "act_qty").ToString + "'," + If(GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString = "0", "NULL", GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString) + ")"
-                    Next
+                    '
+                    query = "DELETE FROM tb_wh_awbill_det_in WHERE id_awbill='" + id_awb + "'"
                     execute_non_query(query, True, "", "", "", "")
-                End If
+                    '
+                    If GVDO.RowCount > 0 Then
+                        query = "INSERT INTO tb_wh_awbill_det_in(id_awbill,do_no,qty,act_qty,id_ol_store_ret_req) VALUES"
+                        For i As Integer = 0 To GVDO.RowCount - 1
+                            If Not i = 0 Then
+                                query += ","
+                            End If
+                            query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "','" + GVDO.GetRowCellValue(i, "act_qty").ToString + "'," + If(GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString = "0", "NULL", GVDO.GetRowCellValue(i, "id_ol_store_ret_req").ToString) + ")"
+                        Next
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
 
-                infoCustom("AWB calculation updated.")
+                    infoCustom("AWB calculation updated.")
 
-                If id_awb_type = "1" Then
-                    FormWHAWBill.load_outbound()
-                    FormWHAWBill.GVAWBill.FocusedRowHandle = find_row(FormWHAWBill.GVAWBill, "id_awbill", id_awb)
-                Else
-                    FormWHAWBill.load_inbound()
-                    FormWHAWBill.GVAwbillIn.FocusedRowHandle = find_row(FormWHAWBill.GVAwbillIn, "id_awbill", id_awb)
+                    If id_awb_type = "1" Then
+                        FormWHAWBill.load_outbound()
+                        FormWHAWBill.GVAWBill.FocusedRowHandle = find_row(FormWHAWBill.GVAWBill, "id_awbill", id_awb)
+                    Else
+                        FormWHAWBill.load_inbound()
+                        FormWHAWBill.GVAwbillIn.FocusedRowHandle = find_row(FormWHAWBill.GVAwbillIn, "id_awbill", id_awb)
+                    End If
                 End If
             End If
         End If
