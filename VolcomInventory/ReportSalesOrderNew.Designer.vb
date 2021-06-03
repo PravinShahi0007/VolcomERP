@@ -706,6 +706,7 @@ Partial Public Class ReportSalesOrderNew
         '
         'XRBarcode
         '
+        Me.XRBarcode.Alignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         Me.XRBarcode.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XRBarcode.LocationFloat = New DevExpress.Utils.PointFloat(2.000046!, 4.166779!)
         Me.XRBarcode.Name = "XRBarcode"

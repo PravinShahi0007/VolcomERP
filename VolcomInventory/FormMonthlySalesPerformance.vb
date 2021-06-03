@@ -737,7 +737,7 @@
             ORDER BY design.design_first_rec_wh ASC
         "
 
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
 
         GVData.Bands.Clear()
         GVData.Columns.Clear()
@@ -897,7 +897,7 @@
             SELECT id_code_detail, display_name AS `code`
             FROM tb_m_code_detail
             WHERE id_code = 4
-            ORDER BY id_code_detail ASC
+            ORDER BY display_name ASC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -917,7 +917,7 @@
             SELECT id_code_detail, `code`
             FROM tb_m_code_detail
             WHERE id_code = 30
-            ORDER BY id_code_detail ASC
+            ORDER BY `code` ASC
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

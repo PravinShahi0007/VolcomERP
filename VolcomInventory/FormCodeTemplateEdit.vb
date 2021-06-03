@@ -179,10 +179,8 @@
 
     Private Sub BEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BEdit.Click
         Dim query As String = "SELECT * FROM tb_m_design_code dc
-                                INNER JOIN tb_m_design dsg ON dc.`id_design` = dsg.`id_design`
-                                INNER JOIN tb_prod_demand_design pdd ON pdd.`id_design`=dc.`id_design`
-                                INNER JOIN tb_prod_order po ON po.`id_prod_demand_design`=pdd.`id_prod_demand_design` and po.id_report_status!=5
-                                WHERE dc.`id_code_detail`='" & GVCodeDetail.GetFocusedRowCellDisplayText("id_code_detail").ToString & "'"
+                              INNER JOIN tb_m_design dsg ON dc.`id_design` = dsg.`id_design`
+                              WHERE dc.`id_code_detail`='" & GVCodeDetail.GetFocusedRowCellDisplayText("id_code_detail").ToString & "' AND dsg.id_lookup_status_order!=2 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         If data.Rows.Count > 0 Then
