@@ -601,6 +601,13 @@
                 End If
             Next
 
+            'check payroll complete
+            Dim check_payrol_complete As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = " + SLUEPayroll.EditValue.ToString, 0, True, "", "", "", "")
+
+            If Not check_payrol_complete = "0" Then
+                check_warning = "Payroll already completed."
+            End If
+
             If check_warning = "" Then
                 Dim confirm As DialogResult
 

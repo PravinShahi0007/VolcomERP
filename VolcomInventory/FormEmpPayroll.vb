@@ -597,23 +597,30 @@
         'check propose salary
         Dim total_propose As String = execute_query("SELECT COUNT(*) AS total FROM tb_employee_sal_pps WHERE effective_date BETWEEN (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ") AND id_report_status NOT IN (5, 6)", 0, True, "", "", "", "")
 
+        'check propose employee
+        Dim total_employee As String = execute_query("SELECT COUNT(*) FROM tb_employee_pps WHERE id_report_status NOT IN (0, 5, 6)", 0, True, "", "", "", "")
+
         If total_propose = "0" Then
-            Dim confirm As DialogResult
+            If total_employee = "0" Then
+                Dim confirm As DialogResult
 
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit payroll ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit payroll ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                execute_non_query("UPDATE tb_emp_payroll SET id_report_status = 1 WHERE id_payroll = '" + id_payroll + "'", True, "", "", "", "")
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    execute_non_query("UPDATE tb_emp_payroll SET id_report_status = 1 WHERE id_payroll = '" + id_payroll + "'", True, "", "", "", "")
 
-                execute_non_query("CALL gen_number(" + id_payroll + ", '192')", True, "", "", "", "")
+                    execute_non_query("CALL gen_number(" + id_payroll + ", '192')", True, "", "", "", "")
 
-                submit_who_prepared("192", GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString, id_user)
+                    submit_who_prepared("192", GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString, id_user)
 
-                load_payroll()
+                    load_payroll()
 
-                GVPayrollPeriode.FocusedRowHandle = find_row(GVPayrollPeriode, "id_payroll", id_payroll)
+                    GVPayrollPeriode.FocusedRowHandle = find_row(GVPayrollPeriode, "id_payroll", id_payroll)
 
-                load_payroll_detail()
+                    load_payroll_detail()
+                End If
+            Else
+                stopCustom("Please complete all propose employee.")
             End If
         Else
             stopCustom("Please complete all propose salary.")

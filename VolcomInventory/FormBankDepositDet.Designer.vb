@@ -65,6 +65,7 @@ Partial Class FormBankDepositDet
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
@@ -121,7 +122,6 @@ Partial Class FormBankDepositDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -629,6 +629,19 @@ Partial Class FormBankDepositDet
         Me.BMark.TabStop = False
         Me.BMark.Text = "Mark"
         '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 16
+        Me.BtnAttachment.ImageList = Me.LargeImageCollection
+        Me.BtnAttachment.Location = New System.Drawing.Point(704, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(103, 36)
+        Me.BtnAttachment.TabIndex = 27
+        Me.BtnAttachment.TabStop = False
+        Me.BtnAttachment.Text = "Attachment"
+        Me.BtnAttachment.Visible = False
+        '
         'BtnCancel
         '
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
@@ -1014,6 +1027,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnvalue_bef_kurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnvalue_bef_kurs.FieldName = "value_bef_kurs"
         Me.GridColumnvalue_bef_kurs.Name = "GridColumnvalue_bef_kurs"
+        Me.GridColumnvalue_bef_kurs.OptionsColumn.AllowEdit = False
         Me.GridColumnvalue_bef_kurs.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_bef_kurs", "{0:N2}")})
         '
         'RICECheckReceive
@@ -1185,19 +1199,6 @@ Partial Class FormBankDepositDet
         Me.GridColumncc.Name = "GridColumncc"
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
-        '
-        'BtnAttachment
-        '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.ImageIndex = 16
-        Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(704, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(103, 36)
-        Me.BtnAttachment.TabIndex = 27
-        Me.BtnAttachment.TabStop = False
-        Me.BtnAttachment.Text = "Attachment"
-        Me.BtnAttachment.Visible = False
         '
         'FormBankDepositDet
         '
