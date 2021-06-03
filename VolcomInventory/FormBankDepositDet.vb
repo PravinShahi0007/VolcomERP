@@ -346,6 +346,42 @@ Public Class FormBankDepositDet
                     Next
                     Cursor = Cursors.Default
                     FormMain.SplashScreenManager1.CloseWaitForm()
+                ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 7 Then
+                    'urban group
+                    GridColumnReceiveView.OptionsColumn.AllowEdit = False
+                    Dim pay_type As String = FormBankDeposit.SLEPayType.EditValue.ToString
+                    For i As Integer = 0 To FormBankDeposit.GVUrban.RowCount - 1
+                        'id_report,number,total,balance due
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_report") = FormBankDeposit.GVUrban.GetRowCellValue(i, "id_sales_pos").ToString
+                        newRow("id_report_det") = "0"
+                        newRow("report_mark_type") = FormBankDeposit.GVUrban.GetRowCellValue(i, "report_mark_type").ToString
+                        newRow("report_mark_type_name") = FormBankDeposit.GVUrban.GetRowCellValue(i, "report_mark_type_name").ToString
+                        newRow("number") = FormBankDeposit.GVUrban.GetRowCellValue(i, "sales_pos_number").ToString
+                        newRow("id_comp") = FormBankDeposit.GVUrban.GetRowCellValue(i, "id_comp").ToString
+                        newRow("id_acc") = FormBankDeposit.GVUrban.GetRowCellValue(i, "id_acc").ToString
+                        newRow("acc_name") = FormBankDeposit.GVUrban.GetRowCellValue(i, "acc_name").ToString
+                        newRow("acc_description") = FormBankDeposit.GVUrban.GetRowCellValue(i, "acc_description").ToString
+                        newRow("comp_number") = FormBankDeposit.GVUrban.GetRowCellValue(i, "comp_number").ToString
+                        newRow("vendor") = FormBankDeposit.GVUrban.GetRowCellValue(i, "comp_number").ToString
+                        newRow("total_rec") = FormBankDeposit.GVUrban.GetRowCellValue(i, "total_rec")
+                        newRow("value_bef_kurs") = 0
+                        newRow("note") = FormBankDeposit.GVUrban.GetRowCellValue(i, "note").ToString
+                        newRow("id_dc") = FormBankDeposit.GVUrban.GetRowCellValue(i, "id_dc").ToString
+                        newRow("dc_code") = FormBankDeposit.GVUrban.GetRowCellValue(i, "dc_code").ToString
+                        newRow("balance_due") = FormBankDeposit.GVUrban.GetRowCellValue(i, "total_due")
+                        If pay_type = "1" Then
+                            'DP
+                            Dim amo_inv As Decimal = FormBankDeposit.GVUrban.GetRowCellValue(i, "amount") * (50 / 100)
+                            newRow("value") = amo_inv
+                            newRow("value_view") = Math.Abs(amo_inv)
+                        Else
+                            'pelunasan
+                            newRow("value") = FormBankDeposit.GVUrban.GetRowCellValue(i, "total_due")
+                            newRow("value_view") = Math.Abs(FormBankDeposit.GVUrban.GetRowCellValue(i, "total_due"))
+                        End If
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                    Next
                 End If
             ElseIf type_rec = "3" Then
                 SLEAkunValas.Enabled = False
