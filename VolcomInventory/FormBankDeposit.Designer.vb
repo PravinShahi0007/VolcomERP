@@ -208,8 +208,8 @@ Partial Class FormBankDeposit
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewListPenjAsset = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPUrban = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCUrban = New DevExpress.XtraGrid.GridControl()
+        Me.GVUrban = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -318,8 +318,8 @@ Partial Class FormBankDeposit
         CType(Me.SLEUnitJualAsset.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPUrban.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCUrban, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVUrban, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2111,34 +2111,34 @@ Partial Class FormBankDeposit
         '
         'XTPUrban
         '
-        Me.XTPUrban.Controls.Add(Me.GridControl1)
+        Me.XTPUrban.Controls.Add(Me.GCUrban)
         Me.XTPUrban.Controls.Add(Me.PanelControl7)
         Me.XTPUrban.Controls.Add(Me.SimpleButton2)
         Me.XTPUrban.Name = "XTPUrban"
         Me.XTPUrban.Size = New System.Drawing.Size(1186, 533)
         Me.XTPUrban.Text = "Urban Group"
         '
-        'GridControl1
+        'GCUrban
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 43)
-        Me.GridControl1.MainView = Me.GridView8
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit6, Me.RepositoryItemCheckEdit7})
-        Me.GridControl1.Size = New System.Drawing.Size(1186, 458)
-        Me.GridControl1.TabIndex = 21
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView8})
+        Me.GCUrban.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCUrban.Location = New System.Drawing.Point(0, 43)
+        Me.GCUrban.MainView = Me.GVUrban
+        Me.GCUrban.Name = "GCUrban"
+        Me.GCUrban.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit6, Me.RepositoryItemCheckEdit7})
+        Me.GCUrban.Size = New System.Drawing.Size(1186, 458)
+        Me.GCUrban.TabIndex = 21
+        Me.GCUrban.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUrban})
         '
-        'GridView8
+        'GVUrban
         '
-        Me.GridView8.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68, Me.GridColumn69, Me.GridColumn70})
-        Me.GridView8.GridControl = Me.GridControl1
-        Me.GridView8.Name = "GridView8"
-        Me.GridView8.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GridView8.OptionsFind.AlwaysVisible = True
-        Me.GridView8.OptionsSelection.EnableAppearanceFocusedRow = False
-        Me.GridView8.OptionsView.ColumnAutoWidth = False
-        Me.GridView8.OptionsView.ShowGroupPanel = False
+        Me.GVUrban.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68, Me.GridColumn69, Me.GridColumn70})
+        Me.GVUrban.GridControl = Me.GCUrban
+        Me.GVUrban.Name = "GVUrban"
+        Me.GVUrban.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVUrban.OptionsFind.AlwaysVisible = True
+        Me.GVUrban.OptionsSelection.EnableAppearanceFocusedRow = False
+        Me.GVUrban.OptionsView.ColumnAutoWidth = False
+        Me.GVUrban.OptionsView.ShowGroupPanel = False
         '
         'GridColumn41
         '
@@ -2600,8 +2600,8 @@ Partial Class FormBankDeposit
         CType(Me.SLEUnitJualAsset.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPUrban.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCUrban, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVUrban, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2802,8 +2802,8 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTPUrban As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView8 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCUrban As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVUrban As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn

@@ -717,7 +717,24 @@ GROUP BY d.`id_purc_rec_asset_disp`"
         WHERE sp.`id_report_status`='6' " & where_string & " 
         GROUP BY sp.`id_sales_pos` " + having_string
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCInvoiceList.DataSource = data
-        GVInvoiceList.BestFitColumns()
+        GCUrban.DataSource = data
+        GVUrban.BestFitColumns()
+    End Sub
+
+    Private Sub SLEPayType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPayType.EditValueChanged
+        GCUrban.DataSource = Nothing
+        If SLEPayType.EditValue.ToString = "1" Then
+            'DP
+            CEUrbanAllOpen.EditValue = False
+            CEUrbanAllOpen.Enabled = False
+        Else
+            'pelunasan
+            CEUrbanAllOpen.EditValue = False
+            CEUrbanAllOpen.Enabled = True
+        End If
+    End Sub
+
+    Private Sub CEUrbanAllOpen_EditValueChanged(sender As Object, e As EventArgs) Handles CEUrbanAllOpen.EditValueChanged
+        GCUrban.DataSource = Nothing
     End Sub
 End Class
