@@ -710,7 +710,7 @@ Partial Public Class ReportMatRecPurc
         Me.LTitle.SizeF = New System.Drawing.SizeF(388.9587!, 25.08334!)
         Me.LTitle.StylePriority.UseFont = False
         Me.LTitle.StylePriority.UseTextAlignment = False
-        Me.LTitle.Text = "RECEIVING REPORT MATERIAL"
+        Me.LTitle.Text = "RECEIVING REPORT RAW MATERIAL"
         Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'BottomMargin
