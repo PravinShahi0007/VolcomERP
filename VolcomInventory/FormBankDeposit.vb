@@ -715,7 +715,7 @@ GROUP BY d.`id_purc_rec_asset_disp`"
         LEFT JOIN tb_a_acc coa ON coa.id_acc = " + var_acc + "
         INNER JOIN tb_m_comp cf ON cf.id_comp=1
         WHERE sp.`id_report_status`='6' " & where_string & " 
-        GROUP BY sp.`id_sales_pos` " + having_string
+        GROUP BY sp.`id_sales_pos` HAVING 1=1 " + having_string
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCUrban.DataSource = data
         GVUrban.BestFitColumns()
@@ -795,7 +795,39 @@ GROUP BY d.`id_purc_rec_asset_disp`"
                 End If
             Else
                 'cek ada yg blm dp
-
+                Dim err_not_dp As String = ""
+                GVUrban.ActiveFilterString = "[is_check]='yes' AND [total_rec]=0"
+                For d As Integer = 0 To GVUrban.RowCount - 1
+                    If d > 0 Then
+                        err_not_dp += System.Environment.NewLine
+                    End If
+                    err_not_dp += "- " + GVUrban.GetRowCellValue(d, "sales_pos_number").ToString
+                Next
+                If err_not_dp = "" Then
+                    'jika semua ada dp
+                    GVUrban.ActiveFilterString = "[is_check]='yes'"
+                    If GVUrban.RowCount > 0 Then
+                        Cursor = Cursors.WaitCursor
+                        FormBankDepositDet.ShowDialog()
+                        Cursor = Cursors.Default
+                    Else
+                        warningCustom("No data selected")
+                    End If
+                Else
+                    'jika tidak ada dp
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("DP tidak ditemukan untuk invoice berikut : " + System.Environment.NewLine + err_not_dp + System.Environment.NewLine + "Yakin melakukan pelunasan ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        'lanjut pelunasan non dp
+                        GVUrban.ActiveFilterString = "[is_check]='yes'"
+                        If GVUrban.RowCount > 0 Then
+                            Cursor = Cursors.WaitCursor
+                            FormBankDepositDet.ShowDialog()
+                            Cursor = Cursors.Default
+                        Else
+                            warningCustom("No data selected")
+                        End If
+                    End If
+                End If
             End If
         End If
         GVUrban.ActiveFilterString = ""
