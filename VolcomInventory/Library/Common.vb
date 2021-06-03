@@ -2261,6 +2261,28 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
         componentLink.ShowPreview()
     End Sub
 
+    Sub print_custom_title(ByVal GridControlHere As DevExpress.XtraGrid.GridControl, ByVal title_here As String)
+        title_print = ""
+        title_print = title_here
+        Dim componentLink As New PrintableComponentLink(New PrintingSystem())
+        componentLink.Component = GridControlHere
+        componentLink.Landscape = True
+        AddHandler componentLink.CreateMarginalHeaderArea, AddressOf CreateMarginalHeaderArea
+        AddHandler componentLink.CreateReportHeaderArea, AddressOf CreateReportHeaderAreaCustom2
+        Dim phf As PageHeaderFooter = TryCast(componentLink.PageHeaderFooter, PageHeaderFooter)
+
+        ' Clear the PageHeaderFooter's contents.
+        phf.Header.Content.Clear()
+
+        ' Add custom information to the link's header.
+        phf.Footer.Content.AddRange(New String() _
+            {"Printed By: " + name_user + "(Volcom ERP)", "", "Date: [Date Printed]"})
+        phf.Footer.LineAlignment = BrickAlignment.Near
+
+        componentLink.CreateDocument()
+        componentLink.ShowPreview()
+    End Sub
+
     Sub print_raw(ByVal GridControlHere As DevExpress.XtraGrid.GridControl, ByVal title_here As String)
         title_print = ""
         title_print = title_here

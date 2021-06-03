@@ -42,6 +42,8 @@ Partial Public Class ReportBalanceTaxSummary
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
+        Me.LPageFooter = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,7 +166,7 @@ Partial Public Class ReportBalanceTaxSummary
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 50.0!
+        Me.BottomMargin.HeightF = 19.79167!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -273,10 +275,31 @@ Partial Public Class ReportBalanceTaxSummary
         Me.XrTableCell13.Visible = False
         Me.XrTableCell13.Weight = 2.99999986405489R
         '
+        'PageFooter
+        '
+        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LPageFooter})
+        Me.PageFooter.HeightF = 23.0!
+        Me.PageFooter.Name = "PageFooter"
+        '
+        'LPageFooter
+        '
+        Me.LPageFooter.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Italic)
+        Me.LPageFooter.ForeColor = System.Drawing.Color.DarkGray
+        Me.LPageFooter.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.LPageFooter.Multiline = True
+        Me.LPageFooter.Name = "LPageFooter"
+        Me.LPageFooter.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LPageFooter.SizeF = New System.Drawing.SizeF(755.9998!, 23.0!)
+        Me.LPageFooter.StylePriority.UseFont = False
+        Me.LPageFooter.StylePriority.UseForeColor = False
+        Me.LPageFooter.StylePriority.UseTextAlignment = False
+        Me.LPageFooter.Text = "Printed by : [employee_print] (Volcom ERP)"
+        Me.LPageFooter.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'ReportBalanceTaxSummary
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(25, 69, 50, 50)
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.PageFooter})
+        Me.Margins = New System.Drawing.Printing.Margins(25, 69, 50, 20)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
@@ -307,4 +330,6 @@ Partial Public Class ReportBalanceTaxSummary
     Friend WithEvents XLNumber As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
     Friend WithEvents XLDate As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
+    Friend WithEvents LPageFooter As DevExpress.XtraReports.UI.XRLabel
 End Class
