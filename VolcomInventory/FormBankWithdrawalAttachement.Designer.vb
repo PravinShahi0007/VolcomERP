@@ -94,6 +94,8 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DEReffDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.RepositoryItemTextEditPph, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,6 +131,8 @@ Partial Class FormBankWithdrawalAttachement
         Me.XTPBPLDP.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEReffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemTextEditPph
@@ -634,6 +638,8 @@ Partial Class FormBankWithdrawalAttachement
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.DEReffDate)
+        Me.PanelControl3.Controls.Add(Me.LabelControl11)
         Me.PanelControl3.Controls.Add(Me.TEUnit)
         Me.PanelControl3.Controls.Add(Me.LabelControl2)
         Me.PanelControl3.Controls.Add(Me.TEInvNumber)
@@ -910,6 +916,31 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 453
         '
+        'DEReffDate
+        '
+        Me.DEReffDate.EditValue = Nothing
+        Me.DEReffDate.Location = New System.Drawing.Point(709, 38)
+        Me.DEReffDate.Name = "DEReffDate"
+        Me.DEReffDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEReffDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEReffDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEReffDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEReffDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEReffDate.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEReffDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEReffDate.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEReffDate.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEReffDate.Size = New System.Drawing.Size(199, 20)
+        Me.DEReffDate.TabIndex = 8910
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(658, 41)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl11.TabIndex = 8911
+        Me.LabelControl11.Text = "Reff Date"
+        '
         'FormBankWithdrawalAttachement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -960,6 +991,8 @@ Partial Class FormBankWithdrawalAttachement
         Me.XTPBPLDP.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEReffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1037,4 +1070,6 @@ Partial Class FormBankWithdrawalAttachement
     Friend WithEvents TEUnit As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DEReffDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
 End Class

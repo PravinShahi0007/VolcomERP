@@ -4,6 +4,8 @@
     Dim bdel_active As String = "1"
     '
     Public is_purc_dep As String = "-1"
+    Public is_show_notif As Boolean = False
+    Public show_notif_id_report As String = ""
     '
     Private Sub FormPurcReq_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -47,6 +49,63 @@
         '
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
+
+        If is_show_notif Then
+            XTCPR.SelectedTabPageIndex = 1
+            SLEStatus.EditValue = "6"
+
+            Dim query As String = "SELECT 'no' AS is_check,prd.`id_purc_req_det`,prd.value AS val_pr,dep.departement,pr.date_created,prd.`id_purc_req`,prd.qty AS qty_pr,pr.`purc_req_number`,it.id_item,it.item_desc,uom.uom,cat.item_cat
+,po.po_date,po.est_rec_date
+,IFNULL(rec.qty,0)-IFNULL(ret.qty,0) AS rec_qty, IFNULL(po.qty,0) AS po_qty,prd.is_unable_fulfill, IF(prd.is_unable_fulfill=1,'yes','no') AS unable_fulfill,prd.unable_fulfill_reason
+,IF(prd.is_unable_fulfill=1,'Unable to fulfill',IF(IFNULL(po.qty,0)=0,'Waiting for PO',IF(IFNULL(po_complete.qty,0)=0,'PO On Process',IF(IFNULL(rec.qty,0)=0,'PO Complete, waiting to receive',IF(IFNULL(rec.qty,0)>=prd.qty,'Complete','Partial Receiving'))))) AS workstatus
+,IF(prd.is_unable_fulfill=1,'',IF(IFNULL(po.qty,0)=0,'',IF(IFNULL(po_complete.qty,0)=0,'',IF(IFNULL(rec.qty,0)=0,IF(NOW()>po.est_rec_date,'Overdue',''),IF(IFNULL(rec.qty,0)>=prd.qty,'Complete',IF(NOW()>po.est_rec_date,'Overdue','Partial Receiving')))))) AS status_rec
+,IF(prd.is_unable_fulfill=1,'',IF(IFNULL(po.qty,0)=0,IF(NOW()>pr.requirement_date,'Overdue',''),IF(IFNULL(po_complete.qty,0)=0,IF(NOW()>pr.requirement_date,'Overdue',''),IF(IFNULL(rec.qty,0)=0,IF(NOW()>pr.requirement_date,'Overdue',''),IF(IFNULL(rec.qty,0)>=prd.qty,'Complete',IF(NOW()>pr.requirement_date,'Overdue','Partial Receiving')))))) AS status_req_date
+,pr.requirement_date
+,po.po_number
+FROM tb_purc_req_det prd
+INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req` AND pr.`id_report_status`='6'
+INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
+INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
+INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement=pr.id_departement
+INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
+INNER JOIN tb_m_departement dep ON dep.id_departement=pr.id_departement
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty,po.date_created AS po_date,po.est_date_receive AS est_rec_date 
+    ,GROUP_CONCAT(DISTINCT po.purc_order_number) as po_number
+    FROM tb_purc_order_det pod
+	INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	WHERE po.`id_report_status`!='5'
+    GROUP BY pod.`id_purc_req_det`
+)po ON po.id_purc_req_det=prd.`id_purc_req_det`
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty FROM tb_purc_order_det pod
+	INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	WHERE po.`id_report_status`='6'
+    GROUP BY pod.`id_purc_req_det`
+)po_complete ON po_complete.id_purc_req_det=prd.`id_purc_req_det`
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_req_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd
+    INNER JOIN tb_purc_order_det pod ON recd.id_purc_order_det=pod.id_purc_order_det
+	INNER JOIN tb_purc_rec rec ON recd.`id_purc_rec`=rec.id_purc_rec
+	WHERE rec.`id_report_status`!='5'
+    GROUP BY pod.`id_purc_req_det`
+)rec ON rec.id_purc_req_det=prd.`id_purc_req_det`
+LEFT JOIN 
+(
+    SELECT pod.`id_purc_req_det`,SUM(prd.`qty`) AS qty FROM `tb_purc_return_det` prd
+    INNER JOIN `tb_purc_return` pr ON pr.id_purc_return=prd.id_purc_return AND pr.id_report_status!='5'
+    INNER JOIN tb_purc_order_det pod ON prd.id_purc_order_det=pod.id_purc_order_det
+    INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`!='5'
+    GROUP BY pod.`id_purc_req_det`
+)ret ON ret.id_purc_req_det=prd.`id_purc_req_det` 
+WHERE 1=1 AND pr.id_purc_req='" & show_notif_id_report & "' AND prd.is_unable_fulfill=1 "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCItemReqList.DataSource = data
+            GVItemReqList.BestFitColumns()
+        End If
     End Sub
 
     Sub load_status()

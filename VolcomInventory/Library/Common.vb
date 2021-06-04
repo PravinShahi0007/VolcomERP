@@ -7234,6 +7234,18 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
             Catch ex As Exception
                 errorProcess()
             End Try
+        ElseIf form_par = "FormPurcReq" Then
+            'PurcReq Notif unable to fullfill
+            Try
+                FormPurcReq.MdiParent = FormMain
+                FormPurcReq.is_show_notif = True
+                FormPurcReq.show_notif_id_report = id_report_par
+                FormPurcReq.Show()
+                FormPurcReq.WindowState = FormWindowState.Maximized
+                FormPurcReq.Focus()
+            Catch ex As Exception
+                errorProcess()
+            End Try
         Else
             found = False
             stopCustom("Not found")
