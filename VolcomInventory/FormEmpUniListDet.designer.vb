@@ -29,6 +29,7 @@ Partial Class FormEmpUniListDet
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupUni = New DevExpress.XtraEditors.GroupControl()
+        Me.CEforDeptHead = New DevExpress.XtraEditors.CheckEdit()
         Me.SLEWH = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -81,12 +82,13 @@ Partial Class FormEmpUniListDet
         Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
-        Me.CEforDeptHead = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.GroupUni, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupUni.SuspendLayout()
+        CType(Me.CEforDeptHead.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEWH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,7 +112,6 @@ Partial Class FormEmpUniListDet
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
-        CType(Me.CEforDeptHead.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -132,6 +133,7 @@ Partial Class FormEmpUniListDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.BMark)
@@ -213,6 +215,15 @@ Partial Class FormEmpUniListDet
         Me.GroupUni.Name = "GroupUni"
         Me.GroupUni.Size = New System.Drawing.Size(1098, 46)
         Me.GroupUni.TabIndex = 188
+        '
+        'CEforDeptHead
+        '
+        Me.CEforDeptHead.Enabled = False
+        Me.CEforDeptHead.Location = New System.Drawing.Point(566, 13)
+        Me.CEforDeptHead.Name = "CEforDeptHead"
+        Me.CEforDeptHead.Properties.Caption = "List for Dept. Head"
+        Me.CEforDeptHead.Size = New System.Drawing.Size(116, 19)
+        Me.CEforDeptHead.TabIndex = 8908
         '
         'SLEWH
         '
@@ -806,14 +817,15 @@ Partial Class FormEmpUniListDet
         Me.BtnImportExcelNew.TabStop = False
         Me.BtnImportExcelNew.Text = "Import Excel"
         '
-        'CEforDeptHead
+        'BtnExportToXLS
         '
-        Me.CEforDeptHead.Enabled = False
-        Me.CEforDeptHead.Location = New System.Drawing.Point(566, 13)
-        Me.CEforDeptHead.Name = "CEforDeptHead"
-        Me.CEforDeptHead.Properties.Caption = "List for Dept. Head"
-        Me.CEforDeptHead.Size = New System.Drawing.Size(116, 19)
-        Me.CEforDeptHead.TabIndex = 8908
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(660, 2)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(112, 34)
+        Me.BtnExportToXLS.TabIndex = 12
+        Me.BtnExportToXLS.Text = "Export to XLS"
         '
         'FormEmpUniListDet
         '
@@ -835,6 +847,7 @@ Partial Class FormEmpUniListDet
         CType(Me.GroupUni, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupUni.ResumeLayout(False)
         Me.GroupUni.PerformLayout()
+        CType(Me.CEforDeptHead.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEWH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -860,7 +873,6 @@ Partial Class FormEmpUniListDet
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
-        CType(Me.CEforDeptHead.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -926,4 +938,5 @@ Partial Class FormEmpUniListDet
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAccept As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents CEforDeptHead As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
 End Class
