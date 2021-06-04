@@ -58,7 +58,7 @@ WHERE id_awb_inv_sum='" & id_verification & "'"
     Sub load_det()
         Dim q As String = ""
         If SLEType.EditValue.ToString = "1" Then 'outbound
-            q = "(SELECT '' AS no,d.`id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
+            q = "(SELECT '' AS no,d.`id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name,store.id_comp AS id_store
 ,d.`awbill_inv_no`,id.awb_no AS `awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
 ,d.`cargo_rate`
 ,odm.created_date AS pickup_date
@@ -77,7 +77,7 @@ INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmd.id_odm_sc
 WHERE id.id_awb_inv_sum='" & id_verification & "' AND NOT ISNULL(id.id_del_manifest)
 GROUP BY d.`id_del_manifest`)
 UNION ALL
-(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,id.id_comp AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name
+(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name,IFNULL(id.id_comp,'') AS id_store
 ,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,'' AS `rec_by_store_date`,'' AS `rec_by_store_person`
 ,0 AS `cargo_rate`
 ,'' AS pickup_date
@@ -90,7 +90,7 @@ LEFT JOIN tb_m_comp c ON id.id_comp=c.id_comp
 WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
         Else
             'inbound
-            q = "(SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,dis.sub_district,d.id_comp,store.comp_number AS comp_number,store.comp_name AS comp_name
+            q = "(SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,dis.sub_district,d.id_comp,store.comp_number AS comp_number,store.comp_name AS comp_name,store.id_comp AS id_store
 ,d.`awb_inv_number` AS awbill_inv_no,id.awb_no AS `awbill_no`,d.`created_date` AS rec_by_store_date,emp.employee_name AS `rec_by_store_person`
 ,rate.`cargo_rate`
 ,rn.date_return_note AS pickup_date
@@ -121,7 +121,7 @@ INNER JOIN
 WHERE id.id_awb_inv_sum='" & id_verification & "'
 GROUP BY d.`id_inbound_awb`)
 UNION ALL
-(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,id.id_comp AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name
+(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name,IFNULL(id.id_comp,'') AS id_store
 ,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,'' AS `rec_by_store_date`,'' AS `rec_by_store_person`
 ,0 AS `cargo_rate`
 ,'' AS pickup_date
@@ -198,15 +198,19 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
                 End If
             Next
 
-            Dim is_no_vendor As Boolean = False
+            Dim is_no_store As Boolean = False
             For i = 0 To GVInvoice.RowCount - 1
-                If Decimal.Parse(GVInvoice.GetRowCellValue(i, "comp_name")) = 0 Or Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final")) = 0 Then
-                    is_zero = True
+                If GVInvoice.GetRowCellValue(i, "id_store").ToString = "" Then
+                    is_no_store = True
                     Exit For
                 End If
             Next
 
-            If is_ok Then
+            If Not is_ok Then
+                warningCustom("Please put note.")
+            ElseIf is_no_store Then
+                warningCustom("Please fill empty store.")
+            Else
                 Dim is_zero_ok As Boolean = True
 
                 If is_zero Then
@@ -229,8 +233,6 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
                     load_form()
                     Form3PLInvoiceVerification.load_verification()
                 End If
-            Else
-                warningCustom("Please put note")
             End If
         Else
             warningCustom("No awb found")
@@ -299,13 +301,13 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
                         End If
 
                         Dim id_comp As String = ""
-                        If GVInvoice.GetRowCellValue(i, "id_comp").ToString = "" Then
+                        If GVInvoice.GetRowCellValue(i, "id_store").ToString = "" Then
                             id_comp = "NULL"
                         Else
-                            id_comp = "'" & GVInvoice.GetRowCellValue(i, "id_comp").ToString & "'"
+                            id_comp = "'" & GVInvoice.GetRowCellValue(i, "id_store").ToString & "'"
                         End If
 
-                        q += "('" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "','" & id_verification & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "','" & GVInvoice.GetRowCellValue(i, "time_verification").ToString & "','" & id_comp & "')"
+                        q += "('" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "','" & id_verification & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "','" & GVInvoice.GetRowCellValue(i, "time_verification").ToString & "'," & id_comp & ")"
                     Next
                     execute_non_query(q, True, "", "", "", "")
                 Else
@@ -323,13 +325,13 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
                         End If
 
                         Dim id_comp As String = ""
-                        If GVInvoice.GetRowCellValue(i, "id_comp").ToString = "" Then
+                        If GVInvoice.GetRowCellValue(i, "id_store").ToString = "" Then
                             id_comp = "NULL"
                         Else
-                            id_comp = "'" & GVInvoice.GetRowCellValue(i, "id_comp").ToString & "'"
+                            id_comp = "'" & GVInvoice.GetRowCellValue(i, "id_store").ToString & "'"
                         End If
 
-                        q += "('" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "','" & id_verification & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "','" & GVInvoice.GetRowCellValue(i, "time_verification").ToString & "','" & id_comp & "')"
+                        q += "('" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "','" & id_verification & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "','" & GVInvoice.GetRowCellValue(i, "time_verification").ToString & "'," & id_comp & ")"
                     Next
                     execute_non_query(q, True, "", "", "", "")
                 End If
@@ -846,7 +848,7 @@ WHERE id_awb_inv_sum='" & id_verification & "' AND (amount_cargo-amount_wh>0) "
     End Function
 
     Private Sub GVInvoice_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVInvoice.PopupMenuShowing
-        If GVInvoice.GetFocusedRowCellValue("sub_district").ToString = "" Then
+        If GVInvoice.GetFocusedRowCellValue("id_del_manifest").ToString = "" And GVInvoice.GetFocusedRowCellValue("id_inbound_awb").ToString = "" Then
             SMAddVendor.Visible = True
         Else
             SMAddVendor.Visible = False
