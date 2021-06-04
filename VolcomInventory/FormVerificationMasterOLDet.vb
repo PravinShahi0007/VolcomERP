@@ -24,11 +24,19 @@
             Dim query As String = ""
 
             If id_comp = "653" Then
-                query = "
-                    SELECT SkuSupplierConfig, Name, Brand, Color, ParentSku, SellerSku, Price, SalePrice, Variation, SkuSupplierConfig_erp, Name_erp, Brand_erp, Color_erp, ParentSku_erp, SellerSku_erp, Price_erp, SalePrice_erp, Variation_erp
-                    FROM tb_verification_master_zalora
-                    WHERE id_verification_master = '" + id_verification_master + "'
-                "
+                If id_template = "1" Then
+                    query = "
+                        SELECT SkuSupplierConfig, Name, Brand, Color, ParentSku, SellerSku, Price, SalePrice, Variation, SkuSupplierConfig_erp, Name_erp, Brand_erp, Color_erp, ParentSku_erp, SellerSku_erp, Price_erp, SalePrice_erp, Variation_erp
+                        FROM tb_verification_master_zalora
+                        WHERE id_verification_master = '" + id_verification_master + "'
+                    "
+                ElseIf id_template = "2" Then
+                    query = "
+                        SELECT Name, SellerSku, Price, SalePrice, Name_erp, SellerSku_erp, Price_erp, SalePrice_erp
+                        FROM tb_verification_master_zalora_update
+                        WHERE id_verification_master = '" + id_verification_master + "'
+                    "
+                End If
             ElseIf id_comp = "1177" Then
                 If id_template = "1" Then
                     query = "
@@ -302,7 +310,12 @@
 
             Try
                 workbook = app.Workbooks.Open(file_name)
-                worksheet = workbook.Worksheets("Upload Template")
+
+                If SLUETemplate.EditValue.ToString = "1" Then
+                    worksheet = workbook.Worksheets("Upload Template")
+                ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                    worksheet = workbook.Worksheets("Sheet1")
+                End If
 
                 Dim data_excel As DataTable = New DataTable
 
@@ -313,19 +326,31 @@
 
                 Dim column_check As List(Of String) = New List(Of String)
 
-                column_check.Add("SkuSupplierConfig")
-                column_check.Add("Name")
-                column_check.Add("Brand")
-                column_check.Add("Color")
-                column_check.Add("ParentSku")
-                column_check.Add("SellerSku")
-                column_check.Add("Price")
-                column_check.Add("SalePrice")
-                column_check.Add("Variation")
+                If SLUETemplate.EditValue.ToString = "1" Then
+                    column_check.Add("SkuSupplierConfig")
+                    column_check.Add("Name")
+                    column_check.Add("Brand")
+                    column_check.Add("Color")
+                    column_check.Add("ParentSku")
+                    column_check.Add("SellerSku")
+                    column_check.Add("Price")
+                    column_check.Add("SalePrice")
+                    column_check.Add("Variation")
+                ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                    column_check.Add("SellerSku")
+                    column_check.Add("Name")
+                    column_check.Add("Price")
+                    column_check.Add("SalePrice")
+                End If
 
                 'column
-                row = 3
-                column = 1
+                If SLUETemplate.EditValue.ToString = "1" Then
+                    row = 3
+                    column = 1
+                ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                    row = 1
+                    column = 1
+                End If
 
                 continue_loop = True
 
@@ -333,7 +358,11 @@
                     Dim column_name As String = worksheet.Cells(row, column).Value
 
                     If Not column_name = "" Then
-                        column_name = column_name.Substring(0, column_name.IndexOf(" "))
+                        Dim length As Integer = column_name.IndexOf(" ")
+
+                        If Not length = -1 Then
+                            column_name = column_name.Substring(0, length)
+                        End If
 
                         data_excel.Columns.Add(column_name, GetType(String))
                     Else
@@ -346,8 +375,13 @@
                 'row
                 Dim id_product_in As String = ""
 
-                row = 4
-                column = 1
+                If SLUETemplate.EditValue.ToString = "1" Then
+                    row = 4
+                    column = 1
+                ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                    row = 2
+                    column = 1
+                End If
 
                 continue_loop = True
 
@@ -426,45 +460,91 @@
                     column_is_valid += ", 0 AS IsValid" + column_check(i) + ""
                 Next
 
-                Dim data_erp As DataTable = execute_query("
-                    SELECT de.design_code AS SkuSupplierConfig, de.design_display_name AS Name, 'Volcom' AS Brand, color.code_detail_name AS Color, pro_parent.product_full_code AS ParentSku, pro.product_full_code AS SellerSku, FLOOR(de_pn.design_price) AS Price, IF(de_pc.id_design_price_type = 1, '', FLOOR(de_pc.design_price)) AS SalePrice, cd_det.display_name AS Variation " + column_is_valid + "
-                    FROM tb_m_product AS pro
-                    LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
-                    LEFT JOIN (
-                        SELECT id_design, design_price, id_design_price_type
-                        FROM tb_m_design_price
-                        WHERE id_design_price IN (
-                            SELECT MAX(id_design_price) AS id_design_price
+                Dim q As String = ""
+
+                If SLUETemplate.EditValue.ToString = "1" Then
+                    q = "
+                        SELECT de.design_code AS SkuSupplierConfig, de.design_display_name AS Name, 'Volcom' AS Brand, color.code_detail_name AS Color, pro_parent.product_full_code AS ParentSku, pro.product_full_code AS SellerSku, FLOOR(de_pn.design_price) AS Price, IF(de_pc.id_design_price_type = 1, '', FLOOR(de_pc.design_price)) AS SalePrice, cd_det.display_name AS Variation " + column_is_valid + "
+                        FROM tb_m_product AS pro
+                        LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
+                        LEFT JOIN (
+                            SELECT id_design, design_price, id_design_price_type
                             FROM tb_m_design_price
-                            WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0
-                            GROUP BY id_design
-                        )
-                    ) AS de_pc ON de.id_design = de_pc.id_design
-                    LEFT JOIN (
-                        SELECT id_design, design_price
-                        FROM tb_m_design_price
-                        WHERE id_design_price IN (
-                            SELECT MAX(id_design_price) AS id_design_price
+                            WHERE id_design_price IN (
+                                SELECT MAX(id_design_price) AS id_design_price
+                                FROM tb_m_design_price
+                                WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0
+                                GROUP BY id_design
+                            )
+                        ) AS de_pc ON de.id_design = de_pc.id_design
+                        LEFT JOIN (
+                            SELECT id_design, design_price
                             FROM tb_m_design_price
-                            WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
+                            WHERE id_design_price IN (
+                                SELECT MAX(id_design_price) AS id_design_price
+                                FROM tb_m_design_price
+                                WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
+                                GROUP BY id_design
+                            )
+                        ) AS de_pn ON de.id_design = de_pn.id_design
+                        LEFT JOIN (
+                            SELECT id_design, MIN(product_full_code) AS product_full_code
+                            FROM tb_m_product
                             GROUP BY id_design
-                        )
-                    ) AS de_pn ON de.id_design = de_pn.id_design
-                    LEFT JOIN (
-                        SELECT id_design, MIN(product_full_code) AS product_full_code
-                        FROM tb_m_product
-                        GROUP BY id_design
-                    ) AS pro_parent ON de.id_design = pro_parent.id_design
-                    LEFT JOIN (
-                        SELECT dc.id_design, cd.code_detail_name
-                        FROM tb_m_design_code AS dc
-                        INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
-                    ) AS color ON de.id_design = color.id_design
-                    LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
-                    LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
-                    WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 4) + ")
-                    ORDER BY pro.product_full_code ASC
-                ", -1, True, "", "", "", "")
+                        ) AS pro_parent ON de.id_design = pro_parent.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
+                        ) AS color ON de.id_design = color.id_design
+                        LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
+                        LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
+                        WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 4) + ")
+                        ORDER BY pro.product_full_code ASC
+                    "
+                ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                    q = "
+                        SELECT de.design_display_name AS Name, pro.product_full_code AS SellerSku, FLOOR(de_pn.design_price) AS Price, IF(de_pc.id_design_price_type = 1, '', FLOOR(de_pc.design_price)) AS SalePrice " + column_is_valid + "
+                        FROM tb_m_product AS pro
+                        LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
+                        LEFT JOIN (
+                            SELECT id_design, design_price, id_design_price_type
+                            FROM tb_m_design_price
+                            WHERE id_design_price IN (
+                                SELECT MAX(id_design_price) AS id_design_price
+                                FROM tb_m_design_price
+                                WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0
+                                GROUP BY id_design
+                            )
+                        ) AS de_pc ON de.id_design = de_pc.id_design
+                        LEFT JOIN (
+                            SELECT id_design, design_price
+                            FROM tb_m_design_price
+                            WHERE id_design_price IN (
+                                SELECT MAX(id_design_price) AS id_design_price
+                                FROM tb_m_design_price
+                                WHERE design_price_start_date <= NOW() AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
+                                GROUP BY id_design
+                            )
+                        ) AS de_pn ON de.id_design = de_pn.id_design
+                        LEFT JOIN (
+                            SELECT id_design, MIN(product_full_code) AS product_full_code
+                            FROM tb_m_product
+                            GROUP BY id_design
+                        ) AS pro_parent ON de.id_design = pro_parent.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
+                        ) AS color ON de.id_design = color.id_design
+                        LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
+                        LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
+                        WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 4) + ")
+                        ORDER BY pro.product_full_code ASC
+                    "
+                End If
+
+                Dim data_erp As DataTable = execute_query(q, -1, True, "", "", "", "")
 
                 'validation
                 For i = 0 To data_excel.Rows.Count - 1
@@ -543,81 +623,120 @@
                     Dim query As String = ""
 
                     'header
-                    query = "INSERT INTO tb_verification_master (id_comp, file_name, id_code_detail, created_date, created_by) VALUES (" + SLUEOnlineStore.EditValue.ToString + ", '" + addSlashes(TEFileName.EditValue.ToString) + "', " + SLUEDivision.EditValue.ToString + ", NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
+                    query = "INSERT INTO tb_verification_master (id_comp, id_template, file_name, id_code_detail, created_date, created_by) VALUES (" + SLUEOnlineStore.EditValue.ToString + ", " + SLUETemplate.EditValue.ToString + ", '" + addSlashes(TEFileName.EditValue.ToString) + "', " + SLUEDivision.EditValue.ToString + ", NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID();"
 
                     id_verification_master = execute_query(query, 0, True, "", "", "", "")
 
-                    'detail
-                    query = "INSERT INTO tb_verification_master_zalora (id_verification_master, SkuSupplierConfig, Name, Brand, Color, ParentSku, SellerSku, Price, SalePrice, Variation, SkuSupplierConfig_erp, Name_erp, Brand_erp, Color_erp, ParentSku_erp, SellerSku_erp, Price_erp, SalePrice_erp, Variation_erp) VALUES "
+                    If SLUETemplate.EditValue.ToString = "1" Then
+                        'detail
+                        query = "INSERT INTO tb_verification_master_zalora (id_verification_master, SkuSupplierConfig, Name, Brand, Color, ParentSku, SellerSku, Price, SalePrice, Variation, SkuSupplierConfig_erp, Name_erp, Brand_erp, Color_erp, ParentSku_erp, SellerSku_erp, Price_erp, SalePrice_erp, Variation_erp) VALUES "
 
-                    For i = 0 To data_excel.Rows.Count - 1
-                        Dim SkuSupplierConfig As String = data_excel.Rows(i)("SkuSupplierConfig").ToString
-                        Dim Name As String = data_excel.Rows(i)("Name").ToString
-                        Dim Brand As String = data_excel.Rows(i)("Brand").ToString
-                        Dim Color As String = data_excel.Rows(i)("Color").ToString
-                        Dim ParentSku As String = data_excel.Rows(i)("ParentSku").ToString
-                        Dim SellerSku As String = data_excel.Rows(i)("SellerSku").ToString
-                        Dim Price As String = data_excel.Rows(i)("Price").ToString
-                        Dim SalePrice As String = data_excel.Rows(i)("SalePrice").ToString
-                        Dim Variation As String = data_excel.Rows(i)("Variation").ToString
+                        For i = 0 To data_excel.Rows.Count - 1
+                            Dim SkuSupplierConfig As String = data_excel.Rows(i)("SkuSupplierConfig").ToString
+                            Dim Name As String = data_excel.Rows(i)("Name").ToString
+                            Dim Brand As String = data_excel.Rows(i)("Brand").ToString
+                            Dim Color As String = data_excel.Rows(i)("Color").ToString
+                            Dim ParentSku As String = data_excel.Rows(i)("ParentSku").ToString
+                            Dim SellerSku As String = data_excel.Rows(i)("SellerSku").ToString
+                            Dim Price As String = data_excel.Rows(i)("Price").ToString
+                            Dim SalePrice As String = data_excel.Rows(i)("SalePrice").ToString
+                            Dim Variation As String = data_excel.Rows(i)("Variation").ToString
 
-                        Dim SkuSupplierConfig_erp As String = ""
-                        Dim Name_erp As String = ""
-                        Dim Brand_erp As String = ""
-                        Dim Color_erp As String = ""
-                        Dim ParentSku_erp As String = ""
-                        Dim SellerSku_erp As String = ""
-                        Dim Price_erp As String = ""
-                        Dim SalePrice_erp As String = ""
-                        Dim Variation_erp As String = ""
+                            Dim SkuSupplierConfig_erp As String = ""
+                            Dim Name_erp As String = ""
+                            Dim Brand_erp As String = ""
+                            Dim Color_erp As String = ""
+                            Dim ParentSku_erp As String = ""
+                            Dim SellerSku_erp As String = ""
+                            Dim Price_erp As String = ""
+                            Dim SalePrice_erp As String = ""
+                            Dim Variation_erp As String = ""
 
-                        Try
-                            SkuSupplierConfig_erp = data_erp.Rows(i)("SkuSupplierConfig").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                SkuSupplierConfig_erp = data_erp.Rows(i)("SkuSupplierConfig").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            Name_erp = data_erp.Rows(i)("Name").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                Name_erp = data_erp.Rows(i)("Name").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            Brand_erp = data_erp.Rows(i)("Brand").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                Brand_erp = data_erp.Rows(i)("Brand").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            Color_erp = data_erp.Rows(i)("Color").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                Color_erp = data_erp.Rows(i)("Color").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            ParentSku_erp = data_erp.Rows(i)("ParentSku").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                ParentSku_erp = data_erp.Rows(i)("ParentSku").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            SellerSku_erp = data_erp.Rows(i)("SellerSku").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                SellerSku_erp = data_erp.Rows(i)("SellerSku").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            Price_erp = data_erp.Rows(i)("Price").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                Price_erp = data_erp.Rows(i)("Price").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            SalePrice_erp = data_erp.Rows(i)("SalePrice").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                SalePrice_erp = data_erp.Rows(i)("SalePrice").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        Try
-                            Variation_erp = data_erp.Rows(i)("Variation").ToString
-                        Catch ex As Exception
-                        End Try
+                            Try
+                                Variation_erp = data_erp.Rows(i)("Variation").ToString
+                            Catch ex As Exception
+                            End Try
 
-                        query += "('" + id_verification_master + "', '" + SkuSupplierConfig + "', '" + Name + "', '" + Brand + "', '" + Color + "', '" + ParentSku + "', '" + SellerSku + "', '" + Price + "', '" + SalePrice + "', '" + Variation + "', '" + SkuSupplierConfig_erp + "', '" + Name_erp + "', '" + Brand_erp + "', '" + Color_erp + "', '" + ParentSku_erp + "', '" + SellerSku_erp + "', '" + Price_erp + "', '" + SalePrice_erp + "', '" + Variation_erp + "'), "
-                    Next
+                            query += "('" + id_verification_master + "', '" + SkuSupplierConfig + "', '" + Name + "', '" + Brand + "', '" + Color + "', '" + ParentSku + "', '" + SellerSku + "', '" + Price + "', '" + SalePrice + "', '" + Variation + "', '" + SkuSupplierConfig_erp + "', '" + Name_erp + "', '" + Brand_erp + "', '" + Color_erp + "', '" + ParentSku_erp + "', '" + SellerSku_erp + "', '" + Price_erp + "', '" + SalePrice_erp + "', '" + Variation_erp + "'), "
+                        Next
+                    ElseIf SLUETemplate.EditValue.ToString = "2" Then
+                        'detail
+                        query = "INSERT INTO tb_verification_master_zalora_update (id_verification_master, Name, SellerSku, Price, SalePrice, Name_erp, SellerSku_erp, Price_erp, SalePrice_erp) VALUES "
+
+                        For i = 0 To data_excel.Rows.Count - 1
+                            Dim Name As String = data_excel.Rows(i)("Name").ToString
+                            Dim SellerSku As String = data_excel.Rows(i)("SellerSku").ToString
+                            Dim Price As String = data_excel.Rows(i)("Price").ToString
+                            Dim SalePrice As String = data_excel.Rows(i)("SalePrice").ToString
+
+                            Dim Name_erp As String = ""
+                            Dim SellerSku_erp As String = ""
+                            Dim Price_erp As String = ""
+                            Dim SalePrice_erp As String = ""
+
+                            Try
+                                Name_erp = data_erp.Rows(i)("Name").ToString
+                            Catch ex As Exception
+                            End Try
+
+                            Try
+                                SellerSku_erp = data_erp.Rows(i)("SellerSku").ToString
+                            Catch ex As Exception
+                            End Try
+
+                            Try
+                                Price_erp = data_erp.Rows(i)("Price").ToString
+                            Catch ex As Exception
+                            End Try
+
+                            Try
+                                SalePrice_erp = data_erp.Rows(i)("SalePrice").ToString
+                            Catch ex As Exception
+                            End Try
+
+                            query += "('" + id_verification_master + "', '" + Name + "', '" + SellerSku + "', '" + Price + "', '" + SalePrice + "', '" + Name_erp + "', '" + SellerSku_erp + "', '" + Price_erp + "', '" + SalePrice_erp + "'), "
+                        Next
+                    End If
 
                     query = query.Substring(0, query.Length - 2)
 
@@ -1989,7 +2108,7 @@
     End Sub
 
     Private Sub SLUEOnlineStore_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEOnlineStore.EditValueChanged
-        If SLUEOnlineStore.EditValue.ToString = "1177" Or SLUEOnlineStore.EditValue.ToString = "1286" Then
+        If SLUEOnlineStore.EditValue.ToString = "653" Or SLUEOnlineStore.EditValue.ToString = "1177" Or SLUEOnlineStore.EditValue.ToString = "1286" Then
             SLUETemplate.Visible = True
         Else
             SLUETemplate.Visible = False

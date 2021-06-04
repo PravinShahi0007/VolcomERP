@@ -202,6 +202,8 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
         DateEditDueDate.EditValue = data.Rows(0)("due_date")
         DEReffDate.EditValue = data.Rows(0)("pph_reff_date")
 
+        DEReffDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & id_coa_tag & "'", 0, True, "", "", "", "")
+
         'item
         Dim query_item As String = "SELECT pod.`id_purc_order_det`, item.`item_desc`,itt.id_item_type,itt.item_type, SUM(recd.`qty`) AS qty_po, pod.`value` AS val_po, pod.pph_percent, pod.gross_up_value , IFNULL(pod.discount_for_pph,0.00) AS discount_for_pph
 FROM tb_purc_rec_det recd 
