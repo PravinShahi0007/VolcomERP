@@ -37,6 +37,7 @@ Partial Public Class ReportSalesOrder
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.XRBarcode = New DevExpress.XtraReports.UI.XRBarCode()
         Me.LabelOLStoreOrder = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelDotOLStoreOrder = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelTitleOLStoreOrder = New DevExpress.XtraReports.UI.XRLabel()
@@ -76,7 +77,6 @@ Partial Public Class ReportSalesOrder
         Me.LabelNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XRBarcode = New DevExpress.XtraReports.UI.XRBarCode()
         CType(Me.GCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -282,6 +282,20 @@ Partial Public Class ReportSalesOrder
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(775.0001!, 139.7084!)
         Me.XrPanel1.StylePriority.UseBorderColor = False
         Me.XrPanel1.StylePriority.UseBorders = False
+        '
+        'XRBarcode
+        '
+        Me.XRBarcode.Alignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XRBarcode.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XRBarcode.LocationFloat = New DevExpress.Utils.PointFloat(2.000046!, 10.0!)
+        Me.XRBarcode.Name = "XRBarcode"
+        Me.XRBarcode.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
+        Me.XRBarcode.ShowText = False
+        Me.XRBarcode.SizeF = New System.Drawing.SizeF(752.0001!, 25.0!)
+        Me.XRBarcode.StylePriority.UseBorders = False
+        Me.XRBarcode.StylePriority.UseTextAlignment = False
+        Me.XRBarcode.Symbology = Code128Generator1
+        Me.XRBarcode.Text = "2104142P806C96"
         '
         'LabelOLStoreOrder
         '
@@ -732,19 +746,6 @@ Partial Public Class ReportSalesOrder
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(11.45833!, 13.58335!)
         Me.XrLabel14.StylePriority.UseBorders = False
         Me.XrLabel14.Text = ":"
-        '
-        'XRBarcode
-        '
-        Me.XRBarcode.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XRBarcode.LocationFloat = New DevExpress.Utils.PointFloat(2.000046!, 10.0!)
-        Me.XRBarcode.Name = "XRBarcode"
-        Me.XRBarcode.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
-        Me.XRBarcode.ShowText = False
-        Me.XRBarcode.SizeF = New System.Drawing.SizeF(752.0001!, 25.0!)
-        Me.XRBarcode.StylePriority.UseBorders = False
-        Me.XRBarcode.StylePriority.UseTextAlignment = False
-        Me.XRBarcode.Symbology = Code128Generator1
-        Me.XRBarcode.Text = "2104142P806C96"
         '
         'ReportSalesOrder
         '

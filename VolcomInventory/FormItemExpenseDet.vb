@@ -47,7 +47,10 @@
                 TxtCompName.Text = get_company_x(dth.Rows(0)("id_comp").ToString, "1")
 
                 If dth.Rows(0)("id_type").ToString = "1" Then
-                    qg = "(SELECT '' AS no,d.`id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,store.id_comp AS id_store,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
+                    qg = "
+SELECT det.id_store,SUM(det.amount_final) AS amount_final
+FROM (
+(SELECT '' AS no,d.`id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,store.id_comp AS id_store,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
 ,d.`awbill_inv_no`,id.awb_no AS `awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
 ,d.`cargo_rate`
 ,odm.created_date AS pickup_date
@@ -65,7 +68,7 @@ INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmd.id_odm_sc
 WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND NOT ISNULL(id.id_del_manifest)
 GROUP BY d.`id_del_manifest`)
 UNION ALL
-(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,'' AS id_store,'' AS comp_number,'' AS comp_name
+(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,id.id_comp AS id_store,'' AS comp_number,'' AS comp_name
 ,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,'' AS `rec_by_store_date`,'' AS `rec_by_store_person`
 ,0 AS `cargo_rate`
 ,'' AS pickup_date
@@ -73,9 +76,14 @@ UNION ALL
 ,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
 ,id.note_wh,id.berat_final,id.amount_final
 FROM tb_awb_inv_sum_det id
-WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
+WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))
+)det
+GROUP BY det.id_store"
                 Else
-                    qg = "(SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,dis.sub_district,d.id_comp,store.id_comp AS id_store,store.comp_number AS comp_number,store.comp_name AS comp_name
+                    qg = "
+SELECT det.id_store,SUM(det.amount_final) AS amount_final
+FROM (
+(SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,dis.sub_district,d.id_comp,store.id_comp AS id_store,store.comp_number AS comp_number,store.comp_name AS comp_name
 ,d.`awb_inv_number` AS awbill_inv_no,id.awb_no AS `awbill_no`,d.`created_date` AS rec_by_store_date,emp.employee_name AS `rec_by_store_person`
 ,rate.`cargo_rate`
 ,rn.date_return_note AS pickup_date
@@ -105,7 +113,7 @@ INNER JOIN
 WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "'
 GROUP BY d.`id_inbound_awb`)
 UNION ALL
-(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,'' AS id_store,'' AS comp_number,'' AS comp_name
+(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,id.id_comp AS id_store,'' AS comp_number,'' AS comp_name
 ,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,'' AS `rec_by_store_date`,'' AS `rec_by_store_person`
 ,0 AS `cargo_rate`
 ,'' AS pickup_date
@@ -113,7 +121,9 @@ UNION ALL
 ,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
 ,id.note_wh,id.berat_final,id.amount_final
 FROM tb_awb_inv_sum_det id
-WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
+WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))
+)det
+GROUP BY det.id_store"
                 End If
                 Dim dtg As DataTable = execute_query(qg, -1, True, "", "", "", "")
 

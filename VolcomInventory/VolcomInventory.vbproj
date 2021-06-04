@@ -468,6 +468,12 @@
     <Compile Include="FormAREvaluationPickDate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBankDepositCaseKhusus.Designer.vb">
+      <DependentUpon>FormBankDepositCaseKhusus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankDepositCaseKhusus.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBankWithdrawalAdd.Designer.vb">
       <DependentUpon>FormBankWithdrawalAdd.vb</DependentUpon>
     </Compile>
@@ -9806,6 +9812,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvaluationPickDate.resx">
       <DependentUpon>FormAREvaluationPickDate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBankDepositCaseKhusus.resx">
+      <DependentUpon>FormBankDepositCaseKhusus.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalAdd.resx">
       <DependentUpon>FormBankWithdrawalAdd.vb</DependentUpon>

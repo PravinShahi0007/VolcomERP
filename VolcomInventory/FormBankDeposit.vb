@@ -46,7 +46,9 @@
         DEVA.EditValue = dt_now.Rows(0)("tgl")
 
         'get id own online store
-        id_own_online_store = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_store) FROM tb_m_comp_volcom_ol c", 0, True, "", "", "", "")
+        id_own_online_store = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) FROM tb_m_comp c 
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+WHERE cg.is_use_payout=1", 0, True, "", "", "", "")
 
         load_vendor()
         load_status_payment()
@@ -68,6 +70,14 @@
 
         'zalora
         view_zalora_payout()
+
+        'pay type
+        load_trans_type_po()
+    End Sub
+
+    Sub load_trans_type_po()
+        Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
+        viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
     End Sub
 
     Sub load_status_payment()
@@ -653,5 +663,173 @@ GROUP BY d.`id_purc_rec_asset_disp`"
         'GROUP BY ad.id_comp"
         viewSearchLookupQuery(SLEUnitJualAsset, query, "id_coa_tag", "tag_description", "id_coa_tag")
         SLEUnitJualAsset.EditValue = "1"
+    End Sub
+
+    Private Sub BtnViewUrbanList_Click(sender As Object, e As EventArgs) Handles BtnViewUrbanList.Click
+        Cursor = Cursors.WaitCursor
+        viewInvoiceUrban()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewInvoiceUrban()
+        'whwere
+        Dim where_string As String = "AND c.id_comp_group='59' AND sp.is_close_rec_payment='2' "
+
+        'sesuai type
+        Dim having_string As String = ""
+        If SLEPayType.EditValue.ToString = "1" Then
+            'dp
+            having_string = "AND total_rec=0 "
+        Else
+            'pelunasan
+            If CEUrbanAllOpen.EditValue = False Then
+                having_string = "AND total_rec>0 "
+            End If
+        End If
+
+        Dim var_acc As String = "IFNULL(sp.id_acc_ar,0)"
+        Dim query As String = "SELECT 'no' AS is_check,sp.is_close_rec_payment,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`, c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group,sp.`sales_pos_due_date`,CONCAT(DATE_FORMAT(sp.`sales_pos_start_period`,'%d %M %Y'),' - ',DATE_FORMAT(sp.`sales_pos_end_period`,'%d %M %Y')) AS period
+        ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
+        ,sp.report_mark_type,rmt.report_mark_type_name,IFNULL(pyd.`value`,0.00) AS total_rec,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS total_due
+        ,IFNULL(pyd.total_pending,0) AS `total_pending`
+        ,DATEDIFF(sp.`sales_pos_due_date`,NOW()) AS due_days,
+        " + var_acc + " AS `id_acc`, coa.acc_name, coa.acc_description,
+        IF(typ.`is_receive_payment`=2,1,2) AS `id_dc`, IF(typ.`is_receive_payment`=2,'D','K') AS `dc_code`,
+        CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `note`,
+        cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
+        FROM tb_sales_pos sp 
+        INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+        INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+        LEFT JOIN (
+	        SELECT pyd.id_report, pyd.report_mark_type, 
+	        COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+	        SUM(pyd.value) AS  `value`
+	        FROM tb_rec_payment_det pyd
+	        INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+	        WHERE py.`id_report_status`!=5
+	        GROUP BY pyd.id_report, pyd.report_mark_type
+        ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
+        LEFT JOIN tb_a_acc coa ON coa.id_acc = " + var_acc + "
+        INNER JOIN tb_m_comp cf ON cf.id_comp=1
+        WHERE sp.`id_report_status`='6' " & where_string & " 
+        GROUP BY sp.`id_sales_pos` HAVING amount>0 " + having_string
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCUrban.DataSource = data
+        GVUrban.BestFitColumns()
+    End Sub
+
+    Private Sub SLEPayType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPayType.EditValueChanged
+        GCUrban.DataSource = Nothing
+        If SLEPayType.EditValue.ToString = "1" Then
+            'DP
+            CEUrbanAllOpen.EditValue = False
+            CEUrbanAllOpen.Enabled = False
+        Else
+            'pelunasan
+            CEUrbanAllOpen.EditValue = False
+            CEUrbanAllOpen.Enabled = True
+        End If
+    End Sub
+
+    Private Sub CEUrbanAllOpen_EditValueChanged(sender As Object, e As EventArgs) Handles CEUrbanAllOpen.EditValueChanged
+        GCUrban.DataSource = Nothing
+    End Sub
+
+    Private Sub BtnRecPaymentUrban_Click(sender As Object, e As EventArgs) Handles BtnRecPaymentUrban.Click
+        makeSafeGV(GVUrban)
+
+        'check pending doc
+        GVUrban.ActiveFilterString = "[is_check]='yes' AND [total_pending]>0"
+        If GVUrban.RowCount > 0 Then
+            Dim err_pending As String = ""
+            For i As Integer = 0 To GVUrban.RowCount - 1
+                If i > 0 Then
+                    err_pending += System.Environment.NewLine
+                End If
+                err_pending += "- " + GVUrban.GetRowCellValue(i, "sales_pos_number").ToString
+            Next
+            warningCustom("Please process all pending receive payment for invoice number : " + System.Environment.NewLine + err_pending)
+            GVUrban.ActiveFilterString = ""
+            Exit Sub
+        End If
+
+        'check coa
+        makeSafeGV(GVInvoiceList)
+        GVUrban.ActiveFilterString = "[is_check]='yes' AND [id_acc]=0"
+        If GVUrban.RowCount > 0 Then
+            Dim err_coa As String = ""
+            For i As Integer = 0 To GVUrban.RowCount - 1
+                If i > 0 Then
+                    err_coa += System.Environment.NewLine
+                End If
+                err_coa += "- " + GVUrban.GetRowCellValue(i, "sales_pos_number").ToString
+            Next
+            warningCustom("AR account not found for invoice number : " + System.Environment.NewLine + err_coa)
+            GVUrban.ActiveFilterString = ""
+            Exit Sub
+        End If
+
+        If SLEPayType.EditValue.ToString = "1" Then
+            'process
+            GVUrban.ActiveFilterString = "[is_check]='yes'"
+            If GVUrban.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                FormBankDepositDet.ShowDialog()
+                Cursor = Cursors.Default
+            Else
+                warningCustom("No data selected")
+            End If
+        Else
+            If CEUrbanAllOpen.EditValue = False Then
+                'process
+                GVUrban.ActiveFilterString = "[is_check]='yes'"
+                If GVUrban.RowCount > 0 Then
+                    Cursor = Cursors.WaitCursor
+                    FormBankDepositDet.ShowDialog()
+                    Cursor = Cursors.Default
+                Else
+                    warningCustom("No data selected")
+                End If
+            Else
+                'cek ada yg blm dp
+                Dim err_not_dp As String = ""
+                GVUrban.ActiveFilterString = "[is_check]='yes' AND [total_rec]=0"
+                For d As Integer = 0 To GVUrban.RowCount - 1
+                    If d > 0 Then
+                        err_not_dp += System.Environment.NewLine
+                    End If
+                    err_not_dp += "- " + GVUrban.GetRowCellValue(d, "sales_pos_number").ToString
+                Next
+                If err_not_dp = "" Then
+                    'jika semua ada dp
+                    GVUrban.ActiveFilterString = "[is_check]='yes'"
+                    If GVUrban.RowCount > 0 Then
+                        Cursor = Cursors.WaitCursor
+                        FormBankDepositDet.ShowDialog()
+                        Cursor = Cursors.Default
+                    Else
+                        warningCustom("No data selected")
+                    End If
+                Else
+                    'jika tidak ada dp
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("DP tidak ditemukan untuk invoice berikut : " + System.Environment.NewLine + err_not_dp + System.Environment.NewLine + "Yakin melakukan pelunasan ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        'lanjut pelunasan non dp
+                        GVUrban.ActiveFilterString = "[is_check]='yes'"
+                        If GVUrban.RowCount > 0 Then
+                            Cursor = Cursors.WaitCursor
+                            FormBankDepositDet.ShowDialog()
+                            Cursor = Cursors.Default
+                        Else
+                            warningCustom("No data selected")
+                        End If
+                    End If
+                End If
+            End If
+        End If
+        GVUrban.ActiveFilterString = ""
     End Sub
 End Class

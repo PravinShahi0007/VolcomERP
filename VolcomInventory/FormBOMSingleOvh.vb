@@ -75,7 +75,7 @@
                 TEKurs.EditValue = FormBOMDesignSingle.TEKurs.EditValue
             End If
         ElseIf id_pop_up = "2" Then 'per Design
-            Console.WriteLine(id_bom_det)
+            'Console.WriteLine(id_bom_det)
             If Not id_bom_det = "-1" Then
                 '
                 id_ovh = get_id_ovh(id_bom_det)
@@ -147,6 +147,7 @@ WHERE tb_m_ovh_price.id_ovh = '" & id_ovhx & "' ORDER BY tb_m_ovh_price.id_ovh_p
 
         calculate()
     End Sub
+
     Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_currency,currency FROM tb_lookup_currency"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

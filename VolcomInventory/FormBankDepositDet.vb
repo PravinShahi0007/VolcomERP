@@ -298,9 +298,22 @@ Public Class FormBankDepositDet
                     DERecDate.EditValue = dv.Rows(0)("trans_date")
                 ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 5 Then
                     'zalora payout
+                    'cek case khusus
+                    Cursor = Cursors.WaitCursor
+                    Dim is_add_bbm_spesial_case As String = get_opt_acc_field("is_add_bbm_spesial_case")
+                    If is_add_bbm_spesial_case = "1" Then
+                        BtnAddCaseKhusus.Visible = True
+                    End If
                     Dim pz As New ClassPayoutZalora()
                     Dim data As DataTable = pz.viewERPPayout(id_payout_zalora)
+                    Cursor = Cursors.Default
+
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
+                    Cursor = Cursors.WaitCursor
                     For i As Integer = 0 To data.Rows.Count - 1
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading " + (i + 1).ToString + "/" + data.Rows.Count.ToString)
                         Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                         newRow("id_report") = data.Rows(i)("id_ref").ToString
                         newRow("id_report_det") = "0"
@@ -330,6 +343,44 @@ Public Class FormBankDepositDet
                         MENote.Text = "Zalora"
                         'set default rec acc
                         SLEPayRecTo.EditValue = get_opt_acc_field("id_acc_rec_bbm_zalora")
+                    Next
+                    Cursor = Cursors.Default
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+                ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 7 Then
+                    'urban group
+                    GridColumnReceiveView.OptionsColumn.AllowEdit = False
+                    Dim pay_type As String = FormBankDeposit.SLEPayType.EditValue.ToString
+                    For i As Integer = 0 To FormBankDeposit.GVUrban.RowCount - 1
+                        'id_report,number,total,balance due
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_report") = FormBankDeposit.GVUrban.GetRowCellValue(i, "id_sales_pos").ToString
+                        newRow("id_report_det") = "0"
+                        newRow("report_mark_type") = FormBankDeposit.GVUrban.GetRowCellValue(i, "report_mark_type").ToString
+                        newRow("report_mark_type_name") = FormBankDeposit.GVUrban.GetRowCellValue(i, "report_mark_type_name").ToString
+                        newRow("number") = FormBankDeposit.GVUrban.GetRowCellValue(i, "sales_pos_number").ToString
+                        newRow("id_comp") = FormBankDeposit.GVUrban.GetRowCellValue(i, "id_comp").ToString
+                        newRow("id_acc") = FormBankDeposit.GVUrban.GetRowCellValue(i, "id_acc").ToString
+                        newRow("acc_name") = FormBankDeposit.GVUrban.GetRowCellValue(i, "acc_name").ToString
+                        newRow("acc_description") = FormBankDeposit.GVUrban.GetRowCellValue(i, "acc_description").ToString
+                        newRow("comp_number") = FormBankDeposit.GVUrban.GetRowCellValue(i, "comp_number").ToString
+                        newRow("vendor") = FormBankDeposit.GVUrban.GetRowCellValue(i, "comp_number").ToString
+                        newRow("total_rec") = FormBankDeposit.GVUrban.GetRowCellValue(i, "total_rec")
+                        newRow("value_bef_kurs") = 0
+                        newRow("note") = FormBankDeposit.GVUrban.GetRowCellValue(i, "note").ToString
+                        newRow("id_dc") = FormBankDeposit.GVUrban.GetRowCellValue(i, "id_dc").ToString
+                        newRow("dc_code") = FormBankDeposit.GVUrban.GetRowCellValue(i, "dc_code").ToString
+                        newRow("balance_due") = FormBankDeposit.GVUrban.GetRowCellValue(i, "total_due")
+                        If pay_type = "1" Then
+                            'DP
+                            Dim amo_inv As Decimal = FormBankDeposit.GVUrban.GetRowCellValue(i, "amount") * (50 / 100)
+                            newRow("value") = amo_inv
+                            newRow("value_view") = Math.Abs(amo_inv)
+                        Else
+                            'pelunasan
+                            newRow("value") = FormBankDeposit.GVUrban.GetRowCellValue(i, "total_due")
+                            newRow("value_view") = Math.Abs(FormBankDeposit.GVUrban.GetRowCellValue(i, "total_due"))
+                        End If
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                     Next
                 End If
             ElseIf type_rec = "3" Then
@@ -413,6 +464,7 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
             SLEPayRecTo.Enabled = False
             MENote.Enabled = False
             PanelControlPreview.Visible = True
+            BtnAttachment.Visible = True
             '
             Dim query As String = "SELECT * FROM tb_rec_payment WHERE id_rec_payment='" & id_deposit & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -996,5 +1048,20 @@ ORDER BY id_stock_valas DESC LIMIT 1"
     Private Sub BMutasiValas_Click(sender As Object, e As EventArgs) Handles BMutasiValas.Click
         FormStockValas.id_valas_bank = SLEAkunValas.EditValue.ToString
         FormStockValas.ShowDialog()
+    End Sub
+
+    Private Sub BtnAddReference_Click(sender As Object, e As EventArgs) Handles BtnAddCaseKhusus.Click
+        Cursor = Cursors.WaitCursor
+        FormBankDepositCaseKhusus.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id_deposit
+        FormDocumentUpload.report_mark_type = "162"
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
