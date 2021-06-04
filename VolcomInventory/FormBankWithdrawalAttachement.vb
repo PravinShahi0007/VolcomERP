@@ -172,12 +172,15 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
 
     Sub load_form()
         Dim query As String = "
-            SELECT po.is_active_payment,po.id_coa_tag,po.purc_order_number,po.is_active_payment,po.pph_account,po.inv_number, c.comp_number, c.comp_name, IFNULL(po.due_date, DATE(NOW())) AS due_date, po.vat_percent, po.vat_value, po.is_disc_percent ,po.disc_percent, po.disc_value , IFNULL(po.pph_reff_date, DATE(NOW())) AS pph_reff_date
-            FROM tb_purc_order AS po
-            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = po.id_comp_contact
-            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-            WHERE po.id_purc_order = " + id_purc_order + "
-        "
+            SELECT po.is_active_payment,po.id_coa_tag,po.purc_order_number,po.is_active_payment,po.pph_account,po.inv_number, c.comp_number, c.comp_name
+,IFNULL(po.due_date, DATE(NOW())) AS due_date, po.vat_percent,ROUND((SUM(pod.`value` * pod.qty)-IF(po.is_disc_percent=2,po.disc_value,(po.disc_percent * SUM(pod.`value` * pod.qty))))*(po.dpp_percent/100)*(po.vat_percent/100),2) AS vat_value
+, po.is_disc_percent ,po.disc_percent, po.disc_value , IFNULL(po.pph_reff_date, DATE(NOW())) AS pph_reff_date
+FROM tb_purc_order AS po
+INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = po.id_comp_contact
+INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+WHERE po.id_purc_order = " & id_purc_order & "
+GROUP BY pod.`id_purc_order`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         id_coa_tag = data.Rows(0)("id_coa_tag").ToString
