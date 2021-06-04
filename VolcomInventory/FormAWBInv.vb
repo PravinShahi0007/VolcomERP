@@ -351,6 +351,10 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
         ReportAwbInv.dt = GCInvoice.DataSource
         Dim Report As New ReportAwbInv()
 
+        For Each c In GVInvoice.FormatRules
+            c.Enabled = False
+        Next
+
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVInvoice.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
@@ -362,7 +366,7 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
         Report.GVInvoice.BestFitColumns()
 
         'Parse val
-        Dim q As String = "SELECT inv.inv_number,inv.created_date,c.comp_name 
+        Dim q As String = "SELECT inv.inv_number,DATE_FORMAT(inv.created_date,'%d %M %Y') AS created_date,c.comp_name 
 FROM `tb_awb_inv_sum` inv
 INNER JOIN tb_m_comp c ON c.`id_comp`=inv.`id_comp`
 WHERE inv.id_awb_inv_sum='" & id_verification & "'"
@@ -371,6 +375,10 @@ WHERE inv.id_awb_inv_sum='" & id_verification & "'"
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+
+        For Each c In GVInvoice.FormatRules
+            c.Enabled = True
+        Next
 
         Cursor = Cursors.Default
     End Sub
