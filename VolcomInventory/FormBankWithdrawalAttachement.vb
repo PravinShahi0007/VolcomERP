@@ -172,7 +172,7 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
 
     Sub load_form()
         Dim query As String = "
-            SELECT po.is_active_payment,po.id_coa_tag,po.purc_order_number,po.is_active_payment,po.pph_account,po.inv_number, c.comp_number, c.comp_name, IFNULL(po.due_date, DATE(NOW())) AS due_date, po.vat_percent, po.vat_value, po.is_disc_percent ,po.disc_percent, po.disc_value 
+            SELECT po.is_active_payment,po.id_coa_tag,po.purc_order_number,po.is_active_payment,po.pph_account,po.inv_number, c.comp_number, c.comp_name, IFNULL(po.due_date, DATE(NOW())) AS due_date, po.vat_percent, po.vat_value, po.is_disc_percent ,po.disc_percent, po.disc_value , IFNULL(po.pph_reff_date, DATE(NOW())) AS pph_reff_date
             FROM tb_purc_order AS po
             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = po.id_comp_contact
             INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
@@ -200,6 +200,7 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
         End If
 
         DateEditDueDate.EditValue = data.Rows(0)("due_date")
+        DEReffDate.EditValue = data.Rows(0)("pph_reff_date")
 
         'item
         Dim query_item As String = "SELECT pod.`id_purc_order_det`, item.`item_desc`,itt.id_item_type,itt.item_type, SUM(recd.`qty`) AS qty_po, pod.`value` AS val_po, pod.pph_percent, pod.gross_up_value , IFNULL(pod.discount_for_pph,0.00) AS discount_for_pph
@@ -312,7 +313,7 @@ GROUP BY pod.id_purc_order_det"
                 execute_non_query("UPDATE tb_purc_order_det SET pph_percent='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "pph_percent").ToString) & "',pph='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "pph").ToString) & "',discount_for_pph='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount_for_pph").ToString) & "',gross_up_value='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "gross_up_value").ToString) & "' WHERE id_purc_order_det='" & GVPurcReq.GetRowCellValue(i, "id_purc_order_det").ToString & "'", True, "", "", "", "")
             Next
 
-            Dim query As String = "UPDATE tb_purc_order SET pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ",due_date = '" + Date.Parse(DateEditDueDate.EditValue.ToString).ToString("yyyy-MM-dd") + "',pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ", pph_account = " + If(SLEPPHAccount.EditValue.ToString = "0", "NULL", SLEPPHAccount.EditValue.ToString) + ",inv_number='" & addSlashes(TEInvNumber.Text) & "' WHERE id_purc_order = " + id_purc_order
+            Dim query As String = "UPDATE tb_purc_order SET pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ",due_date = '" + Date.Parse(DateEditDueDate.EditValue.ToString).ToString("yyyy-MM-dd") + "',pph_reff_Date = '" + Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") + "',pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ", pph_account = " + If(SLEPPHAccount.EditValue.ToString = "0", "NULL", SLEPPHAccount.EditValue.ToString) + ",inv_number='" & addSlashes(TEInvNumber.Text) & "' WHERE id_purc_order = " + id_purc_order
             execute_non_query(query, True, "", "", "", "")
 
             If opt = "1" Then
@@ -413,15 +414,15 @@ GROUP BY pod.id_purc_order_det"
                     execute_non_query("UPDATE tb_purc_order_det SET pph_percent='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "pph_percent").ToString) & "',pph='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "pph").ToString) & "',gross_up_value='" & decimalSQL(GVPurcReq.GetRowCellValue(i, "gross_up_value").ToString) & "' WHERE id_purc_order_det='" & GVPurcReq.GetRowCellValue(i, "id_purc_order_det").ToString & "'", True, "", "", "", "")
                 Next
 
-                Dim query As String = "UPDATE tb_purc_order SET pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ",due_date = '" + Date.Parse(DateEditDueDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', is_active_payment = 1, pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ", pph_account = " + If(SLEPPHAccount.EditValue.ToString = "0", "NULL", SLEPPHAccount.EditValue.ToString) + ",inv_number='" & addSlashes(TEInvNumber.Text) & "' WHERE id_purc_order = " + id_purc_order
+                Dim query As String = "UPDATE tb_purc_order SET pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ",due_date = '" + Date.Parse(DateEditDueDate.EditValue.ToString).ToString("yyyy-MM-dd") + "',pph_reff_date = '" + Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', is_active_payment = 1, pph_total = " + decimalSQL(TEPPH.EditValue.ToString) + ", pph_account = " + If(SLEPPHAccount.EditValue.ToString = "0", "NULL", SLEPPHAccount.EditValue.ToString) + ",inv_number='" & addSlashes(TEInvNumber.Text) & "' WHERE id_purc_order = " + id_purc_order
                 execute_non_query(query, True, "", "", "", "")
 
                 If TEPPH.EditValue > 0 Then
                     'Jurnal PPH
                     'main journal
                     Dim id_acc_trans As String = ""
-                    Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status)
-                VALUES ('','" + addSlashes(TextEditPONumber.Text) + "','24','" + id_user + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                    Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                    VALUES ('','" + addSlashes(TextEditPONumber.Text) + "','24','" + id_user + "', NOW(),'" + Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") + "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                     id_acc_trans = execute_query(qjm, 0, True, "", "", "", "")
                     execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
@@ -430,10 +431,11 @@ GROUP BY pod.id_purc_order_det"
 SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
 0 AS `debit`,
 SUM(pod.pph) AS `credit`,
-i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
+CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
@@ -447,10 +449,11 @@ UNION ALL
 SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
 SUM(pod.pph) AS `debit`,
 0 AS `credit`,
-i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
+CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
@@ -467,10 +470,11 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
 SELECT " + id_acc_trans + " AS id_acc_trans, o.id_coa_out AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
 SUM(pod.`gross_up_value`) AS `debit`,
 0 AS `credit`,
-i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
+CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
@@ -486,10 +490,11 @@ UNION ALL
 SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
 0 AS `debit`,
 SUM(pod.`gross_up_value`) AS `credit`,
-i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
+CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
@@ -504,10 +509,11 @@ UNION ALL
 SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_ap AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
 SUM(pod.pph) AS `debit`,
 0 AS `credit`,
-i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
+CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
@@ -522,10 +528,11 @@ UNION ALL
 SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
 0 AS `debit`,
 SUM(pod.pph) AS `credit`,
-i.item_desc AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
+CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
 INNER JOIN tb_m_comp comp ON comp.id_comp = cont.id_comp
 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det

@@ -65,6 +65,7 @@ WHERE id_awb_inv_sum='" & id_verification & "'"
 ,COUNT(dd.`id_del_manifest_det`) AS collie
 ,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
 ,id.note_wh,id.berat_final,id.amount_final
+,id.time_verification
 FROM tb_awb_inv_sum_det id
 INNER JOIN tb_del_manifest_det dd ON id.id_del_manifest=dd.id_del_manifest
 INNER JOIN `tb_del_manifest` d ON dd.`id_del_manifest`=d.`id_del_manifest`
@@ -83,6 +84,7 @@ UNION ALL
 ,1 AS collie
 ,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
 ,id.note_wh,id.berat_final,id.amount_final
+,id.time_verification
 FROM tb_awb_inv_sum_det id
 WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
         Else
@@ -94,6 +96,7 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
 ,COUNT(dd.`id_inbound_koli`) AS collie
 ,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
 ,id.note_wh,id.berat_final,id.amount_final
+,id.time_verification
 FROM tb_awb_inv_sum_det id
 INNER JOIN tb_inbound_koli dd ON dd.`id_inbound_awb`=id.`id_inbound_awb`
 INNER JOIN `tb_inbound_awb` d ON dd.`id_inbound_awb`=d.`id_inbound_awb`
@@ -124,6 +127,7 @@ UNION ALL
 ,1 AS collie
 ,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
 ,id.note_wh,id.berat_final,id.amount_final
+,id.time_verification
 FROM tb_awb_inv_sum_det id
 WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
         End If
@@ -271,7 +275,7 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
                 execute_non_query(q, True, "", "", "", "")
                 'detail
                 If SLEType.EditValue.ToString = "1" Then
-                    q = "INSERT INTO tb_awb_inv_sum_det(awb_no,`id_awb_inv_sum`,`id_del_manifest`,`berat_wh`,`berat_cargo`,`amount_wh`,`amount_cargo`,berat_final,amount_final,`note_wh`) VALUES"
+                    q = "INSERT INTO tb_awb_inv_sum_det(awb_no,`id_awb_inv_sum`,`id_del_manifest`,`berat_wh`,`berat_cargo`,`amount_wh`,`amount_cargo`,berat_final,amount_final,`note_wh`,time_verification,id_comp) VALUES"
                     For i As Integer = 0 To GVInvoice.RowCount - 1
                         If Not i = 0 Then
                             q += ","
@@ -284,7 +288,14 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
                             id_reff = "'" & GVInvoice.GetRowCellValue(i, "id_del_manifest").ToString & "'"
                         End If
 
-                        q += "('" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "','" & id_verification & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "')"
+                        Dim id_comp As String = ""
+                        If GVInvoice.GetRowCellValue(i, "id_comp").ToString = "" Then
+                            id_comp = "NULL"
+                        Else
+                            id_comp = "'" & GVInvoice.GetRowCellValue(i, "id_comp").ToString & "'"
+                        End If
+
+                        q += "('" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "','" & id_verification & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "','" & GVInvoice.GetRowCellValue(i, "time_verification").ToString & "')"
                     Next
                     execute_non_query(q, True, "", "", "", "")
                 Else
@@ -741,7 +752,7 @@ GROUP BY d.`id_inbound_awb`"
         oledbconn.ConnectionString = strConn
         Dim MyCommand As OleDbDataAdapter
 
-        MyCommand = New OleDbDataAdapter("select * from [rekonsiliasi] WHERE not ([AWB]='')", oledbconn)
+        MyCommand = New OleDbDataAdapter("select * from [rekonsiliasi$] WHERE not ([AWB]='')", oledbconn)
 
         Try
             MyCommand.Fill(data_temp)
@@ -762,23 +773,31 @@ WHERE id_awb_inv_sum='" & id_verification & "' AND (amount_cargo-amount_wh>0) "
             Dim tb1 = data_temp.AsEnumerable()
             Dim tb2 = dt.AsEnumerable()
 
-            Dim hasil_dt As DataTable = (From table1 In tb1
-                                         Group Join table_tmp In tb2
-                                         On table1("AWB").ToString.ToLower Equals table_tmp("awb_no").ToString.ToLower Into awb = Group
-                                         From result_awb In awb.DefaultIfEmpty()
-                                         Select New With
-                                      {
-                                        .id_awb_inv_sum_det = If(result_awb Is Nothing, "", result_awb("id_awb_inv_sum_det")),
-                                        .time_verification = If(result_awb Is Nothing, "", result_awb("time_verification")),
-                                        .berat_final = If(table1("(Final) Total Weight").ToString = "", 0, table1("(Final) Total Weight")),
-                                        .amount_final = If(table1("(Final) Total Amount").ToString = "", 0, table1("(Final) Total Amount")),
-                                        .note = If(table1("Note").ToString = "", 0, table1("Note"))
-                                      })
+            Dim hasil = From table1 In tb1
+                        Group Join table_tmp In tb2
+                        On table1("AWB").ToString.ToLower Equals table_tmp("awb_no").ToString.ToLower Into awb = Group
+                        From result_awb In awb.DefaultIfEmpty()
+                        Select New With
+                            {
+                            .id_awb_inv_sum_det = If(result_awb Is Nothing, "", result_awb("id_awb_inv_sum_det")),
+                            .time_verification = If(result_awb Is Nothing, "", result_awb("time_verification")),
+                            .berat_final = If(table1("(Final) Total Weight").ToString = "", 0, table1("(Final) Total Weight")),
+                            .amount_final = If(table1("(Final) Total Amount").ToString = "", 0, table1("(Final) Total Amount")),
+                            .note = If(table1("Note").ToString = "", "", table1("Note"))
+                            }
 
             'Dim dtcek As DataTable = query.ToList().CopyTodatatable
+            Dim hasil_dt = ToDataTable(hasil.ToList())
             For i = 0 To hasil_dt.Rows.Count - 1
-                Console.WriteLine(hasil_dt(i)("berat_final").ToString)
+                'Console.WriteLine(hasil_dt(i)("berat_final").ToString)
+                If Not hasil_dt(i)("id_awb_inv_sum_det").ToString = "" Then
+                    'update
+                    Dim qu As String = "UPDATE tb_awb_inv_sum_det SET berat_final='" & decimalSQL(Decimal.Parse(hasil_dt(i)("berat_final").ToString).ToString) & "',amount_final='" & decimalSQL(Decimal.Parse(hasil_dt(i)("amount_final").ToString).ToString) & "',note_wh='" & addSlashes(hasil_dt(i)("note").ToString) & "',time_verification=time_verification+1 WHERE id_awb_inv_sum_det='" & hasil_dt(i)("id_awb_inv_sum_det").ToString & "'"
+                    execute_non_query(qu, True, "", "", "", "")
+                End If
             Next
+
+            load_det()
         Catch ex As Exception
             stopCustom(ex.ToString)
         End Try
@@ -787,4 +806,25 @@ WHERE id_awb_inv_sum='" & id_verification & "' AND (amount_cargo-amount_wh>0) "
         oledbconn.Close()
         oledbconn.Dispose()
     End Sub
+
+    Public Shared Function ToDataTable(Of T)(ByVal data As IList(Of T)) As DataTable
+        Dim properties As ComponentModel.PropertyDescriptorCollection = ComponentModel.TypeDescriptor.GetProperties(GetType(T))
+        Dim table As DataTable = New DataTable()
+
+        For Each prop As ComponentModel.PropertyDescriptor In properties
+            table.Columns.Add(prop.Name, If(Nullable.GetUnderlyingType(prop.PropertyType), prop.PropertyType))
+        Next
+
+        For Each item As T In data
+            Dim row As DataRow = table.NewRow()
+
+            For Each prop As ComponentModel.PropertyDescriptor In properties
+                row(prop.Name) = If(prop.GetValue(item), DBNull.Value)
+            Next
+
+            table.Rows.Add(row)
+        Next
+
+        Return table
+    End Function
 End Class

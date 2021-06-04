@@ -22,6 +22,8 @@ Partial Class FormAWBInv
         Me.components = New System.ComponentModel.Container()
         Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue2 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAWBInv))
         Me.GridColumnDiffAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -107,6 +109,7 @@ Partial Class FormAWBInv
         Me.XTPVerification = New DevExpress.XtraTab.XtraTabPage()
         Me.BDownloadFileKonsolidasi = New DevExpress.XtraEditors.SimpleButton()
         Me.BImportHasilRekon = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCTV = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEInvoiceNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -262,18 +265,27 @@ Partial Class FormAWBInv
         Me.GVInvoice.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVInvoice.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVInvoice.ColumnPanelRowHeight = 50
-        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumn2, Me.GridColumn3, Me.GridColumn1, Me.GridColumn16, Me.GridColumn15, Me.GridColumn12, Me.GridColumn11, Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn4, Me.GridColumn5, Me.GridColumn19, Me.GridColumn18, Me.GridColumn13, Me.GridColumnDiffAmount, Me.GridColumn45, Me.GridColumn20, Me.GridColumn14})
+        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumn2, Me.GridColumn3, Me.GridColumn1, Me.GridColumn16, Me.GridColumn15, Me.GridColumn12, Me.GridColumn11, Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn4, Me.GridColumn5, Me.GridColumn19, Me.GridColumn18, Me.GridColumn13, Me.GridColumnDiffAmount, Me.GridColumn45, Me.GridColumn20, Me.GridColumn14, Me.GCTV})
         GridFormatRule1.ApplyToRow = True
-        GridFormatRule1.Column = Me.GridColumnDiffAmount
         GridFormatRule1.Name = "FormatDiff"
         FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Red
         FormatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.White
         FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
         FormatConditionRuleValue1.Appearance.Options.UseForeColor = True
-        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Less
-        FormatConditionRuleValue1.Value1 = New Decimal(New Integer() {0, 0, 0, 0})
+        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue1.Expression = "Iif([time_verification] = 0 And [diff_amount] < 0, True, False)"
         GridFormatRule1.Rule = FormatConditionRuleValue1
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Name = "FormatDiffVerified"
+        FormatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        FormatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.White
+        FormatConditionRuleValue2.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue2.Appearance.Options.UseForeColor = True
+        FormatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue2.Expression = "Iif([time_verification] > 0 And [diff_amount] < 0, True, False)"
+        GridFormatRule2.Rule = FormatConditionRuleValue2
         Me.GVInvoice.FormatRules.Add(GridFormatRule1)
+        Me.GVInvoice.FormatRules.Add(GridFormatRule2)
         Me.GVInvoice.GridControl = Me.GCInvoice
         Me.GVInvoice.Name = "GVInvoice"
         Me.GVInvoice.OptionsPrint.AllowMultilineHeaders = True
@@ -1160,6 +1172,12 @@ Partial Class FormAWBInv
         Me.BImportHasilRekon.TabIndex = 92
         Me.BImportHasilRekon.Text = "Import Hasil Rekonsiliasi"
         '
+        'GCTV
+        '
+        Me.GCTV.Caption = "Time Verification"
+        Me.GCTV.FieldName = "time_verification"
+        Me.GCTV.Name = "GCTV"
+        '
         'FormAWBInv
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1289,4 +1307,5 @@ Partial Class FormAWBInv
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BDownloadFileKonsolidasi As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BImportHasilRekon As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCTV As DevExpress.XtraGrid.Columns.GridColumn
 End Class
