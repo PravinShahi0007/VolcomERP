@@ -26,7 +26,6 @@ SELECT 2 AS id_type,'Inbound' AS type"
             BSubmit.Visible = False
         Else
             'edit
-
             Dim q As String = "SELECT * 
 FROM `tb_awb_inv_sum`
 WHERE id_awb_inv_sum='" & id_verification & "'"
@@ -47,6 +46,8 @@ WHERE id_awb_inv_sum='" & id_verification & "'"
                     BSubmit.Visible = False
                     BMark.Visible = True
                     BtnPrint.Visible = True
+                    BDownloadFileKonsolidasi.Visible = False
+                    BImportHasilRekon.Visible = False
                 Else
                     BSubmit.Visible = True
                     BSaveDraft.Visible = True
@@ -361,9 +362,12 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
         Report.GVInvoice.BestFitColumns()
 
         'Parse val
-        Dim query As String = "SELECT"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        Report.DataSource = data
+        Dim q As String = "SELECT inv.inv_number,inv.created_date,c.comp_name 
+FROM `tb_awb_inv_sum` inv
+INNER JOIN tb_m_comp c ON c.`id_comp`=inv.`id_comp`
+WHERE inv.id_awb_inv_sum='" & id_verification & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        Report.DataSource = dt
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
@@ -469,6 +473,7 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
         Next
         ExcelTables.Dispose()
     End Sub
+
     Sub fill_field_grid_inv()
         Dim oledbconn As New OleDbConnection
         Dim strConn As String

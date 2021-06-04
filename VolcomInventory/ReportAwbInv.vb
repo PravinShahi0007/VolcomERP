@@ -3,6 +3,8 @@
     Public Shared dt As DataTable
 
     Private Sub ReportAwbInv_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
+        GCInvoice.DataSource = dt
+
         pre_load_mark_horz("310", id_ver, "2", "2", XrTable1)
     End Sub
 
