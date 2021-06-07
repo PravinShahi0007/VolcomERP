@@ -118,6 +118,9 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
     End Sub
 
     Sub print()
+        'check already send
+        Dim qc As String = ""
+        '
         Dim report As ReportODMScan = New ReportODMScan
 
         report.dt = GCListHistory.DataSource
@@ -126,5 +129,15 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
 
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
         tool.ShowPreview()
+    End Sub
+
+    Sub send_insurance()
+        Dim qc As String = "SELECT p.id_3pl FROM tb_odm_print p WHERE p.id_odm_print='" & id_print & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            If dtc.Rows(0)("id_3pl").ToString = "1215" Then
+
+            End If
+        End If
     End Sub
 End Class

@@ -173,10 +173,13 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
     Sub load_form()
         Dim query As String = "
             SELECT po.is_active_payment,po.id_coa_tag,po.purc_order_number,po.is_active_payment,po.pph_account,po.inv_number, c.comp_number, c.comp_name
-,IFNULL(po.due_date, DATE(NOW())) AS due_date, po.vat_percent,ROUND((SUM(pod.`value` * pod.qty)-IF(po.is_disc_percent=2,po.disc_value,(po.disc_percent * SUM(pod.`value` * pod.qty))))*(po.dpp_percent/100)*(po.vat_percent/100),2) AS vat_value
+,IFNULL(po.due_date, DATE(NOW())) AS due_date, po.vat_percent
+,ROUND((SUM(pod.`value` * recd.qty)-IF(po.is_disc_percent=2,po.disc_value,(po.disc_percent * SUM(pod.`value` * recd.qty))))*(po.dpp_percent/100)*(po.vat_percent/100),2) AS vat_value
 , po.is_disc_percent ,po.disc_percent, po.disc_value , IFNULL(po.pph_reff_date, DATE(NOW())) AS pph_reff_date
-FROM tb_purc_order AS po
-INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
+FROM tb_purc_rec_det recd
+INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`=6
+INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=recd.`id_purc_order_det`
+INNER JOIN tb_purc_order po ON po.id_purc_order=pod.`id_purc_order` 
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = po.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
 WHERE po.id_purc_order = " & id_purc_order & "
@@ -192,7 +195,6 @@ GROUP BY pod.`id_purc_order`"
         Else
             is_lock = "2"
         End If
-
 
         TextEditVendor.EditValue = data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString
         TextEditPONumber.EditValue = data.Rows(0)("purc_order_number").ToString
