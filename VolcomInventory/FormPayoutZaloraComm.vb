@@ -16,7 +16,7 @@
         Dim qr As String = "SELECT SUM(a.erp_amount) AS `comm_reff_amo` 
         FROM tb_payout_zalora_det_addition a
         INNER JOIN tb_payout_zalora_det d ON d.id_payout_zalora_det = a.id_payout_zalora_det
-        WHERE d.id_payout_zalora='" + id + "'
+        WHERE d.id_payout_zalora='" + id + "' AND a.is_use_ref=1
         GROUP BY d.id_payout_zalora "
         Dim dr As DataTable = execute_query(qr, -1, True, "", "", "", "")
         If dr.Rows.Count > 0 Then
