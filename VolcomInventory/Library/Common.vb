@@ -2276,7 +2276,7 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
 
         ' Add custom information to the link's header.
         phf.Footer.Content.AddRange(New String() _
-            {"Printed By: " + name_user + "(Volcom ERP)", "", "Date: [Date Printed]"})
+            {"Printed By: " + name_user + " (Volcom ERP)", "", "Date: [Date Printed]"})
         phf.Footer.LineAlignment = BrickAlignment.Near
 
         componentLink.CreateDocument()
@@ -7231,6 +7231,18 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
                 FormSalesReturnQC.Show()
                 FormSalesReturnQC.WindowState = FormWindowState.Maximized
                 FormSalesReturnQC.Focus()
+            Catch ex As Exception
+                errorProcess()
+            End Try
+        ElseIf form_par = "FormPurcReq" Then
+            'PurcReq Notif unable to fullfill
+            Try
+                FormPurcReq.MdiParent = FormMain
+                FormPurcReq.is_show_notif = True
+                FormPurcReq.show_notif_id_report = id_report_par
+                FormPurcReq.Show()
+                FormPurcReq.WindowState = FormWindowState.Maximized
+                FormPurcReq.Focus()
             Catch ex As Exception
                 errorProcess()
             End Try

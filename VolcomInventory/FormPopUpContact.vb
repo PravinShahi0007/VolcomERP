@@ -1278,6 +1278,14 @@
                 FormVerifyMaster.BtnConfirm.Visible = False
                 Close()
             End If
+        ElseIf id_pop_up = "93" Then
+            'popup verification 3pl invoice
+            If GVCompany.RowCount > 0 Then
+                FormAWBInv.GVInvoice.SetFocusedRowCellValue("id_store", GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString)
+                FormAWBInv.GVInvoice.SetFocusedRowCellValue("comp_number", GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString)
+                FormAWBInv.GVInvoice.SetFocusedRowCellValue("comp_name", GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString)
+                Close()
+            End If
         End If
         Cursor = Cursors.Default
     End Sub

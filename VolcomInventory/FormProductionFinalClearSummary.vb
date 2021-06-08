@@ -365,7 +365,7 @@
         Else
             Dim Report As New ReportProductionFinalClearSummary()
 
-            Report.XLDepartement.Text = execute_query("SELECT departement FROM tb_m_departement WHERE id_departement = 4", 0, True, "", "", "", "")
+            'Report.XLDepartement.Text = execute_query("SELECT departement FROM tb_m_departement WHERE id_departement = 4", 0, True, "", "", "", "")
             Report.XLNumber.Text = TENumber.EditValue.ToString
 
             Report.id = id_prod_fc_sum

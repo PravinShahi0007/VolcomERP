@@ -42,6 +42,7 @@ Partial Class FormNotification
         Me.SMRead = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMUnread = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMDelete = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GVNotif, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCNotif, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,7 +57,7 @@ Partial Class FormNotification
         '
         'GVNotif
         '
-        Me.GVNotif.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdNotif, Me.GridColumnIdNotifDet, Me.GridColumnIsread, Me.GridColumnNotifTitle, Me.GridColumnNotif, Me.GridColumnNotifTime, Me.GridColumnNotifDateNew, Me.GridColumnMarkRead, Me.GridColumnEmp, Me.GridColumnType})
+        Me.GVNotif.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdNotif, Me.GridColumnIdNotifDet, Me.GridColumnIsread, Me.GridColumnNotifTitle, Me.GridColumnNotif, Me.GridColumnNotifTime, Me.GridColumnNotifDateNew, Me.GridColumnMarkRead, Me.GridColumnEmp, Me.GridColumn1, Me.GridColumnType})
         Me.GVNotif.GridControl = Me.GCNotif
         Me.GVNotif.GroupCount = 1
         Me.GVNotif.Name = "GVNotif"
@@ -250,6 +251,18 @@ Partial Class FormNotification
         Me.SMDelete.Size = New System.Drawing.Size(156, 22)
         Me.SMDelete.Text = "Delete"
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.Caption = "Status"
+        Me.GridColumn1.FieldName = "status"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 5
+        '
         'FormNotification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -298,4 +311,5 @@ Partial Class FormNotification
     Friend WithEvents SMDelete As ToolStripMenuItem
     Friend WithEvents HyperlinkLabelAllRead As DevExpress.XtraEditors.HyperlinkLabelControl
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

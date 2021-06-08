@@ -38,6 +38,8 @@ Partial Class FormAWBInv
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
+        Me.CMAddStore = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMAddVendor = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,6 +60,8 @@ Partial Class FormAWBInv
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCTV = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -109,7 +113,6 @@ Partial Class FormAWBInv
         Me.XTPVerification = New DevExpress.XtraTab.XtraTabPage()
         Me.BDownloadFileKonsolidasi = New DevExpress.XtraEditors.SimpleButton()
         Me.BImportHasilRekon = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCTV = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEInvoiceNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,6 +121,7 @@ Partial Class FormAWBInv
         CType(Me.SLE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMAddStore.SuspendLayout()
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -250,6 +254,7 @@ Partial Class FormAWBInv
         '
         'GCInvoice
         '
+        Me.GCInvoice.ContextMenuStrip = Me.CMAddStore
         Me.GCInvoice.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCInvoice.Location = New System.Drawing.Point(0, 42)
         Me.GCInvoice.MainView = Me.GVInvoice
@@ -258,6 +263,18 @@ Partial Class FormAWBInv
         Me.GCInvoice.TabIndex = 1
         Me.GCInvoice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoice})
         '
+        'CMAddStore
+        '
+        Me.CMAddStore.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMAddVendor})
+        Me.CMAddStore.Name = "CMAddVendor"
+        Me.CMAddStore.Size = New System.Drawing.Size(145, 26)
+        '
+        'SMAddVendor
+        '
+        Me.SMAddVendor.Name = "SMAddVendor"
+        Me.SMAddVendor.Size = New System.Drawing.Size(144, 22)
+        Me.SMAddVendor.Text = "Choose Store"
+        '
         'GVInvoice
         '
         Me.GVInvoice.Appearance.HeaderPanel.Options.UseTextOptions = True
@@ -265,7 +282,7 @@ Partial Class FormAWBInv
         Me.GVInvoice.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVInvoice.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVInvoice.ColumnPanelRowHeight = 50
-        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumn2, Me.GridColumn3, Me.GridColumn1, Me.GridColumn16, Me.GridColumn15, Me.GridColumn12, Me.GridColumn11, Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn4, Me.GridColumn5, Me.GridColumn19, Me.GridColumn18, Me.GridColumn13, Me.GridColumnDiffAmount, Me.GridColumn45, Me.GridColumn20, Me.GridColumn14, Me.GCTV})
+        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumn2, Me.GridColumn3, Me.GridColumn1, Me.GridColumn16, Me.GridColumn15, Me.GridColumn12, Me.GridColumn11, Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn4, Me.GridColumn5, Me.GridColumn19, Me.GridColumn18, Me.GridColumn13, Me.GridColumnDiffAmount, Me.GridColumn45, Me.GridColumn20, Me.GridColumn14, Me.GCTV, Me.GridColumn21})
         GridFormatRule1.ApplyToRow = True
         GridFormatRule1.Name = "FormatDiff"
         FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Red
@@ -344,7 +361,6 @@ Partial Class FormAWBInv
         Me.GridColumn16.FieldName = "comp_number"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.OptionsColumn.AllowEdit = False
-        Me.GridColumn16.OptionsColumn.AllowFocus = False
         Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 2
@@ -578,6 +594,22 @@ Partial Class FormAWBInv
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 17
         Me.GridColumn14.Width = 158
+        '
+        'GCTV
+        '
+        Me.GCTV.Caption = "Time Verification"
+        Me.GCTV.FieldName = "time_verification"
+        Me.GCTV.Name = "GCTV"
+        Me.GCTV.OptionsColumn.AllowEdit = False
+        Me.GCTV.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "ID Store"
+        Me.GridColumn21.FieldName = "id_store"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.OptionsColumn.AllowEdit = False
+        Me.GridColumn21.OptionsColumn.ReadOnly = True
         '
         'PanelControl2
         '
@@ -1172,12 +1204,6 @@ Partial Class FormAWBInv
         Me.BImportHasilRekon.TabIndex = 92
         Me.BImportHasilRekon.Text = "Import Hasil Rekonsiliasi"
         '
-        'GCTV
-        '
-        Me.GCTV.Caption = "Time Verification"
-        Me.GCTV.FieldName = "time_verification"
-        Me.GCTV.Name = "GCTV"
-        '
         'FormAWBInv
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1199,6 +1225,7 @@ Partial Class FormAWBInv
         CType(Me.SLE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMAddStore.ResumeLayout(False)
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -1308,4 +1335,7 @@ Partial Class FormAWBInv
     Friend WithEvents BDownloadFileKonsolidasi As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BImportHasilRekon As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCTV As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMAddStore As ContextMenuStrip
+    Friend WithEvents SMAddVendor As ToolStripMenuItem
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -139,6 +139,7 @@ GROUP BY det.id_store"
                     'insert 1 by 1
                     GVData.AddNewRow()
                     GVData.FocusedRowHandle = GVData.RowCount - 1
+
                     '2246 acc WH id_acc
                     GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc", "2246")
                     GVData.SetRowCellValue(GVData.RowCount - 1, "id_expense_type", "1")

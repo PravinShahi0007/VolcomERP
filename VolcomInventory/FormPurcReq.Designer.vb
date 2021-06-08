@@ -43,7 +43,7 @@ Partial Class FormPurcReq
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCPR = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListReq = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPListItem = New DevExpress.XtraTab.XtraTabPage()
         Me.GCItemReqList = New DevExpress.XtraGrid.GridControl()
@@ -70,11 +70,20 @@ Partial Class FormPurcReq
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RITEQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BViewWithDate = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.SLEStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -91,15 +100,6 @@ Partial Class FormPurcReq
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.BViewWithDate = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,8 +108,8 @@ Partial Class FormPurcReq
         Me.ContextMenuStrip.SuspendLayout()
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
+        CType(Me.XTCPR, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCPR.SuspendLayout()
         Me.XTPListReq.SuspendLayout()
         Me.XTPListItem.SuspendLayout()
         CType(Me.GCItemReqList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,15 +120,15 @@ Partial Class FormPurcReq
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -322,15 +322,15 @@ Partial Class FormPurcReq
         Me.RICECheck.ValueChecked = "yes"
         Me.RICECheck.ValueUnchecked = "no"
         '
-        'XtraTabControl1
+        'XTCPR
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 44)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPListReq
-        Me.XtraTabControl1.Size = New System.Drawing.Size(905, 445)
-        Me.XtraTabControl1.TabIndex = 10
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListReq, Me.XTPListItem})
+        Me.XTCPR.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCPR.Location = New System.Drawing.Point(0, 44)
+        Me.XTCPR.Name = "XTCPR"
+        Me.XTCPR.SelectedTabPage = Me.XTPListReq
+        Me.XTCPR.Size = New System.Drawing.Size(905, 445)
+        Me.XTCPR.TabIndex = 10
+        Me.XTCPR.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListReq, Me.XTPListItem})
         '
         'XTPListReq
         '
@@ -569,6 +569,15 @@ Partial Class FormPurcReq
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 8
         '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "PO Number"
+        Me.GridColumn33.FieldName = "po_number"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 7
+        Me.GridColumn33.Width = 101
+        '
         'GridColumn27
         '
         Me.GridColumn27.Caption = "Reason"
@@ -584,6 +593,42 @@ Partial Class FormPurcReq
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 16
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Requirement Date"
+        Me.GridColumn36.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn36.FieldName = "requirement_date"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 3
+        Me.GridColumn36.Width = 102
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn31.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn31.Caption = "VS Est Rec Date PO"
+        Me.GridColumn31.FieldName = "status_rec"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 17
+        Me.GridColumn31.Width = 92
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn35.Caption = "VS Requirement Date"
+        Me.GridColumn35.FieldName = "status_req_date"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 18
         '
         'RepositoryItemCheckEdit1
         '
@@ -616,6 +661,58 @@ Partial Class FormPurcReq
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(899, 39)
         Me.PanelControl2.TabIndex = 12
+        '
+        'BViewWithDate
+        '
+        Me.BViewWithDate.Location = New System.Drawing.Point(770, 8)
+        Me.BViewWithDate.Name = "BViewWithDate"
+        Me.BViewWithDate.Size = New System.Drawing.Size(64, 23)
+        Me.BViewWithDate.TabIndex = 8929
+        Me.BViewWithDate.Text = "view"
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(590, 10)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEUntil.Properties.Appearance.Options.UseFont = True
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Size = New System.Drawing.Size(174, 20)
+        Me.DEUntil.TabIndex = 8928
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(563, 13)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl3.TabIndex = 8927
+        Me.LabelControl3.Text = "Until"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(295, 13)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(82, 13)
+        Me.LabelControl1.TabIndex = 8926
+        Me.LabelControl1.Text = "PR Created From"
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(383, 10)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEStart.Properties.Appearance.Options.UseFont = True
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Size = New System.Drawing.Size(174, 20)
+        Me.DEStart.TabIndex = 8925
         '
         'SLEStatus
         '
@@ -735,109 +832,12 @@ Partial Class FormPurcReq
         Me.LargeImageCollection.Images.SetKeyName(3, "safari (4).png")
         Me.LargeImageCollection.Images.SetKeyName(4, "31-Document_32x32.png")
         '
-        'DEStart
-        '
-        Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(383, 10)
-        Me.DEStart.Name = "DEStart"
-        Me.DEStart.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DEStart.Properties.Appearance.Options.UseFont = True
-        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Size = New System.Drawing.Size(174, 20)
-        Me.DEStart.TabIndex = 8925
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(295, 13)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(82, 13)
-        Me.LabelControl1.TabIndex = 8926
-        Me.LabelControl1.Text = "PR Created From"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(563, 13)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl3.TabIndex = 8927
-        Me.LabelControl3.Text = "Until"
-        '
-        'DEUntil
-        '
-        Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(590, 10)
-        Me.DEUntil.Name = "DEUntil"
-        Me.DEUntil.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DEUntil.Properties.Appearance.Options.UseFont = True
-        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Size = New System.Drawing.Size(174, 20)
-        Me.DEUntil.TabIndex = 8928
-        '
-        'BViewWithDate
-        '
-        Me.BViewWithDate.Location = New System.Drawing.Point(770, 8)
-        Me.BViewWithDate.Name = "BViewWithDate"
-        Me.BViewWithDate.Size = New System.Drawing.Size(64, 23)
-        Me.BViewWithDate.TabIndex = 8929
-        Me.BViewWithDate.Text = "view"
-        '
-        'GridColumn31
-        '
-        Me.GridColumn31.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn31.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn31.Caption = "VS Est Rec Date PO"
-        Me.GridColumn31.FieldName = "status_rec"
-        Me.GridColumn31.Name = "GridColumn31"
-        Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 17
-        Me.GridColumn31.Width = 92
-        '
-        'GridColumn33
-        '
-        Me.GridColumn33.Caption = "PO Number"
-        Me.GridColumn33.FieldName = "po_number"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 7
-        Me.GridColumn33.Width = 101
-        '
-        'GridColumn35
-        '
-        Me.GridColumn35.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn35.Caption = "VS Requirement Date"
-        Me.GridColumn35.FieldName = "status_req_date"
-        Me.GridColumn35.Name = "GridColumn35"
-        Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 18
-        '
-        'GridColumn36
-        '
-        Me.GridColumn36.Caption = "Requirement Date"
-        Me.GridColumn36.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn36.FieldName = "requirement_date"
-        Me.GridColumn36.Name = "GridColumn36"
-        Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 3
-        Me.GridColumn36.Width = 102
-        '
         'FormPurcReq
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(905, 489)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.XTCPR)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
@@ -858,8 +858,8 @@ Partial Class FormPurcReq
         Me.ContextMenuStrip.ResumeLayout(False)
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
+        CType(Me.XTCPR, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCPR.ResumeLayout(False)
         Me.XTPListReq.ResumeLayout(False)
         Me.XTPListItem.ResumeLayout(False)
         CType(Me.GCItemReqList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -871,15 +871,15 @@ Partial Class FormPurcReq
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BMDD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -902,7 +902,7 @@ Partial Class FormPurcReq
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCPR As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPListReq As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPListItem As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCItemReqList As DevExpress.XtraGrid.GridControl

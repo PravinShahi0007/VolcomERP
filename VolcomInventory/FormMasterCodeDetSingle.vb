@@ -6,24 +6,29 @@
     Public is_set_parent_color As String = "-1"
 
     Private lookup As List(Of DevExpress.XtraEditors.SearchLookUpEdit) = New List(Of DevExpress.XtraEditors.SearchLookUpEdit)
+    Dim id_code_color As String = get_setup_field("id_code_fg_color")
 
     Private Sub TECodeDet_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TECodeDet.Validating
-        EP_TE_cant_blank(ErrorProviderCodeDet, TECodeDet)
-        '
-        Dim query_jml As String = String.Format("SELECT COUNT(id_code_detail) FROM tb_m_code_detail WHERE code_detail_name='{0}' AND id_code='{1}' AND id_code_detail !='{2}'", TECodeDet.Text, id_code, id_code_det)
-        Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
-        If Not jml < 1 Then
-            EP_TE_already_used(ErrorProviderCodeDet, TECodeDet, "1")
+        If id_code <> id_code_color Then
+            EP_TE_cant_blank(ErrorProviderCodeDet, TECodeDet)
+            '
+            Dim query_jml As String = String.Format("SELECT COUNT(id_code_detail) FROM tb_m_code_detail WHERE code_detail_name='{0}' AND id_code='{1}' AND id_code_detail !='{2}'", TECodeDet.Text, id_code, id_code_det)
+            Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
+            If Not jml < 1 Then
+                EP_TE_already_used(ErrorProviderCodeDet, TECodeDet, "1")
+            End If
         End If
     End Sub
 
     Private Sub TEPrintedCode_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEPrintedCode.Validating
-        EP_TE_cant_blank(ErrorProviderCodeDet, TEPrintedCode)
-        '
-        Dim query_jml As String = String.Format("SELECT COUNT(id_code_detail) FROM tb_m_code_detail WHERE display_name='{0}' AND id_code='{1}' AND id_code_detail !='{2}'", TEPrintedCode.Text, id_code, id_code_det)
-        Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
-        If Not jml < 1 Then
-            EP_TE_already_used(ErrorProviderCodeDet, TEPrintedCode, "1")
+        If id_code <> id_code_color Then
+            EP_TE_cant_blank(ErrorProviderCodeDet, TEPrintedCode)
+            '
+            Dim query_jml As String = String.Format("SELECT COUNT(id_code_detail) FROM tb_m_code_detail WHERE display_name='{0}' AND id_code='{1}' AND id_code_detail !='{2}'", TEPrintedCode.Text, id_code, id_code_det)
+            Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
+            If Not jml < 1 Then
+                EP_TE_already_used(ErrorProviderCodeDet, TEPrintedCode, "1")
+            End If
         End If
     End Sub
 
@@ -78,8 +83,22 @@
 
         If is_set_parent_color = "-1" Then
             TECode_Validating(TECode, New System.ComponentModel.CancelEventArgs)
-            TEPrintedCode_Validating(TEPrintedCode, New System.ComponentModel.CancelEventArgs)
-            TECodeDet_Validating(TECodeDet, New System.ComponentModel.CancelEventArgs)
+            Dim cond_valid As Boolean = True
+            If id_code <> id_code_color Then
+                TEPrintedCode_Validating(TEPrintedCode, New System.ComponentModel.CancelEventArgs)
+                TECodeDet_Validating(TECodeDet, New System.ComponentModel.CancelEventArgs)
+            Else
+                'cek database kalo color
+                Dim print_code As String = TEPrintedCode.Text.TrimStart.TrimEnd
+                Dim desc As String = TECodeDet.Text.TrimStart.TrimEnd
+                Dim qcek As String = "SELECT * FROM tb_m_code_detail cd WHERE cd.id_code=" + id_code_color + " 
+                AND cd.display_name='" + print_code + "' AND cd.code_detail_name='" + desc + "' AND cd.id_code_detail<>" + id_code_det + " "
+                Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+                If dcek.Rows.Count > 0 Then
+                    cond_valid = False
+                End If
+            End If
+
 
             Dim query As String
             Dim code As String = TECode.Text
@@ -92,6 +111,8 @@
                     'update
                     If Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl2) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl3) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl4) Then
                         errorInput()
+                    ElseIf Not cond_valid Then
+                        stopCustom("Already exist")
                     Else
                         query = String.Format("UPDATE tb_m_code_detail SET code_detail_name='{0}',display_name='{1}',code='{2}' WHERE id_code_detail='{3}'", addSlashes(code_name), addSlashes(display_name), addSlashes(code), id_code_det)
                         execute_non_query(query, True, "", "", "", "")
@@ -183,6 +204,8 @@
                     'insert
                     If Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl2) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl3) Or Not formIsValidInPanel(ErrorProviderCodeDet, PanelControl4) Then
                         errorInput()
+                    ElseIf Not cond_valid Then
+                        stopCustom("Already exist")
                     Else
                         query = String.Format("INSERT INTO tb_m_code_detail(code_detail_name,display_name,code,id_code) VALUES('{0}','{1}','{2}','{3}'); SELECT LAST_INSERT_ID();", addSlashes(code_name), addSlashes(display_name), addSlashes(code), id_code)
                         id_code_det = execute_query(query, 0, True, "", "", "", "")
