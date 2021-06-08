@@ -118,7 +118,7 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
     End Sub
 
     Sub print()
-        '
+        Cursor = Cursors.WaitCursor
         send_insurance()
         '
         Dim report As ReportODMScan = New ReportODMScan
@@ -129,6 +129,7 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
 
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
         tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Sub send_insurance()
