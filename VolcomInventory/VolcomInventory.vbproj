@@ -8013,6 +8013,12 @@
     </Compile>
     <Compile Include="print_barcode.vb" />
     <Compile Include="RawPrinterHelper.vb" />
+    <Compile Include="Report3PLInsurance.Designer.vb">
+      <DependentUpon>Report3PLInsurance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report3PLInsurance.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportAccountingJournal.designer.vb">
       <DependentUpon>ReportAccountingJournal.vb</DependentUpon>
     </Compile>
@@ -8986,6 +8992,12 @@
       <DependentUpon>ReportPayrollAllCompare.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportPayrollAllCompare.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportPengirimanProduk.Designer.vb">
+      <DependentUpon>ReportPengirimanProduk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPengirimanProduk.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportPLMat.designer.vb">
@@ -14047,6 +14059,9 @@
       <DependentUpon>Pivot.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report3PLInsurance.resx">
+      <DependentUpon>Report3PLInsurance.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportAccountingJournal.resx">
       <DependentUpon>ReportAccountingJournal.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -14572,6 +14587,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPayrollAllCompare.resx">
       <DependentUpon>ReportPayrollAllCompare.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPengirimanProduk.resx">
+      <DependentUpon>ReportPengirimanProduk.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPLMat.resx">
       <DependentUpon>ReportPLMat.vb</DependentUpon>
