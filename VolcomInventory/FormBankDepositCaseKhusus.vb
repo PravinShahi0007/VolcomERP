@@ -35,10 +35,10 @@
             newRow("total_rec") = 0
             If LEDK.EditValue.ToString = "1" Then
                 newRow("value") = amo * -1
-                newRow("balance_due") = 0.00
+                newRow("balance_due") = GVInvoiceList.GetFocusedRowCellValue("total_due") * -1
             Else
                 newRow("value") = amo
-                newRow("balance_due") = 0.00
+                newRow("balance_due") = GVInvoiceList.GetFocusedRowCellValue("total_due")
             End If
             newRow("note") = addSlashes(GVInvoiceList.GetFocusedRowCellValue("note").ToString)
             newRow("id_dc") = LEDK.EditValue.ToString
