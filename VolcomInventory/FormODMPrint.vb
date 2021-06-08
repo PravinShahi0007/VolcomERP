@@ -1,5 +1,5 @@
 ﻿Public Class FormODMPrint
-    Public id_print As String = ""
+    Public Shared id_print As String = ""
 
     Private Sub FormODMPrint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim q As String = "SELECT c.comp_name,p.number FROM tb_odm_print p 
@@ -118,8 +118,8 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
     End Sub
 
     Sub print()
-        'check already send
-        Dim qc As String = ""
+        Cursor = Cursors.WaitCursor
+        send_insurance()
         '
         Dim report As ReportODMScan = New ReportODMScan
 
@@ -129,14 +129,37 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
 
         Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
         tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Sub send_insurance()
+        Dim qc As String = "SELECT p.id_3pl,p.number FROM tb_odm_print p WHERE p.id_odm_print='" & id_print & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            If dtc.Rows(0)("id_3pl").ToString = "1215" Then
+                'check log
+                Dim qc2 As String = "SELECT * FROM tb_odm_print_log WHERE report_mark_type=313 AND id_odm_print='" & id_print & "'"
+                Dim dtc2 As DataTable = execute_query(qc2, -1, True, "", "", "", "")
+                If Not dtc2.Rows.Count > 0 Then
+                    'hanya kirim jika belum pernah ngirim
+                    Dim mail As ClassSendEmail = New ClassSendEmail()
+                    mail.id_report = id_print
+                    mail.par1 = dtc.Rows(0)("number").ToString
+                    mail.report_mark_type = "313"
+                    mail.send_email()
+                    'log
+                    execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,date_log) VALUES('" & id_print & "','313','1215',NOW())", True, "", "", "", "")
+                End If
+            End If
+        End If
+    End Sub
+
+    Sub send_stock()
         Dim qc As String = "SELECT p.id_3pl FROM tb_odm_print p WHERE p.id_odm_print='" & id_print & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count > 0 Then
             If dtc.Rows(0)("id_3pl").ToString = "1215" Then
-
+                'check log
             End If
         End If
     End Sub
