@@ -43,7 +43,7 @@
 	        SELECT i.id_departement,i.id_item,
 	        SUM(IF(i.id_storage_category=2, CONCAT('-', i.storage_item_qty), i.storage_item_qty)) AS `qty`
 	        FROM tb_storage_item i
-            INNER JOIN tb_item im ON im.id_item = i.id_item AND i.is_active=1
+            INNER JOIN tb_item im ON im.id_item = i.id_item AND im.is_active=1
             INNER JOIN tb_item_cat cat ON cat.id_item_cat = im.id_item_cat
 	        GROUP BY i.id_departement,i.id_item
         ) a 
