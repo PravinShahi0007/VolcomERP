@@ -1102,6 +1102,18 @@
     <Compile Include="FormCompareStockWebsiteDetailBook.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCompGroupEmail.Designer.vb">
+      <DependentUpon>FormCompGroupEmail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompGroupEmail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCompGroupEmailDet.Designer.vb">
+      <DependentUpon>FormCompGroupEmailDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompGroupEmailDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCustomDialog.Designer.vb">
       <DependentUpon>FormCustomDialog.vb</DependentUpon>
     </Compile>
