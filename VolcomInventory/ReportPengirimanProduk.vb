@@ -47,7 +47,7 @@ ORDER BY do_number"
             gran_tot_qty += dt.Rows(i)("qty")
             If i = dt.Rows.Count - 1 Then
                 'last row
-                insert_footer(row_baru, tot_qty, dt.Rows(i)("do_number").ToString)
+                insert_footer(row_baru, tot_qty, "Total " & dt.Rows(i)("do_number").ToString)
                 insert_footer(row_baru, gran_tot_qty, "Grand Total")
             Else
                 If Not dt.Rows(i)("do_number").ToString = dt.Rows(i + 1)("do_number").ToString Then
@@ -132,7 +132,7 @@ ORDER BY do_number"
 
         'awbill_no
         Dim awbill_no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(10)
-        awbill_no.Text = dt.Rows(row_i)("so_status").ToString
+        awbill_no.Text = dt.Rows(row_i)("awbill_no").ToString
         awbill_no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         awbill_no.Font = font_row_style
 
@@ -161,7 +161,7 @@ ORDER BY do_number"
 
         'do_no
         Dim do_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
-        do_number.Text = "Total " & do_no
+        do_number.Text = do_no
         do_number.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         do_number.Font = font_row_style
 
