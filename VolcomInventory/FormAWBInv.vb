@@ -52,6 +52,18 @@ WHERE id_awb_inv_sum='" & id_verification & "'"
                     BSubmit.Visible = True
                     BSaveDraft.Visible = True
                 End If
+                '
+                If Not dt.Rows(0)("id_report_status") = "6" And Not dt.Rows(0)("id_report_status") = "5" Then
+                    BCancel.Visible = True
+                Else
+                    BCancel.Visible = False
+                    BSaveDraft.Visible = False
+                    BSubmit.Visible = False
+                    BMark.Visible = False
+                    BtnPrint.Visible = False
+                    BDownloadFileKonsolidasi.Visible = False
+                    BImportHasilRekon.Visible = False
+                End If
             End If
         End If
     End Sub
@@ -885,5 +897,20 @@ WHERE id_awb_inv_sum='" & id_verification & "' AND (amount_cargo-amount_wh>0) "
         FormPopUpContact.id_cat = "6"
         FormPopUpContact.id_pop_up = "93"
         FormPopUpContact.ShowDialog()
+    End Sub
+
+    Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = DialogResult.Yes Then
+            Dim q As String = "UPDATE tb_awb_inv_sum SET id_report_status='5' WHERE id_awb_inv_sum='" & id_verification & "'"
+            execute_non_query(q, True, "", "", "", "")
+            '
+            delete_all_mark_related("310", id_verification)
+            '
+            load_form()
+        End If
     End Sub
 End Class
