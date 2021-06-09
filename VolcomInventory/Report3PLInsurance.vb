@@ -22,8 +22,6 @@ LEFT JOIN tb_m_code_detail cd ON cd.`id_code_detail`=pc.`id_code_detail`
 GROUP BY del.awbill_no"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         '
-
-        '
         Dim row_baru As DevExpress.XtraReports.UI.XRTableRow = XRDetail
         Dim tot_nilai As Decimal = 0.00
         For i = 0 To dt.Rows.Count - 1
