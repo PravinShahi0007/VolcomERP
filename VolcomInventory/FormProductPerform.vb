@@ -70,7 +70,7 @@
         Dim month_from As Integer = Integer.Parse(SLUEMonthFrom.EditValue.ToString.Split("-")(1))
         Dim month_to As Integer = Integer.Parse(SLUEMonthTo.EditValue.ToString.Split("-")(1))
         Dim fromDate As String = "" + year_from.ToString + "-" + month_from.ToString.PadLeft(2, "0") + "-01"
-        Dim untilDate As String = "" + year_to.ToString + "-" + month_to.ToString.PadLeft(2, "0") + "-" + Date.DaysInMonth(year_to, month_to).ToString + ""
+        Dim untilDate As String = "" + year_to.ToString + "-" + month_to.ToString.PadLeft(2, "0") + "-01"
 
         Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, division.display_name AS `Product Info|Division`, 
         category.display_name AS `Product Info|Category`, class.display_name AS `Product Info|Class`, color.code_detail_name AS `Product Info|Color`, source.display_name AS `Product Info|Source`,
@@ -91,12 +91,12 @@
         ROUND(wh_rec_normal.qty) AS `WH Received|Normal (BOS)`, ROUND(wh_rec_defect.qty) AS `WH Received|Defect`,
         ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`, 
         SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(549) THEN soh.qty END) AS `TOKO WBF|DEL`,
-        ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) AND soh.id_comp IN(549) THEN soh.qty END)) AS `TOKO WBF|SAL`,
+        ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) AND soh.id_comp IN(549) THEN soh.qty END)) AS `STORE : WBF|SAL`,
         SUM(CASE WHEN soh.soh_date='2020-12-01' AND soh.id_comp IN(549) THEN soh.qty END) AS `TOKO WBF|SOH`,
         0 AS `TOKO WBF|Sales Thru`,
         SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END) AS `TOTAL|DEL`,
         ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END)) AS `TOTAL|SAL`,
-        SUM(CASE WHEN soh.soh_date='2020-12-01' THEN soh.qty END) AS `TOTAL|SOH`,
+        SUM(CASE WHEN soh.soh_date='" + untilDate + "' THEN soh.qty END) AS `TOTAL|SOH`,
         (ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END))/SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END))*100 AS `TOTAL|Sales Thru`
         FROM tb_soh_sal_period soh
         INNER JOIN tb_m_product p ON p.id_product = soh.id_product
@@ -227,19 +227,22 @@
                         col.Group()
                     End If
 
-                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("TOTAL") Or bandName.Contains("TOKO") Then
-                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("TOTAL") Or bandName.Contains("STORE :") Then
+                        'display format
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n0}"
 
+                        'summary
+                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        col.SummaryItem.DisplayFormat = "{0:n0}"
+
+                        'group summary
+                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
                         summary.DisplayFormat = "{0:N0}"
                         summary.FieldName = data.Columns(j).Caption
                         summary.ShowInGroupColumnFooter = col
                         summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
-
                         GVData.GroupSummary.Add(summary)
-                    End If
-
-                    If bandName.Contains("Sell Thru") Or bandName.Contains("Monthly SAS") Or bandName = "Price" Then
-                        col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
                     End If
 
                     If bandName = "Product Info" Then

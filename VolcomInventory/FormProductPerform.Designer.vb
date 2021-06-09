@@ -548,6 +548,7 @@ Partial Class FormProductPerform
         Me.GVData.OptionsBehavior.ReadOnly = True
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'FormProductPerform
