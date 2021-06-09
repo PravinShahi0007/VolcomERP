@@ -1028,10 +1028,10 @@ WHERE CONCAT(cg.`comp_group`,'-',so.`sales_order_ol_shop_number`) IN (" + q_in.S
 
                         'update is exported
                         execute_non_query("UPDATE tb_sales_order so
-INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = so.id_store_contact_to 
-INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp AND d.`id_commerce_type`='2'
-INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=d.`id_comp_group`
-SET so.is_export_awb = 1 WHERE CONCAT(cg.`comp_group`,'-',so.`sales_order_ol_shop_number`) IN (" + q_in.Substring(0, q_in.Length - 2) + ") ", True, "", "", "", "")
+                        INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = so.id_store_contact_to 
+                        INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp AND d.`id_commerce_type`='2'
+                        INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=d.`id_comp_group`
+                        SET so.is_export_awb = 1 WHERE CONCAT(cg.`comp_group`,'-',so.`sales_order_ol_shop_number`) IN (" + q_in.Substring(0, q_in.Length - 2) + ") ", True, "", "", "", "")
 
                         infoCustom("File saved.")
                     End If

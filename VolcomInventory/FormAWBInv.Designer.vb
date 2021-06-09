@@ -51,6 +51,7 @@ Partial Class FormAWBInv
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -83,6 +84,7 @@ Partial Class FormAWBInv
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -113,8 +115,7 @@ Partial Class FormAWBInv
         Me.XTPVerification = New DevExpress.XtraTab.XtraTabPage()
         Me.BDownloadFileKonsolidasi = New DevExpress.XtraEditors.SimpleButton()
         Me.BImportHasilRekon = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEInvoiceNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -436,6 +437,19 @@ Partial Class FormAWBInv
         Me.GridColumn8.VisibleIndex = 8
         Me.GridColumn8.Width = 64
         '
+        'GridColumn47
+        '
+        Me.GridColumn47.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn47.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn47.Caption = "Cargo Rate"
+        Me.GridColumn47.DisplayFormat.FormatString = "N2"
+        Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn47.FieldName = "rate_cargo"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 9
+        Me.GridColumn47.Width = 46
+        '
         'GridColumn17
         '
         Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
@@ -615,6 +629,7 @@ Partial Class FormAWBInv
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BCancel)
         Me.PanelControl2.Controls.Add(Me.BtnPrint)
         Me.PanelControl2.Controls.Add(Me.BMark)
         Me.PanelControl2.Controls.Add(Me.BtnCancel)
@@ -683,7 +698,7 @@ Partial Class FormAWBInv
         Me.BtnCancel.Size = New System.Drawing.Size(75, 40)
         Me.BtnCancel.TabIndex = 21
         Me.BtnCancel.TabStop = False
-        Me.BtnCancel.Text = "Cancel"
+        Me.BtnCancel.Text = "Close"
         '
         'BSaveDraft
         '
@@ -848,6 +863,19 @@ Partial Class FormAWBInv
         Me.GridColumn31.Visible = True
         Me.GridColumn31.VisibleIndex = 8
         Me.GridColumn31.Width = 55
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn46.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn46.Caption = "Cargo Rate"
+        Me.GridColumn46.DisplayFormat.FormatString = "N2"
+        Me.GridColumn46.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn46.FieldName = "a_rate"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 9
+        Me.GridColumn46.Width = 41
         '
         'GridColumn32
         '
@@ -1207,31 +1235,18 @@ Partial Class FormAWBInv
         Me.BImportHasilRekon.TabIndex = 92
         Me.BImportHasilRekon.Text = "Import Hasil Rekonsiliasi"
         '
-        'GridColumn46
+        'BCancel
         '
-        Me.GridColumn46.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn46.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn46.Caption = "Cargo Rate"
-        Me.GridColumn46.DisplayFormat.FormatString = "N2"
-        Me.GridColumn46.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn46.FieldName = "a_rate"
-        Me.GridColumn46.Name = "GridColumn46"
-        Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 9
-        Me.GridColumn46.Width = 41
-        '
-        'GridColumn47
-        '
-        Me.GridColumn47.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn47.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn47.Caption = "Cargo Rate"
-        Me.GridColumn47.DisplayFormat.FormatString = "N2"
-        Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn47.FieldName = "rate_cargo"
-        Me.GridColumn47.Name = "GridColumn47"
-        Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 9
-        Me.GridColumn47.Width = 46
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancel.ImageIndex = 1
+        Me.BCancel.ImageList = Me.LargeImageCollection
+        Me.BCancel.Location = New System.Drawing.Point(77, 2)
+        Me.BCancel.Name = "BCancel"
+        Me.BCancel.Size = New System.Drawing.Size(82, 40)
+        Me.BCancel.TabIndex = 25
+        Me.BCancel.TabStop = False
+        Me.BCancel.Text = "Cancel"
+        Me.BCancel.Visible = False
         '
         'FormAWBInv
         '
@@ -1369,4 +1384,5 @@ Partial Class FormAWBInv
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
 End Class
