@@ -38,13 +38,22 @@ ORDER BY do_number"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         '
         Dim row_baru As DevExpress.XtraReports.UI.XRTableRow = XRDetail
-        Dim tot_nilai As Decimal = 0.00
+        Dim tot_qty As Decimal = 0.00
+        Dim gran_tot_qty As Decimal = 0.00
         For i = 0 To dt.Rows.Count - 1
             insert_row(row_baru, dt, i)
             'add per SDO
-            tot_nilai += dt.Rows(i)("total_harga")
+            tot_qty += dt.Rows(i)("qty")
+            gran_tot_qty += dt.Rows(i)("qty")
             If i = dt.Rows.Count - 1 Then
-                insert_footer(row_baru, tot_nilai)
+                'last row
+                insert_footer(row_baru, tot_qty, "Total " & dt.Rows(i)("do_number").ToString)
+                insert_footer(row_baru, gran_tot_qty, "Grand Total")
+            Else
+                If Not dt.Rows(i)("do_number").ToString = dt.Rows(i + 1)("do_number").ToString Then
+                    insert_footer(row_baru, tot_qty, dt.Rows(i)("do_number").ToString)
+                    tot_qty = 0
+                End If
             End If
         Next
     End Sub
@@ -75,7 +84,7 @@ ORDER BY do_number"
 
         'pl_date
         Dim pl_date As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
-        pl_date.Text = Date.Parse(dt.Rows(row_i)("pl_date").ToString).ToShortDateString("dd MMMM yyyy")
+        pl_date.Text = Date.Parse(dt.Rows(row_i)("pl_date").ToString).ToString("dd MMMM yyyy")
         pl_date.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         pl_date.Font = font_row_style
 
@@ -99,45 +108,121 @@ ORDER BY do_number"
 
         'product_desc
         Dim product_desc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
-        product_desc.Text = dt.Rows(row_i)("product_display_name").ToString
+        product_desc.Text = dt.Rows(row_i)("design_display_name").ToString
         product_desc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         product_desc.Font = font_row_style
 
-        'pl_date
-        Dim harga As String = Decimal.Parse(dt.Rows(row_i)("total_harga").ToString).ToString("N2")
+        'qty
+        Dim qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+        qty.Text = Decimal.Parse(dt.Rows(row_i)("qty").ToString).ToString("N0")
+        qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty.Font = font_row_style
 
-        Dim total_nilai As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
-        total_nilai.Text = harga
-        total_nilai.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        total_nilai.Font = font_row_style
+        'remark
+        Dim remark As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
+        remark.Text = dt.Rows(row_i)("so_status").ToString
+        remark.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        remark.Font = font_row_style
+
+        'note
+        Dim note As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(9)
+        note.Text = dt.Rows(row_i)("pl_sales_order_del_note").ToString
+        note.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        note.Font = font_row_style
+
+        'awbill_no
+        Dim awbill_no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(10)
+        awbill_no.Text = dt.Rows(row_i)("awbill_no").ToString
+        awbill_no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        awbill_no.Font = font_row_style
+
+        'odm
+        Dim odm As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(11)
+        odm.Text = dt.Rows(row_i)("number").ToString
+        odm.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        odm.Font = font_row_style
     End Sub
 
-    Sub insert_footer(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal total As Decimal)
-        Dim font_row_style As New Font(XTDetail.Font.FontFamily, XTDetail.Font.Size + 1, FontStyle.Bold)
+    Sub insert_footer(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal total As Decimal, ByVal do_no As String)
+        Dim font_row_style As New Font(XTDetail.Font.FontFamily, XTDetail.Font.Size, FontStyle.Bold)
+
+        row = XTDetail.InsertRowBelow(row)
 
         row.Borders = DevExpress.XtraPrinting.BorderSide.All
         row.BorderWidth = 1
-        row.HeightF = 25
+        row.HeightF = 15
         row.Font = font_row_style
 
-        'No
-        Dim no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
-        no.Text = "Total"
-        no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        no.Font = font_row_style
+        'Store Name
+        Dim store As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
+        store.Text = ""
+        store.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        store.Font = font_row_style
 
-        'awb_no
-        Dim awb_no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
-        awb_no.Text = ""
-        awb_no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        awb_no.Font = font_row_style
+        'do_no
+        Dim do_number As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+        do_number.Text = do_no
+        do_number.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        do_number.Font = font_row_style
 
-        'total_nilai
-        Dim harga As String = Decimal.Parse(Decimal.Parse(total.ToString).ToString("N2")).ToString("N2")
+        'pl_date
+        Dim pl_date As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+        pl_date.Text = ""
+        pl_date.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        pl_date.Font = font_row_style
 
-        Dim total_nilai As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
-        total_nilai.Text = harga
-        total_nilai.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        total_nilai.Font = font_row_style
+        'barcode
+        Dim product_full_code As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+        product_full_code.Text = ""
+        product_full_code.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        product_full_code.Font = font_row_style
+
+        'size
+        Dim size As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+        size.Text = ""
+        size.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        size.Font = font_row_style
+
+        'class
+        Dim product_class As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+        product_class.Text = ""
+        product_class.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        product_class.Font = font_row_style
+
+        'product_desc
+        Dim product_desc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+        product_desc.Text = ""
+        product_desc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        product_desc.Font = font_row_style
+
+        'qty
+        Dim qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+        qty.Text = Decimal.Parse(total.ToString).ToString("N0")
+        qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty.Font = font_row_style
+
+        'remark
+        Dim remark As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
+        remark.Text = ""
+        remark.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        remark.Font = font_row_style
+
+        'note
+        Dim note As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(9)
+        note.Text = ""
+        note.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        note.Font = font_row_style
+
+        'awbill_no
+        Dim awbill_no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(10)
+        awbill_no.Text = ""
+        awbill_no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        awbill_no.Font = font_row_style
+
+        'odm
+        Dim odm As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(11)
+        odm.Text = ""
+        odm.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        odm.Font = font_row_style
     End Sub
 End Class

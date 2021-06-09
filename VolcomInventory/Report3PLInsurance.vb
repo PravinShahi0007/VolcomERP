@@ -70,6 +70,8 @@ GROUP BY del.awbill_no"
     Sub insert_footer(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal total As Decimal)
         Dim font_row_style As New Font(XTDetail.Font.FontFamily, XTDetail.Font.Size + 1, FontStyle.Bold)
 
+        row = XTDetail.InsertRowBelow(row)
+
         row.Borders = DevExpress.XtraPrinting.BorderSide.All
         row.BorderWidth = 1
         row.HeightF = 25

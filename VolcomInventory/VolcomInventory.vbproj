@@ -1102,6 +1102,18 @@
     <Compile Include="FormCompareStockWebsiteDetailBook.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCompGroupEmail.Designer.vb">
+      <DependentUpon>FormCompGroupEmail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompGroupEmail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCompGroupEmailDet.Designer.vb">
+      <DependentUpon>FormCompGroupEmailDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompGroupEmailDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCustomDialog.Designer.vb">
       <DependentUpon>FormCustomDialog.vb</DependentUpon>
     </Compile>
@@ -3955,6 +3967,12 @@
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionWOList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductPerform.Designer.vb">
+      <DependentUpon>FormProductPerform.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductPerform.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductWeight.Designer.vb">
@@ -10187,6 +10205,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCompareStockWebsiteDetailBook.resx">
       <DependentUpon>FormCompareStockWebsiteDetailBook.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCompGroupEmail.resx">
+      <DependentUpon>FormCompGroupEmail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCompGroupEmailDet.resx">
+      <DependentUpon>FormCompGroupEmailDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCustomDialog.resx">
       <DependentUpon>FormCustomDialog.vb</DependentUpon>

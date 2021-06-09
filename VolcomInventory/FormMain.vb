@@ -302,6 +302,11 @@ Public Class FormMain
             RGAreaPrint.Visible = False
         End If
 
+        If formName = "FormCompGroupEmail" Then
+            RGAreaManage.Visible = False
+            RGAreaPrint.Visible = False
+        End If
+
         If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Or formName = "FormScanReturn" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
@@ -437,6 +442,11 @@ Public Class FormMain
         'End If
 
         'hide all excep print n close
+        If formName = "FormCompGroupEmail" Then
+            RGAreaManage.Visible = DevExpress.XtraBars.BarItemVisibility.Always
+            RGAreaPrint.Visible = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
+
         If formName = "FormBarcodeProduct" Then
             RGAreaManage.Visible = True
         End If
@@ -9613,6 +9623,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormStockTakeStorePeriod" Then
             FormStockTakeStorePeriod.Close()
             FormStockTakeStorePeriod.Dispose()
+        ElseIf formName = "FormCompGroupEmail" Then
+            FormCompGroupEmail.Close()
+            FormCompGroupEmail.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -16139,6 +16152,32 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormStockTakeStorePeriod.Show()
             FormStockTakeStorePeriod.WindowState = FormWindowState.Maximized
             FormStockTakeStorePeriod.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProductPerform_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProductPerform.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductPerform.MdiParent = Me
+            FormProductPerform.Show()
+            FormProductPerform.WindowState = FormWindowState.Maximized
+            FormProductPerform.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCompGroupEmail_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompGroupEmail.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormCompGroupEmail.MdiParent = Me
+            FormCompGroupEmail.Show()
+            FormCompGroupEmail.WindowState = FormWindowState.Maximized
+            FormCompGroupEmail.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
