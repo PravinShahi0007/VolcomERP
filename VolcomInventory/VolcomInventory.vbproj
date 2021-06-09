@@ -11636,6 +11636,9 @@
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProductPerform.resx">
+      <DependentUpon>FormProductPerform.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProductWeight.resx">
       <DependentUpon>FormProductWeight.vb</DependentUpon>
     </EmbeddedResource>
