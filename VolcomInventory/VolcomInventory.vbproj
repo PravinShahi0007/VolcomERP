@@ -10206,6 +10206,9 @@
     <EmbeddedResource Include="FormCompareStockWebsiteDetailBook.resx">
       <DependentUpon>FormCompareStockWebsiteDetailBook.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCompGroupEmail.resx">
+      <DependentUpon>FormCompGroupEmail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCustomDialog.resx">
       <DependentUpon>FormCustomDialog.vb</DependentUpon>
     </EmbeddedResource>
