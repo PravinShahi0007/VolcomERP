@@ -1906,6 +1906,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormProposePriceMKDDet.action = "ins"
             FormProposePriceMKDDet.ShowDialog()
             FormProposePriceMKD.loadNewDetail()
+        ElseIf formName = "FormStockTakeStorePeriod" Then
+            FormStockTakeStorePeriodDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8618,6 +8620,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print_raw(FormOutboundPOD.GCData, "")
         ElseIf formName = "FormCatalogSpec" Then
             print_raw(FormCatalogSpec.GCDesign, "")
+        ElseIf formName = "FormStockTakeStorePeriod" Then
+            print(FormStockTakeStorePeriod.GCPeriod, "Stock Take Store Period")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9606,6 +9610,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormCatalogSpec" Then
             FormCatalogSpec.Close()
             FormCatalogSpec.Dispose()
+        ElseIf formName = "FormStockTakeStorePeriod" Then
+            FormStockTakeStorePeriod.Close()
+            FormStockTakeStorePeriod.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10624,6 +10631,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormOutboundPOD.viewData()
         ElseIf formName = "FormCatalogSpec" Then
             FormCatalogSpec.viewData()
+        ElseIf formName = "FormStockTakeStorePeriod" Then
+            FormStockTakeStorePeriod.load_form()
         End If
     End Sub
     'Switch
@@ -16117,6 +16126,32 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             Form3PLInvoiceVerification.Show()
             Form3PLInvoiceVerification.WindowState = FormWindowState.Maximized
             Form3PLInvoiceVerification.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBStockTakeStorePeriod_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStockTakeStorePeriod.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStockTakeStorePeriod.MdiParent = Me
+            FormStockTakeStorePeriod.Show()
+            FormStockTakeStorePeriod.WindowState = FormWindowState.Maximized
+            FormStockTakeStorePeriod.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProductPerform_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProductPerform.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductPerform.MdiParent = Me
+            FormProductPerform.Show()
+            FormProductPerform.WindowState = FormWindowState.Maximized
+            FormProductPerform.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

@@ -1001,7 +1001,7 @@ Partial Public Class ReportProdBOM
         Me.LUnitCost.BorderColor = System.Drawing.Color.DimGray
         Me.LUnitCost.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LUnitCost.Dpi = 254.0!
-        Me.LUnitCost.Font = New System.Drawing.Font("Lucida Sans", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LUnitCost.Font = New System.Drawing.Font("Lucida Sans", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LUnitCost.LocationFloat = New DevExpress.Utils.PointFloat(1161.545!, 101.6001!)
         Me.LUnitCost.Name = "LUnitCost"
         Me.LUnitCost.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)

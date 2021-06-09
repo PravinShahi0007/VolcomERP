@@ -3957,6 +3957,12 @@
     <Compile Include="FormProductionWOList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductPerform.Designer.vb">
+      <DependentUpon>FormProductPerform.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductPerform.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductWeight.Designer.vb">
       <DependentUpon>FormProductWeight.vb</DependentUpon>
     </Compile>
@@ -7137,6 +7143,18 @@
     <Compile Include="FormStockQCStockReportSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakeStorePeriod.Designer.vb">
+      <DependentUpon>FormStockTakeStorePeriod.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeStorePeriod.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockTakeStorePeriodDet.Designer.vb">
+      <DependentUpon>FormStockTakeStorePeriodDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeStorePeriodDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockUniS78New.Designer.vb">
       <DependentUpon>FormStockUniS78New.vb</DependentUpon>
     </Compile>
@@ -8013,6 +8031,12 @@
     </Compile>
     <Compile Include="print_barcode.vb" />
     <Compile Include="RawPrinterHelper.vb" />
+    <Compile Include="Report3PLInsurance.Designer.vb">
+      <DependentUpon>Report3PLInsurance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report3PLInsurance.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportAccountingJournal.designer.vb">
       <DependentUpon>ReportAccountingJournal.vb</DependentUpon>
     </Compile>
@@ -8986,6 +9010,12 @@
       <DependentUpon>ReportPayrollAllCompare.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportPayrollAllCompare.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportPengirimanProduk.Designer.vb">
+      <DependentUpon>ReportPengirimanProduk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPengirimanProduk.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportPLMat.designer.vb">
@@ -13538,6 +13568,12 @@
     <EmbeddedResource Include="FormStockQCStockReportSummary.resx">
       <DependentUpon>FormStockQCStockReportSummary.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeStorePeriod.resx">
+      <DependentUpon>FormStockTakeStorePeriod.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeStorePeriodDet.resx">
+      <DependentUpon>FormStockTakeStorePeriodDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStockUniS78New.resx">
       <DependentUpon>FormStockUniS78New.vb</DependentUpon>
     </EmbeddedResource>
@@ -14046,6 +14082,9 @@
     <EmbeddedResource Include="Pivot.resx">
       <DependentUpon>Pivot.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report3PLInsurance.resx">
+      <DependentUpon>Report3PLInsurance.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAccountingJournal.resx">
       <DependentUpon>ReportAccountingJournal.vb</DependentUpon>
@@ -14572,6 +14611,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPayrollAllCompare.resx">
       <DependentUpon>ReportPayrollAllCompare.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPengirimanProduk.resx">
+      <DependentUpon>ReportPengirimanProduk.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPLMat.resx">
       <DependentUpon>ReportPLMat.vb</DependentUpon>

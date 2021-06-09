@@ -579,7 +579,6 @@ Partial Public Class ReportProductionFinalClear
         '
         'BottomMargin
         '
-        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
         Me.BottomMargin.HeightF = 22.99998!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -590,7 +589,7 @@ Partial Public Class ReportProductionFinalClear
         Me.XrPageInfo1.BorderColor = System.Drawing.Color.DimGray
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(694.625!, 0!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(694.6252!, 71.95835!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(78.37488!, 22.99998!)
@@ -601,8 +600,8 @@ Partial Public Class ReportProductionFinalClear
         '
         'PageFooter
         '
-        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.LNote, Me.XrTable1})
-        Me.PageFooter.HeightF = 100.0!
+        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.LNote, Me.XrTable1, Me.XrPageInfo1})
+        Me.PageFooter.HeightF = 94.95833!
         Me.PageFooter.Name = "PageFooter"
         '
         'XrLabel6
