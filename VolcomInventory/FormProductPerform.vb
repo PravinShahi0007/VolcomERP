@@ -64,18 +64,6 @@ ORDER BY area ASC"
     Sub view_group_store()
         Dim where As String = ""
 
-        If Not SLUEProvince.EditValue.ToString = "0" Then
-            where += "
-                AND id_comp_group IN (SELECT p.id_comp_group FROM tb_m_comp AS p LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city LEFT JOIN tb_m_state AS s ON c.id_state = s.id_state WHERE s.id_state = " + SLUEProvince.EditValue.ToString + " AND p.id_comp_cat = 6)
-            "
-        End If
-
-        If Not LEArea.EditValue.ToString = "0" Then
-            where += "
-                AND id_comp_group IN (SELECT p.id_comp_group FROM tb_m_comp AS p WHERE p.id_area = '" + LEArea.EditValue.ToString + "' AND p.id_comp_cat = 6)
-            "
-        End If
-
         Dim query As String = "
             (SELECT 0 AS id_comp_group, 'ALL' AS comp_group)
             UNION ALL
@@ -88,6 +76,11 @@ ORDER BY area ASC"
     End Sub
 
     Private Sub FormProductPerform_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        For Each t As DevExpress.XtraTab.XtraTabPage In XTCData.TabPages
+            XTCData.SelectedTabPage = t
+        Next t
+        XTCData.SelectedTabPage = XTCData.TabPages(0)
+
         month.Add("Jan")
         month.Add("Feb")
         month.Add("Mar")
@@ -314,9 +307,52 @@ ORDER BY area ASC"
 
     Private Sub LEArea_EditValueChanged(sender As Object, e As EventArgs) Handles LEArea.EditValueChanged
         view_group_store()
+        viewStore()
     End Sub
 
     Private Sub SLUEProvince_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEProvince.EditValueChanged
         view_group_store()
+        viewStore()
+    End Sub
+
+    Sub viewStore()
+        Cursor = Cursors.WaitCursor
+        CESelectAllStore.EditValue = False
+        MESelectedStore.Text = ""
+
+        'filter
+        Dim where As String = ""
+        If LEArea.EditValue.ToString <> "0" Then
+            where += "AND c.id_area='" + LEArea.EditValue.ToString + "' "
+        End If
+        If SLUEProvince.EditValue.ToString <> "0" Then
+            where += "AND cty.id_state='" + SLUEProvince.EditValue.ToString + "' "
+        End If
+        If SLUECompGroup.EditValue.ToString <> "0" Then
+            where += "AND c.id_comp_group='" + SLUECompGroup.EditValue.ToString + "' "
+        End If
+
+        'view
+        Dim query As String = "SELECT c.id_comp, c.comp_name, c.comp_number, 'No' AS `is_select` FROM tb_m_comp c WHERE c.id_comp_cat=6 ORDER BY c.comp_number ASC " + where
+        Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
+        GCStore.DataSource = data
+        GVStore.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLUECompGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLUECompGroup.EditValueChanged
+        viewStore()
+    End Sub
+
+    Private Sub CESelectAllStore_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAllStore.EditValueChanged
+        Cursor = Cursors.WaitCursor
+        For i As Integer = 0 To GVStore.RowCount - 1
+            If CESelectAllStore.EditValue = True Then
+                GVStore.SetRowCellValue(i, "is_select", "Yes")
+            Else
+                GVStore.SetRowCellValue(i, "is_select", "No")
+            End If
+        Next
+        Cursor = Cursors.Default
     End Sub
 End Class
