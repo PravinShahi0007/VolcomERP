@@ -34,6 +34,14 @@
         SLUEMonthTo.EditValue = Date.Now.Year.ToString + "-" + Date.Now.Month.ToString
     End Sub
 
+    Sub viewArea()
+        Dim query As String = "SELECT 0 AS `id_area`, 'All' AS `area`
+UNION ALL
+(SELECT a.id_area, a.`area` FROM tb_m_area a )
+ORDER BY area ASC"
+        viewLookupQuery(LEArea, query, 0, "area", "id_area")
+    End Sub
+
     Private Sub FormProductPerform_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         month.Add("Jan")
         month.Add("Feb")
@@ -48,6 +56,7 @@
         month.Add("Nov")
         month.Add("Dec")
         view_month()
+        viewArea()
     End Sub
 
     Private Sub FormProductPerform_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -90,14 +99,14 @@
         price_type.design_price_type AS `Price Update Dates|Current Status`,
         ROUND(wh_rec_normal.qty) AS `WH Received|Normal (BOS)`, ROUND(wh_rec_defect.qty) AS `WH Received|Defect`,
         ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`, 
-        SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(549) THEN soh.qty END) AS `TOKO WBF|DEL`,
-        ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) AND soh.id_comp IN(549) THEN soh.qty END)) AS `STORE : WBF|SAL`,
-        SUM(CASE WHEN soh.soh_date='2020-12-01' AND soh.id_comp IN(549) THEN soh.qty END) AS `TOKO WBF|SOH`,
-        0 AS `TOKO WBF|Sales Thru`,
-        SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END) AS `TOTAL|DEL`,
-        ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END)) AS `TOTAL|SAL`,
-        SUM(CASE WHEN soh.soh_date='" + untilDate + "' THEN soh.qty END) AS `TOTAL|SOH`,
-        (ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END))/SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END))*100 AS `TOTAL|Sales Thru`
+        IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(549) THEN soh.qty END),0) AS `STORE : WBF|DEL`,
+        IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) AND soh.id_comp IN(549) THEN soh.qty END)),0) AS `STORE : WBF|SAL`,
+        IFNULL(SUM(CASE WHEN soh.soh_date='2020-12-01' AND soh.id_comp IN(549) THEN soh.qty END),0) AS `STORE : WBF|SOH`,
+        (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) AND soh.id_comp IN(549) THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(549) THEN soh.qty END),0))*100 AS `STORE : WBF|Sales Thru`,
+        IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END),0) AS `TOTAL|DEL`,
+        IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END)),0) AS `TOTAL|SAL`,
+        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' THEN soh.qty END),0) AS `TOTAL|SOH`,
+        (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END),0))*100 AS `TOTAL|Sales Thru`
         FROM tb_soh_sal_period soh
         INNER JOIN tb_m_product p ON p.id_product = soh.id_product
         INNER JOIN tb_m_design d ON d.id_design = p.id_design
@@ -256,4 +265,6 @@
         GVData.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
+
+
 End Class
