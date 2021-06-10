@@ -1675,7 +1675,7 @@ GROUP BY py.id_pn"
             calculate_amount()
         ElseIf e.Column.FieldName.ToString = "val_bef_kurs" Or e.Column.FieldName.ToString = "kurs" Then
             Dim rh As Integer = e.RowHandle
-            GVList.SetRowCellValue(rh, "value_view", GVList.GetRowCellValue(rh, "kurs") * GVList.GetRowCellValue(rh, "val_bef_kurs"))
+            GVList.SetRowCellValue(rh, "value_view", Math.Round(GVList.GetRowCellValue(rh, "kurs") * GVList.GetRowCellValue(rh, "val_bef_kurs"), 2))
         ElseIf e.Column.FieldName.ToString = "value_view" Then
             Dim rh As Integer = e.RowHandle
             Dim val As Decimal = 0

@@ -73,6 +73,7 @@ Partial Class FormBankWithdrawalDet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.BViewJurnalBUM = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -141,7 +142,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BViewJurnalBUM = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -695,6 +695,17 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(1144, 40)
         Me.PanelControl7.TabIndex = 2
+        '
+        'BViewJurnalBUM
+        '
+        Me.BViewJurnalBUM.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BViewJurnalBUM.Image = CType(resources.GetObject("BViewJurnalBUM.Image"), System.Drawing.Image)
+        Me.BViewJurnalBUM.Location = New System.Drawing.Point(663, 2)
+        Me.BViewJurnalBUM.Name = "BViewJurnalBUM"
+        Me.BViewJurnalBUM.Size = New System.Drawing.Size(149, 36)
+        Me.BViewJurnalBUM.TabIndex = 21
+        Me.BViewJurnalBUM.Text = "Journal Penyesuaian"
+        Me.BViewJurnalBUM.Visible = False
         '
         'BtnViewJournal
         '
@@ -1434,17 +1445,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
-        '
-        'BViewJurnalBUM
-        '
-        Me.BViewJurnalBUM.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BViewJurnalBUM.Image = CType(resources.GetObject("BViewJurnalBUM.Image"), System.Drawing.Image)
-        Me.BViewJurnalBUM.Location = New System.Drawing.Point(663, 2)
-        Me.BViewJurnalBUM.Name = "BViewJurnalBUM"
-        Me.BViewJurnalBUM.Size = New System.Drawing.Size(149, 36)
-        Me.BViewJurnalBUM.TabIndex = 21
-        Me.BViewJurnalBUM.Text = "Journal Penyesuaian"
-        Me.BViewJurnalBUM.Visible = False
         '
         'FormBankWithdrawalDet
         '

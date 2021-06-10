@@ -11,6 +11,7 @@
         DEUntilSC.EditValue = dt
 
         load_unit()
+        load_location()
 
         viewItem()
         viewDept()
@@ -19,6 +20,13 @@
         '
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
+    End Sub
+
+    Sub load_location()
+        Dim query As String = "SELECT 'ALL' AS id_loc_og,'ALL location' AS loc_og 
+UNION ALL
+SELECT id_loc_og,loc_og FROM `tb_loc_og`"
+        viewSearchLookupQuery(SLELocation, query, "id_loc_og", "loc_og", "id_loc_og")
     End Sub
 
     Sub load_unit()
@@ -94,14 +102,22 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
 
         Dim dept As String = LEDeptSum.EditValue.ToString
         Dim cat As String = LECat.EditValue.ToString
+        Dim loc As String = SLELocation.EditValue.ToString
         '
         If dept = "-1" Then
             dept = ""
         Else
             dept = "AND i.id_departement=" + dept + ""
         End If
-
+        '
+        If loc = "ALL" Then
+            loc = ""
+        Else
+            loc = " AND i.id_loc_og='" & loc & "' "
+        End If
+        '
         Dim stc As New ClassPurcItemStock()
+        stc.additional_where = loc
         Dim query As String = stc.queryGetStock(dept, cat, date_until_selected)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOH.DataSource = data
