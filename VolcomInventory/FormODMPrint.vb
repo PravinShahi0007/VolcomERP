@@ -122,7 +122,7 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
         send_insurance()
         send_stock()
         '
-        Dim report As ReportODMScan = New ReportODMScan
+        Dim report As ReportODMScan = New ReportODMScan()
 
         report.dt = GCListHistory.DataSource
         report.XrLabelNumber.Text = TENumber.Text
@@ -223,7 +223,7 @@ GROUP BY cg.`id_comp_group`"
                     mail.id_report = id_print
                     mail.id_reff = dt.Rows(i)("id_comp_group").ToString
                     mail.par1 = TENumber.Text
-                    mail.par2 = dt.Rows(0)("description").ToString
+                    mail.par2 = dt.Rows(i)("description").ToString
                     mail.report_mark_type = "314"
                     mail.send_email()
                     'log
