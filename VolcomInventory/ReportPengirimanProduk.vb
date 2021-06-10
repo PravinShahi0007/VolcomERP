@@ -51,7 +51,7 @@ ORDER BY do_number"
                 insert_footer(row_baru, gran_tot_qty, "Grand Total")
             Else
                 If Not dt.Rows(i)("do_number").ToString = dt.Rows(i + 1)("do_number").ToString Then
-                    insert_footer(row_baru, tot_qty, dt.Rows(i)("do_number").ToString)
+                    insert_footer(row_baru, tot_qty, "Total " & dt.Rows(i)("do_number").ToString)
                     tot_qty = 0
                 End If
             End If

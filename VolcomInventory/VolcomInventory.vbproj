@@ -10209,6 +10209,9 @@
     <EmbeddedResource Include="FormCompGroupEmail.resx">
       <DependentUpon>FormCompGroupEmail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCompGroupEmailDet.resx">
+      <DependentUpon>FormCompGroupEmailDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCustomDialog.resx">
       <DependentUpon>FormCustomDialog.vb</DependentUpon>
     </EmbeddedResource>
