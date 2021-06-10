@@ -120,6 +120,9 @@ ORDER BY area ASC"
         Dim fromDate As String = "" + year_from.ToString + "-" + month_from.ToString.PadLeft(2, "0") + "-01"
         Dim untilDate As String = "" + year_to.ToString + "-" + month_to.ToString.PadLeft(2, "0") + "-01"
 
+        'rmt 
+        Dim rmt_sal As String = execute_query("SELECT GROUP_CONCAT(DISTINCT sp.report_mark_type) AS `rmt` FROM tb_sales_pos sp WHERE sp.id_report_status=6", 0, True, "", "", "", "")
+
         Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, division.display_name AS `Product Info|Division`, 
         category.display_name AS `Product Info|Category`, class.display_name AS `Product Info|Class`, color.code_detail_name AS `Product Info|Color`, source.display_name AS `Product Info|Source`,
         season.season AS `Product Info|Season`, delivery.delivery AS `Product Info|Delivery`, range.year_range AS `Product Info|Year`,
@@ -139,13 +142,13 @@ ORDER BY area ASC"
         ROUND(wh_rec_normal.qty) AS `WH Received|Normal (BOS)`, ROUND(wh_rec_defect.qty) AS `WH Received|Defect`,
         ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`, 
         IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(549) THEN soh.qty END),0) AS `STORE : WBF|DEL`,
-        IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) AND soh.id_comp IN(549) THEN soh.qty END)),0) AS `STORE : WBF|SAL`,
+        IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(549) THEN soh.qty END)),0) AS `STORE : WBF|SAL`,
         IFNULL(SUM(CASE WHEN soh.soh_date='2020-12-01' AND soh.id_comp IN(549) THEN soh.qty END),0) AS `STORE : WBF|SOH`,
-        (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) AND soh.id_comp IN(549) THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(549) THEN soh.qty END),0))*100 AS `STORE : WBF|Sales Thru`,
+        (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(549) THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(549) THEN soh.qty END),0))*100 AS `STORE : WBF|Sales Thru`,
         IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END),0) AS `TOTAL|DEL`,
-        IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END)),0) AS `TOTAL|SAL`,
+        IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `TOTAL|SAL`,
         IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' THEN soh.qty END),0) AS `TOTAL|SOH`,
-        (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END),0))*100 AS `TOTAL|Sales Thru`
+        (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END),0))*100 AS `TOTAL|Sales Thru`
         FROM tb_soh_sal_period soh
         INNER JOIN tb_m_product p ON p.id_product = soh.id_product
         INNER JOIN tb_m_design d ON d.id_design = p.id_design
@@ -353,6 +356,12 @@ ORDER BY area ASC"
                 GVStore.SetRowCellValue(i, "is_select", "No")
             End If
         Next
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnReset_Click(sender As Object, e As EventArgs) Handles BtnReset.Click
+        Cursor = Cursors.WaitCursor
+        viewStore()
         Cursor = Cursors.Default
     End Sub
 End Class
