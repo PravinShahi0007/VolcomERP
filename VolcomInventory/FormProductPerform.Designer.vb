@@ -21,6 +21,8 @@ Partial Class FormProductPerform
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductPerform))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LEArea = New DevExpress.XtraEditors.LookUpEdit()
         Me.SLUEMonthTo = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -31,17 +33,28 @@ Partial Class FormProductPerform
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBView = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPeriod = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPStore = New DevExpress.XtraTab.XtraTabPage()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.Top = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPStore = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView11 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.SLUEProvince = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView10 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControlTop = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,12 +64,21 @@ Partial Class FormProductPerform
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
+        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCData.SuspendLayout()
         Me.XTPPeriod.SuspendLayout()
         Me.XTPStore.SuspendLayout()
-        CType(Me.Top, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Top.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEProvince.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlTop.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -66,12 +88,32 @@ Partial Class FormProductPerform
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(851, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(105, 144)
+        Me.PanelControl1.Size = New System.Drawing.Size(105, 165)
         Me.PanelControl1.TabIndex = 1
+        '
+        'SBExportExcel
+        '
+        Me.SBExportExcel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.SBExportExcel.Image = CType(resources.GetObject("SBExportExcel.Image"), System.Drawing.Image)
+        Me.SBExportExcel.Location = New System.Drawing.Point(2, 28)
+        Me.SBExportExcel.Name = "SBExportExcel"
+        Me.SBExportExcel.Size = New System.Drawing.Size(101, 29)
+        Me.SBExportExcel.TabIndex = 2
+        Me.SBExportExcel.Text = "Export Excel"
+        '
+        'SBView
+        '
+        Me.SBView.Dock = System.Windows.Forms.DockStyle.Top
+        Me.SBView.Image = CType(resources.GetObject("SBView.Image"), System.Drawing.Image)
+        Me.SBView.Location = New System.Drawing.Point(2, 2)
+        Me.SBView.Name = "SBView"
+        Me.SBView.Size = New System.Drawing.Size(101, 26)
+        Me.SBView.TabIndex = 0
+        Me.SBView.Text = "View"
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(20, 27)
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 14)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl1.TabIndex = 28
@@ -79,7 +121,7 @@ Partial Class FormProductPerform
         '
         'LEArea
         '
-        Me.LEArea.Location = New System.Drawing.Point(49, 24)
+        Me.LEArea.Location = New System.Drawing.Point(84, 11)
         Me.LEArea.Name = "LEArea"
         Me.LEArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEArea.Size = New System.Drawing.Size(171, 20)
@@ -87,7 +129,7 @@ Partial Class FormProductPerform
         '
         'SLUEMonthTo
         '
-        Me.SLUEMonthTo.Location = New System.Drawing.Point(61, 39)
+        Me.SLUEMonthTo.Location = New System.Drawing.Point(11, 80)
         Me.SLUEMonthTo.Name = "SLUEMonthTo"
         Me.SLUEMonthTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEMonthTo.Properties.View = Me.GridView6
@@ -118,7 +160,7 @@ Partial Class FormProductPerform
         '
         'SLUEMonthFrom
         '
-        Me.SLUEMonthFrom.Location = New System.Drawing.Point(61, 13)
+        Me.SLUEMonthFrom.Location = New System.Drawing.Point(11, 35)
         Me.SLUEMonthFrom.Name = "SLUEMonthFrom"
         Me.SLUEMonthFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEMonthFrom.Properties.View = Me.GridView5
@@ -147,33 +189,13 @@ Partial Class FormProductPerform
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 0
         '
-        'SBExportExcel
-        '
-        Me.SBExportExcel.Dock = System.Windows.Forms.DockStyle.Top
-        Me.SBExportExcel.Image = CType(resources.GetObject("SBExportExcel.Image"), System.Drawing.Image)
-        Me.SBExportExcel.Location = New System.Drawing.Point(2, 28)
-        Me.SBExportExcel.Name = "SBExportExcel"
-        Me.SBExportExcel.Size = New System.Drawing.Size(101, 29)
-        Me.SBExportExcel.TabIndex = 2
-        Me.SBExportExcel.Text = "Export Excel"
-        '
-        'SBView
-        '
-        Me.SBView.Dock = System.Windows.Forms.DockStyle.Top
-        Me.SBView.Image = CType(resources.GetObject("SBView.Image"), System.Drawing.Image)
-        Me.SBView.Location = New System.Drawing.Point(2, 2)
-        Me.SBView.Name = "SBView"
-        Me.SBView.Size = New System.Drawing.Size(101, 26)
-        Me.SBView.TabIndex = 0
-        Me.SBView.Text = "View"
-        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 144)
+        Me.GCData.Location = New System.Drawing.Point(0, 165)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(956, 363)
+        Me.GCData.Size = New System.Drawing.Size(956, 342)
         Me.GCData.TabIndex = 2
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -188,15 +210,15 @@ Partial Class FormProductPerform
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'XtraTabControl1
+        'XTCData
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPPeriod
-        Me.XtraTabControl1.Size = New System.Drawing.Size(956, 144)
-        Me.XtraTabControl1.TabIndex = 29
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPeriod, Me.XTPStore, Me.XTPDesign})
+        Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCData.Location = New System.Drawing.Point(0, 0)
+        Me.XTCData.Name = "XTCData"
+        Me.XTCData.SelectedTabPage = Me.XTPPeriod
+        Me.XTCData.Size = New System.Drawing.Size(956, 165)
+        Me.XTCData.TabIndex = 29
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPeriod, Me.XTPStore, Me.XTPDesign})
         '
         'XTPPeriod
         '
@@ -205,16 +227,16 @@ Partial Class FormProductPerform
         Me.XTPPeriod.Controls.Add(Me.SLUEMonthTo)
         Me.XTPPeriod.Controls.Add(Me.SLUEMonthFrom)
         Me.XTPPeriod.Name = "XTPPeriod"
-        Me.XTPPeriod.Size = New System.Drawing.Size(950, 116)
+        Me.XTPPeriod.Size = New System.Drawing.Size(950, 137)
         Me.XTPPeriod.Text = "Filter by Period"
         '
-        'XTPStore
+        'LabelControl3
         '
-        Me.XTPStore.Controls.Add(Me.LEArea)
-        Me.XTPStore.Controls.Add(Me.LabelControl1)
-        Me.XTPStore.Name = "XTPStore"
-        Me.XTPStore.Size = New System.Drawing.Size(950, 116)
-        Me.XTPStore.Text = "Filter by Store"
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 61)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl3.TabIndex = 30
+        Me.LabelControl3.Text = "Until"
         '
         'LabelControl2
         '
@@ -224,30 +246,141 @@ Partial Class FormProductPerform
         Me.LabelControl2.TabIndex = 29
         Me.LabelControl2.Text = "From"
         '
-        'Top
+        'XTPStore
         '
-        Me.Top.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.Top.Controls.Add(Me.PanelControl1)
-        Me.Top.Controls.Add(Me.XtraTabControl1)
-        Me.Top.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Top.Location = New System.Drawing.Point(0, 0)
-        Me.Top.Name = "Top"
-        Me.Top.Size = New System.Drawing.Size(956, 144)
-        Me.Top.TabIndex = 30
+        Me.XTPStore.Controls.Add(Me.PanelControl3)
+        Me.XTPStore.Controls.Add(Me.PanelControl2)
+        Me.XTPStore.Name = "XTPStore"
+        Me.XTPStore.Size = New System.Drawing.Size(950, 137)
+        Me.XTPStore.Text = "Filter by Store"
         '
-        'LabelControl3
+        'PanelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(11, 42)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl3.TabIndex = 30
-        Me.LabelControl3.Text = "Until"
+        Me.PanelControl3.Controls.Add(Me.PanelControl4)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl3.Location = New System.Drawing.Point(271, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(679, 137)
+        Me.PanelControl3.TabIndex = 40
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.LEArea)
+        Me.PanelControl2.Controls.Add(Me.SLUECompGroup)
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Controls.Add(Me.Label11)
+        Me.PanelControl2.Controls.Add(Me.Label10)
+        Me.PanelControl2.Controls.Add(Me.SLUEProvince)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(271, 137)
+        Me.PanelControl2.TabIndex = 39
+        '
+        'SLUECompGroup
+        '
+        Me.SLUECompGroup.Location = New System.Drawing.Point(84, 63)
+        Me.SLUECompGroup.Name = "SLUECompGroup"
+        Me.SLUECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUECompGroup.Properties.View = Me.GridView11
+        Me.SLUECompGroup.Size = New System.Drawing.Size(171, 20)
+        Me.SLUECompGroup.TabIndex = 38
+        '
+        'GridView11
+        '
+        Me.GridView11.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn22})
+        Me.GridView11.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView11.Name = "GridView11"
+        Me.GridView11.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView11.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "GridColumn23"
+        Me.GridColumn21.FieldName = "id_comp_group"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Group Store"
+        Me.GridColumn22.FieldName = "comp_group"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 0
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(8, 66)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(65, 13)
+        Me.Label11.TabIndex = 37
+        Me.Label11.Text = "Group Store"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(8, 40)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(48, 13)
+        Me.Label10.TabIndex = 35
+        Me.Label10.Text = "Province"
+        '
+        'SLUEProvince
+        '
+        Me.SLUEProvince.Location = New System.Drawing.Point(84, 37)
+        Me.SLUEProvince.Name = "SLUEProvince"
+        Me.SLUEProvince.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEProvince.Properties.View = Me.GridView10
+        Me.SLUEProvince.Size = New System.Drawing.Size(171, 20)
+        Me.SLUEProvince.TabIndex = 36
+        '
+        'GridView10
+        '
+        Me.GridView10.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn17, Me.GridColumn18})
+        Me.GridView10.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView10.Name = "GridView10"
+        Me.GridView10.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView10.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "GridColumn19"
+        Me.GridColumn17.FieldName = "id_province"
+        Me.GridColumn17.Name = "GridColumn17"
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Province"
+        Me.GridColumn18.FieldName = "province"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 0
         '
         'XTPDesign
         '
         Me.XTPDesign.Name = "XTPDesign"
-        Me.XTPDesign.Size = New System.Drawing.Size(0, 0)
+        Me.XTPDesign.Size = New System.Drawing.Size(950, 137)
         Me.XTPDesign.Text = "Filter by Product"
+        '
+        'PanelControlTop
+        '
+        Me.PanelControlTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTop.Controls.Add(Me.PanelControl1)
+        Me.PanelControlTop.Controls.Add(Me.XTCData)
+        Me.PanelControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlTop.Name = "PanelControlTop"
+        Me.PanelControlTop.Size = New System.Drawing.Size(956, 165)
+        Me.PanelControlTop.TabIndex = 30
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Location = New System.Drawing.Point(169, 29)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(200, 23)
+        Me.PanelControl4.TabIndex = 0
         '
         'FormProductPerform
         '
@@ -255,7 +388,7 @@ Partial Class FormProductPerform
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(956, 507)
         Me.Controls.Add(Me.GCData)
-        Me.Controls.Add(Me.Top)
+        Me.Controls.Add(Me.PanelControlTop)
         Me.Name = "FormProductPerform"
         Me.Text = "FormProductPerform"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -267,14 +400,23 @@ Partial Class FormProductPerform
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
+        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCData.ResumeLayout(False)
         Me.XTPPeriod.ResumeLayout(False)
         Me.XTPPeriod.PerformLayout()
         Me.XTPStore.ResumeLayout(False)
-        Me.XTPStore.PerformLayout()
-        CType(Me.Top, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Top.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEProvince.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlTop.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -294,11 +436,24 @@ Partial Class FormProductPerform
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEArea As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCData As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPPeriod As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTPStore As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPDesign As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents Top As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControlTop As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLUEProvince As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView10 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label10 As Label
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLUECompGroup As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView11 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label11 As Label
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
 End Class
