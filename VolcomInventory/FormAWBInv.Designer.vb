@@ -64,8 +64,9 @@ Partial Class FormAWBInv
         Me.GCTV = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSaveDraft = New DevExpress.XtraEditors.SimpleButton()
@@ -115,7 +116,6 @@ Partial Class FormAWBInv
         Me.XTPVerification = New DevExpress.XtraTab.XtraTabPage()
         Me.BDownloadFileKonsolidasi = New DevExpress.XtraEditors.SimpleButton()
         Me.BImportHasilRekon = New DevExpress.XtraEditors.SimpleButton()
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEInvoiceNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -641,18 +641,18 @@ Partial Class FormAWBInv
         Me.PanelControl2.Size = New System.Drawing.Size(945, 44)
         Me.PanelControl2.TabIndex = 2
         '
-        'BtnPrint
+        'BCancel
         '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.ImageIndex = 6
-        Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(583, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(75, 40)
-        Me.BtnPrint.TabIndex = 20
-        Me.BtnPrint.TabStop = False
-        Me.BtnPrint.Text = "Print"
-        Me.BtnPrint.Visible = False
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancel.ImageIndex = 1
+        Me.BCancel.ImageList = Me.LargeImageCollection
+        Me.BCancel.Location = New System.Drawing.Point(77, 2)
+        Me.BCancel.Name = "BCancel"
+        Me.BCancel.Size = New System.Drawing.Size(82, 40)
+        Me.BCancel.TabIndex = 25
+        Me.BCancel.TabStop = False
+        Me.BCancel.Text = "Cancel"
+        Me.BCancel.Visible = False
         '
         'LargeImageCollection
         '
@@ -674,6 +674,19 @@ Partial Class FormAWBInv
         Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.ImageIndex = 6
+        Me.BtnPrint.ImageList = Me.LargeImageCollection
+        Me.BtnPrint.Location = New System.Drawing.Point(583, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(75, 40)
+        Me.BtnPrint.TabIndex = 20
+        Me.BtnPrint.TabStop = False
+        Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Visible = False
         '
         'BMark
         '
@@ -1234,19 +1247,6 @@ Partial Class FormAWBInv
         Me.BImportHasilRekon.Size = New System.Drawing.Size(945, 31)
         Me.BImportHasilRekon.TabIndex = 92
         Me.BImportHasilRekon.Text = "Import Hasil Rekonsiliasi"
-        '
-        'BCancel
-        '
-        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BCancel.ImageIndex = 1
-        Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(77, 2)
-        Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(82, 40)
-        Me.BCancel.TabIndex = 25
-        Me.BCancel.TabStop = False
-        Me.BCancel.Text = "Cancel"
-        Me.BCancel.Visible = False
         '
         'FormAWBInv
         '
