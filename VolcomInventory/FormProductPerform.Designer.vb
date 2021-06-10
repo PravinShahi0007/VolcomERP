@@ -40,8 +40,17 @@ Partial Class FormProductPerform
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPStore = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.GCStore = New DevExpress.XtraGrid.GridControl()
+        Me.GVStore = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelectAllStore = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnReset = New DevExpress.XtraEditors.SimpleButton()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
         Me.SLUECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView11 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -54,7 +63,6 @@ Partial Class FormProductPerform
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControlTop = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,17 +76,19 @@ Partial Class FormProductPerform
         Me.XTCData.SuspendLayout()
         Me.XTPPeriod.SuspendLayout()
         Me.XTPStore.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.GCStore, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVStore, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CESelectAllStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEProvince.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -86,9 +96,9 @@ Partial Class FormProductPerform
         Me.PanelControl1.Controls.Add(Me.SBExportExcel)
         Me.PanelControl1.Controls.Add(Me.SBView)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(851, 0)
+        Me.PanelControl1.Location = New System.Drawing.Point(879, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(105, 165)
+        Me.PanelControl1.Size = New System.Drawing.Size(105, 216)
         Me.PanelControl1.TabIndex = 1
         '
         'SBExportExcel
@@ -192,10 +202,10 @@ Partial Class FormProductPerform
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 165)
+        Me.GCData.Location = New System.Drawing.Point(0, 216)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(956, 342)
+        Me.GCData.Size = New System.Drawing.Size(984, 291)
         Me.GCData.TabIndex = 2
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -216,7 +226,7 @@ Partial Class FormProductPerform
         Me.XTCData.Location = New System.Drawing.Point(0, 0)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPPeriod
-        Me.XTCData.Size = New System.Drawing.Size(956, 165)
+        Me.XTCData.Size = New System.Drawing.Size(879, 216)
         Me.XTCData.TabIndex = 29
         Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPeriod, Me.XTPStore, Me.XTPDesign})
         '
@@ -227,7 +237,7 @@ Partial Class FormProductPerform
         Me.XTPPeriod.Controls.Add(Me.SLUEMonthTo)
         Me.XTPPeriod.Controls.Add(Me.SLUEMonthFrom)
         Me.XTPPeriod.Name = "XTPPeriod"
-        Me.XTPPeriod.Size = New System.Drawing.Size(950, 137)
+        Me.XTPPeriod.Size = New System.Drawing.Size(873, 188)
         Me.XTPPeriod.Text = "Filter by Period"
         '
         'LabelControl3
@@ -248,24 +258,73 @@ Partial Class FormProductPerform
         '
         'XTPStore
         '
-        Me.XTPStore.Controls.Add(Me.PanelControl3)
+        Me.XTPStore.Controls.Add(Me.GCStore)
         Me.XTPStore.Controls.Add(Me.PanelControl2)
         Me.XTPStore.Name = "XTPStore"
-        Me.XTPStore.Size = New System.Drawing.Size(950, 137)
+        Me.XTPStore.Size = New System.Drawing.Size(873, 188)
         Me.XTPStore.Text = "Filter by Store"
         '
-        'PanelControl3
+        'GCStore
         '
-        Me.PanelControl3.Controls.Add(Me.PanelControl4)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl3.Location = New System.Drawing.Point(271, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(679, 137)
-        Me.PanelControl3.TabIndex = 40
+        Me.GCStore.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCStore.Location = New System.Drawing.Point(271, 0)
+        Me.GCStore.MainView = Me.GVStore
+        Me.GCStore.Name = "GCStore"
+        Me.GCStore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCStore.Size = New System.Drawing.Size(602, 188)
+        Me.GCStore.TabIndex = 40
+        Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
+        '
+        'GVStore
+        '
+        Me.GVStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnis_select})
+        Me.GVStore.GridControl = Me.GCStore
+        Me.GVStore.Name = "GVStore"
+        Me.GVStore.OptionsBehavior.Editable = False
+        Me.GVStore.OptionsFind.AlwaysVisible = True
+        Me.GVStore.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumncomp_number
+        '
+        Me.GridColumncomp_number.Caption = "Account"
+        Me.GridColumncomp_number.FieldName = "comp_number"
+        Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.OptionsColumn.AllowEdit = False
+        Me.GridColumncomp_number.Visible = True
+        Me.GridColumncomp_number.VisibleIndex = 1
+        '
+        'GridColumncomp_name
+        '
+        Me.GridColumncomp_name.Caption = "Acc. Description"
+        Me.GridColumncomp_name.FieldName = "comp_name"
+        Me.GridColumncomp_name.Name = "GridColumncomp_name"
+        Me.GridColumncomp_name.OptionsColumn.AllowEdit = False
+        Me.GridColumncomp_name.Visible = True
+        Me.GridColumncomp_name.VisibleIndex = 2
+        '
+        'GridColumnis_select
+        '
+        Me.GridColumnis_select.Caption = "Select"
+        Me.GridColumnis_select.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnis_select.FieldName = "is_select"
+        Me.GridColumnis_select.Name = "GridColumnis_select"
+        Me.GridColumnis_select.Visible = True
+        Me.GridColumnis_select.VisibleIndex = 0
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.CESelectAllStore)
+        Me.PanelControl2.Controls.Add(Me.BtnReset)
+        Me.PanelControl2.Controls.Add(Me.Label1)
+        Me.PanelControl2.Controls.Add(Me.MemoEdit1)
         Me.PanelControl2.Controls.Add(Me.LEArea)
         Me.PanelControl2.Controls.Add(Me.SLUECompGroup)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
@@ -275,8 +334,42 @@ Partial Class FormProductPerform
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(271, 137)
+        Me.PanelControl2.Size = New System.Drawing.Size(271, 188)
         Me.PanelControl2.TabIndex = 39
+        '
+        'CESelectAllStore
+        '
+        Me.CESelectAllStore.Location = New System.Drawing.Point(69, 150)
+        Me.CESelectAllStore.Name = "CESelectAllStore"
+        Me.CESelectAllStore.Properties.Caption = "Select all store"
+        Me.CESelectAllStore.Size = New System.Drawing.Size(91, 19)
+        Me.CESelectAllStore.TabIndex = 42
+        '
+        'BtnReset
+        '
+        Me.BtnReset.Image = CType(resources.GetObject("BtnReset.Image"), System.Drawing.Image)
+        Me.BtnReset.Location = New System.Drawing.Point(166, 148)
+        Me.BtnReset.Name = "BtnReset"
+        Me.BtnReset.Size = New System.Drawing.Size(89, 23)
+        Me.BtnReset.TabIndex = 41
+        Me.BtnReset.Text = "Reset Store"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(8, 91)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(51, 26)
+        Me.Label1.TabIndex = 40
+        Me.Label1.Text = "Selected " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Store"
+        '
+        'MemoEdit1
+        '
+        Me.MemoEdit1.Enabled = False
+        Me.MemoEdit1.Location = New System.Drawing.Point(84, 89)
+        Me.MemoEdit1.Name = "MemoEdit1"
+        Me.MemoEdit1.Size = New System.Drawing.Size(171, 53)
+        Me.MemoEdit1.TabIndex = 39
         '
         'SLUECompGroup
         '
@@ -361,32 +454,25 @@ Partial Class FormProductPerform
         'XTPDesign
         '
         Me.XTPDesign.Name = "XTPDesign"
-        Me.XTPDesign.Size = New System.Drawing.Size(950, 137)
+        Me.XTPDesign.Size = New System.Drawing.Size(873, 188)
         Me.XTPDesign.Text = "Filter by Product"
         '
         'PanelControlTop
         '
         Me.PanelControlTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTop.Controls.Add(Me.PanelControl1)
         Me.PanelControlTop.Controls.Add(Me.XTCData)
+        Me.PanelControlTop.Controls.Add(Me.PanelControl1)
         Me.PanelControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlTop.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlTop.Name = "PanelControlTop"
-        Me.PanelControlTop.Size = New System.Drawing.Size(956, 165)
+        Me.PanelControlTop.Size = New System.Drawing.Size(984, 216)
         Me.PanelControlTop.TabIndex = 30
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.Location = New System.Drawing.Point(169, 29)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(200, 23)
-        Me.PanelControl4.TabIndex = 0
         '
         'FormProductPerform
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(956, 507)
+        Me.ClientSize = New System.Drawing.Size(984, 507)
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PanelControlTop)
         Me.Name = "FormProductPerform"
@@ -405,18 +491,20 @@ Partial Class FormProductPerform
         Me.XTPPeriod.ResumeLayout(False)
         Me.XTPPeriod.PerformLayout()
         Me.XTPStore.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.GCStore, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVStore, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.CESelectAllStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEProvince.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTop.ResumeLayout(False)
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -454,6 +542,14 @@ Partial Class FormProductPerform
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label11 As Label
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GCStore As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVStore As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumncomp_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_select As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents CESelectAllStore As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BtnReset As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Label1 As Label
+    Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
 End Class

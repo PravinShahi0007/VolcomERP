@@ -42,6 +42,51 @@ ORDER BY area ASC"
         viewLookupQuery(LEArea, query, 0, "area", "id_area")
     End Sub
 
+    Sub viewProvince()
+        Dim where As String = ""
+
+        'If Not SLUEIsland.EditValue = "ALL" Then
+        '    where = " AND s.id_state IN (SELECT id_state FROM tb_m_city WHERE island = '" + SLUEIsland.EditValue.ToString + "')"
+        'End If
+
+        Dim query As String = "
+            (SELECT 0 AS id_province, 'ALL' AS province)
+            UNION ALL
+            (SELECT s.id_state AS id_province, s.state AS province
+            FROM tb_m_state AS s
+            LEFT JOIN tb_m_region AS r ON s.id_region = r.id_region
+            WHERE r.id_country = 5" + where + ")
+        "
+
+        viewSearchLookupQuery(SLUEProvince, query, "id_province", "province", "id_province")
+    End Sub
+
+    Sub view_group_store()
+        Dim where As String = ""
+
+        If Not SLUEProvince.EditValue.ToString = "0" Then
+            where += "
+                AND id_comp_group IN (SELECT p.id_comp_group FROM tb_m_comp AS p LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city LEFT JOIN tb_m_state AS s ON c.id_state = s.id_state WHERE s.id_state = " + SLUEProvince.EditValue.ToString + " AND p.id_comp_cat = 6)
+            "
+        End If
+
+        If Not LEArea.EditValue.ToString = "0" Then
+            where += "
+                AND id_comp_group IN (SELECT p.id_comp_group FROM tb_m_comp AS p WHERE p.id_area = '" + LEArea.EditValue.ToString + "' AND p.id_comp_cat = 6)
+            "
+        End If
+
+        Dim query As String = "
+            (SELECT 0 AS id_comp_group, 'ALL' AS comp_group)
+            UNION ALL
+            (SELECT id_comp_group, CONCAT(comp_group, ' - ', description) AS comp_group
+            FROM tb_m_comp_group
+            WHERE 1 " + where + ")
+        "
+
+        viewSearchLookupQuery(SLUECompGroup, query, "id_comp_group", "comp_group", "id_comp_group")
+    End Sub
+
     Private Sub FormProductPerform_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         month.Add("Jan")
         month.Add("Feb")
@@ -57,6 +102,7 @@ ORDER BY area ASC"
         month.Add("Dec")
         view_month()
         viewArea()
+        viewProvince()
     End Sub
 
     Private Sub FormProductPerform_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -266,5 +312,11 @@ ORDER BY area ASC"
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
 
+    Private Sub LEArea_EditValueChanged(sender As Object, e As EventArgs) Handles LEArea.EditValueChanged
+        view_group_store()
+    End Sub
 
+    Private Sub SLUEProvince_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEProvince.EditValueChanged
+        view_group_store()
+    End Sub
 End Class
