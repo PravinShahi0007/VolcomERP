@@ -19,6 +19,7 @@ Partial Class FormODM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormODM))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.TEAWB = New DevExpress.XtraEditors.TextEdit()
@@ -78,6 +79,8 @@ Partial Class FormODM
         Me.BRefreshWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPrint = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListODM = New DevExpress.XtraGrid.GridControl()
+        Me.CMGetOldData = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.GetDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVListODM = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -130,6 +133,7 @@ Partial Class FormODM
         CType(Me.GVWaitingToScan, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPrint.SuspendLayout()
         CType(Me.GCListODM, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMGetOldData.SuspendLayout()
         CType(Me.GVListODM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
@@ -702,6 +706,7 @@ Partial Class FormODM
         '
         'GCListODM
         '
+        Me.GCListODM.ContextMenuStrip = Me.CMGetOldData
         Me.GCListODM.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCListODM.Location = New System.Drawing.Point(0, 44)
         Me.GCListODM.MainView = Me.GVListODM
@@ -709,6 +714,18 @@ Partial Class FormODM
         Me.GCListODM.Size = New System.Drawing.Size(1072, 512)
         Me.GCListODM.TabIndex = 3
         Me.GCListODM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListODM})
+        '
+        'CMGetOldData
+        '
+        Me.CMGetOldData.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GetDataToolStripMenuItem})
+        Me.CMGetOldData.Name = "CMGetOldData"
+        Me.CMGetOldData.Size = New System.Drawing.Size(275, 48)
+        '
+        'GetDataToolStripMenuItem
+        '
+        Me.GetDataToolStripMenuItem.Name = "GetDataToolStripMenuItem"
+        Me.GetDataToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
+        Me.GetDataToolStripMenuItem.Text = "Get Data Pertanggungan Asuransi JNE"
         '
         'GVListODM
         '
@@ -1016,6 +1033,7 @@ Partial Class FormODM
         CType(Me.GVWaitingToScan, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPrint.ResumeLayout(False)
         CType(Me.GCListODM, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMGetOldData.ResumeLayout(False)
         CType(Me.GVListODM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
@@ -1127,4 +1145,6 @@ Partial Class FormODM
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMGetOldData As ContextMenuStrip
+    Friend WithEvents GetDataToolStripMenuItem As ToolStripMenuItem
 End Class

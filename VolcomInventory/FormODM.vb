@@ -2,6 +2,7 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Public is_able_download_asuransi_3pl As Boolean = False
 
     Private Sub BView_Click(sender As Object, e As EventArgs)
         'view()
@@ -355,5 +356,47 @@ ORDER BY od.id_odm_print DESC"
 
         GCWaitingToScan.DataSource = execute_query(query, -1, True, "", "", "", "")
         GVWaitingToScan.BestFitColumns()
+    End Sub
+
+    Private Sub GetDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GetDataToolStripMenuItem.Click
+        'check
+        Dim qc As String = "SELECT del.awbill_no,SUM(pld.`pl_sales_order_del_det_qty` * pld.design_price) AS total_harga
+FROM tb_odm_print_det odmp
+INNER JOIN tb_odm_print odmph ON odmph.id_odm_print=odmp.id_odm_print AND odmph.id_3pl='1215' -- JNE
+INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmp.id_odm_sc AND odmp.id_odm_print='" & GVListODM.GetFocusedRowCellValue("id_odm_print").ToString & "'
+INNER JOIN tb_odm_sc_det odmd ON odmd.id_odm_sc=odm.id_odm_sc
+INNER JOIN `tb_del_manifest_det` deld ON deld.id_del_manifest=odmd.id_del_manifest
+INNER JOIN `tb_del_manifest` del ON deld.id_del_manifest=del.id_del_manifest
+INNER JOIN tb_wh_awbill_det awbd ON awbd.id_wh_awb_det=deld.id_wh_awb_det
+INNER JOIN `tb_pl_sales_order_del_det` pld ON pld.`id_pl_sales_order_del`=awbd.id_pl_sales_order_del
+INNER JOIN tb_pl_sales_order_del pl ON pl.id_pl_sales_order_del=pld.`id_pl_sales_order_del`
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=pl.id_store_contact_to
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_m_comp_group cg ON c.id_comp_group=cg.id_comp_group AND cg.is_marketplace=2
+INNER JOIN tb_m_product p ON p.`id_product`=pld.`id_product`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=p.`id_design`
+LEFT JOIN tb_m_product_code pc ON pc.`id_product`=p.`id_product`
+LEFT JOIN tb_m_code_detail cd ON cd.`id_code_detail`=pc.`id_code_detail`
+GROUP BY del.awbill_no"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+
+        If GVListODM.RowCount > 0 And dtc.Rows.Count > 0 Then
+            'pakai login dept head 
+            is_able_download_asuransi_3pl = False
+
+            FormMenuAuth.type = "19"
+            FormMenuAuth.ShowDialog()
+
+            If is_able_download_asuransi_3pl Then
+                Dim Report As New Report3PLInsurance()
+                Report.id_odm_print = GVListODM.GetFocusedRowCellValue("id_odm_print").ToString
+                Report.LManifestNo.Text = GVListODM.GetFocusedRowCellValue("number").ToString
+
+                Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                tool.ShowPreview()
+            End If
+        Else
+            warningCustom("Data untuk pertanggungan asuransi tidak ditemukan")
+        End If
     End Sub
 End Class
