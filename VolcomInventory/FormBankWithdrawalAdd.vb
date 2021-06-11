@@ -266,7 +266,7 @@
     Private Sub LECurrency_EditValueChanged(sender As Object, e As EventArgs) Handles LECurrency.EditValueChanged
         Try
             If Not LECurrency.EditValue.ToString = "1" Then
-                TEKurs.EditValue = FormBankWithdrawal.TEKurs.EditValue
+                TEKurs.EditValue = FormBankWithdrawalDet.TEKurs.EditValue
             End If
         Catch ex As Exception
 

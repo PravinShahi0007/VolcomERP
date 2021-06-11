@@ -1,5 +1,6 @@
 ﻿Public Class ClassPurcItemStock
     Public opt As String = ""
+    Public additional_where As String = ""
     Public Function queryGetStock(ByVal cond As String, ByVal cat As String, ByVal date_until_selected As String) As String
         Dim q_where As String = ""
         If opt = "fisik" Then
@@ -17,7 +18,7 @@
 	        FROM tb_storage_item i
             INNER JOIN tb_item im ON im.id_item = i.id_item
             INNER JOIN tb_item_cat cat ON cat.id_item_cat = im.id_item_cat
-	        WHERE DATE(i.storage_item_datetime)<='" + date_until_selected + "' " + q_where + " " + cond + "
+	        WHERE DATE(i.storage_item_datetime)<='" + date_until_selected + "' " + q_where + " " + cond + " " + additional_where + "
 	        GROUP BY i.id_departement,i.id_item
         ) a 
         LEFT JOIN (
