@@ -158,7 +158,8 @@ INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=inv.id_report_status
 INNER JOIN tb_m_user usr ON usr.id_user=inv.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-WHERE inv.id_report_status=6
+LEFT JOIN tb_item_expense exp ON exp.id_comp=inv.id_comp AND exp.inv_number=inv.inv_number and exp.id_report_status!=5
+WHERE inv.id_report_status=6 AND isnull(exp.id_item_expense)
 GROUP BY inv.id_awb_inv_sum"
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
