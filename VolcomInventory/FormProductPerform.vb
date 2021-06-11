@@ -168,6 +168,16 @@ ORDER BY area ASC"
         For s As Integer = 0 To GVStore.RowCount - 1
             Dim comp_number As String = GVStore.GetRowCellValue(s, "comp_number").ToString
             Dim id_comp As String = GVStore.GetRowCellValue(s, "id_comp").ToString
+            Dim id_commerce_type As String = GVStore.GetRowCellValue(s, "id_commerce_type").ToString
+            Dim id_wh_ol As String = GVStore.GetRowCellValue(s, "id_wh_ol").ToString
+            Dim id_store As String = ""
+            If id_commerce_type = "1" Then
+                'offline
+                id_store = id_comp
+            Else
+                'online
+                id_store = id_wh_ol
+            End If
             If s > 0 Then
                 id_store_selected += ","
                 col_store += ","
@@ -175,7 +185,7 @@ ORDER BY area ASC"
             id_store_selected += GVStore.GetRowCellValue(s, "id_comp").ToString
             col_store += "IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0) AS `STORE : " + comp_number + "|DEL`,
             IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0) AS `STORE : " + comp_number + "|SAL`,
-            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0) AS `STORE : " + comp_number + "|SOH`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + id_store + ") THEN soh.qty END),0) AS `STORE : " + comp_number + "|SOH`,
             (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0))*100 AS `STORE : " + comp_number + "|Sales Thru` "
         Next
         GVStore.ActiveFilterString = ""
@@ -399,7 +409,15 @@ ORDER BY area ASC"
         End If
 
         'view
-        Dim query As String = "SELECT c.id_comp, c.comp_name, c.comp_number, 'No' AS `is_select` FROM tb_m_comp c WHERE c.id_comp_cat=6 " + where + " ORDER BY c.comp_number ASC "
+        Dim query As String = "SELECT c.id_comp, c.comp_name, c.comp_number, c.id_commerce_type, IFNULL(olc.id_wh_ol,0) AS `id_wh_ol`, 'No' AS `is_select` 
+        FROM tb_m_comp c 
+        LEFT JOIN (
+            SELECT olc.id_store,GROUP_CONCAT(DISTINCT olc.id_wh) AS `id_wh_ol` 
+            FROM tb_ol_store_comp olc
+            GROUP BY olc.id_store
+        ) olc ON olc.id_store = c.id_comp
+        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
+        WHERE c.id_comp_cat=6 " + where + " ORDER BY c.comp_number ASC "
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
         GCStore.DataSource = data
         GVStore.BestFitColumns()

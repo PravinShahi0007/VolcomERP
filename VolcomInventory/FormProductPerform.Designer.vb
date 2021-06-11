@@ -63,6 +63,8 @@ Partial Class FormProductPerform
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlTop = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumnid_wh_ol = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_commerce_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -277,7 +279,7 @@ Partial Class FormProductPerform
         '
         'GVStore
         '
-        Me.GVStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnis_select, Me.GridColumnid_comp})
+        Me.GVStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnis_select, Me.GridColumnid_comp, Me.GridColumnid_wh_ol, Me.GridColumnid_commerce_type})
         Me.GVStore.GridControl = Me.GCStore
         Me.GVStore.Name = "GVStore"
         Me.GVStore.OptionsFind.AlwaysVisible = True
@@ -468,6 +470,20 @@ Partial Class FormProductPerform
         Me.PanelControlTop.Size = New System.Drawing.Size(334, 507)
         Me.PanelControlTop.TabIndex = 30
         '
+        'GridColumnid_wh_ol
+        '
+        Me.GridColumnid_wh_ol.Caption = "id_wh_ol"
+        Me.GridColumnid_wh_ol.FieldName = "id_wh_ol"
+        Me.GridColumnid_wh_ol.Name = "GridColumnid_wh_ol"
+        Me.GridColumnid_wh_ol.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnid_commerce_type
+        '
+        Me.GridColumnid_commerce_type.Caption = "id_commerce_type"
+        Me.GridColumnid_commerce_type.FieldName = "id_commerce_type"
+        Me.GridColumnid_commerce_type.Name = "GridColumnid_commerce_type"
+        Me.GridColumnid_commerce_type.OptionsColumn.AllowEdit = False
+        '
         'FormProductPerform
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -552,4 +568,6 @@ Partial Class FormProductPerform
     Friend WithEvents Label1 As Label
     Friend WithEvents MESelectedStore As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents GridColumnid_comp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_wh_ol As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_commerce_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class
