@@ -26,7 +26,7 @@
         Dim query As String = "SELECT 'ALL' AS id_loc_og,'ALL location' AS loc_og 
 UNION ALL
 SELECT id_loc_og,loc_og FROM `tb_loc_og`"
-        viewSearchLookupQuery(SLELocation, query, "id_loc_og", "loc_og", "id_loc_og")
+        viewSearchLookupQuery(SLELocStockCard, query, "id_loc_og", "loc_og", "id_loc_og")
     End Sub
 
     Sub load_unit()
@@ -141,10 +141,12 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             date_until_selected = DateTime.Parse(DEUntilSC.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
+
         Dim id_dept As String = LEDeptSC.EditValue.ToString
         Dim id_item As String = SLEITem.EditValue.ToString
+        Dim loc As String = SLELocStockCard.EditValue.ToString
 
-        Dim query As String = "CALL view_stock_card_item(" + id_dept + ", " + id_item + ", '" + date_from_selected + "', '" + date_until_selected + "','')"
+        Dim query As String = "CALL view_stock_card_item(" + id_dept + ", " + id_item + ", '" + date_from_selected + "', '" + date_until_selected + "','" + loc + "','')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSC.DataSource = data
         GVSC.BestFitColumns()
@@ -173,6 +175,7 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
 
         Dim dept As String = LEDeptSum.EditValue.ToString
         Dim cat As String = LECat.EditValue.ToString
+        Dim loc As String = SLELocation.EditValue.ToString
 
         If dept = "-1" Then
             dept = ""
@@ -180,8 +183,16 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             dept = "AND i.id_departement=" + dept + ""
         End If
 
+        If loc = "ALL" Then
+            loc = ""
+        Else
+            loc = " AND i.id_loc_og='" & loc & "' "
+        End If
+
         Dim stc As New ClassPurcItemStock()
         stc.opt = "fisik"
+        stc.additional_where = loc
+
         Dim query As String = stc.queryGetStock(dept, cat, date_until_selected)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOH.DataSource = data
@@ -201,10 +212,12 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             date_until_selected = DateTime.Parse(DEUntilSC.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
+
         Dim id_dept As String = LEDeptSC.EditValue.ToString
         Dim id_item As String = SLEITem.EditValue.ToString
+        Dim loc As String = SLELocStockCard.EditValue.ToString
 
-        Dim query As String = "CALL view_stock_card_item(" + id_dept + ", " + id_item + ", '" + date_from_selected + "', '" + date_until_selected + "','fisik')"
+        Dim query As String = "CALL view_stock_card_item(" + id_dept + ", " + id_item + ", '" + date_from_selected + "', '" + date_until_selected + "','" + loc + "','fisik')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSC.DataSource = data
         GVSC.BestFitColumns()

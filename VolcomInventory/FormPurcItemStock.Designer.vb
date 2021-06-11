@@ -37,6 +37,11 @@ Partial Class FormPurcItemStock
         Me.GridColumnValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCNav = New DevExpress.XtraEditors.PanelControl()
+        Me.SLELocation = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.BStockFisik = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -62,6 +67,11 @@ Partial Class FormPurcItemStock
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDeptSC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLELocStockCard = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.BStockCardFisik = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEITem = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -146,11 +156,6 @@ Partial Class FormPurcItemStock
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BViewStockKosong = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLELocation = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -158,6 +163,8 @@ Partial Class FormPurcItemStock
         CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCNav.SuspendLayout()
+        CType(Me.SLELocation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESOHUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESOHUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -168,6 +175,8 @@ Partial Class FormPurcItemStock
         CType(Me.GVSC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLELocStockCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEITem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -192,8 +201,6 @@ Partial Class FormPurcItemStock
         CType(Me.GVStockKosong, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.SLELocation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCStock
@@ -351,6 +358,45 @@ Partial Class FormPurcItemStock
         Me.PCNav.Name = "PCNav"
         Me.PCNav.Size = New System.Drawing.Size(1058, 48)
         Me.PCNav.TabIndex = 0
+        '
+        'SLELocation
+        '
+        Me.SLELocation.Location = New System.Drawing.Point(57, 14)
+        Me.SLELocation.Name = "SLELocation"
+        Me.SLELocation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLELocation.Properties.View = Me.GridView1
+        Me.SLELocation.Size = New System.Drawing.Size(112, 20)
+        Me.SLELocation.TabIndex = 28
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "ID Loc Log"
+        Me.GridColumn23.FieldName = "id_loc_log"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Location"
+        Me.GridColumn24.FieldName = "loc_og"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 0
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(11, 17)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(40, 13)
+        Me.LabelControl12.TabIndex = 27
+        Me.LabelControl12.Text = "Location"
         '
         'BStockFisik
         '
@@ -556,6 +602,8 @@ Partial Class FormPurcItemStock
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLELocStockCard)
+        Me.PanelControl1.Controls.Add(Me.LabelControl13)
         Me.PanelControl1.Controls.Add(Me.BStockCardFisik)
         Me.PanelControl1.Controls.Add(Me.SLEITem)
         Me.PanelControl1.Controls.Add(Me.DEUntilSC)
@@ -572,10 +620,49 @@ Partial Class FormPurcItemStock
         Me.PanelControl1.Size = New System.Drawing.Size(1058, 50)
         Me.PanelControl1.TabIndex = 1
         '
+        'SLELocStockCard
+        '
+        Me.SLELocStockCard.Location = New System.Drawing.Point(57, 14)
+        Me.SLELocStockCard.Name = "SLELocStockCard"
+        Me.SLELocStockCard.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLELocStockCard.Properties.View = Me.GridView3
+        Me.SLELocStockCard.Size = New System.Drawing.Size(112, 20)
+        Me.SLELocStockCard.TabIndex = 31
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn29})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "ID Loc Log"
+        Me.GridColumn28.FieldName = "id_loc_log"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Location"
+        Me.GridColumn29.FieldName = "loc_og"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Location = New System.Drawing.Point(11, 17)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(40, 13)
+        Me.LabelControl13.TabIndex = 30
+        Me.LabelControl13.Text = "Location"
+        '
         'BStockCardFisik
         '
         Me.BStockCardFisik.Image = CType(resources.GetObject("BStockCardFisik.Image"), System.Drawing.Image)
-        Me.BStockCardFisik.Location = New System.Drawing.Point(846, 13)
+        Me.BStockCardFisik.Location = New System.Drawing.Point(946, 11)
         Me.BStockCardFisik.Name = "BStockCardFisik"
         Me.BStockCardFisik.Size = New System.Drawing.Size(83, 23)
         Me.BStockCardFisik.TabIndex = 29
@@ -583,12 +670,12 @@ Partial Class FormPurcItemStock
         '
         'SLEITem
         '
-        Me.SLEITem.Location = New System.Drawing.Point(295, 15)
+        Me.SLEITem.Location = New System.Drawing.Point(424, 14)
         Me.SLEITem.Name = "SLEITem"
         Me.SLEITem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEITem.Properties.ShowClearButton = False
         Me.SLEITem.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEITem.Size = New System.Drawing.Size(177, 20)
+        Me.SLEITem.Size = New System.Drawing.Size(148, 20)
         Me.SLEITem.TabIndex = 3
         '
         'SearchLookUpEdit1View
@@ -648,7 +735,7 @@ Partial Class FormPurcItemStock
         'DEUntilSC
         '
         Me.DEUntilSC.EditValue = Nothing
-        Me.DEUntilSC.Location = New System.Drawing.Point(649, 15)
+        Me.DEUntilSC.Location = New System.Drawing.Point(749, 13)
         Me.DEUntilSC.Name = "DEUntilSC"
         Me.DEUntilSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilSC.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -660,7 +747,7 @@ Partial Class FormPurcItemStock
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(478, 18)
+        Me.LabelControl7.Location = New System.Drawing.Point(576, 16)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl7.TabIndex = 27
@@ -668,7 +755,7 @@ Partial Class FormPurcItemStock
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(267, 18)
+        Me.LabelControl4.Location = New System.Drawing.Point(396, 16)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl4.TabIndex = 25
@@ -677,7 +764,7 @@ Partial Class FormPurcItemStock
         'BtnViewSC
         '
         Me.BtnViewSC.Image = CType(resources.GetObject("BtnViewSC.Image"), System.Drawing.Image)
-        Me.BtnViewSC.Location = New System.Drawing.Point(765, 13)
+        Me.BtnViewSC.Location = New System.Drawing.Point(865, 11)
         Me.BtnViewSC.Name = "BtnViewSC"
         Me.BtnViewSC.Size = New System.Drawing.Size(75, 23)
         Me.BtnViewSC.TabIndex = 23
@@ -685,7 +772,7 @@ Partial Class FormPurcItemStock
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(622, 18)
+        Me.LabelControl3.Location = New System.Drawing.Point(722, 16)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl3.TabIndex = 24
@@ -694,7 +781,7 @@ Partial Class FormPurcItemStock
         'DEFromSC
         '
         Me.DEFromSC.EditValue = Nothing
-        Me.DEFromSC.Location = New System.Drawing.Point(506, 15)
+        Me.DEFromSC.Location = New System.Drawing.Point(606, 13)
         Me.DEFromSC.Name = "DEFromSC"
         Me.DEFromSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFromSC.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -706,16 +793,16 @@ Partial Class FormPurcItemStock
         '
         'LEDeptSC
         '
-        Me.LEDeptSC.Location = New System.Drawing.Point(84, 15)
+        Me.LEDeptSC.Location = New System.Drawing.Point(243, 13)
         Me.LEDeptSC.Name = "LEDeptSC"
         Me.LEDeptSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEDeptSC.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LEDeptSC.Size = New System.Drawing.Size(175, 20)
+        Me.LEDeptSC.Size = New System.Drawing.Size(147, 20)
         Me.LEDeptSC.TabIndex = 19
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(15, 18)
+        Me.LabelControl5.Location = New System.Drawing.Point(175, 16)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl5.TabIndex = 18
@@ -1360,45 +1447,6 @@ Partial Class FormPurcItemStock
         Me.BViewStockKosong.TabIndex = 23
         Me.BViewStockKosong.Text = "View"
         '
-        'LabelControl12
-        '
-        Me.LabelControl12.Location = New System.Drawing.Point(11, 17)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(40, 13)
-        Me.LabelControl12.TabIndex = 27
-        Me.LabelControl12.Text = "Location"
-        '
-        'SLELocation
-        '
-        Me.SLELocation.Location = New System.Drawing.Point(57, 14)
-        Me.SLELocation.Name = "SLELocation"
-        Me.SLELocation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLELocation.Properties.View = Me.GridView1
-        Me.SLELocation.Size = New System.Drawing.Size(112, 20)
-        Me.SLELocation.TabIndex = 28
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "ID Loc Log"
-        Me.GridColumn23.FieldName = "id_loc_log"
-        Me.GridColumn23.Name = "GridColumn23"
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "Location"
-        Me.GridColumn24.FieldName = "loc_og"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 0
-        '
         'FormPurcItemStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1417,6 +1465,8 @@ Partial Class FormPurcItemStock
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCNav.ResumeLayout(False)
         Me.PCNav.PerformLayout()
+        CType(Me.SLELocation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DESOHUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DESOHUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1428,6 +1478,8 @@ Partial Class FormPurcItemStock
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLELocStockCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEITem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1453,8 +1505,6 @@ Partial Class FormPurcItemStock
         CType(Me.GVStockKosong, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.SLELocation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1589,4 +1639,9 @@ Partial Class FormPurcItemStock
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLELocStockCard As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
 End Class
