@@ -62,7 +62,6 @@ Partial Class FormProductPerform
         Me.GridView10 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControlTop = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -106,9 +105,9 @@ Partial Class FormProductPerform
         '
         Me.SBExportExcel.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBExportExcel.Image = CType(resources.GetObject("SBExportExcel.Image"), System.Drawing.Image)
-        Me.SBExportExcel.Location = New System.Drawing.Point(120, 2)
+        Me.SBExportExcel.Location = New System.Drawing.Point(147, 2)
         Me.SBExportExcel.Name = "SBExportExcel"
-        Me.SBExportExcel.Size = New System.Drawing.Size(117, 38)
+        Me.SBExportExcel.Size = New System.Drawing.Size(108, 38)
         Me.SBExportExcel.TabIndex = 2
         Me.SBExportExcel.Text = "Export Excel"
         '
@@ -116,9 +115,9 @@ Partial Class FormProductPerform
         '
         Me.SBView.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBView.Image = CType(resources.GetObject("SBView.Image"), System.Drawing.Image)
-        Me.SBView.Location = New System.Drawing.Point(237, 2)
+        Me.SBView.Location = New System.Drawing.Point(255, 2)
         Me.SBView.Name = "SBView"
-        Me.SBView.Size = New System.Drawing.Size(95, 38)
+        Me.SBView.Size = New System.Drawing.Size(77, 38)
         Me.SBView.TabIndex = 0
         Me.SBView.Text = "View"
         '
@@ -229,7 +228,7 @@ Partial Class FormProductPerform
         Me.XTCData.SelectedTabPage = Me.XTPPeriod
         Me.XTCData.Size = New System.Drawing.Size(334, 465)
         Me.XTCData.TabIndex = 29
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPeriod, Me.XTPStore, Me.XTPDesign})
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPeriod, Me.XTPStore})
         '
         'XTPPeriod
         '
@@ -239,7 +238,7 @@ Partial Class FormProductPerform
         Me.XTPPeriod.Controls.Add(Me.SLUEMonthFrom)
         Me.XTPPeriod.Name = "XTPPeriod"
         Me.XTPPeriod.Size = New System.Drawing.Size(328, 437)
-        Me.XTPPeriod.Text = "Filter by Period"
+        Me.XTPPeriod.Text = "Filter by Period && Product"
         '
         'LabelControl3
         '
@@ -458,12 +457,6 @@ Partial Class FormProductPerform
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 0
         '
-        'XTPDesign
-        '
-        Me.XTPDesign.Name = "XTPDesign"
-        Me.XTPDesign.Size = New System.Drawing.Size(328, 437)
-        Me.XTPDesign.Text = "Filter by Product"
-        '
         'PanelControlTop
         '
         Me.PanelControlTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -536,7 +529,6 @@ Partial Class FormProductPerform
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTPStore As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTPDesign As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControlTop As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLUEProvince As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView10 As DevExpress.XtraGrid.Views.Grid.GridView

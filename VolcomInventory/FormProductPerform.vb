@@ -108,10 +108,6 @@ ORDER BY area ASC"
     End Sub
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
-        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
-            FormMain.SplashScreenManager1.ShowWaitForm()
-        End If
-
         'filter month
         Dim year_from As Integer = Integer.Parse(SLUEMonthFrom.EditValue.ToString.Split("-")(0))
         Dim year_to As Integer = Integer.Parse(SLUEMonthTo.EditValue.ToString.Split("-")(0))
@@ -120,9 +116,61 @@ ORDER BY area ASC"
         Dim fromDate As String = "" + year_from.ToString + "-" + month_from.ToString.PadLeft(2, "0") + "-01"
         Dim untilDate As String = "" + year_to.ToString + "-" + month_to.ToString.PadLeft(2, "0") + "-01"
 
+        'validasi
+        'jika store blm dipilih
+        GVStore.ActiveFilterString = ""
+        GVStore.ActiveFilterString = "[is_select]='Yes' "
+        If GVStore.RowCount <= 0 Then
+            stopCustom("Please select store first")
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+        GVStore.ActiveFilterString = ""
+        'jika blm closing (from)
+        Dim qfrom As String = "SELECT * FROM tb_log_closing_stock_sal_period c WHERE c.year_stock='" + year_from.ToString + "' AND c.month_stock='" + month_from.ToString.PadLeft(2, "0") + "' "
+        Dim dfrom As DataTable = execute_query(qfrom, -1, True, "", "", "", "")
+        If dfrom.Rows.Count <= 0 Then
+            stopCustom("Period from belum closing")
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+        'jika blm closing (to)
+        Dim qto As String = "SELECT * FROM tb_log_closing_stock_sal_period c WHERE c.year_stock='" + year_to.ToString + "' AND c.month_stock='" + month_to.ToString.PadLeft(2, "0") + "' "
+        Dim dto As DataTable = execute_query(qto, -1, True, "", "", "", "")
+        If dto.Rows.Count <= 0 Then
+            stopCustom("Period until belum closing")
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+
         'rmt 
         Dim rmt_sal As String = execute_query("SELECT GROUP_CONCAT(DISTINCT sp.report_mark_type) AS `rmt` FROM tb_sales_pos sp WHERE sp.id_report_status=6", 0, True, "", "", "", "")
 
+        'filter store 
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading store")
+        Dim id_store_selected As String = ""
+        Dim col_store As String = ""
+        GVStore.ActiveFilterString = "[is_select]='Yes'"
+        For s As Integer = 0 To GVStore.RowCount - 1
+            Dim comp_number As String = GVStore.GetRowCellValue(s, "comp_number").ToString
+            Dim id_comp As String = GVStore.GetRowCellValue(s, "id_comp").ToString
+            If s > 0 Then
+                id_store_selected += ","
+                col_store += ","
+            End If
+            id_store_selected += GVStore.GetRowCellValue(s, "id_comp").ToString
+            col_store += "IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0) AS `STORE : " + comp_number + "|DEL`,
+            IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0) AS `STORE : " + comp_number + "|SAL`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0) AS `STORE : " + comp_number + "|SOH`,
+            (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0))*100 AS `STORE : " + comp_number + "|Sales Thru` "
+        Next
+        GVStore.ActiveFilterString = ""
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
         Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, division.display_name AS `Product Info|Division`, 
         category.display_name AS `Product Info|Category`, class.display_name AS `Product Info|Class`, color.code_detail_name AS `Product Info|Color`, source.display_name AS `Product Info|Source`,
         season.season AS `Product Info|Season`, delivery.delivery AS `Product Info|Delivery`, range.year_range AS `Product Info|Year`,
@@ -141,10 +189,7 @@ ORDER BY area ASC"
         price_type.design_price_type AS `Price Update Dates|Current Status`,
         ROUND(wh_rec_normal.qty) AS `WH Received|Normal (BOS)`, ROUND(wh_rec_defect.qty) AS `WH Received|Defect`,
         ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`, 
-        IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(549) THEN soh.qty END),0) AS `STORE : WBF|DEL`,
-        IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(549) THEN soh.qty END)),0) AS `STORE : WBF|SAL`,
-        IFNULL(SUM(CASE WHEN soh.soh_date='2020-12-01' AND soh.id_comp IN(549) THEN soh.qty END),0) AS `STORE : WBF|SOH`,
-        (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(549) THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(549) THEN soh.qty END),0))*100 AS `STORE : WBF|Sales Thru`,
+        " + col_store + ",
         IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END),0) AS `TOTAL|DEL`,
         IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `TOTAL|SAL`,
         IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' THEN soh.qty END),0) AS `TOTAL|SOH`,
@@ -240,12 +285,13 @@ ORDER BY area ASC"
 	        GROUP BY s.id_design
         ) AS wh_rec_defect ON wh_rec_defect.id_design = d.id_design
         WHERE soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' 
-        AND soh.id_comp IN(549)
+        AND soh.id_comp IN(" + id_store_selected + ")
         GROUP BY p.id_design "
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
         GVData.Bands.Clear()
         GVData.Columns.Clear()
 
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading column")
         Dim column As List(Of String) = New List(Of String)
         For i = 0 To data.Columns.Count - 1
             Dim bandName As String = data.Columns(i).Caption.Split("|")(0)
@@ -302,8 +348,9 @@ ORDER BY area ASC"
                 End If
             Next
         Next
-
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading view")
         GCData.DataSource = data
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Best fit all column")
         GVData.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
@@ -336,7 +383,7 @@ ORDER BY area ASC"
         End If
 
         'view
-        Dim query As String = "SELECT c.id_comp, c.comp_name, c.comp_number, 'No' AS `is_select` FROM tb_m_comp c WHERE c.id_comp_cat=6 ORDER BY c.comp_number ASC " + where
+        Dim query As String = "SELECT c.id_comp, c.comp_name, c.comp_number, 'No' AS `is_select` FROM tb_m_comp c WHERE c.id_comp_cat=6 " + where + " ORDER BY c.comp_number ASC "
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
         GCStore.DataSource = data
         GVStore.BestFitColumns()
@@ -363,5 +410,28 @@ ORDER BY area ASC"
         Cursor = Cursors.WaitCursor
         viewStore()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CESelectAllStore_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAllStore.CheckedChanged
+
+    End Sub
+
+    Private Sub GVStore_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVStore.CellValueChanged
+        If e.Column.FieldName.ToString = "is_select" Then
+            Cursor = Cursors.WaitCursor
+            Dim selected As String = ""
+            Dim s As Integer = 0
+            For i As Integer = 0 To GVStore.RowCount - 1
+                If GVStore.GetRowCellValue(i, "is_select").ToString = "Yes" Then
+                    If s > 0 Then
+                        selected += ","
+                    End If
+                    selected += GVStore.GetRowCellValue(i, "comp_number").ToString
+                    s += 1
+                End If
+            Next
+            MESelectedStore.Text = selected
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
