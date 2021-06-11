@@ -353,18 +353,31 @@ ORDER BY area ASC"
                     If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("TOTAL") Or bandName.Contains("STORE :") Or bandName.Contains("Stock") Then
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                        col.DisplayFormat.FormatString = "{0:n0}"
+                        If col.FieldName.Contains("Thru") Then
+                            col.DisplayFormat.FormatString = "{0:n0}%"
+                        Else
+                            col.DisplayFormat.FormatString = "{0:n0}"
+                        End If
 
                         'summary
-                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        If col.FieldName.Contains("Thru") Then
+                            col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.None
+                        Else
+                            col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        End If
                         col.SummaryItem.DisplayFormat = "{0:n0}"
+
 
                         'group summary
                         Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
                         summary.DisplayFormat = "{0:N0}"
                         summary.FieldName = data.Columns(j).Caption
                         summary.ShowInGroupColumnFooter = col
-                        summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        If col.FieldName.Contains("Thru") Then
+                            summary.SummaryType = DevExpress.Data.SummaryItemType.None
+                        Else
+                            summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        End If
                         GVData.GroupSummary.Add(summary)
                     End If
 
@@ -467,5 +480,13 @@ ORDER BY area ASC"
             MESelectedStore.Text = selected
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Dim tot_sal As Decimal
+    Dim tot_del As Decimal
+    Dim tot_sal_grp As Decimal
+    Dim tot_del_grp As Decimal
+    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
+        'belum ketemu utk yang kolom dinamis
     End Sub
 End Class
