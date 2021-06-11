@@ -510,6 +510,7 @@ ORDER BY area ASC"
 
     Sub viewStore()
         Cursor = Cursors.WaitCursor
+        defaultView()
         CESelectAllStore.EditValue = False
         MESelectedStore.Text = ""
 
@@ -601,5 +602,41 @@ ORDER BY area ASC"
 
     Private Sub SBSearch_Click(sender As Object, e As EventArgs) Handles SBSearch.Click
         FormProductPerformProductPick.ShowDialog()
+    End Sub
+
+    Sub defaultView()
+        GCData.DataSource = Nothing
+    End Sub
+
+    Private Sub SLUEMonthFrom_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEMonthFrom.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub SLUEMonthTo_DragOver(sender As Object, e As DragEventArgs) Handles SLUEMonthTo.DragOver
+
+    End Sub
+
+    Private Sub SLUEMonthTo_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEMonthTo.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub CCBESeason_EditValueChanged(sender As Object, e As EventArgs) Handles CCBESeason.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub CCBEDivision_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEDivision.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub CCBECategory_EditValueChanged(sender As Object, e As EventArgs) Handles CCBECategory.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub CCBEClass_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEClass.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub TEProductCode_EditValueChanged(sender As Object, e As EventArgs) Handles TEProductCode.EditValueChanged
+        defaultView()
     End Sub
 End Class
