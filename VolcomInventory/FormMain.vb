@@ -1918,6 +1918,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormProposePriceMKD.loadNewDetail()
         ElseIf formName = "FormStockTakeStorePeriod" Then
             FormStockTakeStorePeriodDet.ShowDialog()
+        ElseIf formName = "FormOGTransfer" Then
+            FormOGTransferDet.id = "-1"
+            FormOGTransferDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3189,6 +3192,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormProposePriceMKDDet.id = FormProposePriceMKD.GVSummary.GetFocusedRowCellValue("id_pp_change").ToString
                 FormProposePriceMKDDet.action = "upd"
                 FormProposePriceMKDDet.ShowDialog()
+            ElseIf formName = "FormOGTransfer" Then
+                FormOGTransferDet.id = FormOGTransfer.GVOGTransfer.GetFocusedRowCellValue("id_og_transfer").ToString
+                FormOGTransferDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8632,6 +8638,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print_raw(FormCatalogSpec.GCDesign, "")
         ElseIf formName = "FormStockTakeStorePeriod" Then
             print(FormStockTakeStorePeriod.GCPeriod, "Stock Take Store Period")
+        ElseIf formName = "FormOGTransfer" Then
+            print(FormOGTransfer.GCOGTransfer, "Transfer List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9626,6 +9634,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormCompGroupEmail" Then
             FormCompGroupEmail.Close()
             FormCompGroupEmail.Dispose()
+        ElseIf formName = "FormOGTransfer" Then
+            FormOGTransfer.Close()
+            FormOGTransfer.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10646,6 +10657,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormCatalogSpec.viewData()
         ElseIf formName = "FormStockTakeStorePeriod" Then
             FormStockTakeStorePeriod.load_form()
+        ElseIf formName = "FormOGTransfer" Then
+            FormOGTransfer.load_form()
         End If
     End Sub
     'Switch
@@ -16178,6 +16191,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormCompGroupEmail.Show()
             FormCompGroupEmail.WindowState = FormWindowState.Maximized
             FormCompGroupEmail.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBOGTransfer_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOGTransfer.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOGTransfer.MdiParent = Me
+            FormOGTransfer.Show()
+            FormOGTransfer.WindowState = FormWindowState.Maximized
+            FormOGTransfer.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

@@ -92,9 +92,9 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND NOT ISNULL(id.id_del_manif
 GROUP BY d.`id_del_manifest`)
 UNION ALL
 (SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name,IFNULL(id.id_comp,'') AS id_store
-,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,'' AS `rec_by_store_date`,'' AS `rec_by_store_person`
+,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,NULL AS `rec_by_store_date`,'' AS `rec_by_store_person`
 ,0 AS `cargo_rate`
-,'' AS pickup_date
+,NULL AS pickup_date
 ,1 AS collie
 ,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
 ,id.note_wh,id.berat_final,id.amount_final
@@ -138,9 +138,9 @@ WHERE id.id_awb_inv_sum='" & id_verification & "'
 GROUP BY d.`id_inbound_awb`)
 UNION ALL
 (SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name,IFNULL(id.id_comp,'') AS id_store
-,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,'' AS `rec_by_store_date`,'' AS `rec_by_store_person`
+,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,NULL AS `rec_by_store_date`,'' AS `rec_by_store_person`
 ,0 AS `cargo_rate`
-,'' AS pickup_date
+,NULL AS pickup_date
 ,1 AS collie
 ,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
 ,id.note_wh,id.berat_final,id.amount_final
@@ -383,6 +383,7 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
         str.Seek(0, System.IO.SeekOrigin.Begin)
         'Grid Detail
         ReportStyleGridview(Report.GVInvoice)
+        Report.GVInvoice.AppearancePrint.Row.Font = New Font("Segoe UI", 5, FontStyle.Regular)
         Report.GVInvoice.BestFitColumns()
 
         GridColumnDiffAmount.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending
@@ -390,7 +391,7 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
         GridColumnNo.VisibleIndex = -1
 
         'Parse val
-        Dim q As String = "SELECT inv.inv_number,DATE_FORMAT(inv.created_date,'%d %M %Y') AS created_date,c.comp_name 
+        Dim q As String = "SELECT inv.inv_number,DATE_FORMAT(inv.created_date,'%d %M %Y') AS created_date,c.comp_name ,IF(inv.id_type=1,'Outbound','Inbound') AS del_type
 FROM `tb_awb_inv_sum` inv
 INNER JOIN tb_m_comp c ON c.`id_comp`=inv.`id_comp`
 WHERE inv.id_awb_inv_sum='" & id_verification & "'"

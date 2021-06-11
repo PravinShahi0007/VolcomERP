@@ -317,6 +317,10 @@ Partial Class FormAWBInv
         '
         'GridColumnNo
         '
+        Me.GridColumnNo.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnNo.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnNo.Caption = "No"
         Me.GridColumnNo.FieldName = "no"
         Me.GridColumnNo.Name = "GridColumnNo"
@@ -339,8 +343,6 @@ Partial Class FormAWBInv
         Me.GridColumn3.Caption = "AWB"
         Me.GridColumn3.FieldName = "awbill_no"
         Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
-        Me.GridColumn3.OptionsColumn.AllowFocus = False
         Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0

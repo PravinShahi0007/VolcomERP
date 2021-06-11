@@ -3201,6 +3201,18 @@
     <Compile Include="FormODMPrintPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOGTransfer.Designer.vb">
+      <DependentUpon>FormOGTransfer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOGTransfer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOGTransferDet.Designer.vb">
+      <DependentUpon>FormOGTransferDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOGTransferDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLOrderList.Designer.vb">
       <DependentUpon>FormOLOrderList.vb</DependentUpon>
     </Compile>
@@ -11271,6 +11283,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormODMPrintPick.resx">
       <DependentUpon>FormODMPrintPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOGTransfer.resx">
+      <DependentUpon>FormOGTransfer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOGTransferDet.resx">
+      <DependentUpon>FormOGTransferDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLOrderList.resx">
       <DependentUpon>FormOLOrderList.vb</DependentUpon>
