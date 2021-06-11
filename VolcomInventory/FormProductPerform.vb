@@ -302,8 +302,8 @@ ORDER BY area ASC"
         DATE_FORMAT(first_del.first_del, '%d %M %Y') AS `Product Age|Del Date`,
         TIMESTAMPDIFF(MONTH, d.design_first_rec_wh, NOW()) AS `Product Age|WH Age`,
         TIMESTAMPDIFF(MONTH, first_del.first_del, NOW()) AS `Product Age|Del Age`,
-        FORMAT(price_normal.design_price, 0) AS `Price|Normal`,
-        FORMAT(IF(price_current.design_price = price_normal.design_price, '', price_current.design_price), 0) AS `Price|Current`,
+        price_normal.design_price AS `Price|Normal`,
+        IF(price_current.design_price = price_normal.design_price, 0, price_current.design_price) AS `Price|Current`,
         DATE_FORMAT(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 1), '%d %M %Y') AS `Price Update Dates|Price U1`,
         DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 2), 12), '%d %M %Y') AS `Price Update Dates|Price U2`,
         DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 3), 23), '%d %M %Y') AS `Price Update Dates|Price U3`,
@@ -483,6 +483,9 @@ ORDER BY area ASC"
                             summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
                         End If
                         GVData.GroupSummary.Add(summary)
+                    ElseIf bandName = "Price" Then
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n0}"
                     End If
 
                     If bandName = "Product Info" Then
