@@ -99,7 +99,7 @@
         Dim compGON As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 1251", 0, True, "", "", "", "")
         Dim compS78 As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 429", 0, True, "", "", "", "")
         Dim compGOS As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 1255", 0, True, "", "", "", "")
-        Dim compREJ As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_type IN (3, 4)", 0, True, "", "", "", "")
+        Dim compREJ As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_type IN (3)", 0, True, "", "", "", "")
 
         'stock month
         i = year_from

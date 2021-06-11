@@ -150,6 +150,16 @@ ORDER BY area ASC"
         'rmt 
         Dim rmt_sal As String = execute_query("SELECT GROUP_CONCAT(DISTINCT sp.report_mark_type) AS `rmt` FROM tb_sales_pos sp WHERE sp.id_report_status=6", 0, True, "", "", "", "")
 
+        'filter wh
+        Dim id_acc_selected As String = ""
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading WH")
+        Dim compG78 As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 371", 0, True, "", "", "", "")
+        Dim compGON As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 1251", 0, True, "", "", "", "")
+        Dim compS78 As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 429", 0, True, "", "", "", "")
+        Dim compGOS As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 1255", 0, True, "", "", "", "")
+        Dim compREJ As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_type IN (3)", 0, True, "", "", "", "")
+        id_acc_selected = compG78 + "," + compGON + "," + compS78 + "," + compGOS + "," + compREJ
+
         'filter store 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading store")
         Dim id_store_selected As String = ""
@@ -169,6 +179,7 @@ ORDER BY area ASC"
             (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0))*100 AS `STORE : " + comp_number + "|Sales Thru` "
         Next
         GVStore.ActiveFilterString = ""
+        id_acc_selected += "," + id_store_selected
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
         Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, division.display_name AS `Product Info|Division`, 
@@ -189,11 +200,16 @@ ORDER BY area ASC"
         price_type.design_price_type AS `Price Update Dates|Current Status`,
         ROUND(wh_rec_normal.qty) AS `WH Received|Normal (BOS)`, ROUND(wh_rec_defect.qty) AS `WH Received|Defect`,
         ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`, 
+        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compG78 + ") THEN soh.qty END),0) AS `Stock Gudang Normal|G78`,
+        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGON + ") THEN soh.qty END),0) AS `Stock Gudang Normal|GON`,
+        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compS78 + ") THEN soh.qty END),0) AS `Stock Gudang Sale|S78`,
+        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGOS + ") THEN soh.qty END),0) AS `Stock Gudang Sale|GOS`,
+        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compREJ + ") THEN soh.qty END),0) AS `Stock Gudang Non Active|Reject`,
         " + col_store + ",
-        IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END),0) AS `TOTAL|DEL`,
-        IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `TOTAL|SAL`,
-        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' THEN soh.qty END),0) AS `TOTAL|SOH`,
-        (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) THEN soh.qty END),0))*100 AS `TOTAL|Sales Thru`
+        IFNULL(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(43,103) THEN soh.qty END),0) AS `TOTAL|DEL`,
+        IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `TOTAL|SAL`,
+        IFNULL(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty END),0) AS `TOTAL|SOH`,
+        (IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(43,103) THEN soh.qty END),0))*100 AS `TOTAL|Sales Thru`
         FROM tb_soh_sal_period soh
         INNER JOIN tb_m_product p ON p.id_product = soh.id_product
         INNER JOIN tb_m_design d ON d.id_design = p.id_design
@@ -285,7 +301,7 @@ ORDER BY area ASC"
 	        GROUP BY s.id_design
         ) AS wh_rec_defect ON wh_rec_defect.id_design = d.id_design
         WHERE soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' 
-        AND soh.id_comp IN(" + id_store_selected + ")
+        AND soh.id_comp IN(" + id_acc_selected + ")
         GROUP BY p.id_design "
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
         GVData.Bands.Clear()
@@ -324,7 +340,7 @@ ORDER BY area ASC"
                         col.Group()
                     End If
 
-                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("TOTAL") Or bandName.Contains("STORE :") Then
+                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("TOTAL") Or bandName.Contains("STORE :") Or bandName.Contains("Stock") Then
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                         col.DisplayFormat.FormatString = "{0:n0}"
