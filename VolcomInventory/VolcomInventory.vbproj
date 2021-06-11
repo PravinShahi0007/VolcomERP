@@ -3975,6 +3975,12 @@
     <Compile Include="FormProductPerform.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductPerformProductPick.Designer.vb">
+      <DependentUpon>FormProductPerformProductPick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductPerformProductPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductWeight.Designer.vb">
       <DependentUpon>FormProductWeight.vb</DependentUpon>
     </Compile>
@@ -11656,6 +11662,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductPerform.resx">
       <DependentUpon>FormProductPerform.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductPerformProductPick.resx">
+      <DependentUpon>FormProductPerformProductPick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductWeight.resx">
       <DependentUpon>FormProductWeight.vb</DependentUpon>

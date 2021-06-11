@@ -75,6 +75,86 @@ ORDER BY area ASC"
         viewSearchLookupQuery(SLUECompGroup, query, "id_comp_group", "comp_group", "id_comp_group")
     End Sub
 
+    Sub view_season()
+        Dim query As String = "
+            SELECT a.id_season, a.season
+            FROM tb_season a 
+            INNER JOIN tb_range b ON a.id_range = b.id_range 
+            ORDER BY b.range DESC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("season").ToString
+            c.Value = data.Rows(i)("id_season").ToString
+
+            CCBESeason.Properties.Items.Add(c)
+        Next
+    End Sub
+
+    Sub view_division()
+        Dim query As String = "
+            SELECT id_code_detail, `code`
+            FROM tb_m_code_detail
+            WHERE id_code = 32
+            ORDER BY id_code_detail ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("code").ToString
+            c.Value = data.Rows(i)("id_code_detail").ToString
+
+            CCBEDivision.Properties.Items.Add(c)
+        Next
+    End Sub
+
+    Sub view_category()
+        Dim query As String = "
+            SELECT id_code_detail, CONCAT(display_name,'-',code_detail_name) AS `code`
+            FROM tb_m_code_detail
+            WHERE id_code = 4
+            ORDER BY display_name ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("code").ToString
+            c.Value = data.Rows(i)("id_code_detail").ToString
+
+            CCBECategory.Properties.Items.Add(c)
+        Next
+    End Sub
+
+    Sub view_class()
+        Dim query As String = "
+            SELECT id_code_detail, `code`
+            FROM tb_m_code_detail
+            WHERE id_code = 30
+            ORDER BY `code` ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("code").ToString
+            c.Value = data.Rows(i)("id_code_detail").ToString
+
+            CCBEClass.Properties.Items.Add(c)
+        Next
+    End Sub
+
     Private Sub FormProductPerform_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         For Each t As DevExpress.XtraTab.XtraTabPage In XTCData.TabPages
             XTCData.SelectedTabPage = t
@@ -94,6 +174,10 @@ ORDER BY area ASC"
         month.Add("Nov")
         month.Add("Dec")
         view_month()
+        view_season()
+        view_division()
+        view_category()
+        view_class()
         viewArea()
         viewProvince()
     End Sub
@@ -122,6 +206,7 @@ ORDER BY area ASC"
         GVStore.ActiveFilterString = "[is_select]='Yes' "
         If GVStore.RowCount <= 0 Then
             stopCustom("Please select store first")
+            GVStore.ActiveFilterString = ""
             Cursor = Cursors.Default
             Exit Sub
         End If
@@ -149,6 +234,24 @@ ORDER BY area ASC"
 
         'rmt 
         Dim rmt_sal As String = execute_query("SELECT GROUP_CONCAT(DISTINCT sp.report_mark_type) AS `rmt` FROM tb_sales_pos sp WHERE sp.id_report_status=6", 0, True, "", "", "", "")
+
+        'filter product
+        Dim where_prod As String = ""
+        If Not CCBESeason.EditValue.ToString = "" Then
+            where_prod += " AND d.id_season IN (" + CCBESeason.EditValue.ToString + ")"
+        End If
+        If Not CCBEDivision.EditValue.ToString = "" Then
+            where_prod += " AND division.id_code_detail IN (" + CCBEDivision.EditValue.ToString + ")"
+        End If
+        If Not CCBECategory.EditValue.ToString = "" Then
+            where_prod += " AND category.id_code_detail IN (" + CCBECategory.EditValue.ToString + ")"
+        End If
+        If Not CCBEClass.EditValue.ToString = "" Then
+            where_prod += " AND class.id_code_detail IN (" + CCBEClass.EditValue.ToString + ")"
+        End If
+        If Not TxtIdProduct.Text.ToString = "" Then
+            where_prod += " AND d.id_design IN (" + TxtIdProduct.Text + ")"
+        End If
 
         'filter wh
         Dim id_acc_selected As String = ""
@@ -312,6 +415,7 @@ ORDER BY area ASC"
         ) AS wh_rec_defect ON wh_rec_defect.id_design = d.id_design
         WHERE soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' 
         AND soh.id_comp IN(" + id_acc_selected + ")
+        " + where_prod + "
         GROUP BY p.id_design "
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
         GVData.Bands.Clear()
@@ -488,5 +592,14 @@ ORDER BY area ASC"
     Dim tot_del_grp As Decimal
     Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
         'belum ketemu utk yang kolom dinamis
+    End Sub
+
+    Private Sub SBClear_Click(sender As Object, e As EventArgs) Handles SBClear.Click
+        TEProductCode.EditValue = ""
+        TxtIdProduct.Text = ""
+    End Sub
+
+    Private Sub SBSearch_Click(sender As Object, e As EventArgs) Handles SBSearch.Click
+        FormProductPerformProductPick.ShowDialog()
     End Sub
 End Class
