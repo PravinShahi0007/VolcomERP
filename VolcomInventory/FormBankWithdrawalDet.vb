@@ -1291,6 +1291,10 @@ GROUP BY dn.`id_debit_note`"
                 Next
                 calculate_amount()
             End If
+
+            If is_buy_valas Then
+                SLEVendor.EditValue = "1"
+            End If
         Else
             'PCAddDel.Visible = False
             BtnAdd.Visible = False
