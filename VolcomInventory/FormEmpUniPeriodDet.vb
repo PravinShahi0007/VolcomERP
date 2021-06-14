@@ -400,9 +400,19 @@
         If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
             Dim id_emp_uni_budget As String = GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString
+
+            'cari id order
+            Dim id_order As String = ""
+            Dim dgo As DataTable = execute_query("SELECT id_sales_order FROM tb_sales_order WHERE id_emp_uni_budget='" + id_emp_uni_budget + "' AND id_report_status!=5", -1, True, "", "", "", "")
+            If dgo.Rows.Count > 0 Then
+                id_order = dgo.Rows(0)("id_sales_order").ToString
+            Else
+                id_order = "0"
+            End If
+
             Dim uni As New ClassEmpUni()
             uni.is_public_form = is_public_form
-            uni.openOrderDetail(id_emp_uni_period, id_emp_uni_budget, GVDetail.GetFocusedRowCellValue("id_order").ToString, GVDetail.GetFocusedRowCellValue("id_departement").ToString)
+            uni.openOrderDetail(id_emp_uni_period, id_emp_uni_budget, id_order, GVDetail.GetFocusedRowCellValue("id_departement").ToString)
 
             'Dim qorder As String = "SELECT * FROM tb_sales_order WHERE id_emp_uni_period=" + id_emp_uni_period + " AND id_emp_uni_budget=" + GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString + " AND id_report_status!=5 "
             'Dim dorder As DataTable = execute_query(qorder, -1, True, "", "", "", "")
