@@ -1921,6 +1921,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormOGTransfer" Then
             FormOGTransferDet.id = "-1"
             FormOGTransferDet.ShowDialog()
+        ElseIf formName = "FormAWBOther" Then
+            FormAWBOtherDet.id = "-1"
+            FormAWBOtherDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
