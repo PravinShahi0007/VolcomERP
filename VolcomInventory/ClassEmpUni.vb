@@ -147,6 +147,13 @@
             ElseIf id_warehouse_contact_to = "-1" Then
                 stopCustom("WH account is not found")
             Else
+                Dim qcek As String = "SELECT * FROM tb_sales_order so WHERE so.id_emp_uni_budget=" + id_emp_uni_budget + " AND so.id_report_status!=5 "
+                Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+                If dcek.Rows.Count > 0 Then
+                    stopCustom("Already created")
+                    Exit Sub
+                End If
+
                 Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_emp_uni_budget, tolerance, discount, is_selected) "
                 query += "VALUES('" + id_store_contact_to + "', '" + id_warehouse_contact_to + "', '', NOW(), '', '0', '1', '7', '" + id_user + "','" + id_period + "'," + id_emp_uni_budget + ",'" + tolerance + "','" + decimalSQL(discount.ToString) + "', '2'); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
