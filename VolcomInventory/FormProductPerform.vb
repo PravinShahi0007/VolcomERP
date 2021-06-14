@@ -573,21 +573,26 @@ ORDER BY area ASC"
 
     Private Sub GVStore_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVStore.CellValueChanged
         If e.Column.FieldName.ToString = "is_select" Then
-            Cursor = Cursors.WaitCursor
-            Dim selected As String = ""
-            Dim s As Integer = 0
-            For i As Integer = 0 To GVStore.RowCount - 1
-                If GVStore.GetRowCellValue(i, "is_select").ToString = "Yes" Then
-                    If s > 0 Then
-                        selected += ","
-                    End If
-                    selected += GVStore.GetRowCellValue(i, "comp_number").ToString
-                    s += 1
-                End If
-            Next
-            MESelectedStore.Text = selected
-            Cursor = Cursors.Default
+            setSelectedStore()
         End If
+    End Sub
+
+    Sub setSelectedStore()
+        Cursor = Cursors.WaitCursor
+        Dim selected As String = ""
+        Dim s As Integer = 0
+        For i As Integer = 0 To GVStore.RowCount - 1
+            If GVStore.GetRowCellValue(i, "is_select").ToString = "Yes" Then
+                If s > 0 Then
+                    selected += ","
+                End If
+                selected += GVStore.GetRowCellValue(i, "comp_number").ToString
+                s += 1
+            End If
+        Next
+        GVStore.ActiveFilterString = ""
+        MESelectedStore.Text = selected
+        Cursor = Cursors.Default
     End Sub
 
     Dim tot_sal As Decimal
@@ -660,5 +665,9 @@ ORDER BY area ASC"
             infoCustom("File saved.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVStore_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVStore.ColumnFilterChanged
+        setSelectedStore()
     End Sub
 End Class
