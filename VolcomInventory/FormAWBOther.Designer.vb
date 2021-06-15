@@ -210,6 +210,7 @@ Partial Class FormAWBOther
         Me.GridColumn4.Caption = "Created Date"
         Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn4.FieldName = "created_date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 4
@@ -219,6 +220,7 @@ Partial Class FormAWBOther
         Me.GridColumn5.Caption = "Pickup Date"
         Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn5.FieldName = "pickup_date"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3

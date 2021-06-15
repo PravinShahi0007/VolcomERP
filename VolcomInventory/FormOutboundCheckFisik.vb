@@ -55,6 +55,7 @@ INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=cx.`id_comp_group`
 WHERE awb.is_old_ways!=1 AND awb.id_report_status!=5 AND awb.id_report_status!=6 AND awb.step=1 AND awb.ol_number='" & addSlashes(TEOutboundNumber.Text) & "'
 GROUP BY awb.id_awbill"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            '
             If dt.Rows.Count > 0 Then
                 If dt.Rows(0)("status_check_fisik").ToString = "3" Then
                     FormError.LabelContent.Text = "Check fisik sudah dilakukan"
@@ -99,7 +100,7 @@ WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
                     TEScannedCode.Focus()
                 End If
             Else
-                FormError.LabelContent.Text = "Outbound label tidak ditemukan"
+                FormError.LabelContent.Text = "Outbound label tidak ditemukan / data tidak lengkap"
                 FormError.ShowDialog()
                 TEOutboundNumber.Text = ""
             End If

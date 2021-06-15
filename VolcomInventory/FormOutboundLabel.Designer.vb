@@ -57,6 +57,7 @@ Partial Class FormOutboundLabel
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOffline = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.SBReset = New DevExpress.XtraEditors.SimpleButton()
         Me.TEBarcodeScan = New DevExpress.XtraEditors.TextEdit()
         Me.XTPOnline = New DevExpress.XtraTab.XtraTabPage()
@@ -95,7 +96,6 @@ Partial Class FormOutboundLabel
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewDOOnline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -361,6 +361,7 @@ Partial Class FormOutboundLabel
         Me.GVDOERP.OptionsCustomization.AllowQuickHideColumns = False
         Me.GVDOERP.OptionsCustomization.AllowRowSizing = True
         Me.GVDOERP.OptionsCustomization.CustomizationFormSearchBoxVisible = True
+        Me.GVDOERP.OptionsFind.AllowFindPanel = False
         Me.GVDOERP.OptionsView.ShowGroupPanel = False
         '
         'GridColumn32
@@ -485,6 +486,14 @@ Partial Class FormOutboundLabel
         Me.PanelControl3.Size = New System.Drawing.Size(863, 48)
         Me.PanelControl3.TabIndex = 6
         '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(13, 17)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl5.TabIndex = 4
+        Me.LabelControl5.Text = "Scanned Code"
+        '
         'SBReset
         '
         Me.SBReset.Dock = System.Windows.Forms.DockStyle.Right
@@ -535,6 +544,7 @@ Partial Class FormOutboundLabel
         Me.GVDOOnline.OptionsCustomization.AllowRowSizing = True
         Me.GVDOOnline.OptionsCustomization.AllowSort = False
         Me.GVDOOnline.OptionsCustomization.CustomizationFormSearchBoxVisible = True
+        Me.GVDOOnline.OptionsFind.AllowFindPanel = False
         Me.GVDOOnline.OptionsView.ShowGroupPanel = False
         '
         'GridColumn30
@@ -825,14 +835,6 @@ Partial Class FormOutboundLabel
         Me.LabelControl4.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl4.TabIndex = 1
         Me.LabelControl4.Text = "Order#"
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(13, 17)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(69, 13)
-        Me.LabelControl5.TabIndex = 4
-        Me.LabelControl5.Text = "Scanned Code"
         '
         'FormOutboundLabel
         '

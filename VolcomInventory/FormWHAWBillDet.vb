@@ -567,6 +567,9 @@ WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.
 
                 execute_non_query("CALL upd_track_no('" & id_awb & "')", True, "", "", "", "")
 
+                GVDO.ApplyFindFilter("")
+                GVDO.ActiveFilterString = ""
+
                 'detail do
                 If GVDO.RowCount > 0 Then
                     query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,id_ol_store_cust_ret,do_no,qty) VALUES"
@@ -599,7 +602,6 @@ WHERE rate.id_sub_district='" + SLESubDistrict.EditValue.ToString + "' AND rate.
                     execute_non_query(query, True, "", "", "", "")
                 End If
 
-                '
                 'infoCustom("AWB calculation saved.")
 
                 If id_awb_type = "1" Then
