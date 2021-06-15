@@ -61,6 +61,8 @@ Partial Class FormItemExpense
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEDesc3PLInv = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPPH3PLInv = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -74,8 +76,6 @@ Partial Class FormItemExpense
         Me.BImport = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEDesc3PLInv = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,13 +95,13 @@ Partial Class FormItemExpense
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TEDesc3PLInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPPH3PLInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPPN3PLInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPPH3PLInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.TEDesc3PLInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCData
@@ -499,6 +499,22 @@ Partial Class FormItemExpense
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1006, 43)
         Me.PanelControl2.TabIndex = 92
+        Me.PanelControl2.Visible = False
+        '
+        'TEDesc3PLInv
+        '
+        Me.TEDesc3PLInv.Location = New System.Drawing.Point(740, 14)
+        Me.TEDesc3PLInv.Name = "TEDesc3PLInv"
+        Me.TEDesc3PLInv.Size = New System.Drawing.Size(259, 20)
+        Me.TEDesc3PLInv.TabIndex = 7
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(681, 17)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl4.TabIndex = 6
+        Me.LabelControl4.Text = "Description"
         '
         'LabelControl3
         '
@@ -601,6 +617,7 @@ Partial Class FormItemExpense
         Me.BImport.Size = New System.Drawing.Size(1006, 34)
         Me.BImport.TabIndex = 91
         Me.BImport.Text = "Generate Expense"
+        Me.BImport.Visible = False
         '
         'PanelControl1
         '
@@ -620,21 +637,6 @@ Partial Class FormItemExpense
         Me.BRefresh.Size = New System.Drawing.Size(114, 44)
         Me.BRefresh.TabIndex = 2
         Me.BRefresh.Text = "Refresh"
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(681, 17)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(53, 13)
-        Me.LabelControl4.TabIndex = 6
-        Me.LabelControl4.Text = "Description"
-        '
-        'TEDesc3PLInv
-        '
-        Me.TEDesc3PLInv.Location = New System.Drawing.Point(740, 14)
-        Me.TEDesc3PLInv.Name = "TEDesc3PLInv"
-        Me.TEDesc3PLInv.Size = New System.Drawing.Size(259, 20)
-        Me.TEDesc3PLInv.TabIndex = 7
         '
         'FormItemExpense
         '
@@ -666,13 +668,13 @@ Partial Class FormItemExpense
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TEDesc3PLInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPPH3PLInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPPN3PLInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPPH3PLInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.TEDesc3PLInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
