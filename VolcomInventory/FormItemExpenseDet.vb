@@ -146,12 +146,12 @@ GROUP BY det.id_store"
                     GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", "54")
                     GVData.SetRowCellValue(GVData.RowCount - 1, "cc", dtg.Rows(i)("id_store").ToString)
                     '
-                    GVData.SetRowCellValue(GVData.RowCount - 1, "description", FormItemExpense.TEDesc3PLInv.Text)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "description", FormItemExpensePop.TEDesc3PLInv.Text)
                     GVData.SetRowCellValue(GVData.RowCount - 1, "amount", dtg.Rows(i)("amount_final"))
-                    GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", FormItemExpense.TEPPN3PLInv.EditValue)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", FormItemExpensePop.TEPPN3PLInv.EditValue)
                     '
-                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc_pph", FormItemExpense.SLEPPH3PLInv.EditValue.ToString)
-                    GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", FormItemExpense.TEPPH3PLInv.EditValue)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc_pph", FormItemExpensePop.SLEPPH3PLInv.EditValue.ToString)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", FormItemExpensePop.TEPPH3PLInv.EditValue)
                     '
                     GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", dtg.Rows(i)("amount_final"))
                     GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 1)
