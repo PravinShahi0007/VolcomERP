@@ -735,6 +735,14 @@ Partial Class FormDelManifestDet
         Me.GVList.LevelIndent = 0
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVList.OptionsCustomization.AllowFilter = False
+        Me.GVList.OptionsCustomization.AllowGroup = False
+        Me.GVList.OptionsCustomization.AllowSort = False
+        Me.GVList.OptionsFilter.AllowFilterEditor = False
+        Me.GVList.OptionsFilter.AllowFilterIncrementalSearch = False
+        Me.GVList.OptionsFilter.AllowMRUFilterList = False
+        Me.GVList.OptionsFilter.AllowMultiSelectInCheckedFilterPopup = False
+        Me.GVList.OptionsFind.AllowFindPanel = False
         Me.GVList.OptionsView.AllowCellMerge = True
         Me.GVList.OptionsView.ColumnAutoWidth = False
         Me.GVList.OptionsView.ShowFooter = True
