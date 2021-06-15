@@ -8,12 +8,13 @@
         FormItemExpenseDet.action = "ins"
         FormItemExpenseDet.id_awb_inv_sum = id_awb_inv_sum
         FormItemExpenseDet.ShowDialog()
+        Close()
     End Sub
 
     Private Sub FormItemExpensePop_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEPPH3PLInv.EditValue = 0.00
         TEPPN3PLInv.EditValue = 0.00
-
+        '
         load_pph_account()
     End Sub
 

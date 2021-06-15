@@ -474,6 +474,12 @@
     <Compile Include="FormAWBOther.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAWBOtherAdd.Designer.vb">
+      <DependentUpon>FormAWBOtherAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAWBOtherAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAWBOtherDet.Designer.vb">
       <DependentUpon>FormAWBOtherDet.vb</DependentUpon>
     </Compile>
@@ -9899,6 +9905,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAWBOther.resx">
       <DependentUpon>FormAWBOther.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAWBOtherAdd.resx">
+      <DependentUpon>FormAWBOtherAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAWBOtherDet.resx">
       <DependentUpon>FormAWBOtherDet.vb</DependentUpon>

@@ -64,4 +64,8 @@ WHERE awbo.id_awb_office='" & id & "'"
             End If
         End If
     End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+
+    End Sub
 End Class

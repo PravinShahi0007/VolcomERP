@@ -156,6 +156,8 @@ GROUP BY inv.id_awb_inv_sum"
 
     Private Sub GVInvoice_DoubleClick(sender As Object, e As EventArgs) Handles GVInvoice.DoubleClick
         FormItemExpensePop.id_awb_inv_sum = GVInvoice.GetFocusedRowCellValue("id_awb_inv_sum").ToString
+        FormItemExpensePop.TEVendor.Text = GVInvoice.GetFocusedRowCellValue("comp_name").ToString
+        FormItemExpensePop.TEInvNumber.Text = GVInvoice.GetFocusedRowCellValue("inv_number").ToString
         FormItemExpensePop.ShowDialog()
     End Sub
 
