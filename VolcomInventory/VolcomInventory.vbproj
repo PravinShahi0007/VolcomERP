@@ -468,6 +468,18 @@
     <Compile Include="FormAREvaluationPickDate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAWBOther.Designer.vb">
+      <DependentUpon>FormAWBOther.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAWBOther.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAWBOtherDet.Designer.vb">
+      <DependentUpon>FormAWBOtherDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAWBOtherDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBankDepositCaseKhusus.Designer.vb">
       <DependentUpon>FormBankDepositCaseKhusus.vb</DependentUpon>
     </Compile>
@@ -7173,6 +7185,12 @@
     <Compile Include="FormStockQCStockReportSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakePeriodSOH.Designer.vb">
+      <DependentUpon>FormStockTakePeriodSOH.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakePeriodSOH.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockTakeStorePeriod.Designer.vb">
       <DependentUpon>FormStockTakeStorePeriod.vb</DependentUpon>
     </Compile>
@@ -9872,6 +9890,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvaluationPickDate.resx">
       <DependentUpon>FormAREvaluationPickDate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAWBOther.resx">
+      <DependentUpon>FormAWBOther.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAWBOtherDet.resx">
+      <DependentUpon>FormAWBOtherDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankDepositCaseKhusus.resx">
       <DependentUpon>FormBankDepositCaseKhusus.vb</DependentUpon>
@@ -13615,6 +13639,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockQCStockReportSummary.resx">
       <DependentUpon>FormStockQCStockReportSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakePeriodSOH.resx">
+      <DependentUpon>FormStockTakePeriodSOH.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeStorePeriod.resx">
       <DependentUpon>FormStockTakeStorePeriod.vb</DependentUpon>

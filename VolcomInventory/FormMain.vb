@@ -1921,6 +1921,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormOGTransfer" Then
             FormOGTransferDet.id = "-1"
             FormOGTransferDet.ShowDialog()
+        ElseIf formName = "FormAWBOther" Then
+            FormAWBOtherDet.id = "-1"
+            FormAWBOtherDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3195,6 +3198,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormOGTransfer" Then
                 FormOGTransferDet.id = FormOGTransfer.GVOGTransfer.GetFocusedRowCellValue("id_og_transfer").ToString
                 FormOGTransferDet.ShowDialog()
+            ElseIf formName = "FormAWBOther" Then
+                FormAWBOtherDet.id = FormAWBOther.GVAWB.GetFocusedRowCellValue("id_awb_office").ToString
+                FormAWBOtherDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8640,6 +8646,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormStockTakeStorePeriod.GCPeriod, "Stock Take Store Period")
         ElseIf formName = "FormOGTransfer" Then
             print(FormOGTransfer.GCOGTransfer, "Transfer List")
+        ElseIf formName = "FormAWBOther" Then
+            print(FormAWBOther.GCAWB, "AWB List " & FormAWBOther.SLECargo.Text & " (" & Date.Parse(FormAWBOther.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormAWBOther.DEUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ") ")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9637,6 +9645,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormOGTransfer" Then
             FormOGTransfer.Close()
             FormOGTransfer.Dispose()
+        ElseIf formName = "FormAWBOther" Then
+            FormAWBOther.Close()
+            FormAWBOther.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -16204,6 +16215,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormOGTransfer.Show()
             FormOGTransfer.WindowState = FormWindowState.Maximized
             FormOGTransfer.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAWBOther_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAWBOther.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormAWBOther.MdiParent = Me
+            FormAWBOther.Show()
+            FormAWBOther.WindowState = FormWindowState.Maximized
+            FormAWBOther.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

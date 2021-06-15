@@ -119,28 +119,18 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
     End Function
     Function header_number_general(ByVal opt As String)
         'opt
-        '1 = awbill
 
         Dim header_number_x As String
         header_number_x = ""
-
-        If opt = "1" Then
-            header_number_x = combine_header_number(get_opt_general_field("awbill_code_head"), Integer.Parse(get_opt_general_field("awbill_code_inc")), Integer.Parse(get_opt_general_field("awbill_code_digit")))
-        End If
 
         Return header_number_x
     End Function
     Sub increase_inc_general(ByVal opt As String)
         'opt
-        '1 = awbill
 
         Dim query As String
         query = ""
 
-        If opt = "1" Then
-            query = "UPDATE tb_opt_general SET awbill_code_inc=(tb_opt_general.awbill_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        End If
     End Sub
     '=>=========== opt code header sample =====================
     Function header_number(ByVal opt As String)

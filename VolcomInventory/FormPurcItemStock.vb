@@ -26,6 +26,7 @@
         Dim query As String = "SELECT 'ALL' AS id_loc_og,'ALL location' AS loc_og 
 UNION ALL
 SELECT id_loc_og,loc_og FROM `tb_loc_og`"
+        viewSearchLookupQuery(SLELocation, query, "id_loc_og", "loc_og", "id_loc_og")
         viewSearchLookupQuery(SLELocStockCard, query, "id_loc_og", "loc_og", "id_loc_og")
     End Sub
 

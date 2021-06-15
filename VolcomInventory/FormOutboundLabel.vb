@@ -53,17 +53,43 @@ ORDER BY d.id_pl_sales_order_del DESC "
             '
             Dim query_check As String = "SELECT * FROM tb_wh_awbill_det awbd
 INNER JOIN tb_wh_awbill awb ON awbd.`id_awbill`=awb.`id_awbill` AND awb.`id_report_status` != 5 
+INNER JOIN tb_pl_sales_order_del del ON awbd.id_pl_sales_order_del=del.id_pl_sales_order_del
 WHERE awbd.`id_pl_sales_order_del` IN (" & id & ") "
             Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+
+            Dim is_problem_save As Boolean = False
+            'check per DO
+            For i = 0 To GVDOERP.RowCount - 1
+                Dim qc As String = "SELECT * FROM tb_pl_sales_order_del_det pld
+INNER JOIN tb_m_product p ON p.id_product=pld.id_product
+INNER JOIN tb_m_design dsg ON dsg.id_design=p.id_design
+WHERE dsg.is_old_design=2 AND pld.id_pl_sales_order_del='" & GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString & "'"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                If dtc.Rows.Count > 0 Then
+                    'ada design baru
+                    Dim qc2 As String = "SELECT * FROM
+`tb_m_unique_code` u
+WHERE id_report='" & GVDOERP.GetRowCellValue(i, "id_pl_sales_order_del").ToString & "' AND u.report_mark_type='43'"
+                    Dim dtc2 As DataTable = execute_query(qc2, -1, True, "", "", "", "")
+                    If dtc2.Rows.Count = 0 Then
+                        'tidak ada data
+                        is_problem_save = True
+                        Exit For
+                    End If
+                End If
+            Next
+
             If data_check.Rows.Count > 0 Then
                 Dim number_already_generated As String = ""
                 For i = 0 To data_check.Rows.Count - 1
                     If Not i = 0 Then
                         number_already_generated += ","
                     End If
-                    number_already_generated += "'" & data_check.Rows(i)("prod_order_number").ToString & "'"
+                    number_already_generated += "'" & data_check.Rows(i)("pl_sales_order_del_number").ToString & "'"
                 Next
                 warningCustom("Delivery with number : " & number_already_generated & " already process.")
+            ElseIf is_problem_save Then
+                warningCustom("Data Delivery tidak lengkap. Mohon hubungi administrator.")
             Else
                 'outbound label generate
                 Dim query As String = ""
