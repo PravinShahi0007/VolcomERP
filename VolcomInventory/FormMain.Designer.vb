@@ -161,6 +161,7 @@ Partial Class FormMain
         Me.NBStockCardAsset = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCompGroupEmail = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBMappingStore = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAWBOther = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGHRD = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEmployee = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBEmpNorm = New DevExpress.XtraNavBar.NavBarItem()
@@ -531,7 +532,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBAWBOther = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1717,6 +1717,12 @@ Partial Class FormMain
         Me.NBMappingStore.Caption = "Mapping Store"
         Me.NBMappingStore.Name = "NBMappingStore"
         Me.NBMappingStore.SmallImage = CType(resources.GetObject("NBMappingStore.SmallImage"), System.Drawing.Image)
+        '
+        'NBAWBOther
+        '
+        Me.NBAWBOther.Caption = "Input AWB"
+        Me.NBAWBOther.Name = "NBAWBOther"
+        Me.NBAWBOther.SmallImage = CType(resources.GetObject("NBAWBOther.SmallImage"), System.Drawing.Image)
         '
         'NBGHRD
         '
@@ -4092,12 +4098,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBAWBOther
-        '
-        Me.NBAWBOther.Caption = "Input AWB"
-        Me.NBAWBOther.Name = "NBAWBOther"
-        Me.NBAWBOther.SmallImage = CType(resources.GetObject("NBAWBOther.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
