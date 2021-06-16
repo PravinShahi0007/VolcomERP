@@ -95,6 +95,8 @@
 
         GVSOH.ActiveFilterString = ""
 
+        FormStockTakeStorePeriodDet.CEAll.EditValue = False
+
         Close()
     End Sub
 End Class

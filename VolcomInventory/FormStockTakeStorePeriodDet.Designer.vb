@@ -43,6 +43,7 @@ Partial Class FormStockTakeStorePeriodDet
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.SBSOH = New DevExpress.XtraEditors.SimpleButton()
+        Me.CEAll = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESOHDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,6 +54,7 @@ Partial Class FormStockTakeStorePeriodDet
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -267,15 +269,24 @@ Partial Class FormStockTakeStorePeriodDet
         '
         Me.SBSOH.Location = New System.Drawing.Point(15, 197)
         Me.SBSOH.Name = "SBSOH"
-        Me.SBSOH.Size = New System.Drawing.Size(357, 23)
+        Me.SBSOH.Size = New System.Drawing.Size(276, 23)
         Me.SBSOH.TabIndex = 15
         Me.SBSOH.Text = "Select SOH"
+        '
+        'CEAll
+        '
+        Me.CEAll.Location = New System.Drawing.Point(308, 199)
+        Me.CEAll.Name = "CEAll"
+        Me.CEAll.Properties.Caption = "Select All"
+        Me.CEAll.Size = New System.Drawing.Size(64, 19)
+        Me.CEAll.TabIndex = 16
         '
         'FormStockTakeStorePeriodDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(384, 549)
+        Me.Controls.Add(Me.CEAll)
         Me.Controls.Add(Me.SBSOH)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.DEEnd)
@@ -303,6 +314,7 @@ Partial Class FormStockTakeStorePeriodDet
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -331,4 +343,5 @@ Partial Class FormStockTakeStorePeriodDet
     Friend WithEvents DEEnd As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label5 As Label
     Friend WithEvents SBSOH As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CEAll As DevExpress.XtraEditors.CheckEdit
 End Class

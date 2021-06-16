@@ -19,15 +19,29 @@
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
-        If Not id_product.Count = 0 Then
-            FormMain.SplashScreenManager1.ShowWaitForm()
+        If Not CEAll.EditValue And id_product.Count = 0 Then
+            stopCustom("No SOH Selected.")
 
-            FormMain.SplashScreenManager1.SetWaitFormDescription("Save data...")
+            Exit Sub
+        End If
 
-            Dim query As String = "INSERT INTO tb_st_store_period (soh_date, id_store, is_active, schedule_start, schedule_end) VALUES ('" + Date.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + SLUEStore.EditValue.ToString + ", 1, '" + Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "'); SELECT LAST_INSERT_ID();"
+        FormMain.SplashScreenManager1.ShowWaitForm()
 
-            Dim id_st_store_period As String = execute_query(query, 0, True, "", "", "", "")
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Save data...")
 
+        Dim is_all_design As String = ""
+
+        If CEAll.EditValue Then
+            is_all_design = "1"
+        Else
+            is_all_design = "2"
+        End If
+
+        Dim query As String = "INSERT INTO tb_st_store_period (soh_date, id_store, is_active, schedule_start, schedule_end, is_all_design) VALUES ('" + Date.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + SLUEStore.EditValue.ToString + ", 1, '" + Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + is_all_design + "); SELECT LAST_INSERT_ID();"
+
+        Dim id_st_store_period As String = execute_query(query, 0, True, "", "", "", "")
+
+        If is_all_design = "2" Then
             Dim query_product As String = "INSERT INTO tb_st_store_product (id_st_store_period, id_product) VALUES "
 
             For i = 0 To id_product.Count - 1
@@ -37,81 +51,79 @@
             query_product = query_product.Substring(0, query_product.Length - 2)
 
             execute_non_query(query_product, True, "", "", "", "")
-
-            FormMain.SplashScreenManager1.SetWaitFormDescription("Generate table...")
-
-            execute_non_query_long_time("CALL generate_st_store('" + id_st_store_period + "')", True, "", "", "", "")
-            execute_non_query_long_time("CALL generate_st_unique_store('" + id_st_store_period + "')", True, "", "", "", "")
-
-            'create json file
-            FormMain.SplashScreenManager1.SetWaitFormDescription("Generate file...")
-
-            Dim pathRoot As String = Application.StartupPath + "\download\"
-
-            If Not IO.Directory.Exists(pathRoot) Then
-                System.IO.Directory.CreateDirectory(pathRoot)
-            End If
-
-            Dim fileName As String = "sync-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
-            Dim file As String = IO.Path.Combine(pathRoot, fileName)
-
-            execute_non_query_long_time("CALL generate_product_store()", True, "", "", "", "")
-
-            Dim j_m_store As String = tableToJson("tb_m_store", "SELECT id_store, store_name FROM tb_m_store WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")")
-            Dim j_st_store_period As String = tableToJson("tb_st_store_period", "SELECT id_st_store_period, soh_date, id_store, schedule_start, schedule_end, is_active FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "")
-            Dim j_m_comp_cat As String = tableToJson("tb_m_comp_cat", "SELECT id_comp_cat, comp_cat_name, description FROM tb_m_comp_cat WHERE id_comp_cat IN (SELECT id_comp_cat FROM tb_m_comp WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "))")
-            Dim j_m_comp_group As String = tableToJson("tb_m_comp_group", "SELECT id_comp_group, comp_group, description FROM tb_m_comp_group WHERE id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "))")
-            Dim j_m_comp As String = tableToJson("tb_m_comp", "SELECT id_comp, id_comp_cat, id_comp_group, id_store, id_store_type, comp_number, comp_name, comp_display_name FROM tb_m_comp WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")")
-            Dim j_m_employee As String = tableToJson("tb_m_employee", "SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee IN (SELECT id_employee FROM tb_m_user WHERE id_user IN (SELECT value_id FROM tb_opt_include_st_store WHERE table_name = 'tb_m_user') OR id_user IN (SELECT id_user FROM tb_m_user WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")))")
-            Dim j_m_permission As String = tableToJson("tb_m_permission", "SELECT id_permission, permission FROM tb_m_permission")
-            Dim j_m_product_store As String = tableToJson("tb_m_product_store", "SELECT id_product, full_code, `code`, `name`, size, class, color, unit_cost FROM tb_m_product_store")
-            Dim j_m_role As String = tableToJson("tb_m_role", "SELECT id_role, role FROM tb_m_role WHERE id_role IN (SELECT id_role FROM tb_m_user WHERE id_user IN (SELECT value_id FROM tb_opt_include_st_store WHERE table_name = 'tb_m_user') OR id_user IN (SELECT id_user FROM tb_m_user WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")))")
-            Dim j_m_user As String = tableToJson("tb_m_user", "SELECT id_user, id_role, id_employee, id_store, username, password, name_external, position_external, is_external_user FROM tb_m_user WHERE id_user IN (SELECT value_id FROM tb_opt_include_st_store WHERE table_name = 'tb_m_user') OR id_user IN (SELECT id_user FROM tb_m_user WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "))")
-            Dim j_permission_role As String = tableToJson("tb_permission_role", "SELECT id_permission, id_role FROM tb_permission_role")
-            Dim j_st_store_soh As String = tableToJson("tb_st_store_soh", "SELECT id_st_store_soh, id_st_store_period, id_comp, id_wh_drawer, id_product, qty, id_design_price_normal, design_price_normal, id_design_price, id_design_price_type, design_price FROM tb_st_store_soh WHERE id_st_store_period = " + id_st_store_period + "")
-            Dim j_st_store_unique As String = tableToJson("tb_st_store_unique", "SELECT id_st_store_unique, id_st_store_period, id_product, id_comp, unique_code FROM tb_st_store_unique WHERE id_st_store_period = " + id_st_store_period + "")
-
-            Dim out As String = "{" + j_m_store + "," + j_st_store_period + "," + j_m_comp_cat + "," + j_m_comp_group + "," + j_m_comp + "," + j_m_employee + "," + j_m_permission + "," + j_m_product_store + "," + j_m_role + "," + j_m_user + "," + j_permission_role + "," + j_st_store_soh + "," + j_st_store_unique + "}"
-
-            Dim fs As IO.FileStream = System.IO.File.Create(file)
-
-            Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(out)
-
-            fs.Write(info, 0, info.Length)
-
-            fs.Close()
-
-            'upload file
-            FormMain.SplashScreenManager1.SetWaitFormDescription("Upload file...")
-
-            Dim volcomClientHost As String = get_setup_field("volcom_client_host")
-            Dim volcomClientUsername As String = get_setup_field("volcom_client_username")
-            Dim volcomClientPassword As String = get_setup_field("volcom_client_password")
-
-            Dim accessToken As String = getAccessToken()
-
-            Dim url As String = volcomClientHost + "/api/sync/stocktake"
-
-            Dim wc As Net.WebClient = New Net.WebClient()
-
-            wc.Headers.Add("Authorization", accessToken)
-
-            Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
-
-            Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
-
-            Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
-
-            FormMain.SplashScreenManager1.CloseWaitForm()
-
-            If json("status") = "success" Then
-                infoCustom("Save Completed.")
-            End If
-
-            Close()
-        Else
-            stopCustom("No SOH selected.")
         End If
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Generate table...")
+
+        execute_non_query_long_time("CALL generate_st_store('" + id_st_store_period + "')", True, "", "", "", "")
+        execute_non_query_long_time("CALL generate_st_unique_store('" + id_st_store_period + "')", True, "", "", "", "")
+
+        'create json file
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Generate file...")
+
+        Dim pathRoot As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(pathRoot) Then
+            System.IO.Directory.CreateDirectory(pathRoot)
+        End If
+
+        Dim fileName As String = "sync-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
+        Dim file As String = IO.Path.Combine(pathRoot, fileName)
+
+        execute_non_query_long_time("CALL generate_product_store()", True, "", "", "", "")
+
+        Dim j_m_store As String = tableToJson("tb_m_store", "SELECT id_store, store_name FROM tb_m_store WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")")
+        Dim j_st_store_period As String = tableToJson("tb_st_store_period", "SELECT id_st_store_period, soh_date, id_store, schedule_start, schedule_end, is_all_design, is_active FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "")
+        Dim j_m_comp_cat As String = tableToJson("tb_m_comp_cat", "SELECT id_comp_cat, comp_cat_name, description FROM tb_m_comp_cat WHERE id_comp_cat IN (SELECT id_comp_cat FROM tb_m_comp WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "))")
+        Dim j_m_comp_group As String = tableToJson("tb_m_comp_group", "SELECT id_comp_group, comp_group, description FROM tb_m_comp_group WHERE id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "))")
+        Dim j_m_comp As String = tableToJson("tb_m_comp", "SELECT id_comp, id_comp_cat, id_comp_group, id_store, id_store_type, comp_number, comp_name, comp_display_name FROM tb_m_comp WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")")
+        Dim j_m_employee As String = tableToJson("tb_m_employee", "SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee IN (SELECT id_employee FROM tb_m_user WHERE id_user IN (SELECT value_id FROM tb_opt_include_st_store WHERE table_name = 'tb_m_user') OR id_user IN (SELECT id_user FROM tb_m_user WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")))")
+        Dim j_m_permission As String = tableToJson("tb_m_permission", "SELECT id_permission, permission FROM tb_m_permission")
+        Dim j_m_product_store As String = tableToJson("tb_m_product_store", "SELECT id_product, full_code, `code`, `name`, size, class, color, unit_cost, is_old_design FROM tb_m_product_store")
+        Dim j_m_role As String = tableToJson("tb_m_role", "SELECT id_role, role FROM tb_m_role WHERE id_role IN (SELECT id_role FROM tb_m_user WHERE id_user IN (SELECT value_id FROM tb_opt_include_st_store WHERE table_name = 'tb_m_user') OR id_user IN (SELECT id_user FROM tb_m_user WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")))")
+        Dim j_m_user As String = tableToJson("tb_m_user", "SELECT id_user, id_role, id_employee, id_store, username, password, name_external, position_external, is_external_user FROM tb_m_user WHERE id_user IN (SELECT value_id FROM tb_opt_include_st_store WHERE table_name = 'tb_m_user') OR id_user IN (SELECT id_user FROM tb_m_user WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "))")
+        Dim j_permission_role As String = tableToJson("tb_permission_role", "SELECT id_permission, id_role FROM tb_permission_role")
+        Dim j_st_store_soh As String = tableToJson("tb_st_store_soh", "SELECT id_st_store_soh, id_st_store_period, id_comp, id_wh_drawer, id_product, qty, id_design_price_normal, design_price_normal, id_design_price, id_design_price_type, design_price FROM tb_st_store_soh WHERE id_st_store_period = " + id_st_store_period + "")
+        Dim j_st_store_unique As String = tableToJson("tb_st_store_unique", "SELECT id_st_store_unique, id_st_store_period, id_product, id_comp, unique_code FROM tb_st_store_unique WHERE id_st_store_period = " + id_st_store_period + "")
+
+        Dim out As String = "{" + j_m_store + "," + j_st_store_period + "," + j_m_comp_cat + "," + j_m_comp_group + "," + j_m_comp + "," + j_m_employee + "," + j_m_permission + "," + j_m_product_store + "," + j_m_role + "," + j_m_user + "," + j_permission_role + "," + j_st_store_soh + "," + j_st_store_unique + "}"
+
+        Dim fs As IO.FileStream = System.IO.File.Create(file)
+
+        Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(out)
+
+        fs.Write(info, 0, info.Length)
+
+        fs.Close()
+
+        'upload file
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Upload file...")
+
+        Dim volcomClientHost As String = get_setup_field("volcom_client_host")
+        Dim volcomClientUsername As String = get_setup_field("volcom_client_username")
+        Dim volcomClientPassword As String = get_setup_field("volcom_client_password")
+
+        Dim accessToken As String = getAccessToken()
+
+        Dim url As String = volcomClientHost + "/api/sync/stocktake"
+
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Authorization", accessToken)
+
+        Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
+
+        Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
+
+        If json("status") = "success" Then
+            infoCustom("Save Completed.")
+        End If
+
+        Close()
     End Sub
 
     Sub view_store()
@@ -216,5 +228,11 @@
 
     Private Sub SBSOH_Click(sender As Object, e As EventArgs) Handles SBSOH.Click
         FormStockTakePeriodSOH.ShowDialog()
+    End Sub
+
+    Private Sub CEAll_CheckedChanged(sender As Object, e As EventArgs) Handles CEAll.CheckedChanged
+        If CEAll.EditValue Then
+            id_product.Clear()
+        End If
     End Sub
 End Class
