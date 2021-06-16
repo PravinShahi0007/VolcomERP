@@ -139,6 +139,7 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
 
     Sub load_verification()
         Dim q As String = "SELECT inv.id_awb_inv_sum,sts.report_status,c.comp_name,inv.created_date,inv.inv_number,emp.employee_name,SUM(invd.amount_cargo) AS a_tot,SUM(invd.amount_wh) AS c_tot,SUM(invd.amount_final) AS final_tot
+,IF(inv.id_type=1,'Outbound','Inbound') AS type
 FROM `tb_awb_inv_sum_det` invd
 INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invd.id_awb_inv_sum
 INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp
@@ -158,6 +159,7 @@ GROUP BY inv.id_awb_inv_sum"
         FormItemExpensePop.id_awb_inv_sum = GVInvoice.GetFocusedRowCellValue("id_awb_inv_sum").ToString
         FormItemExpensePop.TEVendor.Text = GVInvoice.GetFocusedRowCellValue("comp_name").ToString
         FormItemExpensePop.TEInvNumber.Text = GVInvoice.GetFocusedRowCellValue("inv_number").ToString
+        FormItemExpensePop.TEDesc3PLInv.Text = GVInvoice.GetFocusedRowCellValue("type").ToString
         FormItemExpensePop.ShowDialog()
     End Sub
 
