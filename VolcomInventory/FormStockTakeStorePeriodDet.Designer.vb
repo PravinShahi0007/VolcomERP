@@ -41,6 +41,8 @@ Partial Class FormStockTakeStorePeriodDet
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.SBSOH = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESOHDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,7 +124,7 @@ Partial Class FormStockTakeStorePeriodDet
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 179)
+        Me.Label3.Location = New System.Drawing.Point(12, 236)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(29, 13)
         Me.Label3.TabIndex = 4
@@ -130,7 +132,7 @@ Partial Class FormStockTakeStorePeriodDet
         '
         'SBAddUser
         '
-        Me.SBAddUser.Location = New System.Drawing.Point(297, 179)
+        Me.SBAddUser.Location = New System.Drawing.Point(297, 236)
         Me.SBAddUser.Name = "SBAddUser"
         Me.SBAddUser.Size = New System.Drawing.Size(75, 23)
         Me.SBAddUser.TabIndex = 6
@@ -138,7 +140,7 @@ Partial Class FormStockTakeStorePeriodDet
         '
         'GCExternalUser
         '
-        Me.GCExternalUser.Location = New System.Drawing.Point(15, 208)
+        Me.GCExternalUser.Location = New System.Drawing.Point(15, 265)
         Me.GCExternalUser.MainView = Me.GVExternalUser
         Me.GCExternalUser.Name = "GCExternalUser"
         Me.GCExternalUser.Size = New System.Drawing.Size(357, 225)
@@ -195,7 +197,7 @@ Partial Class FormStockTakeStorePeriodDet
         'SBSave
         '
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(283, 439)
+        Me.SBSave.Location = New System.Drawing.Point(283, 496)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(89, 40)
         Me.SBSave.TabIndex = 9
@@ -203,7 +205,7 @@ Partial Class FormStockTakeStorePeriodDet
         '
         'SBEditUser
         '
-        Me.SBEditUser.Location = New System.Drawing.Point(216, 179)
+        Me.SBEditUser.Location = New System.Drawing.Point(216, 236)
         Me.SBEditUser.Name = "SBEditUser"
         Me.SBEditUser.Size = New System.Drawing.Size(75, 23)
         Me.SBEditUser.TabIndex = 10
@@ -252,11 +254,30 @@ Partial Class FormStockTakeStorePeriodDet
         Me.DEEnd.Size = New System.Drawing.Size(175, 20)
         Me.DEEnd.TabIndex = 13
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 176)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(28, 13)
+        Me.Label5.TabIndex = 14
+        Me.Label5.Text = "SOH"
+        '
+        'SBSOH
+        '
+        Me.SBSOH.Location = New System.Drawing.Point(15, 197)
+        Me.SBSOH.Name = "SBSOH"
+        Me.SBSOH.Size = New System.Drawing.Size(357, 23)
+        Me.SBSOH.TabIndex = 15
+        Me.SBSOH.Text = "Select SOH"
+        '
         'FormStockTakeStorePeriodDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(384, 490)
+        Me.ClientSize = New System.Drawing.Size(384, 549)
+        Me.Controls.Add(Me.SBSOH)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.DEEnd)
         Me.Controls.Add(Me.DEStart)
         Me.Controls.Add(Me.Label4)
@@ -308,4 +329,6 @@ Partial Class FormStockTakeStorePeriodDet
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label4 As Label
     Friend WithEvents DEEnd As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label5 As Label
+    Friend WithEvents SBSOH As DevExpress.XtraEditors.SimpleButton
 End Class

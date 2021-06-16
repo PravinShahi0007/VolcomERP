@@ -18,7 +18,6 @@
 
     Private Sub FormDeliveryCargoDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_awbill = "-1" Then 'new
-            TENumber.Text = header_number_general("1")
             DEDateCreated.EditValue = Now
             TEDepartement.Text = get_departement_x(id_departement_user, "1")
             '

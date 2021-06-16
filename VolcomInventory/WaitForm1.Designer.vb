@@ -43,6 +43,7 @@ Partial Class WaitForm1
         Me.progressPanel1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.progressPanel1.Margin = New System.Windows.Forms.Padding(0, 3, 0, 3)
         Me.progressPanel1.Name = "progressPanel1"
+        Me.progressPanel1.Padding = New System.Windows.Forms.Padding(0, 0, 10, 0)
         Me.progressPanel1.ShowCaption = False
         Me.progressPanel1.Size = New System.Drawing.Size(246, 39)
         Me.progressPanel1.TabIndex = 0

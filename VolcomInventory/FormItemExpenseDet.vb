@@ -50,7 +50,7 @@
                     qg = "
 SELECT det.id_store,SUM(det.amount_final) AS amount_final
 FROM (
-(SELECT '' AS no,d.`id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,store.id_comp AS id_store,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
+(SELECT '' AS no,d.`id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.id_cc,store.id_comp) AS id_store,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
 ,d.`awbill_inv_no`,id.awb_no AS `awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
 ,d.`cargo_rate`
 ,odm.created_date AS pickup_date
@@ -146,12 +146,12 @@ GROUP BY det.id_store"
                     GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", "54")
                     GVData.SetRowCellValue(GVData.RowCount - 1, "cc", dtg.Rows(i)("id_store").ToString)
                     '
-                    GVData.SetRowCellValue(GVData.RowCount - 1, "description", FormItemExpense.TEDesc3PLInv.Text)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "description", FormItemExpensePop.TEDesc3PLInv.Text)
                     GVData.SetRowCellValue(GVData.RowCount - 1, "amount", dtg.Rows(i)("amount_final"))
-                    GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", FormItemExpense.TEPPN3PLInv.EditValue)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", FormItemExpensePop.TEPPN3PLInv.EditValue)
                     '
-                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc_pph", FormItemExpense.SLEPPH3PLInv.EditValue.ToString)
-                    GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", FormItemExpense.TEPPH3PLInv.EditValue)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc_pph", FormItemExpensePop.SLEPPH3PLInv.EditValue.ToString)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", FormItemExpensePop.TEPPH3PLInv.EditValue)
                     '
                     GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", dtg.Rows(i)("amount_final"))
                     GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 1)
@@ -760,7 +760,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
             GVData.ActiveFilterString = ""
             'check invoice duplicate
             Dim inv_no As String = addSlashes(TEInvNo.Text)
-            Dim qc As String = "SELECT * FROM tb_item_expense WHERE id_comp='" & id_comp & "' AND inv_number='" & inv_no & "' AND id_item_expense !='" & id & "'"
+            Dim qc As String = "SELECT * FROM tb_item_expense WHERE id_comp='" & id_comp & "' AND inv_number='" & inv_no & "' AND id_item_expense !='" & id & "' AND id_report_status!=5"
             Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
             If dtc.Rows.Count > 0 Then
