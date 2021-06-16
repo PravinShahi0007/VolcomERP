@@ -760,7 +760,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
             GVData.ActiveFilterString = ""
             'check invoice duplicate
             Dim inv_no As String = addSlashes(TEInvNo.Text)
-            Dim qc As String = "SELECT * FROM tb_item_expense WHERE id_comp='" & id_comp & "' AND inv_number='" & inv_no & "' AND id_item_expense !='" & id & "'"
+            Dim qc As String = "SELECT * FROM tb_item_expense WHERE id_comp='" & id_comp & "' AND inv_number='" & inv_no & "' AND id_item_expense !='" & id & "' AND id_report_status!=5"
             Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
             If dtc.Rows.Count > 0 Then

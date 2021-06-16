@@ -112,6 +112,10 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        'closing soh sal period
+        'For i = 6 To 12
+        'execute_non_query_long_time("CALL view_closing_stock_sal_period('2020', '" + i.ToString + "')", True, "", "", "", "")
+        'Next
         '        Dim id_report_par As String = "97043"
         '        Dim id_status_reportx_par As String = "6"
         '        Dim qs As String = "SELECT c.id_comp,pl.`id_pl_sales_order_del`,so.`id_sales_order_ol_shop`,c.`id_commerce_type`,c.`is_use_unique_code` FROM tb_pl_sales_order_del pl

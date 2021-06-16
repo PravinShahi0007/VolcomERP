@@ -129,14 +129,14 @@
         INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
         WHERE p.id_sales_pos=" + id_report_param + " AND pd.sales_pos_det_qty>0 
         UNION ALL 
-        SELECT getCompByContact(p.id_store_contact_from, 4), 2, pd.id_product, IFNULL(dsg.design_cop,0), " + report_mark_type_param + ", " + id_report_param + ", pd.sales_pos_det_qty, NOW(), '', 1
+        SELECT getCompByContact(p.id_store_contact_from, 4), 2, pd.id_product, IFNULL(dsg.design_cop,0), 315, " + id_report_param + ", pd.sales_pos_det_qty, NOW(), '', 1
         FROM tb_sales_pos p
         INNER JOIN tb_sales_pos_det pd ON pd.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
         INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
         WHERE p.id_sales_pos=" + id_report_param + " AND pd.sales_pos_det_qty>0 
         UNION ALL 
-        SELECT getCompByContact(p.id_comp_contact_bill, 4), 1, pd.id_product, IFNULL(dsg.design_cop,0), " + report_mark_type_param + ", " + id_report_param + ", pd.sales_pos_det_qty, NOW(), '', 1
+        SELECT getCompByContact(p.id_comp_contact_bill, 4), 1, pd.id_product, IFNULL(dsg.design_cop,0), 316, " + id_report_param + ", pd.sales_pos_det_qty, NOW(), '', 1
         FROM tb_sales_pos p
         INNER JOIN tb_sales_pos_det pd ON pd.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product

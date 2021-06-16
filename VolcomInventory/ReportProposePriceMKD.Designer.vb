@@ -639,6 +639,7 @@ Partial Public Class ReportProposePriceMKD
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
+        Me.XrTable1.KeepTogether = True
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.45836!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
