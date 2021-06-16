@@ -10,6 +10,9 @@
     End Sub
 
     Private Sub FormAWBOtherDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DECreatedDate.EditValue = Now
+        DEPickupDate.Properties.MinValue = Now
+        '
         load_head()
     End Sub
 
@@ -37,7 +40,8 @@ WHERE awb.id_awb_office='" & id & "'"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT awbo.`awbill_no`,dep.departement,awbo.`jml_koli`,c.comp_name,dis.sub_district,awbo.`client_note`
+        Dim q As String = "SELECT awbo.`awbill_no`,dep.departement,awbo.`jml_koli`,awbo.id_client,c.comp_name,dis.id_sub_district,dis.sub_district
+,awbo.`client_note`
 FROM `tb_awb_office_det` awbo 
 INNER JOIN tb_m_departement dep ON dep.id_departement=awbo.id_departement
 LEFT JOIN tb_m_comp c ON c.id_comp=awbo.id_client
@@ -66,6 +70,6 @@ WHERE awbo.id_awb_office='" & id & "'"
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
-
+        FormAWBOtherAdd.ShowDialog()
     End Sub
 End Class
