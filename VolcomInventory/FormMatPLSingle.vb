@@ -54,8 +54,9 @@
             id_report_status = "2"
             If is_other = "1" Then
                 LEPLType.ItemIndex = LEPLType.Properties.GetDataSourceRowIndex("id_pl_mat_type", "2")
-                LEPLType.Enabled = False
             End If
+            '
+            LEPLType.Enabled = False
         ElseIf action = "upd" Then
             BtnCancel.Text = "Close"
             BtnInfoSrs.Enabled = True
