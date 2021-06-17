@@ -382,7 +382,6 @@ Partial Class FormViewProductionMRS
         Me.LabelControl9.Size = New System.Drawing.Size(28, 13)
         Me.LabelControl9.TabIndex = 186
         Me.LabelControl9.Text = "Memo"
-        Me.LabelControl9.Visible = False
         '
         'TEMemo
         '

@@ -59,6 +59,11 @@ Partial Class FormProductionMRS
         Me.BEditMat = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEMemo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.BPickPO = New DevExpress.XtraEditors.SimpleButton()
@@ -83,11 +88,6 @@ Partial Class FormProductionMRS
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEMRSNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEMemo = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPProdOrderMRS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,6 +107,9 @@ Partial Class FormProductionMRS
         Me.PCAddDel.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEMemo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompToName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,9 +121,6 @@ Partial Class FormProductionMRS
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEMRSNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEMemo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -572,6 +572,47 @@ Partial Class FormProductionMRS
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 118)
         Me.GroupGeneralHeader.TabIndex = 57
         '
+        'SLEType
+        '
+        Me.SLEType.Location = New System.Drawing.Point(106, 86)
+        Me.SLEType.Name = "SLEType"
+        Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEType.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEType.Size = New System.Drawing.Size(244, 20)
+        Me.SLEType.TabIndex = 183
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(366, 89)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(28, 13)
+        Me.LabelControl9.TabIndex = 182
+        Me.LabelControl9.Text = "Memo"
+        '
+        'TEMemo
+        '
+        Me.TEMemo.EditValue = ""
+        Me.TEMemo.Location = New System.Drawing.Point(441, 86)
+        Me.TEMemo.Name = "TEMemo"
+        Me.TEMemo.Properties.EditValueChangedDelay = 1
+        Me.TEMemo.Size = New System.Drawing.Size(458, 20)
+        Me.TEMemo.TabIndex = 181
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(27, 89)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl8.TabIndex = 180
+        Me.LabelControl8.Text = "Type"
+        '
         'TECreatedBy
         '
         Me.TECreatedBy.EditValue = ""
@@ -797,48 +838,6 @@ Partial Class FormProductionMRS
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "MRS Number"
         '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(27, 89)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl8.TabIndex = 180
-        Me.LabelControl8.Text = "Type"
-        '
-        'TEMemo
-        '
-        Me.TEMemo.EditValue = ""
-        Me.TEMemo.Location = New System.Drawing.Point(441, 86)
-        Me.TEMemo.Name = "TEMemo"
-        Me.TEMemo.Properties.EditValueChangedDelay = 1
-        Me.TEMemo.Size = New System.Drawing.Size(458, 20)
-        Me.TEMemo.TabIndex = 181
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Location = New System.Drawing.Point(366, 89)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(28, 13)
-        Me.LabelControl9.TabIndex = 182
-        Me.LabelControl9.Text = "Memo"
-        Me.LabelControl9.Visible = False
-        '
-        'SLEType
-        '
-        Me.SLEType.Location = New System.Drawing.Point(106, 86)
-        Me.SLEType.Name = "SLEType"
-        Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEType.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEType.Size = New System.Drawing.Size(244, 20)
-        Me.SLEType.TabIndex = 183
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
         'FormProductionMRS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -876,6 +875,9 @@ Partial Class FormProductionMRS
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEMemo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompToName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -887,9 +889,6 @@ Partial Class FormProductionMRS
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEMRSNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEMemo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
