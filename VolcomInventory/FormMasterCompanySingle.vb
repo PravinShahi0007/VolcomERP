@@ -367,7 +367,7 @@ WHERE comp.id_comp = '{0}'", id_company)
             LESOType.ItemIndex = LESOType.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type"))
 
             'update 20 Agustus 2015
-            view_mapping()
+            'view_mapping()
 
             'load button approval
             BPrint.Visible = True
@@ -1066,38 +1066,38 @@ WHERE comp.id_comp = '{0}'", id_company)
         setNothingLE(LEWHType)
     End Sub
 
-    Sub view_mapping()
-        Dim query = "SELECT id_coa_map,coa_map FROM tb_coa_map"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCCoaTrans.DataSource = data
-        If data.Rows.Count > 0 Then
-            view_mapping_acc(id_company, GVCoaTrans.GetFocusedRowCellValue("id_coa_map").ToString)
-        End If
-    End Sub
-    Sub view_mapping_acc(ByVal id_comp As String, ByVal id_coa_map As String)
-        Dim query = "SELECT coa_map_d.id_coa_map_det,coa_map_d.coa_map_det,comp_coa.id_acc,comp_coa.id_comp_coa,coa.acc_name,coa.acc_description  FROM tb_coa_map_det coa_map_d"
-        query += " INNER JOIN tb_coa_map coa_map ON coa_map.id_coa_map=coa_map_d.id_coa_map"
-        query += " LEFT JOIN tb_m_comp_coa comp_coa ON comp_coa.id_coa_map_det=coa_map_d.id_coa_map_det AND id_comp='" + id_comp + "'"
-        query += " LEFT JOIN tb_a_acc coa ON coa.id_acc=comp_coa.id_acc"
-        query += " WHERE coa_map_d.id_coa_map='" + id_coa_map + "'"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCCoaMapping.DataSource = data
-    End Sub
+    'Sub view_mapping()
+    '    Dim query = "SELECT id_coa_map,coa_map FROM tb_coa_map"
+    '    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+    '    GCCoaTrans.DataSource = data
+    '    If data.Rows.Count > 0 Then
+    '        view_mapping_acc(id_company, GVCoaTrans.GetFocusedRowCellValue("id_coa_map").ToString)
+    '    End If
+    'End Sub
+    'Sub view_mapping_acc(ByVal id_comp As String, ByVal id_coa_map As String)
+    '    Dim query = "SELECT coa_map_d.id_coa_map_det,coa_map_d.coa_map_det,comp_coa.id_acc,comp_coa.id_comp_coa,coa.acc_name,coa.acc_description  FROM tb_coa_map_det coa_map_d"
+    '    query += " INNER JOIN tb_coa_map coa_map ON coa_map.id_coa_map=coa_map_d.id_coa_map"
+    '    query += " LEFT JOIN tb_m_comp_coa comp_coa ON comp_coa.id_coa_map_det=coa_map_d.id_coa_map_det AND id_comp='" + id_comp + "'"
+    '    query += " LEFT JOIN tb_a_acc coa ON coa.id_acc=comp_coa.id_acc"
+    '    query += " WHERE coa_map_d.id_coa_map='" + id_coa_map + "'"
+    '    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+    '    GCCoaMapping.DataSource = data
+    'End Sub
 
-    Private Sub GVCoaMapping_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVCoaMapping.DoubleClick
-        If GVCoaMapping.RowCount > 0 Then
-            FormPopUpCOA.id_pop_up = "7"
-            FormPopUpCOA.ShowDialog()
-        End If
-    End Sub
+    'Private Sub GVCoaMapping_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    '    If GVCoaMapping.RowCount > 0 Then
+    '        FormPopUpCOA.id_pop_up = "7"
+    '        FormPopUpCOA.ShowDialog()
+    '    End If
+    'End Sub
 
-    Private Sub GVCoaTrans_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVCoaTrans.FocusedRowChanged
-        If GVCoaTrans.RowCount > 0 Then
-            view_mapping_acc(id_company, GVCoaTrans.GetFocusedRowCellValue("id_coa_map").ToString)
-        Else
-            view_mapping_acc("-1", "-1")
-        End If
-    End Sub
+    'Private Sub GVCoaTrans_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs)
+    '    If GVCoaTrans.RowCount > 0 Then
+    '        view_mapping_acc(id_company, GVCoaTrans.GetFocusedRowCellValue("id_coa_map").ToString)
+    '    Else
+    '        view_mapping_acc("-1", "-1")
+    '    End If
+    'End Sub
 
     Private Sub BCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCancel.Click
         Close()

@@ -1455,14 +1455,14 @@ Partial Class FormMain
         '
         'NBCompany_category
         '
-        Me.NBCompany_category.Caption = "Company Category"
+        Me.NBCompany_category.Caption = "Contact Category"
         Me.NBCompany_category.LargeImageIndex = 2
         Me.NBCompany_category.Name = "NBCompany_category"
         Me.NBCompany_category.SmallImageIndex = 1
         '
         'NBCompany
         '
-        Me.NBCompany.Caption = "Company"
+        Me.NBCompany.Caption = "Contact"
         Me.NBCompany.Name = "NBCompany"
         Me.NBCompany.SmallImageIndex = 3
         '

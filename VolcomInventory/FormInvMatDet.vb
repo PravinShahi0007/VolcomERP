@@ -96,6 +96,38 @@ WHERE pld.`id_pl_mrs`='" & FormInvMat.GVPL.GetRowCellValue(i, "id_pl_mrs").ToStr
                 Catch ex As Exception
                     MsgBox(ex.ToString)
                 End Try
+            ElseIf FormInvMat.XTCMatInv.SelectedTabPageIndex = 3 Then
+                'packing list with memo
+                TEVatPercent.Enabled = False
+                SLEPayType.EditValue = "3"
+                'detail
+                Try
+                    For i = 0 To FormInvMat.GVPLMemo.RowCount - 1
+                        Dim query As String = "SELECT md.`mat_det_code`,md.`mat_det_name`,pld.`pl_mrs_det_qty` AS qty,ROUND(pld.`pl_mrs_det_price`,2) AS price,(pld.`pl_mrs_det_qty`*ROUND(pld.`pl_mrs_det_price`,2)) AS amount
+FROM tb_pl_mrs_det pld
+INNER JOIN tb_m_mat_det_price prc ON prc.`id_mat_det_price`=pld.`id_mat_det_price`
+INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=prc.`id_mat_det`
+WHERE pld.`id_pl_mrs`='" & FormInvMat.GVPLMemo.GetRowCellValue(i, "id_pl_mrs").ToString & "'"
+                        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                        For j As Integer = 0 To data.Rows.Count - 1
+                            Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                            newRow("id_prod_order") = "0"
+                            newRow("prod_order_number") = "-"
+                            newRow("id_report") = FormInvMat.GVPLMemo.GetRowCellValue(i, "id_pl_mrs").ToString
+                            newRow("report_mark_type") = "30"
+                            newRow("report_number") = FormInvMat.GVPLMemo.GetRowCellValue(i, "pl_mrs_number").ToString
+                            newRow("info_design") = data.Rows(j)("mat_det_code").ToString & " - " & data.Rows(j)("mat_det_name").ToString
+                            newRow("qty") = data.Rows(j)("qty")
+                            newRow("price") = data.Rows(j)("price")
+                            newRow("value") = data.Rows(j)("price") * data.Rows(j)("qty")
+                            newRow("note") = ""
+                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                        Next
+                    Next
+                    calculate()
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
             End If
         Else 'edit
             BtnPrint.Visible = True
@@ -281,6 +313,40 @@ VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString
                 submit_who_prepared("231", id_inv, id_user)
                 '
                 infoCustom("BRP Created")
+                FormInvMat.load_view()
+                FormInvMat.XTCMatInv.SelectedTabPageIndex = 0
+                FormInvMat.load_view()
+                FormInvMat.GVInvoice.FocusedRowHandle = find_row(FormInvMat.GVInvoice, "id_inv_mat", id_inv)
+                Close()
+            Else
+                'edit
+                Dim query As String = ""
+            End If
+        ElseIf SLEPayType.EditValue.ToString = "3" Then 'langsung biaya
+            If id_inv = "-1" Then
+                'new
+                'header
+                Dim query As String = "INSERT INTO `tb_inv_mat`(`id_inv_mat_type`,`id_comp`,`created_by`,`created_date`,`note`,`id_report_status`,`due_date`,`ref_date`,`vat_percent`,is_deposit)
+VALUES ('" & SLEPayType.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TEVatPercent.EditValue.ToString) & "','" & If(is_deposit = "1", "1", "2") & "'); SELECT LAST_INSERT_ID(); "
+                id_inv = execute_query(query, 0, True, "", "", "", "")
+                'id_inv
+                query = ""
+                For i = 0 To GVList.RowCount - 1
+                    If is_deposit = "1" Then
+                        query += "INSERT INTO `tb_inv_mat_det`(`id_inv_mat`,id_prod_order,`id_report`,`report_mark_type`,report_number,info_design,`qty`,`price`,`value`,`note`)
+VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "price").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                    Else
+                        query += "INSERT INTO `tb_inv_mat_det`(`id_inv_mat`,id_prod_order,`id_report`,`report_mark_type`,report_number,info_design,`value`,`note`)
+VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                    End If
+                Next
+                execute_non_query(query, True, "", "", "", "")
+                '
+                query = "CALL gen_number('" & id_inv & "','231')"
+                execute_non_query(query, True, "", "", "", "")
+                submit_who_prepared("231", id_inv, id_user)
+                '
+                infoCustom("BPB Created")
                 FormInvMat.load_view()
                 FormInvMat.XTCMatInv.SelectedTabPageIndex = 0
                 FormInvMat.load_view()

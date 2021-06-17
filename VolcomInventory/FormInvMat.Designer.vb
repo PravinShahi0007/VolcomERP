@@ -64,14 +64,29 @@ Partial Class FormInvMat
         Me.GCDPListFGPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreateBRP = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEInternal = New DevExpress.XtraEditors.CheckEdit()
         Me.SLEVendorPayment = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.CEInternal = New DevExpress.XtraEditors.CheckEdit()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPListPackingListMemo = New DevExpress.XtraTab.XtraTabPage()
+        Me.BCreateBPBMemo = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCPLMemo = New DevExpress.XtraGrid.GridControl()
+        Me.GVPLMemo = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.XTCMatInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMatInv.SuspendLayout()
         Me.XTPListPackingList.SuspendLayout()
@@ -88,9 +103,14 @@ Partial Class FormInvMat
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.CEInternal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEInternal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPListPackingListMemo.SuspendLayout()
+        CType(Me.GCPLMemo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPLMemo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMatInv
@@ -102,7 +122,7 @@ Partial Class FormInvMat
         Me.XTCMatInv.SelectedTabPage = Me.XTPListPackingList
         Me.XTCMatInv.Size = New System.Drawing.Size(1052, 449)
         Me.XTCMatInv.TabIndex = 1
-        Me.XTCMatInv.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInvoice, Me.XTPListPackingList, Me.XTPListRetur})
+        Me.XTCMatInv.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInvoice, Me.XTPListPackingList, Me.XTPListRetur, Me.XTPListPackingListMemo})
         '
         'XTPListPackingList
         '
@@ -568,6 +588,14 @@ Partial Class FormInvMat
         Me.PanelControl1.Size = New System.Drawing.Size(1052, 43)
         Me.PanelControl1.TabIndex = 2
         '
+        'CEInternal
+        '
+        Me.CEInternal.Location = New System.Drawing.Point(236, 12)
+        Me.CEInternal.Name = "CEInternal"
+        Me.CEInternal.Properties.Caption = "Internal"
+        Me.CEInternal.Size = New System.Drawing.Size(68, 19)
+        Me.CEInternal.TabIndex = 8922
+        '
         'SLEVendorPayment
         '
         Me.SLEVendorPayment.Location = New System.Drawing.Point(53, 12)
@@ -590,6 +618,15 @@ Partial Class FormInvMat
         Me.GridColumn20.Caption = "ID Comp Contact"
         Me.GridColumn20.FieldName = "id_comp_contact"
         Me.GridColumn20.Name = "GridColumn20"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Code"
+        Me.GridColumn23.FieldName = "comp_number"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 0
+        Me.GridColumn23.Width = 247
         '
         'GridColumn29
         '
@@ -616,22 +653,160 @@ Partial Class FormInvMat
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
-        'CEInternal
+        'XTPListPackingListMemo
         '
-        Me.CEInternal.Location = New System.Drawing.Point(236, 12)
-        Me.CEInternal.Name = "CEInternal"
-        Me.CEInternal.Properties.Caption = "Internal"
-        Me.CEInternal.Size = New System.Drawing.Size(68, 19)
-        Me.CEInternal.TabIndex = 8922
+        Me.XTPListPackingListMemo.Controls.Add(Me.GCPLMemo)
+        Me.XTPListPackingListMemo.Controls.Add(Me.BCreateBPBMemo)
+        Me.XTPListPackingListMemo.Name = "XTPListPackingListMemo"
+        Me.XTPListPackingListMemo.Size = New System.Drawing.Size(1046, 421)
+        Me.XTPListPackingListMemo.Text = "List Packing List dengan Memo"
         '
-        'GridColumn23
+        'BCreateBPBMemo
         '
-        Me.GridColumn23.Caption = "Code"
-        Me.GridColumn23.FieldName = "comp_number"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 0
-        Me.GridColumn23.Width = 247
+        Me.BCreateBPBMemo.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateBPBMemo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateBPBMemo.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateBPBMemo.Appearance.Options.UseBackColor = True
+        Me.BCreateBPBMemo.Appearance.Options.UseFont = True
+        Me.BCreateBPBMemo.Appearance.Options.UseForeColor = True
+        Me.BCreateBPBMemo.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreateBPBMemo.Location = New System.Drawing.Point(0, 382)
+        Me.BCreateBPBMemo.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateBPBMemo.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateBPBMemo.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateBPBMemo.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateBPBMemo.Name = "BCreateBPBMemo"
+        Me.BCreateBPBMemo.Size = New System.Drawing.Size(1046, 39)
+        Me.BCreateBPBMemo.TabIndex = 20
+        Me.BCreateBPBMemo.Text = "Create BPB"
+        Me.BCreateBPBMemo.Visible = False
+        '
+        'GCPLMemo
+        '
+        Me.GCPLMemo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPLMemo.Location = New System.Drawing.Point(0, 0)
+        Me.GCPLMemo.MainView = Me.GVPLMemo
+        Me.GCPLMemo.Name = "GCPLMemo"
+        Me.GCPLMemo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemCheckEdit2})
+        Me.GCPLMemo.Size = New System.Drawing.Size(1046, 382)
+        Me.GCPLMemo.TabIndex = 21
+        Me.GCPLMemo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPLMemo})
+        '
+        'GVPLMemo
+        '
+        Me.GVPLMemo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33})
+        Me.GVPLMemo.GridControl = Me.GCPLMemo
+        Me.GVPLMemo.Name = "GVPLMemo"
+        Me.GVPLMemo.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn24.Caption = "*"
+        Me.GridColumn24.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn24.FieldName = "is_check"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 0
+        Me.GridColumn24.Width = 51
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Id FGPO"
+        Me.GridColumn25.FieldName = "id_prod_order"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "FGPO Number"
+        Me.GridColumn26.FieldName = "prod_order_number"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.OptionsColumn.AllowEdit = False
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 4
+        Me.GridColumn26.Width = 100
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Packing List Number"
+        Me.GridColumn27.FieldName = "pl_mrs_number"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 3
+        Me.GridColumn27.Width = 96
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Vendor Code"
+        Me.GridColumn28.FieldName = "comp_number"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.OptionsColumn.AllowEdit = False
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 1
+        Me.GridColumn28.Width = 86
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Vendor"
+        Me.GridColumn30.FieldName = "comp_name"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.AllowEdit = False
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 2
+        Me.GridColumn30.Width = 206
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Design"
+        Me.GridColumn31.FieldName = "design_display_name"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.OptionsColumn.AllowEdit = False
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 5
+        Me.GridColumn31.Width = 200
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn32.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn32.Caption = "Amount"
+        Me.GridColumn32.DisplayFormat.FormatString = "N2"
+        Me.GridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn32.FieldName = "amount"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        Me.GridColumn32.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount", "{0:N2}")})
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 6
+        Me.GridColumn32.Width = 289
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Qty"
+        Me.GridColumn33.DisplayFormat.FormatString = "N2"
+        Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn33.FieldName = "prod_order_qty"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.OptionsColumn.AllowEdit = False
+        Me.GridColumn33.Width = 49
+        '
+        'RepositoryItemCheckEdit3
+        '
+        Me.RepositoryItemCheckEdit3.AutoHeight = False
+        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        Me.RepositoryItemCheckEdit3.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit3.ValueUnchecked = "no"
         '
         'FormInvMat
         '
@@ -662,9 +837,14 @@ Partial Class FormInvMat
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.CEInternal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEInternal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPListPackingListMemo.ResumeLayout(False)
+        CType(Me.GCPLMemo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPLMemo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -722,4 +902,19 @@ Partial Class FormInvMat
     Friend WithEvents BCreateBKM As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents CEInternal As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPListPackingListMemo As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCPLMemo As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPLMemo As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BCreateBPBMemo As DevExpress.XtraEditors.SimpleButton
 End Class
