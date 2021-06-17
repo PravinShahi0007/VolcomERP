@@ -36,6 +36,7 @@
             id_comp_contact_from = get_company_x(id_comp_from, 6)
             TxtCodeCompFrom.Text = get_company_x(id_comp_from, 2)
             TxtNameCompFrom.Text = get_company_x(id_comp_from, 1)
+
             If id_mrs <> "-1" Then
                 id_comp_to = get_id_company(id_comp_contact_to)
                 TxtCodeCompTo.Text = get_company_x(id_comp_to, 2)
@@ -45,7 +46,9 @@
                 GroupControlDetailSingle.Enabled = True
                 based_on_srs = True
                 BtnInfoSrs.Enabled = True
+                LEPLType.ItemIndex = LEPLType.Properties.GetDataSourceRowIndex("id_pl_mat_type", FormMatPL.GVMRS.GetFocusedRowCellValue("id_pl_mat_type").ToString)
             End If
+
             TxtPLNumber.Text = header_number_mat("11")
             BtnPrint.Enabled = False
             BMark.Enabled = False
