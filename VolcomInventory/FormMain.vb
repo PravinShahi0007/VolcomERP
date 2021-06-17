@@ -959,6 +959,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormMatPLSingle.action = "ins"
                     FormMatPLSingle.id_comp_from = get_opt_mat_field("id_wh_mat") 'material WH
                     FormMatPLSingle.id_comp_contact_to = FormMatPL.GVMRS.GetFocusedRowCellValue("id_comp_name_req_from").ToString
+                    FormMatPLSingle.LEPLType.ItemIndex = FormMatPLSingle.LEPLType.Properties.GetDataSourceRowIndex("id_pl_mat_type", FormMatPL.GVMRS.GetFocusedRowCellValue("id_pl_mat_type").ToString)
                     FormMatPLSingle.BtnPopSRS.Enabled = False
                     FormMatPLSingle.id_mrs = FormMatPL.GVMRS.GetFocusedRowCellDisplayText("id_prod_order_mrs").ToString
                     FormMatPLSingle.TxtSRSNumber.Text = FormMatPL.GVMRS.GetFocusedRowCellDisplayText("prod_order_mrs_number").ToString
