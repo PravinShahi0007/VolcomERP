@@ -20,7 +20,7 @@
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
         If Not CEAll.EditValue And id_product.Count = 0 Then
-            stopCustom("No SOH Selected.")
+            stopCustom("No product selected.")
 
             Exit Sub
         End If
@@ -85,8 +85,9 @@
         Dim j_permission_role As String = tableToJson("tb_permission_role", "SELECT id_permission, id_role FROM tb_permission_role")
         Dim j_st_store_soh As String = tableToJson("tb_st_store_soh", "SELECT id_st_store_soh, id_st_store_period, id_comp, id_wh_drawer, id_product, qty, id_design_price_normal, design_price_normal, id_design_price, id_design_price_type, design_price FROM tb_st_store_soh WHERE id_st_store_period = " + id_st_store_period + "")
         Dim j_st_store_unique As String = tableToJson("tb_st_store_unique", "SELECT id_st_store_unique, id_st_store_period, id_product, id_comp, unique_code FROM tb_st_store_unique WHERE id_st_store_period = " + id_st_store_period + "")
+        Dim j_st_store_product As String = tableToJson("tb_st_store_product", "SELECT id_st_store_product, id_st_store_period, id_product FROM tb_st_store_product WHERE id_st_store_period = " + id_st_store_period + "")
 
-        Dim out As String = "{" + j_m_store + "," + j_st_store_period + "," + j_m_comp_cat + "," + j_m_comp_group + "," + j_m_comp + "," + j_m_employee + "," + j_m_permission + "," + j_m_product_store + "," + j_m_role + "," + j_m_user + "," + j_permission_role + "," + j_st_store_soh + "," + j_st_store_unique + "}"
+        Dim out As String = "{" + j_m_store + "," + j_st_store_period + "," + j_m_comp_cat + "," + j_m_comp_group + "," + j_m_comp + "," + j_m_employee + "," + j_m_permission + "," + j_m_product_store + "," + j_m_role + "," + j_m_user + "," + j_permission_role + "," + j_st_store_soh + "," + j_st_store_unique + "," + j_st_store_product + "}"
 
         Dim fs As IO.FileStream = System.IO.File.Create(file)
 
@@ -105,7 +106,7 @@
 
         Dim accessToken As String = getAccessToken()
 
-        Dim url As String = volcomClientHost + "/api/sync/stocktake"
+        Dim url As String = volcomClientHost + "/api/sync/stocktake/in"
 
         Dim wc As Net.WebClient = New Net.WebClient()
 

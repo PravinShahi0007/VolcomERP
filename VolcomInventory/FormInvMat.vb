@@ -76,7 +76,7 @@ LEFT JOIN
     FROM `tb_inv_mat_det` invd
     INNER JOIN tb_inv_mat inv ON inv.id_inv_mat=invd.id_inv_mat AND inv.id_report_status!=5 AND inv.id_inv_mat_type=1
 )inv ON inv.id_report=pl.id_pl_mrs
-INNER JOIN `tb_prod_order_mrs` mrs ON mrs.`id_prod_order_mrs`=pl.`id_prod_order_mrs` AND ISNULL(mrs.id_prod_order)
+INNER JOIN `tb_prod_order_mrs` mrs ON mrs.`id_prod_order_mrs`=pl.`id_prod_order_mrs` AND ISNULL(mrs.id_prod_order) AND mrs.id_pl_mat_type=2 AND mrs.memo_number=''
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pl.`id_comp_contact_to` AND pl.`id_pl_mat_type`='2'
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
 WHERE ISNULL(inv.id_report)
@@ -93,6 +93,8 @@ GROUP BY pl.`id_pl_mrs`"
                 End If
             ElseIf XTCMatInv.SelectedTabPageIndex = 2 Then
                 'retur
+            ElseIf XTCMatInv.SelectedTabPageIndex = 3 Then
+                'memo
 
             End If
         Else
@@ -149,7 +151,7 @@ LEFT JOIN
     FROM `tb_inv_mat_det` invd
     INNER JOIN tb_inv_mat inv ON inv.id_inv_mat=invd.id_inv_mat AND inv.id_report_status!=5 AND inv.id_inv_mat_type=1
 )inv ON inv.id_report=pl.id_pl_mrs
-INNER JOIN `tb_prod_order_mrs` mrs ON mrs.`id_prod_order_mrs`=pl.`id_prod_order_mrs`
+INNER JOIN `tb_prod_order_mrs` mrs ON mrs.`id_prod_order_mrs`=pl.`id_prod_order_mrs` AND mrs.id_pl_mat_type=2 AND mrs.memo_number=''
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=mrs.`id_prod_order`
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
@@ -193,6 +195,38 @@ GROUP BY ret.`id_mat_prod_ret_in`"
                         BCreateBRP.Visible = False
                     Else
                         BCreateBRP.Visible = True
+                    End If
+                ElseIf XTCMatInv.SelectedTabPageIndex = 3 Then
+                    'memo
+                    Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(ROUND(pld.`pl_mrs_det_price`,2)*pld.`pl_mrs_det_qty`) AS amount,mrs.`id_prod_order`,po.`prod_order_number`
+,dsg.`design_display_name`
+FROM tb_pl_mrs_det pld
+INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs`
+LEFT JOIN 
+(
+    SELECT id_report
+    FROM `tb_inv_mat_det` invd
+    INNER JOIN tb_inv_mat inv ON inv.id_inv_mat=invd.id_inv_mat AND inv.id_report_status!=5 AND inv.id_inv_mat_type=1
+)inv ON inv.id_report=pl.id_pl_mrs
+INNER JOIN `tb_prod_order_mrs` mrs ON mrs.`id_prod_order_mrs`=pl.`id_prod_order_mrs` AND mrs.id_pl_mat_type=2 AND mrs.memo_number!=''
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=mrs.`id_prod_order`
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pl.`id_comp_contact_to` AND pl.`id_pl_mat_type`='2'
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
+WHERE ISNULL(inv.id_report)
+GROUP BY pl.`id_pl_mrs`"
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    GCPLMemo.DataSource = data
+                    GVPLMemo.BestFitColumns()
+                    If SLEVendorPayment.EditValue.ToString = "0" Then
+                        BCreateBKM.Visible = False
+                        BCreateBPB.Visible = False
+                        BCreateBPBMemo.Visible = False
+                    Else
+                        BCreateBKM.Visible = False
+                        BCreateBPB.Visible = False
+                        BCreateBPBMemo.Visible = True
                     End If
                 End If
             End If
@@ -274,5 +308,16 @@ GROUP BY c.`id_comp`"
         End If
 
         GVPL.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BCreateBPBMemo_Click(sender As Object, e As EventArgs) Handles BCreateBPBMemo.Click
+        GVPLMemo.ActiveFilterString = "[is_check]='yes'"
+
+        If GVPLMemo.RowCount > 0 Then
+            FormInvMatDet.id_inv = "-1"
+            FormInvMatDet.ShowDialog()
+        End If
+
+        GVPLMemo.ActiveFilterString = ""
     End Sub
 End Class

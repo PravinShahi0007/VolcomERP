@@ -317,22 +317,22 @@ Public Class FormPopUpCOA
                 Close()
             End If
         ElseIf id_pop_up = "7" Then 'Mapping in company single
-            If FormMasterCompanySingle.GVCoaMapping.RowCount > 0 Then
-                'save first
-                Dim query As String = ""
-                If FormMasterCompanySingle.GVCoaMapping.GetFocusedRowCellValue("id_comp_coa").ToString = "" Then  'new
-                    query = "INSERT INTO tb_m_comp_coa(id_comp,id_coa_map_det,id_acc) VALUES('" + FormMasterCompanySingle.id_company.ToString + "','" + FormMasterCompanySingle.GVCoaMapping.GetFocusedRowCellValue("id_coa_map_det").ToString + "','" + TreeList1.FocusedNode("id_acc").ToString() + "')"
-                Else 'edit
-                    query = "UPDATE tb_m_comp_coa SET id_acc='" + TreeList1.FocusedNode("id_acc").ToString() + "' WHERE id_comp_coa='" + FormMasterCompanySingle.GVCoaMapping.GetFocusedRowCellValue("id_comp_coa").ToString + "'"
-                End If
-                execute_non_query(query, True, "", "", "", "")
-                'end save 
+            'If FormMasterCompanySingle.GVCoaMapping.RowCount > 0 Then
+            '    'save first
+            '    Dim query As String = ""
+            '    If FormMasterCompanySingle.GVCoaMapping.GetFocusedRowCellValue("id_comp_coa").ToString = "" Then  'new
+            '        query = "INSERT INTO tb_m_comp_coa(id_comp,id_coa_map_det,id_acc) VALUES('" + FormMasterCompanySingle.id_company.ToString + "','" + FormMasterCompanySingle.GVCoaMapping.GetFocusedRowCellValue("id_coa_map_det").ToString + "','" + TreeList1.FocusedNode("id_acc").ToString() + "')"
+            '    Else 'edit
+            '        query = "UPDATE tb_m_comp_coa SET id_acc='" + TreeList1.FocusedNode("id_acc").ToString() + "' WHERE id_comp_coa='" + FormMasterCompanySingle.GVCoaMapping.GetFocusedRowCellValue("id_comp_coa").ToString + "'"
+            '    End If
+            '    execute_non_query(query, True, "", "", "", "")
+            '    'end save 
 
-                FormMasterCompanySingle.GVCoaMapping.SetFocusedRowCellValue("id_acc", TreeList1.FocusedNode("id_acc").ToString())
-                FormMasterCompanySingle.GVCoaMapping.SetFocusedRowCellValue("acc_name", TreeList1.FocusedNode("acc_name").ToString())
-            Else
-                infoCustom("Please select the type transaction to map first.")
-            End If
+            '    FormMasterCompanySingle.GVCoaMapping.SetFocusedRowCellValue("id_acc", TreeList1.FocusedNode("id_acc").ToString())
+            '    FormMasterCompanySingle.GVCoaMapping.SetFocusedRowCellValue("acc_name", TreeList1.FocusedNode("acc_name").ToString())
+            'Else
+            '    infoCustom("Please select the type transaction to map first.")
+            'End If
             Close()
         ElseIf id_pop_up = "8" Then 'inv store
             Dim id As String = FormItemCatMappingDet.id
