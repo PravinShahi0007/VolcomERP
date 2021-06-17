@@ -7,6 +7,7 @@
     Public id_comp_req_to As String = "-1"
     Public id_report_status_g As String = "-1"
     Dim is_freeze As String = get_opt_mat_field("is_freeze_mat_storage")
+    Public is_can_choose As Boolean = False
     '
     Private Sub FormProductionMRS_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If is_freeze = "1" Then
@@ -16,8 +17,24 @@
         End If
     End Sub
 
+    Sub load_type()
+        Dim q As String = "SELECT id_pl_mat_type,pl_mat_type 
+FROM `tb_pl_mat_type`"
+        viewSearchLookupQuery(SLEType, q, "id_pl_mat_type", "pl_mat_type", "id_pl_mat_type")
+        '
+        If is_can_choose Then
+            SLEType.Properties.ReadOnly = False
+            TEMemo.Properties.ReadOnly = False
+        Else
+            SLEType.Properties.ReadOnly = True
+            TEMemo.Properties.ReadOnly = True
+        End If
+    End Sub
+
     Sub load_mrs()
         view_mrs()
+        load_type()
+
         If id_mrs = "-1" Then
             'new
             TEMRSNumber.Text = header_number_prod("6")
@@ -41,6 +58,9 @@
             TEDate.Text = view_date_from(data.Rows(0)("prod_order_mrs_datex").ToString, 0)
 
             MENote.Text = data.Rows(0)("prod_order_mrs_note").ToString
+
+            SLEType.EditValue = data.Rows(0)("id_pl_mat_type").ToString
+            TEMemo.Text = data.Rows(0)("memo_number").ToString
 
             If Not data.Rows(0)("created_by").ToString = "" Then
                 TECreatedBy.Text = get_emp(data.Rows(0)("created_by").ToString, "3")
@@ -190,7 +210,6 @@
 
             If id_mrs = "-1" Then
                 'new
-                TEPONumber.Text = header_number_prod("6")
 
                 If Not formIsValidInGroup(EPProdOrderMRS, GroupGeneralHeader) Or id_comp_req_to = "-1" Or id_comp_req_from = "-1" Then
                     stopCustom("Please make sure that : " & vbNewLine & "- MRS number is correct" & vbNewLine & "- Request From not blank" & vbNewLine & "- Request To not blank")
@@ -209,7 +228,8 @@
                     End If
 
                     If proceed = True Then
-                        query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,prod_order_mrs_number,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note, created_by) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}');SELECT LAST_INSERT_ID()", id_prod_order, TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, MENote.Text, id_user)
+                        TEPONumber.Text = header_number_prod("6")
+                        query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,prod_order_mrs_number,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note, created_by, id_pl_mat_type, memo_number) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}','{7}');SELECT LAST_INSERT_ID()", id_prod_order, TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, addSlashes(MENote.Text), id_user, SLEType.EditValue.ToString, addSlashes(TEMemo.Text))
                         Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
 
                         If GVMat.RowCount > 0 Then
@@ -263,7 +283,7 @@
                     End If
 
                     If proceed = True Then
-                        query = String.Format("UPDATE tb_prod_order_mrs SET prod_order_mrs_number='{0}',id_comp_contact_req_to='{1}',id_comp_contact_req_from='{2}',prod_order_mrs_note='{3}' WHERE id_prod_order_mrs='{4}'", TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, MENote.Text, id_mrs)
+                        query = String.Format("UPDATE tb_prod_order_mrs SET id_comp_contact_req_to='{0}',id_comp_contact_req_from='{1}',prod_order_mrs_note='{2}' WHERE id_prod_order_mrs='{3}'", id_comp_req_to, id_comp_req_from, MENote.Text, id_mrs)
                         execute_non_query(query, True, "", "", "", "")
 
                         'delete first

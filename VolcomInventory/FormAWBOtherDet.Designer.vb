@@ -49,6 +49,9 @@ Partial Class FormAWBOtherDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,7 +112,7 @@ Partial Class FormAWBOtherDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn3, Me.GridColumn4, Me.GridColumn11, Me.GridColumn5, Me.GridColumn12, Me.GridColumn6, Me.GridColumn7})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -155,6 +158,7 @@ Partial Class FormAWBOtherDet
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Sub District"
+        Me.GridColumn6.FieldName = "sub_district"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
@@ -162,6 +166,7 @@ Partial Class FormAWBOtherDet
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Note"
+        Me.GridColumn7.FieldName = "client_note"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 5
@@ -191,7 +196,7 @@ Partial Class FormAWBOtherDet
         Me.DECreatedDate.Name = "DECreatedDate"
         Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DECreatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DECreatedDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DECreatedDate.Properties.ReadOnly = True
@@ -205,7 +210,7 @@ Partial Class FormAWBOtherDet
         Me.DEPickupDate.Name = "DEPickupDate"
         Me.DEPickupDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPickupDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEPickupDate.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DEPickupDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEPickupDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEPickupDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEPickupDate.Size = New System.Drawing.Size(187, 20)
@@ -327,6 +332,24 @@ Partial Class FormAWBOtherDet
         Me.BAdd.TabIndex = 1
         Me.BAdd.Text = "Add"
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID Departement"
+        Me.GridColumn8.FieldName = "id_departement"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID Comp"
+        Me.GridColumn11.FieldName = "id_comp"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID Sub District"
+        Me.GridColumn12.FieldName = "id_sub_district"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
         'FormAWBOtherDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -392,4 +415,7 @@ Partial Class FormAWBOtherDet
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DECreatedDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEPickupDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

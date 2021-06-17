@@ -13,7 +13,7 @@
     'View Data
     Sub viewMatReqprod()
         Dim query As String = ""
-        query += "SELECT a.id_prod_order_mrs, a.prod_order_mrs_number, a.prod_order_mrs_date,prod_o.prod_order_number, "
+        query += "SELECT a.id_pl_mat_type,a.id_prod_order_mrs, a.prod_order_mrs_number, a.prod_order_mrs_date,prod_o.prod_order_number, "
         query += "a.prod_order_mrs_note, (c.comp_name) AS comp_from, (c.id_comp) AS id_comp_from, (c.comp_number) AS comp_code_from, a.id_comp_contact_req_from,a.id_comp_contact_req_to, "
         query += "f.report_status, a.id_report_status "
         query += "FROM tb_prod_order_mrs a "
@@ -70,6 +70,7 @@
             FormMatPLSingle.TxtCodeCompTo.Text = GVReq.GetFocusedRowCellValue("comp_code_from").ToString
             FormMatPLSingle.TxtNameCompTo.Text = GVReq.GetFocusedRowCellValue("comp_from").ToString
             FormMatPLSingle.id_mrs = GVReq.GetFocusedRowCellDisplayText("id_prod_order_mrs").ToString
+            FormMatPLSingle.LEPLType.ItemIndex = FormMatPLSingle.LEPLType.Properties.GetDataSourceRowIndex("id_pl_mat_type", GVReq.GetFocusedRowCellValue("id_pl_mat_type").ToString)
             FormMatPLSingle.viewFillEmptyData()
             FormMatPLSingle.GroupControlDrawer.Enabled = True
             FormMatPLSingle.GroupControlDetailSingle.Enabled = True

@@ -59,6 +59,11 @@ Partial Class FormProductionMRS
         Me.BEditMat = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEMemo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.BPickPO = New DevExpress.XtraEditors.SimpleButton()
@@ -102,6 +107,9 @@ Partial Class FormProductionMRS
         Me.PCAddDel.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEMemo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompToName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,9 +146,9 @@ Partial Class FormProductionMRS
         Me.GroupControl3.Controls.Add(Me.BCancel)
         Me.GroupControl3.Controls.Add(Me.BSave)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 414)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 432)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(909, 38)
+        Me.GroupControl3.Size = New System.Drawing.Size(909, 40)
         Me.GroupControl3.TabIndex = 60
         '
         'BCancelReport
@@ -150,7 +158,7 @@ Partial Class FormProductionMRS
         Me.BCancelReport.ImageList = Me.ImgBut
         Me.BCancelReport.Location = New System.Drawing.Point(105, 2)
         Me.BCancelReport.Name = "BCancelReport"
-        Me.BCancelReport.Size = New System.Drawing.Size(85, 34)
+        Me.BCancelReport.Size = New System.Drawing.Size(85, 36)
         Me.BCancelReport.TabIndex = 17
         Me.BCancelReport.Text = "Cancel"
         '
@@ -178,7 +186,7 @@ Partial Class FormProductionMRS
         Me.BtnAttachment.ImageList = Me.ImgBut
         Me.BtnAttachment.Location = New System.Drawing.Point(520, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(115, 34)
+        Me.BtnAttachment.Size = New System.Drawing.Size(115, 36)
         Me.BtnAttachment.TabIndex = 16
         Me.BtnAttachment.Text = "Attachment"
         '
@@ -189,7 +197,7 @@ Partial Class FormProductionMRS
         Me.BMark.ImageList = Me.ImgBut
         Me.BMark.Location = New System.Drawing.Point(20, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(85, 34)
+        Me.BMark.Size = New System.Drawing.Size(85, 36)
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Mark"
         '
@@ -200,7 +208,7 @@ Partial Class FormProductionMRS
         Me.BPrint.ImageList = Me.ImgBut
         Me.BPrint.Location = New System.Drawing.Point(635, 2)
         Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(91, 34)
+        Me.BPrint.Size = New System.Drawing.Size(91, 36)
         Me.BPrint.TabIndex = 3
         Me.BPrint.Text = "Print"
         '
@@ -211,7 +219,7 @@ Partial Class FormProductionMRS
         Me.BCancel.ImageList = Me.ImgBut
         Me.BCancel.Location = New System.Drawing.Point(726, 2)
         Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(95, 34)
+        Me.BCancel.Size = New System.Drawing.Size(95, 36)
         Me.BCancel.TabIndex = 2
         Me.BCancel.Text = "Cancel"
         '
@@ -223,7 +231,7 @@ Partial Class FormProductionMRS
         Me.BSave.ImageList = Me.ImgBut
         Me.BSave.Location = New System.Drawing.Point(821, 2)
         Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(86, 34)
+        Me.BSave.Size = New System.Drawing.Size(86, 36)
         Me.BSave.TabIndex = 1
         Me.BSave.Text = "Submit"
         '
@@ -233,7 +241,7 @@ Partial Class FormProductionMRS
         Me.GroupGeneralFooter.Controls.Add(Me.LabelControl18)
         Me.GroupGeneralFooter.Controls.Add(Me.MENote)
         Me.GroupGeneralFooter.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 350)
+        Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 368)
         Me.GroupGeneralFooter.Name = "GroupGeneralFooter"
         Me.GroupGeneralFooter.Size = New System.Drawing.Size(909, 64)
         Me.GroupGeneralFooter.TabIndex = 59
@@ -259,7 +267,7 @@ Partial Class FormProductionMRS
         Me.GConListPurchase.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GConListPurchase.Controls.Add(Me.PanelControl1)
         Me.GConListPurchase.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GConListPurchase.Location = New System.Drawing.Point(0, 100)
+        Me.GConListPurchase.Location = New System.Drawing.Point(0, 118)
         Me.GConListPurchase.Name = "GConListPurchase"
         Me.GConListPurchase.Size = New System.Drawing.Size(909, 250)
         Me.GConListPurchase.TabIndex = 58
@@ -379,7 +387,7 @@ Partial Class FormProductionMRS
         Me.ColNote.FieldName = "note"
         Me.ColNote.Name = "ColNote"
         Me.ColNote.Visible = True
-        Me.ColNote.VisibleIndex = 7
+        Me.ColNote.VisibleIndex = 6
         Me.ColNote.Width = 76
         '
         'GridColumn1
@@ -530,6 +538,10 @@ Partial Class FormProductionMRS
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.SLEType)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl9)
+        Me.GroupGeneralHeader.Controls.Add(Me.TEMemo)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl8)
         Me.GroupGeneralHeader.Controls.Add(Me.TECreatedBy)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl7)
         Me.GroupGeneralHeader.Controls.Add(Me.BPickPO)
@@ -557,8 +569,49 @@ Partial Class FormProductionMRS
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 100)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 118)
         Me.GroupGeneralHeader.TabIndex = 57
+        '
+        'SLEType
+        '
+        Me.SLEType.Location = New System.Drawing.Point(106, 86)
+        Me.SLEType.Name = "SLEType"
+        Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEType.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEType.Size = New System.Drawing.Size(244, 20)
+        Me.SLEType.TabIndex = 183
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(366, 89)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(28, 13)
+        Me.LabelControl9.TabIndex = 182
+        Me.LabelControl9.Text = "Memo"
+        '
+        'TEMemo
+        '
+        Me.TEMemo.EditValue = ""
+        Me.TEMemo.Location = New System.Drawing.Point(441, 86)
+        Me.TEMemo.Name = "TEMemo"
+        Me.TEMemo.Properties.EditValueChangedDelay = 1
+        Me.TEMemo.Size = New System.Drawing.Size(458, 20)
+        Me.TEMemo.TabIndex = 181
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(27, 89)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl8.TabIndex = 180
+        Me.LabelControl8.Text = "Type"
         '
         'TECreatedBy
         '
@@ -789,7 +842,7 @@ Partial Class FormProductionMRS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(909, 452)
+        Me.ClientSize = New System.Drawing.Size(909, 472)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupGeneralFooter)
         Me.Controls.Add(Me.GConListPurchase)
@@ -822,6 +875,9 @@ Partial Class FormProductionMRS
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEMemo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompToName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -898,4 +954,9 @@ Partial Class FormProductionMRS
     Friend WithEvents BPickPO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEMemo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

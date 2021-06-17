@@ -38,6 +38,7 @@ Partial Class FormMatPLSingle
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMatDetPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -123,7 +124,6 @@ Partial Class FormMatPLSingle
         Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.ErrorProviderPL, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,13 +189,13 @@ Partial Class FormMatPLSingle
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 92)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 98)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControlDetailSingle)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControlDrawer)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(884, 387)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(884, 381)
         Me.SplitContainerControl1.SplitterPosition = 218
         Me.SplitContainerControl1.TabIndex = 54
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -354,6 +354,19 @@ Partial Class FormMatPLSingle
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 1
         Me.GridColumnName.Width = 439
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn29.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn29.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn29.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn29.Caption = "Color"
+        Me.GridColumn29.FieldName = "color"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 2
+        Me.GridColumn29.Width = 80
         '
         'GridColumn10
         '
@@ -688,7 +701,7 @@ Partial Class FormMatPLSingle
         Me.GroupControlDrawer.Enabled = False
         Me.GroupControlDrawer.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlDrawer.Name = "GroupControlDrawer"
-        Me.GroupControlDrawer.Size = New System.Drawing.Size(884, 164)
+        Me.GroupControlDrawer.Size = New System.Drawing.Size(884, 158)
         Me.GroupControlDrawer.TabIndex = 0
         Me.GroupControlDrawer.Text = "Detail Material"
         '
@@ -699,7 +712,7 @@ Partial Class FormMatPLSingle
         Me.GCRoll.MainView = Me.GVRoll
         Me.GCRoll.Name = "GCRoll"
         Me.GCRoll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit4, Me.RepositoryItemSpinEdit2})
-        Me.GCRoll.Size = New System.Drawing.Size(862, 127)
+        Me.GCRoll.Size = New System.Drawing.Size(862, 121)
         Me.GCRoll.TabIndex = 7
         Me.GCRoll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRoll})
         '
@@ -1035,7 +1048,7 @@ Partial Class FormMatPLSingle
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(884, 92)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(884, 98)
         Me.GroupGeneralHeader.TabIndex = 51
         '
         'LabelControl4
@@ -1263,19 +1276,6 @@ Partial Class FormMatPLSingle
         Me.TxtNameCompTo.Size = New System.Drawing.Size(207, 20)
         Me.TxtNameCompTo.TabIndex = 5
         Me.TxtNameCompTo.TabStop = False
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn29.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn29.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn29.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn29.Caption = "Color"
-        Me.GridColumn29.FieldName = "color"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 2
-        Me.GridColumn29.Width = 80
         '
         'FormMatPLSingle
         '

@@ -30,11 +30,12 @@ Public Class ReportProductionMRS
     End Sub
 
     Private Sub TopMargin_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles TopMargin.BeforePrint
-        Dim query As String = String.Format("SELECT po.prod_order_number,dsg.`design_display_name`,mrs.prod_order_mrs_number,mrs.id_prod_order,mrs.id_prod_order_wo,mrs.prod_order_mrs_note,mrs.id_report_status,mrs.id_comp_contact_req_from,mrs.id_comp_contact_req_to,DATE_FORMAT(mrs.prod_order_mrs_date,'%Y-%m-%d') AS prod_order_mrs_datex 
+        Dim query As String = String.Format("SELECT tip.pl_mat_type,mrs.memo_number,po.prod_order_number,dsg.`design_display_name`,mrs.prod_order_mrs_number,mrs.id_prod_order,mrs.id_prod_order_wo,mrs.prod_order_mrs_note,mrs.id_report_status,mrs.id_comp_contact_req_from,mrs.id_comp_contact_req_to,DATE_FORMAT(mrs.prod_order_mrs_date,'%Y-%m-%d') AS prod_order_mrs_datex 
 FROM tb_prod_order_mrs mrs
 INNER JOIN tb_prod_order po ON mrs.id_prod_order=po.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON po.id_prod_demand_design=pdd.id_prod_demand_design
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+INNER JOIN tb_pl_mat_type tip ON tip.id_pl_mat_type=mrs.id_pl_mat_type
 WHERE id_prod_order_mrs = '{0}'", id_mrs)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -71,6 +72,9 @@ WHERE id_prod_order_mrs = '{0}'", id_mrs)
         LMRSDate.Text = view_date_from(data.Rows(0)("prod_order_mrs_datex").ToString, 0)
         LNote.Text = data.Rows(0)("prod_order_mrs_note").ToString
         LPONo.Text = data.Rows(0)("prod_order_number").ToString
+
+        LType.Text = data.Rows(0)("pl_mat_type").ToString
+        LMemo.Text = data.Rows(0)("memo_number").ToString
     End Sub
 
     Private Sub ReportMatWO_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint

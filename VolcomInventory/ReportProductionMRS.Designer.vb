@@ -42,6 +42,8 @@ Partial Public Class ReportProductionMRS
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LMRSNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.LMemo = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LType = New DevExpress.XtraReports.UI.XRLabel()
         Me.LLMRSType = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
@@ -227,7 +229,7 @@ Partial Public Class ReportProductionMRS
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LTitle, Me.zxc, Me.XrLabel12, Me.LMRSDate, Me.XrLabel6, Me.XrLabel1, Me.LMRSNumber, Me.XrPanel1})
-        Me.TopMargin.HeightF = 102.75!
+        Me.TopMargin.HeightF = 137.125!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -323,11 +325,33 @@ Partial Public Class ReportProductionMRS
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LLMRSType, Me.XrLabel4, Me.XrLabel2, Me.LWONo, Me.LTWONo, Me.LLWONo, Me.XrLabel11, Me.LToName, Me.XrLabel3, Me.XrLabel21, Me.XrLabel13, Me.LReqFromName, Me.LLDesign, Me.LTDesign, Me.LDesignName, Me.LPONo, Me.LTPONo, Me.LLPoNo})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LMemo, Me.LType, Me.LLMRSType, Me.XrLabel4, Me.XrLabel2, Me.LWONo, Me.LTWONo, Me.LLWONo, Me.XrLabel11, Me.LToName, Me.XrLabel3, Me.XrLabel21, Me.XrLabel13, Me.LReqFromName, Me.LLDesign, Me.LTDesign, Me.LDesignName, Me.LPONo, Me.LTPONo, Me.LLPoNo})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001271566!, 41.7916!)
         Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(787.9999!, 60.9584!)
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(787.9999!, 95.3334!)
         Me.XrPanel1.StylePriority.UseBorders = False
+        '
+        'LMemo
+        '
+        Me.LMemo.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LMemo.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LMemo.LocationFloat = New DevExpress.Utils.PointFloat(106.1251!, 64.54178!)
+        Me.LMemo.Name = "LMemo"
+        Me.LMemo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LMemo.SizeF = New System.Drawing.SizeF(331.2502!, 13.58338!)
+        Me.LMemo.StylePriority.UseBorders = False
+        Me.LMemo.StylePriority.UseFont = False
+        '
+        'LType
+        '
+        Me.LType.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LType.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LType.LocationFloat = New DevExpress.Utils.PointFloat(106.1251!, 50.95841!)
+        Me.LType.Name = "LType"
+        Me.LType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LType.SizeF = New System.Drawing.SizeF(331.2502!, 13.58338!)
+        Me.LType.StylePriority.UseBorders = False
+        Me.LType.StylePriority.UseFont = False
         '
         'LLMRSType
         '
@@ -646,7 +670,7 @@ Partial Public Class ReportProductionMRS
         'ReportProductionMRS
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(12, 50, 103, 23)
+        Me.Margins = New System.Drawing.Printing.Margins(12, 50, 137, 23)
         Me.PageHeight = 550
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.Version = "15.1"
@@ -705,4 +729,6 @@ Partial Public Class ReportProductionMRS
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents LMemo As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LType As DevExpress.XtraReports.UI.XRLabel
 End Class
