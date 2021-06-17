@@ -274,22 +274,27 @@ ORDER BY area ASC"
             Dim id_commerce_type As String = GVStore.GetRowCellValue(s, "id_commerce_type").ToString
             Dim id_wh_ol As String = GVStore.GetRowCellValue(s, "id_wh_ol").ToString
             Dim id_store As String = ""
+            Dim rmt_del As String = ""
             If id_commerce_type = "1" Then
                 'offline
                 id_store = id_comp
+                rmt_del = "43,103"
             Else
                 'online
                 id_store = id_wh_ol
+                rmt_del = "58"
             End If
+
             If s > 0 Then
                 id_store_selected += ","
                 col_store += ","
             End If
+
             id_store_selected += GVStore.GetRowCellValue(s, "id_comp").ToString
-            col_store += "IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0) AS `STORE : " + comp_number + "|DEL`,
+            col_store += "IFNULL(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_del + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0) AS `STORE : " + comp_number + "|DEL`,
             IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0) AS `STORE : " + comp_number + "|SAL`,
             IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + id_store + ") THEN soh.qty END),0) AS `STORE : " + comp_number + "|SOH`,
-            (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(43,103) AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0))*100 AS `STORE : " + comp_number + "|Sales Thru` "
+            (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_del + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0))*100 AS `STORE : " + comp_number + "|Sales Thru` "
         Next
         GVStore.ActiveFilterString = ""
         id_acc_selected += "," + id_store_selected
@@ -324,8 +329,7 @@ ORDER BY area ASC"
         IFNULL(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty END),0) AS `TOTAL|SOH`,
         (IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(43,103) THEN soh.qty END),0))*100 AS `TOTAL|Sales Thru`
         FROM tb_soh_sal_period soh
-        INNER JOIN tb_m_product p ON p.id_product = soh.id_product
-        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        INNER JOIN tb_m_design d ON d.id_design = soh.id_design
         LEFT JOIN (
 	         SELECT c.id_design, d.id_code_detail, d.display_name
 	         FROM tb_m_design_code AS c
@@ -414,7 +418,7 @@ ORDER BY area ASC"
 	        GROUP BY s.id_design
         ) AS wh_rec_defect ON wh_rec_defect.id_design = d.id_design
         WHERE soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' 
-        AND soh.id_comp IN(" + id_acc_selected + ")
+        AND is_del_online_store!=1 AND soh.id_comp IN(" + id_acc_selected + ")
         " + where_prod + "
         GROUP BY p.id_design "
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
