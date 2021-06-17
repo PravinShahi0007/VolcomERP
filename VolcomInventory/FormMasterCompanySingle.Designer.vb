@@ -210,6 +210,22 @@ Partial Class FormMasterCompanySingle
         Me.XTPCOA = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.GroupControl9 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl50 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDPCodeCabang = New DevExpress.XtraEditors.TextEdit()
+        Me.SLEDPCabang = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView11 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BClearDPCabang = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEAPCabang = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl48 = New DevExpress.XtraEditors.LabelControl()
+        Me.BClearAPCabang = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtAPCodeCabang = New DevExpress.XtraEditors.TextEdit()
         Me.SLEAP = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -227,6 +243,14 @@ Partial Class FormMasterCompanySingle
         Me.BClearDP = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtAPCode = New DevExpress.XtraEditors.TextEdit()
         Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEARCabang = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl47 = New DevExpress.XtraEditors.LabelControl()
+        Me.BClearARCabang = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtARCodeCabang = New DevExpress.XtraEditors.TextEdit()
         Me.SLEAR = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -236,30 +260,6 @@ Partial Class FormMasterCompanySingle
         Me.BClearAR = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtARCode = New DevExpress.XtraEditors.TextEdit()
         Me.BCreateCOA = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEARCabang = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl47 = New DevExpress.XtraEditors.LabelControl()
-        Me.BClearARCabang = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtARCodeCabang = New DevExpress.XtraEditors.TextEdit()
-        Me.SLEAPCabang = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl48 = New DevExpress.XtraEditors.LabelControl()
-        Me.BClearAPCabang = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtAPCodeCabang = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl50 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtDPCodeCabang = New DevExpress.XtraEditors.TextEdit()
-        Me.SLEDPCabang = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView11 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BClearDPCabang = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCCP.SuspendLayout()
@@ -360,6 +360,12 @@ Partial Class FormMasterCompanySingle
         Me.PanelControl3.SuspendLayout()
         CType(Me.GroupControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl9.SuspendLayout()
+        CType(Me.TxtDPCodeCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEDPCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEAPCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtAPCodeCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDPCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -368,18 +374,12 @@ Partial Class FormMasterCompanySingle
         CType(Me.TxtAPCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl7.SuspendLayout()
-        CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEARCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtARCodeCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEAPCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtAPCodeCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDPCodeCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEDPCabang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPCompany
@@ -2122,6 +2122,7 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl5.Size = New System.Drawing.Size(639, 344)
         Me.GroupControl5.TabIndex = 16
         Me.GroupControl5.Text = "Accounting"
+        Me.GroupControl5.Visible = False
         '
         'SplitContainerControl1
         '
@@ -2335,6 +2336,138 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl9.TabIndex = 25
         Me.GroupControl9.Text = "Payable"
         '
+        'LabelControl50
+        '
+        Me.LabelControl50.Location = New System.Drawing.Point(34, 147)
+        Me.LabelControl50.Name = "LabelControl50"
+        Me.LabelControl50.Size = New System.Drawing.Size(136, 13)
+        Me.LabelControl50.TabIndex = 37
+        Me.LabelControl50.Text = "Down Payment (DP) Cabang"
+        '
+        'TxtDPCodeCabang
+        '
+        Me.TxtDPCodeCabang.Enabled = False
+        Me.TxtDPCodeCabang.Location = New System.Drawing.Point(34, 166)
+        Me.TxtDPCodeCabang.Name = "TxtDPCodeCabang"
+        Me.TxtDPCodeCabang.Size = New System.Drawing.Size(100, 20)
+        Me.TxtDPCodeCabang.TabIndex = 40
+        '
+        'SLEDPCabang
+        '
+        Me.SLEDPCabang.Location = New System.Drawing.Point(137, 166)
+        Me.SLEDPCabang.Name = "SLEDPCabang"
+        Me.SLEDPCabang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDPCabang.Properties.NullText = ""
+        Me.SLEDPCabang.Properties.ShowClearButton = False
+        Me.SLEDPCabang.Properties.View = Me.GridView11
+        Me.SLEDPCabang.Size = New System.Drawing.Size(257, 20)
+        Me.SLEDPCabang.TabIndex = 38
+        '
+        'GridView11
+        '
+        Me.GridView11.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn44, Me.GridColumn45, Me.GridColumn46})
+        Me.GridView11.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView11.Name = "GridView11"
+        Me.GridView11.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView11.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "Id"
+        Me.GridColumn44.FieldName = "id_acc"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "Account"
+        Me.GridColumn45.FieldName = "acc_name"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 0
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Description"
+        Me.GridColumn46.FieldName = "acc_description"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 1
+        '
+        'BClearDPCabang
+        '
+        Me.BClearDPCabang.Location = New System.Drawing.Point(397, 163)
+        Me.BClearDPCabang.Name = "BClearDPCabang"
+        Me.BClearDPCabang.Size = New System.Drawing.Size(42, 23)
+        Me.BClearDPCabang.TabIndex = 39
+        Me.BClearDPCabang.Text = "clear"
+        '
+        'SLEAPCabang
+        '
+        Me.SLEAPCabang.Location = New System.Drawing.Point(137, 76)
+        Me.SLEAPCabang.Name = "SLEAPCabang"
+        Me.SLEAPCabang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAPCabang.Properties.NullText = ""
+        Me.SLEAPCabang.Properties.ShowClearButton = False
+        Me.SLEAPCabang.Properties.View = Me.GridView8
+        Me.SLEAPCabang.Size = New System.Drawing.Size(257, 20)
+        Me.SLEAPCabang.TabIndex = 34
+        '
+        'GridView8
+        '
+        Me.GridView8.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn35, Me.GridColumn36, Me.GridColumn43})
+        Me.GridView8.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView8.Name = "GridView8"
+        Me.GridView8.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView8.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Id"
+        Me.GridColumn35.FieldName = "id_acc"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Account"
+        Me.GridColumn36.FieldName = "acc_name"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 0
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Description"
+        Me.GridColumn43.FieldName = "acc_description"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 1
+        '
+        'LabelControl48
+        '
+        Me.LabelControl48.Location = New System.Drawing.Point(34, 57)
+        Me.LabelControl48.Name = "LabelControl48"
+        Me.LabelControl48.Size = New System.Drawing.Size(120, 13)
+        Me.LabelControl48.TabIndex = 33
+        Me.LabelControl48.Text = "Account Payable Cabang"
+        '
+        'BClearAPCabang
+        '
+        Me.BClearAPCabang.Location = New System.Drawing.Point(397, 73)
+        Me.BClearAPCabang.Name = "BClearAPCabang"
+        Me.BClearAPCabang.Size = New System.Drawing.Size(42, 23)
+        Me.BClearAPCabang.TabIndex = 35
+        Me.BClearAPCabang.Text = "clear"
+        '
+        'TxtAPCodeCabang
+        '
+        Me.TxtAPCodeCabang.Enabled = False
+        Me.TxtAPCodeCabang.Location = New System.Drawing.Point(34, 76)
+        Me.TxtAPCodeCabang.Name = "TxtAPCodeCabang"
+        Me.TxtAPCodeCabang.Size = New System.Drawing.Size(100, 20)
+        Me.TxtAPCodeCabang.TabIndex = 36
+        '
         'SLEAP
         '
         Me.SLEAP.Location = New System.Drawing.Point(137, 31)
@@ -2485,6 +2618,72 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl7.TabIndex = 24
         Me.GroupControl7.Text = "Receiveable"
         '
+        'SLEARCabang
+        '
+        Me.SLEARCabang.Location = New System.Drawing.Point(137, 79)
+        Me.SLEARCabang.Name = "SLEARCabang"
+        Me.SLEARCabang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEARCabang.Properties.NullText = ""
+        Me.SLEARCabang.Properties.ShowClearButton = False
+        Me.SLEARCabang.Properties.View = Me.GridView7
+        Me.SLEARCabang.Size = New System.Drawing.Size(257, 20)
+        Me.SLEARCabang.TabIndex = 21
+        '
+        'GridView7
+        '
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34})
+        Me.GridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView7.Name = "GridView7"
+        Me.GridView7.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView7.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Id"
+        Me.GridColumn32.FieldName = "id_acc"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Account"
+        Me.GridColumn33.FieldName = "acc_name"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 0
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Description"
+        Me.GridColumn34.FieldName = "acc_description"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 1
+        '
+        'LabelControl47
+        '
+        Me.LabelControl47.Location = New System.Drawing.Point(34, 60)
+        Me.LabelControl47.Name = "LabelControl47"
+        Me.LabelControl47.Size = New System.Drawing.Size(134, 13)
+        Me.LabelControl47.TabIndex = 22
+        Me.LabelControl47.Text = "Account Receivable Cabang"
+        '
+        'BClearARCabang
+        '
+        Me.BClearARCabang.Location = New System.Drawing.Point(397, 77)
+        Me.BClearARCabang.Name = "BClearARCabang"
+        Me.BClearARCabang.Size = New System.Drawing.Size(42, 23)
+        Me.BClearARCabang.TabIndex = 23
+        Me.BClearARCabang.Text = "clear"
+        '
+        'TxtARCodeCabang
+        '
+        Me.TxtARCodeCabang.Enabled = False
+        Me.TxtARCodeCabang.Location = New System.Drawing.Point(34, 79)
+        Me.TxtARCodeCabang.Name = "TxtARCodeCabang"
+        Me.TxtARCodeCabang.Size = New System.Drawing.Size(100, 20)
+        Me.TxtARCodeCabang.TabIndex = 24
+        '
         'SLEAR
         '
         Me.SLEAR.Location = New System.Drawing.Point(137, 34)
@@ -2566,204 +2765,6 @@ Partial Class FormMasterCompanySingle
         Me.BCreateCOA.TabIndex = 28
         Me.BCreateCOA.Text = "Manage COA"
         Me.BCreateCOA.Visible = False
-        '
-        'SLEARCabang
-        '
-        Me.SLEARCabang.Location = New System.Drawing.Point(137, 79)
-        Me.SLEARCabang.Name = "SLEARCabang"
-        Me.SLEARCabang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEARCabang.Properties.NullText = ""
-        Me.SLEARCabang.Properties.ShowClearButton = False
-        Me.SLEARCabang.Properties.View = Me.GridView7
-        Me.SLEARCabang.Size = New System.Drawing.Size(257, 20)
-        Me.SLEARCabang.TabIndex = 21
-        '
-        'GridView7
-        '
-        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34})
-        Me.GridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView7.Name = "GridView7"
-        Me.GridView7.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView7.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn32
-        '
-        Me.GridColumn32.Caption = "Id"
-        Me.GridColumn32.FieldName = "id_acc"
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn33
-        '
-        Me.GridColumn33.Caption = "Account"
-        Me.GridColumn33.FieldName = "acc_name"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 0
-        '
-        'GridColumn34
-        '
-        Me.GridColumn34.Caption = "Description"
-        Me.GridColumn34.FieldName = "acc_description"
-        Me.GridColumn34.Name = "GridColumn34"
-        Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 1
-        '
-        'LabelControl47
-        '
-        Me.LabelControl47.Location = New System.Drawing.Point(34, 60)
-        Me.LabelControl47.Name = "LabelControl47"
-        Me.LabelControl47.Size = New System.Drawing.Size(134, 13)
-        Me.LabelControl47.TabIndex = 22
-        Me.LabelControl47.Text = "Account Receivable Cabang"
-        '
-        'BClearARCabang
-        '
-        Me.BClearARCabang.Location = New System.Drawing.Point(397, 77)
-        Me.BClearARCabang.Name = "BClearARCabang"
-        Me.BClearARCabang.Size = New System.Drawing.Size(42, 23)
-        Me.BClearARCabang.TabIndex = 23
-        Me.BClearARCabang.Text = "clear"
-        '
-        'TxtARCodeCabang
-        '
-        Me.TxtARCodeCabang.Enabled = False
-        Me.TxtARCodeCabang.Location = New System.Drawing.Point(34, 79)
-        Me.TxtARCodeCabang.Name = "TxtARCodeCabang"
-        Me.TxtARCodeCabang.Size = New System.Drawing.Size(100, 20)
-        Me.TxtARCodeCabang.TabIndex = 24
-        '
-        'SLEAPCabang
-        '
-        Me.SLEAPCabang.Location = New System.Drawing.Point(137, 76)
-        Me.SLEAPCabang.Name = "SLEAPCabang"
-        Me.SLEAPCabang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEAPCabang.Properties.NullText = ""
-        Me.SLEAPCabang.Properties.ShowClearButton = False
-        Me.SLEAPCabang.Properties.View = Me.GridView8
-        Me.SLEAPCabang.Size = New System.Drawing.Size(257, 20)
-        Me.SLEAPCabang.TabIndex = 34
-        '
-        'GridView8
-        '
-        Me.GridView8.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn35, Me.GridColumn36, Me.GridColumn43})
-        Me.GridView8.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView8.Name = "GridView8"
-        Me.GridView8.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView8.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn35
-        '
-        Me.GridColumn35.Caption = "Id"
-        Me.GridColumn35.FieldName = "id_acc"
-        Me.GridColumn35.Name = "GridColumn35"
-        Me.GridColumn35.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn36
-        '
-        Me.GridColumn36.Caption = "Account"
-        Me.GridColumn36.FieldName = "acc_name"
-        Me.GridColumn36.Name = "GridColumn36"
-        Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 0
-        '
-        'GridColumn43
-        '
-        Me.GridColumn43.Caption = "Description"
-        Me.GridColumn43.FieldName = "acc_description"
-        Me.GridColumn43.Name = "GridColumn43"
-        Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 1
-        '
-        'LabelControl48
-        '
-        Me.LabelControl48.Location = New System.Drawing.Point(34, 57)
-        Me.LabelControl48.Name = "LabelControl48"
-        Me.LabelControl48.Size = New System.Drawing.Size(120, 13)
-        Me.LabelControl48.TabIndex = 33
-        Me.LabelControl48.Text = "Account Payable Cabang"
-        '
-        'BClearAPCabang
-        '
-        Me.BClearAPCabang.Location = New System.Drawing.Point(397, 73)
-        Me.BClearAPCabang.Name = "BClearAPCabang"
-        Me.BClearAPCabang.Size = New System.Drawing.Size(42, 23)
-        Me.BClearAPCabang.TabIndex = 35
-        Me.BClearAPCabang.Text = "clear"
-        '
-        'TxtAPCodeCabang
-        '
-        Me.TxtAPCodeCabang.Enabled = False
-        Me.TxtAPCodeCabang.Location = New System.Drawing.Point(34, 76)
-        Me.TxtAPCodeCabang.Name = "TxtAPCodeCabang"
-        Me.TxtAPCodeCabang.Size = New System.Drawing.Size(100, 20)
-        Me.TxtAPCodeCabang.TabIndex = 36
-        '
-        'LabelControl50
-        '
-        Me.LabelControl50.Location = New System.Drawing.Point(34, 147)
-        Me.LabelControl50.Name = "LabelControl50"
-        Me.LabelControl50.Size = New System.Drawing.Size(136, 13)
-        Me.LabelControl50.TabIndex = 37
-        Me.LabelControl50.Text = "Down Payment (DP) Cabang"
-        '
-        'TxtDPCodeCabang
-        '
-        Me.TxtDPCodeCabang.Enabled = False
-        Me.TxtDPCodeCabang.Location = New System.Drawing.Point(34, 166)
-        Me.TxtDPCodeCabang.Name = "TxtDPCodeCabang"
-        Me.TxtDPCodeCabang.Size = New System.Drawing.Size(100, 20)
-        Me.TxtDPCodeCabang.TabIndex = 40
-        '
-        'SLEDPCabang
-        '
-        Me.SLEDPCabang.Location = New System.Drawing.Point(137, 166)
-        Me.SLEDPCabang.Name = "SLEDPCabang"
-        Me.SLEDPCabang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEDPCabang.Properties.NullText = ""
-        Me.SLEDPCabang.Properties.ShowClearButton = False
-        Me.SLEDPCabang.Properties.View = Me.GridView11
-        Me.SLEDPCabang.Size = New System.Drawing.Size(257, 20)
-        Me.SLEDPCabang.TabIndex = 38
-        '
-        'GridView11
-        '
-        Me.GridView11.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn44, Me.GridColumn45, Me.GridColumn46})
-        Me.GridView11.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView11.Name = "GridView11"
-        Me.GridView11.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView11.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn44
-        '
-        Me.GridColumn44.Caption = "Id"
-        Me.GridColumn44.FieldName = "id_acc"
-        Me.GridColumn44.Name = "GridColumn44"
-        Me.GridColumn44.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn45
-        '
-        Me.GridColumn45.Caption = "Account"
-        Me.GridColumn45.FieldName = "acc_name"
-        Me.GridColumn45.Name = "GridColumn45"
-        Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 0
-        '
-        'GridColumn46
-        '
-        Me.GridColumn46.Caption = "Description"
-        Me.GridColumn46.FieldName = "acc_description"
-        Me.GridColumn46.Name = "GridColumn46"
-        Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 1
-        '
-        'BClearDPCabang
-        '
-        Me.BClearDPCabang.Location = New System.Drawing.Point(397, 163)
-        Me.BClearDPCabang.Name = "BClearDPCabang"
-        Me.BClearDPCabang.Size = New System.Drawing.Size(42, 23)
-        Me.BClearDPCabang.TabIndex = 39
-        Me.BClearDPCabang.Text = "clear"
         '
         'FormMasterCompanySingle
         '
@@ -2888,6 +2889,12 @@ Partial Class FormMasterCompanySingle
         CType(Me.GroupControl9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl9.ResumeLayout(False)
         Me.GroupControl9.PerformLayout()
+        CType(Me.TxtDPCodeCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEDPCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEAPCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtAPCodeCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEAP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDPCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2897,18 +2904,12 @@ Partial Class FormMasterCompanySingle
         CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl7.ResumeLayout(False)
         Me.GroupControl7.PerformLayout()
-        CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEARCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtARCodeCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEAPCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtAPCodeCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDPCodeCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEDPCabang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

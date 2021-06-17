@@ -166,7 +166,7 @@ GROUP BY det.id_store"
 
     Sub load_unit()
         Dim query As String = "SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
-        '        query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
+        'query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
         'UNION ALL
         'SELECT ad.`id_comp`,c.`comp_number`,c.`comp_name` FROM `tb_a_acc_trans_det` ad
         'INNER JOIN tb_m_comp c ON c.`id_comp`=ad.`id_comp`
