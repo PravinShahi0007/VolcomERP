@@ -122,7 +122,7 @@
             query_status = "AND IFNULL(jum_pl.jum_pl,0)<=0 "
         End If
 
-        Dim query = "SELECT a.id_prod_order_mrs,m.design_code,m.design_name,m.design_display_name,k.prod_order_number,a.prod_order_mrs_number,a.id_report_status,h.report_status,a.id_prod_order_wo,b.prod_order_wo_number, 
+        Dim query = "SELECT a.id_pl_mat_type,a.id_prod_order_mrs,m.design_code,m.design_name,m.design_display_name,k.prod_order_number,a.prod_order_mrs_number,a.id_report_status,h.report_status,a.id_prod_order_wo,b.prod_order_wo_number, 
                     d.comp_name AS comp_name_req_from,c.id_comp_contact AS id_comp_name_req_from, 
                     f.comp_name AS comp_name_req_to,e.id_comp_contact AS id_comp_name_req_to, 
                     a.prod_order_mrs_date 

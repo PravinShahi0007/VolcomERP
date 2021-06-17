@@ -6,10 +6,20 @@
     Public id_comp_req_to As String = "-1"
     Public id_report_status_g As String = "-1"
     '
+    Sub load_type()
+        Dim q As String = "SELECT id_pl_mat_type,pl_mat_type 
+FROM `tb_pl_mat_type`"
+        viewSearchLookupQuery(SLEType, q, "id_pl_mat_type", "pl_mat_type", "id_pl_mat_type")
+        '
+        SLEType.Properties.ReadOnly = True
+        TEMemo.Properties.ReadOnly = True
+    End Sub
+
     Private Sub FormViewProductionMRS_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         view_mrs()
+        load_type()
 
-        Dim query As String = String.Format("SELECT prod_order_mrs_number,id_prod_order,id_prod_order_wo,prod_order_mrs_note,id_report_status,id_comp_contact_req_from,id_comp_contact_req_to,DATE_FORMAT(prod_order_mrs_date,'%Y-%m-%d') as prod_order_mrs_datex FROM tb_prod_order_mrs WHERE id_prod_order_mrs = '{0}'", id_mrs)
+        Dim query As String = String.Format("SELECT id_pl_mat_type,memo_number,prod_order_mrs_number,id_prod_order,id_prod_order_wo,prod_order_mrs_note,id_report_status,id_comp_contact_req_from,id_comp_contact_req_to,DATE_FORMAT(prod_order_mrs_date,'%Y-%m-%d') as prod_order_mrs_datex FROM tb_prod_order_mrs WHERE id_prod_order_mrs = '{0}'", id_mrs)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         If data.Rows(0)("id_prod_order_wo").ToString = "" Then
@@ -44,7 +54,9 @@
         TEDate.Text = view_date_from(data.Rows(0)("prod_order_mrs_datex").ToString, 0)
         MENote.Text = data.Rows(0)("prod_order_mrs_note").ToString
         TEMRSNumber.Text = data.Rows(0)("prod_order_mrs_number").ToString
-
+        '
+        SLEType.EditValue = data.Rows(0)("id_pl_mat_type").ToString
+        TEMemo.Text = data.Rows(0)("memo_number").ToString
     End Sub
     Sub view_mrs()
         Try

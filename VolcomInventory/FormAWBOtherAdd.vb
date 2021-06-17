@@ -20,6 +20,7 @@
         SLESubDistrict.EditValue = "0"
         SLESubDistrict.Enabled = True
         TEExtraNote.Properties.ReadOnly = False
+        TEExtraNote.Text = ""
     End Sub
 
     Sub load_store()

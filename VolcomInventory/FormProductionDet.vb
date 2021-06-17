@@ -614,6 +614,7 @@ WHERE ovhp.`id_ovh_price`='" & id_ovh_price & "'"
         FormProductionMRS.TEPONumber.Text = TEPONumber.Text
         FormProductionMRS.TEDesign.Text = TEDesign.Text
         FormProductionMRS.TEDesignCode.Text = TEDesignCode.Text
+        FormProductionMRS.is_can_choose = True
         FormProductionMRS.ShowDialog()
     End Sub
 
