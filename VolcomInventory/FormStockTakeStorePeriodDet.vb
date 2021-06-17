@@ -106,7 +106,7 @@
 
         Dim accessToken As String = getAccessToken()
 
-        Dim url As String = volcomClientHost + "/api/sync/stocktake"
+        Dim url As String = volcomClientHost + "/api/sync/stocktake/in"
 
         Dim wc As Net.WebClient = New Net.WebClient()
 

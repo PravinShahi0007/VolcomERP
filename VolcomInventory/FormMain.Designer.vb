@@ -3491,7 +3491,7 @@ Partial Class FormMain
         '
         'NBStockTakeStorePeriod
         '
-        Me.NBStockTakeStorePeriod.Caption = "Stock Take Store Period"
+        Me.NBStockTakeStorePeriod.Caption = "Stock Take Store"
         Me.NBStockTakeStorePeriod.Name = "NBStockTakeStorePeriod"
         Me.NBStockTakeStorePeriod.SmallImage = CType(resources.GetObject("NBStockTakeStorePeriod.SmallImage"), System.Drawing.Image)
         '
