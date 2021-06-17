@@ -25,7 +25,6 @@ Partial Class FormStockTakePeriodSOH
         Me.GVSOH = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICESelect = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -59,17 +58,21 @@ Partial Class FormStockTakePeriodSOH
         Me.GCSOH.MainView = Me.GVSOH
         Me.GCSOH.Name = "GCSOH"
         Me.GCSOH.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICESelect})
-        Me.GCSOH.Size = New System.Drawing.Size(784, 371)
+        Me.GCSOH.Size = New System.Drawing.Size(584, 671)
         Me.GCSOH.TabIndex = 1
         Me.GCSOH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOH})
         '
         'GVSOH
         '
-        Me.GVSOH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7})
+        Me.GVSOH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7})
         Me.GVSOH.GridControl = Me.GCSOH
+        Me.GVSOH.GroupCount = 1
         Me.GVSOH.Name = "GVSOH"
+        Me.GVSOH.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSOH.OptionsFind.AlwaysVisible = True
         Me.GVSOH.OptionsView.ShowFooter = True
         Me.GVSOH.OptionsView.ShowGroupPanel = False
+        Me.GVSOH.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn5, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn1
         '
@@ -87,15 +90,6 @@ Partial Class FormStockTakePeriodSOH
         Me.RICESelect.ValueChecked = "yes"
         Me.RICESelect.ValueUnchecked = "no"
         '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "No"
-        Me.GridColumn6.FieldName = "no"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.OptionsColumn.ReadOnly = True
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
-        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Code"
@@ -103,7 +97,7 @@ Partial Class FormStockTakePeriodSOH
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumn2.VisibleIndex = 1
         '
         'GridColumn3
         '
@@ -112,7 +106,7 @@ Partial Class FormStockTakePeriodSOH
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.VisibleIndex = 2
         '
         'GridColumn4
         '
@@ -121,17 +115,13 @@ Partial Class FormStockTakePeriodSOH
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 3
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "Qty"
-        Me.GridColumn5.DisplayFormat.FormatString = "N0"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "qty"
+        Me.GridColumn5.Caption = "Class"
+        Me.GridColumn5.FieldName = "class"
         Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.ReadOnly = True
-        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 5
         '
@@ -148,23 +138,23 @@ Partial Class FormStockTakePeriodSOH
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 45)
+        Me.PanelControl1.Size = New System.Drawing.Size(584, 45)
         Me.PanelControl1.TabIndex = 2
         '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.SBSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 416)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 716)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(784, 45)
+        Me.PanelControl2.Size = New System.Drawing.Size(584, 45)
         Me.PanelControl2.TabIndex = 3
         '
         'SBSave
         '
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(693, 2)
+        Me.SBSave.Location = New System.Drawing.Point(493, 2)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(89, 41)
         Me.SBSave.TabIndex = 10
@@ -174,13 +164,13 @@ Partial Class FormStockTakePeriodSOH
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 461)
+        Me.ClientSize = New System.Drawing.Size(584, 761)
         Me.Controls.Add(Me.GCSOH)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormStockTakePeriodSOH"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Stock Take Store Period SOH"
+        Me.Text = "Stock Take Store Period Product"
         CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).EndInit()
@@ -203,8 +193,7 @@ Partial Class FormStockTakePeriodSOH
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICESelect As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

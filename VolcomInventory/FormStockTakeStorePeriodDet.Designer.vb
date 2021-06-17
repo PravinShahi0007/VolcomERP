@@ -261,9 +261,9 @@ Partial Class FormStockTakeStorePeriodDet
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(12, 176)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(28, 13)
+        Me.Label5.Size = New System.Drawing.Size(44, 13)
         Me.Label5.TabIndex = 14
-        Me.Label5.Text = "SOH"
+        Me.Label5.Text = "Product"
         '
         'SBSOH
         '
@@ -271,7 +271,7 @@ Partial Class FormStockTakeStorePeriodDet
         Me.SBSOH.Name = "SBSOH"
         Me.SBSOH.Size = New System.Drawing.Size(276, 23)
         Me.SBSOH.TabIndex = 15
-        Me.SBSOH.Text = "Select SOH"
+        Me.SBSOH.Text = "Select Product"
         '
         'CEAll
         '
