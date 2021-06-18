@@ -78,4 +78,8 @@
 
         Close()
     End Sub
+
+    Private Sub SBEOS_Click(sender As Object, e As EventArgs) Handles SBEOS.Click
+        FormStockTakePeriodEOS.ShowDialog()
+    End Sub
 End Class

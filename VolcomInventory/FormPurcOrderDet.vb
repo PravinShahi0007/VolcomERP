@@ -355,7 +355,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
     End Sub
 
     Sub load_payment_term()
-        Dim query As String = "SELECT id_payment_purchasing,payment_purchasing,val_day,is_can_cash_purchase FROM `tb_lookup_payment_purchasing` WHERE is_active='1'"
+        Dim query As String = "SELECT id_payment_purchasing,payment_purchasing,val_day,is_can_cash_purchase,is_only_cash_purchase FROM `tb_lookup_payment_purchasing` WHERE is_active='1'"
         viewSearchLookupQuery(LEPaymentTerm, query, "id_payment_purchasing", "payment_purchasing", "id_payment_purchasing")
         LEPaymentTerm.EditValue = Nothing
     End Sub
@@ -901,7 +901,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
         If CECashPurchase.EditValue Then
             LEPaymentTermView.ActiveFilterString = "[is_can_cash_purchase] = '1'"
         Else
-            LEPaymentTermView.ActiveFilterString = ""
+            LEPaymentTermView.ActiveFilterString = "[is_only_cash_purchase] = '2'"
         End If
     End Sub
 

@@ -38,6 +38,7 @@ Partial Class FormAWBOther
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,7 +68,7 @@ Partial Class FormAWBOther
         '
         'BView
         '
-        Me.BView.Location = New System.Drawing.Point(643, 10)
+        Me.BView.Location = New System.Drawing.Point(676, 10)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(58, 23)
         Me.BView.TabIndex = 30
@@ -119,7 +120,7 @@ Partial Class FormAWBOther
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(465, 12)
+        Me.DEUntil.Location = New System.Drawing.Point(498, 12)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -131,7 +132,7 @@ Partial Class FormAWBOther
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(455, 15)
+        Me.LabelControl2.Location = New System.Drawing.Point(488, 15)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl2.TabIndex = 26
@@ -141,14 +142,14 @@ Partial Class FormAWBOther
         '
         Me.LabelControl1.Location = New System.Drawing.Point(248, 15)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(56, 13)
         Me.LabelControl1.TabIndex = 25
-        Me.LabelControl1.Text = "Date"
+        Me.LabelControl1.Text = "Pickup Date"
         '
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(277, 12)
+        Me.DEStart.Location = New System.Drawing.Point(310, 12)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -170,7 +171,7 @@ Partial Class FormAWBOther
         '
         'GVAWB
         '
-        Me.GVAWB.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVAWB.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7})
         Me.GVAWB.GridControl = Me.GCAWB
         Me.GVAWB.Name = "GVAWB"
         Me.GVAWB.OptionsView.ShowGroupPanel = False
@@ -184,7 +185,7 @@ Partial Class FormAWBOther
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Vendor"
-        Me.GridColumn6.FieldName = "vendor_name"
+        Me.GridColumn6.FieldName = "comp_name"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 1
@@ -224,6 +225,18 @@ Partial Class FormAWBOther
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn7.Caption = "Status"
+        Me.GridColumn7.FieldName = "status"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
         '
         'FormAWBOther
         '
@@ -272,4 +285,5 @@ Partial Class FormAWBOther
     Friend WithEvents GridColumnIdSeason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRange As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -7197,6 +7197,12 @@
     <Compile Include="FormStockQCStockReportSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakePeriodEOS.Designer.vb">
+      <DependentUpon>FormStockTakePeriodEOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakePeriodEOS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockTakePeriodSOH.Designer.vb">
       <DependentUpon>FormStockTakePeriodSOH.vb</DependentUpon>
     </Compile>
@@ -13657,6 +13663,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockQCStockReportSummary.resx">
       <DependentUpon>FormStockQCStockReportSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakePeriodEOS.resx">
+      <DependentUpon>FormStockTakePeriodEOS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakePeriodSOH.resx">
       <DependentUpon>FormStockTakePeriodSOH.vb</DependentUpon>
