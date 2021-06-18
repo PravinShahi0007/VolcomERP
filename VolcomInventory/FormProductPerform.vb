@@ -266,38 +266,42 @@ ORDER BY area ASC"
         'filter store 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading store")
         Dim id_store_selected As String = ""
+        Dim id_store_soh_selected As String = ""
         Dim col_store As String = ""
         GVStore.ActiveFilterString = "[is_select]='Yes'"
         For s As Integer = 0 To GVStore.RowCount - 1
             Dim comp_number As String = GVStore.GetRowCellValue(s, "comp_number").ToString
+            Dim comp_name As String =GVStore.GetRowCellValue(s, "comp_name").ToString
             Dim id_comp As String = GVStore.GetRowCellValue(s, "id_comp").ToString
             Dim id_commerce_type As String = GVStore.GetRowCellValue(s, "id_commerce_type").ToString
             Dim id_wh_ol As String = GVStore.GetRowCellValue(s, "id_wh_ol").ToString
-            Dim id_store As String = ""
+            Dim id_comp_soh As String = ""
             Dim rmt_del As String = ""
             If id_commerce_type = "1" Then
                 'offline
-                id_store = id_comp
+                id_comp_soh = id_comp
                 rmt_del = "43,103"
             Else
                 'online
-                id_store = id_wh_ol
+                id_comp_soh = id_wh_ol
                 rmt_del = "58"
             End If
 
             If s > 0 Then
                 id_store_selected += ","
+                id_store_soh_selected += ","
                 col_store += ","
             End If
 
             id_store_selected += GVStore.GetRowCellValue(s, "id_comp").ToString
-            col_store += "IFNULL(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_del + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0) AS `STORE : " + comp_number + "|DEL`,
-            IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0) AS `STORE : " + comp_number + "|SAL`,
-            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + id_store + ") THEN soh.qty END),0) AS `STORE : " + comp_number + "|SOH`,
-            (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_del + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END),0))*100 AS `STORE : " + comp_number + "|Sales Thru` "
+            id_store_soh_selected += id_comp_soh
+            col_store += "IFNULL(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_del + ") AND soh.id_comp IN(" + id_comp_soh + ") THEN soh.qty END),0) AS `STORE : " + comp_number + " - " + comp_name + "|DEL`,
+            IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0) AS `STORE : " + comp_number + " - " + comp_name + "|SAL`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + id_comp_soh + ") THEN soh.qty END),0) AS `STORE : " + comp_number + " - " + comp_name + "|SOH`,
+            (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_del + ") AND soh.id_comp IN(" + id_comp_soh + ") THEN soh.qty END),0))*100 AS `STORE : " + comp_number + " - " + comp_name + "|Sales Thru` "
         Next
         GVStore.ActiveFilterString = ""
-        id_acc_selected += "," + id_store_selected
+        id_acc_selected += "," + id_store_selected + "," + id_store_soh_selected
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
         Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, division.display_name AS `Product Info|Division`, 
@@ -324,12 +328,18 @@ ORDER BY area ASC"
         IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGOS + ") THEN soh.qty END),0) AS `Stock Gudang Sale|GOS`,
         IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compREJ + ") THEN soh.qty END),0) AS `Stock Gudang Non Active|Reject`,
         " + col_store + ",
-        IFNULL(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(43,103) THEN soh.qty END),0) AS `TOTAL|DEL`,
+        IFNULL(
+            SUM(CASE 
+                WHEN soh.id_comp IN(" + id_store_soh_selected + ") AND soh.report_mark_type IN(43,103) THEN soh.qty 
+                
+            END)
+        ,0) AS `TOTAL|DEL`,
         IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `TOTAL|SAL`,
-        IFNULL(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty END),0) AS `TOTAL|SOH`,
-        (IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(43,103) THEN soh.qty END),0))*100 AS `TOTAL|Sales Thru`
+        IFNULL(SUM(CASE WHEN soh.id_comp IN(" + id_store_soh_selected + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty END),0) AS `TOTAL|SOH`,
+        (IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.id_comp IN(" + id_store_soh_selected + ") AND soh.report_mark_type IN(43,103) THEN soh.qty END),0))*100 AS `TOTAL|Sales Thru`
         FROM tb_soh_sal_period soh
         INNER JOIN tb_m_design d ON d.id_design = soh.id_design
+        INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
         LEFT JOIN (
 	         SELECT c.id_design, d.id_code_detail, d.display_name
 	         FROM tb_m_design_code AS c
