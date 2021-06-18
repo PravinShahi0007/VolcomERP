@@ -5,11 +5,15 @@
         view_store()
 
         Dim lastDate As String = execute_query("SELECT DATE_SUB(CURDATE(), INTERVAL 1 DAY);", 0, True, "", "", "", "")
+        Dim nowDate As String = execute_query("SELECT DATE_SUB(CURDATE(), INTERVAL 0 DAY);", 0, True, "", "", "", "")
 
+        DEStart.Properties.MinValue = nowDate
         DESOHDate.Properties.MaxValue = lastDate
         DESOHDate.EditValue = lastDate
         DEStart.EditValue = lastDate
         DEEnd.EditValue = lastDate
+
+        CEAll.EditValue = True
     End Sub
 
     Private Sub FormStockTakeStorePeriodDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -134,8 +138,6 @@
     End Sub
 
     Private Sub SLUEStore_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEStore.EditValueChanged
-        id_product.Clear()
-
         view_user()
     End Sub
 
@@ -233,7 +235,11 @@
 
     Private Sub CEAll_CheckedChanged(sender As Object, e As EventArgs) Handles CEAll.CheckedChanged
         If CEAll.EditValue Then
+            SBSOH.Enabled = False
+
             id_product.Clear()
+        Else
+            SBSOH.Enabled = True
         End If
     End Sub
 End Class

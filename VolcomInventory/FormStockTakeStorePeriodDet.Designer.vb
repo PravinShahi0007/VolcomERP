@@ -269,16 +269,16 @@ Partial Class FormStockTakeStorePeriodDet
         '
         Me.SBSOH.Location = New System.Drawing.Point(15, 197)
         Me.SBSOH.Name = "SBSOH"
-        Me.SBSOH.Size = New System.Drawing.Size(276, 23)
+        Me.SBSOH.Size = New System.Drawing.Size(264, 23)
         Me.SBSOH.TabIndex = 15
         Me.SBSOH.Text = "Select Product"
         '
         'CEAll
         '
-        Me.CEAll.Location = New System.Drawing.Point(308, 199)
+        Me.CEAll.Location = New System.Drawing.Point(295, 199)
         Me.CEAll.Name = "CEAll"
-        Me.CEAll.Properties.Caption = "Select All"
-        Me.CEAll.Size = New System.Drawing.Size(64, 19)
+        Me.CEAll.Properties.Caption = "All Product"
+        Me.CEAll.Size = New System.Drawing.Size(77, 19)
         Me.CEAll.TabIndex = 16
         '
         'FormStockTakeStorePeriodDet
