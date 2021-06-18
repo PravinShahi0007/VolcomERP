@@ -58,6 +58,9 @@ WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStart.EditValue.ToString).ToStrin
         '
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
+        '
+        DEStartAWBList.EditValue = Now
+        DEUntilAWBList.EditValue = Now
     End Sub
 
     Sub load_vendor()
@@ -65,6 +68,7 @@ WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStart.EditValue.ToString).ToStrin
 UNION ALL
 SELECT id_comp,comp_name FROM tb_m_comp WHERE id_comp_cat='7' AND is_active='1'"
         viewSearchLookupQuery(SLECargo, q, "id_comp", "comp_name", "id_comp")
+        viewSearchLookupQuery(SLE3PLAWBList, q, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
@@ -73,5 +77,37 @@ SELECT id_comp,comp_name FROM tb_m_comp WHERE id_comp_cat='7' AND is_active='1'"
 
     Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
         DEStart.Properties.MaxValue = DEUntil.EditValue
+    End Sub
+
+    Private Sub DEStartAWBList_EditValueChanged(sender As Object, e As EventArgs) Handles DEStartAWBList.EditValueChanged
+        DEUntilAWBList.Properties.MinValue = DEStart.EditValue
+    End Sub
+
+    Private Sub DEUntilAWBList_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilAWBList.EditValueChanged
+        DEStartAWBList.Properties.MaxValue = DEUntil.EditValue
+    End Sub
+
+    Private Sub BViewAWBList_Click(sender As Object, e As EventArgs) Handles BViewAWBList.Click
+        load_awb_list()
+    End Sub
+
+    Sub load_awb_list()
+        Dim qw As String = ""
+
+        If Not SLECargo.EditValue.ToString = "ALL" Then
+            qw = " AND awb.id_comp='" & SLECargo.EditValue.ToString & "'"
+        End If
+
+        Dim q As String = "SELECT awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
+,awbo.`client_note`
+FROM `tb_awb_office_det` awbo 
+INNNER JOIN tb_awb_office awb ON awb.id_awb_office=awbo.id_awb_office
+INNER JOIN tb_m_departement dep ON dep.id_departement=awbo.id_departement
+LEFT JOIN tb_m_comp c ON c.id_comp=awbo.id_client
+INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awbo.id_sub_district
+WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(awb.pickup_date)<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' " & qw
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCList.DataSource = dt
+        GVList.BestFitColumns()
     End Sub
 End Class
