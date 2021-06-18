@@ -642,6 +642,9 @@ ORDER BY area ASC"
                 s += 1
             End If
         Next
+        GCStore.RefreshDataSource()
+        GCStore.Refresh()
+        GVStore.RefreshData()
         MESelectedStore.Text = selected
         Cursor = Cursors.Default
     End Sub

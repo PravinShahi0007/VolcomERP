@@ -121,6 +121,8 @@ Partial Class FormProductPerform
         Me.PanelControl1.Controls.Add(Me.SBView)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 465)
+        Me.PanelControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(333, 42)
         Me.PanelControl1.TabIndex = 1
@@ -140,6 +142,8 @@ Partial Class FormProductPerform
         Me.SBExportExcel.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBExportExcel.Image = CType(resources.GetObject("SBExportExcel.Image"), System.Drawing.Image)
         Me.SBExportExcel.Location = New System.Drawing.Point(146, 2)
+        Me.SBExportExcel.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.SBExportExcel.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBExportExcel.Name = "SBExportExcel"
         Me.SBExportExcel.Size = New System.Drawing.Size(108, 38)
         Me.SBExportExcel.TabIndex = 2
@@ -150,6 +154,8 @@ Partial Class FormProductPerform
         Me.SBView.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBView.Image = CType(resources.GetObject("SBView.Image"), System.Drawing.Image)
         Me.SBView.Location = New System.Drawing.Point(254, 2)
+        Me.SBView.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.SBView.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBView.Name = "SBView"
         Me.SBView.Size = New System.Drawing.Size(77, 38)
         Me.SBView.TabIndex = 0
@@ -258,6 +264,8 @@ Partial Class FormProductPerform
         '
         Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCData.Location = New System.Drawing.Point(0, 0)
+        Me.XTCData.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.XTCData.LookAndFeel.UseDefaultLookAndFeel = False
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPPeriod
         Me.XTCData.Size = New System.Drawing.Size(333, 465)
@@ -284,7 +292,7 @@ Partial Class FormProductPerform
         Me.XTPPeriod.Controls.Add(Me.SLUEMonthTo)
         Me.XTPPeriod.Controls.Add(Me.SLUEMonthFrom)
         Me.XTPPeriod.Name = "XTPPeriod"
-        Me.XTPPeriod.Size = New System.Drawing.Size(327, 437)
+        Me.XTPPeriod.Size = New System.Drawing.Size(331, 440)
         Me.XTPPeriod.Text = "Filter by Period && Product"
         '
         'CCBEClass
@@ -421,17 +429,19 @@ Partial Class FormProductPerform
         Me.XTPStore.Controls.Add(Me.GCStore)
         Me.XTPStore.Controls.Add(Me.PanelControl2)
         Me.XTPStore.Name = "XTPStore"
-        Me.XTPStore.Size = New System.Drawing.Size(327, 437)
+        Me.XTPStore.Size = New System.Drawing.Size(331, 440)
         Me.XTPStore.Text = "Filter by Store"
         '
         'GCStore
         '
         Me.GCStore.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCStore.Location = New System.Drawing.Point(0, 192)
+        Me.GCStore.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.GCStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GCStore.MainView = Me.GVStore
         Me.GCStore.Name = "GCStore"
         Me.GCStore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCStore.Size = New System.Drawing.Size(327, 245)
+        Me.GCStore.Size = New System.Drawing.Size(331, 248)
         Me.GCStore.TabIndex = 40
         Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
         '
@@ -514,7 +524,7 @@ Partial Class FormProductPerform
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(327, 192)
+        Me.PanelControl2.Size = New System.Drawing.Size(331, 192)
         Me.PanelControl2.TabIndex = 39
         '
         'CESelectAllStore
@@ -529,6 +539,8 @@ Partial Class FormProductPerform
         '
         Me.BtnReset.Image = CType(resources.GetObject("BtnReset.Image"), System.Drawing.Image)
         Me.BtnReset.Location = New System.Drawing.Point(226, 162)
+        Me.BtnReset.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.BtnReset.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnReset.Name = "BtnReset"
         Me.BtnReset.Size = New System.Drawing.Size(89, 23)
         Me.BtnReset.TabIndex = 41
