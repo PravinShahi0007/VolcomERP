@@ -35,7 +35,22 @@
     End Sub
 
     Sub load_form()
+        Dim qw As String = ""
 
+        If Not SLECargo.EditValue.ToString = "ALL" Then
+            qw = " AND awb.id_comp='" & SLECargo.EditValue.ToString & "'"
+        End If
+
+        Dim qv As String = "SELECT awb.id_awb_office,CONCAT('AWBOFC',LPAD(awb.id_awb_office,5,'0')) AS number,awb.id_comp,awb.pickup_date,awb.created_date,emp.employee_name,awb.pickup_date
+FROM `tb_awb_office` awb
+INNER JOIN tb_m_comp c ON c.id_comp=awb.id_comp
+INNER JOIN tb_m_user usr ON usr.id_user=awb.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(awb.pickup_date)<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' " & qw
+        Dim dt As DataTable = execute_query(qv, -1, True, "", "", "", "")
+        GCAWB.DataSource = dt
+        GVAWB.BestFitColumns()
+        check_menu()
     End Sub
 
     Private Sub FormAWBOther_Load(sender As Object, e As EventArgs) Handles MyBase.Load

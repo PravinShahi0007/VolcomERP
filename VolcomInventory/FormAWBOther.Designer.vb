@@ -67,7 +67,7 @@ Partial Class FormAWBOther
         '
         'BView
         '
-        Me.BView.Location = New System.Drawing.Point(643, 10)
+        Me.BView.Location = New System.Drawing.Point(676, 10)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(58, 23)
         Me.BView.TabIndex = 30
@@ -119,7 +119,7 @@ Partial Class FormAWBOther
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(465, 12)
+        Me.DEUntil.Location = New System.Drawing.Point(498, 12)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -131,7 +131,7 @@ Partial Class FormAWBOther
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(455, 15)
+        Me.LabelControl2.Location = New System.Drawing.Point(488, 15)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl2.TabIndex = 26
@@ -141,14 +141,14 @@ Partial Class FormAWBOther
         '
         Me.LabelControl1.Location = New System.Drawing.Point(248, 15)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(56, 13)
         Me.LabelControl1.TabIndex = 25
-        Me.LabelControl1.Text = "Date"
+        Me.LabelControl1.Text = "Pickup Date"
         '
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(277, 12)
+        Me.DEStart.Location = New System.Drawing.Point(310, 12)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})

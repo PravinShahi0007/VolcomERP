@@ -12,6 +12,7 @@
     Private Sub FormAWBOtherDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DECreatedDate.EditValue = Now
         DEPickupDate.Properties.MinValue = Now
+        DEPickupDate.EditValue = Now
         '
         load_head()
     End Sub
@@ -21,7 +22,10 @@
 
         If id = "-1" Then
             'new
-            Dim q As String = "SELECT awb.id_comp,awb.pickup_date,awb.created_date,emp.employee_name
+            load_det()
+        Else
+            'edit
+            Dim q As String = "SELECT CONCAT('AWBOFC',LPAD(awb.id_awb_office,5,'0')) AS number,awb.id_comp,awb.pickup_date,awb.created_date,emp.employee_name,awb.pickup_date
 FROM `tb_awb_office` awb
 INNER JOIN tb_m_comp c ON c.id_comp=awb.id_comp
 INNER JOIN tb_m_user usr ON usr.id_user=awb.created_by
@@ -29,18 +33,21 @@ INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 WHERE awb.id_awb_office='" & id & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
-
+                TENumber.Text = dt.Rows(0)("number").ToString
+                '
+                TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
+                DECreatedDate.EditValue = dt.Rows(0)("created_date")
+                '
+                SLUE3PL.EditValue = dt.Rows(0)("id_comp").ToString
+                DEPickupDate.EditValue = dt.Rows(0)("created_date")
             End If
 
-            load_det()
-        Else
-            'edit
             load_det()
         End If
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT awbo.`awbill_no`,dep.departement,awbo.`jml_koli`,awbo.id_client,c.comp_name,dis.id_sub_district,dis.sub_district
+        Dim q As String = "SELECT awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
 ,awbo.`client_note`
 FROM `tb_awb_office_det` awbo 
 INNER JOIN tb_m_departement dep ON dep.id_departement=awbo.id_departement
@@ -71,5 +78,69 @@ WHERE awbo.id_awb_office='" & id & "'"
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         FormAWBOtherAdd.ShowDialog()
+    End Sub
+
+    Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
+        'check
+        If GVList.RowCount = 0 Then
+            warningCustom("No Data")
+        Else
+            'update data
+            If id = "-1" Then
+                'new
+                Dim q As String = "INSERT INTO `tb_awb_office`(id_comp,pickup_date,created_by,created_date)
+VALUES('" & SLUE3PL.EditValue.ToString & "','" & Date.Parse(DEPickupDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID();"
+                id = execute_query(q, 0, True, "", "", "", "")
+                'detail
+                Dim qd As String = "INSERT INTO tb_awb_office_det(`id_awb_office`,`id_departement`,`jml_koli`,`id_client`,`id_sub_district`,`client_note`,`awbill_no`) VALUES"
+
+                For i As Integer = 0 To GVList.RowCount - 1
+                    If Not i = 0 Then
+                        qd += ","
+                    End If
+
+                    Dim id_client As String = ""
+                    If GVList.GetRowCellValue(i, "id_client").ToString = "" Then
+                        id_client = "NULL"
+                    Else
+                        id_client = "'" & GVList.GetRowCellValue(i, "id_client").ToString & "'"
+                    End If
+
+                    qd += "('" & id & "','" & GVList.GetRowCellValue(i, "id_departement").ToString & "','" & GVList.GetRowCellValue(i, "jml_koli").ToString & "'," & id_client & ",'" & GVList.GetRowCellValue(i, "id_sub_district").ToString & "','" & addSlashes(GVList.GetRowCellValue(i, "awbill_no").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "awbill_no").ToString) & "')"
+                Next
+
+                execute_non_query(qd, True, "", "", "", "")
+                infoCustom("Data saved.")
+                Close()
+            Else
+                'edit
+                Dim qu As String = "UPDATE tb_awb_office SET id_comp='" & SLUE3PL.EditValue.ToString & "',pickup_date='" & Date.Parse(DEPickupDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_awb_office='" & id & "'"
+                execute_non_query(qu, True, "", "", "", "")
+                '
+                qu = "DELETE FROM tb_awb_office_det WHERE id_awb_office='" & id & "'"
+                execute_non_query(qu, True, "", "", "", "")
+                '
+                Dim qd As String = "INSERT INTO tb_awb_office_det(`id_awb_office`,`id_departement`,`jml_koli`,`id_client`,`id_sub_district`,`client_note`,`awbill_no`) VALUES"
+
+                For i As Integer = 0 To GVList.RowCount - 1
+                    If Not i = 0 Then
+                        qd += ","
+                    End If
+
+                    Dim id_client As String = ""
+                    If GVList.GetRowCellValue(i, "id_client").ToString = "0" Then
+                        id_client = "NULL"
+                    Else
+                        id_client = "'" & GVList.GetRowCellValue(i, "id_client").ToString & "'"
+                    End If
+
+                    qd += "('" & id & "','" & GVList.GetRowCellValue(i, "id_departement").ToString & "','" & GVList.GetRowCellValue(i, "jml_koli").ToString & "'," & id_client & ",'" & GVList.GetRowCellValue(i, "id_sub_district").ToString & "','" & addSlashes(GVList.GetRowCellValue(i, "client_note").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "awbill_no").ToString) & "')"
+                Next
+
+                execute_non_query(qd, True, "", "", "", "")
+                infoCustom("Data updated.")
+                Close()
+            End If
+        End If
     End Sub
 End Class
