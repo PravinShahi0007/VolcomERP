@@ -41,7 +41,7 @@
             qw = " AND awb.id_comp='" & SLECargo.EditValue.ToString & "'"
         End If
 
-        Dim qv As String = "SELECT awb.id_awb_office,CONCAT('AWBOFC',LPAD(awb.id_awb_office,5,'0')) AS number,awb.id_comp,awb.pickup_date,awb.created_date,emp.employee_name,awb.pickup_date
+        Dim qv As String = "SELECT IF(awb.is_void=1,'Void','-') AS status,awb.id_awb_office,CONCAT('AWBOFC',LPAD(awb.id_awb_office,5,'0')) AS number,awb.id_comp,awb.pickup_date,awb.created_date,emp.employee_name,awb.pickup_date
 FROM `tb_awb_office` awb
 INNER JOIN tb_m_comp c ON c.id_comp=awb.id_comp
 INNER JOIN tb_m_user usr ON usr.id_user=awb.created_by

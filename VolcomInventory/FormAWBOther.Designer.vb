@@ -38,6 +38,7 @@ Partial Class FormAWBOther
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,7 +171,7 @@ Partial Class FormAWBOther
         '
         'GVAWB
         '
-        Me.GVAWB.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVAWB.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7})
         Me.GVAWB.GridControl = Me.GCAWB
         Me.GVAWB.Name = "GVAWB"
         Me.GVAWB.OptionsView.ShowGroupPanel = False
@@ -184,7 +185,7 @@ Partial Class FormAWBOther
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Vendor"
-        Me.GridColumn6.FieldName = "vendor_name"
+        Me.GridColumn6.FieldName = "comp_name"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 1
@@ -224,6 +225,18 @@ Partial Class FormAWBOther
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn7.Caption = "Status"
+        Me.GridColumn7.FieldName = "status"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
         '
         'FormAWBOther
         '
@@ -272,4 +285,5 @@ Partial Class FormAWBOther
     Friend WithEvents GridColumnIdSeason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRange As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -111,6 +111,10 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & Date.Parse(DEPickupDate.EditVal
 
                 execute_non_query(qd, True, "", "", "", "")
                 infoCustom("Data saved.")
+                '
+                FormAWBOther.DEStart.EditValue = DEPickupDate.EditValue
+                FormAWBOther.DEUntil.EditValue = DEPickupDate.EditValue
+                FormAWBOther.load_form()
                 Close()
             Else
                 'edit
