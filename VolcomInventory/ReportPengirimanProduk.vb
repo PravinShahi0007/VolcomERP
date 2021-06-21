@@ -6,7 +6,7 @@
         Dim q As String = "SELECT IF(pl.`is_combine`=1,plc.`combine_number`,pl.`pl_sales_order_del_number`) AS do_number,CONCAT(c.`comp_number`,' - ',c.`comp_display_name`) AS store
 ,p.`product_full_code`,dsg.`design_display_name`,cd.`code_detail_name` AS size,cls.class
 ,pld.`pl_sales_order_del_det_qty` AS qty,odmph.`created_date` AS pickup_date,pl.`pl_sales_order_del_date` AS pl_date
-,sos.`so_status`,pl.`pl_sales_order_del_note`,odmph.`number`,del.`awbill_no`
+,sos.`so_status`,IF(pl.`is_combine`=1,plc.combine_note,pl.`pl_sales_order_del_note`) AS pl_sales_order_del_note,odmph.`number`,del.`awbill_no`
 FROM tb_odm_print_det odmp
 INNER JOIN tb_odm_print odmph ON odmph.id_odm_print=odmp.id_odm_print 
 INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmp.id_odm_sc AND odmp.id_odm_print='" & id_odm_print & "'
