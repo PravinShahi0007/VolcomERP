@@ -33,6 +33,7 @@ Partial Class FormStockTakePeriodSOH
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBEOS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,6 +135,7 @@ Partial Class FormStockTakePeriodSOH
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBEOS)
         Me.PanelControl1.Controls.Add(Me.CheckEdit1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -159,6 +161,14 @@ Partial Class FormStockTakePeriodSOH
         Me.SBSave.Size = New System.Drawing.Size(89, 41)
         Me.SBSave.TabIndex = 10
         Me.SBSave.Text = "Select"
+        '
+        'SBEOS
+        '
+        Me.SBEOS.Location = New System.Drawing.Point(497, 10)
+        Me.SBEOS.Name = "SBEOS"
+        Me.SBEOS.Size = New System.Drawing.Size(75, 23)
+        Me.SBEOS.TabIndex = 1
+        Me.SBEOS.Text = "Browse EOS"
         '
         'FormStockTakePeriodSOH
         '
@@ -196,4 +206,5 @@ Partial Class FormStockTakePeriodSOH
     Friend WithEvents RICESelect As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBEOS As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -27,9 +27,12 @@ Partial Class FormAWBOtherDet
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -39,8 +42,8 @@ Partial Class FormAWBOtherDet
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -49,9 +52,6 @@ Partial Class FormAWBOtherDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,8 +64,8 @@ Partial Class FormAWBOtherDet
         CType(Me.DEPickupDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
@@ -131,6 +131,12 @@ Partial Class FormAWBOtherDet
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID Departement"
+        Me.GridColumn8.FieldName = "id_departement"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Departement Pengirim"
@@ -147,6 +153,12 @@ Partial Class FormAWBOtherDet
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
         '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID Comp"
+        Me.GridColumn11.FieldName = "id_comp"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Tujuan"
@@ -154,6 +166,12 @@ Partial Class FormAWBOtherDet
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID Sub District"
+        Me.GridColumn12.FieldName = "id_sub_district"
+        Me.GridColumn12.Name = "GridColumn12"
         '
         'GridColumn6
         '
@@ -176,8 +194,8 @@ Partial Class FormAWBOtherDet
         Me.PanelControl2.Controls.Add(Me.DECreatedDate)
         Me.PanelControl2.Controls.Add(Me.DEPickupDate)
         Me.PanelControl2.Controls.Add(Me.SLUE3PL)
-        Me.PanelControl2.Controls.Add(Me.TextEdit2)
-        Me.PanelControl2.Controls.Add(Me.TextEdit1)
+        Me.PanelControl2.Controls.Add(Me.TECreatedBy)
+        Me.PanelControl2.Controls.Add(Me.TENumber)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
@@ -246,21 +264,21 @@ Partial Class FormAWBOtherDet
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
         '
-        'TextEdit2
+        'TECreatedBy
         '
-        Me.TextEdit2.Location = New System.Drawing.Point(83, 35)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.ReadOnly = True
-        Me.TextEdit2.Size = New System.Drawing.Size(187, 20)
-        Me.TextEdit2.TabIndex = 6
+        Me.TECreatedBy.Location = New System.Drawing.Point(83, 35)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.ReadOnly = True
+        Me.TECreatedBy.Size = New System.Drawing.Size(187, 20)
+        Me.TECreatedBy.TabIndex = 6
         '
-        'TextEdit1
+        'TENumber
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(83, 9)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(161, 20)
-        Me.TextEdit1.TabIndex = 5
+        Me.TENumber.Location = New System.Drawing.Point(83, 9)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(161, 20)
+        Me.TENumber.TabIndex = 5
         '
         'LabelControl5
         '
@@ -332,24 +350,6 @@ Partial Class FormAWBOtherDet
         Me.BAdd.TabIndex = 1
         Me.BAdd.Text = "Add"
         '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "ID Departement"
-        Me.GridColumn8.FieldName = "id_departement"
-        Me.GridColumn8.Name = "GridColumn8"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "ID Comp"
-        Me.GridColumn11.FieldName = "id_comp"
-        Me.GridColumn11.Name = "GridColumn11"
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "ID Sub District"
-        Me.GridColumn12.FieldName = "id_sub_district"
-        Me.GridColumn12.Name = "GridColumn12"
-        '
         'FormAWBOtherDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -378,8 +378,8 @@ Partial Class FormAWBOtherDet
         CType(Me.DEPickupDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUE3PL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -402,8 +402,8 @@ Partial Class FormAWBOtherDet
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl

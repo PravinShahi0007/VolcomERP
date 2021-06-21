@@ -59,28 +59,46 @@ INNER JOIN tb_m_city cit ON cit.id_city=dis.`id_city`"
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         'save
         Cursor = Cursors.WaitCursor
-
-        If TEAWBNumber.Text = "" Or SLESubDistrict.EditValue.ToString = "0" Or (SLEClient.EditValue.ToString = "0" And TEExtraNote.EditValue.ToString = "") Then
-            warningCustom("Please complete all data")
+        'check awb
+        Dim q As String = "SELECT * FROM 
+tb_awb_office_det d
+INNER JOIN tb_awb_office o ON o.id_awb_office=d.id_awb_office
+WHERE o.is_void=2
+AND o.id_comp='" & FormAWBOtherDet.SLUE3PL.EditValue.ToString & "' AND d.awbill_no='" & addSlashes(TEAWBNumber.Text) & "' "
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        'check on form
+        Dim is_already As Boolean = False
+        For i = 0 To FormAWBOtherDet.GVList.RowCount - 1
+            If FormAWBOtherDet.GVList.GetRowCellValue(i, "awbill_no").ToString = TEAWBNumber.Text Then
+                is_already = True
+                Exit For
+            End If
+        Next
+        '
+        If dt.Rows.Count > 0 Or is_already Then
+            warningCustom("AWB already registered")
         Else
-            FormAWBOtherDet.GVList.AddNewRow()
-            FormAWBOtherDet.GVList.FocusedRowHandle = FormAWBOtherDet.GVList.RowCount - 1
-            '
-            FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "awbill_no", TEAWBNumber.Text)
-            FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "id_departement", LEDeptSum.EditValue.ToString)
-            FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "departement", LEDeptSum.Text.ToString)
-            FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "id_sub_district", SLESubDistrict.EditValue.ToString)
-            FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "sub_district", SLESubDistrict.Text.ToString)
-            FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "jml_koli", TEKoli.EditValue.ToString)
-            '
-            FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "id_client", SLEClient.EditValue.ToString)
-            FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "comp_name", SLEClient.Text.ToString)
-            FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "client_note", TEExtraNote.Text.ToString)
-            '
-            FormAWBOtherDet.GVList.BestFitColumns()
-            load_head()
+            If TEAWBNumber.Text = "" Or SLESubDistrict.EditValue.ToString = "0" Or (SLEClient.EditValue.ToString = "0" And TEExtraNote.EditValue.ToString = "") Then
+                warningCustom("Please complete all data")
+            Else
+                FormAWBOtherDet.GVList.AddNewRow()
+                FormAWBOtherDet.GVList.FocusedRowHandle = FormAWBOtherDet.GVList.RowCount - 1
+                '
+                FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "awbill_no", TEAWBNumber.Text)
+                FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "id_departement", LEDeptSum.EditValue.ToString)
+                FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "departement", LEDeptSum.Text.ToString)
+                FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "id_sub_district", SLESubDistrict.EditValue.ToString)
+                FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "sub_district", SLESubDistrict.Text.ToString)
+                FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "jml_koli", TEKoli.EditValue.ToString)
+                '
+                FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "id_client", SLEClient.EditValue.ToString)
+                FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "comp_name", SLEClient.Text.ToString)
+                FormAWBOtherDet.GVList.SetRowCellValue(FormAWBOtherDet.GVList.RowCount - 1, "client_note", TEExtraNote.Text.ToString)
+                '
+                FormAWBOtherDet.GVList.BestFitColumns()
+                load_head()
+            End If
         End If
-
         Cursor = Cursors.Default
     End Sub
 
