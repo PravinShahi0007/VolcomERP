@@ -111,7 +111,7 @@ Partial Public Class ReportMBSVsYear
         Me.XrTableCell7.Name = "XrTableCell7"
         Me.XrTableCell7.StylePriority.UseFont = False
         Me.XrTableCell7.StylePriority.UseTextAlignment = False
-        Me.XrTableCell7.Text = "December [prev_year]"
+        Me.XrTableCell7.Text = "[prev_year]"
         Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.XrTableCell7.Weight = 1.6248677750068579R
         '
