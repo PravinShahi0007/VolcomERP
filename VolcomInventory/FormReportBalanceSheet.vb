@@ -1764,7 +1764,11 @@ WHERE t.id_acc_trans IN (" + id + ") AND r.id_type = 1"
                 Report.dt = GCSalesRealization.DataSource
                 Report.languange = "eng"
 
-                Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y') AS this_year,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%Y') AS last_year "
+                Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y') AS this_year
+,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%Y') AS last_year 
+,`title` AS title_report
+FROM tb_b_net_sales_title
+WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "')"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
                 Report.DataSource = dt
@@ -2330,7 +2334,11 @@ WHERE t.id_acc_trans IN (" + id + ") AND r.id_type = 1"
         RSA.dt = GCSalesRealization.DataSource
         RSA.languange = "eng"
 
-        Dim RSA_q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y') AS this_year,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%Y') AS last_year "
+        Dim RSA_q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y') AS this_year
+,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%Y') AS last_year 
+,`title` AS title_report
+FROM tb_b_net_sales_title
+WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "')"
         Dim RSA_dt As DataTable = execute_query(RSA_q, -1, True, "", "", "", "")
 
         RSA.DataSource = dt
