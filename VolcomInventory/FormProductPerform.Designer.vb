@@ -38,21 +38,22 @@ Partial Class FormProductPerform
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPeriod = New DevExpress.XtraTab.XtraTabPage()
+        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.CCBEClass = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.CCBECategory = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.CCBEDivision = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.CCBESeason = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.SBClear = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBSearch = New DevExpress.XtraEditors.SimpleButton()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.TEProductCode = New DevExpress.XtraEditors.TextEdit()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.CCBECategory = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.CCBEDivision = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.TEProductCode = New DevExpress.XtraEditors.TextEdit()
+        Me.CCBESeason = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.SBClear = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.SBSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPStore = New DevExpress.XtraTab.XtraTabPage()
         Me.GCStore = New DevExpress.XtraGrid.GridControl()
         Me.GVStore = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -64,6 +65,8 @@ Partial Class FormProductPerform
         Me.GridColumnid_wh_ol = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_commerce_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LECat = New DevExpress.XtraEditors.LookUpEdit()
         Me.CESelectAllStore = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnReset = New DevExpress.XtraEditors.SimpleButton()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -92,11 +95,12 @@ Partial Class FormProductPerform
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPPeriod.SuspendLayout()
+        Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.CCBEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCBECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCBEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEProductCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPStore.SuspendLayout()
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,6 +108,7 @@ Partial Class FormProductPerform
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CESelectAllStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MESelectedStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,6 +126,8 @@ Partial Class FormProductPerform
         Me.PanelControl1.Controls.Add(Me.SBView)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 465)
+        Me.PanelControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(333, 42)
         Me.PanelControl1.TabIndex = 1
@@ -140,6 +147,8 @@ Partial Class FormProductPerform
         Me.SBExportExcel.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBExportExcel.Image = CType(resources.GetObject("SBExportExcel.Image"), System.Drawing.Image)
         Me.SBExportExcel.Location = New System.Drawing.Point(146, 2)
+        Me.SBExportExcel.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.SBExportExcel.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBExportExcel.Name = "SBExportExcel"
         Me.SBExportExcel.Size = New System.Drawing.Size(108, 38)
         Me.SBExportExcel.TabIndex = 2
@@ -150,6 +159,8 @@ Partial Class FormProductPerform
         Me.SBView.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBView.Image = CType(resources.GetObject("SBView.Image"), System.Drawing.Image)
         Me.SBView.Location = New System.Drawing.Point(254, 2)
+        Me.SBView.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.SBView.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBView.Name = "SBView"
         Me.SBView.Size = New System.Drawing.Size(77, 38)
         Me.SBView.TabIndex = 0
@@ -157,7 +168,7 @@ Partial Class FormProductPerform
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 42)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl1.TabIndex = 28
@@ -165,7 +176,7 @@ Partial Class FormProductPerform
         '
         'LEArea
         '
-        Me.LEArea.Location = New System.Drawing.Point(82, 11)
+        Me.LEArea.Location = New System.Drawing.Point(82, 39)
         Me.LEArea.Name = "LEArea"
         Me.LEArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEArea.Size = New System.Drawing.Size(233, 20)
@@ -173,7 +184,7 @@ Partial Class FormProductPerform
         '
         'SLUEMonthTo
         '
-        Me.SLUEMonthTo.Location = New System.Drawing.Point(11, 80)
+        Me.SLUEMonthTo.Location = New System.Drawing.Point(14, 73)
         Me.SLUEMonthTo.Name = "SLUEMonthTo"
         Me.SLUEMonthTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEMonthTo.Properties.View = Me.GridView6
@@ -204,7 +215,7 @@ Partial Class FormProductPerform
         '
         'SLUEMonthFrom
         '
-        Me.SLUEMonthFrom.Location = New System.Drawing.Point(11, 35)
+        Me.SLUEMonthFrom.Location = New System.Drawing.Point(14, 28)
         Me.SLUEMonthFrom.Name = "SLUEMonthFrom"
         Me.SLUEMonthFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEMonthFrom.Properties.View = Me.GridView5
@@ -258,6 +269,8 @@ Partial Class FormProductPerform
         '
         Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCData.Location = New System.Drawing.Point(0, 0)
+        Me.XTCData.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.XTCData.LookAndFeel.UseDefaultLookAndFeel = False
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPPeriod
         Me.XTCData.Size = New System.Drawing.Size(333, 465)
@@ -266,143 +279,144 @@ Partial Class FormProductPerform
         '
         'XTPPeriod
         '
-        Me.XTPPeriod.Controls.Add(Me.CCBEClass)
-        Me.XTPPeriod.Controls.Add(Me.CCBECategory)
-        Me.XTPPeriod.Controls.Add(Me.CCBEDivision)
-        Me.XTPPeriod.Controls.Add(Me.CCBESeason)
-        Me.XTPPeriod.Controls.Add(Me.SBClear)
-        Me.XTPPeriod.Controls.Add(Me.SBSearch)
-        Me.XTPPeriod.Controls.Add(Me.Label8)
-        Me.XTPPeriod.Controls.Add(Me.TEProductCode)
-        Me.XTPPeriod.Controls.Add(Me.Label4)
-        Me.XTPPeriod.Controls.Add(Me.Label2)
-        Me.XTPPeriod.Controls.Add(Me.Label3)
-        Me.XTPPeriod.Controls.Add(Me.Label5)
-        Me.XTPPeriod.Controls.Add(Me.PanelControl3)
-        Me.XTPPeriod.Controls.Add(Me.LabelControl3)
-        Me.XTPPeriod.Controls.Add(Me.LabelControl2)
-        Me.XTPPeriod.Controls.Add(Me.SLUEMonthTo)
-        Me.XTPPeriod.Controls.Add(Me.SLUEMonthFrom)
+        Me.XTPPeriod.Controls.Add(Me.XtraScrollableControl1)
         Me.XTPPeriod.Name = "XTPPeriod"
-        Me.XTPPeriod.Size = New System.Drawing.Size(327, 437)
+        Me.XTPPeriod.Size = New System.Drawing.Size(331, 440)
         Me.XTPPeriod.Text = "Filter by Period && Product"
+        '
+        'XtraScrollableControl1
+        '
+        Me.XtraScrollableControl1.Controls.Add(Me.CCBEClass)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLUEMonthFrom)
+        Me.XtraScrollableControl1.Controls.Add(Me.Label2)
+        Me.XtraScrollableControl1.Controls.Add(Me.CCBECategory)
+        Me.XtraScrollableControl1.Controls.Add(Me.Label3)
+        Me.XtraScrollableControl1.Controls.Add(Me.Label4)
+        Me.XtraScrollableControl1.Controls.Add(Me.CCBEDivision)
+        Me.XtraScrollableControl1.Controls.Add(Me.Label5)
+        Me.XtraScrollableControl1.Controls.Add(Me.TEProductCode)
+        Me.XtraScrollableControl1.Controls.Add(Me.CCBESeason)
+        Me.XtraScrollableControl1.Controls.Add(Me.PanelControl3)
+        Me.XtraScrollableControl1.Controls.Add(Me.SLUEMonthTo)
+        Me.XtraScrollableControl1.Controls.Add(Me.Label8)
+        Me.XtraScrollableControl1.Controls.Add(Me.SBClear)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl3)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl2)
+        Me.XtraScrollableControl1.Controls.Add(Me.SBSearch)
+        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(331, 440)
+        Me.XtraScrollableControl1.TabIndex = 0
         '
         'CCBEClass
         '
         Me.CCBEClass.EditValue = ""
-        Me.CCBEClass.Location = New System.Drawing.Point(11, 283)
+        Me.CCBEClass.Location = New System.Drawing.Point(14, 276)
         Me.CCBEClass.Name = "CCBEClass"
         Me.CCBEClass.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CCBEClass.Size = New System.Drawing.Size(288, 20)
         Me.CCBEClass.TabIndex = 54
         '
-        'CCBECategory
-        '
-        Me.CCBECategory.EditValue = ""
-        Me.CCBECategory.Location = New System.Drawing.Point(11, 238)
-        Me.CCBECategory.Name = "CCBECategory"
-        Me.CCBECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBECategory.Size = New System.Drawing.Size(288, 20)
-        Me.CCBECategory.TabIndex = 53
-        '
-        'CCBEDivision
-        '
-        Me.CCBEDivision.EditValue = ""
-        Me.CCBEDivision.Location = New System.Drawing.Point(11, 194)
-        Me.CCBEDivision.Name = "CCBEDivision"
-        Me.CCBEDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBEDivision.Size = New System.Drawing.Size(288, 20)
-        Me.CCBEDivision.TabIndex = 52
-        '
-        'CCBESeason
-        '
-        Me.CCBESeason.EditValue = ""
-        Me.CCBESeason.Location = New System.Drawing.Point(11, 148)
-        Me.CCBESeason.Name = "CCBESeason"
-        Me.CCBESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBESeason.Size = New System.Drawing.Size(288, 20)
-        Me.CCBESeason.TabIndex = 51
-        '
-        'SBClear
-        '
-        Me.SBClear.Image = CType(resources.GetObject("SBClear.Image"), System.Drawing.Image)
-        Me.SBClear.Location = New System.Drawing.Point(273, 327)
-        Me.SBClear.Name = "SBClear"
-        Me.SBClear.Size = New System.Drawing.Size(26, 23)
-        Me.SBClear.TabIndex = 50
-        '
-        'SBSearch
-        '
-        Me.SBSearch.Image = CType(resources.GetObject("SBSearch.Image"), System.Drawing.Image)
-        Me.SBSearch.Location = New System.Drawing.Point(241, 326)
-        Me.SBSearch.Name = "SBSearch"
-        Me.SBSearch.Size = New System.Drawing.Size(26, 23)
-        Me.SBSearch.TabIndex = 49
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(8, 313)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(44, 13)
-        Me.Label8.TabIndex = 48
-        Me.Label8.Text = "Product"
-        '
-        'TEProductCode
-        '
-        Me.TEProductCode.EditValue = ""
-        Me.TEProductCode.Enabled = False
-        Me.TEProductCode.Location = New System.Drawing.Point(11, 329)
-        Me.TEProductCode.Name = "TEProductCode"
-        Me.TEProductCode.Size = New System.Drawing.Size(224, 20)
-        Me.TEProductCode.TabIndex = 47
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(8, 267)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(32, 13)
-        Me.Label4.TabIndex = 46
-        Me.Label4.Text = "Class"
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(8, 222)
+        Me.Label2.Location = New System.Drawing.Point(11, 215)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(52, 13)
         Me.Label2.TabIndex = 45
         Me.Label2.Text = "Category"
         '
+        'CCBECategory
+        '
+        Me.CCBECategory.EditValue = ""
+        Me.CCBECategory.Location = New System.Drawing.Point(14, 231)
+        Me.CCBECategory.Name = "CCBECategory"
+        Me.CCBECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBECategory.Size = New System.Drawing.Size(288, 20)
+        Me.CCBECategory.TabIndex = 53
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(8, 178)
+        Me.Label3.Location = New System.Drawing.Point(11, 171)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(43, 13)
         Me.Label3.TabIndex = 44
         Me.Label3.Text = "Division"
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(11, 260)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(32, 13)
+        Me.Label4.TabIndex = 46
+        Me.Label4.Text = "Class"
+        '
+        'CCBEDivision
+        '
+        Me.CCBEDivision.EditValue = ""
+        Me.CCBEDivision.Location = New System.Drawing.Point(14, 187)
+        Me.CCBEDivision.Name = "CCBEDivision"
+        Me.CCBEDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEDivision.Size = New System.Drawing.Size(288, 20)
+        Me.CCBEDivision.TabIndex = 52
+        '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(8, 132)
+        Me.Label5.Location = New System.Drawing.Point(11, 125)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(42, 13)
         Me.Label5.TabIndex = 43
         Me.Label5.Text = "Season"
         '
+        'TEProductCode
+        '
+        Me.TEProductCode.EditValue = ""
+        Me.TEProductCode.Enabled = False
+        Me.TEProductCode.Location = New System.Drawing.Point(14, 322)
+        Me.TEProductCode.Name = "TEProductCode"
+        Me.TEProductCode.Size = New System.Drawing.Size(224, 20)
+        Me.TEProductCode.TabIndex = 47
+        '
+        'CCBESeason
+        '
+        Me.CCBESeason.EditValue = ""
+        Me.CCBESeason.Location = New System.Drawing.Point(14, 141)
+        Me.CCBESeason.Name = "CCBESeason"
+        Me.CCBESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBESeason.Size = New System.Drawing.Size(288, 20)
+        Me.CCBESeason.TabIndex = 51
+        '
         'PanelControl3
         '
-        Me.PanelControl3.Location = New System.Drawing.Point(15, 118)
+        Me.PanelControl3.Location = New System.Drawing.Point(18, 111)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(277, 2)
         Me.PanelControl3.TabIndex = 38
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(11, 306)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(44, 13)
+        Me.Label8.TabIndex = 48
+        Me.Label8.Text = "Product"
+        '
+        'SBClear
+        '
+        Me.SBClear.Image = CType(resources.GetObject("SBClear.Image"), System.Drawing.Image)
+        Me.SBClear.Location = New System.Drawing.Point(276, 320)
+        Me.SBClear.Name = "SBClear"
+        Me.SBClear.Size = New System.Drawing.Size(26, 23)
+        Me.SBClear.TabIndex = 50
+        '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(11, 61)
+        Me.LabelControl3.Location = New System.Drawing.Point(14, 54)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl3.TabIndex = 30
@@ -410,28 +424,38 @@ Partial Class FormProductPerform
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(11, 16)
+        Me.LabelControl2.Location = New System.Drawing.Point(14, 9)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl2.TabIndex = 29
         Me.LabelControl2.Text = "From"
+        '
+        'SBSearch
+        '
+        Me.SBSearch.Image = CType(resources.GetObject("SBSearch.Image"), System.Drawing.Image)
+        Me.SBSearch.Location = New System.Drawing.Point(244, 319)
+        Me.SBSearch.Name = "SBSearch"
+        Me.SBSearch.Size = New System.Drawing.Size(26, 23)
+        Me.SBSearch.TabIndex = 49
         '
         'XTPStore
         '
         Me.XTPStore.Controls.Add(Me.GCStore)
         Me.XTPStore.Controls.Add(Me.PanelControl2)
         Me.XTPStore.Name = "XTPStore"
-        Me.XTPStore.Size = New System.Drawing.Size(327, 437)
+        Me.XTPStore.Size = New System.Drawing.Size(331, 440)
         Me.XTPStore.Text = "Filter by Store"
         '
         'GCStore
         '
         Me.GCStore.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCStore.Location = New System.Drawing.Point(0, 192)
+        Me.GCStore.Location = New System.Drawing.Point(0, 224)
+        Me.GCStore.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.GCStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GCStore.MainView = Me.GVStore
         Me.GCStore.Name = "GCStore"
         Me.GCStore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCStore.Size = New System.Drawing.Size(327, 245)
+        Me.GCStore.Size = New System.Drawing.Size(331, 216)
         Me.GCStore.TabIndex = 40
         Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
         '
@@ -501,6 +525,8 @@ Partial Class FormProductPerform
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.LabelControl4)
+        Me.PanelControl2.Controls.Add(Me.LECat)
         Me.PanelControl2.Controls.Add(Me.CESelectAllStore)
         Me.PanelControl2.Controls.Add(Me.BtnReset)
         Me.PanelControl2.Controls.Add(Me.Label1)
@@ -514,12 +540,28 @@ Partial Class FormProductPerform
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(327, 192)
+        Me.PanelControl2.Size = New System.Drawing.Size(331, 224)
         Me.PanelControl2.TabIndex = 39
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(11, 16)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl4.TabIndex = 44
+        Me.LabelControl4.Text = "Category"
+        '
+        'LECat
+        '
+        Me.LECat.Location = New System.Drawing.Point(82, 13)
+        Me.LECat.Name = "LECat"
+        Me.LECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECat.Size = New System.Drawing.Size(233, 20)
+        Me.LECat.TabIndex = 43
         '
         'CESelectAllStore
         '
-        Me.CESelectAllStore.Location = New System.Drawing.Point(129, 164)
+        Me.CESelectAllStore.Location = New System.Drawing.Point(129, 192)
         Me.CESelectAllStore.Name = "CESelectAllStore"
         Me.CESelectAllStore.Properties.Caption = "Select all store"
         Me.CESelectAllStore.Size = New System.Drawing.Size(91, 19)
@@ -528,7 +570,9 @@ Partial Class FormProductPerform
         'BtnReset
         '
         Me.BtnReset.Image = CType(resources.GetObject("BtnReset.Image"), System.Drawing.Image)
-        Me.BtnReset.Location = New System.Drawing.Point(226, 162)
+        Me.BtnReset.Location = New System.Drawing.Point(226, 190)
+        Me.BtnReset.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.BtnReset.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnReset.Name = "BtnReset"
         Me.BtnReset.Size = New System.Drawing.Size(89, 23)
         Me.BtnReset.TabIndex = 41
@@ -537,7 +581,7 @@ Partial Class FormProductPerform
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 91)
+        Me.Label1.Location = New System.Drawing.Point(8, 119)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(51, 26)
         Me.Label1.TabIndex = 40
@@ -546,14 +590,14 @@ Partial Class FormProductPerform
         'MESelectedStore
         '
         Me.MESelectedStore.Enabled = False
-        Me.MESelectedStore.Location = New System.Drawing.Point(82, 89)
+        Me.MESelectedStore.Location = New System.Drawing.Point(82, 117)
         Me.MESelectedStore.Name = "MESelectedStore"
         Me.MESelectedStore.Size = New System.Drawing.Size(233, 67)
         Me.MESelectedStore.TabIndex = 39
         '
         'SLUECompGroup
         '
-        Me.SLUECompGroup.Location = New System.Drawing.Point(82, 63)
+        Me.SLUECompGroup.Location = New System.Drawing.Point(82, 91)
         Me.SLUECompGroup.Name = "SLUECompGroup"
         Me.SLUECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUECompGroup.Properties.View = Me.GridView11
@@ -585,7 +629,7 @@ Partial Class FormProductPerform
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(8, 66)
+        Me.Label11.Location = New System.Drawing.Point(8, 94)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(65, 13)
         Me.Label11.TabIndex = 37
@@ -594,7 +638,7 @@ Partial Class FormProductPerform
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(8, 40)
+        Me.Label10.Location = New System.Drawing.Point(8, 68)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(48, 13)
         Me.Label10.TabIndex = 35
@@ -602,7 +646,7 @@ Partial Class FormProductPerform
         '
         'SLUEProvince
         '
-        Me.SLUEProvince.Location = New System.Drawing.Point(82, 37)
+        Me.SLUEProvince.Location = New System.Drawing.Point(82, 65)
         Me.SLUEProvince.Name = "SLUEProvince"
         Me.SLUEProvince.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEProvince.Properties.View = Me.GridView10
@@ -664,12 +708,13 @@ Partial Class FormProductPerform
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
         Me.XTPPeriod.ResumeLayout(False)
-        Me.XTPPeriod.PerformLayout()
+        Me.XtraScrollableControl1.ResumeLayout(False)
+        Me.XtraScrollableControl1.PerformLayout()
         CType(Me.CCBEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCBECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCBEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEProductCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPStore.ResumeLayout(False)
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).EndInit()
@@ -678,6 +723,7 @@ Partial Class FormProductPerform
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CESelectAllStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MESelectedStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -749,4 +795,7 @@ Partial Class FormProductPerform
     Friend WithEvents Label3 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents TxtIdProduct As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LECat As DevExpress.XtraEditors.LookUpEdit
 End Class
