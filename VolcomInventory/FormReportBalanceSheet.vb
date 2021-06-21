@@ -1746,7 +1746,7 @@ WHERE t.id_acc_trans IN (" + id + ") AND r.id_type = 1"
                 Report.dt = GCMBSvsPrevYear.DataSource
                 Report.languange = "eng"
 
-                Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%d %M %Y') AS prev_year "
+                Dim q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(CONCAT(YEAR(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 YEAR)),'-12-31'),'%d %M %Y') AS prev_year "
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
                 Report.DataSource = dt
@@ -2227,7 +2227,7 @@ WHERE t.id_acc_trans IN (" + id + ") AND r.id_type = 1"
         RBSYTD.dt = GCMBSvsPrevYear.DataSource
         RBSYTD.languange = "eng"
 
-        Dim RBSYTD_q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 year)),'%d %M %Y') AS prev_year "
+        Dim RBSYTD_q As String = "SELECT DATE_FORMAT('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "','%d %M %Y') AS this_month,DATE_FORMAT(CONCAT(YEAR(DATE_SUB('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 YEAR)),'-12-31'),'%d %M %Y') AS prev_year "
         Dim RBSYTD_dt As DataTable = execute_query(RBSYTD_q, -1, True, "", "", "", "")
 
         RBSYTD.DataSource = RBSYTD_dt

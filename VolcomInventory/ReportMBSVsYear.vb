@@ -9,7 +9,7 @@
             Dim total_tm As Decimal = 0.00
             Dim total_sub_py As Decimal = 0.00
             Dim total_py As Decimal = 0.00
-
+            '
             Dim row_aktiva As DevExpress.XtraReports.UI.XRTableRow = XTRow
             For i = 0 To dt.Rows.Count - 1
                 If Not current_header = dt.Rows(i)("sub_name").ToString Then
@@ -30,14 +30,29 @@
                 'row total
                 If i < dt.Rows.Count - 1 Then
                     'ini cek ada setelahnya
+                    Dim space As Boolean = False
+
                     If Not current_header = dt.Rows(i + 1)("sub_name").ToString Then
-                        '
                         insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("sub_name").ToString, Decimal.Parse(total_sub_py.ToString).ToString("N2"), Decimal.Parse((total_sub_py / dt.Rows(i)("total_asset_py") * 100).ToString).ToString("N2") & " %", Decimal.Parse(total_sub_tm.ToString).ToString("N2"), Decimal.Parse((total_sub_tm / dt.Rows(i)("total_asset_tm") * 100).ToString).ToString("N2") & " %")
+                        space = True
+                        '
+                        total_sub_py = 0
+                        total_sub_tm = 0
+                    End If
+                    If Not dt.Rows(i)("head_name").ToString = dt.Rows(i + 1)("head_name").ToString Then
+                        insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("head_name").ToString, Decimal.Parse(total_py.ToString).ToString("N2"), Decimal.Parse((total_py / dt.Rows(i)("total_asset_py") * 100).ToString).ToString("N2") & " %", Decimal.Parse(total_tm.ToString).ToString("N2"), Decimal.Parse((total_tm / dt.Rows(i)("total_asset_tm") * 100).ToString).ToString("N2") & " %")
+                        space = True
+                        total_tm = 0
+                        total_py = 0
+                    End If
+
+                    If space Then
                         insert_row(row_aktiva, "bold", XTBalanceSheet, "", "", "", "", "")
                     End If
                 ElseIf i = dt.Rows.Count - 1 Then
                     'ini row terakhir
-                    insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("sub_name").ToString, Decimal.Parse(total_py.ToString).ToString("N2"), Decimal.Parse((total_py / dt.Rows(i)("total_asset_py") * 100).ToString).ToString("N2") & " %", Decimal.Parse(total_tm.ToString).ToString("N2"), Decimal.Parse((total_tm / dt.Rows(i)("total_asset_tm") * 100).ToString).ToString("N2") & " %")
+                    insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("sub_name").ToString, Decimal.Parse(total_sub_py.ToString).ToString("N2"), Decimal.Parse((total_sub_py / dt.Rows(i)("total_asset_py") * 100).ToString).ToString("N2") & " %", Decimal.Parse(total_sub_tm.ToString).ToString("N2"), Decimal.Parse((total_sub_tm / dt.Rows(i)("total_asset_tm") * 100).ToString).ToString("N2") & " %")
+                    insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("head_name").ToString, Decimal.Parse(total_py.ToString).ToString("N2"), Decimal.Parse((total_py / dt.Rows(i)("total_asset_py") * 100).ToString).ToString("N2") & " %", Decimal.Parse(total_tm.ToString).ToString("N2"), Decimal.Parse((total_tm / dt.Rows(i)("total_asset_tm") * 100).ToString).ToString("N2") & " %")
                 End If
             Next
             'XRTotalAsset.Text = Decimal.Parse(total.ToString).ToString("N2")
@@ -69,15 +84,29 @@
                 'row total
                 If i < dt.Rows.Count - 1 Then
                     'ini cek ada setelahnya
+                    Dim space As Boolean = False
+
                     If Not current_header = dt.Rows(i + 1)("sub_name_eng").ToString Then
                         'insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("sub_name_eng").ToString, Decimal.Parse(total_sub.ToString).ToString("N2"), Decimal.Parse((total_sub / dt.Rows(i)("total_asset") * 100).ToString).ToString("N2") & " %")
                         insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("sub_name_eng").ToString, Decimal.Parse(total_sub_py.ToString).ToString("N2"), Decimal.Parse((total_sub_py / dt.Rows(i)("total_asset_py") * 100).ToString).ToString("N2") & " %", Decimal.Parse(total_sub_tm.ToString).ToString("N2"), Decimal.Parse((total_sub_tm / dt.Rows(i)("total_asset_tm") * 100).ToString).ToString("N2") & " %")
+                        space = True
+                        '
+                    End If
+                    If Not dt.Rows(i)("head_name_eng").ToString = dt.Rows(i + 1)("head_name_eng").ToString Then
+                        insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("head_name_eng").ToString, Decimal.Parse(total_py.ToString).ToString("N2"), Decimal.Parse((total_py / dt.Rows(i)("total_asset_py") * 100).ToString).ToString("N2") & " %", Decimal.Parse(total_tm.ToString).ToString("N2"), Decimal.Parse((total_tm / dt.Rows(i)("total_asset_tm") * 100).ToString).ToString("N2") & " %")
+                        space = True
+                        total_tm = 0
+                        total_py = 0
+                    End If
+                    If space Then
                         insert_row(row_aktiva, "bold", XTBalanceSheet, "", "", "", "", "")
                     End If
                 ElseIf i = dt.Rows.Count - 1 Then
                     'ini row terakhir
                     'insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("sub_name_eng").ToString, Decimal.Parse(total_sub.ToString).ToString("N2"), Decimal.Parse((total_sub / dt.Rows(i)("total_asset") * 100).ToString).ToString("N2") & " %")
-                    insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("sub_name_eng").ToString, Decimal.Parse(total_py.ToString).ToString("N2"), Decimal.Parse((total_py / dt.Rows(i)("total_asset_py") * 100).ToString).ToString("N2") & " %", Decimal.Parse(total_tm.ToString).ToString("N2"), Decimal.Parse((total_tm / dt.Rows(i)("total_asset_tm") * 100).ToString).ToString("N2") & " %")
+                    insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("sub_name_eng").ToString, Decimal.Parse(total_sub_py.ToString).ToString("N2"), Decimal.Parse((total_sub_py / dt.Rows(i)("total_asset_py") * 100).ToString).ToString("N2") & " %", Decimal.Parse(total_sub_tm.ToString).ToString("N2"), Decimal.Parse((total_sub_tm / dt.Rows(i)("total_asset_tm") * 100).ToString).ToString("N2") & " %")
+                    insert_row(row_aktiva, "bold", XTBalanceSheet, "TOTAL " & dt.Rows(i)("head_name_eng").ToString, Decimal.Parse(total_py.ToString).ToString("N2"), Decimal.Parse((total_py / dt.Rows(i)("total_asset_py") * 100).ToString).ToString("N2") & " %", Decimal.Parse(total_tm.ToString).ToString("N2"), Decimal.Parse((total_tm / dt.Rows(i)("total_asset_tm") * 100).ToString).ToString("N2") & " %")
+                    '
                 End If
             Next
             'XRTotalAsset.Text = Decimal.Parse(total.ToString).ToString("N2")
