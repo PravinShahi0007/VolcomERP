@@ -12,26 +12,15 @@
     End Sub
 
     Private Sub SBGenerateSummary_Click(sender As Object, e As EventArgs) Handles SBGenerateSummary.Click
-        Dim data As DataTable = execute_query("CALL view_summary_tax_ppn('" + Date.Parse(DEDateFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DEDateTo.EditValue.ToString).ToString("yyyy-MM-dd") + "')", -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query("CALL view_summary_tax_ppn_sum('" + Date.Parse(DEDateFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DEDateTo.EditValue.ToString).ToString("yyyy-MM-dd") + "')", -1, True, "", "", "", "")
 
-        GCSummary.DataSource = data
+        GCSum.DataSource = data
 
-        'numbering
-        Dim last_tag_description As String = "0"
+        GVSum.BestFitColumns()
 
-        Dim no As Integer = 0
+        Dim data1 As DataTable = execute_query("CALL view_summary_tax_ppn('" + Date.Parse(DEDateFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "', '" + Date.Parse(DEDateTo.EditValue.ToString).ToString("yyyy-MM-dd") + "')", -1, True, "", "", "", "")
 
-        For i = 0 To data.Rows.Count - 1
-            If Not data.Rows(i)("tag_description").ToString = last_tag_description Then
-                no = 0
-            End If
-
-            no = no + 1
-
-            data.Rows(i)("no") = no
-
-            last_tag_description = data.Rows(i)("tag_description").ToString
-        Next
+        GCSummary.DataSource = data1
 
         GVSummary.BestFitColumns()
     End Sub
@@ -71,17 +60,31 @@
 
             id_summary = execute_query(query, 0, True, "", "", "", "")
 
-            Dim query_detail As String = "INSERT INTO tb_tax_ppn_summary_det (id_summary, tag_description, id_tax_report, tax_report, balance) VALUES "
+            'detail
+            Dim query_detail As String = "INSERT INTO tb_tax_ppn_summary_det (id_summary, keterangan, vi, vi_total, bc, bc_total, sm, sm_total, total) VALUES "
 
             For i = 0 To GVSummary.RowCount - 1
                 If GVSummary.IsValidRowHandle(i) Then
-                    query_detail = query_detail + "(" + id_summary + ", '" + GVSummary.GetRowCellValue(i, "tag_description").ToString + "', '" + GVSummary.GetRowCellValue(i, "id_tax_report").ToString + "', '" + GVSummary.GetRowCellValue(i, "tax_report").ToString + "', '" + GVSummary.GetRowCellValue(i, "balance").ToString + "'), "
+                    query_detail = query_detail + "(" + id_summary + ", '" + GVSummary.GetRowCellValue(i, "keterangan").ToString + "', '" + GVSummary.GetRowCellValue(i, "vi").ToString + "', '" + GVSummary.GetRowCellValue(i, "vi_total").ToString + "', '" + GVSummary.GetRowCellValue(i, "bc").ToString + "', '" + GVSummary.GetRowCellValue(i, "bc_total").ToString + "', '" + GVSummary.GetRowCellValue(i, "sm").ToString + "', '" + GVSummary.GetRowCellValue(i, "sm_total").ToString + "', '" + GVSummary.GetRowCellValue(i, "total").ToString + "'), "
                 End If
             Next
 
             query_detail = query_detail.Substring(0, query_detail.Length - 2)
 
             execute_non_query(query_detail, True, "", "", "", "")
+
+            'summary
+            Dim query_summary As String = "INSERT INTO tb_tax_ppn_summary_sum (id_summary, keterangan, vi, bc, sm, total) VALUES "
+
+            For i = 0 To GVSum.RowCount - 1
+                If GVSum.IsValidRowHandle(i) Then
+                    query_summary = query_summary + "(" + id_summary + ", '" + GVSum.GetRowCellValue(i, "keterangan").ToString + "', '" + GVSum.GetRowCellValue(i, "vi").ToString + "', '" + GVSum.GetRowCellValue(i, "bc").ToString + "', '" + GVSum.GetRowCellValue(i, "sm").ToString + "', '" + GVSum.GetRowCellValue(i, "total").ToString + "'), "
+                End If
+            Next
+
+            query_summary = query_summary.Substring(0, query_summary.Length - 2)
+
+            execute_non_query(query_summary, True, "", "", "", "")
 
             execute_non_query("UPDATE tb_tax_ppn_summary SET `number` = CONCAT('SUMPPN', LPAD(" + id_summary + ", 7, '0'))  WHERE id_summary = " + id_summary + ";", True, "", "", "", "")
 
@@ -121,31 +124,26 @@
             SLUEReportStatus.EditValue = data.Rows(0)("id_report_status").ToString
 
             Dim query_detail As String = "
-                SELECT 0 AS `no`, tag_description, id_tax_report, tax_report, balance
+                SELECT *
                 FROM tb_tax_ppn_summary_det
                 WHERE id_summary = " + id_summary + "
             "
 
             Dim data_detail As DataTable = execute_query(query_detail, -1, True, "", "", "", "")
 
-            'numbering
-            Dim last_tag_description As String = "0"
-
-            Dim no As Integer = 0
-
-            For i = 0 To data_detail.Rows.Count - 1
-                If Not data_detail.Rows(i)("tag_description").ToString = last_tag_description Then
-                    no = 0
-                End If
-
-                no = no + 1
-
-                data_detail.Rows(i)("no") = no
-
-                last_tag_description = data_detail.Rows(i)("tag_description").ToString
-            Next
-
             GCSummary.DataSource = data_detail
+            GVSummary.BestFitColumns()
+
+            Dim query_summary As String = "
+                SELECT *
+                FROM tb_tax_ppn_summary_sum
+                WHERE id_summary = " + id_summary + "
+            "
+
+            Dim data_summary As DataTable = execute_query(query_summary, -1, True, "", "", "", "")
+
+            GCSum.DataSource = data_summary
+            GVSum.BestFitColumns()
         End If
 
         'controls
@@ -169,13 +167,15 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
-        Dim report As New ReportBalanceTaxSummary()
+        Dim report As New ReportBalancePPNSummary()
 
         report.id_summary = id_summary
         report.data = GCSummary.DataSource
+        report.data_sum = GCSum.DataSource
         report.id_pre = If(SLUEReportStatus.EditValue.ToString = "6", "-1", "1")
 
         report.XLNumber.Text = TENumber.Text
+        report.LPageFooter.Text = report.LPageFooter.Text.Replace("[employee_print]", get_user_identify(id_user, "1"))
         report.XLDate.Text = report.XLDate.Text.Replace("[date]", TECreatedAt.Text)
         report.XLPeriod.Text = report.XLPeriod.Text.Replace("[period_from]", DEDateFrom.Text)
         report.XLPeriod.Text = report.XLPeriod.Text.Replace("[period_to]", DEDateTo.Text)
