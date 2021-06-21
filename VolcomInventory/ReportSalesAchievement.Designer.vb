@@ -21,7 +21,6 @@ Partial Public Class ReportSalesAchievement
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportSalesAchievement))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XTMinNetSales = New DevExpress.XtraReports.UI.XRTable()
         Me.XRowMinNetSales = New DevExpress.XtraReports.UI.XRTableRow()
@@ -31,13 +30,6 @@ Partial Public Class ReportSalesAchievement
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XRMinSales = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -55,6 +47,7 @@ Partial Public Class ReportSalesAchievement
         Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.SubBand2 = New DevExpress.XtraReports.UI.SubBand()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XTOverUnder = New DevExpress.XtraReports.UI.XRTable()
@@ -70,7 +63,6 @@ Partial Public Class ReportSalesAchievement
         Me.XrTableCell23 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell24 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.SubBand3 = New DevExpress.XtraReports.UI.SubBand()
-        Me.SubBand4 = New DevExpress.XtraReports.UI.SubBand()
         Me.XTSalesRealizationPY = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell25 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -84,6 +76,7 @@ Partial Public Class ReportSalesAchievement
         Me.XrTableCell31 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell32 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.SubBand4 = New DevExpress.XtraReports.UI.SubBand()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XTIncDecPy = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow9 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -97,6 +90,13 @@ Partial Public Class ReportSalesAchievement
         Me.XrTableCell38 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell39 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell40 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         CType(Me.XTMinNetSales, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTSalesRealization, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTOverUnder, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,18 +113,6 @@ Partial Public Class ReportSalesAchievement
         Me.Detail.SubBands.AddRange(New DevExpress.XtraReports.UI.SubBand() {Me.SubBand1, Me.SubBand2, Me.SubBand3, Me.SubBand4})
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrLabel4
-        '
-        Me.XrLabel4.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(727.0!, 25.20833!)
-        Me.XrLabel4.StylePriority.UseFont = False
-        Me.XrLabel4.StylePriority.UseTextAlignment = False
-        Me.XrLabel4.Text = "SALES REALIZATION  [this_year]"
-        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
@@ -134,7 +122,7 @@ Partial Public Class ReportSalesAchievement
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(727.0!, 25.20833!)
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.StylePriority.UseTextAlignment = False
-        Me.XrLabel3.Text = "MINIMUM  NET SALES USA  [this_year]"
+        Me.XrLabel3.Text = "[title_report]"
         Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XTMinNetSales
@@ -210,63 +198,6 @@ Partial Public Class ReportSalesAchievement
         Me.XrTableCell6.Text = "NETT"
         Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell6.Weight = 1.0R
-        '
-        'TopMargin
-        '
-        Me.TopMargin.HeightF = 32.0!
-        Me.TopMargin.Name = "TopMargin"
-        Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'BottomMargin
-        '
-        Me.BottomMargin.HeightF = 11.43562!
-        Me.BottomMargin.Name = "BottomMargin"
-        Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'ReportHeader
-        '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.XrLabel2, Me.XrLabel1})
-        Me.ReportHeader.HeightF = 82.04169!
-        Me.ReportHeader.Name = "ReportHeader"
-        '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(512.2686!, 10.00002!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(88.54163!, 72.04168!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze
-        '
-        'XrLabel2
-        '
-        Me.XrLabel2.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 39.25002!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(512.2686!, 29.25!)
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.StylePriority.UseTextAlignment = False
-        Me.XrLabel2.Text = "MINIMUM NET SALES [this_year] VS REALIZATION [this_year]"
-        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel1
-        '
-        Me.XrLabel1.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.00001!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(231.25!, 29.25!)
-        Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.StylePriority.UseTextAlignment = False
-        Me.XrLabel1.Text = "PT. VOLCOM INDONESIA"
-        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'ReportFooter
-        '
-        Me.ReportFooter.HeightF = 12.40531!
-        Me.ReportFooter.Name = "ReportFooter"
         '
         'XRMinSales
         '
@@ -407,6 +338,18 @@ Partial Public Class ReportSalesAchievement
         Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell16.Weight = 1.0R
         '
+        'XrLabel4
+        '
+        Me.XrLabel4.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(727.0!, 25.20833!)
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UseTextAlignment = False
+        Me.XrLabel4.Text = "SALES REALIZATION  [this_year]"
+        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'SubBand2
         '
         Me.SubBand2.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel5, Me.XTOverUnder})
@@ -536,13 +479,6 @@ Partial Public Class ReportSalesAchievement
         Me.SubBand3.KeepTogether = True
         Me.SubBand3.Name = "SubBand3"
         '
-        'SubBand4
-        '
-        Me.SubBand4.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel7, Me.XTIncDecPy})
-        Me.SubBand4.HeightF = 64.70833!
-        Me.SubBand4.KeepTogether = True
-        Me.SubBand4.Name = "SubBand4"
-        '
         'XTSalesRealizationPY
         '
         Me.XTSalesRealizationPY.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
@@ -658,6 +594,13 @@ Partial Public Class ReportSalesAchievement
         Me.XrLabel6.Text = "SALES REALIZATION  [last_year]"
         Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
+        'SubBand4
+        '
+        Me.SubBand4.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel7, Me.XTIncDecPy})
+        Me.SubBand4.HeightF = 64.70833!
+        Me.SubBand4.KeepTogether = True
+        Me.SubBand4.Name = "SubBand4"
+        '
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
@@ -772,6 +715,63 @@ Partial Public Class ReportSalesAchievement
         Me.XrTableCell40.StylePriority.UseTextAlignment = False
         Me.XrTableCell40.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell40.Weight = 1.0R
+        '
+        'TopMargin
+        '
+        Me.TopMargin.HeightF = 32.0!
+        Me.TopMargin.Name = "TopMargin"
+        Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'BottomMargin
+        '
+        Me.BottomMargin.HeightF = 11.43562!
+        Me.BottomMargin.Name = "BottomMargin"
+        Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'ReportHeader
+        '
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.XrLabel2, Me.XrLabel1})
+        Me.ReportHeader.HeightF = 82.04169!
+        Me.ReportHeader.Name = "ReportHeader"
+        '
+        'XrPictureBox1
+        '
+        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(512.2686!, 10.00002!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(88.54163!, 72.04168!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze
+        '
+        'XrLabel2
+        '
+        Me.XrLabel2.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 39.25002!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(512.2686!, 29.25!)
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.StylePriority.UseTextAlignment = False
+        Me.XrLabel2.Text = "MINIMUM NET SALES [this_year] VS REALIZATION [this_year]"
+        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.00001!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(231.25!, 29.25!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = "PT. VOLCOM INDONESIA"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'ReportFooter
+        '
+        Me.ReportFooter.HeightF = 12.40531!
+        Me.ReportFooter.Name = "ReportFooter"
         '
         'ReportSalesAchievement
         '
