@@ -173,6 +173,7 @@ ORDER BY area ASC"
         month.Add("Oct")
         month.Add("Nov")
         month.Add("Dec")
+        view_category_store()
         view_month()
         view_season()
         view_division()
@@ -180,6 +181,22 @@ ORDER BY area ASC"
         view_class()
         viewArea()
         viewProvince()
+        view_group_store()
+    End Sub
+
+    Sub view_category_store()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `id_cat`, 'All' AS `cat`
+        UNION ALL 
+        SELECT 1 AS `id_cat`, 'Wholesale' AS `cat` 
+        UNION ALL
+        SELECT 2 AS `id_cat`, 'Consignment' AS `cat`
+        UNION ALL
+        SELECT 3 AS `id_cat`, 'Online' AS `cat`
+        UNION ALL
+        SELECT 4 AS `id_cat`, 'B&B Wholesale' AS `cat` "
+        viewLookupQuery(LECat, query, 0, "cat", "id_cat")
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormProductPerform_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -346,7 +363,7 @@ ORDER BY area ASC"
         DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 4), 34), '%d %M %Y') AS `Price Update Dates|Price U4`,
         DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 5), 45), '%d %M %Y') AS `Price Update Dates|Price U5`,
         DATE_FORMAT(SUBSTRING(SUBSTRING_INDEX(price_date.design_price_start_date, ',', 6), 56), '%d %M %Y') AS `Price Update Dates|Price U6`,
-        price_type.design_price_type AS `Price Update Dates|Current Status`,
+        price_current.design_price_type AS `Price Update Dates|Current Status`,
         ROUND(wh_rec_normal.qty) AS `WH Received|Normal (BOS)`, ROUND(wh_rec_defect.qty) AS `WH Received|Defect`,
         ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`, 
         IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compG78 + ") THEN soh.qty END),0) AS `Stock Gudang Normal|G78`,
@@ -419,8 +436,9 @@ ORDER BY area ASC"
 	        GROUP BY d.id_design
         ) AS first_del ON  first_del.id_design =d.id_design
         LEFT JOIN (
-	        SELECT id_design, ROUND(design_price) AS design_price, id_design_price_type
+	        SELECT id_design, ROUND(design_price) AS design_price, tb_m_design_price.id_design_price_type, tb_lookup_design_price_type.design_price_type
 	        FROM tb_m_design_price
+            INNER JOIN tb_lookup_design_price_type ON tb_lookup_design_price_type.id_design_price_type = tb_m_design_price.id_design_price_type
 	        WHERE id_design_price IN (
 	         SELECT MAX(id_design_price) AS id_design_price
 	         FROM tb_m_design_price
@@ -444,7 +462,6 @@ ORDER BY area ASC"
 	        WHERE is_active_wh = 1 AND is_design_cost = 0
 	        GROUP BY id_design
         ) AS price_date ON  price_date.id_design = d.id_design
-        LEFT JOIN tb_lookup_design_price_type AS price_type ON price_current.id_design_price_type = price_type.id_design_price_type
         LEFT JOIN (
 	        SELECT s.id_design, SUM(d.pl_prod_order_rec_det_qty) AS qty
 	        FROM tb_pl_prod_order_rec_det AS d
@@ -548,8 +565,9 @@ ORDER BY area ASC"
         Next
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading view")
         GCData.DataSource = data
-        FormMain.SplashScreenManager1.SetWaitFormDescription("Best fit all column")
-        GVData.BestFitColumns()
+        'slow bro
+        'FormMain.SplashScreenManager1.SetWaitFormDescription("Best fit all column")
+        'GVData.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
 
@@ -571,6 +589,22 @@ ORDER BY area ASC"
 
         'filter
         Dim where As String = ""
+        Dim id_cat As String = LECat.EditValue.ToString
+        If id_cat = "1" Then
+            'wholesale
+            where += "AND c.id_comp_group='59' AND c.id_commerce_type='1 ' "
+        ElseIf id_cat = "2" Then
+            'consingment
+            where += "AND c.id_comp_group<>'59' AND c.id_comp_group<>'7' AND c.id_commerce_type='1' "
+        ElseIf id_cat = "3" Then
+            'online
+            where += "AND c.id_comp_group<>'59' AND c.id_comp_group<>'7' AND c.id_commerce_type='2' "
+        ElseIf id_cat = "4" Then
+            'b&b wholesale
+            where += "AND c.id_comp_group<>'59' AND c.id_comp_group='7' AND c.id_commerce_type='1' "
+        Else
+            where += ""
+        End If
         If LEArea.EditValue.ToString <> "0" Then
             where += "AND c.id_area='" + LEArea.EditValue.ToString + "' "
         End If
@@ -723,5 +757,14 @@ ORDER BY area ASC"
 
     Private Sub GVStore_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVStore.ColumnFilterChanged
         setSelectedStore()
+    End Sub
+
+    Private Sub XtraScrollableControl1_Click(sender As Object, e As EventArgs) Handles XtraScrollableControl1.Click
+
+    End Sub
+
+    Private Sub LECat_EditValueChanged(sender As Object, e As EventArgs) Handles LECat.EditValueChanged
+        view_group_store()
+        viewStore()
     End Sub
 End Class
