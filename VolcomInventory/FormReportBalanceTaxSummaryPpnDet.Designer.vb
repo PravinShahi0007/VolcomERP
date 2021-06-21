@@ -32,20 +32,33 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
         Me.SLUEReportStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSum = New DevExpress.XtraGrid.GridControl()
+        Me.GVSum = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,6 +74,12 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
+        CType(Me.GCSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage2.SuspendLayout()
         Me.SuspendLayout()
         '
         'SBMark
@@ -180,6 +199,16 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
         Me.PanelControl2.Size = New System.Drawing.Size(784, 49)
         Me.PanelControl2.TabIndex = 5
         '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.Image = CType(resources.GetObject("BAttachment.Image"), System.Drawing.Image)
+        Me.BAttachment.Location = New System.Drawing.Point(495, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(107, 45)
+        Me.BAttachment.TabIndex = 3
+        Me.BAttachment.Text = "Attachment"
+        '
         'SBPrint
         '
         Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
@@ -199,38 +228,6 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
         Me.Label4.Size = New System.Drawing.Size(74, 13)
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "Report Status"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Jumlah"
-        Me.GridColumn4.DisplayFormat.FormatString = "N2"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "balance"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Keterangan"
-        Me.GridColumn3.FieldName = "tax_report"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.FieldName = "id_tax_report"
-        Me.GridColumn5.Name = "GridColumn5"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Tag"
-        Me.GridColumn2.FieldName = "tag_description"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
         '
         'Label3
         '
@@ -270,33 +267,96 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
         Me.GVSummary.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
         Me.GVSummary.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVSummary.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn3, Me.GridColumn4})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn6, Me.GridColumn3, Me.GridColumn7, Me.GridColumn4, Me.GridColumn8, Me.GridColumn5})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupCount = 1
         Me.GVSummary.GroupFormat = "[#image]{1} {2}"
-        Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", Me.GridColumn4, "{0:N2}")})
         Me.GVSummary.Name = "GVSummary"
         Me.GVSummary.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVSummary.OptionsBehavior.ReadOnly = True
-        Me.GVSummary.OptionsView.ShowFooter = True
+        Me.GVSummary.OptionsView.ColumnAutoWidth = False
         Me.GVSummary.OptionsView.ShowGroupPanel = False
-        Me.GVSummary.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVSummary.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "No"
-        Me.GridColumn1.FieldName = "no"
+        Me.GridColumn1.Caption = "KETERANGAN"
+        Me.GridColumn1.FieldName = "keterangan"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "PT VOLCOM INDONESIA (OFFICE)"
+        Me.GridColumn2.FieldName = "vi"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = " "
+        Me.GridColumn6.DisplayFormat.FormatString = "N2"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "vi_total"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "TOKO VOLCOM BEMO CORNER"
+        Me.GridColumn3.FieldName = "bc"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = " "
+        Me.GridColumn7.DisplayFormat.FormatString = "N2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn7.FieldName = "bc_total"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 3
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "TOKO VOLCOM SEMINYAK"
+        Me.GridColumn4.FieldName = "sm"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 4
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = " "
+        Me.GridColumn8.DisplayFormat.FormatString = "N2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "sm_total"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 5
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "TOTAL"
+        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "total"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 6
+        '
         'GCSummary
         '
         Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSummary.Location = New System.Drawing.Point(0, 102)
+        Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(784, 410)
+        Me.GCSummary.Size = New System.Drawing.Size(778, 382)
         Me.GCSummary.TabIndex = 4
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -339,22 +399,131 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
         Me.PanelControl1.Size = New System.Drawing.Size(784, 102)
         Me.PanelControl1.TabIndex = 3
         '
-        'BAttachment
+        'XtraTabControl1
         '
-        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAttachment.Image = CType(resources.GetObject("BAttachment.Image"), System.Drawing.Image)
-        Me.BAttachment.Location = New System.Drawing.Point(495, 2)
-        Me.BAttachment.Name = "BAttachment"
-        Me.BAttachment.Size = New System.Drawing.Size(107, 45)
-        Me.BAttachment.TabIndex = 3
-        Me.BAttachment.Text = "Attachment"
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 102)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
+        Me.XtraTabControl1.Size = New System.Drawing.Size(784, 410)
+        Me.XtraTabControl1.TabIndex = 6
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCSum)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(778, 382)
+        Me.XtraTabPage1.Text = "Summary"
+        '
+        'GCSum
+        '
+        Me.GCSum.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSum.Location = New System.Drawing.Point(0, 0)
+        Me.GCSum.MainView = Me.GVSum
+        Me.GCSum.Name = "GCSum"
+        Me.GCSum.Size = New System.Drawing.Size(778, 382)
+        Me.GCSum.TabIndex = 5
+        Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
+        '
+        'GVSum
+        '
+        Me.GVSum.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVSum.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVSum.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVSum.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVSum.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.GVSum.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.GVSum.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.GVSum.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.GVSum.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.GVSum.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.GVSum.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVSum.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.GVSum.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.GVSum.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.GVSum.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVSum.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVSum.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVSum.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVSum.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVSum.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVSum.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVSum.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVSum.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVSum.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVSum.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVSum.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn12, Me.GridColumn14, Me.GridColumn16})
+        Me.GVSum.GridControl = Me.GCSum
+        Me.GVSum.GroupFormat = "[#image]{1} {2}"
+        Me.GVSum.Name = "GVSum"
+        Me.GVSum.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSum.OptionsBehavior.ReadOnly = True
+        Me.GVSum.OptionsView.ColumnAutoWidth = False
+        Me.GVSum.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "KETERANGAN"
+        Me.GridColumn9.FieldName = "keterangan"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "PT VOLCOM INDONESIA (OFFICE)"
+        Me.GridColumn10.DisplayFormat.FormatString = "N2"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "vi"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "TOKO VOLCOM BEMO CORNER"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "bc"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 2
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "TOKO VOLCOM SEMINYAK"
+        Me.GridColumn14.DisplayFormat.FormatString = "N2"
+        Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn14.FieldName = "sm"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 3
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "TOTAL"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "total"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 4
+        '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Controls.Add(Me.GCSummary)
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(778, 382)
+        Me.XtraTabPage2.Text = "Detail"
         '
         'FormReportBalanceTaxSummaryPpnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
-        Me.Controls.Add(Me.GCSummary)
+        Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormReportBalanceTaxSummaryPpnDet"
@@ -376,6 +545,12 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GCSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSum, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -394,16 +569,29 @@ Partial Class FormReportBalanceTaxSummaryPpnDet
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents Label4 As Label
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label3 As Label
     Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCSum As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSum As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
 End Class

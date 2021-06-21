@@ -8157,6 +8157,12 @@
     <Compile Include="ReportAwbInv.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBalancePPNSummary.Designer.vb">
+      <DependentUpon>ReportBalancePPNSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBalancePPNSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBalanceSheet.Designer.vb">
       <DependentUpon>ReportBalanceSheet.vb</DependentUpon>
     </Compile>
@@ -14222,6 +14228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAwbInv.resx">
       <DependentUpon>ReportAwbInv.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBalancePPNSummary.resx">
+      <DependentUpon>ReportBalancePPNSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBalanceSheet.resx">
       <DependentUpon>ReportBalanceSheet.vb</DependentUpon>
