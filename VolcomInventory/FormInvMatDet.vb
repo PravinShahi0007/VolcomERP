@@ -103,26 +103,37 @@ WHERE pld.`id_pl_mrs`='" & FormInvMat.GVPL.GetRowCellValue(i, "id_pl_mrs").ToStr
                 'detail
                 Try
                     For i = 0 To FormInvMat.GVPLMemo.RowCount - 1
-                        Dim query As String = "SELECT md.`mat_det_code`,md.`mat_det_name`,pld.`pl_mrs_det_qty` AS qty,ROUND(pld.`pl_mrs_det_price`,2) AS price,(pld.`pl_mrs_det_qty`*ROUND(pld.`pl_mrs_det_price`,2)) AS amount
-FROM tb_pl_mrs_det pld
-INNER JOIN tb_m_mat_det_price prc ON prc.`id_mat_det_price`=pld.`id_mat_det_price`
-INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=prc.`id_mat_det`
-WHERE pld.`id_pl_mrs`='" & FormInvMat.GVPLMemo.GetRowCellValue(i, "id_pl_mrs").ToString & "'"
-                        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                        For j As Integer = 0 To data.Rows.Count - 1
-                            Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                            newRow("id_prod_order") = "0"
-                            newRow("prod_order_number") = "-"
-                            newRow("id_report") = FormInvMat.GVPLMemo.GetRowCellValue(i, "id_pl_mrs").ToString
-                            newRow("report_mark_type") = "30"
-                            newRow("report_number") = FormInvMat.GVPLMemo.GetRowCellValue(i, "pl_mrs_number").ToString
-                            newRow("info_design") = data.Rows(j)("mat_det_code").ToString & " - " & data.Rows(j)("mat_det_name").ToString
-                            newRow("qty") = data.Rows(j)("qty")
-                            newRow("price") = data.Rows(j)("price")
-                            newRow("value") = data.Rows(j)("price") * data.Rows(j)("qty")
-                            newRow("note") = ""
-                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
-                        Next
+                        '                        Dim query As String = "SELECT md.`mat_det_code`,md.`mat_det_name`,pld.`pl_mrs_det_qty` AS qty,ROUND(pld.`pl_mrs_det_price`,2) AS price,(pld.`pl_mrs_det_qty`*ROUND(pld.`pl_mrs_det_price`,2)) AS amount
+                        'FROM tb_pl_mrs_det pld
+                        'INNER JOIN tb_m_mat_det_price prc ON prc.`id_mat_det_price`=pld.`id_mat_det_price`
+                        'INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=prc.`id_mat_det`
+                        'WHERE pld.`id_pl_mrs`='" & FormInvMat.GVPLMemo.GetRowCellValue(i, "id_pl_mrs").ToString & "'"
+                        '                        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                        '                        For j As Integer = 0 To data.Rows.Count - 1
+                        '                            Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        '                            newRow("id_prod_order") = "0"
+                        '                            newRow("prod_order_number") = "-"
+                        '                            newRow("id_report") = FormInvMat.GVPLMemo.GetRowCellValue(i, "id_pl_mrs").ToString
+                        '                            newRow("report_mark_type") = "30"
+                        '                            newRow("report_number") = FormInvMat.GVPLMemo.GetRowCellValue(i, "pl_mrs_number").ToString
+                        '                            newRow("info_design") = data.Rows(j)("mat_det_code").ToString & " - " & data.Rows(j)("mat_det_name").ToString
+                        '                            newRow("qty") = data.Rows(j)("qty")
+                        '                            newRow("price") = data.Rows(j)("price")
+                        '                            newRow("value") = data.Rows(j)("price") * data.Rows(j)("qty")
+                        '                            newRow("note") = ""
+                        '                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                        '                        Next
+
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_prod_order") = FormInvMat.GVPLMemo.GetRowCellValue(i, "id_prod_order").ToString
+                        newRow("prod_order_number") = FormInvMat.GVPLMemo.GetRowCellValue(i, "prod_order_number").ToString
+                        newRow("id_report") = FormInvMat.GVPLMemo.GetRowCellValue(i, "id_pl_mrs").ToString
+                        newRow("report_mark_type") = "30"
+                        newRow("report_number") = FormInvMat.GVPLMemo.GetRowCellValue(i, "pl_mrs_number").ToString
+                        newRow("info_design") = FormInvMat.GVPLMemo.GetRowCellValue(i, "design_display_name").ToString
+                        newRow("value") = FormInvMat.GVPLMemo.GetRowCellValue(i, "amount")
+                        newRow("note") = ""
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                     Next
                     calculate()
                 Catch ex As Exception
