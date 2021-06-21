@@ -68,6 +68,7 @@ Partial Class FormFGRepairDet
         Me.GridColumnStyle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsOldDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
         Me.TxtScannedCode = New DevExpress.XtraEditors.TextEdit()
         Me.LblScannedCode = New DevExpress.XtraEditors.LabelControl()
@@ -89,7 +90,6 @@ Partial Class FormFGRepairDet
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -188,6 +188,7 @@ Partial Class FormFGRepairDet
         'TxtCodeCompTo
         '
         Me.TxtCodeCompTo.EditValue = ""
+        Me.TxtCodeCompTo.Enabled = False
         Me.TxtCodeCompTo.Location = New System.Drawing.Point(73, 35)
         Me.TxtCodeCompTo.Name = "TxtCodeCompTo"
         Me.TxtCodeCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -215,6 +216,7 @@ Partial Class FormFGRepairDet
         'TxtCodeCompFrom
         '
         Me.TxtCodeCompFrom.EditValue = ""
+        Me.TxtCodeCompFrom.Enabled = False
         Me.TxtCodeCompFrom.Location = New System.Drawing.Point(73, 9)
         Me.TxtCodeCompFrom.Name = "TxtCodeCompFrom"
         Me.TxtCodeCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -613,6 +615,13 @@ Partial Class FormFGRepairDet
         Me.GridColumnIsOldDesign.Name = "GridColumnIsOldDesign"
         Me.GridColumnIsOldDesign.OptionsColumn.AllowEdit = False
         '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        Me.GridColumnid_product.OptionsColumn.AllowEdit = False
+        '
         'PanelNavBarcode
         '
         Me.PanelNavBarcode.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -819,13 +828,6 @@ Partial Class FormFGRepairDet
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'GridColumnid_product
-        '
-        Me.GridColumnid_product.Caption = "id_product"
-        Me.GridColumnid_product.FieldName = "id_product"
-        Me.GridColumnid_product.Name = "GridColumnid_product"
-        Me.GridColumnid_product.OptionsColumn.AllowEdit = False
         '
         'FormFGRepairDet
         '
