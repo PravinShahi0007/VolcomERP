@@ -243,7 +243,7 @@ Public Class FormFGRepairDet
 
         Dim query As String = ""
         If is_use_unique_code_wh = "1" Then
-            query = "CALL view_stock_fg_unique_with_table('0', '" + id_comp_from + "', '" + id_wh_drawer_from + "')"
+            query = "CALL view_stock_fg_unique_with_table_less('0', '" + id_comp_from + "', '" + id_wh_drawer_from + "')"
         Else
             query = "CALL view_stock_fg_unique_del(0) "
         End If
@@ -278,6 +278,11 @@ Public Class FormFGRepairDet
     Private Sub BtnBrowseTo_Click(sender As Object, e As EventArgs) Handles BtnBrowseTo.Click
         Cursor = Cursors.WaitCursor
         FormPopUpContact.id_pop_up = "70"
+        If FormFGRepair.is_to_vendor = True Then
+            FormPopUpContact.id_cat = "1"
+        Else
+            FormPopUpContact.id_cat = "5"
+        End If
         FormPopUpContact.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -538,72 +543,26 @@ Public Class FormFGRepairDet
             XTPSummary.PageVisible = True
             XtraTabControl1.SelectedTabPageIndex = 1
 
-            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            If Not SplashScreenManager1.IsSplashFormVisible Then
                 SplashScreenManager1.ShowWaitForm()
             End If
-            Dim data_temp As DataTable = GCScan.DataSource
-            Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
-            Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
-            connection.Open()
-            Dim command As MySql.Data.MySqlClient.MySqlCommand = connection.CreateCommand()
-            Dim qry As String = "DROP TABLE IF EXISTS tb_fg_repair_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_fg_repair_temp AS ( SELECT * FROM ("
-            For d As Integer = 0 To data_temp.Rows.Count - 1
-                SplashScreenManager1.SetWaitFormDescription("Groupping product " + (d + 1).ToString + "/" + data_temp.Rows.Count.ToString)
-                Dim id_product As String = data_temp.Rows(d)("id_product").ToString
-                Dim id_pl_prod_order_rec_det_unique As String = data_temp.Rows(d)("id_pl_prod_order_rec_det_unique").ToString
-                Dim code As String = data_temp.Rows(d)("product_code").ToString
-                Dim name As String = data_temp.Rows(d)("name").ToString
-                Dim size As String = data_temp.Rows(d)("size").ToString
-                If d > 0 Then
-                    qry += "UNION ALL "
+
+            'new
+            GVScan.ActiveFilterString = ""
+            Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; 
+                            INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES "
+            Dim id_prod As String = ""
+            For s As Integer = 0 To GVScan.RowCount - 1
+                If s > 0 Then
+                    qs += ","
+                    id_prod += ","
                 End If
-                qry += "SELECT '" + id_product + "' AS `id_product`, '" + id_pl_prod_order_rec_det_unique + "' AS `id_pl_prod_order_rec_det_unique`, '" + code + "' AS `code`, '" + name + "' AS `name`, '" + size + "' AS `size`  "
+                qs += "('" + id_user + "','" + GVScan.GetRowCellValue(s, "product_code").ToString + "','" + addSlashes(GVScan.GetRowCellValue(s, "name").ToString) + "', '" + GVScan.GetRowCellValue(s, "size").ToString + "', '" + GVScan.GetRowCellValue(s, "id_product").ToString + "', '1') "
+                id_prod += GVScan.GetRowCellValue(s, "id_product").ToString
             Next
-            qry += ") a ); ALTER TABLE tb_fg_repair_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
-            command.CommandText = qry
-            command.ExecuteNonQuery()
-            command.Dispose()
-            'Console.WriteLine(qry)
-
-            Dim data_view As New DataTable
-            Dim qry_view As String = "SELECT a.id_product, a.code, a.name, a.size, COUNT(a.id_product) AS `qty` 
-                                FROM tb_fg_repair_temp a 
-                                GROUP BY a.id_product"
-            Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(qry_view, connection)
-            adapter.SelectCommand.CommandTimeout = 300
-            adapter.Fill(data_view)
-            adapter.Dispose()
-
-            connection.Close()
-            connection.Dispose()
-
-            'get data stock
-            SplashScreenManager1.SetWaitFormDescription("Checking stock")
-            Dim query_stock As String = "call view_stock_fg_for_invoice('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
-            Dim data_stock As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
-            Dim tb1 = data_view.AsEnumerable()
-            Dim tb2 = data_stock.AsEnumerable()
-            Dim query = From table1 In tb1
-                        Group Join table_tmp In tb2 On table1("id_product").ToString Equals table_tmp("id_product").ToString
-                        Into Group
-                        From y1 In Group.DefaultIfEmpty()
-                        Select New With
-                        {
-                            .code = table1("code").ToString,
-                            .name = table1("name").ToString,
-                            .size = table1("size").ToString,
-                            .qty = table1("qty"),
-                            .available_qty = If(y1 Is Nothing, 0, y1("qty_all_product")),
-                            .design_price_retail = If(y1 Is Nothing, 0, y1("design_price_retail")),
-                            .id_product = If(y1 Is Nothing, 0, y1("id_product")),
-                            .status = If(table1("qty") <= If(y1 Is Nothing, 0, y1("qty_all_product")), "OK", "Can't exceed " + If(y1 Is Nothing, "0", y1("qty_all_product").ToString))
-                        }
-            GCScanSum.DataSource = Nothing
-            GCScanSum.DataSource = query.ToList()
-            GCScanSum.RefreshDataSource()
-
-            SplashScreenManager1.CloseWaitForm()
-
+            qs += "; CALL view_validate_stock_repair(" + id_user + ", " + id_comp_from + ", '" + id_prod + "'); "
+            Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+            GCScanSum.DataSource = dts
 
             'find not ok
             GVScanSum.ActiveFilterString = "[status]<>'OK'"
@@ -613,6 +572,82 @@ Public Class FormFGRepairDet
                 cond_stc = True
             End If
             GVScanSum.ActiveFilterString = ""
+
+            SplashScreenManager1.CloseWaitForm()
+
+            'OLD WAYS
+            'Dim data_temp As DataTable = GCScan.DataSource
+            'Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+            'Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
+            'connection.Open()
+            'Dim command As MySql.Data.MySqlClient.MySqlCommand = connection.CreateCommand()
+            'Dim qry As String = "DROP TABLE IF EXISTS tb_fg_repair_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_fg_repair_temp AS ( SELECT * FROM ("
+            'For d As Integer = 0 To data_temp.Rows.Count - 1
+            '    SplashScreenManager1.SetWaitFormDescription("Groupping product " + (d + 1).ToString + "/" + data_temp.Rows.Count.ToString)
+            '    Dim id_product As String = data_temp.Rows(d)("id_product").ToString
+            '    Dim id_pl_prod_order_rec_det_unique As String = data_temp.Rows(d)("id_pl_prod_order_rec_det_unique").ToString
+            '    Dim code As String = data_temp.Rows(d)("product_code").ToString
+            '    Dim name As String = data_temp.Rows(d)("name").ToString
+            '    Dim size As String = data_temp.Rows(d)("size").ToString
+            '    If d > 0 Then
+            '        qry += "UNION ALL "
+            '    End If
+            '    qry += "SELECT '" + id_product + "' AS `id_product`, '" + id_pl_prod_order_rec_det_unique + "' AS `id_pl_prod_order_rec_det_unique`, '" + code + "' AS `code`, '" + name + "' AS `name`, '" + size + "' AS `size`  "
+            'Next
+            'qry += ") a ); ALTER TABLE tb_fg_repair_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+            'command.CommandText = qry
+            'command.ExecuteNonQuery()
+            'command.Dispose()
+            ''Console.WriteLine(qry)
+
+            'Dim data_view As New DataTable
+            'Dim qry_view As String = "SELECT a.id_product, a.code, a.name, a.size, COUNT(a.id_product) AS `qty` 
+            '                    FROM tb_fg_repair_temp a 
+            '                    GROUP BY a.id_product"
+            'Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(qry_view, connection)
+            'adapter.SelectCommand.CommandTimeout = 300
+            'adapter.Fill(data_view)
+            'adapter.Dispose()
+
+            'connection.Close()
+            'connection.Dispose()
+
+            ''get data stock
+            'SplashScreenManager1.SetWaitFormDescription("Checking stock")
+            'Dim query_stock As String = "call view_stock_fg_for_invoice('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
+            'Dim data_stock As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
+            'Dim tb1 = data_view.AsEnumerable()
+            'Dim tb2 = data_stock.AsEnumerable()
+            'Dim query = From table1 In tb1
+            '            Group Join table_tmp In tb2 On table1("id_product").ToString Equals table_tmp("id_product").ToString
+            '            Into Group
+            '            From y1 In Group.DefaultIfEmpty()
+            '            Select New With
+            '            {
+            '                .code = table1("code").ToString,
+            '                .name = table1("name").ToString,
+            '                .size = table1("size").ToString,
+            '                .qty = table1("qty"),
+            '                .available_qty = If(y1 Is Nothing, 0, y1("qty_all_product")),
+            '                .design_price_retail = If(y1 Is Nothing, 0, y1("design_price_retail")),
+            '                .id_product = If(y1 Is Nothing, 0, y1("id_product")),
+            '                .status = If(table1("qty") <= If(y1 Is Nothing, 0, y1("qty_all_product")), "OK", "Can't exceed " + If(y1 Is Nothing, "0", y1("qty_all_product").ToString))
+            '            }
+            'GCScanSum.DataSource = Nothing
+            'GCScanSum.DataSource = query.ToList()
+            'GCScanSum.RefreshDataSource()
+
+            'SplashScreenManager1.CloseWaitForm()
+
+
+            ''find not ok
+            'GVScanSum.ActiveFilterString = "[status]<>'OK'"
+            'If GVScanSum.RowCount > 0 Then
+            '    cond_stc = False
+            'Else
+            '    cond_stc = True
+            'End If
+            'GVScanSum.ActiveFilterString = ""
         End If
 
         If id_wh_drawer_from = "-1" Or id_wh_drawer_to = "-1" Then
