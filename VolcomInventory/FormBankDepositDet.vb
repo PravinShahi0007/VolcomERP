@@ -454,6 +454,7 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
                 End If
             End If
             calculate_amount()
+            DERecDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
         Else
             PanelControlNav.Visible = False
             BtnPrint.Visible = True
@@ -1018,6 +1019,7 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
         If id_deposit = "-1" Then
             load_receive_from()
             load_det()
+            DERecDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
         End If
     End Sub
 

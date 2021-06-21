@@ -486,6 +486,12 @@
     <Compile Include="FormAWBOtherDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAWBOtherInv.Designer.vb">
+      <DependentUpon>FormAWBOtherInv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAWBOtherInv.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBankDepositCaseKhusus.Designer.vb">
       <DependentUpon>FormBankDepositCaseKhusus.vb</DependentUpon>
     </Compile>
@@ -9917,6 +9923,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAWBOtherDet.resx">
       <DependentUpon>FormAWBOtherDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAWBOtherInv.resx">
+      <DependentUpon>FormAWBOtherInv.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankDepositCaseKhusus.resx">
       <DependentUpon>FormBankDepositCaseKhusus.vb</DependentUpon>
