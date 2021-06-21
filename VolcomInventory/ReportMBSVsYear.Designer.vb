@@ -44,6 +44,9 @@ Partial Public Class ReportMBSVsYear
         Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XRTableMark = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -51,12 +54,9 @@ Partial Public Class ReportMBSVsYear
         Me.XRPercentPrevYear = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XRTotalThisMonth = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XRPercentThisMonth = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XRTableMark = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XTBalanceSheet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XRTableMark, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -289,6 +289,34 @@ Partial Public Class ReportMBSVsYear
         Me.ReportFooter.HeightF = 50.0!
         Me.ReportFooter.Name = "ReportFooter"
         '
+        'XRTableMark
+        '
+        Me.XRTableMark.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XRTableMark.Font = New System.Drawing.Font("Consolas", 8.0!)
+        Me.XRTableMark.LocationFloat = New DevExpress.Utils.PointFloat(0!, 25.0!)
+        Me.XRTableMark.Name = "XRTableMark"
+        Me.XRTableMark.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
+        Me.XRTableMark.SizeF = New System.Drawing.SizeF(726.9999!, 25.0!)
+        Me.XRTableMark.StylePriority.UseBorders = False
+        Me.XRTableMark.StylePriority.UseFont = False
+        '
+        'XrTableRow4
+        '
+        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell6})
+        Me.XrTableRow4.Name = "XrTableRow4"
+        Me.XrTableRow4.Weight = 1.0R
+        '
+        'XrTableCell6
+        '
+        Me.XrTableCell6.Font = New System.Drawing.Font("Lucida Console", 8.0!)
+        Me.XrTableCell6.Name = "XrTableCell6"
+        Me.XrTableCell6.StylePriority.UseFont = False
+        Me.XrTableCell6.Text = "Here Table Mark Goes, Please Ignore This"
+        Me.XrTableCell6.Visible = False
+        Me.XrTableCell6.Weight = 2.99999986405489R
+        '
         'XrTable1
         '
         Me.XrTable1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
@@ -361,34 +389,6 @@ Partial Public Class ReportMBSVsYear
         Me.XRPercentThisMonth.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.XRPercentThisMonth.Weight = 0.64994711345816847R
         '
-        'XRTableMark
-        '
-        Me.XRTableMark.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XRTableMark.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XRTableMark.LocationFloat = New DevExpress.Utils.PointFloat(0!, 25.0!)
-        Me.XRTableMark.Name = "XRTableMark"
-        Me.XRTableMark.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
-        Me.XRTableMark.SizeF = New System.Drawing.SizeF(726.9999!, 25.0!)
-        Me.XRTableMark.StylePriority.UseBorders = False
-        Me.XRTableMark.StylePriority.UseFont = False
-        '
-        'XrTableRow4
-        '
-        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell6})
-        Me.XrTableRow4.Name = "XrTableRow4"
-        Me.XrTableRow4.Weight = 1.0R
-        '
-        'XrTableCell6
-        '
-        Me.XrTableCell6.Font = New System.Drawing.Font("Lucida Console", 8.0!)
-        Me.XrTableCell6.Name = "XrTableCell6"
-        Me.XrTableCell6.StylePriority.UseFont = False
-        Me.XrTableCell6.Text = "Here Table Mark Goes, Please Ignore This"
-        Me.XrTableCell6.Visible = False
-        Me.XrTableCell6.Weight = 2.99999986405489R
-        '
         'ReportMBSVsYear
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.ReportFooter})
@@ -399,8 +399,8 @@ Partial Public Class ReportMBSVsYear
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
         CType(Me.XTBalanceSheet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XRTableMark, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub

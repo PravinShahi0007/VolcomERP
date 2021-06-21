@@ -1965,6 +1965,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormMasterCompany" Then
                 '
                 FormMasterCompanySingle.id_company = FormMasterCompany.GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+                FormMasterCompanySingle.is_view = If(FormMasterCompany.is_view, "1", "-1")
                 FormMasterCompanySingle.ShowDialog()
             ElseIf formName = "FormMasterCompanyCategory" Then
                 '
@@ -16228,6 +16229,21 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAWBOther.Show()
             FormAWBOther.WindowState = FormWindowState.Maximized
             FormAWBOther.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCompStore_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompStore.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterCompany.MdiParent = Me
+            FormMasterCompany.is_store = True
+            FormMasterCompany.is_view = True
+            FormMasterCompany.Show()
+            FormMasterCompany.WindowState = FormWindowState.Maximized
+            FormMasterCompany.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
