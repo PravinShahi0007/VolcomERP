@@ -80,6 +80,7 @@ Partial Class FormInvMatDet
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -363,6 +364,7 @@ Partial Class FormInvMatDet
         Me.PanelControl7.Controls.Add(Me.PanelControlPreview)
         Me.PanelControl7.Controls.Add(Me.BtnPrint)
         Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
+        Me.PanelControl7.Controls.Add(Me.BAttachment)
         Me.PanelControl7.Controls.Add(Me.BMark)
         Me.PanelControl7.Controls.Add(Me.BtnCancel)
         Me.PanelControl7.Controls.Add(Me.BtnSave)
@@ -377,7 +379,7 @@ Partial Class FormInvMatDet
         Me.PanelControlPreview.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlPreview.Controls.Add(Me.CEPrintPreview)
         Me.PanelControlPreview.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlPreview.Location = New System.Drawing.Point(535, 2)
+        Me.PanelControlPreview.Location = New System.Drawing.Point(430, 2)
         Me.PanelControlPreview.Name = "PanelControlPreview"
         Me.PanelControlPreview.Size = New System.Drawing.Size(84, 36)
         Me.PanelControlPreview.TabIndex = 27
@@ -397,7 +399,7 @@ Partial Class FormInvMatDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(619, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(514, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 36)
         Me.BtnPrint.TabIndex = 17
@@ -408,7 +410,7 @@ Partial Class FormInvMatDet
         '
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(694, 2)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(589, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 36)
         Me.BtnViewJournal.TabIndex = 20
@@ -762,6 +764,17 @@ Partial Class FormInvMatDet
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
         '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.Image = CType(resources.GetObject("BAttachment.Image"), System.Drawing.Image)
+        Me.BAttachment.Location = New System.Drawing.Point(694, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(105, 36)
+        Me.BAttachment.TabIndex = 28
+        Me.BAttachment.Text = "Attachment"
+        Me.BAttachment.Visible = False
+        '
         'FormInvMatDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -881,4 +894,5 @@ Partial Class FormInvMatDet
     Friend WithEvents GridColumnPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
 End Class
