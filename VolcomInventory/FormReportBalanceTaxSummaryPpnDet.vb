@@ -65,7 +65,7 @@
 
             For i = 0 To GVSummary.RowCount - 1
                 If GVSummary.IsValidRowHandle(i) Then
-                    query_detail = query_detail + "(" + id_summary + ", '" + GVSummary.GetRowCellValue(i, "keterangan").ToString + "', '" + GVSummary.GetRowCellValue(i, "vi").ToString + "', '" + GVSummary.GetRowCellValue(i, "vi_total").ToString + "', '" + GVSummary.GetRowCellValue(i, "bc").ToString + "', '" + GVSummary.GetRowCellValue(i, "bc_total").ToString + "', '" + GVSummary.GetRowCellValue(i, "sm").ToString + "', '" + GVSummary.GetRowCellValue(i, "sm_total").ToString + "', '" + GVSummary.GetRowCellValue(i, "total").ToString + "'), "
+                    query_detail = query_detail + "(" + id_summary + ", '" + GVSummary.GetRowCellValue(i, "keterangan").ToString + "', '" + GVSummary.GetRowCellValue(i, "vi").ToString + "', '" + decimalSQL(GVSummary.GetRowCellValue(i, "vi_total").ToString) + "', '" + GVSummary.GetRowCellValue(i, "bc").ToString + "', '" + decimalSQL(GVSummary.GetRowCellValue(i, "bc_total").ToString) + "', '" + GVSummary.GetRowCellValue(i, "sm").ToString + "', '" + decimalSQL(GVSummary.GetRowCellValue(i, "sm_total").ToString) + "', '" + decimalSQL(GVSummary.GetRowCellValue(i, "total").ToString) + "'), "
                 End If
             Next
 
@@ -78,7 +78,7 @@
 
             For i = 0 To GVSum.RowCount - 1
                 If GVSum.IsValidRowHandle(i) Then
-                    query_summary = query_summary + "(" + id_summary + ", '" + GVSum.GetRowCellValue(i, "keterangan").ToString + "', '" + GVSum.GetRowCellValue(i, "vi").ToString + "', '" + GVSum.GetRowCellValue(i, "bc").ToString + "', '" + GVSum.GetRowCellValue(i, "sm").ToString + "', '" + GVSum.GetRowCellValue(i, "total").ToString + "'), "
+                    query_summary = query_summary + "(" + id_summary + ", '" + GVSum.GetRowCellValue(i, "keterangan").ToString + "', '" + decimalSQL(GVSum.GetRowCellValue(i, "vi").ToString) + "', '" + decimalSQL(GVSum.GetRowCellValue(i, "bc").ToString) + "', '" + decimalSQL(GVSum.GetRowCellValue(i, "sm").ToString) + "', '" + decimalSQL(GVSum.GetRowCellValue(i, "total").ToString) + "'), "
                 End If
             Next
 
