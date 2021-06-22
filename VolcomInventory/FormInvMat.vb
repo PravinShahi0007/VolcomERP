@@ -151,7 +151,7 @@ LEFT JOIN
     FROM `tb_inv_mat_det` invd
     INNER JOIN tb_inv_mat inv ON inv.id_inv_mat=invd.id_inv_mat AND inv.id_report_status!=5 AND inv.id_inv_mat_type=1
 )inv ON inv.id_report=pl.id_pl_mrs
-INNER JOIN `tb_prod_order_mrs` mrs ON mrs.`id_prod_order_mrs`=pl.`id_prod_order_mrs` AND mrs.id_pl_mat_type=2 AND mrs.memo_number=''
+INNER JOIN `tb_prod_order_mrs` mrs ON mrs.`id_prod_order_mrs`=pl.`id_prod_order_mrs` AND mrs.id_pl_mat_type=2 AND IFNULL(mrs.memo_number,'')=''
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=mrs.`id_prod_order`
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
