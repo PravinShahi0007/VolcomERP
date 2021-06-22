@@ -6870,6 +6870,18 @@ WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
                     SET d.is_rec_payment=1
                     WHERE pyd.id_rec_payment = '" + id_report + "'; "
                     execute_non_query(qjd_upd, True, "", "", "", "")
+                ElseIf FormBankDepositDet.type_rec = "5" Then
+                    'inv mat
+                    Dim q As String = "SELECT id_report
+FROM `tb_rec_payment_det` recd
+WHERE recd.balance_due=recd.`value` AND report_mark_type='231' AND id_rec_payment='" + id_report + "'"
+                    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                    For j = 0 To dt.Rows.Count - 1
+                        Dim qjd_upd = "UPDATE tb_inv_mat d
+                    SET d.is_open=1
+                    WHERE d.id_inv_mat = '" + dt.Rows(j)("id_report").ToString + "'; "
+                        execute_non_query(qjd_upd, True, "", "", "", "")
+                    Next
                 End If
 
                 'insert valas
