@@ -148,6 +148,9 @@ WHERE pld.`id_pl_mrs`='" & FormInvMat.GVPL.GetRowCellValue(i, "id_pl_mrs").ToStr
             DEDueDate.Properties.ReadOnly = True
             DERefDate.Properties.ReadOnly = True
             TEVatPercent.Enabled = False
+            '
+            BAttachment.Visible = True
+
             'load header
             Dim q_head As String = "SELECT inv.`number`,inv.`id_comp`,inv.is_deposit,c.`comp_name`,inv.`vat_percent`,inv.`id_inv_mat_type`,typ.`inv_mat_type`,inv.created_date,inv.ref_date,inv.due_date,inv.note,inv.id_report_status
 FROM tb_inv_mat inv
@@ -438,5 +441,14 @@ VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString
         End If
         GVList.RefreshData()
         calculate()
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id_inv
+        FormDocumentUpload.report_mark_type = "231"
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

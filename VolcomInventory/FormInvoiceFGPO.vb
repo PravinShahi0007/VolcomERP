@@ -375,4 +375,8 @@ GROUP BY dp.id_pn_fgpo,dpd.id_report"
     Private Sub DEBPLTo_EditValueChanged(sender As Object, e As EventArgs) Handles DEBPLTo.EditValueChanged
         DEBPLFrom.Properties.MaxValue = DEBPLTo.EditValue
     End Sub
+
+    Private Sub BPrintDPPaid_Click(sender As Object, e As EventArgs) Handles BPrintDPPaid.Click
+        print_no_footer(GCDPUsed, "List DP " & SLEVendor.Text)
+    End Sub
 End Class

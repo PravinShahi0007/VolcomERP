@@ -73,11 +73,22 @@ WHERE cg.is_use_payout=1", 0, True, "", "", "", "")
 
         'pay type
         load_trans_type_po()
+
+        'invoice mat
+        load_vendor_fgpo()
     End Sub
 
     Sub load_trans_type_po()
         Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
         viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
+    End Sub
+
+    Sub load_vendor_fgpo()
+        Dim query As String = "SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name,sts.comp_status  
+                                FROM tb_m_comp c
+                                INNER JOIN tb_lookup_comp_status sts ON sts.id_comp_status=c.is_active
+                                WHERE c.id_comp_cat='1' OR c.id_comp_cat='8' AND (c.is_active='1' OR c.is_active='2') "
+        viewSearchLookupQuery(SLEFGPOVendor, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub load_status_payment()
@@ -831,5 +842,156 @@ GROUP BY d.`id_purc_rec_asset_disp`"
             End If
         End If
         GVUrban.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BViewFGPOPay_Click(sender As Object, e As EventArgs) Handles BViewFGPOPay.Click
+        Dim id_comp As String = " AND c.id_comp='" & SLEFGPOVendor.EditValue.ToString & "' "
+
+        Dim q As String = "SELECT 
+'no' AS is_check,2 AS is_dc,'231' AS report_mark_type,acc.id_acc,acc.acc_name,acc.acc_description,'Invoice Material' AS `type`,dn.number,dn.id_inv_mat AS id_report,dn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`
+,det.amount AS total_bpl
+,det.amount AS total 
+,IFNULL(payment.value,0) AS total_paid
+,IFNULL(payment_pending.jml,0) AS total_pending
+,(det.amount + IFNULL(payment.value,0)) AS balance
+,cf.id_comp AS `id_comp_default`, cf.comp_number AS `comp_number_default`
+,det.value_bef_kurs,det.`id_currency`,det.`currency`,det.`kurs`
+,det.vat AS vat_bpl,det.amount_selisih_kurs
+,'' AS extra_note
+,'' AS inv_number
+FROM `tb_inv_mat` dn
+INNER JOIN tb_m_comp cf ON cf.id_comp=1
+INNER JOIN tb_m_user usr ON usr.`id_user`=dn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=dn.`id_comp` " & id_comp & "
+INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ar
+INNER JOIN (
+	SELECT dnd.id_inv_mat,ROUND(SUM(dnd.`value`*((100+dn.vat_percent)/100)),2) AS amount 
+	,0 AS vat
+	,ROUND(SUM(dnd.`value`*((100+dn.vat_percent)/100)),2) AS value_bef_kurs
+	,0 AS amount_selisih_kurs 
+	,cur.`id_currency`,cur.`currency`,1 AS `kurs`
+	FROM tb_inv_mat_det dnd 
+	INNER JOIN tb_lookup_currency cur ON cur.id_currency=1
+	INNER JOIN tb_inv_mat dn ON dn.`id_inv_mat`=dnd.`id_inv_mat` AND dn.`id_report_status`='6' AND dn.`is_open`=1
+	INNER JOIN tb_m_comp c ON c.id_comp=dn.id_comp " & id_comp & "
+	GROUP BY dnd.`id_inv_mat`
+) det ON det.id_inv_mat=dn.`id_inv_mat`
+LEFT JOIN
+(
+    SELECT SUM(cnt.jml) AS jml,id_report
+    FROM(
+	    SELECT COUNT(pyd.id_report) AS jml,pyd.id_report 
+	    FROM `tb_pn_det` pyd
+	    INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='231'
+	    GROUP BY pyd.id_report
+	    UNION ALL
+	    SELECT COUNT(rec_pyd.id_report) AS jml,rec_pyd.id_report 
+	    FROM `tb_rec_payment_det` rec_pyd
+	    INNER JOIN tb_rec_payment rec_py ON rec_py.id_rec_payment=rec_pyd.id_rec_payment AND rec_py.id_report_status!=6 AND rec_py.id_report_status!=5 AND rec_pyd.report_mark_type='231'
+	    GROUP BY rec_pyd.id_report
+    ) cnt 
+    GROUP BY cnt.id_report
+)payment_pending ON payment_pending.id_report=dn.id_inv_mat
+LEFT JOIN
+(
+    SELECT id_report,SUM(cnt.value) AS jml
+    FROM(
+	    SELECT pyd.id_report, SUM(pyd.`value`) AS `value` 
+	    FROM `tb_pn_det` pyd
+	    INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND pyd.report_mark_type='231' AND py.is_tolakan=2
+	    GROUP BY pyd.id_report
+	    UNION ALL
+	    SELECT pyd.id_report, -SUM(pyd.`value`) AS `value` 
+	    FROM `tb_rec_payment_det` pyd
+	    INNER JOIN tb_rec_payment py ON py.id_rec_payment=pyd.id_rec_payment AND py.id_report_status!=5 AND pyd.report_mark_type='231'
+	    GROUP BY pyd.id_report
+    )cnt
+    GROUP BY cnt.id_report
+)payment ON payment.id_report=dn.id_inv_mat
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=dn.id_report_status
+WHERE dn.is_open=1 AND dn.is_deposit='2' AND dn.`id_inv_mat_type`=1 AND dn.id_report_status=6
+UNION ALL
+-- retur
+SELECT 
+'no' AS is_check,1 AS is_dc,'231' AS report_mark_type,acc.id_acc,acc.acc_name,acc.acc_description,'Invoice Material' AS `type`,dn.number,dn.id_inv_mat AS id_report,dn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`
+,-det.amount AS total_bpl
+,-det.amount AS total 
+,-IFNULL(payment.value,0) AS total_paid
+,IFNULL(payment_pending.jml,0) AS total_pending
+,-(det.amount - IFNULL(payment.value,0)) AS balance
+,cf.id_comp AS `id_comp_default`, cf.comp_number AS `comp_number_default`
+,det.value_bef_kurs,det.`id_currency`,det.`currency`,det.`kurs`
+,det.vat AS vat_bpl,det.amount_selisih_kurs
+,'' AS extra_note
+,'' AS inv_number
+FROM `tb_inv_mat` dn
+INNER JOIN tb_m_comp cf ON cf.id_comp=1
+INNER JOIN tb_m_user usr ON usr.`id_user`=dn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=dn.`id_comp` " & id_comp & "
+INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ar
+INNER JOIN (
+	SELECT dnd.id_inv_mat,SUM(dnd.`value`*((100+dn.vat_percent)/100)) AS amount 
+	,0 AS vat
+	,SUM(dnd.`value`*((100+dn.vat_percent)/100)) AS value_bef_kurs
+	,0 AS amount_selisih_kurs 
+	,cur.`id_currency`,cur.`currency`,1 AS `kurs`
+	FROM tb_inv_mat_det dnd 
+	INNER JOIN tb_lookup_currency cur ON cur.id_currency=1
+	INNER JOIN tb_inv_mat dn ON dn.`id_inv_mat`=dnd.`id_inv_mat` AND dn.`id_report_status`='6' AND dn.`is_open`=1
+	INNER JOIN tb_m_comp c ON c.id_comp=dn.id_comp " & id_comp & "
+	GROUP BY dnd.`id_inv_mat`
+) det ON det.id_inv_mat=dn.`id_inv_mat`
+LEFT JOIN
+(
+    SELECT SUM(cnt.jml) AS jml,id_report
+    FROM(
+	    SELECT COUNT(pyd.id_report) AS jml,pyd.id_report 
+	    FROM `tb_pn_det` pyd
+	    INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='231'
+	    GROUP BY pyd.id_report
+	    UNION ALL
+	    SELECT COUNT(rec_pyd.id_report) AS jml,rec_pyd.id_report 
+	    FROM `tb_rec_payment_det` rec_pyd
+	    INNER JOIN tb_rec_payment rec_py ON rec_py.id_rec_payment=rec_pyd.id_rec_payment AND rec_py.id_report_status!=6 AND rec_py.id_report_status!=5 AND rec_pyd.report_mark_type='231'
+	    GROUP BY rec_pyd.id_report
+    ) cnt 
+    GROUP BY cnt.id_report
+)payment_pending ON payment_pending.id_report=dn.id_inv_mat
+LEFT JOIN
+(
+    SELECT id_report,SUM(cnt.value) AS jml
+    FROM(
+	    SELECT pyd.id_report, SUM(pyd.`value`) AS `value` 
+	    FROM `tb_pn_det` pyd
+	    INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND pyd.report_mark_type='231' AND py.is_tolakan=2
+	    GROUP BY pyd.id_report
+	    UNION ALL
+	    SELECT pyd.id_report, -SUM(pyd.`value`) AS `value` 
+	    FROM `tb_rec_payment_det` pyd
+	    INNER JOIN tb_rec_payment py ON py.id_rec_payment=pyd.id_rec_payment AND py.id_report_status!=5 AND pyd.report_mark_type='231'
+	    GROUP BY pyd.id_report
+    )cnt
+    GROUP BY cnt.id_report
+)payment ON payment.id_report=dn.id_inv_mat
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=dn.id_report_status
+WHERE dn.is_open=1 AND dn.is_deposit='2' AND dn.`id_inv_mat_type`=2 AND dn.id_report_status=6"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCInvMat.DataSource = dt
+        GVInvMat.BestFitColumns()
+    End Sub
+
+    Private Sub BRecPayment_Click(sender As Object, e As EventArgs) Handles BRecPayment.Click
+        GVInvMat.ActiveFilterString = "[is_check]='yes'"
+        If GVJualAsset.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            FormBankDepositDet.id_coa_tag = "1"
+            FormBankDepositDet.id_coa_type = "1"
+            FormBankDepositDet.type_rec = "4"
+            FormBankDepositDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+        GVInvMat.ActiveFilterString = ""
     End Sub
 End Class
