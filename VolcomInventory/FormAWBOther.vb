@@ -114,4 +114,12 @@ WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStart.EditValue.ToString).ToStrin
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         FormAWBOtherInv.ShowDialog()
     End Sub
+
+    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+        load_verification()
+    End Sub
+
+    Sub load_verification()
+
+    End Sub
 End Class
