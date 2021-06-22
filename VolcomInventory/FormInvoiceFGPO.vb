@@ -25,6 +25,8 @@
     End Sub
 
     Private Sub FormInvoiceFGPO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEBPLFrom.EditValue = Now
+        DEBPLTo.EditValue = Now
         load_vendor()
         load_list("0")
     End Sub
@@ -36,6 +38,11 @@
                                 FROM tb_m_comp c
                                 WHERE (c.id_comp_cat='1' OR c.id_comp_cat='8') AND c.is_active='1'"
         viewSearchLookupQuery(SLEVendorPayment, query, "id_comp", "comp_name", "id_comp")
+        query = "SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                FROM tb_m_comp c
+                                WHERE (c.id_comp_cat='1' OR c.id_comp_cat='8') AND c.is_active='1'"
+        viewSearchLookupQuery(SLEVendor, query, "id_comp", "comp_name", "id_comp")
+
     End Sub
 
     Sub load_list(ByVal is_filter_design As String)
@@ -323,5 +330,49 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='22'"
             FormInvoiceClaimOther.id_invoice = GVInvoiceLain.GetFocusedRowCellValue("id_inv_claim_other").ToString
             FormInvoiceClaimOther.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BViewDPPaid_Click(sender As Object, e As EventArgs) Handles BViewDPPaid.Click
+        Dim q As String = "SELECT dp.`id_pn_fgpo`,dp.`id_comp`,dp.`ref_date`,dp.`number`,po.`prod_order_number`,dpd.`report_number`,dpd.`report_mark_type`,SUM(dpd.`value`) AS `value`,dp_used.value_used AS dp_used,wo.payment,dpd.`info_design`,bbk_paid.bbk_no
+FROM tb_pn_fgpo_det dpd
+INNER JOIN tb_pn_fgpo dp ON dp.`id_pn_fgpo`=dpd.`id_pn_fgpo` AND (dp.`type`=1 OR dp.`type`= 6 ) AND dp.`id_report_status`=6
+LEFT JOIN tb_prod_order po ON po.`id_prod_order`=dpd.`id_report` AND dpd.`report_mark_type`=22
+LEFT JOIN
+(
+	SELECT wo.id_prod_order,pay.`payment`
+	FROM tb_prod_order_wo wo
+	INNER JOIN tb_lookup_payment pay ON pay.`id_payment`=wo.`id_payment`
+	WHERE wo.id_report_status=6 AND wo.is_main_vendor=1
+	GROUP BY wo.`id_prod_order`
+)wo ON po.`id_prod_order`=wo.id_prod_order
+LEFT JOIN 
+(
+	SELECT dpd.id_report,dpd.`report_number`,dpd.`report_mark_type`,dpd.`id_prod_order`,dpd.`value`
+	,SUM(dpd.`value`) AS `value_used`
+	FROM `tb_pn_fgpo_det` dpd
+	INNER JOIN tb_pn_fgpo dp ON dp.`id_pn_fgpo`=dpd.`id_pn_fgpo` AND dp.`type`=2 AND dp.`id_report_status`=6
+	WHERE report_mark_type=0 OR report_mark_type=199
+	GROUP BY dpd.id_report,dpd.`report_mark_type`,dpd.`id_prod_order`
+)dp_used ON dp_used.id_report=dp.`id_pn_fgpo` AND IF(dpd.`report_mark_type`=22,dp_used.report_mark_type=199 AND dp_used.id_prod_order=dpd.`id_prod_order`,dp_used.report_mark_type=0)
+LEFT JOIN 
+(
+	SELECT pnd.id_report,pnd.report_mark_type,SUM(pnd.`value`) AS value_bbk,pn.id_pn,pn.number AS bbk_no
+	FROM `tb_pn_det` pnd
+	INNER JOIN tb_pn pn ON pn.id_pn=pnd.id_pn AND pn.id_report_status=6 AND pnd.report_mark_type=189
+	GROUP BY pnd.id_report,pnd.report_mark_type
+)bbk_paid ON bbk_paid.id_report=dp.`id_pn_fgpo`
+WHERE dp.id_comp='" & SLEVendor.EditValue.ToString & "' AND date(dp.ref_date)>='" & Date.Parse(DEBPLFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND date(dp.ref_date)<='" & Date.Parse(DEBPLTo.EditValue.ToString).ToString("yyyy-MM-dd") & "' 
+GROUP BY dp.id_pn_fgpo,dpd.id_report"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCDPUsed.DataSource = dt
+        GVDPUsed.BestFitColumns()
+    End Sub
+
+    Private Sub DEBPLFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEBPLFrom.EditValueChanged
+        DEBPLTo.Properties.MinValue = DEBPLFrom.EditValue
+    End Sub
+
+    Private Sub DEBPLTo_EditValueChanged(sender As Object, e As EventArgs) Handles DEBPLTo.EditValueChanged
+        DEBPLFrom.Properties.MaxValue = DEBPLTo.EditValue
     End Sub
 End Class

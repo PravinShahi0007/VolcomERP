@@ -87,6 +87,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumnDPAmountVAT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCDPFGPO = New DevExpress.XtraEditors.PanelControl()
         Me.BCreateDP = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage()
@@ -143,7 +144,29 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPListDPPaid = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BViewDPPaid = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEBPLTo = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEBPLFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCDPUsed = New DevExpress.XtraGrid.GridControl()
+        Me.GVDPUsed = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn71 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn72 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn73 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn74 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPBPL.SuspendLayout()
@@ -180,6 +203,17 @@ Partial Class FormInvoiceFGPO
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPListDPPaid.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.DEBPLTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBPLTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBPLFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBPLFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCDPUsed, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDPUsed, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCInvoiceFGPO
@@ -454,7 +488,7 @@ Partial Class FormInvoiceFGPO
         Me.XTCDP.SelectedTabPage = Me.XTPWaitingDP
         Me.XTCDP.Size = New System.Drawing.Size(1155, 558)
         Me.XTCDP.TabIndex = 0
-        Me.XTCDP.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPWaitingDP, Me.XTPDPList})
+        Me.XTCDP.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPWaitingDP, Me.XTPDPList, Me.XTPListDPPaid})
         '
         'XTPWaitingDP
         '
@@ -845,6 +879,20 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOQty.Name = "GCDPListFGPOQty"
         Me.GCDPListFGPOQty.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOQty.Width = 49
+        '
+        'GridColumn58
+        '
+        Me.GridColumn58.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn58.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn58.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn58.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn58.Caption = "DP Paid"
+        Me.GridColumn58.DisplayFormat.FormatString = "N2"
+        Me.GridColumn58.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn58.FieldName = "val_dp"
+        Me.GridColumn58.Name = "GridColumn58"
+        Me.GridColumn58.Visible = True
+        Me.GridColumn58.VisibleIndex = 14
         '
         'PCDPFGPO
         '
@@ -1452,19 +1500,210 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
-        'GridColumn58
+        'XTPListDPPaid
         '
-        Me.GridColumn58.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn58.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn58.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn58.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn58.Caption = "DP Paid"
-        Me.GridColumn58.DisplayFormat.FormatString = "N2"
-        Me.GridColumn58.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn58.FieldName = "val_dp"
-        Me.GridColumn58.Name = "GridColumn58"
-        Me.GridColumn58.Visible = True
-        Me.GridColumn58.VisibleIndex = 14
+        Me.XTPListDPPaid.Controls.Add(Me.GCDPUsed)
+        Me.XTPListDPPaid.Controls.Add(Me.PanelControl4)
+        Me.XTPListDPPaid.Name = "XTPListDPPaid"
+        Me.XTPListDPPaid.Size = New System.Drawing.Size(1149, 530)
+        Me.XTPListDPPaid.Text = "List DP Paid"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.SLEVendor)
+        Me.PanelControl4.Controls.Add(Me.LabelControl2)
+        Me.PanelControl4.Controls.Add(Me.DEBPLTo)
+        Me.PanelControl4.Controls.Add(Me.LabelControl19)
+        Me.PanelControl4.Controls.Add(Me.LabelControl18)
+        Me.PanelControl4.Controls.Add(Me.DEBPLFrom)
+        Me.PanelControl4.Controls.Add(Me.BViewDPPaid)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(1149, 43)
+        Me.PanelControl4.TabIndex = 2
+        '
+        'BViewDPPaid
+        '
+        Me.BViewDPPaid.Location = New System.Drawing.Point(655, 9)
+        Me.BViewDPPaid.Name = "BViewDPPaid"
+        Me.BViewDPPaid.Size = New System.Drawing.Size(60, 23)
+        Me.BViewDPPaid.TabIndex = 8919
+        Me.BViewDPPaid.Text = "view"
+        '
+        'DEBPLTo
+        '
+        Me.DEBPLTo.EditValue = Nothing
+        Me.DEBPLTo.Location = New System.Drawing.Point(491, 11)
+        Me.DEBPLTo.Name = "DEBPLTo"
+        Me.DEBPLTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBPLTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBPLTo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEBPLTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEBPLTo.Size = New System.Drawing.Size(158, 20)
+        Me.DEBPLTo.TabIndex = 8929
+        '
+        'LabelControl19
+        '
+        Me.LabelControl19.Location = New System.Drawing.Point(473, 13)
+        Me.LabelControl19.Name = "LabelControl19"
+        Me.LabelControl19.Size = New System.Drawing.Size(12, 13)
+        Me.LabelControl19.TabIndex = 8928
+        Me.LabelControl19.Text = "To"
+        '
+        'LabelControl18
+        '
+        Me.LabelControl18.Location = New System.Drawing.Point(234, 14)
+        Me.LabelControl18.Name = "LabelControl18"
+        Me.LabelControl18.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl18.TabIndex = 8927
+        Me.LabelControl18.Text = "Payment From"
+        '
+        'DEBPLFrom
+        '
+        Me.DEBPLFrom.EditValue = Nothing
+        Me.DEBPLFrom.Location = New System.Drawing.Point(309, 10)
+        Me.DEBPLFrom.Name = "DEBPLFrom"
+        Me.DEBPLFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBPLFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBPLFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEBPLFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEBPLFrom.Size = New System.Drawing.Size(158, 20)
+        Me.DEBPLFrom.TabIndex = 8926
+        '
+        'SLEVendor
+        '
+        Me.SLEVendor.Location = New System.Drawing.Point(51, 11)
+        Me.SLEVendor.Name = "SLEVendor"
+        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendor.Properties.View = Me.GridView2
+        Me.SLEVendor.Size = New System.Drawing.Size(177, 20)
+        Me.SLEVendor.TabIndex = 8931
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn69, Me.GridColumn70})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn69
+        '
+        Me.GridColumn69.Caption = "ID Comp Contact"
+        Me.GridColumn69.FieldName = "id_comp_contact"
+        Me.GridColumn69.Name = "GridColumn69"
+        '
+        'GridColumn70
+        '
+        Me.GridColumn70.Caption = "Vendor"
+        Me.GridColumn70.FieldName = "comp_name"
+        Me.GridColumn70.Name = "GridColumn70"
+        Me.GridColumn70.Visible = True
+        Me.GridColumn70.VisibleIndex = 0
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl2.TabIndex = 8930
+        Me.LabelControl2.Text = "Vendor"
+        '
+        'GCDPUsed
+        '
+        Me.GCDPUsed.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDPUsed.Location = New System.Drawing.Point(0, 43)
+        Me.GCDPUsed.MainView = Me.GVDPUsed
+        Me.GCDPUsed.MenuManager = Me.BarManager1
+        Me.GCDPUsed.Name = "GCDPUsed"
+        Me.GCDPUsed.Size = New System.Drawing.Size(1149, 487)
+        Me.GCDPUsed.TabIndex = 3
+        Me.GCDPUsed.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDPUsed})
+        '
+        'GVDPUsed
+        '
+        Me.GVDPUsed.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn71, Me.GridColumn76, Me.GridColumn77, Me.GridColumn72, Me.GridColumn73, Me.GridColumn78, Me.GridColumn74, Me.GridColumn75, Me.GridColumn79})
+        Me.GVDPUsed.GridControl = Me.GCDPUsed
+        Me.GVDPUsed.Name = "GVDPUsed"
+        Me.GVDPUsed.OptionsView.ShowFooter = True
+        Me.GVDPUsed.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn71
+        '
+        Me.GridColumn71.Caption = "ID BPL"
+        Me.GridColumn71.FieldName = "id_pn_fgpo"
+        Me.GridColumn71.Name = "GridColumn71"
+        '
+        'GridColumn72
+        '
+        Me.GridColumn72.Caption = "FGPO"
+        Me.GridColumn72.FieldName = "prod_order_number"
+        Me.GridColumn72.Name = "GridColumn72"
+        Me.GridColumn72.Visible = True
+        Me.GridColumn72.VisibleIndex = 2
+        '
+        'GridColumn73
+        '
+        Me.GridColumn73.Caption = "Design"
+        Me.GridColumn73.FieldName = "info_design"
+        Me.GridColumn73.Name = "GridColumn73"
+        Me.GridColumn73.Visible = True
+        Me.GridColumn73.VisibleIndex = 3
+        '
+        'GridColumn74
+        '
+        Me.GridColumn74.Caption = "Amount DP"
+        Me.GridColumn74.DisplayFormat.FormatString = "N2"
+        Me.GridColumn74.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn74.FieldName = "value"
+        Me.GridColumn74.Name = "GridColumn74"
+        Me.GridColumn74.Visible = True
+        Me.GridColumn74.VisibleIndex = 5
+        '
+        'GridColumn75
+        '
+        Me.GridColumn75.Caption = "Amount DP Used"
+        Me.GridColumn75.DisplayFormat.FormatString = "N2"
+        Me.GridColumn75.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn75.FieldName = "dp_used"
+        Me.GridColumn75.Name = "GridColumn75"
+        Me.GridColumn75.Visible = True
+        Me.GridColumn75.VisibleIndex = 6
+        '
+        'GridColumn76
+        '
+        Me.GridColumn76.Caption = "BPL"
+        Me.GridColumn76.FieldName = "number"
+        Me.GridColumn76.Name = "GridColumn76"
+        Me.GridColumn76.Visible = True
+        Me.GridColumn76.VisibleIndex = 0
+        '
+        'GridColumn77
+        '
+        Me.GridColumn77.Caption = "BPL Reff Date"
+        Me.GridColumn77.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn77.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn77.FieldName = "ref_date"
+        Me.GridColumn77.Name = "GridColumn77"
+        Me.GridColumn77.Visible = True
+        Me.GridColumn77.VisibleIndex = 1
+        '
+        'GridColumn78
+        '
+        Me.GridColumn78.Caption = "Type"
+        Me.GridColumn78.FieldName = "payment"
+        Me.GridColumn78.Name = "GridColumn78"
+        Me.GridColumn78.Visible = True
+        Me.GridColumn78.VisibleIndex = 4
+        '
+        'GridColumn79
+        '
+        Me.GridColumn79.Caption = "BBK No"
+        Me.GridColumn79.FieldName = "bbk_no"
+        Me.GridColumn79.Name = "GridColumn79"
+        Me.GridColumn79.Visible = True
+        Me.GridColumn79.VisibleIndex = 7
         '
         'FormInvoiceFGPO
         '
@@ -1520,6 +1759,18 @@ Partial Class FormInvoiceFGPO
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPListDPPaid.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.DEBPLTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBPLTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBPLFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBPLFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCDPUsed, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDPUsed, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1648,4 +1899,27 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BCreateInvoiceLain As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPListDPPaid As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BViewDPPaid As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn69 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn70 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEBPLTo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEBPLFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GCDPUsed As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDPUsed As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn71 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn76 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn77 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn72 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn73 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn78 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn74 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn75 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn79 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
