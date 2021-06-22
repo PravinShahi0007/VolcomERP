@@ -895,7 +895,7 @@ LEFT JOIN
 )payment_pending ON payment_pending.id_report=dn.id_inv_mat
 LEFT JOIN
 (
-    SELECT id_report,SUM(cnt.value) AS jml
+    SELECT id_report,SUM(cnt.value) AS value
     FROM(
 	    SELECT pyd.id_report, SUM(pyd.`value`) AS `value` 
 	    FROM `tb_pn_det` pyd
@@ -961,7 +961,7 @@ LEFT JOIN
 )payment_pending ON payment_pending.id_report=dn.id_inv_mat
 LEFT JOIN
 (
-    SELECT id_report,SUM(cnt.value) AS jml
+    SELECT id_report,SUM(cnt.value) AS value
     FROM(
 	    SELECT pyd.id_report, SUM(pyd.`value`) AS `value` 
 	    FROM `tb_pn_det` pyd
@@ -984,11 +984,11 @@ WHERE dn.is_open=1 AND dn.is_deposit='2' AND dn.`id_inv_mat_type`=2 AND dn.id_re
 
     Private Sub BRecPayment_Click(sender As Object, e As EventArgs) Handles BRecPayment.Click
         GVInvMat.ActiveFilterString = "[is_check]='yes'"
-        If GVJualAsset.RowCount > 0 Then
+        If GVInvMat.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
             FormBankDepositDet.id_coa_tag = "1"
             FormBankDepositDet.id_coa_type = "1"
-            FormBankDepositDet.type_rec = "4"
+            FormBankDepositDet.type_rec = "5"
             FormBankDepositDet.ShowDialog()
             Cursor = Cursors.Default
         End If
