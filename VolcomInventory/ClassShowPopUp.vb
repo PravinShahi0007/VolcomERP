@@ -453,6 +453,9 @@
         ElseIf report_mark_type = "310" Then
             'invoice verification
             FormAWBInv.Close()
+        ElseIf report_mark_type = "318" Then
+            'invoice verification
+            FormAWBOtherInv.Close()
         End If
     End Sub
     Sub show()
@@ -1488,6 +1491,10 @@ GROUP BY rec.`id_prod_order`"
             FormAWBInv.id_verification = id_report
             FormAWBInv.is_view = "1"
             FormAWBInv.ShowDialog()
+        ElseIf report_mark_type = "318" Then
+            FormAWBOtherInv.id_verification = id_report
+            FormAWBOtherInv.is_view = "1"
+            FormAWBOtherInv.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2657,6 +2664,12 @@ GROUP BY rec.`id_prod_order`"
             field_date = "created_date"
         ElseIf report_mark_type = "310" Then
             'invoice verification
+            table_name = "tb_awb_inv_sum"
+            field_id = "id_awb_inv_sum"
+            field_number = "inv_number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "318" Then
+            'invoice verification office
             table_name = "tb_awb_inv_sum"
             field_id = "id_awb_inv_sum"
             field_number = "inv_number"
