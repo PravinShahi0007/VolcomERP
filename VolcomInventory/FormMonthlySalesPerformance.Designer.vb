@@ -133,12 +133,13 @@ Partial Class FormMonthlySalesPerformance
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1008, 193)
+        Me.PanelControl1.Size = New System.Drawing.Size(1008, 201)
         Me.PanelControl1.TabIndex = 0
         '
         'CENewView
         '
-        Me.CENewView.Location = New System.Drawing.Point(579, 202)
+        Me.CENewView.EditValue = True
+        Me.CENewView.Location = New System.Drawing.Point(473, 146)
         Me.CENewView.Name = "CENewView"
         Me.CENewView.Properties.Caption = "New version report"
         Me.CENewView.Size = New System.Drawing.Size(115, 19)
@@ -544,10 +545,10 @@ Partial Class FormMonthlySalesPerformance
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 193)
+        Me.GCData.Location = New System.Drawing.Point(0, 201)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(1008, 536)
+        Me.GCData.Size = New System.Drawing.Size(1008, 528)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -559,6 +560,8 @@ Partial Class FormMonthlySalesPerformance
         Me.GVData.OptionsBehavior.ReadOnly = True
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'FormMonthlySalesPerformance
