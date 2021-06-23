@@ -209,14 +209,14 @@ UNION ALL
                         id_reff = "'" & GVInvoice.GetRowCellValue(i, "id_awb_office_det").ToString & "'"
                     End If
 
-                    Dim id_deparement As String = ""
+                    Dim id_departement As String = ""
                     If GVInvoice.GetRowCellValue(i, "id_departement").ToString = "" Then
-                        id_deparement = "NULL"
+                        id_departement = "NULL"
                     Else
-                        id_deparement = "'" & GVInvoice.GetRowCellValue(i, "id_departement").ToString & "'"
+                        id_departement = "'" & GVInvoice.GetRowCellValue(i, "id_departement").ToString & "'"
                     End If
 
-                    q += "('" & id_verification & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "rate_cargo").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "'," & id_deparement & ")"
+                    q += "('" & id_verification & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "rate_cargo").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "'," & id_departement & ")"
                 Next
                 execute_non_query(q, True, "", "", "", "")
 

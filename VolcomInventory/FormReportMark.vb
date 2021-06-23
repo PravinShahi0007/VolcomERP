@@ -9905,7 +9905,7 @@ WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
                         Dim qu As String = "UPDATE tb_awb_office_dets d
 INNER JOIN `tb_awb_inv_sum_other` aid ON aid.`id_awb_office_det`=d.`id_awb_office_det`
 INNER JOIN tb_awb_inv_sum ai ON ai.`id_awb_inv_sum`=aid.`id_awb_inv_sum` 
-SET d.`berat_final`=aid.`berat_final`,d.`amount_final`=aid.`amount_final`,d.`awbill_inv_no`=ai.`inv_number`
+SET d.`berat_final`=aid.`berat_final`,d.`amount_final`=aid.`amount_final`,d.`inv_no`=ai.`inv_number`
 WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
                         execute_non_query(q, True, "", "", "", "")
                     End If
