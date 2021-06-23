@@ -166,6 +166,10 @@ Partial Class FormAWBOtherInv
         Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn27, Me.GridColumn28, Me.GridColumn33, Me.GridColumn46, Me.GridColumn32, Me.GridColumn36, Me.GridColumn26})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsBehavior.ReadOnly = True
+        Me.GVData.OptionsFilter.AllowFilterEditor = False
+        Me.GVData.OptionsFind.AllowFindPanel = False
         Me.GVData.OptionsPrint.AllowMultilineHeaders = True
         Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVData.OptionsView.ShowFooter = True
@@ -574,6 +578,8 @@ Partial Class FormAWBOtherInv
         Me.GridColumn3.Caption = "AWB"
         Me.GridColumn3.FieldName = "awbill_no"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.AllowFocus = False
         Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
@@ -597,6 +603,7 @@ Partial Class FormAWBOtherInv
         Me.GridColumn16.FieldName = "id_departement"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.OptionsColumn.AllowEdit = False
+        Me.GridColumn16.OptionsColumn.AllowFocus = False
         Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Width = 79
         '
@@ -635,6 +642,9 @@ Partial Class FormAWBOtherInv
         Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn47.FieldName = "rate_cargo"
         Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.OptionsColumn.AllowEdit = False
+        Me.GridColumn47.OptionsColumn.AllowFocus = False
+        Me.GridColumn47.OptionsColumn.ReadOnly = True
         Me.GridColumn47.Visible = True
         Me.GridColumn47.VisibleIndex = 5
         Me.GridColumn47.Width = 46
@@ -668,6 +678,9 @@ Partial Class FormAWBOtherInv
         Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn45.FieldName = "berat_final"
         Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.OptionsColumn.AllowEdit = False
+        Me.GridColumn45.OptionsColumn.AllowFocus = False
+        Me.GridColumn45.OptionsColumn.ReadOnly = True
         Me.GridColumn45.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "berat_final", "{0:N2}")})
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 6
@@ -685,6 +698,9 @@ Partial Class FormAWBOtherInv
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "amount_final"
         Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.OptionsColumn.AllowFocus = False
+        Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_final", "{0:N2}")})
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 7
