@@ -99,15 +99,19 @@ SELECT id_comp,comp_name FROM tb_m_comp WHERE id_comp_cat='7' AND is_active='1'"
         End If
 
         Dim q As String = "SELECT awbo.id_awb_office_det,awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
-,awbo.`client_note`,IFNULL(inv.inv_number,'') AS inv_number
+,awbo.`client_note`,IFNULL(invo.inv_number,'') AS inv_number
 FROM `tb_awb_office_det` awbo 
 INNER JOIN tb_awb_office awb ON awb.id_awb_office=awbo.id_awb_office
 INNER JOIN tb_m_departement dep ON dep.id_departement=awbo.id_departement
 LEFT JOIN tb_m_comp c ON c.id_comp=awbo.id_client
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awbo.id_sub_district
-LEFT JOIN tb_awb_inv_sum_other invo ON invo.id_awb_office_det=awbo.id_awb_office_det
-LEFT JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invo.id_awb_inv_sum AND inv.id_report_status!=5
-WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(awb.pickup_date)<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' " & qw
+LEFT JOIN  
+(
+    SELECT id_awb_office_det,inv.inv_number
+    FROM tb_awb_inv_sum_other invo 
+    INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invo.id_awb_inv_sum AND inv.id_report_status!=5
+)invo ON invo.id_awb_office_det=awbo.id_awb_office_det
+WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStartAWBList.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(awb.pickup_date)<='" & Date.Parse(DEUntilAWBList.EditValue.ToString).ToString("yyyy-MM-dd") & "' " & qw
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()

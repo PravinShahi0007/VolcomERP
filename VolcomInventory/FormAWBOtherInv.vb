@@ -232,6 +232,7 @@ UNION ALL
         Cursor = Cursors.WaitCursor
         ReportAwbInv.id_ver = id_verification
         ReportAwbInv.dt = GCInvoice.DataSource
+        ReportAwbInv.rmt = "318"
         Dim Report As New ReportAwbInv()
 
         For Each c In GVInvoice.FormatRules
