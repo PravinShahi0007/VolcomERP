@@ -767,4 +767,10 @@ ORDER BY area ASC"
         view_group_store()
         viewStore()
     End Sub
+
+    Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
+        Dim SpQty As DevExpress.XtraEditors.CheckEdit = CType(sender, DevExpress.XtraEditors.CheckEdit)
+        Dim cek As String = SpQty.EditValue.ToString
+        MsgBox(cek.ToString)
+    End Sub
 End Class

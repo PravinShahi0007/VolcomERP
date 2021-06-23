@@ -21,6 +21,10 @@ Partial Class FormMonthlySalesPerformance
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMonthlySalesPerformance))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CENewView = New DevExpress.XtraEditors.CheckEdit()
+        Me.CCBEClass = New DevExpress.XtraEditors.CheckedComboBoxEdit()
+        Me.CCBECategory = New DevExpress.XtraEditors.CheckedComboBoxEdit()
+        Me.CCBEDivision = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.CCBESeason = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLUECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -68,11 +72,12 @@ Partial Class FormMonthlySalesPerformance
         Me.SBView = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.CCBEDivision = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.CCBECategory = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.CCBEClass = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.CENewView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,13 +97,11 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCBEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCBECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCBEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.CENewView)
         Me.PanelControl1.Controls.Add(Me.CCBEClass)
         Me.PanelControl1.Controls.Add(Me.CCBECategory)
         Me.PanelControl1.Controls.Add(Me.CCBEDivision)
@@ -132,6 +135,41 @@ Partial Class FormMonthlySalesPerformance
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1008, 193)
         Me.PanelControl1.TabIndex = 0
+        '
+        'CENewView
+        '
+        Me.CENewView.Location = New System.Drawing.Point(579, 202)
+        Me.CENewView.Name = "CENewView"
+        Me.CENewView.Properties.Caption = "New version report"
+        Me.CENewView.Size = New System.Drawing.Size(115, 19)
+        Me.CENewView.TabIndex = 42
+        '
+        'CCBEClass
+        '
+        Me.CCBEClass.EditValue = ""
+        Me.CCBEClass.Location = New System.Drawing.Point(414, 92)
+        Me.CCBEClass.Name = "CCBEClass"
+        Me.CCBEClass.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEClass.Size = New System.Drawing.Size(280, 20)
+        Me.CCBEClass.TabIndex = 41
+        '
+        'CCBECategory
+        '
+        Me.CCBECategory.EditValue = ""
+        Me.CCBECategory.Location = New System.Drawing.Point(414, 66)
+        Me.CCBECategory.Name = "CCBECategory"
+        Me.CCBECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBECategory.Size = New System.Drawing.Size(280, 20)
+        Me.CCBECategory.TabIndex = 40
+        '
+        'CCBEDivision
+        '
+        Me.CCBEDivision.EditValue = ""
+        Me.CCBEDivision.Location = New System.Drawing.Point(414, 40)
+        Me.CCBEDivision.Name = "CCBEDivision"
+        Me.CCBEDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEDivision.Size = New System.Drawing.Size(280, 20)
+        Me.CCBEDivision.TabIndex = 39
         '
         'CCBESeason
         '
@@ -523,33 +561,6 @@ Partial Class FormMonthlySalesPerformance
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'CCBEDivision
-        '
-        Me.CCBEDivision.EditValue = ""
-        Me.CCBEDivision.Location = New System.Drawing.Point(414, 40)
-        Me.CCBEDivision.Name = "CCBEDivision"
-        Me.CCBEDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBEDivision.Size = New System.Drawing.Size(280, 20)
-        Me.CCBEDivision.TabIndex = 39
-        '
-        'CCBECategory
-        '
-        Me.CCBECategory.EditValue = ""
-        Me.CCBECategory.Location = New System.Drawing.Point(414, 66)
-        Me.CCBECategory.Name = "CCBECategory"
-        Me.CCBECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBECategory.Size = New System.Drawing.Size(280, 20)
-        Me.CCBECategory.TabIndex = 40
-        '
-        'CCBEClass
-        '
-        Me.CCBEClass.EditValue = ""
-        Me.CCBEClass.Location = New System.Drawing.Point(414, 92)
-        Me.CCBEClass.Name = "CCBEClass"
-        Me.CCBEClass.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBEClass.Size = New System.Drawing.Size(280, 20)
-        Me.CCBEClass.TabIndex = 41
-        '
         'FormMonthlySalesPerformance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -564,6 +575,10 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.CENewView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -583,9 +598,6 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCBEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCBECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCBEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -641,4 +653,5 @@ Partial Class FormMonthlySalesPerformance
     Friend WithEvents CCBEDivision As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents CCBECategory As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents CCBEClass As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents CENewView As DevExpress.XtraEditors.CheckEdit
 End Class
