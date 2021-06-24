@@ -59,8 +59,8 @@ WHERE id_awb_inv_sum='" & id_verification & "'"
                     BCancel.Visible = False
                     BSaveDraft.Visible = False
                     BSubmit.Visible = False
-                    BMark.Visible = False
-                    BtnPrint.Visible = False
+                    'BMark.Visible = False
+                    'BtnPrint.Visible = False
                     BDownloadFileKonsolidasi.Visible = False
                     BImportHasilRekon.Visible = False
                 End If

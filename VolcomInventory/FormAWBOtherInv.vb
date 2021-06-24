@@ -61,8 +61,6 @@ WHERE id_awb_inv_sum='" & id_verification & "'"
                     BCancel.Visible = False
                     BSaveDraft.Visible = False
                     BSubmit.Visible = False
-                    BMark.Visible = False
-                    BtnPrint.Visible = False
                 End If
             End If
         End If
@@ -257,7 +255,7 @@ UNION ALL
         GridColumnNo.VisibleIndex = -1
 
         'Parse val
-        Dim q As String = "SELECT inv.inv_number,DATE_FORMAT(inv.created_date,'%d %M %Y') AS created_date,c.comp_name ,IF(inv.id_type=1,'Outbound','Inbound') AS del_type
+        Dim q As String = "SELECT inv.inv_number,DATE_FORMAT(inv.created_date,'%d %M %Y') AS created_date,c.comp_name ,IF(inv.id_type=3,'Office','') AS del_type
 FROM `tb_awb_inv_sum` inv
 INNER JOIN tb_m_comp c ON c.`id_comp`=inv.`id_comp`
 WHERE inv.id_awb_inv_sum='" & id_verification & "'"
