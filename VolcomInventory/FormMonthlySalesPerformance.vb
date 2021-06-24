@@ -83,7 +83,10 @@
         (IFNULL(wh_rec.qty_normal,0) + IFNULL(wh_rec.qty_defect,0)) AS `WH Received|Total`,
         " + col_sal2 + ",
         " + col_sal_total2 + ",
-        soh.`Total Sales|Sales Toko Normal`, soh.`Total Sales|Sales Toko Sale`, soh.`Total Sales|Grand Total`
+        soh.`Total Sales|Sales Toko Normal`, soh.`Total Sales|Sales Toko Sale`, soh.`Total Sales|Grand Total`,
+        (soh.`Total Sales|Sales Toko Normal`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Normal`, 
+        (soh.`Total Sales|Sales Toko Sale`/(IFNULL(wh_rec.qty_normal,0)-soh.`Total Sales|Sales Toko Normal`))*100 AS `Sell Thru|Sale`, 
+        (soh.`Total Sales|Grand Total`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Total`
         FROM (
 	        SELECT soh.id_design,
 	        " + col_sal1 + ",
@@ -207,7 +210,7 @@
                         col.Group()
                     End If
 
-                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("Sales") Or bandName.Contains("Stock Gudang") Then
+                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("Sales") Or bandName.Contains("SOH") Or bandName.Contains("Stock Gudang") Then
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                         col.DisplayFormat.FormatString = "{0:n0}"
@@ -226,14 +229,26 @@
                         GVData.GroupSummary.Add(summary)
                     End If
 
-                    If bandName.Contains("Sell Thru") Or bandName.Contains("Monthly SAS") Or bandName = "Price" Then
+                    If bandName.Contains("Sell Thru") Or bandName.Contains("Monthly SAS") Then
                         col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
+                        'display format
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n2}%"
+                    End If
+
+                    If bandName = "Price" Then
+                        col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
+                        'display format
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n0}"
                     End If
 
                     If bandName = "Product Info" Then
-                        band.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                            band.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                        End If
                     End If
-                End If
             Next
         Next
 
