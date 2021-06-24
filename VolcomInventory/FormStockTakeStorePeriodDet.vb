@@ -140,7 +140,7 @@
     Private Sub SLUEStore_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEStore.EditValueChanged
         view_user()
 
-        Dim schedule_end As String = execute_query("SELECT IFNULL(DATE_ADD(MAX(schedule_end), INTERVAL 1 DAY), DATE_SUB(CURDATE(), INTERVAL 0 DAY)) AS schedule_end FROM tb_st_store_period WHERE id_store = " + SLUEStore.EditValue.ToString, 0, True, "", "", "", "")
+        Dim schedule_end As String = execute_query("SELECT IFNULL(DATE_ADD(MAX(DATE(schedule_end)), INTERVAL 1 DAY), DATE_SUB(CURDATE(), INTERVAL 0 DAY)) AS schedule_end FROM tb_st_store_period WHERE id_store = " + SLUEStore.EditValue.ToString, 0, True, "", "", "", "")
 
         DEStart.Properties.MinValue = schedule_end
     End Sub
