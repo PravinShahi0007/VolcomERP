@@ -32,24 +32,32 @@
                 col_sal1 += ","
                 col_sal2 += ","
                 col_sal_total1 += ","
+                col_sal_total2 += ","
             End If
 
             Dim last_month As Integer = 0
-            For m = 1 To 12
+            Dim j As Integer = 0
+            If y = year_from Then
+                j = month_from
+            Else
+                j = 1
+            End If
+            For m = j To 12
                 last_month = m
-                If m > 1 Then
+                If m > j Then
                     col_sal1 += ","
                     col_sal2 += ","
                 End If
-                col_sal1 += "IFNULL(ABS(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_sal1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sal2 += "soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
 
-                If y = year_to And m = (month_to - 1) Then
+                If y = year_to And m = month_to Then
                     Exit For
                 End If
             Next
             'sampai sini belum bisa kalo bulan gk dari awal
-            col_sal_total1 += ""
+            col_sal_total1 += "IFNULL(ABS(SUM(CASE WHEN soh.soh_date>='" + y.ToString + "-" + j.ToString + "-01' AND soh.soh_date<='" + y.ToString + "-" + last_month.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `Total Sales|" + y.ToString + "` "
+            col_sal_total2 += "soh.`Total Sales|" + y.ToString + "` "
         Next
 
 
@@ -76,22 +84,11 @@
         IFNULL(wh_rec.qty_normal,0) AS `WH Received|Normal (BOS)`, IFNULL(wh_rec.qty_defect,0) AS `WH Received|Defect`,
         (IFNULL(wh_rec.qty_normal,0) + IFNULL(wh_rec.qty_defect,0)) AS `WH Received|Total`,
         " + col_sal2 + ",
-        soh.`Total Sales|2020`, soh.`Total Sales|Sales Toko Normal`, soh.`Total Sales|Sales Toko Sale`, soh.`Total Sales|Grand Total`,
-        (soh.`Total Sales|Sales Toko Normal`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Normal`, 
-        (soh.`Total Sales|Sales Toko Sale`/(IFNULL(wh_rec.qty_normal,0)-soh.`Total Sales|Sales Toko Normal`))*100 AS `Sell Thru|Sale`, 
-        (soh.`Total Sales|Grand Total`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Total`,
-        soh.`Monthly SOH 2020|Jan 2020`, soh.`Monthly SOH 2020|Feb 2020`,
-        (soh.`Sales 2020|Jan 2020`/(soh.`Monthly SOH 2020|Jan 2020`+soh.`Sales 2020|Jan 2020`))*100 AS `Monthly SAS 2020|Jan 2020`,
-        (soh.`Sales 2020|Feb 2020`/(soh.`Monthly SOH 2020|Feb 2020`+soh.`Sales 2020|Feb 2020`))*100 AS `Monthly SAS 2020|Feb 2020`
+        " + col_sal_total2 + "
         FROM (
 	        SELECT soh.id_design,
 	        " + col_sal1 + ",
-	        IFNULL(ABS(SUM(CASE WHEN soh.soh_date>='2020-01-01' AND soh.soh_date<='2020-12-01' AND soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END)),0) AS `Total Sales|2020`,
-	        IFNULL(ABS(SUM(CASE WHEN soh.soh_date>='2020-01-01' AND soh.soh_date<='2020-12-01' AND c.id_store_type IN(1) AND soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END)),0) AS `Total Sales|Sales Toko Normal`,
-	        IFNULL(ABS(SUM(CASE WHEN soh.soh_date>='2020-01-01' AND soh.soh_date<='2020-12-01' AND c.id_store_type IN(2,3) AND soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END)),0) AS `Total Sales|Sales Toko Sale`,
-	        IFNULL(ABS(SUM(CASE WHEN soh.soh_date>='2020-01-01' AND soh.soh_date<='2020-12-01' AND soh.report_mark_type IN(48,66,54,67,118,117,183,116,292) THEN soh.qty END)),0) AS `Total Sales|Grand Total`,
-	        IFNULL(SUM(CASE WHEN soh.soh_date='2020-01-01' THEN soh.qty END),0) AS `Monthly SOH 2020|Jan 2020`,
-	        IFNULL(SUM(CASE WHEN soh.soh_date='2020-02-01' THEN soh.qty END),0) AS `Monthly SOH 2020|Feb 2020`
+	        " + col_sal_total1 + "
 	        FROM tb_soh_sal_period soh
 	        INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
 	        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
