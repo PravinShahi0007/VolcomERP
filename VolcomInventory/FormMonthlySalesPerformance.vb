@@ -55,11 +55,9 @@
                     Exit For
                 End If
             Next
-            'sampai sini belum bisa kalo bulan gk dari awal
-            col_sal_total1 += "IFNULL(ABS(SUM(CASE WHEN soh.soh_date>='" + y.ToString + "-" + j.ToString + "-01' AND soh.soh_date<='" + y.ToString + "-" + last_month.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `Total Sales|" + y.ToString + "` "
+            col_sal_total1 += "IFNULL(SUM(CASE WHEN soh.soh_date>='" + y.ToString + "-" + j.ToString + "-01' AND soh.soh_date<='" + y.ToString + "-" + last_month.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|" + y.ToString + "` "
             col_sal_total2 += "soh.`Total Sales|" + y.ToString + "` "
         Next
-
 
         'where
 
@@ -84,11 +82,15 @@
         IFNULL(wh_rec.qty_normal,0) AS `WH Received|Normal (BOS)`, IFNULL(wh_rec.qty_defect,0) AS `WH Received|Defect`,
         (IFNULL(wh_rec.qty_normal,0) + IFNULL(wh_rec.qty_defect,0)) AS `WH Received|Total`,
         " + col_sal2 + ",
-        " + col_sal_total2 + "
+        " + col_sal_total2 + ",
+        soh.`Total Sales|Sales Toko Normal`, soh.`Total Sales|Sales Toko Sale`, soh.`Total Sales|Grand Total`
         FROM (
 	        SELECT soh.id_design,
 	        " + col_sal1 + ",
-	        " + col_sal_total1 + "
+	        " + col_sal_total1 + ",
+            IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND c.id_store_type IN(1) AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Sales Toko Normal`,
+	        IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND c.id_store_type IN(2,3) AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Sales Toko Sale`,
+	        IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Grand Total` 
 	        FROM tb_soh_sal_period soh
 	        INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
 	        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
