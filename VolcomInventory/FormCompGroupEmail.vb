@@ -36,7 +36,7 @@
 
     Sub show_email()
         If GVGroupComp.RowCount > 0 Then
-            Dim q As String = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to 
+            Dim q As String = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to , IF(ISNULL(id_employee),'External','Internal') AS `type`
 FROM tb_mail_to_group
 WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_comp_group='" & GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -69,6 +69,14 @@ WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_com
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         If GVGroupComp.RowCount > 0 Then
+            FormCompGroupEmailDet.id_comp_group = GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
+            FormCompGroupEmailDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BAddInternal_Click(sender As Object, e As EventArgs) Handles BAddInternal.Click
+        If GVGroupComp.RowCount > 0 Then
+            FormCompGroupEmailDet.is_external = False
             FormCompGroupEmailDet.id_comp_group = GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
             FormCompGroupEmailDet.ShowDialog()
         End If
