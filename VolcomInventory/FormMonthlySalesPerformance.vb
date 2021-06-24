@@ -27,12 +27,16 @@
         Dim col_sal2 As String = ""
         Dim col_sal_total1 As String = ""
         Dim col_sal_total2 As String = ""
+        Dim col_soh1 As String = ""
+        Dim col_soh2 As String = ""
         For y = year_from To year_to
             If y > year_from Then
                 col_sal1 += ","
                 col_sal2 += ","
                 col_sal_total1 += ","
                 col_sal_total2 += ","
+                col_soh1 += ","
+                col_soh2 += ","
             End If
 
             Dim last_month As Integer = 0
@@ -47,9 +51,13 @@
                 If m > j Then
                     col_sal1 += ","
                     col_sal2 += ","
+                    col_soh1 += ","
+                    col_soh2 += ","
                 End If
                 col_sal1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sal2 += "soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_soh1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' THEN soh.qty END),0) AS `Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_soh2 += "soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
 
                 If y = year_to And m = month_to Then
                     Exit For
@@ -86,14 +94,16 @@
         soh.`Total Sales|Sales Toko Normal`, soh.`Total Sales|Sales Toko Sale`, soh.`Total Sales|Grand Total`,
         (soh.`Total Sales|Sales Toko Normal`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Normal`, 
         (soh.`Total Sales|Sales Toko Sale`/(IFNULL(wh_rec.qty_normal,0)-soh.`Total Sales|Sales Toko Normal`))*100 AS `Sell Thru|Sale`, 
-        (soh.`Total Sales|Grand Total`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Total`
+        (soh.`Total Sales|Grand Total`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Total`,
+        " + col_soh2 + "
         FROM (
 	        SELECT soh.id_design,
 	        " + col_sal1 + ",
 	        " + col_sal_total1 + ",
             IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND c.id_store_type IN(1) AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Sales Toko Normal`,
 	        IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND c.id_store_type IN(2,3) AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Sales Toko Sale`,
-	        IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Grand Total` 
+	        IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Grand Total`,
+            " + col_soh1 + "
 	        FROM tb_soh_sal_period soh
 	        INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
 	        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
