@@ -11,7 +11,7 @@
         DESOHDate.Properties.MaxValue = lastDate
         DESOHDate.EditValue = lastDate
         DEStart.EditValue = nowDate
-        DEEnd.EditValue = nowDate
+        DEEnd.EditValue = DateTime.Parse(nowDate).AddMinutes(1439)
 
         CEAll.EditValue = True
     End Sub
@@ -41,7 +41,7 @@
             is_all_design = "2"
         End If
 
-        Dim query As String = "INSERT INTO tb_st_store_period (soh_date, id_store, is_active, schedule_start, schedule_end, is_all_design) VALUES ('" + Date.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + SLUEStore.EditValue.ToString + ", 1, '" + Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + is_all_design + "); SELECT LAST_INSERT_ID();"
+        Dim query As String = "INSERT INTO tb_st_store_period (soh_date, id_store, is_active, schedule_start, schedule_end, is_all_design) VALUES ('" + Date.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + SLUEStore.EditValue.ToString + ", 1, '" + DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + is_all_design + "); SELECT LAST_INSERT_ID();"
 
         Dim id_st_store_period As String = execute_query(query, 0, True, "", "", "", "")
 
