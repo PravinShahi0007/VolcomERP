@@ -10,8 +10,8 @@
         DEStart.Properties.MinValue = nowDate
         DESOHDate.Properties.MaxValue = lastDate
         DESOHDate.EditValue = lastDate
-        DEStart.EditValue = lastDate
-        DEEnd.EditValue = lastDate
+        DEStart.EditValue = nowDate
+        DEEnd.EditValue = nowDate
 
         CEAll.EditValue = True
     End Sub
@@ -139,6 +139,10 @@
 
     Private Sub SLUEStore_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEStore.EditValueChanged
         view_user()
+
+        Dim schedule_end As String = execute_query("SELECT IFNULL(DATE_ADD(MAX(schedule_end), INTERVAL 1 DAY), DATE_SUB(CURDATE(), INTERVAL 0 DAY)) AS schedule_end FROM tb_st_store_period WHERE id_store = " + SLUEStore.EditValue.ToString, 0, True, "", "", "", "")
+
+        DEStart.Properties.MinValue = schedule_end
     End Sub
 
     Sub view_user()
