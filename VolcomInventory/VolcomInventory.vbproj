@@ -7131,6 +7131,12 @@
     <Compile Include="FormSNIppsBudget.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSNIppsDet.Designer.vb">
+      <DependentUpon>FormSNIppsDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIppsDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSOH.designer.vb">
       <DependentUpon>FormSOH.vb</DependentUpon>
     </Compile>
@@ -13646,6 +13652,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSNIppsBudget.resx">
       <DependentUpon>FormSNIppsBudget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIppsDet.resx">
+      <DependentUpon>FormSNIppsDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSOH.resx">
       <DependentUpon>FormSOH.vb</DependentUpon>
