@@ -52,6 +52,7 @@ Partial Class FormAWBOtherDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnInv = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,7 +113,7 @@ Partial Class FormAWBOtherDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn3, Me.GridColumn4, Me.GridColumn11, Me.GridColumn5, Me.GridColumn12, Me.GridColumn6, Me.GridColumn7})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn3, Me.GridColumn4, Me.GridColumn11, Me.GridColumn5, Me.GridColumn12, Me.GridColumn6, Me.GridColumn7, Me.GridColumnInv})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -350,6 +351,12 @@ Partial Class FormAWBOtherDet
         Me.BAdd.TabIndex = 1
         Me.BAdd.Text = "Add"
         '
+        'GridColumnInv
+        '
+        Me.GridColumnInv.Caption = "Inv No"
+        Me.GridColumnInv.FieldName = "inv_no"
+        Me.GridColumnInv.Name = "GridColumnInv"
+        '
         'FormAWBOtherDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -418,4 +425,5 @@ Partial Class FormAWBOtherDet
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnInv As DevExpress.XtraGrid.Columns.GridColumn
 End Class

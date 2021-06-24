@@ -221,11 +221,11 @@ Partial Class FormStockTakeStorePeriodDet
         Me.DEStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy / HH:mm"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStart.Properties.EditFormat.FormatString = "dd MMMM yyyy / HH:mm"
         Me.DEStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEStart.Properties.Mask.EditMask = "dd MMMM yyyy / HH:mm"
         Me.DEStart.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.DEStart.Size = New System.Drawing.Size(175, 20)
         Me.DEStart.TabIndex = 12
@@ -247,11 +247,11 @@ Partial Class FormStockTakeStorePeriodDet
         Me.DEEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMMM yyyy / HH:mm"
         Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEEnd.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEEnd.Properties.EditFormat.FormatString = "dd MMMM yyyy / HH:mm"
         Me.DEEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEEnd.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEEnd.Properties.Mask.EditMask = "dd MMMM yyyy / HH:mm"
         Me.DEEnd.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.DEEnd.Size = New System.Drawing.Size(175, 20)
         Me.DEEnd.TabIndex = 13

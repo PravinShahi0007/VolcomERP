@@ -684,7 +684,10 @@
             'polis
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_polis_pps WHERE id_polis_pps = '{0}'", id_report)
         ElseIf report_mark_type = "310" Then
-            'invoice 3pl
+            'verification invoice 3pl WH
+            query = String.Format("SELECT id_report_status, inv_number as report_number FROM tb_awb_inv_sum WHERE id_awb_inv_sum = '{0}'", id_report)
+        ElseIf report_mark_type = "318" Then
+            'verification invoice 3pl office
             query = String.Format("SELECT id_report_status, inv_number as report_number FROM tb_awb_inv_sum WHERE id_awb_inv_sum = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
@@ -6870,6 +6873,18 @@ WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
                     SET d.is_rec_payment=1
                     WHERE pyd.id_rec_payment = '" + id_report + "'; "
                     execute_non_query(qjd_upd, True, "", "", "", "")
+                ElseIf FormBankDepositDet.type_rec = "5" Then
+                    'inv mat
+                    Dim q As String = "SELECT id_report
+FROM `tb_rec_payment_det` recd
+WHERE recd.balance_due=recd.`value` AND report_mark_type='231' AND id_rec_payment='" + id_report + "'"
+                    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                    For j = 0 To dt.Rows.Count - 1
+                        Dim qjd_upd = "UPDATE tb_inv_mat d
+                    SET d.is_open=1
+                    WHERE d.id_inv_mat = '" + dt.Rows(j)("id_report").ToString + "'; "
+                        execute_non_query(qjd_upd, True, "", "", "", "")
+                    Next
                 End If
 
                 'insert valas
@@ -9865,6 +9880,32 @@ WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
 INNER JOIN `tb_awb_inv_sum_det` aid ON aid.`id_inbound_awb`=ia.`id_inbound_awb`
 INNER JOIN tb_awb_inv_sum ai ON ai.`id_awb_inv_sum`=aid.`id_awb_inv_sum` 
 SET ia.`a_weight`=aid.`berat_final`,ia.`a_tot_price`=aid.`amount_final`,ia.`awb_inv_number`=ai.`inv_number`
+WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
+                        execute_non_query(q, True, "", "", "", "")
+                    End If
+                End If
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_awb_inv_sum SET id_report_status='{0}' WHERE id_awb_inv_sum ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "318" Then
+            'invoice verification office
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'update to each table
+                Dim q As String = "SELECT id_type FROM tb_awb_inv_sum WHERE id_awb_inv_sum='" & id_report & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    If dt.Rows(0)("id_type").ToString = "3" Then
+                        'office
+                        Dim qu As String = "UPDATE tb_awb_office_dets d
+INNER JOIN `tb_awb_inv_sum_other` aid ON aid.`id_awb_office_det`=d.`id_awb_office_det`
+INNER JOIN tb_awb_inv_sum ai ON ai.`id_awb_inv_sum`=aid.`id_awb_inv_sum` 
+SET d.`berat_final`=aid.`berat_final`,d.`amount_final`=aid.`amount_final`,d.`inv_no`=ai.`inv_number`
 WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
                         execute_non_query(q, True, "", "", "", "")
                     End If

@@ -18,7 +18,7 @@
 
     Sub load_form()
         Dim query As String = "
-            SELECT p.id_st_store_period, DATE_FORMAT(p.soh_date, '%d %M %Y') AS soh_date, s.store_name, DATE_FORMAT(p.schedule_start, '%d %M %Y') AS schedule_start, DATE_FORMAT(p.schedule_end, '%d %M %Y') AS schedule_end
+            SELECT p.id_st_store_period, DATE_FORMAT(p.soh_date, '%d %M %Y') AS soh_date, s.store_name, DATE_FORMAT(p.schedule_start, '%d %M %Y / %H:%i') AS schedule_start, DATE_FORMAT(p.schedule_end, '%d %M %Y / %H:%i') AS schedule_end
             FROM tb_st_store_period AS p
             LEFT JOIN tb_m_store AS s ON p.id_store = s.id_store
             ORDER BY p.id_st_store_period DESC

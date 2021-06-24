@@ -2,6 +2,18 @@
     Public month As List(Of String) = New List(Of String)
 
     Private Sub SBView_Click(sender As Object, e As EventArgs) Handles SBView.Click
+        If CENewView.EditValue = True Then
+            viewNewReport()
+        Else
+            viewOldReport()
+        End If
+    End Sub
+
+    Sub viewNewReport()
+
+    End Sub
+
+    Sub viewOldReport()
         FormMain.SplashScreenManager1.ShowWaitForm()
 
         Dim selectDate1 As String = ""

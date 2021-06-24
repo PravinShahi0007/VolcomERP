@@ -19,6 +19,7 @@ Partial Class FormAWBOther
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAWBOther))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
@@ -82,6 +83,9 @@ Partial Class FormAWBOther
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DropAWBToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +115,7 @@ Partial Class FormAWBOther
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -329,6 +334,7 @@ Partial Class FormAWBOther
         '
         'GCList
         '
+        Me.GCList.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCList.Location = New System.Drawing.Point(0, 43)
         Me.GCList.MainView = Me.GVList
@@ -339,7 +345,7 @@ Partial Class FormAWBOther
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn10, Me.GridColumn11, Me.GridColumn22, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn10, Me.GridColumn11, Me.GridColumn22, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn24, Me.GridColumn20})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -351,6 +357,7 @@ Partial Class FormAWBOther
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 0
+        Me.GridColumn21.Width = 101
         '
         'GridColumn10
         '
@@ -365,6 +372,7 @@ Partial Class FormAWBOther
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 1
+        Me.GridColumn11.Width = 101
         '
         'GridColumn22
         '
@@ -375,6 +383,7 @@ Partial Class FormAWBOther
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 3
+        Me.GridColumn22.Width = 99
         '
         'GridColumn12
         '
@@ -389,6 +398,7 @@ Partial Class FormAWBOther
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 2
+        Me.GridColumn13.Width = 113
         '
         'GridColumn14
         '
@@ -397,6 +407,7 @@ Partial Class FormAWBOther
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.Width = 99
         '
         'GridColumn15
         '
@@ -411,6 +422,7 @@ Partial Class FormAWBOther
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 5
+        Me.GridColumn16.Width = 99
         '
         'GridColumn17
         '
@@ -425,6 +437,7 @@ Partial Class FormAWBOther
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.Width = 99
         '
         'GridColumn19
         '
@@ -433,6 +446,7 @@ Partial Class FormAWBOther
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 7
+        Me.GridColumn19.Width = 99
         '
         'GridColumn20
         '
@@ -441,6 +455,7 @@ Partial Class FormAWBOther
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 8
+        Me.GridColumn20.Width = 110
         '
         'PanelControl2
         '
@@ -669,6 +684,25 @@ Partial Class FormAWBOther
         Me.BAdd.TabIndex = 1
         Me.BAdd.Text = "Create Verification Report"
         '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Verification Number"
+        Me.GridColumn24.FieldName = "verify_no"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Width = 70
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DropAWBToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        '
+        'DropAWBToolStripMenuItem
+        '
+        Me.DropAWBToolStripMenuItem.Name = "DropAWBToolStripMenuItem"
+        Me.DropAWBToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DropAWBToolStripMenuItem.Text = "Drop AWB"
+        '
         'FormAWBOther
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -712,6 +746,7 @@ Partial Class FormAWBOther
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -778,4 +813,7 @@ Partial Class FormAWBOther
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents DropAWBToolStripMenuItem As ToolStripMenuItem
 End Class

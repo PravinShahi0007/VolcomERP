@@ -1035,6 +1035,7 @@ Partial Class FormAWBInv
         Me.BVerify.Size = New System.Drawing.Size(945, 39)
         Me.BVerify.TabIndex = 91
         Me.BVerify.Text = "Verify"
+        Me.BVerify.Visible = False
         '
         'BImport
         '

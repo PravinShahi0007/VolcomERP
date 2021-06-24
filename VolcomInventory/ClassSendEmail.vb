@@ -3555,11 +3555,12 @@ FROM tb_opt o "
                                               FROM tb_mail_to md
                                               LEFT JOIN tb_m_user usr ON usr.`id_user`=md.id_user
                                               LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-                                              WHERE md.report_mark_type='" & report_mark_type & "' AND is_to='1'
+                                              WHERE md.report_mark_type='" & report_mark_type & "' AND is_to='1' AND IF(ISNULL(md.id_user),TRUE,IF(emp.id_employee_active=1,TRUE,FALSE))
                                               UNION ALL
-                                              SELECT md.email AS email_external, md.name AS employee_name
+                                              SELECT IF(ISNULL(emp.employee_name),md.email,emp.email_external) AS email_external, IF(ISNULL(emp.employee_name),md.name,emp.employee_name) AS employee_name
                                               FROM tb_mail_to_group md
-                                              WHERE md.report_mark_type='" & report_mark_type & "' AND id_comp_group='" & id_reff & "' AND is_to='1'"
+                                              LEFT JOIN tb_m_employee emp ON emp.id_employee=md.id_employee
+                                              WHERE md.report_mark_type='" & report_mark_type & "' AND id_comp_group='" & id_reff & "' AND is_to='1' AND IF(ISNULL(md.id_employee),TRUE,IF(emp.id_employee_active=1,TRUE,FALSE))"
             Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_mail.Rows.Count - 1
                 Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_external").ToString, data_send_mail.Rows(i)("employee_name").ToString)
@@ -3571,11 +3572,12 @@ FROM tb_opt o "
                                               FROM tb_mail_to md
                                               LEFT JOIN tb_m_user usr ON usr.`id_user`=md.id_user
                                               LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-                                              WHERE md.report_mark_type='" & report_mark_type & "' AND is_to='2'
+                                              WHERE md.report_mark_type='" & report_mark_type & "' AND is_to='2' AND IF(ISNULL(md.id_user),TRUE,IF(emp.id_employee_active=1,TRUE,FALSE))
                                               UNION ALL
-                                              SELECT md.email AS email_external, md.name AS employee_name
+                                              SELECT IF(ISNULL(emp.employee_name),md.email,emp.email_external) AS email_external, IF(ISNULL(emp.employee_name),md.name,emp.employee_name) AS employee_name
                                               FROM tb_mail_to_group md
-                                              WHERE md.report_mark_type='" & report_mark_type & "' AND id_comp_group='" & id_reff & "' AND is_to='2'"
+                                              LEFT JOIN tb_m_employee emp ON emp.id_employee=md.id_employee
+                                              WHERE md.report_mark_type='" & report_mark_type & "' AND id_comp_group='" & id_reff & "' AND is_to='2' AND IF(ISNULL(md.id_employee),TRUE,IF(emp.id_employee_active=1,TRUE,FALSE))"
             Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_cc.Rows.Count - 1
                 Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)

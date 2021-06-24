@@ -138,16 +138,30 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
     End Sub
 
     Sub load_verification()
-        Dim q As String = "SELECT inv.id_awb_inv_sum,sts.report_status,c.comp_name,inv.created_date,inv.inv_number,emp.employee_name,SUM(invd.amount_cargo) AS a_tot,SUM(invd.amount_wh) AS c_tot,SUM(invd.amount_final) AS final_tot
-,IF(inv.id_type=1,'Outbound','Inbound') AS type
+        Dim q As String = "SELECT inv.id_awb_inv_sum,sts.report_status,c.comp_name,inv.created_date,inv.inv_number,emp.employee_name
+,SUM(invd.amount_final) AS final_tot
+,IF(inv.id_type=1,'Outbound','Inbound') AS `type`
 FROM `tb_awb_inv_sum_det` invd
 INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invd.id_awb_inv_sum
 INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=inv.id_report_status
 INNER JOIN tb_m_user usr ON usr.id_user=inv.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-LEFT JOIN tb_item_expense exp ON exp.id_comp=inv.id_comp AND exp.inv_number=inv.inv_number and exp.id_report_status!=5
-WHERE inv.id_report_status=6 AND isnull(exp.id_item_expense)
+LEFT JOIN tb_item_expense `exp` ON exp.id_comp=inv.id_comp AND exp.inv_number=inv.inv_number AND exp.id_report_status!=5
+WHERE inv.id_report_status=6 AND ISNULL(exp.id_item_expense)
+GROUP BY inv.id_awb_inv_sum
+UNION ALL
+SELECT inv.id_awb_inv_sum,sts.report_status,c.comp_name,inv.created_date,inv.inv_number,emp.employee_name
+,SUM(invd.amount_final) AS final_tot
+,IF(inv.id_type=3,'Office','-') AS `type`
+FROM `tb_awb_inv_sum_other` invd
+INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invd.id_awb_inv_sum
+INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=inv.id_report_status
+INNER JOIN tb_m_user usr ON usr.id_user=inv.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+LEFT JOIN tb_item_expense `exp` ON exp.id_comp=inv.id_comp AND exp.inv_number=inv.inv_number AND exp.id_report_status!=5
+WHERE inv.id_report_status=6 AND ISNULL(exp.id_item_expense)
 GROUP BY inv.id_awb_inv_sum"
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")

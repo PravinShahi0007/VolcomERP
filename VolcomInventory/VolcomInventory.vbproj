@@ -492,6 +492,12 @@
     <Compile Include="FormAWBOtherInv.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAWBOtherInvDep.Designer.vb">
+      <DependentUpon>FormAWBOtherInvDep.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAWBOtherInvDep.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBankDepositCaseKhusus.Designer.vb">
       <DependentUpon>FormBankDepositCaseKhusus.vb</DependentUpon>
     </Compile>
@@ -7119,6 +7125,18 @@
     <Compile Include="FormShipInvoiceDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSNIppsBudget.Designer.vb">
+      <DependentUpon>FormSNIppsBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIppsBudget.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSNIppsDet.Designer.vb">
+      <DependentUpon>FormSNIppsDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIppsDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSOH.designer.vb">
       <DependentUpon>FormSOH.vb</DependentUpon>
     </Compile>
@@ -9932,6 +9950,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAWBOtherInv.resx">
       <DependentUpon>FormAWBOtherInv.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAWBOtherInvDep.resx">
+      <DependentUpon>FormAWBOtherInvDep.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankDepositCaseKhusus.resx">
       <DependentUpon>FormBankDepositCaseKhusus.vb</DependentUpon>
@@ -13628,6 +13649,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormShipInvoiceDet.resx">
       <DependentUpon>FormShipInvoiceDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIppsBudget.resx">
+      <DependentUpon>FormSNIppsBudget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIppsDet.resx">
+      <DependentUpon>FormSNIppsDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSOH.resx">
       <DependentUpon>FormSOH.vb</DependentUpon>
