@@ -30,7 +30,6 @@
         Dim col_soh1 As String = ""
         Dim col_soh2 As String = ""
         Dim col_sas1 As String = ""
-        Dim col_sas2 As String = ""
         For y = year_from To year_to
             If y > year_from Then
                 col_sal1 += ","
@@ -39,6 +38,7 @@
                 col_sal_total2 += ","
                 col_soh1 += ","
                 col_soh2 += ","
+                col_sas1 += ","
             End If
 
             Dim last_month As Integer = 0
@@ -55,11 +55,13 @@
                     col_sal2 += ","
                     col_soh1 += ","
                     col_soh2 += ","
+                    col_sas1 += ","
                 End If
                 col_sal1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sal2 += "soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_soh1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' THEN soh.qty END),0) AS `Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_soh2 += "soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_sas1 += "(soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`/(soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`+soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`))*100 AS `Monthly SAS " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
 
                 If y = year_to And m = month_to Then
                     Exit For
@@ -96,7 +98,8 @@
         (soh.`Total Sales|Sales Toko Normal`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Normal`, 
         (soh.`Total Sales|Sales Toko Sale`/(IFNULL(wh_rec.qty_normal,0)-soh.`Total Sales|Sales Toko Normal`))*100 AS `Sell Thru|Sale`, 
         (soh.`Total Sales|Grand Total`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Total`,
-        " + col_soh2 + "
+        " + col_soh2 + ",
+        " + col_sas1 + "
         FROM (
 	        SELECT soh.id_design,
 	        " + col_sal1 + ",
