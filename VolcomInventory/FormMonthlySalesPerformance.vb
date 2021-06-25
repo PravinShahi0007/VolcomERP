@@ -69,7 +69,6 @@
 
         'where
 
-
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
         Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, i.division AS `Product Info|Division`, 
         i.category AS `Product Info|Category`, i.class AS `Product Info|Class`, i.color AS `Product Info|Color`, i.source AS `Product Info|Source`,
@@ -108,7 +107,6 @@
 	        INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
 	        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
 	        WHERE soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' 
-	        AND  is_del_online_store!=1
 	        GROUP BY soh.id_design 
         ) soh
         LEFT JOIN (
