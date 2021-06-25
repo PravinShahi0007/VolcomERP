@@ -64,6 +64,7 @@ Partial Class FormSNIppsDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -455,7 +456,7 @@ Partial Class FormSNIppsDet
         '
         'GVBudget
         '
-        Me.GVBudget.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
+        Me.GVBudget.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
         Me.GVBudget.GridControl = Me.GCBudget
         Me.GVBudget.Name = "GVBudget"
         Me.GVBudget.OptionsView.ShowGroupPanel = False
@@ -463,11 +464,13 @@ Partial Class FormSNIppsDet
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Id"
+        Me.GridColumn15.FieldName = "id_sni_pps_budget"
         Me.GridColumn15.Name = "GridColumn15"
         '
         'GridColumn16
         '
-        Me.GridColumn16.Caption = "ID"
+        Me.GridColumn16.Caption = "Budget Description"
+        Me.GridColumn16.FieldName = "budget_desc"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 0
@@ -475,6 +478,7 @@ Partial Class FormSNIppsDet
         'GridColumn17
         '
         Me.GridColumn17.Caption = "GridColumn17"
+        Me.GridColumn17.FieldName = "budget_value"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 1
@@ -482,6 +486,7 @@ Partial Class FormSNIppsDet
         'GridColumn18
         '
         Me.GridColumn18.Caption = "GridColumn18"
+        Me.GridColumn18.FieldName = "qty"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 2
@@ -515,6 +520,16 @@ Partial Class FormSNIppsDet
         Me.BAdd.Size = New System.Drawing.Size(79, 43)
         Me.BAdd.TabIndex = 3
         Me.BAdd.Text = "Add"
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Sub Amount"
+        Me.GridColumn19.FieldName = "sub_amount"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.UnboundExpression = "[budget_value] * [qty]"
+        Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
         '
         'FormSNIppsDet
         '
@@ -599,4 +614,5 @@ Partial Class FormSNIppsDet
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEProposeDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -12,6 +12,7 @@
             TENumber.Text = "[auto_generate]"
             TEProposedBy.Text = get_emp(id_employee_user, "1")
             '
+            XTPListDesign.PageVisible = True
             XTPProposedList.PageVisible = False
             XTPBudgetPropose.PageVisible = False
         Else
@@ -29,6 +30,9 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                 '
                 load_proposed()
             End If
+            XTPListDesign.PageVisible = False
+            XTPProposedList.PageVisible = True
+            XTPBudgetPropose.PageVisible = True
         End If
     End Sub
 
