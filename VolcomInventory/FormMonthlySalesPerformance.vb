@@ -30,6 +30,8 @@
         Dim col_soh1 As String = ""
         Dim col_soh2 As String = ""
         Dim col_sas1 As String = ""
+        Dim col_sell_thru As String = ""
+        Dim add_sell_thru As String = ""
         For y = year_from To year_to
             If y > year_from Then
                 col_sal1 += ","
@@ -39,6 +41,7 @@
                 col_soh1 += ","
                 col_soh2 += ","
                 col_sas1 += ","
+                col_sell_thru += ","
             End If
 
             Dim last_month As Integer = 0
@@ -56,12 +59,20 @@
                     col_soh1 += ","
                     col_soh2 += ","
                     col_sas1 += ","
+                    col_sell_thru += ","
                 End If
                 col_sal1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sal2 += "soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_soh1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' THEN soh.qty END),0) AS `Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_soh2 += "soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sas1 += "(soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`/(soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`+soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`))*100 AS `Monthly SAS " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+
+                'sell thru
+                If y = year_from And m = month_from Then
+                    add_sell_thru = "IFNULL(sal_beg.qty_sal_beg,0)"
+                End If
+                add_sell_thru += " + soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`"
+                col_sell_thru += "((" + add_sell_thru + ")/(SELECT  `WH Received|Normal (BOS)`))*100 AS `Monthly Sell Thru " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
 
                 If y = year_to And m = month_to Then
                     Exit For
@@ -99,7 +110,8 @@
         (soh.`Total Sales|Sales Toko Sale`/(IFNULL(wh_rec.qty_normal,0)-soh.`Total Sales|Sales Toko Normal`))*100 AS `Sell Thru|Sale`, 
         (soh.`Total Sales|Grand Total`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Total`,
         " + col_soh2 + ",
-        " + col_sas1 + "
+        " + col_sas1 + ",
+        " + col_sell_thru + "
         FROM (
 	        SELECT soh.id_design,
 	        " + col_sal1 + ",
@@ -115,7 +127,7 @@
 	        GROUP BY soh.id_design 
         ) soh
         LEFT JOIN (
-	        SELECT soh.id_design,ABS(SUM(CASE WHEN soh.report_mark_type IN (48,66,54,67,118,117,183,116,292) THEN soh.qty END)) AS `qty_sal_beg`
+	        SELECT soh.id_design,ABS(SUM(CASE WHEN soh.report_mark_type IN (" + rmt_sal + ") THEN soh.qty END)) AS `qty_sal_beg`
 	        FROM tb_soh_sal_period soh
 	        WHERE soh.soh_date<'" + fromDate + "' AND  is_del_online_store!=1
 	        GROUP BY soh.id_design 
