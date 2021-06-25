@@ -32,6 +32,8 @@
         Dim col_sas1 As String = ""
         Dim col_sell_thru As String = ""
         Dim add_sell_thru As String = ""
+        Dim col_rts1 As String = ""
+        Dim col_rts2 As String = ""
         For y = year_from To year_to
             If y > year_from Then
                 col_sal1 += ","
@@ -42,6 +44,8 @@
                 col_soh2 += ","
                 col_sas1 += ","
                 col_sell_thru += ","
+                col_rts1 += ","
+                col_rts2 += ","
             End If
 
             Dim last_month As Integer = 0
@@ -60,12 +64,16 @@
                     col_soh2 += ","
                     col_sas1 += ","
                     col_sell_thru += ","
+                    col_rts1 += ","
+                    col_rts2 += ","
                 End If
                 col_sal1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sal2 += "soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_soh1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' THEN soh.qty END),0) AS `Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_soh2 += "soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sas1 += "(soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`/(soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`+soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`))*100 AS `Monthly SAS " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_rts1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(46,120) THEN soh.qty END),0) AS `Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_rts2 += "soh.`Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
 
                 'sell thru
                 If y = year_from And m = month_from Then
@@ -111,7 +119,8 @@
         (soh.`Total Sales|Grand Total`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Total`,
         " + col_soh2 + ",
         " + col_sas1 + ",
-        " + col_sell_thru + "
+        " + col_sell_thru + ",
+        " + col_rts2 + "
         FROM (
 	        SELECT soh.id_design,
 	        " + col_sal1 + ",
@@ -119,7 +128,8 @@
             IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND c.id_store_type IN(1) AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Sales Toko Normal`,
 	        IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND c.id_store_type IN(2,3) AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Sales Toko Sale`,
 	        IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Grand Total`,
-            " + col_soh1 + "
+            " + col_soh1 + ",
+            " + col_rts1 + "
 	        FROM tb_soh_sal_period soh
 	        INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
 	        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
@@ -235,7 +245,7 @@
                         col.Group()
                     End If
 
-                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("Sales") Or bandName.Contains("SOH") Or bandName.Contains("Stock Gudang") Then
+                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("Sales") Or bandName.Contains("SOH") Or bandName.Contains("Monthly Delivery") Or bandName.Contains("Monthly Return") Or bandName.Contains("Stock Gudang") Then
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                         col.DisplayFormat.FormatString = "{0:n0}"
