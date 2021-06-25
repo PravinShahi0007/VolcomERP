@@ -60,7 +60,7 @@ Partial Class FormSNIppsBudget
         Me.GridColumn6.FieldName = "note"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.VisibleIndex = 3
         '
         'GridColumn2
         '
@@ -76,7 +76,7 @@ Partial Class FormSNIppsBudget
         Me.GridColumn3.FieldName = "employee_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 1
         '
         'GridColumn4
         '
@@ -86,7 +86,7 @@ Partial Class FormSNIppsBudget
         Me.GridColumn4.FieldName = "created_date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 2
         '
         'GridColumn7
         '
@@ -95,7 +95,7 @@ Partial Class FormSNIppsBudget
         Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn7.Caption = "Status"
-        Me.GridColumn7.FieldName = "status"
+        Me.GridColumn7.FieldName = "report_status"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 4
