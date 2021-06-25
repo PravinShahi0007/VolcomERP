@@ -29,6 +29,8 @@
         Dim col_sal_total2 As String = ""
         Dim col_soh1 As String = ""
         Dim col_soh2 As String = ""
+        Dim col_sas1 As String = ""
+        Dim col_sas2 As String = ""
         For y = year_from To year_to
             If y > year_from Then
                 col_sal1 += ","
