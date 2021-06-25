@@ -49,11 +49,11 @@ Partial Class FormStockTakeStorePeriod
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBSelectAccount = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
-        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.GCPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,7 +182,7 @@ Partial Class FormStockTakeStorePeriod
         Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 300
+        Me.GridBand1.Width = 225
         '
         'BandedGridColumn1
         '
@@ -190,7 +190,6 @@ Partial Class FormStockTakeStorePeriod
         Me.BandedGridColumn1.FieldName = "no"
         Me.BandedGridColumn1.Name = "BandedGridColumn1"
         Me.BandedGridColumn1.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumn1.Visible = True
         '
         'BandedGridColumn2
         '
@@ -320,6 +319,12 @@ Partial Class FormStockTakeStorePeriod
         Me.BandedGridColumn10.Name = "BandedGridColumn10"
         Me.BandedGridColumn10.OptionsColumn.AllowEdit = False
         '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.FieldName = "id_product"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.OptionsColumn.AllowEdit = False
+        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.SBSelectAccount)
@@ -357,12 +362,6 @@ Partial Class FormStockTakeStorePeriod
         Me.SBSync.Size = New System.Drawing.Size(94, 41)
         Me.SBSync.TabIndex = 0
         Me.SBSync.Text = "Sync"
-        '
-        'BandedGridColumn12
-        '
-        Me.BandedGridColumn12.FieldName = "id_product"
-        Me.BandedGridColumn12.Name = "BandedGridColumn12"
-        Me.BandedGridColumn12.OptionsColumn.AllowEdit = False
         '
         'FormStockTakeStorePeriod
         '

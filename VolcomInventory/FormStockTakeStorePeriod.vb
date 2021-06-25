@@ -35,7 +35,7 @@
         Dim id_period As String = GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
 
         Dim query As String = "
-            (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0)) AS diff, '' AS note, t.comp_name, t.is_auto, 'no' AS is_select, s.id_product
+            (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0)) AS diff, '' AS note, IFNULL(t.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name)) AS comp_name, t.is_auto, 'no' AS is_select, s.id_product
             FROM tb_st_store_soh AS s
             LEFT JOIN (
                 SELECT s.id_product, SUM(s.qty) AS qty, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto
@@ -45,6 +45,7 @@
                 GROUP BY s.id_product
             ) AS t ON s.id_product = t.id_product
             LEFT JOIN tb_m_product_store AS p ON s.id_product = p.id_product
+            LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
             WHERE s.id_st_store_period = " + id_period + ")
         
             UNION ALL
