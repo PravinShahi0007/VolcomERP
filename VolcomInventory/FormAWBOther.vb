@@ -99,11 +99,13 @@ SELECT id_comp,comp_name FROM tb_m_comp WHERE id_comp_cat='7' AND is_active='1'"
         End If
 
         Dim q As String = "SELECT awbo.id_awb_office_det,awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
-,awbo.`client_note`,IFNULL(invo.inv_number,'') AS inv_number
+,awb.pickup_date
+,awbo.`client_note`,IFNULL(invo.inv_number,'') AS inv_number,v.`comp_name` AS vendor_name
 FROM `tb_awb_office_det` awbo 
 INNER JOIN tb_awb_office awb ON awb.id_awb_office=awbo.id_awb_office
 INNER JOIN tb_m_departement dep ON dep.id_departement=awbo.id_departement
-LEFT JOIN tb_m_comp c ON c.id_comp=awbo.id_client
+LEFT JOIN tb_m_comp c ON c.id_comp=awbo.`id_client`
+INNER JOIN tb_m_comp v ON v.`id_comp`=awb.`id_comp`
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awbo.id_sub_district
 LEFT JOIN  
 (
