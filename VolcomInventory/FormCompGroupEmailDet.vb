@@ -1,17 +1,25 @@
 ﻿Public Class FormCompGroupEmailDet
     Public id_comp_group As String = "-1"
+    Public id_comp As String = "-1"
     Public is_external As Boolean = True
 
     Private Sub FormCompGroupEmailDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_type()
         load_emp()
         TECompGroup.Text = FormCompGroupEmail.GVGroupComp.GetFocusedRowCellValue("description").ToString
+        TEStore.Text = FormCompGroupEmail.GVGroupComp.GetFocusedRowCellValue("comp_name").ToString
         '
         If is_external Then
             PCEmployee.Visible = False
         Else
             TEName.Properties.ReadOnly = True
             TEEmail.Properties.ReadOnly = True
+        End If
+        '
+        If id_comp = "-1" Then
+            PCComp.Visible = False
+        Else
+            PCComp.Visible = True
         End If
     End Sub
 
@@ -43,10 +51,20 @@ SELECT 2 AS is_to,'CC' AS `desc`"
             warningCustom("Please complete your input")
         Else
             Dim q As String = ""
-            If is_external Then
-                q = "INSERT INTO `tb_mail_to_group`(id_employee,`report_mark_type`,`id_comp_group`,`is_to`,`email`,`name`) VALUES(NULL,'" & FormCompGroupEmail.SLEReportMarkType.EditValue.ToString & "','" & id_comp_group & "','" & SLEToCC.EditValue.ToString & "','" & addSlashes(TEEmail.Text) & "','" & addSlashes(TEName.Text) & "')"
+            If id_comp = "-1" Then
+                'per grup
+                If is_external Then
+                    q = "INSERT INTO `tb_mail_to_group`(id_employee,`report_mark_type`,`id_comp_group`,`is_to`,`email`,`name`) VALUES(NULL,'" & FormCompGroupEmail.SLEReportMarkType.EditValue.ToString & "','" & id_comp_group & "','" & SLEToCC.EditValue.ToString & "','" & addSlashes(TEEmail.Text) & "','" & addSlashes(TEName.Text) & "')"
+                Else
+                    q = "INSERT INTO `tb_mail_to_group`(id_employee,`report_mark_type`,`id_comp_group`,`is_to`,`email`,`name`) VALUES('" & SLEEmp.EditValue.ToString & "','" & FormCompGroupEmail.SLEReportMarkType.EditValue.ToString & "','" & id_comp_group & "','" & SLEToCC.EditValue.ToString & "','" & addSlashes(TEEmail.Text) & "','" & addSlashes(TEName.Text) & "')"
+                End If
             Else
-                q = "INSERT INTO `tb_mail_to_group`(id_employee,`report_mark_type`,`id_comp_group`,`is_to`,`email`,`name`) VALUES('" & SLEEmp.EditValue.ToString & "','" & FormCompGroupEmail.SLEReportMarkType.EditValue.ToString & "','" & id_comp_group & "','" & SLEToCC.EditValue.ToString & "','" & addSlashes(TEEmail.Text) & "','" & addSlashes(TEName.Text) & "')"
+                'per comp
+                If is_external Then
+                    q = "INSERT INTO `tb_mail_to_group`(id_employee,`report_mark_type`,`id_comp_group`,id_comp,`is_to`,`email`,`name`) VALUES(NULL,'" & FormCompGroupEmail.SLEReportMarkType.EditValue.ToString & "','" & id_comp_group & "','" & id_comp & "','" & SLEToCC.EditValue.ToString & "','" & addSlashes(TEEmail.Text) & "','" & addSlashes(TEName.Text) & "')"
+                Else
+                    q = "INSERT INTO `tb_mail_to_group`(id_employee,`report_mark_type`,`id_comp_group`,id_comp,`is_to`,`email`,`name`) VALUES('" & SLEEmp.EditValue.ToString & "','" & FormCompGroupEmail.SLEReportMarkType.EditValue.ToString & "','" & id_comp_group & "','" & id_comp & "','" & SLEToCC.EditValue.ToString & "','" & addSlashes(TEEmail.Text) & "','" & addSlashes(TEName.Text) & "')"
+                End If
             End If
 
             execute_non_query(q, True, "", "", "", "")

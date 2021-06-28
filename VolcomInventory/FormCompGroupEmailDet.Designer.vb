@@ -36,10 +36,13 @@ Partial Class FormCompGroupEmailDet
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PCEmployee = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEEmp = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCComp = New DevExpress.XtraEditors.PanelControl()
+        Me.TEStore = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.TECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEmail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,19 +54,22 @@ Partial Class FormCompGroupEmailDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.PCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCEmployee.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
         CType(Me.SLEEmp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.PCComp, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCComp.SuspendLayout()
+        CType(Me.TEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
         '
         Me.LabelControl1.Location = New System.Drawing.Point(20, 15)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(77, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(58, 13)
         Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "Group Company"
+        Me.LabelControl1.Text = "Group Store"
         '
         'TECompGroup
         '
@@ -147,7 +153,7 @@ Partial Class FormCompGroupEmailDet
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 179)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 230)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(430, 44)
         Me.PanelControl1.TabIndex = 8
@@ -187,24 +193,18 @@ Partial Class FormCompGroupEmailDet
         Me.PCEmployee.Controls.Add(Me.LabelControl5)
         Me.PCEmployee.Controls.Add(Me.SLEEmp)
         Me.PCEmployee.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCEmployee.Location = New System.Drawing.Point(0, 44)
+        Me.PCEmployee.Location = New System.Drawing.Point(0, 88)
         Me.PCEmployee.Name = "PCEmployee"
         Me.PCEmployee.Size = New System.Drawing.Size(430, 44)
         Me.PCEmployee.TabIndex = 10
         '
-        'PanelControl4
+        'LabelControl5
         '
-        Me.PanelControl4.Controls.Add(Me.TEName)
-        Me.PanelControl4.Controls.Add(Me.LabelControl2)
-        Me.PanelControl4.Controls.Add(Me.LabelControl3)
-        Me.PanelControl4.Controls.Add(Me.TEEmail)
-        Me.PanelControl4.Controls.Add(Me.LabelControl4)
-        Me.PanelControl4.Controls.Add(Me.SLEToCC)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 88)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(430, 91)
-        Me.PanelControl4.TabIndex = 11
+        Me.LabelControl5.Location = New System.Drawing.Point(20, 15)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl5.TabIndex = 4
+        Me.LabelControl5.Text = "Employee"
         '
         'SLEEmp
         '
@@ -222,21 +222,55 @@ Partial Class FormCompGroupEmailDet
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl5
+        'PanelControl4
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(20, 15)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(46, 13)
-        Me.LabelControl5.TabIndex = 4
-        Me.LabelControl5.Text = "Employee"
+        Me.PanelControl4.Controls.Add(Me.TEName)
+        Me.PanelControl4.Controls.Add(Me.LabelControl2)
+        Me.PanelControl4.Controls.Add(Me.LabelControl3)
+        Me.PanelControl4.Controls.Add(Me.TEEmail)
+        Me.PanelControl4.Controls.Add(Me.LabelControl4)
+        Me.PanelControl4.Controls.Add(Me.SLEToCC)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 132)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(430, 98)
+        Me.PanelControl4.TabIndex = 11
+        '
+        'PCComp
+        '
+        Me.PCComp.Controls.Add(Me.TEStore)
+        Me.PCComp.Controls.Add(Me.LabelControl6)
+        Me.PCComp.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCComp.Location = New System.Drawing.Point(0, 44)
+        Me.PCComp.Name = "PCComp"
+        Me.PCComp.Size = New System.Drawing.Size(430, 44)
+        Me.PCComp.TabIndex = 12
+        Me.PCComp.Visible = False
+        '
+        'TEStore
+        '
+        Me.TEStore.Location = New System.Drawing.Point(119, 12)
+        Me.TEStore.Name = "TEStore"
+        Me.TEStore.Properties.ReadOnly = True
+        Me.TEStore.Size = New System.Drawing.Size(292, 20)
+        Me.TEStore.TabIndex = 1
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(20, 15)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl6.TabIndex = 0
+        Me.LabelControl6.Text = "Store"
         '
         'FormCompGroupEmailDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(430, 223)
+        Me.ClientSize = New System.Drawing.Size(430, 274)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PCEmployee)
+        Me.Controls.Add(Me.PCComp)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.MaximizeBox = False
@@ -257,11 +291,15 @@ Partial Class FormCompGroupEmailDet
         CType(Me.PCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCEmployee.ResumeLayout(False)
         Me.PCEmployee.PerformLayout()
+        CType(Me.SLEEmp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.SLEEmp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCComp, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCComp.ResumeLayout(False)
+        Me.PCComp.PerformLayout()
+        CType(Me.TEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -286,4 +324,7 @@ Partial Class FormCompGroupEmailDet
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEEmp As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PCComp As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TEStore As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class
