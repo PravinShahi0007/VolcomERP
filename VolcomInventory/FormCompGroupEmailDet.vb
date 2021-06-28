@@ -1,9 +1,26 @@
 ﻿Public Class FormCompGroupEmailDet
     Public id_comp_group As String = "-1"
+    Public is_external As Boolean = True
 
     Private Sub FormCompGroupEmailDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_type()
+        load_emp()
         TECompGroup.Text = FormCompGroupEmail.GVGroupComp.GetFocusedRowCellValue("description").ToString
+        '
+        If is_external Then
+            PCEmployee.Visible = False
+        Else
+            TEName.Properties.ReadOnly = True
+            TEEmail.Properties.ReadOnly = True
+        End If
+    End Sub
+
+    Sub load_emp()
+        Dim q As String = "SELECT id_employee,employee_name,email_external
+FROM tb_m_employee emp 
+WHERE id_employee_active=1 AND email_external!=''"
+        viewSearchLookupQuery(SLEEmp, q, "id_employee", "employee_name", "id_employee")
+        SLEEmp.EditValue = Nothing
     End Sub
 
     Sub load_type()
@@ -25,10 +42,25 @@ SELECT 2 AS is_to,'CC' AS `desc`"
         If TEEmail.Text = "" Or TEName.Text = "" Then
             warningCustom("Please complete your input")
         Else
-            Dim q As String = "INSERT INTO `tb_mail_to_group`(`report_mark_type`,`id_comp_group`,`is_to`,`email`,`name`) VALUES('" & FormCompGroupEmail.SLEReportMarkType.EditValue.ToString & "','" & id_comp_group & "','" & SLEToCC.EditValue.ToString & "','" & addSlashes(TEEmail.Text) & "','" & addSlashes(TEName.Text) & "')"
+            Dim q As String = ""
+            If is_external Then
+                q = "INSERT INTO `tb_mail_to_group`(id_employee,`report_mark_type`,`id_comp_group`,`is_to`,`email`,`name`) VALUES(NULL,'" & FormCompGroupEmail.SLEReportMarkType.EditValue.ToString & "','" & id_comp_group & "','" & SLEToCC.EditValue.ToString & "','" & addSlashes(TEEmail.Text) & "','" & addSlashes(TEName.Text) & "')"
+            Else
+                q = "INSERT INTO `tb_mail_to_group`(id_employee,`report_mark_type`,`id_comp_group`,`is_to`,`email`,`name`) VALUES('" & SLEEmp.EditValue.ToString & "','" & FormCompGroupEmail.SLEReportMarkType.EditValue.ToString & "','" & id_comp_group & "','" & SLEToCC.EditValue.ToString & "','" & addSlashes(TEEmail.Text) & "','" & addSlashes(TEName.Text) & "')"
+            End If
+
             execute_non_query(q, True, "", "", "", "")
             Close()
             FormCompGroupEmail.show_email()
         End If
+    End Sub
+
+    Private Sub SLEEmp_EditValueChanged(sender As Object, e As EventArgs) Handles SLEEmp.EditValueChanged
+        Try
+            TEName.Text = SLEEmp.Properties.View.GetFocusedRowCellValue("employee_name").ToString
+            TEEmail.Text = SLEEmp.Properties.View.GetFocusedRowCellValue("email_external").ToString
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

@@ -19,6 +19,7 @@ Partial Class FormAWBOther
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAWBOther))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
@@ -44,6 +45,8 @@ Partial Class FormAWBOther
         Me.XTPAWBList = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPAWB = New DevExpress.XtraTab.XtraTabPage()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DropAWBToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -57,6 +60,7 @@ Partial Class FormAWBOther
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BViewAWBList = New DevExpress.XtraEditors.SimpleButton()
@@ -97,6 +101,7 @@ Partial Class FormAWBOther
         Me.XTPAWBList.SuspendLayout()
         Me.XTPAWB.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -186,7 +191,7 @@ Partial Class FormAWBOther
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEUntil.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEUntil.Size = New System.Drawing.Size(172, 20)
@@ -215,7 +220,7 @@ Partial Class FormAWBOther
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEStart.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEStart.Size = New System.Drawing.Size(172, 20)
@@ -249,8 +254,6 @@ Partial Class FormAWBOther
         Me.GridColumn6.Caption = "Vendor"
         Me.GridColumn6.FieldName = "comp_name"
         Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
         '
         'GridColumn2
         '
@@ -266,7 +269,7 @@ Partial Class FormAWBOther
         Me.GridColumn3.FieldName = "employee_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 1
         '
         'GridColumn4
         '
@@ -276,7 +279,7 @@ Partial Class FormAWBOther
         Me.GridColumn4.FieldName = "created_date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 3
         '
         'GridColumn5
         '
@@ -286,7 +289,7 @@ Partial Class FormAWBOther
         Me.GridColumn5.FieldName = "pickup_date"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.VisibleIndex = 2
         '
         'GridColumn7
         '
@@ -298,7 +301,7 @@ Partial Class FormAWBOther
         Me.GridColumn7.FieldName = "status"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
+        Me.GridColumn7.VisibleIndex = 4
         '
         'XtraTabControl1
         '
@@ -329,6 +332,7 @@ Partial Class FormAWBOther
         '
         'GCList
         '
+        Me.GCList.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCList.Location = New System.Drawing.Point(0, 43)
         Me.GCList.MainView = Me.GVList
@@ -337,9 +341,21 @@ Partial Class FormAWBOther
         Me.GCList.TabIndex = 2
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DropAWBToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(130, 26)
+        '
+        'DropAWBToolStripMenuItem
+        '
+        Me.DropAWBToolStripMenuItem.Name = "DropAWBToolStripMenuItem"
+        Me.DropAWBToolStripMenuItem.Size = New System.Drawing.Size(129, 22)
+        Me.DropAWBToolStripMenuItem.Text = "Drop AWB"
+        '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn10, Me.GridColumn11, Me.GridColumn22, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn10, Me.GridColumn11, Me.GridColumn22, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn24, Me.GridColumn20})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -347,10 +363,11 @@ Partial Class FormAWBOther
         'GridColumn21
         '
         Me.GridColumn21.Caption = "3PL"
-        Me.GridColumn21.FieldName = "3pl_name"
+        Me.GridColumn21.FieldName = "vendor_name"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 0
+        Me.GridColumn21.Width = 101
         '
         'GridColumn10
         '
@@ -365,6 +382,7 @@ Partial Class FormAWBOther
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 1
+        Me.GridColumn11.Width = 101
         '
         'GridColumn22
         '
@@ -375,6 +393,7 @@ Partial Class FormAWBOther
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 3
+        Me.GridColumn22.Width = 99
         '
         'GridColumn12
         '
@@ -389,6 +408,7 @@ Partial Class FormAWBOther
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 2
+        Me.GridColumn13.Width = 113
         '
         'GridColumn14
         '
@@ -397,6 +417,7 @@ Partial Class FormAWBOther
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.Width = 99
         '
         'GridColumn15
         '
@@ -411,6 +432,7 @@ Partial Class FormAWBOther
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 5
+        Me.GridColumn16.Width = 99
         '
         'GridColumn17
         '
@@ -425,6 +447,7 @@ Partial Class FormAWBOther
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.Width = 99
         '
         'GridColumn19
         '
@@ -433,6 +456,14 @@ Partial Class FormAWBOther
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 7
+        Me.GridColumn19.Width = 99
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Verification Number"
+        Me.GridColumn24.FieldName = "verify_no"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Width = 70
         '
         'GridColumn20
         '
@@ -441,6 +472,7 @@ Partial Class FormAWBOther
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 8
+        Me.GridColumn20.Width = 110
         '
         'PanelControl2
         '
@@ -515,7 +547,7 @@ Partial Class FormAWBOther
         Me.DEUntilAWBList.Name = "DEUntilAWBList"
         Me.DEUntilAWBList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilAWBList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilAWBList.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DEUntilAWBList.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEUntilAWBList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEUntilAWBList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEUntilAWBList.Size = New System.Drawing.Size(172, 20)
@@ -544,7 +576,7 @@ Partial Class FormAWBOther
         Me.DEStartAWBList.Name = "DEStartAWBList"
         Me.DEStartAWBList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStartAWBList.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartAWBList.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DEStartAWBList.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEStartAWBList.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEStartAWBList.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEStartAWBList.Size = New System.Drawing.Size(172, 20)
@@ -697,6 +729,7 @@ Partial Class FormAWBOther
         Me.XTPAWBList.ResumeLayout(False)
         Me.XTPAWB.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -778,4 +811,7 @@ Partial Class FormAWBOther
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents DropAWBToolStripMenuItem As ToolStripMenuItem
 End Class

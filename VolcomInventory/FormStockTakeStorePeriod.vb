@@ -18,7 +18,7 @@
 
     Sub load_form()
         Dim query As String = "
-            SELECT p.id_st_store_period, DATE_FORMAT(p.soh_date, '%d %M %Y') AS soh_date, s.store_name, DATE_FORMAT(p.schedule_start, '%d %M %Y') AS schedule_start, DATE_FORMAT(p.schedule_end, '%d %M %Y') AS schedule_end
+            SELECT p.id_st_store_period, DATE_FORMAT(p.soh_date, '%d %M %Y') AS soh_date, s.store_name, DATE_FORMAT(p.schedule_start, '%d %M %Y / %H:%i') AS schedule_start, DATE_FORMAT(p.schedule_end, '%d %M %Y / %H:%i') AS schedule_end
             FROM tb_st_store_period AS p
             LEFT JOIN tb_m_store AS s ON p.id_store = s.id_store
             ORDER BY p.id_st_store_period DESC
@@ -35,26 +35,29 @@
         Dim id_period As String = GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
 
         Dim query As String = "
-            (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0)) AS diff, '' AS note
+            (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0)) AS diff, '' AS note, IFNULL(t.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name)) AS comp_name, t.is_auto, 'no' AS is_select, s.id_product
             FROM tb_st_store_soh AS s
             LEFT JOIN (
-                SELECT id_product, SUM(qty) AS qty
-                FROM tb_st_store
-                WHERE id_st_store_period = " + id_period + "
-                GROUP BY id_product
+                SELECT s.id_product, SUM(s.qty) AS qty, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto
+                FROM tb_st_store AS s
+                LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
+                WHERE s.id_st_store_period = " + id_period + "
+                GROUP BY s.id_product
             ) AS t ON s.id_product = t.id_product
             LEFT JOIN tb_m_product_store AS p ON s.id_product = p.id_product
+            LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
             WHERE s.id_st_store_period = " + id_period + ")
         
             UNION ALL
 
-            (SELECT 0 AS `no`, p.full_code, p.name, p.size, 0 AS qty_volcom, q.qty AS qty_store, -q.qty AS diff, '' AS note
+            (SELECT 0 AS `no`, p.full_code, p.name, p.size, 0 AS qty_volcom, q.qty AS qty_store, -q.qty AS diff, '' AS note, q.comp_name, q.is_auto, 'no' AS is_select, p.id_product
             FROM tb_m_product_store AS p
             INNER JOIN (
-                SELECT id_product, SUM(qty) AS qty
-                FROM tb_st_store
-                WHERE id_st_store_period = " + id_period + " AND id_product NOT IN (SELECT id_product FROM tb_st_store_soh WHERE id_st_store_period = " + id_period + ")
-                GROUP BY id_product
+                SELECT s.id_product, SUM(s.qty) AS qty, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto
+                FROM tb_st_store AS s
+                LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
+                WHERE s.id_st_store_period = " + id_period + " AND s.id_product NOT IN (SELECT id_product FROM tb_st_store_soh WHERE id_st_store_period = " + id_period + ")
+                GROUP BY s.id_product
             ) AS q ON q.id_product = p.id_product)
         "
 
@@ -131,6 +134,23 @@
                 query = query.Substring(0, query.Length - 2)
 
                 execute_non_query(query, True, "", "", "", "")
+
+                'update account
+                execute_non_query("
+                    UPDATE tb_st_store AS s INNER JOIN (
+	                    SELECT s.id_product, f.id_comp
+	                    FROM tb_st_store AS s
+	                    LEFT JOIN (
+		                    SELECT id_product, COUNT(DISTINCT(id_comp)) AS count_comp, id_comp
+		                    FROM tb_st_store_soh
+		                    WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "
+		                    GROUP BY id_product
+	                    ) AS f ON s.id_product = f.id_product
+	                    WHERE f.count_comp = 1 AND id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "
+	                    GROUP BY id_product
+                    ) AS f ON s.id_product = f.id_product
+                    SET s.id_comp = f.id_comp, s.is_auto = 1
+                ", True, "", "", "", "")
             End If
 
             FormMain.SplashScreenManager1.CloseWaitForm()
@@ -147,5 +167,36 @@
 
     Private Sub XtraTabControl_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl.SelectedPageChanged
         view_compare()
+    End Sub
+
+    Private Sub SBSelectAccount_Click(sender As Object, e As EventArgs) Handles SBSelectAccount.Click
+        BGVCompare.ClearColumnsFilter()
+        BGVCompare.ActiveFilterString = "[is_select] = 'yes'"
+
+        If BGVCompare.RowCount > 0 Then
+            Dim cnt As Boolean = True
+
+            For i = 0 To BGVCompare.RowCount - 1
+                If BGVCompare.IsValidRowHandle(i) Then
+                    If BGVCompare.GetRowCellValue(i, "is_auto").ToString = "1" Then
+                        cnt = False
+                    End If
+                End If
+            Next
+
+            If cnt Then
+                FormStockTakeStorePeriodAccount.ShowDialog()
+            Else
+                stopCustom("Some product already have an account.")
+            End If
+        Else
+            stopCustom("No product selected.")
+        End If
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles RepositoryItemCheckEdit.EditValueChanging
+        If BGVCompare.GetFocusedRowCellValue("qty_store").ToString = "0" Or BGVCompare.GetFocusedRowCellValue("is_auto").ToString = "1" Then
+            e.Cancel = True
+        End If
     End Sub
 End Class

@@ -22,8 +22,13 @@ Partial Class FormCompGroupEmail
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormCompGroupEmail))
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEReportMarkType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GCGroupComp = New DevExpress.XtraGrid.GridControl()
@@ -44,13 +49,12 @@ Partial Class FormCompGroupEmail
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEReportMarkType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BAddInternal = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.SLEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
@@ -62,8 +66,6 @@ Partial Class FormCompGroupEmail
         CType(Me.GVEmail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl3
@@ -73,22 +75,54 @@ Partial Class FormCompGroupEmail
         Me.PanelControl3.Controls.Add(Me.BRefresh)
         Me.PanelControl3.Controls.Add(Me.BDel)
         Me.PanelControl3.Controls.Add(Me.BAdd)
+        Me.PanelControl3.Controls.Add(Me.BAddInternal)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(982, 45)
         Me.PanelControl3.TabIndex = 31
         '
-        'BDel
+        'SLEReportMarkType
         '
-        Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDel.ImageIndex = 1
-        Me.BDel.ImageList = Me.LargeImageCollection
-        Me.BDel.Location = New System.Drawing.Point(792, 0)
-        Me.BDel.Name = "BDel"
-        Me.BDel.Size = New System.Drawing.Size(95, 45)
-        Me.BDel.TabIndex = 3
-        Me.BDel.Text = "Delete"
+        Me.SLEReportMarkType.Location = New System.Drawing.Point(12, 12)
+        Me.SLEReportMarkType.Name = "SLEReportMarkType"
+        Me.SLEReportMarkType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEReportMarkType.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEReportMarkType.Size = New System.Drawing.Size(324, 20)
+        Me.SLEReportMarkType.TabIndex = 5
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID"
+        Me.GridColumn3.FieldName = "report_mark_type"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Report mark Type"
+        Me.GridColumn4.FieldName = "report_mark_type_name"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'BRefresh
+        '
+        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
+        Me.BRefresh.ImageList = Me.LargeImageCollection
+        Me.BRefresh.Location = New System.Drawing.Point(507, 0)
+        Me.BRefresh.Name = "BRefresh"
+        Me.BRefresh.Size = New System.Drawing.Size(102, 45)
+        Me.BRefresh.TabIndex = 4
+        Me.BRefresh.Text = "Refresh"
         '
         'LargeImageCollection
         '
@@ -99,16 +133,27 @@ Partial Class FormCompGroupEmail
         Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(3, "contact32.png")
         '
+        'BDel
+        '
+        Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDel.ImageIndex = 1
+        Me.BDel.ImageList = Me.LargeImageCollection
+        Me.BDel.Location = New System.Drawing.Point(609, 0)
+        Me.BDel.Name = "BDel"
+        Me.BDel.Size = New System.Drawing.Size(95, 45)
+        Me.BDel.TabIndex = 3
+        Me.BDel.Text = "Delete"
+        '
         'BAdd
         '
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAdd.ImageIndex = 0
         Me.BAdd.ImageList = Me.LargeImageCollection
-        Me.BAdd.Location = New System.Drawing.Point(887, 0)
+        Me.BAdd.Location = New System.Drawing.Point(704, 0)
         Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(95, 45)
+        Me.BAdd.Size = New System.Drawing.Size(139, 45)
         Me.BAdd.TabIndex = 2
-        Me.BAdd.Text = "Add"
+        Me.BAdd.Text = "Add External Email"
         '
         'SplitContainerControl1
         '
@@ -215,7 +260,7 @@ Partial Class FormCompGroupEmail
         '
         'GVEmail
         '
-        Me.GVEmail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12})
+        Me.GVEmail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn8, Me.GridColumn11, Me.GridColumn12, Me.GridColumn5})
         Me.GVEmail.GridControl = Me.GCEmail
         Me.GVEmail.Name = "GVEmail"
         Me.GVEmail.OptionsBehavior.Editable = False
@@ -248,6 +293,10 @@ Partial Class FormCompGroupEmail
         '
         'GridColumn12
         '
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn12.Caption = "Send Type (To / CC)"
         Me.GridColumn12.FieldName = "is_to"
         Me.GridColumn12.Name = "GridColumn12"
@@ -269,47 +318,28 @@ Partial Class FormCompGroupEmail
         Me.RepositoryItemCheckEdit3.ValueChecked = New Decimal(New Integer() {1, 0, 0, 0})
         Me.RepositoryItemCheckEdit3.ValueUnchecked = New Decimal(New Integer() {2, 0, 0, 0})
         '
-        'BRefresh
+        'BAddInternal
         '
-        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
-        Me.BRefresh.ImageList = Me.LargeImageCollection
-        Me.BRefresh.Location = New System.Drawing.Point(690, 0)
-        Me.BRefresh.Name = "BRefresh"
-        Me.BRefresh.Size = New System.Drawing.Size(102, 45)
-        Me.BRefresh.TabIndex = 4
-        Me.BRefresh.Text = "Refresh"
+        Me.BAddInternal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddInternal.ImageIndex = 0
+        Me.BAddInternal.ImageList = Me.LargeImageCollection
+        Me.BAddInternal.Location = New System.Drawing.Point(843, 0)
+        Me.BAddInternal.Name = "BAddInternal"
+        Me.BAddInternal.Size = New System.Drawing.Size(139, 45)
+        Me.BAddInternal.TabIndex = 6
+        Me.BAddInternal.Text = "Add Internal Email"
         '
-        'SLEReportMarkType
+        'GridColumn5
         '
-        Me.SLEReportMarkType.Location = New System.Drawing.Point(12, 12)
-        Me.SLEReportMarkType.Name = "SLEReportMarkType"
-        Me.SLEReportMarkType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEReportMarkType.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEReportMarkType.Size = New System.Drawing.Size(324, 20)
-        Me.SLEReportMarkType.TabIndex = 5
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "ID"
-        Me.GridColumn3.FieldName = "report_mark_type"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Report mark Type"
-        Me.GridColumn4.FieldName = "report_mark_type_name"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
+        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.Caption = "Internal / External"
+        Me.GridColumn5.FieldName = "type"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
         '
         'FormCompGroupEmail
         '
@@ -326,6 +356,8 @@ Partial Class FormCompGroupEmail
         Me.Text = "Setup Email Company Group"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.SLEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl1.ResumeLayout(False)
@@ -337,8 +369,6 @@ Partial Class FormCompGroupEmail
         CType(Me.GVEmail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -371,4 +401,6 @@ Partial Class FormCompGroupEmail
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BAddInternal As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

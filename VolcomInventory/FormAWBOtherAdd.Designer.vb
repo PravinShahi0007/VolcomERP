@@ -29,6 +29,7 @@ Partial Class FormAWBOtherAdd
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLESubDistrict = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -42,7 +43,6 @@ Partial Class FormAWBOtherAdd
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.TEAWBNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEKoli.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEClient.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,6 +130,14 @@ Partial Class FormAWBOtherAdd
         Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 1141
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Address"
+        Me.GridColumn4.FieldName = "address_primary"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
         'LabelControl3
         '
         Me.LabelControl3.Location = New System.Drawing.Point(17, 113)
@@ -159,7 +167,7 @@ Partial Class FormAWBOtherAdd
         Me.SLESubDistrict.Properties.NullText = "-"
         Me.SLESubDistrict.Properties.View = Me.GridView5
         Me.SLESubDistrict.Size = New System.Drawing.Size(204, 20)
-        Me.SLESubDistrict.TabIndex = 95
+        Me.SLESubDistrict.TabIndex = 4
         '
         'GridView5
         '
@@ -242,14 +250,6 @@ Partial Class FormAWBOtherAdd
         Me.LabelControl6.Size = New System.Drawing.Size(106, 13)
         Me.LabelControl6.TabIndex = 99
         Me.LabelControl6.Text = "Departement Pengirim"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Address"
-        Me.GridColumn4.FieldName = "address_primary"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
         '
         'FormAWBOtherAdd
         '
