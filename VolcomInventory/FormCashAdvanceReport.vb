@@ -65,6 +65,8 @@
         '
         GVReport.ActiveFilterString = "[expense]>0"
         '
+        GridColumnPurpose.MaxWidth = 200
+        '
         print(Me.GCReport, "Expense Report (" & DateTime.Parse(DateFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & DateTime.Parse(DateTo.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
         '
         GVReport.ActiveFilterString = ""
