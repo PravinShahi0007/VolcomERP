@@ -11,7 +11,7 @@
 
     Private Sub FormAWBOtherDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DECreatedDate.EditValue = Now
-        DEPickupDate.Properties.MinValue = Now
+        DEPickupDate.Properties.MaxValue = Now
         DEPickupDate.EditValue = Now
         '
         load_head()
