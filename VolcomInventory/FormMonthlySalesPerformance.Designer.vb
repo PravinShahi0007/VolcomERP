@@ -72,6 +72,7 @@ Partial Class FormMonthlySalesPerformance
         Me.SBView = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.CEAllStore = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CENewView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,10 +98,12 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEAllStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.CEAllStore)
         Me.PanelControl1.Controls.Add(Me.CENewView)
         Me.PanelControl1.Controls.Add(Me.CCBEClass)
         Me.PanelControl1.Controls.Add(Me.CCBECategory)
@@ -564,6 +567,15 @@ Partial Class FormMonthlySalesPerformance
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
+        'CEAllStore
+        '
+        Me.CEAllStore.EditValue = True
+        Me.CEAllStore.Location = New System.Drawing.Point(349, 145)
+        Me.CEAllStore.Name = "CEAllStore"
+        Me.CEAllStore.Properties.Caption = "All Store"
+        Me.CEAllStore.Size = New System.Drawing.Size(115, 19)
+        Me.CEAllStore.TabIndex = 43
+        '
         'FormMonthlySalesPerformance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -601,6 +613,7 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEAllStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -657,4 +670,5 @@ Partial Class FormMonthlySalesPerformance
     Friend WithEvents CCBECategory As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents CCBEClass As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents CENewView As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEAllStore As DevExpress.XtraEditors.CheckEdit
 End Class

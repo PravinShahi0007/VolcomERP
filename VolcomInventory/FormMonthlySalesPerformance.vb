@@ -34,6 +34,18 @@
         Dim add_sell_thru As String = ""
         Dim col_rts1 As String = ""
         Dim col_rts2 As String = ""
+        Dim id_store_selected As String = ""
+        Dim id_del_online_store = ""
+        If CEAllStore.EditValue = True Then
+            id_store_selected = ""
+            id_del_online_store = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) FROM tb_m_comp c WHERE c.id_comp IN (SELECT id_wh FROM tb_ol_store_comp ) ", 0, True, "", "", "", "")
+        Else
+            id_store_selected = SLUEStore.EditValue.ToString
+            'cek online store ato bukan
+            'jika filter
+        End If
+        Dim col_del1 As String = ""
+        Dim col_del2 As String = ""
         For y = year_from To year_to
             If y > year_from Then
                 col_sal1 += ","
@@ -46,6 +58,8 @@
                 col_sell_thru += ","
                 col_rts1 += ","
                 col_rts2 += ","
+                col_del1 += ","
+                col_del2 += ","
             End If
 
             Dim last_month As Integer = 0
@@ -66,14 +80,23 @@
                     col_sell_thru += ","
                     col_rts1 += ","
                     col_rts2 += ","
+                    col_del1 += ","
+                    col_del2 += ","
                 End If
                 col_sal1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sal2 += "soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_soh1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' THEN soh.qty END),0) AS `Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_soh2 += "soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sas1 += "(soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`/(soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`+soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`))*100 AS `Monthly SAS " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
-                col_rts1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(46,120) THEN soh.qty END),0) AS `Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_rts1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(46,120) AND soh.qty>0 THEN soh.qty END),0) AS `Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_rts2 += "soh.`Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_del1 += "IFNULL(SUM(
+		            CASE
+			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_commerce_type=2 AND soh.report_mark_type=58 AND soh.id_comp IN(" + id_del_online_store + ") THEN soh.qty 
+			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_commerce_type=1 AND soh.report_mark_type IN(43,103) THEN soh.qty 
+		            END
+	            ),0) AS `Monthly Delivery " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_del2 += "soh.`Monthly Delivery " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
 
                 'sell thru
                 If y = year_from And m = month_from Then
@@ -120,6 +143,7 @@
         " + col_soh2 + ",
         " + col_sas1 + ",
         " + col_sell_thru + ",
+        " + col_del2 + ",
         " + col_rts2 + "
         FROM (
 	        SELECT soh.id_design,
@@ -129,6 +153,7 @@
 	        IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND c.id_store_type IN(2,3) AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Sales Toko Sale`,
 	        IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Grand Total`,
             " + col_soh1 + ",
+            " + col_del1 + ",
             " + col_rts1 + "
 	        FROM tb_soh_sal_period soh
 	        INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
