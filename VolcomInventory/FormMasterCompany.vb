@@ -25,7 +25,7 @@ LEFT JOIN tb_m_sub_district ON tb_m_comp.id_sub_district = tb_m_sub_district.id_
 WHERE tb_m_comp.id_comp_cat = tb_m_comp_cat.id_comp_cat AND tb_m_comp.id_comp = tb_m_comp_contact.id_comp AND tb_m_comp.`is_active`='3' AND (ISNULL(tb_m_comp.`id_acc_ap`) OR ISNULL(tb_m_comp.`id_acc_dp`) OR ISNULL(tb_m_comp.`id_acc_ar`))
 ORDER BY tb_m_comp.comp_name"
         ElseIf is_store Then
-            q = "SELECT c.id_comp AS id_comp, c.comp_number AS comp_number, c.comp_name AS comp_name, c.address_primary AS address_primary, c.is_active AS is_active, cat.comp_cat_name AS company_category
+            q = "SELECT c.id_comp AS id_comp, c.comp_number AS comp_number,c.comp_display_name, c.comp_name AS comp_name, c.address_primary AS address_primary, c.is_active AS is_active, cat.comp_cat_name AS company_category
 ,cs.comp_status
 ,cc.contact_person, cc.contact_number, cc.email AS contact_email, sd.sub_district
 ,st.`state`,ct.`city`,stype.`store_type`,a.`area`
