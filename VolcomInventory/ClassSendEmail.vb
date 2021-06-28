@@ -3532,6 +3532,7 @@ FROM tb_opt o "
 
             Dim Report As New ReportPengirimanProduk()
             Report.id_odm_print = id_report
+            Report.id_comp = "-1"
             Report.id_grup_toko = id_reff
             Report.LManifestNo.Text = par1
             Report.LGrupToko.Text = par2
@@ -3681,8 +3682,9 @@ FROM tb_opt o "
             mail.From = from_mail
 
             Dim Report As New ReportPengirimanProduk()
+            Report.LDesc.Text = "Toko"
             Report.id_odm_print = id_report
-            Report.id_grup_toko = id_reff
+            Report.id_comp = id_reff
             Report.LManifestNo.Text = par1
             Report.LGrupToko.Text = par2
 

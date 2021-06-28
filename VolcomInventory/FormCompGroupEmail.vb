@@ -32,6 +32,8 @@ WHERE cg.is_send_per_comp=1"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCGroupComp.DataSource = dt
         GVGroupComp.BestFitColumns()
+        '
+        show_email()
     End Sub
 
     Private Sub FormCompGroupEmail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -46,9 +48,17 @@ WHERE cg.is_send_per_comp=1"
 
     Sub show_email()
         If GVGroupComp.RowCount > 0 Then
-            Dim q As String = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to , IF(ISNULL(id_employee),'External','Internal') AS `type`
+            Dim q As String = ""
+            If SLEReportMarkType.EditValue.ToString = "314" Then
+                q = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to , IF(ISNULL(id_employee),'External','Internal') AS `type`
 FROM tb_mail_to_group
 WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_comp_group='" & GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString & "'"
+            ElseIf SLEReportMarkType.EditValue.ToString = "320" Then
+                q = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to , IF(ISNULL(id_employee),'External','Internal') AS `type`
+FROM tb_mail_to_group
+WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_comp_group='" & GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString & "' AND id_comp='" & GVGroupComp.GetFocusedRowCellValue("id_comp").ToString & "'"
+            End If
+
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCEmail.DataSource = dt
             GVEmail.BestFitColumns()
@@ -79,6 +89,9 @@ WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_com
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         If GVGroupComp.RowCount > 0 Then
+            If SLEReportMarkType.EditValue.ToString = "320" Then
+                FormCompGroupEmailDet.id_comp = GVGroupComp.GetFocusedRowCellValue("id_comp").ToString
+            End If
             FormCompGroupEmailDet.id_comp_group = GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
             FormCompGroupEmailDet.ShowDialog()
         End If
@@ -86,6 +99,9 @@ WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_com
 
     Private Sub BAddInternal_Click(sender As Object, e As EventArgs) Handles BAddInternal.Click
         If GVGroupComp.RowCount > 0 Then
+            If SLEReportMarkType.EditValue.ToString = "320" Then
+                FormCompGroupEmailDet.id_comp = GVGroupComp.GetFocusedRowCellValue("id_comp").ToString
+            End If
             FormCompGroupEmailDet.is_external = False
             FormCompGroupEmailDet.id_comp_group = GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
             FormCompGroupEmailDet.ShowDialog()
