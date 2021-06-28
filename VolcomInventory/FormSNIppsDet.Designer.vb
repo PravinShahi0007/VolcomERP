@@ -49,10 +49,7 @@ Partial Class FormSNIppsDet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPBudgetPropose = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBudget = New DevExpress.XtraGrid.GridControl()
@@ -61,10 +58,17 @@ Partial Class FormSNIppsDet
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,6 +92,7 @@ Partial Class FormSNIppsDet
         CType(Me.GVBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -202,6 +207,7 @@ Partial Class FormSNIppsDet
         'XTPListDesign
         '
         Me.XTPListDesign.Controls.Add(Me.GCList)
+        Me.XTPListDesign.Controls.Add(Me.PanelControl4)
         Me.XTPListDesign.Controls.Add(Me.BPropose)
         Me.XTPListDesign.Name = "XTPListDesign"
         Me.XTPListDesign.Size = New System.Drawing.Size(935, 431)
@@ -210,11 +216,11 @@ Partial Class FormSNIppsDet
         'GCList
         '
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCList.Location = New System.Drawing.Point(0, 0)
+        Me.GCList.Location = New System.Drawing.Point(0, 46)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck})
-        Me.GCList.Size = New System.Drawing.Size(935, 399)
+        Me.GCList.Size = New System.Drawing.Size(935, 353)
         Me.GCList.TabIndex = 0
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -347,7 +353,7 @@ Partial Class FormSNIppsDet
         '
         'GVProposed
         '
-        Me.GVProposed.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.GVProposed.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn20, Me.GridColumn9, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn11, Me.GridColumn14})
         Me.GVProposed.GridControl = Me.GCProposed
         Me.GVProposed.Name = "GVProposed"
         Me.GVProposed.OptionsView.ShowGroupPanel = False
@@ -376,19 +382,6 @@ Partial Class FormSNIppsDet
         Me.GridColumn9.FieldName = "id_design"
         Me.GridColumn9.Name = "GridColumn9"
         '
-        'GridColumn10
-        '
-        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn10.Caption = "Season"
-        Me.GridColumn10.FieldName = "season"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
-        Me.GridColumn10.Width = 118
-        '
         'GridColumn11
         '
         Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
@@ -402,24 +395,6 @@ Partial Class FormSNIppsDet
         Me.GridColumn11.VisibleIndex = 4
         Me.GridColumn11.Width = 118
         '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Design Code"
-        Me.GridColumn12.FieldName = "design_code"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 183
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Description"
-        Me.GridColumn13.FieldName = "design_display_name"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 2
-        Me.GridColumn13.Width = 378
-        '
         'GridColumn14
         '
         Me.GridColumn14.AppearanceCell.Options.UseTextOptions = True
@@ -431,8 +406,6 @@ Partial Class FormSNIppsDet
         Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn14.FieldName = "ecop"
         Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 5
         Me.GridColumn14.Width = 120
         '
         'XTPBudgetPropose
@@ -491,6 +464,16 @@ Partial Class FormSNIppsDet
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 2
         '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Sub Amount"
+        Me.GridColumn19.FieldName = "sub_amount"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.UnboundExpression = "[budget_value] * [qty]"
+        Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BDel)
@@ -521,15 +504,66 @@ Partial Class FormSNIppsDet
         Me.BAdd.TabIndex = 3
         Me.BAdd.Text = "Add"
         '
-        'GridColumn19
+        'PanelControl4
         '
-        Me.GridColumn19.Caption = "Sub Amount"
-        Me.GridColumn19.FieldName = "sub_amount"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.UnboundExpression = "[budget_value] * [qty]"
-        Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 3
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(935, 46)
+        Me.PanelControl4.TabIndex = 21
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "No"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 1
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn21.Caption = "Item Number"
+        Me.GridColumn21.FieldName = "design_code"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 2
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn22.Caption = "Goods Description"
+        Me.GridColumn22.FieldName = "design_display_name"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 3
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Raw Material Composition"
+        Me.GridColumn23.FieldName = "design_fabrication"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 4
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Main Colour (per unit)"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 5
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "GridColumn25"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 6
         '
         'FormSNIppsDet
         '
@@ -566,6 +600,7 @@ Partial Class FormSNIppsDet
         CType(Me.GVBudget, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -596,10 +631,7 @@ Partial Class FormSNIppsDet
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCBudget As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVBudget As DevExpress.XtraGrid.Views.Grid.GridView
@@ -615,4 +647,11 @@ Partial Class FormSNIppsDet
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEProposeDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
