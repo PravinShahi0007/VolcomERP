@@ -120,7 +120,7 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & Date.Parse(DEPickupDate.EditVal
                         id_client = "'" & GVList.GetRowCellValue(i, "id_client").ToString & "'"
                     End If
 
-                    qd += "('" & id & "','" & GVList.GetRowCellValue(i, "id_departement").ToString & "','" & GVList.GetRowCellValue(i, "jml_koli").ToString & "'," & id_client & ",'" & GVList.GetRowCellValue(i, "id_sub_district").ToString & "','" & addSlashes(GVList.GetRowCellValue(i, "awbill_no").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "awbill_no").ToString) & "')"
+                    qd += "('" & id & "','" & GVList.GetRowCellValue(i, "id_departement").ToString & "','" & GVList.GetRowCellValue(i, "jml_koli").ToString & "'," & id_client & ",'" & GVList.GetRowCellValue(i, "id_sub_district").ToString & "','" & addSlashes(GVList.GetRowCellValue(i, "client_note").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "awbill_no").ToString) & "')"
                 Next
 
                 execute_non_query(qd, True, "", "", "", "")
