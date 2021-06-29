@@ -66,7 +66,7 @@ INNER JOIN tb_m_city cit ON cit.id_city=dis.`id_city`"
 tb_awb_office_det d
 INNER JOIN tb_awb_office o ON o.id_awb_office=d.id_awb_office
 WHERE o.is_void=2
-AND o.id_comp='" & FormAWBOtherDet.SLUE3PL.EditValue.ToString & "' AND d.awbill_no='" & addSlashes(TEAWBNumber.Text) & "' "
+AND o.id_comp='" & FormAWBOtherDet.SLUE3PL.EditValue.ToString & "' AND d.awbill_no='" & addSlashes(TEAWBNumber.Text) & "' AND o.id_awb_office!='" & FormAWBOtherDet.id & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         'check on form
         Dim is_already As Boolean = False
