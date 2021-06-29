@@ -34,6 +34,8 @@ LEFT JOIN tb_purc_rec rec ON rec.id_purc_rec=et.id_report AND et.report_mark_typ
 LEFT JOIN tb_item it ON it.id_item=et.id_item
 WHERE e.`year`='" & year & "' AND DATE(et.date_trans)<='" & date_time & "'"
         '
+
+        '
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBudgetCard.DataSource = data
         GVBudgetCard.BestFitColumns()
@@ -49,6 +51,21 @@ WHERE e.`year`='" & year & "' AND DATE(et.date_trans)<='" & date_time & "'"
         showpopup.report_mark_type = GVBudgetCard.GetFocusedRowCellValue("report_mark_type").ToString
         showpopup.id_report = GVBudgetCard.GetFocusedRowCellValue("id_report").ToString
         showpopup.show()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVBudgetCard_DoubleClick(sender As Object, e As EventArgs) Handles GVBudgetCard.DoubleClick
+        Cursor = Cursors.WaitCursor
+
+        Try
+            Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+            showpopup.report_mark_type = GVBudgetCard.GetFocusedRowCellValue("report_mark_type").ToString
+            showpopup.id_report = GVBudgetCard.GetFocusedRowCellValue("id_report").ToString
+            showpopup.show()
+        Catch ex As Exception
+            stopCustom("Document Not Found")
+        End Try
+
         Cursor = Cursors.Default
     End Sub
 End Class

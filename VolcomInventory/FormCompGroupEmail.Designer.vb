@@ -30,13 +30,14 @@ Partial Class FormCompGroupEmail
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddInternal = New DevExpress.XtraEditors.SimpleButton()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GCGroupComp = New DevExpress.XtraGrid.GridControl()
         Me.GVGroupComp = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.id_company = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnGroup = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCompanyName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStoreName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.is_active_company = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -47,10 +48,10 @@ Partial Class FormCompGroupEmail
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.BAddInternal = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStoreCode = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.SLEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -155,6 +156,17 @@ Partial Class FormCompGroupEmail
         Me.BAdd.TabIndex = 2
         Me.BAdd.Text = "Add External Email"
         '
+        'BAddInternal
+        '
+        Me.BAddInternal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddInternal.ImageIndex = 0
+        Me.BAddInternal.ImageList = Me.LargeImageCollection
+        Me.BAddInternal.Location = New System.Drawing.Point(843, 0)
+        Me.BAddInternal.Name = "BAddInternal"
+        Me.BAddInternal.Size = New System.Drawing.Size(139, 45)
+        Me.BAddInternal.TabIndex = 6
+        Me.BAddInternal.Text = "Add Internal Email"
+        '
         'SplitContainerControl1
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -183,7 +195,7 @@ Partial Class FormCompGroupEmail
         '
         'GVGroupComp
         '
-        Me.GVGroupComp.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.GridColumnGroup, Me.GridColumn1, Me.GridColumnCompanyName, Me.GridColumnIdComp, Me.GridColumnStatus})
+        Me.GVGroupComp.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.GridColumnGroup, Me.GridColumn1, Me.GridColumnStoreName, Me.GridColumnStoreCode, Me.GridColumnIdComp, Me.GridColumnStatus})
         Me.GVGroupComp.GridControl = Me.GCGroupComp
         Me.GVGroupComp.Name = "GVGroupComp"
         Me.GVGroupComp.OptionsBehavior.Editable = False
@@ -203,23 +215,23 @@ Partial Class FormCompGroupEmail
         Me.GridColumnGroup.Name = "GridColumnGroup"
         Me.GridColumnGroup.Visible = True
         Me.GridColumnGroup.VisibleIndex = 0
-        Me.GridColumnGroup.Width = 235
+        Me.GridColumnGroup.Width = 415
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "Description"
+        Me.GridColumn1.Caption = "Company Group Description"
         Me.GridColumn1.FieldName = "description"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 242
+        Me.GridColumn1.Width = 549
         '
-        'GridColumnCompanyName
+        'GridColumnStoreName
         '
-        Me.GridColumnCompanyName.Caption = "Company Name"
-        Me.GridColumnCompanyName.FieldName = "comp_name"
-        Me.GridColumnCompanyName.Name = "GridColumnCompanyName"
-        Me.GridColumnCompanyName.Width = 242
+        Me.GridColumnStoreName.Caption = "Store Name"
+        Me.GridColumnStoreName.FieldName = "comp_name"
+        Me.GridColumnStoreName.Name = "GridColumnStoreName"
+        Me.GridColumnStoreName.Width = 242
         '
         'GridColumnIdComp
         '
@@ -304,6 +316,18 @@ Partial Class FormCompGroupEmail
         Me.GridColumn12.VisibleIndex = 2
         Me.GridColumn12.Width = 90
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.Caption = "Internal / External"
+        Me.GridColumn5.FieldName = "type"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
         'RepositoryItemCheckEdit2
         '
         Me.RepositoryItemCheckEdit2.AutoHeight = False
@@ -318,28 +342,11 @@ Partial Class FormCompGroupEmail
         Me.RepositoryItemCheckEdit3.ValueChecked = New Decimal(New Integer() {1, 0, 0, 0})
         Me.RepositoryItemCheckEdit3.ValueUnchecked = New Decimal(New Integer() {2, 0, 0, 0})
         '
-        'BAddInternal
+        'GridColumnStoreCode
         '
-        Me.BAddInternal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAddInternal.ImageIndex = 0
-        Me.BAddInternal.ImageList = Me.LargeImageCollection
-        Me.BAddInternal.Location = New System.Drawing.Point(843, 0)
-        Me.BAddInternal.Name = "BAddInternal"
-        Me.BAddInternal.Size = New System.Drawing.Size(139, 45)
-        Me.BAddInternal.TabIndex = 6
-        Me.BAddInternal.Text = "Add Internal Email"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn5.Caption = "Internal / External"
-        Me.GridColumn5.FieldName = "type"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumnStoreCode.Caption = "Store Code"
+        Me.GridColumnStoreCode.FieldName = "comp_number"
+        Me.GridColumnStoreCode.Name = "GridColumnStoreCode"
         '
         'FormCompGroupEmail
         '
@@ -391,7 +398,7 @@ Partial Class FormCompGroupEmail
     Friend WithEvents id_company As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnGroup As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCompanyName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStoreName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents is_active_company As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
@@ -403,4 +410,5 @@ Partial Class FormCompGroupEmail
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BAddInternal As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStoreCode As DevExpress.XtraGrid.Columns.GridColumn
 End Class

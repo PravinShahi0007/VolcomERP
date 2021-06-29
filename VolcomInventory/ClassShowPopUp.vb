@@ -120,7 +120,7 @@
         ElseIf report_mark_type = "47" Then
             'return in mat
             FormViewMatRetInProd.Close()
-        ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Or report_mark_type = "183" Or report_mark_type = "292" Then
+        ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Or report_mark_type = "183" Or report_mark_type = "292" Or report_mark_type = "315" Or report_mark_type = "316" Then
             'invoice/missing/credit note
             FormViewSalesPOS.Close()
         ElseIf report_mark_type = "50" Then
@@ -1206,7 +1206,7 @@ GROUP BY rec.`id_prod_order`"
             FormEmpOvertimeVerification.ot_date = data_ver.Rows(0)("ot_date")
 
             FormEmpOvertimeVerification.ShowDialog()
-        ElseIf report_mark_type = "183" Then
+        ElseIf report_mark_type = "183" Or report_mark_type = "315" Or report_mark_type = "316" Then
             'sales invuuce diff margin
             FormViewSalesPOS.id_menu = "4"
             FormViewSalesPOS.id_sales_pos = id_report

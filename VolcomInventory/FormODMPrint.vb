@@ -178,7 +178,7 @@ GROUP BY del.awbill_no"
     End Sub
 
     Sub send_stock()
-        Dim q As String = "SELECT cg.id_comp_group,cg.description
+        Dim q As String = "SELECT cg.id_comp_group,cg.description,cg.is_send_per_comp
 FROM tb_odm_print_det odmp
 INNER JOIN tb_odm_print odmph ON odmph.id_odm_print=odmp.id_odm_print 
 INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmp.id_odm_sc AND odmp.id_odm_print='" & id_print & "'
@@ -214,20 +214,71 @@ GROUP BY cg.`id_comp_group`"
                 Dim qc2 As String = "SELECT * FROM tb_odm_print_log WHERE report_mark_type=314 AND id_odm_print='" & id_print & "' AND id_comp_group='" & dt.Rows(i)("id_comp_group").ToString & "'"
                 Dim dtc2 As DataTable = execute_query(qc2, -1, True, "", "", "", "")
                 '
-                Dim qc3 As String = "SELECT * FROM tb_mail_to_group WHERE report_mark_type=314 AND id_comp_group='" & dt.Rows(i)("id_comp_group").ToString & "' AND is_to=1"
-                Dim dtc3 As DataTable = execute_query(qc3, -1, True, "", "", "", "")
+                If Not dtc2.Rows.Count > 0 Then
+                    If dt.Rows(i)("is_send_per_comp").ToString = "1" Then
+                        Dim qs As String = "SELECT c.id_comp,c.`comp_name`,cg.is_send_per_comp
+FROM tb_odm_print_det odmp
+INNER JOIN tb_odm_print odmph ON odmph.id_odm_print=odmp.id_odm_print 
+INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmp.id_odm_sc AND odmp.id_odm_print='" & id_print & "'
+INNER JOIN tb_odm_sc_det odmd ON odmd.id_odm_sc=odm.id_odm_sc
+INNER JOIN `tb_del_manifest_det` deld ON deld.id_del_manifest=odmd.id_del_manifest
+INNER JOIN `tb_del_manifest` del ON deld.id_del_manifest=del.id_del_manifest
+INNER JOIN tb_wh_awbill_det awbd ON awbd.id_wh_awb_det=deld.id_wh_awb_det
+INNER JOIN `tb_pl_sales_order_del_det` pld ON pld.`id_pl_sales_order_del`=awbd.id_pl_sales_order_del
+INNER JOIN tb_pl_sales_order_del pl ON pl.id_pl_sales_order_del=pld.`id_pl_sales_order_del`
+LEFT JOIN `tb_pl_sales_order_del_combine` plc ON plc.`id_combine`=pl.`id_combine`
+INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
+INNER JOIN `tb_lookup_so_status` sos ON sos.`id_so_status`=so.`id_so_status`
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=pl.id_store_contact_to
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp AND c.`id_commerce_type`=1 AND c.`id_comp_group`='" & dt.Rows(i)("id_comp_group").ToString & "'
+INNER JOIN tb_m_comp_group cg ON c.id_comp_group=cg.id_comp_group 
+INNER JOIN tb_m_product p ON p.`id_product`=pld.`id_product`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=p.`id_design`
+LEFT JOIN tb_m_product_code pc ON pc.`id_product`=p.`id_product`
+LEFT JOIN tb_m_code_detail cd ON cd.`id_code_detail`=pc.`id_code_detail`
+LEFT JOIN (
+	SELECT dc.id_design,cd.id_code_detail AS `id_class`, cd.display_name AS `class`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code=30
+	INNER JOIN tb_m_design d ON d.id_design = dc.id_design
+	GROUP BY dc.id_design
+) cls ON cls.id_design = dsg.id_design
+GROUP BY c.`id_comp`"
+                        Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+                        If dts.Rows.Count > 0 Then
+                            For k = 0 To dts.Rows.Count - 1
+                                Dim qc3 As String = "SELECT * FROM tb_mail_to_group WHERE report_mark_type=320 AND id_comp_group='" & dt.Rows(i)("id_comp_group").ToString & "' AND id_comp='" & dts.Rows(k)("id_comp").ToString & "' AND is_to=1"
+                                Dim dtc3 As DataTable = execute_query(qc3, -1, True, "", "", "", "")
 
-                If Not dtc2.Rows.Count > 0 And dtc3.Rows.Count > 0 Then
-                    'hanya kirim jika belum pernah ngirim dan ada penerimanya di TO
-                    Dim mail As ClassSendEmail = New ClassSendEmail()
-                    mail.id_report = id_print
-                    mail.id_reff = dt.Rows(i)("id_comp_group").ToString
-                    mail.par1 = TENumber.Text
-                    mail.par2 = dt.Rows(i)("description").ToString
-                    mail.report_mark_type = "314"
-                    mail.send_email()
-                    'log
-                    execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp_group,date_log) VALUES('" & id_print & "','314','" & dt.Rows(i)("id_comp_group").ToString & "',NOW())", True, "", "", "", "")
+                                If dtc3.Rows.Count > 0 Then
+                                    Dim mail As ClassSendEmail = New ClassSendEmail()
+                                    mail.id_report = id_print
+                                    mail.id_reff = dts.Rows(k)("id_comp").ToString
+                                    mail.par1 = TENumber.Text
+                                    mail.par2 = dts.Rows(k)("comp_name").ToString
+                                    mail.report_mark_type = "320"
+                                    mail.send_email()
+                                    'log
+                                    execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,id_comp_group,date_log) VALUES('" & id_print & "','320','" & dts.Rows(k)("id_comp").ToString & "','" & dt.Rows(i)("id_comp_group").ToString & "',NOW())", True, "", "", "", "")
+                                End If
+                            Next
+                        End If
+                    Else
+                        Dim qc3 As String = "SELECT * FROM tb_mail_to_group WHERE report_mark_type=314 AND id_comp_group='" & dt.Rows(i)("id_comp_group").ToString & "' AND is_to=1"
+                        Dim dtc3 As DataTable = execute_query(qc3, -1, True, "", "", "", "")
+
+                        If dtc3.Rows.Count > 0 Then
+                            Dim mail As ClassSendEmail = New ClassSendEmail()
+                            mail.id_report = id_print
+                            mail.id_reff = dt.Rows(i)("id_comp_group").ToString
+                            mail.par1 = TENumber.Text
+                            mail.par2 = dt.Rows(i)("description").ToString
+                            mail.report_mark_type = "314"
+                            mail.send_email()
+                            'log
+                            execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp_group,date_log) VALUES('" & id_print & "','314','" & dt.Rows(i)("id_comp_group").ToString & "',NOW())", True, "", "", "", "")
+                        End If
+                    End If
                 End If
             Next
         End If

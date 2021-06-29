@@ -2362,7 +2362,7 @@ FROM tb_b_net_sales_title
 WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "')"
         Dim RSA_dt As DataTable = execute_query(RSA_q, -1, True, "", "", "", "")
 
-        RSA.DataSource = dt
+        RSA.DataSource = RSA_dt
         RSA.CreateDocument()
         For i = 0 To RSA.Pages.Count - 1
             list.Add(RSA.Pages(i))
