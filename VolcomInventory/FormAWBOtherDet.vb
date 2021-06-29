@@ -65,7 +65,7 @@ WHERE awbo.id_awb_office='" & id & "'"
         GVList.BestFitColumns()
         '
         For i As Integer = 0 To dt.Rows.Count - 1
-            If Not dt.Rows(i)("id_awb_inv_sum").ToString = "" Then
+            If Not dt.Rows(i)("inv_number").ToString = "" Then
                 BSave.Visible = False
                 GridColumnInv.VisibleIndex = 6
             End If
