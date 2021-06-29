@@ -47,7 +47,7 @@ WHERE awb.id_awb_office='" & id & "'"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
+        Dim q As String = "SELECT awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,IFNULL(awbo.id_client,'') AS id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
 ,awbo.`client_note`,IFNULL(invo.inv_number,'') AS inv_number
 FROM `tb_awb_office_det` awbo 
 INNER JOIN tb_m_departement dep ON dep.id_departement=awbo.id_departement
@@ -114,7 +114,7 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & Date.Parse(DEPickupDate.EditVal
 
                     Dim id_client As String = ""
 
-                    If GVList.GetRowCellValue(i, "id_client").ToString = "" Then
+                    If GVList.GetRowCellValue(i, "id_client").ToString = "" Or GVList.GetRowCellValue(i, "id_client").ToString = "0" Then
                         id_client = "NULL"
                     Else
                         id_client = "'" & GVList.GetRowCellValue(i, "id_client").ToString & "'"
@@ -146,7 +146,7 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & Date.Parse(DEPickupDate.EditVal
                     End If
 
                     Dim id_client As String = ""
-                    If GVList.GetRowCellValue(i, "id_client").ToString = "0" Then
+                    If GVList.GetRowCellValue(i, "id_client").ToString = "" Or GVList.GetRowCellValue(i, "id_client").ToString = "0" Then
                         id_client = "NULL"
                     Else
                         id_client = "'" & GVList.GetRowCellValue(i, "id_client").ToString & "'"
