@@ -113,6 +113,7 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & Date.Parse(DEPickupDate.EditVal
                     End If
 
                     Dim id_client As String = ""
+
                     If GVList.GetRowCellValue(i, "id_client").ToString = "" Then
                         id_client = "NULL"
                     Else
