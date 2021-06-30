@@ -53,9 +53,9 @@ Partial Class FormStockTakeStorePeriod
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBSelectAccount = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnScanList = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnScanList = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -357,15 +357,15 @@ Partial Class FormStockTakeStorePeriod
         Me.PanelControl1.Size = New System.Drawing.Size(1002, 45)
         Me.PanelControl1.TabIndex = 0
         '
-        'SBSync
+        'BtnExportToXLS
         '
-        Me.SBSync.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBSync.Image = CType(resources.GetObject("SBSync.Image"), System.Drawing.Image)
-        Me.SBSync.Location = New System.Drawing.Point(906, 2)
-        Me.SBSync.Name = "SBSync"
-        Me.SBSync.Size = New System.Drawing.Size(94, 41)
-        Me.SBSync.TabIndex = 0
-        Me.SBSync.Text = "Sync"
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(140, 2)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(124, 41)
+        Me.BtnExportToXLS.TabIndex = 2
+        Me.BtnExportToXLS.Text = "Export to XLS"
         '
         'BtnScanList
         '
@@ -377,15 +377,15 @@ Partial Class FormStockTakeStorePeriod
         Me.BtnScanList.TabIndex = 1
         Me.BtnScanList.Text = "Scanned Item List"
         '
-        'BtnExportToXLS
+        'SBSync
         '
-        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(140, 2)
-        Me.BtnExportToXLS.Name = "BtnExportToXLS"
-        Me.BtnExportToXLS.Size = New System.Drawing.Size(124, 41)
-        Me.BtnExportToXLS.TabIndex = 2
-        Me.BtnExportToXLS.Text = "Export to XLS"
+        Me.SBSync.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSync.Image = CType(resources.GetObject("SBSync.Image"), System.Drawing.Image)
+        Me.SBSync.Location = New System.Drawing.Point(906, 2)
+        Me.SBSync.Name = "SBSync"
+        Me.SBSync.Size = New System.Drawing.Size(94, 41)
+        Me.SBSync.TabIndex = 0
+        Me.SBSync.Text = "Sync"
         '
         'FormStockTakeStorePeriod
         '
