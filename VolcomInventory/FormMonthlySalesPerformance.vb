@@ -17,12 +17,33 @@
         'rmt 
         Dim rmt_sal As String = execute_query("SELECT GROUP_CONCAT(DISTINCT sp.report_mark_type) AS `rmt` FROM tb_sales_pos sp WHERE sp.id_report_status=6", 0, True, "", "", "", "")
 
+        'filter date
         Dim year_from As Integer = Integer.Parse(SLUEMonthFrom.EditValue.ToString.Split("-")(0))
         Dim year_to As Integer = Integer.Parse(SLUEMonthTo.EditValue.ToString.Split("-")(0))
         Dim month_from As Integer = Integer.Parse(SLUEMonthFrom.EditValue.ToString.Split("-")(1))
         Dim month_to As Integer = Integer.Parse(SLUEMonthTo.EditValue.ToString.Split("-")(1))
         Dim fromDate As String = "" + year_from.ToString + "-" + month_from.ToString.PadLeft(2, "0") + "-01"
-        Dim untilDate As String = "" + year_to.ToString + "-" + month_to.ToString.PadLeft(2, "0") + "-" + Date.DaysInMonth(year_to, month_to).ToString + ""
+        Dim untilDate As String = "" + year_to.ToString + "-" + month_to.ToString.PadLeft(2, "0") + "-" + "-01"
+
+        ' filter store
+        Dim where_store As String = ""
+        where_store += "AND cry.id_country='" + SLUENational.EditValue.ToString + "' "
+        If SLUEProvince.EditValue.ToString <> "0" Then
+            where_store += "AND stt.id_state='" + SLUEProvince.EditValue.ToString + "' "
+        End If
+        If SLUECompGroup.EditValue.ToString <> "0" Then
+            where_store += "AND c.id_comp_group='" + SLUECompGroup.EditValue.ToString + "' "
+        End If
+
+        'filter wh
+        Dim compG78 As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 371", 0, True, "", "", "", "")
+        Dim compGON As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 1251", 0, True, "", "", "", "")
+        Dim compS78 As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 429", 0, True, "", "", "", "")
+        Dim compGOS As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group = 1255", 0, True, "", "", "", "")
+        Dim compREJ As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_type IN (3)", 0, True, "", "", "", "")
+
+
+        'var
         Dim col_sal1 As String = ""
         Dim col_sal2 As String = ""
         Dim col_sal_total1 As String = ""
@@ -34,18 +55,20 @@
         Dim add_sell_thru As String = ""
         Dim col_rts1 As String = ""
         Dim col_rts2 As String = ""
-        Dim id_store_selected As String = ""
-        Dim id_del_online_store = ""
-        If CEAllStore.EditValue = True Then
-            id_store_selected = ""
-            id_del_online_store = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) FROM tb_m_comp c WHERE c.id_comp IN (SELECT id_wh FROM tb_ol_store_comp ) ", 0, True, "", "", "", "")
-        Else
-            id_store_selected = SLUEStore.EditValue.ToString
-            'cek online store ato bukan
-            'jika filter
-        End If
         Dim col_del1 As String = ""
         Dim col_del2 As String = ""
+
+        'set del account ol store
+        Dim id_del_online_store = ""
+        id_del_online_store = execute_query("SELECT IFNULL(GROUP_CONCAT(DISTINCT olc.id_wh),0) AS `id_wh` 
+        FROM tb_ol_store_comp olc
+        INNER JOIN tb_m_comp c ON c.id_comp = olc.id_store
+        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
+        INNER JOIN tb_m_state state ON state.id_state = cty.id_state
+        INNER JOIN tb_m_region reg ON reg.id_region = state.id_region
+        INNER JOIN tb_m_country cry ON cry.id_country = reg.id_country
+        WHERE 1=1 " + where_store, 0, True, "", "", "", "")
+
         For y = year_from To year_to
             If y > year_from Then
                 col_sal1 += ","
@@ -92,8 +115,8 @@
                 col_rts2 += "soh.`Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_del1 += "IFNULL(SUM(
 		            CASE
-			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_commerce_type=2 AND soh.report_mark_type=58 AND soh.id_comp IN(" + id_del_online_store + ") THEN soh.qty 
-			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_commerce_type=1 AND soh.report_mark_type IN(43,103) THEN soh.qty 
+			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_comp_cat!=6 AND soh.report_mark_type=58 AND soh.id_comp IN(" + id_del_online_store + ") THEN soh.qty 
+			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_comp_cat=6 AND c.id_commerce_type=1 AND soh.report_mark_type IN(43,103) THEN soh.qty 
 		            END
 	            ),0) AS `Monthly Delivery " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_del2 += "soh.`Monthly Delivery " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
@@ -144,7 +167,12 @@
         " + col_sas1 + ",
         " + col_sell_thru + ",
         " + col_del2 + ",
-        " + col_rts2 + "
+        " + col_rts2 + ",
+        soh.`Stock Gudang Normal|G78`,
+        soh.`Stock Gudang Normal|GON`,
+        soh.`Stock Gudang Sale|S78`,
+        soh.`Stock Gudang Sale|GOS`,
+        soh.`Stock Gudang Non Active|Reject`
         FROM (
 	        SELECT soh.id_design,
 	        " + col_sal1 + ",
@@ -154,7 +182,12 @@
 	        IFNULL(SUM(CASE WHEN soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|Grand Total`,
             " + col_soh1 + ",
             " + col_del1 + ",
-            " + col_rts1 + "
+            " + col_rts1 + ",
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compG78 + ") THEN soh.qty END),0) AS `Stock Gudang Normal|G78`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGON + ") THEN soh.qty END),0) AS `Stock Gudang Normal|GON`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compS78 + ") THEN soh.qty END),0) AS `Stock Gudang Sale|S78`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGOS + ") THEN soh.qty END),0) AS `Stock Gudang Sale|GOS`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compREJ + ") THEN soh.qty END),0) AS `Stock Gudang Non Active|Reject`
 	        FROM tb_soh_sal_period soh
 	        INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
 	        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
