@@ -9784,6 +9784,12 @@
     <Compile Include="ReportShipInvoice.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSNIPpsList.Designer.vb">
+      <DependentUpon>ReportSNIPpsList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSNIPpsList.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportStockQCStockReportSummary.Designer.vb">
       <DependentUpon>ReportStockQCStockReportSummary.vb</DependentUpon>
     </Compile>
@@ -9830,6 +9836,12 @@
       <DependentUpon>ReportWorkOrder.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportWorkOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReprotSNIPpsBudget.Designer.vb">
+      <DependentUpon>ReprotSNIPpsBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReprotSNIPpsBudget.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Scanner.vb" />
