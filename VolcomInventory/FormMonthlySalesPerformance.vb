@@ -265,6 +265,7 @@
 
 
         'clear column/band
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading column")
         GVData.Bands.Clear()
         GVData.Columns.Clear()
 
@@ -346,8 +347,9 @@
         Next
 
         'data to gv
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading view")
         GCData.DataSource = data
-        'FormMain.SplashScreenManager1.SetWaitFormDescription("Bestfit column")
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Bestfit all column")
         GVData.BestFitColumns()
 
         FormMain.SplashScreenManager1.CloseWaitForm()
