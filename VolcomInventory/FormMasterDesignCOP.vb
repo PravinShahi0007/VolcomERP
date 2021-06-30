@@ -165,6 +165,7 @@ WHERE pdd.`id_design`='" & BGVDesign.GetFocusedRowCellValue("id_design").ToStrin
 
     Private ImageDir As String = product_image_path
     Private Images As Hashtable = New Hashtable()
+
     Private Sub BGVDesign_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles BGVDesign.CustomUnboundColumnData
         If e.Column.FieldName = "img" AndAlso e.IsGetData And CEShowImg.EditValue.ToString = "True" Then
             Images = Nothing

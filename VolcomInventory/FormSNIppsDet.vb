@@ -2,15 +2,23 @@
     Public id_pps As String = "-1"
 
     Private Sub FormSNIppsDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewSeason()
         load_head()
+    End Sub
+
+    Sub viewSeason()
+        Dim query As String = "SELECT a.id_season,a.season,b.range AS `range` FROM tb_season a 
+                                INNER JOIN tb_range b ON a.id_range = b.id_range 
+                                ORDER BY b.range ASC"
+        viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
 
     Sub load_head()
         If id_pps = "-1" Then
             'new
-            load_pending_kids()
+
             TENumber.Text = "[auto_generate]"
-            TEProposedBy.Text = get_emp(id_employee_user, "1")
+            TEProposedBy.Text = get_emp(id_employee_user, "2")
             '
             XTPListDesign.PageVisible = True
             XTPProposedList.PageVisible = False
@@ -37,10 +45,10 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
     End Sub
 
     Sub load_pending_kids()
-        Dim q As String = "SELECT 'no' AS is_check,dsg.`id_design`,dsg.`design_code`,dsg.`design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
+        Dim q As String = "SELECT 'yes' AS is_check,dsg.`id_design`,dsg.`design_code`,dsg.`design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
 FROM tb_m_design dsg
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
-INNER JOIN tb_season_delivery del ON del.id_delivery=dsg.`id_delivery`
+INNER JOIN tb_season_delivery del ON del.id_delivery=dsg.`id_delivery` AND dsg.id_season='" & SLESeason.EditValue.ToString & "'
 INNER JOIN tb_season ssn ON ssn.id_season=del.id_season
 WHERE dsg.`id_design` NOT IN (
 	SELECT id_design 
@@ -67,17 +75,37 @@ WHERE `id_sni_pps`=''"
     End Sub
 
     Sub load_proposed()
-        Dim q As String = "SELECT 'no' AS is_check,dsg.`id_design`,dsg.`design_code`,dsg.`design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
+        Dim q As String = "SELECT 'no' AS is_check,clr.color,dsg.`id_design`,dsg.`design_code`,dsg.design_fabrication,dsg.`design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
+,'VOLCOM' AS brand,co.country,pdl.qty_line_list,so.season_orign
 FROM tb_sni_pps_list `ppsl`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=ppsl.`id_design`
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
 INNER JOIN tb_season_delivery del ON del.id_delivery=dsg.`id_delivery`
 INNER JOIN tb_season ssn ON ssn.id_season=del.id_season
+INNER JOIN tb_season_orign so ON so.id_season_orign=dsg.id_season_orign
+INNER JOIN tb_m_country co ON co.id_country=so.id_country
+INNER JOIN 
+(
+    SELECT dc.id_design,CONCAT(cd.code_detail_name,' (',cd.display_name,')') AS color
+    FROM `tb_m_design_code` dc
+    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail=dc.id_code_detail
+    WHERE cd.id_code='14'
+    GROUP BY dc.id_design
+) clr oN clr.id_design=dsg.id_design
+INNER JOIN
+(
+    SELECT dsg.`id_design`,SUM(pdp.`prod_demand_product_qty`) AS qty_line_list
+    FROM tb_m_design dsg
+    INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=dsg.`id_prod_demand_design_line`
+    INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
+    GROUP BY dsg.`id_design`
+)pdl ON pdl.id_design=dsg.id_design
 AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND dsg.`id_lookup_status_order`!=2
 WHERE ppsl.id_sni_pps='" & id_pps & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCProposed.DataSource = dt
         GVProposed.BestFitColumns()
+        '
     End Sub
 
     Private Sub BPropose_Click(sender As Object, e As EventArgs) Handles BPropose.Click
@@ -102,10 +130,50 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         Dim q As String = ""
-
     End Sub
 
     Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click
         Close()
+    End Sub
+
+    Private ImageDir As String = product_image_path
+    Private Images As Hashtable = New Hashtable()
+
+    Private Sub GVProposed_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVProposed.CustomUnboundColumnData
+        If e.Column.FieldName = "img" AndAlso e.IsGetData Then
+            Images = Nothing
+            Images = New Hashtable()
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "id_design"))
+
+            Dim fileName As String = id & ".jpg".ToLower
+
+            If (Not Images.ContainsKey(fileName)) Then
+                Dim img As Image = Nothing
+                Dim resizeImg As Image = Nothing
+
+                Try
+
+                    Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(ImageDir, fileName, False)
+                    img = Image.FromFile(filePath)
+                    resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+                Catch
+
+                End Try
+
+                Images.Add(fileName, resizeImg)
+
+            End If
+
+            e.Value = Images(fileName)
+        End If
+    End Sub
+
+    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        load_pending_kids()
+    End Sub
+
+    Private Sub BExportList_Click(sender As Object, e As EventArgs) Handles BExportList.Click
+
     End Sub
 End Class
