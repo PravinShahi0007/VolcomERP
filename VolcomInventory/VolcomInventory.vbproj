@@ -7251,6 +7251,12 @@
     <Compile Include="FormStockTakeStorePeriodDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakeStoreScanList.Designer.vb">
+      <DependentUpon>FormStockTakeStoreScanList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeStoreScanList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockUniS78New.Designer.vb">
       <DependentUpon>FormStockUniS78New.vb</DependentUpon>
     </Compile>
@@ -9784,6 +9790,12 @@
     <Compile Include="ReportShipInvoice.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSNIPpsList.Designer.vb">
+      <DependentUpon>ReportSNIPpsList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSNIPpsList.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportStockQCStockReportSummary.Designer.vb">
       <DependentUpon>ReportStockQCStockReportSummary.vb</DependentUpon>
     </Compile>
@@ -9830,6 +9842,12 @@
       <DependentUpon>ReportWorkOrder.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportWorkOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReprotSNIPpsBudget.Designer.vb">
+      <DependentUpon>ReprotSNIPpsBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReprotSNIPpsBudget.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Scanner.vb" />
@@ -13726,6 +13744,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeStorePeriodDet.resx">
       <DependentUpon>FormStockTakeStorePeriodDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeStoreScanList.resx">
+      <DependentUpon>FormStockTakeStoreScanList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockUniS78New.resx">
       <DependentUpon>FormStockUniS78New.vb</DependentUpon>
