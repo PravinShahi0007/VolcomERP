@@ -11,7 +11,7 @@
 
     Private Sub FormAWBOtherDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DECreatedDate.EditValue = Now
-        DEPickupDate.Properties.MinValue = Now
+        DEPickupDate.Properties.MaxValue = Now
         DEPickupDate.EditValue = Now
         '
         load_head()
@@ -47,16 +47,29 @@ WHERE awb.id_awb_office='" & id & "'"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
-,awbo.`client_note`
+        Dim q As String = "SELECT awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,IFNULL(awbo.id_client,'') AS id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
+,awbo.`client_note`,IFNULL(invo.inv_number,'') AS inv_number
 FROM `tb_awb_office_det` awbo 
 INNER JOIN tb_m_departement dep ON dep.id_departement=awbo.id_departement
 LEFT JOIN tb_m_comp c ON c.id_comp=awbo.id_client
+LEFT JOIN  
+(
+    SELECT id_awb_office_det,inv.inv_number
+    FROM tb_awb_inv_sum_other invo 
+    INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invo.id_awb_inv_sum AND inv.id_report_status!=5
+)invo ON invo.id_awb_office_det=awbo.id_awb_office_det
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awbo.id_sub_district
 WHERE awbo.id_awb_office='" & id & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
+        '
+        For i As Integer = 0 To dt.Rows.Count - 1
+            If Not dt.Rows(i)("inv_number").ToString = "" Then
+                BSave.Visible = False
+                GridColumnInv.VisibleIndex = 6
+            End If
+        Next
     End Sub
 
     Sub view_3pl()
@@ -100,13 +113,14 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & Date.Parse(DEPickupDate.EditVal
                     End If
 
                     Dim id_client As String = ""
-                    If GVList.GetRowCellValue(i, "id_client").ToString = "" Then
+
+                    If GVList.GetRowCellValue(i, "id_client").ToString = "" Or GVList.GetRowCellValue(i, "id_client").ToString = "0" Then
                         id_client = "NULL"
                     Else
                         id_client = "'" & GVList.GetRowCellValue(i, "id_client").ToString & "'"
                     End If
 
-                    qd += "('" & id & "','" & GVList.GetRowCellValue(i, "id_departement").ToString & "','" & GVList.GetRowCellValue(i, "jml_koli").ToString & "'," & id_client & ",'" & GVList.GetRowCellValue(i, "id_sub_district").ToString & "','" & addSlashes(GVList.GetRowCellValue(i, "awbill_no").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "awbill_no").ToString) & "')"
+                    qd += "('" & id & "','" & GVList.GetRowCellValue(i, "id_departement").ToString & "','" & GVList.GetRowCellValue(i, "jml_koli").ToString & "'," & id_client & ",'" & GVList.GetRowCellValue(i, "id_sub_district").ToString & "','" & addSlashes(GVList.GetRowCellValue(i, "client_note").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "awbill_no").ToString) & "')"
                 Next
 
                 execute_non_query(qd, True, "", "", "", "")
@@ -132,7 +146,7 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & Date.Parse(DEPickupDate.EditVal
                     End If
 
                     Dim id_client As String = ""
-                    If GVList.GetRowCellValue(i, "id_client").ToString = "0" Then
+                    If GVList.GetRowCellValue(i, "id_client").ToString = "" Or GVList.GetRowCellValue(i, "id_client").ToString = "0" Then
                         id_client = "NULL"
                     Else
                         id_client = "'" & GVList.GetRowCellValue(i, "id_client").ToString & "'"

@@ -308,6 +308,9 @@ Partial Class FormAWBInv
         Me.GVInvoice.FormatRules.Add(GridFormatRule2)
         Me.GVInvoice.GridControl = Me.GCInvoice
         Me.GVInvoice.Name = "GVInvoice"
+        Me.GVInvoice.OptionsCustomization.AllowFilter = False
+        Me.GVInvoice.OptionsFilter.AllowFilterEditor = False
+        Me.GVInvoice.OptionsFind.AllowFindPanel = False
         Me.GVInvoice.OptionsPrint.AllowMultilineHeaders = True
         Me.GVInvoice.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVInvoice.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[False]
@@ -780,6 +783,9 @@ Partial Class FormAWBInv
         Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn46, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn43})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsCustomization.AllowFilter = False
+        Me.GVData.OptionsFilter.AllowFilterEditor = False
+        Me.GVData.OptionsFind.AllowFindPanel = False
         Me.GVData.OptionsPrint.AllowMultilineHeaders = True
         Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVData.OptionsView.ShowFooter = True
@@ -1035,6 +1041,7 @@ Partial Class FormAWBInv
         Me.BVerify.Size = New System.Drawing.Size(945, 39)
         Me.BVerify.TabIndex = 91
         Me.BVerify.Text = "Verify"
+        Me.BVerify.Visible = False
         '
         'BImport
         '

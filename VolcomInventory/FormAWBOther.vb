@@ -98,14 +98,22 @@ SELECT id_comp,comp_name FROM tb_m_comp WHERE id_comp_cat='7' AND is_active='1'"
             qw = " AND awb.id_comp='" & SLECargo.EditValue.ToString & "'"
         End If
 
-        Dim q As String = "SELECT awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
-,awbo.`client_note`
+        Dim q As String = "SELECT awbo.id_awb_office_det,awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
+,awb.pickup_date
+,awbo.`client_note`,IFNULL(invo.inv_number,'') AS inv_number,v.`comp_name` AS vendor_name
 FROM `tb_awb_office_det` awbo 
 INNER JOIN tb_awb_office awb ON awb.id_awb_office=awbo.id_awb_office
 INNER JOIN tb_m_departement dep ON dep.id_departement=awbo.id_departement
-LEFT JOIN tb_m_comp c ON c.id_comp=awbo.id_client
+LEFT JOIN tb_m_comp c ON c.id_comp=awbo.`id_client`
+INNER JOIN tb_m_comp v ON v.`id_comp`=awb.`id_comp`
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awbo.id_sub_district
-WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(awb.pickup_date)<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' " & qw
+LEFT JOIN  
+(
+    SELECT id_awb_office_det,inv.inv_number
+    FROM tb_awb_inv_sum_other invo 
+    INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invo.id_awb_inv_sum AND inv.id_report_status!=5
+)invo ON invo.id_awb_office_det=awbo.id_awb_office_det
+WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStartAWBList.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(awb.pickup_date)<='" & Date.Parse(DEUntilAWBList.EditValue.ToString).ToString("yyyy-MM-dd") & "' " & qw
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
@@ -113,5 +121,64 @@ WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStart.EditValue.ToString).ToStrin
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         FormAWBOtherInv.ShowDialog()
+    End Sub
+
+    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+        load_verification()
+    End Sub
+
+    Sub load_verification()
+        Dim q As String = "SELECT inv.id_awb_inv_sum,sts.report_status,c.comp_name,inv.created_date,inv.inv_number,emp.employee_name,SUM(invd.amount_final) AS final_tot
+FROM `tb_awb_inv_sum_other` invd
+INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invd.id_awb_inv_sum AND is_other=1
+INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=inv.id_report_status
+INNER JOIN tb_m_user usr ON usr.id_user=inv.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+GROUP BY inv.id_awb_inv_sum"
+
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCInvoice.DataSource = dt
+        GVInvoice.BestFitColumns()
+    End Sub
+
+    Private Sub GVInvoice_DoubleClick(sender As Object, e As EventArgs) Handles GVInvoice.DoubleClick
+        If GVInvoice.RowCount > 0 Then
+            FormAWBOtherInv.id_verification = GVInvoice.GetFocusedRowCellValue("id_awb_inv_sum").ToString
+            FormAWBOtherInv.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub DropAWBToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DropAWBToolStripMenuItem.Click
+        If GVList.RowCount > 0 Then
+            'check
+            Dim q As String = "SELECT awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
+,awbo.`client_note`,IFNULL(inv.inv_number,'') AS inv_number
+FROM `tb_awb_office_det` awbo 
+INNER JOIN tb_awb_office awb ON awb.id_awb_office=awbo.id_awb_office
+INNER JOIN tb_m_departement dep ON dep.id_departement=awbo.id_departement
+LEFT JOIN tb_m_comp c ON c.id_comp=awbo.id_client
+INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awbo.id_sub_district
+LEFT JOIN tb_awb_inv_sum_other invo ON invo.id_awb_office_det=awbo.id_awb_office_det
+LEFT JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invo.id_awb_inv_sum AND inv.id_report_status!=5
+WHERE awbo.id_awb_office_det='" & GVList.GetFocusedRowCellValue("id_awb_office_det").ToString & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                If dt.Rows(0)("inv_number").ToString = "" Then
+                    'delete
+                    Dim confirm As DialogResult
+
+                    confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                    If confirm = DialogResult.Yes Then
+                        Dim qdel As String = "DELETE FROM tb_awb_office_det WHERE id_awb_office_det='" & GVList.GetFocusedRowCellValue("id_awb_office_det").ToString & "'"
+                        execute_non_query(qdel, True, "", "", "", "")
+                        load_awb_list()
+                    End If
+                Else
+                    warningCustom("AWB sudah masuk ke dalam proses verifikasi")
+                End If
+            End If
+        End If
     End Sub
 End Class

@@ -1,9 +1,44 @@
 ﻿Public Class ReportPengirimanProduk
     Public id_odm_print As String = "-1"
     Public id_grup_toko As String = "-1"
+    Public id_comp As String = "-1"
 
     Private Sub ReportPengirimanProduk_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        Dim q As String = "SELECT IF(pl.`is_combine`=1,plc.`combine_number`,pl.`pl_sales_order_del_number`) AS do_number,CONCAT(c.`comp_number`,' - ',c.`comp_display_name`) AS store
+        Dim q As String = ""
+        If Not id_comp = "-1" Then
+            q = "SELECT IF(pl.`is_combine`=1,plc.`combine_number`,pl.`pl_sales_order_del_number`) AS do_number,CONCAT(c.`comp_number`,' - ',c.`comp_display_name`) AS store
+,p.`product_full_code`,dsg.`design_display_name`,cd.`code_detail_name` AS size,cls.class
+,pld.`pl_sales_order_del_det_qty` AS qty,odmph.`created_date` AS pickup_date,pl.`pl_sales_order_del_date` AS pl_date
+,sos.`so_status`,IF(pl.`is_combine`=1,plc.combine_note,pl.`pl_sales_order_del_note`) AS pl_sales_order_del_note,odmph.`number`,del.`awbill_no`
+FROM tb_odm_print_det odmp
+INNER JOIN tb_odm_print odmph ON odmph.id_odm_print=odmp.id_odm_print 
+INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmp.id_odm_sc AND odmp.id_odm_print='" & id_odm_print & "'
+INNER JOIN tb_odm_sc_det odmd ON odmd.id_odm_sc=odm.id_odm_sc
+INNER JOIN `tb_del_manifest_det` deld ON deld.id_del_manifest=odmd.id_del_manifest
+INNER JOIN `tb_del_manifest` del ON deld.id_del_manifest=del.id_del_manifest
+INNER JOIN tb_wh_awbill_det awbd ON awbd.id_wh_awb_det=deld.id_wh_awb_det
+INNER JOIN `tb_pl_sales_order_del_det` pld ON pld.`id_pl_sales_order_del`=awbd.id_pl_sales_order_del
+INNER JOIN tb_pl_sales_order_del pl ON pl.id_pl_sales_order_del=pld.`id_pl_sales_order_del`
+LEFT JOIN `tb_pl_sales_order_del_combine` plc ON plc.`id_combine`=pl.`id_combine`
+INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
+INNER JOIN `tb_lookup_so_status` sos ON sos.`id_so_status`=so.`id_so_status`
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=pl.id_store_contact_to
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp AND c.`id_commerce_type`=1 AND c.id_comp='" & id_comp & "'
+INNER JOIN tb_m_comp_group cg ON c.id_comp_group=cg.id_comp_group 
+INNER JOIN tb_m_product p ON p.`id_product`=pld.`id_product`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=p.`id_design`
+LEFT JOIN tb_m_product_code pc ON pc.`id_product`=p.`id_product`
+LEFT JOIN tb_m_code_detail cd ON cd.`id_code_detail`=pc.`id_code_detail`
+LEFT JOIN (
+	SELECT dc.id_design,cd.id_code_detail AS `id_class`, cd.display_name AS `class`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code=30
+	INNER JOIN tb_m_design d ON d.id_design = dc.id_design
+	GROUP BY dc.id_design
+) cls ON cls.id_design = dsg.id_design
+ORDER BY do_number"
+        Else
+            q = "SELECT IF(pl.`is_combine`=1,plc.`combine_number`,pl.`pl_sales_order_del_number`) AS do_number,CONCAT(c.`comp_number`,' - ',c.`comp_display_name`) AS store
 ,p.`product_full_code`,dsg.`design_display_name`,cd.`code_detail_name` AS size,cls.class
 ,pld.`pl_sales_order_del_det_qty` AS qty,odmph.`created_date` AS pickup_date,pl.`pl_sales_order_del_date` AS pl_date
 ,sos.`so_status`,IF(pl.`is_combine`=1,plc.combine_note,pl.`pl_sales_order_del_note`) AS pl_sales_order_del_note,odmph.`number`,del.`awbill_no`
@@ -34,6 +69,8 @@ LEFT JOIN (
 	GROUP BY dc.id_design
 ) cls ON cls.id_design = dsg.id_design
 ORDER BY do_number"
+        End If
+
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         '

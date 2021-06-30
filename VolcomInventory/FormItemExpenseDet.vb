@@ -46,9 +46,9 @@
                 TxtCompNumber.Text = get_company_x(dth.Rows(0)("id_comp").ToString, "2")
                 TxtCompName.Text = get_company_x(dth.Rows(0)("id_comp").ToString, "1")
 
-                If dth.Rows(0)("id_type").ToString = "1" Then
+                If dth.Rows(0)("id_type").ToString = "1" Then 'outbound
                     qg = "
-SELECT det.id_store,SUM(det.amount_final) AS amount_final
+SELECT coa.id_acc,det.id_store,SUM(det.amount_final) AS amount_final
 FROM (
 (SELECT '' AS no,d.`id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.id_cc,store.id_comp) AS id_store,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
 ,d.`awbill_inv_no`,id.awb_no AS `awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
@@ -78,10 +78,11 @@ UNION ALL
 FROM tb_awb_inv_sum_det id
 WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))
 )det
+INNER JOIN `tb_coa_map_departement` coa ON coa.`type`=8 AND coa.`id_departement`=6
 GROUP BY det.id_store"
-                Else
+                ElseIf dth.Rows(0)("id_type").ToString = "2" Then 'iinbound
                     qg = "
-SELECT det.id_store,SUM(det.amount_final) AS amount_final
+SELECT coa.id_acc,det.id_store,SUM(det.amount_final) AS amount_final
 FROM (
 (SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,dis.sub_district,d.id_comp,store.id_comp AS id_store,store.comp_number AS comp_number,store.comp_name AS comp_name
 ,d.`awb_inv_number` AS awbill_inv_no,id.awb_no AS `awbill_no`,d.`created_date` AS rec_by_store_date,emp.employee_name AS `rec_by_store_person`
@@ -123,8 +124,16 @@ UNION ALL
 FROM tb_awb_inv_sum_det id
 WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))
 )det
+INNER JOIN `tb_coa_map_departement` coa ON coa.`type`=8 AND coa.`id_departement`=6
 GROUP BY det.id_store"
+                Else 'office
+                    qg = "SELECT id.id_departement,coa.`id_acc`,1 AS id_store,SUM(id.amount_final) AS amount_final
+FROM tb_awb_inv_sum_other id
+INNER JOIN `tb_coa_map_departement` coa ON coa.`type`=8 AND coa.`id_departement`=id.`id_departement`
+WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "'
+GROUP BY id.`id_departement`"
                 End If
+                '
                 Dim dtg As DataTable = execute_query(qg, -1, True, "", "", "", "")
 
                 If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
@@ -140,8 +149,15 @@ GROUP BY det.id_store"
                     GVData.AddNewRow()
                     GVData.FocusedRowHandle = GVData.RowCount - 1
 
-                    '2246 acc WH id_acc
-                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc", "2246")
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc", dtg.Rows(i)("id_acc").ToString)
+
+                    'If dth.Rows(0)("id_type").ToString = "2" Then
+                    '    '2246 acc WH id_acc
+                    '    GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc", "2246")
+                    'Else
+
+                    'End If
+
                     GVData.SetRowCellValue(GVData.RowCount - 1, "id_expense_type", "1")
                     GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", "54")
                     GVData.SetRowCellValue(GVData.RowCount - 1, "cc", dtg.Rows(i)("id_store").ToString)

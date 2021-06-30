@@ -20,7 +20,7 @@
     Sub load_verification()
         Dim q As String = "SELECT inv.id_awb_inv_sum,sts.report_status,c.comp_name,inv.created_date,inv.inv_number,emp.employee_name,SUM(invd.amount_cargo) AS a_tot,SUM(invd.amount_wh) AS c_tot,SUM(invd.amount_final) AS final_tot
 FROM `tb_awb_inv_sum_det` invd
-INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invd.id_awb_inv_sum
+INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invd.id_awb_inv_sum AND is_other=2
 INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=inv.id_report_status
 INNER JOIN tb_m_user usr ON usr.id_user=inv.created_by

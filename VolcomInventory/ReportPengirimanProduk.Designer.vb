@@ -40,7 +40,7 @@ Partial Public Class ReportPengirimanProduk
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LDesc = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LGrupToko = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
@@ -229,20 +229,20 @@ Partial Public Class ReportPengirimanProduk
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel5, Me.XrLabel6, Me.LGrupToko, Me.XrTable1, Me.LManifestNo, Me.XrLabel2, Me.XrLabel1, Me.XrPictureBox1, Me.XrLabel3, Me.XrLabel4})
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LDesc, Me.XrLabel6, Me.LGrupToko, Me.XrTable1, Me.LManifestNo, Me.XrLabel2, Me.XrLabel1, Me.XrPictureBox1, Me.XrLabel3, Me.XrLabel4})
         Me.PageHeader.HeightF = 178.125!
         Me.PageHeader.Name = "PageHeader"
         '
-        'XrLabel5
+        'LDesc
         '
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 89.99999!)
-        Me.XrLabel5.Name = "XrLabel5"
-        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(109.375!, 23.0!)
-        Me.XrLabel5.StylePriority.UseFont = False
-        Me.XrLabel5.StylePriority.UseTextAlignment = False
-        Me.XrLabel5.Text = "Grup Toko"
-        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LDesc.LocationFloat = New DevExpress.Utils.PointFloat(0!, 89.99999!)
+        Me.LDesc.Name = "LDesc"
+        Me.LDesc.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LDesc.SizeF = New System.Drawing.SizeF(109.375!, 23.0!)
+        Me.LDesc.StylePriority.UseFont = False
+        Me.LDesc.StylePriority.UseTextAlignment = False
+        Me.LDesc.Text = "Grup Toko"
+        Me.LDesc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel6
         '
@@ -487,7 +487,7 @@ Partial Public Class ReportPengirimanProduk
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LDesc As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LGrupToko As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell

@@ -30,6 +30,10 @@
 UNION ALL 
 SELECT '-1' AS id_tax_report,'ALL PPN' AS tax_report,'2' AS id_type
 UNION ALL 
+SELECT 'ALL PPN MASUKAN' AS id_tax_report,'ALL PPN MASUKAN' AS tax_report,'2' AS id_type
+UNION ALL 
+SELECT 'ALL PPN KELUARAN' AS id_tax_report,'ALL PPN KELUARAN' AS tax_report,'2' AS id_type
+UNION ALL 
 SELECT id_tax_report,tax_report,id_type FROM tb_lookup_tax_report"
         viewSearchLookupQuery(SLETaxCat, q, "id_tax_report", "tax_report", "id_tax_report")
     End Sub
@@ -247,19 +251,28 @@ INNER JOIN tb_a_acc_trans at ON at.id_acc_trans=atd.id_acc_trans AND DATE(at.dat
     End Sub
 
     Sub view_pajak()
-        If XTPTaxDetail.SelectedTabPageIndex = 0 Then
+        If XTPTaxDetail.SelectedTabPageIndex = 0 Then 'pending lapor
             If SLETaxCat.Properties.View.GetFocusedRowCellValue("id_type").ToString = "2" Then 'PPN
                 GridColumnPPNPPH.Caption = "PPN (%)"
                 Dim q_where As String = ""
                 Dim q_where_atx As String = ""
                 q_where_atx += " AND a.id_acc !='" & get_opt_acc_field("id_acc_skbp") & "' "
-                If Not SLETaxCat.EditValue.ToString = "0" And Not SLETaxCat.EditValue.ToString = "-1" Then
+
+                If Not SLETaxCat.EditValue.ToString = "0" And Not SLETaxCat.EditValue.ToString = "-1" And Not SLETaxCat.EditValue.ToString = "ALL PPN MASUKAN" And Not SLETaxCat.EditValue.ToString = "ALL PPN KELUARAN" Then
                     q_where += " AND acc_pph.id_tax_report='" & SLETaxCat.EditValue.ToString & "' "
                     q_where_atx += " AND a.id_tax_report='" & SLETaxCat.EditValue.ToString & "'"
                 End If
 
                 If Not SLETaxTagCOA.EditValue.ToString = "0" Then
                     q_where += " AND atx.id_coa_tag='" & SLETaxTagCOA.EditValue.ToString & "' "
+                End If
+
+                If SLETaxCat.EditValue.ToString = "ALL PPN MASUKAN" Then
+                    q_where_atx += " AND t.id_ppn_type='2'"
+                End If
+
+                If SLETaxCat.EditValue.ToString = "ALL PPN KELUARAN" Then
+                    q_where_atx += " AND t.id_ppn_type='1'"
                 End If
 
                 Dim q As String = ""
@@ -275,8 +288,8 @@ LEFT JOIN
     SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
-    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
     WHERE atd.`report_mark_type`='157'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_item_expense`
@@ -295,8 +308,8 @@ LEFT JOIN
     SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
-    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
     WHERE atd.`report_mark_type`='157'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_item_expense`
@@ -318,7 +331,7 @@ FROM
         FROM tb_a_acc_trans_det atd 
         INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
         INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
-        INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+        INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
         WHERE atd.`report_mark_type`='189'
         GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
     ) atx ON atx.id_report=ie.`id_pn_fgpo`
@@ -330,7 +343,7 @@ FROM
     FROM tb_pn_fgpo_det ied
     INNER JOIN tb_pn_fgpo ie ON ie.`id_pn_fgpo`=ied.`id_pn_fgpo` AND ie.`id_report_status`=6
     INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc`
-    INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2
+    INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2 
     INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
     LEFT JOIN
     ( 
@@ -338,7 +351,7 @@ FROM
         FROM tb_a_acc_trans_det atd 
         INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
         INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
-        INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+        INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
         WHERE atd.`report_mark_type`='189'
         GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
     ) atx ON atx.id_report=ie.`id_pn_fgpo`
@@ -363,8 +376,8 @@ LEFT JOIN
     SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
-    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
     WHERE atd.`report_mark_type`='148'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=recd.`id_purc_rec`
@@ -375,14 +388,14 @@ GROUP BY atx.id_acc_trans
 HAVING NOT ISNULL(jurnal_no)
 UNION ALL
 -- BUM
-SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,36 AS report_mark_type,tr.id_acc_trans,atx.`report_number_ref` AS inv_number,tr.acc_trans_number AS jurnal_no,atx.`id_acc_trans` AS id_report,atx.`vendor` AS `comp_number`,atx.`vendor` AS `comp_name`,'' AS `npwp_name`,'' AS `npwp`,'' AS `npwp_address`
-,tr.acc_trans_number AS `number`,tr.`date_reference`,atx.`acc_trans_det_note` AS description,atx.`id_acc`,tr.`date_reference` AS `due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent
--- ,IF(acc_pph.`id_dc`=1,atx.`debit`,atx.`credit`) AS dpp,IF(acc_pph.`id_dc`=1,atx.`debit`,atx.`credit`) AS pph 
-,IF(acc_pph.`id_dc`=1,(atx.`debit`-atx.`credit`),(atx.`credit`-atx.`debit`)) AS dpp,IF(acc_pph.`id_dc`=1,(atx.`debit`-atx.`credit`),(atx.`credit`-atx.`debit`)) AS pph 
+SELECT 'no' AS is_check,t.sorting,t.tax_report,36 AS report_mark_type,tr.id_acc_trans,atx.`report_number_ref` AS inv_number,tr.acc_trans_number AS jurnal_no,atx.`id_acc_trans` AS id_report,atx.`vendor` AS `comp_number`,atx.`vendor` AS `comp_name`,'' AS `npwp_name`,'' AS `npwp`,'' AS `npwp_address`
+,tr.acc_trans_number AS `number`,tr.`date_reference`,atx.`acc_trans_det_note` AS description,atx.`id_acc`,tr.`date_reference` AS `due_date`,a.`acc_name`,a.`acc_description`,100 AS pph_percent
+-- ,IF(a.`id_dc`=1,atx.`debit`,atx.`credit`) AS dpp,IF(a.`id_dc`=1,atx.`debit`,atx.`credit`) AS pph 
+,IF(a.`id_dc`=1,(atx.`debit`-atx.`credit`),(atx.`credit`-atx.`debit`)) AS dpp,IF(a.`id_dc`=1,(atx.`debit`-atx.`credit`),(atx.`credit`-atx.`debit`)) AS pph 
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans` AND tr.id_report_status=6
-INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=atx.id_acc AND acc_pph.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2
+INNER JOIN tb_a_acc a ON a.id_acc=atx.id_acc AND a.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
+INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
 WHERE ISNULL(tr.`date_tax_report`) AND DATE(tr.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL
 -- BBM
@@ -399,8 +412,8 @@ LEFT JOIN
     SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
-    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2  " & q_where_atx & "
     WHERE atd.`report_mark_type`='162'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_rec_payment`
@@ -418,8 +431,8 @@ LEFT JOIN
     SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
-    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
     WHERE atd.`report_mark_type`='159'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_pn`
@@ -819,19 +832,27 @@ WHERE DATE(ie.`date_payment`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToS
             End If
             GVTaxPending.BestFitColumns()
             GVTaxPending.ExpandAllGroups()
-        ElseIf XTPTaxDetail.SelectedTabPageIndex = 2 Then 'tax summary
+        ElseIf XTPTaxDetail.SelectedTabPageIndex = 2 Then 'rekap tax
             If SLETaxCat.Properties.View.GetFocusedRowCellValue("id_type").ToString = "2" Then 'PPN
                 GridColumnPPNPPH.Caption = "PPN (%)"
                 Dim q_where As String = ""
                 Dim q_where_atx As String = ""
                 q_where_atx += " AND a.id_acc !='" & get_opt_acc_field("id_acc_skbp") & "' "
-                If Not SLETaxCat.EditValue.ToString = "0" And Not SLETaxCat.EditValue.ToString = "-1" Then
+                If Not SLETaxCat.EditValue.ToString = "0" And Not SLETaxCat.EditValue.ToString = "-1" And Not SLETaxCat.EditValue.ToString = "ALL PPN MASUKAN" And Not SLETaxCat.EditValue.ToString = "ALL PPN KELUARAN" Then
                     q_where += " AND acc_pph.id_tax_report='" & SLETaxCat.EditValue.ToString & "' "
                     q_where_atx += " AND a.id_tax_report='" & SLETaxCat.EditValue.ToString & "'"
                 End If
 
                 If Not SLETaxTagCOA.EditValue.ToString = "0" Then
                     q_where += " AND atx.id_coa_tag='" & SLETaxTagCOA.EditValue.ToString & "' "
+                End If
+
+                If SLETaxCat.EditValue.ToString = "ALL PPN MASUKAN" Then
+                    q_where_atx += " AND t.id_ppn_type='2'"
+                End If
+
+                If SLETaxCat.EditValue.ToString = "ALL PPN KELUARAN" Then
+                    q_where_atx += " AND t.id_ppn_type='1'"
                 End If
 
                 Dim q As String = ""
@@ -847,8 +868,8 @@ LEFT JOIN
     SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
-    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
     WHERE atd.`report_mark_type`='157'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_item_expense`
@@ -867,8 +888,8 @@ LEFT JOIN
     SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
-    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
     WHERE atd.`report_mark_type`='157'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_item_expense`
@@ -890,7 +911,7 @@ FROM
         FROM tb_a_acc_trans_det atd 
         INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
         INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
-        INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+        INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
         WHERE atd.`report_mark_type`='189'
         GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
     ) atx ON atx.id_report=ie.`id_pn_fgpo`
@@ -902,7 +923,7 @@ FROM
     FROM tb_pn_fgpo_det ied
     INNER JOIN tb_pn_fgpo ie ON ie.`id_pn_fgpo`=ied.`id_pn_fgpo` AND ie.`id_report_status`=6
     INNER JOIN tb_a_acc acc_pph ON acc_pph.`id_acc`=ied.`id_acc`
-    INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2
+    INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2 
     INNER JOIN tb_m_comp c ON c.`id_comp`=ie.`id_comp`
     LEFT JOIN
     ( 
@@ -910,7 +931,7 @@ FROM
         FROM tb_a_acc_trans_det atd 
         INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
         INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
-        INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+        INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
         WHERE atd.`report_mark_type`='189'
         GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
     ) atx ON atx.id_report=ie.`id_pn_fgpo`
@@ -935,8 +956,8 @@ LEFT JOIN
     SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
-    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
     WHERE atd.`report_mark_type`='148'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=recd.`id_purc_rec`
@@ -947,16 +968,16 @@ GROUP BY atx.id_acc_trans
 HAVING NOT ISNULL(jurnal_no)
 UNION ALL
 -- BUM
-SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,36 AS report_mark_type,tr.id_acc_trans,atx.`report_number_ref` AS inv_number,tr.acc_trans_number AS jurnal_no,atx.`id_acc_trans` AS id_report,atx.`vendor` AS `comp_number`,atx.`vendor` AS `comp_name`,'' AS `npwp_name`,'' AS `npwp`,'' AS `npwp_address`
-,tr.acc_trans_number AS `number`,tr.`date_reference`,atx.`acc_trans_det_note` AS description,atx.`id_acc`,tr.`date_reference` AS `due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent
--- ,IF(acc_pph.`id_dc`=1,atx.`debit`,atx.`credit`) AS dpp
--- ,IF(acc_pph.`id_dc`=1,atx.`debit`,atx.`credit`) AS pph 
-,IF(acc_pph.`id_dc`=1,IF(atx.`credit`>0,-atx.`credit`,atx.`debit`),IF(atx.`credit`>0,atx.`credit`,-atx.`debit`)) AS dpp
-,IF(acc_pph.`id_dc`=1,IF(atx.`credit`>0,-atx.`credit`,atx.`debit`),IF(atx.`credit`>0,atx.`credit`,-atx.`debit`)) AS pph 
+SELECT 'no' AS is_check,t.sorting,t.tax_report,36 AS report_mark_type,tr.id_acc_trans,atx.`report_number_ref` AS inv_number,tr.acc_trans_number AS jurnal_no,atx.`id_acc_trans` AS id_report,atx.`vendor` AS `comp_number`,atx.`vendor` AS `comp_name`,'' AS `npwp_name`,'' AS `npwp`,'' AS `npwp_address`
+,tr.acc_trans_number AS `number`,tr.`date_reference`,atx.`acc_trans_det_note` AS description,atx.`id_acc`,tr.`date_reference` AS `due_date`,a.`acc_name`,a.`acc_description`,100 AS pph_percent
+-- ,IF(a.`id_dc`=1,atx.`debit`,atx.`credit`) AS dpp
+-- ,IF(a.`id_dc`=1,atx.`debit`,atx.`credit`) AS pph 
+,IF(a.`id_dc`=1,IF(atx.`credit`>0,-atx.`credit`,atx.`debit`),IF(atx.`credit`>0,atx.`credit`,-atx.`debit`)) AS dpp
+,IF(a.`id_dc`=1,IF(atx.`credit`>0,-atx.`credit`,atx.`debit`),IF(atx.`credit`>0,atx.`credit`,-atx.`debit`)) AS pph 
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans` AND tr.id_report_status=6
-INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=atx.id_acc AND acc_pph.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
-INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2
+INNER JOIN tb_a_acc a ON a.id_acc=atx.id_acc AND a.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
+INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
 WHERE DATE(tr.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_tax_report`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL
 -- BBM
@@ -973,8 +994,8 @@ LEFT JOIN
     SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
-    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
     WHERE atd.`report_mark_type`='162'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_rec_payment`
@@ -992,8 +1013,8 @@ LEFT JOIN
     SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
-    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 " & q_where_atx & "
-    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2
+    INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
+    INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
     WHERE atd.`report_mark_type`='159'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=ie.`id_pn`
@@ -2341,7 +2362,7 @@ FROM tb_b_net_sales_title
 WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("yyyy-MM-dd") & "')"
         Dim RSA_dt As DataTable = execute_query(RSA_q, -1, True, "", "", "", "")
 
-        RSA.DataSource = dt
+        RSA.DataSource = RSA_dt
         RSA.CreateDocument()
         For i = 0 To RSA.Pages.Count - 1
             list.Add(RSA.Pages(i))

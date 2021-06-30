@@ -64,6 +64,8 @@ Partial Class FormReportBudgetList
         Me.GVBudgetCard.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn7, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GVBudgetCard.GridControl = Me.GCBudgetCard
         Me.GVBudgetCard.Name = "GVBudgetCard"
+        Me.GVBudgetCard.OptionsBehavior.Editable = False
+        Me.GVBudgetCard.OptionsBehavior.ReadOnly = True
         Me.GVBudgetCard.OptionsView.ShowFooter = True
         Me.GVBudgetCard.OptionsView.ShowGroupPanel = False
         '
@@ -74,7 +76,7 @@ Partial Class FormReportBudgetList
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 544
+        Me.GridColumn1.Width = 208
         '
         'GridColumn6
         '
@@ -83,7 +85,7 @@ Partial Class FormReportBudgetList
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 2
-        Me.GridColumn6.Width = 246
+        Me.GridColumn6.Width = 106
         '
         'GridColumn7
         '
@@ -92,6 +94,7 @@ Partial Class FormReportBudgetList
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.Width = 86
         '
         'GridColumn2
         '
@@ -107,7 +110,7 @@ Partial Class FormReportBudgetList
         Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 3
-        Me.GridColumn2.Width = 842
+        Me.GridColumn2.Width = 374
         '
         'GridColumn3
         '

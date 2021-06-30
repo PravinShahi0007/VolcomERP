@@ -8,7 +8,9 @@
     End Sub
 
     Sub load_dep()
-        Dim q As String = "SELECT id_departement,departement FROM tb_m_departement WHERE is_office_dept='1'"
+        Dim q As String = "SELECT d.id_departement,d.departement FROM tb_m_departement d 
+INNER JOIN tb_coa_map_departement coa ON coa.id_departement=d.id_departement AND coa.type=8 AND d.is_office_dept='1'
+ORDER BY d.departement ASC"
         viewLookupQuery(LEDeptSum, q, 0, "departement", "id_departement")
     End Sub
 
@@ -64,7 +66,7 @@ INNER JOIN tb_m_city cit ON cit.id_city=dis.`id_city`"
 tb_awb_office_det d
 INNER JOIN tb_awb_office o ON o.id_awb_office=d.id_awb_office
 WHERE o.is_void=2
-AND o.id_comp='" & FormAWBOtherDet.SLUE3PL.EditValue.ToString & "' AND d.awbill_no='" & addSlashes(TEAWBNumber.Text) & "' "
+AND o.id_comp='" & FormAWBOtherDet.SLUE3PL.EditValue.ToString & "' AND d.awbill_no='" & addSlashes(TEAWBNumber.Text) & "' AND o.id_awb_office!='" & FormAWBOtherDet.id & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         'check on form
         Dim is_already As Boolean = False

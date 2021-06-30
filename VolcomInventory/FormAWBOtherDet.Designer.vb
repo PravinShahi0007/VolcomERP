@@ -35,6 +35,7 @@ Partial Class FormAWBOtherDet
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnInv = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
         Me.DEPickupDate = New DevExpress.XtraEditors.DateEdit()
@@ -112,9 +113,11 @@ Partial Class FormAWBOtherDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn3, Me.GridColumn4, Me.GridColumn11, Me.GridColumn5, Me.GridColumn12, Me.GridColumn6, Me.GridColumn7})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn3, Me.GridColumn4, Me.GridColumn11, Me.GridColumn5, Me.GridColumn12, Me.GridColumn6, Me.GridColumn7, Me.GridColumnInv})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
+        Me.GVList.OptionsBehavior.Editable = False
+        Me.GVList.OptionsBehavior.ReadOnly = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -156,7 +159,7 @@ Partial Class FormAWBOtherDet
         'GridColumn11
         '
         Me.GridColumn11.Caption = "ID Comp"
-        Me.GridColumn11.FieldName = "id_comp"
+        Me.GridColumn11.FieldName = "id_client"
         Me.GridColumn11.Name = "GridColumn11"
         '
         'GridColumn5
@@ -188,6 +191,12 @@ Partial Class FormAWBOtherDet
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 5
+        '
+        'GridColumnInv
+        '
+        Me.GridColumnInv.Caption = "Inv No"
+        Me.GridColumnInv.FieldName = "inv_no"
+        Me.GridColumnInv.Name = "GridColumnInv"
         '
         'PanelControl2
         '
@@ -418,4 +427,5 @@ Partial Class FormAWBOtherDet
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnInv As DevExpress.XtraGrid.Columns.GridColumn
 End Class

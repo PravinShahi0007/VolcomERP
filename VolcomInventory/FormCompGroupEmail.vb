@@ -18,10 +18,22 @@
     End Sub
 
     Sub load_comp_group()
-        Dim q As String = "SELECT id_comp_group,comp_group,description FROM tb_m_comp_group"
+        Dim q As String = ""
+
+        If SLEReportMarkType.EditValue.ToString = "314" Then
+            q = "SELECT id_comp_group,comp_group,description FROM tb_m_comp_group WHERE is_send_per_comp!=1"
+        ElseIf SLEReportMarkType.EditValue.ToString = "320" Then
+            q = "SELECT cg.id_comp_group,cg.comp_group,cg.description,c.comp_name,c.id_comp,c.comp_number
+FROM tb_m_comp_group cg 
+INNER JOIN tb_m_comp c ON c.id_comp_group=cg.id_comp_group AND c.is_active=1
+WHERE cg.is_send_per_comp=1"
+        End If
+
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCGroupComp.DataSource = dt
         GVGroupComp.BestFitColumns()
+        '
+        show_email()
     End Sub
 
     Private Sub FormCompGroupEmail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -30,15 +42,23 @@
     End Sub
 
     Sub view_rmt()
-        Dim q As String = "SELECT report_mark_type,report_mark_type_name FROM tb_lookup_report_mark_type WHERE report_mark_type='314'"
+        Dim q As String = "SELECT report_mark_type,report_mark_type_name FROM tb_lookup_report_mark_type WHERE report_mark_type='314' OR report_mark_type='320'"
         viewSearchLookupQuery(SLEReportMarkType, q, "report_mark_type", "report_mark_type_name", "report_mark_type")
     End Sub
 
     Sub show_email()
         If GVGroupComp.RowCount > 0 Then
-            Dim q As String = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to 
+            Dim q As String = ""
+            If SLEReportMarkType.EditValue.ToString = "314" Then
+                q = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to , IF(ISNULL(id_employee),'External','Internal') AS `type`
 FROM tb_mail_to_group
 WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_comp_group='" & GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString & "'"
+            ElseIf SLEReportMarkType.EditValue.ToString = "320" Then
+                q = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to , IF(ISNULL(id_employee),'External','Internal') AS `type`
+FROM tb_mail_to_group
+WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_comp_group='" & GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString & "' AND id_comp='" & GVGroupComp.GetFocusedRowCellValue("id_comp").ToString & "'"
+            End If
+
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCEmail.DataSource = dt
             GVEmail.BestFitColumns()
@@ -69,8 +89,34 @@ WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_com
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         If GVGroupComp.RowCount > 0 Then
+            If SLEReportMarkType.EditValue.ToString = "320" Then
+                FormCompGroupEmailDet.id_comp = GVGroupComp.GetFocusedRowCellValue("id_comp").ToString
+            End If
             FormCompGroupEmailDet.id_comp_group = GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
             FormCompGroupEmailDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BAddInternal_Click(sender As Object, e As EventArgs) Handles BAddInternal.Click
+        If GVGroupComp.RowCount > 0 Then
+            If SLEReportMarkType.EditValue.ToString = "320" Then
+                FormCompGroupEmailDet.id_comp = GVGroupComp.GetFocusedRowCellValue("id_comp").ToString
+            End If
+            FormCompGroupEmailDet.is_external = False
+            FormCompGroupEmailDet.id_comp_group = GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString
+            FormCompGroupEmailDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub SLEReportMarkType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEReportMarkType.EditValueChanged
+        If SLEReportMarkType.EditValue.ToString = "314" Then
+            GridColumnStoreCode.VisibleIndex = -1
+            GridColumnStoreName.VisibleIndex = -1
+            load_comp_group()
+        ElseIf SLEReportMarkType.EditValue.ToString = "320" Then
+            GridColumnStoreCode.VisibleIndex = 2
+            GridColumnStoreName.VisibleIndex = 3
+            load_comp_group()
         End If
     End Sub
 End Class

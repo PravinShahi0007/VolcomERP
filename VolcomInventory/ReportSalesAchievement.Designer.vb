@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Public Class ReportSalesAchievement
     Inherits DevExpress.XtraReports.UI.XtraReport
 
     'XtraReport overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Public Class ReportSalesAchievement
     'NOTE: The following procedure is required by the Designer
     'It can be modified using the Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportSalesAchievement))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
@@ -231,7 +231,7 @@ Partial Public Class ReportSalesAchievement
         'SubBand1
         '
         Me.SubBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XTSalesRealization, Me.XrLabel4})
-        Me.SubBand1.HeightF = 64.70833!
+        Me.SubBand1.HeightF = 79.5!
         Me.SubBand1.KeepTogether = True
         Me.SubBand1.Name = "SubBand1"
         '
@@ -241,7 +241,7 @@ Partial Public Class ReportSalesAchievement
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XTSalesRealization.Font = New System.Drawing.Font("Calibri", 11.0!)
-        Me.XTSalesRealization.LocationFloat = New DevExpress.Utils.PointFloat(0!, 25.20833!)
+        Me.XTSalesRealization.LocationFloat = New DevExpress.Utils.PointFloat(0!, 40.0!)
         Me.XTSalesRealization.Name = "XTSalesRealization"
         Me.XTSalesRealization.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
         Me.XTSalesRealization.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1, Me.XrTableRow3, Me.XRSalesRealization})
@@ -343,9 +343,10 @@ Partial Public Class ReportSalesAchievement
         Me.XrLabel4.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(727.0!, 25.20833!)
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 15, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(727.0!, 40.0!)
         Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UsePadding = False
         Me.XrLabel4.StylePriority.UseTextAlignment = False
         Me.XrLabel4.Text = "SALES REALIZATION  [this_year]"
         Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -475,7 +476,7 @@ Partial Public Class ReportSalesAchievement
         'SubBand3
         '
         Me.SubBand3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XTSalesRealizationPY, Me.XrLabel6})
-        Me.SubBand3.HeightF = 64.70833!
+        Me.SubBand3.HeightF = 79.5!
         Me.SubBand3.KeepTogether = True
         Me.SubBand3.Name = "SubBand3"
         '
@@ -485,7 +486,7 @@ Partial Public Class ReportSalesAchievement
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XTSalesRealizationPY.Font = New System.Drawing.Font("Calibri", 11.0!)
-        Me.XTSalesRealizationPY.LocationFloat = New DevExpress.Utils.PointFloat(0!, 25.20833!)
+        Me.XTSalesRealizationPY.LocationFloat = New DevExpress.Utils.PointFloat(0!, 40.0!)
         Me.XTSalesRealizationPY.Name = "XTSalesRealizationPY"
         Me.XTSalesRealizationPY.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
         Me.XTSalesRealizationPY.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4, Me.XrTableRow7, Me.XRSalesRealizationPY})
@@ -587,9 +588,10 @@ Partial Public Class ReportSalesAchievement
         Me.XrLabel6.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(727.0!, 25.20833!)
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 15, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(727.0!, 40.0!)
         Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UsePadding = False
         Me.XrLabel6.StylePriority.UseTextAlignment = False
         Me.XrLabel6.Text = "SALES REALIZATION  [last_year]"
         Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft

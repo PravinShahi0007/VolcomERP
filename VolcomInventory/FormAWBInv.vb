@@ -59,8 +59,8 @@ WHERE id_awb_inv_sum='" & id_verification & "'"
                     BCancel.Visible = False
                     BSaveDraft.Visible = False
                     BSubmit.Visible = False
-                    BMark.Visible = False
-                    BtnPrint.Visible = False
+                    'BMark.Visible = False
+                    'BtnPrint.Visible = False
                     BDownloadFileKonsolidasi.Visible = False
                     BImportHasilRekon.Visible = False
                 End If
@@ -615,6 +615,55 @@ GROUP BY d.`id_inbound_awb`"
                 TEInvNumberImport.Text = GVData.GetRowCellValue(0, "inv_number").ToString()
             End If
             GVData.ActiveFilterString = ""
+
+            'check awb sudah pernah di verifikasi + duplicate
+            Dim is_duplicate As Boolean = False
+            Dim is_already As Boolean = False
+
+            Dim list_awb As String = ""
+            For i = 0 To GVData.RowCount - 1
+                If Not i = 0 Then
+                    list_awb += ","
+                End If
+                list_awb += "'" & GVData.GetRowCellValue(i, "awbill_no").ToString & "'"
+
+                'check duplicate
+                For j = i To GVData.RowCount - 1
+                    If Not j = i Then 'bukan row sama
+                        If GVData.GetRowCellValue(i, "awbill_no").ToString = GVData.GetRowCellValue(j, "awbill_no").ToString Then
+                            is_duplicate = True
+                            GVData.SetRowCellValue(j, "note", "AWB duplicate")
+                            Exit For
+                        End If
+                    End If
+                Next
+            Next
+
+            If Not list_awb = "" Then
+                Dim qlist As String = "SELECT inv.inv_number,invd.awb_no FROM
+`tb_awb_inv_sum_det` invd
+INNER JOIN tb_awb_inv_sum inv ON inv.`id_awb_inv_sum`=invd.`id_awb_inv_sum` AND inv.`id_report_status`!=5
+WHERE awb_no IN (" & list_awb & ") AND inv.id_comp='" & SLE3PLImport.EditValue.ToString & "' AND invd.amount_final>0 "
+                Dim dtlist As DataTable = execute_query(qlist, -1, True, "", "", "", "")
+                If dtlist.Rows.Count > 0 Then
+                    For i = 0 To dtlist.Rows.Count - 1
+                        GVData.ActiveFilterString = "[awbill_no] = '" & dtlist.Rows(i)("awb_no").ToString & "'"
+                        If GVData.RowCount > 0 Then
+                            is_already = True
+                            GVData.SetRowCellValue(0, "note", "AWB already verified (" & dtlist.Rows(i)("inv_number").ToString & ")")
+                        End If
+                        GVData.ActiveFilterString = ""
+                    Next
+                End If
+            End If
+
+            If is_already Then
+                warningCustom("AWB already verified")
+            ElseIf is_duplicate Then
+                warningCustom("AWB duplicate")
+            Else
+                BVerify.Visible = True
+            End If
 
             GVData.BestFitColumns()
             '

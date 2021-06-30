@@ -394,7 +394,10 @@ WHERE comp.id_comp = '{0}'", id_company)
                     End If
                 End If
             End If
-
+            '
+            If is_view = "1" Then
+                BCPSetup.Visible = False
+            End If
             '
             If LEStatus.EditValue.ToString = "3" Then 'created
                 BSave.Visible = True
