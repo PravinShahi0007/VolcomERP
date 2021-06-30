@@ -56,7 +56,7 @@ Partial Class FormSNIppsDet
         Me.GVProposed = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCEPps = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -439,7 +439,7 @@ Partial Class FormSNIppsDet
         '
         'GVProposed
         '
-        Me.GVProposed.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn14, Me.GridColumn8, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn28})
+        Me.GVProposed.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn14, Me.GridColumnCEPps, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn28})
         Me.GVProposed.GridControl = Me.GCProposed
         Me.GVProposed.Name = "GVProposed"
         Me.GVProposed.OptionsView.ColumnAutoWidth = False
@@ -466,17 +466,17 @@ Partial Class FormSNIppsDet
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Width = 120
         '
-        'GridColumn8
+        'GridColumnCEPps
         '
-        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn8.Caption = "*"
-        Me.GridColumn8.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.GridColumn8.FieldName = "is_check"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
-        Me.GridColumn8.Width = 33
+        Me.GridColumnCEPps.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCEPps.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCEPps.Caption = "*"
+        Me.GridColumnCEPps.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnCEPps.FieldName = "is_check"
+        Me.GridColumnCEPps.Name = "GridColumnCEPps"
+        Me.GridColumnCEPps.Visible = True
+        Me.GridColumnCEPps.VisibleIndex = 0
+        Me.GridColumnCEPps.Width = 33
         '
         'RepositoryItemCheckEdit1
         '
@@ -795,7 +795,7 @@ Partial Class FormSNIppsDet
     Friend WithEvents BPropose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCProposed As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVProposed As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCEPps As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn

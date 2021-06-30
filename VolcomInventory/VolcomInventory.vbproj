@@ -15157,6 +15157,9 @@
     <EmbeddedResource Include="ReportShipInvoice.resx">
       <DependentUpon>ReportShipInvoice.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportSNIPpsList.resx">
+      <DependentUpon>ReportSNIPpsList.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportStockQCStockReportSummary.resx">
       <DependentUpon>ReportStockQCStockReportSummary.vb</DependentUpon>
     </EmbeddedResource>
