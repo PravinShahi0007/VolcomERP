@@ -35,10 +35,11 @@
         Dim id_period As String = GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
 
         Dim query As String = "
-            (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0)) AS diff, '' AS note, IFNULL(t.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name)) AS comp_name, t.is_auto, 'no' AS is_select, s.id_product
+            (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0)) AS diff, '' AS note, IFNULL(t.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name)) AS comp_name, t.is_auto, 'no' AS is_select, s.id_product,
+            IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.design_price_normal, s.design_price) AS `unit_price`
             FROM tb_st_store_soh AS s
             LEFT JOIN (
-                SELECT s.id_product, SUM(s.qty) AS qty, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto
+                SELECT s.id_product, SUM(s.qty) AS qty, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
                 FROM tb_st_store AS s
                 LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
                 WHERE s.id_st_store_period = " + id_period + "
@@ -50,15 +51,37 @@
         
             UNION ALL
 
-            (SELECT 0 AS `no`, p.full_code, p.name, p.size, 0 AS qty_volcom, q.qty AS qty_store, -q.qty AS diff, '' AS note, q.comp_name, q.is_auto, 'no' AS is_select, p.id_product
+            (SELECT 0 AS `no`, p.full_code, p.name, p.size, 0 AS qty_volcom, q.qty AS qty_store, -q.qty AS diff, '' AS note, q.comp_name, q.is_auto, 'no' AS is_select, p.id_product,
+            IF(IFNULL(q.id_store_type,0)=1,prn.design_price, prc.design_price) AS `unit_price`
             FROM tb_m_product_store AS p
             INNER JOIN (
-                SELECT s.id_product, SUM(s.qty) AS qty, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto
+                SELECT s.id_product, SUM(s.qty) AS qty, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
                 FROM tb_st_store AS s
                 LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
                 WHERE s.id_st_store_period = " + id_period + " AND s.id_product NOT IN (SELECT id_product FROM tb_st_store_soh WHERE id_st_store_period = " + id_period + ")
                 GROUP BY s.id_product
-            ) AS q ON q.id_product = p.id_product)
+            ) AS q ON q.id_product = p.id_product
+            INNER JOIN tb_m_product op ON op.id_product = p.id_product
+            LEFT JOIN (
+                SELECT id_design, id_design_price, ROUND(design_price) AS design_price, id_design_price_type
+                FROM tb_m_design_price
+                WHERE id_design_price IN (
+                    SELECT MAX(id_design_price) AS id_design_price
+                    FROM tb_m_design_price
+                    WHERE design_price_start_date <= DATE(NOW()) AND is_active_wh = 1 AND is_design_cost = 0
+                    GROUP BY id_design
+                )
+            ) AS prc ON op.id_design = prc.id_design
+            LEFT JOIN (
+                SELECT id_design, id_design_price, ROUND(design_price) AS design_price
+                FROM tb_m_design_price
+                WHERE id_design_price IN (
+                    SELECT MAX(id_design_price) AS id_design_price
+                    FROM tb_m_design_price
+                    WHERE design_price_start_date <= DATE(NOW()) AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
+                    GROUP BY id_design
+                )
+            ) AS prn ON op.id_design = prn.id_design)
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
