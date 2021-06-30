@@ -174,6 +174,41 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
     End Sub
 
     Private Sub BExportList_Click(sender As Object, e As EventArgs) Handles BExportList.Click
+        Cursor = Cursors.WaitCursor
+        ReportSNIPpsList.id_pps = id_pps
+        ReportSNIPpsList.dt = GCProposed.DataSource
+        Dim Report As New ReportSNIPpsList()
 
+        GridColumnCEPps.VisibleIndex = "-1"
+        GridColumnNo.VisibleIndex = 0
+
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVProposed.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVProposed.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Grid Detail
+        Report.GVProposed.AppearancePrint.Row.Font = New Font("Segoe UI", 5, FontStyle.Regular)
+        ReportStyleGridview(Report.GVProposed)
+
+        GridColumnCEPps.VisibleIndex = 0
+        GridColumnNo.VisibleIndex = "-1"
+
+        'Parse val
+        Dim q As String = "SELECT pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name`,s.season,c.comp_name,c.address_primary
+FROM tb_sni_pps pps
+INNER JOIN tb_m_comp c ON c.id_comp=(SELECT id_own_company FROM `tb_opt`)
+INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_season s ON s.id_season=pps.`id_season`
+WHERE pps.id_sni_pps='" & id_pps & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        Report.DataSource = dt
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+
+        Cursor = Cursors.Default
     End Sub
 End Class
