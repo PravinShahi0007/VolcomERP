@@ -54,6 +54,8 @@ Partial Class FormStockTakeStorePeriod
         Me.SBSelectAccount = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnScanList = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -346,6 +348,8 @@ Partial Class FormStockTakeStorePeriod
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnExportToXLS)
+        Me.PanelControl1.Controls.Add(Me.BtnScanList)
         Me.PanelControl1.Controls.Add(Me.SBSync)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -362,6 +366,26 @@ Partial Class FormStockTakeStorePeriod
         Me.SBSync.Size = New System.Drawing.Size(94, 41)
         Me.SBSync.TabIndex = 0
         Me.SBSync.Text = "Sync"
+        '
+        'BtnScanList
+        '
+        Me.BtnScanList.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnScanList.Image = CType(resources.GetObject("BtnScanList.Image"), System.Drawing.Image)
+        Me.BtnScanList.Location = New System.Drawing.Point(2, 2)
+        Me.BtnScanList.Name = "BtnScanList"
+        Me.BtnScanList.Size = New System.Drawing.Size(138, 41)
+        Me.BtnScanList.TabIndex = 1
+        Me.BtnScanList.Text = "Scanned Item List"
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(140, 2)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(124, 41)
+        Me.BtnExportToXLS.TabIndex = 2
+        Me.BtnExportToXLS.Text = "Export to XLS"
         '
         'FormStockTakeStorePeriod
         '
@@ -422,4 +446,6 @@ Partial Class FormStockTakeStorePeriod
     Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemCheckEdit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BandedGridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnScanList As DevExpress.XtraEditors.SimpleButton
 End Class
