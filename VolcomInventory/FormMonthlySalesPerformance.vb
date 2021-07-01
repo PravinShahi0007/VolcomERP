@@ -27,10 +27,30 @@
 
         ' filter store
         Dim where_store As String = ""
+        'category store
+        Dim id_cat As String = LECat.EditValue.ToString
+        If id_cat = "1" Then
+            'wholesale
+            where_store += "AND c.id_comp_group='59' AND c.id_commerce_type='1 ' "
+        ElseIf id_cat = "2" Then
+            'consingment
+            where_store += "AND c.id_comp_group<>'59' AND c.id_comp_group<>'7' AND c.id_commerce_type='1' "
+        ElseIf id_cat = "3" Then
+            'online
+            where_store += "AND c.id_comp_group<>'59' AND c.id_comp_group<>'7' AND c.id_commerce_type='2' "
+        ElseIf id_cat = "4" Then
+            'b&b wholesale
+            where_store += "AND c.id_comp_group<>'59' AND c.id_comp_group='7' AND c.id_commerce_type='1' "
+        Else
+            where_store += ""
+        End If
+        'country
         where_store += "AND cry.id_country='" + SLUENational.EditValue.ToString + "' "
+        'province
         If SLUEProvince.EditValue.ToString <> "0" Then
             where_store += "AND stt.id_state='" + SLUEProvince.EditValue.ToString + "' "
         End If
+        'group
         If SLUECompGroup.EditValue.ToString <> "0" Then
             where_store += "AND c.id_comp_group='" + SLUECompGroup.EditValue.ToString + "' "
         End If
@@ -1201,6 +1221,8 @@
         month.Add("Dec")
 
         view_month()
+        view_category_store()
+        viewArea()
         view_national()
         view_island()
         view_province()
@@ -1210,6 +1232,29 @@
         view_division()
         view_category()
         view_class()
+    End Sub
+    Sub viewArea()
+        Dim query As String = "SELECT 0 AS `id_area`, 'All' AS `area`
+UNION ALL
+(SELECT a.id_area, a.`area` FROM tb_m_area a )
+ORDER BY area ASC"
+        viewLookupQuery(LEArea, query, 0, "area", "id_area")
+    End Sub
+
+
+    Sub view_category_store()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `id_cat`, 'All' AS `cat`
+        UNION ALL 
+        SELECT 1 AS `id_cat`, 'Wholesale' AS `cat` 
+        UNION ALL
+        SELECT 2 AS `id_cat`, 'Consignment' AS `cat`
+        UNION ALL
+        SELECT 3 AS `id_cat`, 'Online' AS `cat`
+        UNION ALL
+        SELECT 4 AS `id_cat`, 'B&B Wholesale' AS `cat` "
+        viewLookupQuery(LECat, query, 0, "cat", "id_cat")
+        Cursor = Cursors.Default
     End Sub
 
     Sub view_season()
@@ -1368,48 +1413,99 @@
         viewSearchLookupQuery(SLUEProvince, query, "id_province", "province", "id_province")
     End Sub
 
+    Sub defaultView()
+        GCData.DataSource = Nothing
+    End Sub
+
+
     Sub view_store()
+        Cursor = Cursors.WaitCursor
+        defaultView()
+
+        'filter
         Dim where As String = ""
-
-        If Not SLUEProvince.EditValue.ToString = "0" Then
-            where += " AND s.id_state = " + SLUEProvince.EditValue.ToString
+        Dim id_cat As String = LECat.EditValue.ToString
+        If id_cat = "1" Then
+            'wholesale
+            where += "AND c.id_comp_group='59' AND c.id_commerce_type='1 ' "
+        ElseIf id_cat = "2" Then
+            'consingment
+            where += "AND c.id_comp_group<>'59' AND c.id_comp_group<>'7' AND c.id_commerce_type='1' "
+        ElseIf id_cat = "3" Then
+            'online
+            where += "AND c.id_comp_group<>'59' AND c.id_comp_group<>'7' AND c.id_commerce_type='2' "
+        ElseIf id_cat = "4" Then
+            'b&b wholesale
+            where += "AND c.id_comp_group<>'59' AND c.id_comp_group='7' AND c.id_commerce_type='1' "
+        Else
+            where += ""
+        End If
+        If LEArea.EditValue.ToString <> "0" Then
+            where += "AND c.id_area='" + LEArea.EditValue.ToString + "' "
+        End If
+        If SLUEProvince.EditValue.ToString <> "0" Then
+            where += "AND cty.id_state='" + SLUEProvince.EditValue.ToString + "' "
+        End If
+        If SLUECompGroup.EditValue.ToString <> "0" Then
+            where += "AND c.id_comp_group='" + SLUECompGroup.EditValue.ToString + "' "
         End If
 
-        If Not SLUECompGroup.EditValue.ToString = "0" Then
-            where += " AND p.id_comp_group = " + SLUECompGroup.EditValue.ToString
-        End If
+        'view
+        Dim query As String = "SELECT c.id_comp, c.comp_name, c.comp_number, c.id_commerce_type, IFNULL(olc.id_wh_ol,0) AS `id_wh_ol`, 'No' AS `is_select` 
+        FROM tb_m_comp c 
+        LEFT JOIN (
+            SELECT olc.id_store,GROUP_CONCAT(DISTINCT olc.id_wh) AS `id_wh_ol` 
+            FROM tb_ol_store_comp olc
+            GROUP BY olc.id_store
+        ) olc ON olc.id_store = c.id_comp
+        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
+        WHERE c.id_comp_cat=6 " + where + " ORDER BY c.comp_number ASC "
+        Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
+        GCStore.DataSource = data
+        GVStore.BestFitColumns()
+        Cursor = Cursors.Default
+        'Dim where As String = ""
 
-        If Not SLUEIsland.EditValue.ToString = "ALL" Then
-            where += " AND c.island = '" + SLUEIsland.EditValue.ToString + "'"
-        End If
+        'If Not SLUEProvince.EditValue.ToString = "0" Then
+        '    where += " AND s.id_state = " + SLUEProvince.EditValue.ToString
+        'End If
 
-        Dim query As String = "
-            (SELECT 0 AS id_comp, 'ALL' AS comp_name)
-            UNION ALL
-            (SELECT p.id_comp, CONCAT(p.comp_number, ' - ', p.comp_name) AS comp_name
-            FROM tb_m_comp AS p
-            LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city
-            LEFT JOIN tb_m_state AS s ON c.id_state = s.id_state
-            WHERE 1 " + where + " AND p.id_comp_cat = 6)
-        "
+        'If Not SLUECompGroup.EditValue.ToString = "0" Then
+        '    where += " AND p.id_comp_group = " + SLUECompGroup.EditValue.ToString
+        'End If
 
-        viewSearchLookupQuery(SLUEStore, query, "id_comp", "comp_name", "id_comp")
+        'If Not SLUEIsland.EditValue.ToString = "ALL" Then
+        '    where += " AND c.island = '" + SLUEIsland.EditValue.ToString + "'"
+        'End If
+
+        'Dim query As String = "
+        '    (SELECT 0 AS id_comp, 'ALL' AS comp_name)
+        '    UNION ALL
+        '    (SELECT p.id_comp, CONCAT(p.comp_number, ' - ', p.comp_name) AS comp_name
+        '    FROM tb_m_comp AS p
+        '    LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city
+        '    LEFT JOIN tb_m_state AS s ON c.id_state = s.id_state
+        '    WHERE 1 " + where + " AND p.id_comp_cat = 6)
+        '"
+
+        'viewSearchLookupQuery(SLUEStore, query, "id_comp", "comp_name", "id_comp")
+
     End Sub
 
     Sub view_group_store()
         Dim where As String = ""
 
-        If Not SLUEProvince.EditValue.ToString = "0" Then
-            where += "
-                AND id_comp_group IN (SELECT p.id_comp_group FROM tb_m_comp AS p LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city LEFT JOIN tb_m_state AS s ON c.id_state = s.id_state WHERE s.id_state = " + SLUEProvince.EditValue.ToString + " AND p.id_comp_cat = 6)
-            "
-        End If
+        'If Not SLUEProvince.EditValue.ToString = "0" Then
+        '    where += "
+        '        AND id_comp_group IN (SELECT p.id_comp_group FROM tb_m_comp AS p LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city LEFT JOIN tb_m_state AS s ON c.id_state = s.id_state WHERE s.id_state = " + SLUEProvince.EditValue.ToString + " AND p.id_comp_cat = 6)
+        '    "
+        'End If
 
-        If Not SLUEIsland.EditValue.ToString = "ALL" Then
-            where += "
-                AND id_comp_group IN (SELECT p.id_comp_group FROM tb_m_comp AS p LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city WHERE c.island = '" + SLUEIsland.EditValue.ToString + "' AND p.id_comp_cat = 6)
-            "
-        End If
+        'If Not SLUEIsland.EditValue.ToString = "ALL" Then
+        '    where += "
+        '        AND id_comp_group IN (SELECT p.id_comp_group FROM tb_m_comp AS p LEFT JOIN tb_m_city AS c ON p.id_city = c.id_city WHERE c.island = '" + SLUEIsland.EditValue.ToString + "' AND p.id_comp_cat = 6)
+        '    "
+        'End If
 
         Dim query As String = "
             (SELECT 0 AS id_comp_group, 'ALL' AS comp_group)
@@ -1460,5 +1556,23 @@
 
     Private Sub FormMonthlySalesPerformance_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
+    End Sub
+
+    Private Sub LECat_EditValueChanged(sender As Object, e As EventArgs) Handles LECat.EditValueChanged
+        view_group_store()
+        view_store()
+    End Sub
+
+    Private Sub LEArea_EditValueChanged(sender As Object, e As EventArgs) Handles LEArea.EditValueChanged
+        view_group_store()
+        view_store()
+    End Sub
+
+    Private Sub CEAllStore_EditValueChanged(sender As Object, e As EventArgs) Handles CEAllStore.EditValueChanged
+        If CEAllStore.EditValue = True Then
+            GCStore.Enabled = False
+        Else
+            GCStore.Enabled = True
+        End If
     End Sub
 End Class
