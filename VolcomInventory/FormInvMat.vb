@@ -21,6 +21,8 @@
     End Sub
 
     Private Sub FormInvMat_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEFrom.EditValue = Now
+        DETo.EditValue = Now
         load_vendor()
     End Sub
 
@@ -319,5 +321,71 @@ GROUP BY c.`id_comp`"
         End If
 
         GVPLMemo.ActiveFilterString = ""
+    End Sub
+
+    Private Sub XTCMatInv_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCMatInv.SelectedPageChanged
+        If XTCMatInv.SelectedTabPageIndex = 4 Then
+            PanelControl1.Visible = False
+        Else
+            PanelControl1.Visible = True
+        End If
+    End Sub
+
+    Private Sub DEFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEFrom.EditValueChanged
+        DETo.Properties.MinValue = DEFrom.EditValue
+    End Sub
+
+    Private Sub DETo_EditValueChanged(sender As Object, e As EventArgs) Handles DETo.EditValueChanged
+        DEFrom.Properties.MaxValue = DEFrom.EditValue
+    End Sub
+
+    Private Sub BViewTransList_Click(sender As Object, e As EventArgs) Handles BViewTransList.Click
+        Dim q As String = "(SELECT inv.`ref_date`,inv.`number` AS inv_number,md.`mat_det_display_name`,SUM(pld.`pl_mrs_det_qty`) AS qty,ROUND(pld.`pl_mrs_det_price`,2) AS pl_mrs_det_price,SUM(pld.`pl_mrs_det_qty`*ROUND(pld.`pl_mrs_det_price`,2)) AS sub_tot
+,inv.`id_inv_mat`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,pld.`id_mat_det_price`,inv.`vat_percent` AS vatp 
+,c.`comp_name`,c.`comp_number`,c.`id_comp`,typ.inv_mat_type
+FROM tb_inv_mat_det invd
+INNER JOIN tb_inv_mat inv ON inv.`id_inv_mat`=invd.`id_inv_mat` AND inv.`id_report_status`=6 AND DATE(inv.ref_date)>='" & Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(inv.ref_date)<='" & Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+INNER JOIN tb_inv_mat_type typ ON typ.id_inv_mat_type=inv.id_inv_mat_type
+INNER JOIN tb_m_comp c ON c.`id_comp`=inv.`id_comp`
+INNER JOIN tb_pl_mrs_det pld ON pld.`id_pl_mrs`=invd.`id_report` AND report_mark_type=30
+INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs`
+INNER JOIN tb_m_mat_det_price mp ON mp.`id_mat_det_price`=pld.`id_mat_det_price`
+INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=mp.`id_mat_det`
+GROUP BY inv.`id_inv_mat`,invd.`id_report`,pld.`id_mat_det_price`)
+UNION ALL
+(SELECT inv.`ref_date`,inv.`number` AS inv_number,md.`mat_det_display_name`,SUM(retd.`mat_prod_ret_in_det_qty`) AS qty,ROUND(retd.`mat_prod_ret_in_det_price`,2) AS pl_mrs_det_price,SUM(pld.`pl_mrs_det_qty`*ROUND(pld.`pl_mrs_det_price`,2)) AS sub_tot
+,inv.`id_inv_mat`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,pld.`id_mat_det_price`,inv.`vat_percent` AS vatp 
+,c.`comp_name`,c.`comp_number`,c.`id_comp`,typ.inv_mat_type
+FROM tb_inv_mat_det invd
+INNER JOIN tb_inv_mat inv ON inv.`id_inv_mat`=invd.`id_inv_mat` AND inv.`id_report_status`=6  AND DATE(inv.ref_date)>='" & Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(inv.ref_date)<='" & Date.Parse(DETo.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+INNER JOIN tb_inv_mat_type typ ON typ.id_inv_mat_type=inv.id_inv_mat_type
+INNER JOIN tb_m_comp c ON c.`id_comp`=inv.`id_comp`
+INNER JOIN `tb_mat_prod_ret_in_det` retd ON retd.`id_mat_prod_ret_in`=invd.`id_report` AND report_mark_type=32
+INNER JOIN `tb_mat_prod_ret_in` ret ON ret.`id_mat_prod_ret_in`=retd.`id_mat_prod_ret_in`
+INNER JOIN tb_pl_mrs_det pld ON retd.`id_pl_mrs_det`=pld.`id_pl_mrs_det`
+INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs`
+INNER JOIN tb_m_mat_det_price mp ON mp.`id_mat_det_price`=pld.`id_mat_det_price`
+INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=mp.`id_mat_det`
+GROUP BY inv.`id_inv_mat`,invd.`id_report`,pld.`id_mat_det_price`)
+ORDER BY ref_date,id_inv_mat"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCTransList.DataSource = dt
+        GVTransList.BestFitColumns()
+    End Sub
+
+    Private Sub BTransListExportExcel_Click(sender As Object, e As EventArgs) Handles BTransListExportExcel.Click
+        Dim save As SaveFileDialog = New SaveFileDialog
+
+        save.Filter = "Excel File | *.xlsx"
+        save.FileName = "Invoice Material Transaction List (" & Date.Parse(DEFrom.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(DETo.EditValue.ToString).ToString("dd MMMM yyyy") & ")"
+        save.ShowDialog()
+
+        If Not save.FileName = "" Then
+            Dim opt As DevExpress.XtraPrinting.XlsxExportOptions = New DevExpress.XtraPrinting.XlsxExportOptions
+            opt.SheetName = "Invoice Material"
+            GVTransList.ExportToXlsx(save.FileName, opt)
+
+            Process.Start(save.FileName)
+        End If
     End Sub
 End Class
