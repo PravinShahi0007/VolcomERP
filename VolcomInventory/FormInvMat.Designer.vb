@@ -63,17 +63,7 @@ Partial Class FormInvMat
         Me.GCDPListFGPODesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreateBRP = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.CEInternal = New DevExpress.XtraEditors.CheckEdit()
-        Me.SLEVendorPayment = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPListPackingListMemo = New DevExpress.XtraTab.XtraTabPage()
-        Me.BCreateBPBMemo = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPLMemo = New DevExpress.XtraGrid.GridControl()
         Me.GVPLMemo = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -87,6 +77,37 @@ Partial Class FormInvMat
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BCreateBPBMemo = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPTransList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCTransList = New DevExpress.XtraGrid.GridControl()
+        Me.GVTransList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BTransListExportExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.DETo = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.BViewTransList = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEInternal = New DevExpress.XtraEditors.CheckEdit()
+        Me.SLEVendorPayment = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCMatInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMatInv.SuspendLayout()
         Me.XTPListPackingList.SuspendLayout()
@@ -101,16 +122,25 @@ Partial Class FormInvMat
         CType(Me.GCRetur, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRetur, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.CEInternal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPListPackingListMemo.SuspendLayout()
         CType(Me.GCPLMemo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPLMemo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPTransList.SuspendLayout()
+        CType(Me.GCTransList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVTransList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.CEInternal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMatInv
@@ -122,7 +152,7 @@ Partial Class FormInvMat
         Me.XTCMatInv.SelectedTabPage = Me.XTPListPackingList
         Me.XTCMatInv.Size = New System.Drawing.Size(1052, 449)
         Me.XTCMatInv.TabIndex = 1
-        Me.XTCMatInv.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInvoice, Me.XTPListPackingList, Me.XTPListRetur, Me.XTPListPackingListMemo})
+        Me.XTCMatInv.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInvoice, Me.XTPListPackingList, Me.XTPListRetur, Me.XTPListPackingListMemo, Me.XTPTransList})
         '
         'XTPListPackingList
         '
@@ -576,83 +606,6 @@ Partial Class FormInvMat
         Me.BCreateBRP.Text = "Create BRP"
         Me.BCreateBRP.Visible = False
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.CEInternal)
-        Me.PanelControl1.Controls.Add(Me.SLEVendorPayment)
-        Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Controls.Add(Me.BViewPayment)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1052, 43)
-        Me.PanelControl1.TabIndex = 2
-        '
-        'CEInternal
-        '
-        Me.CEInternal.Location = New System.Drawing.Point(236, 12)
-        Me.CEInternal.Name = "CEInternal"
-        Me.CEInternal.Properties.Caption = "Internal"
-        Me.CEInternal.Size = New System.Drawing.Size(68, 19)
-        Me.CEInternal.TabIndex = 8922
-        '
-        'SLEVendorPayment
-        '
-        Me.SLEVendorPayment.Location = New System.Drawing.Point(53, 12)
-        Me.SLEVendorPayment.Name = "SLEVendorPayment"
-        Me.SLEVendorPayment.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEVendorPayment.Properties.View = Me.GridView2
-        Me.SLEVendorPayment.Size = New System.Drawing.Size(177, 20)
-        Me.SLEVendorPayment.TabIndex = 8921
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn23, Me.GridColumn29})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "ID Comp Contact"
-        Me.GridColumn20.FieldName = "id_comp_contact"
-        Me.GridColumn20.Name = "GridColumn20"
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "Code"
-        Me.GridColumn23.FieldName = "comp_number"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 0
-        Me.GridColumn23.Width = 247
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "Vendor"
-        Me.GridColumn29.FieldName = "comp_name"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 1
-        Me.GridColumn29.Width = 1385
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(13, 15)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl1.TabIndex = 8920
-        Me.LabelControl1.Text = "Vendor"
-        '
-        'BViewPayment
-        '
-        Me.BViewPayment.Location = New System.Drawing.Point(310, 10)
-        Me.BViewPayment.Name = "BViewPayment"
-        Me.BViewPayment.Size = New System.Drawing.Size(60, 23)
-        Me.BViewPayment.TabIndex = 8919
-        Me.BViewPayment.Text = "view"
-        '
         'XTPListPackingListMemo
         '
         Me.XTPListPackingListMemo.Controls.Add(Me.GCPLMemo)
@@ -660,26 +613,6 @@ Partial Class FormInvMat
         Me.XTPListPackingListMemo.Name = "XTPListPackingListMemo"
         Me.XTPListPackingListMemo.Size = New System.Drawing.Size(1046, 421)
         Me.XTPListPackingListMemo.Text = "List Packing List dengan Memo"
-        '
-        'BCreateBPBMemo
-        '
-        Me.BCreateBPBMemo.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BCreateBPBMemo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCreateBPBMemo.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreateBPBMemo.Appearance.Options.UseBackColor = True
-        Me.BCreateBPBMemo.Appearance.Options.UseFont = True
-        Me.BCreateBPBMemo.Appearance.Options.UseForeColor = True
-        Me.BCreateBPBMemo.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreateBPBMemo.Location = New System.Drawing.Point(0, 382)
-        Me.BCreateBPBMemo.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCreateBPBMemo.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCreateBPBMemo.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCreateBPBMemo.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCreateBPBMemo.Name = "BCreateBPBMemo"
-        Me.BCreateBPBMemo.Size = New System.Drawing.Size(1046, 39)
-        Me.BCreateBPBMemo.TabIndex = 20
-        Me.BCreateBPBMemo.Text = "Create BPB"
-        Me.BCreateBPBMemo.Visible = False
         '
         'GCPLMemo
         '
@@ -808,6 +741,329 @@ Partial Class FormInvMat
         Me.RepositoryItemCheckEdit3.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit3.ValueUnchecked = "no"
         '
+        'BCreateBPBMemo
+        '
+        Me.BCreateBPBMemo.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateBPBMemo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateBPBMemo.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateBPBMemo.Appearance.Options.UseBackColor = True
+        Me.BCreateBPBMemo.Appearance.Options.UseFont = True
+        Me.BCreateBPBMemo.Appearance.Options.UseForeColor = True
+        Me.BCreateBPBMemo.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreateBPBMemo.Location = New System.Drawing.Point(0, 382)
+        Me.BCreateBPBMemo.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateBPBMemo.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateBPBMemo.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateBPBMemo.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateBPBMemo.Name = "BCreateBPBMemo"
+        Me.BCreateBPBMemo.Size = New System.Drawing.Size(1046, 39)
+        Me.BCreateBPBMemo.TabIndex = 20
+        Me.BCreateBPBMemo.Text = "Create BPB"
+        Me.BCreateBPBMemo.Visible = False
+        '
+        'XTPTransList
+        '
+        Me.XTPTransList.Controls.Add(Me.GCTransList)
+        Me.XTPTransList.Controls.Add(Me.PanelControl2)
+        Me.XTPTransList.Name = "XTPTransList"
+        Me.XTPTransList.Size = New System.Drawing.Size(1046, 421)
+        Me.XTPTransList.Text = "Transaction List"
+        '
+        'GCTransList
+        '
+        Me.GCTransList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCTransList.Location = New System.Drawing.Point(0, 44)
+        Me.GCTransList.MainView = Me.GVTransList
+        Me.GCTransList.Name = "GCTransList"
+        Me.GCTransList.Size = New System.Drawing.Size(1046, 377)
+        Me.GCTransList.TabIndex = 3
+        Me.GCTransList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTransList})
+        '
+        'GVTransList
+        '
+        Me.GVTransList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn44, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43})
+        Me.GVTransList.GridControl = Me.GCTransList
+        Me.GVTransList.Name = "GVTransList"
+        Me.GVTransList.OptionsBehavior.Editable = False
+        Me.GVTransList.OptionsBehavior.ReadOnly = True
+        Me.GVTransList.OptionsView.ShowFooter = True
+        Me.GVTransList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "Type"
+        Me.GridColumn44.FieldName = "inv_mat_type"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 0
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "ID"
+        Me.GridColumn34.FieldName = "id_inv_mat"
+        Me.GridColumn34.Name = "GridColumn34"
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Invoice Number"
+        Me.GridColumn35.FieldName = "inv_number"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 4
+        Me.GridColumn35.Width = 95
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Date Reff"
+        Me.GridColumn36.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn36.FieldName = "ref_date"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 3
+        Me.GridColumn36.Width = 85
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Material Description"
+        Me.GridColumn37.FieldName = "mat_det_display_name"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 5
+        Me.GridColumn37.Width = 141
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn38.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn38.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn38.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn38.Caption = "Unit Price"
+        Me.GridColumn38.FieldName = "pl_mrs_det_price"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 6
+        Me.GridColumn38.Width = 177
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn39.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn39.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn39.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn39.Caption = "Sub Total"
+        Me.GridColumn39.DisplayFormat.FormatString = "N2"
+        Me.GridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn39.FieldName = "sub_tot"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", "{0:N2}")})
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 8
+        Me.GridColumn39.Width = 186
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn40.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn40.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn40.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn40.Caption = "VAT %"
+        Me.GridColumn40.DisplayFormat.FormatString = "N2"
+        Me.GridColumn40.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn40.FieldName = "vatp"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 9
+        Me.GridColumn40.Width = 64
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn41.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn41.Caption = "Qty"
+        Me.GridColumn41.DisplayFormat.FormatString = "N2"
+        Me.GridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn41.FieldName = "qty"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 7
+        Me.GridColumn41.Width = 58
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Vendor Code"
+        Me.GridColumn42.FieldName = "comp_number"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 1
+        Me.GridColumn42.Width = 85
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Vendor Name"
+        Me.GridColumn43.FieldName = "comp_name"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 2
+        Me.GridColumn43.Width = 137
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BTransListExportExcel)
+        Me.PanelControl2.Controls.Add(Me.DEFrom)
+        Me.PanelControl2.Controls.Add(Me.DETo)
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
+        Me.PanelControl2.Controls.Add(Me.LabelControl3)
+        Me.PanelControl2.Controls.Add(Me.BViewTransList)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1046, 44)
+        Me.PanelControl2.TabIndex = 4
+        '
+        'BTransListExportExcel
+        '
+        Me.BTransListExportExcel.Location = New System.Drawing.Point(440, 10)
+        Me.BTransListExportExcel.Name = "BTransListExportExcel"
+        Me.BTransListExportExcel.Size = New System.Drawing.Size(89, 23)
+        Me.BTransListExportExcel.TabIndex = 8925
+        Me.BTransListExportExcel.Text = "export to excel"
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(52, 12)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEFrom.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEFrom.Size = New System.Drawing.Size(150, 20)
+        Me.DEFrom.TabIndex = 8921
+        '
+        'DETo
+        '
+        Me.DETo.EditValue = Nothing
+        Me.DETo.Location = New System.Drawing.Point(218, 12)
+        Me.DETo.Name = "DETo"
+        Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETo.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DETo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETo.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DETo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DETo.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DETo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DETo.Size = New System.Drawing.Size(150, 20)
+        Me.DETo.TabIndex = 8922
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl2.TabIndex = 8924
+        Me.LabelControl2.Text = "Period"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(208, 15)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl3.TabIndex = 8923
+        Me.LabelControl3.Text = "-"
+        '
+        'BViewTransList
+        '
+        Me.BViewTransList.Location = New System.Drawing.Point(374, 10)
+        Me.BViewTransList.Name = "BViewTransList"
+        Me.BViewTransList.Size = New System.Drawing.Size(60, 23)
+        Me.BViewTransList.TabIndex = 8920
+        Me.BViewTransList.Text = "view"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.CEInternal)
+        Me.PanelControl1.Controls.Add(Me.SLEVendorPayment)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.BViewPayment)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1052, 43)
+        Me.PanelControl1.TabIndex = 2
+        '
+        'CEInternal
+        '
+        Me.CEInternal.Location = New System.Drawing.Point(236, 12)
+        Me.CEInternal.Name = "CEInternal"
+        Me.CEInternal.Properties.Caption = "Internal"
+        Me.CEInternal.Size = New System.Drawing.Size(68, 19)
+        Me.CEInternal.TabIndex = 8922
+        '
+        'SLEVendorPayment
+        '
+        Me.SLEVendorPayment.Location = New System.Drawing.Point(53, 12)
+        Me.SLEVendorPayment.Name = "SLEVendorPayment"
+        Me.SLEVendorPayment.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendorPayment.Properties.View = Me.GridView2
+        Me.SLEVendorPayment.Size = New System.Drawing.Size(177, 20)
+        Me.SLEVendorPayment.TabIndex = 8921
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn23, Me.GridColumn29})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "ID Comp Contact"
+        Me.GridColumn20.FieldName = "id_comp_contact"
+        Me.GridColumn20.Name = "GridColumn20"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Code"
+        Me.GridColumn23.FieldName = "comp_number"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 0
+        Me.GridColumn23.Width = 247
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Vendor"
+        Me.GridColumn29.FieldName = "comp_name"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 1
+        Me.GridColumn29.Width = 1385
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(13, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl1.TabIndex = 8920
+        Me.LabelControl1.Text = "Vendor"
+        '
+        'BViewPayment
+        '
+        Me.BViewPayment.Location = New System.Drawing.Point(310, 10)
+        Me.BViewPayment.Name = "BViewPayment"
+        Me.BViewPayment.Size = New System.Drawing.Size(60, 23)
+        Me.BViewPayment.TabIndex = 8919
+        Me.BViewPayment.Text = "view"
+        '
         'FormInvMat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -834,17 +1090,27 @@ Partial Class FormInvMat
         CType(Me.GCRetur, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRetur, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPListPackingListMemo.ResumeLayout(False)
+        CType(Me.GCPLMemo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPLMemo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPTransList.ResumeLayout(False)
+        CType(Me.GCTransList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVTransList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.CEInternal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPListPackingListMemo.ResumeLayout(False)
-        CType(Me.GCPLMemo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPLMemo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -917,4 +1183,25 @@ Partial Class FormInvMat
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BCreateBPBMemo As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPTransList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCTransList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVTransList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BViewTransList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DETo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BTransListExportExcel As DevExpress.XtraEditors.SimpleButton
 End Class
