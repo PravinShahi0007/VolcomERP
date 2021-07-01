@@ -41,6 +41,7 @@ Partial Public Class ReportSNIPpsList
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
@@ -50,7 +51,6 @@ Partial Public Class ReportSNIPpsList
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
-        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCProposed, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProposed, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,7 +69,7 @@ Partial Public Class ReportSNIPpsList
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(737.0!, 100.0!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1079.0!, 100.0!)
         Me.WinControlContainer1.WinControl = Me.GCProposed
         '
         'GCProposed
@@ -78,7 +78,7 @@ Partial Public Class ReportSNIPpsList
         Me.GCProposed.MainView = Me.GVProposed
         Me.GCProposed.Name = "GCProposed"
         Me.GCProposed.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RIPImage})
-        Me.GCProposed.Size = New System.Drawing.Size(708, 96)
+        Me.GCProposed.Size = New System.Drawing.Size(1036, 96)
         Me.GCProposed.TabIndex = 1
         Me.GCProposed.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProposed})
         '
@@ -276,13 +276,25 @@ Partial Public Class ReportSNIPpsList
         Me.PageHeader.HeightF = 100.0!
         Me.PageHeader.Name = "PageHeader"
         '
+        'XrLabel8
+        '
+        Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(893.5834!, 0!)
+        Me.XrLabel8.Name = "XrLabel8"
+        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(185.4166!, 23.0!)
+        Me.XrLabel8.StylePriority.UseFont = False
+        Me.XrLabel8.StylePriority.UseTextAlignment = False
+        Me.XrLabel8.Text = "[number]"
+        Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 10.0!)
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(174.4167!, 62.74999!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(562.5833!, 19.875!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(904.5833!, 19.875!)
         Me.XrLabel7.StylePriority.UseFont = False
         Me.XrLabel7.StylePriority.UseTextAlignment = False
         Me.XrLabel7.Text = "[season]"
@@ -294,7 +306,7 @@ Partial Public Class ReportSNIPpsList
         Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(174.4167!, 42.875!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(562.5833!, 19.875!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(904.5833!, 19.875!)
         Me.XrLabel6.StylePriority.UseFont = False
         Me.XrLabel6.StylePriority.UseTextAlignment = False
         Me.XrLabel6.Text = "[address_primary]"
@@ -306,7 +318,7 @@ Partial Public Class ReportSNIPpsList
         Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(174.4167!, 23.0!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(562.5833!, 19.875!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(904.5833!, 19.875!)
         Me.XrLabel5.StylePriority.UseFont = False
         Me.XrLabel5.StylePriority.UseTextAlignment = False
         Me.XrLabel5.Text = "[comp_name]"
@@ -371,7 +383,7 @@ Partial Public Class ReportSNIPpsList
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(587.0!, 0!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(928.9999!, 0!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 19.7596!)
@@ -380,24 +392,13 @@ Partial Public Class ReportSNIPpsList
         Me.XrPageInfo1.StylePriority.UseTextAlignment = False
         Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
-        'XrLabel8
-        '
-        Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(551.5834!, 0!)
-        Me.XrLabel8.Name = "XrLabel8"
-        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(185.4166!, 23.0!)
-        Me.XrLabel8.StylePriority.UseFont = False
-        Me.XrLabel8.StylePriority.UseTextAlignment = False
-        Me.XrLabel8.Text = "[number]"
-        Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
         'ReportSNIPpsList
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.PageFooter})
+        Me.Landscape = True
         Me.Margins = New System.Drawing.Printing.Margins(50, 40, 23, 23)
-        Me.PageHeight = 1169
-        Me.PageWidth = 827
+        Me.PageHeight = 827
+        Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.Version = "15.1"
         CType(Me.GCProposed, System.ComponentModel.ISupportInitialize).EndInit()

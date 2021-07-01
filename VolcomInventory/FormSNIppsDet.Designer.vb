@@ -81,6 +81,15 @@ Partial Class FormSNIppsDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,6 +118,12 @@ Partial Class FormSNIppsDet
         CType(Me.GVBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl1.SuspendLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -439,10 +454,16 @@ Partial Class FormSNIppsDet
         '
         'GVProposed
         '
+        Me.GVProposed.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GVProposed.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVProposed.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVProposed.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVProposed.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn14, Me.GridColumnCEPps, Me.GridColumnNo, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn28})
         Me.GVProposed.GridControl = Me.GCProposed
         Me.GVProposed.Name = "GVProposed"
+        Me.GVProposed.OptionsPrint.AllowMultilineHeaders = True
         Me.GVProposed.OptionsView.ColumnAutoWidth = False
+        Me.GVProposed.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVProposed.OptionsView.RowAutoHeight = True
         Me.GVProposed.OptionsView.ShowFooter = True
         Me.GVProposed.OptionsView.ShowGroupPanel = False
@@ -567,6 +588,7 @@ Partial Class FormSNIppsDet
         '
         Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn10.Caption = "Country Of Origin"
@@ -632,7 +654,8 @@ Partial Class FormSNIppsDet
         '
         'XTPBudgetPropose
         '
-        Me.XTPBudgetPropose.Controls.Add(Me.GCBudget)
+        Me.XTPBudgetPropose.Controls.Add(Me.GroupControl2)
+        Me.XTPBudgetPropose.Controls.Add(Me.GroupControl1)
         Me.XTPBudgetPropose.Controls.Add(Me.PanelControl3)
         Me.XTPBudgetPropose.Controls.Add(Me.PanelControl1)
         Me.XTPBudgetPropose.Name = "XTPBudgetPropose"
@@ -642,10 +665,10 @@ Partial Class FormSNIppsDet
         'GCBudget
         '
         Me.GCBudget.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBudget.Location = New System.Drawing.Point(0, 47)
+        Me.GCBudget.Location = New System.Drawing.Point(2, 20)
         Me.GCBudget.MainView = Me.GVBudget
         Me.GCBudget.Name = "GCBudget"
-        Me.GCBudget.Size = New System.Drawing.Size(935, 337)
+        Me.GCBudget.Size = New System.Drawing.Size(931, 186)
         Me.GCBudget.TabIndex = 2
         Me.GCBudget.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudget})
         '
@@ -700,8 +723,8 @@ Partial Class FormSNIppsDet
         '
         Me.PanelControl3.Controls.Add(Me.BDel)
         Me.PanelControl3.Controls.Add(Me.BAdd)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 337)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(935, 47)
         Me.PanelControl3.TabIndex = 1
@@ -725,6 +748,83 @@ Partial Class FormSNIppsDet
         Me.BAdd.Size = New System.Drawing.Size(79, 43)
         Me.BAdd.TabIndex = 3
         Me.BAdd.Text = "Add"
+        '
+        'GroupControl1
+        '
+        Me.GroupControl1.Controls.Add(Me.GridControl1)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(935, 129)
+        Me.GroupControl1.TabIndex = 3
+        Me.GroupControl1.Text = "Artikel Dipilih"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl1.Location = New System.Drawing.Point(2, 20)
+        Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(931, 107)
+        Me.GridControl1.TabIndex = 3
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn20, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Id"
+        Me.GridColumn8.FieldName = "id_sni_pps_budget"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Budget Description"
+        Me.GridColumn20.FieldName = "budget_desc"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "GridColumn17"
+        Me.GridColumn29.FieldName = "budget_value"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 1
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "GridColumn18"
+        Me.GridColumn30.FieldName = "qty"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 2
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Sub Amount"
+        Me.GridColumn31.FieldName = "sub_amount"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.UnboundExpression = "[budget_value] * [qty]"
+        Me.GridColumn31.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 3
+        '
+        'GroupControl2
+        '
+        Me.GroupControl2.Controls.Add(Me.GCBudget)
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 129)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(935, 208)
+        Me.GroupControl2.TabIndex = 4
+        Me.GroupControl2.Text = "GroupControl2"
         '
         'FormSNIppsDet
         '
@@ -768,6 +868,12 @@ Partial Class FormSNIppsDet
         CType(Me.GVBudget, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -833,4 +939,13 @@ Partial Class FormSNIppsDet
     Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BExportList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
