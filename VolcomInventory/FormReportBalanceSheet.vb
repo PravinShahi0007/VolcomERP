@@ -1380,14 +1380,26 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
                 id += GVActiveTax.GetRowCellValue(i, "id_acc_trans").ToString
             Next
 
+            '            Dim q As String = "SELECT GROUP_CONCAT(DISTINCT t.acc_trans_number) AS err
+            'FROM tb_a_acc_trans_det AS d
+            'LEFT JOIN tb_a_acc_trans AS t ON d.id_acc_trans = t.id_acc_trans
+            'LEFT JOIN tb_a_acc AS a ON d.id_acc = a.id_acc
+            'LEFT JOIN tb_lookup_tax_report AS r ON a.id_tax_report = r.id_tax_report
+            'LEFT JOIN tb_tax_pph_summary_det AS s ON s.id_tax_report = r.id_tax_report
+            'LEFT JOIN tb_tax_pph_summary AS p ON t.date_tax_report = p.period_from AND p.id_report_status = 6
+            'WHERE t.id_acc_trans IN (" + id + ") AND r.id_type = 1"
             Dim q As String = "SELECT GROUP_CONCAT(DISTINCT t.acc_trans_number) AS err
-FROM tb_a_acc_trans_det AS d
-LEFT JOIN tb_a_acc_trans AS t ON d.id_acc_trans = t.id_acc_trans
-LEFT JOIN tb_a_acc AS a ON d.id_acc = a.id_acc
-LEFT JOIN tb_lookup_tax_report AS r ON a.id_tax_report = r.id_tax_report
-LEFT JOIN tb_tax_pph_summary_det AS s ON s.id_tax_report = r.id_tax_report
-LEFT JOIN tb_tax_pph_summary AS p ON t.date_tax_report = p.period_from AND p.id_report_status = 6
-WHERE t.id_acc_trans IN (" + id + ") AND r.id_type = 1"
+FROM tb_a_acc_trans t 
+INNER JOIN 
+(
+	SELECT id_summary,period_from
+	FROM tb_tax_pph_summary 
+	WHERE id_report_status=6
+	UNION
+	SELECT id_summary,period_from
+	FROM tb_tax_ppn_summary 
+	WHERE id_report_status=6
+)hsum ON hsum.period_from=t.date_tax_report AND t.id_acc_trans IN (" + id + ") "
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If Not dt.Rows(0)("err").ToString = "" Then
                 err_text = "Laporan tax untuk jurnal nomor " & dt.Rows(0)("err").ToString & " sudah terkunci"
