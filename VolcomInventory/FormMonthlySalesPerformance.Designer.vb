@@ -167,7 +167,7 @@ Partial Class FormMonthlySalesPerformance
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(370, 5000)
         Me.GroupControl3.TabIndex = 2
-        Me.GroupControl3.Text = "By Store"
+        Me.GroupControl3.Text = "Filter by Store"
         '
         'GCStore
         '
@@ -495,7 +495,7 @@ Partial Class FormMonthlySalesPerformance
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.Size = New System.Drawing.Size(370, 167)
         Me.GroupControl2.TabIndex = 1
-        Me.GroupControl2.Text = "By Product"
+        Me.GroupControl2.Text = "Filter by Product"
         '
         'CCBESeason
         '
@@ -615,7 +615,7 @@ Partial Class FormMonthlySalesPerformance
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(370, 64)
         Me.GroupControl1.TabIndex = 0
-        Me.GroupControl1.Text = "By Period"
+        Me.GroupControl1.Text = "Sales Period"
         '
         'SLUEMonthTo
         '
