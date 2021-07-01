@@ -44,6 +44,10 @@
         Else
             where_store += ""
         End If
+        'area 
+        If LEArea.EditValue.ToString <> "0" Then
+            where_store += "AND c.id_area='" + LEArea.EditValue.ToString + "' "
+        End If
         'country
         where_store += "AND cry.id_country='" + SLUENational.EditValue.ToString + "' "
         'province
@@ -53,6 +57,67 @@
         'group
         If SLUECompGroup.EditValue.ToString <> "0" Then
             where_store += "AND c.id_comp_group='" + SLUECompGroup.EditValue.ToString + "' "
+        End If
+        'comp
+        If CEAllStore.EditValue = False Then
+            GVStore.ActiveFilterString = "[is_select]='Yes' "
+            Dim id_store_in As String = ""
+            For s As Integer = 0 To GVStore.RowCount - 1
+                If s > 0 Then
+                    id_store_in += ","
+                End If
+                id_store_in += GVStore.GetRowCellValue(s, "id_comp").ToString
+            Next
+            where_store += "AND c.id_comp IN (" + id_store_in + ") "
+            GVStore.ActiveFilterString = ""
+        End If
+
+        'set del account ol store
+        Dim id_del_online_store = ""
+        id_del_online_store = execute_query("SELECT IFNULL(GROUP_CONCAT(DISTINCT olc.id_wh),0) AS `id_wh` 
+        FROM tb_ol_store_comp olc
+        INNER JOIN tb_m_comp c ON c.id_comp = olc.id_store
+        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
+        INNER JOIN tb_m_state state ON state.id_state = cty.id_state
+        INNER JOIN tb_m_region reg ON reg.id_region = state.id_region
+        INNER JOIN tb_m_country cry ON cry.id_country = reg.id_country
+        WHERE 1=1 " + where_store, 0, True, "", "", "", "")
+
+        'penetuan store rec
+        Dim col_store_received As String = ""
+        Dim col_receive_raw As String = "wh_rec"
+        Dim col_receive As String = "WH Received|Normal (BOS)"
+        Dim col_join_store_rec As String = ""
+        If Not LECat.EditValue.ToString = "0" Or Not LEArea.EditValue.ToString = "0" Or Not SLUEIsland.EditValue.ToString = "ALL" Or Not SLUEProvince.EditValue.ToString = "0" Or Not SLUECompGroup.EditValue.ToString = "0" Or Not CEAllStore.EditValue = True Then
+            col_store_received = "IFNULL(store_rec.qty_normal,0) AS `Store Received|Total`, "
+            col_receive_raw = "store_rec"
+            col_receive = "Store Received|Total"
+            col_join_store_rec = "LEFT JOIN (
+                SELECT p.id_design, SUM(p.qty_normal) AS `qty_normal`
+                FROM (
+                    SELECT p.id_design, SUM(d.pl_sales_order_del_det_qty) AS qty_normal
+                    FROM tb_pl_sales_order_del AS s
+                    INNER JOIN tb_pl_sales_order_del_det AS d ON d.id_pl_sales_order_del = s.id_pl_sales_order_del
+                    INNER JOIN tb_m_comp_contact w ON w.id_comp_contact = s.id_store_contact_to
+                    INNER JOIN tb_m_comp c ON c.id_comp = w.id_comp
+                    INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
+                    INNER JOIN tb_m_state state ON state.id_state = cty.id_state
+                    INNER JOIN tb_m_region reg ON reg.id_region = state.id_region
+                    INNER JOIN tb_m_country cry ON cry.id_country = reg.id_country
+                    INNER JOIN tb_m_product p ON p.id_product = d.id_product
+                    WHERE s.id_pl_sales_order_del > 0 AND s.id_report_status = 6 AND c.id_commerce_type=1 " + where_store + "
+                    GROUP BY p.id_design
+                    UNION ALL
+                    SELECT p.id_design, SUM(td.fg_trf_det_qty) AS `qty_normal` 
+                    FROM tb_fg_trf t
+                    INNER JOIN tb_fg_trf_det td ON td.id_fg_trf = t.id_fg_trf
+                    INNER JOIN tb_m_product p ON p.id_product = td.id_product
+                    INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = t.id_comp_contact_to
+                    WHERE t.id_report_status=6 AND sc.id_comp IN (" + id_del_online_store + ")
+                    GROUP BY p.id_design 
+                ) p
+                GROUP BY p.id_design
+            ) store_rec ON store_rec.id_design = d.id_design"
         End If
 
         'filter wh
@@ -77,17 +142,6 @@
         Dim col_rts2 As String = ""
         Dim col_del1 As String = ""
         Dim col_del2 As String = ""
-
-        'set del account ol store
-        Dim id_del_online_store = ""
-        id_del_online_store = execute_query("SELECT IFNULL(GROUP_CONCAT(DISTINCT olc.id_wh),0) AS `id_wh` 
-        FROM tb_ol_store_comp olc
-        INNER JOIN tb_m_comp c ON c.id_comp = olc.id_store
-        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
-        INNER JOIN tb_m_state state ON state.id_state = cty.id_state
-        INNER JOIN tb_m_region reg ON reg.id_region = state.id_region
-        INNER JOIN tb_m_country cry ON cry.id_country = reg.id_country
-        WHERE 1=1 " + where_store, 0, True, "", "", "", "")
 
         For y = year_from To year_to
             If y > year_from Then
@@ -126,17 +180,17 @@
                     col_del1 += ","
                     col_del2 += ","
                 End If
-                col_sal1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_sal1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") " + where_store + " THEN soh.qty END),0)*-1 AS `Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sal2 += "soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
-                col_soh1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' THEN soh.qty END),0) AS `Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_soh1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' " + where_store + " THEN soh.qty END),0) AS `Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_soh2 += "soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sas1 += "(soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`/(soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`+soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`))*100 AS `Monthly SAS " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
-                col_rts1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(46,120) AND soh.qty>0 THEN soh.qty END),0) AS `Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_rts1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(46,120) AND soh.qty>0 " + where_store + " THEN soh.qty END),0) AS `Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_rts2 += "soh.`Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_del1 += "IFNULL(SUM(
 		            CASE
-			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_comp_cat!=6 AND soh.report_mark_type=58 AND soh.id_comp IN(" + id_del_online_store + ") THEN soh.qty 
-			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_comp_cat=6 AND c.id_commerce_type=1 AND soh.report_mark_type IN(43,103) THEN soh.qty 
+			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_comp_cat!=6 AND soh.report_mark_type=58 AND soh.id_comp IN(" + id_del_online_store + ") " + where_store + " THEN soh.qty 
+			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_comp_cat=6 AND c.id_commerce_type=1 AND soh.report_mark_type IN(43,103) " + where_store + " THEN soh.qty 
 		            END
 	            ),0) AS `Monthly Delivery " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_del2 += "soh.`Monthly Delivery " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
@@ -146,18 +200,17 @@
                     add_sell_thru = "IFNULL(sal_beg.qty_sal_beg,0)"
                 End If
                 add_sell_thru += " + soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`"
-                col_sell_thru += "((" + add_sell_thru + ")/(SELECT  `WH Received|Normal (BOS)`))*100 AS `Monthly Sell Thru " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_sell_thru += "((" + add_sell_thru + ")/(SELECT  `" + col_receive + "`))*100 AS `Monthly Sell Thru " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
 
                 If y = year_to And m = month_to Then
                     Exit For
                 End If
             Next
-            col_sal_total1 += "IFNULL(SUM(CASE WHEN soh.soh_date>='" + y.ToString + "-" + j.ToString + "-01' AND soh.soh_date<='" + y.ToString + "-" + last_month.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END),0)*-1 AS `Total Sales|" + y.ToString + "` "
+            col_sal_total1 += "IFNULL(SUM(CASE WHEN soh.soh_date>='" + y.ToString + "-" + j.ToString + "-01' AND soh.soh_date<='" + y.ToString + "-" + last_month.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") " + where_store + " THEN soh.qty END),0)*-1 AS `Total Sales|" + y.ToString + "` "
             col_sal_total2 += "soh.`Total Sales|" + y.ToString + "` "
         Next
 
         'where
-
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
         Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, i.division AS `Product Info|Division`, 
         i.category AS `Product Info|Category`, i.class AS `Product Info|Class`, i.color AS `Product Info|Color`, i.source AS `Product Info|Source`,
@@ -177,12 +230,13 @@
         price_current.design_price_type AS `Price Update Dates|Current Status`,
         IFNULL(wh_rec.qty_normal,0) AS `WH Received|Normal (BOS)`, IFNULL(wh_rec.qty_defect,0) AS `WH Received|Defect`,
         (IFNULL(wh_rec.qty_normal,0) + IFNULL(wh_rec.qty_defect,0)) AS `WH Received|Total`,
+        " + col_store_received + "
         " + col_sal2 + ",
         " + col_sal_total2 + ",
         soh.`Total Sales|Sales Toko Normal`, soh.`Total Sales|Sales Toko Sale`, soh.`Total Sales|Grand Total`,
-        (soh.`Total Sales|Sales Toko Normal`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Normal`, 
-        (soh.`Total Sales|Sales Toko Sale`/(IFNULL(wh_rec.qty_normal,0)-soh.`Total Sales|Sales Toko Normal`))*100 AS `Sell Thru|Sale`, 
-        (soh.`Total Sales|Grand Total`/IFNULL(wh_rec.qty_normal,0))*100 AS `Sell Thru|Total`,
+        (soh.`Total Sales|Sales Toko Normal`/IFNULL(" + col_receive_raw + ".qty_normal,0))*100 AS `Sell Thru|Normal`, 
+        (soh.`Total Sales|Sales Toko Sale`/(IFNULL(" + col_receive_raw + ".qty_normal,0)-soh.`Total Sales|Sales Toko Normal`))*100 AS `Sell Thru|Sale`, 
+        (soh.`Total Sales|Grand Total`/IFNULL(" + col_receive_raw + ".qty_normal,0))*100 AS `Sell Thru|Total`,
         " + col_soh2 + ",
         " + col_sas1 + ",
         " + col_sell_thru + ",
@@ -211,6 +265,9 @@
 	        FROM tb_soh_sal_period soh
 	        INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
 	        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
+            INNER JOIN tb_m_state state ON state.id_state = cty.id_state
+            INNER JOIN tb_m_region reg ON reg.id_region = state.id_region
+            INNER JOIN tb_m_country cry ON cry.id_country = reg.id_country
 	        WHERE soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' 
 	        GROUP BY soh.id_design 
         ) soh
@@ -280,7 +337,7 @@
           LEFT JOIN tb_prod_demand_design AS s ON p.id_prod_demand_design = s.id_prod_demand_design
           WHERE r.id_report_status = 6
           GROUP BY s.id_design
-        ) AS wh_rec ON wh_rec.id_design = d.id_design "
+        ) AS wh_rec ON wh_rec.id_design = d.id_design " + col_join_store_rec
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
 
 
