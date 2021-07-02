@@ -13,6 +13,15 @@
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
 
+    Sub load_artikel()
+        Dim q As String = "SELECT id_sni_pps_budget,budget_desc,budget_value,budget_qty
+FROM `tb_sni_pps_budget` b
+WHERE b.id_sni_pps='" & id_pps & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCBudgetCop.DataSource = dt
+        GVBudgetCop.BestFitColumns()
+    End Sub
+
     Sub load_head()
         If id_pps = "-1" Then
             'new
@@ -210,5 +219,51 @@ WHERE pps.id_sni_pps='" & id_pps & "'"
         Tool.ShowPreview()
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BGetCOP_Click(sender As Object, e As EventArgs) Handles BGetCOP.Click
+        If GVProposed.RowCount > 0 Then
+            Dim id As String = ""
+            '
+            For i As Integer = 0 To GVProposed.RowCount - 1
+                If Not i = 0 Then
+                    id += ","
+                End If
+                id += GVProposed.GetRowCellValue(i, "id_design").ToString
+            Next
+
+            Dim qc As String = "SELECT GROUP_CONCAT(DISTINCT b.design_display_name) AS err FROM tb_sni_pps_budget b
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=b.`id_design`
+WHERE b.id_sni_pps='" & id_pps & "' AND b.id_design IN (" & id & ")"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                warningCustom("Artikel " & dtc.Rows(0)("err").ToString & " sudah masuk ke dalam budget")
+            Else
+                GVProposed.ActiveFilterString = "[is_check]='yes'"
+
+                'check first
+                Dim q As String = ""
+                For i As Integer = 0 To GVProposed.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id_pps & "','" & GVProposed.GetRowCellValue(i, "id_design").ToString & "','Sampel " & GVProposed.GetRowCellValue(i, "id_design").ToString & "','" & decimalSQL(Decimal.Parse(GVProposed.GetRowCellValue(i, "ecop").ToString)) & "','" & decimalSQL(Decimal.Parse(GVProposed.GetRowCellValue(i, "qty").ToString)) & "')"
+                Next
+
+                If Not q = "" Then
+                    'insert
+                    q = "INSERT INTO `tb_sni_pps_budget`(`id_sni_pps`,`id_design`,`budget_desc`,`budget_value`,`budget_qty`) VALUES" & q
+                    execute_non_query(q, True, "", "", "", "")
+                End If
+
+                GVProposed.ActiveFilterString = ""
+            End If
+        End If
+    End Sub
+
+    Private Sub XTCKidList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCKidList.SelectedPageChanged
+        If XTCKidList.SelectedTabPageIndex = 2 Then
+            load_artikel()
+        End If
     End Sub
 End Class
