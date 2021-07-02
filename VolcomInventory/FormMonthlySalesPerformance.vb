@@ -10,13 +10,6 @@
     End Sub
 
     Sub viewNewReport()
-        FormMain.SplashScreenManager1.ShowWaitForm()
-
-        FormMain.SplashScreenManager1.SetWaitFormDescription("Build query")
-
-        'rmt 
-        Dim rmt_sal As String = execute_query("SELECT GROUP_CONCAT(DISTINCT sp.report_mark_type) AS `rmt` FROM tb_sales_pos sp WHERE sp.id_report_status=6", 0, True, "", "", "", "")
-
         'filter date
         Dim year_from As Integer = Integer.Parse(SLUEMonthFrom.EditValue.ToString.Split("-")(0))
         Dim year_to As Integer = Integer.Parse(SLUEMonthTo.EditValue.ToString.Split("-")(0))
@@ -24,6 +17,45 @@
         Dim month_to As Integer = Integer.Parse(SLUEMonthTo.EditValue.ToString.Split("-")(1))
         Dim fromDate As String = "" + year_from.ToString + "-" + month_from.ToString.PadLeft(2, "0") + "-01"
         Dim untilDate As String = "" + year_to.ToString + "-" + month_to.ToString.PadLeft(2, "0") + "-" + "-01"
+
+        'validasi
+        'jika store blm dipilih
+        If CEAllStore.EditValue = False Then
+            GVStore.ActiveFilterString = ""
+            GVStore.ActiveFilterString = "[is_select]='Yes' "
+            If GVStore.RowCount <= 0 Then
+                stopCustom("Please select store first")
+                GVStore.ActiveFilterString = ""
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+            GVStore.ActiveFilterString = ""
+        End If
+        'jika blm closing (from)
+        Dim qfrom As String = "SELECT * FROM tb_log_closing_stock_sal_period c WHERE c.year_stock='" + year_from.ToString + "' AND c.month_stock='" + month_from.ToString.PadLeft(2, "0") + "' "
+        Dim dfrom As DataTable = execute_query(qfrom, -1, True, "", "", "", "")
+        If dfrom.Rows.Count <= 0 Then
+            stopCustom("Period from belum closing")
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+        'jika blm closing (to)
+        Dim qto As String = "SELECT * FROM tb_log_closing_stock_sal_period c WHERE c.year_stock='" + year_to.ToString + "' AND c.month_stock='" + month_to.ToString.PadLeft(2, "0") + "' "
+        Dim dto As DataTable = execute_query(qto, -1, True, "", "", "", "")
+        If dto.Rows.Count <= 0 Then
+            stopCustom("Period until belum closing")
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Build query")
+
+        'rmt 
+        Dim rmt_sal As String = execute_query("SELECT GROUP_CONCAT(DISTINCT sp.report_mark_type) AS `rmt` FROM tb_sales_pos sp WHERE sp.id_report_status=6", 0, True, "", "", "", "")
 
         ' filter store
         Dim where_store As String = ""
@@ -428,9 +460,9 @@
                     End If
 
                     If bandName = "Product Info" Then
-                            band.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-                        End If
+                        band.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                     End If
+                End If
             Next
         Next
 
