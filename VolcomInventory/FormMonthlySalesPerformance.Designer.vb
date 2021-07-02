@@ -38,7 +38,6 @@ Partial Class FormMonthlySalesPerformance
         Me.LEArea = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.CEAllStore = New DevExpress.XtraEditors.CheckEdit()
-        Me.CENewView = New DevExpress.XtraEditors.CheckEdit()
         Me.SLUENational = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -89,6 +88,7 @@ Partial Class FormMonthlySalesPerformance
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.SBView = New DevExpress.XtraEditors.SimpleButton()
+        Me.CENewView = New DevExpress.XtraEditors.CheckEdit()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,7 +104,6 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEAllStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CENewView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUENational.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEIsland.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,6 +130,7 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.TxtIdProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CENewView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -153,7 +153,7 @@ Partial Class FormMonthlySalesPerformance
         Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(2, 2)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(387, 542)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(387, 541)
         Me.XtraScrollableControl1.TabIndex = 0
         '
         'GroupControl3
@@ -254,7 +254,6 @@ Partial Class FormMonthlySalesPerformance
         Me.PanelControl3.Controls.Add(Me.LEArea)
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
         Me.PanelControl3.Controls.Add(Me.CEAllStore)
-        Me.PanelControl3.Controls.Add(Me.CENewView)
         Me.PanelControl3.Controls.Add(Me.SLUENational)
         Me.PanelControl3.Controls.Add(Me.SLUEIsland)
         Me.PanelControl3.Controls.Add(Me.Label10)
@@ -304,20 +303,13 @@ Partial Class FormMonthlySalesPerformance
         'CEAllStore
         '
         Me.CEAllStore.EditValue = True
-        Me.CEAllStore.Location = New System.Drawing.Point(80, 146)
+        Me.CEAllStore.Location = New System.Drawing.Point(12, 144)
         Me.CEAllStore.Name = "CEAllStore"
-        Me.CEAllStore.Properties.Caption = "All Store"
-        Me.CEAllStore.Size = New System.Drawing.Size(64, 19)
+        Me.CEAllStore.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CEAllStore.Properties.Appearance.Options.UseFont = True
+        Me.CEAllStore.Properties.Caption = "Select All Store"
+        Me.CEAllStore.Size = New System.Drawing.Size(124, 20)
         Me.CEAllStore.TabIndex = 43
-        '
-        'CENewView
-        '
-        Me.CENewView.EditValue = True
-        Me.CENewView.Location = New System.Drawing.Point(145, 146)
-        Me.CENewView.Name = "CENewView"
-        Me.CENewView.Properties.Caption = "New version report"
-        Me.CENewView.Size = New System.Drawing.Size(115, 19)
-        Me.CENewView.TabIndex = 42
         '
         'SLUENational
         '
@@ -509,7 +501,7 @@ Partial Class FormMonthlySalesPerformance
         'SBClear
         '
         Me.SBClear.Image = CType(resources.GetObject("SBClear.Image"), System.Drawing.Image)
-        Me.SBClear.Location = New System.Drawing.Point(323, 129)
+        Me.SBClear.Location = New System.Drawing.Point(323, 131)
         Me.SBClear.Name = "SBClear"
         Me.SBClear.Size = New System.Drawing.Size(26, 23)
         Me.SBClear.TabIndex = 30
@@ -694,18 +686,19 @@ Partial Class FormMonthlySalesPerformance
         Me.PanelControl2.Controls.Add(Me.SLUEStore)
         Me.PanelControl2.Controls.Add(Me.SBExportExcel)
         Me.PanelControl2.Controls.Add(Me.SBView)
+        Me.PanelControl2.Controls.Add(Me.CENewView)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(2, 544)
+        Me.PanelControl2.Location = New System.Drawing.Point(2, 543)
         Me.PanelControl2.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.PanelControl2.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(387, 42)
+        Me.PanelControl2.Size = New System.Drawing.Size(387, 43)
         Me.PanelControl2.TabIndex = 3
         '
         'TxtIdProduct
         '
         Me.TxtIdProduct.EditValue = ""
-        Me.TxtIdProduct.Location = New System.Drawing.Point(5, 11)
+        Me.TxtIdProduct.Location = New System.Drawing.Point(12, 105)
         Me.TxtIdProduct.Name = "TxtIdProduct"
         Me.TxtIdProduct.Properties.ReadOnly = True
         Me.TxtIdProduct.Size = New System.Drawing.Size(64, 20)
@@ -714,7 +707,7 @@ Partial Class FormMonthlySalesPerformance
         '
         'SLUEStore
         '
-        Me.SLUEStore.Location = New System.Drawing.Point(75, 12)
+        Me.SLUEStore.Location = New System.Drawing.Point(82, 106)
         Me.SLUEStore.Name = "SLUEStore"
         Me.SLUEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEStore.Properties.View = Me.GridView8
@@ -751,7 +744,7 @@ Partial Class FormMonthlySalesPerformance
         Me.SBExportExcel.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.SBExportExcel.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBExportExcel.Name = "SBExportExcel"
-        Me.SBExportExcel.Size = New System.Drawing.Size(98, 38)
+        Me.SBExportExcel.Size = New System.Drawing.Size(98, 39)
         Me.SBExportExcel.TabIndex = 2
         Me.SBExportExcel.Text = "Export Excel"
         '
@@ -763,9 +756,18 @@ Partial Class FormMonthlySalesPerformance
         Me.SBView.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.SBView.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBView.Name = "SBView"
-        Me.SBView.Size = New System.Drawing.Size(62, 38)
+        Me.SBView.Size = New System.Drawing.Size(62, 39)
         Me.SBView.TabIndex = 0
         Me.SBView.Text = "View"
+        '
+        'CENewView
+        '
+        Me.CENewView.EditValue = True
+        Me.CENewView.Location = New System.Drawing.Point(12, 81)
+        Me.CENewView.Name = "CENewView"
+        Me.CENewView.Properties.Caption = "New version report"
+        Me.CENewView.Size = New System.Drawing.Size(115, 19)
+        Me.CENewView.TabIndex = 42
         '
         'GCData
         '
@@ -814,7 +816,6 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEAllStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CENewView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUENational.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEIsland.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -843,6 +844,7 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.TxtIdProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CENewView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

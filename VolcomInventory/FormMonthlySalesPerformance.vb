@@ -57,6 +57,54 @@
         'rmt 
         Dim rmt_sal As String = execute_query("SELECT GROUP_CONCAT(DISTINCT sp.report_mark_type) AS `rmt` FROM tb_sales_pos sp WHERE sp.id_report_status=6", 0, True, "", "", "", "")
 
+        'filter product
+        'join design
+        Dim join_design As String = "INNER JOIN tb_m_design d ON d.id_design = soh.id_design
+        LEFT JOIN (
+	        SELECT c.id_design, 
+	        MAX(CASE WHEN d.id_code=32 THEN d.id_code_detail END) AS `id_division`,
+            MAX(CASE WHEN d.id_code=32 THEN d.code_detail_name END) AS `division`,
+            MAX(CASE WHEN d.id_code=4 THEN d.id_code_detail END) AS `id_category`,
+	        MAX(CASE WHEN d.id_code=4 THEN d.display_name END) AS `category`,
+            MAX(CASE WHEN d.id_code=30 THEN d.id_code_detail END) AS `id_class`,
+	        MAX(CASE WHEN d.id_code=30 THEN d.display_name END) AS `class`,
+            MAX(CASE WHEN d.id_code=14 THEN d.id_code_detail END) AS `id_color`,
+	        MAX(CASE WHEN d.id_code=14 THEN d.code_detail_name END) AS `color`,
+            MAX(CASE WHEN d.id_code=5 THEN d.id_code_detail END) AS `id_source`,
+	        MAX(CASE WHEN d.id_code=5 THEN d.display_name END) AS `source`
+	        FROM tb_m_design_code AS c
+	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
+	        WHERE d.id_code IN (32,4,30,14,5)
+	        GROUP BY c.id_design
+        ) i ON i.id_design = d.id_design
+        INNER JOIN tb_season AS season ON d.id_season = season.id_season
+        INNER JOIN tb_range AS `range` ON season.id_range = range.id_range
+        INNER JOIN tb_season_delivery AS delivery ON d.id_delivery = delivery.id_delivery "
+        'where
+        Dim where_prod As String = ""
+        If Not CCBESeason.EditValue.ToString = "" Then
+            where_prod += " AND d.id_season IN (" + CCBESeason.EditValue.ToString + ")"
+        End If
+        If Not CCBEDivision.EditValue.ToString = "" Then
+            where_prod += " AND i.id_division IN (" + CCBEDivision.EditValue.ToString + ")"
+        End If
+        If Not CCBECategory.EditValue.ToString = "" Then
+            where_prod += " AND i.id_category IN (" + CCBECategory.EditValue.ToString + ")"
+        End If
+        If Not CCBEClass.EditValue.ToString = "" Then
+            where_prod += " AND i.id_class IN (" + CCBEClass.EditValue.ToString + ")"
+        End If
+        If Not TxtIdProduct.Text.ToString = "" Then
+            where_prod += " AND d.id_design IN (" + TxtIdProduct.Text + ")"
+        End If
+        'filter product SOH
+        Dim join_design_soh As String = ""
+        Dim where_prod_soh As String = ""
+        If Not CCBESeason.EditValue.ToString = "" Or Not CCBEDivision.EditValue.ToString = "" Or Not CCBECategory.EditValue.ToString = "" Or Not CCBEClass.EditValue.ToString = "" Or Not TxtIdProduct.Text.ToString = "" Then
+            join_design_soh = join_design
+            where_prod_soh = where_prod
+        End If
+
         ' filter store
         Dim where_store As String = ""
         'category store
@@ -305,7 +353,9 @@
             INNER JOIN tb_m_state state ON state.id_state = cty.id_state
             INNER JOIN tb_m_region reg ON reg.id_region = state.id_region
             INNER JOIN tb_m_country cry ON cry.id_country = reg.id_country
+            " + join_design_soh + "
 	        WHERE soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' 
+            " + where_prod_soh + "
 	        GROUP BY soh.id_design 
         ) soh
         LEFT JOIN (
@@ -320,22 +370,7 @@
             " + where_store + "
 	        GROUP BY soh.id_design 
         ) sal_beg ON sal_beg.id_design = soh.id_design
-        INNER JOIN tb_m_design d ON d.id_design = soh.id_design
-        LEFT JOIN (
-	        SELECT c.id_design, 
-	        MAX(CASE WHEN d.id_code=32 THEN d.code_detail_name END) AS `division`,
-	        MAX(CASE WHEN d.id_code=4 THEN d.display_name END) AS `category`,
-	        MAX(CASE WHEN d.id_code=30 THEN d.display_name END) AS `class`,
-	        MAX(CASE WHEN d.id_code=14 THEN d.code_detail_name END) AS `color`,
-	        MAX(CASE WHEN d.id_code=5 THEN d.display_name END) AS `source`
-	        FROM tb_m_design_code AS c
-	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	        WHERE d.id_code IN (32,4,30,14,5)
-	        GROUP BY c.id_design
-        ) i ON i.id_design = d.id_design
-        INNER JOIN tb_season AS season ON d.id_season = season.id_season
-        INNER JOIN tb_range AS `range` ON season.id_range = range.id_range
-        INNER JOIN tb_season_delivery AS delivery ON d.id_delivery = delivery.id_delivery
+        " + join_design + "
         LEFT JOIN (
           SELECT d.id_design, MIN(d.first_del) AS first_del
           FROM tb_m_design_first_del AS d
@@ -381,6 +416,7 @@
           WHERE r.id_report_status = 6
           GROUP BY s.id_design
         ) AS wh_rec ON wh_rec.id_design = d.id_design " + col_join_store_rec
+        query += "WHERE 1=1 " + where_prod
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
 
 
