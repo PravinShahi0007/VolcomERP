@@ -182,14 +182,19 @@
                 End If
                 col_sal1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(" + rmt_sal + ") " + where_store + " THEN soh.qty END),0)*-1 AS `Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sal2 += "soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
-                col_soh1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' " + where_store + " THEN soh.qty END),0) AS `Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_soh1 += "IFNULL(SUM(
+                    CASE
+                        WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_comp_cat!=6 AND soh.id_comp IN(" + id_del_online_store + ")  THEN soh.qty
+                        WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_comp_cat=6 AND c.id_commerce_type=1 " + where_store + " THEN soh.qty
+                    END
+                ),0) AS `Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_soh2 += "soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sas1 += "(soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`/(soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`+soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`))*100 AS `Monthly SAS " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_rts1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(46,120) AND soh.qty>0 " + where_store + " THEN soh.qty END),0) AS `Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_rts2 += "soh.`Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_del1 += "IFNULL(SUM(
 		            CASE
-			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_comp_cat!=6 AND soh.report_mark_type=58 AND soh.id_comp IN(" + id_del_online_store + ") " + where_store + " THEN soh.qty 
+			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_comp_cat!=6 AND soh.report_mark_type=58 AND soh.id_comp IN(" + id_del_online_store + ") THEN soh.qty 
 			            WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND c.id_comp_cat=6 AND c.id_commerce_type=1 AND soh.report_mark_type IN(43,103) " + where_store + " THEN soh.qty 
 		            END
 	            ),0) AS `Monthly Delivery " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
@@ -272,9 +277,15 @@
 	        GROUP BY soh.id_design 
         ) soh
         LEFT JOIN (
-	        SELECT soh.id_design,ABS(SUM(CASE WHEN soh.report_mark_type IN (" + rmt_sal + ") THEN soh.qty END)) AS `qty_sal_beg`
+	        SELECT soh.id_design,ABS(SUM(soh.qty)) AS `qty_sal_beg`
 	        FROM tb_soh_sal_period soh
-	        WHERE soh.soh_date<'" + fromDate + "' AND  is_del_online_store!=1
+            INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
+	        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
+            INNER JOIN tb_m_state state ON state.id_state = cty.id_state
+            INNER JOIN tb_m_region reg ON reg.id_region = state.id_region
+            INNER JOIN tb_m_country cry ON cry.id_country = reg.id_country
+	        WHERE soh.soh_date<'" + fromDate + "' AND  is_del_online_store!=1 AND soh.report_mark_type IN (" + rmt_sal + ")
+            " + where_store + "
 	        GROUP BY soh.id_design 
         ) sal_beg ON sal_beg.id_design = soh.id_design
         INNER JOIN tb_m_design d ON d.id_design = soh.id_design
