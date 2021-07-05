@@ -1179,6 +1179,8 @@
 
     Private Sub BtnInvoiceNewitem_Click(sender As Object, e As EventArgs) Handles BtnInvoiceNewitem.Click
         makeSafeGV(GVNewItem)
+        GVNewItem.ActiveFilterString = "[is_select] = 'Yes'"
+
         If GVNewItem.RowCount > 0 Then
             'initial check stock
             Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; 
@@ -1228,6 +1230,8 @@
                 Cursor = Cursors.Default
             End If
         End If
+
+        GVNewItem.ActiveFilterString = ""
         makeSafeGV(GVNewItem)
     End Sub
 
