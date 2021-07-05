@@ -276,6 +276,29 @@
             PCPosAtt.Controls.Add(PEPosition)
         End If
 
+        ' c19
+        For i = 1 To 100
+            If System.IO.File.Exists(emp_image_path + id_employee + "_c19_" + i.ToString + ".jpg") Then
+                Dim PEC19 As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                AddHandler PEC19.ImageChanged, AddressOf changeImage
+
+                PCC19Att.Controls.Add(PEC19)
+
+                pre_viewImages("4", PEC19, id_employee + "_c19_" + i.ToString, False)
+            Else
+                Exit For
+            End If
+        Next
+
+        If Not PCC19Att.HasChildren Then
+            Dim PEC19 As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+            AddHandler PEC19.ImageChanged, AddressOf changeImage
+
+            PCC19Att.Controls.Add(PEC19)
+        End If
+
         If Not id_pps = "-1" Then
             viewImages_empty(PE, pps_path, id_pps + "_ava", False)
             viewImages_empty(PEKTP, pps_path, id_pps + "_ktp", False)
@@ -308,6 +331,33 @@
 
                 viewImages_empty(PEPosition, pps_path, "default", False)
             End If
+
+            ' c19
+            PCC19Att.Controls.Clear()
+
+            For i = 1 To 100
+                If System.IO.File.Exists(pps_path + id_pps + "_c19_" + i.ToString + ".jpg") Then
+                    Dim PEC19 As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                    AddHandler PEC19.ImageChanged, AddressOf changeImage
+
+                    PCC19Att.Controls.Add(PEC19)
+
+                    viewImages_empty(PEC19, pps_path, id_pps + "_c19_" + i.ToString, False)
+                Else
+                    Exit For
+                End If
+            Next
+
+            If Not PCC19Att.HasChildren Then
+                Dim PEC19 As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                AddHandler PEC19.ImageChanged, AddressOf changeImage
+
+                PCC19Att.Controls.Add(PEC19)
+
+                viewImages_empty(PEC19, pps_path, "default", False)
+            End If
         End If
 
         If is_new = "-1" Then
@@ -339,6 +389,29 @@
                 PCPosAttB.Controls.Add(PEPositionB)
             End If
 
+            ' c19
+            For i = 1 To 100
+                If System.IO.File.Exists(emp_image_path + id_employee + "_c19_" + i.ToString + ".jpg") Then
+                    Dim PEC19B As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                    AddHandler PEC19B.ImageChanged, AddressOf changeImage
+
+                    PCC19AttB.Controls.Add(PEC19B)
+
+                    pre_viewImages("4", PEC19B, id_employee + "_c19_" + i.ToString, False)
+                Else
+                    Exit For
+                End If
+            Next
+
+            If Not PCC19AttB.HasChildren Then
+                Dim PEC19B As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                AddHandler PEC19B.ImageChanged, AddressOf changeImage
+
+                PCC19AttB.Controls.Add(PEC19B)
+            End If
+
             If Not id_pps = "-1" Then
                 viewImages_empty(PEB, pps_path, id_pps + "_ava_old", False)
                 viewImages_empty(PEKTPB, pps_path, id_pps + "_ktp_old", False)
@@ -368,6 +441,31 @@
                     AddHandler PEPositionB.ImageChanged, AddressOf changeImage
 
                     PCPosAttB.Controls.Add(PEPositionB)
+                End If
+
+                ' c19
+                PCC19AttB.Controls.Clear()
+
+                For i = 1 To 100
+                    If System.IO.File.Exists(pps_path + id_pps + "_c19_" + i.ToString + "_old.jpg") Then
+                        Dim PEC19B As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                        AddHandler PEC19B.ImageChanged, AddressOf changeImage
+
+                        PCC19AttB.Controls.Add(PEC19B)
+
+                        viewImages_empty(PEC19B, pps_path, id_pps + "_c19_" + i.ToString + "_old", False)
+                    Else
+                        Exit For
+                    End If
+                Next
+
+                If Not PCC19AttB.HasChildren Then
+                    Dim PEC19B As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                    AddHandler PEC19B.ImageChanged, AddressOf changeImage
+
+                    PCC19AttB.Controls.Add(PEC19B)
                 End If
             End If
         End If
@@ -1196,6 +1294,29 @@
             Next
         End If
 
+        ' delete c19
+        For i = 1 To 100
+            If System.IO.File.Exists(pps_path + id_pps + "_c19_" + i.ToString + ".jpg") Then
+                System.IO.File.Delete(pps_path + id_pps + "_c19_" + i.ToString + ".jpg")
+            Else
+                Exit For
+            End If
+        Next
+
+        If PCC19Att.HasChildren Then
+            Dim no As Integer = 1
+
+            For Each i As Control In PCC19Att.Controls
+                Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+                If Not ic.EditValue Is Nothing Then
+                    save_image_ori(ic, pps_path, id_pps & "_c19_" + no.ToString + ".jpg")
+
+                    no += 1
+                End If
+            Next
+        End If
+
         ' store old
         If is_new = "-1" And id_report_status = "-1" Then
             Dim query_old As String = "
@@ -1243,6 +1364,20 @@
 
                     If Not ic.EditValue Is Nothing Then
                         save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + "_old.jpg")
+
+                        no += 1
+                    End If
+                Next
+            End If
+
+            If PCC19AttB.HasChildren Then
+                Dim no As Integer = 1
+
+                For Each i As Control In PCC19AttB.Controls
+                    Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+                    If Not ic.EditValue Is Nothing Then
+                        save_image_ori(ic, pps_path, id_pps & "_c19_" + no.ToString + "_old.jpg")
 
                         no += 1
                     End If
@@ -2060,6 +2195,35 @@
             End If
         Next
 
+        For i = 1 To 100
+            If System.IO.File.Exists(emp_image_path + id_employee + "_c19_" + i.ToString + ".jpg") Then
+                System.IO.File.Delete(emp_image_path + id_employee + "_c19_" + i.ToString + ".jpg")
+            Else
+                Exit For
+            End If
+        Next
+
+        For i = 1 To 100
+            If System.IO.File.Exists(pps_path + id_pps + "_c19_" + i.ToString + ".jpg") Then
+                If use_cmd = "1" Then
+                    Dim cmd As String = "/c XCOPY """ + pps_path + id_pps + "_c19_" + i.ToString + ".jpg"" """ + emp_image_path + id_employee + "_c19_" + i.ToString + ".jpg*"" /Y"
+
+                    Dim startInfo As New ProcessStartInfo("CMD.EXE")
+
+                    startInfo.WindowStyle = ProcessWindowStyle.Hidden
+                    startInfo.CreateNoWindow = True
+                    startInfo.UseShellExecute = False
+                    startInfo.Arguments = cmd
+
+                    Process.Start(startInfo)
+                Else
+                    System.IO.File.Copy(pps_path + id_pps + "_c19_" + i.ToString + ".jpg", emp_image_path + id_employee + "_c19_" + i.ToString + ".jpg", True)
+                End If
+            Else
+                Exit For
+            End If
+        Next
+
         progress.ProgressBarControl.EditValue = 90
 
         'Dim data_employee As DataTable = execute_query("SELECT employee_code, employee_name, id_employee_active FROM tb_m_employee WHERE id_employee = " + id_employee + "", -1, True, "", "", "", "")
@@ -2464,5 +2628,47 @@
         If load_all Then
             DEEmployeeStatusEnd.Properties.MinValue = DEEmployeeStatusStart.EditValue
         End If
+    End Sub
+
+    Private Sub SBC19Att_Click(sender As Object, e As EventArgs) Handles SBC19Att.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        For Each i As Control In PCC19Att.Controls
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+            Dim con As ImageConverter = New ImageConverter
+
+            images.Rows.Add(con.ConvertTo(ic.EditValue, GetType(Byte())))
+        Next
+
+        FormEmployeePpsAtt.type = "c19"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = If(Not Array.IndexOf({"-1", "0"}, id_report_status).ToString = "-1", False, True)
+        FormEmployeePpsAtt.is_single = False
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBC19AttB_Click(sender As Object, e As EventArgs) Handles SBC19AttB.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        For Each i As Control In PCC19AttB.Controls
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+            Dim con As ImageConverter = New ImageConverter
+
+            images.Rows.Add(con.ConvertTo(ic.EditValue, GetType(Byte())))
+        Next
+
+        FormEmployeePpsAtt.type = "c19"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = True
+        FormEmployeePpsAtt.is_single = False
+
+        FormEmployeePpsAtt.ShowDialog()
     End Sub
 End Class
