@@ -4054,11 +4054,12 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         ) sod ON sod.id_design = d.id_design 
                                                 WHERE t.id_fg_repair=" & id_report & " AND d.is_old_design=2  AND t.is_use_unique_code=1 "
                 execute_non_query(quniq, True, "", "", "", "")
-                Dim q As String = "UPDATE tb_fg_repair SET complete_date=NOW() WHERE id_fg_repair='" & id_report & "'"
-                execute_non_query(q, True, "", "", "", "")
             ElseIf id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepair()
                 compl.completedStock(id_report)
+
+                Dim q As String = "UPDATE tb_fg_repair SET complete_date=NOW() WHERE id_fg_repair='" & id_report & "'"
+                execute_non_query(q, True, "", "", "", "")
                 '
                 'Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_fg_repair_det`,`id_type`,`unique_code`,
                 '        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
@@ -4221,12 +4222,14 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         WHERE t.id_fg_repair_return=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 "
                 execute_non_query(quniq, True, "", "", "", "")
                 '
-                query = String.Format("UPDATE tb_fg_repair_return SET complete_date=NOW() WHERE id_fg_repair_return ='{0}'", id_report)
-                execute_non_query(query, True, "", "", "", "")
+
                 '
             ElseIf id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepairReturn()
                 compl.completedStock(id_report, report_mark_type)
+
+                query = String.Format("UPDATE tb_fg_repair_return SET complete_date=NOW() WHERE id_fg_repair_return ='{0}'", id_report)
+                execute_non_query(query, True, "", "", "", "")
 
                 'insert unique drawer to
                 'Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique`, `id_fg_repair_return_det`,`id_type`,`unique_code`,
