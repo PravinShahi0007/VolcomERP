@@ -4,6 +4,17 @@
     Private id_report_status As String = "-1"
 
     Private Sub FormStockQCStockReportSummary_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'min date
+        Dim query_date As String = "
+            SELECT DATE_ADD(MAX(end_period), INTERVAL 1 DAY) AS min_date
+            FROM tb_wip_summary
+            WHERE id_report_status <> 5
+        "
+
+        Dim str_date As String = execute_query(query_date, 0, True, "", "", "", "")
+
+        DEStartPeriod.Properties.MinValue = Date.Parse(str_date)
+
         'header
         Dim query As String = "
             (SELECT s.number, s.start_period, s.end_period, s.created_date, e.employee_name AS created_by, s.id_report_status, r.report_status
