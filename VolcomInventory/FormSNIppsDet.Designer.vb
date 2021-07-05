@@ -69,11 +69,18 @@ Partial Class FormSNIppsDet
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPImage = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.BGetCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BExportList = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPBudgetPropose = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCBudget = New DevExpress.XtraGrid.GridControl()
         Me.GVBudget = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCBudgetCop = New DevExpress.XtraGrid.GridControl()
         Me.GVBudgetCop = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -85,13 +92,6 @@ Partial Class FormSNIppsDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.BGetCOP = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,6 +115,8 @@ Partial Class FormSNIppsDet
         CType(Me.GVProposed, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPImage, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
         Me.XTPBudgetPropose.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
@@ -126,8 +128,6 @@ Partial Class FormSNIppsDet
         CType(Me.GVBudgetCop, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -637,6 +637,35 @@ Partial Class FormSNIppsDet
         Me.GridColumn28.FieldName = "season_orign"
         Me.GridColumn28.Name = "GridColumn28"
         '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.BGetCOP)
+        Me.PanelControl5.Controls.Add(Me.BExportList)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 390)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(935, 41)
+        Me.PanelControl5.TabIndex = 22
+        '
+        'BGetCOP
+        '
+        Me.BGetCOP.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BGetCOP.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BGetCOP.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BGetCOP.Appearance.Options.UseBackColor = True
+        Me.BGetCOP.Appearance.Options.UseFont = True
+        Me.BGetCOP.Appearance.Options.UseForeColor = True
+        Me.BGetCOP.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BGetCOP.Location = New System.Drawing.Point(809, 2)
+        Me.BGetCOP.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BGetCOP.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BGetCOP.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BGetCOP.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BGetCOP.Name = "BGetCOP"
+        Me.BGetCOP.Size = New System.Drawing.Size(124, 37)
+        Me.BGetCOP.TabIndex = 22
+        Me.BGetCOP.Text = "Add to Budget"
+        '
         'BExportList
         '
         Me.BExportList.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
@@ -693,6 +722,46 @@ Partial Class FormSNIppsDet
         Me.GVBudget.Name = "GVBudget"
         Me.GVBudget.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Id"
+        Me.GridColumn15.FieldName = "id_sni_pps_budget"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Budget Description"
+        Me.GridColumn16.FieldName = "budget_desc"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Value"
+        Me.GridColumn17.FieldName = "budget_value"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Qty"
+        Me.GridColumn18.FieldName = "qty"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 2
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Sub Amount"
+        Me.GridColumn19.FieldName = "sub_amount"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.UnboundExpression = "[budget_value] * [qty]"
+        Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
+        '
         'GroupControl1
         '
         Me.GroupControl1.Controls.Add(Me.GCBudgetCop)
@@ -745,7 +814,7 @@ Partial Class FormSNIppsDet
         'GridColumn30
         '
         Me.GridColumn30.Caption = "Qty"
-        Me.GridColumn30.FieldName = "qty"
+        Me.GridColumn30.FieldName = "budget_qty"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 2
@@ -790,75 +859,6 @@ Partial Class FormSNIppsDet
         Me.BAdd.TabIndex = 3
         Me.BAdd.Text = "Add Budget Item"
         '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Id"
-        Me.GridColumn15.FieldName = "id_sni_pps_budget"
-        Me.GridColumn15.Name = "GridColumn15"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Budget Description"
-        Me.GridColumn16.FieldName = "budget_desc"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 0
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Value"
-        Me.GridColumn17.FieldName = "budget_value"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 1
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Qty"
-        Me.GridColumn18.FieldName = "qty"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 2
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Sub Amount"
-        Me.GridColumn19.FieldName = "sub_amount"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.UnboundExpression = "[budget_value] * [qty]"
-        Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 3
-        '
-        'PanelControl5
-        '
-        Me.PanelControl5.Controls.Add(Me.BGetCOP)
-        Me.PanelControl5.Controls.Add(Me.BExportList)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 390)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(935, 41)
-        Me.PanelControl5.TabIndex = 22
-        '
-        'BGetCOP
-        '
-        Me.BGetCOP.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.BGetCOP.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BGetCOP.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BGetCOP.Appearance.Options.UseBackColor = True
-        Me.BGetCOP.Appearance.Options.UseFont = True
-        Me.BGetCOP.Appearance.Options.UseForeColor = True
-        Me.BGetCOP.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BGetCOP.Location = New System.Drawing.Point(809, 2)
-        Me.BGetCOP.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BGetCOP.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BGetCOP.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BGetCOP.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BGetCOP.Name = "BGetCOP"
-        Me.BGetCOP.Size = New System.Drawing.Size(124, 37)
-        Me.BGetCOP.TabIndex = 22
-        Me.BGetCOP.Text = "Add to Budget"
-        '
         'FormSNIppsDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -896,6 +896,8 @@ Partial Class FormSNIppsDet
         CType(Me.GVProposed, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPImage, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
         Me.XTPBudgetPropose.ResumeLayout(False)
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
@@ -907,8 +909,6 @@ Partial Class FormSNIppsDet
         CType(Me.GVBudgetCop, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
