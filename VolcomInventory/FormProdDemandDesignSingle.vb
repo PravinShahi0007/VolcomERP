@@ -93,7 +93,7 @@ Public Class FormProdDemandDesignSingle
             TxtTotalCost.Properties.ReadOnly = True
             TxtCostNonAdditional.Properties.ReadOnly = True
             TxtAdditionalCost.Properties.ReadOnly = True
-            TxtAdditionalPrice.Properties.ReadOnly = True
+            'TxtAdditionalPrice.Properties.ReadOnly = True
             TxtPriceNonAdditional.Properties.ReadOnly = True
             TxtMSRPRp.Properties.ReadOnly = True
             TxtRateManagement.Properties.ReadOnly = True
@@ -1180,6 +1180,12 @@ Public Class FormProdDemandDesignSingle
             getMSRPRP()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TxtAdditionalPrice_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtAdditionalPrice.KeyUp
+        TxtPriceNonAdditional.EditValue = TxtProposePrice.EditValue - TxtAdditionalPrice.EditValue
+        getMarkUp()
+        getRealEstimate()
     End Sub
 
     Private Sub GVLogCost_DoubleClick(sender As Object, e As EventArgs) Handles GVLogCost.DoubleClick
