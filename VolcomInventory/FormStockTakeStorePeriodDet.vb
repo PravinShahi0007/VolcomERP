@@ -8,8 +8,8 @@
         Dim nowDate As String = execute_query("SELECT DATE_SUB(CURDATE(), INTERVAL 0 DAY);", 0, True, "", "", "", "")
 
         DEStart.Properties.MinValue = nowDate
-        DESOHDate.Properties.MaxValue = lastDate
-        DESOHDate.EditValue = lastDate
+        DESOHDate.Properties.MaxValue = nowDate
+        DESOHDate.EditValue = nowDate
         DEStart.EditValue = nowDate
         DEEnd.EditValue = DateTime.Parse(nowDate).AddMinutes(1439)
 
