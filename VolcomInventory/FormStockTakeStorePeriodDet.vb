@@ -102,6 +102,9 @@
         fs.Close()
 
         'upload file
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+
         FormMain.SplashScreenManager1.SetWaitFormDescription("Upload file...")
 
         Dim volcomClientHost As String = get_setup_field("volcom_client_host")
