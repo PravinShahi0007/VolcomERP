@@ -3951,58 +3951,62 @@ WHERE id_comp_cat='6'"
             End Try
         ElseIf id_pop_up = "59" Then 'import vios CC BBM
             Dim id_vios As String = get_setup_field("shopify_comp_group")
-            Dim queryx As String = "(SELECT ol.id_virtual_acc_trans, ol.id AS `id_order`, ol.checkout_id, IFNULL(v.value,0.00) AS `other_price`,ol.sales_order_ol_shop_number,
-            SUM(CAST(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`) AS DECIMAL(15,2)))+IFNULL(sh.ship_amo,0)+IFNULL(v.value,0.00) AS amount,
-            GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`,v.number AS `ver_number`,
-            GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`,  IFNULL(v.id_list_payout_ver,0) AS `id_list_payout_ver`
-            FROM (
-	            SELECT ol.id, ol.checkout_id,ol.sales_order_ol_shop_number,
-	            IFNULL(lp.id_virtual_acc_trans,0) AS `id_virtual_acc_trans`, SUM(ol.other_price * ol.sales_order_det_qty) AS `other_price_sum`
-	            FROM tb_ol_store_order ol
-	            LEFT JOIN tb_virtual_acc_trans_det lp ON lp.id =ol.`id`
-                LEFT JOIN tb_virtual_acc_trans l ON l.id_virtual_acc_trans = lp.id_virtual_acc_trans AND l.id_report_status!=5
-	            WHERE NOT ISNULL(ol.`checkout_id`) AND ol.id_comp_group=" + id_vios + "
-	            GROUP BY ol.`id`
-            ) ol
-            INNER JOIN tb_sales_order so ON so.`id_sales_order_ol_shop`=ol.`id`
-            INNER JOIN `tb_pl_sales_order_del` del ON del.`id_sales_order`=so.`id_sales_order`
-            INNER JOIN tb_sales_pos pos ON pos.`id_pl_sales_order_del`=del.`id_pl_sales_order_del` AND pos.id_report_status=6 AND pos.is_close_rec_payment=2
-            LEFT JOIN (
-                SELECT s.id_invoice_ship, s.id_report, s.`number` AS `ship_number`, s.`value` AS `ship_amo`
-                FROM tb_invoice_ship s
-                WHERE s.id_report_status=6
-                GROUP BY s.id_report
-            ) sh ON sh.id_report = ol.id
-            LEFT JOIN (
-                SELECT v.id_list_payout_ver, v.id_web_order, v.number, SUM(IF(d.id_dc=1,(d.value * -1),d.value)) AS `value`
-                FROM tb_list_payout_ver_det d
-                INNER JOIN tb_list_payout_ver v ON v.id_list_payout_ver = d.id_list_payout_ver
-                WHERE v.is_existing_order=1
-                GROUP BY v.checkout_id
-            ) v ON v.id_web_order = ol.id
-            GROUP BY ol.id) 
-            UNION ALL
-            (SELECT ol.id_virtual_acc_trans, 0 AS `id_order`, ol.checkout_id AS `checkout_id`, IFNULL(ol.value,0.00) AS `other_price`,ol.order_number AS sales_order_ol_shop_number,
-            SUM(IFNULL(ol.value,0.00)) AS amount,
-            '' AS inv_number, '' AS `ship_inv_number`, ol.number AS `ver_number`,
-            0 AS id_sales_pos, 0 AS `id_invoice_ship`, IFNULL(ol.id_list_payout_ver,0) AS `id_list_payout_ver`
-            FROM (
-                SELECT v.*,lp.`amount`,
-                IFNULL(lp.id_virtual_acc_trans,0) AS `id_virtual_acc_trans`, SUM(IF(d.id_dc=1,(d.value * -1),d.value)) AS `value`
-                FROM tb_list_payout_ver v 
-                INNER JOIN tb_list_payout_ver_det d ON d.id_list_payout_ver = v.id_list_payout_ver
-                LEFT JOIN tb_virtual_acc_trans_det lp ON lp.checkout_id = v.checkout_id
-                WHERE v.is_existing_order=2 AND v.type_ver=2
-                GROUP BY v.checkout_id
-            ) ol
-            GROUP BY ol.checkout_id) "
+            Dim queryx As String = "(
+SELECT ol.id_virtual_acc_trans, ol.id AS `id_order`, ol.checkout_id, IFNULL(v.value,0.00) AS `other_price`,ol.sales_order_ol_shop_number,
+SUM(CAST(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`) AS DECIMAL(15,2)))+IFNULL(sh.ship_amo,0)+IFNULL(v.value,0.00) AS amount,
+GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`,v.number AS `ver_number`,
+GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`,  IFNULL(v.id_list_payout_ver,0) AS `id_list_payout_ver`
+FROM (
+	SELECT ol.id, ol.checkout_id,ol.sales_order_ol_shop_number,
+	IFNULL(lp.id_virtual_acc_trans,0) AS `id_virtual_acc_trans`, SUM(ol.other_price * ol.sales_order_det_qty) AS `other_price_sum`
+	FROM tb_ol_store_order ol
+	LEFT JOIN tb_virtual_acc_trans_det lp ON lp.id =ol.`id`
+	LEFT JOIN tb_virtual_acc_trans l ON l.id_virtual_acc_trans = lp.id_virtual_acc_trans AND l.id_report_status!=5
+	WHERE NOT ISNULL(ol.`checkout_id`) AND ol.id_comp_group=" + id_vios + "
+	GROUP BY ol.`id`
+) ol
+INNER JOIN tb_sales_order so ON so.`id_sales_order_ol_shop`=ol.`id`
+INNER JOIN `tb_pl_sales_order_del` del ON del.`id_sales_order`=so.`id_sales_order`
+INNER JOIN tb_sales_pos pos ON pos.`id_pl_sales_order_del`=del.`id_pl_sales_order_del` AND pos.id_report_status=6 AND pos.is_close_rec_payment=2
+LEFT JOIN (
+	SELECT s.id_invoice_ship, s.id_report, s.`number` AS `ship_number`, s.`value` AS `ship_amo`
+	FROM tb_invoice_ship s
+	WHERE s.id_report_status=6
+	GROUP BY s.id_report
+) sh ON sh.id_report = ol.id
+LEFT JOIN (
+	SELECT v.id_list_payout_ver, v.id_web_order, v.number, SUM(IF(d.id_dc=1,(d.value * -1),d.value)) AS `value`
+	FROM tb_list_payout_ver_det d
+	INNER JOIN tb_list_payout_ver v ON v.id_list_payout_ver = d.id_list_payout_ver
+	WHERE v.is_existing_order=1
+	GROUP BY v.checkout_id
+) v ON v.id_web_order = ol.id
+GROUP BY ol.id
+) 
+UNION ALL
+(
+SELECT ol.id_virtual_acc_trans, 0 AS `id_order`, ol.checkout_id AS `checkout_id`, IFNULL(ol.value,0.00) AS `other_price`,ol.order_number AS sales_order_ol_shop_number,
+SUM(IFNULL(ol.value,0.00)) AS amount,
+'' AS inv_number, '' AS `ship_inv_number`, ol.number AS `ver_number`,
+0 AS id_sales_pos, 0 AS `id_invoice_ship`, IFNULL(ol.id_list_payout_ver,0) AS `id_list_payout_ver`
+FROM (
+	SELECT v.*,lp.`amount`,
+	IFNULL(lp.id_virtual_acc_trans,0) AS `id_virtual_acc_trans`, SUM(IF(d.id_dc=1,(d.value * -1),d.value)) AS `value`
+	FROM tb_list_payout_ver v 
+	INNER JOIN tb_list_payout_ver_det d ON d.id_list_payout_ver = v.id_list_payout_ver
+	LEFT JOIN tb_virtual_acc_trans_det lp ON lp.checkout_id = v.checkout_id
+	WHERE v.is_existing_order=2 AND v.type_ver=3
+	GROUP BY v.checkout_id
+) ol
+GROUP BY ol.checkout_id
+) "
             Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
             Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
             Dim tb2 = dt.AsEnumerable()
 
             'data virtual
-            Dim dv As DataTable = execute_query("SELECT column_name,payout_multiply,payout_add, minimum FROM tb_virtual_acc WHERE id_virtual_acc='" + FormBankDeposit.SLEBank.EditValue.ToString + "' ", -1, True, "", "", "", "")
-            Dim col_name As String = dv.Rows(0)("column_name").ToString
+            Dim dv As DataTable = execute_query("SELECT id_cc_payout,payout_multiply,payout_add, minimum FROM tb_cc_payout WHERE id_cc_payout='" + FormBankDeposit.SLEBank.EditValue.ToString + "' ", -1, True, "", "", "", "")
+            Dim id_cc_payout As String = dv.Rows(0)("id_cc_payout").ToString
             Dim payout_multiply As Decimal = dv.Rows(0)("payout_multiply")
             Dim payout_add As Decimal = dv.Rows(0)("payout_add")
             Dim minimum As Decimal = dv.Rows(0)("minimum")
@@ -4013,7 +4017,7 @@ WHERE id_comp_cat='6'"
                         From y1 In ord.DefaultIfEmpty()
                         Select New With {
                             .checkout_id = table1("Order ID").ToString.Replace("'", ""),
-                            .virtual_acc_no = table1(col_name).ToString.Replace("'", ""),
+                            .id_cc_payout = id_cc_payout,
                             .id_order = If(y1 Is Nothing, "0", y1("id_order").ToString),
                             .id_virtual_acc_trans = If(y1 Is Nothing, "0", y1("id_virtual_acc_trans").ToString),
                             .id_sales_pos = If(y1 Is Nothing, "0", y1("id_sales_pos").ToString),
@@ -4044,7 +4048,7 @@ WHERE id_comp_cat='6'"
             GVData.Columns("id_order").Visible = False
 
             GVData.Columns("checkout_id").Caption = "Checkout ID"
-            GVData.Columns("virtual_acc_no").Caption = "Virtual Acc No"
+            GVData.Columns("id_cc_payout").Caption = "ID CC Payout"
             GVData.Columns("order_ol_shop_number").Caption = "Order#"
             GVData.Columns("inv_number").Caption = "Invoice Number"
             GVData.Columns("ship_inv_number").Caption = "Shipping Invoice"
@@ -6881,6 +6885,86 @@ WHERE id_comp_cat='6'"
                         makeSafeGV(GVData)
                     End If
                 End If
+            ElseIf id_pop_up = "59" Then
+                'import CC payout
+                GVData.ActiveFilterString = "[status] <> 'OK' "
+                If GVData.RowCount > 0 Then
+                    stopCustom("Data not valid, please make sure again")
+                    makeSafeGV(GVData)
+                Else
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[status] = 'OK' "
+                    If GVData.RowCount > 0 Then
+                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only status 'OK' will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            PBC.Properties.Minimum = 0
+                            PBC.Properties.Maximum = GVData.RowCount - 1
+                            PBC.Properties.Step = 1
+                            PBC.Properties.PercentView = True
+
+                            'main
+                            Dim query_main As String = "INSERT INTO tb_virtual_acc_trans(id_virtual_acc, transaction_date, generate_date) VALUES('" + FormBankDeposit.SLEBank.EditValue.ToString + "','" + DateTime.Parse(FormBankDeposit.DEVA.EditValue.ToString).ToString("yyyy-MM-dd") + "', NOW()); SELECT LAST_INSERT_ID(); "
+                            Dim id_virtual_acc_trans As String = execute_query(query_main, 0, True, "", "", "", "")
+                            execute_non_query("CALL gen_number(" + id_virtual_acc_trans + ", 265)", True, "", "", "", "")
+
+                            'detail data
+                            Dim q As String = "INSERT INTO tb_virtual_acc_trans_det(id_virtual_acc_trans, id, sales_order_ol_shop_number, checkout_id, payment_type, amount, amount_inv, transaction_fee, transaction_status, transaction_time, virtual_acc_no, other_price) VALUES "
+                            Dim id_sales_pos As String = ""
+                            Dim id_invoice_ship As String = ""
+                            Dim id_list_payout_ver As String = ""
+                            For i As Integer = 0 To GVData.RowCount - 1
+                                If Not i = 0 Then
+                                    q += ","
+                                    id_sales_pos += ","
+                                    id_invoice_ship += ","
+                                    id_list_payout_ver += ","
+                                End If
+                                '
+                                q += "('" + id_virtual_acc_trans + "', '" + GVData.GetRowCellValue(i, "id_order").ToString + "', '" + GVData.GetRowCellValue(i, "order_ol_shop_number").ToString + "', '" + GVData.GetRowCellValue(i, "checkout_id").ToString + "', '" + GVData.GetRowCellValue(i, "payment_type").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "amount_inv").ToString) + "','" + decimalSQL(GVData.GetRowCellValue(i, "transaction_fee").ToString) + "', '" + GVData.GetRowCellValue(i, "transaction_status").ToString + "', '" + DateTime.Parse(GVData.GetRowCellValue(i, "transaction_time").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + GVData.GetRowCellValue(i, "virtual_acc_no").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, "other_price").ToString) + "') "
+                                id_sales_pos += GVData.GetRowCellValue(i, "id_sales_pos").ToString
+                                id_invoice_ship += GVData.GetRowCellValue(i, "id_invoice_ship").ToString
+                                id_list_payout_ver += GVData.GetRowCellValue(i, "id_list_payout_ver").ToString
+
+                                '
+                                PBC.PerformStep()
+                                PBC.Update()
+                            Next
+                            'detail payout
+                            execute_non_query(q, True, "", "", "", "")
+
+                            'detail sales pos
+                            Dim query_det_pos As String = "INSERT INTO tb_virtual_acc_trans_inv(id_virtual_acc_trans, id_sales_pos) 
+                            SELECT '" + id_virtual_acc_trans + "', sp.id_sales_pos 
+                            FROM tb_sales_pos sp 
+                            WHERE sp.id_sales_pos IN (" + id_sales_pos + ");
+                            INSERT INTO tb_virtual_acc_trans_inv(id_virtual_acc_trans, id_invoice_ship) 
+                            SELECT '" + id_virtual_acc_trans + "', sh.id_invoice_ship 
+                            FROM tb_invoice_ship sh 
+                            WHERE sh.id_invoice_ship IN(" + id_invoice_ship + "); 
+                            INSERT INTO tb_virtual_acc_trans_inv(id_virtual_acc_trans, id_list_payout_ver) 
+                            SELECT '" + id_virtual_acc_trans + "',v.id_list_payout_ver 
+                            FROM tb_list_payout_ver v
+                            WHERE v.id_list_payout_ver IN(" + id_list_payout_ver + ");"
+                            execute_non_query(query_det_pos, True, "", "", "", "")
+
+                            'perlu approval FC
+                            GVData.ActiveFilterString = "[other_price]>0"
+                            If GVData.RowCount > 0 Then
+                                submit_who_prepared(265, id_virtual_acc_trans, id_user)
+                            Else
+                                execute_non_query("UPDATE tb_virtual_acc_trans SET id_report_status=6 WHERE id_virtual_acc_trans='" + id_virtual_acc_trans + "'", True, "", "", "", "")
+                            End If
+
+                            FormBankDeposit.TEPayoutNumber.Text = ""
+                            FormBankDeposit.load_vacc()
+                            infoCustom("Import Success")
+                            Close()
+                        End If
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                End If
             End If
         End If
         Cursor = Cursors.Default
@@ -6962,11 +7046,15 @@ WHERE id_comp_cat='6'"
             Dim order_number As String = GVData.GetFocusedRowCellValue("order_ol_shop_number").ToString
             Dim checkout_id As String = GVData.GetFocusedRowCellValue("checkout_id").ToString
             Dim type_ver As String = ""
+
             If id_pop_up = "50" Then
                 type_ver = "1"
             ElseIf id_pop_up = "53" Then
                 type_ver = "2"
+            ElseIf id_pop_up = "59" Then
+                type_ver = "3"
             End If
+
             Dim is_existing_order As String = ""
             If id_web_order = "0" Then
                 is_existing_order = "2"
