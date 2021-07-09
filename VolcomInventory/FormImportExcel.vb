@@ -142,6 +142,11 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "58" Then
             '
             MyCommand = New OleDbDataAdapter("select [kode] AS kode,[store] as store,[qty] AS qty,[dari purchasing store] as from_ps from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([kode]='') ", oledbconn)
+        ElseIf id_pop_up = "59" Then
+            Dim dtb As DataTable = execute_query("SELECT bank,installment_term FROM tb_cc_payout WHERE id_cc_payout='" + FormBankDeposit.SLEBankCC.EditValue.ToString + "' ", -1, True, "", "", "", "")
+            Dim bank As String = dtb.Rows(0)("bank").ToString
+            Dim installment_term As String = dtb.Rows(0)("installment_term").ToString
+            MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE ([Acquiring Bank]='" + bank + "') AND [Installment Term]='" + installment_term + "' AND [Payment Type]='Credit Card' AND [Transaction status]='settlement' ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -3944,7 +3949,131 @@ WHERE id_comp_cat='6'"
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "59" Then 'import vios CC BBM
+            Dim id_vios As String = get_setup_field("shopify_comp_group")
+            Dim queryx As String = "(SELECT ol.id_virtual_acc_trans, ol.id AS `id_order`, ol.checkout_id, IFNULL(v.value,0.00) AS `other_price`,ol.sales_order_ol_shop_number,
+            SUM(CAST(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`) AS DECIMAL(15,2)))+IFNULL(sh.ship_amo,0)+IFNULL(v.value,0.00) AS amount,
+            GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`,v.number AS `ver_number`,
+            GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`,  IFNULL(v.id_list_payout_ver,0) AS `id_list_payout_ver`
+            FROM (
+	            SELECT ol.id, ol.checkout_id,ol.sales_order_ol_shop_number,
+	            IFNULL(lp.id_virtual_acc_trans,0) AS `id_virtual_acc_trans`, SUM(ol.other_price * ol.sales_order_det_qty) AS `other_price_sum`
+	            FROM tb_ol_store_order ol
+	            LEFT JOIN tb_virtual_acc_trans_det lp ON lp.id =ol.`id`
+                LEFT JOIN tb_virtual_acc_trans l ON l.id_virtual_acc_trans = lp.id_virtual_acc_trans AND l.id_report_status!=5
+	            WHERE NOT ISNULL(ol.`checkout_id`) AND ol.id_comp_group=" + id_vios + "
+	            GROUP BY ol.`id`
+            ) ol
+            INNER JOIN tb_sales_order so ON so.`id_sales_order_ol_shop`=ol.`id`
+            INNER JOIN `tb_pl_sales_order_del` del ON del.`id_sales_order`=so.`id_sales_order`
+            INNER JOIN tb_sales_pos pos ON pos.`id_pl_sales_order_del`=del.`id_pl_sales_order_del` AND pos.id_report_status=6 AND pos.is_close_rec_payment=2
+            LEFT JOIN (
+                SELECT s.id_invoice_ship, s.id_report, s.`number` AS `ship_number`, s.`value` AS `ship_amo`
+                FROM tb_invoice_ship s
+                WHERE s.id_report_status=6
+                GROUP BY s.id_report
+            ) sh ON sh.id_report = ol.id
+            LEFT JOIN (
+                SELECT v.id_list_payout_ver, v.id_web_order, v.number, SUM(IF(d.id_dc=1,(d.value * -1),d.value)) AS `value`
+                FROM tb_list_payout_ver_det d
+                INNER JOIN tb_list_payout_ver v ON v.id_list_payout_ver = d.id_list_payout_ver
+                WHERE v.is_existing_order=1
+                GROUP BY v.checkout_id
+            ) v ON v.id_web_order = ol.id
+            GROUP BY ol.id) 
+            UNION ALL
+            (SELECT ol.id_virtual_acc_trans, 0 AS `id_order`, ol.checkout_id AS `checkout_id`, IFNULL(ol.value,0.00) AS `other_price`,ol.order_number AS sales_order_ol_shop_number,
+            SUM(IFNULL(ol.value,0.00)) AS amount,
+            '' AS inv_number, '' AS `ship_inv_number`, ol.number AS `ver_number`,
+            0 AS id_sales_pos, 0 AS `id_invoice_ship`, IFNULL(ol.id_list_payout_ver,0) AS `id_list_payout_ver`
+            FROM (
+                SELECT v.*,lp.`amount`,
+                IFNULL(lp.id_virtual_acc_trans,0) AS `id_virtual_acc_trans`, SUM(IF(d.id_dc=1,(d.value * -1),d.value)) AS `value`
+                FROM tb_list_payout_ver v 
+                INNER JOIN tb_list_payout_ver_det d ON d.id_list_payout_ver = v.id_list_payout_ver
+                LEFT JOIN tb_virtual_acc_trans_det lp ON lp.checkout_id = v.checkout_id
+                WHERE v.is_existing_order=2 AND v.type_ver=2
+                GROUP BY v.checkout_id
+            ) ol
+            GROUP BY ol.checkout_id) "
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
+            Dim tb2 = dt.AsEnumerable()
 
+            'data virtual
+            Dim dv As DataTable = execute_query("SELECT column_name,payout_multiply,payout_add, minimum FROM tb_virtual_acc WHERE id_virtual_acc='" + FormBankDeposit.SLEBank.EditValue.ToString + "' ", -1, True, "", "", "", "")
+            Dim col_name As String = dv.Rows(0)("column_name").ToString
+            Dim payout_multiply As Decimal = dv.Rows(0)("payout_multiply")
+            Dim payout_add As Decimal = dv.Rows(0)("payout_add")
+            Dim minimum As Decimal = dv.Rows(0)("minimum")
+
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("Order ID").ToString.Replace("'", "") Equals table_tmp("checkout_id").ToString
+                        Into ord = Group
+                        From y1 In ord.DefaultIfEmpty()
+                        Select New With {
+                            .checkout_id = table1("Order ID").ToString.Replace("'", ""),
+                            .virtual_acc_no = table1(col_name).ToString.Replace("'", ""),
+                            .id_order = If(y1 Is Nothing, "0", y1("id_order").ToString),
+                            .id_virtual_acc_trans = If(y1 Is Nothing, "0", y1("id_virtual_acc_trans").ToString),
+                            .id_sales_pos = If(y1 Is Nothing, "0", y1("id_sales_pos").ToString),
+                            .id_invoice_ship = If(y1 Is Nothing, "0", y1("id_invoice_ship").ToString),
+                            .id_list_payout_ver = If(y1 Is Nothing, "0", y1("id_list_payout_ver").ToString),
+                            .order_ol_shop_number = If(y1 Is Nothing, "0", y1("sales_order_ol_shop_number").ToString),
+                            .inv_number = If(y1 Is Nothing, "0", y1("inv_number").ToString),
+                            .ship_inv_number = If(y1 Is Nothing, "0", y1("ship_inv_number").ToString),
+                            .payment_type = table1("Payment Type").ToString,
+                            .transaction_status = table1("Transaction status").ToString,
+                            .transaction_time = table1("Transaction time").ToString,
+                            .amount = table1("Amount"),
+                            .amount_inv = If(y1 Is Nothing, 0, y1("amount")),
+                            .transaction_fee = table1("Amount") * payout_multiply + payout_add,
+                            .other_price = If(y1 Is Nothing, 0, y1("other_price")),
+                            .Status = If(y1 Is Nothing Or If(y1 Is Nothing, "0", y1("id_virtual_acc_trans").ToString) <> "0" Or table1("Amount") <> If(y1 Is Nothing, 0, y1("amount")), If(y1 Is Nothing, "Checkout id not found;", "") + If(If(y1 Is Nothing, "0", y1("id_virtual_acc_trans").ToString) <> "0", "Already imported;", "") + If(table1("Amount") <> If(y1 Is Nothing, 0, y1("amount")), "Amount not match;", ""), "OK")
+                        }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_sales_pos").Visible = False
+            GVData.Columns("id_invoice_ship").Visible = False
+            GVData.Columns("id_list_payout_ver").Visible = False
+            GVData.Columns("id_virtual_acc_trans").Visible = False
+            GVData.Columns("id_order").Visible = False
+
+            GVData.Columns("checkout_id").Caption = "Checkout ID"
+            GVData.Columns("virtual_acc_no").Caption = "Virtual Acc No"
+            GVData.Columns("order_ol_shop_number").Caption = "Order#"
+            GVData.Columns("inv_number").Caption = "Invoice Number"
+            GVData.Columns("ship_inv_number").Caption = "Shipping Invoice"
+            GVData.Columns("other_price").Caption = "Other Price"
+            GVData.Columns("amount_inv").Caption = "Amount Invoice (Include Other Price)"
+            GVData.Columns("amount").Caption = "Amount Payment Gateway"
+            GVData.Columns("transaction_fee").Caption = "Fee"
+            GVData.Columns("payment_type").Caption = "Payment Type"
+
+            'display form
+            GVData.Columns("other_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("other_price").DisplayFormat.FormatString = "N2"
+            GVData.Columns("amount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("amount").DisplayFormat.FormatString = "N2"
+            GVData.Columns("amount_inv").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("amount_inv").DisplayFormat.FormatString = "N2"
+            GVData.Columns("transaction_fee").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("transaction_fee").DisplayFormat.FormatString = "N2"
+
+            'summary
+            GVData.OptionsView.ShowFooter = True
+            GVData.Columns("other_price").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("other_price").SummaryItem.DisplayFormat = "{0:n2}"
+            GVData.Columns("amount").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("amount").SummaryItem.DisplayFormat = "{0:n2}"
+            GVData.Columns("amount_inv").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("amount_inv").SummaryItem.DisplayFormat = "{0:n2}"
+            GVData.Columns("transaction_fee").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("transaction_fee").SummaryItem.DisplayFormat = "{0:n2}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
