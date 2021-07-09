@@ -993,10 +993,14 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
 
     Sub del()
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
-            GVData.DeleteSelectedRows()
-            GCData.RefreshDataSource()
-            GVData.RefreshData()
-            calculate()
+            If GVData.GetFocusedRowCellValue("is_lock").ToString = "yes" Then
+                stopCustom("Data locked")
+            Else
+                GVData.DeleteSelectedRows()
+                GCData.RefreshDataSource()
+                GVData.RefreshData()
+                calculate()
+            End If
         End If
     End Sub
 

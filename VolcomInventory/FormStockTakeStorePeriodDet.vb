@@ -8,8 +8,8 @@
         Dim nowDate As String = execute_query("SELECT DATE_SUB(CURDATE(), INTERVAL 0 DAY);", 0, True, "", "", "", "")
 
         DEStart.Properties.MinValue = nowDate
-        DESOHDate.Properties.MaxValue = lastDate
-        DESOHDate.EditValue = lastDate
+        DESOHDate.Properties.MaxValue = nowDate
+        DESOHDate.EditValue = nowDate
         DEStart.EditValue = nowDate
         DEEnd.EditValue = DateTime.Parse(nowDate).AddMinutes(1439)
 
@@ -102,6 +102,9 @@
         fs.Close()
 
         'upload file
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+
         FormMain.SplashScreenManager1.SetWaitFormDescription("Upload file...")
 
         Dim volcomClientHost As String = get_setup_field("volcom_client_host")
