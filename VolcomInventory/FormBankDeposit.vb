@@ -514,7 +514,7 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
 
     Sub load_bank_cc()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT a.*,CONCAT(a.bank,' (',a.installment_term,')') AS desc FROM tb_cc_payout a "
+        Dim query As String = "SELECT a.*,CONCAT(a.bank,' (',a.installment_term,')') AS `desc` FROM tb_cc_payout a "
         viewSearchLookupQuery(SLEBank, query, "id_cc_payout", "desc", "id_cc_payout")
         Cursor = Cursors.Default
     End Sub
@@ -1019,5 +1019,12 @@ WHERE dn.is_open=1 AND dn.is_deposit='2' AND dn.`id_inv_mat_type`=2 AND dn.id_re
             Cursor = Cursors.Default
         End If
         GVInvMat.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BImportCC_Click(sender As Object, e As EventArgs) Handles BImportCC.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "59"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
