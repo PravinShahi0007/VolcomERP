@@ -172,6 +172,7 @@ GROUP BY id.`id_departement`"
                     GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", dtg.Rows(i)("amount_final"))
                     GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 1)
                     GVData.SetRowCellValue(GVData.RowCount - 1, "id_currency", 1)
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "is_lock", "yes")
                     '
                 Next
                 FormMain.SplashScreenManager1.CloseWaitForm()
@@ -389,7 +390,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim q_year As String = ""
-        Dim query As String = "SELECT ed.id_currency,cur.currency,ed.amount_before,ed.kurs,ed.id_item_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_item_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
+        Dim query As String = "SELECT 'no' AS is_lock,ed.id_currency,cur.currency,ed.amount_before,ed.kurs,ed.id_item_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_item_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
         ed.id_acc,pphacc.acc_description AS coa_desc_pph,a.id_acc_cat, a.acc_description AS `coa_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
 
         If action = "ins" Then
@@ -992,10 +993,14 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
 
     Sub del()
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
-            GVData.DeleteSelectedRows()
-            GCData.RefreshDataSource()
-            GVData.RefreshData()
-            calculate()
+            If GVData.GetFocusedRowCellValue("is_lock").ToString = "yes" Then
+                stopCustom("Data locked")
+            Else
+                GVData.DeleteSelectedRows()
+                GCData.RefreshDataSource()
+                GVData.RefreshData()
+                calculate()
+            End If
         End If
     End Sub
 
@@ -1320,5 +1325,17 @@ WHERE c.id_comp='" + id_comp + "' "
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub GVData_RowCellClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs) Handles GVData.RowCellClick
+
+    End Sub
+
+    Private Sub GVData_ShowingEditor(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles GVData.ShowingEditor
+        If GVData.GetFocusedRowCellValue("is_lock").ToString = "yes" Then
+            e.Cancel = True
+        Else
+            e.Cancel = False
+        End If
     End Sub
 End Class

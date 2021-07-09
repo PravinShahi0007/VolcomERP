@@ -792,7 +792,11 @@ ORDER BY awbd.id_awbill ASC,awbd.id_pl_sales_order_del ASC"
     End Sub
 
     Private Sub BGenOnline_Click(sender As Object, e As EventArgs) Handles BGenOnline.Click
-        gen_online()
+        If SLEStoreGroup.EditValue.ToString = "76" And SLEDelType.EditValue.ToString = "7" Then 'VIOS tapi milih marketplace
+            warningCustom("VIOS tidak menggunakan marketplace")
+        Else
+            gen_online()
+        End If
     End Sub
 
     Sub gen_offline()
@@ -962,8 +966,8 @@ FROM
                 Dim q As String = ""
 
                 q = "SELECT rate.id_3pl_rate,rate.id_comp AS id_cargo,comp.comp_name AS cargo,rate.cargo_min_weight,rate.cargo_rate
-, IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight, Rate.cargo_min_weight, " + decimalSQL(berat_terpakai.ToString) + ") AS weight
-,(IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight,rate.cargo_min_weight," + decimalSQL(berat_terpakai.ToString) + ") * cargo_rate) AS amount
+, IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight, rate.cargo_min_weight, ROUND(" + decimalSQL(berat_terpakai.ToString) + ")) AS weight
+,(IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight,rate.cargo_min_weight,ROUND(" + decimalSQL(berat_terpakai.ToString) + ")) * cargo_rate) AS amount
 ,rate.cargo_lead_time
 ,comp.awb_rank
 FROM `tb_3pl_rate` AS rate

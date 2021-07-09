@@ -258,6 +258,8 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.SBC19Att = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCC19Att = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -410,6 +412,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PCKtpAtt.SuspendLayout()
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCC19Att, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlTop
@@ -863,6 +866,7 @@ Partial Class FormMasterEmployeeNewDet
         'XTPGeneral
         '
         Me.XTPGeneral.AutoScroll = True
+        Me.XTPGeneral.Controls.Add(Me.SBC19Att)
         Me.XTPGeneral.Controls.Add(Me.PanelControl10)
         Me.XTPGeneral.Controls.Add(Me.SLUEJabatanTKDN)
         Me.XTPGeneral.Controls.Add(Me.LabelControl33)
@@ -1575,7 +1579,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.SBKkAtt.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.SBKkAtt.Image = CType(resources.GetObject("SBKkAtt.Image"), System.Drawing.Image)
-        Me.SBKkAtt.Location = New System.Drawing.Point(519, 116)
+        Me.SBKkAtt.Location = New System.Drawing.Point(416, 116)
         Me.SBKkAtt.Name = "SBKkAtt"
         Me.SBKkAtt.Size = New System.Drawing.Size(60, 20)
         Me.SBKkAtt.TabIndex = 8936
@@ -1586,7 +1590,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.SBKtpAtt.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.SBKtpAtt.Image = CType(resources.GetObject("SBKtpAtt.Image"), System.Drawing.Image)
-        Me.SBKtpAtt.Location = New System.Drawing.Point(453, 116)
+        Me.SBKtpAtt.Location = New System.Drawing.Point(350, 116)
         Me.SBKtpAtt.Name = "SBKtpAtt"
         Me.SBKtpAtt.Size = New System.Drawing.Size(60, 20)
         Me.SBKtpAtt.TabIndex = 8934
@@ -2009,7 +2013,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtKTP.Location = New System.Drawing.Point(107, 116)
         Me.TxtKTP.Name = "TxtKTP"
         Me.TxtKTP.Properties.ReadOnly = True
-        Me.TxtKTP.Size = New System.Drawing.Size(340, 20)
+        Me.TxtKTP.Size = New System.Drawing.Size(232, 20)
         Me.TxtKTP.TabIndex = 8
         '
         'Label13
@@ -2718,6 +2722,7 @@ Partial Class FormMasterEmployeeNewDet
         'PanelControlBottom
         '
         Me.PanelControlBottom.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlBottom.Controls.Add(Me.PCC19Att)
         Me.PanelControlBottom.Controls.Add(Me.PCPosAtt)
         Me.PanelControlBottom.Controls.Add(Me.PCRekAtt)
         Me.PanelControlBottom.Controls.Add(Me.PCKkAtt)
@@ -2831,6 +2836,25 @@ Partial Class FormMasterEmployeeNewDet
         'ErrorProvider1
         '
         Me.ErrorProvider1.ContainerControl = Me
+        '
+        'SBC19Att
+        '
+        Me.SBC19Att.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBC19Att.Image = CType(resources.GetObject("SBC19Att.Image"), System.Drawing.Image)
+        Me.SBC19Att.Location = New System.Drawing.Point(482, 116)
+        Me.SBC19Att.Name = "SBC19Att"
+        Me.SBC19Att.Size = New System.Drawing.Size(96, 20)
+        Me.SBC19Att.TabIndex = 9063
+        Me.SBC19Att.TabStop = False
+        Me.SBC19Att.Text = "C19 Vaccine"
+        '
+        'PCC19Att
+        '
+        Me.PCC19Att.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCC19Att.Location = New System.Drawing.Point(200, 0)
+        Me.PCC19Att.Name = "PCC19Att"
+        Me.PCC19Att.Size = New System.Drawing.Size(50, 36)
+        Me.PCC19Att.TabIndex = 25
         '
         'FormMasterEmployeeNewDet
         '
@@ -3003,6 +3027,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PCKtpAtt.ResumeLayout(False)
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCC19Att, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3244,4 +3269,6 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl33 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SBC19Att As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCC19Att As DevExpress.XtraEditors.PanelControl
 End Class

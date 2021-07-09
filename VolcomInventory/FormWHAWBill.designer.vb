@@ -1357,6 +1357,7 @@ Partial Class FormWHAWBill
         Me.XTPListOut.Controls.Add(Me.XtraScrollableControl1)
         Me.XTPListOut.Controls.Add(Me.PCLock)
         Me.XTPListOut.Name = "XTPListOut"
+        Me.XTPListOut.PageVisible = False
         Me.XTPListOut.Size = New System.Drawing.Size(1267, 450)
         Me.XTPListOut.Text = "List Outbound"
         '

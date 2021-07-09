@@ -118,6 +118,40 @@
                 FormEmployeePpsDet.PCPosAtt.Controls.Add(PEEdit)
                 FormEmployeePpsDet.PCPosAtt.Controls.SetChildIndex(PEEdit, 0)
             End If
+        ElseIf type = "c19" Then
+            images.Rows.Clear()
+
+            For Each i As Control In XSCImageList.Controls
+                Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+                Dim con As ImageConverter = New ImageConverter
+
+                images.Rows.Add(con.ConvertTo(ic.EditValue, GetType(Byte())))
+            Next
+
+            FormEmployeePpsDet.PCC19Att.Controls.Clear()
+
+            For i = 0 To images.Rows.Count - 1
+                Dim msImage As IO.MemoryStream = New IO.MemoryStream(images.Rows(i)("image"), False)
+
+                Dim PEEdit As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                If msImage.Length > 0 Then
+                    Dim image As Image = Image.FromStream(msImage)
+
+                    PEEdit.EditValue = image
+
+                    FormEmployeePpsDet.PCC19Att.Controls.Add(PEEdit)
+                    FormEmployeePpsDet.PCC19Att.Controls.SetChildIndex(PEEdit, 0)
+                End If
+            Next
+
+            If FormEmployeePpsDet.PCC19Att.Controls.Count <= 0 Then
+                Dim PEEdit As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                FormEmployeePpsDet.PCC19Att.Controls.Add(PEEdit)
+                FormEmployeePpsDet.PCC19Att.Controls.SetChildIndex(PEEdit, 0)
+            End If
         End If
 
         Close()

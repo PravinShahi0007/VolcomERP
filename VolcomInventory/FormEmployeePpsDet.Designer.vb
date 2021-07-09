@@ -60,6 +60,12 @@ Partial Class FormEmployeePpsDet
         Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         Me.GCContractPropose = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUEJabatanTKDN = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl33 = New DevExpress.XtraEditors.LabelControl()
         Me.LELevel = New DevExpress.XtraEditors.LookUpEdit()
         Me.TxtPosition = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
@@ -255,6 +261,12 @@ Partial Class FormEmployeePpsDet
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.GCContractProposeB = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl13 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUEJabatanTKDNB = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl34 = New DevExpress.XtraEditors.LabelControl()
         Me.LELevelB = New DevExpress.XtraEditors.LookUpEdit()
         Me.TxtPositionB = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -432,18 +444,10 @@ Partial Class FormEmployeePpsDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ChangesProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.LabelControl33 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLUEJabatanTKDN = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLUEJabatanTKDNB = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl34 = New DevExpress.XtraEditors.LabelControl()
+        Me.SBC19Att = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBC19AttB = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCC19Att = New DevExpress.XtraEditors.PanelControl()
+        Me.PCC19AttB = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -479,6 +483,8 @@ Partial Class FormEmployeePpsDet
         Me.GCContractPropose.SuspendLayout()
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl10.SuspendLayout()
+        CType(Me.SLUEJabatanTKDN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LELevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPosition.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEffectiveDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -622,6 +628,8 @@ Partial Class FormEmployeePpsDet
         Me.GCContractProposeB.SuspendLayout()
         CType(Me.PanelControl13, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl13.SuspendLayout()
+        CType(Me.SLUEJabatanTKDNB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LELevelB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPositionB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEffectiveDateB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -746,10 +754,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChangesProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEJabatanTKDN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEJabatanTKDNB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCC19Att, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCC19AttB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -896,6 +902,7 @@ Partial Class FormEmployeePpsDet
         '
         'GCAtt
         '
+        Me.GCAtt.Controls.Add(Me.PCC19Att)
         Me.GCAtt.Controls.Add(Me.PCPosAtt)
         Me.GCAtt.Controls.Add(Me.PCRekAtt)
         Me.GCAtt.Controls.Add(Me.PCKkAtt)
@@ -1223,6 +1230,52 @@ Partial Class FormEmployeePpsDet
         Me.PanelControl10.Size = New System.Drawing.Size(769, 138)
         Me.PanelControl10.TabIndex = 8937
         '
+        'SLUEJabatanTKDN
+        '
+        Me.SLUEJabatanTKDN.Location = New System.Drawing.Point(135, 104)
+        Me.SLUEJabatanTKDN.Name = "SLUEJabatanTKDN"
+        Me.SLUEJabatanTKDN.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEJabatanTKDN.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUEJabatanTKDN.Size = New System.Drawing.Size(619, 20)
+        Me.SLUEJabatanTKDN.TabIndex = 130
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.FieldName = "id_jabatan_tkdn"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Kode"
+        Me.GridColumn2.FieldName = "kode_jabatan_tkdn"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Jabatan"
+        Me.GridColumn3.FieldName = "jabatan_tkdn"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'LabelControl33
+        '
+        Me.LabelControl33.Location = New System.Drawing.Point(11, 107)
+        Me.LabelControl33.Name = "LabelControl33"
+        Me.LabelControl33.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl33.TabIndex = 129
+        Me.LabelControl33.Text = "Jabatan TKDN"
+        '
         'LELevel
         '
         Me.LELevel.Location = New System.Drawing.Point(135, 6)
@@ -1261,7 +1314,7 @@ Partial Class FormEmployeePpsDet
         Me.LabelControl27.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical
         Me.LabelControl27.Location = New System.Drawing.Point(12, 65)
         Me.LabelControl27.Name = "LabelControl27"
-        Me.LabelControl27.Size = New System.Drawing.Size(100, 26)
+        Me.LabelControl27.Size = New System.Drawing.Size(100, 39)
         Me.LabelControl27.TabIndex = 128
         Me.LabelControl27.Text = "Effective Date (departement, level && position)"
         '
@@ -1575,6 +1628,7 @@ Partial Class FormEmployeePpsDet
         '
         'GCDetailPropose
         '
+        Me.GCDetailPropose.Controls.Add(Me.SBC19Att)
         Me.GCDetailPropose.Controls.Add(Me.TEEmergencyPhone2)
         Me.GCDetailPropose.Controls.Add(Me.Label112)
         Me.GCDetailPropose.Controls.Add(Me.TEEmergencyRelation2)
@@ -2259,7 +2313,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.SBKkAtt.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.SBKkAtt.Image = CType(resources.GetObject("SBKkAtt.Image"), System.Drawing.Image)
-        Me.SBKkAtt.Location = New System.Drawing.Point(470, 135)
+        Me.SBKkAtt.Location = New System.Drawing.Point(368, 135)
         Me.SBKkAtt.Name = "SBKkAtt"
         Me.SBKkAtt.Size = New System.Drawing.Size(60, 20)
         Me.SBKkAtt.TabIndex = 8935
@@ -2270,7 +2324,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.SBKtpAtt.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.SBKtpAtt.Image = CType(resources.GetObject("SBKtpAtt.Image"), System.Drawing.Image)
-        Me.SBKtpAtt.Location = New System.Drawing.Point(404, 135)
+        Me.SBKtpAtt.Location = New System.Drawing.Point(302, 135)
         Me.SBKtpAtt.Name = "SBKtpAtt"
         Me.SBKtpAtt.Size = New System.Drawing.Size(60, 20)
         Me.SBKtpAtt.TabIndex = 8933
@@ -2624,7 +2678,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.TxtKTP.Location = New System.Drawing.Point(107, 135)
         Me.TxtKTP.Name = "TxtKTP"
-        Me.TxtKTP.Size = New System.Drawing.Size(280, 20)
+        Me.TxtKTP.Size = New System.Drawing.Size(190, 20)
         Me.TxtKTP.TabIndex = 8905
         '
         'Label57
@@ -2969,6 +3023,7 @@ Partial Class FormEmployeePpsDet
         '
         'GCAttB
         '
+        Me.GCAttB.Controls.Add(Me.PCC19AttB)
         Me.GCAttB.Controls.Add(Me.PCPosAttB)
         Me.GCAttB.Controls.Add(Me.PCRekAttB)
         Me.GCAttB.Controls.Add(Me.PCKkAttB)
@@ -3296,6 +3351,52 @@ Partial Class FormEmployeePpsDet
         Me.PanelControl13.Size = New System.Drawing.Size(769, 138)
         Me.PanelControl13.TabIndex = 8941
         '
+        'SLUEJabatanTKDNB
+        '
+        Me.SLUEJabatanTKDNB.Location = New System.Drawing.Point(135, 104)
+        Me.SLUEJabatanTKDNB.Name = "SLUEJabatanTKDNB"
+        Me.SLUEJabatanTKDNB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEJabatanTKDNB.Properties.View = Me.GridView1
+        Me.SLUEJabatanTKDNB.Size = New System.Drawing.Size(619, 20)
+        Me.SLUEJabatanTKDNB.TabIndex = 8938
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.FieldName = "id_jabatan_tkdn"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Kode"
+        Me.GridColumn5.FieldName = "kode_jabatan_tkdn"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Jabatan"
+        Me.GridColumn6.FieldName = "jabatan_tkdn"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        '
+        'LabelControl34
+        '
+        Me.LabelControl34.Location = New System.Drawing.Point(11, 107)
+        Me.LabelControl34.Name = "LabelControl34"
+        Me.LabelControl34.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl34.TabIndex = 8937
+        Me.LabelControl34.Text = "Jabatan TKDN"
+        '
         'LELevelB
         '
         Me.LELevelB.Location = New System.Drawing.Point(135, 6)
@@ -3327,7 +3428,7 @@ Partial Class FormEmployeePpsDet
         Me.LabelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical
         Me.LabelControl5.Location = New System.Drawing.Point(12, 65)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(100, 26)
+        Me.LabelControl5.Size = New System.Drawing.Size(100, 39)
         Me.LabelControl5.TabIndex = 8936
         Me.LabelControl5.Text = "Effective Date (departement, level && position)"
         '
@@ -3658,6 +3759,7 @@ Partial Class FormEmployeePpsDet
         '
         'GCDetailProposeB
         '
+        Me.GCDetailProposeB.Controls.Add(Me.SBC19AttB)
         Me.GCDetailProposeB.Controls.Add(Me.TEEmergencyPhone2B)
         Me.GCDetailProposeB.Controls.Add(Me.Label115)
         Me.GCDetailProposeB.Controls.Add(Me.TEEmergencyRelation2B)
@@ -4337,7 +4439,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.SBKkAttB.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.SBKkAttB.Image = CType(resources.GetObject("SBKkAttB.Image"), System.Drawing.Image)
-        Me.SBKkAttB.Location = New System.Drawing.Point(470, 135)
+        Me.SBKkAttB.Location = New System.Drawing.Point(368, 135)
         Me.SBKkAttB.Name = "SBKkAttB"
         Me.SBKkAttB.Size = New System.Drawing.Size(60, 20)
         Me.SBKkAttB.TabIndex = 8936
@@ -4348,7 +4450,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.SBKtpAttB.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.SBKtpAttB.Image = CType(resources.GetObject("SBKtpAttB.Image"), System.Drawing.Image)
-        Me.SBKtpAttB.Location = New System.Drawing.Point(404, 135)
+        Me.SBKtpAttB.Location = New System.Drawing.Point(302, 135)
         Me.SBKtpAttB.Name = "SBKtpAttB"
         Me.SBKtpAttB.Size = New System.Drawing.Size(60, 20)
         Me.SBKtpAttB.TabIndex = 8934
@@ -4753,7 +4855,7 @@ Partial Class FormEmployeePpsDet
         Me.TxtKTPB.Location = New System.Drawing.Point(107, 135)
         Me.TxtKTPB.Name = "TxtKTPB"
         Me.TxtKTPB.Properties.ReadOnly = True
-        Me.TxtKTPB.Size = New System.Drawing.Size(280, 20)
+        Me.TxtKTPB.Size = New System.Drawing.Size(190, 20)
         Me.TxtKTPB.TabIndex = 8905
         '
         'Label26
@@ -5181,97 +5283,43 @@ Partial Class FormEmployeePpsDet
         Me.ChangesProvider1.ContainerControl = Me
         Me.ChangesProvider1.Icon = CType(resources.GetObject("ChangesProvider1.Icon"), System.Drawing.Icon)
         '
-        'LabelControl33
+        'SBC19Att
         '
-        Me.LabelControl33.Location = New System.Drawing.Point(11, 107)
-        Me.LabelControl33.Name = "LabelControl33"
-        Me.LabelControl33.Size = New System.Drawing.Size(68, 13)
-        Me.LabelControl33.TabIndex = 129
-        Me.LabelControl33.Text = "Jabatan TKDN"
+        Me.SBC19Att.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBC19Att.Image = CType(resources.GetObject("SBC19Att.Image"), System.Drawing.Image)
+        Me.SBC19Att.Location = New System.Drawing.Point(434, 135)
+        Me.SBC19Att.Name = "SBC19Att"
+        Me.SBC19Att.Size = New System.Drawing.Size(96, 20)
+        Me.SBC19Att.TabIndex = 9046
+        Me.SBC19Att.TabStop = False
+        Me.SBC19Att.Text = "C19 Vaccine"
         '
-        'SLUEJabatanTKDN
+        'SBC19AttB
         '
-        Me.SLUEJabatanTKDN.Location = New System.Drawing.Point(135, 104)
-        Me.SLUEJabatanTKDN.Name = "SLUEJabatanTKDN"
-        Me.SLUEJabatanTKDN.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEJabatanTKDN.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLUEJabatanTKDN.Size = New System.Drawing.Size(619, 20)
-        Me.SLUEJabatanTKDN.TabIndex = 130
+        Me.SBC19AttB.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBC19AttB.Image = CType(resources.GetObject("SBC19AttB.Image"), System.Drawing.Image)
+        Me.SBC19AttB.Location = New System.Drawing.Point(434, 135)
+        Me.SBC19AttB.Name = "SBC19AttB"
+        Me.SBC19AttB.Size = New System.Drawing.Size(96, 20)
+        Me.SBC19AttB.TabIndex = 9060
+        Me.SBC19AttB.TabStop = False
+        Me.SBC19AttB.Text = "C19 Vaccine"
         '
-        'SearchLookUpEdit1View
+        'PCC19Att
         '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        Me.PCC19Att.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCC19Att.Location = New System.Drawing.Point(402, 20)
+        Me.PCC19Att.Name = "PCC19Att"
+        Me.PCC19Att.Size = New System.Drawing.Size(100, 128)
+        Me.PCC19Att.TabIndex = 6
         '
-        'GridColumn1
+        'PCC19AttB
         '
-        Me.GridColumn1.FieldName = "id_jabatan_tkdn"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Kode"
-        Me.GridColumn2.FieldName = "kode_jabatan_tkdn"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Jabatan"
-        Me.GridColumn3.FieldName = "jabatan_tkdn"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        '
-        'SLUEJabatanTKDNB
-        '
-        Me.SLUEJabatanTKDNB.Location = New System.Drawing.Point(135, 104)
-        Me.SLUEJabatanTKDNB.Name = "SLUEJabatanTKDNB"
-        Me.SLUEJabatanTKDNB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEJabatanTKDNB.Properties.View = Me.GridView1
-        Me.SLUEJabatanTKDNB.Size = New System.Drawing.Size(619, 20)
-        Me.SLUEJabatanTKDNB.TabIndex = 8938
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.FieldName = "id_jabatan_tkdn"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Kode"
-        Me.GridColumn5.FieldName = "kode_jabatan_tkdn"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Jabatan"
-        Me.GridColumn6.FieldName = "jabatan_tkdn"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
-        '
-        'LabelControl34
-        '
-        Me.LabelControl34.Location = New System.Drawing.Point(11, 107)
-        Me.LabelControl34.Name = "LabelControl34"
-        Me.LabelControl34.Size = New System.Drawing.Size(68, 13)
-        Me.LabelControl34.TabIndex = 8937
-        Me.LabelControl34.Text = "Jabatan TKDN"
+        Me.PCC19AttB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCC19AttB.Location = New System.Drawing.Point(402, 20)
+        Me.PCC19AttB.Name = "PCC19AttB"
+        Me.PCC19AttB.Size = New System.Drawing.Size(100, 128)
+        Me.PCC19AttB.TabIndex = 7
         '
         'FormEmployeePpsDet
         '
@@ -5325,6 +5373,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl10.ResumeLayout(False)
         Me.PanelControl10.PerformLayout()
+        CType(Me.SLUEJabatanTKDN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LELevel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPosition.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEffectiveDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -5475,6 +5525,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.PanelControl13, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl13.ResumeLayout(False)
         Me.PanelControl13.PerformLayout()
+        CType(Me.SLUEJabatanTKDNB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LELevelB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPositionB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEffectiveDateB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -5606,10 +5658,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChangesProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEJabatanTKDN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEJabatanTKDNB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCC19Att, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCC19AttB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -6036,4 +6086,8 @@ Partial Class FormEmployeePpsDet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl34 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SBC19Att As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBC19AttB As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCC19Att As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCC19AttB As DevExpress.XtraEditors.PanelControl
 End Class

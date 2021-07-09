@@ -4,6 +4,8 @@
     Public id_design As String = "-1"
     '
     Public is_insert_cool_storage As String = get_opt_prod_field("is_insert_cool_storage_ecop")
+
+    Dim id_season As String = "-1"
     '
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
@@ -36,7 +38,6 @@
             SLECoolStorage.Visible = False
         End If
 
-        Dim id_season As Integer = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
 
         TEEcop.EditValue = 0.00
         TEKurs.EditValue = 1.0
@@ -45,37 +46,79 @@
         view_currency(LECurrency)
         TEVendor.Focus()
         '
-        id_comp = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_comp_pd").ToString
-        id_comp_contact = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString
-        TEVendor.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_number_pd").ToString
-        TEVendorName.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_name_pd").ToString
-        TEKurs.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
-        MEECOPNote.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("cop_pd_note").ToString
-        SLECOO.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("coo").ToString
+        Dim qv As String = "SELECT cc.`id_comp` AS id_comp_pd,cc.`id_comp_contact` AS prod_order_cop_pd_vendor,c.comp_number AS comp_number_pd,c.comp_name AS comp_name_pd,d.prod_order_cop_kurs_pd,d.cop_pd_note,d.coo
+,d.prod_order_cop_pd_addcost,d.prod_order_cop_pd,d.is_cold_storage,d.prod_order_cop_pd_curr
+FROM tb_m_design d
+LEFT JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=d.`aging_design`
+LEFT JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+WHERE d.id_design='" & id_design & "'"
+        Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
+        If dtv.Rows.Count > 0 Then
+            id_season = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
+
+            id_comp = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_comp_pd").ToString
+            id_comp_contact = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString
+            TEVendor.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_number_pd").ToString
+            TEVendorName.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_name_pd").ToString
+            TEKurs.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
+            MEECOPNote.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("cop_pd_note").ToString
+            SLECOO.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("coo").ToString
+            '
+            TEEcop.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd") - FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
+            TEAdditionalCost.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
+            SLECoolStorage.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("is_cold_storage").ToString
+            '
+            LECurrency.EditValue = Nothing
+            LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString)
+            LECurrency.Visible = False
+        Else
+            warningCustom("Design not found")
+            Close()
+        End If
         '
-        TEEcop.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd") - FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
-        TEAdditionalCost.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
-        '
+        'id_season = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
+
+        'id_comp = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_comp_pd").ToString
+        'id_comp_contact = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString
+        'TEVendor.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_number_pd").ToString
+        'TEVendorName.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_name_pd").ToString
+        'TEKurs.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
+        'MEECOPNote.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("cop_pd_note").ToString
+        'SLECOO.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("coo").ToString
+        ''
+        'TEEcop.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd") - FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
+        'TEAdditionalCost.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
+
+        load_det_current()
+
         If TEEcop.EditValue > 0 Then
             BLock.Text = "Reset"
             BUpdateCOP.Visible = False
+            '
+            GCDraft.Visible = False
+            TEEcop.Visible = True
+            LECOP.Visible = True
+            TEAdditionalCost.Visible = True
+            LAdditional.Visible = True
         Else
             BLock.Text = "Lock"
             BUpdateCOP.Visible = True
+
+            'draft
+            GCDraft.Visible = True
+            TEEcop.Visible = False
+            LECOP.Visible = False
+            TEAdditionalCost.Visible = False
+            LAdditional.Visible = False
+
+            TEDraftECOP.EditValue = GVCOPCurrent.Columns("after_kurs").SummaryItem.SummaryValue
+            TEDraftECOPAdditional.EditValue = GVCOPCurrent.Columns("additional").SummaryItem.SummaryValue
         End If
-        '
-        SLECoolStorage.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("is_cold_storage").ToString
-        '
-        LECurrency.EditValue = Nothing
-        LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString)
-        LECurrency.Visible = False
         '
         Dim query As String = "SELECT pdd.`id_prod_demand`,pd.`id_report_status`,pdd.`id_design` FROM tb_prod_demand_design pdd
 INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
 WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND pd.is_pd='1'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        '
-        load_det_current()
         '
         If data.Rows.Count > 0 Then
             warningCustom("PD already created, COP already locked.")
@@ -122,10 +165,9 @@ WHERE dsg.id_design='" & id_design & "'"
 
     Function get_use_target_cost()
         'look season if use target cost
-        Dim id_season As Integer = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
 
         Dim is_use_target_cost As String = "2"
-        Dim qst As String = "SELECT is_use_target_cost FROM tb_season WHERE id_season='" & id_season.ToString & "'"
+        Dim qst As String = "SELECT is_use_target_cost FROM tb_season WHERE id_season='" & id_season & "'"
 
         is_use_target_cost = execute_query(qst, 0, True, "", "", "", "")
 
@@ -371,7 +413,6 @@ INNER JOIN tb_m_code_detail cd ON dsgc.`id_code_detail`=cd.`id_code_detail` AND 
     End Sub
 
     Private Sub BUpdateCOP_Click(sender As Object, e As EventArgs) Handles BUpdateCOP.Click
-        Dim id_season As Integer = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
         Dim is_more_than_limit As Boolean = False
 
         'check limit

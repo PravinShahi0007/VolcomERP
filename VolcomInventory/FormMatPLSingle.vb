@@ -46,7 +46,11 @@
                 GroupControlDetailSingle.Enabled = True
                 based_on_srs = True
                 BtnInfoSrs.Enabled = True
-                LEPLType.ItemIndex = LEPLType.Properties.GetDataSourceRowIndex("id_pl_mat_type", FormMatPL.GVMRS.GetFocusedRowCellValue("id_pl_mat_type").ToString)
+                If is_other = "1" Then
+                    LEPLType.ItemIndex = LEPLType.Properties.GetDataSourceRowIndex("id_pl_mat_type", "2")
+                Else
+                    LEPLType.ItemIndex = LEPLType.Properties.GetDataSourceRowIndex("id_pl_mat_type", FormMatPL.GVMRS.GetFocusedRowCellValue("id_pl_mat_type").ToString)
+                End If
             End If
 
             TxtPLNumber.Text = header_number_mat("11")

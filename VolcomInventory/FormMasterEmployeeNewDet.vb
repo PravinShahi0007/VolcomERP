@@ -348,6 +348,23 @@
             pre_viewImages("4", PEKTP, id_employee + "_ktp", False)
             pre_viewImages("4", PEKK, id_employee + "_kk", False)
             pre_viewImages("4", PEREK, id_employee + "_rek", False)
+
+            ' c19
+            PCC19Att.Controls.Clear()
+
+            Dim pth As String = get_setup_field("pic_path_emp") + "\"
+
+            For i = 1 To 100
+                If System.IO.File.Exists(pth + id_employee + "_c19_" + i.ToString + ".jpg") Then
+                    Dim PEC19 As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                    PCC19Att.Controls.Add(PEC19)
+
+                    pre_viewImages("4", PEC19, id_employee + "_c19_" + i.ToString, False)
+                Else
+                    Exit For
+                End If
+            Next
         End If
     End Sub
 
@@ -985,6 +1002,27 @@
         End If
 
         FormEmployeePpsAtt.type = "position"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = True
+        FormEmployeePpsAtt.is_single = False
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBC19Att_Click(sender As Object, e As EventArgs) Handles SBC19Att.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        For Each i As Control In PCC19Att.Controls
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+            Dim con As ImageConverter = New ImageConverter
+
+            images.Rows.Add(con.ConvertTo(ic.EditValue, GetType(Byte())))
+        Next
+
+        FormEmployeePpsAtt.type = "c19"
         FormEmployeePpsAtt.images = images
         FormEmployeePpsAtt.read_only = True
         FormEmployeePpsAtt.is_single = False
