@@ -14,12 +14,21 @@
     End Sub
 
     Sub load_artikel()
-        Dim q As String = "SELECT id_sni_pps_budget,budget_desc,budget_value,budget_qty
+        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc,budget_value,budget_qty
 FROM `tb_sni_pps_budget` b
-WHERE b.id_sni_pps='" & id_pps & "'"
+WHERE b.id_sni_pps='" & id_pps & "' AND NOT ISNULL(b.id_design)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCBudgetCop.DataSource = dt
         GVBudgetCop.BestFitColumns()
+    End Sub
+
+    Sub load_budget_det()
+        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc,budget_value,budget_qty
+FROM `tb_sni_pps_budget` b
+WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCBudget.DataSource = dt
+        GVBudget.BestFitColumns()
     End Sub
 
     Sub load_head()
@@ -265,6 +274,45 @@ HAVING NOT ISNULL(err)"
     Private Sub XTCKidList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCKidList.SelectedPageChanged
         If XTCKidList.SelectedTabPageIndex = 2 Then
             load_artikel()
+            load_budget_det()
+            calculate()
         End If
+    End Sub
+
+    Sub calculate()
+        GVBudget.RefreshData()
+        GVBudgetCop.RefreshData()
+
+        TETotalBudget.EditValue = GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue
+        TETotalQty.EditValue = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
+        TESNICop.EditValue = (GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
+    End Sub
+
+    Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = DialogResult.Yes Then
+            GVBudgetCop.ActiveFilterString = "[is_check]='yes'"
+            For i = GVBudgetCop.RowCount - 1 To 0 Step -1
+                GVBudgetCop.DeleteRow(i)
+            Next
+            GVBudgetCop.ActiveFilterString = ""
+            '
+            GVBudget.ActiveFilterString = "[is_check]='yes'"
+            For i = GVBudget.RowCount - 1 To 0 Step -1
+                GVBudget.DeleteRow(i)
+            Next
+            GVBudget.ActiveFilterString = ""
+        End If
+    End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        GVBudget.AddNewRow()
+    End Sub
+
+    Private Sub GVBudget_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVBudget.CellValueChanged
+        calculate()
     End Sub
 End Class
