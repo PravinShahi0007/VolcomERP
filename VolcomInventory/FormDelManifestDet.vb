@@ -792,7 +792,11 @@ ORDER BY awbd.id_awbill ASC,awbd.id_pl_sales_order_del ASC"
     End Sub
 
     Private Sub BGenOnline_Click(sender As Object, e As EventArgs) Handles BGenOnline.Click
-        gen_online()
+        If SLEStoreGroup.EditValue.ToString = "76" And SLEDelType.EditValue.ToString = "7" Then 'VIOS tapi milih marketplace
+            warningCustom("VIOS tidak menggunakan marketplace")
+        Else
+            gen_online()
+        End If
     End Sub
 
     Sub gen_offline()
