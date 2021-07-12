@@ -41,15 +41,15 @@
         " + col_add + "
         FROM tb_purc_rec_asset a
         INNER JOIN tb_coa_tag ct ON ct.id_coa_tag=a.id_coa_tag
-        INNER JOIN tb_purc_rec_det rd ON rd.id_purc_rec_det = a.id_purc_rec_det
-        INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
-        INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
-        INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-        INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+        LEFT JOIN tb_purc_rec_det rd ON rd.id_purc_rec_det = a.id_purc_rec_det
+        LEFT JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+        LEFT JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
+        LEFT JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+        LEFT JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
         INNER JOIN tb_m_departement d ON d.id_departement = a.id_departement
-        INNER JOIN tb_item i ON i.id_item = a.id_item
-        INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-        INNER JOIN tb_item_cat_detail catd ON catd.id_item_cat_detail = i.id_item_cat_detail
+        LEFT JOIN tb_item i ON i.id_item = a.id_item
+        LEFT JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+        LEFT JOIN tb_item_cat_detail catd ON catd.id_item_cat_detail = i.id_item_cat_detail
         INNER JOIN tb_a_acc fa ON fa.id_acc = a.id_acc_fa
         LEFT JOIN tb_a_acc dep ON dep.id_acc = a.id_acc_dep
         LEFT JOIN tb_a_acc adep ON adep.id_acc = a.id_acc_dep_accum
