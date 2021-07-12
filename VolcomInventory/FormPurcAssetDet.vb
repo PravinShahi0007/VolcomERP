@@ -78,7 +78,7 @@
             Dim query As String = a.queryMain("AND a.id_purc_rec_asset=" + id + "", "1", find_accum)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
-            SLEUnit.EditValue = data.Rows(0)("po_tag").ToString
+            SLEUnit.EditValue = data.Rows(0)("id_coa_tag").ToString
             '
             is_confirm = data.Rows(0)("is_confirm").ToString
             'generate number
