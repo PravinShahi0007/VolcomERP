@@ -17,7 +17,7 @@
     End Sub
 
     Sub load_artikel()
-        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc,budget_value,budget_qty
+        Dim q As String = "SELECT 'no' AS is_check,id_design,id_sni_pps_budget,budget_desc,budget_value,budget_qty
 FROM `tb_sni_pps_budget` b
 WHERE b.id_sni_pps='" & id_pps & "' AND NOT ISNULL(b.id_design)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -61,6 +61,12 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
 
                 is_submit = dt.Rows(0)("is_submit").ToString
                 '
+                If is_submit = "1" Then
+                    BPrint.Visible = True
+                Else
+                    BPrint.Visible = False
+                End If
+                '
                 If dt.Rows(0)("id_report_status").ToString = "6" Or dt.Rows(0)("id_report_status").ToString = "5" Then
                     is_view = "1"
                 End If
@@ -69,6 +75,7 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                     BSave.Visible = False
                     PCAddBudget.Visible = False
                     PCAddDel.Visible = False
+                    BPrint.Visible = False
                 Else
                     BSave.Visible = True
                     PCAddBudget.Visible = True
@@ -109,13 +116,6 @@ AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND dsg.`id_lookup_status_orde
         If GVList.RowCount > 0 Then
             BPropose.Visible = True
         End If
-    End Sub
-
-    Sub load_budget()
-        Dim q As String = "SELECT id_sni_pps_budget,`id_sni_pps`,`id_design`,`budget_desc`,`budget_value`,`budget_qty`
-FROM `tb_sni_pps_budget`
-WHERE `id_sni_pps`=''"
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
     End Sub
 
     Sub load_proposed()
@@ -188,7 +188,7 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
             '
             If Not is_zero Then
                 For i = 0 To GVBudgetCop.RowCount - 1
-                    If GVBudget.GetRowCellValue(i, "sub_amount") = 0 Then
+                    If GVBudgetCop.GetRowCellValue(i, "sub_amount") = 0 Then
                         is_zero = True
                         Exit For
                     End If
@@ -435,6 +435,13 @@ HAVING NOT ISNULL(err)"
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportSNIBudget.id_pps = id_pps
+        Dim Report As New ReportSNIBudget()
 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+
+        Cursor = Cursors.Default
     End Sub
 End Class
