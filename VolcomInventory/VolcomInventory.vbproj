@@ -9790,6 +9790,12 @@
     <Compile Include="ReportShipInvoice.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSNIBudget.Designer.vb">
+      <DependentUpon>ReportSNIBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSNIBudget.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSNIPpsList.Designer.vb">
       <DependentUpon>ReportSNIPpsList.vb</DependentUpon>
     </Compile>
