@@ -309,7 +309,24 @@ HAVING NOT ISNULL(err)"
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        Cursor = Cursors.WaitCursor
         GVBudget.AddNewRow()
+        GVBudget.FocusedRowHandle = GVBudget.RowCount - 1
+        '
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "is_check", "no")
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "cc", "1")
+        '
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "amount", 0)
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "tax_percent", 0)
+        '
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "pph_percent", 0)
+        '
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "amount_before", 0)
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "kurs", 1)
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "id_currency", 1)
+        '
+        GVBudget.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub GVBudget_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVBudget.CellValueChanged
