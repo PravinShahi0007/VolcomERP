@@ -108,6 +108,7 @@ Partial Class FormSNIppsDet
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.Battach = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,6 +160,7 @@ Partial Class FormSNIppsDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BPrint)
         Me.PanelControl1.Controls.Add(Me.BMark)
         Me.PanelControl1.Controls.Add(Me.Battach)
         Me.PanelControl1.Controls.Add(Me.BClose)
@@ -1089,9 +1091,9 @@ Partial Class FormSNIppsDet
         '
         Me.Battach.Dock = System.Windows.Forms.DockStyle.Right
         Me.Battach.Image = CType(resources.GetObject("Battach.Image"), System.Drawing.Image)
-        Me.Battach.Location = New System.Drawing.Point(617, 2)
+        Me.Battach.Location = New System.Drawing.Point(644, 2)
         Me.Battach.Name = "Battach"
-        Me.Battach.Size = New System.Drawing.Size(128, 43)
+        Me.Battach.Size = New System.Drawing.Size(101, 43)
         Me.Battach.TabIndex = 6
         Me.Battach.Text = "Attachment"
         '
@@ -1104,6 +1106,16 @@ Partial Class FormSNIppsDet
         Me.BMark.Size = New System.Drawing.Size(96, 43)
         Me.BMark.TabIndex = 7
         Me.BMark.Text = "Mark"
+        '
+        'BPrint
+        '
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
+        Me.BPrint.Location = New System.Drawing.Point(550, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(94, 43)
+        Me.BPrint.TabIndex = 8
+        Me.BPrint.Text = "Print"
         '
         'FormSNIppsDet
         '
@@ -1259,4 +1271,5 @@ Partial Class FormSNIppsDet
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents Battach As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -433,4 +433,8 @@ HAVING NOT ISNULL(err)"
     Private Sub FormSNIppsDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+
+    End Sub
 End Class
