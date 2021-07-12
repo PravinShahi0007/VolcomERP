@@ -1,5 +1,8 @@
 ﻿Public Class FormSNIppsDet
     Public id_pps As String = "-1"
+    Public is_view As String = "-1"
+
+    Dim is_submit As String = "-1"
 
     Private Sub FormSNIppsDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
@@ -43,7 +46,7 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
             XTPBudgetPropose.PageVisible = False
         Else
             'edit
-            Dim q As String = "SELECT pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name` 
+            Dim q As String = "SELECT pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name`,pps.id_report_status,pps.is_submit 
 FROM tb_sni_pps pps
 INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -55,10 +58,33 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                 DEProposeDate.EditValue = dt.Rows(0)("created_date")
                 '
                 load_proposed()
+
+                is_submit = dt.Rows(0)("is_submit").ToString
+                '
+                If dt.Rows(0)("id_report_status").ToString = "6" Or dt.Rows(0)("id_report_status").ToString = "5" Then
+                    is_view = "1"
+                End If
+
+                If is_view = "1" Then
+                    BSave.Visible = False
+                    PCAddBudget.Visible = False
+                    PCAddDel.Visible = False
+                Else
+                    BSave.Visible = True
+                    PCAddBudget.Visible = True
+                    PCAddDel.Visible = True
+                End If
+
+                XTPListDesign.PageVisible = False
+                XTPProposedList.PageVisible = True
+                XTPBudgetPropose.PageVisible = True
+                '
+                If is_submit = "1" Then
+                    BMark.Text = "Mark"
+                Else
+                    BMark.Text = "Submit"
+                End If
             End If
-            XTPListDesign.PageVisible = False
-            XTPProposedList.PageVisible = True
-            XTPBudgetPropose.PageVisible = True
         End If
     End Sub
 
@@ -147,7 +173,57 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
-        Dim q As String = ""
+        If GVBudget.RowCount = 0 Then
+            warningCustom("No budget found.")
+        ElseIf GVBudgetCop.RowCount = 0 Then
+            warningCustom("No SNI sample selected.")
+        Else
+            Dim is_zero As Boolean = False
+            For i = 0 To GVBudget.RowCount - 1
+                If GVBudget.GetRowCellValue(i, "sub_amount") = 0 Then
+                    is_zero = True
+                    Exit For
+                End If
+            Next
+            '
+            If Not is_zero Then
+                For i = 0 To GVBudgetCop.RowCount - 1
+                    If GVBudget.GetRowCellValue(i, "sub_amount") = 0 Then
+                        is_zero = True
+                        Exit For
+                    End If
+                Next
+            End If
+            '
+            If is_zero Then
+                warningCustom("Zero amount on budget")
+            Else
+                'save
+                Dim q As String = ""
+                q = "DELETE FROM tb_sni_pps_budget WHERE id_sni_pps='" & id_pps & "'"
+                execute_non_query(q, True, "", "", "", "")
+
+                q = ""
+                For i = 0 To GVBudgetCop.RowCount - 1
+                    If Not q = "" Then
+                        q += ","
+                    End If
+                    q += "('" & id_pps & "','" & GVBudgetCop.GetRowCellValue(i, "id_design").ToString & "','" & addSlashes(GVBudgetCop.GetRowCellValue(i, "budget_desc").ToString) & "','" & decimalSQL(Decimal.Parse(GVBudgetCop.GetRowCellValue(i, "budget_value").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVBudgetCop.GetRowCellValue(i, "budget_qty").ToString).ToString) & "')"
+                Next
+
+                For i = 0 To GVBudget.RowCount - 1
+                    If Not q = "" Then
+                        q += ","
+                    End If
+                    q += "('" & id_pps & "',NULL,'" & addSlashes(GVBudget.GetRowCellValue(i, "budget_desc").ToString) & "','" & decimalSQL(Decimal.Parse(GVBudget.GetRowCellValue(i, "budget_value").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVBudget.GetRowCellValue(i, "budget_qty").ToString).ToString) & "')"
+                Next
+
+                q = "INSERT INTO tb_sni_pps_budget(id_sni_pps,id_design,budget_desc,budget_value,budget_qty) VALUES" & q
+                execute_non_query(q, True, "", "", "", "")
+
+                infoCustom("Budget updated")
+            End If
+        End If
     End Sub
 
     Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click
@@ -324,5 +400,37 @@ HAVING NOT ISNULL(err)"
 
     Private Sub GVBudget_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVBudget.CellValueChanged
         calculate()
+    End Sub
+
+    Private Sub Battach_Click(sender As Object, e As EventArgs) Handles Battach.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim rmt As String = "319"
+
+        FormDocumentUpload.id_report = id_pps
+        FormDocumentUpload.is_view = is_view
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        If is_submit = "1" Then
+            FormReportMark.report_mark_type = "319"
+            FormReportMark.is_view = is_view
+            FormReportMark.id_report = id_pps
+            FormReportMark.ShowDialog()
+        Else
+            Dim q As String = "UPDATE tb_sni_pps SET is_submit=1 WHERE id_sni_pps='" & id_pps & "'"
+            execute_non_query(q, True, "", "", "", "")
+            '
+            submit_who_prepared("319", id_pps, id_user)
+            infoCustom("Budget submitted")
+            load_head()
+        End If
+    End Sub
+
+    Private Sub FormSNIppsDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class

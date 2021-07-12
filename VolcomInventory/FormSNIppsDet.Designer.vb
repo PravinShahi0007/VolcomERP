@@ -69,7 +69,7 @@ Partial Class FormSNIppsDet
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPImage = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddBudget = New DevExpress.XtraEditors.PanelControl()
         Me.BGetCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BExportList = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPBudgetPropose = New DevExpress.XtraTab.XtraTabPage()
@@ -103,9 +103,11 @@ Partial Class FormSNIppsDet
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.Battach = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,8 +131,8 @@ Partial Class FormSNIppsDet
         CType(Me.GVProposed, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPImage, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
+        CType(Me.PCAddBudget, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddBudget.SuspendLayout()
         Me.XTPBudgetPropose.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
@@ -151,12 +153,14 @@ Partial Class FormSNIppsDet
         CType(Me.GCBudgetCop, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBudgetCop, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddDel.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BMark)
+        Me.PanelControl1.Controls.Add(Me.Battach)
         Me.PanelControl1.Controls.Add(Me.BClose)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -214,7 +218,7 @@ Partial Class FormSNIppsDet
         Me.DEProposeDate.Name = "DEProposeDate"
         Me.DEProposeDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEProposeDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEProposeDate.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DEProposeDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEProposeDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEProposeDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEProposeDate.Properties.ReadOnly = True
@@ -465,7 +469,7 @@ Partial Class FormSNIppsDet
         'XTPProposedList
         '
         Me.XTPProposedList.Controls.Add(Me.GCProposed)
-        Me.XTPProposedList.Controls.Add(Me.PanelControl5)
+        Me.XTPProposedList.Controls.Add(Me.PCAddBudget)
         Me.XTPProposedList.Name = "XTPProposedList"
         Me.XTPProposedList.Size = New System.Drawing.Size(935, 513)
         Me.XTPProposedList.Text = "Proposed List"
@@ -662,15 +666,15 @@ Partial Class FormSNIppsDet
         Me.GridColumn28.FieldName = "season_orign"
         Me.GridColumn28.Name = "GridColumn28"
         '
-        'PanelControl5
+        'PCAddBudget
         '
-        Me.PanelControl5.Controls.Add(Me.BGetCOP)
-        Me.PanelControl5.Controls.Add(Me.BExportList)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 472)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(935, 41)
-        Me.PanelControl5.TabIndex = 22
+        Me.PCAddBudget.Controls.Add(Me.BGetCOP)
+        Me.PCAddBudget.Controls.Add(Me.BExportList)
+        Me.PCAddBudget.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCAddBudget.Location = New System.Drawing.Point(0, 472)
+        Me.PCAddBudget.Name = "PCAddBudget"
+        Me.PCAddBudget.Size = New System.Drawing.Size(935, 41)
+        Me.PCAddBudget.TabIndex = 22
         '
         'BGetCOP
         '
@@ -715,7 +719,7 @@ Partial Class FormSNIppsDet
         Me.XTPBudgetPropose.Controls.Add(Me.GroupControl2)
         Me.XTPBudgetPropose.Controls.Add(Me.PanelControl6)
         Me.XTPBudgetPropose.Controls.Add(Me.GroupControl1)
-        Me.XTPBudgetPropose.Controls.Add(Me.PanelControl3)
+        Me.XTPBudgetPropose.Controls.Add(Me.PCAddDel)
         Me.XTPBudgetPropose.Controls.Add(Me.PanelControl1)
         Me.XTPBudgetPropose.Name = "XTPBudgetPropose"
         Me.XTPBudgetPropose.Size = New System.Drawing.Size(935, 513)
@@ -899,6 +903,9 @@ Partial Class FormSNIppsDet
         Me.TETotalBudget.Name = "TETotalBudget"
         Me.TETotalBudget.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TETotalBudget.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TETotalBudget.Properties.Mask.EditMask = "N2"
+        Me.TETotalBudget.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TETotalBudget.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TETotalBudget.Properties.ReadOnly = True
         Me.TETotalBudget.Size = New System.Drawing.Size(209, 20)
         Me.TETotalBudget.TabIndex = 0
@@ -909,6 +916,9 @@ Partial Class FormSNIppsDet
         Me.TESNICop.Name = "TESNICop"
         Me.TESNICop.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TESNICop.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TESNICop.Properties.Mask.EditMask = "N2"
+        Me.TESNICop.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TESNICop.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TESNICop.Properties.ReadOnly = True
         Me.TESNICop.Size = New System.Drawing.Size(209, 20)
         Me.TESNICop.TabIndex = 4
@@ -927,6 +937,9 @@ Partial Class FormSNIppsDet
         Me.TETotalQty.Name = "TETotalQty"
         Me.TETotalQty.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TETotalQty.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TETotalQty.Properties.Mask.EditMask = "N2"
+        Me.TETotalQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TETotalQty.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TETotalQty.Properties.ReadOnly = True
         Me.TETotalQty.Size = New System.Drawing.Size(209, 20)
         Me.TETotalQty.TabIndex = 3
@@ -1042,15 +1055,15 @@ Partial Class FormSNIppsDet
         Me.GridColumn31.VisibleIndex = 4
         Me.GridColumn31.Width = 395
         '
-        'PanelControl3
+        'PCAddDel
         '
-        Me.PanelControl3.Controls.Add(Me.BDel)
-        Me.PanelControl3.Controls.Add(Me.BAdd)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(935, 47)
-        Me.PanelControl3.TabIndex = 1
+        Me.PCAddDel.Controls.Add(Me.BDel)
+        Me.PCAddDel.Controls.Add(Me.BAdd)
+        Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCAddDel.Location = New System.Drawing.Point(0, 0)
+        Me.PCAddDel.Name = "PCAddDel"
+        Me.PCAddDel.Size = New System.Drawing.Size(935, 47)
+        Me.PCAddDel.TabIndex = 1
         '
         'BDel
         '
@@ -1071,6 +1084,26 @@ Partial Class FormSNIppsDet
         Me.BAdd.Size = New System.Drawing.Size(139, 43)
         Me.BAdd.TabIndex = 3
         Me.BAdd.Text = "Add Budget Item"
+        '
+        'Battach
+        '
+        Me.Battach.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Battach.Image = CType(resources.GetObject("Battach.Image"), System.Drawing.Image)
+        Me.Battach.Location = New System.Drawing.Point(617, 2)
+        Me.Battach.Name = "Battach"
+        Me.Battach.Size = New System.Drawing.Size(128, 43)
+        Me.Battach.TabIndex = 6
+        Me.Battach.Text = "Attachment"
+        '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(96, 43)
+        Me.BMark.TabIndex = 7
+        Me.BMark.Text = "Mark"
         '
         'FormSNIppsDet
         '
@@ -1109,8 +1142,8 @@ Partial Class FormSNIppsDet
         CType(Me.GVProposed, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPImage, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
+        CType(Me.PCAddBudget, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddBudget.ResumeLayout(False)
         Me.XTPBudgetPropose.ResumeLayout(False)
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
@@ -1132,8 +1165,8 @@ Partial Class FormSNIppsDet
         CType(Me.GCBudgetCop, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBudgetCop, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddDel.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1167,7 +1200,7 @@ Partial Class FormSNIppsDet
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCBudget As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVBudget As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCAddDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
@@ -1208,7 +1241,7 @@ Partial Class FormSNIppsDet
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCAddBudget As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BGetCOP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEBudgetDet As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
@@ -1224,4 +1257,6 @@ Partial Class FormSNIppsDet
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TETotalBudget As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Battach As DevExpress.XtraEditors.SimpleButton
 End Class
