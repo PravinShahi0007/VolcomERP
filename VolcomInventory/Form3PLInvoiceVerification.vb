@@ -40,4 +40,34 @@ GROUP BY inv.id_awb_inv_sum"
         FormAWBInv.id_verification = GVInvoice.GetFocusedRowCellValue("id_awb_inv_sum").ToString
         FormAWBInv.ShowDialog()
     End Sub
+
+    Private Sub BRefreshOffice_Click(sender As Object, e As EventArgs) Handles BRefreshOffice.Click
+        load_verification_office()
+    End Sub
+
+    Private Sub BCreateOffice_Click(sender As Object, e As EventArgs) Handles BCreateOffice.Click
+        FormAWBOtherInv.ShowDialog()
+    End Sub
+
+    Private Sub GVInvoiceOffice_DoubleClick(sender As Object, e As EventArgs) Handles GVInvoiceOffice.DoubleClick
+        If GVInvoiceOffice.RowCount > 0 Then
+            FormAWBOtherInv.id_verification = GVInvoiceOffice.GetFocusedRowCellValue("id_awb_inv_sum").ToString
+            FormAWBOtherInv.ShowDialog()
+        End If
+    End Sub
+
+    Sub load_verification_office()
+        Dim q As String = "SELECT inv.id_awb_inv_sum,sts.report_status,c.comp_name,inv.created_date,inv.inv_number,emp.employee_name,SUM(invd.amount_final) AS final_tot
+FROM `tb_awb_inv_sum_other` invd
+INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invd.id_awb_inv_sum AND is_other=1
+INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=inv.id_report_status
+INNER JOIN tb_m_user usr ON usr.id_user=inv.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+GROUP BY inv.id_awb_inv_sum"
+
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCInvoiceOffice.DataSource = dt
+        GVInvoiceOffice.BestFitColumns()
+    End Sub
 End Class

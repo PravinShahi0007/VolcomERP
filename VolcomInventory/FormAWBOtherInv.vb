@@ -167,7 +167,7 @@ UNION ALL
                 infoCustom("Verification submitted")
                 '
                 load_form()
-                FormAWBOther.load_verification()
+                'FormAWBOther.load_verification()
             End If
         Else
             warningCustom("No awb found")
@@ -563,7 +563,7 @@ WHERE awb_no IN (" & list_awb & ") AND inv.id_comp='" & SLE3PLImport.EditValue.T
                     Next
                     execute_non_query(q, True, "", "", "", "")
 
-                    FormAWBOther.load_verification()
+                    'FormAWBOther.load_verification()
                     load_form()
                 Else
                     warningCustom("No awb found")

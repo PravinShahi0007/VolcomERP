@@ -114,6 +114,9 @@
     Private Sub SBSync_Click(sender As Object, e As EventArgs) Handles SBSync.Click
         FormMain.SplashScreenManager1.ShowWaitForm()
 
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+
         Dim accessToken As String = FormStockTakeStorePeriodDet.getAccessToken()
 
         Dim wc As Net.WebClient = New Net.WebClient()
