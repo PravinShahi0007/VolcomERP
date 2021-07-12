@@ -285,7 +285,7 @@ HAVING NOT ISNULL(err)"
 
         TETotalBudget.EditValue = GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue
         TETotalQty.EditValue = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
-        TESNICop.EditValue = (GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
+        TESNICop.EditValue = Math.Round((GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue, 2)
     End Sub
 
     Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
@@ -314,16 +314,9 @@ HAVING NOT ISNULL(err)"
         GVBudget.FocusedRowHandle = GVBudget.RowCount - 1
         '
         GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "is_check", "no")
-        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "cc", "1")
         '
-        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "amount", 0)
-        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "tax_percent", 0)
-        '
-        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "pph_percent", 0)
-        '
-        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "amount_before", 0)
-        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "kurs", 1)
-        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "id_currency", 1)
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "budget_qty", 0)
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "budget_value", 0)
         '
         GVBudget.BestFitColumns()
         Cursor = Cursors.Default

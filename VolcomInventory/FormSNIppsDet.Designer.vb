@@ -86,12 +86,13 @@ Partial Class FormSNIppsDet
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.TESNICop = New DevExpress.XtraEditors.TextEdit()
-        Me.TETotalQty = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TETotalBudget = New DevExpress.XtraEditors.TextEdit()
+        Me.TESNICop = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TETotalQty = New DevExpress.XtraEditors.TextEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCBudgetCop = New DevExpress.XtraGrid.GridControl()
         Me.GVBudgetCop = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -105,7 +106,6 @@ Partial Class FormSNIppsDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,9 +141,11 @@ Partial Class FormSNIppsDet
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.TETotalBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TESNICop.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotalQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TETotalBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCBudgetCop, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,8 +153,6 @@ Partial Class FormSNIppsDet
         CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl7.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -747,6 +747,7 @@ Partial Class FormSNIppsDet
         Me.GVBudget.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn33, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
         Me.GVBudget.GridControl = Me.GCBudget
         Me.GVBudget.Name = "GVBudget"
+        Me.GVBudget.OptionsView.ShowFooter = True
         Me.GVBudget.OptionsView.ShowGroupPanel = False
         '
         'GridColumn15
@@ -845,6 +846,7 @@ Partial Class FormSNIppsDet
         Me.GridColumn19.OptionsColumn.AllowEdit = False
         Me.GridColumn19.OptionsColumn.AllowFocus = False
         Me.GridColumn19.OptionsColumn.ReadOnly = True
+        Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_amount", "{0:N2}")})
         Me.GridColumn19.UnboundExpression = "[budget_value] * [budget_qty]"
         Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn19.Visible = True
@@ -860,6 +862,29 @@ Partial Class FormSNIppsDet
         Me.PanelControl6.Size = New System.Drawing.Size(935, 100)
         Me.PanelControl6.TabIndex = 5
         '
+        'PanelControl7
+        '
+        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Controls.Add(Me.LabelControl5)
+        Me.PanelControl7.Controls.Add(Me.LabelControl7)
+        Me.PanelControl7.Controls.Add(Me.TETotalBudget)
+        Me.PanelControl7.Controls.Add(Me.TESNICop)
+        Me.PanelControl7.Controls.Add(Me.LabelControl6)
+        Me.PanelControl7.Controls.Add(Me.TETotalQty)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl7.Location = New System.Drawing.Point(602, 2)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(331, 96)
+        Me.PanelControl7.TabIndex = 6
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(15, 15)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl5.TabIndex = 1
+        Me.LabelControl5.Text = "Total Budget"
+        '
         'LabelControl7
         '
         Me.LabelControl7.Location = New System.Drawing.Point(13, 65)
@@ -867,6 +892,16 @@ Partial Class FormSNIppsDet
         Me.LabelControl7.Size = New System.Drawing.Size(80, 13)
         Me.LabelControl7.TabIndex = 5
         Me.LabelControl7.Text = "SNI Cost Per Pcs"
+        '
+        'TETotalBudget
+        '
+        Me.TETotalBudget.Location = New System.Drawing.Point(111, 12)
+        Me.TETotalBudget.Name = "TETotalBudget"
+        Me.TETotalBudget.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TETotalBudget.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TETotalBudget.Properties.ReadOnly = True
+        Me.TETotalBudget.Size = New System.Drawing.Size(209, 20)
+        Me.TETotalBudget.TabIndex = 0
         '
         'TESNICop
         '
@@ -878,6 +913,14 @@ Partial Class FormSNIppsDet
         Me.TESNICop.Size = New System.Drawing.Size(209, 20)
         Me.TESNICop.TabIndex = 4
         '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(13, 39)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(51, 13)
+        Me.LabelControl6.TabIndex = 2
+        Me.LabelControl6.Text = "Qty Artikel"
+        '
         'TETotalQty
         '
         Me.TETotalQty.Location = New System.Drawing.Point(111, 38)
@@ -887,32 +930,6 @@ Partial Class FormSNIppsDet
         Me.TETotalQty.Properties.ReadOnly = True
         Me.TETotalQty.Size = New System.Drawing.Size(209, 20)
         Me.TETotalQty.TabIndex = 3
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(13, 39)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(51, 13)
-        Me.LabelControl6.TabIndex = 2
-        Me.LabelControl6.Text = "Qty Artikel"
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(15, 15)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(61, 13)
-        Me.LabelControl5.TabIndex = 1
-        Me.LabelControl5.Text = "Total Budget"
-        '
-        'TETotalBudget
-        '
-        Me.TETotalBudget.Location = New System.Drawing.Point(111, 12)
-        Me.TETotalBudget.Name = "TETotalBudget"
-        Me.TETotalBudget.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TETotalBudget.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TETotalBudget.Properties.ReadOnly = True
-        Me.TETotalBudget.Size = New System.Drawing.Size(209, 20)
-        Me.TETotalBudget.TabIndex = 0
         '
         'GroupControl1
         '
@@ -940,6 +957,7 @@ Partial Class FormSNIppsDet
         Me.GVBudgetCop.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn32, Me.GridColumn20, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
         Me.GVBudgetCop.GridControl = Me.GCBudgetCop
         Me.GVBudgetCop.Name = "GVBudgetCop"
+        Me.GVBudgetCop.OptionsView.ShowFooter = True
         Me.GVBudgetCop.OptionsView.ShowGroupPanel = False
         '
         'GridColumn8
@@ -1017,6 +1035,7 @@ Partial Class FormSNIppsDet
         Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn31.FieldName = "sub_amount"
         Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_amount", "{0:N2}")})
         Me.GridColumn31.UnboundExpression = "[budget_value] * [budget_qty]"
         Me.GridColumn31.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn31.Visible = True
@@ -1052,21 +1071,6 @@ Partial Class FormSNIppsDet
         Me.BAdd.Size = New System.Drawing.Size(139, 43)
         Me.BAdd.TabIndex = 3
         Me.BAdd.Text = "Add Budget Item"
-        '
-        'PanelControl7
-        '
-        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl7.Controls.Add(Me.LabelControl5)
-        Me.PanelControl7.Controls.Add(Me.LabelControl7)
-        Me.PanelControl7.Controls.Add(Me.TETotalBudget)
-        Me.PanelControl7.Controls.Add(Me.TESNICop)
-        Me.PanelControl7.Controls.Add(Me.LabelControl6)
-        Me.PanelControl7.Controls.Add(Me.TETotalQty)
-        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl7.Location = New System.Drawing.Point(602, 2)
-        Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(331, 96)
-        Me.PanelControl7.TabIndex = 6
         '
         'FormSNIppsDet
         '
@@ -1117,9 +1121,12 @@ Partial Class FormSNIppsDet
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        Me.PanelControl7.PerformLayout()
+        CType(Me.TETotalBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TESNICop.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotalQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TETotalBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GCBudgetCop, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1127,9 +1134,6 @@ Partial Class FormSNIppsDet
         CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl7.ResumeLayout(False)
-        Me.PanelControl7.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
