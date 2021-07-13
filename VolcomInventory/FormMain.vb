@@ -1927,6 +1927,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSNIppsBudget" Then
             FormSNIppsDet.id_pps = "-1"
             FormSNIppsDet.ShowDialog()
+        ElseIf formName = "FormSNISerahTerima" Then
+            FormSNISerahTerimaDet.id = "-1"
+            FormSNISerahTerimaDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3208,6 +3211,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormSNIppsBudget" Then
                 FormSNIppsDet.id_pps = FormSNIppsBudget.GVList.GetFocusedRowCellValue("id_sni_pps").ToString
                 FormSNIppsDet.ShowDialog()
+            ElseIf formName = "FormSNISerahTerima" Then
+                FormSNISerahTerimaDet.id = FormSNISerahTerima.GVList.GetFocusedRowCellValue("id_serah_terima").ToString
+                FormSNISerahTerimaDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8657,6 +8663,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormAWBOther.GCAWB, "AWB List " & FormAWBOther.SLECargo.Text & " (" & Date.Parse(FormAWBOther.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormAWBOther.DEUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ") ")
         ElseIf formName = "FormSNIppsBudget" Then
             print(FormSNIppsBudget.GCList, "SNI Porposal List ")
+        ElseIf formName = "FormSNISerahTerima" Then
+            print(FormSNISerahTerima.GCList, "List SNI Serah Terima ")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9660,6 +9668,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSNIppsBudget" Then
             FormSNIppsBudget.Close()
             FormSNIppsBudget.Dispose()
+        ElseIf formName = "FormSNISerahTerima" Then
+            FormSNISerahTerima.Close()
+            FormSNISerahTerima.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10684,6 +10695,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormOGTransfer.load_form()
         ElseIf formName = "FormSNIppsBudget" Then
             FormOGTransfer.load_form()
+        ElseIf formName = "FormSNISerahTerima" Then
+            FormSNISerahTerima.load_list()
         End If
     End Sub
     'Switch
@@ -16270,6 +16283,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNIppsBudget.Show()
             FormSNIppsBudget.WindowState = FormWindowState.Maximized
             FormSNIppsBudget.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSerahTerimaSNI_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSerahTerimaSNI.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSNISerahTerima.MdiParent = Me
+            FormSNISerahTerima.Show()
+            FormSNISerahTerima.WindowState = FormWindowState.Maximized
+            FormSNISerahTerima.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

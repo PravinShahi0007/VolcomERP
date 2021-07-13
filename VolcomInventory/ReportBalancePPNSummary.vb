@@ -6,18 +6,10 @@
 
     Private Sub ReportBalancePPNSummary_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GCSummary.DataSource = data
-        GVSummary.BestFitColumns()
+        BGVSummary.BestFitColumns()
 
         GCSum.DataSource = data_sum
         GVSum.BestFitColumns()
-
-        GridColumn2.Caption = "PT VOLCOM" + Environment.NewLine + "INDONESIA (OFFICE)"
-        GridColumn3.Caption = "TOKO VOLCOM" + Environment.NewLine + "BEMO CORNER"
-        GridColumn4.Caption = "TOKO VOLCOM" + Environment.NewLine + "SEMINYAK"
-
-        GridColumn10.Caption = "PT VOLCOM" + Environment.NewLine + "INDONESIA (OFFICE)"
-        GridColumn12.Caption = "TOKO VOLCOM" + Environment.NewLine + "BEMO CORNER"
-        GridColumn14.Caption = "TOKO VOLCOM" + Environment.NewLine + "SEMINYAK"
 
         If id_pre = "-1" Then
             load_mark_horz("293", id_summary, "2", "2", XrTable1)

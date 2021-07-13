@@ -15,6 +15,8 @@
 
     Private id_departement_current As String = "-1"
 
+    Private pic_path As String = get_setup_field("pic_path_asset") & "\"
+
     Sub load_unit()
         Dim query As String = "SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         '        query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
@@ -74,6 +76,8 @@
         If action = "ins" Then
 
         ElseIf action = "upd" Then
+            viewImages(PictureEdit, pic_path, id, False)
+
             Dim a As New ClassPurcAsset()
             Dim query As String = a.queryMain("AND a.id_purc_rec_asset=" + id + "", "1", find_accum)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -167,6 +171,8 @@
             SLEDep.Enabled = True
             SLEAccumDep.Enabled = True
             TxtAccumDep.Enabled = True
+            PictureEdit.Visible = False
+            SBUpload.Visible = False
         Else
             BtnConfirm.Visible = False
             BtnCancell.Visible = True
@@ -178,6 +184,8 @@
             SLEDep.Enabled = False
             SLEAccumDep.Enabled = False
             TxtAccumDep.Enabled = False
+            PictureEdit.Visible = True
+            SBUpload.Visible = True
         End If
 
         If id_report_status = "6" Then
@@ -437,5 +445,15 @@
 
     Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
         viewCOA()
+    End Sub
+
+    Private Sub SBUpload_Click(sender As Object, e As EventArgs) Handles SBUpload.Click
+        save_image_ori(PictureEdit, pic_path, id & ".jpg")
+
+        infoCustom("Image uploaded.")
+    End Sub
+
+    Private Sub SBSelectImage_Click(sender As Object, e As EventArgs) Handles SBSelectImage.Click
+        PictureEdit.LoadImage()
     End Sub
 End Class
