@@ -26,6 +26,8 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
                 insert_footer(row_baru, tot_nilai)
             End If
         Next
+        '
+        pre_load_mark_horz("319", id_pps, "2", "2", XrTable2)
     End Sub
 
     Sub insert_row(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
@@ -47,13 +49,13 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
         no.Font = font_row_style
 
         'desc
-        Dim awb_no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
-        awb_no.Text = dt.Rows(row_i)("awbill_no").ToString
-        awb_no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        awb_no.Font = font_row_style
+        Dim desc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+        desc.Text = dt.Rows(row_i)("budget_desc").ToString
+        desc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        desc.Font = font_row_style
 
         'value
-        Dim harga As String = Decimal.Parse(dt.Rows(row_i)("total_harga").ToString).ToString("N2")
+        Dim harga As String = Decimal.Parse(dt.Rows(row_i)("budget_value").ToString).ToString("N2")
 
         Dim total_nilai As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
         total_nilai.Text = harga
@@ -61,7 +63,7 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
         total_nilai.Font = font_row_style
 
         'qty
-        Dim qty As String = Decimal.Parse(dt.Rows(row_i)("qty").ToString).ToString("N2")
+        Dim qty As String = Decimal.Parse(dt.Rows(row_i)("budget_qty").ToString).ToString("N2")
 
         Dim col_qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
         col_qty.Text = qty
