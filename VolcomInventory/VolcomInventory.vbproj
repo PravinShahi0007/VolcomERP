@@ -7137,6 +7137,18 @@
     <Compile Include="FormSNIppsDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSNISerahTerima.Designer.vb">
+      <DependentUpon>FormSNISerahTerima.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNISerahTerima.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSNISerahTerimaDet.Designer.vb">
+      <DependentUpon>FormSNISerahTerimaDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNISerahTerimaDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSOH.designer.vb">
       <DependentUpon>FormSOH.vb</DependentUpon>
     </Compile>
@@ -13685,6 +13697,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSNIppsDet.resx">
       <DependentUpon>FormSNIppsDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNISerahTerima.resx">
+      <DependentUpon>FormSNISerahTerima.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNISerahTerimaDet.resx">
+      <DependentUpon>FormSNISerahTerimaDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSOH.resx">
       <DependentUpon>FormSOH.vb</DependentUpon>
