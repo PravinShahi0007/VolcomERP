@@ -30,7 +30,7 @@
             ) ap ON ap.id_parent = a.id_parent "
         End If
 
-        Dim query As String = "SELECT po.id_coa_tag AS po_tag,a.value_added,a.month_added,ct.tag_description,a.id_comp_tag,a.id_coa_tag,a.id_purc_rec_asset, a.id_item, a.id_purc_rec_det, r.id_purc_rec, r.purc_rec_number, 
+        Dim query As String = "SELECT po.id_coa_tag AS po_tag,a.value_added,a.month_added,ct.tag_description,a.id_comp_tag,a.id_coa_tag,a.id_purc_rec_asset, a.id_item, a.id_purc_rec_det, r.id_purc_rec, IF(a.is_migrated=1,a.migrated_ba,r.purc_rec_number) AS purc_rec_number, 
         po.id_purc_order, po.purc_order_number,
         a.id_departement, d.departement, a.id_acc_fa, fa.acc_name AS `acc_fa`,fa.acc_description AS `acc_fa_name`, 
         a.asset_number, a.asset_name, a.asset_note, a.acq_date, 
