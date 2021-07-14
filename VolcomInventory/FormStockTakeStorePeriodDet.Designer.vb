@@ -23,10 +23,6 @@ Partial Class FormStockTakeStorePeriodDet
         Me.Label1 = New System.Windows.Forms.Label()
         Me.DESOHDate = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.SLUEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.SBAddUser = New DevExpress.XtraEditors.SimpleButton()
         Me.GCExternalUser = New DevExpress.XtraGrid.GridControl()
@@ -44,10 +40,9 @@ Partial Class FormStockTakeStorePeriodDet
         Me.Label5 = New System.Windows.Forms.Label()
         Me.SBSOH = New DevExpress.XtraEditors.SimpleButton()
         Me.CEAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.SBSelectStore = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESOHDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCExternalUser, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVExternalUser, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,37 +86,6 @@ Partial Class FormStockTakeStorePeriodDet
         Me.Label2.Size = New System.Drawing.Size(33, 13)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Store"
-        '
-        'SLUEStore
-        '
-        Me.SLUEStore.Location = New System.Drawing.Point(15, 89)
-        Me.SLUEStore.Name = "SLUEStore"
-        Me.SLUEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEStore.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLUEStore.Size = New System.Drawing.Size(357, 20)
-        Me.SLUEStore.TabIndex = 3
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "GridColumn1"
-        Me.GridColumn1.FieldName = "id_store"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Store"
-        Me.GridColumn2.FieldName = "store_name"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
         '
         'Label3
         '
@@ -281,11 +245,20 @@ Partial Class FormStockTakeStorePeriodDet
         Me.CEAll.Size = New System.Drawing.Size(77, 19)
         Me.CEAll.TabIndex = 16
         '
+        'SBSelectStore
+        '
+        Me.SBSelectStore.Location = New System.Drawing.Point(15, 84)
+        Me.SBSelectStore.Name = "SBSelectStore"
+        Me.SBSelectStore.Size = New System.Drawing.Size(357, 23)
+        Me.SBSelectStore.TabIndex = 17
+        Me.SBSelectStore.Text = "Select Store"
+        '
         'FormStockTakeStorePeriodDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(384, 549)
+        Me.Controls.Add(Me.SBSelectStore)
         Me.Controls.Add(Me.CEAll)
         Me.Controls.Add(Me.SBSOH)
         Me.Controls.Add(Me.Label5)
@@ -297,7 +270,6 @@ Partial Class FormStockTakeStorePeriodDet
         Me.Controls.Add(Me.GCExternalUser)
         Me.Controls.Add(Me.SBAddUser)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.SLUEStore)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.DESOHDate)
         Me.Controls.Add(Me.Label1)
@@ -306,8 +278,6 @@ Partial Class FormStockTakeStorePeriodDet
         Me.Text = "Stock Take Store Period Detail"
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DESOHDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCExternalUser, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVExternalUser, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -323,10 +293,6 @@ Partial Class FormStockTakeStorePeriodDet
     Friend WithEvents Label1 As Label
     Friend WithEvents DESOHDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label2 As Label
-    Friend WithEvents SLUEStore As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label3 As Label
     Friend WithEvents SBAddUser As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCExternalUser As DevExpress.XtraGrid.GridControl
@@ -344,4 +310,5 @@ Partial Class FormStockTakeStorePeriodDet
     Friend WithEvents Label5 As Label
     Friend WithEvents SBSOH As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents CEAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents SBSelectStore As DevExpress.XtraEditors.SimpleButton
 End Class
