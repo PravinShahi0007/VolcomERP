@@ -27,13 +27,12 @@ Partial Class FormStockTakePeriodSOH
         Me.RICESelect = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBEOS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBEOS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,7 +64,7 @@ Partial Class FormStockTakePeriodSOH
         '
         'GVSOH
         '
-        Me.GVSOH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7})
+        Me.GVSOH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn7})
         Me.GVSOH.GridControl = Me.GCSOH
         Me.GVSOH.GroupCount = 1
         Me.GVSOH.Name = "GVSOH"
@@ -94,7 +93,7 @@ Partial Class FormStockTakePeriodSOH
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Code"
-        Me.GridColumn2.FieldName = "product_full_code"
+        Me.GridColumn2.FieldName = "design_code"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
@@ -103,20 +102,11 @@ Partial Class FormStockTakePeriodSOH
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Name"
-        Me.GridColumn3.FieldName = "product_name"
+        Me.GridColumn3.FieldName = "design_display_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Size"
-        Me.GridColumn4.FieldName = "size"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.OptionsColumn.ReadOnly = True
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
         '
         'GridColumn5
         '
@@ -129,7 +119,7 @@ Partial Class FormStockTakePeriodSOH
         'GridColumn7
         '
         Me.GridColumn7.Caption = "GridColumn7"
-        Me.GridColumn7.FieldName = "id_product"
+        Me.GridColumn7.FieldName = "id_design"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         '
@@ -142,6 +132,14 @@ Partial Class FormStockTakePeriodSOH
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(584, 45)
         Me.PanelControl1.TabIndex = 2
+        '
+        'SBEOS
+        '
+        Me.SBEOS.Location = New System.Drawing.Point(424, 10)
+        Me.SBEOS.Name = "SBEOS"
+        Me.SBEOS.Size = New System.Drawing.Size(148, 23)
+        Me.SBEOS.TabIndex = 1
+        Me.SBEOS.Text = "Browse Partial Stock Take"
         '
         'PanelControl2
         '
@@ -161,14 +159,6 @@ Partial Class FormStockTakePeriodSOH
         Me.SBSave.Size = New System.Drawing.Size(89, 41)
         Me.SBSave.TabIndex = 10
         Me.SBSave.Text = "Select"
-        '
-        'SBEOS
-        '
-        Me.SBEOS.Location = New System.Drawing.Point(497, 10)
-        Me.SBEOS.Name = "SBEOS"
-        Me.SBEOS.Size = New System.Drawing.Size(75, 23)
-        Me.SBEOS.TabIndex = 1
-        Me.SBEOS.Text = "Browse EOS"
         '
         'FormStockTakePeriodSOH
         '
@@ -202,7 +192,6 @@ Partial Class FormStockTakePeriodSOH
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICESelect As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn

@@ -7275,6 +7275,12 @@
     <Compile Include="FormStockTakeStorePeriodDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakeStorePeriodStore.Designer.vb">
+      <DependentUpon>FormStockTakeStorePeriodStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeStorePeriodStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockTakeStoreScanList.Designer.vb">
       <DependentUpon>FormStockTakeStoreScanList.vb</DependentUpon>
     </Compile>
@@ -13786,6 +13792,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeStorePeriodDet.resx">
       <DependentUpon>FormStockTakeStorePeriodDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeStorePeriodStore.resx">
+      <DependentUpon>FormStockTakeStorePeriodStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeStoreScanList.resx">
       <DependentUpon>FormStockTakeStoreScanList.vb</DependentUpon>
