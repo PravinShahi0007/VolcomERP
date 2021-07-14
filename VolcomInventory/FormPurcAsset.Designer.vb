@@ -21,8 +21,8 @@ Partial Class FormPurcAsset
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcAsset))
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.XTCAsset = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPending = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPending = New DevExpress.XtraGrid.GridControl()
@@ -44,6 +44,7 @@ Partial Class FormPurcAsset
         Me.ViewMoveHistoryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVActive = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -61,6 +62,15 @@ Partial Class FormPurcAsset
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEDep = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -129,11 +139,6 @@ Partial Class FormPurcAsset
         Me.BRefreshDepreciation = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -146,6 +151,12 @@ Partial Class FormPurcAsset
         CType(Me.GVActive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.SLEDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSold.SuspendLayout()
@@ -166,10 +177,6 @@ Partial Class FormPurcAsset
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCAsset
@@ -184,7 +191,7 @@ Partial Class FormPurcAsset
         Me.XTCAsset.LookAndFeel.UseDefaultLookAndFeel = False
         Me.XTCAsset.Name = "XTCAsset"
         Me.XTCAsset.SelectedTabPage = Me.XTPPending
-        Me.XTCAsset.Size = New System.Drawing.Size(777, 471)
+        Me.XTCAsset.Size = New System.Drawing.Size(991, 471)
         Me.XTCAsset.TabIndex = 0
         Me.XTCAsset.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPending, Me.XTPActive, Me.XTPSold, Me.XTPDepresiasi, Me.XTPNewDepreciation})
         '
@@ -192,7 +199,7 @@ Partial Class FormPurcAsset
         '
         Me.XTPPending.Controls.Add(Me.GCPending)
         Me.XTPPending.Name = "XTPPending"
-        Me.XTPPending.Size = New System.Drawing.Size(775, 443)
+        Me.XTPPending.Size = New System.Drawing.Size(989, 443)
         Me.XTPPending.Text = "Pending Asset"
         '
         'GCPending
@@ -202,7 +209,7 @@ Partial Class FormPurcAsset
         Me.GCPending.MainView = Me.GVPending
         Me.GCPending.Name = "GCPending"
         Me.GCPending.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1})
-        Me.GCPending.Size = New System.Drawing.Size(775, 443)
+        Me.GCPending.Size = New System.Drawing.Size(989, 443)
         Me.GCPending.TabIndex = 0
         Me.GCPending.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPending})
         '
@@ -271,7 +278,7 @@ Partial Class FormPurcAsset
         Me.XTPActive.Controls.Add(Me.GCActive)
         Me.XTPActive.Controls.Add(Me.PanelControl2)
         Me.XTPActive.Name = "XTPActive"
-        Me.XTPActive.Size = New System.Drawing.Size(775, 443)
+        Me.XTPActive.Size = New System.Drawing.Size(989, 443)
         Me.XTPActive.Text = "Active Asset"
         '
         'GCActive
@@ -281,7 +288,7 @@ Partial Class FormPurcAsset
         Me.GCActive.Location = New System.Drawing.Point(0, 49)
         Me.GCActive.MainView = Me.GVActive
         Me.GCActive.Name = "GCActive"
-        Me.GCActive.Size = New System.Drawing.Size(775, 394)
+        Me.GCActive.Size = New System.Drawing.Size(989, 394)
         Me.GCActive.TabIndex = 1
         Me.GCActive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVActive})
         '
@@ -348,6 +355,14 @@ Partial Class FormPurcAsset
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 0
         Me.GridColumn17.Width = 101
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Category"
+        Me.GridColumn28.FieldName = "category"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 3
         '
         'GridColumn1
         '
@@ -500,6 +515,8 @@ Partial Class FormPurcAsset
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SLEDep)
+        Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Controls.Add(Me.DEUntil)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.DEFrom)
@@ -510,12 +527,91 @@ Partial Class FormPurcAsset
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(775, 49)
+        Me.PanelControl2.Size = New System.Drawing.Size(989, 49)
         Me.PanelControl2.TabIndex = 2
+        '
+        'SLEDep
+        '
+        Me.SLEDep.Location = New System.Drawing.Point(321, 14)
+        Me.SLEDep.Name = "SLEDep"
+        Me.SLEDep.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDep.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEDep.Size = New System.Drawing.Size(158, 20)
+        Me.SLEDep.TabIndex = 8927
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn31, Me.GridColumn32})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "ID"
+        Me.GridColumn31.FieldName = "id_departement"
+        Me.GridColumn31.Name = "GridColumn31"
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Departement"
+        Me.GridColumn32.FieldName = "departement"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 0
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(252, 17)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl6.TabIndex = 8926
+        Me.LabelControl6.Text = "Departement"
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(742, 14)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Size = New System.Drawing.Size(158, 20)
+        Me.DEUntil.TabIndex = 8925
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(732, 17)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl4.TabIndex = 8924
+        Me.LabelControl4.Text = "-"
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(568, 14)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Size = New System.Drawing.Size(158, 20)
+        Me.DEFrom.TabIndex = 8923
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(485, 17)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(77, 13)
+        Me.LabelControl3.TabIndex = 14
+        Me.LabelControl3.Text = "Acquisition Date"
         '
         'BSearch
         '
-        Me.BSearch.Location = New System.Drawing.Point(673, 12)
+        Me.BSearch.Location = New System.Drawing.Point(906, 12)
         Me.BSearch.Name = "BSearch"
         Me.BSearch.Size = New System.Drawing.Size(64, 23)
         Me.BSearch.TabIndex = 13
@@ -579,7 +675,7 @@ Partial Class FormPurcAsset
         Me.XTPSold.Controls.Add(Me.GCDisp)
         Me.XTPSold.Controls.Add(Me.PanelControl3)
         Me.XTPSold.Name = "XTPSold"
-        Me.XTPSold.Size = New System.Drawing.Size(775, 443)
+        Me.XTPSold.Size = New System.Drawing.Size(989, 443)
         Me.XTPSold.Text = "Sold/Disposed"
         '
         'GCDisp
@@ -588,7 +684,7 @@ Partial Class FormPurcAsset
         Me.GCDisp.Location = New System.Drawing.Point(0, 47)
         Me.GCDisp.MainView = Me.GVDisp
         Me.GCDisp.Name = "GCDisp"
-        Me.GCDisp.Size = New System.Drawing.Size(775, 396)
+        Me.GCDisp.Size = New System.Drawing.Size(989, 396)
         Me.GCDisp.TabIndex = 1
         Me.GCDisp.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDisp})
         '
@@ -674,14 +770,14 @@ Partial Class FormPurcAsset
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(775, 47)
+        Me.PanelControl3.Size = New System.Drawing.Size(989, 47)
         Me.PanelControl3.TabIndex = 2
         '
         'BNewDisp
         '
         Me.BNewDisp.Dock = System.Windows.Forms.DockStyle.Right
         Me.BNewDisp.Image = CType(resources.GetObject("BNewDisp.Image"), System.Drawing.Image)
-        Me.BNewDisp.Location = New System.Drawing.Point(439, 2)
+        Me.BNewDisp.Location = New System.Drawing.Point(653, 2)
         Me.BNewDisp.Name = "BNewDisp"
         Me.BNewDisp.Size = New System.Drawing.Size(114, 43)
         Me.BNewDisp.TabIndex = 5
@@ -691,7 +787,7 @@ Partial Class FormPurcAsset
         '
         Me.BNewJual.Dock = System.Windows.Forms.DockStyle.Right
         Me.BNewJual.Image = CType(resources.GetObject("BNewJual.Image"), System.Drawing.Image)
-        Me.BNewJual.Location = New System.Drawing.Point(553, 2)
+        Me.BNewJual.Location = New System.Drawing.Point(767, 2)
         Me.BNewJual.Name = "BNewJual"
         Me.BNewJual.Size = New System.Drawing.Size(107, 43)
         Me.BNewJual.TabIndex = 4
@@ -701,7 +797,7 @@ Partial Class FormPurcAsset
         '
         Me.BRefreshDisp.Dock = System.Windows.Forms.DockStyle.Right
         Me.BRefreshDisp.Image = CType(resources.GetObject("BRefreshDisp.Image"), System.Drawing.Image)
-        Me.BRefreshDisp.Location = New System.Drawing.Point(660, 2)
+        Me.BRefreshDisp.Location = New System.Drawing.Point(874, 2)
         Me.BRefreshDisp.Name = "BRefreshDisp"
         Me.BRefreshDisp.Size = New System.Drawing.Size(113, 43)
         Me.BRefreshDisp.TabIndex = 3
@@ -714,7 +810,7 @@ Partial Class FormPurcAsset
         Me.XTPDepresiasi.Controls.Add(Me.PanelNavDep)
         Me.XTPDepresiasi.Name = "XTPDepresiasi"
         Me.XTPDepresiasi.PageVisible = False
-        Me.XTPDepresiasi.Size = New System.Drawing.Size(775, 443)
+        Me.XTPDepresiasi.Size = New System.Drawing.Size(989, 443)
         Me.XTPDepresiasi.Text = "Depreciation"
         '
         'GCDep
@@ -726,7 +822,7 @@ Partial Class FormPurcAsset
         Me.GCDep.MainView = Me.GVDep
         Me.GCDep.Name = "GCDep"
         Me.GCDep.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.BtnApply, Me.BtnDetail})
-        Me.GCDep.Size = New System.Drawing.Size(775, 367)
+        Me.GCDep.Size = New System.Drawing.Size(989, 367)
         Me.GCDep.TabIndex = 1
         Me.GCDep.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDep})
         '
@@ -893,13 +989,13 @@ Partial Class FormPurcAsset
         '
         Me.BtnApply.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.[True]
         Me.BtnApply.AutoHeight = False
-        SerializableAppearanceObject7.BackColor = System.Drawing.Color.LightSeaGreen
-        SerializableAppearanceObject7.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject7.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject7.Options.UseBackColor = True
-        SerializableAppearanceObject7.Options.UseFont = True
-        SerializableAppearanceObject7.Options.UseForeColor = True
-        Me.BtnApply.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Apply", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject7, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject1.BackColor = System.Drawing.Color.LightSeaGreen
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject1.Options.UseBackColor = True
+        SerializableAppearanceObject1.Options.UseFont = True
+        SerializableAppearanceObject1.Options.UseForeColor = True
+        Me.BtnApply.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Apply", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.BtnApply.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.BtnApply.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnApply.Name = "BtnApply"
@@ -920,13 +1016,13 @@ Partial Class FormPurcAsset
         '
         Me.BtnDetail.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.[True]
         Me.BtnDetail.AutoHeight = False
-        SerializableAppearanceObject8.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject8.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject8.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject8.Options.UseBackColor = True
-        SerializableAppearanceObject8.Options.UseFont = True
-        SerializableAppearanceObject8.Options.UseForeColor = True
-        Me.BtnDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject8, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject2.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject2.Options.UseBackColor = True
+        SerializableAppearanceObject2.Options.UseFont = True
+        SerializableAppearanceObject2.Options.UseForeColor = True
+        Me.BtnDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.BtnDetail.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.BtnDetail.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnDetail.Name = "BtnDetail"
@@ -970,7 +1066,7 @@ Partial Class FormPurcAsset
         Me.BtnApplyAll.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnApplyAll.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnApplyAll.Name = "BtnApplyAll"
-        Me.BtnApplyAll.Size = New System.Drawing.Size(775, 28)
+        Me.BtnApplyAll.Size = New System.Drawing.Size(989, 28)
         Me.BtnApplyAll.TabIndex = 140
         Me.BtnApplyAll.Text = "Apply All"
         Me.BtnApplyAll.Visible = False
@@ -984,14 +1080,14 @@ Partial Class FormPurcAsset
         Me.PanelNavDep.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelNavDep.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelNavDep.Name = "PanelNavDep"
-        Me.PanelNavDep.Size = New System.Drawing.Size(775, 48)
+        Me.PanelNavDep.Size = New System.Drawing.Size(989, 48)
         Me.PanelNavDep.TabIndex = 2
         '
         'BtnHistory
         '
         Me.BtnHistory.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnHistory.Image = CType(resources.GetObject("BtnHistory.Image"), System.Drawing.Image)
-        Me.BtnHistory.Location = New System.Drawing.Point(675, 2)
+        Me.BtnHistory.Location = New System.Drawing.Point(889, 2)
         Me.BtnHistory.LookAndFeel.SkinName = "Office 2007 Pink"
         Me.BtnHistory.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnHistory.Name = "BtnHistory"
@@ -1014,7 +1110,7 @@ Partial Class FormPurcAsset
         Me.XTPNewDepreciation.Controls.Add(Me.GCDepPPS)
         Me.XTPNewDepreciation.Controls.Add(Me.PanelControl1)
         Me.XTPNewDepreciation.Name = "XTPNewDepreciation"
-        Me.XTPNewDepreciation.Size = New System.Drawing.Size(775, 443)
+        Me.XTPNewDepreciation.Size = New System.Drawing.Size(989, 443)
         Me.XTPNewDepreciation.Text = "Depreciation"
         '
         'GCDepPPS
@@ -1024,7 +1120,7 @@ Partial Class FormPurcAsset
         Me.GCDepPPS.MainView = Me.GVDepPPS
         Me.GCDepPPS.Name = "GCDepPPS"
         Me.GCDepPPS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2})
-        Me.GCDepPPS.Size = New System.Drawing.Size(775, 395)
+        Me.GCDepPPS.Size = New System.Drawing.Size(989, 395)
         Me.GCDepPPS.TabIndex = 4
         Me.GCDepPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDepPPS})
         '
@@ -1130,14 +1226,14 @@ Partial Class FormPurcAsset
         Me.PanelControl1.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(775, 48)
+        Me.PanelControl1.Size = New System.Drawing.Size(989, 48)
         Me.PanelControl1.TabIndex = 3
         '
         'BAddDepreciation
         '
         Me.BAddDepreciation.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddDepreciation.Image = CType(resources.GetObject("BAddDepreciation.Image"), System.Drawing.Image)
-        Me.BAddDepreciation.Location = New System.Drawing.Point(524, 2)
+        Me.BAddDepreciation.Location = New System.Drawing.Point(738, 2)
         Me.BAddDepreciation.Name = "BAddDepreciation"
         Me.BAddDepreciation.Size = New System.Drawing.Size(136, 44)
         Me.BAddDepreciation.TabIndex = 2
@@ -1147,7 +1243,7 @@ Partial Class FormPurcAsset
         '
         Me.BRefreshDepreciation.Dock = System.Windows.Forms.DockStyle.Right
         Me.BRefreshDepreciation.Image = CType(resources.GetObject("BRefreshDepreciation.Image"), System.Drawing.Image)
-        Me.BRefreshDepreciation.Location = New System.Drawing.Point(660, 2)
+        Me.BRefreshDepreciation.Location = New System.Drawing.Point(874, 2)
         Me.BRefreshDepreciation.Name = "BRefreshDepreciation"
         Me.BRefreshDepreciation.Size = New System.Drawing.Size(113, 44)
         Me.BRefreshDepreciation.TabIndex = 1
@@ -1163,59 +1259,11 @@ Partial Class FormPurcAsset
         Me.LabelControl2.TabIndex = 0
         Me.LabelControl2.Text = "Depreciation"
         '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(252, 17)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(77, 13)
-        Me.LabelControl3.TabIndex = 14
-        Me.LabelControl3.Text = "Acquisition Date"
-        '
-        'DEFrom
-        '
-        Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(335, 14)
-        Me.DEFrom.Name = "DEFrom"
-        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFrom.Size = New System.Drawing.Size(158, 20)
-        Me.DEFrom.TabIndex = 8923
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(499, 17)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl4.TabIndex = 8924
-        Me.LabelControl4.Text = "-"
-        '
-        'DEUntil
-        '
-        Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(509, 14)
-        Me.DEUntil.Name = "DEUntil"
-        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Size = New System.Drawing.Size(158, 20)
-        Me.DEUntil.TabIndex = 8925
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "Category"
-        Me.GridColumn28.FieldName = "item_cat_detail"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 3
-        '
         'FormPurcAsset
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(777, 471)
+        Me.ClientSize = New System.Drawing.Size(991, 471)
         Me.Controls.Add(Me.XTCAsset)
         Me.MinimizeBox = False
         Me.Name = "FormPurcAsset"
@@ -1234,6 +1282,12 @@ Partial Class FormPurcAsset
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.SLEDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSold.ResumeLayout(False)
@@ -1256,10 +1310,6 @@ Partial Class FormPurcAsset
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1375,4 +1425,9 @@ Partial Class FormPurcAsset
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEDep As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

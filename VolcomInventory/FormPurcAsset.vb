@@ -6,6 +6,7 @@
         DEUntil.EditValue = Now
 
         load_unit()
+        load_dep()
 
         If is_view = "1" Then
             XTPPending.PageVisible = False
@@ -19,6 +20,15 @@
             XTPSold.PageVisible = True
             viewPending()
         End If
+    End Sub
+
+    Sub load_dep()
+        Dim q As String = "SELECT 'ALL' AS id_departement,'ALL' AS departement
+UNION ALL
+SELECT id_departement,departement
+FROM tb_m_departement
+WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'"
+        viewSearchLookupQuery(SLEDep, q, "id_departement", "departement", "id_departement")
     End Sub
 
     Sub load_unit()
@@ -49,7 +59,10 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         Dim a As New ClassPurcAsset()
         Dim qw As String = ""
         If Not SLEUnit.EditValue.ToString = "0" Then
-            qw = " AND a.id_coa_tag='" & SLEUnit.EditValue.ToString & "' "
+            qw += " AND a.id_coa_tag='" & SLEUnit.EditValue.ToString & "' "
+        End If
+        If Not SLEDep.EditValue.ToString = "ALL" Then
+            qw += " AND d.id_departement='" & SLEDep.EditValue.ToString & "' "
         End If
         Dim query As String = a.queryMain(qw & "AND a.id_report_status=6 AND a.is_active=1 AND a.is_value_added=2 AND DATE(a.acq_date)>=DATE('" & Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(a.acq_date)<=DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "') ", "1", True)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -443,5 +456,9 @@ ORDER BY id_purc_rec_asset_disp DESC"
 
     Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
         DEFrom.Properties.MaxValue = DEUntil.EditValue
+    End Sub
+
+    Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
+        load_dep()
     End Sub
 End Class
