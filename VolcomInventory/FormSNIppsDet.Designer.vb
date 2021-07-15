@@ -21,6 +21,9 @@ Partial Class FormSNIppsDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSNIppsDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.Battach = New DevExpress.XtraEditors.SimpleButton()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -77,7 +80,7 @@ Partial Class FormSNIppsDet
         Me.GCBudget = New DevExpress.XtraGrid.GridControl()
         Me.GVBudget = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCEBudget = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEBudgetDet = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -97,7 +100,7 @@ Partial Class FormSNIppsDet
         Me.GCBudgetCop = New DevExpress.XtraGrid.GridControl()
         Me.GVBudgetCop = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCEBudgetCOP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEBudget = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -106,9 +109,6 @@ Partial Class FormSNIppsDet
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.Battach = New DevExpress.XtraEditors.SimpleButton()
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,6 +170,36 @@ Partial Class FormSNIppsDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(935, 47)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BPrint
+        '
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
+        Me.BPrint.Location = New System.Drawing.Point(550, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(94, 43)
+        Me.BPrint.TabIndex = 8
+        Me.BPrint.Text = "Print"
+        '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(96, 43)
+        Me.BMark.TabIndex = 7
+        Me.BMark.Text = "Mark"
+        '
+        'Battach
+        '
+        Me.Battach.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Battach.Image = CType(resources.GetObject("Battach.Image"), System.Drawing.Image)
+        Me.Battach.Location = New System.Drawing.Point(644, 2)
+        Me.Battach.Name = "Battach"
+        Me.Battach.Size = New System.Drawing.Size(101, 43)
+        Me.Battach.TabIndex = 6
+        Me.Battach.Text = "Attachment"
         '
         'BClose
         '
@@ -750,7 +780,7 @@ Partial Class FormSNIppsDet
         '
         'GVBudget
         '
-        Me.GVBudget.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn33, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
+        Me.GVBudget.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumnCEBudget, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
         Me.GVBudget.GridControl = Me.GCBudget
         Me.GVBudget.Name = "GVBudget"
         Me.GVBudget.OptionsView.ShowFooter = True
@@ -762,17 +792,17 @@ Partial Class FormSNIppsDet
         Me.GridColumn15.FieldName = "id_sni_pps_budget"
         Me.GridColumn15.Name = "GridColumn15"
         '
-        'GridColumn33
+        'GridColumnCEBudget
         '
-        Me.GridColumn33.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn33.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn33.Caption = "*"
-        Me.GridColumn33.ColumnEdit = Me.RICEBudgetDet
-        Me.GridColumn33.FieldName = "is_check"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 0
-        Me.GridColumn33.Width = 64
+        Me.GridColumnCEBudget.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCEBudget.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCEBudget.Caption = "*"
+        Me.GridColumnCEBudget.ColumnEdit = Me.RICEBudgetDet
+        Me.GridColumnCEBudget.FieldName = "is_check"
+        Me.GridColumnCEBudget.Name = "GridColumnCEBudget"
+        Me.GridColumnCEBudget.Visible = True
+        Me.GridColumnCEBudget.VisibleIndex = 0
+        Me.GridColumnCEBudget.Width = 64
         '
         'RICEBudgetDet
         '
@@ -969,7 +999,7 @@ Partial Class FormSNIppsDet
         '
         'GVBudgetCop
         '
-        Me.GVBudgetCop.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn32, Me.GridColumn20, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
+        Me.GVBudgetCop.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumnCEBudgetCOP, Me.GridColumn20, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
         Me.GVBudgetCop.GridControl = Me.GCBudgetCop
         Me.GVBudgetCop.Name = "GVBudgetCop"
         Me.GVBudgetCop.OptionsView.ShowFooter = True
@@ -981,17 +1011,17 @@ Partial Class FormSNIppsDet
         Me.GridColumn8.FieldName = "id_sni_pps_budget"
         Me.GridColumn8.Name = "GridColumn8"
         '
-        'GridColumn32
+        'GridColumnCEBudgetCOP
         '
-        Me.GridColumn32.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn32.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn32.Caption = "*"
-        Me.GridColumn32.ColumnEdit = Me.RICEBudget
-        Me.GridColumn32.FieldName = "is_check"
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 0
-        Me.GridColumn32.Width = 57
+        Me.GridColumnCEBudgetCOP.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCEBudgetCOP.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCEBudgetCOP.Caption = "*"
+        Me.GridColumnCEBudgetCOP.ColumnEdit = Me.RICEBudget
+        Me.GridColumnCEBudgetCOP.FieldName = "is_check"
+        Me.GridColumnCEBudgetCOP.Name = "GridColumnCEBudgetCOP"
+        Me.GridColumnCEBudgetCOP.Visible = True
+        Me.GridColumnCEBudgetCOP.VisibleIndex = 0
+        Me.GridColumnCEBudgetCOP.Width = 57
         '
         'RICEBudget
         '
@@ -1086,36 +1116,6 @@ Partial Class FormSNIppsDet
         Me.BAdd.Size = New System.Drawing.Size(139, 43)
         Me.BAdd.TabIndex = 3
         Me.BAdd.Text = "Add Budget Item"
-        '
-        'Battach
-        '
-        Me.Battach.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Battach.Image = CType(resources.GetObject("Battach.Image"), System.Drawing.Image)
-        Me.Battach.Location = New System.Drawing.Point(644, 2)
-        Me.Battach.Name = "Battach"
-        Me.Battach.Size = New System.Drawing.Size(101, 43)
-        Me.Battach.TabIndex = 6
-        Me.Battach.Text = "Attachment"
-        '
-        'BMark
-        '
-        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
-        Me.BMark.Location = New System.Drawing.Point(2, 2)
-        Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(96, 43)
-        Me.BMark.TabIndex = 7
-        Me.BMark.Text = "Mark"
-        '
-        'BPrint
-        '
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
-        Me.BPrint.Location = New System.Drawing.Point(550, 2)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(94, 43)
-        Me.BPrint.TabIndex = 8
-        Me.BPrint.Text = "Print"
         '
         'FormSNIppsDet
         '
@@ -1255,9 +1255,9 @@ Partial Class FormSNIppsDet
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCAddBudget As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BGetCOP As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCEBudget As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEBudgetDet As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCEBudgetCOP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEBudget As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit

@@ -17,9 +17,9 @@
     End Sub
 
     Sub load_artikel()
-        Dim q As String = "SELECT 'no' AS is_check,id_design,id_sni_pps_budget,budget_desc,budget_value,budget_qty
+        Dim q As String = "SELECT 'no' AS is_check,id_design,id_product,id_sni_pps_budget,budget_desc,budget_value,budget_qty
 FROM `tb_sni_pps_budget` b
-WHERE b.id_sni_pps='" & id_pps & "' AND NOT ISNULL(b.id_design)"
+WHERE b.id_sni_pps='" & id_pps & "' AND NOT ISNULL(b.id_design) AND NOT ISNULL(b.id_product)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCBudgetCop.DataSource = dt
         GVBudgetCop.BestFitColumns()
@@ -63,8 +63,14 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                 '
                 If is_submit = "1" Then
                     BPrint.Visible = True
+                    PCAddBudget.Visible = False
+                    PCAddDel.Visible = False
+                    BSave.Visible = False
                 Else
                     BPrint.Visible = False
+                    PCAddBudget.Visible = False
+                    PCAddDel.Visible = False
+                    BSave.Visible = True
                 End If
                 '
                 If dt.Rows(0)("id_report_status").ToString = "6" Or dt.Rows(0)("id_report_status").ToString = "5" Then
@@ -73,13 +79,7 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
 
                 If is_view = "1" Then
                     BSave.Visible = False
-                    PCAddBudget.Visible = False
-                    PCAddDel.Visible = False
                     BPrint.Visible = False
-                Else
-                    BSave.Visible = True
-                    PCAddBudget.Visible = True
-                    PCAddDel.Visible = True
                 End If
 
                 XTPListDesign.PageVisible = False
@@ -119,9 +119,10 @@ AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND dsg.`id_lookup_status_orde
     End Sub
 
     Sub load_proposed()
-        Dim q As String = "SELECT 'no' AS is_check,clr.color,dsg.`id_design`,dsg.`design_code`,dsg.design_fabrication,dsg.`design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
+        Dim q As String = "SELECT 'no' AS is_check,clr.color,IFNULL(p.id_product,0) AS id_product,dsg.`id_design`,dsg.`design_code`,dsg.design_fabrication,dsg.`design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
 ,'VOLCOM' AS brand,co.country,pdl.qty_line_list,so.season_orign
 FROM tb_sni_pps_list `ppsl`
+LEFT JOIN tb_m_product p ON p.id_design=ppsl.id_design AND p.product_code='921' -- hanya S
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=ppsl.`id_design`
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
 INNER JOIN tb_season_delivery del ON del.id_delivery=dsg.`id_delivery`
@@ -208,17 +209,17 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
                     If Not q = "" Then
                         q += ","
                     End If
-                    q += "('" & id_pps & "','" & GVBudgetCop.GetRowCellValue(i, "id_design").ToString & "','" & addSlashes(GVBudgetCop.GetRowCellValue(i, "budget_desc").ToString) & "','" & decimalSQL(Decimal.Parse(GVBudgetCop.GetRowCellValue(i, "budget_value").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVBudgetCop.GetRowCellValue(i, "budget_qty").ToString).ToString) & "')"
+                    q += "('" & id_pps & "','" & GVBudgetCop.GetRowCellValue(i, "id_design").ToString & "','" & GVBudgetCop.GetRowCellValue(i, "id_product").ToString & "','" & addSlashes(GVBudgetCop.GetRowCellValue(i, "budget_desc").ToString) & "','" & decimalSQL(Decimal.Parse(GVBudgetCop.GetRowCellValue(i, "budget_value").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVBudgetCop.GetRowCellValue(i, "budget_qty").ToString).ToString) & "')"
                 Next
 
                 For i = 0 To GVBudget.RowCount - 1
                     If Not q = "" Then
                         q += ","
                     End If
-                    q += "('" & id_pps & "',NULL,'" & addSlashes(GVBudget.GetRowCellValue(i, "budget_desc").ToString) & "','" & decimalSQL(Decimal.Parse(GVBudget.GetRowCellValue(i, "budget_value").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVBudget.GetRowCellValue(i, "budget_qty").ToString).ToString) & "')"
+                    q += "('" & id_pps & "',NULL,NULL,'" & addSlashes(GVBudget.GetRowCellValue(i, "budget_desc").ToString) & "','" & decimalSQL(Decimal.Parse(GVBudget.GetRowCellValue(i, "budget_value").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVBudget.GetRowCellValue(i, "budget_qty").ToString).ToString) & "')"
                 Next
 
-                q = "INSERT INTO tb_sni_pps_budget(id_sni_pps,id_design,budget_desc,budget_value,budget_qty) VALUES" & q
+                q = "INSERT INTO tb_sni_pps_budget(id_sni_pps,id_design,id_product,budget_desc,budget_value,budget_qty) VALUES" & q
                 execute_non_query(q, True, "", "", "", "")
 
                 infoCustom("Budget updated")
@@ -311,12 +312,17 @@ WHERE pps.id_sni_pps='" & id_pps & "'"
 
         If GVProposed.RowCount > 0 Then
             Dim id As String = ""
+            Dim no_size_s As String = ""
             '
             For i As Integer = 0 To GVProposed.RowCount - 1
                 If Not i = 0 Then
                     id += ","
                 End If
                 id += GVProposed.GetRowCellValue(i, "id_design").ToString
+                '
+                If GVProposed.GetRowCellValue(i, "id_product").ToString = "0" Then
+                    no_size_s += vbNewLine & "- " & GVProposed.GetRowCellValue(i, "design_display_name").ToString
+                End If
             Next
 
             Dim qc As String = "SELECT GROUP_CONCAT(DISTINCT dsg.design_display_name) AS err FROM tb_sni_pps_budget b
@@ -326,6 +332,8 @@ HAVING NOT ISNULL(err)"
             Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
             If dtc.Rows.Count > 0 Then
                 warningCustom("Artikel " & dtc.Rows(0)("err").ToString & " sudah masuk ke dalam budget")
+            ElseIf Not no_size_s = "" Then
+                warningCustom("Design berikut tidak memiliki size S : " & no_size_s)
             Else
                 'check first
                 Dim q As String = ""
@@ -333,15 +341,16 @@ HAVING NOT ISNULL(err)"
                     If Not i = 0 Then
                         q += ","
                     End If
-                    q += "('" & id_pps & "','" & GVProposed.GetRowCellValue(i, "id_design").ToString & "','Sampel " & GVProposed.GetRowCellValue(i, "design_display_name").ToString & "','" & decimalSQL(Decimal.Parse(GVProposed.GetRowCellValue(i, "ecop").ToString)) & "',6)"
+                    q += "('" & id_pps & "','" & GVProposed.GetRowCellValue(i, "id_design").ToString & "','" & GVProposed.GetRowCellValue(i, "id_product").ToString & "','Sampel " & GVProposed.GetRowCellValue(i, "design_display_name").ToString & "','" & decimalSQL(Decimal.Parse(GVProposed.GetRowCellValue(i, "ecop").ToString)) & "',6)"
                 Next
 
                 If Not q = "" Then
                     'insert
-                    q = "INSERT INTO `tb_sni_pps_budget`(`id_sni_pps`,`id_design`,`budget_desc`,`budget_value`,`budget_qty`) VALUES" & q
+                    q = "INSERT INTO `tb_sni_pps_budget`(`id_sni_pps`,`id_design`,`id_product`,`budget_desc`,`budget_value`,`budget_qty`) VALUES" & q
                     execute_non_query(q, True, "", "", "", "")
                 End If
 
+                XTCKidList.SelectedTabPageIndex = 2
             End If
         End If
         GVProposed.ActiveFilterString = ""
