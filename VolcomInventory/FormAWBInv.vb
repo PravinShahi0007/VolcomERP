@@ -964,4 +964,15 @@ WHERE id_awb_inv_sum='" & id_verification & "' AND (amount_cargo-amount_wh>0) "
             load_form()
         End If
     End Sub
+
+    Private Sub BAttach_Click(sender As Object, e As EventArgs) Handles BAttach.Click
+        Cursor = Cursors.WaitCursor
+        If BSubmit.Visible = False Then
+            FormDocumentUpload.is_no_delete = "1"
+        End If
+        FormDocumentUpload.id_report = id_verification
+        FormDocumentUpload.report_mark_type = "310"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

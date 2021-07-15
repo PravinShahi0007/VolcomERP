@@ -246,7 +246,6 @@ WHERE c.id_comp='" & SLEVendor.EditValue.ToString & "'"
 			                                SELECT MIN(id_wo_log)
 			                                FROM tb_prod_order_wo_log logx
 			                                INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo=logx.id_wo 
-			                                WHERE id_prod_order=@id_po
 			                                GROUP BY wo.`id_prod_order_wo`
 		                                )
 	                                )wo_old ON wo_old.id_wo=wo.id_prod_order_wo

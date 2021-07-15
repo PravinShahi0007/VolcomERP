@@ -25,7 +25,8 @@ INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=inv.id_report_status
 INNER JOIN tb_m_user usr ON usr.id_user=inv.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-GROUP BY inv.id_awb_inv_sum"
+GROUP BY inv.id_awb_inv_sum
+ORDER BY inv.id_awb_inv_sum DESC"
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCInvoice.DataSource = dt
@@ -64,7 +65,8 @@ INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=inv.id_report_status
 INNER JOIN tb_m_user usr ON usr.id_user=inv.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-GROUP BY inv.id_awb_inv_sum"
+GROUP BY inv.id_awb_inv_sum
+ORDER BY inv.id_awb_inv_sum DESC"
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCInvoiceOffice.DataSource = dt

@@ -1930,6 +1930,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSNISerahTerima" Then
             FormSNISerahTerimaDet.id = "-1"
             FormSNISerahTerimaDet.ShowDialog()
+        ElseIf formName = "FormStockTakePartial" Then
+            FormStockTakePartialDet.id = "-1"
+            FormStockTakePartialDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3214,6 +3217,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormSNISerahTerima" Then
                 FormSNISerahTerimaDet.id = FormSNISerahTerima.GVList.GetFocusedRowCellValue("id_serah_terima").ToString
                 FormSNISerahTerimaDet.ShowDialog()
+            ElseIf formName = "FormStockTakePartial" Then
+                FormStockTakePartialDet.id = FormStockTakePartial.GVData.GetFocusedRowCellValue("id_st_store_partial").ToString
+                FormStockTakePartialDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -9671,6 +9677,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSNISerahTerima" Then
             FormSNISerahTerima.Close()
             FormSNISerahTerima.Dispose()
+        ElseIf formName = "FormStockTakePartial" Then
+            FormStockTakePartial.Close()
+            FormStockTakePartial.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10697,6 +10706,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormOGTransfer.load_form()
         ElseIf formName = "FormSNISerahTerima" Then
             FormSNISerahTerima.load_list()
+        ElseIf formName = "FormStockTakePartial" Then
+            FormStockTakePartial.form_load()
         End If
     End Sub
     'Switch
@@ -16296,6 +16307,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNISerahTerima.Show()
             FormSNISerahTerima.WindowState = FormWindowState.Maximized
             FormSNISerahTerima.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBStockTakePartial_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStockTakePartial.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStockTakePartial.MdiParent = Me
+            FormStockTakePartial.Show()
+            FormStockTakePartial.WindowState = FormWindowState.Maximized
+            FormStockTakePartial.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

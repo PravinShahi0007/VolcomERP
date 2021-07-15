@@ -1613,24 +1613,23 @@ Public Class FormImportExcel
             GVData.Columns("Date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             GVData.Columns("Date").DisplayFormat.FormatString = "{0:dd MMM yyyy}"
         ElseIf id_pop_up = "28" Then
-            'vendor code 
+            'vendor code
             Dim queryx As String = "SELECT id_product,product_full_code,product_name FROM tb_m_product"
             Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
             Dim tb1 = data_temp.AsEnumerable()
             Dim tb2 = dt.AsEnumerable()
 
             Dim query = From table1 In tb1
-                        Group Join table_tmp In tb2 On table1("pr_code").ToString Equals table_tmp("product_full_code").ToString
-                            Into Group
+                        Group Join table_tmp In tb2 On table1("code").ToString Equals table_tmp("product_full_code").ToString
+                        Into Group
                         From y1 In Group.DefaultIfEmpty()
                         Select New With
-                            {
-                                .IdProduct = If(y1 Is Nothing, "0", y1("id_product")),
-                                .Code = If(y1 Is Nothing, "0", y1("product_full_code")),
-                                .Description = If(y1 Is Nothing, "0", y1("product_name")),
-                                .Color = table1("pr_colnm"),
-                                .UPC = table1("pr_upc")
-                            }
+                        {
+                            .IdProduct = If(y1 Is Nothing, "0", y1("id_product")),
+                            .Code = If(y1 Is Nothing, "0", y1("product_full_code")),
+                            .Description = If(y1 Is Nothing, "0", y1("product_name")),
+                            .UPC = table1("upc")
+                        }
 
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
