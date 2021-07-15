@@ -137,6 +137,10 @@ Partial Class FormDelManifestDet
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BGenOffline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TEActualWeight = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,6 +184,7 @@ Partial Class FormDelManifestDet
         CType(Me.TEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEActualWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label7
@@ -298,6 +303,8 @@ Partial Class FormDelManifestDet
         '
         'PCRate
         '
+        Me.PCRate.Controls.Add(Me.TEActualWeight)
+        Me.PCRate.Controls.Add(Me.Label14)
         Me.PCRate.Controls.Add(Me.TERemarkDiff)
         Me.PCRate.Controls.Add(Me.LRemarkDiff)
         Me.PCRate.Controls.Add(Me.Label13)
@@ -522,7 +529,7 @@ Partial Class FormDelManifestDet
         '
         'GVCargoRate
         '
-        Me.GVCargoRate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDCargo, Me.GridColumnCargo, Me.GridColumnMinWeight, Me.GridColumn4, Me.GridColumnRate, Me.GridColumnAmount, Me.GridColumnLeadTime})
+        Me.GVCargoRate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDCargo, Me.GridColumnCargo, Me.GridColumnMinWeight, Me.GridColumn4, Me.GridColumn26, Me.GridColumnRate, Me.GridColumnAmount, Me.GridColumnLeadTime})
         Me.GVCargoRate.GridControl = Me.GCCargoRate
         Me.GVCargoRate.Name = "GVCargoRate"
         Me.GVCargoRate.OptionsBehavior.Editable = False
@@ -614,7 +621,7 @@ Partial Class FormDelManifestDet
         '
         'SLEV3pl
         '
-        Me.SLEV3pl.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
+        Me.SLEV3pl.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn27, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
         Me.SLEV3pl.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SLEV3pl.Name = "SLEV3pl"
         Me.SLEV3pl.OptionsBehavior.ReadOnly = True
@@ -1296,6 +1303,43 @@ Partial Class FormDelManifestDet
         Me.LabelControl2.TabIndex = 19
         Me.LabelControl2.Text = "Store"
         '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Actual Weight"
+        Me.GridColumn26.DisplayFormat.FormatString = "N2"
+        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn26.FieldName = "actual_weight"
+        Me.GridColumn26.Name = "GridColumn26"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(726, 77)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(74, 13)
+        Me.Label14.TabIndex = 97
+        Me.Label14.Text = "Actual Weight"
+        Me.Label14.Visible = False
+        '
+        'TEActualWeight
+        '
+        Me.TEActualWeight.Location = New System.Drawing.Point(806, 74)
+        Me.TEActualWeight.Name = "TEActualWeight"
+        Me.TEActualWeight.Properties.Mask.EditMask = "N2"
+        Me.TEActualWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEActualWeight.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEActualWeight.Properties.ReadOnly = True
+        Me.TEActualWeight.Size = New System.Drawing.Size(82, 20)
+        Me.TEActualWeight.TabIndex = 98
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Actual weight"
+        Me.GridColumn27.DisplayFormat.FormatString = "N2"
+        Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn27.FieldName = "actual_weight"
+        Me.GridColumn27.Name = "GridColumn27"
+        '
         'FormDelManifestDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1359,6 +1403,7 @@ Partial Class FormDelManifestDet
         CType(Me.TEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEActualWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1479,4 +1524,8 @@ Partial Class FormDelManifestDet
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents BBRemove As ToolStripMenuItem
     Friend WithEvents TEComp As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEActualWeight As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label14 As Label
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
