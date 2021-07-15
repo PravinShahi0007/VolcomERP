@@ -21,7 +21,9 @@
                 End Try
 
                 q = "UPDATE tb_pn SET date_payment='" & Date.Parse(DEReleaseDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_pn='" & FormBankWithdrawalSum.GVList.GetRowCellValue(i, "id_pn").ToString & "'"
-                FormBankWithdrawalSum.load_det()
+                execute_non_query(q, True, "", "", "", "")
+
+                'FormBankWithdrawalSum.load_det()
                 '
                 FormBankWithdrawalDet.Opacity = 0
                 FormBankWithdrawalDet.is_print = "1"
