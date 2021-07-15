@@ -113,7 +113,7 @@ GROUP BY cg.`id_comp_group`"
 
         If Not id_del_manifest = "0" Then
             Dim query As String = "
-            SELECT m.mark_different,m.id_del_manifest, m.id_del_type,m.id_comp, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, m.id_report_status, IFNULL(l.report_status, 'Waiting Check By Security') AS report_status
+            SELECT m.mark_different,m.actual_weight,m.id_del_manifest, m.id_del_type,m.id_comp, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, m.id_report_status, IFNULL(l.report_status, 'Waiting Check By Security') AS report_status
             ,m.id_sub_district,m.awbill_no, m.id_cargo,m.cargo_rate,m.cargo_min_weight,m.cargo_lead_time,m.is_ol_shop,m.id_comp_group,m.ol_order,m.id_store_offline
             ,m.c_weight,m.c_tot_price,m.id_cargo_best,m.cargo_rate_best,m.cargo_min_weight_best,m.cargo_lead_time_best,m.mark_different       
             FROM tb_del_manifest AS m
@@ -396,11 +396,11 @@ SET awb.id_del_type=NULL,awb.awbill_no='',awb.weight_calc=null WHERE dd.id_del_m
 
                     If id_del_manifest = "0" Then
                         query = "INSERT INTO tb_del_manifest (id_comp, created_date, created_by,is_ol_shop,id_comp_group,ol_order,id_store_offline,id_del_type, id_sub_district ,awbill_no, id_cargo,cargo_rate,cargo_min_weight,cargo_lead_time
-,c_weight,c_tot_price,id_cargo_best,cargo_rate_best,cargo_min_weight_best,cargo_lead_time_best,mark_different) 
+,c_weight,c_tot_price,id_cargo_best,cargo_rate_best,cargo_min_weight_best,cargo_lead_time_best,mark_different,actual_weight) 
 VALUES (" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + ", NOW(), " + id_user + "
 ,'" + SLEOnlineShop.EditValue.ToString + "','" + SLEStoreGroup.EditValue.ToString + "','" + order + "','" + SLEComp.EditValue.ToString + "'
 ,'" + SLEDelType.EditValue.ToString + "','" + SLESubDistrict.EditValue.ToString + "','" + addSlashes(TEAwb.Text) + "','" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_min_weight").ToString) + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_lead_time").ToString) + "'
-,'" + decimalSQL(TECWeight.EditValue.ToString) + "','" + decimalSQL(TETotalRate.EditValue.ToString) + "','" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "','" + addSlashes(TERemarkDiff.Text) + "'); SELECT LAST_INSERT_ID();"
+,'" + decimalSQL(TECWeight.EditValue.ToString) + "','" + decimalSQL(TETotalRate.EditValue.ToString) + "','" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "','" + addSlashes(TERemarkDiff.Text) + "','" + decimalSQL(TEActualWeight.EditValue.ToString) + "'); SELECT LAST_INSERT_ID();"
 
                         id_del_manifest = execute_query(query, 0, True, "", "", "", "")
                     Else
@@ -408,7 +408,7 @@ VALUES (" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + ", NOW(), 
                         query = "UPDATE tb_del_manifest SET id_comp = " + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + ", updated_date = NOW(), updated_by = " + id_user + ", id_report_status = " + If(type = "draft", "NULL", If(type = "complete", "6", "5")) + "
 ,id_del_type='" + SLEDelType.EditValue.ToString + "',id_sub_district='" + SLESubDistrict.EditValue.ToString + "' ,is_ol_shop='" + SLEOnlineShop.EditValue.ToString + "',id_comp_group='" + SLEStoreGroup.EditValue.ToString + "',ol_order='" + order + "',id_store_offline='" + SLEComp.EditValue.ToString + "'
 ,awbill_no='" + addSlashes(TEAwb.Text) + "',id_cargo='" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + "',cargo_rate='" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_rate").ToString) + "',cargo_min_weight='" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_min_weight").ToString) + "',cargo_lead_time='" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_lead_time").ToString) + "'
-,c_weight='" + decimalSQL(TECWeight.EditValue.ToString) + "',c_tot_price='" + decimalSQL(TETotalRate.EditValue.ToString) + "',id_cargo_best='" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "',cargo_rate_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "',cargo_min_weight_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "',cargo_lead_time_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "',mark_different='" + addSlashes(TERemarkDiff.Text) + "'
+,c_weight='" + decimalSQL(TECWeight.EditValue.ToString) + "',c_tot_price='" + decimalSQL(TETotalRate.EditValue.ToString) + "',id_cargo_best='" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "',cargo_rate_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "',cargo_min_weight_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "',cargo_lead_time_best='" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "',mark_different='" + addSlashes(TERemarkDiff.Text) + "',actual_weight='" + decimalSQL(TEActualWeight.EditValue.ToString) + "'
 WHERE id_del_manifest = " + id_del_manifest
                         execute_non_query(query, True, "", "", "", "")
 
@@ -967,6 +967,7 @@ FROM
 
                 q = "SELECT rate.id_3pl_rate,rate.id_comp AS id_cargo,comp.comp_name AS cargo,rate.cargo_min_weight,rate.cargo_rate
 , IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight, rate.cargo_min_weight, ROUND(" + decimalSQL(berat_terpakai.ToString) + ")) AS weight
+, IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight, rate.cargo_min_weight, ROUND(" + decimalSQL(berat_terpakai.ToString) + ")) AS actual_weight
 ,(IF(" + decimalSQL(berat_terpakai.ToString) + " < rate.cargo_min_weight,rate.cargo_min_weight,ROUND(" + decimalSQL(berat_terpakai.ToString) + ")) * cargo_rate) AS amount
 ,rate.cargo_lead_time
 ,comp.awb_rank
@@ -981,6 +982,7 @@ ORDER BY amount ASC,comp.awb_rank ASC"
                 GVCargoRate.BestFitColumns()
                 viewSearchLookupQuery(SLUE3PL, q, "id_3pl_rate", "cargo", "id_3pl_rate")
                 '
+                TEActualWeight.EditValue = GVCargoRate.GetFocusedRowCellValue("weight")
                 TECWeight.EditValue = GVCargoRate.GetFocusedRowCellValue("weight")
                 TERate.EditValue = GVCargoRate.GetFocusedRowCellValue("cargo_rate")
                 TETotalRate.EditValue = GVCargoRate.GetFocusedRowCellValue("amount")
@@ -988,7 +990,8 @@ ORDER BY amount ASC,comp.awb_rank ASC"
         Else
             Dim q As String = ""
             q = "SELECT 1 AS id_3pl_rate,del.id_comp AS id_cargo,c.comp_name AS cargo,del.cargo_min_weight,del.cargo_rate
-, del.`c_weight` AS weight
+,del.`c_weight` AS weight
+,del.actual_weight
 ,del.`c_tot_price` AS amount
 ,del.cargo_lead_time
 ,1 AS awb_rank
@@ -1001,6 +1004,7 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
             viewSearchLookupQuery(SLUE3PL, q, "id_3pl_rate", "cargo", "id_3pl_rate")
             SLUE3PL.EditValue = "1"
             '
+            TEActualWeight.EditValue = GVCargoRate.GetFocusedRowCellValue("actual_weight")
             TECWeight.EditValue = GVCargoRate.GetFocusedRowCellValue("weight")
             TERate.EditValue = GVCargoRate.GetFocusedRowCellValue("cargo_rate")
             TETotalRate.EditValue = GVCargoRate.GetFocusedRowCellValue("amount")
@@ -1017,6 +1021,7 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
 
     Private Sub SLUE3PL_EditValueChanged(sender As Object, e As EventArgs) Handles SLUE3PL.EditValueChanged
         Try
+            TEActualWeight.EditValue = SLUE3PL.Properties.View.GetFocusedRowCellValue("actual_weight")
             TECWeight.EditValue = SLUE3PL.Properties.View.GetFocusedRowCellValue("weight")
             TERate.EditValue = SLUE3PL.Properties.View.GetFocusedRowCellValue("cargo_rate")
             TETotalRate.EditValue = SLUE3PL.Properties.View.GetFocusedRowCellValue("amount")
@@ -1040,6 +1045,7 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
     Private Sub GVCargoRate_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVCargoRate.FocusedRowChanged
         SLUE3PL.EditValue = GVCargoRate.GetFocusedRowCellValue("id_3pl_rate").ToString
         '
+        TEActualWeight.EditValue = GVCargoRate.GetFocusedRowCellValue("actual_weight")
         TECWeight.EditValue = GVCargoRate.GetFocusedRowCellValue("weight")
         TERate.EditValue = GVCargoRate.GetFocusedRowCellValue("cargo_rate")
         TETotalRate.EditValue = GVCargoRate.GetFocusedRowCellValue("amount")

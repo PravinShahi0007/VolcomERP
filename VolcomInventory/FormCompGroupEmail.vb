@@ -27,6 +27,8 @@
 FROM tb_m_comp_group cg 
 INNER JOIN tb_m_comp c ON c.id_comp_group=cg.id_comp_group AND c.is_active=1
 WHERE cg.is_send_per_comp=1"
+        ElseIf SLEReportMarkType.EditValue.ToString = "322" Then
+            q = "SELECT id_comp_group,comp_group,description FROM tb_m_comp_group"
         End If
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -42,7 +44,7 @@ WHERE cg.is_send_per_comp=1"
     End Sub
 
     Sub view_rmt()
-        Dim q As String = "SELECT report_mark_type,report_mark_type_name FROM tb_lookup_report_mark_type WHERE report_mark_type='314' OR report_mark_type='320'"
+        Dim q As String = "SELECT report_mark_type,report_mark_type_name FROM tb_lookup_report_mark_type WHERE report_mark_type IN (SELECT report_mark_type FROM tb_mail_to_group_department WHERE id_departement = " + id_departement_user + ")"
         viewSearchLookupQuery(SLEReportMarkType, q, "report_mark_type", "report_mark_type_name", "report_mark_type")
     End Sub
 
@@ -57,6 +59,10 @@ WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_com
                 q = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to , IF(ISNULL(id_employee),'External','Internal') AS `type`
 FROM tb_mail_to_group
 WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_comp_group='" & GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString & "' AND id_comp='" & GVGroupComp.GetFocusedRowCellValue("id_comp").ToString & "'"
+            ElseIf SLEReportMarkType.EditValue.ToString = "322" Then
+                q = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to , IF(ISNULL(id_employee),'External','Internal') AS `type`
+FROM tb_mail_to_group
+WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_comp_group='" & GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString & "'"
             End If
 
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -116,6 +122,10 @@ WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_com
         ElseIf SLEReportMarkType.EditValue.ToString = "320" Then
             GridColumnStoreCode.VisibleIndex = 2
             GridColumnStoreName.VisibleIndex = 3
+            load_comp_group()
+        ElseIf SLEReportMarkType.EditValue.ToString = "322" Then
+            GridColumnStoreCode.VisibleIndex = -1
+            GridColumnStoreName.VisibleIndex = -1
             load_comp_group()
         End If
     End Sub

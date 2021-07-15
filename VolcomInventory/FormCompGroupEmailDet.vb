@@ -7,7 +7,9 @@
         load_type()
         load_emp()
         TECompGroup.Text = FormCompGroupEmail.GVGroupComp.GetFocusedRowCellValue("description").ToString
-        TEStore.Text = FormCompGroupEmail.GVGroupComp.GetFocusedRowCellValue("comp_name").ToString
+        If FormCompGroupEmail.SLEReportMarkType.EditValue.ToString = "320" Then
+            TEStore.Text = FormCompGroupEmail.GVGroupComp.GetFocusedRowCellValue("comp_name").ToString
+        End If
         '
         If is_external Then
             PCEmployee.Visible = False

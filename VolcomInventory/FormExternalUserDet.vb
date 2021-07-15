@@ -101,7 +101,13 @@
     End Sub
 
     Sub view_store()
-        viewSearchLookupQuery(SLUEStore, "SELECT id_store, store_name FROM tb_m_store", "id_store", "store_name", "id_store")
+        Dim where As String = ""
+
+        If Not id_store = "-1" Then
+            where = "WHERE id_store IN (" + id_store + ")"
+        End If
+
+        viewSearchLookupQuery(SLUEStore, "SELECT id_store, store_name FROM tb_m_store " + where, "id_store", "store_name", "id_store")
     End Sub
 
     Private Sub FormExternalUserDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
