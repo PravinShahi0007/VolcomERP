@@ -32,11 +32,9 @@ Partial Class FormSNISerahTerimaDet
         Me.TEBudgetNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.Battach = New DevExpress.XtraEditors.SimpleButton()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
@@ -137,7 +135,6 @@ Partial Class FormSNISerahTerimaDet
         Me.PanelControl2.Controls.Add(Me.TEBudgetNumber)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.BDel)
-        Me.PanelControl2.Controls.Add(Me.BAdd)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 71)
         Me.PanelControl2.Name = "PanelControl2"
@@ -171,27 +168,16 @@ Partial Class FormSNISerahTerimaDet
         '
         Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDel.Image = CType(resources.GetObject("BDel.Image"), System.Drawing.Image)
-        Me.BDel.Location = New System.Drawing.Point(694, 2)
+        Me.BDel.Location = New System.Drawing.Point(807, 2)
         Me.BDel.Name = "BDel"
         Me.BDel.Size = New System.Drawing.Size(108, 38)
         Me.BDel.TabIndex = 4
         Me.BDel.Text = "Delete Item"
         '
-        'BAdd
-        '
-        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
-        Me.BAdd.Location = New System.Drawing.Point(802, 2)
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(113, 38)
-        Me.BAdd.TabIndex = 5
-        Me.BAdd.Text = "Add Item"
-        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BPrint)
         Me.PanelControl3.Controls.Add(Me.BMark)
-        Me.PanelControl3.Controls.Add(Me.Battach)
         Me.PanelControl3.Controls.Add(Me.BClose)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -204,7 +190,7 @@ Partial Class FormSNISerahTerimaDet
         '
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
-        Me.BPrint.Location = New System.Drawing.Point(532, 2)
+        Me.BPrint.Location = New System.Drawing.Point(633, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(94, 42)
         Me.BPrint.TabIndex = 13
@@ -219,16 +205,6 @@ Partial Class FormSNISerahTerimaDet
         Me.BMark.Size = New System.Drawing.Size(96, 42)
         Me.BMark.TabIndex = 12
         Me.BMark.Text = "Mark"
-        '
-        'Battach
-        '
-        Me.Battach.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Battach.Image = CType(resources.GetObject("Battach.Image"), System.Drawing.Image)
-        Me.Battach.Location = New System.Drawing.Point(626, 2)
-        Me.Battach.Name = "Battach"
-        Me.Battach.Size = New System.Drawing.Size(101, 42)
-        Me.Battach.TabIndex = 11
-        Me.Battach.Text = "Attachment"
         '
         'BClose
         '
@@ -285,6 +261,7 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
+        Me.GridColumn3.Width = 224
         '
         'GridColumn4
         '
@@ -293,29 +270,40 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.Width = 307
         '
         'GridColumn5
         '
+        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn5.Caption = "Size"
         Me.GridColumn5.FieldName = "size"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumn5.Width = 85
         '
         'GridColumn6
         '
+        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn6.Caption = "Qty"
-        Me.GridColumn6.FieldName = "qty_serah_terima"
+        Me.GridColumn6.DisplayFormat.FormatString = "N0"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "qty"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
+        Me.GridColumn6.Width = 283
         '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Attachment"
         Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 4
         '
         'FormSNISerahTerimaDet
         '
@@ -362,10 +350,8 @@ Partial Class FormSNISerahTerimaDet
     Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents Battach As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
