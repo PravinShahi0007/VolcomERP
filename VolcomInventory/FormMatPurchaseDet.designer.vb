@@ -394,7 +394,7 @@ Partial Class FormMatPurchaseDet
         'TEVat
         '
         Me.TEVat.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.TEVat.Location = New System.Drawing.Point(724, 32)
+        Me.TEVat.Location = New System.Drawing.Point(714, 32)
         Me.TEVat.Name = "TEVat"
         Me.TEVat.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEVat.Properties.Appearance.Options.UseFont = True
@@ -402,12 +402,13 @@ Partial Class FormMatPurchaseDet
         Me.TEVat.Properties.IsFloatValue = False
         Me.TEVat.Properties.Mask.EditMask = "N00"
         Me.TEVat.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.TEVat.Size = New System.Drawing.Size(35, 22)
+        Me.TEVat.Properties.ReadOnly = True
+        Me.TEVat.Size = New System.Drawing.Size(45, 22)
         Me.TEVat.TabIndex = 136
         '
         'LabelControl17
         '
-        Me.LabelControl17.Location = New System.Drawing.Point(664, 11)
+        Me.LabelControl17.Location = New System.Drawing.Point(654, 11)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl17.TabIndex = 135
@@ -416,7 +417,7 @@ Partial Class FormMatPurchaseDet
         'TEGrossTot
         '
         Me.TEGrossTot.EditValue = ""
-        Me.TEGrossTot.Location = New System.Drawing.Point(724, 8)
+        Me.TEGrossTot.Location = New System.Drawing.Point(714, 8)
         Me.TEGrossTot.Name = "TEGrossTot"
         Me.TEGrossTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEGrossTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -426,7 +427,7 @@ Partial Class FormMatPurchaseDet
         Me.TEGrossTot.Properties.Mask.SaveLiteral = False
         Me.TEGrossTot.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEGrossTot.Properties.ReadOnly = True
-        Me.TEGrossTot.Size = New System.Drawing.Size(160, 20)
+        Me.TEGrossTot.Size = New System.Drawing.Size(170, 20)
         Me.TEGrossTot.TabIndex = 134
         '
         'LabelControl16
@@ -439,7 +440,7 @@ Partial Class FormMatPurchaseDet
         '
         'LabelControl15
         '
-        Me.LabelControl15.Location = New System.Drawing.Point(664, 64)
+        Me.LabelControl15.Location = New System.Drawing.Point(654, 64)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl15.TabIndex = 132
@@ -447,7 +448,7 @@ Partial Class FormMatPurchaseDet
         '
         'LabelControl14
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(664, 37)
+        Me.LabelControl14.Location = New System.Drawing.Point(654, 37)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(16, 13)
         Me.LabelControl14.TabIndex = 131
@@ -464,7 +465,7 @@ Partial Class FormMatPurchaseDet
         'TETot
         '
         Me.TETot.EditValue = ""
-        Me.TETot.Location = New System.Drawing.Point(724, 61)
+        Me.TETot.Location = New System.Drawing.Point(714, 61)
         Me.TETot.Name = "TETot"
         Me.TETot.Properties.Appearance.Options.UseTextOptions = True
         Me.TETot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -474,7 +475,7 @@ Partial Class FormMatPurchaseDet
         Me.TETot.Properties.Mask.SaveLiteral = False
         Me.TETot.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TETot.Properties.ReadOnly = True
-        Me.TETot.Size = New System.Drawing.Size(160, 20)
+        Me.TETot.Size = New System.Drawing.Size(170, 20)
         Me.TETot.TabIndex = 127
         '
         'TEVatTot
