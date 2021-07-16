@@ -45,7 +45,7 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAttachment = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -238,7 +238,7 @@ Partial Class FormSNISerahTerimaDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnAttachment})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -300,10 +300,10 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 283
         '
-        'GridColumn7
+        'GridColumnAttachment
         '
-        Me.GridColumn7.Caption = "Attachment"
-        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumnAttachment.Caption = "Attachment"
+        Me.GridColumnAttachment.Name = "GridColumnAttachment"
         '
         'FormSNISerahTerimaDet
         '
@@ -360,7 +360,7 @@ Partial Class FormSNISerahTerimaDet
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAttachment As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BLoad As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEBudgetNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl

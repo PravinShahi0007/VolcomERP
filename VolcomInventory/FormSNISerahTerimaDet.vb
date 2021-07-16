@@ -3,9 +3,14 @@
     Dim id_pps As String = "-1"
 
     Private Sub FormSNISerahTerimaDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_head()
+    End Sub
+
+    Sub load_head()
         If Not id = "-1" Then
             'edit
             Dim q As String = ""
+
 
         End If
     End Sub
@@ -51,10 +56,10 @@ WHERE NOT ISNULL(pb.id_product) AND pps.number='" & addSlashes(TEBudgetNumber.Te
 VALUES('" & id_pps & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID();"
                 id = execute_query(q, 0, True, "", "", "", "")
                 '
-                q = "CALL gen_number('" & id_pps & "','325')"
+                q = "CALL gen_number('" & id & "','325')"
                 execute_non_query(q, True, "", "", "", "")
                 '
-                q = "INSERT INTO tb_sni_rec_det(id_sni_rec,id_product,qty)"
+                q = "INSERT INTO tb_sni_rec_det(id_sni_rec,id_product,qty) VALUES"
                 For i As Integer = 0 To GVList.RowCount - 1
                     If Not i = 0 Then
                         q += ","
