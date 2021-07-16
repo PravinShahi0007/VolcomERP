@@ -15,13 +15,15 @@
             For i = 0 To FormBankWithdrawalSum.GVList.RowCount - 1
                 Dim q As String = ""
                 Try
-                    q = "UPDATE tb_pn_summary_det SET id_pn_summary_type='2',change_date_to='" & Date.Parse(DEReleaseDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_pn_summary_det='" & FormBankWithdrawalSum.GVList.GetFocusedRowCellValue("id_pn_summary_det").ToString & "'"
+                    q = "UPDATE tb_pn_summary_det SET id_pn_summary_type='2',change_date_to='" & Date.Parse(DEReleaseDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_pn_summary_det='" & FormBankWithdrawalSum.GVList.GetRowCellValue(i, "id_pn_summary_det").ToString & "'"
                     execute_non_query(q, True, "", "", "", "")
                 Catch ex As Exception
                 End Try
 
-                q = "UPDATE tb_pn SET date_payment='" & Date.Parse(DEReleaseDate.EditValue.ToString) & "' WHERE id_pn='" & FormBankWithdrawalSum.GVList.GetFocusedRowCellValue("id_pn").ToString & "'"
-                FormBankWithdrawalSum.load_det()
+                q = "UPDATE tb_pn SET date_payment='" & Date.Parse(DEReleaseDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_pn='" & FormBankWithdrawalSum.GVList.GetRowCellValue(i, "id_pn").ToString & "'"
+                execute_non_query(q, True, "", "", "", "")
+
+                'FormBankWithdrawalSum.load_det()
                 '
                 FormBankWithdrawalDet.Opacity = 0
                 FormBankWithdrawalDet.is_print = "1"

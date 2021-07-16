@@ -553,7 +553,7 @@ GROUP BY d.`id_del_manifest`"
 ,IF(SUM(IF(dd.berat>dd.berat_dimensi,dd.berat,dd.berat_dimensi))<rate.cargo_min_weight,rate.cargo_min_weight,SUM(IF(dd.berat>dd.berat_dimensi,dd.berat,dd.berat_dimensi))) AS `c_weight`
 ,IF(SUM(IF(dd.berat>dd.berat_dimensi,dd.berat,dd.berat_dimensi))<rate.cargo_min_weight,rate.cargo_min_weight,SUM(IF(dd.berat>dd.berat_dimensi,dd.berat,dd.berat_dimensi)))*rate.cargo_rate AS `c_tot_price`,d.`a_weight`,d.`a_tot_price`
 FROM tb_inbound_koli dd 
-INNER JOIN `tb_inbound_awb` d ON dd.`id_inbound_awb`=d.`id_inbound_awb`
+INNER JOIN `tb_inbound_awb` d ON dd.`id_inbound_awb`=d.`id_inbound_awb` AND d.is_void=2
 INNER JOIN tb_3pl_rate rate ON rate.id_3pl_rate=d.id_3pl_rate AND rate.id_comp='" & SLE3PLImport.EditValue.ToString & "'
 INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=rate.id_sub_district
 INNER JOIN tb_m_user usr ON usr.id_user=d.`created_by`
