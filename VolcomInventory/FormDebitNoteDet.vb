@@ -301,6 +301,12 @@ WHERE dn.id_debit_note='" & id_dn & "'"
             Else
                 BCancelDebitNote.Visible = True
             End If
+            '
+            If data.Rows(0)("id_report_status").ToString = "1" Then
+                BCancelDebitNote.Visible = True
+            Else
+                BCancelDebitNote.Visible = False
+            End If
         End If
     End Sub
 
