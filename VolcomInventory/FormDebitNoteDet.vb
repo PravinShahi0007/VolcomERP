@@ -293,7 +293,7 @@ WHERE dn.id_debit_note='" & id_dn & "'"
             id_comp = data.Rows(0)("id_comp").ToString
             '
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
-            If data.Rows(0)("id_report_status").ToString = "6" Or data.Rows(0)("id_report_status").ToString = "5" Then
+            If Not data.Rows(0)("id_report_status").ToString = "1" Then
                 BCancelDebitNote.Visible = False
                 If data.Rows(0)("id_report_status").ToString = "6" Then
                     BtnViewJournal.Visible = True
