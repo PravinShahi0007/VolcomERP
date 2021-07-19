@@ -24,13 +24,13 @@
             FROM `tb_emp_attn_input_det` AS d
             LEFT JOIN `tb_emp_attn_input` AS a ON d.id_emp_attn_input = a.id_emp_attn_input
             LEFT JOIN `tb_m_employee` AS e ON d.id_employee = e.id_employee
-            WHERE d.id_departement = 17 AND d.id_employee = " & id_employee & " AND d.date >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND d.date <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
+            WHERE (d.id_departement = 17 OR e.allow_manual_attn = 1) AND d.id_employee = " & id_employee & " AND d.date >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND d.date <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
             UNION ALL
             (SELECT 0 AS id_emp_attn, 0 AS id_fingerprint, e.employee_code, d.id_employee, d.time_out AS `datetime`, 2 AS type_log, 0 AS scan_method
             FROM `tb_emp_attn_input_det` AS d
             LEFT JOIN `tb_emp_attn_input` AS a ON d.id_emp_attn_input = a.id_emp_attn_input
             LEFT JOIN `tb_m_employee` AS e ON d.id_employee = e.id_employee
-            WHERE d.id_departement = 17 AND d.id_employee = " & id_employee & " AND d.date >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND d.date <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
+            WHERE (d.id_departement = 17 OR e.allow_manual_attn = 1) AND d.id_employee = " & id_employee & " AND d.date >= DATE_ADD('" & date_start & "', INTERVAL 1 DAY) AND d.date <= DATE_ADD('" & date_until & "', INTERVAL -1 DAY))
         "
 
         'tb_attn = "tb_emp_attn"
