@@ -300,7 +300,7 @@ VALUES('" & id_coa_type & "','" & SLEType.EditValue.ToString & "','" & Date.Pars
         'check first
         Dim q As String = "SELECT pnsd.id_pn 
 FROM tb_pn_summary_det pnsd 
-INNER JOIN tb_pn pn ON pn.id_pn=pnsd.id_pn
+INNER JOIN tb_pn pn ON pn.id_pn=pnsd.id_pn AND pnsd.`id_pn_summary_type`!=2
 WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
