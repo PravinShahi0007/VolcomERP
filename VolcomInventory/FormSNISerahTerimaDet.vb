@@ -9,16 +9,27 @@
     Sub load_head()
         If Not id = "-1" Then
             'edit
-            Dim q As String = "SELECT pps.id_sni_pps,pb.`id_product`,p.`product_full_code`,pb.`budget_qty` AS qty,dsg.`design_display_name`,cd.`display_name` AS size
-FROM 
-`tb_sni_pps_budget` pb
-INNER JOIN tb_sni_pps pps ON pps.id_sni_pps=pb.id_sni_pps
-INNER JOIN tb_m_product p ON p.`id_product`=pb.`id_product`
-INNER JOIN tb_m_design dsg ON dsg.`id_design`=p.`id_design`
-INNER JOIN tb_m_code_detail cd ON cd.code=p.`product_code` AND cd.`id_code`=33
-WHERE NOT ISNULL(pb.id_product) AND pps.number='" & addSlashes(TEBudgetNumber.Text) & "'"
+            Dim q As String = "SELECT rec.*,emp.`employee_name`,pps.`number` AS pps_number
+FROM tb_sni_rec rec
+INNER JOIN tb_m_user usr ON usr.`id_user`=rec.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_sni_pps pps ON pps.`id_sni_pps`=rec.`id_sni_pps`
+WHERE rec.id_sni_rec='" & id & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                TEBudgetNumber.Text = dt.Rows(0)("pps_number").ToString
+                TEBudgetNumber.Properties.ReadOnly = True
+                BLoad.Visible = False
+                BDel.Visible = False
+                '
+                DEProposeDate.EditValue = dt.Rows(0)("created_date").ToString
+                TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
+                TENumber.Text = dt.Rows(0)("number").ToString
+                '
+                GridColumnAttachment.Visible = True
 
-
+                load_det()
+            End If
         End If
     End Sub
 
