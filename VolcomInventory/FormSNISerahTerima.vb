@@ -4,11 +4,19 @@
     Dim bdel_active As String = "1"
 
     Private Sub FormSNISerahTerima_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
     End Sub
 
     Sub load_list()
-
+        Dim q As String = "SELECT rec.`id_sni_rec`,rec.number,emp.employee_name AS created_by,rec.created_date,pps.number AS pps_number,sts.report_status
+FROM `tb_sni_rec` rec
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec.id_report_status
+INNER JOIN tb_m_user usr ON usr.id_user=rec.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_sni_pps pps ON pps.id_sni_pps=rec.id_sni_pps
+ORDER BY rec.id_sni_rec DESC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCList.DataSource = dt
+        GVList.BestFitColumns()
     End Sub
 
     Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
@@ -44,5 +52,10 @@
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
         End If
+    End Sub
+
+    Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
+        FormSNISerahTerimaDet.id = GVList.GetFocusedRowCellValue("id_sni_rec").ToString
+        FormSNISerahTerimaDet.ShowDialog()
     End Sub
 End Class

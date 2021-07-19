@@ -9,10 +9,29 @@
     Sub load_head()
         If Not id = "-1" Then
             'edit
-            Dim q As String = ""
+            Dim q As String = "SELECT pps.id_sni_pps,pb.`id_product`,p.`product_full_code`,pb.`budget_qty` AS qty,dsg.`design_display_name`,cd.`display_name` AS size
+FROM 
+`tb_sni_pps_budget` pb
+INNER JOIN tb_sni_pps pps ON pps.id_sni_pps=pb.id_sni_pps
+INNER JOIN tb_m_product p ON p.`id_product`=pb.`id_product`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=p.`id_design`
+INNER JOIN tb_m_code_detail cd ON cd.code=p.`product_code` AND cd.`id_code`=33
+WHERE NOT ISNULL(pb.id_product) AND pps.number='" & addSlashes(TEBudgetNumber.Text) & "'"
 
 
         End If
+    End Sub
+
+    Sub load_det()
+        Dim q As String = "SELECT pps.id_sni_pps,pb.`id_product`,p.`product_full_code`,pb.`budget_qty` AS qty,dsg.`design_display_name`,cd.`display_name` AS size
+FROM `tb_sni_rec_det` recd
+INNER JOIN tb_m_product p ON p.`id_product`=pb.`id_product`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=p.`id_design`
+INNER JOIN tb_m_code_detail cd ON cd.code=p.`product_code` AND cd.`id_code`=33
+WHERE AND recd.id_sni_rec='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCList.DataSource = dt
+        GVList.BestFitColumns()
     End Sub
 
     Private Sub FormSNISerahTerimaDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
