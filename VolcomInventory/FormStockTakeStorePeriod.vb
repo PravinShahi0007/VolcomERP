@@ -134,7 +134,9 @@
 
         Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
 
-        Dim query As String = "INSERT IGNORE INTO tb_st_store (id_st_store, id_st_store_period, id_product, created_date, scanned_code, qty, note) VALUES "
+        execute_non_query("DELETE FROM tb_st_store WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "", True, "", "", "", "")
+
+        Dim query As String = "INSERT IGNORE INTO tb_st_store (id_st_store, id_st_store_period, id_product, created_date, scanned_code, qty, note, is_unique_not_found, is_no_tag, image) VALUES "
 
         If json("status") = "success" Then
             Dim insert As Boolean = False
@@ -147,8 +149,11 @@
                 Dim scanned_code As String = row("scanned_code").ToString
                 Dim qty As String = row("qty").ToString
                 Dim note As String = row("note").ToString
+                Dim is_unique_not_found As String = row("is_unique_not_found").ToString
+                Dim is_no_tag As String = row("is_no_tag").ToString
+                Dim image As String = row("image").ToString
 
-                query += "(" + id_st_store + ", " + id_st_store_period + ", " + id_product + ", '" + created_date + "', '" + scanned_code + "', " + qty + ", '" + addSlashes(note) + "'), "
+                query += "(" + id_st_store + ", " + id_st_store_period + ", " + id_product + ", '" + created_date + "', '" + scanned_code + "', " + qty + ", '" + addSlashes(note) + "', " + is_unique_not_found + ", " + is_no_tag + ", '" + addSlashes(image) + "'), "
 
                 insert = True
             Next

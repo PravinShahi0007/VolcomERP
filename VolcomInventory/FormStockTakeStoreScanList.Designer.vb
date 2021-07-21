@@ -21,6 +21,8 @@ Partial Class FormStockTakeStoreScanList
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTakeStoreScanList))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -32,13 +34,14 @@ Partial Class FormStockTakeStoreScanList
         Me.GridColumnis_unique_not_found_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnis_no_tag_view = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -51,20 +54,40 @@ Partial Class FormStockTakeStoreScanList
         Me.PanelControl1.Size = New System.Drawing.Size(652, 48)
         Me.PanelControl1.TabIndex = 0
         '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(442, 2)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(121, 44)
+        Me.BtnExportToXLS.TabIndex = 0
+        Me.BtnExportToXLS.Text = "Export to XLS"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(563, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(87, 44)
+        Me.BtnPrint.TabIndex = 1
+        Me.BtnPrint.Text = "Print"
+        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 48)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemHyperLinkEdit1})
         Me.GCData.Size = New System.Drawing.Size(652, 403)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumnscanned_code, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnqty, Me.GridColumncreated_date, Me.GridColumnis_unique_not_found_view, Me.GridColumnis_no_tag_view})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumnscanned_code, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnqty, Me.GridColumncreated_date, Me.GridColumnis_unique_not_found_view, Me.GridColumnis_no_tag_view, Me.GridColumn1})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -149,25 +172,19 @@ Partial Class FormStockTakeStoreScanList
         Me.GridColumnis_no_tag_view.Visible = True
         Me.GridColumnis_no_tag_view.VisibleIndex = 6
         '
-        'BtnPrint
+        'GridColumn1
         '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(563, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 44)
-        Me.BtnPrint.TabIndex = 1
-        Me.BtnPrint.Text = "Print"
+        Me.GridColumn1.Caption = "Photo"
+        Me.GridColumn1.ColumnEdit = Me.RepositoryItemHyperLinkEdit1
+        Me.GridColumn1.FieldName = "image"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 7
         '
-        'BtnExportToXLS
+        'RepositoryItemHyperLinkEdit1
         '
-        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(442, 2)
-        Me.BtnExportToXLS.Name = "BtnExportToXLS"
-        Me.BtnExportToXLS.Size = New System.Drawing.Size(121, 44)
-        Me.BtnExportToXLS.TabIndex = 0
-        Me.BtnExportToXLS.Text = "Export to XLS"
+        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
         '
         'FormStockTakeStoreScanList
         '
@@ -185,6 +202,7 @@ Partial Class FormStockTakeStoreScanList
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -203,4 +221,6 @@ Partial Class FormStockTakeStoreScanList
     Friend WithEvents GridColumnis_no_tag_view As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class

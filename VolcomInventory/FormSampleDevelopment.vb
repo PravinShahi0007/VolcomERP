@@ -152,7 +152,7 @@
         End If
 
         Dim query = "SELECT 'no' AS is_check,'' AS NO,
-a.id_term_production ,comp.id_comp,cc.id_comp_contact,comp.comp_name,comp.comp_number,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code,d.design_code_import, h.term_production, g.po_type,d.design_cop, 
+cc.contact_person,a.id_term_production ,comp.id_comp,cc.id_comp_contact,comp.comp_name,comp.comp_number,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code,d.design_code_import, h.term_production, g.po_type,d.design_cop, 
 a.prod_order_date,a.id_report_status,c.report_status,season_del_dsg.est_wh_date,season_del_dsg.delivery_date,
 b.id_design,b.id_delivery, e.delivery, f.season, e.id_season,`range`.range,
 RIGHT(d.design_display_name,3) AS color,LEFT(d.design_display_name,LENGTH(d.design_display_name)-3) AS class_dsg 
