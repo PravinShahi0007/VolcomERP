@@ -156,11 +156,6 @@ ORDER BY area ASC"
     End Sub
 
     Private Sub FormProductPerform_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        For Each t As DevExpress.XtraTab.XtraTabPage In XTCData.TabPages
-            XTCData.SelectedTabPage = t
-        Next t
-        XTCData.SelectedTabPage = XTCData.TabPages(0)
-
         month.Add("Jan")
         month.Add("Feb")
         month.Add("Mar")
@@ -359,7 +354,7 @@ ORDER BY area ASC"
                 If ion > 0 Then
                     id_comp_online += ","
                 End If
-                id_comp_online = id_wh_ol
+                id_comp_online += id_wh_ol
                 ion += 1
             End If
         Next
@@ -668,6 +663,7 @@ ORDER BY area ASC"
     Private Sub GVStore_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVStore.CellValueChanged
         If e.Column.FieldName.ToString = "is_select" Then
             setSelectedStore()
+            defaultView()
         End If
     End Sub
 
@@ -767,7 +763,7 @@ ORDER BY area ASC"
         setSelectedStore()
     End Sub
 
-    Private Sub XtraScrollableControl1_Click(sender As Object, e As EventArgs) Handles XtraScrollableControl1.Click
+    Private Sub XtraScrollableControl1_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -776,7 +772,7 @@ ORDER BY area ASC"
         viewStore()
     End Sub
 
-    Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
+    Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs)
         Dim SpQty As DevExpress.XtraEditors.CheckEdit = CType(sender, DevExpress.XtraEditors.CheckEdit)
         Dim cek As String = SpQty.EditValue.ToString
         MsgBox(cek.ToString)
