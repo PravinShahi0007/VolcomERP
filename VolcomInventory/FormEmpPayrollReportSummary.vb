@@ -108,7 +108,7 @@
             End If
         Next
 
-        If Not index = 0 Then
+        If Not salary = 0 Then
             Dim row As DataRow = data.NewRow()
 
             row("group_report") = "STORE"
