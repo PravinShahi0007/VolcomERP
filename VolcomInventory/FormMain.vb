@@ -921,12 +921,17 @@ Public Class FormMain
                     FormMatRetInDet.id_mat_purc_ret_in = "-1"
                     FormMatRetInDet.ShowDialog()
                 End If
-            Else 'production
+            ElseIf FormMatRet.XTCReturnMat.SelectedTabPageIndex = 1 Then 'production
                 If FormMatRet.XTCReturnProd.SelectedTabPageIndex = 0 Then 'ret in
                     FormMatRetInProd.action = "ins"
                     FormMatRetInProd.id_mat_prod_ret_in = "-1"
                     FormMatRetInProd.ShowDialog()
                 End If
+            ElseIf FormMatRet.XTCReturnMat.SelectedTabPageIndex = 2 Then 'other
+                FormMatRetInProd.action = "ins"
+                FormMatRetInProd.is_other = True
+                FormMatRetInProd.id_mat_prod_ret_in = "-1"
+                FormMatRetInProd.ShowDialog()
             End If
         ElseIf formName = "FormProduction" Then
             'Production
@@ -2327,6 +2332,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                         FormMatRetInProd.id_mat_prod_ret_in = FormMatRet.GVRetInProd.GetFocusedRowCellDisplayText("id_mat_prod_ret_in")
                         FormMatRetInProd.ShowDialog()
                     End If
+                ElseIf FormMatRet.XTCReturnMat.SelectedTabPageIndex = 2 Then 'other
+                    FormMatRetInProd.action = "upd"
+                    FormMatRetInProd.is_other = True
+                    FormMatRetInProd.id_mat_prod_ret_in = FormMatRet.GVRetOther.GetFocusedRowCellDisplayText("id_mat_prod_ret_in")
+                    FormMatRetInProd.ShowDialog()
                 End If
             ElseIf formName = "FormSampleAdjustment" Then
                 'SAMPLE ADJUSTMENT
@@ -6883,6 +6893,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 If FormMatRet.XTCReturnProd.SelectedTabPageIndex = 0 Then 'return In
                     print(FormMatRet.GCRetInProd, "List Return In Material Production")
                 End If
+            ElseIf FormMatRet.XTCReturnMat.SelectedTabPageIndex = 2 Then 'other
+                print(FormMatRet.GCRetOther, "List Return In Material Other")
             End If
         ElseIf formName = "FormSampleReturn" Then
             'RETURN SAMPLE
@@ -9917,6 +9929,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 If FormMatRet.XTCReturnProd.SelectedTabPageIndex = 0 Then 'return In
                     FormMatRet.viewRetInProd()
                 End If
+            ElseIf FormMatRet.XTCReturnMat.SelectedTabPageIndex = 1 Then 'return other
+                FormMatRet.viewRetInOther()
             End If
         ElseIf formName = "FormSampleAdjustment" Then
             'Sample Adjustment

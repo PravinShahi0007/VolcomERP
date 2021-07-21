@@ -61,6 +61,20 @@ Partial Class FormMatRet
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPOther = New DevExpress.XtraTab.XtraTabPage()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRetOther = New DevExpress.XtraGrid.GridControl()
+        Me.GVRetOther = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCReturnMat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReturnMat.SuspendLayout()
         Me.XTPPurchase.SuspendLayout()
@@ -78,6 +92,12 @@ Partial Class FormMatRet
         Me.XTPRetInProd.SuspendLayout()
         CType(Me.GCRetInProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRetInProd, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPOther.SuspendLayout()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
+        CType(Me.GCRetOther, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRetOther, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCReturnMat
@@ -90,7 +110,7 @@ Partial Class FormMatRet
         Me.XTCReturnMat.SelectedTabPage = Me.XTPPurchase
         Me.XTCReturnMat.Size = New System.Drawing.Size(837, 360)
         Me.XTCReturnMat.TabIndex = 5
-        Me.XTCReturnMat.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPurchase, Me.XTPProduction})
+        Me.XTCReturnMat.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPurchase, Me.XTPProduction, Me.XTPOther})
         '
         'XTPPurchase
         '
@@ -443,6 +463,125 @@ Partial Class FormMatRet
         Me.GridColumnDesign.VisibleIndex = 2
         Me.GridColumnDesign.Width = 79
         '
+        'XTPOther
+        '
+        Me.XTPOther.Controls.Add(Me.XtraTabControl1)
+        Me.XTPOther.Name = "XTPOther"
+        Me.XTPOther.Size = New System.Drawing.Size(766, 354)
+        Me.XTPOther.Text = "Other"
+        '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XtraTabControl1.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl1.LookAndFeel.SkinName = "Xmas 2008 Blue"
+        Me.XtraTabControl1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
+        Me.XtraTabControl1.Size = New System.Drawing.Size(766, 354)
+        Me.XtraTabControl1.TabIndex = 5
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCRetOther)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(761, 329)
+        Me.XtraTabPage1.Text = "Return In"
+        '
+        'GCRetOther
+        '
+        Me.GCRetOther.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRetOther.Location = New System.Drawing.Point(0, 0)
+        Me.GCRetOther.MainView = Me.GVRetOther
+        Me.GCRetOther.Name = "GCRetOther"
+        Me.GCRetOther.Size = New System.Drawing.Size(761, 329)
+        Me.GCRetOther.TabIndex = 4
+        Me.GCRetOther.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetOther})
+        '
+        'GVRetOther
+        '
+        Me.GVRetOther.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
+        Me.GVRetOther.GridControl = Me.GCRetOther
+        Me.GVRetOther.Name = "GVRetOther"
+        Me.GVRetOther.OptionsBehavior.Editable = False
+        Me.GVRetOther.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID Sample Ret Out"
+        Me.GridColumn11.FieldName = "id_mat_prod_ret_in"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Number"
+        Me.GridColumn12.FieldName = "mat_prod_ret_in_number"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
+        Me.GridColumn12.Width = 68
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "From"
+        Me.GridColumn13.FieldName = "comp_from"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 2
+        Me.GridColumn13.Width = 126
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Return In Date"
+        Me.GridColumn14.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn14.FieldName = "mat_prod_ret_in_date"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 3
+        Me.GridColumn14.Width = 104
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "PL Number"
+        Me.GridColumn15.FieldName = "pl_mrs_number"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
+        Me.GridColumn15.Width = 77
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Status"
+        Me.GridColumn16.FieldName = "report_status"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 4
+        Me.GridColumn16.Width = 71
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "ID Report Status"
+        Me.GridColumn17.FieldName = "id_report_status"
+        Me.GridColumn17.Name = "GridColumn17"
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "WO Number"
+        Me.GridColumn18.FieldName = "prod_order_wo_number"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Width = 78
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Design"
+        Me.GridColumn19.FieldName = "design_name"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Width = 79
+        '
         'FormMatRet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -473,6 +612,12 @@ Partial Class FormMatRet
         Me.XTPRetInProd.ResumeLayout(False)
         CType(Me.GCRetInProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRetInProd, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPOther.ResumeLayout(False)
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GCRetOther, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRetOther, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -518,4 +663,18 @@ Partial Class FormMatRet
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDesign As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPOther As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCRetOther As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVRetOther As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
