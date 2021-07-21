@@ -505,8 +505,8 @@
         'data to gv
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading view")
         GCData.DataSource = data
-        FormMain.SplashScreenManager1.SetWaitFormDescription("Bestfit all column")
-        GVData.BestFitColumns()
+        'FormMain.SplashScreenManager1.SetWaitFormDescription("Bestfit all column")
+        'GVData.BestFitColumns()
 
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
