@@ -253,21 +253,48 @@ ORDER BY area ASC"
         Dim rmt_sal As String = execute_query("SELECT GROUP_CONCAT(DISTINCT sp.report_mark_type) AS `rmt` FROM tb_sales_pos sp WHERE sp.id_report_status=6", 0, True, "", "", "", "")
 
         'filter product
+        'join design
+        Dim join_design As String = "INNER JOIN tb_m_design d ON d.id_design = soh.id_design
+        LEFT JOIN (
+	        SELECT c.id_design, 
+	        MAX(CASE WHEN d.id_code=32 THEN d.id_code_detail END) AS `id_division`,
+            MAX(CASE WHEN d.id_code=32 THEN d.code_detail_name END) AS `division`,
+            MAX(CASE WHEN d.id_code=4 THEN d.id_code_detail END) AS `id_category`,
+	        MAX(CASE WHEN d.id_code=4 THEN d.display_name END) AS `category`,
+            MAX(CASE WHEN d.id_code=30 THEN d.id_code_detail END) AS `id_class`,
+	        MAX(CASE WHEN d.id_code=30 THEN d.display_name END) AS `class`,
+            MAX(CASE WHEN d.id_code=14 THEN d.id_code_detail END) AS `id_color`,
+	        MAX(CASE WHEN d.id_code=14 THEN d.code_detail_name END) AS `color`,
+            MAX(CASE WHEN d.id_code=5 THEN d.id_code_detail END) AS `id_source`,
+	        MAX(CASE WHEN d.id_code=5 THEN d.display_name END) AS `source`
+	        FROM tb_m_design_code AS c
+	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
+	        WHERE d.id_code IN (32,4,30,14,5)
+	        GROUP BY c.id_design
+        ) i ON i.id_design = d.id_design "
+        'where
         Dim where_prod As String = ""
         If Not CCBESeason.EditValue.ToString = "" Then
             where_prod += " AND d.id_season IN (" + CCBESeason.EditValue.ToString + ")"
         End If
         If Not CCBEDivision.EditValue.ToString = "" Then
-            where_prod += " AND division.id_code_detail IN (" + CCBEDivision.EditValue.ToString + ")"
+            where_prod += " AND i.id_division IN (" + CCBEDivision.EditValue.ToString + ")"
         End If
         If Not CCBECategory.EditValue.ToString = "" Then
-            where_prod += " AND category.id_code_detail IN (" + CCBECategory.EditValue.ToString + ")"
+            where_prod += " AND i.id_category IN (" + CCBECategory.EditValue.ToString + ")"
         End If
         If Not CCBEClass.EditValue.ToString = "" Then
-            where_prod += " AND class.id_code_detail IN (" + CCBEClass.EditValue.ToString + ")"
+            where_prod += " AND i.id_class IN (" + CCBEClass.EditValue.ToString + ")"
         End If
         If Not TxtIdProduct.Text.ToString = "" Then
             where_prod += " AND d.id_design IN (" + TxtIdProduct.Text + ")"
+        End If
+        'filter product SOH
+        Dim join_design_soh As String = ""
+        Dim where_prod_soh As String = ""
+        If Not CCBESeason.EditValue.ToString = "" Or Not CCBEDivision.EditValue.ToString = "" Or Not CCBECategory.EditValue.ToString = "" Or Not CCBEClass.EditValue.ToString = "" Or Not TxtIdProduct.Text.ToString = "" Then
+            join_design_soh = join_design
+            where_prod_soh = where_prod
         End If
 
         'filter wh
@@ -288,6 +315,7 @@ ORDER BY area ASC"
         Dim ion As Integer = 0
         Dim iof As Integer = 0
         Dim col_store As String = ""
+        Dim col_store2 As String = ""
         GVStore.ActiveFilterString = "[is_select]='Yes'"
         For s As Integer = 0 To GVStore.RowCount - 1
             Dim comp_number As String = GVStore.GetRowCellValue(s, "comp_number").ToString
@@ -310,6 +338,7 @@ ORDER BY area ASC"
             If s > 0 Then
                 id_store_selected += ","
                 col_store += ","
+                col_store2 += ","
             End If
 
             id_store_selected += GVStore.GetRowCellValue(s, "id_comp").ToString
@@ -317,6 +346,7 @@ ORDER BY area ASC"
             IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0) AS `STORE : " + comp_number + " - " + comp_name + "|SAL`,
             IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + id_comp_soh + ") THEN soh.qty END),0) AS `STORE : " + comp_number + " - " + comp_name + "|SOH`,
             (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_del + ") AND soh.id_comp IN(" + id_comp_soh + ") THEN soh.qty END),0))*100 AS `STORE : " + comp_number + " - " + comp_name + "|Sales Thru` "
+            col_store2 += "soh.`STORE : " + comp_number + " - " + comp_name + "|DEL`, soh.`STORE : " + comp_number + " - " + comp_name + "|SAL`,soh.`STORE : " + comp_number + " - " + comp_name + "|SOH`, soh.`STORE : " + comp_number + " - " + comp_name + "|Sales Thru` "
             If id_commerce_type = "1" Then
                 'offline
                 If iof > 0 Then
@@ -348,8 +378,8 @@ ORDER BY area ASC"
 
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
-        Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, division.display_name AS `Product Info|Division`, 
-        category.display_name AS `Product Info|Category`, class.display_name AS `Product Info|Class`, color.code_detail_name AS `Product Info|Color`, source.display_name AS `Product Info|Source`,
+        Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, i.division AS `Product Info|Division`, 
+        i.category AS `Product Info|Category`, i.class AS `Product Info|Class`, i.color AS `Product Info|Color`, i.source AS `Product Info|Source`,
         season.season AS `Product Info|Season`, delivery.delivery AS `Product Info|Delivery`, range.year_range AS `Product Info|Year`,
         DATE_FORMAT(d.design_first_rec_wh, '%d %M %Y') AS `Product Age|WH Date`,
         DATE_FORMAT(first_del.first_del, '%d %M %Y') AS `Product Age|Del Date`,
@@ -366,65 +396,47 @@ ORDER BY area ASC"
         price_current.design_price_type AS `Price Update Dates|Current Status`,
         ROUND(wh_rec_normal.qty) AS `WH Received|Normal (BOS)`, ROUND(wh_rec_defect.qty) AS `WH Received|Defect`,
         ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`, 
-        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compG78 + ") THEN soh.qty END),0) AS `Stock Gudang Normal|G78`,
-        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGON + ") THEN soh.qty END),0) AS `Stock Gudang Normal|GON`,
-        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compS78 + ") THEN soh.qty END),0) AS `Stock Gudang Sale|S78`,
-        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGOS + ") THEN soh.qty END),0) AS `Stock Gudang Sale|GOS`,
-        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compREJ + ") THEN soh.qty END),0) AS `Stock Gudang Non Active|Reject`,
-        " + col_store + ",
-        IFNULL(
-            SUM(CASE 
-                WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.report_mark_type IN(43,103) THEN soh.qty 
-                WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.report_mark_type IN(58) THEN soh.qty 
-            END)
-        ,0) AS `TOTAL|DEL`,
-        IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `TOTAL|SAL`,
-        IFNULL(
-            SUM(CASE 
-                WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty 
-                WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty 
-            END)
-        ,0) AS `TOTAL|SOH`,
-        (IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0)/
-        IFNULL(
-            SUM(CASE 
-                WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.report_mark_type IN(43,103) THEN soh.qty 
-                WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.report_mark_type IN(58) THEN soh.qty 
-            END)
-        ,0))*100 AS `TOTAL|Sales Thru`
-        FROM tb_soh_sal_period soh
-        INNER JOIN tb_m_design d ON d.id_design = soh.id_design
-        INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
-        LEFT JOIN (
-	         SELECT c.id_design, d.id_code_detail, d.display_name
-	         FROM tb_m_design_code AS c
-	         LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	         WHERE d.id_code = 32
-        ) AS division ON d.id_design = division.id_design
-        LEFT JOIN (
-	        SELECT c.id_design, d.id_code_detail, d.display_name
-	        FROM tb_m_design_code AS c
-	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	        WHERE d.id_code = 4
-        ) AS category ON d.id_design = category.id_design
-        LEFT JOIN (
-	        SELECT c.id_design, d.id_code_detail, d.display_name
-	        FROM tb_m_design_code AS c
-	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	        WHERE d.id_code = 30
-        ) AS class ON d.id_design = class.id_design
-        LEFT JOIN (
-	        SELECT c.id_design, d.code_detail_name
-	        FROM tb_m_design_code AS c
-	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	        WHERE d.id_code = 14
-        ) AS color ON d.id_design = color.id_design
-        LEFT JOIN (
-	        SELECT c.id_design, d.display_name
-	        FROM tb_m_design_code AS c
-	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	        WHERE d.id_code = 5
-        ) AS source ON d.id_design = source.id_design
+        soh.`Stock Gudang Normal|G78`,soh.`Stock Gudang Normal|GON`,soh.`Stock Gudang Sale|S78`,soh.`Stock Gudang Sale|GOS`,soh.`Stock Gudang Non Active|Reject`,
+        " + col_store2 + ",
+        soh.`TOTAL|DEL`, soh.`TOTAL|SAL`,soh.`TOTAL|SOH`, soh.`TOTAL|Sales Thru`
+        FROM (
+            SELECT soh.id_design, soh.id_comp,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compG78 + ") THEN soh.qty END),0) AS `Stock Gudang Normal|G78`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGON + ") THEN soh.qty END),0) AS `Stock Gudang Normal|GON`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compS78 + ") THEN soh.qty END),0) AS `Stock Gudang Sale|S78`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGOS + ") THEN soh.qty END),0) AS `Stock Gudang Sale|GOS`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compREJ + ") THEN soh.qty END),0) AS `Stock Gudang Non Active|Reject`,
+            " + col_store + ",
+            IFNULL(
+                SUM(CASE 
+                    WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.report_mark_type IN(43,103) THEN soh.qty 
+                    WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.report_mark_type IN(58) THEN soh.qty 
+                END)
+            ,0) AS `TOTAL|DEL`,
+            IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `TOTAL|SAL`,
+            IFNULL(
+                SUM(CASE 
+                    WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty 
+                    WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty 
+                END)
+            ,0) AS `TOTAL|SOH`,
+            (IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0)/
+            IFNULL(
+                SUM(CASE 
+                    WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.report_mark_type IN(43,103) THEN soh.qty 
+                    WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.report_mark_type IN(58) THEN soh.qty 
+                END)
+            ,0))*100 AS `TOTAL|Sales Thru`
+            FROM tb_soh_sal_period soh
+            " + join_design_soh + "
+            INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
+            WHERE soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' 
+            AND soh.id_comp IN(" + id_acc_selected + ")
+            " + where_prod + "
+            " + where_prod_soh + "
+            GROUP BY soh.id_design 
+        ) soh 
+        " + join_design + "
         INNER JOIN tb_season AS season ON d.id_season = season.id_season
         INNER JOIN tb_range AS `range` ON season.id_range = range.id_range
         INNER JOIN tb_season_delivery AS delivery ON d.id_delivery = delivery.id_delivery
@@ -481,11 +493,7 @@ ORDER BY area ASC"
 	        LEFT JOIN tb_prod_demand_design AS s ON p.id_prod_demand_design = s.id_prod_demand_design
 	        WHERE r.id_report_status = 6 AND l.id_pl_category <> 1
 	        GROUP BY s.id_design
-        ) AS wh_rec_defect ON wh_rec_defect.id_design = d.id_design
-        WHERE soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' 
-        AND is_del_online_store!=1 AND soh.id_comp IN(" + id_acc_selected + ")
-        " + where_prod + "
-        GROUP BY soh.id_design "
+        ) AS wh_rec_defect ON wh_rec_defect.id_design = d.id_design "
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
         GVData.Bands.Clear()
         GVData.Columns.Clear()
