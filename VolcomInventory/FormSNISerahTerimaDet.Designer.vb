@@ -23,9 +23,9 @@ Partial Class FormSNISerahTerimaDet
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.DEProposeDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BLoad = New DevExpress.XtraEditors.SimpleButton()
@@ -46,12 +46,13 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAttachment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEAttachment = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEProposeDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.TEBudgetNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,15 +60,16 @@ Partial Class FormSNISerahTerimaDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEAttachment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.DEProposeDate)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
-        Me.PanelControl1.Controls.Add(Me.TextEdit2)
+        Me.PanelControl1.Controls.Add(Me.TENumber)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
-        Me.PanelControl1.Controls.Add(Me.TextEdit1)
+        Me.PanelControl1.Controls.Add(Me.TECreatedBy)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -97,13 +99,13 @@ Partial Class FormSNISerahTerimaDet
         Me.LabelControl3.TabIndex = 5
         Me.LabelControl3.Text = "Created Date"
         '
-        'TextEdit2
+        'TENumber
         '
-        Me.TextEdit2.Location = New System.Drawing.Point(91, 12)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.ReadOnly = True
-        Me.TextEdit2.Size = New System.Drawing.Size(333, 20)
-        Me.TextEdit2.TabIndex = 4
+        Me.TENumber.Location = New System.Drawing.Point(91, 12)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(333, 20)
+        Me.TENumber.TabIndex = 4
         '
         'LabelControl2
         '
@@ -113,13 +115,13 @@ Partial Class FormSNISerahTerimaDet
         Me.LabelControl2.TabIndex = 3
         Me.LabelControl2.Text = "Number"
         '
-        'TextEdit1
+        'TECreatedBy
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(91, 38)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(333, 20)
-        Me.TextEdit1.TabIndex = 2
+        Me.TECreatedBy.Location = New System.Drawing.Point(91, 38)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.ReadOnly = True
+        Me.TECreatedBy.Size = New System.Drawing.Size(333, 20)
+        Me.TECreatedBy.TabIndex = 2
         '
         'LabelControl1
         '
@@ -232,6 +234,7 @@ Partial Class FormSNISerahTerimaDet
         Me.GCList.Location = New System.Drawing.Point(0, 113)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
+        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEAttachment})
         Me.GCList.Size = New System.Drawing.Size(917, 412)
         Me.GCList.TabIndex = 3
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
@@ -303,7 +306,19 @@ Partial Class FormSNISerahTerimaDet
         'GridColumnAttachment
         '
         Me.GridColumnAttachment.Caption = "Attachment"
+        Me.GridColumnAttachment.ColumnEdit = Me.RICEAttachment
+        Me.GridColumnAttachment.FieldName = "is_attach"
         Me.GridColumnAttachment.Name = "GridColumnAttachment"
+        '
+        'RICEAttachment
+        '
+        Me.RICEAttachment.AutoHeight = False
+        Me.RICEAttachment.Name = "RICEAttachment"
+        Me.RICEAttachment.PictureChecked = CType(resources.GetObject("RICEAttachment.PictureChecked"), System.Drawing.Image)
+        Me.RICEAttachment.PictureGrayed = CType(resources.GetObject("RICEAttachment.PictureGrayed"), System.Drawing.Image)
+        Me.RICEAttachment.PictureUnchecked = CType(resources.GetObject("RICEAttachment.PictureUnchecked"), System.Drawing.Image)
+        Me.RICEAttachment.ValueChecked = "yes"
+        Me.RICEAttachment.ValueUnchecked = "no"
         '
         'FormSNISerahTerimaDet
         '
@@ -324,8 +339,8 @@ Partial Class FormSNISerahTerimaDet
         Me.PanelControl1.PerformLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEProposeDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -334,14 +349,15 @@ Partial Class FormSNISerahTerimaDet
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEAttachment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEProposeDate As DevExpress.XtraEditors.DateEdit
@@ -364,4 +380,5 @@ Partial Class FormSNISerahTerimaDet
     Friend WithEvents BLoad As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEBudgetNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents RICEAttachment As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

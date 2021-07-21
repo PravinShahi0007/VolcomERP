@@ -34,12 +34,12 @@ WHERE rec.id_sni_rec='" & id & "'"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT pps.id_sni_pps,pb.`id_product`,p.`product_full_code`,pb.`budget_qty` AS qty,dsg.`design_display_name`,cd.`display_name` AS size
+        Dim q As String = "SELECT 'yes' AS is_attach,recd.id_sni_rec_det,recd.`id_product`,p.`product_full_code`,recd.`qty` AS qty,dsg.`design_display_name`,cd.`display_name` AS size
 FROM `tb_sni_rec_det` recd
-INNER JOIN tb_m_product p ON p.`id_product`=pb.`id_product`
+INNER JOIN tb_m_product p ON p.`id_product`=recd.`id_product`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=p.`id_design`
 INNER JOIN tb_m_code_detail cd ON cd.code=p.`product_code` AND cd.`id_code`=33
-WHERE AND recd.id_sni_rec='" & id & "'"
+WHERE recd.id_sni_rec='" & id & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
