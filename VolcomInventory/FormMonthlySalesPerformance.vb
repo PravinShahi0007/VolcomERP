@@ -1479,7 +1479,7 @@ ORDER BY area ASC"
         data.Columns.Add("month_code", GetType(String))
         data.Columns.Add("month", GetType(String))
 
-        Dim first_year As Integer = 2019
+        Dim first_year As Integer = 2020
         Dim last_year As Integer = Date.Now.Year
 
         For i = last_year To first_year Step -1
