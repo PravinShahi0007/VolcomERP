@@ -1667,21 +1667,25 @@ ORDER BY area ASC"
         view_province()
         view_group_store()
         view_store()
+        defaultView()
     End Sub
 
     Private Sub SLUEProvince_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEProvince.EditValueChanged
         view_group_store()
         view_store()
+        defaultView()
     End Sub
 
     Private Sub SLUECompGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLUECompGroup.EditValueChanged
         view_store()
+        defaultView()
     End Sub
 
     Private Sub SLUEIsland_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEIsland.EditValueChanged
         view_province()
         view_group_store()
         view_store()
+        defaultView()
     End Sub
 
     Private Sub FormMonthlySalesPerformance_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -1697,11 +1701,13 @@ ORDER BY area ASC"
     Private Sub LECat_EditValueChanged(sender As Object, e As EventArgs) Handles LECat.EditValueChanged
         view_group_store()
         view_store()
+        defaultView()
     End Sub
 
     Private Sub LEArea_EditValueChanged(sender As Object, e As EventArgs) Handles LEArea.EditValueChanged
         view_group_store()
         view_store()
+        defaultView()
     End Sub
 
     Private Sub CEAllStore_EditValueChanged(sender As Object, e As EventArgs) Handles CEAllStore.EditValueChanged
@@ -1710,5 +1716,38 @@ ORDER BY area ASC"
         Else
             GCStore.Enabled = True
         End If
+        defaultView()
+    End Sub
+
+    Private Sub SLUEMonthFrom_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEMonthFrom.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub SLUEMonthTo_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEMonthTo.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub CCBESeason_EditValueChanged(sender As Object, e As EventArgs) Handles CCBESeason.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub CCBEDivision_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEDivision.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub CCBECategory_EditValueChanged(sender As Object, e As EventArgs) Handles CCBECategory.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub CCBEClass_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEClass.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub TEProductCode_EditValueChanged(sender As Object, e As EventArgs) Handles TEProductCode.EditValueChanged
+        defaultView()
+    End Sub
+
+    Private Sub GVStore_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVStore.CellValueChanged
+        defaultView()
     End Sub
 End Class

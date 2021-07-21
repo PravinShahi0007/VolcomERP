@@ -740,11 +740,11 @@ Partial Class FormMonthlySalesPerformance
         '
         Me.SBExportExcel.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBExportExcel.Image = CType(resources.GetObject("SBExportExcel.Image"), System.Drawing.Image)
-        Me.SBExportExcel.Location = New System.Drawing.Point(225, 2)
+        Me.SBExportExcel.Location = New System.Drawing.Point(201, 2)
         Me.SBExportExcel.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.SBExportExcel.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBExportExcel.Name = "SBExportExcel"
-        Me.SBExportExcel.Size = New System.Drawing.Size(98, 39)
+        Me.SBExportExcel.Size = New System.Drawing.Size(107, 39)
         Me.SBExportExcel.TabIndex = 2
         Me.SBExportExcel.Text = "Export Excel"
         '
@@ -752,11 +752,11 @@ Partial Class FormMonthlySalesPerformance
         '
         Me.SBView.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBView.Image = CType(resources.GetObject("SBView.Image"), System.Drawing.Image)
-        Me.SBView.Location = New System.Drawing.Point(323, 2)
+        Me.SBView.Location = New System.Drawing.Point(308, 2)
         Me.SBView.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.SBView.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBView.Name = "SBView"
-        Me.SBView.Size = New System.Drawing.Size(62, 39)
+        Me.SBView.Size = New System.Drawing.Size(77, 39)
         Me.SBView.TabIndex = 0
         Me.SBView.Text = "View"
         '
