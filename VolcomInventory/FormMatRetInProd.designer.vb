@@ -77,6 +77,8 @@ Partial Class FormMatRetInProd
         Me.GridColumnRack = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEPLType = New DevExpress.XtraEditors.LookUpEdit()
         Me.BtnBrowseComp = New DevExpress.XtraEditors.SimpleButton()
         Me.TEDesignCode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -85,7 +87,7 @@ Partial Class FormMatRetInProd
         Me.BtnBrowsePO = New DevExpress.XtraEditors.SimpleButton()
         Me.DERet = New DevExpress.XtraEditors.TextEdit()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LNumber = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtRetOutNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -105,8 +107,6 @@ Partial Class FormMatRetInProd
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEPLType = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.LargeImageCollectionOld, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlRet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,6 +129,7 @@ Partial Class FormMatRetInProd
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.LEPLType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,7 +144,6 @@ Partial Class FormMatRetInProd
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.LEPLType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollectionOld
@@ -707,7 +707,7 @@ Partial Class FormMatRetInProd
         Me.GroupGeneralHeader.Controls.Add(Me.BtnBrowsePO)
         Me.GroupGeneralHeader.Controls.Add(Me.DERet)
         Me.GroupGeneralHeader.Controls.Add(Me.TEPONumber)
-        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl4)
+        Me.GroupGeneralHeader.Controls.Add(Me.LNumber)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl7)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtRetOutNumber)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl5)
@@ -721,6 +721,27 @@ Partial Class FormMatRetInProd
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(904, 150)
         Me.GroupGeneralHeader.TabIndex = 176
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(27, 120)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl8.TabIndex = 174
+        Me.LabelControl8.Text = "PL Type"
+        '
+        'LEPLType
+        '
+        Me.LEPLType.Location = New System.Drawing.Point(111, 117)
+        Me.LEPLType.Name = "LEPLType"
+        Me.LEPLType.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPLType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPLType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPLType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_mat_type", "ID PL Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_mat_type", "PL Type")})
+        Me.LEPLType.Properties.NullText = ""
+        Me.LEPLType.Properties.ShowFooter = False
+        Me.LEPLType.Size = New System.Drawing.Size(331, 20)
+        Me.LEPLType.TabIndex = 173
         '
         'BtnBrowseComp
         '
@@ -800,14 +821,14 @@ Partial Class FormMatRetInProd
         Me.TEPONumber.Size = New System.Drawing.Size(302, 20)
         Me.TEPONumber.TabIndex = 0
         '
-        'LabelControl4
+        'LNumber
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(27, 42)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl4.TabIndex = 88
-        Me.LabelControl4.Text = "PO Number"
+        Me.LNumber.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LNumber.Location = New System.Drawing.Point(27, 42)
+        Me.LNumber.Name = "LNumber"
+        Me.LNumber.Size = New System.Drawing.Size(61, 13)
+        Me.LNumber.TabIndex = 88
+        Me.LNumber.Text = "Reff Number"
         '
         'LabelControl7
         '
@@ -1012,27 +1033,6 @@ Partial Class FormMatRetInProd
         Me.BMark.TabIndex = 16
         Me.BMark.Text = "Mark"
         '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(27, 120)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(38, 13)
-        Me.LabelControl8.TabIndex = 174
-        Me.LabelControl8.Text = "PL Type"
-        '
-        'LEPLType
-        '
-        Me.LEPLType.Location = New System.Drawing.Point(111, 117)
-        Me.LEPLType.Name = "LEPLType"
-        Me.LEPLType.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEPLType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEPLType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPLType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_mat_type", "ID PL Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_mat_type", "PL Type")})
-        Me.LEPLType.Properties.NullText = ""
-        Me.LEPLType.Properties.ShowFooter = False
-        Me.LEPLType.Size = New System.Drawing.Size(331, 20)
-        Me.LEPLType.TabIndex = 173
-        '
         'FormMatRetInProd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1073,6 +1073,7 @@ Partial Class FormMatRetInProd
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.LEPLType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1088,7 +1089,6 @@ Partial Class FormMatRetInProd
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.LEPLType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1113,7 +1113,7 @@ Partial Class FormMatRetInProd
     Friend WithEvents GroupGeneralHeader As DevExpress.XtraEditors.GroupControl
     Friend WithEvents DERet As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEPONumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LNumber As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtRetOutNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl

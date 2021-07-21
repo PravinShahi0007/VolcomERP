@@ -5,6 +5,7 @@
     Public id_prod_order_wo As String = ""
     Public id_comp_contact_from As String = ""
     Public id_mat_purc_det_list, id_mat_purc_ret_in_det_list As New List(Of String)
+    Public is_other As Boolean = False
     Dim date_start As Date
     Public id_report_status As String = ""
     Private Sub FormMatRetInProd_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -374,8 +375,13 @@
     Private Sub BtnBrowsePO_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBrowsePO.Click
         'FormPopUpWOProdMat.id_pop_up = "1"
         'FormPopUpWOProdMat.ShowDialog()
-        FormPopUpProd.id_pop_up = "8"
-        FormPopUpProd.ShowDialog()
+        If is_other Then
+            FormPopUpPLMat.id_pop_up = "1"
+            FormPopUpPLMat.ShowDialog()
+        Else
+            FormPopUpProd.id_pop_up = "8"
+            FormPopUpProd.ShowDialog()
+        End If
     End Sub
     Private Sub GVRetDetail_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVRetDetail.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then

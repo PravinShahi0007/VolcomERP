@@ -10,6 +10,7 @@
         viewRetOut()
         viewRetIn()
         viewRetInProd()
+        viewRetInOther()
     End Sub
 
     Private Sub FormMatRet_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
@@ -33,7 +34,7 @@
                 If GVRetOut.RowCount > 0 Then
                     bnew_active = 1
                     bedit_active = 1
-                    bdel_active = 1
+                    bdel_active = 0
                 Else
                     bnew_active = 1
                     bedit_active = 0
@@ -45,7 +46,7 @@
                 If GVRetIn.RowCount > 0 Then
                     bnew_active = 1
                     bedit_active = 1
-                    bdel_active = 1
+                    bdel_active = 0
                 Else
                     bnew_active = 1
                     bedit_active = 0
@@ -54,11 +55,23 @@
                 checkFormAccess(Name)
                 button_main(bnew_active, bedit_active, bdel_active)
             End If
-        Else
+        ElseIf XTCReturnMat.SelectedTabPageIndex = 1 Then 'Prod
             If GVRetInProd.RowCount > 0 Then
                 bnew_active = 1
                 bedit_active = 1
-                bdel_active = 1
+                bdel_active = 0
+            Else
+                bnew_active = 1
+                bedit_active = 0
+                bdel_active = 0
+            End If
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
+        ElseIf XTCReturnMat.SelectedTabPageIndex = 2 Then 'Other
+            If GVRetOther.RowCount > 0 Then
+                bnew_active = 1
+                bedit_active = 1
+                bdel_active = 0
             Else
                 bnew_active = 1
                 bedit_active = 0
@@ -147,6 +160,32 @@
             If data.Rows.Count > 0 Then
                 bnew_active2 = 1
                 bdel_active2 = 1
+                bedit_active2 = 1
+            Else
+                bnew_active2 = 1
+                bdel_active2 = 0
+                bedit_active2 = 0
+            End If
+            pageChanged()
+        Catch ex As Exception
+            errorConnection()
+            Close()
+        End Try
+    End Sub
+    Sub viewRetInOther()
+        Try
+            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,a.mat_prod_ret_in_number , (e.comp_name) AS comp_from , h.`pl_mrs_number`
+FROM tb_mat_prod_ret_in a 
+INNER JOIN tb_pl_mrs h ON a.id_pl_mrs = h.id_pl_mrs 
+INNER JOIN tb_m_comp_contact d ON d.id_comp_contact = a.id_comp_contact_from 
+INNER JOIN tb_m_comp e ON d.id_comp = e.id_comp 
+INNER JOIN tb_lookup_report_status i ON i.id_report_status = a.id_report_status 
+ORDER BY a.id_mat_prod_ret_in DESC "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCRetOther.DataSource = data
+            If data.Rows.Count > 0 Then
+                bnew_active2 = 1
+                bdel_active2 = 0
                 bedit_active2 = 1
             Else
                 bnew_active2 = 1

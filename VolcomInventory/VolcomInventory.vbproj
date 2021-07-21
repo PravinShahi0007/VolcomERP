@@ -3687,6 +3687,12 @@
     <Compile Include="FormPopUpOVH.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPopUpPLMat.Designer.vb">
+      <DependentUpon>FormPopUpPLMat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpPLMat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpProdRec.Designer.vb">
       <DependentUpon>FormPopUpProdRec.vb</DependentUpon>
     </Compile>
@@ -11656,6 +11662,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpOVH.resx">
       <DependentUpon>FormPopUpOVH.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpPLMat.resx">
+      <DependentUpon>FormPopUpPLMat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpProdRec.resx">
       <DependentUpon>FormPopUpProdRec.vb</DependentUpon>
