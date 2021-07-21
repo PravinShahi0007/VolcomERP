@@ -44,57 +44,22 @@ ORDER BY a.id_pl_mrs DESC "
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
-        If id_pop_up = "1" Then 'formmatinvoicedet
-            'check if exist
-            Dim already = False
-            If FormMatInvoiceDet.GVProdPL.RowCount > 0 Then
-                For i As Integer = 0 To FormMatInvoiceDet.GVProdPL.RowCount - 1
-                    If FormMatInvoiceDet.GVProdPL.GetRowCellValue(i, "id_pl_mrs").ToString = GVProdPL.GetFocusedRowCellDisplayText("id_pl_mrs").ToString Then
-                        already = True
-                    End If
-                Next
-            End If
-
-            If already = True Then
-                stopCustom("Packing list already on list")
-            Else
-                Dim newRow As DataRow = (TryCast(FormMatInvoiceDet.GCProdPL.DataSource, DataTable)).NewRow()
-                newRow("id_pl_mrs") = GVProdPL.GetFocusedRowCellDisplayText("id_pl_mrs").ToString
-                newRow("pl_mrs_number") = GVProdPL.GetFocusedRowCellDisplayText("pl_mrs_number").ToString
-                newRow("prod_order_mrs_number") = GVProdPL.GetFocusedRowCellDisplayText("prod_order_mrs_number")
-                newRow("comp_name_from") = GVProdPL.GetFocusedRowCellDisplayText("comp_name_from")
-                newRow("comp_name_to") = GVProdPL.GetFocusedRowCellDisplayText("comp_name_to").ToString
-                newRow("pl_mrs_date") = GVProdPL.GetFocusedRowCellDisplayText("pl_mrs_date").ToString
-                newRow("report_status") = GVProdPL.GetFocusedRowCellDisplayText("report_status").ToString
-                newRow("id_report_status") = GVProdPL.GetFocusedRowCellDisplayText("id_report_status").ToString
-
-                TryCast(FormMatInvoiceDet.GCProdPL.DataSource, DataTable).Rows.Add(newRow)
-                FormMatInvoiceDet.GCProdPL.RefreshDataSource()
-                FormMatInvoiceDet.check_but()
-                FormMatInvoiceDet.GVProdPL.FocusedRowHandle = 0
-                'detail PL
-                If GVDetail.RowCount > 0 Then
-                    For i As Integer = 0 To (GVDetail.RowCount - 1)
-                        Dim newRowx As DataRow = (TryCast(FormMatInvoiceDet.GCListPurchase.DataSource, DataTable)).NewRow()
-                        newRowx("id_pl_mrs_det") = GVDetail.GetRowCellValue(i, "id_pl_mrs_det").ToString
-                        newRowx("id_pl_mrs") = GVProdPL.GetFocusedRowCellDisplayText("id_pl_mrs").ToString
-                        newRowx("code") = GVDetail.GetRowCellValue(i, "code").ToString
-                        newRowx("name") = GVDetail.GetRowCellValue(i, "name")
-                        newRowx("qty") = GVDetail.GetRowCellValue(i, "qty")
-                        newRowx("price") = GVDetail.GetRowCellValue(i, "price")
-                        newRowx("uom") = GVDetail.GetRowCellValue(i, "uom").ToString
-                        newRowx("total_price") = GVDetail.GetRowCellValue(i, "total_price")
-                        newRowx("id_mat_det") = GVDetail.GetRowCellValue(i, "id_mat_det").ToString
-                        newRowx("pl_mrs_number") = GVProdPL.GetFocusedRowCellDisplayText("pl_mrs_number").ToString
-
-                        TryCast(FormMatInvoiceDet.GCListPurchase.DataSource, DataTable).Rows.Add(newRowx)
-                        FormMatInvoiceDet.GCListPurchase.RefreshDataSource()
-                    Next
-                    FormMatInvoiceDet.calculate()
-                End If
-
-                Close()
-            End If
+        If id_pop_up = "1" Then '
+            FormMatRetInProd.TEPONumber.Text = GVProdPL.GetFocusedRowCellValue("pl_mrs_number").ToString
+            FormMatRetInProd.id_pl_mrs = GVProdPL.GetFocusedRowCellValue("id_pl_mrs").ToString
+            '
+            FormMatRetInProd.GroupControlRet.Enabled = True
+            FormMatRetInProd.viewDetailOther(GVProdPL.GetFocusedRowCellValue("id_pl_mrs").ToString)
+            '
+            Close()
         End If
+    End Sub
+
+    Private Sub GVProdPL_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVProdPL.FocusedRowChanged
+        viewFillEmptyData()
+    End Sub
+
+    Private Sub GVProdPL_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVProdPL.ColumnFilterChanged
+        viewFillEmptyData()
     End Sub
 End Class

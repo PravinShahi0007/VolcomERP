@@ -4,6 +4,9 @@
     Public id_comp_contact_from As String = ""
     Dim date_start As Date
     Public id_report_status As String = ""
+    '
+    Public is_other As Boolean = False
+    '
     Private Sub FormViewMatRetInProd_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewComp()
         'Enable/Disable
@@ -11,21 +14,47 @@
 
         'View data
         Try
-            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_display_name as design_name,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
-            query += "a.mat_prod_ret_in_number  "
-            query += ",drw.id_wh_drawer,rck.id_wh_rack,loc.id_wh_locator,comp.id_comp "
-            query += "FROM tb_mat_prod_ret_in a "
-            query += "INNER JOIN tb_prod_order h ON a.id_prod_order = h.id_prod_order "
-            query += "INNER JOIN tb_prod_demand_design pd_desg ON pd_desg.id_prod_demand_design = h.id_prod_demand_design "
-            query += "INNER JOIN tb_m_design desg ON desg.id_design = pd_desg.id_design "
-            query += "INNER JOIN tb_m_comp_contact d ON d.id_comp_contact = a.id_comp_contact_from "
-            query += "INNER JOIN tb_m_comp e ON d.id_comp = e.id_comp "
-            query += "INNER JOIN tb_lookup_report_status i ON i.id_report_status = a.id_report_status "
-            query += "LEFT JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = a.id_wh_drawer "
-            query += "LEFT JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack "
-            query += "LEFT JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
-            query += "LEFT JOIN tb_m_comp comp ON comp.id_comp = loc.id_comp "
-            query += "WHERE a.id_mat_prod_ret_in = '" & id_mat_prod_ret_in & "'"
+            Dim qc As String = "SELECT * FROM tb_mat_prod_ret_in WHERE id_mat_prod_ret_in = '" & id_mat_prod_ret_in & "' AND NOT ISNULL(id_pl_mrs)"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                is_other = True
+            Else
+                is_other = False
+            End If
+
+            Dim query As String = ""
+            If is_other Then
+                query = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_pl_mrs, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.pl_mrs_number,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
+                query += "a.mat_prod_ret_in_number  "
+                query += ",drw.id_wh_drawer,rck.id_wh_rack,loc.id_wh_locator,comp.id_comp "
+                query += "FROM tb_mat_prod_ret_in a "
+                query += "INNER JOIN tb_pl_mrs h ON a.id_pl_mrs = h.id_pl_mrs "
+                query += "INNER JOIN tb_m_comp_contact d ON d.id_comp_contact = a.id_comp_contact_from "
+                query += "INNER JOIN tb_m_comp e ON d.id_comp = e.id_comp "
+                query += "INNER JOIN tb_lookup_report_status i ON i.id_report_status = a.id_report_status "
+                query += "LEFT JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = a.id_wh_drawer "
+                query += "LEFT JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack "
+                query += "LEFT JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
+                query += "LEFT JOIN tb_m_comp comp ON comp.id_comp = loc.id_comp "
+                query += "WHERE a.id_mat_prod_ret_in = '" & id_mat_prod_ret_in & "'"
+            Else
+                query = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_display_name as design_name,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
+                query += "a.mat_prod_ret_in_number  "
+                query += ",drw.id_wh_drawer,rck.id_wh_rack,loc.id_wh_locator,comp.id_comp "
+                query += "FROM tb_mat_prod_ret_in a "
+                query += "INNER JOIN tb_prod_order h ON a.id_prod_order = h.id_prod_order "
+                query += "INNER JOIN tb_prod_demand_design pd_desg ON pd_desg.id_prod_demand_design = h.id_prod_demand_design "
+                query += "INNER JOIN tb_m_design desg ON desg.id_design = pd_desg.id_design "
+                query += "INNER JOIN tb_m_comp_contact d ON d.id_comp_contact = a.id_comp_contact_from "
+                query += "INNER JOIN tb_m_comp e ON d.id_comp = e.id_comp "
+                query += "INNER JOIN tb_lookup_report_status i ON i.id_report_status = a.id_report_status "
+                query += "LEFT JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = a.id_wh_drawer "
+                query += "LEFT JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack "
+                query += "LEFT JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
+                query += "LEFT JOIN tb_m_comp comp ON comp.id_comp = loc.id_comp "
+                query += "WHERE a.id_mat_prod_ret_in = '" & id_mat_prod_ret_in & "'"
+            End If
+
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             Try
@@ -36,13 +65,18 @@
             Catch ex As Exception
             End Try
 
-            id_prod_order = data.Rows(0)("id_prod_order").ToString
-            TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
+            If is_other Then
+                TEPONumber.Text = data.Rows(0)("pl_mrs_number").ToString
+            Else
+                TEDesign.Text = data.Rows(0)("design_name").ToString
+                TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
+                id_prod_order = data.Rows(0)("id_prod_order").ToString
+            End If
+
             id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
             TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
             TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
             MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
-            TEDesign.Text = data.Rows(0)("design_name").ToString
             Dim start_date_arr() As String = data.Rows(0)("mat_prod_ret_in_date").ToString.Split(" ")
             DERet.Text = start_date_arr(0).ToString
             TxtRetOutNumber.Text = data.Rows(0)("mat_prod_ret_in_number").ToString

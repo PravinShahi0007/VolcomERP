@@ -606,9 +606,9 @@ Partial Class FormViewMatRetInProd
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl4.Location = New System.Drawing.Point(27, 68)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl4.TabIndex = 88
-        Me.LabelControl4.Text = "PO Number"
+        Me.LabelControl4.Text = "Reff Number"
         '
         'LabelControl7
         '
@@ -764,7 +764,7 @@ Partial Class FormViewMatRetInProd
         Me.Name = "FormViewMatRetInProd"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "View Return In Material Production"
+        Me.Text = "View Return In Material"
         CType(Me.GroupControlRet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlRet.ResumeLayout(False)
         CType(Me.GCRetDetail, System.ComponentModel.ISupportInitialize).EndInit()

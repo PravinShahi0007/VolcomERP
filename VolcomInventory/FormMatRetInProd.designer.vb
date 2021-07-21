@@ -41,7 +41,7 @@ Partial Class FormMatRetInProd
         Me.GridColumnQtyStored = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotCost = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
@@ -114,8 +114,8 @@ Partial Class FormMatRetInProd
         CType(Me.GCRetDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRetDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddDel.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlSaveStorage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlSaveStorage.SuspendLayout()
@@ -164,7 +164,7 @@ Partial Class FormMatRetInProd
         Me.GroupControlRet.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.GroupControlRet.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlRet.Controls.Add(Me.GCRetDetail)
-        Me.GroupControlRet.Controls.Add(Me.PanelControl1)
+        Me.GroupControlRet.Controls.Add(Me.PCAddDel)
         Me.GroupControlRet.Controls.Add(Me.PanelControlSaveStorage)
         Me.GroupControlRet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlRet.Enabled = False
@@ -364,18 +364,18 @@ Partial Class FormMatRetInProd
         Me.GridColumnTotCost.FieldName = "tot_cost"
         Me.GridColumnTotCost.Name = "GridColumnTotCost"
         '
-        'PanelControl1
+        'PCAddDel
         '
-        Me.PanelControl1.Controls.Add(Me.BtnDel)
-        Me.PanelControl1.Controls.Add(Me.BtnEdit)
-        Me.PanelControl1.Controls.Add(Me.BtnAdd)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(20, 43)
-        Me.PanelControl1.LookAndFeel.SkinName = "Office 2010 Silver"
-        Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(882, 37)
-        Me.PanelControl1.TabIndex = 0
+        Me.PCAddDel.Controls.Add(Me.BtnDel)
+        Me.PCAddDel.Controls.Add(Me.BtnEdit)
+        Me.PCAddDel.Controls.Add(Me.BtnAdd)
+        Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCAddDel.Location = New System.Drawing.Point(20, 43)
+        Me.PCAddDel.LookAndFeel.SkinName = "Office 2010 Silver"
+        Me.PCAddDel.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PCAddDel.Name = "PCAddDel"
+        Me.PCAddDel.Size = New System.Drawing.Size(882, 37)
+        Me.PCAddDel.TabIndex = 0
         '
         'BtnDel
         '
@@ -1048,7 +1048,7 @@ Partial Class FormMatRetInProd
         Me.Name = "FormMatRetInProd"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Material Return In Production"
+        Me.Text = "Material Return In "
         CType(Me.LargeImageCollectionOld, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlRet, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1056,8 +1056,8 @@ Partial Class FormMatRetInProd
         CType(Me.GCRetDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRetDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddDel.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlSaveStorage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlSaveStorage.ResumeLayout(False)
@@ -1106,7 +1106,7 @@ Partial Class FormMatRetInProd
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCAddDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton
