@@ -563,7 +563,6 @@ Partial Class FormInfoMRSPord
         Me.Name = "FormInfoMRSPord"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Info Material Requisition"
         CType(Me.SplitContainerControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl2.ResumeLayout(False)
         CType(Me.GroupControlDetailSRS, System.ComponentModel.ISupportInitialize).EndInit()

@@ -5,6 +5,7 @@
     Private Sub FormPopUpMatPL_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewPL()
     End Sub
+
     Sub viewPL()
         Dim query As String = "SELECT a.id_currency,a.id_pl_mrs ,m.design_name,k.prod_order_number,a.id_comp_contact_from , a.id_comp_contact_to, a.pl_mrs_note, a.pl_mrs_number, "
         query += "(d.comp_name) AS comp_name_from, (f.comp_name) AS comp_name_to, h.report_status, a.id_report_status,j.prod_order_wo_number,i.prod_order_mrs_number, "
@@ -27,6 +28,7 @@
             viewFillEmptyData()
         End If
     End Sub
+
     Sub viewFillEmptyData()
         Dim query As String = "CALL view_inv_mat_pl('" + GVProdPL.GetFocusedRowCellValue("id_pl_mrs").ToString + "','1')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
