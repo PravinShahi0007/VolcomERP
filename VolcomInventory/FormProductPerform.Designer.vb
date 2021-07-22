@@ -20,7 +20,7 @@ Partial Class FormProductPerform
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductPerform))
-        Dim RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.TxtIdProduct = New DevExpress.XtraEditors.TextEdit()
         Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
@@ -76,10 +76,11 @@ Partial Class FormProductPerform
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlLeft = New DevExpress.XtraEditors.PanelControl()
         Me.XtraScrollableControl2 = New DevExpress.XtraEditors.XtraScrollableControl()
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.Label6 = New System.Windows.Forms.Label()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtIdProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,7 +98,6 @@ Partial Class FormProductPerform
         CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVStore, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,13 +110,20 @@ Partial Class FormProductPerform
         CType(Me.PanelControlLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlLeft.SuspendLayout()
         Me.XtraScrollableControl2.SuspendLayout()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl1.SuspendLayout()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl1.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
         'PanelControl1
         '
@@ -411,11 +418,7 @@ Partial Class FormProductPerform
         'GridColumnis_select
         '
         Me.GridColumnis_select.Caption = "Select"
-        RepositoryItemCheckEdit2.AutoHeight = False
-        RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit1"
-        RepositoryItemCheckEdit2.ValueChecked = "Yes"
-        RepositoryItemCheckEdit2.ValueUnchecked = "No"
-        Me.GridColumnis_select.ColumnEdit = RepositoryItemCheckEdit2
+        Me.GridColumnis_select.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.GridColumnis_select.FieldName = "is_select"
         Me.GridColumnis_select.Name = "GridColumnis_select"
         Me.GridColumnis_select.Visible = True
@@ -617,19 +620,18 @@ Partial Class FormProductPerform
         Me.XtraScrollableControl2.Size = New System.Drawing.Size(355, 465)
         Me.XtraScrollableControl2.TabIndex = 2
         '
-        'GroupControl1
+        'GroupControl3
         '
-        Me.GroupControl1.Controls.Add(Me.Label6)
-        Me.GroupControl1.Controls.Add(Me.SLUEMonthFrom)
-        Me.GroupControl1.Controls.Add(Me.SLUEMonthTo)
-        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
-        Me.GroupControl1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(338, 63)
-        Me.GroupControl1.TabIndex = 0
-        Me.GroupControl1.Text = "Sales Period"
+        Me.GroupControl3.Controls.Add(Me.GCStore)
+        Me.GroupControl3.Controls.Add(Me.PanelControl2)
+        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 229)
+        Me.GroupControl3.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.GroupControl3.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GroupControl3.Name = "GroupControl3"
+        Me.GroupControl3.Size = New System.Drawing.Size(338, 5000)
+        Me.GroupControl3.TabIndex = 2
+        Me.GroupControl3.Text = "Filter by Store"
         '
         'GroupControl2
         '
@@ -654,6 +656,20 @@ Partial Class FormProductPerform
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Filter by Product"
         '
+        'GroupControl1
+        '
+        Me.GroupControl1.Controls.Add(Me.Label6)
+        Me.GroupControl1.Controls.Add(Me.SLUEMonthFrom)
+        Me.GroupControl1.Controls.Add(Me.SLUEMonthTo)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.GroupControl1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(338, 63)
+        Me.GroupControl1.TabIndex = 0
+        Me.GroupControl1.Text = "Sales Period"
+        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -662,19 +678,6 @@ Partial Class FormProductPerform
         Me.Label6.Size = New System.Drawing.Size(11, 13)
         Me.Label6.TabIndex = 55
         Me.Label6.Text = "-"
-        '
-        'GroupControl3
-        '
-        Me.GroupControl3.Controls.Add(Me.GCStore)
-        Me.GroupControl3.Controls.Add(Me.PanelControl2)
-        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 229)
-        Me.GroupControl3.LookAndFeel.SkinName = "Office 2013 Dark Gray"
-        Me.GroupControl3.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(338, 5000)
-        Me.GroupControl3.TabIndex = 2
-        Me.GroupControl3.Text = "Filter by Store"
         '
         'FormProductPerform
         '
@@ -685,6 +688,7 @@ Partial Class FormProductPerform
         Me.Controls.Add(Me.PanelControlLeft)
         Me.Name = "FormProductPerform"
         Me.Text = "FormProductPerform"
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.TxtIdProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -702,7 +706,6 @@ Partial Class FormProductPerform
         CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVStore, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -716,14 +719,14 @@ Partial Class FormProductPerform
         CType(Me.PanelControlLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlLeft.ResumeLayout(False)
         Me.XtraScrollableControl2.ResumeLayout(False)
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl1.ResumeLayout(False)
-        Me.GroupControl1.PerformLayout()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl3.ResumeLayout(False)
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
-        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl3.ResumeLayout(False)
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
+        Me.GroupControl1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -787,4 +790,5 @@ Partial Class FormProductPerform
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents Label6 As Label
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

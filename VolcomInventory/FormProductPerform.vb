@@ -589,6 +589,7 @@ ORDER BY area ASC"
         defaultView()
         CESelectAllStore.EditValue = False
         MESelectedStore.Text = ""
+        acc.Clear()
 
         'filter
         Dim where As String = ""
@@ -662,8 +663,7 @@ ORDER BY area ASC"
 
     Private Sub GVStore_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVStore.CellValueChanged
         If e.Column.FieldName.ToString = "is_select" Then
-            setSelectedStore()
-            defaultView()
+
         End If
     End Sub
 
@@ -760,7 +760,7 @@ ORDER BY area ASC"
     End Sub
 
     Private Sub GVStore_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVStore.ColumnFilterChanged
-        setSelectedStore()
+
     End Sub
 
     Private Sub XtraScrollableControl1_Click(sender As Object, e As EventArgs)
@@ -772,9 +772,39 @@ ORDER BY area ASC"
         viewStore()
     End Sub
 
-    Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs)
-        Dim SpQty As DevExpress.XtraEditors.CheckEdit = CType(sender, DevExpress.XtraEditors.CheckEdit)
-        Dim cek As String = SpQty.EditValue.ToString
-        MsgBox(cek.ToString)
+    Dim acc As New List(Of String)
+    Private Sub RepositoryItemCheckEdit1_EditValueChanged_1(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
+        Dim SpSelect As DevExpress.XtraEditors.CheckEdit = CType(sender, DevExpress.XtraEditors.CheckEdit)
+        Dim is_select As String = SpSelect.EditValue.ToString
+        Dim comp_number As String = GVStore.GetFocusedRowCellValue("comp_number").ToString
+        If is_select = "Yes" Then
+            'MsgBox("Checked : " + comp_number)
+            acc.Add(comp_number)
+        Else
+            'MsgBox("Unchecked : " + comp_number)
+            acc.Remove(comp_number)
+        End If
+        Dim i As Integer = 0
+        Dim acc_col As String = ""
+        For Each res As String In acc
+            If i > 0 Then
+                acc_col += ","
+            End If
+            acc_col += res
+            i += 1
+        Next
+        MESelectedStore.Text = acc_col
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.Click
+
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit1_CheckStateChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.CheckStateChanged
+
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.CheckedChanged
+
     End Sub
 End Class
