@@ -80,6 +80,9 @@ Partial Class FormProductPerform
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.XTCOption = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -116,6 +119,9 @@ Partial Class FormProductPerform
         Me.GroupControl2.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.XTCOption, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCOption.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
         Me.SuspendLayout()
         '
         'RepositoryItemCheckEdit1
@@ -135,13 +141,13 @@ Partial Class FormProductPerform
         Me.PanelControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(355, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(351, 40)
         Me.PanelControl1.TabIndex = 1
         '
         'TxtIdProduct
         '
         Me.TxtIdProduct.EditValue = ""
-        Me.TxtIdProduct.Location = New System.Drawing.Point(5, 11)
+        Me.TxtIdProduct.Location = New System.Drawing.Point(5, 84)
         Me.TxtIdProduct.Name = "TxtIdProduct"
         Me.TxtIdProduct.Properties.ReadOnly = True
         Me.TxtIdProduct.Size = New System.Drawing.Size(64, 20)
@@ -152,11 +158,11 @@ Partial Class FormProductPerform
         '
         Me.SBExportExcel.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBExportExcel.Image = CType(resources.GetObject("SBExportExcel.Image"), System.Drawing.Image)
-        Me.SBExportExcel.Location = New System.Drawing.Point(168, 2)
+        Me.SBExportExcel.Location = New System.Drawing.Point(164, 2)
         Me.SBExportExcel.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.SBExportExcel.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBExportExcel.Name = "SBExportExcel"
-        Me.SBExportExcel.Size = New System.Drawing.Size(108, 38)
+        Me.SBExportExcel.Size = New System.Drawing.Size(108, 36)
         Me.SBExportExcel.TabIndex = 2
         Me.SBExportExcel.Text = "Export Excel"
         '
@@ -164,11 +170,11 @@ Partial Class FormProductPerform
         '
         Me.SBView.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBView.Image = CType(resources.GetObject("SBView.Image"), System.Drawing.Image)
-        Me.SBView.Location = New System.Drawing.Point(276, 2)
+        Me.SBView.Location = New System.Drawing.Point(272, 2)
         Me.SBView.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.SBView.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBView.Name = "SBView"
-        Me.SBView.Size = New System.Drawing.Size(77, 38)
+        Me.SBView.Size = New System.Drawing.Size(77, 36)
         Me.SBView.TabIndex = 0
         Me.SBView.Text = "View"
         '
@@ -253,10 +259,10 @@ Partial Class FormProductPerform
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(355, 0)
+        Me.GCData.Location = New System.Drawing.Point(378, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(629, 507)
+        Me.GCData.Size = New System.Drawing.Size(606, 507)
         Me.GCData.TabIndex = 2
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -283,7 +289,7 @@ Partial Class FormProductPerform
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(9, 82)
+        Me.Label2.Location = New System.Drawing.Point(11, 82)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(52, 13)
         Me.Label2.TabIndex = 45
@@ -301,7 +307,7 @@ Partial Class FormProductPerform
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(9, 56)
+        Me.Label3.Location = New System.Drawing.Point(11, 56)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(43, 13)
         Me.Label3.TabIndex = 44
@@ -310,7 +316,7 @@ Partial Class FormProductPerform
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(9, 108)
+        Me.Label4.Location = New System.Drawing.Point(11, 108)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(32, 13)
         Me.Label4.TabIndex = 46
@@ -328,7 +334,7 @@ Partial Class FormProductPerform
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(9, 28)
+        Me.Label5.Location = New System.Drawing.Point(11, 28)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(42, 13)
         Me.Label5.TabIndex = 43
@@ -355,7 +361,7 @@ Partial Class FormProductPerform
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(9, 134)
+        Me.Label8.Location = New System.Drawing.Point(11, 134)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(44, 13)
         Me.Label8.TabIndex = 48
@@ -385,7 +391,7 @@ Partial Class FormProductPerform
         Me.GCStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GCStore.MainView = Me.GVStore
         Me.GCStore.Name = "GCStore"
-        Me.GCStore.Size = New System.Drawing.Size(334, 4759)
+        Me.GCStore.Size = New System.Drawing.Size(330, 4759)
         Me.GCStore.TabIndex = 40
         Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
         '
@@ -463,7 +469,7 @@ Partial Class FormProductPerform
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(2, 21)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(334, 218)
+        Me.PanelControl2.Size = New System.Drawing.Size(330, 218)
         Me.PanelControl2.TabIndex = 39
         '
         'LabelControl4
@@ -603,10 +609,10 @@ Partial Class FormProductPerform
         Me.PanelControlLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlLeft.Controls.Add(Me.XtraScrollableControl2)
         Me.PanelControlLeft.Controls.Add(Me.PanelControl1)
-        Me.PanelControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlLeft.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlLeft.Name = "PanelControlLeft"
-        Me.PanelControlLeft.Size = New System.Drawing.Size(355, 507)
+        Me.PanelControlLeft.Size = New System.Drawing.Size(351, 505)
         Me.PanelControlLeft.TabIndex = 31
         '
         'XtraScrollableControl2
@@ -617,7 +623,7 @@ Partial Class FormProductPerform
         Me.XtraScrollableControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl2.Location = New System.Drawing.Point(0, 0)
         Me.XtraScrollableControl2.Name = "XtraScrollableControl2"
-        Me.XtraScrollableControl2.Size = New System.Drawing.Size(355, 465)
+        Me.XtraScrollableControl2.Size = New System.Drawing.Size(351, 465)
         Me.XtraScrollableControl2.TabIndex = 2
         '
         'GroupControl3
@@ -629,7 +635,7 @@ Partial Class FormProductPerform
         Me.GroupControl3.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.GroupControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(338, 5000)
+        Me.GroupControl3.Size = New System.Drawing.Size(334, 5000)
         Me.GroupControl3.TabIndex = 2
         Me.GroupControl3.Text = "Filter by Store"
         '
@@ -652,7 +658,7 @@ Partial Class FormProductPerform
         Me.GroupControl2.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.GroupControl2.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(338, 166)
+        Me.GroupControl2.Size = New System.Drawing.Size(334, 166)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Filter by Product"
         '
@@ -666,18 +672,50 @@ Partial Class FormProductPerform
         Me.GroupControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.GroupControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(338, 63)
+        Me.GroupControl1.Size = New System.Drawing.Size(334, 63)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Sales Period"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(157, 31)
+        Me.Label6.Location = New System.Drawing.Point(159, 31)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(11, 13)
         Me.Label6.TabIndex = 55
         Me.Label6.Text = "-"
+        '
+        'XTCOption
+        '
+        Me.XTCOption.AppearancePage.Header.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XTCOption.AppearancePage.Header.Options.UseFont = True
+        Me.XTCOption.Dock = System.Windows.Forms.DockStyle.Left
+        Me.XTCOption.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCOption.Location = New System.Drawing.Point(0, 0)
+        Me.XTCOption.LookAndFeel.SkinName = "Metropolis"
+        Me.XTCOption.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.XTCOption.Name = "XTCOption"
+        Me.XTCOption.SelectedTabPage = Me.XtraTabPage1
+        Me.XTCOption.Size = New System.Drawing.Size(378, 507)
+        Me.XTCOption.TabIndex = 32
+        Me.XTCOption.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Appearance.Header.ForeColor = System.Drawing.Color.Blue
+        Me.XtraTabPage1.Appearance.Header.Options.UseForeColor = True
+        Me.XtraTabPage1.Controls.Add(Me.PanelControlLeft)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(351, 505)
+        Me.XtraTabPage1.Text = "Show Option"
+        '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Appearance.Header.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.XtraTabPage2.Appearance.Header.Options.UseForeColor = True
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(352, 505)
+        Me.XtraTabPage2.Text = "Hide Option"
         '
         'FormProductPerform
         '
@@ -685,7 +723,7 @@ Partial Class FormProductPerform
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 507)
         Me.Controls.Add(Me.GCData)
-        Me.Controls.Add(Me.PanelControlLeft)
+        Me.Controls.Add(Me.XTCOption)
         Me.Name = "FormProductPerform"
         Me.Text = "FormProductPerform"
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -727,6 +765,9 @@ Partial Class FormProductPerform
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.XTCOption, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCOption.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -791,4 +832,7 @@ Partial Class FormProductPerform
     Friend WithEvents Label6 As Label
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents XTCOption As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
 End Class

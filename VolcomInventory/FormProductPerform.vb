@@ -807,4 +807,12 @@ ORDER BY area ASC"
     Private Sub RepositoryItemCheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.CheckedChanged
 
     End Sub
+
+    Private Sub XTCOption_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCOption.SelectedPageChanged
+        If XTCOption.SelectedTabPageIndex = 0 Then
+            XTCOption.Width = 378
+        Else
+            XTCOption.Width = 25
+        End If
+    End Sub
 End Class
