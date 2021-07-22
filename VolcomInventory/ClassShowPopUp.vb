@@ -456,6 +456,12 @@
         ElseIf report_mark_type = "318" Then
             'invoice verification
             FormAWBOtherInv.Close()
+        ElseIf report_mark_type = "319" Then
+            'SNI Budget Propose
+            FormSNIppsDet.Close()
+        ElseIf report_mark_type = "323" Then
+            'stocktake partial
+            FormStockTakePartialDet.Close()
         End If
     End Sub
     Sub show()
@@ -1495,6 +1501,13 @@ GROUP BY rec.`id_prod_order`"
             FormAWBOtherInv.id_verification = id_report
             FormAWBOtherInv.is_view = "1"
             FormAWBOtherInv.ShowDialog()
+        ElseIf report_mark_type = "379" Then
+            FormSNIppsDet.id_pps = id_report
+            FormSNIppsDet.is_view = "1"
+            FormSNIppsDet.ShowDialog()
+        ElseIf report_mark_type = "323" Then
+            FormStockTakePartialDet.id = id_report
+            FormStockTakePartialDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2674,6 +2687,18 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_awb_inv_sum"
             field_number = "inv_number"
             field_date = "created_date"
+        ElseIf report_mark_type = "319" Then
+            'SNI Budget PPS
+            table_name = "tb_sni_pps"
+            field_id = "id_sni_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "323" Then
+            'stocktake partial
+            table_name = "tb_st_store_partial"
+            field_id = "id_st_store_partial"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

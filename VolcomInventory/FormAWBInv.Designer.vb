@@ -64,8 +64,9 @@ Partial Class FormAWBInv
         Me.GCTV = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAttach = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -634,6 +635,7 @@ Partial Class FormAWBInv
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BAttach)
         Me.PanelControl2.Controls.Add(Me.BCancel)
         Me.PanelControl2.Controls.Add(Me.BtnPrint)
         Me.PanelControl2.Controls.Add(Me.BMark)
@@ -646,18 +648,17 @@ Partial Class FormAWBInv
         Me.PanelControl2.Size = New System.Drawing.Size(945, 44)
         Me.PanelControl2.TabIndex = 2
         '
-        'BCancel
+        'BAttach
         '
-        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BCancel.ImageIndex = 1
-        Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(77, 2)
-        Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(82, 40)
-        Me.BCancel.TabIndex = 25
-        Me.BCancel.TabStop = False
-        Me.BCancel.Text = "Cancel"
-        Me.BCancel.Visible = False
+        Me.BAttach.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttach.ImageIndex = 16
+        Me.BAttach.ImageList = Me.LargeImageCollection
+        Me.BAttach.Location = New System.Drawing.Point(485, 2)
+        Me.BAttach.Name = "BAttach"
+        Me.BAttach.Size = New System.Drawing.Size(98, 40)
+        Me.BAttach.TabIndex = 26
+        Me.BAttach.TabStop = False
+        Me.BAttach.Text = "Attachment"
         '
         'LargeImageCollection
         '
@@ -679,6 +680,19 @@ Partial Class FormAWBInv
         Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        '
+        'BCancel
+        '
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancel.ImageIndex = 1
+        Me.BCancel.ImageList = Me.LargeImageCollection
+        Me.BCancel.Location = New System.Drawing.Point(77, 2)
+        Me.BCancel.Name = "BCancel"
+        Me.BCancel.Size = New System.Drawing.Size(82, 40)
+        Me.BCancel.TabIndex = 25
+        Me.BCancel.TabStop = False
+        Me.BCancel.Text = "Cancel"
+        Me.BCancel.Visible = False
         '
         'BtnPrint
         '
@@ -1394,4 +1408,5 @@ Partial Class FormAWBInv
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAttach As DevExpress.XtraEditors.SimpleButton
 End Class

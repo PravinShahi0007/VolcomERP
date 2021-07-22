@@ -921,12 +921,17 @@ Public Class FormMain
                     FormMatRetInDet.id_mat_purc_ret_in = "-1"
                     FormMatRetInDet.ShowDialog()
                 End If
-            Else 'production
+            ElseIf FormMatRet.XTCReturnMat.SelectedTabPageIndex = 1 Then 'production
                 If FormMatRet.XTCReturnProd.SelectedTabPageIndex = 0 Then 'ret in
                     FormMatRetInProd.action = "ins"
                     FormMatRetInProd.id_mat_prod_ret_in = "-1"
                     FormMatRetInProd.ShowDialog()
                 End If
+            ElseIf FormMatRet.XTCReturnMat.SelectedTabPageIndex = 2 Then 'other
+                FormMatRetInProd.action = "ins"
+                FormMatRetInProd.is_other = True
+                FormMatRetInProd.id_mat_prod_ret_in = "-1"
+                FormMatRetInProd.ShowDialog()
             End If
         ElseIf formName = "FormProduction" Then
             'Production
@@ -1927,6 +1932,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSNIppsBudget" Then
             FormSNIppsDet.id_pps = "-1"
             FormSNIppsDet.ShowDialog()
+        ElseIf formName = "FormSNISerahTerima" Then
+            FormSNISerahTerimaDet.id = "-1"
+            FormSNISerahTerimaDet.ShowDialog()
+        ElseIf formName = "FormStockTakePartial" Then
+            FormStockTakePartialDet.id = "-1"
+            FormStockTakePartialDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2321,6 +2332,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                         FormMatRetInProd.id_mat_prod_ret_in = FormMatRet.GVRetInProd.GetFocusedRowCellDisplayText("id_mat_prod_ret_in")
                         FormMatRetInProd.ShowDialog()
                     End If
+                ElseIf FormMatRet.XTCReturnMat.SelectedTabPageIndex = 2 Then 'other
+                    FormMatRetInProd.action = "upd"
+                    FormMatRetInProd.is_other = True
+                    FormMatRetInProd.id_mat_prod_ret_in = FormMatRet.GVRetOther.GetFocusedRowCellDisplayText("id_mat_prod_ret_in")
+                    FormMatRetInProd.ShowDialog()
                 End If
             ElseIf formName = "FormSampleAdjustment" Then
                 'SAMPLE ADJUSTMENT
@@ -3208,6 +3224,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormSNIppsBudget" Then
                 FormSNIppsDet.id_pps = FormSNIppsBudget.GVList.GetFocusedRowCellValue("id_sni_pps").ToString
                 FormSNIppsDet.ShowDialog()
+            ElseIf formName = "FormSNISerahTerima" Then
+                FormSNISerahTerimaDet.id = FormSNISerahTerima.GVList.GetFocusedRowCellValue("id_serah_terima").ToString
+                FormSNISerahTerimaDet.ShowDialog()
+            ElseIf formName = "FormStockTakePartial" Then
+                FormStockTakePartialDet.id = FormStockTakePartial.GVData.GetFocusedRowCellValue("id_st_store_partial").ToString
+                FormStockTakePartialDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6871,6 +6893,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 If FormMatRet.XTCReturnProd.SelectedTabPageIndex = 0 Then 'return In
                     print(FormMatRet.GCRetInProd, "List Return In Material Production")
                 End If
+            ElseIf FormMatRet.XTCReturnMat.SelectedTabPageIndex = 2 Then 'other
+                print(FormMatRet.GCRetOther, "List Return In Material Other")
             End If
         ElseIf formName = "FormSampleReturn" Then
             'RETURN SAMPLE
@@ -8657,6 +8681,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormAWBOther.GCAWB, "AWB List " & FormAWBOther.SLECargo.Text & " (" & Date.Parse(FormAWBOther.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormAWBOther.DEUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ") ")
         ElseIf formName = "FormSNIppsBudget" Then
             print(FormSNIppsBudget.GCList, "SNI Porposal List ")
+        ElseIf formName = "FormSNISerahTerima" Then
+            print(FormSNISerahTerima.GCList, "List SNI Serah Terima ")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9660,6 +9686,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSNIppsBudget" Then
             FormSNIppsBudget.Close()
             FormSNIppsBudget.Dispose()
+        ElseIf formName = "FormSNISerahTerima" Then
+            FormSNISerahTerima.Close()
+            FormSNISerahTerima.Dispose()
+        ElseIf formName = "FormStockTakePartial" Then
+            FormStockTakePartial.Close()
+            FormStockTakePartial.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9897,6 +9929,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 If FormMatRet.XTCReturnProd.SelectedTabPageIndex = 0 Then 'return In
                     FormMatRet.viewRetInProd()
                 End If
+            ElseIf FormMatRet.XTCReturnMat.SelectedTabPageIndex = 1 Then 'return other
+                FormMatRet.viewRetInOther()
             End If
         ElseIf formName = "FormSampleAdjustment" Then
             'Sample Adjustment
@@ -10684,6 +10718,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormOGTransfer.load_form()
         ElseIf formName = "FormSNIppsBudget" Then
             FormOGTransfer.load_form()
+        ElseIf formName = "FormSNISerahTerima" Then
+            FormSNISerahTerima.load_list()
+        ElseIf formName = "FormStockTakePartial" Then
+            FormStockTakePartial.form_load()
         End If
     End Sub
     'Switch
@@ -16270,6 +16308,32 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNIppsBudget.Show()
             FormSNIppsBudget.WindowState = FormWindowState.Maximized
             FormSNIppsBudget.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSerahTerimaSNI_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSerahTerimaSNI.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSNISerahTerima.MdiParent = Me
+            FormSNISerahTerima.Show()
+            FormSNISerahTerima.WindowState = FormWindowState.Maximized
+            FormSNISerahTerima.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBStockTakePartial_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStockTakePartial.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStockTakePartial.MdiParent = Me
+            FormStockTakePartial.Show()
+            FormStockTakePartial.WindowState = FormWindowState.Maximized
+            FormStockTakePartial.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

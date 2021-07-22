@@ -5,6 +5,10 @@
     Public id_prod_order_wo As String = ""
     Public id_comp_contact_from As String = ""
     Public id_mat_purc_det_list, id_mat_purc_ret_in_det_list As New List(Of String)
+    '
+    Public is_other As Boolean = False
+    Public id_pl_mrs As String = "-1"
+    '
     Dim date_start As Date
     Public id_report_status As String = ""
     Private Sub FormMatRetInProd_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -45,21 +49,40 @@
             GroupControlRet.Enabled = True
 
             'View data
-            Dim query As String = "SELECT a.id_report_status,a.id_pl_mat_type,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_display_name as design_name,desg.design_code,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, 
-            a.mat_prod_ret_in_number
-            , drw.id_wh_drawer, rck.id_wh_rack, Loc.id_wh_locator, comp.id_comp 
-            From tb_mat_prod_ret_in a 
-            INNER Join tb_prod_order h On a.id_prod_order = h.id_prod_order 
-            INNER JOIN tb_prod_demand_design pd_desg On pd_desg.id_prod_demand_design = h.id_prod_demand_design 
-            INNER Join tb_m_design desg On desg.id_design = pd_desg.id_design 
-            INNER JOIN tb_m_comp_contact d On d.id_comp_contact = a.id_comp_contact_from 
-            INNER Join tb_m_comp e On d.id_comp = e.id_comp 
-            INNER JOIN tb_lookup_report_status i On i.id_report_status = a.id_report_status 
-            Left Join tb_m_wh_drawer drw On drw.id_wh_drawer = a.id_wh_drawer 
-            Left JOIN tb_m_wh_rack rck On rck.id_wh_rack = drw.id_wh_rack 
-            Left Join tb_m_wh_locator loc On loc.id_wh_locator = rck.id_wh_locator 
-            Left JOIN tb_m_comp comp On comp.id_comp = loc.id_comp 
-            WHERE a.id_mat_prod_ret_in = '" & id_mat_prod_ret_in & "'"
+            Dim query As String = ""
+
+            If is_other Then
+                query = "SELECT a.id_report_status,a.id_pl_mat_type,i.report_status,a.id_mat_prod_ret_in,pl.id_pl_mrs, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note
+                ,pl.pl_mrs_number AS reff_no,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, 
+                a.mat_prod_ret_in_number,drw.id_wh_drawer, rck.id_wh_rack, Loc.id_wh_locator, comp.id_comp 
+                FROM tb_mat_prod_ret_in a 
+                INNER JOIN tb_pl_mrs pl ON a.id_pl_mrs=pl.id_pl_mrs
+                INNER JOIN tb_m_comp_contact d ON d.id_comp_contact = a.id_comp_contact_from 
+                INNER JOIN tb_m_comp e ON d.id_comp = e.id_comp 
+                INNER JOIN tb_lookup_report_status i ON i.id_report_status = a.id_report_status 
+                LEFT JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = a.id_wh_drawer 
+                LEFT JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack 
+                LEFT JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator 
+                LEFT JOIN tb_m_comp comp ON comp.id_comp = loc.id_comp 
+                WHERE a.id_mat_prod_ret_in = '" & id_mat_prod_ret_in & "'"
+            Else
+                query = "SELECT a.id_report_status,a.id_pl_mat_type,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number AS reff_no,desg.design_display_name as design_name,desg.design_code,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, 
+                a.mat_prod_ret_in_number
+                , drw.id_wh_drawer, rck.id_wh_rack, Loc.id_wh_locator, comp.id_comp 
+                From tb_mat_prod_ret_in a 
+                INNER Join tb_prod_order h On a.id_prod_order = h.id_prod_order 
+                INNER JOIN tb_prod_demand_design pd_desg On pd_desg.id_prod_demand_design = h.id_prod_demand_design 
+                INNER Join tb_m_design desg On desg.id_design = pd_desg.id_design 
+                INNER JOIN tb_m_comp_contact d On d.id_comp_contact = a.id_comp_contact_from 
+                INNER Join tb_m_comp e On d.id_comp = e.id_comp 
+                INNER JOIN tb_lookup_report_status i On i.id_report_status = a.id_report_status 
+                Left Join tb_m_wh_drawer drw On drw.id_wh_drawer = a.id_wh_drawer 
+                Left JOIN tb_m_wh_rack rck On rck.id_wh_rack = drw.id_wh_rack 
+                Left Join tb_m_wh_locator loc On loc.id_wh_locator = rck.id_wh_locator 
+                Left JOIN tb_m_comp comp On comp.id_comp = loc.id_comp 
+                WHERE a.id_mat_prod_ret_in = '" & id_mat_prod_ret_in & "'"
+            End If
+
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             Try
@@ -72,14 +95,22 @@
             '
             LEPLType.ItemIndex = LEPLType.Properties.GetDataSourceRowIndex("id_pl_mat_type", data.Rows(0)("id_pl_mat_type").ToString)
             '
-            id_prod_order = data.Rows(0)("id_prod_order").ToString
-            TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
+            TEPONumber.Text = data.Rows(0)("reff_no").ToString
             id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
             TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
             TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
             MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
-            TEDesign.Text = data.Rows(0)("design_name").ToString
-            TEDesignCode.Text = data.Rows(0)("design_code").ToString
+
+            If Not is_other Then
+                id_prod_order = data.Rows(0)("id_prod_order").ToString
+                TEDesign.Text = data.Rows(0)("design_name").ToString
+                TEDesignCode.Text = data.Rows(0)("design_code").ToString
+                '
+            Else
+                id_pl_mrs = data.Rows(0)("id_pl_mrs").ToString
+                PCAddDel.Visible = False
+            End If
+
             Dim start_date_arr() As String = data.Rows(0)("mat_prod_ret_in_date").ToString.Split(" ")
             DERet.Text = start_date_arr(0).ToString
             TxtRetOutNumber.Text = data.Rows(0)("mat_prod_ret_in_number").ToString
@@ -122,12 +153,14 @@
         End If
     End Sub
     Sub check_but()
-        If GVRetDetail.RowCount > 0 Then
-            BtnEdit.Visible = True
-            BtnDel.Visible = True
-        Else
-            BtnEdit.Visible = False
-            BtnDel.Visible = False
+        If Not is_other Then
+            If GVRetDetail.RowCount > 0 Then
+                BtnEdit.Visible = True
+                BtnDel.Visible = True
+            Else
+                BtnEdit.Visible = False
+                BtnDel.Visible = False
+            End If
         End If
     End Sub
     'view company
@@ -200,6 +233,16 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRetDetail.DataSource = data
     End Sub
+
+    Sub viewDetailOther(ByVal ext As String)
+        Dim query As String = "CALL view_mat_prod_ret_other('" + ext + "')"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRetDetail.DataSource = data
+        BtnAdd.Visible = False
+        BtnEdit.Visible = False
+        BtnDel.Visible = True
+    End Sub
+
     'Button
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
         ValidateChildren()
@@ -235,10 +278,17 @@
             If action = "ins" Then
                 'Try
                 'Main tbale
-                query = "INSERT INTO tb_mat_prod_ret_in(id_prod_order_wo,id_prod_order, mat_prod_ret_in_number, id_comp_contact_from, mat_prod_ret_in_date, mat_prod_ret_in_note, id_report_status, id_wh_drawer,id_pl_mat_type) "
-                query += "VALUES('" + id_prod_order_wo + "','" + id_prod_order + "', '" + mat_prod_ret_in_number + "', '" + id_comp_contact_from + "', NOW(), '" + mat_prod_ret_in_note + "', '" + id_report_status + "','" + id_wh_drawer + "','" & id_pl_mat_Type & "');SELECT LAST_INSERT_ID() "
+                If is_other Then
+                    query = "INSERT INTO tb_mat_prod_ret_in(id_pl_mrs, mat_prod_ret_in_number, id_comp_contact_from, mat_prod_ret_in_date, mat_prod_ret_in_note, id_report_status, id_wh_drawer,id_pl_mat_type) "
+                    query += "VALUES('" + id_pl_mrs + "', '" + mat_prod_ret_in_number + "', '" + id_comp_contact_from + "', NOW(), '" + mat_prod_ret_in_note + "', '" + id_report_status + "','" + id_wh_drawer + "','" & id_pl_mat_Type & "');SELECT LAST_INSERT_ID() "
+
+                Else
+                    query = "INSERT INTO tb_mat_prod_ret_in(id_prod_order_wo,id_prod_order, mat_prod_ret_in_number, id_comp_contact_from, mat_prod_ret_in_date, mat_prod_ret_in_note, id_report_status, id_wh_drawer,id_pl_mat_type) "
+                    query += "VALUES('" + id_prod_order_wo + "','" + id_prod_order + "', '" + mat_prod_ret_in_number + "', '" + id_comp_contact_from + "', NOW(), '" + mat_prod_ret_in_note + "', '" + id_report_status + "','" + id_wh_drawer + "','" & id_pl_mat_Type & "');SELECT LAST_INSERT_ID() "
+
+                End If
                 id_mat_prod_ret_in = execute_query(query, 0, True, "", "", "", "")
-                    increase_inc_mat("6")
+                increase_inc_mat("6")
 
                 'insert who prepared
                 submit_who_prepared("47", id_mat_prod_ret_in, id_user)
@@ -327,9 +377,11 @@
         FormPopUpMatRetProd.ShowDialog()
     End Sub
     Private Sub BtnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDel.Click
-        If (MessageBox.Show("Are you sure to delete this ?", "Delete Confirmation", MessageBoxButtons.YesNo) <> DialogResult.Yes) Then Return
-        deleteRows()
-        check_but()
+        If GVRetDetail.RowCount > 0 Then
+            If (MessageBox.Show("Are you sure to delete this ?", "Delete Confirmation", MessageBoxButtons.YesNo) <> DialogResult.Yes) Then Return
+            deleteRows()
+            check_but()
+        End If
     End Sub
     Private Sub BtnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEdit.Click
         FormPopUpMatRetProd.id_pop_up = "1"
@@ -374,8 +426,13 @@
     Private Sub BtnBrowsePO_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBrowsePO.Click
         'FormPopUpWOProdMat.id_pop_up = "1"
         'FormPopUpWOProdMat.ShowDialog()
-        FormPopUpProd.id_pop_up = "8"
-        FormPopUpProd.ShowDialog()
+        If is_other Then
+            FormPopUpPLMat.id_pop_up = "1"
+            FormPopUpPLMat.ShowDialog()
+        Else
+            FormPopUpProd.id_pop_up = "8"
+            FormPopUpProd.ShowDialog()
+        End If
     End Sub
     Private Sub GVRetDetail_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVRetDetail.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then

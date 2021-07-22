@@ -19,148 +19,104 @@ Partial Class FormStockTakePeriodEOS
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
-        Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnid_pp_change = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumneffective_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsoh_sal_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndesign_price_type = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnemployee_name = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'GCSummary
+        'GCData
         '
-        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSummary.Location = New System.Drawing.Point(0, 0)
-        Me.GCSummary.MainView = Me.GVSummary
-        Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(784, 461)
-        Me.GCSummary.TabIndex = 1
-        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 0)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(784, 461)
+        Me.GCData.TabIndex = 1
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
-        'GVSummary
+        'GVData
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pp_change, Me.GridColumnnumber, Me.GridColumncreated_date, Me.GridColumneffective_date, Me.GridColumnsoh_sal_date, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumndesign_price_type, Me.GridColumnemployee_name})
-        Me.GVSummary.GridControl = Me.GCSummary
-        Me.GVSummary.Name = "GVSummary"
-        Me.GVSummary.OptionsBehavior.Editable = False
-        Me.GVSummary.OptionsBehavior.ReadOnly = True
-        Me.GVSummary.OptionsFind.AlwaysVisible = True
-        Me.GVSummary.OptionsView.ColumnAutoWidth = False
-        Me.GVSummary.OptionsView.ShowGroupPanel = False
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsBehavior.ReadOnly = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnid_pp_change
+        'GridColumn1
         '
-        Me.GridColumnid_pp_change.Caption = "id_pp_change"
-        Me.GridColumnid_pp_change.FieldName = "id_pp_change"
-        Me.GridColumnid_pp_change.Name = "GridColumnid_pp_change"
+        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.FieldName = "id_st_store_partial"
+        Me.GridColumn1.Name = "GridColumn1"
         '
-        'GridColumnnumber
+        'GridColumn6
         '
-        Me.GridColumnnumber.Caption = "Number"
-        Me.GridColumnnumber.FieldName = "number"
-        Me.GridColumnnumber.Name = "GridColumnnumber"
-        Me.GridColumnnumber.Visible = True
-        Me.GridColumnnumber.VisibleIndex = 0
+        Me.GridColumn6.Caption = "Number"
+        Me.GridColumn6.FieldName = "number"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
         '
-        'GridColumncreated_date
+        'GridColumn2
         '
-        Me.GridColumncreated_date.Caption = "Created Date"
-        Me.GridColumncreated_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.GridColumncreated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumncreated_date.FieldName = "created_date"
-        Me.GridColumncreated_date.Name = "GridColumncreated_date"
-        Me.GridColumncreated_date.Visible = True
-        Me.GridColumncreated_date.VisibleIndex = 1
+        Me.GridColumn2.Caption = "Note"
+        Me.GridColumn2.FieldName = "note"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
         '
-        'GridColumneffective_date
+        'GridColumn3
         '
-        Me.GridColumneffective_date.Caption = "Effective Date"
-        Me.GridColumneffective_date.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumneffective_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumneffective_date.FieldName = "effective_date"
-        Me.GridColumneffective_date.Name = "GridColumneffective_date"
-        Me.GridColumneffective_date.Visible = True
-        Me.GridColumneffective_date.VisibleIndex = 3
+        Me.GridColumn3.Caption = "Report Status"
+        Me.GridColumn3.FieldName = "report_status"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
         '
-        'GridColumnsoh_sal_date
+        'GridColumn4
         '
-        Me.GridColumnsoh_sal_date.Caption = "SOH/SAL Date"
-        Me.GridColumnsoh_sal_date.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnsoh_sal_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnsoh_sal_date.FieldName = "soh_sal_date"
-        Me.GridColumnsoh_sal_date.Name = "GridColumnsoh_sal_date"
-        Me.GridColumnsoh_sal_date.Visible = True
-        Me.GridColumnsoh_sal_date.VisibleIndex = 4
+        Me.GridColumn4.Caption = "Created At"
+        Me.GridColumn4.FieldName = "created_at"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
         '
-        'GridColumnnote
+        'GridColumn5
         '
-        Me.GridColumnnote.Caption = "Note"
-        Me.GridColumnnote.FieldName = "note"
-        Me.GridColumnnote.Name = "GridColumnnote"
-        Me.GridColumnnote.Visible = True
-        Me.GridColumnnote.VisibleIndex = 5
-        '
-        'GridColumnid_report_status
-        '
-        Me.GridColumnid_report_status.Caption = "id_report_status"
-        Me.GridColumnid_report_status.FieldName = "id_report_status"
-        Me.GridColumnid_report_status.Name = "GridColumnid_report_status"
-        '
-        'GridColumnreport_status
-        '
-        Me.GridColumnreport_status.Caption = "Status"
-        Me.GridColumnreport_status.FieldName = "report_status"
-        Me.GridColumnreport_status.Name = "GridColumnreport_status"
-        Me.GridColumnreport_status.Visible = True
-        Me.GridColumnreport_status.VisibleIndex = 6
-        '
-        'GridColumndesign_price_type
-        '
-        Me.GridColumndesign_price_type.Caption = "Price Type"
-        Me.GridColumndesign_price_type.FieldName = "design_price_type"
-        Me.GridColumndesign_price_type.Name = "GridColumndesign_price_type"
-        Me.GridColumndesign_price_type.Visible = True
-        Me.GridColumndesign_price_type.VisibleIndex = 2
-        '
-        'GridColumnemployee_name
-        '
-        Me.GridColumnemployee_name.Caption = "Last Approved By"
-        Me.GridColumnemployee_name.FieldName = "employee_name"
-        Me.GridColumnemployee_name.Name = "GridColumnemployee_name"
+        Me.GridColumn5.Caption = "Created By"
+        Me.GridColumn5.FieldName = "created_by"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
         '
         'FormStockTakePeriodEOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 461)
-        Me.Controls.Add(Me.GCSummary)
+        Me.Controls.Add(Me.GCData)
         Me.Name = "FormStockTakePeriodEOS"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Stock Take Period EOS"
-        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Text = "Stock Take Period Partial"
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnid_pp_change As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumncreated_date As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumneffective_date As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnsoh_sal_date As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumndesign_price_type As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnemployee_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

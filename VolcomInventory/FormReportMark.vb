@@ -689,6 +689,9 @@
         ElseIf report_mark_type = "318" Then
             'verification invoice 3pl office
             query = String.Format("SELECT id_report_status, inv_number as report_number FROM tb_awb_inv_sum WHERE id_awb_inv_sum = '{0}'", id_report)
+        ElseIf report_mark_type = "323" Then
+            'stocktake partial
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_st_store_partial WHERE id_st_store_partial = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -9917,6 +9920,30 @@ WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
 
             'update status
             query = String.Format("UPDATE tb_awb_inv_sum SET id_report_status='{0}' WHERE id_awb_inv_sum ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "319" Then
+            'SNI pps
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'update ke additional cop
+                'line list update qty
+                'send mail to md
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_sni_pps SET id_report_status='{0}' WHERE id_sni_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "323" Then
+            'stocktake partial
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_st_store_partial SET id_report_status='{0}' WHERE id_st_store_partial ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

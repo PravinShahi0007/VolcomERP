@@ -15,6 +15,13 @@
 
     Private id_departement_current As String = "-1"
 
+    Private pic_path As String = get_setup_field("pic_path_asset") & "\"
+
+    Sub load_asset_cat()
+        Dim query As String = "SELECT id_purc_rec_asset_cat,category FROM `tb_purc_rec_asset_cat`"
+        viewSearchLookupQuery(SLECategory, query, "id_purc_rec_asset_cat", "category", "id_purc_rec_asset_cat")
+    End Sub
+
     Sub load_unit()
         Dim query As String = "SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
         '        query = "SELECT '0' AS id_comp,'-' AS comp_number, 'All Unit' AS comp_name
@@ -28,6 +35,7 @@
 
     Private Sub FormPurcAssetDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_unit()
+        load_asset_cat()
         viewCOA()
         viewEmp()
         viewDepartement()
@@ -74,11 +82,14 @@
         If action = "ins" Then
 
         ElseIf action = "upd" Then
+            viewImages(PictureEdit, pic_path, id, False)
+
             Dim a As New ClassPurcAsset()
             Dim query As String = a.queryMain("AND a.id_purc_rec_asset=" + id + "", "1", find_accum)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
-            SLEUnit.EditValue = data.Rows(0)("po_tag").ToString
+            SLEUnit.EditValue = data.Rows(0)("id_coa_tag").ToString
+            SLECategory.EditValue = data.Rows(0)("id_purc_rec_asset_cat").ToString
             '
             is_confirm = data.Rows(0)("is_confirm").ToString
             'generate number
@@ -167,6 +178,8 @@
             SLEDep.Enabled = True
             SLEAccumDep.Enabled = True
             TxtAccumDep.Enabled = True
+            PictureEdit.Visible = False
+            SBUpload.Visible = False
         Else
             BtnConfirm.Visible = False
             BtnCancell.Visible = True
@@ -178,6 +191,8 @@
             SLEDep.Enabled = False
             SLEAccumDep.Enabled = False
             TxtAccumDep.Enabled = False
+            PictureEdit.Visible = True
+            SBUpload.Visible = True
         End If
 
         If id_report_status = "6" Then
@@ -299,9 +314,11 @@
                 Dim useful_life As String = decimalSQL(TxtUseful.EditValue.ToString)
                 Dim id_tag As String = SLEUnit.EditValue.ToString
                 Dim id_acc_dep As String = SLEDep.EditValue.ToString
+                Dim id_cat As String = SLECategory.EditValue.ToString
                 Dim id_acc_dep_accum As String = SLEAccumDep.EditValue.ToString
                 Dim accum_dep As String = decimalSQL(TxtAccumDep.EditValue.ToString)
                 Dim query As String = "UPDATE tb_purc_rec_asset SET id_coa_tag='" + id_tag + "',id_parent='" + id + "',asset_name='" + asset_name + "',
+                id_purc_rec_asset_cat='" + id_cat + "',
                 asset_note='" + asset_note + "', is_non_depresiasi='" + is_non_depresiasi + "',useful_life='" + useful_life + "',
                 id_acc_dep='" + id_acc_dep + "', id_acc_dep_accum='" + id_acc_dep_accum + "', accum_dep='" + accum_dep + "',
                 is_confirm=1 WHERE id_purc_rec_asset='" + id + "' "
@@ -437,5 +454,15 @@
 
     Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
         viewCOA()
+    End Sub
+
+    Private Sub SBUpload_Click(sender As Object, e As EventArgs) Handles SBUpload.Click
+        save_image_ori(PictureEdit, pic_path, id & ".jpg")
+
+        infoCustom("Image uploaded.")
+    End Sub
+
+    Private Sub SBSelectImage_Click(sender As Object, e As EventArgs) Handles SBSelectImage.Click
+        PictureEdit.LoadImage()
     End Sub
 End Class

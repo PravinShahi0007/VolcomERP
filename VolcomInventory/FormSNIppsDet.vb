@@ -1,5 +1,8 @@
 ﻿Public Class FormSNIppsDet
     Public id_pps As String = "-1"
+    Public is_view As String = "-1"
+
+    Dim is_submit As String = "-1"
 
     Private Sub FormSNIppsDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
@@ -11,6 +14,24 @@
                                 INNER JOIN tb_range b ON a.id_range = b.id_range 
                                 ORDER BY b.range ASC"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
+    End Sub
+
+    Sub load_artikel()
+        Dim q As String = "SELECT 'no' AS is_check,id_design,id_sni_pps_budget,budget_desc,budget_value,budget_qty
+FROM `tb_sni_pps_budget` b
+WHERE b.id_sni_pps='" & id_pps & "' AND NOT ISNULL(b.id_design)"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCBudgetCop.DataSource = dt
+        GVBudgetCop.BestFitColumns()
+    End Sub
+
+    Sub load_budget_det()
+        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc,budget_value,budget_qty
+FROM `tb_sni_pps_budget` b
+WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCBudget.DataSource = dt
+        GVBudget.BestFitColumns()
     End Sub
 
     Sub load_head()
@@ -25,7 +46,7 @@
             XTPBudgetPropose.PageVisible = False
         Else
             'edit
-            Dim q As String = "SELECT pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name` 
+            Dim q As String = "SELECT pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name`,pps.id_report_status,pps.is_submit 
 FROM tb_sni_pps pps
 INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -37,10 +58,40 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                 DEProposeDate.EditValue = dt.Rows(0)("created_date")
                 '
                 load_proposed()
+
+                is_submit = dt.Rows(0)("is_submit").ToString
+                '
+                If is_submit = "1" Then
+                    BPrint.Visible = True
+                Else
+                    BPrint.Visible = False
+                End If
+                '
+                If dt.Rows(0)("id_report_status").ToString = "6" Or dt.Rows(0)("id_report_status").ToString = "5" Then
+                    is_view = "1"
+                End If
+
+                If is_view = "1" Then
+                    BSave.Visible = False
+                    PCAddBudget.Visible = False
+                    PCAddDel.Visible = False
+                    BPrint.Visible = False
+                Else
+                    BSave.Visible = True
+                    PCAddBudget.Visible = True
+                    PCAddDel.Visible = True
+                End If
+
+                XTPListDesign.PageVisible = False
+                XTPProposedList.PageVisible = True
+                XTPBudgetPropose.PageVisible = True
+                '
+                If is_submit = "1" Then
+                    BMark.Text = "Mark"
+                Else
+                    BMark.Text = "Submit"
+                End If
             End If
-            XTPListDesign.PageVisible = False
-            XTPProposedList.PageVisible = True
-            XTPBudgetPropose.PageVisible = True
         End If
     End Sub
 
@@ -65,13 +116,6 @@ AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND dsg.`id_lookup_status_orde
         If GVList.RowCount > 0 Then
             BPropose.Visible = True
         End If
-    End Sub
-
-    Sub load_budget()
-        Dim q As String = "SELECT id_sni_pps_budget,`id_sni_pps`,`id_design`,`budget_desc`,`budget_value`,`budget_qty`
-FROM `tb_sni_pps_budget`
-WHERE `id_sni_pps`=''"
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
     End Sub
 
     Sub load_proposed()
@@ -129,7 +173,57 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
-        Dim q As String = ""
+        If GVBudget.RowCount = 0 Then
+            warningCustom("No budget found.")
+        ElseIf GVBudgetCop.RowCount = 0 Then
+            warningCustom("No SNI sample selected.")
+        Else
+            Dim is_zero As Boolean = False
+            For i = 0 To GVBudget.RowCount - 1
+                If GVBudget.GetRowCellValue(i, "sub_amount") = 0 Then
+                    is_zero = True
+                    Exit For
+                End If
+            Next
+            '
+            If Not is_zero Then
+                For i = 0 To GVBudgetCop.RowCount - 1
+                    If GVBudgetCop.GetRowCellValue(i, "sub_amount") = 0 Then
+                        is_zero = True
+                        Exit For
+                    End If
+                Next
+            End If
+            '
+            If is_zero Then
+                warningCustom("Zero amount on budget")
+            Else
+                'save
+                Dim q As String = ""
+                q = "DELETE FROM tb_sni_pps_budget WHERE id_sni_pps='" & id_pps & "'"
+                execute_non_query(q, True, "", "", "", "")
+
+                q = ""
+                For i = 0 To GVBudgetCop.RowCount - 1
+                    If Not q = "" Then
+                        q += ","
+                    End If
+                    q += "('" & id_pps & "','" & GVBudgetCop.GetRowCellValue(i, "id_design").ToString & "','" & addSlashes(GVBudgetCop.GetRowCellValue(i, "budget_desc").ToString) & "','" & decimalSQL(Decimal.Parse(GVBudgetCop.GetRowCellValue(i, "budget_value").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVBudgetCop.GetRowCellValue(i, "budget_qty").ToString).ToString) & "')"
+                Next
+
+                For i = 0 To GVBudget.RowCount - 1
+                    If Not q = "" Then
+                        q += ","
+                    End If
+                    q += "('" & id_pps & "',NULL,'" & addSlashes(GVBudget.GetRowCellValue(i, "budget_desc").ToString) & "','" & decimalSQL(Decimal.Parse(GVBudget.GetRowCellValue(i, "budget_value").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVBudget.GetRowCellValue(i, "budget_qty").ToString).ToString) & "')"
+                Next
+
+                q = "INSERT INTO tb_sni_pps_budget(id_sni_pps,id_design,budget_desc,budget_value,budget_qty) VALUES" & q
+                execute_non_query(q, True, "", "", "", "")
+
+                infoCustom("Budget updated")
+            End If
+        End If
     End Sub
 
     Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click
@@ -205,6 +299,145 @@ INNER JOIN tb_season s ON s.id_season=pps.`id_season`
 WHERE pps.id_sni_pps='" & id_pps & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         Report.DataSource = dt
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BGetCOP_Click(sender As Object, e As EventArgs) Handles BGetCOP.Click
+        GVProposed.ActiveFilterString = "[is_check]='yes'"
+
+        If GVProposed.RowCount > 0 Then
+            Dim id As String = ""
+            '
+            For i As Integer = 0 To GVProposed.RowCount - 1
+                If Not i = 0 Then
+                    id += ","
+                End If
+                id += GVProposed.GetRowCellValue(i, "id_design").ToString
+            Next
+
+            Dim qc As String = "SELECT GROUP_CONCAT(DISTINCT dsg.design_display_name) AS err FROM tb_sni_pps_budget b
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=b.`id_design`
+WHERE b.id_sni_pps='" & id_pps & "' AND b.id_design IN (" & id & ") 
+HAVING NOT ISNULL(err)"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                warningCustom("Artikel " & dtc.Rows(0)("err").ToString & " sudah masuk ke dalam budget")
+            Else
+                'check first
+                Dim q As String = ""
+                For i As Integer = 0 To GVProposed.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id_pps & "','" & GVProposed.GetRowCellValue(i, "id_design").ToString & "','Sampel " & GVProposed.GetRowCellValue(i, "design_display_name").ToString & "','" & decimalSQL(Decimal.Parse(GVProposed.GetRowCellValue(i, "ecop").ToString)) & "',6)"
+                Next
+
+                If Not q = "" Then
+                    'insert
+                    q = "INSERT INTO `tb_sni_pps_budget`(`id_sni_pps`,`id_design`,`budget_desc`,`budget_value`,`budget_qty`) VALUES" & q
+                    execute_non_query(q, True, "", "", "", "")
+                End If
+
+            End If
+        End If
+        GVProposed.ActiveFilterString = ""
+    End Sub
+
+    Private Sub XTCKidList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCKidList.SelectedPageChanged
+        If XTCKidList.SelectedTabPageIndex = 2 Then
+            load_artikel()
+            load_budget_det()
+            calculate()
+        End If
+    End Sub
+
+    Sub calculate()
+        GVBudget.RefreshData()
+        GVBudgetCop.RefreshData()
+
+        TETotalBudget.EditValue = GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue
+        TETotalQty.EditValue = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
+        TESNICop.EditValue = Math.Round((GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue, 2)
+    End Sub
+
+    Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = DialogResult.Yes Then
+            GVBudgetCop.ActiveFilterString = "[is_check]='yes'"
+            For i = GVBudgetCop.RowCount - 1 To 0 Step -1
+                GVBudgetCop.DeleteRow(i)
+            Next
+            GVBudgetCop.ActiveFilterString = ""
+            '
+            GVBudget.ActiveFilterString = "[is_check]='yes'"
+            For i = GVBudget.RowCount - 1 To 0 Step -1
+                GVBudget.DeleteRow(i)
+            Next
+            GVBudget.ActiveFilterString = ""
+        End If
+    End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        Cursor = Cursors.WaitCursor
+        GVBudget.AddNewRow()
+        GVBudget.FocusedRowHandle = GVBudget.RowCount - 1
+        '
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "is_check", "no")
+        '
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "budget_qty", 0)
+        GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "budget_value", 0)
+        '
+        GVBudget.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVBudget_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVBudget.CellValueChanged
+        calculate()
+    End Sub
+
+    Private Sub Battach_Click(sender As Object, e As EventArgs) Handles Battach.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim rmt As String = "319"
+
+        FormDocumentUpload.id_report = id_pps
+        FormDocumentUpload.is_view = is_view
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        If is_submit = "1" Then
+            FormReportMark.report_mark_type = "319"
+            FormReportMark.is_view = is_view
+            FormReportMark.id_report = id_pps
+            FormReportMark.ShowDialog()
+        Else
+            Dim q As String = "UPDATE tb_sni_pps SET is_submit=1 WHERE id_sni_pps='" & id_pps & "'"
+            execute_non_query(q, True, "", "", "", "")
+            '
+            submit_who_prepared("319", id_pps, id_user)
+            infoCustom("Budget submitted")
+            load_head()
+        End If
+    End Sub
+
+    Private Sub FormSNIppsDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportSNIBudget.id_pps = id_pps
+        Dim Report As New ReportSNIBudget()
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()

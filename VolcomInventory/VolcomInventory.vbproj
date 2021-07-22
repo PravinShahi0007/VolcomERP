@@ -3687,6 +3687,12 @@
     <Compile Include="FormPopUpOVH.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPopUpPLMat.Designer.vb">
+      <DependentUpon>FormPopUpPLMat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpPLMat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpProdRec.Designer.vb">
       <DependentUpon>FormPopUpProdRec.vb</DependentUpon>
     </Compile>
@@ -7137,6 +7143,18 @@
     <Compile Include="FormSNIppsDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSNISerahTerima.Designer.vb">
+      <DependentUpon>FormSNISerahTerima.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNISerahTerima.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSNISerahTerimaDet.Designer.vb">
+      <DependentUpon>FormSNISerahTerimaDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNISerahTerimaDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSOH.designer.vb">
       <DependentUpon>FormSOH.vb</DependentUpon>
     </Compile>
@@ -7221,6 +7239,18 @@
     <Compile Include="FormStockQCStockReportSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakePartial.Designer.vb">
+      <DependentUpon>FormStockTakePartial.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakePartial.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockTakePartialDet.Designer.vb">
+      <DependentUpon>FormStockTakePartialDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakePartialDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockTakePeriodEOS.Designer.vb">
       <DependentUpon>FormStockTakePeriodEOS.vb</DependentUpon>
     </Compile>
@@ -7249,6 +7279,12 @@
       <DependentUpon>FormStockTakeStorePeriodDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormStockTakeStorePeriodDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockTakeStorePeriodStore.Designer.vb">
+      <DependentUpon>FormStockTakeStorePeriodStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeStorePeriodStore.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormStockTakeStoreScanList.Designer.vb">
@@ -9790,6 +9826,12 @@
     <Compile Include="ReportShipInvoice.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSNIBudget.Designer.vb">
+      <DependentUpon>ReportSNIBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSNIBudget.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSNIPpsList.Designer.vb">
       <DependentUpon>ReportSNIPpsList.vb</DependentUpon>
     </Compile>
@@ -11620,6 +11662,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpOVH.resx">
       <DependentUpon>FormPopUpOVH.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpPLMat.resx">
+      <DependentUpon>FormPopUpPLMat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpProdRec.resx">
       <DependentUpon>FormPopUpProdRec.vb</DependentUpon>
@@ -13680,6 +13725,12 @@
     <EmbeddedResource Include="FormSNIppsDet.resx">
       <DependentUpon>FormSNIppsDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSNISerahTerima.resx">
+      <DependentUpon>FormSNISerahTerima.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNISerahTerimaDet.resx">
+      <DependentUpon>FormSNISerahTerimaDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSOH.resx">
       <DependentUpon>FormSOH.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -13730,6 +13781,12 @@
     <EmbeddedResource Include="FormStockQCStockReportSummary.resx">
       <DependentUpon>FormStockQCStockReportSummary.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakePartial.resx">
+      <DependentUpon>FormStockTakePartial.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakePartialDet.resx">
+      <DependentUpon>FormStockTakePartialDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakePeriodEOS.resx">
       <DependentUpon>FormStockTakePeriodEOS.vb</DependentUpon>
     </EmbeddedResource>
@@ -13744,6 +13801,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeStorePeriodDet.resx">
       <DependentUpon>FormStockTakeStorePeriodDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeStorePeriodStore.resx">
+      <DependentUpon>FormStockTakeStorePeriodStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeStoreScanList.resx">
       <DependentUpon>FormStockTakeStoreScanList.vb</DependentUpon>
@@ -15165,6 +15225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportShipInvoice.resx">
       <DependentUpon>ReportShipInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSNIBudget.resx">
+      <DependentUpon>ReportSNIBudget.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSNIPpsList.resx">
       <DependentUpon>ReportSNIPpsList.vb</DependentUpon>
