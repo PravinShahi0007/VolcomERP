@@ -33,9 +33,11 @@ Partial Class FormMonthlySalesPerformance
         Me.GridColumnid_wh_ol = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_commerce_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CCBEGroupStore = New DevExpress.XtraEditors.CheckedComboBoxEdit()
+        Me.CCBEProvince = New DevExpress.XtraEditors.CheckedComboBoxEdit()
+        Me.CCBEArea = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LECat = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LEArea = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.CEAllStore = New DevExpress.XtraEditors.CheckEdit()
         Me.SLUENational = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -46,14 +48,6 @@ Partial Class FormMonthlySalesPerformance
         Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.SLUECompGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView11 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLUEProvince = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView10 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -104,17 +98,15 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.CCBEGroupStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBEProvince.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBEArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEAllStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUENational.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEIsland.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEProvince.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -255,16 +247,16 @@ Partial Class FormMonthlySalesPerformance
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.CCBEGroupStore)
+        Me.PanelControl3.Controls.Add(Me.CCBEProvince)
+        Me.PanelControl3.Controls.Add(Me.CCBEArea)
         Me.PanelControl3.Controls.Add(Me.LabelControl4)
         Me.PanelControl3.Controls.Add(Me.LECat)
-        Me.PanelControl3.Controls.Add(Me.LEArea)
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
         Me.PanelControl3.Controls.Add(Me.CEAllStore)
         Me.PanelControl3.Controls.Add(Me.SLUENational)
         Me.PanelControl3.Controls.Add(Me.SLUEIsland)
         Me.PanelControl3.Controls.Add(Me.Label10)
-        Me.PanelControl3.Controls.Add(Me.SLUECompGroup)
-        Me.PanelControl3.Controls.Add(Me.SLUEProvince)
         Me.PanelControl3.Controls.Add(Me.Label9)
         Me.PanelControl3.Controls.Add(Me.Label6)
         Me.PanelControl3.Controls.Add(Me.Label11)
@@ -273,6 +265,33 @@ Partial Class FormMonthlySalesPerformance
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(360, 168)
         Me.PanelControl3.TabIndex = 0
+        '
+        'CCBEGroupStore
+        '
+        Me.CCBEGroupStore.EditValue = ""
+        Me.CCBEGroupStore.Location = New System.Drawing.Point(81, 118)
+        Me.CCBEGroupStore.Name = "CCBEGroupStore"
+        Me.CCBEGroupStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEGroupStore.Size = New System.Drawing.Size(266, 20)
+        Me.CCBEGroupStore.TabIndex = 51
+        '
+        'CCBEProvince
+        '
+        Me.CCBEProvince.EditValue = ""
+        Me.CCBEProvince.Location = New System.Drawing.Point(80, 92)
+        Me.CCBEProvince.Name = "CCBEProvince"
+        Me.CCBEProvince.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEProvince.Size = New System.Drawing.Size(266, 20)
+        Me.CCBEProvince.TabIndex = 50
+        '
+        'CCBEArea
+        '
+        Me.CCBEArea.EditValue = ""
+        Me.CCBEArea.Location = New System.Drawing.Point(81, 40)
+        Me.CCBEArea.Name = "CCBEArea"
+        Me.CCBEArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEArea.Size = New System.Drawing.Size(266, 20)
+        Me.CCBEArea.TabIndex = 49
         '
         'LabelControl4
         '
@@ -289,14 +308,6 @@ Partial Class FormMonthlySalesPerformance
         Me.LECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LECat.Size = New System.Drawing.Size(266, 20)
         Me.LECat.TabIndex = 47
-        '
-        'LEArea
-        '
-        Me.LEArea.Location = New System.Drawing.Point(80, 40)
-        Me.LEArea.Name = "LEArea"
-        Me.LEArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEArea.Size = New System.Drawing.Size(266, 20)
-        Me.LEArea.TabIndex = 45
         '
         'LabelControl1
         '
@@ -382,68 +393,6 @@ Partial Class FormMonthlySalesPerformance
         Me.Label10.Size = New System.Drawing.Size(48, 13)
         Me.Label10.TabIndex = 33
         Me.Label10.Text = "Province"
-        '
-        'SLUECompGroup
-        '
-        Me.SLUECompGroup.Location = New System.Drawing.Point(80, 118)
-        Me.SLUECompGroup.Name = "SLUECompGroup"
-        Me.SLUECompGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUECompGroup.Properties.View = Me.GridView11
-        Me.SLUECompGroup.Size = New System.Drawing.Size(266, 20)
-        Me.SLUECompGroup.TabIndex = 36
-        '
-        'GridView11
-        '
-        Me.GridView11.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn22})
-        Me.GridView11.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView11.Name = "GridView11"
-        Me.GridView11.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView11.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "GridColumn23"
-        Me.GridColumn21.FieldName = "id_comp_group"
-        Me.GridColumn21.Name = "GridColumn21"
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Group Store"
-        Me.GridColumn22.FieldName = "comp_group"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 0
-        '
-        'SLUEProvince
-        '
-        Me.SLUEProvince.Location = New System.Drawing.Point(80, 92)
-        Me.SLUEProvince.Name = "SLUEProvince"
-        Me.SLUEProvince.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEProvince.Properties.View = Me.GridView10
-        Me.SLUEProvince.Size = New System.Drawing.Size(266, 20)
-        Me.SLUEProvince.TabIndex = 34
-        '
-        'GridView10
-        '
-        Me.GridView10.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn17, Me.GridColumn18})
-        Me.GridView10.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView10.Name = "GridView10"
-        Me.GridView10.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView10.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "GridColumn19"
-        Me.GridColumn17.FieldName = "id_province"
-        Me.GridColumn17.Name = "GridColumn17"
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Province"
-        Me.GridColumn18.FieldName = "province"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 0
         '
         'Label9
         '
@@ -857,17 +806,15 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.CCBEGroupStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBEProvince.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBEArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEAllStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUENational.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEIsland.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUECompGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEProvince.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
@@ -929,19 +876,11 @@ Partial Class FormMonthlySalesPerformance
     Friend WithEvents TEProductCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents SBSearch As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBClear As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SLUEProvince As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView10 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label10 As Label
     Friend WithEvents SLUEIsland As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView9 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label9 As Label
-    Friend WithEvents SLUECompGroup As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView11 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label11 As Label
     Friend WithEvents CCBESeason As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents CCBEDivision As DevExpress.XtraEditors.CheckedComboBoxEdit
@@ -967,9 +906,11 @@ Partial Class FormMonthlySalesPerformance
     Friend WithEvents GridColumnid_commerce_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LECat As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LEArea As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTCOption As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents CCBEArea As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents CCBEProvince As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents CCBEGroupStore As DevExpress.XtraEditors.CheckedComboBoxEdit
 End Class
