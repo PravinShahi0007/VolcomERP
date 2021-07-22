@@ -1750,4 +1750,12 @@ ORDER BY area ASC"
     Private Sub GVStore_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVStore.CellValueChanged
         defaultView()
     End Sub
+
+    Private Sub XTCOption_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCOption.SelectedPageChanged
+        If XTCOption.SelectedTabPageIndex = 0 Then
+            XTCOption.Width = 412
+        Else
+            XTCOption.Width = 25
+        End If
+    End Sub
 End Class

@@ -86,11 +86,14 @@ Partial Class FormMonthlySalesPerformance
         Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.SBView = New DevExpress.XtraEditors.SimpleButton()
         Me.CENewView = New DevExpress.XtraEditors.CheckEdit()
+        Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.XTCOption = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.XtraScrollableControl1.SuspendLayout()
@@ -133,16 +136,19 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.CENewView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCOption, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCOption.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.XtraScrollableControl1)
         Me.PanelControl1.Controls.Add(Me.PanelControl2)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(391, 588)
+        Me.PanelControl1.Size = New System.Drawing.Size(385, 586)
         Me.PanelControl1.TabIndex = 0
         '
         'XtraScrollableControl1
@@ -153,7 +159,7 @@ Partial Class FormMonthlySalesPerformance
         Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(2, 2)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(387, 541)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(381, 539)
         Me.XtraScrollableControl1.TabIndex = 0
         '
         'GroupControl3
@@ -165,7 +171,7 @@ Partial Class FormMonthlySalesPerformance
         Me.GroupControl3.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.GroupControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(370, 5000)
+        Me.GroupControl3.Size = New System.Drawing.Size(364, 5000)
         Me.GroupControl3.TabIndex = 2
         Me.GroupControl3.Text = "Filter by Store"
         '
@@ -173,13 +179,13 @@ Partial Class FormMonthlySalesPerformance
         '
         Me.GCStore.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCStore.Enabled = False
-        Me.GCStore.Location = New System.Drawing.Point(2, 195)
+        Me.GCStore.Location = New System.Drawing.Point(2, 189)
         Me.GCStore.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.GCStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GCStore.MainView = Me.GVStore
         Me.GCStore.Name = "GCStore"
         Me.GCStore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCStore.Size = New System.Drawing.Size(366, 4803)
+        Me.GCStore.Size = New System.Drawing.Size(360, 4809)
         Me.GCStore.TabIndex = 41
         Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
         '
@@ -265,7 +271,7 @@ Partial Class FormMonthlySalesPerformance
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(2, 21)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(366, 174)
+        Me.PanelControl3.Size = New System.Drawing.Size(360, 168)
         Me.PanelControl3.TabIndex = 0
         '
         'LabelControl4
@@ -485,7 +491,7 @@ Partial Class FormMonthlySalesPerformance
         Me.GroupControl2.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.GroupControl2.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(370, 167)
+        Me.GroupControl2.Size = New System.Drawing.Size(364, 167)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Filter by Product"
         '
@@ -605,7 +611,7 @@ Partial Class FormMonthlySalesPerformance
         Me.GroupControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.GroupControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(370, 64)
+        Me.GroupControl1.Size = New System.Drawing.Size(364, 64)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Sales Period"
         '
@@ -684,15 +690,14 @@ Partial Class FormMonthlySalesPerformance
         '
         Me.PanelControl2.Controls.Add(Me.TxtIdProduct)
         Me.PanelControl2.Controls.Add(Me.SLUEStore)
-        Me.PanelControl2.Controls.Add(Me.SBExportExcel)
         Me.PanelControl2.Controls.Add(Me.SBView)
         Me.PanelControl2.Controls.Add(Me.CENewView)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(2, 543)
+        Me.PanelControl2.Location = New System.Drawing.Point(2, 541)
         Me.PanelControl2.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.PanelControl2.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(387, 43)
+        Me.PanelControl2.Size = New System.Drawing.Size(381, 43)
         Me.PanelControl2.TabIndex = 3
         '
         'TxtIdProduct
@@ -736,27 +741,18 @@ Partial Class FormMonthlySalesPerformance
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 0
         '
-        'SBExportExcel
-        '
-        Me.SBExportExcel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBExportExcel.Image = CType(resources.GetObject("SBExportExcel.Image"), System.Drawing.Image)
-        Me.SBExportExcel.Location = New System.Drawing.Point(201, 2)
-        Me.SBExportExcel.LookAndFeel.SkinName = "Office 2013 Dark Gray"
-        Me.SBExportExcel.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SBExportExcel.Name = "SBExportExcel"
-        Me.SBExportExcel.Size = New System.Drawing.Size(107, 39)
-        Me.SBExportExcel.TabIndex = 2
-        Me.SBExportExcel.Text = "Export Excel"
-        '
         'SBView
         '
-        Me.SBView.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBView.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SBView.Appearance.Options.UseFont = True
+        Me.SBView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SBView.Image = CType(resources.GetObject("SBView.Image"), System.Drawing.Image)
-        Me.SBView.Location = New System.Drawing.Point(308, 2)
-        Me.SBView.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.SBView.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.SBView.Location = New System.Drawing.Point(2, 2)
+        Me.SBView.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.SBView.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBView.Name = "SBView"
-        Me.SBView.Size = New System.Drawing.Size(77, 39)
+        Me.SBView.Size = New System.Drawing.Size(377, 39)
         Me.SBView.TabIndex = 0
         Me.SBView.Text = "View"
         '
@@ -769,13 +765,28 @@ Partial Class FormMonthlySalesPerformance
         Me.CENewView.Size = New System.Drawing.Size(115, 19)
         Me.CENewView.TabIndex = 42
         '
+        'SBExportExcel
+        '
+        Me.SBExportExcel.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SBExportExcel.Appearance.Options.UseFont = True
+        Me.SBExportExcel.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SBExportExcel.Image = CType(resources.GetObject("SBExportExcel.Image"), System.Drawing.Image)
+        Me.SBExportExcel.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.SBExportExcel.Location = New System.Drawing.Point(412, 545)
+        Me.SBExportExcel.LookAndFeel.SkinName = "Office 2007 Green"
+        Me.SBExportExcel.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SBExportExcel.Name = "SBExportExcel"
+        Me.SBExportExcel.Size = New System.Drawing.Size(596, 43)
+        Me.SBExportExcel.TabIndex = 2
+        Me.SBExportExcel.Text = "Export to XLS"
+        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(391, 0)
+        Me.GCData.Location = New System.Drawing.Point(412, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(617, 588)
+        Me.GCData.Size = New System.Drawing.Size(596, 545)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -791,13 +802,46 @@ Partial Class FormMonthlySalesPerformance
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
+        'XTCOption
+        '
+        Me.XTCOption.AppearancePage.Header.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XTCOption.AppearancePage.Header.Options.UseFont = True
+        Me.XTCOption.Dock = System.Windows.Forms.DockStyle.Left
+        Me.XTCOption.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCOption.Location = New System.Drawing.Point(0, 0)
+        Me.XTCOption.LookAndFeel.SkinName = "Metropolis"
+        Me.XTCOption.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.XTCOption.Name = "XTCOption"
+        Me.XTCOption.SelectedTabPage = Me.XtraTabPage1
+        Me.XTCOption.Size = New System.Drawing.Size(412, 588)
+        Me.XTCOption.TabIndex = 33
+        Me.XTCOption.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Appearance.Header.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.XtraTabPage1.Appearance.Header.Options.UseForeColor = True
+        Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(385, 586)
+        Me.XtraTabPage1.Text = "Show Option"
+        '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Appearance.Header.ForeColor = System.Drawing.Color.Chocolate
+        Me.XtraTabPage2.Appearance.Header.Options.UseForeColor = True
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(385, 586)
+        Me.XtraTabPage2.Text = "Hide Option"
+        '
         'FormMonthlySalesPerformance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 588)
         Me.Controls.Add(Me.GCData)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.SBExportExcel)
+        Me.Controls.Add(Me.XTCOption)
         Me.Name = "FormMonthlySalesPerformance"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Monthly Product Sales Tracking "
@@ -847,6 +891,9 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.CENewView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCOption, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCOption.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -922,4 +969,7 @@ Partial Class FormMonthlySalesPerformance
     Friend WithEvents LECat As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LEArea As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTCOption As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
 End Class
