@@ -35,11 +35,20 @@
     End Sub
 
     Sub viewArea()
-        Dim query As String = "SELECT 0 AS `id_area`, 'All' AS `area`
-UNION ALL
+        Dim query As String = "
 (SELECT a.id_area, a.`area` FROM tb_m_area a )
 ORDER BY area ASC"
-        viewLookupQuery(LEArea, query, 0, "area", "id_area")
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("area").ToString
+            c.Value = data.Rows(i)("id_area").ToString
+
+            CCBEArea.Properties.Items.Add(c)
+        Next
     End Sub
 
     Sub viewProvince()
@@ -50,29 +59,45 @@ ORDER BY area ASC"
         'End If
 
         Dim query As String = "
-            (SELECT 0 AS id_province, 'ALL' AS province)
-            UNION ALL
             (SELECT s.id_state AS id_province, s.state AS province
             FROM tb_m_state AS s
             LEFT JOIN tb_m_region AS r ON s.id_region = r.id_region
             WHERE r.id_country = 5" + where + ")
+            ORDER BY province ASC
         "
 
-        viewSearchLookupQuery(SLUEProvince, query, "id_province", "province", "id_province")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("province").ToString
+            c.Value = data.Rows(i)("id_province").ToString
+
+            CCBEProvince.Properties.Items.Add(c)
+        Next
     End Sub
 
     Sub view_group_store()
         Dim where As String = ""
 
         Dim query As String = "
-            (SELECT 0 AS id_comp_group, 'ALL' AS comp_group)
-            UNION ALL
             (SELECT id_comp_group, CONCAT(comp_group, ' - ', description) AS comp_group
             FROM tb_m_comp_group
             WHERE 1 " + where + ")
+            ORDER BY comp_group ASC
         "
 
-        viewSearchLookupQuery(SLUECompGroup, query, "id_comp_group", "comp_group", "id_comp_group")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("comp_group").ToString
+            c.Value = data.Rows(i)("id_comp_group").ToString
+
+            CCBEGroupStore.Properties.Items.Add(c)
+        Next
     End Sub
 
     Sub view_season()
@@ -574,12 +599,12 @@ ORDER BY area ASC"
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
 
-    Private Sub LEArea_EditValueChanged(sender As Object, e As EventArgs) Handles LEArea.EditValueChanged
+    Private Sub LEArea_EditValueChanged(sender As Object, e As EventArgs)
         view_group_store()
         viewStore()
     End Sub
 
-    Private Sub SLUEProvince_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEProvince.EditValueChanged
+    Private Sub SLUEProvince_EditValueChanged(sender As Object, e As EventArgs)
         view_group_store()
         viewStore()
     End Sub
@@ -593,7 +618,12 @@ ORDER BY area ASC"
 
         'filter
         Dim where As String = ""
-        Dim id_cat As String = LECat.EditValue.ToString
+        Dim id_cat As String = ""
+        Try
+            id_cat = LECat.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
         If id_cat = "1" Then
             'wholesale
             where += "AND c.id_comp_group='59' AND c.id_commerce_type='1 ' "
@@ -609,14 +639,32 @@ ORDER BY area ASC"
         Else
             where += ""
         End If
-        If LEArea.EditValue.ToString <> "0" Then
-            where += "AND c.id_area='" + LEArea.EditValue.ToString + "' "
+        Dim id_area As String = ""
+        Try
+            id_area = CCBEArea.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_area <> "" Then
+            where += "AND c.id_area IN(" + id_area + ") "
         End If
-        If SLUEProvince.EditValue.ToString <> "0" Then
-            where += "AND cty.id_state='" + SLUEProvince.EditValue.ToString + "' "
+        Dim id_province As String = ""
+        Try
+            id_province = CCBEProvince.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_province <> "" Then
+            where += "AND cty.id_state IN(" + id_province + ") "
         End If
-        If SLUECompGroup.EditValue.ToString <> "0" Then
-            where += "AND c.id_comp_group='" + SLUECompGroup.EditValue.ToString + "' "
+        Dim id_group_store As String = ""
+        Try
+            id_group_store = CCBEGroupStore.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_group_store <> "" Then
+            where += "AND c.id_comp_group IN(" + id_group_store + ") "
         End If
 
         'view
@@ -635,19 +683,23 @@ ORDER BY area ASC"
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub SLUECompGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLUECompGroup.EditValueChanged
+    Private Sub SLUECompGroup_EditValueChanged(sender As Object, e As EventArgs)
         viewStore()
     End Sub
 
     Private Sub CESelectAllStore_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAllStore.EditValueChanged
         Cursor = Cursors.WaitCursor
+        acc.Clear()
         For i As Integer = 0 To GVStore.RowCount - 1
             If CESelectAllStore.EditValue = True Then
                 GVStore.SetRowCellValue(i, "is_select", "Yes")
+                acc.Add(GVStore.GetRowCellValue(i, "comp_number").ToString)
             Else
                 GVStore.SetRowCellValue(i, "is_select", "No")
+                acc.Remove(GVStore.GetRowCellValue(i, "comp_number").ToString)
             End If
         Next
+        showSelectedStore()
         Cursor = Cursors.Default
     End Sub
 
@@ -784,6 +836,9 @@ ORDER BY area ASC"
             'MsgBox("Unchecked : " + comp_number)
             acc.Remove(comp_number)
         End If
+    End Sub
+
+    Sub showSelectedStore()
         Dim i As Integer = 0
         Dim acc_col As String = ""
         For Each res As String In acc
@@ -814,5 +869,20 @@ ORDER BY area ASC"
         Else
             XTCOption.Width = 25
         End If
+    End Sub
+
+    Private Sub CCBEArea_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEArea.EditValueChanged
+        view_group_store()
+        viewStore()
+    End Sub
+
+    Private Sub CCBEProvince_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEProvince.EditValueChanged
+        view_group_store()
+        viewStore()
+    End Sub
+
+    Private Sub CCBEGroupStore_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEGroupStore.EditValueChanged
+        view_group_store()
+        viewStore()
     End Sub
 End Class
