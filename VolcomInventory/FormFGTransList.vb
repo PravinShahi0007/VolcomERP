@@ -759,7 +759,7 @@
         Dim w_status As String = If(SLStatus7.EditValue.ToString = "0", "", " AND sp.id_report_status = " + SLStatus7.EditValue.ToString)
 
         Dim query As String = "SELECT spd.id_sales_pos_det, spd.id_sales_pos, sp.sales_pos_number, rmt.report_mark_type_name, 
-        c.comp_number, c.comp_name, cg.comp_group, cg.description AS `comp_group_name`,
+        c.comp_number, c.comp_name, cg.comp_group, cg.description AS `comp_group_name`, lct.commerce_type,
         sp.sales_pos_date, sp.sales_pos_due_date,
         sp.sales_pos_start_period, sp.sales_pos_end_period,
         prod.id_product, prod.id_design, prod.`code`, prod.`code_main`,
@@ -771,6 +771,7 @@
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_lookup_commerce_type lct ON lct.id_commerce_type = c.id_commerce_type
         LEFT JOIN (
 	        SELECT prod.id_product, prod.id_design, prod.product_full_code AS `code`, dsg.design_code AS `code_main`,
 	        prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`, dsg.design_cop AS `unit_cost`, ss.season
@@ -828,7 +829,7 @@
         Dim w_status As String = If(SLStatus7.EditValue.ToString = "0", "", " AND sp.id_report_status = " + SLStatus7.EditValue.ToString)
 
         Dim query As String = "SELECT spd.id_sales_pos_det, spd.id_sales_pos, sp.sales_pos_number, rmt.report_mark_type_name, 
-        c.comp_number, c.comp_name, cg.comp_group, cg.description AS `comp_group_name`,
+        c.comp_number, c.comp_name, cg.comp_group, cg.description AS `comp_group_name`,lct.commerce_type,
         sp.sales_pos_date, sp.sales_pos_due_date,
         sp.sales_pos_start_period, sp.sales_pos_end_period,
         prod.id_product, prod.id_design, prod.`code`,
@@ -852,6 +853,7 @@
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_lookup_commerce_type lct ON lct.id_commerce_type = c.id_commerce_type
         LEFT JOIN (
 	        SELECT prod.id_product, prod.id_design, prod.product_full_code, dsg.design_code AS `code`, ss.season,
 	        prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`, sz.code AS `code_size`, dsg.design_cop AS `unit_cost`
