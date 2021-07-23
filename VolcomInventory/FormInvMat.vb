@@ -71,14 +71,14 @@ GROUP BY invd.`id_inv_mat`"
                 Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(ROUND(pld.`pl_mrs_det_price`,2)*pld.`pl_mrs_det_qty`) AS amount,0 AS `id_prod_order`,'' AS prod_order_number
 ,'-' AS design_display_name
 FROM tb_pl_mrs_det pld
-INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs`
+INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs` AND pl.id_pl_mat_type=2
 LEFT JOIN 
 (
     SELECT id_report
     FROM `tb_inv_mat_det` invd
     INNER JOIN tb_inv_mat inv ON inv.id_inv_mat=invd.id_inv_mat AND inv.id_report_status!=5 AND inv.id_inv_mat_type=1
 )inv ON inv.id_report=pl.id_pl_mrs
-INNER JOIN `tb_prod_order_mrs` mrs ON mrs.`id_prod_order_mrs`=pl.`id_prod_order_mrs` AND ISNULL(mrs.id_prod_order) AND mrs.id_pl_mat_type=2 AND mrs.memo_number=''
+INNER JOIN `tb_prod_order_mrs` mrs ON mrs.`id_prod_order_mrs`=pl.`id_prod_order_mrs` AND ISNULL(mrs.id_prod_order) AND IFNULL(mrs.memo_number,'')=''
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pl.`id_comp_contact_to` AND pl.`id_pl_mat_type`='2'
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
 WHERE ISNULL(inv.id_report)
