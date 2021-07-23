@@ -654,7 +654,7 @@ GROUP BY p.sku"
         Net.ServicePointManager.Expect100Continue = True
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
 
-        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/products/" + product_id + ".json?fields=tags"
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/products/" + product_id + ".json?fields=tags"
         'Console.WriteLine(url)
         Dim request As Net.WebRequest = Net.WebRequest.Create(url)
         request.Method = "GET"
@@ -685,7 +685,7 @@ GROUP BY p.sku"
   }
 }")
         'Console.WriteLine(tracking_url + tracking_number)
-        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2020-04/products/" + product_id + ".json", data, "application/json", "PUT", username, password)
+        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/" + api_new_version + "/products/" + product_id + ".json", data, "application/json", "PUT", username, password)
     End Sub
 
     Sub get_discount_code()
