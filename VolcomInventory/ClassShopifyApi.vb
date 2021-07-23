@@ -692,7 +692,7 @@ GROUP BY p.sku"
         Net.ServicePointManager.Expect100Continue = True
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
         Dim dnow As Date = getTimeDB()
-        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/price_rules.json?ends_at_min=" + DateTime.Parse(dnow.ToString).ToString("yyyy-MM-dd") + "T00:00:00-00:00 "
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/price_rules.json?ends_at_min=" + DateTime.Parse(dnow.ToString).ToString("yyyy-MM-dd") + "T00:00:00-00:00 "
         Dim request As Net.WebRequest = Net.WebRequest.Create(url)
         request.Method = "GET"
         request.Credentials = New Net.NetworkCredential(username, password)
@@ -718,7 +718,7 @@ GROUP BY p.sku"
                         Dim end_period As String = ""
 
                         'get discount code
-                        Dim url_dc As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/price_rules/" + price_rule_id + "/discount_codes.json?limit=50"
+                        Dim url_dc As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/price_rules/" + price_rule_id + "/discount_codes.json?limit=50"
                         Dim page_info As String = ""
                         Dim i As Integer = 0
                         Dim is_loop As Boolean = True
@@ -801,7 +801,7 @@ GROUP BY p.sku"
     Sub get_discount_code_addition(ByVal id_promo As String, ByVal id_price_rule As String)
         Net.ServicePointManager.Expect100Continue = True
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
-        Dim url_dc As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/price_rules/" + id_price_rule + "/discount_codes.json?limit=50"
+        Dim url_dc As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/price_rules/" + id_price_rule + "/discount_codes.json?limit=50"
         Dim page_info As String = ""
         Dim i As Integer = 0
         Dim is_loop As Boolean = True
