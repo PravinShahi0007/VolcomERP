@@ -132,7 +132,7 @@
         where_store += "AND cry.id_country='" + SLUENational.EditValue.ToString + "' "
         'province
         If CCBEProvince.EditValue.ToString <> "" Then
-            where_store += "AND stt.id_state IN (" + CCBEProvince.EditValue.ToString + ") "
+            where_store += "AND state.id_state IN (" + CCBEProvince.EditValue.ToString + ") "
         End If
         'group
         If CCBEGroupStore.EditValue.ToString <> "" Then
