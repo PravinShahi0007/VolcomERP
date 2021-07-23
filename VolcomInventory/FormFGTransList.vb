@@ -763,7 +763,7 @@
         sp.sales_pos_date, sp.sales_pos_due_date,
         sp.sales_pos_start_period, sp.sales_pos_end_period,
         prod.id_product, prod.id_design, prod.`code`, prod.`code_main`,
-        prod.`name`, prod.`size`, prod.`class`, spd.sales_pos_det_qty, spd.design_price_retail, (spd.sales_pos_det_qty * spd.design_price_retail) AS `amount`,
+        prod.`name`, prod.`size`, prod.`class`, prod.season, spd.sales_pos_det_qty, spd.design_price_retail, (spd.sales_pos_det_qty * spd.design_price_retail) AS `amount`,
         stt.report_status, IFNULL(prod.unit_cost,0) AS `unit_cost`
         FROM tb_sales_pos_det spd
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
@@ -773,13 +773,14 @@
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         LEFT JOIN (
 	        SELECT prod.id_product, prod.id_design, prod.product_full_code AS `code`, dsg.design_code AS `code_main`,
-	        prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`, dsg.design_cop AS `unit_cost`
+	        prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`, dsg.design_cop AS `unit_cost`, ss.season
 	        FROM tb_m_product prod
 	        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
 	        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
 	        INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = prod_code.id_code_detail
 	        INNER JOIN tb_m_design_code dsg_code ON dsg_code.id_design = dsg.id_design
 	        INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dsg_code.id_code_detail AND cls.id_code=" + id_code_class + "
+            INNER JOIN tb_season ss ON ss.id_season = dsg.id_season
 	        WHERE dsg.id_lookup_status_order!=2
         ) prod ON prod.id_product = spd.id_product
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
@@ -831,7 +832,7 @@
         sp.sales_pos_date, sp.sales_pos_due_date,
         sp.sales_pos_start_period, sp.sales_pos_end_period,
         prod.id_product, prod.id_design, prod.`code`,
-        prod.`name`, SUBSTRING(prod.product_full_code, 10, 1) AS `sizetype`, prod.`class`, 
+        prod.`name`, SUBSTRING(prod.product_full_code, 10, 1) AS `sizetype`, prod.`class`,  prod.season,
         IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='1' THEN spd.sales_pos_det_qty END),0) AS `qty1`,
         IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='2' THEN spd.sales_pos_det_qty END),0) AS `qty2`,
         IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='3' THEN spd.sales_pos_det_qty END),0) AS `qty3`,
@@ -852,7 +853,7 @@
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         LEFT JOIN (
-	        SELECT prod.id_product, prod.id_design, prod.product_full_code, dsg.design_code AS `code`,
+	        SELECT prod.id_product, prod.id_design, prod.product_full_code, dsg.design_code AS `code`, ss.season,
 	        prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`, sz.code AS `code_size`, dsg.design_cop AS `unit_cost`
 	        FROM tb_m_product prod
 	        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
@@ -860,6 +861,7 @@
 	        INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = prod_code.id_code_detail
 	        INNER JOIN tb_m_design_code dsg_code ON dsg_code.id_design = dsg.id_design
 	        INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dsg_code.id_code_detail AND cls.id_code=" + id_code_class + "
+            INNER JOIN tb_season ss ON ss.id_season = dsg.id_season
 	        WHERE dsg.id_lookup_status_order!=2
         ) prod ON prod.id_product = spd.id_product
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
