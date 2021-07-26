@@ -1,7 +1,7 @@
 ﻿Public Class FormSNISerahTerimaDet
     Public id As String = "-1"
     Dim id_pps As String = "-1"
-
+    Dim is_submit As String = "2"
     Private Sub FormSNISerahTerimaDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_head()
     End Sub
@@ -27,9 +27,22 @@ WHERE rec.id_sni_rec='" & id & "'"
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 TENumber.Text = dt.Rows(0)("number").ToString
                 '
+                is_submit = dt.Rows(0)("is_submit").ToString
+                id_pps = dt.Rows(0)("id_sni_pps").ToString
+                '
+                If is_submit = "1" Then
+                    BMark.Visible = True
+                    BSave.Visible = False
+                Else
+                    BMark.Visible = False
+                    BSave.Text = "Lock and Submit"
+                    BSave.Visible = True
+                End If
+                '
                 load_det()
             End If
         Else
+            BSave.Text = "Save"
             GridColumnAttachment.Visible = False
         End If
     End Sub
@@ -99,7 +112,31 @@ VALUES('" & id_pps & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID();"
                 Next
                 execute_non_query(q, True, "", "", "", "")
             Else
-                'no edit
+                'lock and submit
+                'check first
+                Dim is_ok As Boolean = True
+                Dim list_problem As String = ""
+                For i As Integer = 0 To GVList.RowCount - 1
+                    Dim q As String = "SELECT * FROM tb_doc WHERE id_report='" & GVList.GetRowCellValue(i, "id_sni_rec_det").ToString & "' AND report_mark_type='325'"
+                    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                    If dt.Rows.Count <= 0 Then
+                        If Not list_problem = "" Then
+                            list_problem += ","
+                        End If
+                        list_problem += GVList.GetRowCellValue(i, "design_display_name").ToString
+                        is_ok = False
+                    End If
+                Next
+
+                If Not is_ok Then
+                    warningCustom("Harap isi kelengkapan foto serah terima artikel " & list_problem & " pada attachment.")
+                Else
+                    Dim q As String = "UPDATE tb_sni_rec SET is_submit=1 WHERE id_sni_rec='" & id & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                    warningCustom("Form serah terima telah disubmit.")
+                    '
+                    load_head()
+                End If
             End If
         Else
             warningCustom("Please input SNI proposal number")

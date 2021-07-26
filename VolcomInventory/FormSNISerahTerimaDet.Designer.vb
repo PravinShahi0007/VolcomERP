@@ -192,7 +192,7 @@ Partial Class FormSNISerahTerimaDet
         '
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
-        Me.BPrint.Location = New System.Drawing.Point(633, 2)
+        Me.BPrint.Location = New System.Drawing.Point(594, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(94, 42)
         Me.BPrint.TabIndex = 13
@@ -212,7 +212,7 @@ Partial Class FormSNISerahTerimaDet
         '
         Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BClose.Image = CType(resources.GetObject("BClose.Image"), System.Drawing.Image)
-        Me.BClose.Location = New System.Drawing.Point(727, 2)
+        Me.BClose.Location = New System.Drawing.Point(688, 2)
         Me.BClose.Name = "BClose"
         Me.BClose.Size = New System.Drawing.Size(92, 42)
         Me.BClose.TabIndex = 10
@@ -222,11 +222,11 @@ Partial Class FormSNISerahTerimaDet
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
-        Me.BSave.Location = New System.Drawing.Point(819, 2)
+        Me.BSave.Location = New System.Drawing.Point(780, 2)
         Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(96, 42)
+        Me.BSave.Size = New System.Drawing.Size(135, 42)
         Me.BSave.TabIndex = 9
-        Me.BSave.Text = "Save"
+        Me.BSave.Text = "Lock and Submit"
         '
         'GCList
         '
