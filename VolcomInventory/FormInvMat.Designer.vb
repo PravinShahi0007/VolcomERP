@@ -1003,7 +1003,7 @@ Partial Class FormInvMat
         '
         Me.CEInternal.Location = New System.Drawing.Point(236, 12)
         Me.CEInternal.Name = "CEInternal"
-        Me.CEInternal.Properties.Caption = "Internal"
+        Me.CEInternal.Properties.Caption = "Other PL"
         Me.CEInternal.Size = New System.Drawing.Size(68, 19)
         Me.CEInternal.TabIndex = 8922
         '

@@ -936,7 +936,7 @@ LEFT JOIN
     GROUP BY cnt.id_report
 )payment ON payment.id_report=dn.id_inv_mat
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=dn.id_report_status
-WHERE dn.is_open=1 AND dn.is_deposit='2' AND dn.`id_inv_mat_type`=1 AND dn.id_report_status=6
+WHERE dn.is_open=1 AND (dn.is_deposit='2' OR (dn.is_deposit='1' AND dn.is_not_kas=1)) AND dn.`id_inv_mat_type`=1 AND dn.id_report_status=6
 UNION ALL
 -- retur
 SELECT 
