@@ -587,6 +587,7 @@ Partial Class FormAWBOther
         Me.XTPInvoiceVerification.Controls.Add(Me.GCInvoice)
         Me.XTPInvoiceVerification.Controls.Add(Me.PanelControl3)
         Me.XTPInvoiceVerification.Name = "XTPInvoiceVerification"
+        Me.XTPInvoiceVerification.PageVisible = False
         Me.XTPInvoiceVerification.Size = New System.Drawing.Size(1008, 498)
         Me.XTPInvoiceVerification.Text = "Invoice Verification"
         '
