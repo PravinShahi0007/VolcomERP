@@ -202,7 +202,7 @@
         Dim cond_order As String = get_setup_field("url_order")
 
         'Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/orders.json?since_id=" + since_id + cond_order
-        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/orders.json?fulfillment_status=unshipped" + cond_order
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/orders.json?fulfillment_status=unshipped" + cond_order
 
         Dim request As Net.WebRequest = Net.WebRequest.Create(url)
         request.Method = "GET"
@@ -408,7 +408,7 @@
         'get max id
         Dim since_id As String = execute_query("SELECT IFNULL(MAX(id),0) AS `since_id` FROM tb_ol_store_order ", 0, True, "", "", "", "")
 
-        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/orders.json?ids=" + specific_id + cond_order
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/orders.json?ids=" + specific_id + cond_order
         Dim request As Net.WebRequest = Net.WebRequest.Create(url)
         request.Method = "GET"
         request.Credentials = New Net.NetworkCredential(username, password)
@@ -613,7 +613,7 @@ GROUP BY p.sku"
     ""compare_at_price"": """ & normal_price & """
   }
 }")
-            Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2020-04/variants/" & dt.Rows(i)("variant_id").ToString & ".json", data, "application/json", "PUT", username, password)
+            Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/" + api_new_version + "/variants/" & dt.Rows(i)("variant_id").ToString & ".json", data, "application/json", "PUT", username, password)
             'Console.WriteLine(result_post.ToString)
         Next
     End Sub
@@ -654,7 +654,7 @@ GROUP BY p.sku"
         Net.ServicePointManager.Expect100Continue = True
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
 
-        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/products/" + product_id + ".json?fields=tags"
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/products/" + product_id + ".json?fields=tags"
         'Console.WriteLine(url)
         Dim request As Net.WebRequest = Net.WebRequest.Create(url)
         request.Method = "GET"
@@ -685,14 +685,14 @@ GROUP BY p.sku"
   }
 }")
         'Console.WriteLine(tracking_url + tracking_number)
-        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2020-04/products/" + product_id + ".json", data, "application/json", "PUT", username, password)
+        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/" + api_new_version + "/products/" + product_id + ".json", data, "application/json", "PUT", username, password)
     End Sub
 
     Sub get_discount_code()
         Net.ServicePointManager.Expect100Continue = True
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
         Dim dnow As Date = getTimeDB()
-        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/price_rules.json?ends_at_min=" + DateTime.Parse(dnow.ToString).ToString("yyyy-MM-dd") + "T00:00:00-00:00 "
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/price_rules.json?ends_at_min=" + DateTime.Parse(dnow.ToString).ToString("yyyy-MM-dd") + "T00:00:00-00:00 "
         Dim request As Net.WebRequest = Net.WebRequest.Create(url)
         request.Method = "GET"
         request.Credentials = New Net.NetworkCredential(username, password)
@@ -718,7 +718,7 @@ GROUP BY p.sku"
                         Dim end_period As String = ""
 
                         'get discount code
-                        Dim url_dc As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/price_rules/" + price_rule_id + "/discount_codes.json?limit=50"
+                        Dim url_dc As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/price_rules/" + price_rule_id + "/discount_codes.json?limit=50"
                         Dim page_info As String = ""
                         Dim i As Integer = 0
                         Dim is_loop As Boolean = True
@@ -801,7 +801,7 @@ GROUP BY p.sku"
     Sub get_discount_code_addition(ByVal id_promo As String, ByVal id_price_rule As String)
         Net.ServicePointManager.Expect100Continue = True
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
-        Dim url_dc As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/price_rules/" + id_price_rule + "/discount_codes.json?limit=50"
+        Dim url_dc As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/price_rules/" + id_price_rule + "/discount_codes.json?limit=50"
         Dim page_info As String = ""
         Dim i As Integer = 0
         Dim is_loop As Boolean = True
@@ -852,7 +852,7 @@ GROUP BY p.sku"
     Sub get_open_order(ByVal id_log As String)
         Net.ServicePointManager.Expect100Continue = True
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
-        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/orders.json?status=opened&limit=250"
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/orders.json?status=opened&limit=250"
         Dim request As Net.WebRequest = Net.WebRequest.Create(url)
         request.Method = "GET"
         request.Credentials = New Net.NetworkCredential(username, password)
@@ -953,7 +953,7 @@ GROUP BY p.sku"
         'from order
         Net.ServicePointManager.Expect100Continue = True
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
-        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/2020-04/orders.json?status=opened&limit=250"
+        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/orders.json?status=opened&limit=250"
         Dim request As Net.WebRequest = Net.WebRequest.Create(url)
         request.Method = "GET"
         request.Credentials = New Net.NetworkCredential(username, password)

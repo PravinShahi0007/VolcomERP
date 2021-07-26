@@ -55,16 +55,20 @@
         GVProduct.ActiveFilterString = "is_checked = 'yes'"
 
         Dim list_product As String = ""
+        Dim id_list_product As String = ""
 
         For i = 0 To GVProduct.RowCount - 1
             list_product += GVProduct.GetRowCellValue(i, "design_code").ToString + ","
+            id_list_product += GVProduct.GetRowCellValue(i, "id_design").ToString + ","
         Next
 
         If Not list_product = "" Then
             list_product = list_product.Substring(0, list_product.Length - 1)
+            id_list_product = id_list_product.Substring(0, id_list_product.Length - 1)
         End If
 
         FormMonthlySalesPerformance.TEProductCode.EditValue = list_product
+        FormMonthlySalesPerformance.TxtIdProduct.EditValue = id_list_product
 
         Close()
     End Sub
