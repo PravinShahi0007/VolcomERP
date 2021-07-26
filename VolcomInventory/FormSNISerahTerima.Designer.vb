@@ -24,13 +24,13 @@ Partial Class FormSNISerahTerima
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,6 +68,14 @@ Partial Class FormSNISerahTerima
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Budget Number"
+        Me.GridColumn6.FieldName = "pps_number"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 2
+        '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Created By"
@@ -79,6 +87,8 @@ Partial Class FormSNISerahTerima
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Created Date"
+        Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn4.FieldName = "created_date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
@@ -121,14 +131,6 @@ Partial Class FormSNISerahTerima
         Me.BRefresh.Size = New System.Drawing.Size(114, 43)
         Me.BRefresh.TabIndex = 2
         Me.BRefresh.Text = "Refresh"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Budget Number"
-        Me.GridColumn6.FieldName = "pps_number"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 2
         '
         'FormSNISerahTerima
         '

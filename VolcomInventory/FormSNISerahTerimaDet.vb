@@ -16,6 +16,7 @@ INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_sni_pps pps ON pps.`id_sni_pps`=rec.`id_sni_pps`
 WHERE rec.id_sni_rec='" & id & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
             If dt.Rows.Count > 0 Then
                 TEBudgetNumber.Text = dt.Rows(0)("pps_number").ToString
                 TEBudgetNumber.Properties.ReadOnly = True
@@ -26,10 +27,10 @@ WHERE rec.id_sni_rec='" & id & "'"
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 TENumber.Text = dt.Rows(0)("number").ToString
                 '
-                GridColumnAttachment.Visible = True
-
                 load_det()
             End If
+        Else
+            GridColumnAttachment.Visible = False
         End If
     End Sub
 
@@ -107,5 +108,13 @@ VALUES('" & id_pps & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID();"
 
     Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click
         Close()
+    End Sub
+
+    Private Sub RICEAttachment_Click(sender As Object, e As EventArgs) Handles RICEAttachment.Click
+        If GVList.RowCount > 0 Then
+            FormDocumentUpload.id_report = GVList.GetFocusedRowCellValue("id_sni_rec_det").ToString
+            FormDocumentUpload.report_mark_type = "325"
+            FormDocumentUpload.ShowDialog()
+        End If
     End Sub
 End Class

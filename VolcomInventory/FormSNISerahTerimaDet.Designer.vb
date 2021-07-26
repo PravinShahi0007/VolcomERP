@@ -264,7 +264,7 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
-        Me.GridColumn3.Width = 224
+        Me.GridColumn3.Width = 206
         '
         'GridColumn4
         '
@@ -273,7 +273,7 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 307
+        Me.GridColumn4.Width = 283
         '
         'GridColumn5
         '
@@ -286,7 +286,7 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
-        Me.GridColumn5.Width = 85
+        Me.GridColumn5.Width = 78
         '
         'GridColumn6
         '
@@ -301,18 +301,24 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
-        Me.GridColumn6.Width = 283
+        Me.GridColumn6.Width = 197
         '
         'GridColumnAttachment
         '
+        Me.GridColumnAttachment.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnAttachment.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnAttachment.Caption = "Attachment"
         Me.GridColumnAttachment.ColumnEdit = Me.RICEAttachment
         Me.GridColumnAttachment.FieldName = "is_attach"
         Me.GridColumnAttachment.Name = "GridColumnAttachment"
+        Me.GridColumnAttachment.Visible = True
+        Me.GridColumnAttachment.VisibleIndex = 4
+        Me.GridColumnAttachment.Width = 135
         '
         'RICEAttachment
         '
         Me.RICEAttachment.AutoHeight = False
+        Me.RICEAttachment.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
         Me.RICEAttachment.Name = "RICEAttachment"
         Me.RICEAttachment.PictureChecked = CType(resources.GetObject("RICEAttachment.PictureChecked"), System.Drawing.Image)
         Me.RICEAttachment.PictureGrayed = CType(resources.GetObject("RICEAttachment.PictureGrayed"), System.Drawing.Image)
