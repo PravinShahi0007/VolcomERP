@@ -104,8 +104,9 @@
             Dim j_st_store_soh As String = tableToJson("tb_st_store_soh", "SELECT id_st_store_soh, id_st_store_period, id_comp, id_wh_drawer, id_product, qty, id_design_price_normal, design_price_normal, id_design_price, id_design_price_type, design_price FROM tb_st_store_soh WHERE id_st_store_period = " + id_st_store_period + "")
             Dim j_st_store_unique As String = tableToJson("tb_st_store_unique", "SELECT id_st_store_unique, id_st_store_period, id_product, id_comp, unique_code FROM tb_st_store_unique WHERE id_st_store_period = " + id_st_store_period + "")
             Dim j_st_store_product As String = tableToJson("tb_st_store_product", "SELECT id_st_store_product, id_st_store_period, id_product FROM tb_st_store_product WHERE id_st_store_period = " + id_st_store_period + "")
+            Dim j_tb_m_design_price As String = tableToJson("tb_m_design_price", "SELECT id_design_price, id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print")
 
-            Dim out As String = "{" + j_m_store + "," + j_st_store_period + "," + j_m_comp_cat + "," + j_m_comp_group + "," + j_m_comp + "," + j_m_employee + "," + j_m_permission + "," + j_m_product_store + "," + j_m_role + "," + j_m_user + "," + j_permission_role + "," + j_st_store_soh + "," + j_st_store_unique + "," + j_st_store_product + "}"
+            Dim out As String = "{" + j_m_store + "," + j_st_store_period + "," + j_m_comp_cat + "," + j_m_comp_group + "," + j_m_comp + "," + j_m_employee + "," + j_m_permission + "," + j_m_product_store + "," + j_m_role + "," + j_m_user + "," + j_permission_role + "," + j_st_store_soh + "," + j_st_store_unique + "," + j_st_store_product + "," + j_tb_m_design_price + "}"
 
             Dim fs As IO.FileStream = System.IO.File.Create(file)
 
