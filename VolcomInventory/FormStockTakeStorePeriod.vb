@@ -139,7 +139,7 @@
 
         execute_non_query("DELETE FROM tb_st_store WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "", True, "", "", "", "")
 
-        Dim query As String = "INSERT IGNORE INTO tb_st_store (id_st_store, id_st_store_period, id_product, created_date, scanned_code, qty, note, is_unique_not_found, is_no_tag, image) VALUES "
+        Dim query As String = "INSERT IGNORE INTO tb_st_store (id_st_store, id_st_store_period, id_product, created_date, scanned_code, qty, note, is_unique_not_found, is_no_tag, image, id_comp) VALUES "
 
         If json("status") = "success" Then
             Dim insert As Boolean = False
@@ -155,8 +155,9 @@
                 Dim is_unique_not_found As String = row("is_unique_not_found").ToString
                 Dim is_no_tag As String = row("is_no_tag").ToString
                 Dim image As String = row("image").ToString
+                Dim id_comp As String = row("image").ToString
 
-                query += "(" + id_st_store + ", " + id_st_store_period + ", " + id_product + ", '" + created_date + "', '" + scanned_code + "', " + qty + ", '" + addSlashes(note) + "', " + is_unique_not_found + ", " + is_no_tag + ", '" + addSlashes(image) + "'), "
+                query += "(" + id_st_store + ", " + id_st_store_period + ", " + id_product + ", '" + created_date + "', '" + scanned_code + "', " + qty + ", '" + addSlashes(note) + "', " + is_unique_not_found + ", " + is_no_tag + ", '" + addSlashes(image) + "', " + id_comp + "), "
 
                 insert = True
             Next
@@ -167,21 +168,21 @@
                 execute_non_query(query, True, "", "", "", "")
 
                 'update account
-                execute_non_query("
-                    UPDATE tb_st_store AS s INNER JOIN (
-	                    SELECT s.id_product, f.id_comp
-	                    FROM tb_st_store AS s
-	                    LEFT JOIN (
-		                    SELECT id_product, COUNT(DISTINCT(id_comp)) AS count_comp, id_comp
-		                    FROM tb_st_store_soh
-		                    WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "
-		                    GROUP BY id_product
-	                    ) AS f ON s.id_product = f.id_product
-	                    WHERE f.count_comp = 1 AND id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "
-	                    GROUP BY id_product
-                    ) AS f ON s.id_product = f.id_product
-                    SET s.id_comp = f.id_comp, s.is_auto = 1
-                ", True, "", "", "", "")
+                'execute_non_query("
+                '    UPDATE tb_st_store AS s INNER JOIN (
+                '     SELECT s.id_product, f.id_comp
+                '     FROM tb_st_store AS s
+                '     LEFT JOIN (
+                '      SELECT id_product, COUNT(DISTINCT(id_comp)) AS count_comp, id_comp
+                '      FROM tb_st_store_soh
+                '      WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "
+                '      GROUP BY id_product
+                '     ) AS f ON s.id_product = f.id_product
+                '     WHERE f.count_comp = 1 AND id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "
+                '     GROUP BY id_product
+                '    ) AS f ON s.id_product = f.id_product
+                '    SET s.id_comp = f.id_comp, s.is_auto = 1
+                '", True, "", "", "", "")
             End If
 
             FormMain.SplashScreenManager1.CloseWaitForm()
