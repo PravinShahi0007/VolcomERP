@@ -176,6 +176,7 @@
         WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND sp.sales_pos_total>0
         AND sp.report_mark_type!=66 AND sp.report_mark_type!=67 AND sp.report_mark_type!=118  
         AND (DATEDIFF(NOW(),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date))>0)
+        AND c.id_commerce_type=1
         GROUP BY sp.id_sales_pos
         ORDER BY c.id_comp_group ASC, sp.id_sales_pos ASC; "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -208,6 +209,7 @@
         WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND sp.sales_pos_total>0
         AND sp.report_mark_type!=66 AND sp.report_mark_type!=67 AND sp.report_mark_type!=118  
         AND (DATEDIFF(NOW(),IF(ISNULL(sp.propose_delay_payment_due_date),sp.sales_pos_due_date,sp.propose_delay_payment_due_date))>0)
+        AND c.id_commerce_type=1
         GROUP BY cg.id_comp_group, c.id_store_company
         ORDER BY c.id_comp_group ASC "
         Dim data_group As DataTable = execute_query(query_group, -1, True, "", "", "", "")
