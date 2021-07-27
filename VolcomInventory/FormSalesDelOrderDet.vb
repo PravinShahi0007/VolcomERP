@@ -78,6 +78,14 @@ Public Class FormSalesDelOrderDet
 
             'check is_save_unreg_unique (unique tdk teregister)
             is_save_unreg_unique = get_setup_field("is_save_unreg_unique")
+
+            'hold delivery
+            Dim del As New ClassSalesDelOrder()
+            If is_block_del_store = "1" And del.checkUnpaidInvoice(id_comp_group) Then
+                stopCustom("Hold delivery")
+                Cursor = Cursors.Default
+                Close()
+            End If
         ElseIf action = "upd" Then
             GroupControlListItem.Enabled = True
             GroupControlScannedItem.Enabled = True
@@ -149,7 +157,7 @@ Public Class FormSalesDelOrderDet
     Sub viewSalesOrder()
         'Dim query_c As New ClassSalesOrder()
         'Dim query As String = query_c.queryMain("AND a.id_sales_order=" + id_sales_order + " ", "2")
-        Dim qso As String = "SELECT a.id_sales_order, a.id_store_contact_to, d.id_commerce_type,d.id_comp AS `id_store`, d.is_use_unique_code, d.id_store_type, d.comp_number AS `store_number`, d.comp_name AS `store`, d.address_primary as `store_address`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, a.id_warehouse_contact_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to,  (wh.comp_name) AS `warehouse`, wh.is_use_unique_code AS `is_use_unique_code_wh`, wh.id_comp AS `id_wh`, wh.id_drawer_def AS `id_wh_drawer`, drw.wh_drawer_code, drw.wh_drawer, a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, (a.sales_order_date) AS sales_order_date, ps.id_prepare_status, ps.prepare_status, ('No') AS `is_select`, cat.id_so_status, cat.so_status, del_cat.id_so_cat, del_cat.so_cat, IFNULL(so_item.tot_so,0.00) AS `total_order`,  
+        Dim qso As String = "SELECT a.id_sales_order, a.id_store_contact_to, d.id_commerce_type,d.id_comp AS `id_store`, d.id_comp_group, d.is_use_unique_code, d.id_store_type, d.comp_number AS `store_number`, d.comp_name AS `store`, d.address_primary as `store_address`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, a.id_warehouse_contact_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to,  (wh.comp_name) AS `warehouse`, wh.is_use_unique_code AS `is_use_unique_code_wh`, wh.id_comp AS `id_wh`, wh.id_drawer_def AS `id_wh_drawer`, drw.wh_drawer_code, drw.wh_drawer, a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, a.sales_order_ol_shop_number, a.sales_order_ol_shop_date, (a.sales_order_date) AS sales_order_date, ps.id_prepare_status, ps.prepare_status, ('No') AS `is_select`, cat.id_so_status, cat.so_status, del_cat.id_so_cat, del_cat.so_cat, IFNULL(so_item.tot_so,0.00) AS `total_order`,  
         IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,a.id_so_type, a.final_comment, a.final_date, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, a.id_prepare_status, a.customer_name
         FROM tb_sales_order a 
         INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
@@ -197,6 +205,7 @@ Public Class FormSalesDelOrderDet
             id_store_type = "2"
         End If
         id_commerce_type = data.Rows(0)("id_commerce_type").ToString
+        id_comp_group = data.Rows(0)("id_comp_group").ToString
 
 
         'wh

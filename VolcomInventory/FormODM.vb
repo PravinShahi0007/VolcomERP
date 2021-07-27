@@ -3,6 +3,7 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
     Public is_able_download_asuransi_3pl As Boolean = False
+    Dim is_block_del_store As String = get_setup_field("is_block_del_store")
 
     Private Sub BView_Click(sender As Object, e As EventArgs)
         'view()
@@ -12,7 +13,7 @@
         Dim q As String = "SELECT *
 FROM (
     SELECT 0 AS NO,a.ol_number,md.id_comp AS id_3pl,sts.report_status,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
-    c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city
+    c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, c.id_comp_group, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
     INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` 
@@ -180,9 +181,23 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
                 End If
             End If
         Next
+
+        'hold delivery
+        Dim err_hold As String = ""
+        For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+            If Not GVList.IsGroupRow(i) Then
+                Dim del As New ClassSalesDelOrder()
+                If is_block_del_store = "1" And del.checkUnpaidInvoice(GVList.GetRowCellValue(i, "id_comp_group").ToString) Then
+                    err_hold += GVList.GetRowCellValue(i, "combine_number").ToString + " (" + GVList.GetRowCellValue(i, "comp_number").ToString + " - " + GVList.GetRowCellValue(i, "comp_name").ToString + ")" + System.Environment.NewLine
+                End If
+            End If
+        Next
+
         '
         If not_ok Then
             warningCustom("Some Outbound not scanned.")
+        ElseIf err_hold <> "" Then
+            warningCustom("Hold delivery : " + System.Environment.NewLine + err_hold)
         Else
             'complete
             Try
