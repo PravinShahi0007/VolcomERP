@@ -9956,6 +9956,11 @@ WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+                'masukkan ke tb_prod_order_rec
+
+            End If
+
             'update status
             query = String.Format("UPDATE tb_sni_rec SET id_report_status='{0}' WHERE id_sni_rec ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")

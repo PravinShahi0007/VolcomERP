@@ -164,7 +164,7 @@ VALUES('" & id_pps & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID();"
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
 
-        FormReportMark.report_mark_type = "325"
+        FormReportMark.report_mark_type = "321"
         FormReportMark.id_report = id
         FormReportMark.is_view = is_view
         FormReportMark.form_origin = Name
