@@ -692,6 +692,9 @@
         ElseIf report_mark_type = "323" Then
             'stocktake partial
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_st_store_partial WHERE id_st_store_partial = '{0}'", id_report)
+        ElseIf report_mark_type = "321" Then
+            'receiving
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sni_rec WHERE id_sni_rec = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
