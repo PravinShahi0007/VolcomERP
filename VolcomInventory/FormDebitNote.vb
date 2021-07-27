@@ -227,6 +227,18 @@ WHERE c.id_comp='" & SLEVendor.EditValue.ToString & "'"
 	                                    UNION ALL
 	                                    (SELECT po.id_prod_order,3 AS id_claim_reject
 	                                    FROM tb_prod_order po WHERE po.id_po_type=2 AND po.id_report_status=6)
+                                        UNION ALL
+	                                    (SELECT po.id_prod_order,3 AS id_claim_reject
+		                                FROM tb_prod_order po 
+		                                INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
+		                                INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
+		                                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
+		                                INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+		                                INNER JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city`
+		                                INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+		                                INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+		                                INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` AND co.`id_country`!=5
+		                                WHERE po.id_po_type=3 AND po.id_report_status=6)
                                     )ko GROUP BY ko.id_prod_order
                                 ) ko ON ko.id_prod_order=po.id_prod_order 
                                 INNER JOIN tb_m_claim_reject_det crd ON crd.`id_claim_reject`=ko.`id_claim_reject` AND crd.`id_pl_category_sub`=fc.`id_pl_category_sub`
