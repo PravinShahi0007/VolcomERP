@@ -9838,6 +9838,12 @@
     <Compile Include="ReportSNIPpsList.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSNISerahTerima.Designer.vb">
+      <DependentUpon>ReportSNISerahTerima.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSNISerahTerima.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportStockQCStockReportSummary.Designer.vb">
       <DependentUpon>ReportStockQCStockReportSummary.vb</DependentUpon>
     </Compile>
