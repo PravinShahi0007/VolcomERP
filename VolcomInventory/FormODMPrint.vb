@@ -1,5 +1,6 @@
 ﻿Public Class FormODMPrint
     Public Shared id_print As String = ""
+    Dim is_block_del_store As String = get_setup_field("is_block_del_store")
 
     Private Sub FormODMPrint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim q As String = "SELECT c.comp_name,p.number FROM tb_odm_print p 
@@ -18,7 +19,7 @@ WHERE p.id_odm_print='" & id_print & "'"
         Dim q As String = "SELECT *
 FROM (
     SELECT 0 AS NO,dis.sub_district,sts.id_report_status,a.ol_number,sts.report_status AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
-    c.id_comp_group, md.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city
+    c.id_comp_group, md.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, c.id_comp_group, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city
     ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
     FROM tb_del_manifest_det AS mdet
     INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest`
@@ -118,19 +119,37 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
     End Sub
 
     Sub print()
-        Cursor = Cursors.WaitCursor
-        send_insurance()
-        send_stock()
-        '
-        Dim report As ReportODMScan = New ReportODMScan()
 
-        report.dt = GCListHistory.DataSource
-        report.XrLabelNumber.Text = TENumber.Text
-        report.XrLabel3PL.Text = L3PL.Text
 
-        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
-        tool.ShowPreview()
-        Cursor = Cursors.Default
+        'hold delivery
+        Dim err_hold As String = ""
+        For i As Integer = 0 To GVListHistory.RowCount - 1 - GetGroupRowCount(GVListHistory)
+            If Not GVListHistory.IsGroupRow(i) Then
+                Dim del As New ClassSalesDelOrder()
+                If is_block_del_store = "1" And del.checkUnpaidInvoice(GVListHistory.GetRowCellValue(i, "id_comp_group").ToString) Then
+                    err_hold += GVListHistory.GetRowCellValue(i, "combine_number").ToString + " (" + GVListHistory.GetRowCellValue(i, "comp_number").ToString + " - " + GVListHistory.GetRowCellValue(i, "comp_name").ToString + ")" + System.Environment.NewLine
+                End If
+            End If
+        Next
+
+        If err_hold <> "" Then
+            warningCustom("Hold delivery : " + System.Environment.NewLine + err_hold)
+        Else
+            Cursor = Cursors.WaitCursor
+
+            send_insurance()
+            send_stock()
+            '
+            Dim report As ReportODMScan = New ReportODMScan()
+
+            report.dt = GCListHistory.DataSource
+            report.XrLabelNumber.Text = TENumber.Text
+            report.XrLabel3PL.Text = L3PL.Text
+
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+            tool.ShowPreview()
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Sub send_insurance()
