@@ -136,6 +136,9 @@ VALUES('" & id_pps & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID();"
                 Else
                     Dim q As String = "UPDATE tb_sni_rec SET is_submit=1 WHERE id_sni_rec='" & id & "'"
                     execute_non_query(q, True, "", "", "", "")
+                    '
+                    submit_who_prepared("321", id, id_user)
+                    '
                     warningCustom("Form serah terima telah disubmit.")
                     '
                     load_head()
@@ -166,6 +169,36 @@ VALUES('" & id_pps & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID();"
         FormReportMark.is_view = is_view
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Cursor = Cursors.WaitCursor
+
+        ReportSNISerahTerima.id = id
+        ReportSNISerahTerima.dt = GCList.DataSource
+
+        Dim Report As New ReportSNISerahTerima()
+        Report.LabelNumber.Text = TENumber.Text
+
+        GridColumnAttachment.Visible = False
+
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        GridColumnAttachment.Visible = True
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVList)
+        Report.GVList.OptionsPrint.AllowMultilineHeaders = True
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
 
         Cursor = Cursors.Default
     End Sub
