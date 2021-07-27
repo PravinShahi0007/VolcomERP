@@ -488,10 +488,12 @@ GROUP BY rec.`id_prod_order`"
         ValidateChildren()
         Dim query As String = ""
         Dim err_txt As String = ""
-        Dim rec_number, rec_date, do_number, do_date, arrive_date, rec_note, rec_stats, id_pl_cat, claim_percent As String
+        Dim rec_date, do_number, do_date, arrive_date, rec_note, rec_stats, id_pl_cat, claim_percent As String
         Dim id_rec_new As String
 
-        rec_number = ""
+        'Dim rec_number As String = ""
+        'rec_number = ""
+
         rec_date = ""
         do_number = ""
         do_date = ""
@@ -572,7 +574,8 @@ GROUP BY rec.`id_prod_order`"
 
         If id_receive = "-1" Then
             'new
-            rec_number = header_number_prod("3")
+            'rec_number = header_number_prod("3")
+
             If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Or id_order = "-1" Then
                 errorInput()
             ElseIf Not cond_memo Then
@@ -585,19 +588,21 @@ GROUP BY rec.`id_prod_order`"
                     Try
                         'insert rec
                         If do_date = "0000-00-00" Then
-                            query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, prod_order_rec_number, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category,claim_percent) VALUES('{0}','{1}','{2}',NULL, '{3}',DATE(NOW()),'{4}','{5}','{6}', '{7}','{8}',{9},'{10}','{11}'); SELECT LAST_INSERT_ID(); ", id_order, rec_number, do_number, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, is_over_tol, id_prod_over_memo, id_pl_cat, claim_percent)
+                            query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, prod_order_rec_number, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category,claim_percent) VALUES('{0}','{1}',NULL, '{2}',DATE(NOW()),'{3}','{4}','{5}', '{6}','{7}',{8},'{9}','{10}'); SELECT LAST_INSERT_ID(); ", id_order, do_number, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, is_over_tol, id_prod_over_memo, id_pl_cat, claim_percent)
                             id_rec_new = execute_query(query, 0, True, "", "", "", "")
                         Else
-                            query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, prod_order_rec_number, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category,claim_percent) VALUES('{0}','{1}','{2}','{3}', '{4}',DATE(NOW()),'{5}','{6}','{7}', '{8}', '{9}', {10}, '{11}','{12}'); SELECT LAST_INSERT_ID(); ", id_order, rec_number, do_number, do_date, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, is_over_tol, id_prod_over_memo, id_pl_cat, claim_percent)
+                            query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, prod_order_rec_number, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category,claim_percent) VALUES('{0}','{1}','{2}', '{3}',DATE(NOW()),'{4}','{5}','{6}', '{7}', '{8}', {9}, '{10}','{11}'); SELECT LAST_INSERT_ID(); ", id_order, do_number, do_date, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, is_over_tol, id_prod_over_memo, id_pl_cat, claim_percent)
                             id_rec_new = execute_query(query, 0, True, "", "", "", "")
                         End If
 
-                        'insert who prepared
-                        insert_who_prepared("28", id_rec_new, id_user)
+                        If is_over_tol = "1" Then
+                            execute_non_query("CALL gen_number('" & id_rec_new & "','127')", True, "", "", "", "")
+                        Else
+                            execute_non_query("CALL gen_number('" & id_rec_new & "','28')", True, "", "", "", "")
+                        End If
 
-                        increase_inc_prod("3")
+                        'increase_inc_prod("3")
 
-                        '
                         'rec detail
                         For i As Integer = 0 To ((GVListPurchase.RowCount - 1) - GetGroupRowCount(GVListPurchase))
                             Try
@@ -622,13 +627,13 @@ GROUP BY rec.`id_prod_order`"
                         FormProductionRec.GVProdRec.FocusedRowHandle = find_row(FormProductionRec.GVProdRec, "id_prod_order_rec", id_rec_new)
                         FormProductionRec.XTCTabReceive.SelectedTabPageIndex = 0
                         id_receive = id_rec_new
-                        TERecNumber.Text = rec_number
+                        'TERecNumber.Text = rec_number
                         actionLoad()
 
                         'export to bof
-                        exportToBOF(False)
+                        'exportToBOF(False)
 
-                        infoCustom("Document #" + rec_number + " was created successfully.")
+                        infoCustom("Receive QC document created successfully.")
                     Catch ex As Exception
                         stopCustom(ex.ToString)
                     End Try
@@ -637,7 +642,7 @@ GROUP BY rec.`id_prod_order`"
             End If
         Else
             'edit
-            rec_number = TERecNumber.Text
+            'rec_number = TERecNumber.Text
             If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Then
                 errorInput()
             Else
@@ -667,9 +672,9 @@ GROUP BY rec.`id_prod_order`"
                         actionLoad()
 
                         'export to bof
-                        exportToBOF(False)
+                        'exportToBOF(False)
 
-                        infoCustom("Document #" + rec_number + " was edited successfully.")
+                        infoCustom("Receive QC document updated.")
                     Catch ex As Exception
                         errorConnection()
                     End Try

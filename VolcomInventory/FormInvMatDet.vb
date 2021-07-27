@@ -152,7 +152,7 @@ WHERE pld.`id_pl_mrs`='" & FormInvMat.GVPL.GetRowCellValue(i, "id_pl_mrs").ToStr
             BAttachment.Visible = True
 
             'load header
-            Dim q_head As String = "SELECT inv.`number`,inv.`id_comp`,inv.is_deposit,c.`comp_name`,inv.`vat_percent`,inv.`id_inv_mat_type`,typ.`inv_mat_type`,inv.created_date,inv.ref_date,inv.due_date,inv.note,inv.id_report_status
+            Dim q_head As String = "SELECT inv.`number`,inv.is_not_kas,inv.`id_comp`,inv.is_deposit,c.`comp_name`,inv.`vat_percent`,inv.`id_inv_mat_type`,typ.`inv_mat_type`,inv.created_date,inv.ref_date,inv.due_date,inv.note,inv.id_report_status
 FROM tb_inv_mat inv
 INNER JOIN tb_m_comp c ON c.`id_comp`=inv.`id_comp`
 INNER JOIN `tb_inv_mat_type` typ ON typ.`id_inv_mat_type`=inv.`id_inv_mat_type`
@@ -171,6 +171,12 @@ WHERE inv.id_inv_mat='" & id_inv & "'"
                 '
                 id_status = dt_head.Rows(0)("id_report_status").ToString
                 is_deposit = dt_head.Rows(0)("is_deposit").ToString
+                '
+                If dt_head.Rows(0)("is_not_kas").ToString = "1" Then
+                    CEKas.Checked = False
+                Else
+                    CEKas.Checked = True
+                End If
             End If
             '
             load_det()
@@ -190,6 +196,8 @@ WHERE inv.id_inv_mat='" & id_inv & "'"
             GridColumnQty.Visible = True
             GridColumnPrice.Visible = True
             GridColumnAmount.Visible = True
+            '
+            CEKas.Visible = True
         Else
             GridColumnFGPO.Visible = True
             GridColumnPayment.Visible = True
@@ -197,7 +205,10 @@ WHERE inv.id_inv_mat='" & id_inv & "'"
             GridColumnQty.Visible = False
             GridColumnPrice.Visible = False
             GridColumnAmount.Visible = False
+
+            CEKas.Visible = False
         End If
+
         If SLEPayType.EditValue.ToString = "1" Then
             Text = "Invoice Material"
         Else
@@ -278,8 +289,8 @@ WHERE invd.`id_inv_mat`='" & id_inv & "'"
             If id_inv = "-1" Then
                 'new
                 'header
-                Dim query As String = "INSERT INTO `tb_inv_mat`(`id_inv_mat_type`,`id_comp`,`created_by`,`created_date`,`note`,`id_report_status`,`due_date`,`ref_date`,`vat_percent`,is_deposit)
-VALUES ('" & SLEPayType.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TEVatPercent.EditValue.ToString) & "','" & If(is_deposit = "1", "1", "2") & "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO `tb_inv_mat`(`id_inv_mat_type`,`id_comp`,`created_by`,`created_date`,`note`,`id_report_status`,`due_date`,`ref_date`,`vat_percent`,is_deposit,is_not_kas)
+VALUES ('" & SLEPayType.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TEVatPercent.EditValue.ToString) & "','" & If(is_deposit = "1", "1", "2") & "','" & If(CEKas.Checked = True, "2", "1") & "'); SELECT LAST_INSERT_ID(); "
                 id_inv = execute_query(query, 0, True, "", "", "", "")
                 'id_inv
                 query = ""

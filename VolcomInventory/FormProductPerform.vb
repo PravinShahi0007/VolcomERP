@@ -35,11 +35,20 @@
     End Sub
 
     Sub viewArea()
-        Dim query As String = "SELECT 0 AS `id_area`, 'All' AS `area`
-UNION ALL
+        Dim query As String = "
 (SELECT a.id_area, a.`area` FROM tb_m_area a )
 ORDER BY area ASC"
-        viewLookupQuery(LEArea, query, 0, "area", "id_area")
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("area").ToString
+            c.Value = data.Rows(i)("id_area").ToString
+
+            CCBEArea.Properties.Items.Add(c)
+        Next
     End Sub
 
     Sub viewProvince()
@@ -50,29 +59,45 @@ ORDER BY area ASC"
         'End If
 
         Dim query As String = "
-            (SELECT 0 AS id_province, 'ALL' AS province)
-            UNION ALL
             (SELECT s.id_state AS id_province, s.state AS province
             FROM tb_m_state AS s
             LEFT JOIN tb_m_region AS r ON s.id_region = r.id_region
             WHERE r.id_country = 5" + where + ")
+            ORDER BY province ASC
         "
 
-        viewSearchLookupQuery(SLUEProvince, query, "id_province", "province", "id_province")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("province").ToString
+            c.Value = data.Rows(i)("id_province").ToString
+
+            CCBEProvince.Properties.Items.Add(c)
+        Next
     End Sub
 
     Sub view_group_store()
         Dim where As String = ""
 
         Dim query As String = "
-            (SELECT 0 AS id_comp_group, 'ALL' AS comp_group)
-            UNION ALL
             (SELECT id_comp_group, CONCAT(comp_group, ' - ', description) AS comp_group
             FROM tb_m_comp_group
             WHERE 1 " + where + ")
+            ORDER BY comp_group ASC
         "
 
-        viewSearchLookupQuery(SLUECompGroup, query, "id_comp_group", "comp_group", "id_comp_group")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("comp_group").ToString
+            c.Value = data.Rows(i)("id_comp_group").ToString
+
+            CCBEGroupStore.Properties.Items.Add(c)
+        Next
     End Sub
 
     Sub view_season()
@@ -156,11 +181,6 @@ ORDER BY area ASC"
     End Sub
 
     Private Sub FormProductPerform_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        For Each t As DevExpress.XtraTab.XtraTabPage In XTCData.TabPages
-            XTCData.SelectedTabPage = t
-        Next t
-        XTCData.SelectedTabPage = XTCData.TabPages(0)
-
         month.Add("Jan")
         month.Add("Feb")
         month.Add("Mar")
@@ -253,21 +273,48 @@ ORDER BY area ASC"
         Dim rmt_sal As String = execute_query("SELECT GROUP_CONCAT(DISTINCT sp.report_mark_type) AS `rmt` FROM tb_sales_pos sp WHERE sp.id_report_status=6", 0, True, "", "", "", "")
 
         'filter product
+        'join design
+        Dim join_design As String = "INNER JOIN tb_m_design d ON d.id_design = soh.id_design
+        LEFT JOIN (
+	        SELECT c.id_design, 
+	        MAX(CASE WHEN d.id_code=32 THEN d.id_code_detail END) AS `id_division`,
+            MAX(CASE WHEN d.id_code=32 THEN d.code_detail_name END) AS `division`,
+            MAX(CASE WHEN d.id_code=4 THEN d.id_code_detail END) AS `id_category`,
+	        MAX(CASE WHEN d.id_code=4 THEN d.display_name END) AS `category`,
+            MAX(CASE WHEN d.id_code=30 THEN d.id_code_detail END) AS `id_class`,
+	        MAX(CASE WHEN d.id_code=30 THEN d.display_name END) AS `class`,
+            MAX(CASE WHEN d.id_code=14 THEN d.id_code_detail END) AS `id_color`,
+	        MAX(CASE WHEN d.id_code=14 THEN d.code_detail_name END) AS `color`,
+            MAX(CASE WHEN d.id_code=5 THEN d.id_code_detail END) AS `id_source`,
+	        MAX(CASE WHEN d.id_code=5 THEN d.display_name END) AS `source`
+	        FROM tb_m_design_code AS c
+	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
+	        WHERE d.id_code IN (32,4,30,14,5)
+	        GROUP BY c.id_design
+        ) i ON i.id_design = d.id_design "
+        'where
         Dim where_prod As String = ""
         If Not CCBESeason.EditValue.ToString = "" Then
             where_prod += " AND d.id_season IN (" + CCBESeason.EditValue.ToString + ")"
         End If
         If Not CCBEDivision.EditValue.ToString = "" Then
-            where_prod += " AND division.id_code_detail IN (" + CCBEDivision.EditValue.ToString + ")"
+            where_prod += " AND i.id_division IN (" + CCBEDivision.EditValue.ToString + ")"
         End If
         If Not CCBECategory.EditValue.ToString = "" Then
-            where_prod += " AND category.id_code_detail IN (" + CCBECategory.EditValue.ToString + ")"
+            where_prod += " AND i.id_category IN (" + CCBECategory.EditValue.ToString + ")"
         End If
         If Not CCBEClass.EditValue.ToString = "" Then
-            where_prod += " AND class.id_code_detail IN (" + CCBEClass.EditValue.ToString + ")"
+            where_prod += " AND i.id_class IN (" + CCBEClass.EditValue.ToString + ")"
         End If
         If Not TxtIdProduct.Text.ToString = "" Then
             where_prod += " AND d.id_design IN (" + TxtIdProduct.Text + ")"
+        End If
+        'filter product SOH
+        Dim join_design_soh As String = ""
+        Dim where_prod_soh As String = ""
+        If Not CCBESeason.EditValue.ToString = "" Or Not CCBEDivision.EditValue.ToString = "" Or Not CCBECategory.EditValue.ToString = "" Or Not CCBEClass.EditValue.ToString = "" Or Not TxtIdProduct.Text.ToString = "" Then
+            join_design_soh = join_design
+            where_prod_soh = where_prod
         End If
 
         'filter wh
@@ -288,6 +335,7 @@ ORDER BY area ASC"
         Dim ion As Integer = 0
         Dim iof As Integer = 0
         Dim col_store As String = ""
+        Dim col_store2 As String = ""
         GVStore.ActiveFilterString = "[is_select]='Yes'"
         For s As Integer = 0 To GVStore.RowCount - 1
             Dim comp_number As String = GVStore.GetRowCellValue(s, "comp_number").ToString
@@ -310,6 +358,7 @@ ORDER BY area ASC"
             If s > 0 Then
                 id_store_selected += ","
                 col_store += ","
+                col_store2 += ","
             End If
 
             id_store_selected += GVStore.GetRowCellValue(s, "id_comp").ToString
@@ -317,6 +366,7 @@ ORDER BY area ASC"
             IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0) AS `STORE : " + comp_number + " - " + comp_name + "|SAL`,
             IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + id_comp_soh + ") THEN soh.qty END),0) AS `STORE : " + comp_number + " - " + comp_name + "|SOH`,
             (IFNULL(ABS(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_sal + ") AND soh.id_comp IN(" + id_comp + ") THEN soh.qty END)),0)/IFNULL(SUM(CASE WHEN soh.report_mark_type IN(" + rmt_del + ") AND soh.id_comp IN(" + id_comp_soh + ") THEN soh.qty END),0))*100 AS `STORE : " + comp_number + " - " + comp_name + "|Sales Thru` "
+            col_store2 += "soh.`STORE : " + comp_number + " - " + comp_name + "|DEL`, soh.`STORE : " + comp_number + " - " + comp_name + "|SAL`,soh.`STORE : " + comp_number + " - " + comp_name + "|SOH`, soh.`STORE : " + comp_number + " - " + comp_name + "|Sales Thru` "
             If id_commerce_type = "1" Then
                 'offline
                 If iof > 0 Then
@@ -329,7 +379,7 @@ ORDER BY area ASC"
                 If ion > 0 Then
                     id_comp_online += ","
                 End If
-                id_comp_online = id_wh_ol
+                id_comp_online += id_wh_ol
                 ion += 1
             End If
         Next
@@ -348,8 +398,8 @@ ORDER BY area ASC"
 
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
-        Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, division.display_name AS `Product Info|Division`, 
-        category.display_name AS `Product Info|Category`, class.display_name AS `Product Info|Class`, color.code_detail_name AS `Product Info|Color`, source.display_name AS `Product Info|Source`,
+        Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, i.division AS `Product Info|Division`, 
+        i.category AS `Product Info|Category`, i.class AS `Product Info|Class`, i.color AS `Product Info|Color`, i.source AS `Product Info|Source`,
         season.season AS `Product Info|Season`, delivery.delivery AS `Product Info|Delivery`, range.year_range AS `Product Info|Year`,
         DATE_FORMAT(d.design_first_rec_wh, '%d %M %Y') AS `Product Age|WH Date`,
         DATE_FORMAT(first_del.first_del, '%d %M %Y') AS `Product Age|Del Date`,
@@ -366,65 +416,47 @@ ORDER BY area ASC"
         price_current.design_price_type AS `Price Update Dates|Current Status`,
         ROUND(wh_rec_normal.qty) AS `WH Received|Normal (BOS)`, ROUND(wh_rec_defect.qty) AS `WH Received|Defect`,
         ROUND((wh_rec_normal.qty + wh_rec_defect.qty)) AS `WH Received|Total`, 
-        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compG78 + ") THEN soh.qty END),0) AS `Stock Gudang Normal|G78`,
-        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGON + ") THEN soh.qty END),0) AS `Stock Gudang Normal|GON`,
-        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compS78 + ") THEN soh.qty END),0) AS `Stock Gudang Sale|S78`,
-        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGOS + ") THEN soh.qty END),0) AS `Stock Gudang Sale|GOS`,
-        IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compREJ + ") THEN soh.qty END),0) AS `Stock Gudang Non Active|Reject`,
-        " + col_store + ",
-        IFNULL(
-            SUM(CASE 
-                WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.report_mark_type IN(43,103) THEN soh.qty 
-                WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.report_mark_type IN(58) THEN soh.qty 
-            END)
-        ,0) AS `TOTAL|DEL`,
-        IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `TOTAL|SAL`,
-        IFNULL(
-            SUM(CASE 
-                WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty 
-                WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty 
-            END)
-        ,0) AS `TOTAL|SOH`,
-        (IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0)/
-        IFNULL(
-            SUM(CASE 
-                WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.report_mark_type IN(43,103) THEN soh.qty 
-                WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.report_mark_type IN(58) THEN soh.qty 
-            END)
-        ,0))*100 AS `TOTAL|Sales Thru`
-        FROM tb_soh_sal_period soh
-        INNER JOIN tb_m_design d ON d.id_design = soh.id_design
-        INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
-        LEFT JOIN (
-	         SELECT c.id_design, d.id_code_detail, d.display_name
-	         FROM tb_m_design_code AS c
-	         LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	         WHERE d.id_code = 32
-        ) AS division ON d.id_design = division.id_design
-        LEFT JOIN (
-	        SELECT c.id_design, d.id_code_detail, d.display_name
-	        FROM tb_m_design_code AS c
-	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	        WHERE d.id_code = 4
-        ) AS category ON d.id_design = category.id_design
-        LEFT JOIN (
-	        SELECT c.id_design, d.id_code_detail, d.display_name
-	        FROM tb_m_design_code AS c
-	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	        WHERE d.id_code = 30
-        ) AS class ON d.id_design = class.id_design
-        LEFT JOIN (
-	        SELECT c.id_design, d.code_detail_name
-	        FROM tb_m_design_code AS c
-	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	        WHERE d.id_code = 14
-        ) AS color ON d.id_design = color.id_design
-        LEFT JOIN (
-	        SELECT c.id_design, d.display_name
-	        FROM tb_m_design_code AS c
-	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	        WHERE d.id_code = 5
-        ) AS source ON d.id_design = source.id_design
+        soh.`Stock Gudang Normal|G78`,soh.`Stock Gudang Normal|GON`,soh.`Stock Gudang Sale|S78`,soh.`Stock Gudang Sale|GOS`,soh.`Stock Gudang Non Active|Reject`,
+        " + col_store2 + ",
+        soh.`TOTAL|DEL`, soh.`TOTAL|SAL`,soh.`TOTAL|SOH`, soh.`TOTAL|Sales Thru`
+        FROM (
+            SELECT soh.id_design, soh.id_comp,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compG78 + ") THEN soh.qty END),0) AS `Stock Gudang Normal|G78`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGON + ") THEN soh.qty END),0) AS `Stock Gudang Normal|GON`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compS78 + ") THEN soh.qty END),0) AS `Stock Gudang Sale|S78`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compGOS + ") THEN soh.qty END),0) AS `Stock Gudang Sale|GOS`,
+            IFNULL(SUM(CASE WHEN soh.soh_date='" + untilDate + "' AND soh.id_comp IN(" + compREJ + ") THEN soh.qty END),0) AS `Stock Gudang Non Active|Reject`,
+            " + col_store + ",
+            IFNULL(
+                SUM(CASE 
+                    WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.report_mark_type IN(43,103) THEN soh.qty 
+                    WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.report_mark_type IN(58) THEN soh.qty 
+                END)
+            ,0) AS `TOTAL|DEL`,
+            IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0) AS `TOTAL|SAL`,
+            IFNULL(
+                SUM(CASE 
+                    WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty 
+                    WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.soh_date='" + untilDate + "' THEN soh.qty 
+                END)
+            ,0) AS `TOTAL|SOH`,
+            (IFNULL(ABS(SUM(CASE WHEN soh.id_comp IN(" + id_store_selected + ") AND soh.report_mark_type IN(" + rmt_sal + ") THEN soh.qty END)),0)/
+            IFNULL(
+                SUM(CASE 
+                    WHEN soh.id_comp IN(" + id_comp_offline + ") AND soh.report_mark_type IN(43,103) THEN soh.qty 
+                    WHEN soh.id_comp IN(" + id_comp_online + ") AND soh.report_mark_type IN(58) THEN soh.qty 
+                END)
+            ,0))*100 AS `TOTAL|Sales Thru`
+            FROM tb_soh_sal_period soh
+            " + join_design_soh + "
+            INNER JOIN tb_m_comp c ON c.id_comp = soh.id_comp
+            WHERE soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' 
+            AND soh.id_comp IN(" + id_acc_selected + ")
+            " + where_prod + "
+            " + where_prod_soh + "
+            GROUP BY soh.id_design 
+        ) soh 
+        " + join_design + "
         INNER JOIN tb_season AS season ON d.id_season = season.id_season
         INNER JOIN tb_range AS `range` ON season.id_range = range.id_range
         INNER JOIN tb_season_delivery AS delivery ON d.id_delivery = delivery.id_delivery
@@ -481,11 +513,7 @@ ORDER BY area ASC"
 	        LEFT JOIN tb_prod_demand_design AS s ON p.id_prod_demand_design = s.id_prod_demand_design
 	        WHERE r.id_report_status = 6 AND l.id_pl_category <> 1
 	        GROUP BY s.id_design
-        ) AS wh_rec_defect ON wh_rec_defect.id_design = d.id_design
-        WHERE soh.soh_date>='" + fromDate + "' AND soh.soh_date<='" + untilDate + "' 
-        AND is_del_online_store!=1 AND soh.id_comp IN(" + id_acc_selected + ")
-        " + where_prod + "
-        GROUP BY soh.id_design "
+        ) AS wh_rec_defect ON wh_rec_defect.id_design = d.id_design "
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
         GVData.Bands.Clear()
         GVData.Columns.Clear()
@@ -571,12 +599,12 @@ ORDER BY area ASC"
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
 
-    Private Sub LEArea_EditValueChanged(sender As Object, e As EventArgs) Handles LEArea.EditValueChanged
+    Private Sub LEArea_EditValueChanged(sender As Object, e As EventArgs)
         view_group_store()
         viewStore()
     End Sub
 
-    Private Sub SLUEProvince_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEProvince.EditValueChanged
+    Private Sub SLUEProvince_EditValueChanged(sender As Object, e As EventArgs)
         view_group_store()
         viewStore()
     End Sub
@@ -586,10 +614,16 @@ ORDER BY area ASC"
         defaultView()
         CESelectAllStore.EditValue = False
         MESelectedStore.Text = ""
+        acc.Clear()
 
         'filter
         Dim where As String = ""
-        Dim id_cat As String = LECat.EditValue.ToString
+        Dim id_cat As String = ""
+        Try
+            id_cat = LECat.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
         If id_cat = "1" Then
             'wholesale
             where += "AND c.id_comp_group='59' AND c.id_commerce_type='1 ' "
@@ -605,14 +639,32 @@ ORDER BY area ASC"
         Else
             where += ""
         End If
-        If LEArea.EditValue.ToString <> "0" Then
-            where += "AND c.id_area='" + LEArea.EditValue.ToString + "' "
+        Dim id_area As String = ""
+        Try
+            id_area = CCBEArea.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_area <> "" Then
+            where += "AND c.id_area IN(" + id_area + ") "
         End If
-        If SLUEProvince.EditValue.ToString <> "0" Then
-            where += "AND cty.id_state='" + SLUEProvince.EditValue.ToString + "' "
+        Dim id_province As String = ""
+        Try
+            id_province = CCBEProvince.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_province <> "" Then
+            where += "AND cty.id_state IN(" + id_province + ") "
         End If
-        If SLUECompGroup.EditValue.ToString <> "0" Then
-            where += "AND c.id_comp_group='" + SLUECompGroup.EditValue.ToString + "' "
+        Dim id_group_store As String = ""
+        Try
+            id_group_store = CCBEGroupStore.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_group_store <> "" Then
+            where += "AND c.id_comp_group IN(" + id_group_store + ") "
         End If
 
         'view
@@ -631,19 +683,23 @@ ORDER BY area ASC"
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub SLUECompGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLUECompGroup.EditValueChanged
+    Private Sub SLUECompGroup_EditValueChanged(sender As Object, e As EventArgs)
         viewStore()
     End Sub
 
     Private Sub CESelectAllStore_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAllStore.EditValueChanged
         Cursor = Cursors.WaitCursor
+        acc.Clear()
         For i As Integer = 0 To GVStore.RowCount - 1
             If CESelectAllStore.EditValue = True Then
                 GVStore.SetRowCellValue(i, "is_select", "Yes")
+                acc.Add(GVStore.GetRowCellValue(i, "comp_number").ToString)
             Else
                 GVStore.SetRowCellValue(i, "is_select", "No")
+                acc.Remove(GVStore.GetRowCellValue(i, "comp_number").ToString)
             End If
         Next
+        showSelectedStore()
         Cursor = Cursors.Default
     End Sub
 
@@ -659,7 +715,7 @@ ORDER BY area ASC"
 
     Private Sub GVStore_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVStore.CellValueChanged
         If e.Column.FieldName.ToString = "is_select" Then
-            setSelectedStore()
+
         End If
     End Sub
 
@@ -756,10 +812,10 @@ ORDER BY area ASC"
     End Sub
 
     Private Sub GVStore_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVStore.ColumnFilterChanged
-        setSelectedStore()
+
     End Sub
 
-    Private Sub XtraScrollableControl1_Click(sender As Object, e As EventArgs) Handles XtraScrollableControl1.Click
+    Private Sub XtraScrollableControl1_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -768,9 +824,65 @@ ORDER BY area ASC"
         viewStore()
     End Sub
 
-    Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
-        Dim SpQty As DevExpress.XtraEditors.CheckEdit = CType(sender, DevExpress.XtraEditors.CheckEdit)
-        Dim cek As String = SpQty.EditValue.ToString
-        MsgBox(cek.ToString)
+    Dim acc As New List(Of String)
+    Private Sub RepositoryItemCheckEdit1_EditValueChanged_1(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
+        Dim SpSelect As DevExpress.XtraEditors.CheckEdit = CType(sender, DevExpress.XtraEditors.CheckEdit)
+        Dim is_select As String = SpSelect.EditValue.ToString
+        Dim comp_number As String = GVStore.GetFocusedRowCellValue("comp_number").ToString
+        If is_select = "Yes" Then
+            'MsgBox("Checked : " + comp_number)
+            acc.Add(comp_number)
+        Else
+            'MsgBox("Unchecked : " + comp_number)
+            acc.Remove(comp_number)
+        End If
+    End Sub
+
+    Sub showSelectedStore()
+        Dim i As Integer = 0
+        Dim acc_col As String = ""
+        For Each res As String In acc
+            If i > 0 Then
+                acc_col += ","
+            End If
+            acc_col += res
+            i += 1
+        Next
+        MESelectedStore.Text = acc_col
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.Click
+
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit1_CheckStateChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.CheckStateChanged
+
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.CheckedChanged
+
+    End Sub
+
+    Private Sub XTCOption_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCOption.SelectedPageChanged
+        If XTCOption.SelectedTabPageIndex = 0 Then
+            XTCOption.Width = 378
+        Else
+            XTCOption.Width = 25
+        End If
+    End Sub
+
+    Private Sub CCBEArea_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEArea.EditValueChanged
+        view_group_store()
+        viewStore()
+    End Sub
+
+    Private Sub CCBEProvince_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEProvince.EditValueChanged
+        view_group_store()
+        viewStore()
+    End Sub
+
+    Private Sub CCBEGroupStore_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEGroupStore.EditValueChanged
+        view_group_store()
+        viewStore()
     End Sub
 End Class
