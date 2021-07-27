@@ -459,6 +459,9 @@
         ElseIf report_mark_type = "319" Then
             'SNI Budget Propose
             FormSNIppsDet.Close()
+        ElseIf report_mark_type = "321" Then
+            'sni rec
+            FormSNISerahTerimaDet.Close()
         ElseIf report_mark_type = "323" Then
             'stocktake partial
             FormStockTakePartialDet.Close()
@@ -1505,6 +1508,10 @@ GROUP BY rec.`id_prod_order`"
             FormSNIppsDet.id_pps = id_report
             FormSNIppsDet.is_view = "1"
             FormSNIppsDet.ShowDialog()
+        ElseIf report_mark_type = "321" Then
+            'sni rec
+            FormSNISerahTerimaDet.id = id_report
+            FormSNISerahTerimaDet.ShowDialog()
         ElseIf report_mark_type = "323" Then
             FormStockTakePartialDet.id = id_report
             FormStockTakePartialDet.ShowDialog()
@@ -2691,6 +2698,12 @@ GROUP BY rec.`id_prod_order`"
             'SNI Budget PPS
             table_name = "tb_sni_pps"
             field_id = "id_sni_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "321" Then
+            'sni rec
+            table_name = "tb_sni_rec"
+            field_id = "id_sni_rec"
             field_number = "number"
             field_date = "created_date"
         ElseIf report_mark_type = "323" Then

@@ -693,7 +693,7 @@
             'stocktake partial
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_st_store_partial WHERE id_st_store_partial = '{0}'", id_report)
         ElseIf report_mark_type = "321" Then
-            'receiving
+            'receiving SNI
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sni_rec WHERE id_sni_rec = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
@@ -9949,6 +9949,15 @@ WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
 
             'update status
             query = String.Format("UPDATE tb_st_store_partial SET id_report_status='{0}' WHERE id_st_store_partial ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "321" Then
+            'SNI Rec
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_sni_rec SET id_report_status='{0}' WHERE id_sni_rec ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
