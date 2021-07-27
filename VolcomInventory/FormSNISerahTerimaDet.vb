@@ -2,6 +2,9 @@
     Public id As String = "-1"
     Dim id_pps As String = "-1"
     Dim is_submit As String = "2"
+
+    Public is_view As String = "-1"
+
     Private Sub FormSNISerahTerimaDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_head()
     End Sub
@@ -153,5 +156,17 @@ VALUES('" & id_pps & "','" & id_user & "',NOW(),'1'); SELECT LAST_INSERT_ID();"
             FormDocumentUpload.report_mark_type = "325"
             FormDocumentUpload.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        Cursor = Cursors.WaitCursor
+
+        FormReportMark.report_mark_type = "325"
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+
+        Cursor = Cursors.Default
     End Sub
 End Class
