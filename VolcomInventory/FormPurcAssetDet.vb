@@ -180,6 +180,7 @@
             TxtAccumDep.Enabled = True
             PictureEdit.Visible = False
             SBUpload.Visible = False
+            SBSelectImage.Visible = False
         Else
             BtnConfirm.Visible = False
             BtnCancell.Visible = True
@@ -193,6 +194,7 @@
             TxtAccumDep.Enabled = False
             PictureEdit.Visible = True
             SBUpload.Visible = True
+            SBSelectImage.Visible = True
         End If
 
         If id_report_status = "6" Then
@@ -299,6 +301,8 @@
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
         If TxtUseful.EditValue <= 0 Then
             warningCustom("Please input useful life")
+        ElseIf SLECategory.EditValue.ToString = "0" Then
+            warningCustom("Please select asset category")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this asset ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then

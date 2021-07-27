@@ -50,6 +50,7 @@ Partial Class FormInvMatDet
         Me.CEPrintPreview = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -80,7 +81,7 @@ Partial Class FormInvMatDet
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.CEKas = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,6 +121,7 @@ Partial Class FormInvMatDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEKas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -214,6 +216,7 @@ Partial Class FormInvMatDet
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.CEKas)
         Me.PanelControl3.Controls.Add(Me.SLEPayType)
         Me.PanelControl3.Controls.Add(Me.SLEVendor)
         Me.PanelControl3.Controls.Add(Me.LabelControl3)
@@ -223,7 +226,7 @@ Partial Class FormInvMatDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(390, 92)
+        Me.PanelControl3.Size = New System.Drawing.Size(527, 92)
         Me.PanelControl3.TabIndex = 165
         '
         'SLEPayType
@@ -416,6 +419,17 @@ Partial Class FormInvMatDet
         Me.BtnViewJournal.TabIndex = 20
         Me.BtnViewJournal.Text = "View Journal"
         Me.BtnViewJournal.Visible = False
+        '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.Image = CType(resources.GetObject("BAttachment.Image"), System.Drawing.Image)
+        Me.BAttachment.Location = New System.Drawing.Point(694, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(105, 36)
+        Me.BAttachment.TabIndex = 28
+        Me.BAttachment.Text = "Attachment"
+        Me.BAttachment.Visible = False
         '
         'BMark
         '
@@ -764,16 +778,13 @@ Partial Class FormInvMatDet
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
         '
-        'BAttachment
+        'CEKas
         '
-        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAttachment.Image = CType(resources.GetObject("BAttachment.Image"), System.Drawing.Image)
-        Me.BAttachment.Location = New System.Drawing.Point(694, 2)
-        Me.BAttachment.Name = "BAttachment"
-        Me.BAttachment.Size = New System.Drawing.Size(105, 36)
-        Me.BAttachment.TabIndex = 28
-        Me.BAttachment.Text = "Attachment"
-        Me.BAttachment.Visible = False
+        Me.CEKas.Location = New System.Drawing.Point(381, 65)
+        Me.CEKas.Name = "CEKas"
+        Me.CEKas.Properties.Caption = "Jual Beli Internal Volcom"
+        Me.CEKas.Size = New System.Drawing.Size(143, 19)
+        Me.CEKas.TabIndex = 8920
         '
         'FormInvMatDet
         '
@@ -831,6 +842,7 @@ Partial Class FormInvMatDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEKas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -895,4 +907,5 @@ Partial Class FormInvMatDet
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CEKas As DevExpress.XtraEditors.CheckEdit
 End Class
