@@ -15238,6 +15238,9 @@
     <EmbeddedResource Include="ReportSNIPpsList.resx">
       <DependentUpon>ReportSNIPpsList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportSNISerahTerima.resx">
+      <DependentUpon>ReportSNISerahTerima.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportStockQCStockReportSummary.resx">
       <DependentUpon>ReportStockQCStockReportSummary.vb</DependentUpon>
     </EmbeddedResource>

@@ -1,5 +1,7 @@
 ﻿Public Class ReportSNIBudget
     Public Shared id_pps As String = "-1"
+    Public Shared tot_qty As String = "-1"
+    Public Shared cost_per_pcs As String = "-1"
 
     Private Sub ReportSNIBudget_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         Dim q As String = "SELECT sni.number,ssn.season 
@@ -23,7 +25,9 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
             'add summary
             tot_nilai += dtdet.Rows(i)("sub_amount")
             If i = dtdet.Rows.Count - 1 Then
-                insert_footer(row_baru, tot_nilai)
+                insert_footer(row_baru, tot_nilai, "Total Cost")
+                insert_footer(row_baru, tot_nilai, "Total Qty Artikel KIDS")
+                insert_footer(row_baru, tot_nilai, "Cost per Pcs")
             End If
         Next
         '
@@ -79,7 +83,7 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
         sub_amount_col.Font = font_row_style
     End Sub
 
-    Sub insert_footer(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal total As Decimal)
+    Sub insert_footer(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal total As Decimal, ByVal keterangan As String)
         Dim font_row_style As New Font(XTDetail.Font.FontFamily, XTDetail.Font.Size + 1, FontStyle.Bold)
 
         row = XTDetail.InsertRowBelow(row)
@@ -91,7 +95,7 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
 
         'No
         Dim no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
-        no.Text = "Total"
+        no.Text = keterangan
         no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         no.Font = font_row_style
 
