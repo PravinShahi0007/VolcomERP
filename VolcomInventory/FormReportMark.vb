@@ -9958,7 +9958,34 @@ WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
 
             If id_status_reportx = "6" Then
                 'masukkan ke tb_prod_order_rec
+                Try
+                    'insert rec
+                    '                    Dim id_rec_new As String = "-1"
+                    '                    Dim do_date As String = ""
 
+                    '                    Dim qs As String = "SELECT reff_date FROM tb_sni_rec WHERE id_sni_rec='" & id_report & "'"
+                    '                    Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+                    '                    If dts.Rows.Count > 0 Then
+                    '                        query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, prod_order_rec_number, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category,claim_percent) 
+                    'VALUES('{0}','{1}',NULL, '{2}',DATE(NOW()),'{3}','{4}','{5}', '{6}','{7}',{8},'{9}','{10}'); SELECT LAST_INSERT_ID(); ", id_order, do_number, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, is_over_tol, id_prod_over_memo, id_pl_cat, claim_percent)
+                    '                        id_rec_new = execute_query(query, 0, True, "", "", "", "")
+
+                    '                        execute_non_query("CALL gen_number('" & id_rec_new & "','28')", True, "", "", "", "")
+
+                    '                        'rec detail
+                    '                        For i As Integer = 0 To ((GVListPurchase.RowCount - 1) - GetGroupRowCount(GVListPurchase))
+                    '                            Try
+                    '                                If Not GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString = "" Then
+                    '                                    query = String.Format("INSERT INTO tb_prod_order_rec_det(id_prod_order_det,id_prod_order_rec,prod_order_rec_det_qty,prod_order_rec_det_note) VALUES('{0}','{1}','{2}','{3}')", GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString, id_rec_new, decimalSQL(GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_qty").ToString), GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_note").ToString)
+                    '                                    execute_non_query(query, True, "", "", "", "")
+                    '                                End If
+                    '                            Catch ex As Exception
+                    '                            End Try
+                    '                        Next
+                    '                    End If
+                Catch ex As Exception
+                    stopCustom(ex.ToString)
+                End Try
             End If
 
             'update status
