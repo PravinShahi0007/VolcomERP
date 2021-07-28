@@ -9970,8 +9970,7 @@ SELECT po.`id_prod_order`,rec.`number`,rec.`reff_date`,rec.`reff_date` AS arrive
 ,74 AS id_comp_contact_to,ovhp.`id_comp_contact`,2 AS is_over_tol,NULL AS id_prod_over_memo,1 AS id_pl_category,0 AS claim_percent,1 AS is_sni
 FROM tb_sni_rec_det recd
 INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND recd.id_sni_rec_det='{0}'
-INNER JOIN tb_prod_demand_product pdp ON pdp.id_product=recd.id_product
-INNER JOIN tb_prod_order_det pod ON pod.id_prod_demand_product=pdp.id_prod_demand_product
+INNER JOIN tb_prod_order_det pod ON recd.id_prod_order_det=pod.id_prod_order_det
 INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void=2 AND po.id_report_status=6
 INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`=1
 INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`;
@@ -9985,8 +9984,7 @@ SELECT LAST_INSERT_ID();", dth.Rows(0)("id_sni_rec_det").ToString)
 SELECT pod.`id_prod_order_det`,'{0}' AS id_rec,recd.`qty`,'' AS note
 FROM tb_sni_rec_det recd
 INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND recd.id_sni_rec_det='{1}'
-INNER JOIN tb_prod_demand_product pdp ON pdp.id_product=recd.id_product
-INNER JOIN tb_prod_order_det pod ON pod.id_prod_demand_product=pdp.id_prod_demand_product
+INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=recd.id_prod_order_det
 INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void=2 AND po.id_report_status=6
 INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`=1
 INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`", id_rec_new, dth.Rows(0)("id_sni_rec_det").ToString)
@@ -9997,11 +9995,8 @@ INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`", id_rec
 SELECT '{0}' AS id_prod_order_rec,pod.`id_prod_order_det`,recd.id_product,-recd.`qty`,rec.reff_date,rec.`created_by`,rec.id_sni_rec,'' AS `report_mark_type`,'' AS `note`
 FROM tb_sni_rec_det recd
 INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND recd.id_sni_rec_det='{1}'
-INNER JOIN tb_prod_demand_product pdp ON pdp.id_product=recd.id_product
-INNER JOIN tb_prod_order_det pod ON pod.id_prod_demand_product=pdp.id_prod_demand_product
-INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void=2 AND po.id_report_status=6
-INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`=1
-INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`", id_rec_new, dth.Rows(0)("id_sni_rec_det").ToString)
+INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=recd.id_prod_order_det
+INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void=2 AND po.id_report_status=6", id_rec_new, dth.Rows(0)("id_sni_rec_det").ToString)
                         execute_non_query(query, True, "", "", "", "")
                     Next
 

@@ -21,6 +21,8 @@ Partial Class FormSNISerahTerimaDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSNISerahTerimaDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEReffDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.DEProposeDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
@@ -41,6 +43,8 @@ Partial Class FormSNISerahTerimaDet
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -49,6 +53,8 @@ Partial Class FormSNISerahTerimaDet
         Me.RICEAttachment = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.DEReffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEProposeDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +71,8 @@ Partial Class FormSNISerahTerimaDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.DEReffDate)
+        Me.PanelControl1.Controls.Add(Me.LabelControl5)
         Me.PanelControl1.Controls.Add(Me.DEProposeDate)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
         Me.PanelControl1.Controls.Add(Me.TENumber)
@@ -77,23 +85,46 @@ Partial Class FormSNISerahTerimaDet
         Me.PanelControl1.Size = New System.Drawing.Size(917, 71)
         Me.PanelControl1.TabIndex = 0
         '
+        'DEReffDate
+        '
+        Me.DEReffDate.EditValue = Nothing
+        Me.DEReffDate.Location = New System.Drawing.Point(501, 38)
+        Me.DEReffDate.Name = "DEReffDate"
+        Me.DEReffDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEReffDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEReffDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEReffDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEReffDate.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEReffDate.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEReffDate.Size = New System.Drawing.Size(266, 20)
+        Me.DEReffDate.TabIndex = 27
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(430, 41)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl5.TabIndex = 26
+        Me.LabelControl5.Text = "Reff Date"
+        '
         'DEProposeDate
         '
         Me.DEProposeDate.EditValue = Nothing
-        Me.DEProposeDate.Location = New System.Drawing.Point(501, 38)
+        Me.DEProposeDate.Location = New System.Drawing.Point(501, 12)
         Me.DEProposeDate.Name = "DEProposeDate"
         Me.DEProposeDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEProposeDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEProposeDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEProposeDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEProposeDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEProposeDate.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEProposeDate.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.DEProposeDate.Properties.ReadOnly = True
         Me.DEProposeDate.Size = New System.Drawing.Size(266, 20)
         Me.DEProposeDate.TabIndex = 25
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(430, 41)
+        Me.LabelControl3.Location = New System.Drawing.Point(430, 15)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl3.TabIndex = 5
@@ -241,7 +272,7 @@ Partial Class FormSNISerahTerimaDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnAttachment})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn7, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnAttachment})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -250,30 +281,63 @@ Partial Class FormSNISerahTerimaDet
         '
         Me.GridColumn1.Caption = "ID Det"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.AllowFocus = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Id Product"
         Me.GridColumn2.FieldName = "id_product"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.AllowFocus = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID PO Det"
+        Me.GridColumn8.FieldName = "id_prod_order_det"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.AllowFocus = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "FGPO Number"
+        Me.GridColumn7.FieldName = "prod_order_number"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.AllowFocus = False
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        Me.GridColumn7.Width = 307
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Code"
         Me.GridColumn3.FieldName = "product_full_code"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.AllowFocus = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 0
-        Me.GridColumn3.Width = 206
+        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.Width = 302
         '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Description"
         Me.GridColumn4.FieldName = "design_display_name"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.AllowFocus = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 283
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 415
         '
         'GridColumn5
         '
@@ -284,9 +348,12 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumn5.Caption = "Size"
         Me.GridColumn5.FieldName = "size"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.AllowFocus = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 2
-        Me.GridColumn5.Width = 78
+        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.Width = 113
         '
         'GridColumn6
         '
@@ -300,8 +367,8 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumn6.FieldName = "qty"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 3
-        Me.GridColumn6.Width = 197
+        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.Width = 290
         '
         'GridColumnAttachment
         '
@@ -312,8 +379,8 @@ Partial Class FormSNISerahTerimaDet
         Me.GridColumnAttachment.FieldName = "is_attach"
         Me.GridColumnAttachment.Name = "GridColumnAttachment"
         Me.GridColumnAttachment.Visible = True
-        Me.GridColumnAttachment.VisibleIndex = 4
-        Me.GridColumnAttachment.Width = 135
+        Me.GridColumnAttachment.VisibleIndex = 5
+        Me.GridColumnAttachment.Width = 205
         '
         'RICEAttachment
         '
@@ -343,6 +410,8 @@ Partial Class FormSNISerahTerimaDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.DEReffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEProposeDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -387,4 +456,8 @@ Partial Class FormSNISerahTerimaDet
     Friend WithEvents TEBudgetNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents RICEAttachment As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents DEReffDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
