@@ -75,7 +75,78 @@ GROUP BY dnd.`id_debit_note`"
             q_where = " AND c.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,'28' AS report_mark_type,r.`id_prod_order_rec`,s.`season`,rd.`prod_order_rec_det_qty`,r.`id_prod_order`,po.prod_order_number,rec.rec_qty,pod.po_qty
+        Dim query As String = ""
+        '        query = "SELECT 'no' AS is_check,'28' AS report_mark_type,r.`id_prod_order_rec`,s.`season`,rd.`prod_order_rec_det_qty`,r.`id_prod_order`,po.prod_order_number,rec.rec_qty,pod.po_qty
+        ',dsg.design_display_name,dsg.design_code,SUBSTRING(dsg.`design_display_name`,1,CHAR_LENGTH(dsg.`design_display_name`) - 4) AS dsg_name,RIGHT(dsg.`design_display_name`,3) AS color 
+        ',DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY) AS est_rec_date_ko
+        ',DATE_ADD(wo.prod_order_wo_del_date, INTERVAL wo.`prod_order_wo_lead_time` DAY) AS est_rec_date
+        ',r.`arrive_date`
+        ',ld.`claim_percent`
+        ',wod.prod_order_wo_det_price
+        ',(ld.`claim_percent`/100) * wod.prod_order_wo_det_price AS claim_pc
+        ',SUM(rd.prod_order_rec_det_qty) AS rec_qty_trx
+        ',SUM(rd.prod_order_rec_det_qty) * ((ld.`claim_percent`/100) * wod.prod_order_wo_det_price) AS claim_amo
+        ',r.prod_order_rec_number
+        ',DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY)) AS late_day
+        ',c.comp_name
+        ',r.id_prod_order
+        ',wo.prod_order_wo_kurs
+        ',cur.currency,cur.id_currency
+        'FROM tb_prod_order_rec_det rd
+        'INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`='6' AND r.is_claimed_late=2
+        'INNER JOIN tb_prod_order po ON po.`id_prod_order`=r.`id_prod_order`
+        'LEFT JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.id_prod_order AND wo.is_main_vendor='1' 
+        'LEFT JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
+        'LEFT JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo=wo.id_prod_order_wo
+        'LEFT JOIN tb_m_ovh_price prc ON prc.id_ovh_price=wo.id_ovh_price
+        'LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact=prc.id_comp_contact
+        'LEFT JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+        'INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+        'INNER JOIN `tb_season_delivery` sd ON sd.`id_delivery`=pdd.`id_delivery`
+        'INNER JOIN `tb_season` s ON s.`id_season`=sd.`id_season`
+        'INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+        'LEFT JOIN  
+        '( 
+        '    SELECT rec.id_prod_order,SUM(recd.prod_order_rec_det_qty) AS rec_qty
+        '    FROM 
+        '    tb_prod_order_rec_det recd 
+        '    INNER JOIN tb_prod_order_rec rec ON recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status=6
+        '    INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=rec.`id_prod_order`
+        '    INNER JOIN tb_prod_order_close poc ON poc.id_prod_order_close=pocd.id_prod_order_close AND poc.id_report_status='6'
+        '    GROUP BY rec.id_prod_order
+        ') rec ON rec.id_prod_order=po.id_prod_order 
+        'LEFT JOIN
+        '(
+        '    SELECT pod.id_prod_order,SUM(pod.prod_order_qty) AS po_qty 
+        '    FROM tb_prod_order_det pod
+        '    INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=pod.`id_prod_order`
+        '    INNER JOIN tb_prod_order_close poc ON poc.id_prod_order_close=pocd.id_prod_order_close AND poc.id_report_status='6'
+        '    GROUP BY pod.`id_prod_order`
+        ') pod ON pod.id_prod_order=r.`id_prod_order`
+        'LEFT JOIN (
+        '    SELECT id_prod_order,lead_time_prod,lead_time_payment FROM (
+        '	    SELECT kod.* FROM tb_prod_order_ko_det kod
+        '	    INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=kod.`id_prod_order`
+        '        INNER JOIN tb_prod_order_close poc ON poc.id_prod_order_close=pocd.id_prod_order_close AND poc.id_report_status='6'
+        '	    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko` AND ko.`is_void`!=1
+        '        INNER JOIN 
+        '	    (
+        '		    SELECT MAX(id_prod_order_ko) AS id_prod_order_ko
+        '		    FROM tb_prod_order_ko
+        '		    WHERE `is_void`!=1
+        '		    GROUP BY id_prod_order_ko_reff
+        '	    )komax ON komax.id_prod_order_ko=ko.id_prod_order_ko
+        '    )ko GROUP BY ko.id_prod_order
+        ') ko ON ko.id_prod_order=po.id_prod_order
+        'LEFT JOIN (
+        '    SELECT id_report FROM tb_debit_note_det dnd
+        '    INNER JOIN tb_debit_note dn ON dn.`id_debit_note`=dnd.`id_debit_note` AND dnd.`report_mark_type`=28 AND dn.`id_report_status`!=5
+        '    GROUP BY dnd.id_report
+        ') dn ON dn.id_report=r.id_prod_order_rec
+        'INNER JOIN tb_m_claim_late_det ld ON DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))>=ld.`min_late` AND IF(ld.max_late=0,TRUE,DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))<=ld.max_late)
+        'WHERE ld.`claim_percent` > 0  AND ISNULL(dn.id_report) " & q_where & " GROUP BY rd.`id_prod_order_rec`"
+
+        query = "SELECT 'no' AS is_check,'28' AS report_mark_type,r.`id_prod_order_rec`,s.`season`,SUM(rd.`prod_order_rec_det_qty`) AS prod_order_rec_det_qty,r.`id_prod_order`,po.prod_order_number,rec.rec_qty,pod.po_qty
 ,dsg.design_display_name,dsg.design_code,SUBSTRING(dsg.`design_display_name`,1,CHAR_LENGTH(dsg.`design_display_name`) - 4) AS dsg_name,RIGHT(dsg.`design_display_name`,3) AS color 
 ,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY) AS est_rec_date_ko
 ,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL wo.`prod_order_wo_lead_time` DAY) AS est_rec_date
@@ -91,6 +162,7 @@ GROUP BY dnd.`id_debit_note`"
 ,r.id_prod_order
 ,wo.prod_order_wo_kurs
 ,cur.currency,cur.id_currency
+,IF(ISNULL(clos.id_prod_order),'Need Closing','Ready') AS sts_close
 FROM tb_prod_order_rec_det rd
 INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`='6' AND r.is_claimed_late=2
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=r.`id_prod_order`
@@ -100,6 +172,13 @@ LEFT JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo=wo.id_prod_order_wo
 LEFT JOIN tb_m_ovh_price prc ON prc.id_ovh_price=wo.id_ovh_price
 LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact=prc.id_comp_contact
 LEFT JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+LEFT JOIN
+(
+	SELECT id_prod_order
+	FROM `tb_prod_order_close_det` cd 
+	INNER JOIN `tb_prod_order_close` c ON c.id_prod_order_close=cd.id_prod_order_close
+	WHERE c.id_report_status=6
+)clos ON clos.id_prod_order=po.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN `tb_season_delivery` sd ON sd.`id_delivery`=pdd.`id_delivery`
 INNER JOIN `tb_season` s ON s.`id_season`=sd.`id_season`
@@ -110,26 +189,27 @@ LEFT JOIN
     FROM 
     tb_prod_order_rec_det recd 
     INNER JOIN tb_prod_order_rec rec ON recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status=6
-    INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=rec.`id_prod_order`
-    INNER JOIN tb_prod_order_close poc ON poc.id_prod_order_close=pocd.id_prod_order_close AND poc.id_report_status='6'
     GROUP BY rec.id_prod_order
 ) rec ON rec.id_prod_order=po.id_prod_order 
 LEFT JOIN
 (
     SELECT pod.id_prod_order,SUM(pod.prod_order_qty) AS po_qty 
     FROM tb_prod_order_det pod
-    INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=pod.`id_prod_order`
-    INNER JOIN tb_prod_order_close poc ON poc.id_prod_order_close=pocd.id_prod_order_close AND poc.id_report_status='6'
     GROUP BY pod.`id_prod_order`
 ) pod ON pod.id_prod_order=r.`id_prod_order`
-LEFT JOIN (
-    SELECT id_prod_order,lead_time_prod,lead_time_payment FROM (
-	    SELECT kod.* FROM tb_prod_order_ko_det kod
-	    INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=kod.`id_prod_order`
-        INNER JOIN tb_prod_order_close poc ON poc.id_prod_order_close=pocd.id_prod_order_close AND poc.id_report_status='6'
-	    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko` AND ko.`is_void`!=1
-	    ORDER BY id_prod_order_ko_det DESC
-    )ko GROUP BY ko.id_prod_order
+INNER JOIN (
+	SELECT id_prod_order,lead_time_prod,lead_time_payment FROM (
+		SELECT kod.* 
+		FROM tb_prod_order_ko_det kod
+		INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko` AND ko.`is_void`!=1
+		INNER JOIN 
+		(
+		    SELECT MAX(id_prod_order_ko) AS id_prod_order_ko
+		    FROM tb_prod_order_ko
+		    WHERE `is_void`!=1
+		    GROUP BY id_prod_order_ko_reff
+		)komax ON komax.id_prod_order_ko=ko.id_prod_order_ko
+	)ko GROUP BY ko.id_prod_order
 ) ko ON ko.id_prod_order=po.id_prod_order
 LEFT JOIN (
     SELECT id_report FROM tb_debit_note_det dnd
@@ -137,7 +217,9 @@ LEFT JOIN (
     GROUP BY dnd.id_report
 ) dn ON dn.id_report=r.id_prod_order_rec
 INNER JOIN tb_m_claim_late_det ld ON DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))>=ld.`min_late` AND IF(ld.max_late=0,TRUE,DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))<=ld.max_late)
-WHERE ld.`claim_percent` > 0  AND ISNULL(dn.id_report) " & q_where & " GROUP BY rd.`id_prod_order_rec`"
+WHERE ld.`claim_percent` > 0  AND ISNULL(dn.id_report) 
+" & q_where & "
+GROUP BY rd.`id_prod_order_rec`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCClaimLate.DataSource = data
         GVClaimLate.BestFitColumns()
@@ -227,6 +309,18 @@ WHERE c.id_comp='" & SLEVendor.EditValue.ToString & "'"
 	                                    UNION ALL
 	                                    (SELECT po.id_prod_order,3 AS id_claim_reject
 	                                    FROM tb_prod_order po WHERE po.id_po_type=2 AND po.id_report_status=6)
+                                        UNION ALL
+	                                    (SELECT po.id_prod_order,3 AS id_claim_reject
+		                                FROM tb_prod_order po 
+		                                INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
+		                                INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
+		                                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
+		                                INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+		                                INNER JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city`
+		                                INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+		                                INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+		                                INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` AND co.`id_country`!=5
+		                                WHERE po.id_po_type=3 AND po.id_report_status=6)
                                     )ko GROUP BY ko.id_prod_order
                                 ) ko ON ko.id_prod_order=po.id_prod_order 
                                 INNER JOIN tb_m_claim_reject_det crd ON crd.`id_claim_reject`=ko.`id_claim_reject` AND crd.`id_pl_category_sub`=fc.`id_pl_category_sub`
@@ -310,7 +404,7 @@ WHERE c.id_comp='" & SLEVendor.EditValue.ToString & "'"
             FormDebitNoteDet.id_dn_type = "2"
             FormDebitNoteDet.ShowDialog()
         Else
-            warningCustom("Please select FGPO")
+            warningCustom("Make sure FGPO selected and ready to claim")
         End If
         GVClaimLate.ActiveFilterString = ""
         Cursor = Cursors.Default
