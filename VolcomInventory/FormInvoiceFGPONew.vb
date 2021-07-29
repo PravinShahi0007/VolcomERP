@@ -28,6 +28,7 @@ GROUP BY po.`id_prod_order`"
     Sub fill_grid()
         If CEPreRec.Checked = True Then
             Dim q_where As String = ""
+            Dim sel_acc As String = ",prc.id_acc"
 
             If SLETypeInvoice.EditValue.ToString = "2" Then 'payment
                 q_where = "  AND rec.is_over_tol=2 AND rec.id_pl_category='1' AND rec.is_sni=2 "
@@ -39,6 +40,7 @@ GROUP BY po.`id_prod_order`"
                 q_where = "  AND rec.is_over_tol=2 AND (rec.id_pl_category='2' OR rec.id_pl_category='3' OR rec.id_pl_category='4') "
             ElseIf SLETypeInvoice.EditValue.ToString = "8" Then 'SNI
                 q_where = " AND rec.is_sni=1 "
+                sel_acc = ",(SELECT id_acc_biaya_sni FROM tb_opt_prod) AS id_acc"
             End If
 
             Dim query As String = "SELECT rec.`id_prod_order_rec` AS id_report,'28' AS report_mark_type,rec.prod_order_rec_number AS report_number,
@@ -49,7 +51,7 @@ SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0) AS qty,
 ((100-rec.claim_percent)/100)*prc.prod_order_wo_det_price*(SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0))*prc.kurs AS `value`,
 ((100-rec.claim_percent)/100)*prc.prod_order_wo_det_price*(SUM(recd.`prod_order_rec_det_qty`)-IFNULL(pn.qty_rec_paid,0))*prc.kurs*(prc.prod_order_wo_vat/100) AS vat,
 prc.prod_order_wo_vat, prc.kurs
-,dsg.design_display_name AS info_design,prc.id_comp,prc.id_currency,prc.currency,prc.id_acc,plc.`pl_category`
+,dsg.design_display_name AS info_design,prc.id_comp,prc.id_currency,prc.currency" & sel_acc & ",plc.`pl_category`
 ,'' AS inv_number,'' AS note
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
