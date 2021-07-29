@@ -393,6 +393,12 @@ HAVING NOT ISNULL(err)"
         End If
     End Sub
 
+    Private Sub GVProposed_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVProposed.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         Cursor = Cursors.WaitCursor
         GVBudget.AddNewRow()
