@@ -24,6 +24,7 @@
         'lookup
         viewPeriodType()
         viewStatus()
+        viewComp()
 
         SLStatus1.EditValue = "6"
         SLStatus2.EditValue = "6"
@@ -47,6 +48,27 @@
         ActiveControl = DEFromRec
         page_active = "rec"
     End Sub
+
+    Sub viewComp()
+        Dim query As String = "
+            SELECT c.id_comp, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`
+            FROM tb_m_comp c 
+            WHERE c.id_comp_cat IN (5,6)
+            ORDER BY c.comp_number ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("comp").ToString
+            c.Value = data.Rows(i)("id_comp").ToString
+
+            CCBEStore.Properties.Items.Add(c)
+        Next
+    End Sub
+
 
     Sub viewPeriodType()
         Cursor = Cursors.WaitCursor
@@ -300,7 +322,11 @@
         End Try
 
         'prepare query
-        Dim w_status As String = If(SLStatus6.EditValue.ToString = "0", "", "AND trf.id_report_status = " + SLStatus6.EditValue.ToString)
+        Dim w_status As String = "AND 1=1 "
+        w_status += If(SLStatus6.EditValue.ToString = "0", "", "AND trf.id_report_status = " + SLStatus6.EditValue.ToString) + " "
+        If CCBEStore.EditValue.ToString <> "" Then
+            w_status += "AND comp_to.id_comp IN (" + CCBEStore.EditValue.ToString + ") "
+        End If
 
         Dim query_c As ClassFGTrf = New ClassFGTrf()
         Dim data As DataTable = query_c.transactionList("AND (trf.fg_trf_date>='" + date_from_selected + "' AND trf.fg_trf_date<='" + date_until_selected + "') " + w_status, "1", True)
@@ -324,7 +350,11 @@
         End Try
 
         'prepare query
-        Dim w_status As String = If(SLStatus6.EditValue.ToString = "0", "", "AND trf.id_report_status = " + SLStatus6.EditValue.ToString)
+        Dim w_status As String = "AND 1=1 "
+        w_status += If(SLStatus6.EditValue.ToString = "0", "", "AND trf.id_report_status = " + SLStatus6.EditValue.ToString) + " "
+        If CCBEStore.EditValue.ToString <> "" Then
+            w_status += "AND comp_to.id_comp IN (" + CCBEStore.EditValue.ToString + ") "
+        End If
 
         Dim query_c As ClassFGTrf = New ClassFGTrf()
         Dim data As DataTable = query_c.transactionList("AND (trf.fg_trf_date>='" + date_from_selected + "' AND trf.fg_trf_date<='" + date_until_selected + "') " + w_status, "1", False)
