@@ -305,6 +305,7 @@ Partial Public Class ReportFGPODP
         Me.GCBeforeKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCBeforeKurs.FieldName = "value_bef_kurs"
         Me.GCBeforeKurs.Name = "GCBeforeKurs"
+        Me.GCBeforeKurs.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_bef_kurs", "{0:N2}")})
         Me.GCBeforeKurs.Visible = True
         Me.GCBeforeKurs.VisibleIndex = 7
         Me.GCBeforeKurs.Width = 120
@@ -320,6 +321,7 @@ Partial Public Class ReportFGPODP
         Me.GCQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCQty.FieldName = "qty"
         Me.GCQty.Name = "GCQty"
+        Me.GCQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GCQty.Visible = True
         Me.GCQty.VisibleIndex = 5
         Me.GCQty.Width = 98
