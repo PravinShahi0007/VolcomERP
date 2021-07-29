@@ -96,6 +96,14 @@
                 Dim is_vsol_to As String = execute_query("SELECT IF(COUNT(*) = 0, 2, 1) AS is_vsol_to FROM tb_m_comp_volcom_ol WHERE id_comp IN (SELECT k.id_comp FROM tb_fg_trf AS f LEFT JOIN tb_m_comp_contact AS k ON f.id_comp_contact_to = k.id_comp_contact WHERE f.id_fg_trf = " + id_report_par + ")", 0, True, "", "", "", "")
 
                 If is_vsol_from = "1" Or is_vsol_to = "1" Then
+                    'nonaktif comp jika GON/GOS
+                    Dim id_wh_cek As String = execute_query("Select k.id_comp FROM tb_fg_trf As f LEFT JOIN tb_m_comp_contact As k On f.id_comp_contact_to = k.id_comp_contact WHERE f.id_fg_trf = " + id_report_par + " ", 0, True, "", "", "", "")
+                    Dim id_gon As String = get_setup_field("wh_induk_ol_normal")
+                    Dim id_gos As String = get_setup_field("wh_induk_ol_sale")
+                    If id_wh_cek = id_gon Or id_wh_cek = id_gos Then
+                        execute_non_query("UPDATE tb_m_comp c SET c.is_active=2 WHERE c.id_comp='" + id_wh_cek + "' ", True, "", "", "", "")
+                    End If
+
                     Dim cls As ClassShopifyApi = New ClassShopifyApi
 
                     Dim err As String = ""
@@ -145,6 +153,11 @@
 
                             execute_non_query("INSERT INTO tb_shopify_api_log (report_mark_type, id_report, sku, message, id_user, date, is_verify) VALUES (57, " + id_report_par + ", '" + erp_product.Rows(j)("product_full_code").ToString + "', '" + addSlashes(msg) + "', '" + id_user + "', NOW(), " + If(msg = "OK", "1", "2") + ")", True, "", "", "", "")
                         Next
+                    End If
+
+                    'aktifkan kembali
+                    If id_wh_cek = id_gon Or id_wh_cek = id_gos Then
+                        execute_non_query("UPDATE tb_m_comp c SET c.is_active=1 WHERE c.id_comp='" + id_wh_cek + "' ", True, "", "", "", "")
                     End If
                 End If
             End If
