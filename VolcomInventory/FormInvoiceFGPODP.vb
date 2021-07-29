@@ -622,7 +622,10 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type!='199'"
 
         'Grid Detail
         ReportStyleGridview(Report.GVList)
-        Report.GVList.OptionsPrint.PrintFooter = False
+        Report.GVList.Columns("valuex").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.None
+        Report.GVList.Columns("vat").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.None
+        Report.GVList.Columns("pph_value").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.None
+        Report.GVList.OptionsPrint.PrintFooter = True
 
         GridColumnAccPick.VisibleIndex = 0
         GCCur.VisibleIndex = 5

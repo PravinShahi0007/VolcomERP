@@ -84,6 +84,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GCReff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCPORef = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCInvNumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -107,7 +108,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPPHDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPPH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
@@ -171,6 +172,7 @@ Partial Class FormInvoiceFGPODP
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLECOA, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLECOAPPH, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -718,7 +720,7 @@ Partial Class FormInvoiceFGPODP
         Me.GCList.Location = New System.Drawing.Point(0, 0)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal, Me.RepositoryItemLookUpEdit1, Me.RISLECurrency, Me.RISLECOA, Me.RISLECOAPPH})
+        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal, Me.RepositoryItemLookUpEdit1, Me.RISLECurrency, Me.RISLECOA, Me.RISLECOAPPH, Me.RepositoryItemMemoEdit1})
         Me.GCList.Size = New System.Drawing.Size(997, 190)
         Me.GCList.TabIndex = 19
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
@@ -743,11 +745,12 @@ Partial Class FormInvoiceFGPODP
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn6, Me.GridColumnAccPick, Me.GCDescription, Me.GCReff, Me.GCPORef, Me.GCInvNumber, Me.GridColumnNote, Me.GCCur, Me.GCCurHide, Me.GCKurs, Me.GCBeforeKurs, Me.GCQty, Me.GridColumnPayment, Me.GCVat, Me.GridColumnPPHCOA, Me.GridColumnPPHDesc, Me.GridColumn9, Me.GridColumn10})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn6, Me.GridColumnAccPick, Me.GCDescription, Me.GCReff, Me.GCPORef, Me.GCInvNumber, Me.GridColumnNote, Me.GCCur, Me.GCCurHide, Me.GCKurs, Me.GCBeforeKurs, Me.GCQty, Me.GridColumnPayment, Me.GCVat, Me.GridColumnPPHCOA, Me.GridColumnPPHDesc, Me.GridColumn9, Me.GridColumnPPH})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVList.OptionsCustomization.AllowSort = False
+        Me.GVList.OptionsView.RowAutoHeight = True
         Me.GVList.OptionsView.ShowFooter = True
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
@@ -820,11 +823,18 @@ Partial Class FormInvoiceFGPODP
         'GCDescription
         '
         Me.GCDescription.Caption = "Description"
+        Me.GCDescription.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GCDescription.FieldName = "info_design"
         Me.GCDescription.Name = "GCDescription"
         Me.GCDescription.Visible = True
         Me.GCDescription.VisibleIndex = 3
         Me.GCDescription.Width = 273
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Appearance.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GCReff
         '
@@ -1062,24 +1072,24 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn9.VisibleIndex = 11
         Me.GridColumn9.Width = 84
         '
-        'GridColumn10
+        'GridColumnPPH
         '
-        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn10.Caption = "PPH"
-        Me.GridColumn10.DisplayFormat.FormatString = "N2"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "pph_value"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowEdit = False
-        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph_value", "{0:N2}")})
-        Me.GridColumn10.UnboundExpression = "Floor([valuex] * ([pph_percent] / 100))"
-        Me.GridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 12
-        Me.GridColumn10.Width = 95
+        Me.GridColumnPPH.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnPPH.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnPPH.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnPPH.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnPPH.Caption = "PPH"
+        Me.GridColumnPPH.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPPH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPPH.FieldName = "pph_value"
+        Me.GridColumnPPH.Name = "GridColumnPPH"
+        Me.GridColumnPPH.OptionsColumn.AllowEdit = False
+        Me.GridColumnPPH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph_value", "{0:N2}")})
+        Me.GridColumnPPH.UnboundExpression = "Floor([valuex] * ([pph_percent] / 100))"
+        Me.GridColumnPPH.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnPPH.Visible = True
+        Me.GridColumnPPH.VisibleIndex = 12
+        Me.GridColumnPPH.Width = 95
         '
         'RICECheckReceive
         '
@@ -1342,6 +1352,7 @@ Partial Class FormInvoiceFGPODP
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLECOA, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLECOAPPH, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1458,7 +1469,7 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCPORef As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPPH As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPPHCOA As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RISLECOAPPH As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1470,4 +1481,5 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents GridColumnPPHDesc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TEDocType As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GrossupPPHToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class
