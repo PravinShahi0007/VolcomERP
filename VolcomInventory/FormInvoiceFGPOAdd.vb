@@ -103,7 +103,7 @@ WHERE po.`id_report_status`='6'
 GROUP BY po.`id_prod_order`"
         ElseIf SLEReportType.EditValue.ToString = "13" Then 'material dibulatkan ke atas (Alit 11 Januari 2021)
             query = "SELECT po.`id_mat_purc` AS id_report,0 AS id_prod_order,po.`mat_purc_number` AS report_number,GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description,c.comp_name AS info
-,po.id_currency,po.mat_purc_kurs as kurs,po.mat_purc_vat as vat,CEIL(SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty)*100)/100 as po_val
+,po.id_currency,po.mat_purc_kurs as kurs,po.mat_purc_vat as vat,CEIL(SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty)*100)/100 as po_val,SUM(pod.mat_purc_det_qty) as qty
 FROM tb_mat_purc_det pod 
 INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pod.id_mat_det_price
 INNER JOIN tb_m_mat_det md ON md.id_mat_det=mdp.id_mat_det
@@ -151,6 +151,7 @@ GROUP BY sp.`id_sample_purc`"
                 LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
                 TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("po_val")
                 TEKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("kurs")
+                TEQty.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("qty")
                 TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
                 aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
                 TEAfterKurs.EditValue = aft_kurs

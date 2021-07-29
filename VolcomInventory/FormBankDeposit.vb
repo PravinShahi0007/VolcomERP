@@ -64,7 +64,7 @@ WHERE cg.is_use_payout=1", 0, True, "", "", "", "")
         load_bank()
 
         'cc
-        load_bank_cc()
+        'load_bank_cc()
 
         'VS sales
         viewCoaTag()
@@ -752,7 +752,7 @@ GROUP BY d.`id_purc_rec_asset_disp`"
         LEFT JOIN tb_a_acc coa ON coa.id_acc = " + var_acc + "
         INNER JOIN tb_m_comp cf ON cf.id_comp=1
         WHERE sp.`id_report_status`='6' " & where_string & " 
-        GROUP BY sp.`id_sales_pos` HAVING amount>0 " + having_string
+        GROUP BY sp.`id_sales_pos` HAVING amount!=0 " + having_string
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCUrban.DataSource = data
         GVUrban.BestFitColumns()

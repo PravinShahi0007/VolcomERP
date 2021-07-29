@@ -4461,7 +4461,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "98" Then
             'Employee change schedule
-            If id_status_reportx = "6" Then
+            If id_status_reportx = "3" Then
                 'complete
                 query = "UPDATE tb_emp_schedule sch
                             INNER JOIN(
@@ -9960,29 +9960,46 @@ WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
                 'masukkan ke tb_prod_order_rec
                 Try
                     'insert rec
-                    '                    Dim id_rec_new As String = "-1"
-                    '                    Dim do_date As String = ""
+                    Dim qh As String = "SELECT * FROM tb_sni_rec_det WHERE id_sni_rec='" & id_report & "'"
+                    Dim dth As DataTable = execute_query(qh, -1, True, "", "", "", "")
 
-                    '                    Dim qs As String = "SELECT reff_date FROM tb_sni_rec WHERE id_sni_rec='" & id_report & "'"
-                    '                    Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
-                    '                    If dts.Rows.Count > 0 Then
-                    '                        query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, prod_order_rec_number, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category,claim_percent) 
-                    'VALUES('{0}','{1}',NULL, '{2}',DATE(NOW()),'{3}','{4}','{5}', '{6}','{7}',{8},'{9}','{10}'); SELECT LAST_INSERT_ID(); ", id_order, do_number, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, is_over_tol, id_prod_over_memo, id_pl_cat, claim_percent)
-                    '                        id_rec_new = execute_query(query, 0, True, "", "", "", "")
+                    For i = 0 To dth.Rows.Count - 1
+                        Dim id_rec_new As String = "-1"
+                        query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, prod_order_rec_number, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, complete_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category,claim_percent,is_sni) 
+SELECT po.`id_prod_order`,rec.`number`,rec.`reff_date`,rec.`reff_date` AS arrive_date,rec.`created_date`,NOW() AS complete_date,'' AS note,6 AS id_report_status
+,74 AS id_comp_contact_to,ovhp.`id_comp_contact`,2 AS is_over_tol,NULL AS id_prod_over_memo,1 AS id_pl_category,0 AS claim_percent,1 AS is_sni
+FROM tb_sni_rec_det recd
+INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND recd.id_sni_rec_det='{0}'
+INNER JOIN tb_prod_order_det pod ON recd.id_prod_order_det=pod.id_prod_order_det
+INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void=2 AND po.id_report_status=6
+INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`=1
+INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`;
+SELECT LAST_INSERT_ID();", dth.Rows(0)("id_sni_rec_det").ToString)
+                        id_rec_new = execute_query(query, 0, True, "", "", "", "")
 
-                    '                        execute_non_query("CALL gen_number('" & id_rec_new & "','28')", True, "", "", "", "")
+                        execute_non_query("CALL gen_number('" & id_rec_new & "','28')", True, "", "", "", "")
 
-                    '                        'rec detail
-                    '                        For i As Integer = 0 To ((GVListPurchase.RowCount - 1) - GetGroupRowCount(GVListPurchase))
-                    '                            Try
-                    '                                If Not GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString = "" Then
-                    '                                    query = String.Format("INSERT INTO tb_prod_order_rec_det(id_prod_order_det,id_prod_order_rec,prod_order_rec_det_qty,prod_order_rec_det_note) VALUES('{0}','{1}','{2}','{3}')", GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString, id_rec_new, decimalSQL(GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_qty").ToString), GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_note").ToString)
-                    '                                    execute_non_query(query, True, "", "", "", "")
-                    '                                End If
-                    '                            Catch ex As Exception
-                    '                            End Try
-                    '                        Next
-                    '                    End If
+                        'rec detail
+                        query = String.Format("INSERT INTO tb_prod_order_rec_det(id_prod_order_det,id_prod_order_rec,prod_order_rec_det_qty,prod_order_rec_det_note) 
+SELECT pod.`id_prod_order_det`,'{0}' AS id_rec,recd.`qty`,'' AS note
+FROM tb_sni_rec_det recd
+INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND recd.id_sni_rec_det='{1}'
+INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=recd.id_prod_order_det
+INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void=2 AND po.id_report_status=6
+INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`=1
+INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`", id_rec_new, dth.Rows(0)("id_sni_rec_det").ToString)
+                        execute_non_query(query, True, "", "", "", "")
+
+                        'SNI Out
+                        query = String.Format("INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
+SELECT '{0}' AS id_prod_order_rec,pod.`id_prod_order_det`,recd.id_product,-recd.`qty`,rec.reff_date,rec.`created_by`,rec.id_sni_rec,'' AS `report_mark_type`,'' AS `note`
+FROM tb_sni_rec_det recd
+INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND recd.id_sni_rec_det='{1}'
+INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=recd.id_prod_order_det
+INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void=2 AND po.id_report_status=6", id_rec_new, dth.Rows(0)("id_sni_rec_det").ToString)
+                        execute_non_query(query, True, "", "", "", "")
+                    Next
+
                 Catch ex As Exception
                     stopCustom(ex.ToString)
                 End Try

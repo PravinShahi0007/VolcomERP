@@ -238,8 +238,11 @@ Partial Public Class ReportMatPurchase
         Me.ColQty.AppearanceHeader.Options.UseTextOptions = True
         Me.ColQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColQty.Caption = "Qty"
+        Me.ColQty.DisplayFormat.FormatString = "N2"
+        Me.ColQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColQty.FieldName = "qty"
         Me.ColQty.Name = "ColQty"
+        Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.ColQty.Visible = True
         Me.ColQty.VisibleIndex = 5
         Me.ColQty.Width = 40
