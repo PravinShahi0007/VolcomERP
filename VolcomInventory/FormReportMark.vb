@@ -4461,7 +4461,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "98" Then
             'Employee change schedule
-            If id_status_reportx = "6" Then
+            If id_status_reportx = "3" Then
                 'complete
                 query = "UPDATE tb_emp_schedule sch
                             INNER JOIN(
