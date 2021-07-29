@@ -43,6 +43,7 @@ Partial Public Class ReportMatRecPurc
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
@@ -84,7 +85,6 @@ Partial Public Class ReportMatRecPurc
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -356,6 +356,22 @@ Partial Public Class ReportMatRecPurc
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 6
         Me.GridColumn7.Width = 172
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.Caption = "Qty Rem."
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "qty_remaining"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_remaining", "{0:N2}")})
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 7
+        Me.GridColumn11.Width = 159
         '
         'GridColumn8
         '
@@ -832,22 +848,6 @@ Partial Public Class ReportMatRecPurc
         Me.LNote.StylePriority.UseFont = False
         Me.LNote.StylePriority.UseTextAlignment = False
         Me.LNote.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.Caption = "Qty Remaining"
-        Me.GridColumn11.DisplayFormat.FormatString = "N2"
-        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn11.FieldName = "qty_remaining"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_remaining", "{0:N2}")})
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 7
-        Me.GridColumn11.Width = 159
         '
         'ReportMatRecPurc
         '
