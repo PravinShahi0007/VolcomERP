@@ -36,7 +36,7 @@ Partial Class FormMatRecPurcDet
         Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumnQtyReceived = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColMatDetPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColIdPrice = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -224,7 +224,7 @@ Partial Class FormMatRecPurcDet
         '
         'GVListPurchase
         '
-        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.GridColumnQtyReceived, Me.ColNote, Me.ColMatDetPrice, Me.ColIdPrice, Me.GridColumnUOM, Me.GridColumnCost, Me.GridColumnColor, Me.GridColumnQty, Me.GridColumn1, Me.GridColumn18})
+        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.GridColumnQtyRemaining, Me.ColNote, Me.ColMatDetPrice, Me.ColIdPrice, Me.GridColumnUOM, Me.GridColumnCost, Me.GridColumnColor, Me.GridColumnQty, Me.GridColumn1, Me.GridColumn18})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
         Me.GVListPurchase.Name = "GVListPurchase"
         Me.GVListPurchase.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -322,8 +322,8 @@ Partial Class FormMatRecPurcDet
         Me.ColQtyRec.OptionsColumn.ReadOnly = True
         Me.ColQtyRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "mat_purc_rec_det_qty", "{0:N2}")})
         Me.ColQtyRec.Visible = True
-        Me.ColQtyRec.VisibleIndex = 7
-        Me.ColQtyRec.Width = 68
+        Me.ColQtyRec.VisibleIndex = 6
+        Me.ColQtyRec.Width = 78
         '
         'RepositoryItemSpinEdit1
         '
@@ -335,22 +335,22 @@ Partial Class FormMatRecPurcDet
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
-        'GridColumnQtyReceived
+        'GridColumnQtyRemaining
         '
-        Me.GridColumnQtyReceived.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnQtyReceived.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQtyReceived.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnQtyReceived.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQtyReceived.Caption = "Received"
-        Me.GridColumnQtyReceived.DisplayFormat.FormatString = "N2"
-        Me.GridColumnQtyReceived.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtyReceived.FieldName = "rec_qty"
-        Me.GridColumnQtyReceived.Name = "GridColumnQtyReceived"
-        Me.GridColumnQtyReceived.OptionsColumn.ReadOnly = True
-        Me.GridColumnQtyReceived.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec_qty", "{0:N2}")})
-        Me.GridColumnQtyReceived.Visible = True
-        Me.GridColumnQtyReceived.VisibleIndex = 6
-        Me.GridColumnQtyReceived.Width = 58
+        Me.GridColumnQtyRemaining.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtyRemaining.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyRemaining.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtyRemaining.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyRemaining.Caption = "Qty Remaining"
+        Me.GridColumnQtyRemaining.DisplayFormat.FormatString = "N2"
+        Me.GridColumnQtyRemaining.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyRemaining.FieldName = "qty_remaining"
+        Me.GridColumnQtyRemaining.Name = "GridColumnQtyRemaining"
+        Me.GridColumnQtyRemaining.OptionsColumn.ReadOnly = True
+        Me.GridColumnQtyRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec_qty", "{0:N2}")})
+        Me.GridColumnQtyRemaining.Visible = True
+        Me.GridColumnQtyRemaining.VisibleIndex = 7
+        Me.GridColumnQtyRemaining.Width = 82
         '
         'ColNote
         '
@@ -1359,7 +1359,7 @@ Partial Class FormMatRecPurcDet
     Friend WithEvents ColQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColQtyRec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents GridColumnQtyReceived As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyRemaining As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GroupGeneralHeader As DevExpress.XtraEditors.GroupControl
