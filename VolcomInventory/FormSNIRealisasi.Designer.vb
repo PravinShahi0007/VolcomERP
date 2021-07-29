@@ -19,43 +19,33 @@ Partial Class FormSNIRealisasi
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCRealisasi = New DevExpress.XtraGrid.GridControl()
+        Me.GVRealisasi = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCRealisasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRealisasi, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'PanelControl1
+        'GCRealisasi
         '
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(981, 43)
-        Me.PanelControl1.TabIndex = 0
+        Me.GCRealisasi.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRealisasi.Location = New System.Drawing.Point(0, 0)
+        Me.GCRealisasi.MainView = Me.GVRealisasi
+        Me.GCRealisasi.Name = "GCRealisasi"
+        Me.GCRealisasi.Size = New System.Drawing.Size(981, 530)
+        Me.GCRealisasi.TabIndex = 1
+        Me.GCRealisasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRealisasi})
         '
-        'GridControl1
+        'GVRealisasi
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 43)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(981, 487)
-        Me.GridControl1.TabIndex = 1
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GVRealisasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVRealisasi.GridControl = Me.GCRealisasi
+        Me.GVRealisasi.Name = "GVRealisasi"
+        Me.GVRealisasi.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -100,24 +90,20 @@ Partial Class FormSNIRealisasi
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(981, 530)
-        Me.Controls.Add(Me.GridControl1)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.GCRealisasi)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSNIRealisasi"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Realisasi Budget SNI"
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCRealisasi, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRealisasi, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCRealisasi As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVRealisasi As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
