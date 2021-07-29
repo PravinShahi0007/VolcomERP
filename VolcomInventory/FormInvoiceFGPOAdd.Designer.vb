@@ -28,6 +28,7 @@ Partial Class FormInvoiceFGPOAdd
         Me.SLEReport = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -71,7 +72,6 @@ Partial Class FormInvoiceFGPOAdd
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.TEOthQty = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.SLEReport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,9 +175,15 @@ Partial Class FormInvoiceFGPOAdd
         Me.GridColumn1.FieldName = "id_report"
         Me.GridColumn1.Name = "GridColumn1"
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "ID Prod Order"
+        Me.GridColumn5.FieldName = "id_prod_order"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "F.G. PO Number"
+        Me.GridColumn2.Caption = "Reff Number"
         Me.GridColumn2.FieldName = "report_number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
@@ -695,12 +701,6 @@ Partial Class FormInvoiceFGPOAdd
         Me.LabelControl15.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl15.TabIndex = 8931
         Me.LabelControl15.Text = "Qty"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "ID Prod Order"
-        Me.GridColumn5.FieldName = "id_prod_order"
-        Me.GridColumn5.Name = "GridColumn5"
         '
         'FormInvoiceFGPOAdd
         '

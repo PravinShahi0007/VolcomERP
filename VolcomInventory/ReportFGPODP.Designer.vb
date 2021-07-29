@@ -589,10 +589,10 @@ Partial Public Class ReportFGPODP
         'LType
         '
         Me.LType.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.LType.LocationFloat = New DevExpress.Utils.PointFloat(77.43124!, 75.76389!)
+        Me.LType.LocationFloat = New DevExpress.Utils.PointFloat(77.43124!, 75.7639!)
         Me.LType.Name = "LType"
         Me.LType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LType.SizeF = New System.Drawing.SizeF(171.8749!, 15.0!)
+        Me.LType.SizeF = New System.Drawing.SizeF(441.4026!, 15.0!)
         Me.LType.StylePriority.UseFont = False
         Me.LType.StylePriority.UseTextAlignment = False
         Me.LType.Text = "[type]"
@@ -604,7 +604,7 @@ Partial Public Class ReportFGPODP
         Me.LVendor.LocationFloat = New DevExpress.Utils.PointFloat(77.43124!, 90.76385!)
         Me.LVendor.Name = "LVendor"
         Me.LVendor.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LVendor.SizeF = New System.Drawing.SizeF(171.875!, 15.0!)
+        Me.LVendor.SizeF = New System.Drawing.SizeF(441.4027!, 15.00001!)
         Me.LVendor.StylePriority.UseFont = False
         Me.LVendor.StylePriority.UseTextAlignment = False
         Me.LVendor.Text = "[comp_name]"
@@ -613,10 +613,10 @@ Partial Public Class ReportFGPODP
         'Lnumber
         '
         Me.Lnumber.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.Lnumber.LocationFloat = New DevExpress.Utils.PointFloat(77.43114!, 60.76389!)
+        Me.Lnumber.LocationFloat = New DevExpress.Utils.PointFloat(77.43113!, 60.7639!)
         Me.Lnumber.Name = "Lnumber"
         Me.Lnumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.Lnumber.SizeF = New System.Drawing.SizeF(171.875!, 15.0!)
+        Me.Lnumber.SizeF = New System.Drawing.SizeF(441.4027!, 14.99999!)
         Me.Lnumber.StylePriority.UseFont = False
         Me.Lnumber.StylePriority.UseTextAlignment = False
         Me.Lnumber.Text = "[number]"
@@ -711,11 +711,12 @@ Partial Public Class ReportFGPODP
         '
         Me.XrLabel5.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel5.CanGrow = False
         Me.XrLabel5.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0.0001907349!, 70.00002!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0.000194267!, 70.0!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(518.8337!, 30.5!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(518.8337!, 30.00001!)
         Me.XrLabel5.StylePriority.UseBorders = False
         Me.XrLabel5.StylePriority.UseFont = False
         Me.XrLabel5.StylePriority.UsePadding = False

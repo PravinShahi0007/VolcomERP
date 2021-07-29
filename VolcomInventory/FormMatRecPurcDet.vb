@@ -378,13 +378,11 @@
 
                     'rec detail
                     For i As Integer = 0 To GVListPurchase.RowCount - 1
-                        Try
-                            If Not GVListPurchase.GetRowCellValue(i, "id_mat_purc_det").ToString = "" And isDecimal(nominalWrite(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString)) And Decimal.Parse(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString) > 0 Then
-                                query = String.Format("INSERT INTO tb_mat_purc_rec_det(id_mat_purc_det,id_mat_purc_rec,mat_purc_rec_det_qty,mat_purc_rec_det_note) VALUES('{0}','{1}','{2}','{3}')", GVListPurchase.GetRowCellValue(i, "id_mat_purc_det").ToString, id_rec_new, nominalWrite(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString), GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_note").ToString)
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
-                        Catch ex As Exception
-                        End Try
+                        If Not GVListPurchase.GetRowCellValue(i, "id_mat_purc_det").ToString = "" And isDecimal(nominalWrite(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString)) And Decimal.Parse(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString) > 0 Then
+                            query = String.Format("INSERT INTO tb_mat_purc_rec_det(id_mat_purc_det,id_mat_purc_rec,mat_purc_rec_det_qty,mat_purc_rec_det_note) VALUES('{0}','{1}','{2}','{3}')", GVListPurchase.GetRowCellValue(i, "id_mat_purc_det").ToString, id_rec_new, nominalWrite(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString), GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_note").ToString)
+                            execute_non_query(query, True, "", "", "", "")
+
+                        End If
                     Next
                     If GVRoll.RowCount > 0 Then
                         'roll detail
@@ -397,6 +395,21 @@
                         Next
                         execute_non_query(query, True, "", "", "", "")
                     End If
+
+                    'update remaining qty
+                    query = "UPDATE `tb_mat_purc_rec_det` recd
+INNER JOIN tb_mat_purc_rec rec ON rec.`id_mat_purc_rec`=recd.`id_mat_purc_rec`
+LEFT JOIN
+(
+	SELECT recd.id_mat_purc_det,SUM(recd.`mat_purc_rec_det_qty`) AS qty
+	FROM `tb_mat_purc_rec_det` recd
+	INNER JOIN tb_mat_purc_rec rec ON rec.`id_mat_purc_rec`=recd.`id_mat_purc_rec` AND rec.`id_report_status`!=5 AND rec.`id_mat_purc_rec`<='" & id_rec_new & "'
+	GROUP BY recd.id_mat_purc_det
+)rec_all ON rec_all.id_mat_purc_det=recd.id_mat_purc_det
+INNER JOIN tb_mat_purc_det pod ON pod.`id_mat_purc_det`=recd.`id_mat_purc_det`
+SET recd.`qty_remaining`=(pod.`mat_purc_det_qty`-IFNULL(rec_all.qty,0))
+WHERE recd.`id_mat_purc_rec`='" & id_rec_new & "'"
+                    execute_non_query(query, True, "", "", "", "")
 
                     'insert who prepared
                     insert_who_prepared("16", id_rec_new, id_user)
@@ -411,77 +424,77 @@
             End If
         Else
             'edit
-            If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Then
-                errorInput()
-            ElseIf Not condv Then
-                stopCustom("This vendor has not finished in setup. Please contact the administrator.")
-            ElseIf Not condc Then
-                stopCustom("Cost cannot zero.")
-            Else
-                Try
-                    'UPDATE rec
-                    query = String.Format("UPDATE tb_mat_purc_rec SET delivery_order_number='{0}',delivery_order_date='{1}',mat_purc_rec_note='{2}',id_report_status='{3}',id_comp_contact_to='{4}',id_wh_drawer='{6}' WHERE id_mat_purc_rec='{5}'", do_number, do_date, rec_note, rec_stats, id_comp_to, id_receive, id_wh_drawer)
-                    execute_non_query(query, True, "", "", "", "")
-                    'rec detail
-                    For i As Integer = 0 To GVListPurchase.RowCount - 1
-                        Try
-                            If Not GVListPurchase.GetRowCellValue(i, "id_mat_purc_det").ToString = "" And isDecimal(nominalWrite(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString)) Then
-                                query = String.Format("UPDATE tb_mat_purc_rec_det SET mat_purc_rec_det_qty='{0}',mat_purc_rec_det_note='{1}' WHERE id_mat_purc_rec_det='{2}'", nominalWrite(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString), GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_note").ToString, GVListPurchase.GetRowCellValue(i, "id_mat_purc_rec_det").ToString)
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
-                        Catch ex As Exception
+            'If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Then
+            '    errorInput()
+            'ElseIf Not condv Then
+            '    stopCustom("This vendor has not finished in setup. Please contact the administrator.")
+            'ElseIf Not condc Then
+            '    stopCustom("Cost cannot zero.")
+            'Else
+            '    Try
+            '        'UPDATE rec
+            '        query = String.Format("UPDATE tb_mat_purc_rec SET delivery_order_number='{0}',delivery_order_date='{1}',mat_purc_rec_note='{2}',id_report_status='{3}',id_comp_contact_to='{4}',id_wh_drawer='{6}' WHERE id_mat_purc_rec='{5}'", do_number, do_date, rec_note, rec_stats, id_comp_to, id_receive, id_wh_drawer)
+            '        execute_non_query(query, True, "", "", "", "")
+            '        'rec detail
+            '        For i As Integer = 0 To GVListPurchase.RowCount - 1
+            '            Try
+            '                If Not GVListPurchase.GetRowCellValue(i, "id_mat_purc_det").ToString = "" And isDecimal(nominalWrite(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString)) Then
+            '                    query = String.Format("UPDATE tb_mat_purc_rec_det SET mat_purc_rec_det_qty='{0}',mat_purc_rec_det_note='{1}' WHERE id_mat_purc_rec_det='{2}'", nominalWrite(GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty").ToString), GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_note").ToString, GVListPurchase.GetRowCellValue(i, "id_mat_purc_rec_det").ToString)
+            '                    execute_non_query(query, True, "", "", "", "")
+            '                End If
+            '            Catch ex As Exception
 
-                        End Try
-                    Next
+            '            End Try
+            '        Next
 
-                    'roll
-                    Dim sp_check As Boolean = False
-                    Dim query_del As String = "SELECT id_mat_purc_rec_det_pcs FROM tb_mat_purc_rec_pcs WHERE id_mat_purc_rec='" & id_receive & "'"
-                    Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
-                    If data_del.Rows.Count > 0 Then
-                        For i As Integer = 0 To data_del.Rows.Count - 1
-                            sp_check = False
-                            ' false mean not found, believe me
-                            For j As Integer = 0 To GVRoll.RowCount - 1
-                                If Not GVRoll.GetRowCellValue(j, "id_mat_purc_rec_det_pcs").ToString = "" Then
-                                    '
-                                    If GVRoll.GetRowCellValue(j, "id_mat_purc_rec_det_pcs").ToString = data_del.Rows(i)("id_mat_purc_rec_det_pcs").ToString() Then
-                                        sp_check = True
-                                    End If
-                                End If
-                            Next
-                            'end loop check on gv
-                            If sp_check = False Then
-                                'Because not found, it's only mean already deleted
-                                query = String.Format("DELETE FROM tb_mat_purc_rec_pcs WHERE id_mat_purc_rec_det_pcs='{0}'", data_del.Rows(i)("id_mat_purc_rec_det_pcs").ToString())
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
-                        Next
-                    End If
+            '        'roll
+            '        Dim sp_check As Boolean = False
+            '        Dim query_del As String = "SELECT id_mat_purc_rec_det_pcs FROM tb_mat_purc_rec_pcs WHERE id_mat_purc_rec='" & id_receive & "'"
+            '        Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
+            '        If data_del.Rows.Count > 0 Then
+            '            For i As Integer = 0 To data_del.Rows.Count - 1
+            '                sp_check = False
+            '                ' false mean not found, believe me
+            '                For j As Integer = 0 To GVRoll.RowCount - 1
+            '                    If Not GVRoll.GetRowCellValue(j, "id_mat_purc_rec_det_pcs").ToString = "" Then
+            '                        '
+            '                        If GVRoll.GetRowCellValue(j, "id_mat_purc_rec_det_pcs").ToString = data_del.Rows(i)("id_mat_purc_rec_det_pcs").ToString() Then
+            '                            sp_check = True
+            '                        End If
+            '                    End If
+            '                Next
+            '                'end loop check on gv
+            '                If sp_check = False Then
+            '                    'Because not found, it's only mean already deleted
+            '                    query = String.Format("DELETE FROM tb_mat_purc_rec_pcs WHERE id_mat_purc_rec_det_pcs='{0}'", data_del.Rows(i)("id_mat_purc_rec_det_pcs").ToString())
+            '                    execute_non_query(query, True, "", "", "", "")
+            '                End If
+            '            Next
+            '        End If
 
-                    For i As Integer = 0 To GVRoll.RowCount - 1
-                        If Not GVRoll.GetRowCellValue(i, "id_mat_det").ToString = "" Then
-                            If GVRoll.GetRowCellValue(i, "id_mat_purc_rec_det_pcs").ToString = "" Then
-                                'insert new
-                                query = String.Format("INSERT INTO tb_mat_purc_rec_pcs(id_mat_purc_rec,id_mat_det,piece,qty) VALUES('{0}','{1}','{2}','{3}')", id_receive, GVRoll.GetRowCellValue(i, "id_mat_det").ToString, GVRoll.GetRowCellValue(i, "piece").ToString, decimalSQL(GVRoll.GetRowCellValue(i, "qty").ToString))
-                                execute_non_query(query, True, "", "", "", "")
-                            Else
-                                'update
-                                query = String.Format("UPDATE tb_mat_purc_rec_pcs SET id_mat_det='{0}',piece='{1}',qty='{2}' WHERE id_mat_purc_rec_det_pcs='{3}'", GVRoll.GetRowCellValue(i, "id_mat_det").ToString, GVRoll.GetRowCellValue(i, "piece").ToString, decimalSQL(GVRoll.GetRowCellValue(i, "qty").ToString), GVRoll.GetRowCellValue(i, "id_mat_purc_rec_det_pcs").ToString)
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
-                        End If
-                    Next
-                    'end of roll
+            '        For i As Integer = 0 To GVRoll.RowCount - 1
+            '            If Not GVRoll.GetRowCellValue(i, "id_mat_det").ToString = "" Then
+            '                If GVRoll.GetRowCellValue(i, "id_mat_purc_rec_det_pcs").ToString = "" Then
+            '                    'insert new
+            '                    query = String.Format("INSERT INTO tb_mat_purc_rec_pcs(id_mat_purc_rec,id_mat_det,piece,qty) VALUES('{0}','{1}','{2}','{3}')", id_receive, GVRoll.GetRowCellValue(i, "id_mat_det").ToString, GVRoll.GetRowCellValue(i, "piece").ToString, decimalSQL(GVRoll.GetRowCellValue(i, "qty").ToString))
+            '                    execute_non_query(query, True, "", "", "", "")
+            '                Else
+            '                    'update
+            '                    query = String.Format("UPDATE tb_mat_purc_rec_pcs SET id_mat_det='{0}',piece='{1}',qty='{2}' WHERE id_mat_purc_rec_det_pcs='{3}'", GVRoll.GetRowCellValue(i, "id_mat_det").ToString, GVRoll.GetRowCellValue(i, "piece").ToString, decimalSQL(GVRoll.GetRowCellValue(i, "qty").ToString), GVRoll.GetRowCellValue(i, "id_mat_purc_rec_det_pcs").ToString)
+            '                    execute_non_query(query, True, "", "", "", "")
+            '                End If
+            '            End If
+            '        Next
+            '        'end of roll
 
-                    FormMatRecPurc.view_mat_rec_purc()
-                    FormMatRecPurc.GVMatRecPurc.FocusedRowHandle = find_row(FormMatRecPurc.GVMatRecPurc, "id_mat_purc_rec", id_receive)
-                    FormMatRecPurc.XTCTabReceive.SelectedTabPageIndex = 0
-                    Close()
-                Catch ex As Exception
-                    errorConnection()
-                End Try
-            End If
+            '        FormMatRecPurc.view_mat_rec_purc()
+            '        FormMatRecPurc.GVMatRecPurc.FocusedRowHandle = find_row(FormMatRecPurc.GVMatRecPurc, "id_mat_purc_rec", id_receive)
+            '        FormMatRecPurc.XTCTabReceive.SelectedTabPageIndex = 0
+            '        Close()
+            '    Catch ex As Exception
+            '        errorConnection()
+            '    End Try
+            'End If
         End If
     End Sub
 

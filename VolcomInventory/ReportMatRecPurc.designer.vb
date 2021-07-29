@@ -43,6 +43,7 @@ Partial Public Class ReportMatRecPurc
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
@@ -173,7 +174,7 @@ Partial Public Class ReportMatRecPurc
         Me.GVListPurchase.AppearancePrint.HeaderPanel.Options.UseForeColor = True
         Me.GVListPurchase.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 6.5!)
         Me.GVListPurchase.AppearancePrint.Row.Options.UseFont = True
-        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.GridColumnQtyStored, Me.ColNote, Me.GridColumnUOM, Me.GridColumn1, Me.GridColumn10, Me.GridColumn9, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
+        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.GridColumnQtyStored, Me.ColNote, Me.GridColumnUOM, Me.GridColumn1, Me.GridColumn10, Me.GridColumn9, Me.GridColumn6, Me.GridColumn7, Me.GridColumn11, Me.GridColumn8})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
         Me.GVListPurchase.Name = "GVListPurchase"
         Me.GVListPurchase.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -203,7 +204,7 @@ Partial Public Class ReportMatRecPurc
         Me.ColNo.OptionsColumn.AllowEdit = False
         Me.ColNo.Visible = True
         Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 58
+        Me.ColNo.Width = 60
         '
         'ColCode
         '
@@ -213,7 +214,7 @@ Partial Public Class ReportMatRecPurc
         Me.ColCode.OptionsColumn.AllowEdit = False
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
-        Me.ColCode.Width = 159
+        Me.ColCode.Width = 166
         '
         'ColName
         '
@@ -223,7 +224,7 @@ Partial Public Class ReportMatRecPurc
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
         Me.ColName.VisibleIndex = 2
-        Me.ColName.Width = 402
+        Me.ColName.Width = 396
         '
         'ColSize
         '
@@ -237,7 +238,7 @@ Partial Public Class ReportMatRecPurc
         Me.ColSize.OptionsColumn.AllowEdit = False
         Me.ColSize.Visible = True
         Me.ColSize.VisibleIndex = 5
-        Me.ColSize.Width = 134
+        Me.ColSize.Width = 112
         '
         'ColQty
         '
@@ -301,7 +302,7 @@ Partial Public Class ReportMatRecPurc
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 4
-        Me.GridColumn1.Width = 125
+        Me.GridColumn1.Width = 133
         '
         'GridColumn10
         '
@@ -315,8 +316,8 @@ Partial Public Class ReportMatRecPurc
         Me.GridColumn10.FieldName = "cost"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 7
-        Me.GridColumn10.Width = 135
+        Me.GridColumn10.VisibleIndex = 8
+        Me.GridColumn10.Width = 132
         '
         'GridColumn9
         '
@@ -331,8 +332,8 @@ Partial Public Class ReportMatRecPurc
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_cost", "{0:N4}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
-        Me.GridColumn9.Width = 149
+        Me.GridColumn9.VisibleIndex = 9
+        Me.GridColumn9.Width = 169
         '
         'GridColumn6
         '
@@ -351,9 +352,26 @@ Partial Public Class ReportMatRecPurc
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "qty_rec"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N2}")})
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 6
-        Me.GridColumn7.Width = 196
+        Me.GridColumn7.Width = 172
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.Caption = "Qty Rem."
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "qty_remaining"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_remaining", "{0:N2}")})
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 7
+        Me.GridColumn11.Width = 159
         '
         'GridColumn8
         '
@@ -366,7 +384,7 @@ Partial Public Class ReportMatRecPurc
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 3
-        Me.GridColumn8.Width = 110
+        Me.GridColumn8.Width = 117
         '
         'Detail
         '
@@ -909,4 +927,5 @@ Partial Public Class ReportMatRecPurc
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
