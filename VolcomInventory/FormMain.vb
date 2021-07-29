@@ -16339,4 +16339,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBSNIrealisasi_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSNIrealisasi.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSNIRealisasi.MdiParent = Me
+            FormSNIRealisasi.Show()
+            FormSNIRealisasi.WindowState = FormWindowState.Maximized
+            FormSNIRealisasi.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
