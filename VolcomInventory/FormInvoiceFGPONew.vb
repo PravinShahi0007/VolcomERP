@@ -30,13 +30,15 @@ GROUP BY po.`id_prod_order`"
             Dim q_where As String = ""
 
             If SLETypeInvoice.EditValue.ToString = "2" Then 'payment
-                q_where = "  AND rec.is_over_tol=2 AND rec.id_pl_category='1' "
+                q_where = "  AND rec.is_over_tol=2 AND rec.id_pl_category='1' AND rec.is_sni=2 "
             ElseIf SLETypeInvoice.EditValue.ToString = "3" Then 'Extra hingga 2%
                 q_where = "  AND rec.is_over_tol=2 AND rec.id_pl_category='5' "
             ElseIf SLETypeInvoice.EditValue.ToString = "4" Then 'over memo
                 q_where = "  AND rec.is_over_tol=1 AND rec.id_pl_category='6' "
             ElseIf SLETypeInvoice.EditValue.ToString = "5" Then 'grade
                 q_where = "  AND rec.is_over_tol=2 AND (rec.id_pl_category='2' OR rec.id_pl_category='3' OR rec.id_pl_category='4') "
+            ElseIf SLETypeInvoice.EditValue.ToString = "8" Then 'SNI
+                q_where = " AND rec.is_sni=1 "
             End If
 
             Dim query As String = "SELECT rec.`id_prod_order_rec` AS id_report,'28' AS report_mark_type,rec.prod_order_rec_number AS report_number,
