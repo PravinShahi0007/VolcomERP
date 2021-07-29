@@ -1,4 +1,6 @@
 ﻿Public Class FormInvoiceFGPOAdd
+    Public is_dp As Boolean = False
+
     Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
         Close()
     End Sub
@@ -102,16 +104,44 @@ INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 WHERE po.`id_report_status`='6'
 GROUP BY po.`id_prod_order`"
         ElseIf SLEReportType.EditValue.ToString = "13" Then 'material dibulatkan ke atas (Alit 11 Januari 2021)
-            query = "SELECT po.`id_mat_purc` AS id_report,0 AS id_prod_order,po.`mat_purc_number` AS report_number,GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description,c.comp_name AS info
-,po.id_currency,po.mat_purc_kurs as kurs,po.mat_purc_vat as vat,CEIL(SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty)*100)/100 as po_val,SUM(pod.mat_purc_det_qty) as qty
+            If is_dp Then
+                query = "SELECT po.`id_mat_purc` AS id_report,0 AS id_prod_order,po.`mat_purc_number` AS report_number,GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description,c.comp_name AS info
+,po.id_currency,po.mat_purc_kurs AS kurs,po.mat_purc_vat AS vat,CEIL((py.dp_amount/100)*SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty)*100)/100 AS po_val,SUM(pod.mat_purc_det_qty) AS qty, (py.dp_amount/100) AS dp_percent
+FROM tb_mat_purc_det pod 
+INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pod.id_mat_det_price
+INNER JOIN tb_m_mat_det md ON md.id_mat_det=mdp.id_mat_det
+INNER JOIN tb_mat_purc po ON pod.id_mat_purc=po.id_mat_purc 
+INNER JOIN tb_lookup_payment py ON py.id_payment=po.id_payment
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact_to
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+LEFT JOIN 
+(
+    SELECT pn.id_pn_fgpo,pnd.id_report
+    FROM `tb_pn_fgpo_det` pnd 
+    INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
+    WHERE pn.id_report_status!=5 AND pnd.report_mark_type=13 AND pn.type=2
+)pn ON pn.id_report=po.id_mat_purc
+WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) AND py.dp_amount>0
+GROUP BY pod.id_mat_purc"
+            Else
+                query = "SELECT po.`id_mat_purc` AS id_report,0 AS id_prod_order,po.`mat_purc_number` AS report_number,GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description,c.comp_name AS info
+,po.id_currency,po.mat_purc_kurs AS kurs,po.mat_purc_vat AS vat,CEIL(SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty)*100)/100 AS po_val,SUM(pod.mat_purc_det_qty) AS qty
 FROM tb_mat_purc_det pod 
 INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pod.id_mat_det_price
 INNER JOIN tb_m_mat_det md ON md.id_mat_det=mdp.id_mat_det
 INNER JOIN tb_mat_purc po ON pod.id_mat_purc=po.id_mat_purc 
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact_to
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
-WHERE po.`id_report_status`='6'
+LEFT JOIN 
+(
+    SELECT pn.id_pn_fgpo,pnd.id_report
+    FROM `tb_pn_fgpo_det` pnd 
+    INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
+    WHERE pn.id_report_status!=5 AND pnd.report_mark_type=13 AND pn.type=1
+)pn ON pn.id_report=po.id_mat_purc
+WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo)
 GROUP BY pod.id_mat_purc"
+            End If
         ElseIf SLEReportType.EditValue.ToString = "23" Then 'FG WO
             query = "SELECT wo.`id_prod_order_wo` AS id_report,wo.`id_prod_order_wo` AS id_prod_order,wo.`prod_order_wo_number` AS report_number,CONCAT(ovh.`overhead`,' - ',dsg.`design_display_name`) AS description,dsg.`design_code` AS info
 ,wo.id_currency,wo.prod_order_wo_kurs AS kurs,wo.prod_order_wo_vat AS vat,SUM(wod.prod_order_wo_det_price*wod.prod_order_wo_det_qty) AS wo_val,SUM(wod.prod_order_wo_det_qty) AS qty
@@ -125,14 +155,55 @@ INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 WHERE po.`id_report_status`='6'
 GROUP BY wo.`id_prod_order_wo`"
         ElseIf SLEReportType.EditValue.ToString = "1" Then 'purchase sample
-            query = "SELECT sp.`id_sample_purc` AS id_report,0 AS id_prod_order,sp.`sample_purc_number` AS report_number,'Purchase Sample' AS description,c.comp_name AS info
-,sp.id_currency,sp.sample_purc_kurs AS kurs,sp.sample_purc_vat AS vat,SUM(spd.sample_purc_det_price*spd.sample_purc_det_qty) AS po_val
+            If is_dp Then
+                query = "SELECT sp.`id_sample_purc` AS id_report,0 AS id_prod_order,sp.`sample_purc_number` AS report_number,'Purchase Sample' AS description,c.comp_name AS info
+,sp.id_currency,sp.sample_purc_kurs AS kurs,sp.sample_purc_vat AS vat,SUM(spd.sample_purc_det_price*spd.sample_purc_det_qty) AS po_val,SUM(spd.sample_purc_det_qty) AS po_qty,IFNULL(rec.amount_rec,0) AS amount_rec,IFNULL(rec.qty_rec,0) AS qty_rec
+FROM `tb_sample_purc` sp
+INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc`=sp.`id_sample_purc`
+INNER JOIN tb_lookup_payment py ON py.id_payment=sp.id_payment
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_comp_contact_to`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+LEFT JOIN (
+	SELECT pod.id_sample_purc,SUM(recd.sample_purc_rec_det_qty*pod.sample_purc_det_price) AS amount_rec,SUM(recd.sample_purc_rec_det_qty) AS qty_rec
+	FROM `tb_sample_purc_rec_det` recd
+	INNER JOIN tb_sample_purc_det pod ON pod.id_sample_purc_det=recd.id_sample_purc_det
+	INNER JOIN tb_sample_purc_rec rec ON rec.id_sample_purc_rec=recd.id_sample_purc_rec AND rec.id_report_status=6
+	GROUP BY pod.id_sample_purc
+)rec ON rec.id_sample_purc=sp.`id_sample_purc`
+LEFT JOIN 
+(
+    SELECT pn.id_pn_fgpo,pnd.id_report
+    FROM `tb_pn_fgpo_det` pnd 
+    INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
+    WHERE pn.id_report_status!=5 AND pnd.report_mark_type=1 AND pn.type=2
+)pn ON pn.id_report=sp.id_sample_purc
+WHERE sp.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) AND py.dp_amount>0
+GROUP BY sp.`id_sample_purc`"
+            Else
+                query = "SELECT sp.`id_sample_purc` AS id_report,0 AS id_prod_order,sp.`sample_purc_number` AS report_number,'Purchase Sample' AS description,c.comp_name AS info
+,sp.id_currency,sp.sample_purc_kurs AS kurs,sp.sample_purc_vat AS vat,SUM(spd.sample_purc_det_price*spd.sample_purc_det_qty) AS po_val,SUM(spd.sample_purc_det_qty) AS po_qty,IFNULL(rec.amount_rec,0) AS amount_rec,IFNULL(rec.qty_rec,0) AS qty_rec
 FROM `tb_sample_purc` sp
 INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc`=sp.`id_sample_purc`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_comp_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-WHERE sp.`id_report_status`='6'
-GROUP BY sp.`id_sample_purc`"
+LEFT JOIN (
+	SELECT pod.id_sample_purc,SUM(recd.sample_purc_rec_det_qty*pod.sample_purc_det_price) AS amount_rec,SUM(recd.sample_purc_rec_det_qty) AS qty_rec
+	FROM `tb_sample_purc_rec_det` recd
+	INNER JOIN tb_sample_purc_det pod ON pod.id_sample_purc_det=recd.id_sample_purc_det
+	INNER JOIN tb_sample_purc_rec rec ON rec.id_sample_purc_rec=recd.id_sample_purc_rec AND rec.id_report_status=6
+	GROUP BY pod.id_sample_purc
+)rec ON rec.id_sample_purc=sp.`id_sample_purc`
+LEFT JOIN 
+(
+    SELECT pn.id_pn_fgpo,pnd.id_report
+    FROM `tb_pn_fgpo_det` pnd 
+    INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
+    WHERE pn.id_report_status!=5 AND pnd.report_mark_type=1 AND pn.type=1
+)pn ON pn.id_report=sp.id_sample_purc
+WHERE sp.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) 
+GROUP BY sp.`id_sample_purc`
+HAVING qty_rec>=po_qty"
+            End If
         End If
 
         viewSearchLookupQuery(SLEReport, query, "id_report", "report_number", "id_report")
@@ -165,7 +236,7 @@ GROUP BY sp.`id_sample_purc`"
                 TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
                 aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
                 TEAfterKurs.EditValue = aft_kurs
-            ElseIf SLEReportType.EditValue.ToString = "1" Then
+            ElseIf SLEReportType.EditValue.ToString = "1" Then 'sample
                 Dim aft_kurs As Decimal = 0.00
 
                 LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
