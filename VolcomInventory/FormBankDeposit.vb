@@ -64,7 +64,7 @@ WHERE cg.is_use_payout=1", 0, True, "", "", "", "")
         load_bank()
 
         'cc
-        load_bank_cc()
+        'load_bank_cc()
 
         'VS sales
         viewCoaTag()
