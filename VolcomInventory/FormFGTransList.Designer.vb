@@ -398,6 +398,8 @@ Partial Class FormFGTransList
         Me.GridColumnqty9_trf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty0_trf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl33 = New DevExpress.XtraEditors.LabelControl()
+        Me.CCBEStore = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.SLStatus6 = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -761,6 +763,7 @@ Partial Class FormFGTransList
         CType(Me.RepositoryItemCheckEdit11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
+        CType(Me.CCBEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLStatus6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilTrf.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -4072,10 +4075,10 @@ Partial Class FormFGTransList
         '
         Me.XTCTrf.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCTrf.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCTrf.Location = New System.Drawing.Point(0, 39)
+        Me.XTCTrf.Location = New System.Drawing.Point(0, 75)
         Me.XTCTrf.Name = "XTCTrf"
         Me.XTCTrf.SelectedTabPage = Me.XTPTrfBarcode
-        Me.XTCTrf.Size = New System.Drawing.Size(1165, 455)
+        Me.XTCTrf.Size = New System.Drawing.Size(1165, 419)
         Me.XTCTrf.TabIndex = 9
         Me.XTCTrf.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPTrfBarcode, Me.XTPTrfMainCode})
         '
@@ -4083,7 +4086,7 @@ Partial Class FormFGTransList
         '
         Me.XTPTrfBarcode.Controls.Add(Me.GCFGTrf)
         Me.XTPTrfBarcode.Name = "XTPTrfBarcode"
-        Me.XTPTrfBarcode.Size = New System.Drawing.Size(1136, 449)
+        Me.XTPTrfBarcode.Size = New System.Drawing.Size(1136, 413)
         Me.XTPTrfBarcode.Text = "By Barcode"
         '
         'GCFGTrf
@@ -4093,7 +4096,7 @@ Partial Class FormFGTransList
         Me.GCFGTrf.MainView = Me.GVFGTrf
         Me.GCFGTrf.Name = "GCFGTrf"
         Me.GCFGTrf.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoTxtPrepOrder, Me.RepositoryItemCheckEdit5})
-        Me.GCFGTrf.Size = New System.Drawing.Size(1136, 449)
+        Me.GCFGTrf.Size = New System.Drawing.Size(1136, 413)
         Me.GCFGTrf.TabIndex = 8
         Me.GCFGTrf.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGTrf})
         '
@@ -4281,7 +4284,7 @@ Partial Class FormFGTransList
         '
         Me.XTPTrfMainCode.Controls.Add(Me.GCFGTrfMain)
         Me.XTPTrfMainCode.Name = "XTPTrfMainCode"
-        Me.XTPTrfMainCode.Size = New System.Drawing.Size(1136, 449)
+        Me.XTPTrfMainCode.Size = New System.Drawing.Size(1136, 413)
         Me.XTPTrfMainCode.Text = "By Main Code"
         '
         'GCFGTrfMain
@@ -4291,7 +4294,7 @@ Partial Class FormFGTransList
         Me.GCFGTrfMain.MainView = Me.GVFGTrfMain
         Me.GCFGTrfMain.Name = "GCFGTrfMain"
         Me.GCFGTrfMain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemCheckEdit11})
-        Me.GCFGTrfMain.Size = New System.Drawing.Size(1136, 449)
+        Me.GCFGTrfMain.Size = New System.Drawing.Size(1136, 413)
         Me.GCFGTrfMain.TabIndex = 9
         Me.GCFGTrfMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGTrfMain})
         '
@@ -4590,6 +4593,8 @@ Partial Class FormFGTransList
         'GroupControl4
         '
         Me.GroupControl4.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl4.Controls.Add(Me.LabelControl33)
+        Me.GroupControl4.Controls.Add(Me.CCBEStore)
         Me.GroupControl4.Controls.Add(Me.SLStatus6)
         Me.GroupControl4.Controls.Add(Me.LabelControl19)
         Me.GroupControl4.Controls.Add(Me.BtnExportToXLSTrf)
@@ -4603,12 +4608,29 @@ Partial Class FormFGTransList
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(1165, 39)
+        Me.GroupControl4.Size = New System.Drawing.Size(1165, 75)
         Me.GroupControl4.TabIndex = 7
+        '
+        'LabelControl33
+        '
+        Me.LabelControl33.Location = New System.Drawing.Point(28, 41)
+        Me.LabelControl33.Name = "LabelControl33"
+        Me.LabelControl33.Size = New System.Drawing.Size(41, 13)
+        Me.LabelControl33.TabIndex = 8914
+        Me.LabelControl33.Text = "Dest. To"
+        '
+        'CCBEStore
+        '
+        Me.CCBEStore.EditValue = ""
+        Me.CCBEStore.Location = New System.Drawing.Point(75, 38)
+        Me.CCBEStore.Name = "CCBEStore"
+        Me.CCBEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEStore.Size = New System.Drawing.Size(431, 20)
+        Me.CCBEStore.TabIndex = 8913
         '
         'SLStatus6
         '
-        Me.SLStatus6.Location = New System.Drawing.Point(356, 9)
+        Me.SLStatus6.Location = New System.Drawing.Point(356, 12)
         Me.SLStatus6.Name = "SLStatus6"
         Me.SLStatus6.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLStatus6.Properties.View = Me.GridView7
@@ -4639,7 +4661,7 @@ Partial Class FormFGTransList
         '
         'LabelControl19
         '
-        Me.LabelControl19.Location = New System.Drawing.Point(319, 12)
+        Me.LabelControl19.Location = New System.Drawing.Point(319, 15)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl19.TabIndex = 8911
@@ -4647,7 +4669,7 @@ Partial Class FormFGTransList
         '
         'BtnExportToXLSTrf
         '
-        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(573, 9)
+        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(576, 21)
         Me.BtnExportToXLSTrf.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSTrf.Name = "BtnExportToXLSTrf"
         Me.BtnExportToXLSTrf.Size = New System.Drawing.Size(92, 20)
@@ -4656,7 +4678,7 @@ Partial Class FormFGTransList
         '
         'BtnViewTrf
         '
-        Me.BtnViewTrf.Location = New System.Drawing.Point(512, 9)
+        Me.BtnViewTrf.Location = New System.Drawing.Point(515, 21)
         Me.BtnViewTrf.LookAndFeel.SkinName = "Blue"
         Me.BtnViewTrf.Name = "BtnViewTrf"
         Me.BtnViewTrf.Size = New System.Drawing.Size(55, 20)
@@ -4686,7 +4708,7 @@ Partial Class FormFGTransList
         'DEUntilTrf
         '
         Me.DEUntilTrf.EditValue = Nothing
-        Me.DEUntilTrf.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntilTrf.Location = New System.Drawing.Point(202, 12)
         Me.DEUntilTrf.Name = "DEUntilTrf"
         Me.DEUntilTrf.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilTrf.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -4699,7 +4721,7 @@ Partial Class FormFGTransList
         'DEFromTrf
         '
         Me.DEFromTrf.EditValue = Nothing
-        Me.DEFromTrf.Location = New System.Drawing.Point(58, 9)
+        Me.DEFromTrf.Location = New System.Drawing.Point(58, 12)
         Me.DEFromTrf.Name = "DEFromTrf"
         Me.DEFromTrf.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFromTrf.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -4711,7 +4733,7 @@ Partial Class FormFGTransList
         '
         'LabelControl20
         '
-        Me.LabelControl20.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl20.Location = New System.Drawing.Point(175, 15)
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl20.TabIndex = 8893
@@ -4719,7 +4741,7 @@ Partial Class FormFGTransList
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl21.Location = New System.Drawing.Point(28, 15)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl21.TabIndex = 8892
@@ -7079,6 +7101,7 @@ Partial Class FormFGTransList
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         Me.GroupControl4.PerformLayout()
+        CType(Me.CCBEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLStatus6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilTrf.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -7798,4 +7821,6 @@ Partial Class FormFGTransList
     Friend WithEvents GridColumnseasonmain As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncommerce_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncommerce_typecode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl33 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents CCBEStore As DevExpress.XtraEditors.CheckedComboBoxEdit
 End Class
