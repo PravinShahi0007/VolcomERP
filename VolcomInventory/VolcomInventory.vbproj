@@ -10433,6 +10433,12 @@
     <EmbeddedResource Include="FormDelayPaymentDet.resx">
       <DependentUpon>FormDelayPaymentDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPaymentInv.resx">
+      <DependentUpon>FormDelayPaymentInv.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPaymentInvDet.resx">
+      <DependentUpon>FormDelayPaymentInvDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDelayPaymentNew.resx">
       <DependentUpon>FormDelayPaymentNew.vb</DependentUpon>
     </EmbeddedResource>

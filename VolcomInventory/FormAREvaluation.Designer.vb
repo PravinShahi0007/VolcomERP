@@ -19,12 +19,22 @@ Partial Class FormAREvaluation
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAREvaluation))
         Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelNav = New DevExpress.XtraEditors.PanelControl()
+        Me.DDBDelayPayment = New DevExpress.XtraEditors.DropDownButton()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BBICreateNew = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBIHistory = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewData = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseEval = New DevExpress.XtraEditors.ButtonEdit()
@@ -109,6 +119,8 @@ Partial Class FormAREvaluation
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
@@ -141,6 +153,7 @@ Partial Class FormAREvaluation
         '
         'PanelNav
         '
+        Me.PanelNav.Controls.Add(Me.DDBDelayPayment)
         Me.PanelNav.Controls.Add(Me.BtnLog)
         Me.PanelNav.Controls.Add(Me.BtnViewData)
         Me.PanelNav.Controls.Add(Me.BtnBrowseEval)
@@ -150,6 +163,74 @@ Partial Class FormAREvaluation
         Me.PanelNav.Name = "PanelNav"
         Me.PanelNav.Size = New System.Drawing.Size(798, 50)
         Me.PanelNav.TabIndex = 0
+        '
+        'DDBDelayPayment
+        '
+        Me.DDBDelayPayment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.DDBDelayPayment.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show
+        Me.DDBDelayPayment.DropDownControl = Me.PopupMenu1
+        Me.DDBDelayPayment.Image = CType(resources.GetObject("DDBDelayPayment.Image"), System.Drawing.Image)
+        Me.DDBDelayPayment.Location = New System.Drawing.Point(619, 2)
+        Me.DDBDelayPayment.Name = "DDBDelayPayment"
+        Me.DDBDelayPayment.Size = New System.Drawing.Size(177, 46)
+        Me.DDBDelayPayment.TabIndex = 4
+        Me.DDBDelayPayment.Text = "Penundaan Pembayaran"
+        '
+        'PopupMenu1
+        '
+        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBICreateNew), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIHistory)})
+        Me.PopupMenu1.Manager = Me.BarManager1
+        Me.PopupMenu1.Name = "PopupMenu1"
+        '
+        'BBICreateNew
+        '
+        Me.BBICreateNew.Caption = "Create New"
+        Me.BBICreateNew.Id = 0
+        Me.BBICreateNew.Name = "BBICreateNew"
+        '
+        'BBIHistory
+        '
+        Me.BBIHistory.Caption = "History"
+        Me.BBIHistory.Id = 1
+        Me.BBIHistory.Name = "BBIHistory"
+        '
+        'BarManager1
+        '
+        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager1.Form = Me
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBICreateNew, Me.BBIHistory})
+        Me.BarManager1.MaxItemId = 2
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(798, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 464)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(798, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 464)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(798, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 464)
         '
         'BtnLog
         '
@@ -990,6 +1071,10 @@ Partial Class FormAREvaluation
         Me.ClientSize = New System.Drawing.Size(798, 464)
         Me.Controls.Add(Me.XTCData)
         Me.Controls.Add(Me.PanelNav)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.MinimizeBox = False
         Me.Name = "FormAREvaluation"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -997,6 +1082,8 @@ Partial Class FormAREvaluation
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNav.ResumeLayout(False)
         Me.PanelNav.PerformLayout()
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
@@ -1026,6 +1113,7 @@ Partial Class FormAREvaluation
         CType(Me.GVGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -1112,4 +1200,13 @@ Partial Class FormAREvaluation
     Friend WithEvents GridColumntotal_rec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntotal_due As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnjum_hold As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DDBDelayPayment As DevExpress.XtraEditors.DropDownButton
+    Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BBICreateNew As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBIHistory As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
 End Class

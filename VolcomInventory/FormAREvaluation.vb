@@ -488,4 +488,23 @@
         GridColumnbtn_bbm.Visible = True
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BBICreateNew_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBICreateNew.ItemClick
+        Cursor = Cursors.WaitCursor
+        Dim allow_day As String = get_opt_acc_field("tunda_bayar_day")
+        Dim curr_date As DateTime = getTimeDB()
+        If Not allow_day = curr_date.DayOfWeek.ToString Then
+            warningCustom("This menu only available on " + allow_day)
+        Else
+            FormDelayPaymentInvDet.action = "ins"
+            FormDelayPaymentInvDet.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BBIHistory_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIHistory.ItemClick
+        Cursor = Cursors.WaitCursor
+        FormDelayPaymentInv.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
