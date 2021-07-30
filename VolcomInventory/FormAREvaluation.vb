@@ -31,12 +31,16 @@
 
     Sub viewInvoiceDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT e.id_comp_group, cg.description AS `group_store`, 
+        Dim query As String = "SELECT e.id_comp_group, cg.description AS `group_store`, c.comp_number AS `store_acc`, c.comp_name AS `store`,
         e.id_sales_pos AS `id_inv`, e.report_number AS `inv_number`, e.report_mark_type AS `inv_rmt`,
+        sp.`sales_pos_date` AS `inv_date`, sp.`sales_pos_due_date` AS `inv_due_date`, sp.`sales_pos_start_period` AS `start_period`, sp.`sales_pos_end_period` AS `end_period`,
+        DATEDIFF(DATE(e.eval_date),sp.sales_pos_due_date) AS due_days,
         CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS `inv_amount`,
+        IFNULL(pyd.`value`,0.00) AS total_rec, 
+        IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS total_due,
         IF(e.is_paid=1,'Paid', 'Not Paid') AS `paid_status`, 
-        IFNULL(m.id_propose_delay_payment,0) AS `id_propose_delay_payment`, m.number as `memo_number`,
-        e.release_date, e.note, IF(e.is_active=1,'Active', 'Not Active') AS `active_status`
+        NULL AS `id_propose_delay_payment`, '' as `memo_number`,
+        e.release_date, e.note,  IFNULL(eh.jum_hold,0) AS `jum_hold`,IF(e.is_active=1,'Active', 'Not Active') AS `active_status`
         FROM tb_ar_eval e 
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = e.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -44,13 +48,26 @@
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
-        LEFT JOIN tb_rec_payment bbm ON bbm.id_rec_payment = e.id_rec_payment
-        LEFT JOIN tb_propose_delay_payment_det md ON md.id_propose_delay_payment_det = e.id_propose_delay_payment_det
-        LEFT JOIN tb_propose_delay_payment m ON m.id_propose_delay_payment  = md.id_propose_delay_payment
+        LEFT JOIN (
+           SELECT pyd.id_report, pyd.report_mark_type, 
+           COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+           SUM(pyd.value) AS  `value`
+           FROM tb_rec_payment_det pyd
+           INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+           WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183,292)
+           GROUP BY pyd.id_report, pyd.report_mark_type
+        ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
+        LEFT JOIN (
+	        SELECT e.id_sales_pos, COUNT(e.id_sales_pos) AS `jum_hold`
+	        FROM tb_ar_eval e
+	        WHERE e.eval_date<='" + eval_date + "'
+	        GROUP BY e.id_sales_pos
+        ) eh ON eh.id_sales_pos = e.id_sales_pos
         WHERE e.eval_date='" + eval_date + "'
-        ORDER BY e.id_sales_pos ASC "
+        ORDER BY cg.description ASC,e.id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCInvoiceDetail.DataSource = data
+        GVInvoiceDetail.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -390,5 +407,85 @@
             End If
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub printDetail()
+        Cursor = Cursors.WaitCursor
+        ReportAREval.dt = GCInvoiceDetail.DataSource
+        ReportAREval.eval_date_label = BtnBrowseEval.Text
+        Dim Report As New ReportAREval()
+
+        'hide col BBM
+        GridColumnbtn_bbm.Visible = False
+
+        ' creating And saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVInvoiceDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVInvoiceDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'style
+        Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+
+        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+        Report.GVInvoiceDetail.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        Report.GVInvoiceDetail.AppearancePrint.GroupRow.ForeColor = Color.Black
+        Report.GVInvoiceDetail.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+
+        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+
+        Report.GVInvoiceDetail.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+
+        Report.GVInvoiceDetail.OptionsPrint.ExpandAllDetails = True
+        Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+        Report.GVInvoiceDetail.OptionsPrint.PrintDetails = True
+        Report.GVInvoiceDetail.OptionsPrint.PrintFooter = True
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+
+        'show col BBM
+        GridColumnbtn_bbm.Visible = True
+        Cursor = Cursors.Default
     End Sub
 End Class
