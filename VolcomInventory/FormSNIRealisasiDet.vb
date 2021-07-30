@@ -25,6 +25,9 @@ WHERE pps.`number`='" & addSlashes(TEBudgetNumber.Text) & "'"
 
             load_artikel()
             load_budget_det()
+            '
+            usage_artikel()
+            '
             calculate_budget()
             '
             TEBudgetNumber.Properties.ReadOnly = True
@@ -135,4 +138,36 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
+
+    Sub usage_artikel()
+        Dim q As String = "SELECT b.id_design,0.00 AS bom_design_price,b.id_product,b.id_sni_pps_budget,b.budget_desc,b.budget_value,b.budget_qty,IFNULL(rec.qty,0) AS rec_qty,0 AS ret_qty
+FROM `tb_sni_pps_budget` b
+LEFT JOIN 
+(
+	SELECT rec.`id_sni_pps`,recd.id_product,SUM(recd.qty) AS qty
+	FROM `tb_sni_rec_det` recd 
+	INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND rec.`id_report_status`=6
+	GROUP BY recd.`id_product`
+)rec ON rec.`id_product`=b.`id_product` AND rec.id_sni_pps=b.`id_sni_pps`
+WHERE b.id_sni_pps='" & id_pps & "' 
+AND NOT ISNULL(b.id_design) AND NOT ISNULL(b.id_product)"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCSampling.DataSource = dt
+        GVSampling.BestFitColumns()
+        '
+        For i = 0 To GVSampling.RowCount - 1
+            GVSampling.SetRowCellValue(i, "bom_design_price", get_bom_design_price(GVSampling.GetRowCellValue(i, "id_design").ToString))
+        Next
+    End Sub
+
+    Function get_bom_design_price(ByVal id_design As String)
+        Dim cop As Decimal = 0.00
+        Dim q As String = "CALL view_cop_design_po('" & id_design & "')"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+
+        End If
+
+        Return cop
+    End Function
 End Class

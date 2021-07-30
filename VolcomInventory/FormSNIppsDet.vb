@@ -68,8 +68,8 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                     BSave.Visible = False
                 Else
                     BPrint.Visible = False
-                    PCAddBudget.Visible = False
-                    PCAddDel.Visible = False
+                    PCAddBudget.Visible = True
+                    PCAddDel.Visible = True
                     BSave.Visible = True
                 End If
                 '

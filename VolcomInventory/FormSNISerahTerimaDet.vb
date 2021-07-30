@@ -6,6 +6,7 @@
     Public is_view As String = "-1"
 
     Private Sub FormSNISerahTerimaDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEReffDate.EditValue = Now
         load_head()
     End Sub
 
@@ -29,6 +30,7 @@ WHERE rec.id_sni_rec='" & id & "'"
                 DEProposeDate.EditValue = dt.Rows(0)("created_date").ToString
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 TENumber.Text = dt.Rows(0)("number").ToString
+                DEReffDate.EditValue = dt.Rows(0)("reff_date").ToString
                 '
                 is_submit = dt.Rows(0)("is_submit").ToString
                 id_pps = dt.Rows(0)("id_sni_pps").ToString
@@ -43,6 +45,8 @@ WHERE rec.id_sni_rec='" & id & "'"
                 End If
                 '
                 load_det()
+                '
+                GridColumnAttachment.Visible = True
             End If
         Else
             DEReffDate.Properties.MaxValue = Now
@@ -83,7 +87,12 @@ LEFT JOIN (
     INNER JOIN tb_prod_order_det pod ON pod.id_prod_demand_product=pdp.id_prod_demand_product
     INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void=2 AND po.id_report_status=6
 )po ON po.id_product=pb.id_product
-WHERE NOT ISNULL(pb.id_product) AND pps.number='" & addSlashes(TEBudgetNumber.Text) & "'"
+LEFT JOIN (
+    SELECT rec.id_sni_rec,recd.id_product
+    FROM tb_sni_rec_det recd
+    INNER JOIN `tb_sni_rec` rec ON rec.id_sni_rec=recd.id_sni_rec AND rec.id_report_status!=5
+)rec ON rec.id_product=p.id_product
+WHERE NOT ISNULL(pb.id_product) AND ISNULL(rec.id_sni_rec) AND pps.number='" & addSlashes(TEBudgetNumber.Text) & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCList.DataSource = dt
 
@@ -92,7 +101,7 @@ WHERE NOT ISNULL(pb.id_product) AND pps.number='" & addSlashes(TEBudgetNumber.Te
                 '
                 id_pps = dt.Rows(0)("id_sni_pps").ToString
             Else
-                warningCustom("Budget number not found or already used.")
+                warningCustom("Budget number tidak ditemukan atau sudah diserah terimakan.")
                 id_pps = "-1"
                 TEBudgetNumber.Properties.ReadOnly = False
             End If
@@ -134,6 +143,10 @@ VALUES('" & id_pps & "','" & id_user & "',NOW(),'" & Date.Parse(DEReffDate.EditV
                         q += "('" & id & "','" & GVList.GetRowCellValue(i, "id_prod_order_det").ToString & "','" & GVList.GetRowCellValue(i, "id_product").ToString & "','" & GVList.GetRowCellValue(i, "qty").ToString & "')"
                     Next
                     execute_non_query(q, True, "", "", "", "")
+
+                    warningCustom("Form serah terima telah digenerate.")
+                    '
+                    load_head()
                 Else
                     'lock and submit
                     'check first
