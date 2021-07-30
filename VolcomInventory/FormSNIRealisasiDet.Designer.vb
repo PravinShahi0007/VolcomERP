@@ -1052,7 +1052,7 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn8.Caption = "Qty Serah Terima"
         Me.GridColumn8.DisplayFormat.FormatString = "N0"
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "qty_rec"
+        Me.GridColumn8.FieldName = "rec_qty"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 3
@@ -1067,11 +1067,11 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn2.Caption = "Qty Return"
         Me.GridColumn2.DisplayFormat.FormatString = "N0"
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "qty_ret"
+        Me.GridColumn2.FieldName = "ret_qty"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 4
-        Me.GridColumn2.Width = 61
+        Me.GridColumn2.Width = 76
         '
         'GridColumn27
         '
@@ -1084,11 +1084,11 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn27.FieldName = "qty_realisasi"
         Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.UnboundExpression = "[qty_rec] - [qty_ret]"
+        Me.GridColumn27.UnboundExpression = "[rec_qty] - [ret_qty]"
         Me.GridColumn27.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 5
-        Me.GridColumn27.Width = 67
+        Me.GridColumn27.Width = 79
         '
         'GridColumn6
         '
@@ -1106,7 +1106,7 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
-        Me.GridColumn6.Width = 213
+        Me.GridColumn6.Width = 186
         '
         'RepositoryItemCheckEdit2
         '

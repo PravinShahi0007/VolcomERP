@@ -162,11 +162,30 @@ AND NOT ISNULL(b.id_design) AND NOT ISNULL(b.id_product)"
 
     Function get_bom_design_price(ByVal id_design As String)
         Dim cop As Decimal = 0.00
+        'cop total
+        Dim cop_total As Decimal = 0.00
         Dim q As String = "CALL view_cop_design_po('" & id_design & "')"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
-
+            For i = 0 To dt.Rows.Count - 1
+                cop_total += dt.Rows(0)("total_price")
+            Next
         End If
+
+        'qty total
+        Dim qty_total As Integer = 1
+        q = "SELECT SUM(prod_order_qty) AS qty_order
+FROM tb_prod_order_det pod
+INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design AND po.id_report_status=6
+WHERE pdd.id_design='" & id_design & "'"
+        Dim dt_total As DataTable = execute_query(q, -1, True, "", "", "", "")
+        '
+        If dt_total.Rows.Count > 0 Then
+            qty_total = dt_total.Rows(0)("qty_order")
+        End If
+
+        cop = Math.Round(cop_total / qty_total, 2)
 
         Return cop
     End Function
