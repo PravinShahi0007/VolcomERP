@@ -8541,7 +8541,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     print_raw(FormAREvaluation.GCGroupStoreList, "")
                 End If
             ElseIf FormAREvaluation.XTCData.SelectedTabPageIndex = 1 Then
-                print_raw(FormAREvaluation.GCInvoiceDetail, "")
+                FormAREvaluation.printDetail()
             ElseIf FormAREvaluation.XTCData.SelectedTabPageIndex = 2 Then
                 print_raw(FormAREvaluation.GCGroup, "")
             End If
