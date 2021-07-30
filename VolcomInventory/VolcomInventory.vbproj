@@ -254,6 +254,7 @@
     <Compile Include="ClassBudgetProdDemand.vb" />
     <Compile Include="ClassBudgetRevPropose.vb" />
     <Compile Include="ClassDelayPayment.vb" />
+    <Compile Include="ClassDelayPaymentNew.vb" />
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
@@ -1178,6 +1179,18 @@
       <DependentUpon>FormDelayPaymentDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDelayPaymentDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelayPaymentInv.Designer.vb">
+      <DependentUpon>FormDelayPaymentInv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPaymentInv.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelayPaymentInvDet.Designer.vb">
+      <DependentUpon>FormDelayPaymentInvDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPaymentInvDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDelayPaymentNew.Designer.vb">
