@@ -27,6 +27,7 @@ WHERE pps.`number`='" & addSlashes(TEBudgetNumber.Text) & "'"
             load_budget_det()
             '
             usage_artikel()
+            load_budget_realisasi()
             '
             calculate_budget()
             '
@@ -189,4 +190,42 @@ WHERE pdd.id_design='" & id_design & "'"
 
         Return cop
     End Function
+
+    Sub load_budget_realisasi()
+        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc,budget_value,budget_qty
+FROM `tb_sni_pps_budget` b
+WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCRealisasi.DataSource = dt
+        GVRealisasi.BestFitColumns()
+    End Sub
+
+    Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
+        If GVRealisasi.RowCount > 0 Then
+            GVRealisasi.DeleteSelectedRows()
+        End If
+    End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        Cursor = Cursors.WaitCursor
+        GVRealisasi.AddNewRow()
+        GVRealisasi.FocusedRowHandle = GVRealisasi.RowCount - 1
+        '
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "is_check", "no")
+        '
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "budget_qty", 0)
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "budget_value", 0)
+        '
+        GVRealisasi.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub calculate_realisasi()
+        GVBudget.RefreshData()
+        GVBudgetCop.RefreshData()
+
+        TETotalBudget.EditValue = GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue
+        TETotalQty.EditValue = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
+        TESNICop.EditValue = Math.Round((GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue, 2)
+    End Sub
 End Class
