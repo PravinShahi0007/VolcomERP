@@ -193,7 +193,7 @@ Partial Class FormSNIRealisasiDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(859, 69)
+        Me.PanelControl2.Size = New System.Drawing.Size(894, 69)
         Me.PanelControl2.TabIndex = 2
         '
         'LabelControl3
@@ -258,7 +258,7 @@ Partial Class FormSNIRealisasiDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(0, 69)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(859, 46)
+        Me.PanelControl4.Size = New System.Drawing.Size(894, 46)
         Me.PanelControl4.TabIndex = 22
         '
         'TEBudgetNumber
@@ -292,7 +292,7 @@ Partial Class FormSNIRealisasiDet
         Me.XTCKidList.Location = New System.Drawing.Point(0, 115)
         Me.XTCKidList.Name = "XTCKidList"
         Me.XTCKidList.SelectedTabPage = Me.XTPProposedList
-        Me.XTCKidList.Size = New System.Drawing.Size(859, 531)
+        Me.XTCKidList.Size = New System.Drawing.Size(894, 531)
         Me.XTCKidList.TabIndex = 23
         Me.XTCKidList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPProposedList, Me.XTPBudgetPropose, Me.XTPRealisasi})
         '
@@ -300,7 +300,7 @@ Partial Class FormSNIRealisasiDet
         '
         Me.XTPProposedList.Controls.Add(Me.GCProposed)
         Me.XTPProposedList.Name = "XTPProposedList"
-        Me.XTPProposedList.Size = New System.Drawing.Size(853, 503)
+        Me.XTPProposedList.Size = New System.Drawing.Size(888, 503)
         Me.XTPProposedList.Text = "Proposed List"
         '
         'GCProposed
@@ -310,7 +310,7 @@ Partial Class FormSNIRealisasiDet
         Me.GCProposed.MainView = Me.GVProposed
         Me.GCProposed.Name = "GCProposed"
         Me.GCProposed.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RIPImage})
-        Me.GCProposed.Size = New System.Drawing.Size(853, 503)
+        Me.GCProposed.Size = New System.Drawing.Size(888, 503)
         Me.GCProposed.TabIndex = 1
         Me.GCProposed.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProposed})
         '
@@ -499,7 +499,7 @@ Partial Class FormSNIRealisasiDet
         Me.XTPBudgetPropose.Controls.Add(Me.PanelControl6)
         Me.XTPBudgetPropose.Controls.Add(Me.GroupControl1)
         Me.XTPBudgetPropose.Name = "XTPBudgetPropose"
-        Me.XTPBudgetPropose.Size = New System.Drawing.Size(853, 503)
+        Me.XTPBudgetPropose.Size = New System.Drawing.Size(888, 503)
         Me.XTPBudgetPropose.Text = "Budget Propose"
         '
         'GroupControl2
@@ -508,7 +508,7 @@ Partial Class FormSNIRealisasiDet
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 158)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(853, 245)
+        Me.GroupControl2.Size = New System.Drawing.Size(888, 245)
         Me.GroupControl2.TabIndex = 4
         Me.GroupControl2.Text = "Budget Item"
         '
@@ -519,7 +519,7 @@ Partial Class FormSNIRealisasiDet
         Me.GCBudget.MainView = Me.GVBudget
         Me.GCBudget.Name = "GCBudget"
         Me.GCBudget.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEBudgetDet, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
-        Me.GCBudget.Size = New System.Drawing.Size(849, 223)
+        Me.GCBudget.Size = New System.Drawing.Size(884, 223)
         Me.GCBudget.TabIndex = 2
         Me.GCBudget.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudget})
         '
@@ -628,7 +628,7 @@ Partial Class FormSNIRealisasiDet
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl6.Location = New System.Drawing.Point(0, 403)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(853, 100)
+        Me.PanelControl6.Size = New System.Drawing.Size(888, 100)
         Me.PanelControl6.TabIndex = 5
         '
         'PanelControl7
@@ -641,7 +641,7 @@ Partial Class FormSNIRealisasiDet
         Me.PanelControl7.Controls.Add(Me.LabelControl8)
         Me.PanelControl7.Controls.Add(Me.TETotalQty)
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl7.Location = New System.Drawing.Point(520, 2)
+        Me.PanelControl7.Location = New System.Drawing.Point(555, 2)
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(331, 96)
         Me.PanelControl7.TabIndex = 6
@@ -715,7 +715,7 @@ Partial Class FormSNIRealisasiDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(853, 158)
+        Me.GroupControl1.Size = New System.Drawing.Size(888, 158)
         Me.GroupControl1.TabIndex = 3
         Me.GroupControl1.Text = "Artikel Dipilih"
         '
@@ -726,7 +726,7 @@ Partial Class FormSNIRealisasiDet
         Me.GCBudgetCop.MainView = Me.GVBudgetCop
         Me.GCBudgetCop.Name = "GCBudgetCop"
         Me.GCBudgetCop.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEBudget})
-        Me.GCBudgetCop.Size = New System.Drawing.Size(849, 136)
+        Me.GCBudgetCop.Size = New System.Drawing.Size(884, 136)
         Me.GCBudgetCop.TabIndex = 3
         Me.GCBudgetCop.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudgetCop})
         '
@@ -743,12 +743,18 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn30.Caption = "Id"
         Me.GridColumn30.FieldName = "id_sni_pps_budget"
         Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.AllowEdit = False
+        Me.GridColumn30.OptionsColumn.AllowFocus = False
+        Me.GridColumn30.OptionsColumn.ReadOnly = True
         '
         'GridColumn31
         '
         Me.GridColumn31.Caption = "Budget Description"
         Me.GridColumn31.FieldName = "budget_desc"
         Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.OptionsColumn.AllowEdit = False
+        Me.GridColumn31.OptionsColumn.AllowFocus = False
+        Me.GridColumn31.OptionsColumn.ReadOnly = True
         Me.GridColumn31.Visible = True
         Me.GridColumn31.VisibleIndex = 0
         Me.GridColumn31.Width = 388
@@ -764,6 +770,9 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn32.FieldName = "budget_value"
         Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        Me.GridColumn32.OptionsColumn.AllowFocus = False
+        Me.GridColumn32.OptionsColumn.ReadOnly = True
         Me.GridColumn32.Visible = True
         Me.GridColumn32.VisibleIndex = 1
         Me.GridColumn32.Width = 388
@@ -794,6 +803,9 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn34.FieldName = "sub_amount"
         Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.OptionsColumn.AllowEdit = False
+        Me.GridColumn34.OptionsColumn.AllowFocus = False
+        Me.GridColumn34.OptionsColumn.ReadOnly = True
         Me.GridColumn34.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_amount", "{0:N2}")})
         Me.GridColumn34.UnboundExpression = "[budget_value] * [budget_qty]"
         Me.GridColumn34.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
@@ -816,7 +828,7 @@ Partial Class FormSNIRealisasiDet
         Me.XTPRealisasi.Controls.Add(Me.PanelControl1)
         Me.XTPRealisasi.Controls.Add(Me.PanelControl3)
         Me.XTPRealisasi.Name = "XTPRealisasi"
-        Me.XTPRealisasi.Size = New System.Drawing.Size(853, 503)
+        Me.XTPRealisasi.Size = New System.Drawing.Size(888, 503)
         Me.XTPRealisasi.Text = "Realisasi Budget"
         '
         'GroupControl4
@@ -825,7 +837,7 @@ Partial Class FormSNIRealisasiDet
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl4.Location = New System.Drawing.Point(0, 194)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(853, 162)
+        Me.GroupControl4.Size = New System.Drawing.Size(888, 162)
         Me.GroupControl4.TabIndex = 8
         Me.GroupControl4.Text = "Budget Item"
         '
@@ -836,7 +848,7 @@ Partial Class FormSNIRealisasiDet
         Me.GCRealisasi.MainView = Me.GVRealisasi
         Me.GCRealisasi.Name = "GCRealisasi"
         Me.GCRealisasi.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemTextEdit4, Me.RepositoryItemTextEdit3})
-        Me.GCRealisasi.Size = New System.Drawing.Size(849, 140)
+        Me.GCRealisasi.Size = New System.Drawing.Size(884, 140)
         Me.GCRealisasi.TabIndex = 2
         Me.GCRealisasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRealisasi})
         '
@@ -946,14 +958,14 @@ Partial Class FormSNIRealisasiDet
         Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl8.Location = New System.Drawing.Point(0, 152)
         Me.PanelControl8.Name = "PanelControl8"
-        Me.PanelControl8.Size = New System.Drawing.Size(853, 42)
+        Me.PanelControl8.Size = New System.Drawing.Size(888, 42)
         Me.PanelControl8.TabIndex = 9
         '
         'BDel
         '
         Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDel.Image = CType(resources.GetObject("BDel.Image"), System.Drawing.Image)
-        Me.BDel.Location = New System.Drawing.Point(570, 2)
+        Me.BDel.Location = New System.Drawing.Point(605, 2)
         Me.BDel.Name = "BDel"
         Me.BDel.Size = New System.Drawing.Size(142, 38)
         Me.BDel.TabIndex = 4
@@ -963,7 +975,7 @@ Partial Class FormSNIRealisasiDet
         '
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
-        Me.BAdd.Location = New System.Drawing.Point(712, 2)
+        Me.BAdd.Location = New System.Drawing.Point(747, 2)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(139, 38)
         Me.BAdd.TabIndex = 5
@@ -975,7 +987,7 @@ Partial Class FormSNIRealisasiDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(853, 152)
+        Me.GroupControl3.Size = New System.Drawing.Size(888, 152)
         Me.GroupControl3.TabIndex = 7
         Me.GroupControl3.Text = "Artikel Sampel SNI"
         '
@@ -986,7 +998,7 @@ Partial Class FormSNIRealisasiDet
         Me.GCSampling.MainView = Me.GVSampling
         Me.GCSampling.Name = "GCSampling"
         Me.GCSampling.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GCSampling.Size = New System.Drawing.Size(849, 130)
+        Me.GCSampling.Size = New System.Drawing.Size(884, 130)
         Me.GCSampling.TabIndex = 3
         Me.GCSampling.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSampling})
         '
@@ -1052,7 +1064,7 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn8.Caption = "Qty Serah Terima"
         Me.GridColumn8.DisplayFormat.FormatString = "N0"
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "qty_rec"
+        Me.GridColumn8.FieldName = "rec_qty"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 3
@@ -1067,11 +1079,11 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn2.Caption = "Qty Return"
         Me.GridColumn2.DisplayFormat.FormatString = "N0"
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "qty_ret"
+        Me.GridColumn2.FieldName = "ret_qty"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 4
-        Me.GridColumn2.Width = 61
+        Me.GridColumn2.Width = 76
         '
         'GridColumn27
         '
@@ -1084,11 +1096,11 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn27.FieldName = "qty_realisasi"
         Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.UnboundExpression = "[qty_rec] - [qty_ret]"
+        Me.GridColumn27.UnboundExpression = "[rec_qty] - [ret_qty]"
         Me.GridColumn27.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 5
-        Me.GridColumn27.Width = 67
+        Me.GridColumn27.Width = 79
         '
         'GridColumn6
         '
@@ -1106,7 +1118,7 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
-        Me.GridColumn6.Width = 213
+        Me.GridColumn6.Width = 186
         '
         'RepositoryItemCheckEdit2
         '
@@ -1121,7 +1133,7 @@ Partial Class FormSNIRealisasiDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 356)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(853, 100)
+        Me.PanelControl1.Size = New System.Drawing.Size(888, 100)
         Me.PanelControl1.TabIndex = 6
         '
         'PanelControl5
@@ -1134,7 +1146,7 @@ Partial Class FormSNIRealisasiDet
         Me.PanelControl5.Controls.Add(Me.LabelControl10)
         Me.PanelControl5.Controls.Add(Me.TextEdit3)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl5.Location = New System.Drawing.Point(520, 2)
+        Me.PanelControl5.Location = New System.Drawing.Point(555, 2)
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(331, 96)
         Me.PanelControl5.TabIndex = 6
@@ -1212,14 +1224,14 @@ Partial Class FormSNIRealisasiDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl3.Location = New System.Drawing.Point(0, 456)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(853, 47)
+        Me.PanelControl3.Size = New System.Drawing.Size(888, 47)
         Me.PanelControl3.TabIndex = 0
         '
         'BPrint
         '
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
-        Me.BPrint.Location = New System.Drawing.Point(468, 2)
+        Me.BPrint.Location = New System.Drawing.Point(503, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(94, 43)
         Me.BPrint.TabIndex = 8
@@ -1239,7 +1251,7 @@ Partial Class FormSNIRealisasiDet
         '
         Me.Battach.Dock = System.Windows.Forms.DockStyle.Right
         Me.Battach.Image = CType(resources.GetObject("Battach.Image"), System.Drawing.Image)
-        Me.Battach.Location = New System.Drawing.Point(562, 2)
+        Me.Battach.Location = New System.Drawing.Point(597, 2)
         Me.Battach.Name = "Battach"
         Me.Battach.Size = New System.Drawing.Size(101, 43)
         Me.Battach.TabIndex = 6
@@ -1249,7 +1261,7 @@ Partial Class FormSNIRealisasiDet
         '
         Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BClose.Image = CType(resources.GetObject("BClose.Image"), System.Drawing.Image)
-        Me.BClose.Location = New System.Drawing.Point(663, 2)
+        Me.BClose.Location = New System.Drawing.Point(698, 2)
         Me.BClose.Name = "BClose"
         Me.BClose.Size = New System.Drawing.Size(92, 43)
         Me.BClose.TabIndex = 5
@@ -1259,7 +1271,7 @@ Partial Class FormSNIRealisasiDet
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
-        Me.BSave.Location = New System.Drawing.Point(755, 2)
+        Me.BSave.Location = New System.Drawing.Point(790, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(96, 43)
         Me.BSave.TabIndex = 4
@@ -1269,7 +1281,7 @@ Partial Class FormSNIRealisasiDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(859, 646)
+        Me.ClientSize = New System.Drawing.Size(894, 646)
         Me.Controls.Add(Me.XTCKidList)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl2)

@@ -27,6 +27,7 @@ WHERE pps.`number`='" & addSlashes(TEBudgetNumber.Text) & "'"
             load_budget_det()
             '
             usage_artikel()
+            load_budget_realisasi()
             '
             calculate_budget()
             '
@@ -162,12 +163,69 @@ AND NOT ISNULL(b.id_design) AND NOT ISNULL(b.id_product)"
 
     Function get_bom_design_price(ByVal id_design As String)
         Dim cop As Decimal = 0.00
+        'cop total
+        Dim cop_total As Decimal = 0.00
         Dim q As String = "CALL view_cop_design_po('" & id_design & "')"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
-
+            For i = 0 To dt.Rows.Count - 1
+                cop_total += dt.Rows(0)("total_price")
+            Next
         End If
+
+        'qty total
+        Dim qty_total As Integer = 1
+        q = "SELECT SUM(prod_order_qty) AS qty_order
+FROM tb_prod_order_det pod
+INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design AND po.id_report_status=6
+WHERE pdd.id_design='" & id_design & "'"
+        Dim dt_total As DataTable = execute_query(q, -1, True, "", "", "", "")
+        '
+        If dt_total.Rows.Count > 0 Then
+            qty_total = dt_total.Rows(0)("qty_order")
+        End If
+
+        cop = Math.Round(cop_total / qty_total, 2)
 
         Return cop
     End Function
+
+    Sub load_budget_realisasi()
+        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc,budget_value,budget_qty
+FROM `tb_sni_pps_budget` b
+WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCRealisasi.DataSource = dt
+        GVRealisasi.BestFitColumns()
+    End Sub
+
+    Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
+        If GVRealisasi.RowCount > 0 Then
+            GVRealisasi.DeleteSelectedRows()
+        End If
+    End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        Cursor = Cursors.WaitCursor
+        GVRealisasi.AddNewRow()
+        GVRealisasi.FocusedRowHandle = GVRealisasi.RowCount - 1
+        '
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "is_check", "no")
+        '
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "budget_qty", 0)
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "budget_value", 0)
+        '
+        GVRealisasi.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub calculate_realisasi()
+        GVBudget.RefreshData()
+        GVBudgetCop.RefreshData()
+
+        TETotalBudget.EditValue = GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue
+        TETotalQty.EditValue = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
+        TESNICop.EditValue = Math.Round((GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue, 2)
+    End Sub
 End Class
