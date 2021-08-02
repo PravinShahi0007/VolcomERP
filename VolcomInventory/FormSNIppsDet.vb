@@ -68,8 +68,8 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                     BSave.Visible = False
                 Else
                     BPrint.Visible = False
-                    PCAddBudget.Visible = False
-                    PCAddDel.Visible = False
+                    PCAddBudget.Visible = True
+                    PCAddDel.Visible = True
                     BSave.Visible = True
                 End If
                 '
@@ -390,6 +390,12 @@ HAVING NOT ISNULL(err)"
                 GVBudget.DeleteRow(i)
             Next
             GVBudget.ActiveFilterString = ""
+        End If
+    End Sub
+
+    Private Sub GVProposed_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVProposed.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 

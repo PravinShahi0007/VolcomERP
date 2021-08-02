@@ -695,6 +695,9 @@
         ElseIf report_mark_type = "321" Then
             'receiving SNI
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sni_rec WHERE id_sni_rec = '{0}'", id_report)
+        ElseIf report_mark_type = "326" Then
+            'delay payment
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_delay_payment WHERE id_delay_payment = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -10008,6 +10011,24 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void
             'update status
             query = String.Format("UPDATE tb_sni_rec SET id_report_status='{0}' WHERE id_sni_rec ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "326" Then
+            'delay payment
+            If id_status_reportx = "2" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_delay_payment SET id_report_status='{0}' WHERE id_delay_payment ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            Try
+                FormDelayPaymentInv.SLEStoreGroup.EditValue = FormDelayPaymentInvDet.id_comp_group
+                FormDelayPaymentInv.viewData()
+                FormDelayPaymentInv.GVData.FocusedRowHandle = find_row(FormDelayPaymentInv.GVData, "id_delay_payment", id_report)
+                FormDelayPaymentInvDet.actionLoad()
+            Catch ex As Exception
+            End Try
         End If
 
         'adding lead time

@@ -19,10 +19,22 @@ Partial Class FormAREvaluation
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAREvaluation))
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelNav = New DevExpress.XtraEditors.PanelControl()
+        Me.DDBDelayPayment = New DevExpress.XtraEditors.DropDownButton()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BBICreateNew = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBIHistory = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewData = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseEval = New DevExpress.XtraEditors.ButtonEdit()
@@ -47,6 +59,17 @@ Partial Class FormAREvaluation
         Me.GridColumnid_propose_delay_payment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmemo_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoLinkMemo = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.GridColumnstore_acc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstorereport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumninv_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumninv_due_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndue_days_age_origin = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnage = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstart_period = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnend_period = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_rec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_due = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnjum_hold = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPNewEval = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCCreateNewEval = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPInvoiceList = New DevExpress.XtraTab.XtraTabPage()
@@ -96,6 +119,8 @@ Partial Class FormAREvaluation
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
@@ -128,6 +153,7 @@ Partial Class FormAREvaluation
         '
         'PanelNav
         '
+        Me.PanelNav.Controls.Add(Me.DDBDelayPayment)
         Me.PanelNav.Controls.Add(Me.BtnLog)
         Me.PanelNav.Controls.Add(Me.BtnViewData)
         Me.PanelNav.Controls.Add(Me.BtnBrowseEval)
@@ -137,6 +163,74 @@ Partial Class FormAREvaluation
         Me.PanelNav.Name = "PanelNav"
         Me.PanelNav.Size = New System.Drawing.Size(798, 50)
         Me.PanelNav.TabIndex = 0
+        '
+        'DDBDelayPayment
+        '
+        Me.DDBDelayPayment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.DDBDelayPayment.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show
+        Me.DDBDelayPayment.DropDownControl = Me.PopupMenu1
+        Me.DDBDelayPayment.Image = CType(resources.GetObject("DDBDelayPayment.Image"), System.Drawing.Image)
+        Me.DDBDelayPayment.Location = New System.Drawing.Point(619, 2)
+        Me.DDBDelayPayment.Name = "DDBDelayPayment"
+        Me.DDBDelayPayment.Size = New System.Drawing.Size(177, 46)
+        Me.DDBDelayPayment.TabIndex = 4
+        Me.DDBDelayPayment.Text = "Penundaan Pembayaran"
+        '
+        'PopupMenu1
+        '
+        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBICreateNew), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIHistory)})
+        Me.PopupMenu1.Manager = Me.BarManager1
+        Me.PopupMenu1.Name = "PopupMenu1"
+        '
+        'BBICreateNew
+        '
+        Me.BBICreateNew.Caption = "Create New"
+        Me.BBICreateNew.Id = 0
+        Me.BBICreateNew.Name = "BBICreateNew"
+        '
+        'BBIHistory
+        '
+        Me.BBIHistory.Caption = "History"
+        Me.BBIHistory.Id = 1
+        Me.BBIHistory.Name = "BBIHistory"
+        '
+        'BarManager1
+        '
+        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager1.Form = Me
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBICreateNew, Me.BBIHistory})
+        Me.BarManager1.MaxItemId = 2
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(798, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 464)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(798, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 464)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(798, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 464)
         '
         'BtnLog
         '
@@ -189,7 +283,7 @@ Partial Class FormAREvaluation
         Me.XTPInvoiceDetail.Controls.Add(Me.GCInvoiceDetail)
         Me.XTPInvoiceDetail.Name = "XTPInvoiceDetail"
         Me.XTPInvoiceDetail.Size = New System.Drawing.Size(792, 386)
-        Me.XTPInvoiceDetail.Text = "History (Invoice)"
+        Me.XTPInvoiceDetail.Text = "Detail Invoice"
         '
         'GCInvoiceDetail
         '
@@ -204,13 +298,26 @@ Partial Class FormAREvaluation
         '
         'GVInvoiceDetail
         '
-        Me.GVInvoiceDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group, Me.GridColumngroup_store, Me.GridColumnid_inv, Me.GridColumninv_number, Me.GridColumninv_rmt, Me.GridColumninv_amount, Me.GridColumnpaid_status, Me.GridColumnrelease_date, Me.GridColumnote, Me.GridColumnactive_status, Me.GridColumnbtn_bbm, Me.GridColumnid_propose_delay_payment, Me.GridColumnmemo_number})
+        Me.GVInvoiceDetail.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GVInvoiceDetail.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVInvoiceDetail.ColumnPanelRowHeight = 50
+        Me.GVInvoiceDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group, Me.GridColumngroup_store, Me.GridColumnid_inv, Me.GridColumninv_number, Me.GridColumninv_rmt, Me.GridColumninv_amount, Me.GridColumnpaid_status, Me.GridColumnrelease_date, Me.GridColumnote, Me.GridColumnactive_status, Me.GridColumnbtn_bbm, Me.GridColumnid_propose_delay_payment, Me.GridColumnmemo_number, Me.GridColumnstore_acc, Me.GridColumnstorereport, Me.GridColumninv_date, Me.GridColumninv_due_date, Me.GridColumndue_days_age_origin, Me.GridColumnage, Me.GridColumnstart_period, Me.GridColumnend_period, Me.GridColumntotal_rec, Me.GridColumntotal_due, Me.GridColumnjum_hold})
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue1.Expression = "Iif([jum_hold] > 1, True, False)"
+        GridFormatRule1.Rule = FormatConditionRuleValue1
+        Me.GVInvoiceDetail.FormatRules.Add(GridFormatRule1)
         Me.GVInvoiceDetail.GridControl = Me.GCInvoiceDetail
         Me.GVInvoiceDetail.GroupCount = 1
-        Me.GVInvoiceDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "inv_amount", Me.GridColumninv_amount, "{0:N2}")})
+        Me.GVInvoiceDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "inv_amount", Me.GridColumninv_amount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", Me.GridColumntotal_rec, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_due", Me.GridColumntotal_due, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_due", Me.GridColumntotal_due, "{0:N2}")})
+        Me.GVInvoiceDetail.LevelIndent = 0
         Me.GVInvoiceDetail.Name = "GVInvoiceDetail"
         Me.GVInvoiceDetail.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVInvoiceDetail.OptionsView.ColumnAutoWidth = False
+        Me.GVInvoiceDetail.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVInvoiceDetail.OptionsView.ShowFooter = True
         Me.GVInvoiceDetail.OptionsView.ShowGroupedColumns = True
         Me.GVInvoiceDetail.OptionsView.ShowGroupPanel = False
@@ -225,6 +332,8 @@ Partial Class FormAREvaluation
         '
         'GridColumngroup_store
         '
+        Me.GridColumngroup_store.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumngroup_store.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumngroup_store.Caption = "Group Store"
         Me.GridColumngroup_store.FieldName = "group_store"
         Me.GridColumngroup_store.Name = "GridColumngroup_store"
@@ -241,13 +350,15 @@ Partial Class FormAREvaluation
         '
         'GridColumninv_number
         '
-        Me.GridColumninv_number.Caption = "Invoice No"
+        Me.GridColumninv_number.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumninv_number.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumninv_number.Caption = "Invoice No."
         Me.GridColumninv_number.ColumnEdit = Me.RepoLinkInvoice
         Me.GridColumninv_number.FieldName = "inv_number"
         Me.GridColumninv_number.Name = "GridColumninv_number"
         Me.GridColumninv_number.OptionsColumn.ReadOnly = True
         Me.GridColumninv_number.Visible = True
-        Me.GridColumninv_number.VisibleIndex = 1
+        Me.GridColumninv_number.VisibleIndex = 3
         '
         'RepoLinkInvoice
         '
@@ -263,7 +374,7 @@ Partial Class FormAREvaluation
         '
         'GridColumninv_amount
         '
-        Me.GridColumninv_amount.Caption = "Invoice Amount"
+        Me.GridColumninv_amount.Caption = "Inv. Amo."
         Me.GridColumninv_amount.DisplayFormat.FormatString = "N2"
         Me.GridColumninv_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumninv_amount.FieldName = "inv_amount"
@@ -271,16 +382,20 @@ Partial Class FormAREvaluation
         Me.GridColumninv_amount.OptionsColumn.AllowEdit = False
         Me.GridColumninv_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "inv_amount", "{0:N2}")})
         Me.GridColumninv_amount.Visible = True
-        Me.GridColumninv_amount.VisibleIndex = 2
+        Me.GridColumninv_amount.VisibleIndex = 9
+        Me.GridColumninv_amount.Width = 70
         '
         'GridColumnpaid_status
         '
+        Me.GridColumnpaid_status.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnpaid_status.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnpaid_status.Caption = "Paid Status"
         Me.GridColumnpaid_status.FieldName = "paid_status"
         Me.GridColumnpaid_status.Name = "GridColumnpaid_status"
         Me.GridColumnpaid_status.OptionsColumn.AllowEdit = False
         Me.GridColumnpaid_status.Visible = True
-        Me.GridColumnpaid_status.VisibleIndex = 3
+        Me.GridColumnpaid_status.VisibleIndex = 12
+        Me.GridColumnpaid_status.Width = 44
         '
         'GridColumnrelease_date
         '
@@ -290,17 +405,17 @@ Partial Class FormAREvaluation
         Me.GridColumnrelease_date.FieldName = "release_date"
         Me.GridColumnrelease_date.Name = "GridColumnrelease_date"
         Me.GridColumnrelease_date.OptionsColumn.AllowEdit = False
-        Me.GridColumnrelease_date.Visible = True
-        Me.GridColumnrelease_date.VisibleIndex = 6
         '
         'GridColumnote
         '
+        Me.GridColumnote.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnote.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnote.Caption = "Note"
         Me.GridColumnote.FieldName = "note"
         Me.GridColumnote.Name = "GridColumnote"
         Me.GridColumnote.OptionsColumn.AllowEdit = False
         Me.GridColumnote.Visible = True
-        Me.GridColumnote.VisibleIndex = 7
+        Me.GridColumnote.VisibleIndex = 14
         '
         'GridColumnactive_status
         '
@@ -308,17 +423,15 @@ Partial Class FormAREvaluation
         Me.GridColumnactive_status.FieldName = "active_status"
         Me.GridColumnactive_status.Name = "GridColumnactive_status"
         Me.GridColumnactive_status.OptionsColumn.AllowEdit = False
-        Me.GridColumnactive_status.Visible = True
-        Me.GridColumnactive_status.VisibleIndex = 8
         '
         'GridColumnbtn_bbm
         '
-        Me.GridColumnbtn_bbm.Caption = "Payment"
+        Me.GridColumnbtn_bbm.Caption = "BBM"
         Me.GridColumnbtn_bbm.ColumnEdit = Me.RepoBtnBBM
         Me.GridColumnbtn_bbm.FieldName = "btn_bbm"
         Me.GridColumnbtn_bbm.Name = "GridColumnbtn_bbm"
         Me.GridColumnbtn_bbm.Visible = True
-        Me.GridColumnbtn_bbm.VisibleIndex = 4
+        Me.GridColumnbtn_bbm.VisibleIndex = 15
         '
         'RepoBtnBBM
         '
@@ -348,8 +461,6 @@ Partial Class FormAREvaluation
         Me.GridColumnmemo_number.FieldName = "memo_number"
         Me.GridColumnmemo_number.Name = "GridColumnmemo_number"
         Me.GridColumnmemo_number.OptionsColumn.ReadOnly = True
-        Me.GridColumnmemo_number.Visible = True
-        Me.GridColumnmemo_number.VisibleIndex = 5
         Me.GridColumnmemo_number.Width = 131
         '
         'RepoLinkMemo
@@ -357,12 +468,123 @@ Partial Class FormAREvaluation
         Me.RepoLinkMemo.AutoHeight = False
         Me.RepoLinkMemo.Name = "RepoLinkMemo"
         '
+        'GridColumnstore_acc
+        '
+        Me.GridColumnstore_acc.Caption = "Store Acc."
+        Me.GridColumnstore_acc.FieldName = "store_acc"
+        Me.GridColumnstore_acc.Name = "GridColumnstore_acc"
+        Me.GridColumnstore_acc.Visible = True
+        Me.GridColumnstore_acc.VisibleIndex = 1
+        '
+        'GridColumnstorereport
+        '
+        Me.GridColumnstorereport.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnstorereport.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnstorereport.Caption = "Store"
+        Me.GridColumnstorereport.FieldName = "store"
+        Me.GridColumnstorereport.Name = "GridColumnstorereport"
+        Me.GridColumnstorereport.Visible = True
+        Me.GridColumnstorereport.VisibleIndex = 2
+        '
+        'GridColumninv_date
+        '
+        Me.GridColumninv_date.Caption = "Created Date"
+        Me.GridColumninv_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumninv_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumninv_date.FieldName = "inv_date"
+        Me.GridColumninv_date.Name = "GridColumninv_date"
+        Me.GridColumninv_date.Visible = True
+        Me.GridColumninv_date.VisibleIndex = 4
+        '
+        'GridColumninv_due_date
+        '
+        Me.GridColumninv_due_date.Caption = "Due Date"
+        Me.GridColumninv_due_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumninv_due_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumninv_due_date.FieldName = "inv_due_date"
+        Me.GridColumninv_due_date.Name = "GridColumninv_due_date"
+        Me.GridColumninv_due_date.Visible = True
+        Me.GridColumninv_due_date.VisibleIndex = 7
+        Me.GridColumninv_due_date.Width = 52
+        '
+        'GridColumndue_days_age_origin
+        '
+        Me.GridColumndue_days_age_origin.Caption = "Age Origin"
+        Me.GridColumndue_days_age_origin.FieldName = "due_days"
+        Me.GridColumndue_days_age_origin.Name = "GridColumndue_days_age_origin"
+        '
+        'GridColumnage
+        '
+        Me.GridColumnage.Caption = "Age (Day)"
+        Me.GridColumnage.FieldName = "age"
+        Me.GridColumnage.Name = "GridColumnage"
+        Me.GridColumnage.UnboundExpression = "Iif([due_days] = 0, [due_days], Iif([due_days] < 0, [due_days], Concat('+', [due_" &
+    "days])))"
+        Me.GridColumnage.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnage.Visible = True
+        Me.GridColumnage.VisibleIndex = 8
+        Me.GridColumnage.Width = 39
+        '
+        'GridColumnstart_period
+        '
+        Me.GridColumnstart_period.Caption = "Start Period"
+        Me.GridColumnstart_period.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnstart_period.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnstart_period.FieldName = "start_period"
+        Me.GridColumnstart_period.Name = "GridColumnstart_period"
+        Me.GridColumnstart_period.Visible = True
+        Me.GridColumnstart_period.VisibleIndex = 5
+        '
+        'GridColumnend_period
+        '
+        Me.GridColumnend_period.Caption = "End Period"
+        Me.GridColumnend_period.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnend_period.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnend_period.FieldName = "end_period"
+        Me.GridColumnend_period.Name = "GridColumnend_period"
+        Me.GridColumnend_period.Visible = True
+        Me.GridColumnend_period.VisibleIndex = 6
+        '
+        'GridColumntotal_rec
+        '
+        Me.GridColumntotal_rec.Caption = "Paid Amo."
+        Me.GridColumntotal_rec.DisplayFormat.FormatString = "N2"
+        Me.GridColumntotal_rec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_rec.FieldName = "total_rec"
+        Me.GridColumntotal_rec.Name = "GridColumntotal_rec"
+        Me.GridColumntotal_rec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", "{0:N2}")})
+        Me.GridColumntotal_rec.Visible = True
+        Me.GridColumntotal_rec.VisibleIndex = 10
+        '
+        'GridColumntotal_due
+        '
+        Me.GridColumntotal_due.Caption = "Diff. Amo."
+        Me.GridColumntotal_due.DisplayFormat.FormatString = "N2"
+        Me.GridColumntotal_due.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_due.FieldName = "total_due"
+        Me.GridColumntotal_due.Name = "GridColumntotal_due"
+        Me.GridColumntotal_due.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_due", "{0:N2}")})
+        Me.GridColumntotal_due.Visible = True
+        Me.GridColumntotal_due.VisibleIndex = 11
+        '
+        'GridColumnjum_hold
+        '
+        Me.GridColumnjum_hold.Caption = "Total Hold Status"
+        Me.GridColumnjum_hold.DisplayFormat.FormatString = "N0"
+        Me.GridColumnjum_hold.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnjum_hold.FieldName = "jum_hold"
+        Me.GridColumnjum_hold.Name = "GridColumnjum_hold"
+        Me.GridColumnjum_hold.Visible = True
+        Me.GridColumnjum_hold.VisibleIndex = 13
+        Me.GridColumnjum_hold.Width = 56
+        '
         'XTPNewEval
         '
         Me.XTPNewEval.Controls.Add(Me.XTCCreateNewEval)
         Me.XTPNewEval.Controls.Add(Me.PanelControl1)
         Me.XTPNewEval.Controls.Add(Me.PanelControlCreateEval)
         Me.XTPNewEval.Name = "XTPNewEval"
+        Me.XTPNewEval.PageVisible = False
         Me.XTPNewEval.Size = New System.Drawing.Size(792, 386)
         Me.XTPNewEval.Text = "Create New Evaluation"
         '
@@ -747,8 +969,9 @@ Partial Class FormAREvaluation
         '
         Me.XTPGroupStore.Controls.Add(Me.GCGroup)
         Me.XTPGroupStore.Name = "XTPGroupStore"
+        Me.XTPGroupStore.PageVisible = False
         Me.XTPGroupStore.Size = New System.Drawing.Size(792, 386)
-        Me.XTPGroupStore.Text = "History (Group Store)"
+        Me.XTPGroupStore.Text = "Summary"
         '
         'GCGroup
         '
@@ -848,6 +1071,10 @@ Partial Class FormAREvaluation
         Me.ClientSize = New System.Drawing.Size(798, 464)
         Me.Controls.Add(Me.XTCData)
         Me.Controls.Add(Me.PanelNav)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.MinimizeBox = False
         Me.Name = "FormAREvaluation"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -855,6 +1082,8 @@ Partial Class FormAREvaluation
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNav.ResumeLayout(False)
         Me.PanelNav.PerformLayout()
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BtnBrowseEval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
@@ -884,6 +1113,7 @@ Partial Class FormAREvaluation
         CType(Me.GVGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -959,4 +1189,24 @@ Partial Class FormAREvaluation
     Friend WithEvents GridColumnho As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnemail_ho As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_store_company_active As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstore_acc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstorereport As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumninv_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumninv_due_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndue_days_age_origin As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnage As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstart_period As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnend_period As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_rec As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_due As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnjum_hold As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DDBDelayPayment As DevExpress.XtraEditors.DropDownButton
+    Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BBICreateNew As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBIHistory As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
 End Class

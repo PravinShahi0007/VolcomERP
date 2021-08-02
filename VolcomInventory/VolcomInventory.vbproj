@@ -254,6 +254,7 @@
     <Compile Include="ClassBudgetProdDemand.vb" />
     <Compile Include="ClassBudgetRevPropose.vb" />
     <Compile Include="ClassDelayPayment.vb" />
+    <Compile Include="ClassDelayPaymentNew.vb" />
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
@@ -1178,6 +1179,18 @@
       <DependentUpon>FormDelayPaymentDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDelayPaymentDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelayPaymentInv.Designer.vb">
+      <DependentUpon>FormDelayPaymentInv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPaymentInv.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelayPaymentInvDet.Designer.vb">
+      <DependentUpon>FormDelayPaymentInvDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelayPaymentInvDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDelayPaymentNew.Designer.vb">
@@ -8223,6 +8236,12 @@
     <Compile Include="ReportAdjustmentOG.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportAREval.Designer.vb">
+      <DependentUpon>ReportAREval.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAREval.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportAttnSum.Designer.vb">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
     </Compile>
@@ -8362,6 +8381,12 @@
       <DependentUpon>ReportDelayPayment.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportDelayPayment.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportDelayPaymentInv.Designer.vb">
+      <DependentUpon>ReportDelayPaymentInv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDelayPaymentInv.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportDelManifest.Designer.vb">
@@ -10413,6 +10438,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDelayPaymentDet.resx">
       <DependentUpon>FormDelayPaymentDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPaymentInv.resx">
+      <DependentUpon>FormDelayPaymentInv.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelayPaymentInvDet.resx">
+      <DependentUpon>FormDelayPaymentInvDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDelayPaymentNew.resx">
       <DependentUpon>FormDelayPaymentNew.vb</DependentUpon>
@@ -14364,6 +14395,9 @@
     <EmbeddedResource Include="ReportAdjustmentOG.resx">
       <DependentUpon>ReportAdjustmentOG.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportAREval.resx">
+      <DependentUpon>ReportAREval.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportAttnSum.resx">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
     </EmbeddedResource>
@@ -14435,6 +14469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDelayPayment.resx">
       <DependentUpon>ReportDelayPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDelayPaymentInv.resx">
+      <DependentUpon>ReportDelayPaymentInv.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDelManifest.resx">
       <DependentUpon>ReportDelManifest.vb</DependentUpon>

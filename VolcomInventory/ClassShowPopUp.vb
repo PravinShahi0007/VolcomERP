@@ -465,6 +465,9 @@
         ElseIf report_mark_type = "323" Then
             'stocktake partial
             FormStockTakePartialDet.Close()
+        ElseIf report_mark_type = "326" Then
+            'delay payment
+            FormDelayPaymentInvDet.Close()
         End If
     End Sub
     Sub show()
@@ -1515,6 +1518,12 @@ GROUP BY rec.`id_prod_order`"
         ElseIf report_mark_type = "323" Then
             FormStockTakePartialDet.id = id_report
             FormStockTakePartialDet.ShowDialog()
+        ElseIf report_mark_type = "326" Then
+            'delay payment
+            FormDelayPaymentInvDet.action = "upd"
+            FormDelayPaymentInvDet.is_view = "1"
+            FormDelayPaymentInvDet.id = id_report
+            FormDelayPaymentInvDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2712,6 +2721,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_st_store_partial"
             field_number = "number"
             field_date = "created_at"
+        ElseIf report_mark_type = "326" Then
+            'delay payment
+            table_name = "tb_delay_payment"
+            field_id = "id_delay_payment"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

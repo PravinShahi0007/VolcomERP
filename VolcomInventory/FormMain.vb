@@ -1938,6 +1938,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormStockTakePartial" Then
             FormStockTakePartialDet.id = "-1"
             FormStockTakePartialDet.ShowDialog()
+        ElseIf formName = "FormSNIRealisasi" Then
+            FormSNIRealisasiDet.id = "-1"
+            FormSNIRealisasiDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3230,6 +3233,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormStockTakePartial" Then
                 FormStockTakePartialDet.id = FormStockTakePartial.GVData.GetFocusedRowCellValue("id_st_store_partial").ToString
                 FormStockTakePartialDet.ShowDialog()
+            ElseIf formName = "FormSNIRealisasi" Then
+                FormSNIRealisasiDet.id = FormSNIRealisasi.GVRealisasi.GetFocusedRowCellValue("id_sni_realisasi").ToString
+                FormSNIRealisasiDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8535,7 +8541,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     print_raw(FormAREvaluation.GCGroupStoreList, "")
                 End If
             ElseIf FormAREvaluation.XTCData.SelectedTabPageIndex = 1 Then
-                print_raw(FormAREvaluation.GCInvoiceDetail, "")
+                FormAREvaluation.printDetail()
             ElseIf FormAREvaluation.XTCData.SelectedTabPageIndex = 2 Then
                 print_raw(FormAREvaluation.GCGroup, "")
             End If
@@ -8683,6 +8689,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormSNIppsBudget.GCList, "SNI Porposal List ")
         ElseIf formName = "FormSNISerahTerima" Then
             print(FormSNISerahTerima.GCList, "List SNI Serah Terima ")
+        ElseIf formName = "FormSNIRealisasi" Then
+            print(FormSNIRealisasi.GCRealisasi, "List SNI Realisasi ")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9692,6 +9700,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormStockTakePartial" Then
             FormStockTakePartial.Close()
             FormStockTakePartial.Dispose()
+        ElseIf formName = "FormSNIRealisasi" Then
+            FormSNIRealisasi.Close()
+            FormSNIRealisasi.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10722,6 +10733,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNISerahTerima.load_list()
         ElseIf formName = "FormStockTakePartial" Then
             FormStockTakePartial.form_load()
+        ElseIf formName = "FormSNIRealisasi" Then
+            FormSNIRealisasi.load_list()
         End If
     End Sub
     'Switch
