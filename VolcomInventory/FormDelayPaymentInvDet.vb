@@ -212,78 +212,78 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        'Cursor = Cursors.WaitCursor
-        'If Not check_allow_print(id_report_status, rmt, id) Then
-        '    warningCustom("Can't print, please complete all approval on system first")
-        'Else
-        '    Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-        '    gv = GVData
-        '    ReportDelayPayment.dt = GCData.DataSource
-        '    ReportDelayPayment.id = id
-        '    If id_report_status <> "6" Then
-        '        ReportDelayPayment.is_pre = "1"
-        '    Else
-        '        ReportDelayPayment.is_pre = "-1"
-        '    End If
-        '    ReportDelayPayment.id_report_status = LEReportStatus.EditValue.ToString
+        Cursor = Cursors.WaitCursor
+        If Not check_allow_print(id_report_status, rmt, id) Then
+            warningCustom("Can't print, please complete all approval on system first")
+        Else
+            Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            gv = GVData
+            ReportDelayPaymentInv.dt = GCData.DataSource
+            ReportDelayPaymentInv.id = id
+            If id_report_status <> "6" Then
+                ReportDelayPaymentInv.is_pre = "1"
+            Else
+                ReportDelayPaymentInv.is_pre = "-1"
+            End If
+            ReportDelayPaymentInv.id_report_status = LEReportStatus.EditValue.ToString
 
-        '    ReportDelayPayment.rmt = rmt
-        '    Dim Report As New ReportDelayPayment()
+            ReportDelayPaymentInv.rmt = rmt
+            Dim Report As New ReportDelayPaymentInv()
 
-        '    '... 
-        '    ' creating And saving the view's layout to a new memory stream 
-        '    Dim str As System.IO.Stream
-        '    str = New System.IO.MemoryStream()
-        '    gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
-        '    Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+            '... 
+            ' creating And saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        '    'style
-        '    Report.GVData.OptionsPrint.UsePrintStyles = True
-        '    Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-        '    Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
-        '    Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+            'style
+            Report.GVData.OptionsPrint.UsePrintStyles = True
+            Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
 
-        '    Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
-        '    Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
-        '    Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 7, FontStyle.Bold)
+            Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+            Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 7, FontStyle.Bold)
 
-        '    Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
-        '    Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
-        '    Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 7, FontStyle.Bold)
+            Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 7, FontStyle.Bold)
 
-        '    Report.GVData.AppearancePrint.HeaderPanel.BorderColor = Color.Black
-        '    Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-        '    Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-        '    Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Bold)
+            Report.GVData.AppearancePrint.HeaderPanel.BorderColor = Color.Black
+            Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Bold)
 
-        '    Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
-        '    Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
-        '    Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7.3, FontStyle.Bold)
+            Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+            Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7.3, FontStyle.Bold)
 
-        '    Report.GVData.AppearancePrint.Row.ForeColor = Color.Black
-        '    Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 7.3, FontStyle.Regular)
+            Report.GVData.AppearancePrint.Row.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 7.3, FontStyle.Regular)
 
-        '    Report.GVData.AppearancePrint.Lines.BackColor = Color.Black
+            Report.GVData.AppearancePrint.Lines.BackColor = Color.Black
 
-        '    Report.GVData.OptionsPrint.ExpandAllDetails = True
-        '    Report.GVData.OptionsPrint.UsePrintStyles = True
-        '    Report.GVData.OptionsPrint.PrintDetails = True
-        '    Report.GVData.OptionsPrint.PrintFooter = True
+            Report.GVData.OptionsPrint.ExpandAllDetails = True
+            Report.GVData.OptionsPrint.UsePrintStyles = True
+            Report.GVData.OptionsPrint.PrintDetails = True
+            Report.GVData.OptionsPrint.PrintFooter = True
 
-        '    'data
-        '    Report.LabelNumber.Text = "NO. " + TxtNumber.Text
-        '    Report.LabelDate.Text = DECreated.Text.ToUpper
-        '    Report.LNote.Text = MENote.Text
-        '    Report.LabelStoreGroup.Text = TxtStoreGroup.Text.ToUpper
-        '    Report.LabelDueDate.Text = DEDueDate.Text.ToUpper
+            'data
+            Report.LabelNumber.Text = "NO. " + TxtNumber.Text
+            Report.LabelDate.Text = DECreated.Text.ToUpper
+            Report.LNote.Text = MENote.Text
+            Report.LabelStoreGroup.Text = SLEStoreGroup.Text.ToUpper
+            Report.LabelDueDate.Text = DEDueDate.Text.ToUpper
 
-        '    ' Show the report's preview. 
-        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        '    Tool.ShowPreviewDialog()
-        'End If
-        'Cursor = Cursors.Default
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
