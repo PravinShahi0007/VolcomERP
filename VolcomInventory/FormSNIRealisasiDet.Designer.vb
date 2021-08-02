@@ -110,10 +110,10 @@ Partial Class FormSNIRealisasiDet
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.TETotalRealisasi = New DevExpress.XtraEditors.TextEdit()
+        Me.TECostRealisasi = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEQtyRealisasi = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
@@ -175,9 +175,9 @@ Partial Class FormSNIRealisasiDet
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TETotalRealisasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECostRealisasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEQtyRealisasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
@@ -869,7 +869,7 @@ Partial Class FormSNIRealisasiDet
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Budget Description"
-        Me.GridColumn9.FieldName = "budget_desc"
+        Me.GridColumn9.FieldName = "desc"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 0
@@ -885,7 +885,7 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn10.ColumnEdit = Me.RepositoryItemTextEdit3
         Me.GridColumn10.DisplayFormat.FormatString = "N2"
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "budget_value"
+        Me.GridColumn10.FieldName = "value"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 1
@@ -909,7 +909,7 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn13.ColumnEdit = Me.RepositoryItemTextEdit4
         Me.GridColumn13.DisplayFormat.FormatString = "N0"
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn13.FieldName = "budget_qty"
+        Me.GridColumn13.FieldName = "qty"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 2
@@ -938,7 +938,7 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn26.OptionsColumn.AllowFocus = False
         Me.GridColumn26.OptionsColumn.ReadOnly = True
         Me.GridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_amount", "{0:N2}")})
-        Me.GridColumn26.UnboundExpression = "[budget_value] * [budget_qty]"
+        Me.GridColumn26.UnboundExpression = "[qty] * [value]"
         Me.GridColumn26.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 3
@@ -1015,12 +1015,18 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn1.Caption = "Id"
         Me.GridColumn1.FieldName = "id_sni_pps_budget"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.AllowFocus = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Budget Description"
         Me.GridColumn3.FieldName = "budget_desc"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.AllowFocus = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
         Me.GridColumn3.Width = 179
@@ -1036,6 +1042,9 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "budget_value"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.AllowFocus = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
         Me.GridColumn4.Width = 127
@@ -1051,6 +1060,9 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "budget_qty"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.AllowFocus = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
         Me.GridColumn5.Width = 90
@@ -1066,6 +1078,9 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn8.FieldName = "rec_qty"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.AllowFocus = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 3
         Me.GridColumn8.Width = 96
@@ -1096,6 +1111,9 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn27.FieldName = "qty_realisasi"
         Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.OptionsColumn.AllowEdit = False
+        Me.GridColumn27.OptionsColumn.AllowFocus = False
+        Me.GridColumn27.OptionsColumn.ReadOnly = True
         Me.GridColumn27.UnboundExpression = "[rec_qty] - [ret_qty]"
         Me.GridColumn27.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn27.Visible = True
@@ -1113,6 +1131,9 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "sub_amount"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.AllowFocus = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_amount", "{0:N2}")})
         Me.GridColumn6.UnboundExpression = "[budget_value] * [qty_realisasi]"
         Me.GridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
@@ -1141,10 +1162,10 @@ Partial Class FormSNIRealisasiDet
         Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl5.Controls.Add(Me.LabelControl5)
         Me.PanelControl5.Controls.Add(Me.LabelControl9)
-        Me.PanelControl5.Controls.Add(Me.TextEdit1)
-        Me.PanelControl5.Controls.Add(Me.TextEdit2)
+        Me.PanelControl5.Controls.Add(Me.TETotalRealisasi)
+        Me.PanelControl5.Controls.Add(Me.TECostRealisasi)
         Me.PanelControl5.Controls.Add(Me.LabelControl10)
-        Me.PanelControl5.Controls.Add(Me.TextEdit3)
+        Me.PanelControl5.Controls.Add(Me.TEQtyRealisasi)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl5.Location = New System.Drawing.Point(555, 2)
         Me.PanelControl5.Name = "PanelControl5"
@@ -1155,9 +1176,9 @@ Partial Class FormSNIRealisasiDet
         '
         Me.LabelControl5.Location = New System.Drawing.Point(15, 15)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(68, 13)
         Me.LabelControl5.TabIndex = 1
-        Me.LabelControl5.Text = "Total Budget"
+        Me.LabelControl5.Text = "Total Realisasi"
         '
         'LabelControl9
         '
@@ -1167,31 +1188,31 @@ Partial Class FormSNIRealisasiDet
         Me.LabelControl9.TabIndex = 5
         Me.LabelControl9.Text = "SNI Cost Per Pcs"
         '
-        'TextEdit1
+        'TETotalRealisasi
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(111, 12)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TextEdit1.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit1.Properties.Mask.EditMask = "N2"
-        Me.TextEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TextEdit1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(209, 20)
-        Me.TextEdit1.TabIndex = 0
+        Me.TETotalRealisasi.Location = New System.Drawing.Point(111, 12)
+        Me.TETotalRealisasi.Name = "TETotalRealisasi"
+        Me.TETotalRealisasi.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TETotalRealisasi.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TETotalRealisasi.Properties.Mask.EditMask = "N2"
+        Me.TETotalRealisasi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TETotalRealisasi.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TETotalRealisasi.Properties.ReadOnly = True
+        Me.TETotalRealisasi.Size = New System.Drawing.Size(209, 20)
+        Me.TETotalRealisasi.TabIndex = 0
         '
-        'TextEdit2
+        'TECostRealisasi
         '
-        Me.TextEdit2.Location = New System.Drawing.Point(111, 64)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TextEdit2.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit2.Properties.Mask.EditMask = "N2"
-        Me.TextEdit2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TextEdit2.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit2.Properties.ReadOnly = True
-        Me.TextEdit2.Size = New System.Drawing.Size(209, 20)
-        Me.TextEdit2.TabIndex = 4
+        Me.TECostRealisasi.Location = New System.Drawing.Point(111, 64)
+        Me.TECostRealisasi.Name = "TECostRealisasi"
+        Me.TECostRealisasi.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TECostRealisasi.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TECostRealisasi.Properties.Mask.EditMask = "N2"
+        Me.TECostRealisasi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TECostRealisasi.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TECostRealisasi.Properties.ReadOnly = True
+        Me.TECostRealisasi.Size = New System.Drawing.Size(209, 20)
+        Me.TECostRealisasi.TabIndex = 4
         '
         'LabelControl10
         '
@@ -1201,18 +1222,18 @@ Partial Class FormSNIRealisasiDet
         Me.LabelControl10.TabIndex = 2
         Me.LabelControl10.Text = "Qty Artikel"
         '
-        'TextEdit3
+        'TEQtyRealisasi
         '
-        Me.TextEdit3.Location = New System.Drawing.Point(111, 38)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TextEdit3.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit3.Properties.Mask.EditMask = "N2"
-        Me.TextEdit3.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TextEdit3.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit3.Properties.ReadOnly = True
-        Me.TextEdit3.Size = New System.Drawing.Size(209, 20)
-        Me.TextEdit3.TabIndex = 3
+        Me.TEQtyRealisasi.Location = New System.Drawing.Point(111, 38)
+        Me.TEQtyRealisasi.Name = "TEQtyRealisasi"
+        Me.TEQtyRealisasi.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEQtyRealisasi.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEQtyRealisasi.Properties.Mask.EditMask = "N2"
+        Me.TEQtyRealisasi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEQtyRealisasi.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEQtyRealisasi.Properties.ReadOnly = True
+        Me.TEQtyRealisasi.Size = New System.Drawing.Size(209, 20)
+        Me.TEQtyRealisasi.TabIndex = 3
         '
         'PanelControl3
         '
@@ -1350,9 +1371,9 @@ Partial Class FormSNIRealisasiDet
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         Me.PanelControl5.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TETotalRealisasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECostRealisasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEQtyRealisasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -1449,10 +1470,10 @@ Partial Class FormSNIRealisasiDet
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TETotalRealisasi As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECostRealisasi As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEQtyRealisasi As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
