@@ -21,6 +21,12 @@ Partial Class FormDelayPaymentInvDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDelayPaymentInvDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -47,8 +53,8 @@ Partial Class FormDelayPaymentInvDet
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnid_propose_delay_payment_det = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_propose_delay_payment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_delay_payment_det = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_delay_payment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_sales_pos = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_pos_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstore = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,14 +64,10 @@ Partial Class FormDelayPaymentInvDet
         Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnremark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLEStoreGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
+        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,8 +85,6 @@ Partial Class FormDelayPaymentInvDet
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -105,6 +105,54 @@ Partial Class FormDelayPaymentInvDet
         Me.GroupControlHead.Name = "GroupControlHead"
         Me.GroupControlHead.Size = New System.Drawing.Size(785, 158)
         Me.GroupControlHead.TabIndex = 18
+        '
+        'SLEStoreGroup
+        '
+        Me.SLEStoreGroup.Location = New System.Drawing.Point(109, 40)
+        Me.SLEStoreGroup.Name = "SLEStoreGroup"
+        Me.SLEStoreGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreGroup.Properties.ShowClearButton = False
+        Me.SLEStoreGroup.Properties.View = Me.GridView3
+        Me.SLEStoreGroup.Size = New System.Drawing.Size(367, 20)
+        Me.SLEStoreGroup.TabIndex = 8928
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group, Me.GridColumncomp_group, Me.GridColumndescription})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_comp_group
+        '
+        Me.GridColumnid_comp_group.Caption = "id_comp_group"
+        Me.GridColumnid_comp_group.FieldName = "id_comp_group"
+        Me.GridColumnid_comp_group.Name = "GridColumnid_comp_group"
+        '
+        'GridColumncomp_group
+        '
+        Me.GridColumncomp_group.Caption = "Group"
+        Me.GridColumncomp_group.FieldName = "comp_group"
+        Me.GridColumncomp_group.Name = "GridColumncomp_group"
+        Me.GridColumncomp_group.Visible = True
+        Me.GridColumncomp_group.VisibleIndex = 0
+        '
+        'GridColumndescription
+        '
+        Me.GridColumndescription.Caption = "Description"
+        Me.GridColumndescription.FieldName = "description"
+        Me.GridColumndescription.Name = "GridColumndescription"
+        Me.GridColumndescription.Visible = True
+        Me.GridColumndescription.VisibleIndex = 1
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(31, 43)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl3.TabIndex = 8927
+        Me.LabelControl3.Text = "Store Group"
         '
         'BtnCreateNew
         '
@@ -386,7 +434,7 @@ Partial Class FormDelayPaymentInvDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_propose_delay_payment_det, Me.GridColumnid_propose_delay_payment, Me.GridColumnid_sales_pos, Me.GridColumnsales_pos_number, Me.GridColumnstore, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumnperiod, Me.GridColumnamount, Me.GridColumnremark, Me.GridColumnno})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_delay_payment_det, Me.GridColumnid_delay_payment, Me.GridColumnid_sales_pos, Me.GridColumnsales_pos_number, Me.GridColumnstore, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumnperiod, Me.GridColumnamount, Me.GridColumnremark, Me.GridColumnno})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnamount, "{0:N2}")})
         Me.GVData.Name = "GVData"
@@ -394,19 +442,19 @@ Partial Class FormDelayPaymentInvDet
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnid_propose_delay_payment_det
+        'GridColumnid_delay_payment_det
         '
-        Me.GridColumnid_propose_delay_payment_det.Caption = "id_propose_delay_payment_det"
-        Me.GridColumnid_propose_delay_payment_det.FieldName = "id_propose_delay_payment_det"
-        Me.GridColumnid_propose_delay_payment_det.Name = "GridColumnid_propose_delay_payment_det"
-        Me.GridColumnid_propose_delay_payment_det.OptionsColumn.AllowEdit = False
+        Me.GridColumnid_delay_payment_det.Caption = "id_delay_payment_det"
+        Me.GridColumnid_delay_payment_det.FieldName = "id_delay_payment_det"
+        Me.GridColumnid_delay_payment_det.Name = "GridColumnid_delay_payment_det"
+        Me.GridColumnid_delay_payment_det.OptionsColumn.AllowEdit = False
         '
-        'GridColumnid_propose_delay_payment
+        'GridColumnid_delay_payment
         '
-        Me.GridColumnid_propose_delay_payment.Caption = "id_propose_delay_payment"
-        Me.GridColumnid_propose_delay_payment.FieldName = "id_propose_delay_payment"
-        Me.GridColumnid_propose_delay_payment.Name = "GridColumnid_propose_delay_payment"
-        Me.GridColumnid_propose_delay_payment.OptionsColumn.AllowEdit = False
+        Me.GridColumnid_delay_payment.Caption = "id_delay_payment"
+        Me.GridColumnid_delay_payment.FieldName = "id_delay_payment"
+        Me.GridColumnid_delay_payment.Name = "GridColumnid_delay_payment"
+        Me.GridColumnid_delay_payment.OptionsColumn.AllowEdit = False
         '
         'GridColumnid_sales_pos
         '
@@ -493,53 +541,6 @@ Partial Class FormDelayPaymentInvDet
         Me.GridColumnno.Visible = True
         Me.GridColumnno.VisibleIndex = 0
         '
-        'SLEStoreGroup
-        '
-        Me.SLEStoreGroup.Location = New System.Drawing.Point(109, 40)
-        Me.SLEStoreGroup.Name = "SLEStoreGroup"
-        Me.SLEStoreGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEStoreGroup.Properties.View = Me.GridView3
-        Me.SLEStoreGroup.Size = New System.Drawing.Size(367, 20)
-        Me.SLEStoreGroup.TabIndex = 8928
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group, Me.GridColumncomp_group, Me.GridColumndescription})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnid_comp_group
-        '
-        Me.GridColumnid_comp_group.Caption = "id_comp_group"
-        Me.GridColumnid_comp_group.FieldName = "id_comp_group"
-        Me.GridColumnid_comp_group.Name = "GridColumnid_comp_group"
-        '
-        'GridColumncomp_group
-        '
-        Me.GridColumncomp_group.Caption = "Group"
-        Me.GridColumncomp_group.FieldName = "comp_group"
-        Me.GridColumncomp_group.Name = "GridColumncomp_group"
-        Me.GridColumncomp_group.Visible = True
-        Me.GridColumncomp_group.VisibleIndex = 0
-        '
-        'GridColumndescription
-        '
-        Me.GridColumndescription.Caption = "Description"
-        Me.GridColumndescription.FieldName = "description"
-        Me.GridColumndescription.Name = "GridColumndescription"
-        Me.GridColumndescription.Visible = True
-        Me.GridColumndescription.VisibleIndex = 1
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(31, 43)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(58, 13)
-        Me.LabelControl3.TabIndex = 8927
-        Me.LabelControl3.Text = "Store Group"
-        '
         'FormDelayPaymentInvDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -557,6 +558,8 @@ Partial Class FormDelayPaymentInvDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
+        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -575,8 +578,6 @@ Partial Class FormDelayPaymentInvDet
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -608,8 +609,8 @@ Partial Class FormDelayPaymentInvDet
     Friend WithEvents BtnCreateNew As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnid_propose_delay_payment_det As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnid_propose_delay_payment As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_delay_payment_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_delay_payment As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_sales_pos As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsales_pos_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnstore As DevExpress.XtraGrid.Columns.GridColumn

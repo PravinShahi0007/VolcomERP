@@ -48,10 +48,19 @@
     End Sub
 
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
-        FormMain.but_edit()
+        openDetail()
     End Sub
 
     Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
         GCData.DataSource = Nothing
+    End Sub
+
+    Sub openDetail()
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormDelayPaymentInvDet.id = GVData.GetFocusedRowCellValue("id_delay_payment").ToString
+            FormDelayPaymentInvDet.Show()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
