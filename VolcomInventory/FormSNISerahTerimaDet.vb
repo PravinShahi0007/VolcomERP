@@ -30,7 +30,7 @@ WHERE rec.id_sni_rec='" & id & "'"
                 DEProposeDate.EditValue = dt.Rows(0)("created_date").ToString
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 TENumber.Text = dt.Rows(0)("number").ToString
-                DEReffDate.EditValue = dt.Rows(0)("reff_date").ToString
+                DEReffDate.EditValue = dt.Rows(0)("reff_date")
                 '
                 is_submit = dt.Rows(0)("is_submit").ToString
                 id_pps = dt.Rows(0)("id_sni_pps").ToString
