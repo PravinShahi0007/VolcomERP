@@ -183,7 +183,7 @@ Partial Class FormABGRoyaltyZone
         'GridColumninvoice_date
         '
         Me.GridColumninvoice_date.Caption = "Invoice Date"
-        Me.GridColumninvoice_date.DisplayFormat.FormatString = "dd-MM-yyy"
+        Me.GridColumninvoice_date.DisplayFormat.FormatString = "dd/MM/yyy"
         Me.GridColumninvoice_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumninvoice_date.FieldName = "invoice_date"
         Me.GridColumninvoice_date.Name = "GridColumninvoice_date"
