@@ -90,7 +90,7 @@ WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Pars
 
         If dtc.Rows.Count > 0 Or Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") = "2021-07-31" Then
             'check dulu sudah input belum
-            qc = "SELECT * FROM tb_asset_dep_pps WHERE reff_date='" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND id_report_status!=5"
+            qc = "SELECT * FROM tb_asset_dep_pps WHERE reff_date='" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND id_report_status!=5 AND id_coa_tag='" & SLEUnit.EditValue.ToString & "'"
             Dim dtd As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
             If dtd.Rows.Count > 0 Then

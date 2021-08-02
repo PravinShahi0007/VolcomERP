@@ -221,11 +221,22 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
     End Sub
 
     Sub calculate_realisasi()
-        GVBudget.RefreshData()
-        GVBudgetCop.RefreshData()
+        GVSampling.RefreshData()
+        GVRealisasi.RefreshData()
 
-        TETotalBudget.EditValue = GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue
+        TETotalBudget.EditValue = GVRealisasi.Columns("sub_amount").SummaryItem.SummaryValue + GVSampling.Columns("sub_amount").SummaryItem.SummaryValue
         TETotalQty.EditValue = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
-        TESNICop.EditValue = Math.Round((GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue, 2)
+        TESNICop.EditValue = Math.Round((GVRealisasi.Columns("sub_amount").SummaryItem.SummaryValue + GVSampling.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue, 2)
+    End Sub
+
+    Private Sub GVRealisasi_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVRealisasi.CellValueChanged
+        If e.Column.FieldName = "sub_amount" Then
+            calculate_realisasi()
+        End If
+    End Sub
+    Private Sub GVSampling_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSampling.CellValueChanged
+        If e.Column.FieldName = "sub_amount" Then
+            calculate_realisasi()
+        End If
     End Sub
 End Class
