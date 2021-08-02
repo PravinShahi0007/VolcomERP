@@ -96,4 +96,34 @@
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Sub exportToCSV(ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Dim save As SaveFileDialog = New SaveFileDialog
+
+        save.Filter = "CSV File | *.csv"
+        save.ShowDialog()
+
+        If Not save.FileName = "" Then
+            Cursor = Cursors.WaitCursor
+            ' Customize export options 
+            CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+            Dim advOptions As DevExpress.XtraPrinting.CsvExportOptionsEx = New DevExpress.XtraPrinting.CsvExportOptionsEx()
+            advOptions.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Value
+            advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+            Try
+                gc_par.ExportToCsv(save.FileName, advOptions)
+                ' Open the created XLSX file with the default application. 
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
+
+            infoCustom("File saved.")
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnExportToCSV_Click(sender As Object, e As EventArgs) Handles BtnExportToCSV.Click
+        exportToCSV(GCData)
+    End Sub
 End Class

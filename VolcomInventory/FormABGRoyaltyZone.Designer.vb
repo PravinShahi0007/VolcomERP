@@ -21,6 +21,7 @@ Partial Class FormABGRoyaltyZone
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormABGRoyaltyZone))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToCSV = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEQuarter = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -69,6 +70,7 @@ Partial Class FormABGRoyaltyZone
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnExportToCSV)
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControl1.Controls.Add(Me.SLEQuarter)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
@@ -80,6 +82,15 @@ Partial Class FormABGRoyaltyZone
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(764, 51)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BtnExportToCSV
+        '
+        Me.BtnExportToCSV.Image = CType(resources.GetObject("BtnExportToCSV.Image"), System.Drawing.Image)
+        Me.BtnExportToCSV.Location = New System.Drawing.Point(502, 14)
+        Me.BtnExportToCSV.Name = "BtnExportToCSV"
+        Me.BtnExportToCSV.Size = New System.Drawing.Size(101, 23)
+        Me.BtnExportToCSV.TabIndex = 10
+        Me.BtnExportToCSV.Text = "Export to CSV"
         '
         'BtnExportToXLS
         '
@@ -489,4 +500,5 @@ Partial Class FormABGRoyaltyZone
     Friend WithEvents GridColumnexemption_reason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnfob As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncurrency As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnExportToCSV As DevExpress.XtraEditors.SimpleButton
 End Class
