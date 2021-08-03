@@ -1048,7 +1048,7 @@
 
         Dim dv As DataView = New DataView(data)
 
-        dv.RowFilter = "qty_beg > 0 OR qty_receive > 0 OR qty_mrs > 0 OR qty_retur > 0 OR qty_adj > 0 OR qty_ending > 0"
+        dv.RowFilter = "qty_beg <> 0 OR qty_receive > 0 OR qty_mrs > 0 OR qty_retur > 0 OR qty_adj > 0 OR qty_ending <> 0" 'ini berubah jadi <> 0 karena ada yang minus       
 
         GCStockReport.DataSource = dv.ToTable
 

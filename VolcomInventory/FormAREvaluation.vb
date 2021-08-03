@@ -9,7 +9,7 @@
         'get last evaluation
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT DATE_FORMAT(MAX(a.eval_date),'%Y-%m-%d %H:%i:%s') AS `last_eval_date`,
-        DATE_FORMAT(MAX(a.eval_date),'%d %M %Y %H:%i:%s') AS `last_eval_date_label`
+        DATE_FORMAT(MAX(a.eval_date),'%d %M %Y') AS `last_eval_date_label`
         FROM tb_ar_eval a "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         eval_date = data.Rows(0)("last_eval_date").ToString
@@ -23,7 +23,11 @@
 
     Private Sub BtnViewData_Click(sender As Object, e As EventArgs) Handles BtnViewData.Click
         If XTCData.SelectedTabPageIndex = 1 Then
-            viewInvoiceDetail()
+            If XTCEval.SelectedTabPageIndex = 0 Then
+                viewInvoiceDetail()
+            Else
+                viewSummary()
+            End If
         ElseIf XTCData.SelectedTabPageIndex = 2 Then
             viewCompGroup()
         End If
@@ -68,6 +72,34 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCInvoiceDetail.DataSource = data
         GVInvoiceDetail.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewSummary()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT cg.description AS `store_group`, IF(SUM(CASE WHEN e.is_paid=2 THEN 1 ELSE 0 END)>0,'Hold', 'Release') AS `status`,
+        SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) ) AS `inv_amount`,
+        SUM(IFNULL(pyd.`value`,0.00)) AS total_rec,
+        SUM(IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS `diff`
+        FROM tb_ar_eval e
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = e.id_comp_group
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = e.id_sales_pos
+        INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+        LEFT JOIN (
+          SELECT pyd.id_report, pyd.report_mark_type, 
+          COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+          SUM(pyd.value) AS  `value`
+          FROM tb_rec_payment_det pyd
+          INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+          WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183,292)
+          GROUP BY pyd.id_report, pyd.report_mark_type
+        ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
+        WHERE e.eval_date='" + eval_date + "'
+        GROUP BY e.id_comp_group
+        ORDER BY `status` ASC, description ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSummary.DataSource = data
+        GVSummary.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -435,7 +467,14 @@
 
     Sub printDetail()
         Cursor = Cursors.WaitCursor
-        ReportAREval.dt = GCInvoiceDetail.DataSource
+        Dim gv As DevExpress.XtraGrid.Views.Grid.GridView
+        If XTCEval.SelectedTabPageIndex = 0 Then
+            ReportAREval.dt = GCInvoiceDetail.DataSource
+            gv = GVInvoiceDetail
+        Else
+            ReportAREval.dt = GCSummary.DataSource
+            gv = GVSummary
+        End If
         ReportAREval.eval_date_label = BtnBrowseEval.Text
         Dim Report As New ReportAREval()
 
@@ -445,7 +484,7 @@
         ' creating And saving the view's layout to a new memory stream 
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
-        GVInvoiceDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
         Report.GVInvoiceDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)

@@ -31,10 +31,37 @@
     End Sub
 
     Sub load_list()
-
+        Dim q As String = "SELECT sr.id_sni_realisasi,sr.number,sr.created_date,pps.number AS pps_number,emp.employee_name,total_real.total AS tot_realisasi
+FROM tb_sni_realisasi sr
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=sr.id_report_status
+INNER JOIN tb_m_user usr ON usr.id_user=sr.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee =usr.id_employee
+INNER JOIN tb_sni_pps pps ON pps.id_sni_pps=sr.id_sni_pps
+INNER JOIN
+(
+	SELECT tot.id_sni_realisasi,SUM(tot.val) AS total
+	FROM
+	(
+		SELECT id_sni_realisasi,(qty*`value`) AS val
+		FROM `tb_sni_realisasi_budget`
+		GROUP BY id_sni_realisasi
+		UNION ALL
+		SELECT id_sni_realisasi,((rec_qty-ret_qty)*`bom_price`) AS val
+		FROM `tb_sni_realisasi_return`
+		GROUP BY id_sni_realisasi
+	)tot
+)total_real ON total_real.id_sni_realisasi=sr.id_sni_realisasi"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCRealisasi.DataSource = dt
+        GVRealisasi.BestFitColumns()
     End Sub
 
     Private Sub FormSNIRealisasi_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_list()
+    End Sub
 
+    Private Sub GVRealisasi_DoubleClick(sender As Object, e As EventArgs) Handles GVRealisasi.DoubleClick
+        FormSNIRealisasiDet.id = GVRealisasi.GetFocusedRowCellValue("id_sni_realisasi").ToString
+        FormSNIRealisasiDet.ShowDialog()
     End Sub
 End Class
