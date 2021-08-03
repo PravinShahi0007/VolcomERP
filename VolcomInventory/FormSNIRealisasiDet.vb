@@ -16,8 +16,13 @@
         '
         If id = "-1" Then
             'new
+            BMark.Visible = False
+            BPrint.Visible = False
         Else
             'edit
+            BMark.Visible = True
+            BPrint.Visible = True
+
             Dim q As String = ""
         End If
     End Sub
@@ -206,7 +211,7 @@ WHERE pdd.id_design='" & id_design & "'"
     End Function
 
     Sub load_budget_realisasi()
-        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc AS desc,budget_value AS `value`,budget_qty AS qty
+        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc AS `desc`,budget_value AS `value`,budget_qty AS qty
 FROM `tb_sni_pps_budget` b
 WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
