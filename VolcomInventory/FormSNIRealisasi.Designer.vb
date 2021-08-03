@@ -26,6 +26,7 @@ Partial Class FormSNIRealisasi
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCRealisasi, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRealisasi, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -42,7 +43,7 @@ Partial Class FormSNIRealisasi
         '
         'GVRealisasi
         '
-        Me.GVRealisasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVRealisasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVRealisasi.GridControl = Me.GCRealisasi
         Me.GVRealisasi.Name = "GVRealisasi"
         Me.GVRealisasi.OptionsView.ShowGroupPanel = False
@@ -85,6 +86,19 @@ Partial Class FormSNIRealisasi
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn6.Caption = "Realisasi Amount"
+        Me.GridColumn6.DisplayFormat.FormatString = "N2"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
+        '
         'FormSNIRealisasi
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -109,4 +123,5 @@ Partial Class FormSNIRealisasi
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

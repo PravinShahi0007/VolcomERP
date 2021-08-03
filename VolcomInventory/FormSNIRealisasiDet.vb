@@ -4,7 +4,27 @@
     Dim id_pps As String = "-1"
 
     Private Sub FormSNIRealisasiDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
+    End Sub
+
+    Sub load_form()
+        TETotalRealisasi.EditValue = 0.00
+        TEQtyRealisasi.EditValue = 0.00
+        TECostRealisasi.EditValue = 0.00
+        '
         TEBudgetNumber.Focus()
+        '
+        If id = "-1" Then
+            'new
+            BMark.Visible = False
+            BPrint.Visible = False
+        Else
+            'edit
+            BMark.Visible = True
+            BPrint.Visible = True
+
+            Dim q As String = ""
+        End If
     End Sub
 
     Private Sub BLoad_Click(sender As Object, e As EventArgs) Handles BLoad.Click
@@ -119,7 +139,6 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
                 Dim resizeImg As Image = Nothing
 
                 Try
-
                     Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(ImageDir, fileName, False)
                     img = Image.FromFile(filePath)
                     resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
@@ -192,7 +211,7 @@ WHERE pdd.id_design='" & id_design & "'"
     End Function
 
     Sub load_budget_realisasi()
-        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc,budget_value,budget_qty
+        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc AS `desc`,budget_value AS `value`,budget_qty AS qty
 FROM `tb_sni_pps_budget` b
 WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -213,8 +232,8 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
         '
         GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "is_check", "no")
         '
-        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "budget_qty", 0)
-        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "budget_value", 0)
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "budget_qty", 1)
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "budget_value", 1)
         '
         GVRealisasi.BestFitColumns()
         Cursor = Cursors.Default
@@ -224,19 +243,93 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
         GVSampling.RefreshData()
         GVRealisasi.RefreshData()
 
-        TETotalBudget.EditValue = GVRealisasi.Columns("sub_amount").SummaryItem.SummaryValue + GVSampling.Columns("sub_amount").SummaryItem.SummaryValue
-        TETotalQty.EditValue = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
-        TESNICop.EditValue = Math.Round((GVRealisasi.Columns("sub_amount").SummaryItem.SummaryValue + GVSampling.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue, 2)
+        TETotalRealisasi.EditValue = GVRealisasi.Columns("sub_amount").SummaryItem.SummaryValue + GVSampling.Columns("sub_amount").SummaryItem.SummaryValue
+        TEQtyRealisasi.EditValue = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
+        TECostRealisasi.EditValue = Math.Round((GVRealisasi.Columns("sub_amount").SummaryItem.SummaryValue + GVSampling.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue, 2)
     End Sub
 
     Private Sub GVRealisasi_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVRealisasi.CellValueChanged
-        If e.Column.FieldName = "sub_amount" Then
+        calculate_realisasi()
+    End Sub
+
+    Private Sub GVSampling_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSampling.CellValueChanged
+        calculate_realisasi()
+    End Sub
+
+    Private Sub XTCKidList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCKidList.SelectedPageChanged
+        If XTCKidList.SelectedTabPageIndex = 2 Then
             calculate_realisasi()
         End If
     End Sub
-    Private Sub GVSampling_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSampling.CellValueChanged
-        If e.Column.FieldName = "sub_amount" Then
-            calculate_realisasi()
+
+    Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
+        Dim is_ok_qty_ret As Boolean = True
+        Dim is_ok_value As Boolean = True
+
+        For i As Integer = 0 To GVSampling.RowCount - 1
+            If GVSampling.GetRowCellValue(i, "ret_qty") > GVSampling.GetRowCellValue(i, "rec_qty") Then
+                is_ok_qty_ret = False
+                Exit For
+            End If
+        Next
+
+        For i As Integer = 0 To GVRealisasi.RowCount - 1
+            If GVRealisasi.GetRowCellValue(i, "qty") <= 0 Or GVRealisasi.GetRowCellValue(i, "value") <= 0 Or GVRealisasi.GetRowCellValue(i, "desc") = "" Then
+                is_ok_value = False
+                Exit For
+            End If
+        Next
+
+        If Not is_ok_qty_ret Then
+            warningCustom("Qty return lebih besar dari qty serah terima")
+        ElseIf Not is_ok_value Then
+            warningCustom("Lengkapi input anda dengan benar")
+        Else
+            'save
+            If id = "-1" Then
+                'new
+                'head
+                Dim q As String = "INSERT INTO tb_sni_realisasi(`id_sni_pps`,`created_date`,`created_by`,`id_report_status`) VALUES('" & id_pps & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID(); "
+                id = execute_query(q, 0, True, "", "", "", "")
+                '
+                q = "CALL gen_number('" & id & "','327')"
+                execute_non_query(q, True, "", "", "", "")
+
+                'detail sampling
+                q = "INSERT INTO tb_sni_realisasi_return(`id_sni_realisasi`,`id_product`,`budget_qty`,`rec_qty`,`ret_qty`,`bom_price`) VALUES"
+                For i As Integer = 0 To GVSampling.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id & "','" & GVSampling.GetRowCellValue(i, "id_product").ToString & "','" & GVSampling.GetRowCellValue(i, "budget_qty").ToString & "','" & GVSampling.GetRowCellValue(i, "rec_qty").ToString & "','" & GVSampling.GetRowCellValue(i, "ret_qty").ToString & "','" & decimalSQL(Decimal.Parse(GVSampling.GetRowCellValue(i, "budget_value").ToString).ToString) & "')"
+                Next
+                '
+                execute_non_query(q, True, "", "", "", "")
+
+                'detil budget
+                q = "INSERT INTO tb_sni_realisasi_budget(`id_sni_realisasi`,`desc`,`qty`,`value`) VALUES"
+                For i As Integer = 0 To GVRealisasi.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id & "','" & addSlashes(GVRealisasi.GetRowCellValue(i, "desc").ToString) & "','" & GVRealisasi.GetRowCellValue(i, "qty").ToString & "','" & decimalSQL(Decimal.Parse(GVRealisasi.GetRowCellValue(i, "value").ToString).ToString) & "')"
+                Next
+                '
+                execute_non_query(q, True, "", "", "", "")
+                '
+                load_form()
+            Else
+                'edit
+
+            End If
         End If
+    End Sub
+
+    Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click
+        Close()
+    End Sub
+
+    Private Sub FormSNIRealisasiDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
