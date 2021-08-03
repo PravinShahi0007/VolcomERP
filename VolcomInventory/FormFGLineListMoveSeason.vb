@@ -56,12 +56,15 @@
         'cek jika drop
         If LEPlanStatus.EditValue.ToString = "2" Then
             Dim dsg_cek As String = ""
+            Dim dsg_in As String = ""
 
             For l As Integer = 0 To ((FormFGLineList.BGVLineList.RowCount - 1) - GetGroupRowCount(FormFGLineList.BGVLineList))
                 If l > 0 Then
                     dsg_cek += "OR "
+                    dsg_in += ","
                 End If
                 dsg_cek += "pdd.id_design = '" + FormFGLineList.BGVLineList.GetRowCellValue(l, "id_design").ToString + "' "
+                dsg_in += FormFGLineList.BGVLineList.GetRowCellValue(l, "id_design").ToString
             Next
 
 
@@ -77,6 +80,24 @@
             If dd.Rows.Count > 0 Then
                 warningCustom("Some designs already have PD, please 'drop' via PD 'Revision'. Click OK to see design detail.")
                 FormFGLineListPDExist.dt = dd
+                FormFGLineListPDExist.PanelControl1.Visible = False
+                FormFGLineListPDExist.ShowDialog()
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+
+            'cek design yg ud propose sni
+            Dim qcek As String = "SELECT  d.design_code AS `code`, d.design_display_name AS `name` 
+            FROM tb_sni_pps_list sl
+            INNER JOIN tb_sni_pps s ON s.id_sni_pps = sl.id_sni_pps
+            INNER JOIN tb_m_design d ON d.id_design = sl.id_design
+            WHERE s.id_report_status!=5 AND sl.id_design IN (" + dsg_in + ") "
+            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+            If dcek.Rows.Count > 0 Then
+                warningCustom("Some designs already propose for SNI. Click OK to see design detail.")
+                FormFGLineListPDExist.GVData.Columns("prod_demand_number").Visible = False
+                FormFGLineListPDExist.LabelControl1.Text = "Already propose for SNI"
+                FormFGLineListPDExist.dt = dcek
                 FormFGLineListPDExist.PanelControl1.Visible = False
                 FormFGLineListPDExist.ShowDialog()
                 Cursor = Cursors.Default
