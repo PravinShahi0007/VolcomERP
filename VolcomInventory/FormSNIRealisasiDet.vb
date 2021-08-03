@@ -361,7 +361,34 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
                 load_form()
             Else
                 'edit
+                Dim q As String = ""
+                'detail sampling
+                q = "DELETE FROM tb_sni_realisasi_return WHERE id_sni_realisasi='" & id & "'"
+                execute_non_query(q, True, "", "", "", "")
 
+                q = "INSERT INTO tb_sni_realisasi_return(`id_sni_realisasi`,`id_product`,`budget_qty`,`rec_qty`,`ret_qty`,`bom_price`) VALUES"
+                For i As Integer = 0 To GVSampling.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id & "','" & GVSampling.GetRowCellValue(i, "id_product").ToString & "','" & GVSampling.GetRowCellValue(i, "budget_qty").ToString & "','" & GVSampling.GetRowCellValue(i, "rec_qty").ToString & "','" & GVSampling.GetRowCellValue(i, "ret_qty").ToString & "','" & decimalSQL(Decimal.Parse(GVSampling.GetRowCellValue(i, "budget_value").ToString).ToString) & "')"
+                Next
+                '
+                execute_non_query(q, True, "", "", "", "")
+
+                'detil budget
+                q = "DELETE FROM tb_sni_realisasi_budget WHERE id_sni_realisasi='" & id & "'"
+                execute_non_query(q, True, "", "", "", "")
+
+                q = "INSERT INTO tb_sni_realisasi_budget(`id_sni_realisasi`,`desc`,`qty`,`value`) VALUES"
+                For i As Integer = 0 To GVRealisasi.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id & "','" & addSlashes(GVRealisasi.GetRowCellValue(i, "desc").ToString) & "','" & GVRealisasi.GetRowCellValue(i, "qty").ToString & "','" & decimalSQL(Decimal.Parse(GVRealisasi.GetRowCellValue(i, "value").ToString).ToString) & "')"
+                Next
+                '
+                execute_non_query(q, True, "", "", "", "")
             End If
         End If
     End Sub

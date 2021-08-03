@@ -698,6 +698,9 @@
         ElseIf report_mark_type = "326" Then
             'delay payment
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_delay_payment WHERE id_delay_payment = '{0}'", id_report)
+        ElseIf report_mark_type = "327" Then
+            'sni realisasi
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sni_realisasi WHERE id_sni_realisasi = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -10042,6 +10045,27 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void
                 FormDelayPaymentInvDet.actionLoad()
             Catch ex As Exception
             End Try
+        ElseIf report_mark_type = "327" Then
+            'sni realisasi
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'sni in return
+                '                query = String.Format("INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
+                'SELECT '{0}' AS id_prod_order_rec,pod.`id_prod_order_det`,recd.id_product,-recd.`qty`,rec.reff_date,rec.`created_by`,rec.id_sni_rec,'' AS `report_mark_type`,'' AS `note`
+                'FROM tb_sni_rec_det recd
+                'INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND recd.id_sni_rec_det='{1}'
+                'INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=recd.id_prod_order_det
+                'INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void=2 AND po.id_report_status=6", id_rec_new, dth.Rows(0)("id_sni_rec_det").ToString)
+                '                execute_non_query(query, True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_sni_realisasi SET id_report_status='{0}' WHERE id_sni_realisasi ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
         End If
 
         'adding lead time
