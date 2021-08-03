@@ -50,7 +50,27 @@
         Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
 
         For x = 0 To id_store.Count - 1
-            Dim query As String = "INSERT INTO tb_st_store_period (soh_date, id_store, is_active, schedule_start, schedule_end, is_all_design) VALUES ('" + Date.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + id_store(x) + ", 1, '" + DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + is_all_design + "); SELECT LAST_INSERT_ID();"
+            Dim query_sales_date As String = "
+                SELECT MAX(DATE_FORMAT(sp.sales_pos_end_period, '%Y-%m-%d')) AS sales_date
+                FROM tb_sales_pos AS sp
+                LEFT JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = IF(sp.id_memo_type = 8 OR sp.id_memo_type = 9, sp.id_comp_contact_bill, sp.id_store_contact_from)
+                WHERE id_report_status = 6 AND sales_pos_end_period <= '" + Date.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND cc.id_comp IN (SELECT id_comp FROM tb_m_comp WHERE id_store IN (" + id_store(x) + "))
+            "
+
+            Dim data_sales_date As String = ""
+
+            Try
+                data_sales_date = execute_query(query_sales_date, 0, True, "", "", "", "")
+            Catch ex As Exception
+            End Try
+
+            If data_sales_date = "" Then
+                data_sales_date = "NULL"
+            Else
+                data_sales_date = "'" + data_sales_date + "'"
+            End If
+
+            Dim query As String = "INSERT INTO tb_st_store_period (soh_date, id_store, is_active, schedule_start, schedule_end, sales_date, is_all_design) VALUES ('" + DateTime.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + id_store(x) + ", 1, '" + DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + data_sales_date + ", " + is_all_design + "); SELECT LAST_INSERT_ID();"
 
             Dim id_st_store_period As String = execute_query(query, 0, True, "", "", "", "")
 
@@ -91,10 +111,10 @@
             execute_non_query_long_time("CALL generate_product_store()", True, "", "", "", "")
 
             Dim j_m_store As String = tableToJson("tb_m_store", "SELECT id_store, store_name FROM tb_m_store WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")")
-            Dim j_st_store_period As String = tableToJson("tb_st_store_period", "SELECT id_st_store_period, soh_date, id_store, schedule_start, schedule_end, is_all_design, is_active FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "")
+            Dim j_st_store_period As String = tableToJson("tb_st_store_period", "SELECT id_st_store_period, soh_date, id_store, schedule_start, schedule_end, sales_date, is_all_design, is_active FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "")
             Dim j_m_comp_cat As String = tableToJson("tb_m_comp_cat", "SELECT id_comp_cat, comp_cat_name, description FROM tb_m_comp_cat WHERE id_comp_cat IN (SELECT id_comp_cat FROM tb_m_comp WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "))")
             Dim j_m_comp_group As String = tableToJson("tb_m_comp_group", "SELECT id_comp_group, comp_group, description FROM tb_m_comp_group WHERE id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + "))")
-            Dim j_m_comp As String = tableToJson("tb_m_comp", "SELECT id_comp, id_comp_cat, id_comp_group, id_store, id_store_type, comp_number, comp_name, comp_display_name FROM tb_m_comp WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")")
+            Dim j_m_comp As String = tableToJson("tb_m_comp", "SELECT id_comp, id_comp_cat, id_comp_group, id_store, id_store_type, comp_number, comp_name, comp_display_name, address_primary FROM tb_m_comp WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")")
             Dim j_m_employee As String = tableToJson("tb_m_employee", "SELECT id_employee, employee_name, employee_position FROM tb_m_employee WHERE id_employee IN (SELECT id_employee FROM tb_m_user WHERE id_user IN (SELECT value_id FROM tb_opt_include_st_store WHERE table_name = 'tb_m_user') OR id_user IN (SELECT id_user FROM tb_m_user WHERE id_store = (SELECT id_store FROM tb_st_store_period WHERE id_st_store_period = " + id_st_store_period + ")))")
             Dim j_m_permission As String = tableToJson("tb_m_permission", "SELECT id_permission, permission FROM tb_m_permission")
             Dim j_m_product_store As String = tableToJson("tb_m_product_store", "SELECT id_product, id_design, full_code, `code`, `name`, size, class, color, unit_cost, is_old_design FROM tb_m_product_store")
