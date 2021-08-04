@@ -98,6 +98,7 @@ Partial Class FormSNIRealisasiDet
         Me.GCSampling = New DevExpress.XtraGrid.GridControl()
         Me.GVSampling = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -1004,7 +1005,7 @@ Partial Class FormSNIRealisasiDet
         '
         'GVSampling
         '
-        Me.GVSampling.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumn2, Me.GridColumn27, Me.GridColumn6})
+        Me.GVSampling.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn35, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumn2, Me.GridColumn27, Me.GridColumn6})
         Me.GVSampling.GridControl = Me.GCSampling
         Me.GVSampling.Name = "GVSampling"
         Me.GVSampling.OptionsView.ShowFooter = True
@@ -1018,6 +1019,12 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.OptionsColumn.AllowFocus = False
         Me.GridColumn1.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "ID rec det"
+        Me.GridColumn35.FieldName = "id_prod_order_rec_det"
+        Me.GridColumn35.Name = "GridColumn35"
         '
         'GridColumn3
         '
@@ -1480,4 +1487,5 @@ Partial Class FormSNIRealisasiDet
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

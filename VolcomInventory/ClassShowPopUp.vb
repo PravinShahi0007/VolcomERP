@@ -1517,6 +1517,7 @@ GROUP BY rec.`id_prod_order`"
         ElseIf report_mark_type = "321" Then
             'sni rec
             FormSNISerahTerimaDet.id = id_report
+            FormSNISerahTerimaDet.is_view = "1"
             FormSNISerahTerimaDet.ShowDialog()
         ElseIf report_mark_type = "323" Then
             FormStockTakePartialDet.id = id_report
@@ -1530,6 +1531,7 @@ GROUP BY rec.`id_prod_order`"
         ElseIf report_mark_type = "327" Then
             'sni realisasi
             FormSNIRealisasiDet.id = id_report
+            FormSNIRealisasiDet.is_view = "1"
             FormSNIRealisasiDet.ShowDialog()
         Else
             'MsgBox(id_report)

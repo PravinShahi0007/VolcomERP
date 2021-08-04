@@ -2,6 +2,8 @@
     Public id As String = "-1"
     '
     Dim id_pps As String = "-1"
+    Dim is_submit As Boolean = "2"
+    Public is_view As String = "-1"
 
     Private Sub FormSNIRealisasiDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
@@ -23,13 +25,13 @@
             BMark.Visible = True
             BPrint.Visible = True
 
-            Dim q As String = "SELECT sr.id_sni_realisasi,sr.number,sr.created_date,pps.number AS pps_number,emp.employee_name,sr.id_sni_pps
+            Dim q As String = "SELECT sr.id_sni_realisasi,sr.number,sr.created_date,pps.number AS pps_number,emp.employee_name,sr.id_sni_pps,sr.is_submit
 FROM tb_sni_realisasi sr
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=sr.id_report_status
 INNER JOIN tb_m_user usr ON usr.id_user=sr.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee =usr.id_employee
 INNER JOIN tb_sni_pps pps ON pps.id_sni_pps=sr.id_sni_pps
-WHERE sr.id_sni_realisasi='" & id & "'"
+WHERE sr.id_sni_realisasi='" & id & "' "
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 TENumber.Text = dt.Rows(0)("number").ToString
@@ -38,6 +40,14 @@ WHERE sr.id_sni_realisasi='" & id & "'"
                 TEBudgetNumber.Text = dt.Rows(0)("pps_number").ToString
                 '
                 id_pps = dt.Rows(0)("id_sni_pps").ToString
+                '
+                is_submit = dt.Rows(0)("is_submit").ToString
+                '
+                If is_submit = "1" Then
+                    BMark.Text = "Mark"
+                Else
+                    BMark.Text = "Submit"
+                End If
                 '
                 load_budget()
                 BLoad.Visible = False
@@ -194,6 +204,7 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
             e.Value = Images(fileName)
         End If
     End Sub
+
     Private Sub GVProposed_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVProposed.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
@@ -389,6 +400,8 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
                 Next
                 '
                 execute_non_query(q, True, "", "", "", "")
+
+                infoCustom("Form updated")
             End If
         End If
     End Sub
@@ -399,5 +412,34 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
 
     Private Sub FormSNIRealisasiDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        If is_submit = "2" Then
+            'submit
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.Yes Then
+                Dim q As String = "UPDATE tb_sni_realisasi SET is_submit='1' WHERE id_sni_realisasi='" & id & "'"
+                execute_non_query(q, True, "", "", "", "")
+                '
+                submit_who_prepared("327", id, id_user)
+                '
+                load_form()
+            End If
+        Else
+            'mark
+            Cursor = Cursors.WaitCursor
+
+            FormReportMark.is_view = is_view
+            FormReportMark.report_mark_type = "327"
+            FormReportMark.id_report = id
+
+            FormReportMark.ShowDialog()
+
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
