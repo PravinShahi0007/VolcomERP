@@ -91,7 +91,7 @@ Partial Class FormSNIRealisasiDet
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
@@ -165,8 +165,8 @@ Partial Class FormSNIRealisasiDet
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl8.SuspendLayout()
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddDel.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GCSampling, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -824,7 +824,7 @@ Partial Class FormSNIRealisasiDet
         'XTPRealisasi
         '
         Me.XTPRealisasi.Controls.Add(Me.GroupControl4)
-        Me.XTPRealisasi.Controls.Add(Me.PanelControl8)
+        Me.XTPRealisasi.Controls.Add(Me.PCAddDel)
         Me.XTPRealisasi.Controls.Add(Me.GroupControl3)
         Me.XTPRealisasi.Controls.Add(Me.PanelControl1)
         Me.XTPRealisasi.Controls.Add(Me.PanelControl3)
@@ -952,15 +952,15 @@ Partial Class FormSNIRealisasiDet
         Me.RepositoryItemCheckEdit3.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit3.ValueUnchecked = "no"
         '
-        'PanelControl8
+        'PCAddDel
         '
-        Me.PanelControl8.Controls.Add(Me.BDel)
-        Me.PanelControl8.Controls.Add(Me.BAdd)
-        Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl8.Location = New System.Drawing.Point(0, 152)
-        Me.PanelControl8.Name = "PanelControl8"
-        Me.PanelControl8.Size = New System.Drawing.Size(888, 42)
-        Me.PanelControl8.TabIndex = 9
+        Me.PCAddDel.Controls.Add(Me.BDel)
+        Me.PCAddDel.Controls.Add(Me.BAdd)
+        Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCAddDel.Location = New System.Drawing.Point(0, 152)
+        Me.PCAddDel.Name = "PCAddDel"
+        Me.PCAddDel.Size = New System.Drawing.Size(888, 42)
+        Me.PCAddDel.TabIndex = 9
         '
         'BDel
         '
@@ -1366,8 +1366,8 @@ Partial Class FormSNIRealisasiDet
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl8.ResumeLayout(False)
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddDel.ResumeLayout(False)
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.GCSampling, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1481,7 +1481,7 @@ Partial Class FormSNIRealisasiDet
     Friend WithEvents TECostRealisasi As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEQtyRealisasi As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCAddDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn

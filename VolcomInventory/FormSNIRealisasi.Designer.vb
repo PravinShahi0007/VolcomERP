@@ -46,6 +46,8 @@ Partial Class FormSNIRealisasi
         Me.GVRealisasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVRealisasi.GridControl = Me.GCRealisasi
         Me.GVRealisasi.Name = "GVRealisasi"
+        Me.GVRealisasi.OptionsBehavior.Editable = False
+        Me.GVRealisasi.OptionsBehavior.ReadOnly = True
         Me.GVRealisasi.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -81,7 +83,7 @@ Partial Class FormSNIRealisasi
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Created By"
-        Me.GridColumn5.FieldName = "created_by"
+        Me.GridColumn5.FieldName = "employee_name"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
@@ -95,6 +97,7 @@ Partial Class FormSNIRealisasi
         Me.GridColumn6.Caption = "Realisasi Amount"
         Me.GridColumn6.DisplayFormat.FormatString = "N2"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "tot_realisasi"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
