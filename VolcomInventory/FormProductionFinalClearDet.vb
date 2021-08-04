@@ -65,26 +65,54 @@ Public Class FormProductionFinalClearDet
 
         Cursor = Cursors.WaitCursor
         If action = "ins" Then
-            Try
-                'initiation datatable jika blm ada
-                dt.Columns.Add("id_product")
-                dt.Columns.Add("id_prod_order_det")
-                dt.Columns.Add("product_code")
-                dt.Columns.Add("product_counting_code")
-                dt.Columns.Add("product_full_code")
-                dt.Columns.Add("is_old_design")
-            Catch ex As Exception
-            End Try
+            'check international
+            Dim is_block_int As String = "2"
+            is_block_int = get_opt_prod_field("is_block_qcr_int")
 
-            BMark.Enabled = False
-            BtnPrint.Enabled = False
-            BtnPrePrinting.Enabled = False
-            BtnAttachment.Enabled = False
-            DEForm.Text = view_date(0)
-            TxtCodeCompFrom.Focus()
+            Dim is_int_po As Boolean = False
 
-            If id_prod_order_rec <> "-1" Then
-                Dim query As String = "SELECT po.id_prod_order, po.prod_order_number,rec.prod_order_rec_number, po.prod_order_date, 
+            Dim qc As String = "SELECT po.id_po_type,co.`id_country`
+FROM tb_prod_order_rec rec
+INNER JOIN tb_prod_order po ON po.id_prod_order=rec.id_prod_order
+INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
+INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
+INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+INNER JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city`
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` 
+WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
+            Dim dt As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                If dt.Rows(0)("id_po_type").ToString = "2" Or Not dt.Rows(0)("id_country").ToString = "5" Then
+                    is_int_po = True
+                End If
+            End If
+
+            If is_block_int = "1" And is_int_po Then
+                warningCustom("QC Report International tidak dapat dikerjakan untuk sementara waktu")
+            Else
+                Try
+                    'initiation datatable jika blm ada
+                    dt.Columns.Add("id_product")
+                    dt.Columns.Add("id_prod_order_det")
+                    dt.Columns.Add("product_code")
+                    dt.Columns.Add("product_counting_code")
+                    dt.Columns.Add("product_full_code")
+                    dt.Columns.Add("is_old_design")
+                Catch ex As Exception
+                End Try
+
+                BMark.Enabled = False
+                BtnPrint.Enabled = False
+                BtnPrePrinting.Enabled = False
+                BtnAttachment.Enabled = False
+                DEForm.Text = view_date(0)
+                TxtCodeCompFrom.Focus()
+
+                If id_prod_order_rec <> "-1" Then
+                    Dim query As String = "SELECT po.id_prod_order, po.prod_order_number,rec.prod_order_rec_number, po.prod_order_date, 
                 comp.comp_number AS `vendor_number`, comp.comp_name AS `vendor_name`, 
                 d.id_design, d.design_code, d.design_display_name, ss.season, del.delivery, po.id_report_status,
                 cfr.id_comp AS `id_comp_from`,cfr.comp_number as `comp_number_from`, cfr.comp_name AS `comp_name_from`, po.is_use_qc_report, rec.id_pl_category
@@ -100,40 +128,41 @@ Public Class FormProductionFinalClearDet
                 INNER JOIN tb_season ss ON ss.id_season = del.id_season
                 INNER JOIN tb_m_comp cfr ON cfr.id_comp = 74
                 WHERE rec.id_prod_order_rec='" + id_prod_order_rec + "' "
-                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                is_use_qc_report = data.Rows(0)("is_use_qc_report").ToString
-                id_design = data.Rows(0)("id_design").ToString
-                id_comp_from = data.Rows(0)("id_comp_from").ToString
-                TxtCodeCompFrom.Text = data.Rows(0)("comp_number_from").ToString
-                TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
-                TxtOrder.Text = data.Rows(0)("prod_order_number").ToString
-                TERec.Text = data.Rows(0)("prod_order_rec_number").ToString
-                TxtSeason.Text = data.Rows(0)("season").ToString
-                TxtDel.Text = data.Rows(0)("delivery").ToString
-                TxtVendorCode.Text = data.Rows(0)("vendor_number").ToString
-                TxtVendorName.Text = data.Rows(0)("vendor_name").ToString
-                TxtStyleCode.Text = data.Rows(0)("design_code").ToString
-                TxtStyle.Text = data.Rows(0)("design_display_name").ToString
-                LEPLCategory.EditValue = data.Rows(0)("id_pl_category").ToString
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    is_use_qc_report = data.Rows(0)("is_use_qc_report").ToString
+                    id_design = data.Rows(0)("id_design").ToString
+                    id_comp_from = data.Rows(0)("id_comp_from").ToString
+                    TxtCodeCompFrom.Text = data.Rows(0)("comp_number_from").ToString
+                    TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
+                    TxtOrder.Text = data.Rows(0)("prod_order_number").ToString
+                    TERec.Text = data.Rows(0)("prod_order_rec_number").ToString
+                    TxtSeason.Text = data.Rows(0)("season").ToString
+                    TxtDel.Text = data.Rows(0)("delivery").ToString
+                    TxtVendorCode.Text = data.Rows(0)("vendor_number").ToString
+                    TxtVendorName.Text = data.Rows(0)("vendor_name").ToString
+                    TxtStyleCode.Text = data.Rows(0)("design_code").ToString
+                    TxtStyle.Text = data.Rows(0)("design_display_name").ToString
+                    LEPLCategory.EditValue = data.Rows(0)("id_pl_category").ToString
 
-                SLERecType.EditValue = data.Rows(0)("id_pl_category").ToString
+                    SLERecType.EditValue = data.Rows(0)("id_pl_category").ToString
 
-                viewDetail()
-                view_barcode_list()
-                pre_viewImages("2", PEView, id_design, False)
-                BtnBrowseFrom.Enabled = False
-                BtnBrowseTo.Enabled = False
-                BtnBrowsePO.Enabled = False
-                GroupControlListBarcode.Enabled = True
+                    viewDetail()
+                    view_barcode_list()
+                    pre_viewImages("2", PEView, id_design, False)
+                    BtnBrowseFrom.Enabled = False
+                    BtnBrowseTo.Enabled = False
+                    BtnBrowsePO.Enabled = False
+                    GroupControlListBarcode.Enabled = True
 
-                'kalo gk pake qc report ketik qty
-                If is_use_qc_report = "2" Then
-                    PanelNavBarcode.Visible = False
-                    getLimitQty()
-                    GridColumnQtySum.OptionsColumn.AllowEdit = True
+                    'kalo gk pake qc report ketik qty
+                    If is_use_qc_report = "2" Then
+                        PanelNavBarcode.Visible = False
+                        getLimitQty()
+                        GridColumnQtySum.OptionsColumn.AllowEdit = True
+                    End If
+                    '
+                    BtnInfoSrs.Enabled = True
                 End If
-                '
-                BtnInfoSrs.Enabled = True
             End If
         ElseIf action = "upd" Then
             GroupControlItemList.Enabled = True
