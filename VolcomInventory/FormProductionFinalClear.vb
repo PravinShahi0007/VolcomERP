@@ -212,7 +212,7 @@
         INNER JOIN tb_season ss ON ss.id_season = del.id_season
         WHERE po.id_report_status=6 AND po.is_closing_rec=2
         " + cond + "
-        ORDER BY po.id_prod_order ASC "
+        ORDER BY po.id_prod_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProd.DataSource = data
         GVProd.BestFitColumns()

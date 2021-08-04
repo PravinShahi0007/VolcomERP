@@ -36,7 +36,7 @@
 
         Dim query As String = "
             (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0)) AS diff, '' AS note, IFNULL(t.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name)) AS comp_name, t.is_auto, 'no' AS is_select, s.id_product,
-            IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.design_price_normal, s.design_price) AS `unit_price`
+            IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.design_price_normal, s.design_price) AS `unit_price`, n.note AS store_note
             FROM tb_st_store_soh AS s
             LEFT JOIN (
                 SELECT s.id_product, SUM(s.qty) AS qty, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
@@ -47,12 +47,13 @@
             ) AS t ON s.id_product = t.id_product
             LEFT JOIN tb_m_product_store AS p ON s.id_product = p.id_product
             LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
+            LEFT JOIN tb_st_store_note AS n ON s.id_product = n.id_product AND n.id_st_store_period = " + id_period + "
             WHERE s.id_st_store_period = " + id_period + ")
         
             UNION ALL
 
             (SELECT 0 AS `no`, p.full_code, p.name, p.size, 0 AS qty_volcom, q.qty AS qty_store, -q.qty AS diff, '' AS note, q.comp_name, q.is_auto, 'no' AS is_select, p.id_product,
-            IF(IFNULL(q.id_store_type,0)=1,prn.design_price, prc.design_price) AS `unit_price`
+            IF(IFNULL(q.id_store_type,0)=1,prn.design_price, prc.design_price) AS `unit_price`, n.note AS store_note
             FROM tb_m_product_store AS p
             INNER JOIN (
                 SELECT s.id_product, SUM(s.qty) AS qty, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
@@ -62,6 +63,7 @@
                 GROUP BY s.id_product
             ) AS q ON q.id_product = p.id_product
             INNER JOIN tb_m_product op ON op.id_product = p.id_product
+            LEFT JOIN tb_st_store_note AS n ON p.id_product = n.id_product AND n.id_st_store_period = " + id_period + "
             LEFT JOIN (
                 SELECT id_design, id_design_price, ROUND(design_price) AS design_price, id_design_price_type
                 FROM tb_m_design_price
@@ -138,13 +140,16 @@
         Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
 
         execute_non_query("DELETE FROM tb_st_store WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "", True, "", "", "", "")
+        execute_non_query("DELETE FROM tb_st_store_note WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "", True, "", "", "", "")
 
         Dim query As String = "INSERT IGNORE INTO tb_st_store (id_st_store, id_st_store_period, id_product, created_date, scanned_code, qty, note, is_unique_not_found, is_no_tag, image, id_comp) VALUES "
+        Dim query_note As String = "INSERT IGNORE INTO tb_st_store_note (id_st_store_note, id_st_store_period, id_product, note, updated_at, updated_by) VALUES "
 
         If json("status") = "success" Then
             Dim insert As Boolean = False
+            Dim insert_note As Boolean = False
 
-            For Each row In json("content").ToList
+            For Each row In json("content")("scan").ToList
                 Dim id_st_store As String = row("id_st_store").ToString
                 Dim id_st_store_period As String = row("id_st_store_period").ToString
                 Dim id_product As String = row("id_product").ToString
@@ -155,34 +160,36 @@
                 Dim is_unique_not_found As String = row("is_unique_not_found").ToString
                 Dim is_no_tag As String = row("is_no_tag").ToString
                 Dim image As String = row("image").ToString
-                Dim id_comp As String = row("image").ToString
+                Dim id_comp As String = row("id_comp").ToString
 
                 query += "(" + id_st_store + ", " + id_st_store_period + ", " + id_product + ", '" + created_date + "', '" + scanned_code + "', " + qty + ", '" + addSlashes(note) + "', " + is_unique_not_found + ", " + is_no_tag + ", '" + addSlashes(image) + "', " + id_comp + "), "
 
                 insert = True
             Next
 
+            For Each row In json("content")("note").ToList
+                Dim id_st_store_note As String = row("id_st_store_note").ToString
+                Dim id_st_store_period As String = row("id_st_store_period").ToString
+                Dim id_product As String = row("id_product").ToString
+                Dim note As String = row("note").ToString
+                Dim updated_at As String = row("updated_at").ToString
+                Dim updated_by As String = row("updated_by").ToString
+
+                query_note += "(" + id_st_store_note + ", " + id_st_store_period + ", " + id_product + ", '" + addSlashes(note) + "', '" + updated_at + "', " + updated_by + "), "
+
+                insert_note = True
+            Next
+
             If insert Then
                 query = query.Substring(0, query.Length - 2)
 
                 execute_non_query(query, True, "", "", "", "")
+            End If
 
-                'update account
-                'execute_non_query("
-                '    UPDATE tb_st_store AS s INNER JOIN (
-                '     SELECT s.id_product, f.id_comp
-                '     FROM tb_st_store AS s
-                '     LEFT JOIN (
-                '      SELECT id_product, COUNT(DISTINCT(id_comp)) AS count_comp, id_comp
-                '      FROM tb_st_store_soh
-                '      WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "
-                '      GROUP BY id_product
-                '     ) AS f ON s.id_product = f.id_product
-                '     WHERE f.count_comp = 1 AND id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "
-                '     GROUP BY id_product
-                '    ) AS f ON s.id_product = f.id_product
-                '    SET s.id_comp = f.id_comp, s.is_auto = 1
-                '", True, "", "", "", "")
+            If insert_note Then
+                query_note = query_note.Substring(0, query_note.Length - 2)
+
+                execute_non_query(query_note, True, "", "", "", "")
             End If
 
             FormMain.SplashScreenManager1.CloseWaitForm()

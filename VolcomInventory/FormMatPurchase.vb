@@ -15,6 +15,17 @@
         'GVMatPurchase.ActiveFilterString = "[id_mat_purc] > 1 AND [id_mat_purc] < 6"
     End Sub
 
+    Private Sub GVMatPurchase_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVMatPurchase.RowStyle
+        Try
+            If GVMatPurchase.GetRowCellValue(e.RowHandle, "id_report_status").ToString = "5" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.ForeColor = Color.Red
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
     Sub view_mat_det_pd()
         Dim query As String = "SELECT '0' AS id_mat_det, '0' AS id_mat, 'ALL' AS mat_det_code, 'ALL' AS mat_det_display_name , '-' AS uom
 UNION

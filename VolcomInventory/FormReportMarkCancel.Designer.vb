@@ -278,6 +278,7 @@ Partial Class FormReportMarkCancel
         '
         Me.GVReportList.GridControl = Me.GCReportList
         Me.GVReportList.Name = "GVReportList"
+        Me.GVReportList.OptionsView.RowAutoHeight = True
         Me.GVReportList.OptionsView.ShowGroupPanel = False
         '
         'BAddColumn

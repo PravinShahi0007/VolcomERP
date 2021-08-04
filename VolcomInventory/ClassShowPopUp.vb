@@ -1517,6 +1517,7 @@ GROUP BY rec.`id_prod_order`"
         ElseIf report_mark_type = "321" Then
             'sni rec
             FormSNISerahTerimaDet.id = id_report
+            FormSNISerahTerimaDet.is_view = "1"
             FormSNISerahTerimaDet.ShowDialog()
         ElseIf report_mark_type = "323" Then
             FormStockTakePartialDet.id = id_report
@@ -1530,6 +1531,7 @@ GROUP BY rec.`id_prod_order`"
         ElseIf report_mark_type = "327" Then
             'sni realisasi
             FormSNIRealisasiDet.id = id_report
+            FormSNIRealisasiDet.is_view = "1"
             FormSNIRealisasiDet.ShowDialog()
         Else
             'MsgBox(id_report)
@@ -3645,13 +3647,13 @@ WHERE tb.id_report_status='6' AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
             gv.Columns("date_created").Caption = "Created Date"
             gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
-            gv.Columns("number").Caption = "Number"
+            gv.Columns("number").Caption = "FGPO Number"
             gv.Columns("qty").Caption = "Quantity"
             gv.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             gv.Columns("qty").DisplayFormat.FormatString = "{0:n0}"
             gv.Columns("qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             gv.Columns("qty").SummaryItem.DisplayFormat = "{0:n0}"
-            gv.Columns("currency").Caption = "Currency"
+            gv.Columns("currency").Caption = "Curr"
             gv.Columns("unit_price").Caption = "Price"
             gv.Columns("unit_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             gv.Columns("unit_price").DisplayFormat.FormatString = "{0:n2}"
