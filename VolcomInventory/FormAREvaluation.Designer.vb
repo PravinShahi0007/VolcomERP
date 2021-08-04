@@ -24,6 +24,8 @@ Partial Class FormAREvaluation
         Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue2 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelNav = New DevExpress.XtraEditors.PanelControl()
         Me.DDBDelayPayment = New DevExpress.XtraEditors.DropDownButton()
@@ -41,6 +43,8 @@ Partial Class FormAREvaluation
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPInvoiceDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCEval = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCInvoiceDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVInvoiceDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -70,6 +74,9 @@ Partial Class FormAREvaluation
         Me.GridColumntotal_rec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_due = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnjum_hold = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
+        Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.XTPNewEval = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCCreateNewEval = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPInvoiceList = New DevExpress.XtraTab.XtraTabPage()
@@ -117,6 +124,11 @@ Partial Class FormAREvaluation
         Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.GridColumnstore_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumninv_amountsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_recsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiffsum = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,11 +137,17 @@ Partial Class FormAREvaluation
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPInvoiceDetail.SuspendLayout()
+        CType(Me.XTCEval, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCEval.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
         CType(Me.GCInvoiceDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVInvoiceDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnBBM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkMemo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPSummary.SuspendLayout()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPNewEval.SuspendLayout()
         CType(Me.XTCCreateNewEval, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCCreateNewEval.SuspendLayout()
@@ -280,10 +298,30 @@ Partial Class FormAREvaluation
         '
         'XTPInvoiceDetail
         '
-        Me.XTPInvoiceDetail.Controls.Add(Me.GCInvoiceDetail)
+        Me.XTPInvoiceDetail.Controls.Add(Me.XTCEval)
         Me.XTPInvoiceDetail.Name = "XTPInvoiceDetail"
         Me.XTPInvoiceDetail.Size = New System.Drawing.Size(792, 386)
-        Me.XTPInvoiceDetail.Text = "Detail Invoice"
+        Me.XTPInvoiceDetail.Text = "Evaluation Report"
+        '
+        'XTCEval
+        '
+        Me.XTCEval.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCEval.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
+        Me.XTCEval.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Vertical
+        Me.XTCEval.Location = New System.Drawing.Point(0, 0)
+        Me.XTCEval.Name = "XTCEval"
+        Me.XTCEval.SelectedTabPage = Me.XtraTabPage1
+        Me.XTCEval.Size = New System.Drawing.Size(792, 386)
+        Me.XTCEval.TabIndex = 1
+        Me.XTCEval.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XTPSummary})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCInvoiceDetail)
+        Me.XtraTabPage1.Image = CType(resources.GetObject("XtraTabPage1.Image"), System.Drawing.Image)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(761, 380)
+        Me.XtraTabPage1.Text = "Detail Invoice"
         '
         'GCInvoiceDetail
         '
@@ -292,7 +330,7 @@ Partial Class FormAREvaluation
         Me.GCInvoiceDetail.MainView = Me.GVInvoiceDetail
         Me.GCInvoiceDetail.Name = "GCInvoiceDetail"
         Me.GCInvoiceDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoBtnBBM, Me.RepoLinkInvoice, Me.RepoLinkMemo})
-        Me.GCInvoiceDetail.Size = New System.Drawing.Size(792, 386)
+        Me.GCInvoiceDetail.Size = New System.Drawing.Size(761, 380)
         Me.GCInvoiceDetail.TabIndex = 0
         Me.GCInvoiceDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoiceDetail})
         '
@@ -577,6 +615,44 @@ Partial Class FormAREvaluation
         Me.GridColumnjum_hold.Visible = True
         Me.GridColumnjum_hold.VisibleIndex = 13
         Me.GridColumnjum_hold.Width = 56
+        '
+        'XTPSummary
+        '
+        Me.XTPSummary.Controls.Add(Me.GCSummary)
+        Me.XTPSummary.Image = CType(resources.GetObject("XTPSummary.Image"), System.Drawing.Image)
+        Me.XTPSummary.Name = "XTPSummary"
+        Me.XTPSummary.Size = New System.Drawing.Size(761, 380)
+        Me.XTPSummary.Text = "Summary"
+        '
+        'GCSummary
+        '
+        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSummary.Location = New System.Drawing.Point(0, 0)
+        Me.GCSummary.MainView = Me.GVSummary
+        Me.GCSummary.MenuManager = Me.BarManager1
+        Me.GCSummary.Name = "GCSummary"
+        Me.GCSummary.Size = New System.Drawing.Size(761, 380)
+        Me.GCSummary.TabIndex = 0
+        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
+        '
+        'GVSummary
+        '
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnstore_group, Me.GridColumnstatus, Me.GridColumninv_amountsum, Me.GridColumntotal_recsum, Me.GridColumndiffsum})
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Name = "Format0"
+        FormatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        FormatConditionRuleValue2.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue2.Expression = "Iif(status='Hold',True,False)"
+        GridFormatRule2.Rule = FormatConditionRuleValue2
+        Me.GVSummary.FormatRules.Add(GridFormatRule2)
+        Me.GVSummary.GridControl = Me.GCSummary
+        Me.GVSummary.Name = "GVSummary"
+        Me.GVSummary.OptionsBehavior.ReadOnly = True
+        Me.GVSummary.OptionsFind.AlwaysVisible = True
+        Me.GVSummary.OptionsView.ColumnAutoWidth = False
+        Me.GVSummary.OptionsView.ShowFooter = True
+        Me.GVSummary.OptionsView.ShowGroupPanel = False
         '
         'XTPNewEval
         '
@@ -1064,6 +1140,55 @@ Partial Class FormAREvaluation
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'GridColumnstore_group
+        '
+        Me.GridColumnstore_group.Caption = "Store"
+        Me.GridColumnstore_group.FieldName = "store_group"
+        Me.GridColumnstore_group.Name = "GridColumnstore_group"
+        Me.GridColumnstore_group.Visible = True
+        Me.GridColumnstore_group.VisibleIndex = 0
+        '
+        'GridColumnstatus
+        '
+        Me.GridColumnstatus.Caption = "Status"
+        Me.GridColumnstatus.FieldName = "status"
+        Me.GridColumnstatus.Name = "GridColumnstatus"
+        Me.GridColumnstatus.Visible = True
+        Me.GridColumnstatus.VisibleIndex = 1
+        '
+        'GridColumninv_amountsum
+        '
+        Me.GridColumninv_amountsum.Caption = "Invoice Amount"
+        Me.GridColumninv_amountsum.DisplayFormat.FormatString = "N2"
+        Me.GridColumninv_amountsum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumninv_amountsum.FieldName = "inv_amount"
+        Me.GridColumninv_amountsum.Name = "GridColumninv_amountsum"
+        Me.GridColumninv_amountsum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "inv_amount", "{0:N2}")})
+        Me.GridColumninv_amountsum.Visible = True
+        Me.GridColumninv_amountsum.VisibleIndex = 2
+        '
+        'GridColumntotal_recsum
+        '
+        Me.GridColumntotal_recsum.Caption = "BBM Amount"
+        Me.GridColumntotal_recsum.DisplayFormat.FormatString = "N2"
+        Me.GridColumntotal_recsum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_recsum.FieldName = "total_rec"
+        Me.GridColumntotal_recsum.Name = "GridColumntotal_recsum"
+        Me.GridColumntotal_recsum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", "{0:N2}")})
+        Me.GridColumntotal_recsum.Visible = True
+        Me.GridColumntotal_recsum.VisibleIndex = 3
+        '
+        'GridColumndiffsum
+        '
+        Me.GridColumndiffsum.Caption = "Diff."
+        Me.GridColumndiffsum.DisplayFormat.FormatString = "N2"
+        Me.GridColumndiffsum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiffsum.FieldName = "diff"
+        Me.GridColumndiffsum.Name = "GridColumndiffsum"
+        Me.GridColumndiffsum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", "{0:N2}")})
+        Me.GridColumndiffsum.Visible = True
+        Me.GridColumndiffsum.VisibleIndex = 4
+        '
         'FormAREvaluation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1088,11 +1213,17 @@ Partial Class FormAREvaluation
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
         Me.XTPInvoiceDetail.ResumeLayout(False)
+        CType(Me.XTCEval, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCEval.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.GCInvoiceDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVInvoiceDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnBBM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkMemo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPSummary.ResumeLayout(False)
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPNewEval.ResumeLayout(False)
         CType(Me.XTCCreateNewEval, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCCreateNewEval.ResumeLayout(False)
@@ -1209,4 +1340,14 @@ Partial Class FormAREvaluation
     Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents XTCEval As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnstore_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumninv_amountsum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_recsum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndiffsum As DevExpress.XtraGrid.Columns.GridColumn
 End Class

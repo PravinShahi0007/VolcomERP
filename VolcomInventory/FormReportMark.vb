@@ -698,6 +698,9 @@
         ElseIf report_mark_type = "326" Then
             'delay payment
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_delay_payment WHERE id_delay_payment = '{0}'", id_report)
+        ElseIf report_mark_type = "327" Then
+            'sni realisasi
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sni_realisasi WHERE id_sni_realisasi = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -2203,33 +2206,40 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                     Next
                 Else
                     'stock
-                    Dim query_cancel As String = "SELECT b.*,p.`id_mat_det`,a.`pl_mrs_number` FROM tb_pl_mrs a
+                    Dim query_stock As String = "SELECT b.*,p.`id_mat_det`,a.`pl_mrs_number` FROM tb_pl_mrs a
                                                 INNER JOIN tb_pl_mrs_det b ON a.id_pl_mrs = b.id_pl_mrs
                                                 INNER JOIN tb_m_mat_det_price p ON b.`id_mat_det_price`=p.`id_mat_det_price`
                                                 INNER JOIN tb_prod_order_mrs_det c ON b.id_prod_order_mrs_det = c.id_prod_order_mrs_det
                                                 WHERE a.id_pl_mrs ='" + id_report + "' "
-                    Dim data As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
-                    For i As Integer = 0 To (data.Rows.Count - 1)
-                        Dim id_wh_drawer As String = data.Rows(i)("id_wh_drawer").ToString
-                        Dim id_mat_det As String = data.Rows(i)("id_mat_det").ToString
-                        Dim pl_mrs_det_qty As String = decimalSQL(data.Rows(i)("pl_mrs_det_qty").ToString)
-                        Dim pl_mrs_number As String = data.Rows(i)("pl_mrs_number").ToString
-                        Dim pl_mrs_det_price As Decimal = data.Rows(i)("pl_mrs_det_price")
-                        Dim id_mat_det_pricex As String = data.Rows(i)("id_mat_det_price").ToString
-                        Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det,id_mat_det_price, price, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_stock_status,report_mark_type,id_report) "
-                        query_upd_storage += "VALUES('" + id_wh_drawer + "', '1', '" + id_mat_det + "','" + id_mat_det_pricex + "','" + decimalSQL(pl_mrs_det_price.ToString) + "', '" + decimalSQL(pl_mrs_det_qty) + "', NOW(), 'Out material was cancelled, PL : " + pl_mrs_number + "','2','" + report_mark_type + "','" + id_report + "')"
+                    Dim data As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
+                    '
+                    If data.Rows.Count > 0 Then
+                        Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det,id_mat_det_price, price, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_stock_status,report_mark_type,id_report) VALUES"
+                        For i As Integer = 0 To (data.Rows.Count - 1)
+                            If Not i = 0 Then
+                                query_upd_storage += ","
+                            End If
+                            '
+                            Dim id_wh_drawer As String = data.Rows(i)("id_wh_drawer").ToString
+                            Dim id_mat_det As String = data.Rows(i)("id_mat_det").ToString
+                            Dim pl_mrs_det_qty As String = decimalSQL(data.Rows(i)("pl_mrs_det_qty").ToString)
+                            Dim pl_mrs_number As String = data.Rows(i)("pl_mrs_number").ToString
+                            Dim pl_mrs_det_price As Decimal = data.Rows(i)("pl_mrs_det_price")
+                            Dim id_mat_det_pricex As String = data.Rows(i)("id_mat_det_price").ToString
+                            query_upd_storage += "('" + id_wh_drawer + "', '1', '" + id_mat_det + "','" + id_mat_det_pricex + "','" + decimalSQL(pl_mrs_det_price.ToString) + "', '" + decimalSQL(pl_mrs_det_qty) + "', NOW(), 'Out material was cancelled, PL : " + pl_mrs_number + "','2','" + report_mark_type + "','" + id_report + "')"
+                        Next
                         execute_non_query(query_upd_storage, True, "", "", "", "")
-                    Next
+                    End If
                 End If
-
             ElseIf id_status_reportx = 6 Then 'completed
                 'stock
-                Dim query_cancel As String = "SELECT b.*,p.`id_mat_det`,a.`pl_mrs_number` FROM tb_pl_mrs a
+                Dim query_stock As String = "SELECT b.*,p.`id_mat_det`,a.`pl_mrs_number` FROM tb_pl_mrs a
                                                 INNER JOIN tb_pl_mrs_det b ON a.id_pl_mrs = b.id_pl_mrs
                                                 INNER JOIN tb_m_mat_det_price p ON b.`id_mat_det_price`=p.`id_mat_det_price`
                                                 INNER JOIN tb_prod_order_mrs_det c ON b.id_prod_order_mrs_det = c.id_prod_order_mrs_det
                                                 WHERE a.id_pl_mrs = '" + id_report + "' "
-                Dim data As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
+                Dim data As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
+
                 For i As Integer = 0 To (data.Rows.Count - 1)
                     Dim id_wh_drawer As String = data.Rows(i)("id_wh_drawer").ToString
                     Dim id_mat_det As String = data.Rows(i)("id_mat_det").ToString
@@ -2237,9 +2247,15 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                     Dim pl_mrs_number As String = data.Rows(i)("pl_mrs_number").ToString
                     Dim pl_mrs_det_price As Decimal = data.Rows(i)("pl_mrs_det_price")
                     Dim id_mat_det_pricex As String = data.Rows(i)("id_mat_det_price").ToString
-                    Dim query_upd_storage As String = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det,id_mat_det_price, price, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_stock_status,report_mark_type,id_report) "
+                    Dim query_upd_storage As String = ""
+
+                    query_upd_storage = "DELETE FROM tb_storage_mat WHERE report_mark_type='" + report_mark_type + "' AND id_report='" + id_report + "' AND storage_mat_notes='Completion of packing list, PL : " + pl_mrs_number + "'"
+                    execute_non_query(query_upd_storage, True, "", "", "", "")
+
+                    query_upd_storage = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det,id_mat_det_price, price, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_stock_status,report_mark_type,id_report) "
                     query_upd_storage += "VALUES('" + id_wh_drawer + "', '1', '" + id_mat_det + "','" + id_mat_det_pricex + "','" + decimalSQL(pl_mrs_det_price.ToString) + "', '" + decimalSQL(pl_mrs_det_qty.ToString) + "', NOW(), 'Completion of packing list, PL : " + pl_mrs_number + "','2','" + report_mark_type + "','" + id_report + "')"
                     execute_non_query(query_upd_storage, True, "", "", "", "")
+
                     query_upd_storage = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det,id_mat_det_price, price, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_stock_status,report_mark_type,id_report) "
                     query_upd_storage += "VALUES('" + id_wh_drawer + "', '2', '" + id_mat_det + "','" + id_mat_det_pricex + "','" + decimalSQL(pl_mrs_det_price.ToString) + "', '" + decimalSQL(pl_mrs_det_qty.ToString) + "', NOW(), 'Completion of packing list, PL : " + pl_mrs_number + "','1','" + report_mark_type + "','" + id_report + "')"
                     execute_non_query(query_upd_storage, True, "", "", "", "")
@@ -10029,6 +10045,27 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void
                 FormDelayPaymentInvDet.actionLoad()
             Catch ex As Exception
             End Try
+        ElseIf report_mark_type = "327" Then
+            'sni realisasi
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'sni in return
+                '                query = String.Format("INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
+                'SELECT '{0}' AS id_prod_order_rec,pod.`id_prod_order_det`,recd.id_product,-recd.`qty`,rec.reff_date,rec.`created_by`,rec.id_sni_rec,'' AS `report_mark_type`,'' AS `note`
+                'FROM tb_sni_rec_det recd
+                'INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND recd.id_sni_rec_det='{1}'
+                'INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=recd.id_prod_order_det
+                'INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void=2 AND po.id_report_status=6", id_rec_new, dth.Rows(0)("id_sni_rec_det").ToString)
+                '                execute_non_query(query, True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_sni_realisasi SET id_report_status='{0}' WHERE id_sni_realisasi ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
         End If
 
         'adding lead time

@@ -468,6 +468,9 @@
         ElseIf report_mark_type = "326" Then
             'delay payment
             FormDelayPaymentInvDet.Close()
+        ElseIf report_mark_type = "327" Then
+            'sni realisasi
+            FormSNIRealisasiDet.Close()
         End If
     End Sub
     Sub show()
@@ -1524,6 +1527,10 @@ GROUP BY rec.`id_prod_order`"
             FormDelayPaymentInvDet.is_view = "1"
             FormDelayPaymentInvDet.id = id_report
             FormDelayPaymentInvDet.ShowDialog()
+        ElseIf report_mark_type = "327" Then
+            'sni realisasi
+            FormSNIRealisasiDet.id = id_report
+            FormSNIRealisasiDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2725,6 +2732,12 @@ GROUP BY rec.`id_prod_order`"
             'delay payment
             table_name = "tb_delay_payment"
             field_id = "id_delay_payment"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "327" Then
+            'sni realisasi
+            table_name = "tb_sni_realisasi"
+            field_id = "id_sni_realisasi"
             field_number = "number"
             field_date = "created_date"
         Else
