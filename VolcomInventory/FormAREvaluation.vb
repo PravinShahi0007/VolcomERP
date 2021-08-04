@@ -599,6 +599,7 @@
         Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
         If dcek.Rows.Count > 0 Then
             'view
+            openARNote(dcek.Rows(0)("id_ar_eval_pps").ToString)
         Else
             'create
             Dim qval As String = "SELECT * FROM tb_ar_eval e WHERE e.id_ar_eval_pps=" + id_ar_eval_pps + " AND e.is_active=1 "
@@ -608,9 +609,18 @@
                 Dim qins As String = "INSERT INTO tb_ar_eval_note(id_ar_eval_pps, created_date, id_report_status)
                 VALUES('" + id_ar_eval_pps + "',NOW(),1); SELECT LAST_INSERT_ID(); "
                 Dim id_note As String = execute_query(qins, 0, True, "", "", "", "")
-
+                openARNote(id_note)
+            Else
+                warningCustom("Data tidak ditemukan")
             End If
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub openARNote(ByVal id_note As String)
+        Cursor = Cursors.WaitCursor
+        FormAREvalNote.id = id_note
+        FormAREvalNote.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

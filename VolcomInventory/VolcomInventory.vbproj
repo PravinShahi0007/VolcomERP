@@ -433,6 +433,12 @@
     <Compile Include="FormARCollectionAvg.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAREvalNote.Designer.vb">
+      <DependentUpon>FormAREvalNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvalNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAREvalScheduke.Designer.vb">
       <DependentUpon>FormAREvalScheduke.vb</DependentUpon>
     </Compile>
@@ -10029,6 +10035,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormARCollectionAvg.resx">
       <DependentUpon>FormARCollectionAvg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvalNote.resx">
+      <DependentUpon>FormAREvalNote.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvalScheduke.resx">
       <DependentUpon>FormAREvalScheduke.vb</DependentUpon>

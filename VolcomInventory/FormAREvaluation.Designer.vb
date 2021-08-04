@@ -251,7 +251,7 @@ Partial Class FormAREvaluation
         '
         Me.BtnLog.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnLog.Image = CType(resources.GetObject("BtnLog.Image"), System.Drawing.Image)
-        Me.BtnLog.Location = New System.Drawing.Point(759, 2)
+        Me.BtnLog.Location = New System.Drawing.Point(911, 2)
         Me.BtnLog.Name = "BtnLog"
         Me.BtnLog.Size = New System.Drawing.Size(104, 46)
         Me.BtnLog.TabIndex = 3
@@ -286,11 +286,10 @@ Partial Class FormAREvaluation
         '
         'BtnNote
         '
-        Me.BtnNote.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnNote.Image = CType(resources.GetObject("BtnNote.Image"), System.Drawing.Image)
-        Me.BtnNote.Location = New System.Drawing.Point(863, 2)
+        Me.BtnNote.Location = New System.Drawing.Point(480, 13)
         Me.BtnNote.Name = "BtnNote"
-        Me.BtnNote.Size = New System.Drawing.Size(152, 46)
+        Me.BtnNote.Size = New System.Drawing.Size(139, 23)
         Me.BtnNote.TabIndex = 6
         Me.BtnNote.Text = "Catatan Manajemen"
         '
