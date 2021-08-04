@@ -92,6 +92,7 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
 
             If is_block_int = "1" And is_int_po Then
                 warningCustom("QC Report International tidak dapat dikerjakan untuk sementara waktu")
+                Close()
             Else
                 Try
                     'initiation datatable jika blm ada

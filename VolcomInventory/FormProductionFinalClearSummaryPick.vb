@@ -56,6 +56,10 @@
             LEFT JOIN tb_m_ovh_price AS ovh ON ovh.id_ovh_price = wo.id_ovh_price
             LEFT JOIN tb_m_comp_contact AS cc ON cc.id_comp_contact = ovh.id_comp_contact 
             LEFT JOIN tb_m_comp AS comp ON comp.id_comp = cc.id_comp
+            LEFT JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city`
+            LEFT JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+            LEFT JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+            LEFT JOIN tb_m_country co ON co.`id_country`=reg.`id_country` 
             LEFT JOIN (
                 SELECT id_prod_fc, SUM(prod_fc_det_qty) AS prod_fc_det_qty
                 FROM tb_prod_fc_det
@@ -77,6 +81,13 @@
             ) AS qty_rec ON po.id_prod_order = qty_rec.id_prod_order
             WHERE fc.id_report_status = 6 AND fc.id_prod_fc NOT IN (SELECT id_prod_fc FROM (" + where_id_prod_fc + ") AS not_include) " + where_vendor + " " + where_date_from + " " + where_date_to + "
         "
+
+        Dim is_block_int As String = "2"
+        is_block_int = get_opt_prod_field("is_block_qcr_int")
+
+        If is_block_int = "1" Then
+            query += " AND po.id_po_type!=2 AND co.id_country=5 "
+        End If
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
