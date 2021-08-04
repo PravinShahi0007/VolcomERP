@@ -489,35 +489,68 @@
         Report.GVInvoiceDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'style
-        Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
-        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+        If XTCEval.SelectedTabPageIndex = 0 Then
+            'style
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
 
-        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
-        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-        Report.GVInvoiceDetail.AppearancePrint.GroupRow.BackColor = Color.Transparent
-        Report.GVInvoiceDetail.AppearancePrint.GroupRow.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
 
-        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
-        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
-        Report.GVInvoiceDetail.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            Report.GVInvoiceDetail.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
 
-        Report.GVInvoiceDetail.OptionsPrint.ExpandAllDetails = True
-        Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
-        Report.GVInvoiceDetail.OptionsPrint.PrintDetails = True
-        Report.GVInvoiceDetail.OptionsPrint.PrintFooter = True
+            Report.GVInvoiceDetail.OptionsPrint.ExpandAllDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintFooter = True
+        Else
+            'style
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 8, FontStyle.Regular)
+
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 8.3, FontStyle.Bold)
+
+            Report.GVInvoiceDetail.AppearancePrint.Row.Font = New Font("Tahoma", 8.3, FontStyle.Regular)
+
+            Report.GVInvoiceDetail.OptionsPrint.ExpandAllDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintFooter = True
+        End If
+
 
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
