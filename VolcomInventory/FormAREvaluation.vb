@@ -1,19 +1,29 @@
 ﻿Public Class FormAREvaluation
+    Dim eval_number As String = ""
     Public eval_date As String = ""
+    Public id_ar_eval_pps As String = ""
+    Public id_role_super_admin As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormAREvaluation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getLastEvaluation()
+        If id_role_super_admin = id_role_login Then
+            BtnLog.Visible = True
+        End If
     End Sub
 
     Sub getLastEvaluation()
         'get last evaluation
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT DATE_FORMAT(MAX(a.eval_date),'%Y-%m-%d %H:%i:%s') AS `last_eval_date`,
-        DATE_FORMAT(MAX(a.eval_date),'%d %M %Y') AS `last_eval_date_label`
-        FROM tb_ar_eval a "
+        DATE_FORMAT(MAX(a.eval_date),'%d %M %Y') AS `last_eval_date_label`, p.number, p.id_ar_eval_pps
+        FROM tb_ar_eval a 
+        INNER JOIN tb_ar_eval_pps p ON p.id_ar_eval = a.id_ar_eval "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         eval_date = data.Rows(0)("last_eval_date").ToString
+        eval_number = data.Rows(0)("number").ToString
+        id_ar_eval_pps = data.Rows(0)("id_ar_eval_pps").ToString
         BtnBrowseEval.Text = data.Rows(0)("last_eval_date_label").ToString
+        TxtAREvalNumber.Text = eval_number
         Cursor = Cursors.Default
     End Sub
 
@@ -156,7 +166,7 @@
         End If
     End Sub
 
-    Private Sub BtnEvaluation_Click(sender As Object, e As EventArgs) 
+    Private Sub BtnEvaluation_Click(sender As Object, e As EventArgs)
         Dim tgl As String = execute_query("SELECT DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s') AS `eval_date`", 0, True, "", "", "", "")
         Try
             Dim query As String = "CALL getEvaluationAR('" + tgl + "');"
