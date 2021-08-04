@@ -40,6 +40,7 @@ Partial Class FormAREvaluation
         Me.BtnViewData = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseEval = New DevExpress.XtraEditors.ButtonEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnNote = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBDelayPayment = New DevExpress.XtraEditors.DropDownButton()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
@@ -178,6 +179,7 @@ Partial Class FormAREvaluation
         Me.PanelNav.Controls.Add(Me.BtnViewData)
         Me.PanelNav.Controls.Add(Me.BtnBrowseEval)
         Me.PanelNav.Controls.Add(Me.LabelControl1)
+        Me.PanelNav.Controls.Add(Me.BtnNote)
         Me.PanelNav.Controls.Add(Me.DDBDelayPayment)
         Me.PanelNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelNav.Location = New System.Drawing.Point(0, 0)
@@ -249,7 +251,7 @@ Partial Class FormAREvaluation
         '
         Me.BtnLog.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnLog.Image = CType(resources.GetObject("BtnLog.Image"), System.Drawing.Image)
-        Me.BtnLog.Location = New System.Drawing.Point(911, 2)
+        Me.BtnLog.Location = New System.Drawing.Point(759, 2)
         Me.BtnLog.Name = "BtnLog"
         Me.BtnLog.Size = New System.Drawing.Size(104, 46)
         Me.BtnLog.TabIndex = 3
@@ -281,6 +283,16 @@ Partial Class FormAREvaluation
         Me.LabelControl1.Size = New System.Drawing.Size(50, 13)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Evaluation"
+        '
+        'BtnNote
+        '
+        Me.BtnNote.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnNote.Image = CType(resources.GetObject("BtnNote.Image"), System.Drawing.Image)
+        Me.BtnNote.Location = New System.Drawing.Point(863, 2)
+        Me.BtnNote.Name = "BtnNote"
+        Me.BtnNote.Size = New System.Drawing.Size(152, 46)
+        Me.BtnNote.TabIndex = 6
+        Me.BtnNote.Text = "Catatan Manajemen"
         '
         'DDBDelayPayment
         '
@@ -1367,4 +1379,5 @@ Partial Class FormAREvaluation
     Friend WithEvents GridColumntotal_recsum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndiffsum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TxtAREvalNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnNote As DevExpress.XtraEditors.SimpleButton
 End Class

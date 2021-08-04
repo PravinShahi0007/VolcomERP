@@ -590,4 +590,27 @@
         FormDelayPaymentInv.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnNote_Click(sender As Object, e As EventArgs) Handles BtnNote.Click
+        Cursor = Cursors.WaitCursor
+        Dim qcek As String = "SELECT n.id_ar_eval_pps 
+        FROM tb_ar_eval_note n
+        WHERE n.id_ar_eval_pps=" + id_ar_eval_pps + " LIMIT 1 "
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        If dcek.Rows.Count > 0 Then
+            'view
+        Else
+            'create
+            Dim qval As String = "SELECT * FROM tb_ar_eval e WHERE e.id_ar_eval_pps=" + id_ar_eval_pps + " AND e.is_active=1 "
+            Dim dval As DataTable = execute_query(qval, -1, True, "", "", "", "")
+            If dval.Rows.Count > 0 Then
+                'create
+                Dim qins As String = "INSERT INTO tb_ar_eval_note(id_ar_eval_pps, created_date, id_report_status)
+                VALUES('" + id_ar_eval_pps + "',NOW(),1); SELECT LAST_INSERT_ID(); "
+                Dim id_note As String = execute_query(qins, 0, True, "", "", "", "")
+
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class
