@@ -14,10 +14,10 @@
     Sub getLastEvaluation()
         'get last evaluation
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT DATE_FORMAT(MAX(a.eval_date),'%Y-%m-%d %H:%i:%s') AS `last_eval_date`,
-        DATE_FORMAT(MAX(a.eval_date),'%d %M %Y') AS `last_eval_date_label`, p.number, p.id_ar_eval_pps
-        FROM tb_ar_eval a 
-        INNER JOIN tb_ar_eval_pps p ON p.id_ar_eval = a.id_ar_eval "
+        Dim query As String = "SELECT DATE_FORMAT(a.eval_date,'%Y-%m-%d %H:%i:%s') AS `last_eval_date`,
+        DATE_FORMAT(a.eval_date,'%d %M %Y') AS `last_eval_date_label`, a.number, a.id_ar_eval_pps 
+        FROM tb_ar_eval_pps a
+        ORDER BY a.id_ar_eval_pps DESC LIMIT 1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         eval_date = data.Rows(0)("last_eval_date").ToString
         eval_number = data.Rows(0)("number").ToString
@@ -486,6 +486,7 @@
             gv = GVSummary
         End If
         ReportAREval.eval_date_label = BtnBrowseEval.Text
+        ReportAREval.eval_number = eval_number
         Dim Report As New ReportAREval()
 
         'hide col BBM
