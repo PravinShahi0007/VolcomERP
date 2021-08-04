@@ -41,6 +41,8 @@ Partial Class FormStockTakeStorePeriodDet
         Me.SBSOH = New DevExpress.XtraEditors.SimpleButton()
         Me.CEAll = New DevExpress.XtraEditors.CheckEdit()
         Me.SBSelectStore = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBGenerateUser = New DevExpress.XtraEditors.SimpleButton()
+        Me.SEGenerateUser = New DevExpress.XtraEditors.SpinEdit()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESOHDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCExternalUser, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,6 +52,7 @@ Partial Class FormStockTakeStorePeriodDet
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SEGenerateUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -98,15 +101,16 @@ Partial Class FormStockTakeStorePeriodDet
         '
         'SBAddUser
         '
-        Me.SBAddUser.Location = New System.Drawing.Point(297, 236)
+        Me.SBAddUser.Location = New System.Drawing.Point(297, 266)
         Me.SBAddUser.Name = "SBAddUser"
         Me.SBAddUser.Size = New System.Drawing.Size(75, 23)
         Me.SBAddUser.TabIndex = 6
         Me.SBAddUser.Text = "Add User"
+        Me.SBAddUser.Visible = False
         '
         'GCExternalUser
         '
-        Me.GCExternalUser.Location = New System.Drawing.Point(15, 265)
+        Me.GCExternalUser.Location = New System.Drawing.Point(15, 295)
         Me.GCExternalUser.MainView = Me.GVExternalUser
         Me.GCExternalUser.Name = "GCExternalUser"
         Me.GCExternalUser.Size = New System.Drawing.Size(357, 225)
@@ -117,10 +121,13 @@ Partial Class FormStockTakeStorePeriodDet
         '
         Me.GVExternalUser.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
         Me.GVExternalUser.GridControl = Me.GCExternalUser
+        Me.GVExternalUser.GroupCount = 1
         Me.GVExternalUser.Name = "GVExternalUser"
+        Me.GVExternalUser.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVExternalUser.OptionsBehavior.Editable = False
         Me.GVExternalUser.OptionsView.ColumnAutoWidth = False
         Me.GVExternalUser.OptionsView.ShowGroupPanel = False
+        Me.GVExternalUser.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn3
         '
@@ -163,7 +170,7 @@ Partial Class FormStockTakeStorePeriodDet
         'SBSave
         '
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(283, 496)
+        Me.SBSave.Location = New System.Drawing.Point(283, 526)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(89, 40)
         Me.SBSave.TabIndex = 9
@@ -171,11 +178,12 @@ Partial Class FormStockTakeStorePeriodDet
         '
         'SBEditUser
         '
-        Me.SBEditUser.Location = New System.Drawing.Point(216, 236)
+        Me.SBEditUser.Location = New System.Drawing.Point(216, 266)
         Me.SBEditUser.Name = "SBEditUser"
         Me.SBEditUser.Size = New System.Drawing.Size(75, 23)
         Me.SBEditUser.TabIndex = 10
         Me.SBEditUser.Text = "Edit User"
+        Me.SBEditUser.Visible = False
         '
         'DEStart
         '
@@ -253,11 +261,30 @@ Partial Class FormStockTakeStorePeriodDet
         Me.SBSelectStore.TabIndex = 17
         Me.SBSelectStore.Text = "Select Store"
         '
+        'SBGenerateUser
+        '
+        Me.SBGenerateUser.Location = New System.Drawing.Point(63, 266)
+        Me.SBGenerateUser.Name = "SBGenerateUser"
+        Me.SBGenerateUser.Size = New System.Drawing.Size(95, 23)
+        Me.SBGenerateUser.TabIndex = 18
+        Me.SBGenerateUser.Text = "Generate User"
+        '
+        'SEGenerateUser
+        '
+        Me.SEGenerateUser.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.SEGenerateUser.Location = New System.Drawing.Point(15, 268)
+        Me.SEGenerateUser.Name = "SEGenerateUser"
+        Me.SEGenerateUser.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SEGenerateUser.Size = New System.Drawing.Size(42, 20)
+        Me.SEGenerateUser.TabIndex = 19
+        '
         'FormStockTakeStorePeriodDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(384, 549)
+        Me.ClientSize = New System.Drawing.Size(384, 593)
+        Me.Controls.Add(Me.SEGenerateUser)
+        Me.Controls.Add(Me.SBGenerateUser)
         Me.Controls.Add(Me.SBSelectStore)
         Me.Controls.Add(Me.CEAll)
         Me.Controls.Add(Me.SBSOH)
@@ -285,6 +312,7 @@ Partial Class FormStockTakeStorePeriodDet
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SEGenerateUser.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -311,4 +339,6 @@ Partial Class FormStockTakeStorePeriodDet
     Friend WithEvents SBSOH As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents CEAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents SBSelectStore As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBGenerateUser As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SEGenerateUser As DevExpress.XtraEditors.SpinEdit
 End Class

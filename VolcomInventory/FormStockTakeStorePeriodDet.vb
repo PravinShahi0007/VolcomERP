@@ -13,6 +13,8 @@
         DEEnd.EditValue = DateTime.Parse(nowDate).AddMinutes(1439)
 
         CEAll.EditValue = True
+
+        SEGenerateUser.EditValue = 2
     End Sub
 
     Private Sub FormStockTakeStorePeriodDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -315,5 +317,42 @@
         Dim schedule_end As String = execute_query("SELECT IFNULL(DATE_ADD(MAX(DATE(schedule_end)), INTERVAL 1 DAY), DATE_SUB(CURDATE(), INTERVAL 0 DAY)) AS schedule_end FROM tb_st_store_period WHERE id_store IN (" + in_store + ")", 0, True, "", "", "", "")
 
         DEStart.Properties.MinValue = schedule_end
+    End Sub
+
+    Private Sub SBGenerateUser_Click(sender As Object, e As EventArgs) Handles SBGenerateUser.Click
+        If id_store.Count = 0 Then
+            stopCustom("Please select store.")
+        Else
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to generate user ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.Yes Then
+                For i = 0 To id_store.Count - 1
+                    For j = 1 To SEGenerateUser.EditValue
+                        Dim store_name As String = execute_query("SELECT LOWER(REPLACE(store_name, ' ', '')) FROM tb_m_store WHERE id_store = " + id_store(i), 0, True, "", "", "", "")
+                        Dim x As String = execute_query("SELECT LPAD(IFNULL((SELECT COUNT(*) + 1 FROM tb_m_user WHERE id_store = " + id_store(i) + " GROUP BY id_store), 1), 3, '0')", 0, True, "", "", "", "")
+
+                        Dim id_role As String = "119"
+                        Dim username As String = store_name + x.ToString
+                        Dim password As String = store_name + x.ToString
+                        Dim name_external As String = ""
+                        Dim position_external As String = ""
+                        Dim is_external_user As String = "1"
+                        Dim is_change As String = "1"
+
+                        Dim query As String = "INSERT INTO tb_m_user (id_role, username, password, name_external, position_external, is_external_user, id_store, is_change) VALUES (" + id_role + ", '" + addSlashes(username) + "', MD5('" + addSlashes(password) + "'), '" + addSlashes(name_external) + "', '" + addSlashes(position_external) + "', " + is_external_user + ", '" + id_store(i) + "', '" + is_change + "'); SELECT LAST_INSERT_ID();"
+
+                        Dim id_user As String = execute_query(query, 0, True, "", "", "", "")
+
+                        execute_non_query("INSERT INTO tb_st_user (id_user, role) VALUES ('" + id_user + "', '5')", True, "", "", "", "")
+                    Next
+                Next
+
+                view_user()
+
+                infoCustom("User created.")
+            End If
+        End If
     End Sub
 End Class

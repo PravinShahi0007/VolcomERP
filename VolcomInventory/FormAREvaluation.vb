@@ -1,19 +1,29 @@
 ﻿Public Class FormAREvaluation
+    Dim eval_number As String = ""
     Public eval_date As String = ""
+    Public id_ar_eval_pps As String = ""
+    Public id_role_super_admin As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormAREvaluation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getLastEvaluation()
+        If id_role_super_admin = id_role_login Then
+            BtnLog.Visible = True
+        End If
     End Sub
 
     Sub getLastEvaluation()
         'get last evaluation
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT DATE_FORMAT(MAX(a.eval_date),'%Y-%m-%d %H:%i:%s') AS `last_eval_date`,
-        DATE_FORMAT(MAX(a.eval_date),'%d %M %Y') AS `last_eval_date_label`
-        FROM tb_ar_eval a "
+        Dim query As String = "SELECT DATE_FORMAT(a.eval_date,'%Y-%m-%d %H:%i:%s') AS `last_eval_date`,
+        DATE_FORMAT(a.eval_date,'%d %M %Y') AS `last_eval_date_label`, a.number, a.id_ar_eval_pps 
+        FROM tb_ar_eval_pps a
+        ORDER BY a.id_ar_eval_pps DESC LIMIT 1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         eval_date = data.Rows(0)("last_eval_date").ToString
+        eval_number = data.Rows(0)("number").ToString
+        id_ar_eval_pps = data.Rows(0)("id_ar_eval_pps").ToString
         BtnBrowseEval.Text = data.Rows(0)("last_eval_date_label").ToString
+        TxtAREvalNumber.Text = eval_number
         Cursor = Cursors.Default
     End Sub
 
@@ -156,7 +166,7 @@
         End If
     End Sub
 
-    Private Sub BtnEvaluation_Click(sender As Object, e As EventArgs) 
+    Private Sub BtnEvaluation_Click(sender As Object, e As EventArgs)
         Dim tgl As String = execute_query("SELECT DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s') AS `eval_date`", 0, True, "", "", "", "")
         Try
             Dim query As String = "CALL getEvaluationAR('" + tgl + "');"
@@ -476,6 +486,7 @@
             gv = GVSummary
         End If
         ReportAREval.eval_date_label = BtnBrowseEval.Text
+        ReportAREval.eval_number = eval_number
         Dim Report As New ReportAREval()
 
         'hide col BBM
@@ -489,35 +500,68 @@
         Report.GVInvoiceDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'style
-        Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
-        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+        If XTCEval.SelectedTabPageIndex = 0 Then
+            'style
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
 
-        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
-        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-        Report.GVInvoiceDetail.AppearancePrint.GroupRow.BackColor = Color.Transparent
-        Report.GVInvoiceDetail.AppearancePrint.GroupRow.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
 
-        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
-        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
-        Report.GVInvoiceDetail.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            Report.GVInvoiceDetail.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
 
-        Report.GVInvoiceDetail.OptionsPrint.ExpandAllDetails = True
-        Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
-        Report.GVInvoiceDetail.OptionsPrint.PrintDetails = True
-        Report.GVInvoiceDetail.OptionsPrint.PrintFooter = True
+            Report.GVInvoiceDetail.OptionsPrint.ExpandAllDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintFooter = True
+        Else
+            'style
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 8, FontStyle.Regular)
+
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 8.3, FontStyle.Bold)
+
+            Report.GVInvoiceDetail.AppearancePrint.Row.Font = New Font("Tahoma", 8.3, FontStyle.Regular)
+
+            Report.GVInvoiceDetail.OptionsPrint.ExpandAllDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintFooter = True
+        End If
+
 
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

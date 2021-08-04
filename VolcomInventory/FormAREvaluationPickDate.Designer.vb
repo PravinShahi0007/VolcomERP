@@ -23,6 +23,7 @@ Partial Class FormAREvaluationPickDate
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumneval_date_label = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumneval_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -39,7 +40,7 @@ Partial Class FormAREvaluationPickDate
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumneval_date_label, Me.GridColumneval_date})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumneval_date_label, Me.GridColumneval_date, Me.GridColumnnumber})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -50,17 +51,25 @@ Partial Class FormAREvaluationPickDate
         '
         'GridColumneval_date_label
         '
-        Me.GridColumneval_date_label.Caption = "Date"
+        Me.GridColumneval_date_label.Caption = "Evaluation Date"
         Me.GridColumneval_date_label.FieldName = "eval_date_label"
         Me.GridColumneval_date_label.Name = "GridColumneval_date_label"
         Me.GridColumneval_date_label.Visible = True
-        Me.GridColumneval_date_label.VisibleIndex = 0
+        Me.GridColumneval_date_label.VisibleIndex = 1
         '
         'GridColumneval_date
         '
         Me.GridColumneval_date.Caption = "eval_date"
         Me.GridColumneval_date.FieldName = "eval_date"
         Me.GridColumneval_date.Name = "GridColumneval_date"
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Number"
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 0
         '
         'FormAREvaluationPickDate
         '
@@ -82,4 +91,5 @@ Partial Class FormAREvaluationPickDate
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumneval_date_label As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumneval_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
 End Class
