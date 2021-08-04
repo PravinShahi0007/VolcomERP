@@ -10053,19 +10053,27 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void
 
             If id_status_reportx = "6" Then
                 'sni in return
-                '                query = String.Format("INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
-                'SELECT '{0}' AS id_prod_order_rec,pod.`id_prod_order_det`,recd.id_product,-recd.`qty`,rec.reff_date,rec.`created_by`,rec.id_sni_rec,'' AS `report_mark_type`,'' AS `note`
-                'FROM tb_sni_rec_det recd
-                'INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND recd.id_sni_rec_det='{1}'
-                'INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=recd.id_prod_order_det
-                'INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void=2 AND po.id_report_status=6", id_rec_new, dth.Rows(0)("id_sni_rec_det").ToString)
-                '                execute_non_query(query, True, "", "", "", "")
+
+                query = String.Format("INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
+                INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
+SELECT recd.id_prod_order_rec,recd.id_prod_order_det,ret.id_product,ret.ret_qty,NOW() AS date_reff,'{0}' AS created_by,ret.id_sni_realisasi,327 AS rmt,'Return SNI' AS note
+FROM `tb_sni_realisasi_return` ret
+INNER JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec_det=ret.id_prod_order_rec_det
+WHERE ret.id_sni_realisasi ='{1}' AND ret.ret_qty>0 ", id_user, id_report)
+                execute_non_query(query, True, "", "", "", "")
             End If
 
             'update
             query = String.Format("UPDATE tb_sni_realisasi SET id_report_status='{0}' WHERE id_sni_realisasi ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-
+            '
+            'refresh view
+            Try
+                FormSNIRealisasi.load_list()
+                FormSNIRealisasi.GVRealisasi.FocusedRowHandle = find_row(FormSNIRealisasi.GVRealisasi, "id_sni_realisasi", id_report)
+                FormSNIRealisasiDet.load_form()
+            Catch ex As Exception
+            End Try
         End If
 
         'adding lead time
