@@ -9881,6 +9881,12 @@
     <Compile Include="ReportSNIPpsList.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSNIRealisasi.Designer.vb">
+      <DependentUpon>ReportSNIRealisasi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSNIRealisasi.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSNISerahTerima.Designer.vb">
       <DependentUpon>ReportSNISerahTerima.vb</DependentUpon>
     </Compile>
@@ -15301,6 +15307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSNIPpsList.resx">
       <DependentUpon>ReportSNIPpsList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSNIRealisasi.resx">
+      <DependentUpon>ReportSNIRealisasi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSNISerahTerima.resx">
       <DependentUpon>ReportSNISerahTerima.vb</DependentUpon>

@@ -423,6 +423,8 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
                 execute_non_query(q, True, "", "", "", "")
 
                 infoCustom("Form updated")
+
+                load_form()
             End If
         End If
     End Sub
