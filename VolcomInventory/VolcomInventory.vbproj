@@ -8260,6 +8260,12 @@
     <Compile Include="ReportAREval.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportAREvalNote.Designer.vb">
+      <DependentUpon>ReportAREvalNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAREvalNote.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportAttnSum.Designer.vb">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
     </Compile>
@@ -14430,6 +14436,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAREval.resx">
       <DependentUpon>ReportAREval.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAREvalNote.resx">
+      <DependentUpon>ReportAREvalNote.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAttnSum.resx">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>

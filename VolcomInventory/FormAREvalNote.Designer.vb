@@ -22,6 +22,8 @@ Partial Class FormAREvalNote
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAREvalNote))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtEvalNumber = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
@@ -51,13 +53,13 @@ Partial Class FormAREvalNote
         Me.GridColumnstore_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnoverdue_inv = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumnsortcol = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAddBulk = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnsortcol = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TxtEvalNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
+        CType(Me.TxtEvalNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,9 +72,9 @@ Partial Class FormAREvalNote
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
-        CType(Me.TxtEvalNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -90,6 +92,26 @@ Partial Class FormAREvalNote
         Me.GroupControlHead.Name = "GroupControlHead"
         Me.GroupControlHead.Size = New System.Drawing.Size(826, 134)
         Me.GroupControlHead.TabIndex = 19
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(34, 17)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(98, 13)
+        Me.LabelControl1.TabIndex = 148
+        Me.LabelControl1.Text = "AR Evaluation No."
+        '
+        'TxtEvalNumber
+        '
+        Me.TxtEvalNumber.EditValue = ""
+        Me.TxtEvalNumber.Enabled = False
+        Me.TxtEvalNumber.Location = New System.Drawing.Point(147, 14)
+        Me.TxtEvalNumber.Name = "TxtEvalNumber"
+        Me.TxtEvalNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtEvalNumber.Properties.Appearance.Options.UseFont = True
+        Me.TxtEvalNumber.Size = New System.Drawing.Size(216, 20)
+        Me.TxtEvalNumber.TabIndex = 152
         '
         'MENote
         '
@@ -276,6 +298,7 @@ Partial Class FormAREvalNote
         Me.GCData.Location = New System.Drawing.Point(0, 177)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
         Me.GCData.Size = New System.Drawing.Size(826, 263)
         Me.GCData.TabIndex = 22
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -308,6 +331,10 @@ Partial Class FormAREvalNote
         '
         Me.GVData.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GVData.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVData.AppearancePrint.Row.Options.UseTextOptions = True
+        Me.GVData.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.ColumnPanelRowHeight = 40
         Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ar_eval_note_det, Me.GridColumnid_ar_eval_note_store, Me.GridColumnid_ar_eval_note, Me.GridColumnid_comp_group, Me.GridColumnstore_group, Me.GridColumnoverdue_inv, Me.GridColumnnote, Me.GridColumnsortcol})
         Me.GVData.GridControl = Me.GCData
@@ -315,6 +342,7 @@ Partial Class FormAREvalNote
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsPrint.AllowMultilineHeaders = True
         Me.GVData.OptionsView.AllowCellMerge = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
@@ -369,11 +397,22 @@ Partial Class FormAREvalNote
         'GridColumnnote
         '
         Me.GridColumnnote.Caption = "Note"
+        Me.GridColumnnote.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumnnote.FieldName = "note"
         Me.GridColumnnote.Name = "GridColumnnote"
         Me.GridColumnnote.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnnote.Visible = True
         Me.GridColumnnote.VisibleIndex = 2
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'GridColumnsortcol
+        '
+        Me.GridColumnsortcol.Caption = "sortcol"
+        Me.GridColumnsortcol.FieldName = "sortcol"
+        Me.GridColumnsortcol.Name = "GridColumnsortcol"
         '
         'PanelControlNav
         '
@@ -394,32 +433,6 @@ Partial Class FormAREvalNote
         Me.BtnAddBulk.TabIndex = 24
         Me.BtnAddBulk.Text = "Add Note (Bulk)"
         '
-        'GridColumnsortcol
-        '
-        Me.GridColumnsortcol.Caption = "sortcol"
-        Me.GridColumnsortcol.FieldName = "sortcol"
-        Me.GridColumnsortcol.Name = "GridColumnsortcol"
-        '
-        'TxtEvalNumber
-        '
-        Me.TxtEvalNumber.EditValue = ""
-        Me.TxtEvalNumber.Enabled = False
-        Me.TxtEvalNumber.Location = New System.Drawing.Point(147, 14)
-        Me.TxtEvalNumber.Name = "TxtEvalNumber"
-        Me.TxtEvalNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtEvalNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtEvalNumber.Size = New System.Drawing.Size(216, 20)
-        Me.TxtEvalNumber.TabIndex = 152
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(34, 17)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(98, 13)
-        Me.LabelControl1.TabIndex = 148
-        Me.LabelControl1.Text = "AR Evaluation No."
-        '
         'FormAREvalNote
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -437,6 +450,7 @@ Partial Class FormAREvalNote
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
+        CType(Me.TxtEvalNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -450,9 +464,9 @@ Partial Class FormAREvalNote
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
-        CType(Me.TxtEvalNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -492,4 +506,5 @@ Partial Class FormAREvalNote
     Friend WithEvents GridColumnsortcol As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtEvalNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class
