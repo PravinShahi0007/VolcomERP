@@ -178,6 +178,7 @@ GROUP BY rd.`id_prod_order_rec`"
 ,IFNULL(claim_reject.qty_minor,0) AS qty_minor
 ,IFNULL(claim_reject.qty_major,0) AS qty_major
 ,IFNULL(claim_reject.qty_afkir,0) AS qty_afkir
+,IFNULL(sni.qty,0) AS qty_sni
 ,ROUND(IFNULL(claim_reject.claim_qty,0) * wo_price.prod_order_wo_det_price,2) AS claim_reject
 FROM tb_prod_order_close_det pocd
 INNER JOIN tb_prod_order_close poc ON poc.`id_prod_order_close`=pocd.`id_prod_order_close`
@@ -257,6 +258,13 @@ LEFT JOIN
 	WHERE pocd.id_prod_order_close = '" & id_pps & "'
 	GROUP BY pocd.`id_prod_order`
 ) claim_reject ON claim_reject.id_prod_order=po.`id_prod_order` AND claim_reject.claim_qty > 0
+LEFT JOIN
+(
+    SELECT rec.id_prod_order,IF((SELECT is_enable_sni FROM tb_opt_prod)=1,SUM(io.`qty`)*-1,0) AS qty
+    FROM tb_sni_in_out io 
+    INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=io.id_prod_order_rec
+    GROUP BY rec.`id_prod_order`
+) sni ON sni.id_prod_order = po.id_prod_order
 WHERE pocd.`id_prod_order_close`='" & id_pps & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProd.DataSource = data
