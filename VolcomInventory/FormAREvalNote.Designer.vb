@@ -41,8 +41,8 @@ Partial Class FormAREvalNote
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddNoteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DeleteNoteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteNoteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_ar_eval_note_det = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_ar_eval_note_store = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -53,6 +53,7 @@ Partial Class FormAREvalNote
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAddBulk = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnsortcol = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -267,10 +268,10 @@ Partial Class FormAREvalNote
         '
         Me.GCData.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 145)
+        Me.GCData.Location = New System.Drawing.Point(0, 152)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(826, 295)
+        Me.GCData.Size = New System.Drawing.Size(826, 288)
         Me.GCData.TabIndex = 22
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -286,26 +287,25 @@ Partial Class FormAREvalNote
         Me.AddNoteToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.AddNoteToolStripMenuItem.Text = "Add Note"
         '
-        'DeleteNoteToolStripMenuItem
-        '
-        Me.DeleteNoteToolStripMenuItem.Name = "DeleteNoteToolStripMenuItem"
-        Me.DeleteNoteToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
-        Me.DeleteNoteToolStripMenuItem.Text = "Delete Note"
-        '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(136, 22)
         Me.ToolStripMenuItem1.Text = "Edit Note"
         '
+        'DeleteNoteToolStripMenuItem
+        '
+        Me.DeleteNoteToolStripMenuItem.Name = "DeleteNoteToolStripMenuItem"
+        Me.DeleteNoteToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.DeleteNoteToolStripMenuItem.Text = "Delete Note"
+        '
         'GVData
         '
         Me.GVData.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GVData.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.ColumnPanelRowHeight = 40
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ar_eval_note_det, Me.GridColumnid_ar_eval_note_store, Me.GridColumnid_ar_eval_note, Me.GridColumnid_comp_group, Me.GridColumnstore_group, Me.GridColumnoverdue_inv, Me.GridColumnnote})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ar_eval_note_det, Me.GridColumnid_ar_eval_note_store, Me.GridColumnid_ar_eval_note, Me.GridColumnid_comp_group, Me.GridColumnstore_group, Me.GridColumnoverdue_inv, Me.GridColumnnote, Me.GridColumnsortcol})
         Me.GVData.GridControl = Me.GCData
-        Me.GVData.GroupCount = 1
         Me.GVData.LevelIndent = 0
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -315,7 +315,6 @@ Partial Class FormAREvalNote
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupedColumns = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnstore_group, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnid_ar_eval_note_det
         '
@@ -377,7 +376,7 @@ Partial Class FormAREvalNote
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 109)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(826, 36)
+        Me.PanelControlNav.Size = New System.Drawing.Size(826, 43)
         Me.PanelControlNav.TabIndex = 23
         '
         'BtnAddBulk
@@ -386,9 +385,15 @@ Partial Class FormAREvalNote
         Me.BtnAddBulk.Image = CType(resources.GetObject("BtnAddBulk.Image"), System.Drawing.Image)
         Me.BtnAddBulk.Location = New System.Drawing.Point(697, 2)
         Me.BtnAddBulk.Name = "BtnAddBulk"
-        Me.BtnAddBulk.Size = New System.Drawing.Size(127, 32)
+        Me.BtnAddBulk.Size = New System.Drawing.Size(127, 39)
         Me.BtnAddBulk.TabIndex = 24
         Me.BtnAddBulk.Text = "Add Note (Bulk)"
+        '
+        'GridColumnsortcol
+        '
+        Me.GridColumnsortcol.Caption = "sortcol"
+        Me.GridColumnsortcol.FieldName = "sortcol"
+        Me.GridColumnsortcol.Name = "GridColumnsortcol"
         '
         'FormAREvalNote
         '
@@ -403,6 +408,7 @@ Partial Class FormAREvalNote
         Me.Name = "FormAREvalNote"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Catatan Manajemen Terhadap AR"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
@@ -457,4 +463,5 @@ Partial Class FormAREvalNote
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnAddBulk As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnsortcol As DevExpress.XtraGrid.Columns.GridColumn
 End Class
