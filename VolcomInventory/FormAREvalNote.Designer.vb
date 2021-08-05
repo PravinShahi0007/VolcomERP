@@ -54,6 +54,8 @@ Partial Class FormAREvalNote
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAddBulk = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnsortcol = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TxtEvalNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,11 +72,14 @@ Partial Class FormAREvalNote
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.TxtEvalNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlHead.Controls.Add(Me.LabelControl1)
+        Me.GroupControlHead.Controls.Add(Me.TxtEvalNumber)
         Me.GroupControlHead.Controls.Add(Me.MENote)
         Me.GroupControlHead.Controls.Add(Me.LabelControl7)
         Me.GroupControlHead.Controls.Add(Me.TxtNumber)
@@ -83,12 +88,12 @@ Partial Class FormAREvalNote
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(826, 109)
+        Me.GroupControlHead.Size = New System.Drawing.Size(826, 134)
         Me.GroupControlHead.TabIndex = 19
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(109, 40)
+        Me.MENote.Location = New System.Drawing.Point(147, 66)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 255
         Me.MENote.Size = New System.Drawing.Size(216, 52)
@@ -98,7 +103,7 @@ Partial Class FormAREvalNote
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(31, 43)
+        Me.LabelControl7.Location = New System.Drawing.Point(34, 68)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 150
@@ -108,21 +113,21 @@ Partial Class FormAREvalNote
         '
         Me.TxtNumber.EditValue = ""
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(109, 14)
+        Me.TxtNumber.Location = New System.Drawing.Point(147, 40)
         Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
         Me.TxtNumber.Size = New System.Drawing.Size(216, 20)
         Me.TxtNumber.TabIndex = 147
         '
         'LabelControl2
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(31, 17)
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(34, 43)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(44, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(43, 13)
         Me.LabelControl2.TabIndex = 147
-        Me.LabelControl2.Text = "Number"
+        Me.LabelControl2.Text = "Note No."
         '
         'PanelControl1
         '
@@ -134,7 +139,7 @@ Partial Class FormAREvalNote
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(599, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(225, 105)
+        Me.PanelControl1.Size = New System.Drawing.Size(225, 130)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl21
@@ -268,10 +273,10 @@ Partial Class FormAREvalNote
         '
         Me.GCData.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 152)
+        Me.GCData.Location = New System.Drawing.Point(0, 177)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(826, 288)
+        Me.GCData.Size = New System.Drawing.Size(826, 263)
         Me.GCData.TabIndex = 22
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -374,7 +379,7 @@ Partial Class FormAREvalNote
         '
         Me.PanelControlNav.Controls.Add(Me.BtnAddBulk)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(0, 109)
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 134)
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(826, 43)
         Me.PanelControlNav.TabIndex = 23
@@ -394,6 +399,26 @@ Partial Class FormAREvalNote
         Me.GridColumnsortcol.Caption = "sortcol"
         Me.GridColumnsortcol.FieldName = "sortcol"
         Me.GridColumnsortcol.Name = "GridColumnsortcol"
+        '
+        'TxtEvalNumber
+        '
+        Me.TxtEvalNumber.EditValue = ""
+        Me.TxtEvalNumber.Enabled = False
+        Me.TxtEvalNumber.Location = New System.Drawing.Point(147, 14)
+        Me.TxtEvalNumber.Name = "TxtEvalNumber"
+        Me.TxtEvalNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtEvalNumber.Properties.Appearance.Options.UseFont = True
+        Me.TxtEvalNumber.Size = New System.Drawing.Size(216, 20)
+        Me.TxtEvalNumber.TabIndex = 152
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(34, 17)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(98, 13)
+        Me.LabelControl1.TabIndex = 148
+        Me.LabelControl1.Text = "AR Evaluation No."
         '
         'FormAREvalNote
         '
@@ -427,6 +452,7 @@ Partial Class FormAREvalNote
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
+        CType(Me.TxtEvalNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -464,4 +490,6 @@ Partial Class FormAREvalNote
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnAddBulk As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnsortcol As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtEvalNumber As DevExpress.XtraEditors.TextEdit
 End Class

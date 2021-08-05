@@ -471,6 +471,9 @@
         ElseIf report_mark_type = "327" Then
             'sni realisasi
             FormSNIRealisasiDet.Close()
+        ElseIf report_mark_type = "329" Then
+            'eval note
+            FormAREvalNote.Close()
         End If
     End Sub
     Sub show()
@@ -1533,6 +1536,11 @@ GROUP BY rec.`id_prod_order`"
             FormSNIRealisasiDet.id = id_report
             FormSNIRealisasiDet.is_view = "1"
             FormSNIRealisasiDet.ShowDialog()
+        ElseIf report_mark_type = "329" Then
+            'eval note
+            FormAREvalNote.id = id_report
+            FormAREvalNote.is_view = "1"
+            FormAREvalNote.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2742,6 +2750,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_sni_realisasi"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "329" Then
+            'eval note
+            table_name = "tb_ar_eval_note"
+            field_id = "id_ar_eval_note"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -3214,6 +3228,15 @@ LIMIT 1 "
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("payroll_type").ToString
                         info_design = "Period: " + datax.Rows(0)("period").ToString
+                    End If
+                ElseIf report_mark_type = "329" Then
+                    'eval note
+                    query = "SELECT p.`number` FROM tb_ar_eval_note n
+                    INNER JOIN tb_ar_eval_pps p ON p.id_ar_eval_pps = n.id_ar_eval_pps
+                    WHERE n.id_ar_eval_note=" + id_report + " "
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("number").ToString
                     End If
                 End If
             End If

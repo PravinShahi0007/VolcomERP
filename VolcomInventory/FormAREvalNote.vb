@@ -22,10 +22,12 @@
 
     Sub actionLoad()
         'main
-        Dim query As String = "SELECT n.id_ar_eval_note, n.id_ar_eval_pps, n.`number`, n.created_date, n.id_report_status, n.note, n.is_submit
+        Dim query As String = "SELECT n.id_ar_eval_note, n.id_ar_eval_pps, n.`number`, n.created_date, n.id_report_status, n.note, n.is_submit, p.number AS `ref_number`
         FROM tb_ar_eval_note n
+        INNER JOIN tb_ar_eval_pps p ON p.id_ar_eval_pps = n.id_ar_eval_pps
         WHERE n.id_ar_eval_note=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        TxtEvalNumber.Text = data.Rows(0)("ref_number").ToString
         TxtNumber.Text = data.Rows(0)("number").ToString
         MENote.Text = data.Rows(0)("note").ToString
         DECreated.EditValue = data.Rows(0)("created_date")
