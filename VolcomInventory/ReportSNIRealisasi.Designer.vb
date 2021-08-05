@@ -20,11 +20,16 @@ Partial Public Class ReportSNIRealisasi
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XTDetail = New DevExpress.XtraReports.UI.XRTable()
+        Me.XRDetail = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
@@ -35,19 +40,15 @@ Partial Public Class ReportSNIRealisasi
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XTDetail = New DevExpress.XtraReports.UI.XRTable()
-        Me.XRDetail = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -58,6 +59,59 @@ Partial Public Class ReportSNIRealisasi
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XTDetail
+        '
+        Me.XTDetail.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XTDetail.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.XTDetail.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 0!)
+        Me.XTDetail.Name = "XTDetail"
+        Me.XTDetail.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
+        Me.XTDetail.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XRDetail})
+        Me.XTDetail.SizeF = New System.Drawing.SizeF(739.0001!, 25.0!)
+        Me.XTDetail.StylePriority.UseBorders = False
+        Me.XTDetail.StylePriority.UseFont = False
+        Me.XTDetail.StylePriority.UsePadding = False
+        Me.XTDetail.StylePriority.UseTextAlignment = False
+        Me.XTDetail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XRDetail
+        '
+        Me.XRDetail.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell6, Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell10, Me.XrTableCell9})
+        Me.XRDetail.Name = "XRDetail"
+        Me.XRDetail.Weight = 1.0R
+        '
+        'XrTableCell6
+        '
+        Me.XrTableCell6.Name = "XrTableCell6"
+        Me.XrTableCell6.Weight = 0.50000006355909776R
+        '
+        'XrTableCell7
+        '
+        Me.XrTableCell7.Multiline = True
+        Me.XrTableCell7.Name = "XrTableCell7"
+        Me.XrTableCell7.Text = "tes"
+        Me.XrTableCell7.Weight = 3.5104169338276305R
+        '
+        'XrTableCell8
+        '
+        Me.XrTableCell8.Name = "XrTableCell8"
+        Me.XrTableCell8.Text = "tes"
+        Me.XrTableCell8.Weight = 1.4791667296222018R
+        '
+        'XrTableCell10
+        '
+        Me.XrTableCell10.Name = "XrTableCell10"
+        Me.XrTableCell10.Text = "tes"
+        Me.XrTableCell10.Weight = 0.51041693740773242R
+        '
+        'XrTableCell9
+        '
+        Me.XrTableCell9.Name = "XrTableCell9"
+        Me.XrTableCell9.Text = "tes"
+        Me.XrTableCell9.Weight = 1.3900012992173509R
         '
         'TopMargin
         '
@@ -75,21 +129,9 @@ Partial Public Class ReportSNIRealisasi
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.XrLabel2, Me.XrLabel3, Me.XrTable1})
-        Me.ReportHeader.HeightF = 100.0!
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel4, Me.XrLabel1, Me.XrLabel2, Me.XrLabel3, Me.XrTable1})
+        Me.ReportHeader.HeightF = 115.625!
         Me.ReportHeader.Name = "ReportHeader"
-        '
-        'ReportFooter
-        '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2})
-        Me.ReportFooter.HeightF = 25.0!
-        Me.ReportFooter.Name = "ReportFooter"
-        '
-        'PageFooter
-        '
-        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
-        Me.PageFooter.HeightF = 22.99998!
-        Me.PageFooter.Name = "PageFooter"
         '
         'XrLabel1
         '
@@ -105,14 +147,14 @@ Partial Public Class ReportSNIRealisasi
         '
         'XrLabel2
         '
-        Me.XrLabel2.Font = New System.Drawing.Font("Calibri", 12.0!)
+        Me.XrLabel2.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.04165!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(739.0!, 25.41668!)
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.StylePriority.UseTextAlignment = False
-        Me.XrLabel2.Text = "Realisasi biaya SNI Kids - Intertek"
+        Me.XrLabel2.Text = "Realisasi biaya SNI Kids"
         Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel3
@@ -133,7 +175,7 @@ Partial Public Class ReportSNIRealisasi
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTable1.Font = New System.Drawing.Font("Tahoma", 11.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 74.37501!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 90.625!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
@@ -197,58 +239,11 @@ Partial Public Class ReportSNIRealisasi
         Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.XrTableCell4.Weight = 1.3900006888657268R
         '
-        'XTDetail
+        'ReportFooter
         '
-        Me.XTDetail.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XTDetail.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.XTDetail.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 0!)
-        Me.XTDetail.Name = "XTDetail"
-        Me.XTDetail.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
-        Me.XTDetail.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XRDetail})
-        Me.XTDetail.SizeF = New System.Drawing.SizeF(739.0001!, 25.0!)
-        Me.XTDetail.StylePriority.UseBorders = False
-        Me.XTDetail.StylePriority.UseFont = False
-        Me.XTDetail.StylePriority.UsePadding = False
-        Me.XTDetail.StylePriority.UseTextAlignment = False
-        Me.XTDetail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XRDetail
-        '
-        Me.XRDetail.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell6, Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell10, Me.XrTableCell9})
-        Me.XRDetail.Name = "XRDetail"
-        Me.XRDetail.Weight = 1.0R
-        '
-        'XrTableCell6
-        '
-        Me.XrTableCell6.Name = "XrTableCell6"
-        Me.XrTableCell6.Weight = 0.50000006355909776R
-        '
-        'XrTableCell7
-        '
-        Me.XrTableCell7.Multiline = True
-        Me.XrTableCell7.Name = "XrTableCell7"
-        Me.XrTableCell7.Text = "tes"
-        Me.XrTableCell7.Weight = 3.5104169338276305R
-        '
-        'XrTableCell8
-        '
-        Me.XrTableCell8.Name = "XrTableCell8"
-        Me.XrTableCell8.Text = "tes"
-        Me.XrTableCell8.Weight = 1.4791667296222018R
-        '
-        'XrTableCell10
-        '
-        Me.XrTableCell10.Name = "XrTableCell10"
-        Me.XrTableCell10.Text = "tes"
-        Me.XrTableCell10.Weight = 0.51041693740773242R
-        '
-        'XrTableCell9
-        '
-        Me.XrTableCell9.Name = "XrTableCell9"
-        Me.XrTableCell9.Text = "tes"
-        Me.XrTableCell9.Weight = 1.3900012992173509R
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2})
+        Me.ReportFooter.HeightF = 25.0!
+        Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable2
         '
@@ -274,6 +269,12 @@ Partial Public Class ReportSNIRealisasi
         Me.XrTableCell11.Visible = False
         Me.XrTableCell11.Weight = 2.99999986405489R
         '
+        'PageFooter
+        '
+        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
+        Me.PageFooter.HeightF = 22.99998!
+        Me.PageFooter.Name = "PageFooter"
+        '
         'XrPageInfo1
         '
         Me.XrPageInfo1.BorderColor = System.Drawing.Color.DimGray
@@ -288,6 +289,18 @@ Partial Public Class ReportSNIRealisasi
         Me.XrPageInfo1.StylePriority.UseTextAlignment = False
         Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
+        'XrLabel4
+        '
+        Me.XrLabel4.Font = New System.Drawing.Font("Calibri", 12.0!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 51.45833!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(739.0!, 25.41668!)
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UseTextAlignment = False
+        Me.XrLabel4.Text = "Budget Proposal No : [budget_number]"
+        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'ReportSNIRealisasi
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.PageFooter})
@@ -297,8 +310,8 @@ Partial Public Class ReportSNIRealisasi
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -330,4 +343,5 @@ Partial Public Class ReportSNIRealisasi
     Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
 End Class

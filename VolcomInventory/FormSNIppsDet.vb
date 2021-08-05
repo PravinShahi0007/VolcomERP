@@ -73,10 +73,6 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                     BSave.Visible = True
                 End If
                 '
-                If dt.Rows(0)("id_report_status").ToString = "6" Or dt.Rows(0)("id_report_status").ToString = "5" Then
-                    is_view = "1"
-                End If
-
                 If is_view = "1" Then
                     BSave.Visible = False
                     BPrint.Visible = False
@@ -452,6 +448,7 @@ HAVING NOT ISNULL(err)"
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         Cursor = Cursors.WaitCursor
         ReportSNIBudget.id_pps = id_pps
+        ReportSNIBudget.tot_qty = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
         Dim Report As New ReportSNIBudget()
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

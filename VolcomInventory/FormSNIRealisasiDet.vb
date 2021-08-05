@@ -465,4 +465,16 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportSNIRealisasi.id = id
+        ReportSNIRealisasi.tot_qty = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
+        Dim Report As New ReportSNIRealisasi()
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+
+        Cursor = Cursors.Default
+    End Sub
 End Class
