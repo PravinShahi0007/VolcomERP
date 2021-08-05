@@ -439,6 +439,18 @@
     <Compile Include="FormAREvalNote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAREvalNoteAdd.Designer.vb">
+      <DependentUpon>FormAREvalNoteAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvalNoteAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAREvalNoteBulk.Designer.vb">
+      <DependentUpon>FormAREvalNoteBulk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvalNoteBulk.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAREvalScheduke.Designer.vb">
       <DependentUpon>FormAREvalScheduke.vb</DependentUpon>
     </Compile>
@@ -10044,6 +10056,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvalNote.resx">
       <DependentUpon>FormAREvalNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvalNoteAdd.resx">
+      <DependentUpon>FormAREvalNoteAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvalNoteBulk.resx">
+      <DependentUpon>FormAREvalNoteBulk.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvalScheduke.resx">
       <DependentUpon>FormAREvalScheduke.vb</DependentUpon>
