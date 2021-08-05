@@ -55,7 +55,7 @@
         Dim query As String = "SELECT pod.id_prod_order_det, pod.id_prod_order,
         po.prod_order_number, CONCAT(comp.comp_number, ' - ', comp.comp_name) AS `vendor`,
         dsg.design_code AS `code`,prod.product_full_code AS `barcode`,prod.product_display_name AS `name`, cd.code_detail_name AS `size`, ss.season,
-        IFNULL((prec.prod_order_rec_det_qty + (COALESCE(rin.tot_ret_in, 0)-COALESCE(rout.tot_ret_out, 0) )) - COALESCE(pl.tot_pl, 0) +  COALESCE(adj_in.tot_adj_in,0) -  COALESCE(adj_out.tot_adj_out,0) - COALESCE(ass.tot_ass,0),0) AS qty,
+        IFNULL((prec.prod_order_rec_det_qty + (COALESCE(rin.tot_ret_in, 0)-COALESCE(rout.tot_ret_out, 0) )) - COALESCE(pl.tot_pl, 0) +  COALESCE(adj_in.tot_adj_in,0) -  COALESCE(adj_out.tot_adj_out,0) - COALESCE(ass.tot_ass,0) - COALESCE(sni.qty,0),0) AS qty,
         IF(dsg.final_is_approve=1,dsg.design_cop,IF(dsg.pp_is_approve=1,dsg.pp_cop_value,0)) AS `cop`, IF(dsg.id_cop_status=1,'Pre Final', 'Final') AS `cop_status`
         FROM tb_prod_order po
         INNER JOIN tb_prod_order_det pod ON pod.id_prod_order = po.id_prod_order
@@ -117,6 +117,13 @@
 	        WHERE a.id_report_status!=5 AND a.complete_date<='" + date_filter + "'
 	        GROUP BY acd.id_prod_order_det
         ) ass ON ass.id_prod_order_det = pod.id_prod_order_det
+        LEFT JOIN
+		(
+			SELECT io.id_prod_order_det,IF((SELECT is_enable_sni FROM tb_opt_prod)=1,SUM(io.`qty`),0) AS qty
+			FROM tb_sni_in_out io 
+			WHERE io.date_reff<='" + date_filter + "'
+			GROUP BY io.`id_prod_order_det`
+		)sni_out ON sni_out.id_prod_order_det=a.`id_prod_order_det`
         WHERE po.id_report_status=6  
         " + cond_season + " 
         " + cond_vendor + "
