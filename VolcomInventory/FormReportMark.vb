@@ -10011,7 +10011,7 @@ INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`", id_rec
 
                         'SNI Out
                         query = String.Format("INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
-SELECT '{0}' AS id_prod_order_rec,pod.`id_prod_order_det`,recd.id_product,-recd.`qty`,rec.reff_date,rec.`created_by`,rec.id_sni_rec,'' AS `report_mark_type`,'' AS `note`
+SELECT '{0}' AS id_prod_order_rec,pod.`id_prod_order_det`,recd.id_product,-recd.`qty`,NOW(),rec.`created_by`,rec.id_sni_rec,'321' AS `report_mark_type`,'SNI Serah Terima' AS `note`
 FROM tb_sni_rec_det recd
 INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND recd.id_sni_rec_det='{1}'
 INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=recd.id_prod_order_det

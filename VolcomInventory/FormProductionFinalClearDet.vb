@@ -1035,8 +1035,10 @@ IFNULL(adj_in.tot_adj_in,0) AS `total_adj_in`,
 IFNULL(adj_out.tot_adj_out,0) AS `total_adj_out`,
 IFNULL(qcr.tot_qc_report,0) AS `total_qc_report`,
 IFNULL(qcr_old.tot_qc_report,0) AS `total_qc_report_old`,
-((SELECT total_rec) - (SELECT total_ret_out) + (SELECT total_ret_in)  + (SELECT total_adj_in) - (SELECT total_adj_out) - (SELECT total_qc_report)) AS `qty_limit_new`,
-((SELECT total_rec_old) - (SELECT total_ret_out_old) + (SELECT total_ret_in_old)  + (SELECT total_adj_in) - (SELECT total_adj_out) - (SELECT total_qc_report_old)) AS `qty_limit_old`,
+IFNULL(sni.qty,0) AS `total_sni`,
+IFNULL(sni_old.qty,0) AS `total_sni_old`,
+((SELECT total_rec) - (SELECT total_ret_out) + (SELECT total_ret_in)  + (SELECT total_adj_in) - (SELECT total_adj_out) - (SELECT total_qc_report) + (SELECT total_sni)) AS `qty_limit_new`,
+((SELECT total_rec_old) - (SELECT total_ret_out_old) + (SELECT total_ret_in_old)  + (SELECT total_adj_in) - (SELECT total_adj_out) - (SELECT total_qc_report_old) + (SELECT total_sni_old)) AS `qty_limit_old`,
 IF((SELECT qty_limit_new) > (SELECT qty_limit_old),(SELECT qty_limit_old),(SELECT qty_limit_new)) AS qty_limit
 FROM tb_prod_order_det pod
 INNER JOIN tb_prod_demand_product pd_prod ON pd_prod.id_prod_demand_product = pod.id_prod_demand_product
@@ -1115,6 +1117,19 @@ LEFT JOIN (
 	WHERE f.id_report_status!=5 AND f.id_prod_order=" + id_prod_order + " 
 	GROUP BY fd.id_prod_order_det
 ) qcr_old ON qcr_old.id_prod_order_det = pod.id_prod_order_det
+LEFT JOIN (
+	SELECT io.id_prod_order_det,IF((SELECT is_enable_sni FROM tb_opt_prod)=1,SUM(io.`qty`),0) AS qty
+    FROM tb_sni_in_out io 
+    WHERE io.id_prod_order_rec='" + id_prod_order_rec + "'
+    GROUP BY io.`id_prod_order_det`
+) sni ON sni.id_prod_order_det = pod.id_prod_order_det
+LEFT JOIN (
+	SELECT io.id_prod_order_det,IF((SELECT is_enable_sni FROM tb_opt_prod)=1,SUM(io.`qty`),0) AS qty
+    FROM tb_sni_in_out io 
+    INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=io.id_prod_order_rec
+    WHERE rec.id_prod_order='" + id_prod_order + "'
+    GROUP BY io.`id_prod_order_det`
+) sni_old ON sni_old.id_prod_order_det = pod.id_prod_order_det
 WHERE pod.id_prod_order=" + id_prod_order + " "
         Dim dt_cek As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
