@@ -97,6 +97,7 @@ Partial Class FormProductionFinalClear
         Me.DEFromSum = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -539,7 +540,7 @@ Partial Class FormProductionFinalClear
         '
         'GVRecQc
         '
-        Me.GVRecQc.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn26, Me.GridColumn17, Me.GridColumn27, Me.GridColumn28, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21})
+        Me.GVRecQc.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn26, Me.GridColumn17, Me.GridColumn27, Me.GridColumn28, Me.GridColumn18, Me.GridColumn19, Me.GridColumn22, Me.GridColumn20, Me.GridColumn21})
         Me.GVRecQc.GridControl = Me.GCRecQc
         Me.GVRecQc.Name = "GVRecQc"
         Me.GVRecQc.OptionsBehavior.AutoExpandAllGroups = True
@@ -643,7 +644,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn21.FieldName = "qty_remaining"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 6
+        Me.GridColumn21.VisibleIndex = 7
         Me.GridColumn21.Width = 166
         '
         'RepositoryItemPictureEdit1
@@ -872,6 +873,20 @@ Partial Class FormProductionFinalClear
         Me.LabelControl5.TabIndex = 8892
         Me.LabelControl5.Text = "From"
         '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.Caption = "Qty SNI"
+        Me.GridColumn22.DisplayFormat.FormatString = "N0"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "qty_sni"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 6
+        '
         'FormProductionFinalClear
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1001,4 +1016,5 @@ Partial Class FormProductionFinalClear
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

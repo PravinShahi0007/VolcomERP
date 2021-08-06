@@ -132,8 +132,9 @@ WHERE cl.`is_active`='1'"
                         ,IFNULL(qcr.qty_minor_major,0) AS qc_minor_major
                         ,IFNULL(qcr.qty_major,0) AS qc_major
                         ,IFNULL(qcr.qty_afkir,0) AS qc_afkir
+                        ,IFNULL(sni.qty,0) AS qty_sni
                         ,(IF(IFNULL(pln.qty,0)>IFNULL(qcr.qty_normal,0),IFNULL(pln.qty,0),IFNULL(qcr.qty_normal,0)) + IFNULL(qcr.qty_normal_minor,0) + IFNULL(qcr.qty_minor,0) + IFNULL(qcr.qty_minor_major,0) + IFNULL(qcr.qty_major,0) + IFNULL(qcr.qty_afkir,0)) AS qc_total
-                        ,IFNULL(SUM(rec.prod_order_rec_det_qty),0) - (IF(IFNULL(pln.qty,0)>IFNULL(qcr.qty_normal,0),IFNULL(pln.qty,0),IFNULL(qcr.qty_normal,0)) + IFNULL(qcr.qty_normal_minor,0) + IFNULL(qcr.qty_minor,0) + IFNULL(qcr.qty_minor_major,0) + IFNULL(qcr.qty_major,0) + IFNULL(qcr.qty_afkir,0)) AS qc_outstanding
+                        ,IFNULL(SUM(rec.prod_order_rec_det_qty),0) - IFNULL(sni.qty,0) - (IF(IFNULL(pln.qty,0)>IFNULL(qcr.qty_normal,0),IFNULL(pln.qty,0),IFNULL(qcr.qty_normal,0)) + IFNULL(qcr.qty_normal_minor,0) + IFNULL(qcr.qty_minor,0) + IFNULL(qcr.qty_minor_major,0) + IFNULL(qcr.qty_major,0) + IFNULL(qcr.qty_afkir,0)) AS qc_outstanding
                         FROM tb_prod_order a 
                         INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
                         INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
@@ -169,6 +170,13 @@ WHERE cl.`is_active`='1'"
                             WHERE NOT ISNULL(fc.`id_pl_category_sub`)
                             GROUP BY fc.`id_prod_order`
                         )qcr ON qcr.id_prod_order=a.`id_prod_order`
+                        LEFT JOIN
+                        (
+	                        SELECT rec.id_prod_order,IF((SELECT is_enable_sni FROM tb_opt_prod)=1,SUM(io.`qty`)*-1,0) AS qty
+	                        FROM tb_sni_in_out io 
+	                        INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=io.id_prod_order_rec
+	                        GROUP BY rec.`id_prod_order`
+                        ) sni ON sni.id_prod_order = a.id_prod_order
                         LEFT JOIN
                         (
                             SELECT id_prod_order,SUM(pl_prod_order_det_qty) AS qty

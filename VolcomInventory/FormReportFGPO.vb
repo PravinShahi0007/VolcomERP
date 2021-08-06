@@ -55,7 +55,8 @@ IFNULL(qr.qty_qr,0) AS qty_qr,
 IFNULL(qr.qty_normal,0) AS qty_normal, 
 IFNULL(qr.qty_minor,0) AS qty_minor, 
 IFNULL(qr.qty_major,0) AS qty_major, 
-IFNULL(qr.qty_afkir,0) AS qty_afkir
+IFNULL(qr.qty_afkir,0) AS qty_afkir,
+IFNULL(sni.qty,0) AS qty_sni
 FROM tb_prod_order a 
 INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order AND a.`id_report_status`=6
 INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
@@ -129,7 +130,15 @@ LEFT JOIN
     FROM tb_prod_fc_det fcd
     INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcd.`id_prod_fc` AND fc.`id_report_status`!=5
     GROUP BY fc.`id_prod_order`
-)qr ON qr.id_prod_order=a.id_prod_order "
+)qr ON qr.id_prod_order=a.id_prod_order 
+LEFT JOIN
+(
+    SELECT rec.id_prod_order,IF((SELECT is_enable_sni FROM tb_opt_prod)=1,SUM(io.`qty`)*-1,0) AS qty
+    FROM tb_sni_in_out io 
+    INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=io.id_prod_order_rec
+    GROUP BY rec.`id_prod_order`
+) sni ON sni.id_prod_order = a.id_prod_order
+"
         query += "WHERE 1=1 " & query_where
         query += "GROUP BY a.id_prod_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

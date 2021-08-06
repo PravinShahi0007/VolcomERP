@@ -1,7 +1,6 @@
 ﻿Public Class ReportSNIBudget
     Public Shared id_pps As String = "-1"
-    Public Shared tot_qty As String = "-1"
-    Public Shared cost_per_pcs As String = "-1"
+    Public Shared tot_qty As Decimal = 1
 
     Private Sub ReportSNIBudget_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         Dim q As String = "SELECT sni.number,ssn.season 
@@ -25,9 +24,9 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
             'add summary
             tot_nilai += dtdet.Rows(i)("sub_amount")
             If i = dtdet.Rows.Count - 1 Then
-                insert_footer(row_baru, tot_nilai, "Total Cost")
-                insert_footer(row_baru, tot_nilai, "Total Qty Artikel KIDS")
-                insert_footer(row_baru, tot_nilai, "Cost per Pcs")
+                insert_footer(row_baru, tot_nilai, "Total Budget")
+                insert_footer(row_baru, tot_qty, "Total Qty Artikel KIDS")
+                insert_footer(row_baru, Math.Round(tot_nilai / tot_qty, 2), "Cost per Pcs")
             End If
         Next
         '
@@ -95,13 +94,13 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
 
         'No
         Dim no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
-        no.Text = keterangan
+        no.Text = ""
         no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         no.Font = font_row_style
 
         'desc
         Dim awb_no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
-        awb_no.Text = ""
+        awb_no.Text = keterangan
         awb_no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         awb_no.Font = font_row_style
 
