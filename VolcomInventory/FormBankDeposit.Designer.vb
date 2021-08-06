@@ -242,6 +242,11 @@ Partial Class FormBankDeposit
         Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrec_amo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnid_pay_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         Me.CEUrbanAllOpen = New DevExpress.XtraEditors.CheckEdit()
         Me.SLEPayType = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -372,6 +377,9 @@ Partial Class FormBankDeposit
         CType(Me.GVUrban, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.CEUrbanAllOpen.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2191,19 +2199,18 @@ Partial Class FormBankDeposit
         Me.GCUrban.Location = New System.Drawing.Point(0, 43)
         Me.GCUrban.MainView = Me.GVUrban
         Me.GCUrban.Name = "GCUrban"
-        Me.GCUrban.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit6, Me.RepositoryItemCheckEdit7})
+        Me.GCUrban.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit6, Me.RepositoryItemCheckEdit7, Me.RepositoryItemSearchLookUpEdit1, Me.RepositoryItemTextEdit1})
         Me.GCUrban.Size = New System.Drawing.Size(1186, 458)
         Me.GCUrban.TabIndex = 21
         Me.GCUrban.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUrban})
         '
         'GVUrban
         '
-        Me.GVUrban.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68, Me.GridColumn69, Me.GridColumn70})
+        Me.GVUrban.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68, Me.GridColumn69, Me.GridColumn70, Me.GridColumnrec_amo, Me.GridColumnid_pay_type})
         Me.GVUrban.GridControl = Me.GCUrban
         Me.GVUrban.Name = "GVUrban"
         Me.GVUrban.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVUrban.OptionsFind.AlwaysVisible = True
-        Me.GVUrban.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVUrban.OptionsView.ColumnAutoWidth = False
         Me.GVUrban.OptionsView.ShowGroupPanel = False
         '
@@ -2495,6 +2502,57 @@ Partial Class FormBankDeposit
         Me.GridColumn70.Caption = "note"
         Me.GridColumn70.FieldName = "note"
         Me.GridColumn70.Name = "GridColumn70"
+        '
+        'GridColumnrec_amo
+        '
+        Me.GridColumnrec_amo.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnrec_amo.AppearanceCell.Options.UseFont = True
+        Me.GridColumnrec_amo.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnrec_amo.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnrec_amo.Caption = "Receive Amount"
+        Me.GridColumnrec_amo.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumnrec_amo.DisplayFormat.FormatString = "N2"
+        Me.GridColumnrec_amo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnrec_amo.FieldName = "rec_amo"
+        Me.GridColumnrec_amo.Name = "GridColumnrec_amo"
+        Me.GridColumnrec_amo.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumnrec_amo.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec_amo", "{0:N2}")})
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'GridColumnid_pay_type
+        '
+        Me.GridColumnid_pay_type.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnid_pay_type.AppearanceCell.Options.UseFont = True
+        Me.GridColumnid_pay_type.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnid_pay_type.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnid_pay_type.Caption = "Type Rec."
+        Me.GridColumnid_pay_type.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
+        Me.GridColumnid_pay_type.FieldName = "id_pay_type"
+        Me.GridColumnid_pay_type.Name = "GridColumnid_pay_type"
+        Me.GridColumnid_pay_type.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'RepositoryItemSearchLookUpEdit1
+        '
+        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
+        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
+        Me.RepositoryItemSearchLookUpEdit1.ShowClearButton = False
+        Me.RepositoryItemSearchLookUpEdit1.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'PanelControl7
         '
@@ -3206,6 +3264,9 @@ Partial Class FormBankDeposit
         CType(Me.GVUrban, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl7.ResumeLayout(False)
         Me.PanelControl7.PerformLayout()
@@ -3516,4 +3577,9 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumn95 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn96 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SimpleButton5 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnrec_amo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_pay_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSearchLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
