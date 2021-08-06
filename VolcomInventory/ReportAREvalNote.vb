@@ -5,6 +5,7 @@
     Public Shared is_pre As String = "-1"
     Public Shared is_hidden_mark As String = "-1"
     Public Shared id_report_status As String = "-1"
+    Public Shared amount As Decimal = 0
 
     Private Sub ReportAREvalNote_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GCData.DataSource = dt
@@ -23,5 +24,16 @@
         ORDER BY rm.id_report_mark DESC LIMIT 1 "
         Dim dpd As DataTable = execute_query(qpd, -1, True, "", "", "", "")
         DataSource = dpd
+    End Sub
+
+    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
+        Dim summary_id As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summary_id
+                Case 1 'total group
+                    e.TotalValue = amount
+            End Select
+        End If
     End Sub
 End Class

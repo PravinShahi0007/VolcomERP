@@ -55,6 +55,7 @@ Partial Class FormAREvalNote
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnsortcol = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAddBulk = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -336,12 +337,14 @@ Partial Class FormAREvalNote
         Me.GVData.AppearancePrint.Row.Options.UseTextOptions = True
         Me.GVData.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.ColumnPanelRowHeight = 40
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ar_eval_note_det, Me.GridColumnid_ar_eval_note_store, Me.GridColumnid_ar_eval_note, Me.GridColumnid_comp_group, Me.GridColumnstore_group, Me.GridColumnoverdue_inv, Me.GridColumnnote, Me.GridColumnsortcol})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ar_eval_note_det, Me.GridColumnid_ar_eval_note_store, Me.GridColumnid_ar_eval_note, Me.GridColumnid_comp_group, Me.GridColumnstore_group, Me.GridColumnoverdue_inv, Me.GridColumnnote, Me.GridColumnsortcol, Me.GridColumnno})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.LevelIndent = 0
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsCustomization.AllowFilter = False
+        Me.GVData.OptionsCustomization.AllowSort = False
         Me.GVData.OptionsPrint.AllowMultilineHeaders = True
         Me.GVData.OptionsView.AllowCellMerge = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
@@ -380,7 +383,7 @@ Partial Class FormAREvalNote
         Me.GridColumnstore_group.Name = "GridColumnstore_group"
         Me.GridColumnstore_group.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumnstore_group.Visible = True
-        Me.GridColumnstore_group.VisibleIndex = 0
+        Me.GridColumnstore_group.VisibleIndex = 1
         '
         'GridColumnoverdue_inv
         '
@@ -390,8 +393,9 @@ Partial Class FormAREvalNote
         Me.GridColumnoverdue_inv.FieldName = "overdue_inv"
         Me.GridColumnoverdue_inv.Name = "GridColumnoverdue_inv"
         Me.GridColumnoverdue_inv.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumnoverdue_inv.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "overdue_inv", "{0:n2}", "1")})
         Me.GridColumnoverdue_inv.Visible = True
-        Me.GridColumnoverdue_inv.VisibleIndex = 1
+        Me.GridColumnoverdue_inv.VisibleIndex = 2
         Me.GridColumnoverdue_inv.Width = 90
         '
         'GridColumnnote
@@ -402,7 +406,7 @@ Partial Class FormAREvalNote
         Me.GridColumnnote.Name = "GridColumnnote"
         Me.GridColumnnote.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnnote.Visible = True
-        Me.GridColumnnote.VisibleIndex = 2
+        Me.GridColumnnote.VisibleIndex = 3
         '
         'RepositoryItemMemoEdit1
         '
@@ -413,6 +417,14 @@ Partial Class FormAREvalNote
         Me.GridColumnsortcol.Caption = "sortcol"
         Me.GridColumnsortcol.FieldName = "sortcol"
         Me.GridColumnsortcol.Name = "GridColumnsortcol"
+        '
+        'GridColumnno
+        '
+        Me.GridColumnno.Caption = "No"
+        Me.GridColumnno.FieldName = "no"
+        Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.Visible = True
+        Me.GridColumnno.VisibleIndex = 0
         '
         'PanelControlNav
         '
@@ -507,4 +519,5 @@ Partial Class FormAREvalNote
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtEvalNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
 End Class

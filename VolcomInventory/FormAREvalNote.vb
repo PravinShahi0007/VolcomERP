@@ -4,6 +4,7 @@
     Dim id_report_status As String = "-1"
     Dim is_submit As String = "-1"
     Dim rmt As String = "329"
+    Dim amount As Decimal = 0
 
     Private Sub FormAREvalNote_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -22,10 +23,12 @@
 
     Sub actionLoad()
         'main
-        Dim query As String = "SELECT n.id_ar_eval_note, n.id_ar_eval_pps, n.`number`, n.created_date, n.id_report_status, n.note, n.is_submit, p.number AS `ref_number`
+        Dim query As String = "SELECT n.id_ar_eval_note, n.id_ar_eval_pps, n.`number`, n.created_date, n.id_report_status, n.note, n.is_submit, p.number AS `ref_number`, SUM(ns.overdue_inv) AS `amount`
         FROM tb_ar_eval_note n
         INNER JOIN tb_ar_eval_pps p ON p.id_ar_eval_pps = n.id_ar_eval_pps
-        WHERE n.id_ar_eval_note=" + id + " "
+        INNER JOIN tb_ar_eval_note_store ns ON ns.id_ar_eval_note = n.id_ar_eval_note
+        WHERE n.id_ar_eval_note=" + id + " 
+        GROUP BY n.id_ar_eval_note "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         TxtEvalNumber.Text = data.Rows(0)("ref_number").ToString
         TxtNumber.Text = data.Rows(0)("number").ToString
@@ -34,6 +37,7 @@
         is_submit = data.Rows(0)("is_submit").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         id_report_status = data.Rows(0)("id_report_status").ToString
+        amount = data.Rows(0)("amount")
 
         'detail
         viewDetail()
@@ -42,13 +46,19 @@
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT nd.id_ar_eval_note_det,ns.id_ar_eval_note_store, ns.id_ar_eval_note, ns.id_comp_group, cg.description AS `store_group`, ns.overdue_inv,nd.note,
-        CONCAT(cg.description,ns.id_ar_eval_note) AS `sortcol`
-        FROM tb_ar_eval_note_store ns
-        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = ns.id_comp_group
-        LEFT JOIN tb_ar_eval_note_det nd ON nd.id_ar_eval_note_store =  ns.id_ar_eval_note_store
-        WHERE ns.id_ar_eval_note=" + id + " AND ns.overdue_inv>0
-        ORDER BY cg.description ASC, nd.id_ar_eval_note_det ASC "
+        Dim query As String = "SELECT a.*, (@no := IF(@last_group <> `store_group`, (@no + 1), @no)) AS `no`,
+        (@last_group := `store_group`) AS `last_group`
+        FROM (
+            SELECT nd.id_ar_eval_note_det,ns.id_ar_eval_note_store, ns.id_ar_eval_note, ns.id_comp_group, cg.description AS `store_group`, ns.overdue_inv,nd.note,
+            CONCAT(cg.description,ns.id_ar_eval_note) AS `sortcol`
+            FROM tb_ar_eval_note_store ns
+            INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = ns.id_comp_group
+            LEFT JOIN tb_ar_eval_note_det nd ON nd.id_ar_eval_note_store =  ns.id_ar_eval_note_store
+            WHERE ns.id_ar_eval_note=" + id + " AND ns.overdue_inv>0
+            ORDER BY cg.description ASC, nd.id_ar_eval_note_det ASC 
+        ) a 
+        JOIN (SELECT @no := 0) AS `no`
+        JOIN (SELECT @last_group := '') AS last_group "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
@@ -244,6 +254,7 @@
         gv.BestFitColumns()
         ReportAREvalNote.dt = GCData.DataSource
         ReportAREvalNote.id = id
+        ReportAREvalNote.amount = amount
         If id_report_status <> "6" Then
             ReportAREvalNote.is_pre = "1"
         Else
@@ -297,7 +308,7 @@
         Report.GVData.OptionsPrint.PrintFooter = True
 
         'data
-        Report.LabelNumber.Text = "NO. " + TxtNumber.Text
+        Report.LabelNumber.Text = "NO. " + TxtEvalNumber.Text
         Report.LabelDate.Text = DECreated.Text.ToUpper
         Report.LNote.Text = MENote.Text
         Report.LabelNoteNo.Text = TxtNumber.Text
@@ -306,5 +317,16 @@
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
+        Dim summary_id As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summary_id
+                Case 1 'total group
+                    e.TotalValue = amount
+            End Select
+        End If
     End Sub
 End Class
