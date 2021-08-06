@@ -74,16 +74,34 @@ WHERE cg.is_use_payout=1", 0, True, "", "", "", "")
         'zalora
         view_zalora_payout()
 
-        'pay type
+        'pay type urban
         load_trans_type_po()
+        load_trans_type_sle()
 
         'invoice mat
         load_vendor_fgpo()
     End Sub
 
     Sub load_trans_type_po()
-        Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
+        Dim query As String = "SELECT id_pay_type,pay_type 
+        FROM tb_lookup_pay_type 
+        UNION ALL 
+        SELECT '3' AS id_pay_type, 'All' AS `pay_type` "
         viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
+    End Sub
+
+    Sub load_trans_type_sle()
+        Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        RepositoryItemSearchLookUpEdit1.DataSource = Nothing
+        RepositoryItemSearchLookUpEdit1.DataSource = data
+        RepositoryItemSearchLookUpEdit1.DisplayMember = "pay_type"
+        RepositoryItemSearchLookUpEdit1.ValueMember = "id_pay_type"
+        'If CheckEdit1.EditValue = True Then
+        '    RepositoryItemSearchLookUpEdit1View.ActiveFilterString = "[acc_description] like '%" + LECat.Text.ToString + "%'"
+        '    RepositoryItemSearchLookUpEdit1View.ApplyColumnsFilter()
+        '    RepositoryItemSearchLookUpEdit1View.RefreshData()
+        'End If
     End Sub
 
     Sub load_vendor_fgpo()
@@ -733,7 +751,7 @@ GROUP BY d.`id_purc_rec_asset_disp`"
         " + var_acc + " AS `id_acc`, coa.acc_name, coa.acc_description,
         IF(typ.`is_receive_payment`=2,1,2) AS `id_dc`, IF(typ.`is_receive_payment`=2,'D','K') AS `dc_code`,
         CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `note`,
-        cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`
+        cf.id_comp AS `id_comp_default`, cf.comp_number as `comp_number_default`, IF(IFNULL(pyd.`value`,0.00)!=0,2,1) AS `id_pay_type`, IF(IFNULL(pyd.`value`,0.00)!=0,(SELECT total_due),(SELECT amount)/2) AS `rec_amo`
         FROM tb_sales_pos sp 
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -764,10 +782,20 @@ GROUP BY d.`id_purc_rec_asset_disp`"
             'DP
             CEUrbanAllOpen.EditValue = False
             CEUrbanAllOpen.Enabled = False
-        Else
+            GridColumnrec_amo.Visible = False
+            GridColumnid_pay_type.Visible = False
+        ElseIf SLEPayType.EditValue.ToString = "2" Then
             'pelunasan
             CEUrbanAllOpen.EditValue = False
             CEUrbanAllOpen.Enabled = True
+            GridColumnrec_amo.Visible = False
+            GridColumnid_pay_type.Visible = False
+        ElseIf SLEPayType.EditValue.ToString = "3" Then
+            'all
+            CEUrbanAllOpen.EditValue = True
+            CEUrbanAllOpen.Enabled = False
+            GridColumnid_pay_type.VisibleIndex = 1
+            GridColumnrec_amo.VisibleIndex = 2
         End If
     End Sub
 
@@ -809,6 +837,23 @@ GROUP BY d.`id_purc_rec_asset_disp`"
             Exit Sub
         End If
 
+        'check zero  khusus utk all
+        If SLEPayType.EditValue.ToString = "3" Then
+            GVUrban.ActiveFilterString = "[is_check]='yes' AND [rec_amo]=0"
+            If GVUrban.RowCount > 0 Then
+                Dim err_coa As String = ""
+                For i As Integer = 0 To GVUrban.RowCount - 1
+                    If i > 0 Then
+                        err_coa += System.Environment.NewLine
+                    End If
+                    err_coa += "- " + GVUrban.GetRowCellValue(i, "sales_pos_number").ToString
+                Next
+                warningCustom("Please input Receive Amount for invoice number : " + System.Environment.NewLine + err_coa)
+                GVUrban.ActiveFilterString = ""
+                Exit Sub
+            End If
+        End If
+
         If SLEPayType.EditValue.ToString = "1" Then
             'process
             GVUrban.ActiveFilterString = "[is_check]='yes'"
@@ -833,13 +878,24 @@ GROUP BY d.`id_purc_rec_asset_disp`"
             Else
                 'cek ada yg blm dp
                 Dim err_not_dp As String = ""
-                GVUrban.ActiveFilterString = "[is_check]='yes' AND [total_rec]=0"
-                For d As Integer = 0 To GVUrban.RowCount - 1
-                    If d > 0 Then
-                        err_not_dp += System.Environment.NewLine
-                    End If
-                    err_not_dp += "- " + GVUrban.GetRowCellValue(d, "sales_pos_number").ToString
-                Next
+                If SLEPayType.EditValue.ToString = "2" Then
+                    GVUrban.ActiveFilterString = "[is_check]='yes' AND [total_rec]=0"
+                    For d As Integer = 0 To GVUrban.RowCount - 1
+                        If d > 0 Then
+                            err_not_dp += System.Environment.NewLine
+                        End If
+                        err_not_dp += "- " + GVUrban.GetRowCellValue(d, "sales_pos_number").ToString
+                    Next
+                ElseIf SLEPayType.EditValue.ToString = "3" Then
+                    GVUrban.ActiveFilterString = "[is_check]='yes' AND [total_rec]=0 AND [id_pay_type]=2"
+                    For d As Integer = 0 To GVUrban.RowCount - 1
+                        If d > 0 Then
+                            err_not_dp += System.Environment.NewLine
+                        End If
+                        err_not_dp += "- " + GVUrban.GetRowCellValue(d, "sales_pos_number").ToString
+                    Next
+                End If
+
                 If err_not_dp = "" Then
                     'jika semua ada dp
                     GVUrban.ActiveFilterString = "[is_check]='yes'"
@@ -1026,5 +1082,30 @@ WHERE dn.is_open=1 AND dn.is_deposit='2' AND dn.`id_inv_mat_type`=2 AND dn.id_re
         FormImportExcel.id_pop_up = "59"
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepositoryItemTextEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemTextEdit1.EditValueChanged
+        'aktifkan jika dipakai (ada pembatasan berdasarkan limit)
+        Dim SpQty As DevExpress.XtraEditors.TextEdit = CType(sender, DevExpress.XtraEditors.TextEdit)
+        Dim rec_amo As Decimal = SpQty.EditValue
+        Dim id_pay_type As String = GVUrban.GetFocusedRowCellValue("id_pay_type").ToString
+        Dim qty_limit As Decimal = GVUrban.GetFocusedRowCellValue("total_due")
+        If rec_amo > qty_limit Then
+            stopCustom("Amount cannot exceed " + qty_limit.ToString + "")
+            GVUrban.SetFocusedRowCellValue("rec_amo", 0)
+        End If
+    End Sub
+
+    Private Sub RepositoryItemSearchLookUpEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemSearchLookUpEdit1.EditValueChanged
+        Dim SpQty As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
+        Dim id_pay_type As String = SpQty.EditValue.ToString
+        Dim total_due As Decimal = GVUrban.GetFocusedRowCellValue("total_due")
+        If id_pay_type = "1" Then
+            'DP
+            GVUrban.SetFocusedRowCellValue("rec_amo", total_due / 2)
+        Else
+            'pelunasan
+            GVUrban.SetFocusedRowCellValue("rec_amo", total_due)
+        End If
     End Sub
 End Class

@@ -375,10 +375,15 @@ Public Class FormBankDepositDet
                             Dim amo_inv As Decimal = FormBankDeposit.GVUrban.GetRowCellValue(i, "amount") * (50 / 100)
                             newRow("value") = amo_inv
                             newRow("value_view") = Math.Abs(amo_inv)
-                        Else
+                        ElseIf pay_type = "2" Then
                             'pelunasan
                             newRow("value") = FormBankDeposit.GVUrban.GetRowCellValue(i, "total_due")
                             newRow("value_view") = Math.Abs(FormBankDeposit.GVUrban.GetRowCellValue(i, "total_due"))
+                        Else
+                            'all
+                            Dim rec_amo As Decimal = FormBankDeposit.GVUrban.GetRowCellValue(i, "rec_amo")
+                            newRow("value") = rec_amo
+                            newRow("value_view") = Math.Abs(rec_amo)
                         End If
                         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                     Next
