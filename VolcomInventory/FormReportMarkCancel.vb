@@ -308,6 +308,8 @@ WHERE report_mark_type='142' AND id_report='" & id_report_mark_cancel & "' AND i
         Report.GVReportList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
 
+        Report.GVReportList.BestFitColumns()
+
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         If Not BPrint.Text = "Print" Then

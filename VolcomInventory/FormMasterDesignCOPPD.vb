@@ -6,6 +6,8 @@
     Public is_insert_cool_storage As String = get_opt_prod_field("is_insert_cool_storage_ecop")
 
     Dim id_season As String = "-1"
+    Dim is_sni_enabled As String = get_opt_prod_field("is_enable_sni")
+
     '
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
@@ -38,6 +40,11 @@
             SLECoolStorage.Visible = False
         End If
 
+        If is_sni_enabled = "1" Then
+            GridColumnAdditional.OptionsColumn.ReadOnly = True
+            GridColumnAdditional.OptionsColumn.AllowEdit = False
+            GridColumnAdditional.OptionsColumn.AllowFocus = False
+        End If
 
         TEEcop.EditValue = 0.00
         TEKurs.EditValue = 1.0
@@ -553,17 +560,31 @@ pdd.additional_cost = dsg.prod_order_cop_pd_addcost,
 pdd.additional_price = IF(dsg.prod_order_cop_pd_addcost>0,opt.default_add_price,0)
 WHERE pd.is_pd=2 AND dsg.id_design='" & id_design & "'"
 
-                    'send email
-                    Try
-                        Dim nm As New ClassSendEmail
-                        nm.par1 = id_design
-                        nm.report_mark_type = "267"
-                        nm.send_email()
-                    Catch ex As Exception
-                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
-                    End Try
-                    '
-                    warningCustom("ECOP PD Lock complete")
+                    'check if KIDS
+                    Dim is_kids As Boolean = False
+                    Dim qc As String = "SELECT * FROM 
+FROM tb_m_design dsg
+INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design` AND dsg.id_design='" & id_design & "'"
+                    Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    If dtc.Rows.Count > 0 Then
+                        is_kids = True
+                    End If
+
+                    If is_kids And is_sni_enabled = "1" Then
+                        warningCustom("ECOP PD Lock complete, waiting for SNI proposal.")
+                    Else
+                        'send email
+                        Try
+                            Dim nm As New ClassSendEmail
+                            nm.par1 = id_design
+                            nm.report_mark_type = "267"
+                            nm.send_email()
+                        Catch ex As Exception
+                            execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
+                        End Try
+
+                        warningCustom("ECOP PD Lock complete")
+                    End If
                     '
                     load_form()
                 End If
@@ -576,33 +597,44 @@ INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
 WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND pd.is_pd='1'"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If data.Rows.Count > 0 Then
-                    warningCustom("PD already created, COP already locked.")
+                    warningCustom("PD already created, COP locked.")
                 Else
-                    'reset
-                    Dim qu As String = "UPDATE 
+                    'check udah masuk SNI PPS
+                    Dim qc As String = "SELECT * FROM `tb_sni_pps_list` spl
+INNER JOIN tb_sni_pps sp ON sp.id_sni_pps=spl.id_sni_pps
+WHERE sp.id_report_status!=5 AND spl.id_design='" & id_design & "'"
+                    Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    '
+                    If dtc.Rows.Count > 0 And is_sni_enabled = "1" Then
+                        'udah masuk sni pps
+                        warningCustom("SNI proposal already created, COP locked")
+                    Else
+                        'reset
+                        Dim qu As String = "UPDATE 
 tb_m_design dsg
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=dsg.`id_prod_demand_design_line`
 INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
 SET pdd.prod_demand_design_estimate_price=0,pdd.prod_demand_design_total_cost=0,pdd.additional_cost=0,pdd.additional_price=0
 WHERE pd.is_pd=2 AND dsg.id_design='" & id_design & "'"
-                    execute_non_query(qu, True, "", "", "", "")
-                    '
-                    qu = String.Format("UPDATE tb_m_design SET prod_order_cop_pd=0,prod_order_cop_pd_addcost=0 WHERE id_design='{0}'", id_design)
-                    execute_non_query(qu, True, "", "", "", "")
+                        execute_non_query(qu, True, "", "", "", "")
+                        '
+                        qu = String.Format("UPDATE tb_m_design SET prod_order_cop_pd=0,prod_order_cop_pd_addcost=0 WHERE id_design='{0}'", id_design)
+                        execute_non_query(qu, True, "", "", "", "")
 
-                    'reset mail
-                    Try
-                        Dim nm As New ClassSendEmail
-                        nm.par1 = id_design
-                        nm.report_mark_type = "291"
-                        nm.send_email()
-                    Catch ex As Exception
-                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send reset ECOP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
-                    End Try
-                    '
-                    warningCustom("ECOP PD Reset complete")
-                    '
-                    load_form()
+                        'reset mail
+                        Try
+                            Dim nm As New ClassSendEmail
+                            nm.par1 = id_design
+                            nm.report_mark_type = "291"
+                            nm.send_email()
+                        Catch ex As Exception
+                            execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send reset ECOP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
+                        End Try
+                        '
+                        warningCustom("ECOP PD Reset complete")
+                        '
+                        load_form()
+                    End If
                 End If
             End If
         Else

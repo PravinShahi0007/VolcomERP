@@ -109,6 +109,7 @@ Partial Class FormSNIppsDet
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -322,7 +323,7 @@ Partial Class FormSNIppsDet
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn4, Me.GridColumn5, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn4, Me.GridColumn5, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6, Me.GridColumn32})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -337,6 +338,7 @@ Partial Class FormSNIppsDet
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 0
+        Me.GridColumn7.Width = 113
         '
         'RICECheck
         '
@@ -362,7 +364,7 @@ Partial Class FormSNIppsDet
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 118
+        Me.GridColumn4.Width = 178
         '
         'GridColumn5
         '
@@ -375,7 +377,7 @@ Partial Class FormSNIppsDet
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 118
+        Me.GridColumn5.Width = 178
         '
         'GridColumn2
         '
@@ -384,7 +386,7 @@ Partial Class FormSNIppsDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 183
+        Me.GridColumn2.Width = 277
         '
         'GridColumn3
         '
@@ -393,7 +395,7 @@ Partial Class FormSNIppsDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 378
+        Me.GridColumn3.Width = 572
         '
         'GridColumn6
         '
@@ -407,8 +409,8 @@ Partial Class FormSNIppsDet
         Me.GridColumn6.FieldName = "ecop"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 120
+        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.Width = 181
         '
         'PanelControl4
         '
@@ -1117,6 +1119,19 @@ Partial Class FormSNIppsDet
         Me.BAdd.TabIndex = 3
         Me.BAdd.Text = "Add Budget Item"
         '
+        'GridColumn32
+        '
+        Me.GridColumn32.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn32.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn32.Caption = "Qty Line List"
+        Me.GridColumn32.FieldName = "qty_line_list"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 5
+        Me.GridColumn32.Width = 117
+        '
         'FormSNIppsDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1272,4 +1287,5 @@ Partial Class FormSNIppsDet
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents Battach As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

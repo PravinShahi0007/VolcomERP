@@ -1,20 +1,26 @@
-﻿Public Class ReportSNIBudget
-    Public Shared id_pps As String = "-1"
+﻿Public Class ReportSNIRealisasi
+    Public Shared id As String = "-1"
     Public Shared tot_qty As Decimal = 1
 
     Private Sub ReportSNIBudget_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        Dim q As String = "SELECT sni.number,ssn.season 
-FROM `tb_sni_pps` sni
-INNER JOIN `tb_season` ssn ON ssn.id_season=sni.`id_season`
-WHERE sni.`id_sni_pps`='" & id_pps & "'"
+        Dim q As String = "SELECT sni.number,snib.number AS budget_number
+FROM `tb_sni_realisasi` sni
+INNER JOIN tb_sni_pps snib ON snib.id_sni_pps=sni.id_sni_pps
+WHERE sni.`id_sni_realisasi`='" & id & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         DataSource = dt
         '
-        Dim qdet As String = "SELECT ppsb.*,budget_qty*budget_value AS  sub_amount
+        Dim qdet As String = "SELECT ppsb.desc,ppsb.qty,ppsb.value,ppsb.qty*ppsb.`value` AS  sub_amount
 FROM 
-`tb_sni_pps_budget` ppsb
-LEFT JOIN tb_m_design dsg ON dsg.`id_design`=ppsb.`id_design`
-WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
+`tb_sni_realisasi_budget` ppsb
+WHERE ppsb.`id_sni_realisasi`='" & id & "'
+UNION ALL
+SELECT CONCAT('Biaya sample ',d.design_display_name) AS `desc`,(ppsb.rec_qty-ppsb.ret_qty) AS qty,ppsb.bom_price AS `value`,(ppsb.rec_qty-ppsb.ret_qty)*ppsb.`bom_price` AS  sub_amount
+FROM 
+`tb_sni_realisasi_return` ppsb
+INNER JOIN tb_m_product p ON p.id_product=ppsb.id_product
+INNER JOIN tb_m_design d ON d.id_design=p.id_design
+WHERE ppsb.`id_sni_realisasi`='" & id & "' AND ppsb.ret_qty>0"
         Dim dtdet As DataTable = execute_query(qdet, -1, True, "", "", "", "")
 
         Dim row_baru As DevExpress.XtraReports.UI.XRTableRow = XRDetail
@@ -24,13 +30,13 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
             'add summary
             tot_nilai += dtdet.Rows(i)("sub_amount")
             If i = dtdet.Rows.Count - 1 Then
-                insert_footer(row_baru, tot_nilai, "Total Budget")
+                insert_footer(row_baru, tot_nilai, "Total Realisasi")
                 insert_footer(row_baru, tot_qty, "Total Qty Artikel KIDS")
                 insert_footer(row_baru, Math.Round(tot_nilai / tot_qty, 2), "Cost per Pcs")
             End If
         Next
         '
-        pre_load_mark_horz("319", id_pps, "2", "2", XrTable2)
+        pre_load_mark_horz("327", id, "2", "2", XrTable2)
     End Sub
 
     Sub insert_row(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
@@ -53,12 +59,12 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
 
         'desc
         Dim desc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
-        desc.Text = dt.Rows(row_i)("budget_desc").ToString
+        desc.Text = dt.Rows(row_i)("desc").ToString
         desc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         desc.Font = font_row_style
 
         'value
-        Dim harga As String = Decimal.Parse(dt.Rows(row_i)("budget_value").ToString).ToString("N2")
+        Dim harga As String = Decimal.Parse(dt.Rows(row_i)("value").ToString).ToString("N2")
 
         Dim total_nilai As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
         total_nilai.Text = harga
@@ -66,7 +72,7 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
         total_nilai.Font = font_row_style
 
         'qty
-        Dim qty As String = Decimal.Parse(dt.Rows(row_i)("budget_qty").ToString).ToString("N2")
+        Dim qty As String = Decimal.Parse(dt.Rows(row_i)("qty").ToString).ToString("N2")
 
         Dim col_qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
         col_qty.Text = qty

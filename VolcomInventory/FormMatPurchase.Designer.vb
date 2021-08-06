@@ -235,6 +235,7 @@ Partial Class FormMatPurchase
         Me.GVMatPurchase.GroupCount = 2
         Me.GVMatPurchase.Name = "GVMatPurchase"
         Me.GVMatPurchase.OptionsFind.AlwaysVisible = True
+        Me.GVMatPurchase.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVMatPurchase.OptionsView.ShowGroupPanel = False
         Me.GVMatPurchase.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColSeason, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColDelivery, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColIdMatPurchase, DevExpress.Data.ColumnSortOrder.Descending)})
         '

@@ -127,6 +127,7 @@ Partial Class FormStockQC
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.SBCreateSummary = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -836,7 +837,7 @@ Partial Class FormStockQC
         '
         'GVStockReport
         '
-        Me.GVStockReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn9, Me.GridColumn1, Me.GridColumn13, Me.GridColumn14, Me.GridColumn16, Me.GridColumn15, Me.GridColumn17})
+        Me.GVStockReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn9, Me.GridColumn1, Me.GridColumn13, Me.GridColumn14, Me.GridColumn27, Me.GridColumn16, Me.GridColumn15, Me.GridColumn17})
         Me.GVStockReport.GridControl = Me.GCStockReport
         Me.GVStockReport.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_beg", Nothing, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_beg", Nothing, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_receive", Nothing, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_receive", Nothing, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_mrs", Nothing, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_mrs", Nothing, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_retur", Nothing, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_retur", Nothing, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_adj", Nothing, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_adj", Nothing, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ending", Nothing, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_ending", Nothing, "{0:N2}")})
         Me.GVStockReport.Name = "GVStockReport"
@@ -947,7 +948,7 @@ Partial Class FormStockQC
         Me.GridColumn16.FieldName = "design_cop"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 9
+        Me.GridColumn16.VisibleIndex = 10
         '
         'GridColumn15
         '
@@ -958,7 +959,7 @@ Partial Class FormStockQC
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_end", "{0:N2}")})
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 10
+        Me.GridColumn15.VisibleIndex = 11
         '
         'GridColumn17
         '
@@ -969,7 +970,7 @@ Partial Class FormStockQC
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 11
+        Me.GridColumn17.VisibleIndex = 12
         '
         'GroupControl1
         '
@@ -1211,6 +1212,17 @@ Partial Class FormStockQC
         Me.SBCreateSummary.TabIndex = 0
         Me.SBCreateSummary.Text = "Create Summary"
         '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "SNI"
+        Me.GridColumn27.DisplayFormat.FormatString = "N0"
+        Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn27.FieldName = "qty_sni"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sni", "{0:N0}")})
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 9
+        '
         'FormStockQC
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1381,4 +1393,5 @@ Partial Class FormStockQC
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

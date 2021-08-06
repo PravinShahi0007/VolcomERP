@@ -50,6 +50,7 @@ INNER JOIN
 		FROM `tb_sni_realisasi_return`
 		GROUP BY id_sni_realisasi
 	)tot
+	GROUP BY tot.id_sni_realisasi
 )total_real ON total_real.id_sni_realisasi=sr.id_sni_realisasi"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCRealisasi.DataSource = dt

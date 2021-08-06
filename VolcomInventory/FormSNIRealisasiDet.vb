@@ -2,6 +2,8 @@
     Public id As String = "-1"
     '
     Dim id_pps As String = "-1"
+    Dim is_submit As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub FormSNIRealisasiDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
@@ -23,8 +25,69 @@
             BMark.Visible = True
             BPrint.Visible = True
 
-            Dim q As String = ""
+            Dim q As String = "SELECT sr.id_report_status,sr.id_sni_realisasi,sr.number,sr.created_date,pps.number AS pps_number,emp.employee_name,sr.id_sni_pps,sr.is_submit
+FROM tb_sni_realisasi sr
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=sr.id_report_status
+INNER JOIN tb_m_user usr ON usr.id_user=sr.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee =usr.id_employee
+INNER JOIN tb_sni_pps pps ON pps.id_sni_pps=sr.id_sni_pps
+WHERE sr.id_sni_realisasi='" & id & "' "
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                TENumber.Text = dt.Rows(0)("number").ToString
+                DEProposeDate.EditValue = dt.Rows(0)("created_date")
+                TEProposedBy.Text = dt.Rows(0)("employee_name").ToString
+                TEBudgetNumber.Text = dt.Rows(0)("pps_number").ToString
+                '
+                id_pps = dt.Rows(0)("id_sni_pps").ToString
+                '
+                is_submit = dt.Rows(0)("is_submit").ToString
+
+                If is_submit = "1" Then
+                    BMark.Text = "Mark"
+                Else
+                    BMark.Text = "Submit"
+                End If
+                '
+                load_budget()
+                BLoad.Visible = False
+                '
+                load_realisasi()
+                '
+                If is_submit = "1" Then
+                    PCAddDel.Visible = False
+                    BSave.Visible = False
+                Else
+                    PCAddDel.Visible = True
+                    BSave.Visible = True
+                End If
+                '
+                If dt.Rows(0)("id_report_status").ToString = "5" Or dt.Rows(0)("id_report_status").ToString = "6" Then
+
+                End If
+            End If
         End If
+    End Sub
+
+    Sub load_realisasi()
+        'sampling
+        Dim q As String = "SELECT p.id_design,ret.bom_price AS bom_design_price,ret.id_product,bu.id_sni_pps_budget,bu.budget_desc,bu.budget_value,ret.budget_qty,ret.rec_qty,ret.ret_qty
+,ret.id_sni_realisasi_return,ret.id_prod_order_rec_det,ret.id_prod_order_det
+FROM `tb_sni_realisasi_return` ret
+INNER JOIN tb_sni_pps_budget bu ON bu.id_product=ret.id_product AND bu.id_sni_pps='" & id_pps & "'
+INNER JOIN tb_m_product p ON p.id_product=ret.id_product
+WHERE ret.id_sni_realisasi='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCSampling.DataSource = dt
+        GVSampling.BestFitColumns()
+
+        'budget
+        q = "SELECT `desc`,`value`,qty
+FROM `tb_sni_realisasi_budget` b
+WHERE b.id_sni_realisasi='" & id & "'"
+        Dim dtb As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCRealisasi.DataSource = dtb
+        GVRealisasi.BestFitColumns()
     End Sub
 
     Private Sub BLoad_Click(sender As Object, e As EventArgs) Handles BLoad.Click
@@ -153,6 +216,7 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
             e.Value = Images(fileName)
         End If
     End Sub
+
     Private Sub GVProposed_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVProposed.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
@@ -161,6 +225,7 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
 
     Sub usage_artikel()
         Dim q As String = "SELECT b.id_design,0.00 AS bom_design_price,b.id_product,b.id_sni_pps_budget,b.budget_desc,b.budget_value,b.budget_qty,IFNULL(rec.qty,0) AS rec_qty,0 AS ret_qty
+,qc.id_prod_order_rec_det,qc.id_prod_order_det
 FROM `tb_sni_pps_budget` b
 LEFT JOIN 
 (
@@ -169,6 +234,14 @@ LEFT JOIN
 	INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND rec.`id_report_status`=6
 	GROUP BY recd.`id_product`
 )rec ON rec.`id_product`=b.`id_product` AND rec.id_sni_pps=b.`id_sni_pps`
+LEFT JOIN 
+(
+	SELECT recd.id_prod_order_rec_det,recd.id_prod_order_det,pdp.`id_product`
+	FROM tb_prod_order_rec_det recd
+	INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6 AND rec.`is_sni`=1
+	INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=recd.`id_prod_order_det`
+	INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
+)qc ON qc.id_product=b.id_product
 WHERE b.id_sni_pps='" & id_pps & "' 
 AND NOT ISNULL(b.id_design) AND NOT ISNULL(b.id_product)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -296,12 +369,12 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
                 execute_non_query(q, True, "", "", "", "")
 
                 'detail sampling
-                q = "INSERT INTO tb_sni_realisasi_return(`id_sni_realisasi`,`id_product`,`budget_qty`,`rec_qty`,`ret_qty`,`bom_price`) VALUES"
+                q = "INSERT INTO tb_sni_realisasi_return(`id_sni_realisasi`,`id_product`,`budget_qty`,`rec_qty`,`ret_qty`,`bom_price`,`id_prod_order_rec_det`,`id_prod_order_det`) VALUES"
                 For i As Integer = 0 To GVSampling.RowCount - 1
                     If Not i = 0 Then
                         q += ","
                     End If
-                    q += "('" & id & "','" & GVSampling.GetRowCellValue(i, "id_product").ToString & "','" & GVSampling.GetRowCellValue(i, "budget_qty").ToString & "','" & GVSampling.GetRowCellValue(i, "rec_qty").ToString & "','" & GVSampling.GetRowCellValue(i, "ret_qty").ToString & "','" & decimalSQL(Decimal.Parse(GVSampling.GetRowCellValue(i, "budget_value").ToString).ToString) & "')"
+                    q += "('" & id & "','" & GVSampling.GetRowCellValue(i, "id_product").ToString & "','" & GVSampling.GetRowCellValue(i, "budget_qty").ToString & "','" & GVSampling.GetRowCellValue(i, "rec_qty").ToString & "','" & GVSampling.GetRowCellValue(i, "ret_qty").ToString & "','" & decimalSQL(Decimal.Parse(GVSampling.GetRowCellValue(i, "budget_value").ToString).ToString) & "','" & GVSampling.GetRowCellValue(i, "id_prod_order_rec_det").ToString & "','" & GVSampling.GetRowCellValue(i, "id_prod_order_det").ToString & "')"
                 Next
                 '
                 execute_non_query(q, True, "", "", "", "")
@@ -320,7 +393,38 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
                 load_form()
             Else
                 'edit
+                Dim q As String = ""
+                'detail sampling
+                q = "DELETE FROM tb_sni_realisasi_return WHERE id_sni_realisasi='" & id & "'"
+                execute_non_query(q, True, "", "", "", "")
 
+                q = "INSERT INTO tb_sni_realisasi_return(`id_sni_realisasi`,`id_product`,`budget_qty`,`rec_qty`,`ret_qty`,`bom_price`,`id_prod_order_rec_det`,`id_prod_order_det`) VALUES"
+                For i As Integer = 0 To GVSampling.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id & "','" & GVSampling.GetRowCellValue(i, "id_product").ToString & "','" & GVSampling.GetRowCellValue(i, "budget_qty").ToString & "','" & GVSampling.GetRowCellValue(i, "rec_qty").ToString & "','" & GVSampling.GetRowCellValue(i, "ret_qty").ToString & "','" & decimalSQL(Decimal.Parse(GVSampling.GetRowCellValue(i, "budget_value").ToString).ToString) & "','" & GVSampling.GetRowCellValue(i, "id_prod_order_rec_det").ToString & "','" & GVSampling.GetRowCellValue(i, "id_prod_order_det").ToString & "')"
+                Next
+                '
+                execute_non_query(q, True, "", "", "", "")
+
+                'detil budget
+                q = "DELETE FROM tb_sni_realisasi_budget WHERE id_sni_realisasi='" & id & "'"
+                execute_non_query(q, True, "", "", "", "")
+
+                q = "INSERT INTO tb_sni_realisasi_budget(`id_sni_realisasi`,`desc`,`qty`,`value`) VALUES"
+                For i As Integer = 0 To GVRealisasi.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id & "','" & addSlashes(GVRealisasi.GetRowCellValue(i, "desc").ToString) & "','" & GVRealisasi.GetRowCellValue(i, "qty").ToString & "','" & decimalSQL(Decimal.Parse(GVRealisasi.GetRowCellValue(i, "value").ToString).ToString) & "')"
+                Next
+                '
+                execute_non_query(q, True, "", "", "", "")
+
+                infoCustom("Form updated")
+
+                load_form()
             End If
         End If
     End Sub
@@ -331,5 +435,46 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
 
     Private Sub FormSNIRealisasiDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        If is_submit = "2" Then
+            'submit
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.Yes Then
+                Dim q As String = "UPDATE tb_sni_realisasi SET is_submit='1' WHERE id_sni_realisasi='" & id & "'"
+                execute_non_query(q, True, "", "", "", "")
+                '
+                submit_who_prepared("327", id, id_user)
+                '
+                load_form()
+            End If
+        Else
+            'mark
+            Cursor = Cursors.WaitCursor
+
+            FormReportMark.is_view = is_view
+            FormReportMark.report_mark_type = "327"
+            FormReportMark.id_report = id
+
+            FormReportMark.ShowDialog()
+
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportSNIRealisasi.id = id
+        ReportSNIRealisasi.tot_qty = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
+        Dim Report As New ReportSNIRealisasi()
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -42,7 +42,7 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT 0 AS no, d.id_cop_status, c.cop_status, d.qty_beg, d.qty_rec, d.qty_pis, d.qty_retur_sup, d.qty_retur_wh, d.qty_adj, d.qty_rjk, d.qty_end, d.amount
+            SELECT 0 AS no, d.id_cop_status, c.cop_status, d.qty_beg, d.qty_rec, d.qty_pis, d.qty_retur_sup, d.qty_retur_wh, d.qty_adj, d.qty_rjk, d.qty_sni, d.qty_end, d.amount
             FROM tb_wip_summary_det AS d
             LEFT JOIN tb_lookup_cop_status AS c ON d.id_cop_status = c.id_cop_status
             WHERE d.id_wip_summary = " + id_wip_summary + "
@@ -125,6 +125,7 @@
             row("qty_retur_wh") = 0.00
             row("qty_adj") = 0.00
             row("qty_rjk") = 0.00
+            row("qty_sni") = 0.00
             row("qty_end") = 0.00
             row("amount") = 0.00
 
@@ -136,6 +137,7 @@
                 row("qty_retur_wh") += data_stock.Rows(j)("qty_retur_wh")
                 row("qty_adj") += data_stock.Rows(j)("qty_adj")
                 row("qty_rjk") += data_stock.Rows(j)("qty_rjk")
+                row("qty_sni") += data_stock.Rows(j)("qty_sni")
                 row("qty_end") += data_stock.Rows(j)("qty_end")
                 row("amount") += data_stock.Rows(j)("amount")
             Next
@@ -160,7 +162,7 @@
 
                 'detail
                 For i = 0 To BandedGridViewSummary.RowCount - 1
-                    Dim query_detail As String = "INSERT INTO tb_wip_summary_det (id_wip_summary, id_cop_status, qty_beg, qty_rec, qty_pis, qty_retur_sup, qty_retur_wh, qty_adj, qty_rjk, qty_end, amount) VALUES (" + id_wip_summary + ", " + BandedGridViewSummary.GetRowCellValue(i, "id_cop_status").ToString + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_beg").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_rec").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_pis").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_retur_sup").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_retur_wh").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_adj").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_rjk").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_end").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "amount").ToString) + ")"
+                    Dim query_detail As String = "INSERT INTO tb_wip_summary_det (id_wip_summary, id_cop_status, qty_beg, qty_rec, qty_pis, qty_retur_sup, qty_retur_wh, qty_adj, qty_rjk, qty_sni, qty_end, amount) VALUES (" + id_wip_summary + ", " + BandedGridViewSummary.GetRowCellValue(i, "id_cop_status").ToString + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_beg").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_rec").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_pis").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_retur_sup").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_retur_wh").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_adj").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_rjk").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_sni").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "qty_end").ToString) + ", " + decimalSQL(BandedGridViewSummary.GetRowCellValue(i, "amount").ToString) + ")"
 
                     execute_non_query(query_detail, True, "", "", "", "")
                 Next
@@ -212,14 +214,12 @@
 
     Sub reset_detail()
         Dim query As String = "
-            SELECT 0 AS no, d.id_cop_status, c.cop_status, d.qty_beg, d.qty_rec, d.qty_pis, d.qty_retur_sup, d.qty_retur_wh, d.qty_adj, d.qty_rjk, d.qty_end, d.amount
+            SELECT 0 AS no, d.id_cop_status, c.cop_status, d.qty_beg, d.qty_rec, d.qty_pis, d.qty_retur_sup, d.qty_retur_wh, d.qty_adj, d.qty_rjk, d.qty_sni, d.qty_end, d.amount
             FROM tb_wip_summary_det AS d
             LEFT JOIN tb_lookup_cop_status AS c ON d.id_cop_status = c.id_cop_status
-            WHERE d.id_wip_summary = 0
-        "
+            WHERE d.id_wip_summary = 0"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
         GridControlSummary.DataSource = Data
     End Sub
 

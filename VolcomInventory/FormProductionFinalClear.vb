@@ -212,7 +212,7 @@
         INNER JOIN tb_season ss ON ss.id_season = del.id_season
         WHERE po.id_report_status=6 AND po.is_closing_rec=2
         " + cond + "
-        ORDER BY po.id_prod_order ASC "
+        ORDER BY po.id_prod_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProd.DataSource = data
         GVProd.BestFitColumns()
@@ -294,8 +294,8 @@
     Private Sub GVProd_FocusedRowObjectChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs) Handles GVProd.FocusedRowObjectChanged
         If GVProd.RowCount > 0 Then
             Dim q As String = "SELECT rec.`id_prod_order_rec`,rec.id_prod_order,rec.`prod_order_rec_number`,cat.`pl_category`,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec,IFNULL(retout.qty,0) AS qty_ret_out,IFNULL(retin.qty,0) AS qty_ret_in
-,IFNULL(qcr.qty,0) AS qty_qr
-,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(retout.qty,0)+IFNULL(retin.qty,0)-IFNULL(qcr.qty,0) AS qty_remaining
+,IFNULL(qcr.qty,0) AS qty_qr,(IFNULL(sni.qty,0) * -1) AS qty_sni
+,SUM(recd.`prod_order_rec_det_qty`)-IFNULL(retout.qty,0)+IFNULL(retin.qty,0)-IFNULL(qcr.qty,0)+IFNULL(sni.qty,0) AS qty_remaining
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec`
 LEFT JOIN 
@@ -322,6 +322,12 @@ LEFT JOIN
 	WHERE fc.`id_report_status`!=5
 	GROUP BY fc.`id_prod_order_rec`
 )qcr ON qcr.id_prod_order_rec=rec.`id_prod_order_rec`
+LEFT JOIN 
+(
+	SELECT id_prod_order_rec,IF((SELECT is_enable_sni FROM tb_opt_prod)=1,SUM(sni.`qty`),0) AS qty
+    FROM tb_sni_in_out sni 
+    GROUP BY sni.`id_prod_order_rec`
+)sni ON sni.id_prod_order_rec=rec.`id_prod_order_rec`
 INNER JOIN `tb_lookup_pl_category` cat ON cat.id_pl_category=rec.id_pl_category
 WHERE rec.id_report_status='6' AND rec.id_prod_order='" & GVProd.GetFocusedRowCellValue("id_prod_order").ToString & "'
 GROUP BY recd.`id_prod_order_rec`"

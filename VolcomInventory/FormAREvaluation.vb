@@ -1,19 +1,29 @@
 ﻿Public Class FormAREvaluation
+    Dim eval_number As String = ""
     Public eval_date As String = ""
+    Public id_ar_eval_pps As String = ""
+    Public id_role_super_admin As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormAREvaluation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getLastEvaluation()
+        If id_role_super_admin = id_role_login Then
+            BtnLog.Visible = True
+        End If
     End Sub
 
     Sub getLastEvaluation()
         'get last evaluation
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT DATE_FORMAT(MAX(a.eval_date),'%Y-%m-%d %H:%i:%s') AS `last_eval_date`,
-        DATE_FORMAT(MAX(a.eval_date),'%d %M %Y') AS `last_eval_date_label`
-        FROM tb_ar_eval a "
+        Dim query As String = "SELECT DATE_FORMAT(a.eval_date,'%Y-%m-%d %H:%i:%s') AS `last_eval_date`,
+        DATE_FORMAT(a.eval_date,'%d %M %Y') AS `last_eval_date_label`, a.number, a.id_ar_eval_pps 
+        FROM tb_ar_eval_pps a
+        ORDER BY a.id_ar_eval_pps DESC LIMIT 1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         eval_date = data.Rows(0)("last_eval_date").ToString
+        eval_number = data.Rows(0)("number").ToString
+        id_ar_eval_pps = data.Rows(0)("id_ar_eval_pps").ToString
         BtnBrowseEval.Text = data.Rows(0)("last_eval_date_label").ToString
+        TxtAREvalNumber.Text = eval_number
         Cursor = Cursors.Default
     End Sub
 
@@ -156,7 +166,7 @@
         End If
     End Sub
 
-    Private Sub BtnEvaluation_Click(sender As Object, e As EventArgs) 
+    Private Sub BtnEvaluation_Click(sender As Object, e As EventArgs)
         Dim tgl As String = execute_query("SELECT DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s') AS `eval_date`", 0, True, "", "", "", "")
         Try
             Dim query As String = "CALL getEvaluationAR('" + tgl + "');"
@@ -476,6 +486,7 @@
             gv = GVSummary
         End If
         ReportAREval.eval_date_label = BtnBrowseEval.Text
+        ReportAREval.eval_number = eval_number
         Dim Report As New ReportAREval()
 
         'hide col BBM
@@ -489,35 +500,68 @@
         Report.GVInvoiceDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'style
-        Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
-        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+        If XTCEval.SelectedTabPageIndex = 0 Then
+            'style
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
 
-        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
-        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-        Report.GVInvoiceDetail.AppearancePrint.GroupRow.BackColor = Color.Transparent
-        Report.GVInvoiceDetail.AppearancePrint.GroupRow.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
 
-        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
-        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.ForeColor = Color.Black
-        Report.GVInvoiceDetail.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
-        Report.GVInvoiceDetail.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            Report.GVInvoiceDetail.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
 
-        Report.GVInvoiceDetail.OptionsPrint.ExpandAllDetails = True
-        Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
-        Report.GVInvoiceDetail.OptionsPrint.PrintDetails = True
-        Report.GVInvoiceDetail.OptionsPrint.PrintFooter = True
+            Report.GVInvoiceDetail.OptionsPrint.ExpandAllDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintFooter = True
+        Else
+            'style
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 8, FontStyle.Regular)
+
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.GroupRow.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVInvoiceDetail.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 8.3, FontStyle.Bold)
+
+            Report.GVInvoiceDetail.AppearancePrint.Row.Font = New Font("Tahoma", 8.3, FontStyle.Regular)
+
+            Report.GVInvoiceDetail.OptionsPrint.ExpandAllDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.UsePrintStyles = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintDetails = True
+            Report.GVInvoiceDetail.OptionsPrint.PrintFooter = True
+        End If
+
 
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
@@ -544,6 +588,61 @@
     Private Sub BBIHistory_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIHistory.ItemClick
         Cursor = Cursors.WaitCursor
         FormDelayPaymentInv.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnNote_Click(sender As Object, e As EventArgs) Handles BtnNote.Click
+        Cursor = Cursors.WaitCursor
+        Dim qcek As String = "SELECT n.id_ar_eval_note,n.id_ar_eval_pps 
+        FROM tb_ar_eval_note n
+        WHERE n.id_ar_eval_pps=" + id_ar_eval_pps + " AND n.id_report_status!=5 LIMIT 1 "
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        If dcek.Rows.Count > 0 Then
+            'view
+            openARNote(dcek.Rows(0)("id_ar_eval_note").ToString)
+        Else
+            'create
+            Dim qval As String = "SELECT * FROM tb_ar_eval e WHERE e.id_ar_eval_pps=" + id_ar_eval_pps + " AND e.is_active=1 "
+            Dim dval As DataTable = execute_query(qval, -1, True, "", "", "", "")
+            If dval.Rows.Count > 0 Then
+                'create
+                Dim qins As String = "INSERT INTO tb_ar_eval_note(id_ar_eval_pps, created_date, id_report_status)
+                VALUES('" + id_ar_eval_pps + "',NOW(),1); SELECT LAST_INSERT_ID(); "
+                Dim id_note As String = execute_query(qins, 0, True, "", "", "", "")
+                'detail store
+                Dim qstore As String = "CALL gen_number(" + id_note + ",329); 
+                INSERT INTO tb_ar_eval_note_store(id_ar_eval_note, id_comp_group, overdue_inv)
+                SELECT " + id_note + ",cg.id_comp_group,
+                SUM(IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)))*-1 AS `diff`
+                FROM tb_ar_eval e
+                INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = e.id_comp_group
+                INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = e.id_sales_pos
+                INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+                LEFT JOIN (
+                 SELECT pyd.id_report, pyd.report_mark_type, 
+                 COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+                 SUM(pyd.value) AS  `value`
+                 FROM tb_rec_payment_det pyd
+                 INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+                 WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183,292)
+                 GROUP BY pyd.id_report, pyd.report_mark_type
+                ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
+                WHERE e.id_ar_eval_pps=" + id_ar_eval_pps + "
+                GROUP BY e.id_comp_group
+                HAVING diff>=0 "
+                execute_non_query(qstore, True, "", "", "", "")
+                openARNote(id_note)
+            Else
+                warningCustom("Data tidak ditemukan")
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub openARNote(ByVal id_note As String)
+        Cursor = Cursors.WaitCursor
+        FormAREvalNote.id = id_note
+        FormAREvalNote.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

@@ -21,6 +21,7 @@
         GridColumnQtyAlloc.Visible = False
         'End If
     End Sub
+
     Sub view_list_purchase()
         Dim query As String = ""
         If id_pop_up = "1" Then
