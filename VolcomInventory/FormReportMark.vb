@@ -9955,9 +9955,34 @@ WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
             End If
 
             If id_status_reportx = "6" Then
+                'get id_design and cost per pcs
+                Dim qd As String = "SELECT spl.*,qty.qty,tot.total,ROUND(tot.total/qty.qty,2) AS cost
+FROM `tb_sni_pps_list` spl
+INNER JOIN 
+(
+	SELECT id_sni_pps,SUM(qty) AS qty
+	FROM tb_sni_pps_list
+	WHERE id_sni_pps='" & id_report & "'
+)qty ON qty.id_sni_pps=spl.id_sni_pps
+INNER JOIN
+(
+	SELECT id_sni_pps,SUM(budget_value*budget_qty) AS total
+	FROM `tb_sni_pps_budget`
+	WHERE id_sni_pps='" & id_report & "'
+)tot ON tot.id_sni_pps=spl.id_sni_pps
+WHERE spl.id_sni_pps='" & id_report & "'"
                 'update ke additional cop
                 'line list update qty
                 'send mail to md
+                'send email
+                'Try
+                '    Dim nm As New ClassSendEmail
+                '    nm.par1 = id_design
+                '    nm.report_mark_type = "267"
+                '    nm.send_email()
+                'Catch ex As Exception
+                '    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
+                'End Try
             End If
 
             'update status

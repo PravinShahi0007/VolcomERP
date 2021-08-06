@@ -93,10 +93,25 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
 
     Sub load_pending_kids()
         Dim q As String = "SELECT 'yes' AS is_check,dsg.`id_design`,dsg.`design_code`,dsg.`design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
+,pdl.qty_line_list
 FROM tb_m_design dsg
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
 INNER JOIN tb_season_delivery del ON del.id_delivery=dsg.`id_delivery` AND dsg.id_season='" & SLESeason.EditValue.ToString & "'
 INNER JOIN tb_season ssn ON ssn.id_season=del.id_season
+LEFT JOIN 
+(
+    SELECT spl.id_design FROM `tb_sni_pps_list` spl
+    INNER JOIN tb_sni_pps sp ON sp.id_sni_pps=spl.id_sni_pps
+    WHERE sp.id_report_status!=5 
+)pps ON pps.id_design=dsg.id_design
+INNER JOIN
+(
+    SELECT dsg.`id_design`,SUM(pdp.`prod_demand_product_qty`) AS qty_line_list
+    FROM tb_m_design dsg
+    INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=dsg.`id_prod_demand_design_line`
+    INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
+    GROUP BY dsg.`id_design`
+)pdl ON pdl.id_design=dsg.id_design
 WHERE dsg.`id_design` NOT IN (
 	SELECT id_design 
 	FROM tb_prod_demand_design pdd 
@@ -104,7 +119,7 @@ WHERE dsg.`id_design` NOT IN (
 	WHERE pd.`id_report_status`=6 AND pd.`is_void_pd`!=1 AND pd.`is_pd`=1
 	GROUP BY pdd.`id_design`
 )
-AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND dsg.`id_lookup_status_order`!=2"
+AND INSULL(pps.id_design) AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND dsg.`id_lookup_status_order`!=2 AND dsg.prod_order_cop_pd>0"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
@@ -154,18 +169,31 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
         If GVList.RowCount = 0 Then
             warningCustom("No design selected")
         Else
-            Dim q As String = "INSERT INTO tb_sni_pps(created_by,created_date) VALUES('" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
-            id_pps = execute_query(q, 0, True, "", "", "", "")
-            q = "INSERT INTO tb_sni_pps_list(id_sni_pps,id_design) VALUES"
-            For i As Integer = 0 To GVList.RowCount - 1
-                If Not i = 0 Then
-                    q += ","
+            'check ada qty dan ecop
+            Dim is_ok As Boolean = True
+            For i = 0 To GVList.RowCount - 1
+                If GVList.GetRowCellValue(i, "ecop") <= 0 Or GVList.GetRowCellValue(i, "qty") <= 0 Then
+                    is_ok = False
+                    Exit For
                 End If
-                q += "('" & id_pps & "','" & GVList.GetRowCellValue(i, "id_design").ToString & "')"
             Next
-            execute_non_query(q, True, "", "", "", "")
-            '
-            load_head()
+
+            If Not is_ok Then
+                warningCustom("Pastikan data qty dan ecop pd sudah terinput")
+            Else
+                Dim q As String = "INSERT INTO tb_sni_pps(created_by,created_date) VALUES('" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
+                id_pps = execute_query(q, 0, True, "", "", "", "")
+                q = "INSERT INTO tb_sni_pps_list(id_sni_pps,id_design,qty) VALUES"
+                For i As Integer = 0 To GVList.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id_pps & "','" & GVList.GetRowCellValue(i, "id_design").ToString & "','" & decimalSQL(Decimal.Parse(GVList.GetRowCellValue(i, "qty_line_list").ToString)) & "')"
+                Next
+                execute_non_query(q, True, "", "", "", "")
+                '
+                load_head()
+            End If
         End If
     End Sub
 

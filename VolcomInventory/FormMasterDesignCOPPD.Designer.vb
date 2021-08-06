@@ -93,7 +93,7 @@ Partial Class FormMasterDesignCOPPD
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAdditional = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BUpdateCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
@@ -862,7 +862,7 @@ Partial Class FormMasterDesignCOPPD
         '
         'GVCOPComponent
         '
-        Me.GVCOPComponent.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
+        Me.GVCOPComponent.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnAdditional, Me.GridColumn8})
         Me.GVCOPComponent.GridControl = Me.GCCOPComponent
         Me.GVCOPComponent.Name = "GVCOPComponent"
         Me.GVCOPComponent.OptionsView.ShowFooter = True
@@ -975,21 +975,21 @@ Partial Class FormMasterDesignCOPPD
         Me.GridColumn6.VisibleIndex = 4
         Me.GridColumn6.Width = 99
         '
-        'GridColumn7
+        'GridColumnAdditional
         '
-        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn7.Caption = "Additional"
-        Me.GridColumn7.DisplayFormat.FormatString = "N2"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "additional"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "additional", "{0:N2}")})
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
-        Me.GridColumn7.Width = 113
+        Me.GridColumnAdditional.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnAdditional.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAdditional.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnAdditional.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAdditional.Caption = "Additional"
+        Me.GridColumnAdditional.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAdditional.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAdditional.FieldName = "additional"
+        Me.GridColumnAdditional.Name = "GridColumnAdditional"
+        Me.GridColumnAdditional.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "additional", "{0:N2}")})
+        Me.GridColumnAdditional.Visible = True
+        Me.GridColumnAdditional.VisibleIndex = 5
+        Me.GridColumnAdditional.Width = 113
         '
         'GridColumn8
         '
@@ -1209,7 +1209,7 @@ Partial Class FormMasterDesignCOPPD
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAdditional As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RISLEComp As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
