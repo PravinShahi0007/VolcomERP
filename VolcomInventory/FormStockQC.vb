@@ -251,7 +251,6 @@
         Dim data As DataTable = execute_query("CALL view_stock_summary_qc('" + d_from + "', '" + d_to + "', '" + SLEType.EditValue.ToString + "')", -1, True, "", "", "", "")
 
         GCStockReport.DataSource = data
-
         GVStockReport.BestFitColumns()
 
         Cursor = Cursors.Default

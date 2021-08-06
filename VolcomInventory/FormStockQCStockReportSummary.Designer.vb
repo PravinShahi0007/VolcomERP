@@ -36,27 +36,28 @@ Partial Class FormStockQCStockReportSummary
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GridControlSummary = New DevExpress.XtraGrid.GridControl()
         Me.BandedGridViewSummary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -281,24 +282,12 @@ Partial Class FormStockQCStockReportSummary
         Me.BandedGridViewSummary.AppearancePrint.Row.Options.UseBorderColor = True
         Me.BandedGridViewSummary.AppearancePrint.Row.Options.UseFont = True
         Me.BandedGridViewSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.BandedGridViewSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
+        Me.BandedGridViewSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.BandedGridColumn1, Me.GridColumn12})
         Me.BandedGridViewSummary.GridControl = Me.GridControlSummary
         Me.BandedGridViewSummary.Name = "BandedGridViewSummary"
         Me.BandedGridViewSummary.OptionsBehavior.ReadOnly = True
         Me.BandedGridViewSummary.OptionsView.ShowFooter = True
         Me.BandedGridViewSummary.OptionsView.ShowGroupPanel = False
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Columns.Add(Me.GridColumn1)
-        Me.GridBand1.Columns.Add(Me.GridColumn2)
-        Me.GridBand1.Columns.Add(Me.GridColumn3)
-        Me.GridBand1.Columns.Add(Me.GridColumn4)
-        Me.GridBand1.Columns.Add(Me.GridColumn5)
-        Me.GridBand1.Columns.Add(Me.GridColumn6)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 375
         '
         'GridColumn1
         '
@@ -350,15 +339,6 @@ Partial Class FormStockQCStockReportSummary
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pis", "{0:N2}")})
         Me.GridColumn6.Visible = True
         '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "RETUR"
-        Me.gridBand2.Columns.Add(Me.GridColumn7)
-        Me.gridBand2.Columns.Add(Me.GridColumn8)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 150
-        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "SUP (pcs)"
@@ -378,16 +358,6 @@ Partial Class FormStockQCStockReportSummary
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_retur_wh", "{0:N2}")})
         Me.GridColumn8.Visible = True
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Columns.Add(Me.GridColumn9)
-        Me.gridBand3.Columns.Add(Me.GridColumn10)
-        Me.gridBand3.Columns.Add(Me.GridColumn11)
-        Me.gridBand3.Columns.Add(Me.GridColumn12)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 300
         '
         'GridColumn9
         '
@@ -442,6 +412,18 @@ Partial Class FormStockQCStockReportSummary
         Me.PanelControl2.Size = New System.Drawing.Size(1008, 45)
         Me.PanelControl2.TabIndex = 2
         '
+        'SBAttachment
+        '
+        Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
+        Me.SBAttachment.ImageIndex = 10
+        Me.SBAttachment.Location = New System.Drawing.Point(626, 2)
+        Me.SBAttachment.Name = "SBAttachment"
+        Me.SBAttachment.Size = New System.Drawing.Size(110, 41)
+        Me.SBAttachment.TabIndex = 116
+        Me.SBAttachment.TabStop = False
+        Me.SBAttachment.Text = "Attachment"
+        '
         'SBPrint
         '
         Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
@@ -482,17 +464,47 @@ Partial Class FormStockQCStockReportSummary
         Me.SBSubmit.TabIndex = 0
         Me.SBSubmit.Text = "Submit"
         '
-        'SBAttachment
+        'BandedGridColumn1
         '
-        Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
-        Me.SBAttachment.ImageIndex = 10
-        Me.SBAttachment.Location = New System.Drawing.Point(626, 2)
-        Me.SBAttachment.Name = "SBAttachment"
-        Me.SBAttachment.Size = New System.Drawing.Size(110, 41)
-        Me.SBAttachment.TabIndex = 116
-        Me.SBAttachment.TabStop = False
-        Me.SBAttachment.Text = "Attachment"
+        Me.BandedGridColumn1.Caption = "SNI (pcs)"
+        Me.BandedGridColumn1.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn1.FieldName = "qty_sni"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sni", "{0:N0}")})
+        Me.BandedGridColumn1.Visible = True
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.GridColumn1)
+        Me.GridBand1.Columns.Add(Me.GridColumn2)
+        Me.GridBand1.Columns.Add(Me.GridColumn3)
+        Me.GridBand1.Columns.Add(Me.GridColumn4)
+        Me.GridBand1.Columns.Add(Me.GridColumn5)
+        Me.GridBand1.Columns.Add(Me.GridColumn6)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 450
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "RETUR"
+        Me.gridBand2.Columns.Add(Me.GridColumn7)
+        Me.gridBand2.Columns.Add(Me.GridColumn8)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 150
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Columns.Add(Me.GridColumn9)
+        Me.gridBand3.Columns.Add(Me.GridColumn10)
+        Me.gridBand3.Columns.Add(Me.GridColumn11)
+        Me.gridBand3.Columns.Add(Me.GridColumn12)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 300
         '
         'FormStockQCStockReportSummary
         '
@@ -546,21 +558,22 @@ Partial Class FormStockQCStockReportSummary
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BandedGridViewSummary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents SBGenerateSummary As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
