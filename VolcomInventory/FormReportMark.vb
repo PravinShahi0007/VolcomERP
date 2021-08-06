@@ -701,6 +701,9 @@
         ElseIf report_mark_type = "327" Then
             'sni realisasi
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sni_realisasi WHERE id_sni_realisasi = '{0}'", id_report)
+        ElseIf report_mark_type = "329" Then
+            'eval note
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_ar_eval_note WHERE id_ar_eval_note = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -10072,6 +10075,21 @@ WHERE ret.id_sni_realisasi ='{1}' AND ret.ret_qty>0 ", id_user, id_report)
                 FormSNIRealisasi.load_list()
                 FormSNIRealisasi.GVRealisasi.FocusedRowHandle = find_row(FormSNIRealisasi.GVRealisasi, "id_sni_realisasi", id_report)
                 FormSNIRealisasiDet.load_form()
+            Catch ex As Exception
+            End Try
+        ElseIf report_mark_type = "329" Then
+            'eval note
+            If id_status_reportx = "2" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_ar_eval_note SET id_report_status='{0}' WHERE id_ar_eval_note ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            Try
+
             Catch ex As Exception
             End Try
         End If
