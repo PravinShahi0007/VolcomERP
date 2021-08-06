@@ -632,7 +632,7 @@ Public Class FormProdDemandDesignSingle
                 For j As Integer = 0 To GVProductRev.Columns.Count - 1
                     Dim col As String = GVProductRev.Columns(j).FieldName.ToString
                     If col = "id_prod_demand_product" Or col = "id_design" Or col = "id_product" _
-                    Or col = "Code" Or col = "Style" Or col = "Size" Or col = "Qty" Or col = "Cost" _
+                    Or col = "Code" Or col = "Style" Or col = "Size" Or col = "Qty" Or col = "SNI" Or col = "Cost" _
                     Or col = "Currency" Or col = "id_currency" Or col = "Kurs" Or col = "Total Cost" _
                     Then
                         GVProductRev.Columns(j).OptionsColumn.ReadOnly = True
@@ -1081,7 +1081,7 @@ Public Class FormProdDemandDesignSingle
         Dim row_foc As Integer = e.RowHandle
         Dim col As String = e.Column.FieldName.ToString
         If col = "id_prod_demand_product" Or col = "id_design" Or col = "id_product" _
-                    Or col = "Code" Or col = "Style" Or col = "Size" Or col = "Qty" Or col = "Cost" _
+                    Or col = "Code" Or col = "Style" Or col = "Size" Or col = "Qty" Or col = "SNI" Or col = "Cost" _
                     Or col = "Currency" Or col = "id_currency" Or col = "Kurs" Or col = "Total Cost" _
                     Then
             'no action
