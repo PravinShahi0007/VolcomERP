@@ -32,18 +32,24 @@ Partial Class FormStockTakeStorePeriod
         Me.XTPCompare = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCompare = New DevExpress.XtraGrid.GridControl()
         Me.BGVCompare = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnunit_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsoh_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnstore_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndiff_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -55,12 +61,9 @@ Partial Class FormStockTakeStorePeriod
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnScanList = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
-        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.SBVerification = New DevExpress.XtraEditors.SimpleButton()
+        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.GCPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,7 +174,7 @@ Partial Class FormStockTakeStorePeriod
         'BGVCompare
         '
         Me.BGVCompare.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5})
-        Me.BGVCompare.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn13, Me.BandedGridColumn9, Me.BandedGridColumn11, Me.BandedGridColumn10, Me.BandedGridColumn12, Me.BandedGridColumnunit_price, Me.BandedGridColumnsoh_amount, Me.BandedGridColumnstore_amount, Me.BandedGridColumndiff_amount})
+        Me.BGVCompare.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn13, Me.BandedGridColumn9, Me.BandedGridColumn11, Me.BandedGridColumn10, Me.BandedGridColumn12, Me.BandedGridColumnunit_price, Me.BandedGridColumnsoh_amount, Me.BandedGridColumnstore_amount, Me.BandedGridColumndiff_amount, Me.BandedGridColumn15, Me.BandedGridColumn14})
         Me.BGVCompare.GridControl = Me.GCCompare
         Me.BGVCompare.GroupCount = 1
         Me.BGVCompare.Name = "BGVCompare"
@@ -179,6 +182,18 @@ Partial Class FormStockTakeStorePeriod
         Me.BGVCompare.OptionsView.ShowFooter = True
         Me.BGVCompare.OptionsView.ShowGroupPanel = False
         Me.BGVCompare.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn9, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Product Info"
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnunit_price)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 300
         '
         'BandedGridColumn1
         '
@@ -220,6 +235,15 @@ Partial Class FormStockTakeStorePeriod
         Me.BandedGridColumnunit_price.Name = "BandedGridColumnunit_price"
         Me.BandedGridColumnunit_price.Visible = True
         '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Volcom"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnsoh_amount)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 150
+        '
         'BandedGridColumn5
         '
         Me.BandedGridColumn5.Caption = "Qty"
@@ -243,6 +267,15 @@ Partial Class FormStockTakeStorePeriod
         Me.BandedGridColumnsoh_amount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnsoh_amount.Visible = True
         '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Store"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn6)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnstore_amount)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 150
+        '
         'BandedGridColumn6
         '
         Me.BandedGridColumn6.Caption = "Qty"
@@ -265,6 +298,17 @@ Partial Class FormStockTakeStorePeriod
         Me.BandedGridColumnstore_amount.UnboundExpression = "[unit_price]*[qty_store]"
         Me.BandedGridColumnstore_amount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnstore_amount.Visible = True
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Note"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumndiff_amount)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn8)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn13)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 300
         '
         'BandedGridColumn7
         '
@@ -296,6 +340,23 @@ Partial Class FormStockTakeStorePeriod
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
         Me.BandedGridColumn8.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn8.Visible = True
+        '
+        'BandedGridColumn13
+        '
+        Me.BandedGridColumn13.Caption = "Store Note"
+        Me.BandedGridColumn13.FieldName = "store_note"
+        Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn13.Visible = True
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "Account"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn9)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn11)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 4
+        Me.gridBand5.Width = 150
         '
         'BandedGridColumn9
         '
@@ -334,6 +395,7 @@ Partial Class FormStockTakeStorePeriod
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SBVerification)
         Me.PanelControl2.Controls.Add(Me.SBSelectAccount)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 656)
@@ -350,6 +412,7 @@ Partial Class FormStockTakeStorePeriod
         Me.SBSelectAccount.Size = New System.Drawing.Size(139, 41)
         Me.SBSelectAccount.TabIndex = 0
         Me.SBSelectAccount.Text = "Select Account"
+        Me.SBSelectAccount.Visible = False
         '
         'PanelControl1
         '
@@ -392,63 +455,27 @@ Partial Class FormStockTakeStorePeriod
         Me.SBSync.TabIndex = 0
         Me.SBSync.Text = "Sync"
         '
-        'BandedGridColumn13
+        'SBVerification
         '
-        Me.BandedGridColumn13.Caption = "Store Note"
-        Me.BandedGridColumn13.FieldName = "store_note"
-        Me.BandedGridColumn13.Name = "BandedGridColumn13"
-        Me.BandedGridColumn13.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumn13.Visible = True
+        Me.SBVerification.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBVerification.Image = CType(resources.GetObject("SBVerification.Image"), System.Drawing.Image)
+        Me.SBVerification.Location = New System.Drawing.Point(2, 2)
+        Me.SBVerification.Name = "SBVerification"
+        Me.SBVerification.Size = New System.Drawing.Size(124, 41)
+        Me.SBVerification.TabIndex = 1
+        Me.SBVerification.Text = "Verification"
         '
-        'GridBand1
+        'BandedGridColumn14
         '
-        Me.GridBand1.Caption = "Product Info"
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnunit_price)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 300
+        Me.BandedGridColumn14.FieldName = "id_comp"
+        Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.OptionsColumn.AllowEdit = False
         '
-        'gridBand2
+        'BandedGridColumn15
         '
-        Me.gridBand2.Caption = "Volcom"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn5)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnsoh_amount)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 150
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "Store"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn6)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnstore_amount)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 150
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "Note"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn7)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumndiff_amount)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn8)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn13)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
-        Me.gridBand4.Width = 300
-        '
-        'gridBand5
-        '
-        Me.gridBand5.Caption = "Account"
-        Me.gridBand5.Columns.Add(Me.BandedGridColumn9)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumn11)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 4
-        Me.gridBand5.Width = 150
+        Me.BandedGridColumn15.FieldName = "id_price"
+        Me.BandedGridColumn15.Name = "BandedGridColumn15"
+        Me.BandedGridColumn15.OptionsColumn.AllowEdit = False
         '
         'FormStockTakeStorePeriod
         '
@@ -516,4 +543,7 @@ Partial Class FormStockTakeStorePeriod
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents SBVerification As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

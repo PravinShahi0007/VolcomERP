@@ -35,11 +35,12 @@
         Dim id_period As String = GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
 
         Dim query As String = "
-            (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0)) AS diff, '' AS note, IFNULL(t.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name)) AS comp_name, t.is_auto, 'no' AS is_select, s.id_product,
+            (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0)) AS diff, '' AS note, IFNULL(t.id_comp, s.id_comp) AS id_comp, IFNULL(t.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name)) AS comp_name, t.is_auto, 'no' AS is_select, s.id_product,
+            IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.id_design_price_normal, s.id_design_price) AS `id_price`,
             IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.design_price_normal, s.design_price) AS `unit_price`, n.note AS store_note
             FROM tb_st_store_soh AS s
             LEFT JOIN (
-                SELECT s.id_product, SUM(s.qty) AS qty, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
+                SELECT s.id_product, SUM(s.qty) AS qty, s.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
                 FROM tb_st_store AS s
                 LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
                 WHERE s.id_st_store_period = " + id_period + "
@@ -52,11 +53,12 @@
         
             UNION ALL
 
-            (SELECT 0 AS `no`, p.full_code, p.name, p.size, 0 AS qty_volcom, q.qty AS qty_store, -q.qty AS diff, '' AS note, q.comp_name, q.is_auto, 'no' AS is_select, p.id_product,
+            (SELECT 0 AS `no`, p.full_code, p.name, p.size, 0 AS qty_volcom, q.qty AS qty_store, -q.qty AS diff, '' AS note, q.id_comp, q.comp_name, q.is_auto, 'no' AS is_select, p.id_product,
+            IF(IFNULL(q.id_store_type,0)=1,prn.id_design_price, prc.id_design_price) AS id_price,
             IF(IFNULL(q.id_store_type,0)=1,prn.design_price, prc.design_price) AS `unit_price`, n.note AS store_note
             FROM tb_m_product_store AS p
             INNER JOIN (
-                SELECT s.id_product, SUM(s.qty) AS qty, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
+                SELECT s.id_product, SUM(s.qty) AS qty, c.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
                 FROM tb_st_store AS s
                 LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
                 WHERE s.id_st_store_period = " + id_period + " AND s.id_product NOT IN (SELECT id_product FROM tb_st_store_soh WHERE id_st_store_period = " + id_period + ")
@@ -263,5 +265,9 @@
             infoCustom("File saved.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBVerification_Click(sender As Object, e As EventArgs) Handles SBVerification.Click
+        FormStockTakeStoreVer.ShowDialog()
     End Sub
 End Class
