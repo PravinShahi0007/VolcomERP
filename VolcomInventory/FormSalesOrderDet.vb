@@ -549,6 +549,17 @@ Public Class FormSalesOrderDet
             FormMain.SplashScreenManager1.CloseWaitForm()
         End If
 
+        'block stocktake eos
+        Dim all_product As List(Of String) = New List(Of String)
+
+        For i = 0 To GVItemList.RowCount - 1
+            If GVItemList.IsValidRowHandle(i) Then
+                all_product.Add(GVItemList.GetRowCellValue(i, "id_product").ToString)
+            End If
+        Next
+
+        Dim block_stocktake As Boolean = block_stocktake_eos(all_product)
+
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()
         ElseIf Not cond_data Then
@@ -578,6 +589,8 @@ Public Class FormSalesOrderDet
             FormCustomDialog.BtnAction.Text = "View " + dt_existing_order.Rows(0)("sales_order_number").ToString
             FormCustomDialog.ShowDialog()
             Cursor = Cursors.Default
+        ElseIf Not block_stocktake Then
+            stopCustom("Some product already in EOS and need to stock take first.")
         Else
             Dim sales_order_note As String = addSlashes(MENote.Text)
             Dim id_so_type As String = LETypeSO.EditValue.ToString
