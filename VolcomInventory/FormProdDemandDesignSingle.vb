@@ -18,6 +18,7 @@ Public Class FormProdDemandDesignSingle
     Dim allc_cond As String = ""
     Dim id_role_super_admin As String = get_setup_field("id_role_super_admin")
     Public data_column As New DataTable
+    Dim err_sni As String = "Sudah diajukan untuk proses SNI, mohon berkordinasi dengan tim terkait"
 
 
     'Form Load
@@ -606,7 +607,11 @@ Public Class FormProdDemandDesignSingle
     'Edit Size
     Private Sub BtnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEdit.Click
         Cursor = Cursors.WaitCursor
-        edit_break()
+        If isProposeSNI() Then
+            warningCustom(err_sni)
+        Else
+            edit_break()
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -627,7 +632,7 @@ Public Class FormProdDemandDesignSingle
                 For j As Integer = 0 To GVProductRev.Columns.Count - 1
                     Dim col As String = GVProductRev.Columns(j).FieldName.ToString
                     If col = "id_prod_demand_product" Or col = "id_design" Or col = "id_product" _
-                    Or col = "Code" Or col = "Style" Or col = "Size" Or col = "Qty" Or col = "Cost" _
+                    Or col = "Code" Or col = "Style" Or col = "Size" Or col = "Qty" Or col = "SNI" Or col = "Cost" _
                     Or col = "Currency" Or col = "id_currency" Or col = "Kurs" Or col = "Total Cost" _
                     Then
                         GVProductRev.Columns(j).OptionsColumn.ReadOnly = True
@@ -1076,7 +1081,7 @@ Public Class FormProdDemandDesignSingle
         Dim row_foc As Integer = e.RowHandle
         Dim col As String = e.Column.FieldName.ToString
         If col = "id_prod_demand_product" Or col = "id_design" Or col = "id_product" _
-                    Or col = "Code" Or col = "Style" Or col = "Size" Or col = "Qty" Or col = "Cost" _
+                    Or col = "Code" Or col = "Style" Or col = "Size" Or col = "Qty" Or col = "SNI" Or col = "Cost" _
                     Or col = "Currency" Or col = "id_currency" Or col = "Kurs" Or col = "Total Cost" _
                     Then
             'no action
@@ -1093,33 +1098,37 @@ Public Class FormProdDemandDesignSingle
     End Sub
 
     Private Sub BtnDoneEditing_Click(sender As Object, e As EventArgs) Handles BtnDoneEditing.Click
-        GVProductRev.ExpandAllGroups()
-        PBC.Visible = True
-        PBC.Properties.Minimum = 0
-        PBC.Properties.Maximum = data_edit.Rows.Count - 1
-        PBC.Properties.Step = 1
-        For i As Integer = 0 To data_edit.Rows.Count - 1
-            Dim query_main As String = "UPDATE tb_prod_demand_alloc pd_allc "
-            query_main += "INNER JOIN tb_lookup_pd_alloc allc ON allc.id_pd_alloc = pd_allc.id_pd_alloc "
-            query_main += "INNER JOIN tb_prod_demand_product pd_prod ON pd_prod.id_prod_demand_product = pd_allc.id_prod_demand_product "
-            query_main += "SET pd_allc.prod_demand_alloc_qty='" + data_edit.Rows(i)("qty").ToString + "'  "
-            query_main += "WHERE pd_allc.id_prod_demand_product='" + data_edit.Rows(i)("id_prod_demand_product").ToString + "' AND allc.pd_alloc='" + data_edit.Rows(i)("pd_alloc").ToString + "' AND pd_prod.id_prod_demand_design='" + id_prod_demand_design + "' "
-            execute_non_query(query_main, True, "", "", "", "")
-            If i = data_edit.Rows.Count - 1 Then
-                For j As Integer = 0 To ((GVProductRev.RowCount - 1) - GetGroupRowCount(GVProductRev))
-                    Dim query_sub As String = "UPDATE tb_prod_demand_product "
-                    query_sub += "SET prod_demand_product_qty='" + decimalSQL(GVProductRev.GetRowCellValue(j, "Qty").ToString) + "' "
-                    query_sub += "WHERE id_prod_demand_product='" + GVProductRev.GetRowCellValue(j, "id_prod_demand_product").ToString + "' "
-                    execute_non_query(query_sub, True, "", "", "", "")
-                Next
-            End If
-            PBC.PerformStep()
-            PBC.Update()
-        Next
-        data_edit.Clear()
-        resetNavBreakdown()
-        viewBreakdown()
-        PBC.Visible = False
+        If isProposeSNI() Then
+            warningCustom(err_sni)
+        Else
+            GVProductRev.ExpandAllGroups()
+            PBC.Visible = True
+            PBC.Properties.Minimum = 0
+            PBC.Properties.Maximum = data_edit.Rows.Count - 1
+            PBC.Properties.Step = 1
+            For i As Integer = 0 To data_edit.Rows.Count - 1
+                Dim query_main As String = "UPDATE tb_prod_demand_alloc pd_allc "
+                query_main += "INNER JOIN tb_lookup_pd_alloc allc ON allc.id_pd_alloc = pd_allc.id_pd_alloc "
+                query_main += "INNER JOIN tb_prod_demand_product pd_prod ON pd_prod.id_prod_demand_product = pd_allc.id_prod_demand_product "
+                query_main += "SET pd_allc.prod_demand_alloc_qty='" + data_edit.Rows(i)("qty").ToString + "'  "
+                query_main += "WHERE pd_allc.id_prod_demand_product='" + data_edit.Rows(i)("id_prod_demand_product").ToString + "' AND allc.pd_alloc='" + data_edit.Rows(i)("pd_alloc").ToString + "' AND pd_prod.id_prod_demand_design='" + id_prod_demand_design + "' "
+                execute_non_query(query_main, True, "", "", "", "")
+                If i = data_edit.Rows.Count - 1 Then
+                    For j As Integer = 0 To ((GVProductRev.RowCount - 1) - GetGroupRowCount(GVProductRev))
+                        Dim query_sub As String = "UPDATE tb_prod_demand_product "
+                        query_sub += "SET prod_demand_product_qty='" + decimalSQL(GVProductRev.GetRowCellValue(j, "Qty").ToString) + "' "
+                        query_sub += "WHERE id_prod_demand_product='" + GVProductRev.GetRowCellValue(j, "id_prod_demand_product").ToString + "' "
+                        execute_non_query(query_sub, True, "", "", "", "")
+                    Next
+                End If
+                PBC.PerformStep()
+                PBC.Update()
+            Next
+            data_edit.Clear()
+            resetNavBreakdown()
+            viewBreakdown()
+            PBC.Visible = False
+        End If
     End Sub
 
     Private Sub GVProductRev_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVProductRev.PopupMenuShowing
@@ -1238,4 +1247,17 @@ Public Class FormProdDemandDesignSingle
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Function isProposeSNI() As Boolean
+        Dim query As String = "SELECT * 
+        FROM tb_sni_pps_list sl
+        INNER JOIN tb_sni_pps s ON s.id_sni_pps = sl.id_sni_pps
+        WHERE s.id_report_status!=5 AND sl.id_design=" + id_design + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class

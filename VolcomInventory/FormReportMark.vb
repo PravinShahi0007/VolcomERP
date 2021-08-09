@@ -9971,18 +9971,37 @@ INNER JOIN
 	WHERE id_sni_pps='" & id_report & "'
 )tot ON tot.id_sni_pps=spl.id_sni_pps
 WHERE spl.id_sni_pps='" & id_report & "'"
+                Dim dt As DataTable = execute_query(qd, -1, True, "", "", "", "")
                 'update ke additional cop
-                'line list update qty
-                'send mail to md
-                'send email
-                'Try
-                '    Dim nm As New ClassSendEmail
-                '    nm.par1 = id_design
-                '    nm.report_mark_type = "267"
-                '    nm.send_email()
-                'Catch ex As Exception
-                '    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
-                'End Try
+                For i = 0 To dt.Rows.Count - 1
+                    Dim qu As String = ""
+                    qu = String.Format("UPDATE tb_m_design SET prod_order_cop_pd=prod_order_cop_pd+{1},prod_order_cop_pd_addcost='{1}' WHERE id_design='{0}'", dt.Rows(i)("id_design").ToString, decimalSQL(dt.Rows(i)("cost").ToString))
+                    execute_non_query(query, True, "", "", "", "")
+                    '
+                    qu = "UPDATE 
+tb_m_design dsg
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=dsg.`id_prod_demand_design_line`
+INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
+SET 
+pdd.prod_demand_design_estimate_price = dsg.prod_order_cop_pd,
+pdd.prod_demand_design_total_cost = dsg.prod_order_cop_pd,  
+pdd.additional_cost = dsg.prod_order_cop_pd_addcost,
+pdd.additional_price = IF(dsg.prod_order_cop_pd_addcost>0,opt.default_add_price,0)
+WHERE pd.is_pd=2 AND dsg.id_design='" & dt.Rows(i)("id_design").ToString & "'"
+                    execute_non_query(query, True, "", "", "", "")
+                    'line list update qty
+                    qu = ""
+
+                    'send mail to md
+                    Try
+                        Dim nm As New ClassSendEmail
+                        nm.par1 = dt.Rows(i)("id_design").ToString
+                        nm.report_mark_type = "267"
+                        nm.send_email()
+                    Catch ex As Exception
+                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD SNI pps id_design = " & dt.Rows(i)("id_design").ToString & "')", -1, True, "", "", "", "")
+                    End Try
+                Next
             End If
 
             'update status
