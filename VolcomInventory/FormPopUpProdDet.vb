@@ -37,6 +37,9 @@
             query = "CALL view_stock_prod_ret_in_remain('" + id_prod_order + "', '0', '" + id_ret_out + "', '" + id_ret_in + "', '0')"
         ElseIf id_pop_up = "5" Then
             query = "CALL view_stock_prod_ret_in_remain('" + id_prod_order + "', '0', '" + id_ret_out + "', '" + id_ret_in + "', '0')"
+        ElseIf id_pop_up = "6" Then
+            'query = "CALL view_stock_prod_rec('" + id_prod_order + "', '0', '" + id_ret_out + "', '" + id_ret_in + "', '" + id_pl + "','0', '" + id_pd_alloc_par + "')"
+            query = "CALL view_limit_prod_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '0', '" + id_ret_out + "', '" + id_ret_in + "', '" + id_pl + "','0', '" + id_pd_alloc_par + "')"
         End If
         'Console.WriteLine(query)
         If id_pop_up = "3" Then
@@ -202,6 +205,8 @@
             End If
             FormProductionPLToWHDet.GCRetDetail.RefreshDataSource()
             FormProductionPLToWHDet.GVRetDetail.RefreshData()
+        ElseIf id_pop_up = "6" Then
+
         End If
     End Sub
 

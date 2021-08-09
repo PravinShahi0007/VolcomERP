@@ -7174,6 +7174,12 @@
     <Compile Include="FormSNIOut.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSNIOutPop.Designer.vb">
+      <DependentUpon>FormSNIOutPop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIOutPop.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSNIppsBudget.Designer.vb">
       <DependentUpon>FormSNIppsBudget.vb</DependentUpon>
     </Compile>
@@ -13854,6 +13860,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSNIOut.resx">
       <DependentUpon>FormSNIOut.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIOutPop.resx">
+      <DependentUpon>FormSNIOutPop.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSNIppsBudget.resx">
       <DependentUpon>FormSNIppsBudget.vb</DependentUpon>

@@ -226,6 +226,27 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                 Else
                     warningCustom("No data selected.")
                 End If
+            ElseIf id_pop_up = "5" Then 'QC SNI Out
+                If GVListPurchase.RowCount > 0 Then
+                    FormProductionFinalClearDet.id_prod_order = GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString
+                    FormProductionFinalClearDet.id_prod_order_rec = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
+                    FormProductionFinalClearDet.id_design = GVProdRec.GetFocusedRowCellValue("id_design").ToString
+                    FormProductionFinalClearDet.TxtOrder.Text = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
+                    FormProductionFinalClearDet.TERec.Text = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
+                    FormProductionFinalClearDet.TxtSeason.Text = GVProdRec.GetFocusedRowCellValue("season").ToString
+                    FormProductionFinalClearDet.TxtDel.Text = GVProdRec.GetFocusedRowCellValue("delivery").ToString
+                    FormProductionFinalClearDet.TxtVendorCode.Text = GVProdRec.GetFocusedRowCellValue("comp_from_code").ToString
+                    FormProductionFinalClearDet.TxtVendorName.Text = GVProdRec.GetFocusedRowCellValue("comp_from").ToString
+                    FormProductionFinalClearDet.TxtStyleCode.Text = GVProdRec.GetFocusedRowCellValue("design_code").ToString
+                    FormProductionFinalClearDet.TxtStyle.Text = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
+                    FormProductionFinalClearDet.viewDetail()
+                    FormProductionFinalClearDet.BtnInfoSrs.Enabled = True
+                    pre_viewImages("2", FormProductionFinalClearDet.PEView, FormProductionFinalClearDet.id_design, False)
+
+                    Close()
+                Else
+                    warningCustom("No data selected.")
+                End If
             End If
 
         Else
