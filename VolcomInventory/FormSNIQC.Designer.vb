@@ -21,23 +21,29 @@ Partial Class FormSNIQC
     Private Sub InitializeComponent()
         Me.XTCInOut = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOut = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPIn = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSNIOut = New DevExpress.XtraGrid.GridControl()
         Me.GVSNIOut = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPIn = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSNIIn = New DevExpress.XtraGrid.GridControl()
+        Me.GVSNIIn = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCInOut, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInOut.SuspendLayout()
         Me.XTPOut.SuspendLayout()
-        Me.XTPIn.SuspendLayout()
         CType(Me.GCSNIOut, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSNIOut, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPIn.SuspendLayout()
+        CType(Me.GCSNIIn, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSNIIn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCInOut
@@ -58,13 +64,6 @@ Partial Class FormSNIQC
         Me.XTPOut.Size = New System.Drawing.Size(915, 453)
         Me.XTPOut.Text = "SNI Out"
         '
-        'XTPIn
-        '
-        Me.XTPIn.Controls.Add(Me.GridControl2)
-        Me.XTPIn.Name = "XTPIn"
-        Me.XTPIn.Size = New System.Drawing.Size(915, 453)
-        Me.XTPIn.Text = "SNI In"
-        '
         'GCSNIOut
         '
         Me.GCSNIOut.Dock = System.Windows.Forms.DockStyle.Fill
@@ -77,24 +76,10 @@ Partial Class FormSNIQC
         '
         'GVSNIOut
         '
-        Me.GVSNIOut.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVSNIOut.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GVSNIOut.GridControl = Me.GCSNIOut
         Me.GVSNIOut.Name = "GVSNIOut"
         Me.GVSNIOut.OptionsView.ShowGroupPanel = False
-        '
-        'GridControl2
-        '
-        Me.GridControl2.Location = New System.Drawing.Point(257, 126)
-        Me.GridControl2.MainView = Me.GridView2
-        Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(400, 200)
-        Me.GridControl2.TabIndex = 1
-        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
-        '
-        'GridView2
-        '
-        Me.GridView2.GridControl = Me.GridControl2
-        Me.GridView2.Name = "GridView2"
         '
         'GridColumn1
         '
@@ -110,17 +95,83 @@ Partial Class FormSNIQC
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "GridColumn3"
+        Me.GridColumn3.Caption = "Created By"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "GridColumn4"
+        Me.GridColumn4.Caption = "Created Date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Report Status"
+        Me.GridColumn5.FieldName = "report_status"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
+        'XTPIn
+        '
+        Me.XTPIn.Controls.Add(Me.GCSNIIn)
+        Me.XTPIn.Name = "XTPIn"
+        Me.XTPIn.Size = New System.Drawing.Size(915, 453)
+        Me.XTPIn.Text = "SNI In"
+        '
+        'GCSNIIn
+        '
+        Me.GCSNIIn.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSNIIn.Location = New System.Drawing.Point(0, 0)
+        Me.GCSNIIn.MainView = Me.GVSNIIn
+        Me.GCSNIIn.Name = "GCSNIIn"
+        Me.GCSNIIn.Size = New System.Drawing.Size(915, 453)
+        Me.GCSNIIn.TabIndex = 1
+        Me.GCSNIIn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSNIIn})
+        '
+        'GVSNIIn
+        '
+        Me.GVSNIIn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
+        Me.GVSNIIn.GridControl = Me.GCSNIIn
+        Me.GVSNIIn.Name = "GVSNIIn"
+        Me.GVSNIIn.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "ID"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Number"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Created By"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Created Date"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Report Status"
+        Me.GridColumn10.FieldName = "report_status"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
         '
         'FormSNIQC
         '
@@ -128,6 +179,7 @@ Partial Class FormSNIQC
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(921, 481)
         Me.Controls.Add(Me.XTCInOut)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSNIQC"
@@ -137,11 +189,11 @@ Partial Class FormSNIQC
         CType(Me.XTCInOut, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCInOut.ResumeLayout(False)
         Me.XTPOut.ResumeLayout(False)
-        Me.XTPIn.ResumeLayout(False)
         CType(Me.GCSNIOut, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSNIOut, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPIn.ResumeLayout(False)
+        CType(Me.GCSNIIn, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSNIIn, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -155,6 +207,12 @@ Partial Class FormSNIQC
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCSNIIn As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSNIIn As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

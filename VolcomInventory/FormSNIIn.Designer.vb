@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormSNIOut
+Partial Class FormSNIIn
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -21,17 +21,17 @@ Partial Class FormSNIOut
     Private Sub InitializeComponent()
         Me.SuspendLayout()
         '
-        'FormSNIOut
+        'FormSNIIn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(908, 480)
+        Me.ClientSize = New System.Drawing.Size(972, 413)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "FormSNIOut"
+        Me.Name = "FormSNIIn"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "SNI Out"
+        Me.Text = "SNI In"
         Me.ResumeLayout(False)
 
     End Sub
