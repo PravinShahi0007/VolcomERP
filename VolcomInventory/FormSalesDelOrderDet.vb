@@ -673,12 +673,27 @@ Public Class FormSalesDelOrderDet
         'cek qty limit SO di DB
         Dim cond_check_dt As Boolean = verifyTrans()
 
+        'block stocktake eos
+        Dim all_product As List(Of String) = New List(Of String)
+
+        For i = 0 To GVItemList.RowCount - 1
+            If GVItemList.IsValidRowHandle(i) Then
+                If GVItemList.GetRowCellValue(i, "pl_sales_order_del_det_qty") > 0 Then
+                    all_product.Add(GVItemList.GetRowCellValue(i, "id_product").ToString)
+                End If
+            End If
+        Next
+
+        Dim block_stocktake As Boolean = block_stocktake_eos(all_product)
+
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMiddle) Then
             errorInput()
         ElseIf GVItemList.RowCount = 0 Or GVBarcode.RowCount = 0 Then
             errorCustom("Delivery item or scanned item data can't blank")
         ElseIf Not cond_check_dt Then
             stopCustom("Please see different in column status.")
+        ElseIf Not block_stocktake Then
+            stopCustom("Some product already in EOS and need to stock take first.")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then

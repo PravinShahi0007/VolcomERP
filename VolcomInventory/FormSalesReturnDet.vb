@@ -1071,6 +1071,8 @@ Public Class FormSalesReturnDet
             makeSafeGV(GVItemList)
         End If
 
+        Dim block_stocktake As Boolean = True
+
         'cek stok
         If id_ret_type = "1" Or id_ret_type = "3" Then
             Cursor = Cursors.WaitCursor
@@ -1098,6 +1100,20 @@ Public Class FormSalesReturnDet
                 End If
             End If
             makeSafeGV(GVItemList)
+
+            'block stocktake eos
+            Dim all_product As List(Of String) = New List(Of String)
+
+            For i = 0 To GVItemList.RowCount - 1
+                If GVItemList.IsValidRowHandle(i) Then
+                    If GVItemList.GetRowCellValue(i, "sales_return_det_qty") > 0 Then
+                        all_product.Add(GVItemList.GetRowCellValue(i, "id_product").ToString)
+                    End If
+                End If
+            Next
+
+            block_stocktake = block_stocktake_eos(all_product)
+
             Cursor = Cursors.Default
         End If
 
@@ -1109,6 +1125,8 @@ Public Class FormSalesReturnDet
             stopCustom("Store return number can't blank")
         ElseIf Not cond_list Then
             stopCustom("Please see different in column status.")
+        ElseIf Not block_stocktake Then
+            stopCustom("Some product already in EOS and need to stock take first.")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
