@@ -829,6 +829,7 @@ Partial Class FormMatPurchaseDet
         Me.ColQty.Name = "ColQty"
         Me.ColQty.OptionsColumn.AllowEdit = False
         Me.ColQty.OptionsColumn.ReadOnly = True
+        Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.ColQty.Visible = True
         Me.ColQty.VisibleIndex = 7
         Me.ColQty.Width = 49

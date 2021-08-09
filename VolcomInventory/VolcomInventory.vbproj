@@ -7162,6 +7162,18 @@
     <Compile Include="FormShipInvoiceDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSNIIn.Designer.vb">
+      <DependentUpon>FormSNIIn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIIn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSNIOut.Designer.vb">
+      <DependentUpon>FormSNIOut.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIOut.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSNIppsBudget.Designer.vb">
       <DependentUpon>FormSNIppsBudget.vb</DependentUpon>
     </Compile>
@@ -7172,6 +7184,12 @@
       <DependentUpon>FormSNIppsDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSNIppsDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSNIQC.Designer.vb">
+      <DependentUpon>FormSNIQC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIQC.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSNIRealisasi.Designer.vb">
@@ -13831,11 +13849,20 @@
     <EmbeddedResource Include="FormShipInvoiceDet.resx">
       <DependentUpon>FormShipInvoiceDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIIn.resx">
+      <DependentUpon>FormSNIIn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIOut.resx">
+      <DependentUpon>FormSNIOut.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSNIppsBudget.resx">
       <DependentUpon>FormSNIppsBudget.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSNIppsDet.resx">
       <DependentUpon>FormSNIppsDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIQC.resx">
+      <DependentUpon>FormSNIQC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSNIRealisasi.resx">
       <DependentUpon>FormSNIRealisasi.vb</DependentUpon>
