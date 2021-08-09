@@ -55,15 +55,16 @@ Partial Class FormStockTakeStorePeriod
         Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBVerification = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSelectAccount = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBBAPPelaksanaan = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnScanList = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBVerification = New DevExpress.XtraEditors.SimpleButton()
-        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.GCPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -393,6 +394,18 @@ Partial Class FormStockTakeStorePeriod
         Me.BandedGridColumn12.Name = "BandedGridColumn12"
         Me.BandedGridColumn12.OptionsColumn.AllowEdit = False
         '
+        'BandedGridColumn15
+        '
+        Me.BandedGridColumn15.FieldName = "id_price"
+        Me.BandedGridColumn15.Name = "BandedGridColumn15"
+        Me.BandedGridColumn15.OptionsColumn.AllowEdit = False
+        '
+        'BandedGridColumn14
+        '
+        Me.BandedGridColumn14.FieldName = "id_comp"
+        Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.OptionsColumn.AllowEdit = False
+        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.SBVerification)
@@ -402,6 +415,16 @@ Partial Class FormStockTakeStorePeriod
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1002, 45)
         Me.PanelControl2.TabIndex = 2
+        '
+        'SBVerification
+        '
+        Me.SBVerification.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBVerification.Image = CType(resources.GetObject("SBVerification.Image"), System.Drawing.Image)
+        Me.SBVerification.Location = New System.Drawing.Point(2, 2)
+        Me.SBVerification.Name = "SBVerification"
+        Me.SBVerification.Size = New System.Drawing.Size(124, 41)
+        Me.SBVerification.TabIndex = 1
+        Me.SBVerification.Text = "Verification"
         '
         'SBSelectAccount
         '
@@ -416,6 +439,7 @@ Partial Class FormStockTakeStorePeriod
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBBAPPelaksanaan)
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControl1.Controls.Add(Me.BtnScanList)
         Me.PanelControl1.Controls.Add(Me.SBSync)
@@ -424,6 +448,16 @@ Partial Class FormStockTakeStorePeriod
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1002, 45)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SBBAPPelaksanaan
+        '
+        Me.SBBAPPelaksanaan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBBAPPelaksanaan.Image = CType(resources.GetObject("SBBAPPelaksanaan.Image"), System.Drawing.Image)
+        Me.SBBAPPelaksanaan.Location = New System.Drawing.Point(765, 2)
+        Me.SBBAPPelaksanaan.Name = "SBBAPPelaksanaan"
+        Me.SBBAPPelaksanaan.Size = New System.Drawing.Size(141, 41)
+        Me.SBBAPPelaksanaan.TabIndex = 3
+        Me.SBBAPPelaksanaan.Text = "BAP Pelaksanaan"
         '
         'BtnExportToXLS
         '
@@ -454,28 +488,6 @@ Partial Class FormStockTakeStorePeriod
         Me.SBSync.Size = New System.Drawing.Size(94, 41)
         Me.SBSync.TabIndex = 0
         Me.SBSync.Text = "Sync"
-        '
-        'SBVerification
-        '
-        Me.SBVerification.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SBVerification.Image = CType(resources.GetObject("SBVerification.Image"), System.Drawing.Image)
-        Me.SBVerification.Location = New System.Drawing.Point(2, 2)
-        Me.SBVerification.Name = "SBVerification"
-        Me.SBVerification.Size = New System.Drawing.Size(124, 41)
-        Me.SBVerification.TabIndex = 1
-        Me.SBVerification.Text = "Verification"
-        '
-        'BandedGridColumn14
-        '
-        Me.BandedGridColumn14.FieldName = "id_comp"
-        Me.BandedGridColumn14.Name = "BandedGridColumn14"
-        Me.BandedGridColumn14.OptionsColumn.AllowEdit = False
-        '
-        'BandedGridColumn15
-        '
-        Me.BandedGridColumn15.FieldName = "id_price"
-        Me.BandedGridColumn15.Name = "BandedGridColumn15"
-        Me.BandedGridColumn15.OptionsColumn.AllowEdit = False
         '
         'FormStockTakeStorePeriod
         '
@@ -546,4 +558,5 @@ Partial Class FormStockTakeStorePeriod
     Friend WithEvents SBVerification As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents SBBAPPelaksanaan As DevExpress.XtraEditors.SimpleButton
 End Class

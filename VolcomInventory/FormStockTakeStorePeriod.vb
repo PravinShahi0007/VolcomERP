@@ -109,6 +109,19 @@
         GCCompare.DataSource = data
 
         BGVCompare.BestFitColumns()
+
+        'bap pelaksanaan
+        Dim view_bap As String = execute_query("
+            SELECT COUNT(*) 
+            FROM tb_st_store_period
+            WHERE (schedule_end < DATE(NOW()) OR (is_stop_scan = 1 AND stop_scan_date <= NOW())) AND id_st_store_period = " + id_period + "
+        ", 0, True, "", "", "", "")
+
+        If view_bap = "0" Then
+            SBBAPPelaksanaan.Visible = False
+        Else
+            SBBAPPelaksanaan.Visible = True
+        End If
     End Sub
 
     Private Sub GVPeriod_DoubleClick(sender As Object, e As EventArgs) Handles GVPeriod.DoubleClick
@@ -169,17 +182,28 @@
                 insert = True
             Next
 
-            For Each row In json("content")("note").ToList
-                Dim id_st_store_note As String = row("id_st_store_note").ToString
-                Dim id_st_store_period As String = row("id_st_store_period").ToString
-                Dim id_product As String = row("id_product").ToString
-                Dim note As String = row("note").ToString
-                Dim updated_at As String = row("updated_at").ToString
-                Dim updated_by As String = row("updated_by").ToString
+            If json("content")("note") Then
+                For Each row In json("content")("note").ToList
+                    Dim id_st_store_note As String = row("id_st_store_note").ToString
+                    Dim id_st_store_period As String = row("id_st_store_period").ToString
+                    Dim id_product As String = row("id_product").ToString
+                    Dim note As String = row("note").ToString
+                    Dim updated_at As String = row("updated_at").ToString
+                    Dim updated_by As String = row("updated_by").ToString
 
-                query_note += "(" + id_st_store_note + ", " + id_st_store_period + ", " + id_product + ", '" + addSlashes(note) + "', '" + updated_at + "', " + updated_by + "), "
+                    query_note += "(" + id_st_store_note + ", " + id_st_store_period + ", " + id_product + ", '" + addSlashes(note) + "', '" + updated_at + "', " + updated_by + "), "
 
-                insert_note = True
+                    insert_note = True
+                Next
+            End If
+
+            For Each row In json("content")("period").ToList
+                Dim is_stop_scan As String = row("is_stop_scan").ToString
+                Dim stop_scan_date As String = If(row("stop_scan_date").ToString = "", "NULL", "'" + row("stop_scan_date").ToString + "'")
+
+                Dim query_period As String = "UPDATE tb_st_store_period SET is_stop_scan = " + is_stop_scan + ", stop_scan_date = " + stop_scan_date + " WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
+
+                execute_non_query(query_period, True, "", "", "", "")
             Next
 
             If insert Then
@@ -269,5 +293,11 @@
 
     Private Sub SBVerification_Click(sender As Object, e As EventArgs) Handles SBVerification.Click
         FormStockTakeStoreVer.ShowDialog()
+    End Sub
+
+    Private Sub SBBAPPelaksanaan_Click(sender As Object, e As EventArgs) Handles SBBAPPelaksanaan.Click
+        Dim volcomClientHost As String = get_setup_field("volcom_client_host")
+
+        Process.Start(volcomClientHost + "/stocktake/getBAPPelakasanaan/" + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString)
     End Sub
 End Class
