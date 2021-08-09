@@ -125,7 +125,7 @@ WHERE pps.`number`='" & addSlashes(TEBudgetNumber.Text) & "'"
 
     Sub load_proposed()
         Dim q As String = "SELECT 'no' AS is_check,clr.color,IFNULL(p.id_product,0) AS id_product,dsg.`id_design`,dsg.`design_code`,dsg.design_fabrication,dsg.`design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
-,'VOLCOM' AS brand,co.country,pdl.qty_line_list,so.season_orign
+,'VOLCOM' AS brand,co.country,ppsl.qty AS qty_line_list,so.season_orign
 FROM tb_sni_pps_list `ppsl`
 LEFT JOIN tb_m_product p ON p.id_design=ppsl.id_design AND p.product_code='921' -- hanya S
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=ppsl.`id_design`
@@ -142,14 +142,6 @@ INNER JOIN
     WHERE cd.id_code='14'
     GROUP BY dc.id_design
 ) clr oN clr.id_design=dsg.id_design
-INNER JOIN
-(
-    SELECT dsg.`id_design`,SUM(pdp.`prod_demand_product_qty`) AS qty_line_list
-    FROM tb_m_design dsg
-    INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=dsg.`id_prod_demand_design_line`
-    INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
-    GROUP BY dsg.`id_design`
-)pdl ON pdl.id_design=dsg.id_design
 AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND dsg.`id_lookup_status_order`!=2
 WHERE ppsl.id_sni_pps='" & id_pps & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
