@@ -25,11 +25,12 @@ Partial Class FormStockTakeStoreVer
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SBSynctoWeb = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -38,6 +39,7 @@ Partial Class FormStockTakeStoreVer
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBSynctoWeb)
         Me.PanelControl1.Controls.Add(Me.SBNew)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -78,6 +80,14 @@ Partial Class FormStockTakeStoreVer
         Me.GridColumn1.FieldName = "id_st_store_bap"
         Me.GridColumn1.Name = "GridColumn1"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Number"
+        Me.GridColumn6.FieldName = "number"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Account"
@@ -110,13 +120,15 @@ Partial Class FormStockTakeStoreVer
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
         '
-        'GridColumn6
+        'SBSynctoWeb
         '
-        Me.GridColumn6.Caption = "Number"
-        Me.GridColumn6.FieldName = "number"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
+        Me.SBSynctoWeb.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSynctoWeb.Image = CType(resources.GetObject("SBSynctoWeb.Image"), System.Drawing.Image)
+        Me.SBSynctoWeb.Location = New System.Drawing.Point(667, 2)
+        Me.SBSynctoWeb.Name = "SBSynctoWeb"
+        Me.SBSynctoWeb.Size = New System.Drawing.Size(115, 44)
+        Me.SBSynctoWeb.TabIndex = 1
+        Me.SBSynctoWeb.Text = "Sync to Web"
         '
         'FormStockTakeStoreVer
         '
@@ -146,4 +158,5 @@ Partial Class FormStockTakeStoreVer
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBSynctoWeb As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -32,6 +32,7 @@ Partial Class FormAREvalNoteBulk
         Me.GridColumnstore_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -40,6 +41,7 @@ Partial Class FormAREvalNoteBulk
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -74,24 +76,25 @@ Partial Class FormAREvalNoteBulk
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.CheckEdit1)
         Me.PanelControl2.Controls.Add(Me.MENote)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 232)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 210)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(484, 83)
+        Me.PanelControl2.Size = New System.Drawing.Size(484, 105)
         Me.PanelControl2.TabIndex = 1
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(54, 14)
+        Me.MENote.Location = New System.Drawing.Point(54, 34)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(418, 57)
         Me.MENote.TabIndex = 1
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(16, 16)
+        Me.LabelControl1.Location = New System.Drawing.Point(16, 36)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl1.TabIndex = 0
@@ -104,7 +107,7 @@ Partial Class FormAREvalNoteBulk
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCData.Size = New System.Drawing.Size(484, 232)
+        Me.GCData.Size = New System.Drawing.Size(484, 210)
         Me.GCData.TabIndex = 2
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -148,6 +151,15 @@ Partial Class FormAREvalNoteBulk
         Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
+        'CheckEdit1
+        '
+        Me.CheckEdit1.EditValue = True
+        Me.CheckEdit1.Location = New System.Drawing.Point(374, 9)
+        Me.CheckEdit1.Name = "CheckEdit1"
+        Me.CheckEdit1.Properties.Caption = "Select All Store"
+        Me.CheckEdit1.Size = New System.Drawing.Size(98, 19)
+        Me.CheckEdit1.TabIndex = 2
+        '
         'FormAREvalNoteBulk
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -171,6 +183,7 @@ Partial Class FormAREvalNoteBulk
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -187,4 +200,5 @@ Partial Class FormAREvalNoteBulk
     Friend WithEvents GridColumnstore_group As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_select As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
 End Class

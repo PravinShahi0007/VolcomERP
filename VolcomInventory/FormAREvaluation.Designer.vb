@@ -291,7 +291,7 @@ Partial Class FormAREvaluation
         Me.BtnNote.Name = "BtnNote"
         Me.BtnNote.Size = New System.Drawing.Size(139, 23)
         Me.BtnNote.TabIndex = 6
-        Me.BtnNote.Text = "Catatan Manajemen"
+        Me.BtnNote.Text = "Catatan AR Evaluasi"
         '
         'DDBDelayPayment
         '
