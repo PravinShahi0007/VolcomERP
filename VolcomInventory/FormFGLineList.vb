@@ -1030,6 +1030,7 @@ Public Class FormFGLineList
         If BGVLineList.RowCount > 0 Then
             Dim id_str As String = ""
             Dim dsg_cek As String = ""
+            Dim id_design_in As String = ""
             Dim jum_str As Integer = 0
             Dim jum_tot As Integer = getTotalSelected()
             If jum_tot > 0 Then
@@ -1041,9 +1042,11 @@ Public Class FormFGLineList
                             If jum_str > 0 Then
                                 id_str += ";"
                                 dsg_cek += "OR "
+                                id_design_in += ","
                             End If
                             id_str += BGVLineList.GetRowCellValue(l, "id_design").ToString
                             dsg_cek += "pdd.id_design = '" + BGVLineList.GetRowCellValue(l, "id_design").ToString + "' "
+                            id_design_in += BGVLineList.GetRowCellValue(l, "id_design").ToString
                             jum_str += 1
                         End If
                     Next
@@ -1082,6 +1085,24 @@ Public Class FormFGLineList
                     '    Cursor = Cursors.Default
                     '    Exit Sub
                     'End If
+
+                    'cek cost
+                    Dim qco As String = "SELECT d.design_code AS `code`, d.design_display_name AS `name`  
+                    FROM tb_m_design d
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = d.id_prod_demand_design_line
+                    WHERE d.id_design IN (" + id_design_in + ") AND pdd.prod_demand_design_total_cost<=0
+                    GROUP BY d.id_design 
+                    ORDER BY d.design_display_name ASC "
+                    Dim dco As DataTable = execute_query(qco, -1, True, "", "", "", "")
+                    If dco.Rows.Count > 0 Then
+                        warningCustom("Cost not found. Click OK to see detail design and make sure with Purchasing Departement.")
+                        FormFGLineListPDExist.dt = dco
+                        FormFGLineListPDExist.GridColumn1.Visible = False
+                        FormFGLineListPDExist.PanelControl1.Visible = False
+                        FormFGLineListPDExist.ShowDialog()
+                        Cursor = Cursors.Default
+                        Exit Sub
+                    End If
 
                     'cek US approval
                     If is_need_us_approval = "1" Then
