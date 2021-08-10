@@ -152,6 +152,9 @@ Partial Class FormPayoutZaloraDet
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXls = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPFailedOrder = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCFailOrder = New DevExpress.XtraGrid.GridControl()
+        Me.GVFailOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,6 +206,9 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlDetail.SuspendLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPFailedOrder.SuspendLayout()
+        CType(Me.GCFailOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVFailOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -570,7 +576,7 @@ Partial Class FormPayoutZaloraDet
         Me.XTCData.SelectedTabPage = Me.XTPSummary
         Me.XTCData.Size = New System.Drawing.Size(1205, 419)
         Me.XTCData.TabIndex = 2
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail, Me.XTPFailedOrder})
         '
         'XTPSummary
         '
@@ -1424,6 +1430,33 @@ Partial Class FormPayoutZaloraDet
         Me.BtnImportXls.TabIndex = 0
         Me.BtnImportXls.Text = "Import XLS File"
         '
+        'XTPFailedOrder
+        '
+        Me.XTPFailedOrder.Controls.Add(Me.GCFailOrder)
+        Me.XTPFailedOrder.Name = "XTPFailedOrder"
+        Me.XTPFailedOrder.Size = New System.Drawing.Size(1199, 391)
+        Me.XTPFailedOrder.Text = "Closing Failed Order"
+        '
+        'GCFailOrder
+        '
+        Me.GCFailOrder.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCFailOrder.Location = New System.Drawing.Point(0, 0)
+        Me.GCFailOrder.MainView = Me.GVFailOrder
+        Me.GCFailOrder.Name = "GCFailOrder"
+        Me.GCFailOrder.Size = New System.Drawing.Size(1199, 391)
+        Me.GCFailOrder.TabIndex = 0
+        Me.GCFailOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFailOrder})
+        '
+        'GVFailOrder
+        '
+        Me.GVFailOrder.GridControl = Me.GCFailOrder
+        Me.GVFailOrder.Name = "GVFailOrder"
+        Me.GVFailOrder.OptionsBehavior.ReadOnly = True
+        Me.GVFailOrder.OptionsFind.AlwaysVisible = True
+        Me.GVFailOrder.OptionsView.ColumnAutoWidth = False
+        Me.GVFailOrder.OptionsView.ShowGroupedColumns = True
+        Me.GVFailOrder.OptionsView.ShowGroupPanel = False
+        '
         'FormPayoutZaloraDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1491,6 +1524,9 @@ Partial Class FormPayoutZaloraDet
         Me.PanelControlDetail.PerformLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPFailedOrder.ResumeLayout(False)
+        CType(Me.GCFailOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVFailOrder, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1626,4 +1662,7 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents GridColumncol_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMSComparison As ContextMenuStrip
     Friend WithEvents ManualReconcileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents XTPFailedOrder As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCFailOrder As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVFailOrder As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
