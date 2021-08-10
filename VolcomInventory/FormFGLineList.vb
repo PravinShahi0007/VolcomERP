@@ -1030,6 +1030,7 @@ Public Class FormFGLineList
         If BGVLineList.RowCount > 0 Then
             Dim id_str As String = ""
             Dim dsg_cek As String = ""
+            Dim id_design_in As String = ""
             Dim jum_str As Integer = 0
             Dim jum_tot As Integer = getTotalSelected()
             If jum_tot > 0 Then
@@ -1041,9 +1042,11 @@ Public Class FormFGLineList
                             If jum_str > 0 Then
                                 id_str += ";"
                                 dsg_cek += "OR "
+                                id_design_in += ","
                             End If
                             id_str += BGVLineList.GetRowCellValue(l, "id_design").ToString
                             dsg_cek += "pdd.id_design = '" + BGVLineList.GetRowCellValue(l, "id_design").ToString + "' "
+                            id_design_in += BGVLineList.GetRowCellValue(l, "id_design").ToString
                             jum_str += 1
                         End If
                     Next
@@ -1079,6 +1082,52 @@ Public Class FormFGLineList
                     '        err += dcost.Rows(g)("code").ToString + " - " + dcost.Rows(g)("name").ToString + System.Environment.NewLine
                     '    Next
                     '    warningCustom(err)
+                    '    Cursor = Cursors.Default
+                    '    Exit Sub
+                    'End If
+
+                    'cek cost
+                    Dim qco As String = "SELECT d.design_code AS `code`, d.design_display_name AS `name`  
+                    FROM tb_m_design d
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = d.id_prod_demand_design_line
+                    WHERE d.id_design IN (" + id_design_in + ") AND pdd.prod_demand_design_total_cost<=0
+                    GROUP BY d.id_design 
+                    ORDER BY d.design_display_name ASC "
+                    Dim dco As DataTable = execute_query(qco, -1, True, "", "", "", "")
+                    If dco.Rows.Count > 0 Then
+                        warningCustom("Cost not found. Click OK to see detail design and make sure with Purchasing Departement.")
+                        FormFGLineListPDExist.dt = dco
+                        FormFGLineListPDExist.GridColumn1.Visible = False
+                        FormFGLineListPDExist.PanelControl1.Visible = False
+                        FormFGLineListPDExist.ShowDialog()
+                        Cursor = Cursors.Default
+                        Exit Sub
+                    End If
+
+                    'cek add cost utk kids
+                    'Dim qsni As String = "SELECT d.design_code AS `code`, d.design_display_name AS `name` 
+                    'FROM tb_m_design d
+                    'INNER JOIN (
+                    '  SELECT c.id_design, 
+                    '  MAX(CASE WHEN d.id_code=32 THEN d.id_code_detail END) AS `id_division`
+                    '  FROM tb_m_design_code AS c
+                    '  INNER JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
+                    '  WHERE d.id_code IN (32) AND d.id_code_detail=14696
+                    '  GROUP BY c.id_design
+                    ') i ON i.id_design = d.id_design
+                    'INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = d.id_prod_demand_design_line
+                    'WHERE 1=1
+                    'AND d.id_design IN (" + id_design_in + ") 
+                    'AND pdd.additional_cost<=0
+                    'GROUP BY d.id_design 
+                    'ORDER BY d.design_display_name ASC "
+                    'Dim dsni As DataTable = execute_query(qsni, -1, True, "", "", "", "")
+                    'If dsni.Rows.Count > 0 Then
+                    '    warningCustom("Additional Cost not found for these kids product. Click OK to see detail design and make sure with related department.")
+                    '    FormFGLineListPDExist.dt = dsni
+                    '    FormFGLineListPDExist.GridColumn1.Visible = False
+                    '    FormFGLineListPDExist.PanelControl1.Visible = False
+                    '    FormFGLineListPDExist.ShowDialog()
                     '    Cursor = Cursors.Default
                     '    Exit Sub
                     'End If
