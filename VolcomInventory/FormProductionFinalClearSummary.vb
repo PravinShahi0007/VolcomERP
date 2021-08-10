@@ -157,14 +157,57 @@
         If GVList.RowCount <= 0 Then
             errorCustom("No qc report selected")
         Else
-            Dim confirm As DialogResult
+            Dim is_ok As Boolean = True
+            Dim po_list As String = ""
+            'check international ACC, harus klop qc report vs receiving
+            Dim qc As String = "SELECT d.design_display_name,fc.`prod_fc_number`,fc_sum_det.`id_prod_fc_sum`,po.`id_prod_order`,po.`prod_order_number`, fc_sum_det.`qty_rec`,fc_sum_det.`qty_po`,SUM(qty.prod_fc_det_qty) AS qty
+FROM tb_prod_fc_sum_det AS fc_sum_det
+INNER JOIN tb_prod_fc AS fc ON fc_sum_det.id_prod_fc = fc.id_prod_fc
+INNER JOIN tb_prod_order AS po ON fc.id_prod_order = po.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+INNER JOIN (
+	SELECT id_prod_fc, SUM(prod_fc_det_qty) AS prod_fc_det_qty
+	FROM tb_prod_fc_det
+	GROUP BY id_prod_fc
+) AS qty ON fc.id_prod_fc = qty.id_prod_fc
+INNER JOIN tb_m_design_code dc ON dc.id_design=d.`id_design` AND dc.id_code_detail='3822'
+INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
+INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
+INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+INNER JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city`
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` 
+WHERE (co.`id_country`!=5 OR po.`id_po_type`=2) AND fc_sum_det.id_prod_fc_sum='" & id_prod_fc_sum & "'
+GROUP BY po.`id_prod_order`"
+            Dim dt As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            '
+            If dt.Rows.Count > 0 Then
+                For i = 0 To dt.Rows.Count - 1
+                    If Not dt.Rows(i)("qty") = dt.Rows(i)("qty_rec") Then
+                        If Not po_list = "" Then
+                            po_list += ","
+                        End If
+                        po_list += dt.Rows(i)("prod_order_number").ToString & "(" & dt.Rows(i)("design_display_name").ToString & ")"
+                        is_ok = False
+                    End If
+                Next
+            End If
+            '
+            If Not is_ok Then
+                warningCustom("Untuk QC report Accesories International, (PO : " & po_list & "), mohon untuk diinput QC Report seluruhnya sesuai jumlah receiving.")
+            Else
+                Dim confirm As DialogResult
 
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                save("submit")
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    save("submit")
 
-                Close()
+                    Close()
+                End If
             End If
         End If
     End Sub
