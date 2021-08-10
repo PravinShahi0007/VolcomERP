@@ -34,4 +34,91 @@
         FormStockTakeStoreVerDet.id_st_store_bap = GVData.GetFocusedRowCellValue("id_st_store_bap").ToString
         FormStockTakeStoreVerDet.ShowDialog()
     End Sub
+
+    Private Sub SBSynctoWeb_Click(sender As Object, e As EventArgs) Handles SBSynctoWeb.Click
+        Dim data As DataTable = New DataTable
+
+        data.Columns.Add("id_st_store_period", GetType(Integer))
+        data.Columns.Add("id_comp", GetType(Integer))
+        data.Columns.Add("id_product", GetType(Integer))
+        data.Columns.Add("id_price", GetType(Integer))
+        data.Columns.Add("price", GetType(Decimal))
+        data.Columns.Add("selisih_awal_qty", GetType(Integer))
+        data.Columns.Add("verifikasi_qty", GetType(Integer))
+        data.Columns.Add("adjustment_qty", GetType(Integer))
+        data.Columns.Add("selisih_akhir_qty", GetType(Integer))
+        data.Columns.Add("remark", GetType(String))
+        data.Columns.Add("note", GetType(String))
+
+        For i = 0 To GVData.RowCount - 1
+            FormStockTakeStoreVerDet.WindowState = FormWindowState.Minimized
+
+            FormStockTakeStoreVerDet.id_st_store_bap = GVData.GetRowCellValue(i, "id_st_store_bap").ToString
+            FormStockTakeStoreVerDet.Show()
+
+            For j = 1 To FormStockTakeStoreVerDet.BGVData.RowCount - 1
+                Dim row As DataRow = data.NewRow
+
+                row("id_st_store_period") = FormStockTakeStorePeriod.GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
+                row("id_comp") = FormStockTakeStoreVerDet.SLUEAccount.EditValue.ToString
+                row("id_product") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "id_product")
+                row("id_price") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "id_price")
+                row("price") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "price")
+                row("selisih_awal_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")
+                row("verifikasi_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_ver")
+                row("adjustment_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_adj")
+                row("selisih_akhir_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_akhir")
+                row("remark") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "report_mark_type_name")
+                row("note") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "note")
+
+                data.Rows.Add(row)
+            Next
+
+            FormStockTakeStoreVerDet.Close()
+
+            FormStockTakeStoreVerDet.WindowState = FormWindowState.Maximized
+        Next
+
+        Dim out As String = Newtonsoft.Json.JsonConvert.SerializeObject(data)
+
+        Dim pathRoot As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(pathRoot) Then
+            System.IO.Directory.CreateDirectory(pathRoot)
+        End If
+
+        Dim fileName As String = "hasil-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
+
+        Dim file As String = IO.Path.Combine(pathRoot, fileName)
+
+        Dim fs As IO.FileStream = System.IO.File.Create(file)
+
+        Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(out)
+
+        fs.Write(info, 0, info.Length)
+
+        fs.Close()
+
+        'upload
+        Net.ServicePointManager.Expect100Continue = True
+        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+
+        Dim volcomClientHost As String = get_setup_field("volcom_client_host")
+        Dim volcomClientUsername As String = get_setup_field("volcom_client_username")
+        Dim volcomClientPassword As String = get_setup_field("volcom_client_password")
+
+        Dim accessToken As String = FormStockTakeStorePeriodDet.getAccessToken()
+
+        Dim url As String = volcomClientHost + "/api/sync/stocktake/hasil"
+
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Authorization", accessToken)
+
+        Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
+
+        Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+    End Sub
 End Class
