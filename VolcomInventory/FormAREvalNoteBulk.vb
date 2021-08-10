@@ -6,7 +6,7 @@
 
     Sub viewStore()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT ns.id_ar_eval_note_store, cg.description AS `store_group`, 'No' AS `is_select`
+        Dim query As String = "SELECT ns.id_ar_eval_note_store, cg.description AS `store_group`, 'Yes' AS `is_select`
         FROM tb_ar_eval_note_store ns
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = ns.id_comp_group
         WHERE ns.id_ar_eval_note=" + id_ar_eval_note + " AND ns.overdue_inv>0
@@ -57,5 +57,15 @@
             FormAREvalNote.viewDetail()
             actionLoad()
         End If
+    End Sub
+
+    Private Sub CheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles CheckEdit1.EditValueChanged
+        For i As Integer = 0 To GVData.RowCount - 1
+            If CheckEdit1.EditValue = True Then
+                GVData.SetRowCellValue(i, "is_select", "Yes")
+            Else
+                GVData.SetRowCellValue(i, "is_select", "No")
+            End If
+        Next
     End Sub
 End Class

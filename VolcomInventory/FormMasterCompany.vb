@@ -44,15 +44,15 @@ ORDER BY c.comp_name"
             GridColumnCPEmail.Visible = False
             GridColumnCPNumber.Visible = False
             GridColumnAddress.Visible = False
-            GridColumnSubDistrict.Visible = False
             Category.Visible = False
             '
             GridColumnShortName.VisibleIndex = 1
             GridColumnCity.VisibleIndex = 3
-            GridColumnProvince.VisibleIndex = 4
-            GridColumnStoreType.VisibleIndex = 5
-            GridColumnMasterArea.VisibleIndex = 6
-            GCStatus.VisibleIndex = 7
+            GridColumnSubDistrict.VisibleIndex = 4
+            GridColumnProvince.VisibleIndex = 5
+            GridColumnStoreType.VisibleIndex = 6
+            GridColumnMasterArea.VisibleIndex = 7
+            GCStatus.VisibleIndex = 8
         Else
             q = "SELECT tb_m_comp.id_comp as id_comp, tb_m_comp.comp_number as comp_number, tb_m_comp.comp_name as comp_name, tb_m_comp.address_primary as address_primary, tb_m_comp.is_active as is_active, tb_m_comp_cat.comp_cat_name as company_category, (SELECT comp_status FROM tb_lookup_comp_status WHERE tb_m_comp.is_active = id_comp_status) AS comp_status, tb_m_comp_contact.contact_person, tb_m_comp_contact.contact_number, tb_m_comp_contact.email AS contact_email, tb_m_sub_district.sub_district
             FROM tb_m_comp, tb_m_comp_cat, (SELECT * FROM tb_m_comp_contact WHERE is_default = 1) AS tb_m_comp_contact, tb_m_sub_district WHERE tb_m_comp.id_comp_cat = tb_m_comp_cat.id_comp_cat AND tb_m_comp.id_comp = tb_m_comp_contact.id_comp AND tb_m_sub_district.id_sub_district = tb_m_comp.id_sub_district

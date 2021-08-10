@@ -465,6 +465,9 @@
         ElseIf report_mark_type = "323" Then
             'stocktake partial
             FormStockTakePartialDet.Close()
+        ElseIf report_mark_type = "324" Then
+            'stocktake verification
+            FormStockTakeStoreVerDet.Close()
         ElseIf report_mark_type = "326" Then
             'delay payment
             FormDelayPaymentInvDet.Close()
@@ -1525,6 +1528,9 @@ GROUP BY rec.`id_prod_order`"
         ElseIf report_mark_type = "323" Then
             FormStockTakePartialDet.id = id_report
             FormStockTakePartialDet.ShowDialog()
+        ElseIf report_mark_type = "324" Then
+            FormStockTakeStoreVerDet.id_st_store_bap = id_report
+            FormStockTakeStoreVerDet.ShowDialog()
         ElseIf report_mark_type = "326" Then
             'delay payment
             FormDelayPaymentInvDet.action = "upd"
@@ -2736,6 +2742,12 @@ GROUP BY rec.`id_prod_order`"
             'stocktake partial
             table_name = "tb_st_store_partial"
             field_id = "id_st_store_partial"
+            field_number = "number"
+            field_date = "created_at"
+        ElseIf report_mark_type = "324" Then
+            'stocktake verification
+            table_name = "tb_st_store_bap"
+            field_id = "id_st_store_bap"
             field_number = "number"
             field_date = "created_at"
         ElseIf report_mark_type = "326" Then

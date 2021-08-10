@@ -4077,6 +4077,146 @@ GROUP BY ol.checkout_id
             GVData.Columns("amount_inv").SummaryItem.DisplayFormat = "{0:n2}"
             GVData.Columns("transaction_fee").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("transaction_fee").SummaryItem.DisplayFormat = "{0:n2}"
+        ElseIf id_pop_up = "60" Then
+            data_temp.Columns.Add("id_st_store_bap_det", GetType(Integer))
+            data_temp.Columns.Add("id_report", GetType(Integer))
+            data_temp.Columns.Add("report_mark_type", GetType(Integer))
+            data_temp.Columns.Add("report_mark_type_name", GetType(String))
+            data_temp.Columns.Add("status", GetType(String))
+
+            Dim id_comp As String = FormStockTakeStoreVerDet.SLUEAccount.EditValue.ToString
+
+            For i = 0 To data_temp.Rows.Count - 1
+                Dim id_st_store_bap As String = FormStockTakeStoreVerDet.id_st_store_bap
+                Dim barcode As String = data_temp.Rows(i)("barcode").ToString
+                Dim report_type As String = data_temp.Rows(i)("report_type").ToString
+                Dim number As String = data_temp.Rows(i)("number").ToString
+
+                If report_type = "SAL" Then
+                    'invoice
+                    Dim query_sal As String = "
+                        SELECT b.id_st_store_bap_det, h.id_sales_pos AS id_report, h.report_mark_type, r.report_mark_type_name, d.sales_pos_det_qty AS qty
+                        FROM tb_sales_pos_det AS d
+                        LEFT JOIN tb_sales_pos AS h ON d.id_sales_pos = h.id_sales_pos
+                        LEFT JOIN tb_m_comp_contact c ON c.id_comp_contact = IF(h.id_memo_type = 8 OR h.id_memo_type = 9, h.id_comp_contact_bill, h.id_store_contact_from)
+                        LEFT JOIN tb_lookup_report_mark_type AS r ON r.report_mark_type = h.report_mark_type
+                        LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+                        LEFT JOIN tb_st_store_bap_det AS b ON p.id_product = b.id_product AND b.id_st_store_bap = " + id_st_store_bap + "
+                        WHERE h.sales_pos_number = '" + number + "' AND c.id_comp = '" + id_comp + "' AND p.product_full_code = '" + barcode + "'
+                        GROUP BY d.id_product
+                    "
+
+                    Dim data_sal As DataTable = execute_query(query_sal, -1, True, "", "", "", "")
+
+                    If data_sal.Rows.Count > 0 Then
+                        If Not data_sal.Rows(0)("id_st_store_bap_det").ToString = "" Then
+                            data_temp.Rows(i)("id_st_store_bap_det") = data_sal.Rows(0)("id_st_store_bap_det")
+                            data_temp.Rows(i)("id_report") = data_sal.Rows(0)("id_report")
+                            data_temp.Rows(i)("report_mark_type") = data_sal.Rows(0)("report_mark_type")
+                            data_temp.Rows(i)("report_mark_type_name") = data_sal.Rows(0)("report_mark_type_name")
+                            data_temp.Rows(i)("status") = "Ok"
+                        Else
+                            data_temp.Rows(i)("status") = "Product not found"
+                        End If
+                    Else
+                        data_temp.Rows(i)("status") = "Invoice not found"
+                    End If
+                ElseIf report_type = "RTS" Then
+                    'return
+                    Dim query_rts As String = "
+                        SELECT b.id_st_store_bap_det, h.id_sales_return AS id_report, IF(h.id_ret_type = 1, 46, IF(h.id_ret_type = 3, 113, IF(h.id_ret_type = 4, 120, 111))) AS report_mark_type, r.report_mark_type_name, SUM(d.sales_return_det_qty) AS qty
+                        FROM tb_sales_return_det AS d
+                        LEFT JOIN tb_sales_return AS h ON d.id_sales_return = h.id_sales_return
+                        LEFT JOIN tb_m_comp_contact AS c ON h.id_comp_contact_to = c.id_comp_contact
+                        LEFT JOIN tb_lookup_report_mark_type AS r ON r.report_mark_type = IF(h.id_ret_type = 1, 46, IF(h.id_ret_type = 3, 113, IF(h.id_ret_type = 4, 120, 111)))
+                        LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+                        LEFT JOIN tb_st_store_bap_det AS b ON p.id_product = b.id_product AND b.id_st_store_bap = " + id_st_store_bap + "
+                        WHERE h.sales_return_number = '" + number + "' AND c.id_comp = '" + id_comp + "' AND p.product_full_code = '" + barcode + "'
+                        GROUP BY d.id_product
+                    "
+
+                    Dim data_rts As DataTable = execute_query(query_rts, -1, True, "", "", "", "")
+
+                    If data_rts.Rows.Count > 0 Then
+                        If Not data_rts.Rows(0)("id_st_store_bap_det").ToString = "" Then
+                            data_temp.Rows(i)("id_st_store_bap_det") = data_rts.Rows(0)("id_st_store_bap_det")
+                            data_temp.Rows(i)("id_report") = data_rts.Rows(0)("id_report")
+                            data_temp.Rows(i)("report_mark_type") = data_rts.Rows(0)("report_mark_type")
+                            data_temp.Rows(i)("report_mark_type_name") = data_rts.Rows(0)("report_mark_type_name")
+                            data_temp.Rows(i)("status") = "Ok"
+                        Else
+                            data_temp.Rows(i)("status") = "Product not found"
+                        End If
+                    Else
+                        data_temp.Rows(i)("status") = "Return not found"
+                    End If
+                ElseIf report_type = "DEL" Then
+                    'delivery
+                    Dim query_del As String = "
+                        SELECT b.id_st_store_bap_det, h.id_pl_sales_order_del AS id_report, 43 AS report_mark_type, r.report_mark_type_name, SUM(d.pl_sales_order_del_det_qty) AS qty
+                        FROM tb_pl_sales_order_del_det AS d
+                        LEFT JOIN tb_pl_sales_order_del AS h ON d.id_pl_sales_order_del = h.id_pl_sales_order_del
+                        LEFT JOIN tb_m_comp_contact c ON c.id_comp_contact = h.id_store_contact_to
+                        LEFT JOIN tb_lookup_report_mark_type AS r ON r.report_mark_type = 43
+                        LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+                        LEFT JOIN tb_st_store_bap_det AS b ON p.id_product = b.id_product AND b.id_st_store_bap = " + id_st_store_bap + "
+                        WHERE h.pl_sales_order_del_number = '" + number + "' AND c.id_comp = '" + id_comp + "' AND p.product_full_code = '" + barcode + "'
+                        GROUP BY d.id_product
+                    "
+
+                    Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
+
+                    If data_del.Rows.Count > 0 Then
+                        If Not data_del.Rows(0)("id_st_store_bap_det").ToString = "" Then
+                            data_temp.Rows(i)("id_st_store_bap_det") = data_del.Rows(0)("id_st_store_bap_det")
+                            data_temp.Rows(i)("id_report") = data_del.Rows(0)("id_report")
+                            data_temp.Rows(i)("report_mark_type") = data_del.Rows(0)("report_mark_type")
+                            data_temp.Rows(i)("report_mark_type_name") = data_del.Rows(0)("report_mark_type_name")
+                            data_temp.Rows(i)("status") = "Ok"
+                        Else
+                            data_temp.Rows(i)("status") = "Product not found"
+                        End If
+                    Else
+                        data_temp.Rows(i)("status") = "Delivery not found"
+                    End If
+                ElseIf report_type = "ADJ IN" Then
+                    Dim id_st_store_bap_det As String = execute_query("
+                        SELECT d.id_st_store_bap_det
+                        FROM tb_st_store_bap_det AS d
+                        LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+                        WHERE d.id_st_store_bap = " + id_st_store_bap + " AND p.product_full_code = '" + barcode + "'
+                        UNION ALL 
+                        SELECT 0 AS id_st_store_bap_det
+                    ", 0, True, "", "", "", "")
+
+                    If id_st_store_bap_det = "0" Then
+                        data_temp.Rows(i)("status") = "Product not found"
+                    Else
+                        data_temp.Rows(i)("id_st_store_bap_det") = id_st_store_bap_det
+                        data_temp.Rows(i)("status") = "Ok"
+                    End If
+                ElseIf report_type = "ADJ OUT" Then
+                    Dim id_st_store_bap_det As String = execute_query("
+                        SELECT d.id_st_store_bap_det
+                        FROM tb_st_store_bap_det AS d
+                        LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+                        WHERE d.id_st_store_bap = " + id_st_store_bap + " AND p.product_full_code = '" + barcode + "'
+                        UNION ALL 
+                        SELECT 0 AS id_st_store_bap_det
+                    ", 0, True, "", "", "", "")
+
+                    If id_st_store_bap_det = "0" Then
+                        data_temp.Rows(i)("status") = "Product not found"
+                    Else
+                        data_temp.Rows(i)("id_st_store_bap_det") = id_st_store_bap_det
+                        data_temp.Rows(i)("status") = "Ok"
+                    End If
+                Else
+                    data_temp.Rows(i)("status") = "report_type not found"
+                End If
+            Next
+
+            GCData.DataSource = data_temp
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -6964,6 +7104,47 @@ GROUP BY ol.checkout_id
                         makeSafeGV(GVData)
                     End If
                 End If
+            ElseIf id_pop_up = "60" Then
+                makeSafeGV(GVData)
+
+                GVData.ActiveFilterString = "[status] = 'Ok'"
+
+                execute_non_query("DELETE FROM tb_st_store_bap_ver WHERE id_st_store_bap_det IN (SELECT id_st_store_bap_det FROM tb_st_store_bap_det WHERE id_st_store_bap = " + FormStockTakeStoreVerDet.id_st_store_bap + ");", True, "", "", "", "")
+
+                If GVData.RowCount > 0 Then
+                    Dim query As String = "INSERT INTO tb_st_store_bap_ver (id_st_store_bap_det, id_report, report_number, report_mark_type, qty, note) VALUES "
+
+                    For i = 0 To GVData.RowCount - 1
+                        Dim id_st_store_bap_det As String = GVData.GetRowCellValue(i, "id_st_store_bap_det").ToString
+                        Dim id_report As String = GVData.GetRowCellValue(i, "id_report").ToString
+                        Dim report_number As String = GVData.GetRowCellValue(i, "number").ToString
+                        Dim report_mark_type As String = GVData.GetRowCellValue(i, "report_mark_type").ToString
+
+                        Dim qty As String = GVData.GetRowCellValue(i, "qty").ToString
+
+                        If GVData.GetRowCellValue(i, "report_type").ToString = "ADJ OUT" Then
+                            qty = "-" + qty
+                        End If
+
+                        Dim note As String = GVData.GetRowCellValue(i, "note").ToString
+
+                        If i > 0 Then
+                            query += ", "
+                        End If
+
+                        query += "('" + id_st_store_bap_det + "', '" + id_report + "', '" + report_number + "', '" + report_mark_type + "', '" + qty + "', '" + addSlashes(note) + "')"
+                    Next
+
+                    execute_non_query(query, True, "", "", "", "")
+                Else
+                    stopCustom("No valid data, please make sure again")
+                End If
+
+                FormStockTakeStoreVerDet.form_load()
+
+                infoCustom("Import success")
+
+                Close()
             End If
         End If
         Cursor = Cursors.Default

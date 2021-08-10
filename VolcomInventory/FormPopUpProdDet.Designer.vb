@@ -41,11 +41,13 @@ Partial Class FormPopUpProdDet
         Me.GridColumnEanCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRangeUnique = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyAlloc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCListProduct = New DevExpress.XtraGrid.GridControl()
         Me.GCQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCQtyRetIn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCQtyRetOut = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCQtyQCReport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCListProduct = New DevExpress.XtraGrid.GridControl()
+        Me.GridColumnSNI = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PCClose, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,11 +132,14 @@ Partial Class FormPopUpProdDet
         '
         'GVListProduct
         '
-        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMat, Me.ColNo, Me.ColCode, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColSubtotal, Me.ColColor, Me.ColSize, Me.GridColumnUOM, Me.GridColumnEanCode, Me.GridColumnRangeUnique, Me.GridColumnQtyAlloc, Me.GCQtyRec, Me.GCQtyRetIn, Me.GCQtyRetOut, Me.GCQtyQCReport})
+        Me.GVListProduct.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GVListProduct.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMat, Me.ColNo, Me.ColCode, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColSubtotal, Me.ColColor, Me.ColSize, Me.GridColumnUOM, Me.GridColumnEanCode, Me.GridColumnRangeUnique, Me.GridColumnQtyAlloc, Me.GCQtyRec, Me.GCQtyRetIn, Me.GCQtyRetOut, Me.GridColumnSNI, Me.GridColumn1, Me.GCQtyQCReport})
         Me.GVListProduct.GridControl = Me.GCListProduct
         Me.GVListProduct.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never
         Me.GVListProduct.Name = "GVListProduct"
         Me.GVListProduct.OptionsBehavior.Editable = False
+        Me.GVListProduct.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVListProduct.OptionsView.ShowFooter = True
         Me.GVListProduct.OptionsView.ShowGroupPanel = False
         '
@@ -213,7 +218,7 @@ Partial Class FormPopUpProdDet
         Me.ColQty.OptionsColumn.AllowEdit = False
         Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:F2}")})
         Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 11
+        Me.ColQty.VisibleIndex = 13
         Me.ColQty.Width = 100
         '
         'ColSubtotal
@@ -294,17 +299,6 @@ Partial Class FormPopUpProdDet
         Me.GridColumnQtyAlloc.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "jum_alloc_allow", "{0:f2}")})
         Me.GridColumnQtyAlloc.Width = 148
         '
-        'GCListProduct
-        '
-        Me.GCListProduct.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCListProduct.Location = New System.Drawing.Point(0, 73)
-        Me.GCListProduct.MainView = Me.GVListProduct
-        Me.GCListProduct.Margin = New System.Windows.Forms.Padding(0)
-        Me.GCListProduct.Name = "GCListProduct"
-        Me.GCListProduct.Size = New System.Drawing.Size(997, 361)
-        Me.GCListProduct.TabIndex = 39
-        Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
-        '
         'GCQtyRec
         '
         Me.GCQtyRec.AppearanceCell.Options.UseTextOptions = True
@@ -362,8 +356,49 @@ Partial Class FormPopUpProdDet
         Me.GCQtyQCReport.FieldName = "qty_qcr"
         Me.GCQtyQCReport.Name = "GCQtyQCReport"
         Me.GCQtyQCReport.Visible = True
-        Me.GCQtyQCReport.VisibleIndex = 10
+        Me.GCQtyQCReport.VisibleIndex = 12
         Me.GCQtyQCReport.Width = 86
+        '
+        'GCListProduct
+        '
+        Me.GCListProduct.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCListProduct.Location = New System.Drawing.Point(0, 73)
+        Me.GCListProduct.MainView = Me.GVListProduct
+        Me.GCListProduct.Margin = New System.Windows.Forms.Padding(0)
+        Me.GCListProduct.Name = "GCListProduct"
+        Me.GCListProduct.Size = New System.Drawing.Size(997, 361)
+        Me.GCListProduct.TabIndex = 39
+        Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
+        '
+        'GridColumnSNI
+        '
+        Me.GridColumnSNI.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnSNI.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnSNI.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnSNI.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnSNI.Caption = "Qty SNI In"
+        Me.GridColumnSNI.DisplayFormat.FormatString = "N0"
+        Me.GridColumnSNI.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnSNI.FieldName = "qty_sni_in"
+        Me.GridColumnSNI.Name = "GridColumnSNI"
+        Me.GridColumnSNI.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sni_in", "{0:N0}")})
+        Me.GridColumnSNI.Visible = True
+        Me.GridColumnSNI.VisibleIndex = 10
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn1.Caption = "Qty SNI Out"
+        Me.GridColumn1.DisplayFormat.FormatString = "N0"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn1.FieldName = "qty_sni_out"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sni_out", "{0:N0}")})
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 11
         '
         'FormPopUpProdDet
         '
@@ -416,4 +451,6 @@ Partial Class FormPopUpProdDet
     Friend WithEvents GCQtyRetIn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCQtyRetOut As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCQtyQCReport As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSNI As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

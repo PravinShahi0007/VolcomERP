@@ -7452,4 +7452,30 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
         dt = dt.AddMilliseconds(unix_time).AddHours(8)
         Return dt
     End Function
+
+    Function block_stocktake_eos(data_in As List(Of String)) As Boolean
+        Dim out As Boolean = True
+
+        Dim query_eos As String = "
+            SELECT id_product
+            FROM tb_m_product
+            WHERE id_design IN (
+	            SELECT d.id_design 
+	            FROM tb_pp_change_det AS d
+	            LEFT JOIN tb_pp_change AS h ON d.id_pp_change = d.id_pp_change
+	            WHERE h.effective_date > DATE(NOW()) AND h.id_report_status = 6 AND d.propose_price_final IS NOT NULL
+            )
+        "
+        Dim data_eos As DataTable = execute_query(query_eos, -1, True, "", "", "", "")
+
+        For i = 0 To data_eos.Rows.Count - 1
+            For j = 0 To data_in.Count - 1
+                If data_eos.Rows("id_product").ToString = data_in(j).ToString Then
+                    out = False
+                End If
+            Next
+        Next
+
+        Return out
+    End Function
 End Module

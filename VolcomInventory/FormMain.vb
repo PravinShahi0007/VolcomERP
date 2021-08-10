@@ -307,7 +307,7 @@ Public Class FormMain
             RGAreaPrint.Visible = False
         End If
 
-        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Or formName = "FormScanReturn" Then
+        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Or formName = "FormScanReturn" Or formName = "FormSNIQC" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
     End Sub
@@ -423,7 +423,7 @@ Public Class FormMain
             RGAreaPrint.Visible = True
         End If
 
-        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Or formName = "FormScanReturn" Then
+        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Or formName = "FormScanReturn" Or formName = "FormSNIQC" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
         ''mapping COA
@@ -1941,6 +1941,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSNIRealisasi" Then
             FormSNIRealisasiDet.id = "-1"
             FormSNIRealisasiDet.ShowDialog()
+        ElseIf formName = "FormSNIQC" Then
+            If FormSNIQC.XTCInOut.SelectedTabPageIndex = 0 Then
+                'out
+                FormSNIOut.id = "-1"
+                FormSNIOut.ShowDialog()
+            Else
+                'in
+                FormSNIIn.id = "-1"
+                FormSNIIn.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -3236,6 +3246,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormSNIRealisasi" Then
                 FormSNIRealisasiDet.id = FormSNIRealisasi.GVRealisasi.GetFocusedRowCellValue("id_sni_realisasi").ToString
                 FormSNIRealisasiDet.ShowDialog()
+            ElseIf formName = "FormSNIQC" Then
+                If FormSNIQC.XTCInOut.SelectedTabPageIndex = 0 Then
+                    'out
+                    If FormSNIQC.GVSNIOut.RowCount > 0 Then
+                        FormSNIOut.id = FormSNIQC.GVSNIOut.GetFocusedRowCellValue("id_qc_sni_out").ToString
+                        FormSNIOut.ShowDialog()
+                    End If
+                Else
+                    'in
+                    If FormSNIQC.GVSNIIn.RowCount > 0 Then
+                        FormSNIIn.id = FormSNIQC.GVSNIIn.GetFocusedRowCellValue("id_qc_sni_in").ToString
+                        FormSNIIn.ShowDialog()
+                    End If
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8691,6 +8715,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormSNISerahTerima.GCList, "List SNI Serah Terima ")
         ElseIf formName = "FormSNIRealisasi" Then
             print(FormSNIRealisasi.GCRealisasi, "List SNI Realisasi ")
+        ElseIf formName = "FormSNIQC" Then
+            If FormSNIQC.XTCInOut.SelectedTabPageIndex = 0 Then
+                'out
+                If FormSNIQC.GVSNIOut.RowCount > 0 Then
+                    print(FormSNIQC.GCSNIOut, "List SNI Out form QC ")
+                End If
+            Else
+                'in
+                If FormSNIQC.GVSNIIn.RowCount > 0 Then
+                    print(FormSNIQC.GCSNIIn, "List SNI In from QC")
+                End If
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -9703,6 +9739,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSNIRealisasi" Then
             FormSNIRealisasi.Close()
             FormSNIRealisasi.Dispose()
+        ElseIf formName = "FormSNIQC" Then
+            FormSNIQC.Close()
+            FormSNIQC.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10735,6 +10774,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormStockTakePartial.form_load()
         ElseIf formName = "FormSNIRealisasi" Then
             FormSNIRealisasi.load_list()
+        ElseIf formName = "FormSNIQC" Then
+            FormSNIQC.load_list()
         End If
     End Sub
     'Switch
@@ -16360,6 +16401,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNIRealisasi.Show()
             FormSNIRealisasi.WindowState = FormWindowState.Maximized
             FormSNIRealisasi.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBQCSNI_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBQCSNI.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSNIQC.MdiParent = Me
+            FormSNIQC.Show()
+            FormSNIQC.WindowState = FormWindowState.Maximized
+            FormSNIQC.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
