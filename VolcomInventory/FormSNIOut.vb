@@ -9,7 +9,7 @@
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT '' AS `no`,qco.`id_qc_sni_out_det`,po.`id_prod_order`,recd.`id_prod_order_rec`,po.`prod_order_number`,rec.`prod_order_rec_number`,p.`product_full_code`,dsg.`design_display_name`,cd.`display_name` AS size
+        Dim q As String = "SELECT '' AS `no`,qco.`id_qc_sni_out_det`,pdp.`id_product`,po.`id_prod_order`,recd.`id_prod_order_rec`,po.`prod_order_number`,rec.`prod_order_rec_number`,p.`product_full_code`,dsg.`design_display_name`,cd.`display_name` AS size
 FROM `tb_qc_sni_out_det` qco
 INNER JOIN tb_prod_order_rec_det recd ON recd.`id_prod_order_rec_det`=qco.`id_prod_order_rec_det`
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec`

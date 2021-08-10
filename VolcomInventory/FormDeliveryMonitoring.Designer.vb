@@ -147,6 +147,7 @@ Partial Class FormDeliveryMonitoring
         Me.SLEOnlineOffline.Location = New System.Drawing.Point(491, 12)
         Me.SLEOnlineOffline.Name = "SLEOnlineOffline"
         Me.SLEOnlineOffline.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEOnlineOffline.Properties.ShowClearButton = False
         Me.SLEOnlineOffline.Properties.View = Me.GridView2
         Me.SLEOnlineOffline.Size = New System.Drawing.Size(100, 20)
         Me.SLEOnlineOffline.TabIndex = 8939
@@ -185,6 +186,7 @@ Partial Class FormDeliveryMonitoring
         Me.SLUE3PL.Location = New System.Drawing.Point(620, 12)
         Me.SLUE3PL.Name = "SLUE3PL"
         Me.SLUE3PL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUE3PL.Properties.ShowClearButton = False
         Me.SLUE3PL.Properties.View = Me.GridView1
         Me.SLUE3PL.Size = New System.Drawing.Size(100, 20)
         Me.SLUE3PL.TabIndex = 8937
@@ -223,6 +225,7 @@ Partial Class FormDeliveryMonitoring
         Me.SLUEType.Location = New System.Drawing.Point(385, 12)
         Me.SLUEType.Name = "SLUEType"
         Me.SLUEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEType.Properties.ShowClearButton = False
         Me.SLUEType.Properties.View = Me.SearchLookUpEdit1View
         Me.SLUEType.Size = New System.Drawing.Size(100, 20)
         Me.SLUEType.TabIndex = 8935

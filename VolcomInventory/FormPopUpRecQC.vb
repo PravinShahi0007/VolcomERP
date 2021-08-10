@@ -233,11 +233,12 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                     newRow("id_prod_order_rec") = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
                     newRow("prod_order_number") = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
                     newRow("prod_order_rec_number") = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
-                    newRow("id_product") = GVProdRec.GetFocusedRowCellValue("id_product").ToString
-                    newRow("product_full_code") = GVProdRec.GetFocusedRowCellValue("code").ToString
-                    newRow("design_display_name") = GVProdRec.GetFocusedRowCellValue("name").ToString
-                    newRow("size") = GVProdRec.GetFocusedRowCellValue("size").ToString
-                    TryCast(FormItemReqDet.GCData.DataSource, DataTable).Rows.Add(newRow)
+                    newRow("id_product") = GVListPurchase.GetFocusedRowCellValue("id_product").ToString
+                    newRow("product_full_code") = GVListPurchase.GetFocusedRowCellValue("code").ToString
+                    newRow("design_display_name") = GVListPurchase.GetFocusedRowCellValue("name").ToString
+                    newRow("size") = GVListPurchase.GetFocusedRowCellValue("size").ToString
+                    newRow("qty") = 0
+                    TryCast(FormSNIOut.GCDetail.DataSource, DataTable).Rows.Add(newRow)
                     FormSNIOut.GcDetail.RefreshDataSource()
                     FormSNIOut.GVDetail.RefreshData()
 

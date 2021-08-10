@@ -50,8 +50,11 @@ Partial Class FormSNIOut
         Me.GroupControlItemList = New DevExpress.XtraEditors.GroupControl()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnNox = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNox = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -74,9 +77,6 @@ Partial Class FormSNIOut
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BDeleteProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddProduct = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -457,9 +457,29 @@ Partial Class FormSNIOut
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVDetail.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVDetail.OptionsBehavior.Editable = False
+        Me.GVDetail.OptionsBehavior.ReadOnly = True
         Me.GVDetail.OptionsCustomization.AllowGroup = False
         Me.GVDetail.OptionsView.ShowFooter = True
         Me.GVDetail.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID det"
+        Me.GridColumn1.FieldName = "id_qc_sni_out_det"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "ID PO"
+        Me.GridColumn5.FieldName = "id_prod_order"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID Rec"
+        Me.GridColumn4.FieldName = "id_prod_order_rec"
+        Me.GridColumn4.Name = "GridColumn4"
         '
         'GridColumnNox
         '
@@ -469,13 +489,16 @@ Partial Class FormSNIOut
         Me.GridColumnNox.OptionsColumn.ReadOnly = True
         Me.GridColumnNox.Visible = True
         Me.GridColumnNox.VisibleIndex = 0
-        Me.GridColumnNox.Width = 77
+        Me.GridColumnNox.Width = 51
         '
-        'GridColumn1
+        'GridColumn3
         '
-        Me.GridColumn1.Caption = "ID det"
-        Me.GridColumn1.FieldName = "id_qc_sni_out_det"
-        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn3.Caption = "FGPO Number"
+        Me.GridColumn3.FieldName = "prod_order_number"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 107
         '
         'GridColumnRec
         '
@@ -484,6 +507,7 @@ Partial Class FormSNIOut
         Me.GridColumnRec.Name = "GridColumnRec"
         Me.GridColumnRec.Visible = True
         Me.GridColumnRec.VisibleIndex = 1
+        Me.GridColumnRec.Width = 107
         '
         'GridColumnCode
         '
@@ -493,7 +517,7 @@ Partial Class FormSNIOut
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 3
-        Me.GridColumnCode.Width = 77
+        Me.GridColumnCode.Width = 111
         '
         'GridColumnName
         '
@@ -503,7 +527,7 @@ Partial Class FormSNIOut
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 4
-        Me.GridColumnName.Width = 206
+        Me.GridColumnName.Width = 298
         '
         'GridColumnSize
         '
@@ -517,7 +541,7 @@ Partial Class FormSNIOut
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 5
-        Me.GridColumnSize.Width = 55
+        Me.GridColumnSize.Width = 79
         '
         'GridColumnQty
         '
@@ -536,7 +560,7 @@ Partial Class FormSNIOut
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 6
-        Me.GridColumnQty.Width = 76
+        Me.GridColumnQty.Width = 117
         '
         'RepositoryItemSpinEdit1
         '
@@ -714,26 +738,6 @@ Partial Class FormSNIOut
         Me.BAddProduct.Size = New System.Drawing.Size(119, 35)
         Me.BAddProduct.TabIndex = 9
         Me.BAddProduct.Text = "Add Product"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "FGPO Number"
-        Me.GridColumn3.FieldName = "prod_order_number"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "ID Rec"
-        Me.GridColumn4.FieldName = "id_prod_order_rec"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "ID PO"
-        Me.GridColumn5.FieldName = "id_prod_order"
-        Me.GridColumn5.Name = "GridColumn5"
         '
         'FormSNIOut
         '
