@@ -48,14 +48,16 @@ Partial Class FormSNIOut
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SCCQC = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControlItemList = New DevExpress.XtraEditors.GroupControl()
-        Me.GCRetDetail = New DevExpress.XtraGrid.GridControl()
-        Me.GVRetDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNox = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumnNox = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControlListBarcode = New DevExpress.XtraEditors.GroupControl()
         Me.GCBarcode = New DevExpress.XtraGrid.GridControl()
         Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -72,8 +74,9 @@ Partial Class FormSNIOut
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BDeleteProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddProduct = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,8 +99,8 @@ Partial Class FormSNIOut
         Me.SCCQC.SuspendLayout()
         CType(Me.GroupControlItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlItemList.SuspendLayout()
-        CType(Me.GCRetDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVRetDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlListBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlListBarcode.SuspendLayout()
@@ -428,35 +431,59 @@ Partial Class FormSNIOut
         'GroupControlItemList
         '
         Me.GroupControlItemList.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControlItemList.Controls.Add(Me.GCRetDetail)
+        Me.GroupControlItemList.Controls.Add(Me.GCDetail)
         Me.GroupControlItemList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlItemList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlItemList.Name = "GroupControlItemList"
         Me.GroupControlItemList.Size = New System.Drawing.Size(908, 161)
         Me.GroupControlItemList.TabIndex = 204
         '
-        'GCRetDetail
+        'GCDetail
         '
-        Me.GCRetDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRetDetail.Location = New System.Drawing.Point(20, 2)
-        Me.GCRetDetail.LookAndFeel.SkinName = "Office 2010 Silver"
-        Me.GCRetDetail.MainView = Me.GVRetDetail
-        Me.GCRetDetail.Name = "GCRetDetail"
-        Me.GCRetDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCRetDetail.Size = New System.Drawing.Size(886, 157)
-        Me.GCRetDetail.TabIndex = 2
-        Me.GCRetDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetDetail})
+        Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDetail.Location = New System.Drawing.Point(20, 2)
+        Me.GCDetail.LookAndFeel.SkinName = "Office 2010 Silver"
+        Me.GCDetail.MainView = Me.GVDetail
+        Me.GCDetail.Name = "GCDetail"
+        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
+        Me.GCDetail.Size = New System.Drawing.Size(886, 157)
+        Me.GCDetail.TabIndex = 2
+        Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
-        'GVRetDetail
+        'GVDetail
         '
-        Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNox, Me.GridColumn1, Me.GridColumnRec, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty})
-        Me.GVRetDetail.GridControl = Me.GCRetDetail
-        Me.GVRetDetail.Name = "GVRetDetail"
-        Me.GVRetDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVRetDetail.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVRetDetail.OptionsCustomization.AllowGroup = False
-        Me.GVRetDetail.OptionsView.ShowFooter = True
-        Me.GVRetDetail.OptionsView.ShowGroupPanel = False
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn4, Me.GridColumnNox, Me.GridColumn3, Me.GridColumnRec, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty})
+        Me.GVDetail.GridControl = Me.GCDetail
+        Me.GVDetail.Name = "GVDetail"
+        Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVDetail.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVDetail.OptionsCustomization.AllowGroup = False
+        Me.GVDetail.OptionsView.ShowFooter = True
+        Me.GVDetail.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnNox
+        '
+        Me.GridColumnNox.Caption = "No"
+        Me.GridColumnNox.FieldName = "no"
+        Me.GridColumnNox.Name = "GridColumnNox"
+        Me.GridColumnNox.OptionsColumn.ReadOnly = True
+        Me.GridColumnNox.Visible = True
+        Me.GridColumnNox.VisibleIndex = 0
+        Me.GridColumnNox.Width = 77
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID det"
+        Me.GridColumn1.FieldName = "id_qc_sni_out_det"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumnRec
+        '
+        Me.GridColumnRec.Caption = "Receiving Number"
+        Me.GridColumnRec.FieldName = "prod_order_rec_number"
+        Me.GridColumnRec.Name = "GridColumnRec"
+        Me.GridColumnRec.Visible = True
+        Me.GridColumnRec.VisibleIndex = 1
         '
         'GridColumnCode
         '
@@ -465,7 +492,7 @@ Partial Class FormSNIOut
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 2
+        Me.GridColumnCode.VisibleIndex = 3
         Me.GridColumnCode.Width = 77
         '
         'GridColumnName
@@ -475,7 +502,7 @@ Partial Class FormSNIOut
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 3
+        Me.GridColumnName.VisibleIndex = 4
         Me.GridColumnName.Width = 206
         '
         'GridColumnSize
@@ -489,7 +516,7 @@ Partial Class FormSNIOut
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 4
+        Me.GridColumnSize.VisibleIndex = 5
         Me.GridColumnSize.Width = 55
         '
         'GridColumnQty
@@ -506,9 +533,9 @@ Partial Class FormSNIOut
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
-        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_ret_out_det_qty", "{0:n0}")})
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 6
         Me.GridColumnQty.Width = 76
         '
         'RepositoryItemSpinEdit1
@@ -518,16 +545,6 @@ Partial Class FormSNIOut
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'GridColumnNox
-        '
-        Me.GridColumnNox.Caption = "No"
-        Me.GridColumnNox.FieldName = "no"
-        Me.GridColumnNox.Name = "GridColumnNox"
-        Me.GridColumnNox.OptionsColumn.ReadOnly = True
-        Me.GridColumnNox.Visible = True
-        Me.GridColumnNox.VisibleIndex = 0
-        Me.GridColumnNox.Width = 77
         '
         'GroupControlListBarcode
         '
@@ -698,18 +715,25 @@ Partial Class FormSNIOut
         Me.BAddProduct.TabIndex = 9
         Me.BAddProduct.Text = "Add Product"
         '
-        'GridColumn1
+        'GridColumn3
         '
-        Me.GridColumn1.Caption = "ID det"
-        Me.GridColumn1.FieldName = "id_qc_sni_out_det"
-        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn3.Caption = "FGPO Number"
+        Me.GridColumn3.FieldName = "prod_order_number"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
         '
-        'GridColumnRec
+        'GridColumn4
         '
-        Me.GridColumnRec.Caption = "Receiving Number"
-        Me.GridColumnRec.Name = "GridColumnRec"
-        Me.GridColumnRec.Visible = True
-        Me.GridColumnRec.VisibleIndex = 1
+        Me.GridColumn4.Caption = "ID Rec"
+        Me.GridColumn4.FieldName = "id_prod_order_rec"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "ID PO"
+        Me.GridColumn5.FieldName = "id_prod_order"
+        Me.GridColumn5.Name = "GridColumn5"
         '
         'FormSNIOut
         '
@@ -753,8 +777,8 @@ Partial Class FormSNIOut
         Me.SCCQC.ResumeLayout(False)
         CType(Me.GroupControlItemList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlItemList.ResumeLayout(False)
-        CType(Me.GCRetDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVRetDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlListBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlListBarcode.ResumeLayout(False)
@@ -813,8 +837,8 @@ Partial Class FormSNIOut
     Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BStop As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BScan As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GCRetDetail As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVRetDetail As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
@@ -823,4 +847,7 @@ Partial Class FormSNIOut
     Friend WithEvents GridColumnNox As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRec As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

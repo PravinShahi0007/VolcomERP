@@ -228,20 +228,33 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                 End If
             ElseIf id_pop_up = "5" Then 'QC SNI Out
                 If GVListPurchase.RowCount > 0 Then
-                    FormProductionFinalClearDet.id_prod_order = GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString
-                    FormProductionFinalClearDet.id_prod_order_rec = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
-                    FormProductionFinalClearDet.id_design = GVProdRec.GetFocusedRowCellValue("id_design").ToString
-                    FormProductionFinalClearDet.TxtOrder.Text = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
-                    FormProductionFinalClearDet.TERec.Text = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
-                    FormProductionFinalClearDet.TxtSeason.Text = GVProdRec.GetFocusedRowCellValue("season").ToString
-                    FormProductionFinalClearDet.TxtDel.Text = GVProdRec.GetFocusedRowCellValue("delivery").ToString
-                    FormProductionFinalClearDet.TxtVendorCode.Text = GVProdRec.GetFocusedRowCellValue("comp_from_code").ToString
-                    FormProductionFinalClearDet.TxtVendorName.Text = GVProdRec.GetFocusedRowCellValue("comp_from").ToString
-                    FormProductionFinalClearDet.TxtStyleCode.Text = GVProdRec.GetFocusedRowCellValue("design_code").ToString
-                    FormProductionFinalClearDet.TxtStyle.Text = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
-                    FormProductionFinalClearDet.viewDetail()
-                    FormProductionFinalClearDet.BtnInfoSrs.Enabled = True
-                    pre_viewImages("2", FormProductionFinalClearDet.PEView, FormProductionFinalClearDet.id_design, False)
+                    Dim newRow As DataRow = (TryCast(FormSNIOut.GCDetail.DataSource, DataTable)).NewRow()
+                    newRow("id_prod_order") = GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString
+                    newRow("id_prod_order_rec") = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
+                    newRow("prod_order_number") = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
+                    newRow("prod_order_rec_number") = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
+                    newRow("id_product") = GVProdRec.GetFocusedRowCellValue("id_product").ToString
+                    newRow("product_full_code") = GVProdRec.GetFocusedRowCellValue("code").ToString
+                    newRow("design_display_name") = GVProdRec.GetFocusedRowCellValue("name").ToString
+                    newRow("size") = GVProdRec.GetFocusedRowCellValue("size").ToString
+                    TryCast(FormItemReqDet.GCData.DataSource, DataTable).Rows.Add(newRow)
+                    FormSNIOut.GcDetail.RefreshDataSource()
+                    FormSNIOut.GVDetail.RefreshData()
+
+                    'FormSNIOut.gv.id_prod_order = GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString
+                    'FormProductionFinalClearDet.id_prod_order_rec = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
+                    'FormProductionFinalClearDet.id_design = GVProdRec.GetFocusedRowCellValue("id_design").ToString
+                    'FormProductionFinalClearDet.TxtOrder.Text = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
+                    'FormProductionFinalClearDet.TERec.Text = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
+                    'FormProductionFinalClearDet.TxtSeason.Text = GVProdRec.GetFocusedRowCellValue("season").ToString
+                    'FormProductionFinalClearDet.TxtDel.Text = GVProdRec.GetFocusedRowCellValue("delivery").ToString
+                    'FormProductionFinalClearDet.TxtVendorCode.Text = GVProdRec.GetFocusedRowCellValue("comp_from_code").ToString
+                    'FormProductionFinalClearDet.TxtVendorName.Text = GVProdRec.GetFocusedRowCellValue("comp_from").ToString
+                    'FormProductionFinalClearDet.TxtStyleCode.Text = GVProdRec.GetFocusedRowCellValue("design_code").ToString
+                    'FormProductionFinalClearDet.TxtStyle.Text = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
+                    'FormProductionFinalClearDet.viewDetail()
+                    'FormProductionFinalClearDet.BtnInfoSrs.Enabled = True
+                    'pre_viewImages("2", FormProductionFinalClearDet.PEView, FormProductionFinalClearDet.id_design, False)
 
                     Close()
                 Else

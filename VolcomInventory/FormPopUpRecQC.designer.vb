@@ -28,6 +28,7 @@ Partial Class FormPopUpRecQC
         Me.ColRecNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColShipFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColShipTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPSONumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,6 +53,8 @@ Partial Class FormPopUpRecQC
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEDesignStockStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GVSLEDesgSearch = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCodeSearch = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
@@ -72,9 +75,7 @@ Partial Class FormPopUpRecQC
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,6 +180,18 @@ Partial Class FormPopUpRecQC
         Me.ColShipTo.FieldName = "comp_to"
         Me.ColShipTo.Name = "ColShipTo"
         Me.ColShipTo.Width = 142
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn11.Caption = "Type"
+        Me.GridColumn11.FieldName = "pl_category"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 1
         '
         'ColRecDate
         '
@@ -380,13 +393,27 @@ Partial Class FormPopUpRecQC
         Me.GVSLEDesgSearch.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GVSLEDesgSearch.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID"
+        Me.GridColumn12.FieldName = "id_design"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "F.G. Purchase Order"
+        Me.GridColumn10.FieldName = "prod_order_number"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
         'GridColumnCodeSearch
         '
         Me.GridColumnCodeSearch.Caption = "Code"
         Me.GridColumnCodeSearch.FieldName = "design_code"
         Me.GridColumnCodeSearch.Name = "GridColumnCodeSearch"
         Me.GridColumnCodeSearch.Visible = True
-        Me.GridColumnCodeSearch.VisibleIndex = 0
+        Me.GridColumnCodeSearch.VisibleIndex = 1
         Me.GridColumnCodeSearch.Width = 186
         '
         'GridColumn9
@@ -420,7 +447,7 @@ Partial Class FormPopUpRecQC
         '
         'GVListPurchase
         '
-        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.ColNote})
+        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.GridColumn13, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.ColNote})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
         Me.GVListPurchase.Name = "GVListPurchase"
         Me.GVListPurchase.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -578,31 +605,11 @@ Partial Class FormPopUpRecQC
         Me.BtnSave.TabIndex = 3
         Me.BtnSave.Text = "Choose"
         '
-        'GridColumn11
+        'GridColumn13
         '
-        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn11.Caption = "Type"
-        Me.GridColumn11.FieldName = "pl_category"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 1
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "F.G. Purchase Order"
-        Me.GridColumn10.FieldName = "prod_order_number"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "ID"
-        Me.GridColumn12.FieldName = "id_design"
-        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn13.Caption = "ID Product"
+        Me.GridColumn13.FieldName = "id_product"
+        Me.GridColumn13.Name = "GridColumn13"
         '
         'FormPopUpRecQC
         '
@@ -697,4 +704,5 @@ Partial Class FormPopUpRecQC
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
