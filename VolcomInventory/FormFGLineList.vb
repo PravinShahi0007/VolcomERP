@@ -1105,32 +1105,33 @@ Public Class FormFGLineList
                     End If
 
                     'cek add cost utk kids
-                    'Dim qsni As String = "SELECT d.design_code AS `code`, d.design_display_name AS `name` 
-                    'FROM tb_m_design d
-                    'INNER JOIN (
-                    '  SELECT c.id_design, 
-                    '  MAX(CASE WHEN d.id_code=32 THEN d.id_code_detail END) AS `id_division`
-                    '  FROM tb_m_design_code AS c
-                    '  INNER JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-                    '  WHERE d.id_code IN (32) AND d.id_code_detail=14696
-                    '  GROUP BY c.id_design
-                    ') i ON i.id_design = d.id_design
-                    'INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = d.id_prod_demand_design_line
-                    'WHERE 1=1
-                    'AND d.id_design IN (" + id_design_in + ") 
-                    'AND pdd.additional_cost<=0
-                    'GROUP BY d.id_design 
-                    'ORDER BY d.design_display_name ASC "
-                    'Dim dsni As DataTable = execute_query(qsni, -1, True, "", "", "", "")
-                    'If dsni.Rows.Count > 0 Then
-                    '    warningCustom("Additional Cost not found for these kids product. Click OK to see detail design and make sure with related department.")
-                    '    FormFGLineListPDExist.dt = dsni
-                    '    FormFGLineListPDExist.GridColumn1.Visible = False
-                    '    FormFGLineListPDExist.PanelControl1.Visible = False
-                    '    FormFGLineListPDExist.ShowDialog()
-                    '    Cursor = Cursors.Default
-                    '    Exit Sub
-                    'End If
+                    Dim qsni As String = "SELECT d.design_code AS `code`, d.design_display_name AS `name` 
+                    FROM tb_m_design d
+                    INNER JOIN (
+                      SELECT c.id_design, 
+                      MAX(CASE WHEN d.id_code=32 THEN d.id_code_detail END) AS `id_division`,
+                      MAX(CASE WHEN d.id_code=31 THEN d.id_code_detail END) AS `id_subkat`
+                      FROM tb_m_design_code AS c
+                      INNER JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
+                      WHERE d.id_code IN (31,32) AND d.id_code_detail=14696 AND AND d.id_code_detail!=3822
+                      GROUP BY c.id_design
+                    ) i ON i.id_design = d.id_design
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = d.id_prod_demand_design_line
+                    WHERE 1=1
+                    AND d.id_design IN (" + id_design_in + ") 
+                    AND pdd.additional_cost<=0
+                    GROUP BY d.id_design 
+                    ORDER BY d.design_display_name ASC "
+                    Dim dsni As DataTable = execute_query(qsni, -1, True, "", "", "", "")
+                    If dsni.Rows.Count > 0 Then
+                        warningCustom("Additional Cost not found for these kids product. Click OK to see detail design and make sure with related department.")
+                        FormFGLineListPDExist.dt = dsni
+                        FormFGLineListPDExist.GridColumn1.Visible = False
+                        FormFGLineListPDExist.PanelControl1.Visible = False
+                        FormFGLineListPDExist.ShowDialog()
+                        Cursor = Cursors.Default
+                        Exit Sub
+                    End If
 
                     'cek US approval
                     If is_need_us_approval = "1" Then
