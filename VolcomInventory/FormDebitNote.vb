@@ -256,27 +256,27 @@ WHERE c.id_comp='" & SLEVendor.EditValue.ToString & "'"
             Dim query As String = ""
             query = "SELECT 'no' AS is_check,fcs.id_prod_fc_sum,'22' AS report_mark_type,fc.`id_prod_fc`,fc.`prod_fc_number`,po.`id_prod_order`,dsg.`design_code`,dsg.`design_name`,po.`prod_order_number`,plc.`pl_category_sub`,fcd.*,
 SUM(IF(fc.id_pl_category_sub=1,fcd.prod_fc_det_qty,0)) AS qc_normal,
-get_claim_reject_percent(ko.`id_claim_reject`,1) AS p_normal,
+get_claim_reject_percent_new(100,ko.`id_claim_reject`,1) AS p_normal,
 SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0)) AS qc_normal_minor,
-get_claim_reject_percent(ko.`id_claim_reject`,2) AS p_normal_minor,
+get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,2) AS p_normal_minor,
 SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0)) AS qc_minor,
-get_claim_reject_percent(ko.`id_claim_reject`,3) AS p_minor,
+get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,3) AS p_minor,
 SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0)) AS qc_minor_major,
-get_claim_reject_percent(ko.`id_claim_reject`,4) AS p_minor_major,
+get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,4) AS p_minor_major,
 SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0)) AS qc_major,
-get_claim_reject_percent(ko.`id_claim_reject`,5) AS p_major,
+get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,5) AS p_major,
 SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0)) AS qc_afkir, 
-get_claim_reject_percent(ko.`id_claim_reject`,6) AS p_afkir,
+get_claim_reject_percent_new(100,ko.`id_claim_reject`,6) AS p_afkir,
 wo_price.prod_order_wo_det_price AS unit_price,
-ROUND((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,2)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,2)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price,2)+ROUND((SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,3)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,3)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price,2) AS amo_claim_minor,
-ROUND((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,4)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,4)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price,2)+ROUND((SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,5)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,5)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price,2) AS amo_claim_major,
-ROUND((SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,6)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,6)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price,2) AS amo_claim_afkir
--- ROUND((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,2)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,2)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price)+ROUND((SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,3)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,3)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price) AS amo_claim_minor,
--- ROUND((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,4)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,4)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price)+ROUND((SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,5)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,5)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price) AS amo_claim_major,
--- ROUND((SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent(ko.`id_claim_reject`,6)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent(ko.`id_claim_reject`,6)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price) AS amo_claim_afkir
--- ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * ((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,3)/100)))) AS amo_claim_minor,
--- ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * ((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,5)/100)))) AS amo_claim_major,
--- ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * (SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent(ko.`id_claim_reject`,6)/100))) AS amo_claim_afkir
+ROUND((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,2)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,2)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price,2)+ROUND((SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,3)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,3)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price,2) AS amo_claim_minor,
+ROUND((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,4)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,4)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price,2)+ROUND((SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,5)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,5)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price,2) AS amo_claim_major,
+ROUND((SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent_new(100,ko.`id_claim_reject`,6)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent_new(100,ko.`id_claim_reject`,6)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price,2) AS amo_claim_afkir
+-- ROUND((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,2)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,2)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price)+ROUND((SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,3)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,3)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price) AS amo_claim_minor,
+-- ROUND((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,4)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,4)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price)+ROUND((SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,5)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,5)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price) AS amo_claim_major,
+-- ROUND((SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(IF((get_claim_reject_percent_new(100,ko.`id_claim_reject`,6)-(IFNULL(recfc.claim_percent,0)))<0,0,(get_claim_reject_percent_new(100,ko.`id_claim_reject`,6)-(IFNULL(recfc.claim_percent,0))))/100))*wo_price.prod_order_wo_det_price) AS amo_claim_afkir
+-- ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * ((SUM(IF(fc.id_pl_category_sub=2,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,2)/100))+(SUM(IF(fc.id_pl_category_sub=3,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent_new(tot_rej.perc_minor,ko.`id_claim_reject`,3)/100)))) AS amo_claim_minor,
+-- ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * ((SUM(IF(fc.id_pl_category_sub=4,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,4)/100))+(SUM(IF(fc.id_pl_category_sub=5,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent_new(tot_rej.perc_major,ko.`id_claim_reject`,5)/100)))) AS amo_claim_major,
+-- ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * (SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent_new(100,ko.`id_claim_reject`,6)/100))) AS amo_claim_afkir
 ,IFNULL(recfc.qty_rec,rec.qty_rec) AS qty_rec,wo_price.qty_order AS qty_order
 ,wo_price.comp_name
 ,dsg.design_display_name
@@ -287,8 +287,7 @@ ROUND((SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(IF((get_claim_rej
 ,fc.id_prod_fc AS id_reff,fcs.number AS sum_number
 ,wo_price.id_currency,wo_price.currency,wo_price.prod_order_wo_kurs
 ,tot_rej.qty_minor AS tot_minor,tot_rej.perc_minor  AS tot_minor_perc,tot_rej.qty_major AS tot_major,tot_rej.perc_major  AS tot_major_perc,tot_rej.qty_rec AS total_rec
-,IF(co.`id_country`!=5 OR po.id_po_type=2,'International','Domestic') AS po_type
-,dsg_cat.code_detail_name AS dsg_cat,dsg_cat.id_code_detail
+,ko.po_type,ko.dsg_cat
 FROM tb_prod_fc_sum_det fcsd
 INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`=fcsd.`id_prod_fc_sum` AND fcs.`id_report_status`='6'
 INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcsd.`id_prod_fc` 
@@ -303,12 +302,6 @@ INNER JOIN tb_prod_fc_det fcd ON fcd.`id_prod_fc`=fc.`id_prod_fc` AND fc.id_repo
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=fc.`id_prod_order` AND po.is_claimed_reject=2
 INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
 INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
-INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
-INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
-INNER JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city`
-INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
-INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
-INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
 LEFT JOIN
 (
 	SELECT fc.`id_prod_order`,SUM(IF(fc.`id_pl_category`=2,fcd.prod_fc_det_qty,0)) AS qty_minor, SUM(IF(fc.`id_pl_category`=3,fcd.prod_fc_det_qty,0)) AS qty_major,rec.qty AS qty_rec
@@ -329,24 +322,27 @@ LEFT JOIN
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 INNER JOIN tb_lookup_pl_category_sub plc ON plc.`id_pl_category_sub`=fc.`id_pl_category_sub`
-INNER JOIN 
-(
-    SELECT dc.id_design,cd.code_detail_name,cd.id_code_detail
-    FROM tb_m_design_code dc
-    INNER JOIN tb_m_code_detail cd ON dc.id_code_detail=cd.id_code_detail AND cd.id_code='31'
-    GROUP BY dc.id_design
-) AS dsg_cat ON dsg_cat.id_design=dsg.id_design
 LEFT JOIN (
-    SELECT ko.`id_prod_order`,ko.`id_claim_reject` 
+    SELECT ko.`id_prod_order`,ko.`id_claim_reject`,ko.po_type,ko.code_detail_name AS dsg_cat
     FROM (
-	    (SELECT kod.`id_prod_order`,ko.`id_claim_reject` FROM tb_prod_order_ko_det kod
-	    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko` AND ko.is_void='2'AND is_locked='1'
-	    ORDER BY kod.id_prod_order_ko_det DESC)
-	    UNION ALL
-	    (SELECT po.id_prod_order,3 AS id_claim_reject
-	    FROM tb_prod_order po WHERE po.id_po_type=2 AND po.id_report_status=6)
-	UNION ALL
-	    (SELECT po.id_prod_order,3 AS id_claim_reject
+		(SELECT kod.`id_prod_order`,ko.`id_claim_reject`,'Domestic' AS po_type,cd.`code_detail_name` FROM tb_prod_order_ko_det kod
+		INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko` AND ko.is_void='2' AND is_locked='1'
+		INNER JOIN tb_prod_order po  ON po.`id_prod_order`=kod.`id_prod_order`
+		INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+		INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+		INNER JOIN tb_m_design_code dc ON dc.id_design=dsg.`id_design`
+		INNER JOIN tb_m_code_detail cd ON dc.id_code_detail=cd.id_code_detail AND cd.id_code='31'
+		ORDER BY kod.id_prod_order_ko_det DESC)
+		UNION ALL
+		(SELECT po.id_prod_order,IF(cd.id_code_detail=3822,4,3) AS id_claim_reject,'International' AS po_type,cd.`code_detail_name`
+		FROM tb_prod_order po 
+		INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+		INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+		INNER JOIN tb_m_design_code dc ON dc.id_design=dsg.`id_design`
+		INNER JOIN tb_m_code_detail cd ON dc.id_code_detail=cd.id_code_detail AND cd.id_code='31'
+		WHERE po.id_po_type=2 AND po.id_report_status=6)
+		UNION ALL
+		(SELECT po.id_prod_order,IF(cd.id_code_detail=3822,4,3) AS id_claim_reject,'International' AS po_type,cd.`code_detail_name`
 		FROM tb_prod_order po 
 		INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
 		INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
@@ -356,6 +352,10 @@ LEFT JOIN (
 		INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
 		INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
 		INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` AND co.`id_country`!=5
+		INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+		INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+		INNER JOIN tb_m_design_code dc ON dc.id_design=dsg.`id_design`
+		INNER JOIN tb_m_code_detail cd ON dc.id_code_detail=cd.id_code_detail AND cd.id_code='31'
 		WHERE po.id_po_type=3 AND po.id_report_status=6)
     )ko GROUP BY ko.id_prod_order
 ) ko ON ko.id_prod_order=po.id_prod_order 

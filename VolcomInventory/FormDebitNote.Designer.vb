@@ -37,38 +37,46 @@ Partial Class FormDebitNote
         Me.CMViewAttachment = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewQCSummaryReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSumClaimReject = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn30 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICECheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn31 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn41 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn32 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn34 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn42 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn25 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn36 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn40 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn38 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn39 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn37 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn34 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -137,14 +145,6 @@ Partial Class FormDebitNote
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.BandedGridColumn41 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn42 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPListDebitNote.SuspendLayout()
@@ -333,6 +333,16 @@ Partial Class FormDebitNote
         Me.GVSumClaimReject.OptionsView.ShowGroupPanel = False
         Me.GVSumClaimReject.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn2, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn9, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
+        'gridBand8
+        '
+        Me.gridBand8.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand8.Caption = "*"
+        Me.gridBand8.Columns.Add(Me.BandedGridColumn30)
+        Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.VisibleIndex = 0
+        Me.gridBand8.Width = 35
+        '
         'BandedGridColumn30
         '
         Me.BandedGridColumn30.AppearanceCell.Options.UseTextOptions = True
@@ -352,6 +362,28 @@ Partial Class FormDebitNote
         Me.RICECheckEdit.Name = "RICECheckEdit"
         Me.RICECheckEdit.ValueChecked = "yes"
         Me.RICECheckEdit.ValueUnchecked = "no"
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Detail"
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn31)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn29)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.GridColumn9)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn41)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn32)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn34)
+        Me.GridBand1.Columns.Add(Me.GridColumn10)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn42)
+        Me.GridBand1.Columns.Add(Me.GridColumn11)
+        Me.GridBand1.Columns.Add(Me.GridColumn12)
+        Me.GridBand1.Columns.Add(Me.GridColumn31)
+        Me.GridBand1.Columns.Add(Me.GridColumn35)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 1
+        Me.GridBand1.Width = 1114
         '
         'BandedGridColumn1
         '
@@ -399,6 +431,13 @@ Partial Class FormDebitNote
         Me.GridColumn9.Visible = True
         Me.GridColumn9.Width = 74
         '
+        'BandedGridColumn41
+        '
+        Me.BandedGridColumn41.Caption = "PO Type"
+        Me.BandedGridColumn41.FieldName = "po_type"
+        Me.BandedGridColumn41.Name = "BandedGridColumn41"
+        Me.BandedGridColumn41.Visible = True
+        '
         'BandedGridColumn32
         '
         Me.BandedGridColumn32.Caption = "Currency"
@@ -433,6 +472,13 @@ Partial Class FormDebitNote
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
         Me.GridColumn10.Width = 121
+        '
+        'BandedGridColumn42
+        '
+        Me.BandedGridColumn42.Caption = "Category"
+        Me.BandedGridColumn42.FieldName = "dsg_cat"
+        Me.BandedGridColumn42.Name = "BandedGridColumn42"
+        Me.BandedGridColumn42.Visible = True
         '
         'GridColumn11
         '
@@ -488,6 +534,19 @@ Partial Class FormDebitNote
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.OptionsColumn.AllowEdit = False
         Me.GridColumn35.OptionsColumn.ReadOnly = True
+        '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "Pre Receiving"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn3)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn25)
+        Me.gridBand7.Columns.Add(Me.GridColumn13)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn27)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn26)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn23)
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 2
+        Me.gridBand7.Width = 451
         '
         'BandedGridColumn3
         '
@@ -560,6 +619,19 @@ Partial Class FormDebitNote
         Me.BandedGridColumn23.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn23.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn23.Width = 78
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "QC Report"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn28)
+        Me.gridBand2.Columns.Add(Me.GridColumn15)
+        Me.gridBand2.Columns.Add(Me.GridColumn16)
+        Me.gridBand2.Columns.Add(Me.GridColumn17)
+        Me.gridBand2.Columns.Add(Me.GridColumn18)
+        Me.gridBand2.Columns.Add(Me.GridColumn19)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 3
+        Me.gridBand2.Width = 450
         '
         'BandedGridColumn28
         '
@@ -657,6 +729,18 @@ Partial Class FormDebitNote
         Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_afkir", "{0:N0}")})
         Me.GridColumn19.Visible = True
         '
+        'gridBand9
+        '
+        Me.gridBand9.Caption = "Total Report"
+        Me.gridBand9.Columns.Add(Me.BandedGridColumn36)
+        Me.gridBand9.Columns.Add(Me.BandedGridColumn40)
+        Me.gridBand9.Columns.Add(Me.BandedGridColumn38)
+        Me.gridBand9.Columns.Add(Me.BandedGridColumn39)
+        Me.gridBand9.Columns.Add(Me.BandedGridColumn37)
+        Me.gridBand9.Name = "gridBand9"
+        Me.gridBand9.VisibleIndex = 4
+        Me.gridBand9.Width = 375
+        '
         'BandedGridColumn36
         '
         Me.BandedGridColumn36.AppearanceCell.Options.UseTextOptions = True
@@ -721,6 +805,20 @@ Partial Class FormDebitNote
         Me.BandedGridColumn37.FieldName = "tot_major_perc"
         Me.BandedGridColumn37.Name = "BandedGridColumn37"
         Me.BandedGridColumn37.Visible = True
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Claim"
+        Me.gridBand3.Columns.Add(Me.GridColumn34)
+        Me.gridBand3.Columns.Add(Me.GridColumn36)
+        Me.gridBand3.Columns.Add(Me.GridColumn37)
+        Me.gridBand3.Columns.Add(Me.GridColumn20)
+        Me.gridBand3.Columns.Add(Me.GridColumn21)
+        Me.gridBand3.Columns.Add(Me.GridColumn22)
+        Me.gridBand3.Columns.Add(Me.GridColumn24)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 5
+        Me.gridBand3.Width = 525
         '
         'GridColumn34
         '
@@ -1424,104 +1522,6 @@ Partial Class FormDebitNote
         Me.LabelControl2.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl2.TabIndex = 8913
         Me.LabelControl2.Text = "Vendor"
-        '
-        'BandedGridColumn41
-        '
-        Me.BandedGridColumn41.Caption = "PO Type"
-        Me.BandedGridColumn41.FieldName = "po_type"
-        Me.BandedGridColumn41.Name = "BandedGridColumn41"
-        Me.BandedGridColumn41.Visible = True
-        '
-        'BandedGridColumn42
-        '
-        Me.BandedGridColumn42.Caption = "Category"
-        Me.BandedGridColumn42.FieldName = "design_cat"
-        Me.BandedGridColumn42.Name = "BandedGridColumn42"
-        Me.BandedGridColumn42.Visible = True
-        '
-        'gridBand8
-        '
-        Me.gridBand8.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand8.Caption = "*"
-        Me.gridBand8.Columns.Add(Me.BandedGridColumn30)
-        Me.gridBand8.Name = "gridBand8"
-        Me.gridBand8.VisibleIndex = 0
-        Me.gridBand8.Width = 35
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Detail"
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn31)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn29)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand1.Columns.Add(Me.GridColumn9)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn41)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn32)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn34)
-        Me.GridBand1.Columns.Add(Me.GridColumn10)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn42)
-        Me.GridBand1.Columns.Add(Me.GridColumn11)
-        Me.GridBand1.Columns.Add(Me.GridColumn12)
-        Me.GridBand1.Columns.Add(Me.GridColumn31)
-        Me.GridBand1.Columns.Add(Me.GridColumn35)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 1114
-        '
-        'gridBand7
-        '
-        Me.gridBand7.Caption = "Pre Receiving"
-        Me.gridBand7.Columns.Add(Me.BandedGridColumn3)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumn25)
-        Me.gridBand7.Columns.Add(Me.GridColumn13)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumn27)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumn26)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumn23)
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.VisibleIndex = 2
-        Me.gridBand7.Width = 451
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "QC Report"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn28)
-        Me.gridBand2.Columns.Add(Me.GridColumn15)
-        Me.gridBand2.Columns.Add(Me.GridColumn16)
-        Me.gridBand2.Columns.Add(Me.GridColumn17)
-        Me.gridBand2.Columns.Add(Me.GridColumn18)
-        Me.gridBand2.Columns.Add(Me.GridColumn19)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 3
-        Me.gridBand2.Width = 450
-        '
-        'gridBand9
-        '
-        Me.gridBand9.Caption = "Total Report"
-        Me.gridBand9.Columns.Add(Me.BandedGridColumn36)
-        Me.gridBand9.Columns.Add(Me.BandedGridColumn40)
-        Me.gridBand9.Columns.Add(Me.BandedGridColumn38)
-        Me.gridBand9.Columns.Add(Me.BandedGridColumn39)
-        Me.gridBand9.Columns.Add(Me.BandedGridColumn37)
-        Me.gridBand9.Name = "gridBand9"
-        Me.gridBand9.VisibleIndex = 4
-        Me.gridBand9.Width = 375
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "Claim"
-        Me.gridBand3.Columns.Add(Me.GridColumn34)
-        Me.gridBand3.Columns.Add(Me.GridColumn36)
-        Me.gridBand3.Columns.Add(Me.GridColumn37)
-        Me.gridBand3.Columns.Add(Me.GridColumn20)
-        Me.gridBand3.Columns.Add(Me.GridColumn21)
-        Me.gridBand3.Columns.Add(Me.GridColumn22)
-        Me.gridBand3.Columns.Add(Me.GridColumn24)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 5
-        Me.gridBand3.Width = 525
         '
         'FormDebitNote
         '
