@@ -120,5 +120,7 @@
         Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
 
         Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        infoCustom("Sync Ok.")
     End Sub
 End Class
