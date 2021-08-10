@@ -24,9 +24,6 @@ Partial Class FormSNIOut
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.BtnBrowseTo = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
@@ -77,11 +74,14 @@ Partial Class FormSNIOut
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BDeleteProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddProduct = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelHeaderLeft.SuspendLayout()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,16 +112,16 @@ Partial Class FormSNIOut
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.SLEVendor)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl1)
         Me.GroupGeneralHeader.Controls.Add(Me.TextEdit1)
-        Me.GroupGeneralHeader.Controls.Add(Me.BtnBrowseTo)
-        Me.GroupGeneralHeader.Controls.Add(Me.TxtNameCompTo)
-        Me.GroupGeneralHeader.Controls.Add(Me.TxtCodeCompTo)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl3)
         Me.GroupGeneralHeader.Controls.Add(Me.PanelHeaderLeft)
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
@@ -153,44 +153,6 @@ Partial Class FormSNIOut
         Me.TextEdit1.Size = New System.Drawing.Size(399, 20)
         Me.TextEdit1.TabIndex = 10010
         Me.TextEdit1.TabStop = False
-        '
-        'BtnBrowseTo
-        '
-        Me.BtnBrowseTo.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
-        Me.BtnBrowseTo.Location = New System.Drawing.Point(481, 14)
-        Me.BtnBrowseTo.Name = "BtnBrowseTo"
-        Me.BtnBrowseTo.Size = New System.Drawing.Size(24, 20)
-        Me.BtnBrowseTo.TabIndex = 10009
-        Me.BtnBrowseTo.Text = "..."
-        '
-        'TxtNameCompTo
-        '
-        Me.TxtNameCompTo.EditValue = ""
-        Me.TxtNameCompTo.Enabled = False
-        Me.TxtNameCompTo.Location = New System.Drawing.Point(192, 14)
-        Me.TxtNameCompTo.Name = "TxtNameCompTo"
-        Me.TxtNameCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNameCompTo.Properties.Appearance.Options.UseFont = True
-        Me.TxtNameCompTo.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtNameCompTo.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TxtNameCompTo.Properties.EditValueChangedDelay = 1
-        Me.TxtNameCompTo.Size = New System.Drawing.Size(283, 20)
-        Me.TxtNameCompTo.TabIndex = 8911
-        Me.TxtNameCompTo.TabStop = False
-        '
-        'TxtCodeCompTo
-        '
-        Me.TxtCodeCompTo.EditValue = ""
-        Me.TxtCodeCompTo.Enabled = False
-        Me.TxtCodeCompTo.Location = New System.Drawing.Point(106, 14)
-        Me.TxtCodeCompTo.Name = "TxtCodeCompTo"
-        Me.TxtCodeCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCodeCompTo.Properties.Appearance.Options.UseFont = True
-        Me.TxtCodeCompTo.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtCodeCompTo.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TxtCodeCompTo.Properties.EditValueChangedDelay = 1
-        Me.TxtCodeCompTo.Size = New System.Drawing.Size(82, 20)
-        Me.TxtCodeCompTo.TabIndex = 8910
         '
         'LabelControl3
         '
@@ -618,7 +580,7 @@ Partial Class FormSNIOut
         'GridColumnBarcode
         '
         Me.GridColumnBarcode.Caption = "Scanned Code"
-        Me.GridColumnBarcode.FieldName = "ean_code"
+        Me.GridColumnBarcode.FieldName = "product_full_code"
         Me.GridColumnBarcode.Name = "GridColumnBarcode"
         Me.GridColumnBarcode.Visible = True
         Me.GridColumnBarcode.VisibleIndex = 1
@@ -739,6 +701,47 @@ Partial Class FormSNIOut
         Me.BAddProduct.TabIndex = 9
         Me.BAddProduct.Text = "Add Product"
         '
+        'SLEVendor
+        '
+        Me.SLEVendor.Location = New System.Drawing.Point(106, 15)
+        Me.SLEVendor.Name = "SLEVendor"
+        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendor.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEVendor.Size = New System.Drawing.Size(399, 20)
+        Me.SLEVendor.TabIndex = 10012
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "ID"
+        Me.GridColumn6.FieldName = "id_comp"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Code"
+        Me.GridColumn7.FieldName = "comp_number"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        Me.GridColumn7.Width = 234
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Name"
+        Me.GridColumn8.FieldName = "comp_name"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.Width = 1382
+        '
         'FormSNIOut
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -759,8 +762,6 @@ Partial Class FormSNIOut
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelHeaderLeft.ResumeLayout(False)
         Me.PanelHeaderLeft.PerformLayout()
@@ -794,14 +795,13 @@ Partial Class FormSNIOut
         Me.PanelNavBarcode.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents GroupGeneralHeader As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents BtnBrowseTo As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents TxtNameCompTo As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtCodeCompTo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelHeaderLeft As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
@@ -854,4 +854,9 @@ Partial Class FormSNIOut
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
