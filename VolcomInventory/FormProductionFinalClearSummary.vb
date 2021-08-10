@@ -197,7 +197,7 @@ GROUP BY po.`id_prod_order`"
             End If
             '
             If Not is_ok Then
-                warningCustom("Untuk QC report accesories international, (PO : " & po_list & "), mohon untuk diinput QC Report seluruhnya sesuai jumlah receiving.")
+                warningCustom("Untuk QC report Accesories International, (PO : " & po_list & "), mohon untuk diinput QC Report seluruhnya sesuai jumlah receiving.")
             Else
                 Dim confirm As DialogResult
 
