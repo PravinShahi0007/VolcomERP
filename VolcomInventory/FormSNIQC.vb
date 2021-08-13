@@ -55,7 +55,7 @@
     Sub load_list()
         If XTCInOut.SelectedTabPageIndex = 0 Then
             'SNI Out
-            Dim q As String = "SELECT emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`
+            Dim q As String = "SELECT qco.id_qc_sni_out,emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`
 FROM tb_qc_sni_out qco
 INNER JOIN tb_m_user usr ON qco.created_by=usr.id_user
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee

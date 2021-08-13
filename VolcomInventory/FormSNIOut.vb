@@ -25,6 +25,9 @@
             BtnSave.Visible = True
         Else
             'edit
+            GroupControlListBarcode.Visible = False
+            SCCQC.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+
             Dim q As String = "SELECT emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`
 FROM tb_qc_sni_out qco
 INNER JOIN tb_m_user usr ON qco.created_by=usr.id_user
@@ -38,6 +41,8 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                 TxtNumber.Text = dt.Rows(0)("number").ToString
                 DEProposeDate.EditValue = dt.Rows(0)("created_date")
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
+                '
+                MENote.Text = dt.Rows(0)("notes").ToString
             End If
             load_det()
 
@@ -333,7 +338,6 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                         Next
 
                         'sni out
-                        'KERJAKAN INI
                         query = "INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
 SELECT recd.id_prod_order_rec AS id_prod_order_rec,qco.`id_prod_order_det`,qco.id_product,-qco.`qty`,NOW(),qc.`created_by`,qc.id_qc_sni_out,'330' AS `report_mark_type`,'QC SNI Out' AS `note` 
 FROM `tb_qc_sni_out_det` qco

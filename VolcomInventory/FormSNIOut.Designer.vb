@@ -621,6 +621,8 @@ Partial Class FormSNIOut
         Me.GridColumn2.Caption = "No"
         Me.GridColumn2.FieldName = "no"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.AllowFocus = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         Me.GridColumn2.Width = 53
