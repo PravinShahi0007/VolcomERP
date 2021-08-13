@@ -562,7 +562,7 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & id_design & "'"
 
                     'check if KIDS
                     Dim is_kids As Boolean = False
-                    Dim qc As String = "SELECT * FROM 
+                    Dim qc As String = "SELECT * 
 FROM tb_m_design dsg
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design` AND dsg.id_design='" & id_design & "'"
                     Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
