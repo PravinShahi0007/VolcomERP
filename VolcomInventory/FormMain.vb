@@ -302,7 +302,7 @@ Public Class FormMain
             RGAreaPrint.Visible = False
         End If
 
-        If formName = "FormCompGroupEmail" Then
+        If formName = "FormCompGroupEmail" Or formName = "FormSNIBarcode" Then
             RGAreaManage.Visible = False
             RGAreaPrint.Visible = False
         End If
@@ -442,7 +442,7 @@ Public Class FormMain
         'End If
 
         'hide all excep print n close
-        If formName = "FormCompGroupEmail" Then
+        If formName = "FormCompGroupEmail" Or formName = "FormSNIBarcode" Then
             RGAreaManage.Visible = DevExpress.XtraBars.BarItemVisibility.Always
             RGAreaPrint.Visible = DevExpress.XtraBars.BarItemVisibility.Always
         End If

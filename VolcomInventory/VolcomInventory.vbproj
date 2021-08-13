@@ -7162,6 +7162,12 @@
     <Compile Include="FormShipInvoiceDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSNIBarcode.Designer.vb">
+      <DependentUpon>FormSNIBarcode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIBarcode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSNIIn.Designer.vb">
       <DependentUpon>FormSNIIn.vb</DependentUpon>
     </Compile>
@@ -13854,6 +13860,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormShipInvoiceDet.resx">
       <DependentUpon>FormShipInvoiceDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIBarcode.resx">
+      <DependentUpon>FormSNIBarcode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSNIIn.resx">
       <DependentUpon>FormSNIIn.vb</DependentUpon>
