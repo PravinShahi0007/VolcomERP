@@ -1052,6 +1052,7 @@ Partial Class FormFGTrfNewDet
         Me.GVBarcode.OptionsCustomization.AllowGroup = False
         Me.GVBarcode.OptionsCustomization.AllowQuickHideColumns = False
         Me.GVBarcode.OptionsCustomization.AllowSort = False
+        Me.GVBarcode.OptionsFind.AllowFindPanel = False
         Me.GVBarcode.OptionsView.ShowGroupPanel = False
         '
         'GridColumn5

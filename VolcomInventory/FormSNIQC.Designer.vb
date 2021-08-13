@@ -84,11 +84,13 @@ Partial Class FormSNIQC
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id_sni_qc_out"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Number"
+        Me.GridColumn2.FieldName = "number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
@@ -96,6 +98,7 @@ Partial Class FormSNIQC
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Created By"
+        Me.GridColumn3.FieldName = "employee_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
@@ -103,6 +106,9 @@ Partial Class FormSNIQC
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Created Date"
+        Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn4.FieldName = "created_date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2

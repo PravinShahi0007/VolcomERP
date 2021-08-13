@@ -232,6 +232,7 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                     newRow("id_prod_order") = GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString
                     newRow("id_prod_order_det") = GVListPurchase.GetFocusedRowCellValue("id_prod_order_det").ToString
                     newRow("id_prod_order_rec") = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
+                    newRow("id_prod_order_rec_det") = GVListPurchase.GetFocusedRowCellValue("id_prod_order_rec_det").ToString
                     newRow("prod_order_number") = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
                     newRow("prod_order_rec_number") = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
                     newRow("id_product") = GVListPurchase.GetFocusedRowCellValue("id_product").ToString

@@ -609,6 +609,8 @@ Public Class FormFGTrfNewDet
     End Sub
 
     Sub startScan()
+        GVBarcode.ActiveFilterString = ""
+        GVBarcode.ApplyFindFilter("")
         loadCodeDetail()
         'verifyTrans()
         disableControl()
@@ -617,6 +619,17 @@ Public Class FormFGTrfNewDet
     End Sub
 
     Private Sub BStop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BStop.Click
+        delBlankRow()
+        GVItemList.FocusedRowHandle = 0
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
+
+        enableControl()
+    End Sub
+
+    Sub delBlankRow()
+        GVBarcode.ActiveFilterString = ""
+        GVBarcode.ApplyFindFilter("")
         For i As Integer = 0 To (GVBarcode.RowCount - 1)
             Dim check_code As String = ""
             Try
@@ -628,11 +641,6 @@ Public Class FormFGTrfNewDet
                 GVBarcode.DeleteRow(i)
             End If
         Next
-        GVItemList.FocusedRowHandle = 0
-        GCItemList.RefreshDataSource()
-        GVItemList.RefreshData()
-
-        enableControl()
     End Sub
 
     Sub enableControl()
@@ -1071,6 +1079,7 @@ Public Class FormFGTrfNewDet
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
         makeSafeGV(GVBarcode)
         makeSafeGV(GVItemList)
+        delBlankRow()
         Cursor = Cursors.WaitCursor
         ValidateChildren()
 
@@ -1144,7 +1153,7 @@ Public Class FormFGTrfNewDet
                         query_counting = "INSERT INTO tb_fg_trf_det_counting(id_fg_trf_det, id_pl_prod_order_rec_det_unique, fg_trf_det_counting) VALUES "
                     End If
                     For p As Integer = 0 To (GVBarcode.RowCount - 1)
-                        Dim id_product_counting As String = GVBarcode.GetRowCellValue(p, "id_product")
+                        Dim id_product_counting As String = GVBarcode.GetRowCellValue(p, "id_product").ToString
                         Dim id_pl_prod_order_rec_det_unique As String = GVBarcode.GetRowCellValue(p, "id_pl_prod_order_rec_det_unique").ToString
                         If id_pl_prod_order_rec_det_unique = "0" Then
                             id_pl_prod_order_rec_det_unique = "NULL "

@@ -163,12 +163,17 @@ GROUP BY dnd.`id_debit_note`"
 ,wo.prod_order_wo_kurs
 ,cur.currency,cur.id_currency
 ,IF(ISNULL(clos.id_prod_order),'Need Closing','Ready') AS sts_close
+,IF(r.is_over_tol=1,'127','28') AS rmt
 FROM tb_prod_order_rec_det rd
 INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`='6' AND r.is_claimed_late=2
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=r.`id_prod_order`
 LEFT JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.id_prod_order AND wo.is_main_vendor='1' 
 LEFT JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
-LEFT JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo=wo.id_prod_order_wo
+LEFT JOIN (
+	SELECT wod.id_prod_order_wo,wod.prod_order_wo_det_price FROM
+	tb_prod_order_wo_det wod 
+	GROUP BY wod.id_prod_order_wo
+)wod ON wod.id_prod_order_wo=wo.id_prod_order_wo
 LEFT JOIN tb_m_ovh_price prc ON prc.id_ovh_price=wo.id_ovh_price
 LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact=prc.id_comp_contact
 LEFT JOIN tb_m_comp c ON c.id_comp=cc.id_comp
@@ -579,5 +584,14 @@ HAVING (amo_claim_minor + amo_claim_major + amo_claim_afkir) >= 0"
         qcp.id_report = GVSumClaimReject.GetFocusedRowCellValue("id_prod_fc_sum").ToString
         qcp.report_mark_type = "222"
         qcp.show()
+    End Sub
+
+    Private Sub GVClaimLate_DoubleClick(sender As Object, e As EventArgs) Handles GVClaimLate.DoubleClick
+        If GVClaimLate.RowCount > 0 Then
+            Dim c As ClassShowPopUp = New ClassShowPopUp
+            c.id_report = GVClaimLate.GetFocusedRowCellValue("id_prod_order_rec").ToString
+            c.report_mark_type = GVClaimLate.GetFocusedRowCellValue("rmt").ToString
+            c.show()
+        End If
     End Sub
 End Class
