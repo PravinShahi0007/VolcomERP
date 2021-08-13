@@ -37,6 +37,14 @@ Public Class FormProductionRecDet
         load_cat_rec()
 
         If id_receive = "-1" Then
+            Dim q As String = "SELECT NOW() as date_now"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+            If dt.Rows.Count > 0 Then
+                DEArrive.Properties.MaxValue = dt.Rows(0)("date_now")
+                TEDODate.Properties.MaxValue = dt.Rows(0)("date_now")
+            End If
+
             If Not id_order = "-1" Then 'from waiting list
                 view_list_purchase()
                 view_po()
