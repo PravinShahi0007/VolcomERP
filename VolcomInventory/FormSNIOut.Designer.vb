@@ -54,6 +54,7 @@ Partial Class FormSNIOut
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNox = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -79,7 +80,6 @@ Partial Class FormSNIOut
         Me.PCProduct = New DevExpress.XtraEditors.PanelControl()
         Me.BDeleteProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddProduct = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -479,6 +479,12 @@ Partial Class FormSNIOut
         Me.GridColumn5.FieldName = "id_prod_order"
         Me.GridColumn5.Name = "GridColumn5"
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "GridColumn9"
+        Me.GridColumn9.FieldName = "id_prod_order_rec"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "ID Rec"
@@ -742,12 +748,6 @@ Partial Class FormSNIOut
         Me.BAddProduct.Size = New System.Drawing.Size(119, 35)
         Me.BAddProduct.TabIndex = 9
         Me.BAddProduct.Text = "Add Product"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "GridColumn9"
-        Me.GridColumn9.FieldName = "id_prod_order_rec"
-        Me.GridColumn9.Name = "GridColumn9"
         '
         'FormSNIOut
         '

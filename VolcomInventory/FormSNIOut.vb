@@ -75,7 +75,7 @@ INNER JOIN tb_prod_order_rec_det recd ON recd.`id_prod_order_rec_det`=qco.`id_pr
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec`
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=recd.`id_prod_order_det`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pod.`id_prod_order`
-INNER JOIN tb_prod_demand_product pdp ON pdp.`id_product`=pod.`id_prod_demand_product`
+INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
 INNER JOIN tb_m_product p ON p.`id_product`=pdp.`id_product`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=p.`id_design`
 INNER JOIN tb_m_code_detail cd ON cd.code=p.`product_code` AND cd.`id_code`=33
