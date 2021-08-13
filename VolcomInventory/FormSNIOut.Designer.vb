@@ -22,14 +22,19 @@ Partial Class FormSNIOut
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSNIOut))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.DEProposeDate = New DevExpress.XtraEditors.DateEdit()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEForm = New DevExpress.XtraEditors.TextEdit()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
@@ -71,21 +76,20 @@ Partial Class FormSNIOut
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCProduct = New DevExpress.XtraEditors.PanelControl()
         Me.BDeleteProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddProduct = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelHeaderLeft.SuspendLayout()
+        CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEProposeDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -110,10 +114,8 @@ Partial Class FormSNIOut
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCProduct.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -121,7 +123,7 @@ Partial Class FormSNIOut
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupGeneralHeader.Controls.Add(Me.SLEVendor)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl1)
-        Me.GroupGeneralHeader.Controls.Add(Me.TextEdit1)
+        Me.GroupGeneralHeader.Controls.Add(Me.TECreatedBy)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl3)
         Me.GroupGeneralHeader.Controls.Add(Me.PanelHeaderLeft)
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
@@ -129,6 +131,47 @@ Partial Class FormSNIOut
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(908, 71)
         Me.GroupGeneralHeader.TabIndex = 202
+        '
+        'SLEVendor
+        '
+        Me.SLEVendor.Location = New System.Drawing.Point(106, 15)
+        Me.SLEVendor.Name = "SLEVendor"
+        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendor.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEVendor.Size = New System.Drawing.Size(399, 20)
+        Me.SLEVendor.TabIndex = 10012
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "ID"
+        Me.GridColumn6.FieldName = "id_comp"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Code"
+        Me.GridColumn7.FieldName = "comp_number"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        Me.GridColumn7.Width = 234
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Name"
+        Me.GridColumn8.FieldName = "comp_name"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.Width = 1382
         '
         'LabelControl1
         '
@@ -139,20 +182,20 @@ Partial Class FormSNIOut
         Me.LabelControl1.TabIndex = 10011
         Me.LabelControl1.Text = "Created By"
         '
-        'TextEdit1
+        'TECreatedBy
         '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(106, 40)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit1.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TextEdit1.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Size = New System.Drawing.Size(399, 20)
-        Me.TextEdit1.TabIndex = 10010
-        Me.TextEdit1.TabStop = False
+        Me.TECreatedBy.EditValue = ""
+        Me.TECreatedBy.Enabled = False
+        Me.TECreatedBy.Location = New System.Drawing.Point(106, 40)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECreatedBy.Properties.Appearance.Options.UseFont = True
+        Me.TECreatedBy.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TECreatedBy.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TECreatedBy.Properties.EditValueChangedDelay = 1
+        Me.TECreatedBy.Size = New System.Drawing.Size(399, 20)
+        Me.TECreatedBy.TabIndex = 10010
+        Me.TECreatedBy.TabStop = False
         '
         'LabelControl3
         '
@@ -166,15 +209,29 @@ Partial Class FormSNIOut
         'PanelHeaderLeft
         '
         Me.PanelHeaderLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelHeaderLeft.Controls.Add(Me.DEProposeDate)
         Me.PanelHeaderLeft.Controls.Add(Me.TxtNumber)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl5)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl7)
-        Me.PanelHeaderLeft.Controls.Add(Me.DEForm)
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelHeaderLeft.Location = New System.Drawing.Point(617, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
         Me.PanelHeaderLeft.Size = New System.Drawing.Size(289, 67)
         Me.PanelHeaderLeft.TabIndex = 8899
+        '
+        'DEProposeDate
+        '
+        Me.DEProposeDate.EditValue = Nothing
+        Me.DEProposeDate.Location = New System.Drawing.Point(59, 13)
+        Me.DEProposeDate.Name = "DEProposeDate"
+        Me.DEProposeDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEProposeDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEProposeDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEProposeDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEProposeDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEProposeDate.Properties.ReadOnly = True
+        Me.DEProposeDate.Size = New System.Drawing.Size(209, 20)
+        Me.DEProposeDate.TabIndex = 160
         '
         'TxtNumber
         '
@@ -208,21 +265,6 @@ Partial Class FormSNIOut
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 159
         Me.LabelControl7.Text = "Date"
-        '
-        'DEForm
-        '
-        Me.DEForm.EditValue = ""
-        Me.DEForm.Enabled = False
-        Me.DEForm.Location = New System.Drawing.Point(59, 12)
-        Me.DEForm.Name = "DEForm"
-        Me.DEForm.Properties.Appearance.BackColor = System.Drawing.Color.White
-        Me.DEForm.Properties.Appearance.Options.UseBackColor = True
-        Me.DEForm.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.DEForm.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.DEForm.Properties.EditValueChangedDelay = 1
-        Me.DEForm.Properties.ReadOnly = True
-        Me.DEForm.Size = New System.Drawing.Size(209, 20)
-        Me.DEForm.TabIndex = 162
         '
         'LargeImageCollection
         '
@@ -414,7 +456,7 @@ Partial Class FormSNIOut
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn4, Me.GridColumnNox, Me.GridColumn3, Me.GridColumnRec, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn9, Me.GridColumn4, Me.GridColumnNox, Me.GridColumn3, Me.GridColumnRec, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -440,7 +482,7 @@ Partial Class FormSNIOut
         'GridColumn4
         '
         Me.GridColumn4.Caption = "ID Rec"
-        Me.GridColumn4.FieldName = "id_prod_order_rec"
+        Me.GridColumn4.FieldName = "id_prod_order_rec_det"
         Me.GridColumn4.Name = "GridColumn4"
         '
         'GridColumnNox
@@ -669,15 +711,15 @@ Partial Class FormSNIOut
         Me.BScan.TabIndex = 5
         Me.BScan.Text = "Start Scan"
         '
-        'PanelControl1
+        'PCProduct
         '
-        Me.PanelControl1.Controls.Add(Me.BDeleteProduct)
-        Me.PanelControl1.Controls.Add(Me.BAddProduct)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 71)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(908, 39)
-        Me.PanelControl1.TabIndex = 207
+        Me.PCProduct.Controls.Add(Me.BDeleteProduct)
+        Me.PCProduct.Controls.Add(Me.BAddProduct)
+        Me.PCProduct.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCProduct.Location = New System.Drawing.Point(0, 71)
+        Me.PCProduct.Name = "PCProduct"
+        Me.PCProduct.Size = New System.Drawing.Size(908, 39)
+        Me.PCProduct.TabIndex = 207
         '
         'BDeleteProduct
         '
@@ -701,46 +743,11 @@ Partial Class FormSNIOut
         Me.BAddProduct.TabIndex = 9
         Me.BAddProduct.Text = "Add Product"
         '
-        'SLEVendor
+        'GridColumn9
         '
-        Me.SLEVendor.Location = New System.Drawing.Point(106, 15)
-        Me.SLEVendor.Name = "SLEVendor"
-        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEVendor.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEVendor.Size = New System.Drawing.Size(399, 20)
-        Me.SLEVendor.TabIndex = 10012
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "ID"
-        Me.GridColumn6.FieldName = "id_comp"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Code"
-        Me.GridColumn7.FieldName = "comp_number"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 0
-        Me.GridColumn7.Width = 234
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Name"
-        Me.GridColumn8.FieldName = "comp_name"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
-        Me.GridColumn8.Width = 1382
+        Me.GridColumn9.Caption = "GridColumn9"
+        Me.GridColumn9.FieldName = "id_prod_order_rec"
+        Me.GridColumn9.Name = "GridColumn9"
         '
         'FormSNIOut
         '
@@ -750,7 +757,7 @@ Partial Class FormSNIOut
         Me.Controls.Add(Me.SCCQC)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.PCProduct)
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -761,12 +768,15 @@ Partial Class FormSNIOut
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelHeaderLeft.ResumeLayout(False)
         Me.PanelHeaderLeft.PerformLayout()
+        CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEProposeDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
@@ -793,10 +803,8 @@ Partial Class FormSNIOut
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCProduct.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -807,8 +815,7 @@ Partial Class FormSNIOut
     Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DEForm As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
@@ -826,7 +833,7 @@ Partial Class FormSNIOut
     Friend WithEvents SCCQC As DevExpress.XtraEditors.SplitContainerControl
     Friend WithEvents GroupControlItemList As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GroupControlListBarcode As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCProduct As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDeleteProduct As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAddProduct As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCBarcode As DevExpress.XtraGrid.GridControl
@@ -859,4 +866,6 @@ Partial Class FormSNIOut
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DEProposeDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
