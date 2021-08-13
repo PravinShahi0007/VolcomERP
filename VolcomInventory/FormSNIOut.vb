@@ -1,11 +1,56 @@
 ﻿Public Class FormSNIOut
     Public id As String = "-1"
+    Public is_view As String = "-1"
+
     Private Sub FormSNIOut_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_head()
+    End Sub
+
+    Sub load_head()
         view_vendor()
         view_barcode_list()
         viewReportStatus()
 
-        load_det()
+        If id = "-1" Then
+            'new
+            load_det()
+
+            BtnSave.Visible = True
+            PCProduct.Visible = True
+            PanelNavBarcode.Visible = True
+            '
+            BtnPrint.Visible = False
+            BMark.Visible = False
+            BtnAttachment.Visible = False
+            BtnSave.Visible = True
+        Else
+            'edit
+            Dim q As String = "SELECT emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`
+FROM tb_qc_sni_out qco
+INNER JOIN tb_m_user usr ON qco.created_by=usr.id_user
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE qco.id_qc_sni_out='" & id & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                SLEVendor.EditValue = dt.Rows(0)("id_comp_to").ToString
+                SLEVendor.Properties.ReadOnly = True
+                '
+                TxtNumber.Text = dt.Rows(0)("number").ToString
+                DEProposeDate.EditValue = dt.Rows(0)("created_date")
+                TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
+            End If
+            load_det()
+
+            BtnSave.Visible = False
+            PCProduct.Visible = False
+            PanelNavBarcode.Visible = False
+            '
+            BtnPrint.Visible = True
+            BMark.Visible = True
+            BtnAttachment.Visible = True
+            BtnSave.Visible = False
+        End If
+
     End Sub
 
     Sub viewReportStatus()
@@ -24,7 +69,7 @@
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT '' AS `no`,qco.`id_qc_sni_out_det`,pdp.`id_product`,po.`id_prod_order`,pod.id_prod_order_det,recd.`id_prod_order_rec`,po.`prod_order_number`,rec.`prod_order_rec_number`,p.`product_full_code`,dsg.`design_display_name` AS name,cd.`display_name` AS size,qco.qty
+        Dim q As String = "SELECT '' AS `no`,qco.`id_qc_sni_out_det`,pdp.`id_product`,po.`id_prod_order`,pod.id_prod_order_det,recd.id_prod_order_rec_det,recd.`id_prod_order_rec`,po.`prod_order_number`,rec.`prod_order_rec_number`,p.`product_full_code`,dsg.`design_display_name` AS name,cd.`display_name` AS size,qco.qty
 FROM `tb_qc_sni_out_det` qco
 INNER JOIN tb_prod_order_rec_det recd ON recd.`id_prod_order_rec_det`=qco.`id_prod_order_rec_det`
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec`
@@ -116,10 +161,10 @@ WHERE qco.id_qc_sni_out='" & id & "'"
     Sub allowDelete()
         If GVBarcode.RowCount <= 0 Then
             BDelete.Enabled = False
-            PanelControl1.Visible = True
+            PCProduct.Visible = True
         Else
             BDelete.Enabled = True
-            PanelControl1.Visible = False
+            PCProduct.Visible = False
         End If
     End Sub
 
@@ -267,38 +312,43 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     Try
-                        'BtnSave.Enabled = False
-                        'prod_order_ret_out_number = header_number_prod("4")
+                        BtnSave.Enabled = False
 
-                        ''Main tbale
-                        'query = "INSERT INTO tb_prod_order_ret_out(id_prod_order,id_prod_order_rec, prod_order_ret_out_number, id_comp_contact_to, id_comp_contact_from, prod_order_ret_out_date, prod_order_ret_out_due_date, prod_order_ret_out_note, id_report_status,id_ovh_price,id_return_qc_type) "
-                        'query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "', '" + prod_order_ret_out_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', NOW(), '" + prod_order_ret_out_due_date + "', '" + prod_order_ret_out_note + "', '" + id_report_status + "'," & id_ovh_price & ",'" & id_return_qc_type & "') ; SELECT LAST_INSERT_ID(); "
-                        'id_prod_order_ret_out = execute_query(query, 0, True, "", "", "", "")
+                        'Main tbale
+                        query = "INSERT INTO tb_qc_sni_out(`id_comp_to`,`created_by`,`created_date`,`id_report_status`,`notes`) "
+                        query += "VALUES('" & SLEVendor.EditValue.ToString & "','" & id_user & "',NOW(),'1','" & addSlashes(MENote.Text) & "') ; SELECT LAST_INSERT_ID(); "
+                        id = execute_query(query, 0, True, "", "", "", "")
 
-                        ''insert who prepared
-                        'increase_inc_prod("4")
-                        'insert_who_prepared("31", id_prod_order_ret_out, id_user)
+                        execute_non_query("CALL gen_number('" & id & "','330')", True, "", "", "", "")
 
-                        ''Detail return
-                        'For j As Integer = 0 To ((GVRetDetail.RowCount - 1) - GetGroupRowCount(GVRetDetail))
-                        '    Try
-                        '        id_prod_order_det = GVRetDetail.GetRowCellValue(j, "id_prod_order_det").ToString
-                        '        prod_order_ret_out_det_qty = decimalSQL(GVRetDetail.GetRowCellValue(j, "prod_order_ret_out_det_qty").ToString)
-                        '        prod_order_ret_out_det_note = GVRetDetail.GetRowCellValue(j, "prod_order_ret_out_det_note").ToString
-                        '        query = "INSERT tb_prod_order_ret_out_det(id_prod_order_ret_out, id_prod_order_det, prod_order_ret_out_det_qty,ovh_price, prod_order_ret_out_det_note) "
-                        '        query += "VALUES('" + id_prod_order_ret_out + "', '" + id_prod_order_det + "', '" + prod_order_ret_out_det_qty + "','" + decimalSQL(GVRetDetail.GetRowCellValue(j, "ovh_price").ToString) + "', '" + prod_order_ret_out_det_note + "') "
-                        '        execute_non_query(query, True, "", "", "", "")
-                        '    Catch ex As Exception
-                        '        stopCustom(ex.ToString)
-                        '    End Try
-                        'Next
+                        'Detail return
+                        For j As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
+                            Try
+                                query = "INSERT tb_qc_sni_out_det(`id_qc_sni_out`,`id_prod_order_rec_det`,`id_prod_order_det`,`id_product`,`qty`) "
+                                query += "VALUES('" + id + "', '" + GVDetail.GetRowCellValue(j, "id_prod_order_rec_det").ToString + "', '" + GVDetail.GetRowCellValue(j, "id_prod_order_det").ToString + "','" + GVDetail.GetRowCellValue(j, "id_product").ToString + "', '" + decimalSQL(Decimal.Parse(GVDetail.GetRowCellValue(j, "qty").ToString).ToString) + "') "
+                                execute_non_query(query, True, "", "", "", "")
+                            Catch ex As Exception
+                                stopCustom(ex.ToString)
+                            End Try
+                        Next
 
-                        ''submit
-                        'submit_who_prepared("31", id_prod_order_ret_out, id_user)
+                        'sni out
+                        'KERJAKAN INI
+                        query = "INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
+SELECT recd.id_prod_order_rec AS id_prod_order_rec,qco.`id_prod_order_det`,qco.id_product,-qco.`qty`,NOW(),qc.`created_by`,qc.id_qc_sni_out,'330' AS `report_mark_type`,'QC SNI Out' AS `note` 
+FROM `tb_qc_sni_out_det` qco
+INNER JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec_det=qco.id_prod_order_rec_det
+INNER JOIN tb_qc_sni_out qc ON qc.id_qc_sni_out=qco.id_qc_sni_out
+WHERE qco.id_qc_sni_out='" & id & "'"
+                        execute_non_query(query, True, "", "", "", "")
 
-                        'FormProductionRet.viewRetOut()
-                        'FormProductionRet.GVRetOut.FocusedRowHandle = find_row(FormProductionRet.GVRetOut, "id_prod_order_ret_out", id_prod_order_ret_out)
-                        'actionLoad()
+                        'submit
+                        submit_who_prepared("330", id, id_user)
+
+                        FormSNIQC.load_list()
+                        FormSNIQC.GVSNIOut.FocusedRowHandle = find_row(FormSNIQC.GVSNIOut, "id_qc_sni_out", id)
+                        infoCustom("QC SNI out saved")
+                        load_head()
                     Catch ex As Exception
                         stopCustom(ex.ToString)
                     End Try
@@ -306,6 +356,7 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                 End If
             Else 'update
                 'you cant update
+
             End If
         End If
     End Sub
@@ -316,5 +367,22 @@ WHERE qco.id_qc_sni_out='" & id & "'"
             id_po_check = GVDetail.GetFocusedRowCellValue("id_prod_order").ToString
             infoQty()
         End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "330"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        FormDocumentUpload.id_report = id
+        FormDocumentUpload.is_view = is_view
+        FormDocumentUpload.report_mark_type = "330"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
