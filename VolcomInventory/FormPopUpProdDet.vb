@@ -42,16 +42,20 @@
             query = "CALL view_limit_prod_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '0', '" + id_ret_out + "', '" + id_ret_in + "', '" + id_pl + "','0', '" + id_pd_alloc_par + "')"
         End If
         'Console.WriteLine(query)
-        If id_pop_up = "3" Then
+        If id_pop_up = "3" Or id_pop_up = "6" Then
             GCQtyQCReport.Visible = True
             GCQtyRec.Visible = True
             GCQtyRetIn.Visible = True
             GCQtyRetOut.Visible = True
+            GridColumnSNIOut.Visible = True
+            GridColumnSNIIn.Visible = True
         Else
             GCQtyQCReport.Visible = False
             GCQtyRec.Visible = False
             GCQtyRetIn.Visible = False
             GCQtyRetOut.Visible = False
+            GridColumnSNIOut.Visible = False
+            GridColumnSNIIn.Visible = False
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If id_pop_up = "1" Then
