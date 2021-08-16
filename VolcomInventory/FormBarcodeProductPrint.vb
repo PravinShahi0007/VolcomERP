@@ -4,7 +4,10 @@ Imports System.Windows.Forms
 Imports System.Runtime.InteropServices
 Imports System.IO
 
+
 Public Class FormBarcodeProductPrint
+    Public is_sni As Boolean = False
+
     Public id_product As String = "-1"
     Dim format_string As String = ""
     Dim last_print_unique As String = "1"
@@ -15,6 +18,46 @@ Public Class FormBarcodeProductPrint
     Dim add_zebra_hpx As Integer = Integer.Parse(get_opt_prod_field("zebra_add_hpx"))
 
     Private Sub FormBarcodeProductPrint_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        If is_sni Then
+            BPrintSNI.Visible = True
+            '
+            BPrint.Visible = False
+            BtnPrintBack.Visible = False
+            BtnPrintFront.Visible = False
+            '
+            Lqty.Visible = False
+            SEQtyPrint.Visible = False
+            LToUnique.Visible = False
+            SEPrintFrom.Visible = False
+            SEPrintTo.Visible = False
+            '
+            TEPrintFrom.Visible = False
+            TEPrintTo.Visible = False
+            Lprint.Visible = False
+            LPrintTo.Visible = False
+
+            BLogUnique.Visible = False
+        Else
+            BPrintSNI.Visible = False
+            '
+            BPrint.Visible = True
+            BtnPrintBack.Visible = True
+            BtnPrintFront.Visible = True
+            '
+            Lqty.Visible = True
+            SEQtyPrint.Visible = True
+            LToUnique.Visible = True
+            SEPrintFrom.Visible = True
+            SEPrintTo.Visible = True
+            '
+            TEPrintFrom.Visible = True
+            TEPrintTo.Visible = True
+            Lprint.Visible = True
+            LPrintTo.Visible = True
+
+            BLogUnique.Visible = True
+        End If
+
         TEHeightError.EditValue = 0
 
         If Not id_product = "-1" Then
@@ -546,6 +589,78 @@ Public Class FormBarcodeProductPrint
                 add_zebra_hpx = Integer.Parse(get_opt_prod_field("zebra_add_hpx"))
                 infoCustom("Zebra error horizontal settled")
             End If
+        End If
+    End Sub
+
+    Private Sub BPrintSNI_Click(sender As Object, e As EventArgs) Handles BPrintSNI.Click
+        Dim print_command As String = ""
+        If LEPrinter.EditValue.ToString = "1" Then
+            'print_command += "<ESC>A"
+            'print_command += "<ESC>#E5"
+            'print_command += "<ESC>H615<ESC>V0010<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
+            'print_command += "<ESC>H615<ESC>V0030<ESC>D202160" & TEProdCode.Text & vbNewLine
+            'print_command += "<ESC>H615<ESC>V0200<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
+            'print_command += "<ESC>H685<ESC>V0220<ESC>L0200<ESC>XUsize" & vbNewLine
+            'print_command += "<ESC>H775<ESC>V0220<ESC>L0200<ESC>XUcolor" & vbNewLine
+            'print_command += "<ESC>H615<ESC>V0240<ESC>L0202<ESC>S" & TERetCode.Text & vbNewLine
+            'print_command += "<ESC>H685<ESC>V0240<ESC>L0202<ESC>S" & TESize.Text & vbNewLine
+            'print_command += "<ESC>H680<ESC>V0235<ESC>(65,40" & vbNewLine
+            'print_command += "<ESC>H775<ESC>V0240<ESC>L0202<ESC>S" & TEColor.Text & vbNewLine
+            'print_command += "<ESC>H615<ESC>V0280<ESC>L0202<ESC>S" & TECurPrice.Text & " " & TEPrice.Text & vbNewLine
+            'print_command += "<ESC>Q" + SEQtyPrint.EditValue.ToString + "" & vbNewLine
+            'print_command += "<ESC>Z" & vbNewLine
+            'print_command += "" & vbNewLine
+
+            print_command += "<ESC>A"
+            print_command += "<ESC>#E5"
+            print_command += "<ESC>H" & (add_sato_hpx + 580).ToString & "<ESC>V00" & (add_sato_vpx + 10).ToString & "<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
+            print_command += "<ESC>H" & (add_sato_hpx + 610).ToString & "<ESC>V00" & (add_sato_vpx + 30).ToString & "<ESC>D202160" & TEProdCode.Text & vbNewLine 'UBAH HXXX POSISI BARCODENYA
+            print_command += "<ESC>H" & (add_sato_hpx + 580).ToString & "<ESC>V0" & (add_sato_vpx + 200).ToString & "<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
+            print_command += "<ESC>H" & (add_sato_hpx + 650).ToString & "<ESC>V0" & (add_sato_vpx + 220).ToString & "<ESC>L0200<ESC>XUsize" & vbNewLine
+            print_command += "<ESC>H" & (add_sato_hpx + 740).ToString & "<ESC>V0" & (add_sato_vpx + 220).ToString & "<ESC>L0200<ESC>XUcolor" & vbNewLine
+            print_command += "<ESC>H" & (add_sato_hpx + 580).ToString & "<ESC>V0" & (add_sato_vpx + 240).ToString & "<ESC>L0202<ESC>S" & TERetCode.Text & vbNewLine
+            print_command += "<ESC>H" & (add_sato_hpx + 650).ToString & "<ESC>V0" & (add_sato_vpx + 240).ToString & "<ESC>L0202<ESC>S" & TESize.Text & vbNewLine
+            print_command += "<ESC>H" & (add_sato_hpx + 645).ToString & "<ESC>V0" & (add_sato_vpx + 235).ToString & "<ESC>(65,40" & vbNewLine
+            print_command += "<ESC>H" & (add_sato_hpx + 740).ToString & "<ESC>V0" & (add_sato_vpx + 240).ToString & "<ESC>L0202<ESC>S" & TEColor.Text & vbNewLine
+            print_command += "<ESC>H" & (add_sato_hpx + 580).ToString & "<ESC>V0" & (add_sato_vpx + 280).ToString & "<ESC>L0202<ESC>S" & " SNI Sample " & vbNewLine
+            print_command += "<ESC>Q1" & vbNewLine
+            print_command += "<ESC>Z" & vbNewLine
+            print_command += "" & vbNewLine
+
+            print_command = print_command.ToString().Replace("<ESC>", (ChrW(27)).ToString())
+        ElseIf LEPrinter.EditValue.ToString = "2" Then
+            'front new
+            print_command += "CT~~CD,~CC^~CT~" & vbNewLine
+            print_command += "^XA~TA000~JSN^LT0^MNW^MTT^PON^PMN^LH0,0^JMA^PR4,4~SD30^JUS^LRN^CI0^XZ" & vbNewLine
+            print_command += "^XA" & vbNewLine
+            print_command += "^CI28" & vbNewLine
+            print_command += "^MMT" & vbNewLine
+            print_command += "^PW800" & vbNewLine
+            print_command += "^LL0406" & vbNewLine
+            print_command += "^LS0" & vbNewLine
+            print_command += "^FT" & (add_zebra_hpx + 159).ToString & "," & (add_zebra_vpx + 285).ToString & "^A0N,34,33^FH\^FD" & TEColor.Text & "^FS" & vbNewLine
+            print_command += "^FO" & (add_zebra_hpx + 86).ToString & "," & (add_zebra_vpx + 252).ToString & "^GB54,42,42^FS" & vbNewLine
+            print_command += "^FT" & (add_zebra_hpx + 86).ToString & "," & (add_zebra_vpx + 285).ToString & "^A0N,34,33^FR^FH\^FD" & TESize.Text & "^FS" & vbNewLine
+            print_command += "^FT" & (add_zebra_hpx + 3).ToString & "," & (add_zebra_vpx + 333).ToString & "^A0N,39,38^FH\^FD" & " SNI Sample " & "^FS" & vbNewLine
+            print_command += "^FT" & (add_zebra_hpx + 3).ToString & "," & (add_zebra_vpx + 285).ToString & "^A0N,34,33^FH\^FD" & TERetCode.Text & "^FS" & vbNewLine
+            print_command += "^FT" & (add_zebra_hpx + 1).ToString & "," & (add_zebra_vpx + 215).ToString & "^A0N,17,16^FH\^FD" & TEDesignName.Text & "^FS" & vbNewLine
+            print_command += "^FT" & (add_zebra_hpx + 2).ToString & "," & (add_zebra_vpx + 25).ToString & "^A0N,24,40^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
+            print_command += "^BY2,2,162^FT" & (add_zebra_hpx + 23).ToString & "," & (add_zebra_vpx + 194).ToString & "^B2N,,N,N" & vbNewLine
+            print_command += "^FD" & TEProdCode.Text & "^FS" & vbNewLine
+            print_command += "^FT" & (add_zebra_hpx + 159).ToString & "," & (add_zebra_vpx + 247).ToString & "^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
+            print_command += "^FT" & (add_zebra_hpx + 87).ToString & "," & (add_zebra_vpx + 247).ToString & "^A0N,14,14^FH\^FDsize^FS" & vbNewLine
+            print_command += "^PQ1,0,1,Y^XZ" & vbNewLine
+        End If
+
+        Dim pd As New PrintDialog()
+
+        pd.PrinterSettings = New PrinterSettings()
+        If (pd.ShowDialog() = DialogResult.OK) Then
+            Try
+                RawPrinterHelper.SendStringToPrinter(pd.PrinterSettings.PrinterName, print_command)
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
         End If
     End Sub
 End Class

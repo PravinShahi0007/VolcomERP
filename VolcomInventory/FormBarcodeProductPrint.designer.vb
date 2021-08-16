@@ -22,6 +22,10 @@ Partial Class FormBarcodeProductPrint
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBarcodeProductPrint))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.TEQtyRec = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEQtyOrder = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPrice = New DevExpress.XtraEditors.TextEdit()
         Me.TECurPrice = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
@@ -46,13 +50,13 @@ Partial Class FormBarcodeProductPrint
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.LEPrinter = New DevExpress.XtraEditors.LookUpEdit()
         Me.SEQtyPrint = New DevExpress.XtraEditors.SpinEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.Lqty = New DevExpress.XtraEditors.LabelControl()
+        Me.LPrintTo = New DevExpress.XtraEditors.LabelControl()
         Me.TEPrintTo = New DevExpress.XtraEditors.TextEdit()
         Me.TEPrintFrom = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.Lprint = New DevExpress.XtraEditors.LabelControl()
         Me.SEPrintTo = New DevExpress.XtraEditors.SpinEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LToUnique = New DevExpress.XtraEditors.LabelControl()
         Me.SEPrintFrom = New DevExpress.XtraEditors.SpinEdit()
         Me.TEProdBarcode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -62,12 +66,11 @@ Partial Class FormBarcodeProductPrint
         Me.BtnPrintFront = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintBack = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.TEQtyOrder = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEQtyRec = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.BPrintSNI = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TEQtyRec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEQtyOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECurPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERetCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,8 +94,6 @@ Partial Class FormBarcodeProductPrint
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEQtyOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEQtyRec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -123,6 +124,44 @@ Partial Class FormBarcodeProductPrint
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(752, 211)
         Me.GroupGeneralHeader.TabIndex = 34
+        '
+        'TEQtyRec
+        '
+        Me.TEQtyRec.EditValue = ""
+        Me.TEQtyRec.Location = New System.Drawing.Point(662, 179)
+        Me.TEQtyRec.Name = "TEQtyRec"
+        Me.TEQtyRec.Properties.EditValueChangedDelay = 1
+        Me.TEQtyRec.Properties.ReadOnly = True
+        Me.TEQtyRec.Size = New System.Drawing.Size(78, 20)
+        Me.TEQtyRec.TabIndex = 176
+        Me.TEQtyRec.TabStop = False
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(662, 160)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl15.TabIndex = 175
+        Me.LabelControl15.Text = "Qty Receiving"
+        '
+        'TEQtyOrder
+        '
+        Me.TEQtyOrder.EditValue = ""
+        Me.TEQtyOrder.Location = New System.Drawing.Point(559, 179)
+        Me.TEQtyOrder.Name = "TEQtyOrder"
+        Me.TEQtyOrder.Properties.EditValueChangedDelay = 1
+        Me.TEQtyOrder.Properties.ReadOnly = True
+        Me.TEQtyOrder.Size = New System.Drawing.Size(97, 20)
+        Me.TEQtyOrder.TabIndex = 174
+        Me.TEQtyOrder.TabStop = False
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Location = New System.Drawing.Point(559, 160)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl14.TabIndex = 173
+        Me.LabelControl14.Text = "Qty FGPO"
         '
         'TEPrice
         '
@@ -293,13 +332,13 @@ Partial Class FormBarcodeProductPrint
         Me.GroupControl1.Controls.Add(Me.LabelControl13)
         Me.GroupControl1.Controls.Add(Me.LEPrinter)
         Me.GroupControl1.Controls.Add(Me.SEQtyPrint)
-        Me.GroupControl1.Controls.Add(Me.LabelControl8)
-        Me.GroupControl1.Controls.Add(Me.LabelControl4)
+        Me.GroupControl1.Controls.Add(Me.Lqty)
+        Me.GroupControl1.Controls.Add(Me.LPrintTo)
         Me.GroupControl1.Controls.Add(Me.TEPrintTo)
         Me.GroupControl1.Controls.Add(Me.TEPrintFrom)
-        Me.GroupControl1.Controls.Add(Me.LabelControl3)
+        Me.GroupControl1.Controls.Add(Me.Lprint)
         Me.GroupControl1.Controls.Add(Me.SEPrintTo)
-        Me.GroupControl1.Controls.Add(Me.LabelControl2)
+        Me.GroupControl1.Controls.Add(Me.LToUnique)
         Me.GroupControl1.Controls.Add(Me.SEPrintFrom)
         Me.GroupControl1.Controls.Add(Me.TEProdBarcode)
         Me.GroupControl1.Controls.Add(Me.LabelControl1)
@@ -384,23 +423,23 @@ Partial Class FormBarcodeProductPrint
         Me.SEQtyPrint.Size = New System.Drawing.Size(97, 20)
         Me.SEQtyPrint.TabIndex = 165
         '
-        'LabelControl8
+        'Lqty
         '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.LabelControl8.Location = New System.Drawing.Point(588, 82)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(49, 14)
-        Me.LabelControl8.TabIndex = 164
-        Me.LabelControl8.Text = "Qty Print"
+        Me.Lqty.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Lqty.Location = New System.Drawing.Point(588, 82)
+        Me.Lqty.Name = "Lqty"
+        Me.Lqty.Size = New System.Drawing.Size(49, 14)
+        Me.Lqty.TabIndex = 164
+        Me.Lqty.Text = "Qty Print"
         '
-        'LabelControl4
+        'LPrintTo
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.LabelControl4.Location = New System.Drawing.Point(417, 54)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(15, 14)
-        Me.LabelControl4.TabIndex = 163
-        Me.LabelControl4.Text = "To"
+        Me.LPrintTo.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.LPrintTo.Location = New System.Drawing.Point(417, 54)
+        Me.LPrintTo.Name = "LPrintTo"
+        Me.LPrintTo.Size = New System.Drawing.Size(15, 14)
+        Me.LPrintTo.TabIndex = 163
+        Me.LPrintTo.Text = "To"
         '
         'TEPrintTo
         '
@@ -428,14 +467,14 @@ Partial Class FormBarcodeProductPrint
         Me.TEPrintFrom.TabIndex = 161
         Me.TEPrintFrom.TabStop = False
         '
-        'LabelControl3
+        'Lprint
         '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.LabelControl3.Location = New System.Drawing.Point(34, 54)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(25, 14)
-        Me.LabelControl3.TabIndex = 160
-        Me.LabelControl3.Text = "Print"
+        Me.Lprint.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Lprint.Location = New System.Drawing.Point(34, 54)
+        Me.Lprint.Name = "Lprint"
+        Me.Lprint.Size = New System.Drawing.Size(25, 14)
+        Me.Lprint.TabIndex = 160
+        Me.Lprint.Text = "Print"
         '
         'SEPrintTo
         '
@@ -452,14 +491,14 @@ Partial Class FormBarcodeProductPrint
         Me.SEPrintTo.Size = New System.Drawing.Size(100, 20)
         Me.SEPrintTo.TabIndex = 159
         '
-        'LabelControl2
+        'LToUnique
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.LabelControl2.Location = New System.Drawing.Point(620, 20)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(15, 14)
-        Me.LabelControl2.TabIndex = 158
-        Me.LabelControl2.Text = "To"
+        Me.LToUnique.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.LToUnique.Location = New System.Drawing.Point(620, 20)
+        Me.LToUnique.Name = "LToUnique"
+        Me.LToUnique.Size = New System.Drawing.Size(15, 14)
+        Me.LToUnique.TabIndex = 158
+        Me.LToUnique.Text = "To"
         '
         'SEPrintFrom
         '
@@ -502,6 +541,7 @@ Partial Class FormBarcodeProductPrint
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BPrintSNI)
         Me.PanelControl1.Controls.Add(Me.BLogUnique)
         Me.PanelControl1.Controls.Add(Me.BtnPrintFront)
         Me.PanelControl1.Controls.Add(Me.BtnPrintBack)
@@ -573,43 +613,16 @@ Partial Class FormBarcodeProductPrint
         Me.BPrint.TabIndex = 12
         Me.BPrint.Text = "Print"
         '
-        'TEQtyOrder
+        'BPrintSNI
         '
-        Me.TEQtyOrder.EditValue = ""
-        Me.TEQtyOrder.Location = New System.Drawing.Point(559, 179)
-        Me.TEQtyOrder.Name = "TEQtyOrder"
-        Me.TEQtyOrder.Properties.EditValueChangedDelay = 1
-        Me.TEQtyOrder.Properties.ReadOnly = True
-        Me.TEQtyOrder.Size = New System.Drawing.Size(97, 20)
-        Me.TEQtyOrder.TabIndex = 174
-        Me.TEQtyOrder.TabStop = False
-        '
-        'LabelControl14
-        '
-        Me.LabelControl14.Location = New System.Drawing.Point(559, 160)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(48, 13)
-        Me.LabelControl14.TabIndex = 173
-        Me.LabelControl14.Text = "Qty FGPO"
-        '
-        'TEQtyRec
-        '
-        Me.TEQtyRec.EditValue = ""
-        Me.TEQtyRec.Location = New System.Drawing.Point(662, 179)
-        Me.TEQtyRec.Name = "TEQtyRec"
-        Me.TEQtyRec.Properties.EditValueChangedDelay = 1
-        Me.TEQtyRec.Properties.ReadOnly = True
-        Me.TEQtyRec.Size = New System.Drawing.Size(78, 20)
-        Me.TEQtyRec.TabIndex = 176
-        Me.TEQtyRec.TabStop = False
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Location = New System.Drawing.Point(662, 160)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(67, 13)
-        Me.LabelControl15.TabIndex = 175
-        Me.LabelControl15.Text = "Qty Receiving"
+        Me.BPrintSNI.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintSNI.ImageIndex = 6
+        Me.BPrintSNI.ImageList = Me.LargeImageCollection
+        Me.BPrintSNI.Location = New System.Drawing.Point(331, 2)
+        Me.BPrintSNI.Name = "BPrintSNI"
+        Me.BPrintSNI.Size = New System.Drawing.Size(114, 39)
+        Me.BPrintSNI.TabIndex = 16
+        Me.BPrintSNI.Text = "Print SNI"
         '
         'FormBarcodeProductPrint
         '
@@ -629,6 +642,8 @@ Partial Class FormBarcodeProductPrint
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TEQtyRec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEQtyOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECurPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TERetCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -653,8 +668,6 @@ Partial Class FormBarcodeProductPrint
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEQtyOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEQtyRec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -666,12 +679,12 @@ Partial Class FormBarcodeProductPrint
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEProdBarcode As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LPrintTo As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPrintTo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEPrintFrom As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents Lprint As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SEPrintTo As DevExpress.XtraEditors.SpinEdit
-    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LToUnique As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SEPrintFrom As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents TEDesignName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
@@ -689,7 +702,7 @@ Partial Class FormBarcodeProductPrint
     Friend WithEvents TECurPrice As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SEQtyPrint As DevExpress.XtraEditors.SpinEdit
-    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents Lqty As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnPrintFront As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrintBack As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
@@ -703,4 +716,5 @@ Partial Class FormBarcodeProductPrint
     Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEQtyOrder As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BPrintSNI As DevExpress.XtraEditors.SimpleButton
 End Class

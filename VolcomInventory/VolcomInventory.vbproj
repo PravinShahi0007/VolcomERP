@@ -7162,6 +7162,12 @@
     <Compile Include="FormShipInvoiceDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSNIBarcode.Designer.vb">
+      <DependentUpon>FormSNIBarcode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIBarcode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSNIIn.Designer.vb">
       <DependentUpon>FormSNIIn.vb</DependentUpon>
     </Compile>
@@ -7328,6 +7334,18 @@
       <DependentUpon>FormStockTakePeriodSOH.vb</DependentUpon>
     </Compile>
     <Compile Include="FormStockTakePeriodSOH.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockTakePropose.Designer.vb">
+      <DependentUpon>FormStockTakePropose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakePropose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockTakeProposeDet.Designer.vb">
+      <DependentUpon>FormStockTakeProposeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeProposeDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormStockTakeStorePeriod.Designer.vb">
@@ -13855,6 +13873,9 @@
     <EmbeddedResource Include="FormShipInvoiceDet.resx">
       <DependentUpon>FormShipInvoiceDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIBarcode.resx">
+      <DependentUpon>FormSNIBarcode.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSNIIn.resx">
       <DependentUpon>FormSNIIn.vb</DependentUpon>
     </EmbeddedResource>
@@ -13946,6 +13967,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakePeriodSOH.resx">
       <DependentUpon>FormStockTakePeriodSOH.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakePropose.resx">
+      <DependentUpon>FormStockTakePropose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeProposeDet.resx">
+      <DependentUpon>FormStockTakeProposeDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeStorePeriod.resx">
       <DependentUpon>FormStockTakeStorePeriod.vb</DependentUpon>

@@ -129,7 +129,7 @@ Partial Class FormSNIOut
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(908, 71)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(932, 71)
         Me.GroupGeneralHeader.TabIndex = 202
         '
         'SLEVendor
@@ -214,7 +214,7 @@ Partial Class FormSNIOut
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl5)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl7)
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelHeaderLeft.Location = New System.Drawing.Point(617, 2)
+        Me.PanelHeaderLeft.Location = New System.Drawing.Point(641, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
         Me.PanelHeaderLeft.Size = New System.Drawing.Size(289, 67)
         Me.PanelHeaderLeft.TabIndex = 8899
@@ -291,7 +291,7 @@ Partial Class FormSNIOut
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl3.Location = New System.Drawing.Point(0, 460)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(908, 81)
+        Me.GroupControl3.Size = New System.Drawing.Size(932, 81)
         Me.GroupControl3.TabIndex = 205
         '
         'PanelBottomRight
@@ -300,7 +300,7 @@ Partial Class FormSNIOut
         Me.PanelBottomRight.Controls.Add(Me.LEReportStatus)
         Me.PanelBottomRight.Controls.Add(Me.LabelControl21)
         Me.PanelBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelBottomRight.Location = New System.Drawing.Point(599, 2)
+        Me.PanelBottomRight.Location = New System.Drawing.Point(623, 2)
         Me.PanelBottomRight.Name = "PanelBottomRight"
         Me.PanelBottomRight.Size = New System.Drawing.Size(307, 77)
         Me.PanelBottomRight.TabIndex = 139
@@ -359,7 +359,7 @@ Partial Class FormSNIOut
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(908, 40)
+        Me.PanelControl3.Size = New System.Drawing.Size(932, 40)
         Me.PanelControl3.TabIndex = 204
         '
         'BtnAttachment
@@ -367,7 +367,7 @@ Partial Class FormSNIOut
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(580, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(604, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(101, 36)
         Me.BtnAttachment.TabIndex = 13
@@ -378,7 +378,7 @@ Partial Class FormSNIOut
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(681, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(705, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 36)
         Me.BtnPrint.TabIndex = 12
@@ -400,7 +400,7 @@ Partial Class FormSNIOut
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(756, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(780, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 36)
         Me.BtnCancel.TabIndex = 11
@@ -411,7 +411,7 @@ Partial Class FormSNIOut
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(831, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(855, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 36)
         Me.BtnSave.TabIndex = 10
@@ -427,7 +427,7 @@ Partial Class FormSNIOut
         Me.SCCQC.Panel1.Text = "Panel1"
         Me.SCCQC.Panel2.Controls.Add(Me.GroupControlListBarcode)
         Me.SCCQC.Panel2.Text = "Panel2"
-        Me.SCCQC.Size = New System.Drawing.Size(908, 350)
+        Me.SCCQC.Size = New System.Drawing.Size(932, 350)
         Me.SCCQC.SplitterPosition = 161
         Me.SCCQC.TabIndex = 206
         Me.SCCQC.Text = "SplitContainerControl1"
@@ -439,7 +439,7 @@ Partial Class FormSNIOut
         Me.GroupControlItemList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlItemList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlItemList.Name = "GroupControlItemList"
-        Me.GroupControlItemList.Size = New System.Drawing.Size(908, 161)
+        Me.GroupControlItemList.Size = New System.Drawing.Size(932, 161)
         Me.GroupControlItemList.TabIndex = 204
         '
         'GCDetail
@@ -450,7 +450,7 @@ Partial Class FormSNIOut
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
         Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCDetail.Size = New System.Drawing.Size(886, 157)
+        Me.GCDetail.Size = New System.Drawing.Size(910, 157)
         Me.GCDetail.TabIndex = 2
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -589,7 +589,7 @@ Partial Class FormSNIOut
         Me.GroupControlListBarcode.Enabled = False
         Me.GroupControlListBarcode.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListBarcode.Name = "GroupControlListBarcode"
-        Me.GroupControlListBarcode.Size = New System.Drawing.Size(908, 184)
+        Me.GroupControlListBarcode.Size = New System.Drawing.Size(932, 184)
         Me.GroupControlListBarcode.TabIndex = 2
         '
         'GCBarcode
@@ -599,7 +599,7 @@ Partial Class FormSNIOut
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(886, 147)
+        Me.GCBarcode.Size = New System.Drawing.Size(910, 147)
         Me.GCBarcode.TabIndex = 6
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -621,6 +621,8 @@ Partial Class FormSNIOut
         Me.GridColumn2.Caption = "No"
         Me.GridColumn2.FieldName = "no"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.AllowFocus = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         Me.GridColumn2.Width = 53
@@ -680,7 +682,7 @@ Partial Class FormSNIOut
         Me.PanelNavBarcode.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.PanelNavBarcode.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelNavBarcode.Name = "PanelNavBarcode"
-        Me.PanelNavBarcode.Size = New System.Drawing.Size(886, 33)
+        Me.PanelNavBarcode.Size = New System.Drawing.Size(910, 33)
         Me.PanelNavBarcode.TabIndex = 5
         '
         'BDelete
@@ -688,7 +690,7 @@ Partial Class FormSNIOut
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelete.ImageIndex = 1
         Me.BDelete.ImageList = Me.LargeImageCollection
-        Me.BDelete.Location = New System.Drawing.Point(610, 0)
+        Me.BDelete.Location = New System.Drawing.Point(634, 0)
         Me.BDelete.Name = "BDelete"
         Me.BDelete.Size = New System.Drawing.Size(94, 33)
         Me.BDelete.TabIndex = 7
@@ -700,7 +702,7 @@ Partial Class FormSNIOut
         Me.BStop.Enabled = False
         Me.BStop.ImageIndex = 9
         Me.BStop.ImageList = Me.LargeImageCollection
-        Me.BStop.Location = New System.Drawing.Point(704, 0)
+        Me.BStop.Location = New System.Drawing.Point(728, 0)
         Me.BStop.Name = "BStop"
         Me.BStop.Size = New System.Drawing.Size(91, 33)
         Me.BStop.TabIndex = 6
@@ -711,7 +713,7 @@ Partial Class FormSNIOut
         Me.BScan.Dock = System.Windows.Forms.DockStyle.Right
         Me.BScan.ImageIndex = 8
         Me.BScan.ImageList = Me.LargeImageCollection
-        Me.BScan.Location = New System.Drawing.Point(795, 0)
+        Me.BScan.Location = New System.Drawing.Point(819, 0)
         Me.BScan.Name = "BScan"
         Me.BScan.Size = New System.Drawing.Size(91, 33)
         Me.BScan.TabIndex = 5
@@ -724,7 +726,7 @@ Partial Class FormSNIOut
         Me.PCProduct.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCProduct.Location = New System.Drawing.Point(0, 71)
         Me.PCProduct.Name = "PCProduct"
-        Me.PCProduct.Size = New System.Drawing.Size(908, 39)
+        Me.PCProduct.Size = New System.Drawing.Size(932, 39)
         Me.PCProduct.TabIndex = 207
         '
         'BDeleteProduct
@@ -732,7 +734,7 @@ Partial Class FormSNIOut
         Me.BDeleteProduct.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDeleteProduct.ImageIndex = 1
         Me.BDeleteProduct.ImageList = Me.LargeImageCollection
-        Me.BDeleteProduct.Location = New System.Drawing.Point(663, 2)
+        Me.BDeleteProduct.Location = New System.Drawing.Point(687, 2)
         Me.BDeleteProduct.Name = "BDeleteProduct"
         Me.BDeleteProduct.Size = New System.Drawing.Size(124, 35)
         Me.BDeleteProduct.TabIndex = 11
@@ -743,7 +745,7 @@ Partial Class FormSNIOut
         Me.BAddProduct.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddProduct.ImageIndex = 0
         Me.BAddProduct.ImageList = Me.LargeImageCollection
-        Me.BAddProduct.Location = New System.Drawing.Point(787, 2)
+        Me.BAddProduct.Location = New System.Drawing.Point(811, 2)
         Me.BAddProduct.Name = "BAddProduct"
         Me.BAddProduct.Size = New System.Drawing.Size(119, 35)
         Me.BAddProduct.TabIndex = 9
@@ -753,7 +755,7 @@ Partial Class FormSNIOut
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(908, 581)
+        Me.ClientSize = New System.Drawing.Size(932, 581)
         Me.Controls.Add(Me.SCCQC)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
