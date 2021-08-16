@@ -398,6 +398,35 @@ WHERE qcod.id_qc_sni_out_det='" & id_qc_sni_out & "'"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        GVDetail.BestFitColumns()
+        ReportSNIIn.dt = GCDetail.DataSource
+        ReportSNIIn.id_qc_sni_in = id
+        Dim Report As New ReportSNIIn()
 
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVDetail)
+
+        'Parse val
+        Report.LCreatedDate.Text = Date.Parse(DEProposeDate.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LNo.Text = TxtNumber.Text.ToString
+        Report.LTo.Text = SLEVendor.Text
+        Report.LNote.Text = MENote.Text
+        Report.XRBarcode.Text = TxtNumber.Text.ToString
+        Report.LReff.Text = TESNIOutNo.Text
+        '
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -9953,6 +9953,12 @@
     <Compile Include="ReportSNIBudget.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSNIIn.Designer.vb">
+      <DependentUpon>ReportSNIIn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSNIIn.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSNIOut.Designer.vb">
       <DependentUpon>ReportSNIOut.vb</DependentUpon>
     </Compile>
