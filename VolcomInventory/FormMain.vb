@@ -275,7 +275,7 @@ Public Class FormMain
             BBView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormFGTrfReceive" Or formName = "FormSOHPrice" Or formName = "FormMasterProduct" Then
+        If formName = "FormFGTrfReceive" Or formName = "FormSOHPrice" Or formName = "FormMasterProduct" Or formName = "FormSNIWH" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
@@ -405,7 +405,7 @@ Public Class FormMain
         End If
 
         'edit only
-        If formName = "FormMasterProduct" Then
+        If formName = "FormMasterProduct" Or formName = "FormSNIWH" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
@@ -3258,6 +3258,40 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     If FormSNIQC.GVSNIIn.RowCount > 0 Then
                         FormSNIIn.id = FormSNIQC.GVSNIIn.GetFocusedRowCellValue("id_qc_sni_in").ToString
                         FormSNIIn.ShowDialog()
+                    End If
+                End If
+            ElseIf formName = "FormSNIWH" Then
+                If FormSNIWH.XTCInOut.SelectedTabPageIndex = 0 Then
+                    'rec new
+                    If FormSNIWH.GVSNIWaitRec.RowCount > 0 Then
+                        FormSNIOut.id = FormSNIWH.GVSNIWaitRec.GetFocusedRowCellValue("id_qc_sni_out").ToString
+                        FormSNIOut.is_new = True
+                        FormSNIOut.is_rec_wh = True
+                        FormSNIOut.ShowDialog()
+                    End If
+                ElseIf FormSNIWH.XTCInOut.SelectedTabPageIndex = 1 Then
+                    'rec list
+                    If FormSNIWH.GVSNIWaitRec.RowCount > 0 Then
+                        FormSNIOut.id = FormSNIWH.GVSNIWaitRec.GetFocusedRowCellValue("id_qc_sni_out").ToString
+                        FormSNIOut.is_new = False
+                        FormSNIOut.is_rec_wh = True
+                        FormSNIOut.ShowDialog()
+                    End If
+                ElseIf FormSNIWH.XTCInOut.SelectedTabPageIndex = 2 Then
+                    'del new
+                    If FormSNIWH.GVSNIWaitRec.RowCount > 0 Then
+                        FormSNIOut.id = FormSNIWH.GVSNIWaitRec.GetFocusedRowCellValue("id_qc_sni_out").ToString
+                        FormSNIOut.is_new = True
+                        FormSNIOut.is_del_wh = True
+                        FormSNIOut.ShowDialog()
+                    End If
+                ElseIf FormSNIWH.XTCInOut.SelectedTabPageIndex = 3 Then
+                    'del list
+                    If FormSNIWH.GVSNIWaitRec.RowCount > 0 Then
+                        FormSNIOut.id = FormSNIWH.GVSNIWaitRec.GetFocusedRowCellValue("id_qc_sni_out").ToString
+                        FormSNIOut.is_new = True
+                        FormSNIOut.is_del_wh = False
+                        FormSNIOut.ShowDialog()
                     End If
                 End If
             Else
@@ -9742,6 +9776,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSNIQC" Then
             FormSNIQC.Close()
             FormSNIQC.Dispose()
+        ElseIf formName = "FormSNIWH" Then
+            FormSNIWH.Close()
+            FormSNIWH.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10776,6 +10813,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNIRealisasi.load_list()
         ElseIf formName = "FormSNIQC" Then
             FormSNIQC.load_list()
+        ElseIf formName = "FormSNIWH" Then
+            FormSNIWH.load_list()
         End If
     End Sub
     'Switch
@@ -16427,6 +16466,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNIBarcode.Show()
             FormSNIBarcode.WindowState = FormWindowState.Maximized
             FormSNIBarcode.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSNIWH_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSNIWH.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSNIWH.MdiParent = Me
+            FormSNIWH.Show()
+            FormSNIWH.WindowState = FormWindowState.Maximized
+            FormSNIWH.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

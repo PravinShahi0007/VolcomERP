@@ -78,4 +78,8 @@ ORDER BY qci.id_qc_sni_in DESC"
         End If
         check_menu()
     End Sub
+
+    Private Sub XTCInOut_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCInOut.SelectedPageChanged
+        load_list()
+    End Sub
 End Class

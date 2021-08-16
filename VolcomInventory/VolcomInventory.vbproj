@@ -7228,6 +7228,12 @@
     <Compile Include="FormSNISerahTerimaDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSNIWH.Designer.vb">
+      <DependentUpon>FormSNIWH.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIWH.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSOH.designer.vb">
       <DependentUpon>FormSOH.vb</DependentUpon>
     </Compile>
@@ -13918,6 +13924,9 @@
     <EmbeddedResource Include="FormSNISerahTerimaDet.resx">
       <DependentUpon>FormSNISerahTerimaDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIWH.resx">
+      <DependentUpon>FormSNIWH.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSOH.resx">
       <DependentUpon>FormSOH.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -15439,6 +15448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSNIBudget.resx">
       <DependentUpon>ReportSNIBudget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSNIIn.resx">
+      <DependentUpon>ReportSNIIn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSNIOut.resx">
       <DependentUpon>ReportSNIOut.vb</DependentUpon>

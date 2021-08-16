@@ -2,6 +2,10 @@
     Public id As String = "-1"
     Public is_view As String = "-1"
 
+    Public is_rec_wh As Boolean = False
+    Public is_del_wh As Boolean = False
+    Public is_new As Boolean = False
+
     Private Sub FormSNIOut_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_head()
     End Sub
@@ -11,53 +15,99 @@
         view_barcode_list()
         viewReportStatus()
 
-        If id = "-1" Then
-            'new
-            load_det()
-
-            BtnSave.Visible = True
-            PCProduct.Visible = True
-            PanelNavBarcode.Visible = True
-            '
-            BtnPrint.Visible = False
-            BMark.Visible = False
-            BtnAttachment.Visible = False
-            BtnSave.Visible = True
-        Else
-            'edit
+        If is_rec_wh Then
+            'rec WH
             GroupControlListBarcode.Visible = False
             SCCQC.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
 
-            Dim q As String = "SELECT emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`,qco.notes,qco.id_report_status
+            If is_new Then
+                GridColumnRecWH.Visible = True
+                PanelNavBarcode.Visible = True
+                BtnPrint.Visible = False
+                BtnSave.Visible = True
+            Else
+                Dim q As String = "SELECT emp.employee_name,qco.rec_wh_number,qco.`rec_wh_created_date`,qco.`id_comp_to`,qco.notes,qco.id_report_status
+FROM tb_qc_sni_out qco
+INNER JOIN tb_m_user usr ON qco.rec_wh_created_by=usr.id_user
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE qco.id_qc_sni_out='" & id & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    SLEVendor.EditValue = dt.Rows(0)("id_comp_to").ToString
+                    SLEVendor.Properties.ReadOnly = True
+                    '
+                    TxtNumber.Text = dt.Rows(0)("rec_wh_number").ToString
+                    DEProposeDate.EditValue = dt.Rows(0)("rec_wh_created_date")
+                    TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
+                    '
+                    MENote.Text = dt.Rows(0)("notes").ToString
+                    LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", dt.Rows(0)("id_report_status").ToString)
+                End If
+                load_det()
+
+                PanelNavBarcode.Visible = False
+                BtnPrint.Visible = True
+                BtnSave.Visible = False
+            End If
+
+            BtnSave.Visible = False
+            PCProduct.Visible = False
+            PanelBottomRight.Visible = False
+            MENote.Visible = False
+            LNote.Visible = False
+            '
+            BMark.Visible = False
+            BtnAttachment.Visible = False
+        ElseIf is_del_wh Then
+
+        Else
+            If id = "-1" Then
+                'new
+                load_det()
+
+                BtnSave.Visible = True
+                PCProduct.Visible = True
+                PanelNavBarcode.Visible = True
+                '
+                BtnPrint.Visible = False
+                BMark.Visible = False
+                BtnAttachment.Visible = False
+                BtnSave.Visible = True
+            Else
+                'edit
+                GroupControlListBarcode.Visible = False
+                SCCQC.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+
+                Dim q As String = "SELECT emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`,qco.notes,qco.id_report_status
 FROM tb_qc_sni_out qco
 INNER JOIN tb_m_user usr ON qco.created_by=usr.id_user
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 WHERE qco.id_qc_sni_out='" & id & "'"
-            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-            If dt.Rows.Count > 0 Then
-                SLEVendor.EditValue = dt.Rows(0)("id_comp_to").ToString
-                SLEVendor.Properties.ReadOnly = True
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    SLEVendor.EditValue = dt.Rows(0)("id_comp_to").ToString
+                    SLEVendor.Properties.ReadOnly = True
+                    '
+                    TxtNumber.Text = dt.Rows(0)("number").ToString
+                    DEProposeDate.EditValue = dt.Rows(0)("created_date")
+                    TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
+                    '
+                    MENote.Text = dt.Rows(0)("notes").ToString
+                    LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", dt.Rows(0)("id_report_status").ToString)
+                End If
+                load_det()
+
+                BtnSave.Visible = False
+                PCProduct.Visible = False
+                PanelNavBarcode.Visible = False
+                MENote.Enabled = False
                 '
-                TxtNumber.Text = dt.Rows(0)("number").ToString
-                DEProposeDate.EditValue = dt.Rows(0)("created_date")
-                TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
-                '
-                MENote.Text = dt.Rows(0)("notes").ToString
-                LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", dt.Rows(0)("id_report_status").ToString)
+                BtnPrint.Visible = True
+                BMark.Visible = True
+                BtnAttachment.Visible = True
+                BtnSave.Visible = False
             End If
-            load_det()
-
-            BtnSave.Visible = False
-            PCProduct.Visible = False
-            PanelNavBarcode.Visible = False
-            MENote.Enabled = False
-            '
-            BtnPrint.Visible = True
-            BMark.Visible = True
-            BtnAttachment.Visible = True
-            BtnSave.Visible = False
         End If
-
     End Sub
 
     Sub viewReportStatus()
@@ -76,7 +126,7 @@ WHERE qco.id_qc_sni_out='" & id & "'"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT '' AS `no`,qco.`id_qc_sni_out_det`,pdp.`id_product`,po.`id_prod_order`,pod.id_prod_order_det,recd.id_prod_order_rec_det,recd.`id_prod_order_rec`,po.`prod_order_number`,rec.`prod_order_rec_number`,p.`product_full_code`,dsg.`design_display_name` AS name,cd.`display_name` AS size,qco.qty
+        Dim q As String = "SELECT '' AS `no`,qco.`id_qc_sni_out_det`,pdp.`id_product`,po.`id_prod_order`,pod.id_prod_order_det,recd.id_prod_order_rec_det,recd.`id_prod_order_rec`,po.`prod_order_number`,rec.`prod_order_rec_number`,p.`product_full_code`,dsg.`design_display_name` AS name,cd.`display_name` AS size,qco.qty,0 AS qty_rec_wh,0 AS qty_del_wh
 FROM `tb_qc_sni_out_det` qco
 INNER JOIN tb_prod_order_rec_det recd ON recd.`id_prod_order_rec_det`=qco.`id_prod_order_rec_det`
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec`
@@ -197,7 +247,13 @@ WHERE qco.id_qc_sni_out='" & id & "'"
             End If
         Next
         GVDetail.FocusedRowHandle = find_row(GVDetail, "id_prod_order_det", id_prod_order_detx)
-        GVDetail.SetFocusedRowCellValue("qty", tot)
+        If is_rec_wh Then
+            GVDetail.SetFocusedRowCellValue("qty_rec_wh", tot)
+        ElseIf is_del_wh Then
+            GVDetail.SetFocusedRowCellValue("qty_del_wh", tot)
+        Else
+            GVDetail.SetFocusedRowCellValue("qty", tot)
+        End If
         GCDetail.RefreshDataSource()
         GVDetail.RefreshData()
     End Sub
@@ -285,30 +341,17 @@ WHERE qco.id_qc_sni_out='" & id & "'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        'cek dengan requisition di DB
-        For i As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
-            Dim id_prod_order_det_cekya As String = GVDetail.GetRowCellValue(i, "id_prod_order_det").ToString
-            Dim id_prod_order_rec_cekya As String = GVDetail.GetRowCellValue(i, "id_prod_order_rec").ToString
-            id_rec_check = GVDetail.GetRowCellValue(i, "id_prod_order_rec").ToString
-            Dim id_prod_order_cekya As String = GVDetail.GetRowCellValue(i, "id_prod_order").ToString
-            id_po_check = GVDetail.GetRowCellValue(i, "id_prod_order").ToString
-            Dim qty_plya As String = GVDetail.GetRowCellValue(i, "qty").ToString
-            Dim sample_checkya As String = GVDetail.GetRowCellValue(i, "name").ToString + " / Size : " + GVDetail.GetRowCellValue(i, "size").ToString
-            isAllowRequisition(sample_checkya, id_prod_order_det_cekya, id_prod_order_rec_cekya, id_prod_order_cekya, qty_plya)
+        If is_rec_wh Then
+            'cek dengan requisition di DB
+            For i As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
+                If GVDetail.GetRowCellValue(i, "qty") = GVDetail.GetRowCellValue(i, "qty_rec_wh") Then
+                    cond_check = False
+                    Exit For
+                End If
+            Next
             If Not cond_check Then
-                Exit For
-            End If
-        Next
-
-        If GVDetail.RowCount = 0 Then
-            errorCustom("Qty can't blank or zero value !")
-        ElseIf Not cond_check Then
-            errorCustom("Product : '" + sample_check + "' cannot exceed " + allow_sum.ToString("F2") + ", please check ! ")
-            infoQty()
-        Else
-            Dim query As String = ""
-
-            If id = "-1" Then 'new
+                errorCustom("Qty not match !")
+            Else
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
@@ -316,47 +359,102 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                         BtnSave.Enabled = False
 
                         'Main tbale
-                        query = "INSERT INTO tb_qc_sni_out(`id_comp_to`,`created_by`,`created_date`,`id_report_status`,`notes`) "
-                        query += "VALUES('" & SLEVendor.EditValue.ToString & "','" & id_user & "',NOW(),'1','" & addSlashes(MENote.Text) & "') ; SELECT LAST_INSERT_ID(); "
-                        id = execute_query(query, 0, True, "", "", "", "")
+                        Dim query As String = ""
+                        query = "UPDATE tb_qc_sni_out SET `is_rec_wh`=1,rec_wh_`created_by`='" & id_user & "',`rec_wh_created_date` WHERE id_qc_sni_out='" & id & "' "
 
-                        execute_non_query("CALL gen_number('" & id & "','330')", True, "", "", "", "")
-
-                        'Detail return
-                        For j As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
-                            Try
-                                query = "INSERT tb_qc_sni_out_det(`id_qc_sni_out`,`id_prod_order_rec_det`,`id_prod_order_det`,`id_product`,`qty`) "
-                                query += "VALUES('" + id + "', '" + GVDetail.GetRowCellValue(j, "id_prod_order_rec_det").ToString + "', '" + GVDetail.GetRowCellValue(j, "id_prod_order_det").ToString + "','" + GVDetail.GetRowCellValue(j, "id_product").ToString + "', '" + decimalSQL(Decimal.Parse(GVDetail.GetRowCellValue(j, "qty").ToString).ToString) + "') "
-                                execute_non_query(query, True, "", "", "", "")
-                            Catch ex As Exception
-                                stopCustom(ex.ToString)
-                            End Try
-                        Next
-
-                        'sni out
-                        query = "INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
-SELECT recd.id_prod_order_rec AS id_prod_order_rec,qco.`id_prod_order_det`,qco.id_product,-qco.`qty`,NOW(),qc.`created_by`,qc.id_qc_sni_out,'330' AS `report_mark_type`,'QC SNI Out' AS `note` 
-FROM `tb_qc_sni_out_det` qco
-INNER JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec_det=qco.id_prod_order_rec_det
-INNER JOIN tb_qc_sni_out qc ON qc.id_qc_sni_out=qco.id_qc_sni_out
-WHERE qco.id_qc_sni_out='" & id & "'"
                         execute_non_query(query, True, "", "", "", "")
+                        execute_non_query("CALL gen_number('" & id & "','332')", True, "", "", "", "")
 
-                        'submit
-                        submit_who_prepared("330", id, id_user)
-
-                        FormSNIQC.load_list()
-                        FormSNIQC.GVSNIOut.FocusedRowHandle = find_row(FormSNIQC.GVSNIOut, "id_qc_sni_out", id)
-                        infoCustom("QC SNI out saved")
+                        FormSNIWH.XTCInOut.SelectedTabPageIndex = 1
+                        FormSNIWH.load_list()
+                        FormSNIWH.GVRecList.FocusedRowHandle = find_row(FormSNIWH.GVRecList, "id_qc_sni_out", id)
+                        infoCustom("Receiving WH SNI out saved")
+                        '
+                        is_new = False
+                        '
                         load_head()
                     Catch ex As Exception
                         stopCustom(ex.ToString)
                     End Try
                     Cursor = Cursors.Default
                 End If
-            Else 'update
-                'you cant update
+            End If
+        ElseIf is_del_wh Then
 
+        Else
+            'cek dengan requisition di DB
+            For i As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
+                Dim id_prod_order_det_cekya As String = GVDetail.GetRowCellValue(i, "id_prod_order_det").ToString
+                Dim id_prod_order_rec_cekya As String = GVDetail.GetRowCellValue(i, "id_prod_order_rec").ToString
+                id_rec_check = GVDetail.GetRowCellValue(i, "id_prod_order_rec").ToString
+                Dim id_prod_order_cekya As String = GVDetail.GetRowCellValue(i, "id_prod_order").ToString
+                id_po_check = GVDetail.GetRowCellValue(i, "id_prod_order").ToString
+                Dim qty_plya As String = GVDetail.GetRowCellValue(i, "qty").ToString
+                Dim sample_checkya As String = GVDetail.GetRowCellValue(i, "name").ToString + " / Size : " + GVDetail.GetRowCellValue(i, "size").ToString
+                isAllowRequisition(sample_checkya, id_prod_order_det_cekya, id_prod_order_rec_cekya, id_prod_order_cekya, qty_plya)
+                If Not cond_check Then
+                    Exit For
+                End If
+            Next
+
+            If GVDetail.RowCount = 0 Then
+                errorCustom("Qty can't blank or zero value !")
+            ElseIf Not cond_check Then
+                errorCustom("Product : '" + sample_check + "' cannot exceed " + allow_sum.ToString("F2") + ", please check ! ")
+                infoQty()
+            Else
+                Dim query As String = ""
+
+                If id = "-1" Then 'new
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Cursor = Cursors.WaitCursor
+                        Try
+                            BtnSave.Enabled = False
+
+                            'Main tbale
+                            query = "INSERT INTO tb_qc_sni_out(`id_comp_to`,`created_by`,`created_date`,`id_report_status`,`notes`) "
+                            query += "VALUES('" & SLEVendor.EditValue.ToString & "','" & id_user & "',NOW(),'1','" & addSlashes(MENote.Text) & "') ; SELECT LAST_INSERT_ID(); "
+                            id = execute_query(query, 0, True, "", "", "", "")
+
+                            execute_non_query("CALL gen_number('" & id & "','330')", True, "", "", "", "")
+
+                            'Detail return
+                            For j As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
+                                Try
+                                    query = "INSERT tb_qc_sni_out_det(`id_qc_sni_out`,`id_prod_order_rec_det`,`id_prod_order_det`,`id_product`,`qty`) "
+                                    query += "VALUES('" + id + "', '" + GVDetail.GetRowCellValue(j, "id_prod_order_rec_det").ToString + "', '" + GVDetail.GetRowCellValue(j, "id_prod_order_det").ToString + "','" + GVDetail.GetRowCellValue(j, "id_product").ToString + "', '" + decimalSQL(Decimal.Parse(GVDetail.GetRowCellValue(j, "qty").ToString).ToString) + "') "
+                                    execute_non_query(query, True, "", "", "", "")
+                                Catch ex As Exception
+                                    stopCustom(ex.ToString)
+                                End Try
+                            Next
+
+                            'sni out
+                            query = "INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
+SELECT recd.id_prod_order_rec AS id_prod_order_rec,qco.`id_prod_order_det`,qco.id_product,-qco.`qty`,NOW(),qc.`created_by`,qc.id_qc_sni_out,'330' AS `report_mark_type`,'QC SNI Out' AS `note` 
+FROM `tb_qc_sni_out_det` qco
+INNER JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec_det=qco.id_prod_order_rec_det
+INNER JOIN tb_qc_sni_out qc ON qc.id_qc_sni_out=qco.id_qc_sni_out
+WHERE qco.id_qc_sni_out='" & id & "'"
+                            execute_non_query(query, True, "", "", "", "")
+
+                            'submit
+                            submit_who_prepared("330", id, id_user)
+
+                            FormSNIQC.load_list()
+                            FormSNIQC.GVSNIOut.FocusedRowHandle = find_row(FormSNIQC.GVSNIOut, "id_qc_sni_out", id)
+                            infoCustom("QC SNI out saved")
+                            load_head()
+                        Catch ex As Exception
+                            stopCustom(ex.ToString)
+                        End Try
+                        Cursor = Cursors.Default
+                    End If
+                Else 'update
+                    'you cant update
+
+                End If
             End If
         End If
     End Sub
