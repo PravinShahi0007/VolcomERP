@@ -302,7 +302,7 @@ Public Class FormMain
             RGAreaPrint.Visible = False
         End If
 
-        If formName = "FormCompGroupEmail" Then
+        If formName = "FormCompGroupEmail" Or formName = "FormSNIBarcode" Then
             RGAreaManage.Visible = False
             RGAreaPrint.Visible = False
         End If
@@ -442,7 +442,7 @@ Public Class FormMain
         'End If
 
         'hide all excep print n close
-        If formName = "FormCompGroupEmail" Then
+        If formName = "FormCompGroupEmail" Or formName = "FormSNIBarcode" Then
             RGAreaManage.Visible = DevExpress.XtraBars.BarItemVisibility.Always
             RGAreaPrint.Visible = DevExpress.XtraBars.BarItemVisibility.Always
         End If
@@ -16414,6 +16414,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNIQC.Show()
             FormSNIQC.WindowState = FormWindowState.Maximized
             FormSNIQC.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSNIBarcode_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSNIBarcode.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSNIBarcode.MdiParent = Me
+            FormSNIBarcode.Show()
+            FormSNIBarcode.WindowState = FormWindowState.Maximized
+            FormSNIBarcode.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

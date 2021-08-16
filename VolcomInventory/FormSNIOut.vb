@@ -28,7 +28,7 @@
             GroupControlListBarcode.Visible = False
             SCCQC.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
 
-            Dim q As String = "SELECT emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`
+            Dim q As String = "SELECT emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`,qco.notes,qco.id_report_status
 FROM tb_qc_sni_out qco
 INNER JOIN tb_m_user usr ON qco.created_by=usr.id_user
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
@@ -43,12 +43,14 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 '
                 MENote.Text = dt.Rows(0)("notes").ToString
+                LEReportStatus.EditValue = dt.Rows(0)("id_report_status").ToString
             End If
             load_det()
 
             BtnSave.Visible = False
             PCProduct.Visible = False
             PanelNavBarcode.Visible = False
+            MENote.Enabled = False
             '
             BtnPrint.Visible = True
             BMark.Visible = True
@@ -65,7 +67,7 @@ WHERE qco.id_qc_sni_out='" & id & "'"
     End Sub
 
     Sub view_vendor()
-        Dim query As String = "SELECT comp.id_comp,comp.comp_number, comp.comp_name FROM tb_m_comp comp WHERE comp.id_comp_cat='1'"
+        Dim query As String = "SELECT comp.id_comp,comp.comp_number, comp.comp_name FROM tb_m_comp comp WHERE comp.id_comp_cat='1' OR comp.id_comp_cat='2'"
         viewSearchLookupQuery(SLEVendor, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
@@ -387,6 +389,38 @@ WHERE qco.id_qc_sni_out='" & id & "'"
         FormDocumentUpload.is_view = is_view
         FormDocumentUpload.report_mark_type = "330"
         FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        GVDetail.BestFitColumns()
+        ReportSNIOut.dt = GCDetail.DataSource
+        ReportSNIOut.id_qc_sni_out = id
+        Dim Report As New ReportSNIOut()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVDetail)
+
+        'Parse val
+        Report.LCreatedDate.Text = Date.Parse(DEProposeDate.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LNo.Text = TxtNumber.Text.ToString
+        Report.LTo.Text = SLEVendor.Text
+        Report.LNote.Text = MENote.Text
+        Report.XRBarcode.Text = TxtNumber.Text.ToString
+        '
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
         Cursor = Cursors.Default
     End Sub
 End Class
