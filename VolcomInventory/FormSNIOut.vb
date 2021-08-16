@@ -43,7 +43,7 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 '
                 MENote.Text = dt.Rows(0)("notes").ToString
-                LEReportStatus.EditValue = dt.Rows(0)("id_report_status").ToString
+                LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", dt.Rows(0)("id_report_status").ToString)
             End If
             load_det()
 
@@ -232,12 +232,6 @@ WHERE qco.id_qc_sni_out='" & id & "'"
             countQty(id_prod_order_det)
             newRowsBc()
             allowDelete()
-        End If
-    End Sub
-
-    Private Sub GVBarcode_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVBarcode.CustomColumnDisplayText
-        If e.Column.FieldName = "no" Then
-            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 
