@@ -16,16 +16,30 @@
         viewReportStatus()
 
         If is_rec_wh Then
+            GridColumnDelWH.Visible = False
             'rec WH
-            GroupControlListBarcode.Visible = False
-            SCCQC.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+            GroupControl3.Visible = False
 
             If is_new Then
-                GridColumnRecWH.Visible = True
+                Dim q As String = "SELECT qco.`id_comp_to`
+FROM tb_qc_sni_out qco
+WHERE qco.id_qc_sni_out='" & id & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    SLEVendor.EditValue = dt.Rows(0)("id_comp_to").ToString
+                    SLEVendor.Properties.ReadOnly = True
+                End If
+
                 PanelNavBarcode.Visible = True
                 BtnPrint.Visible = False
                 BtnSave.Visible = True
+
+                load_det()
+                can_scan()
             Else
+                GridColumnRecWH.Visible = False
+                GridColumnDelWH.Visible = False
+
                 Dim q As String = "SELECT emp.employee_name,qco.rec_wh_number,qco.`rec_wh_created_date`,qco.`id_comp_to`,qco.notes,qco.id_report_status
 FROM tb_qc_sni_out qco
 INNER JOIN tb_m_user usr ON qco.rec_wh_created_by=usr.id_user
@@ -45,12 +59,14 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                 End If
                 load_det()
 
+                GroupControlListBarcode.Visible = False
+                SCCQC.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+
                 PanelNavBarcode.Visible = False
                 BtnPrint.Visible = True
                 BtnSave.Visible = False
             End If
 
-            BtnSave.Visible = False
             PCProduct.Visible = False
             PanelBottomRight.Visible = False
             MENote.Visible = False
@@ -59,8 +75,11 @@ WHERE qco.id_qc_sni_out='" & id & "'"
             BMark.Visible = False
             BtnAttachment.Visible = False
         ElseIf is_del_wh Then
-
+            GridColumnRecWH.Visible = False
         Else
+            GridColumnRecWH.Visible = False
+            GridColumnDelWH.Visible = False
+
             If id = "-1" Then
                 'new
                 load_det()
@@ -343,8 +362,9 @@ WHERE qco.id_qc_sni_out='" & id & "'"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If is_rec_wh Then
             'cek dengan requisition di DB
+            cond_check = True
             For i As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
-                If GVDetail.GetRowCellValue(i, "qty") = GVDetail.GetRowCellValue(i, "qty_rec_wh") Then
+                If Not GVDetail.GetRowCellValue(i, "qty") = GVDetail.GetRowCellValue(i, "qty_rec_wh") Then
                     cond_check = False
                     Exit For
                 End If
@@ -360,7 +380,7 @@ WHERE qco.id_qc_sni_out='" & id & "'"
 
                         'Main tbale
                         Dim query As String = ""
-                        query = "UPDATE tb_qc_sni_out SET `is_rec_wh`=1,rec_wh_`created_by`='" & id_user & "',`rec_wh_created_date` WHERE id_qc_sni_out='" & id & "' "
+                        query = "UPDATE tb_qc_sni_out SET `is_rec_wh`=1,`rec_wh_created_by`='" & id_user & "',`rec_wh_created_date`=NOW() WHERE id_qc_sni_out='" & id & "' "
 
                         execute_non_query(query, True, "", "", "", "")
                         execute_non_query("CALL gen_number('" & id & "','332')", True, "", "", "", "")

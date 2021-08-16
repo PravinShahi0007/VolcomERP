@@ -765,6 +765,8 @@ Partial Class FormSNIOut
         Me.GridColumnRecWH.FieldName = "qty_rec_wh"
         Me.GridColumnRecWH.Name = "GridColumnRecWH"
         Me.GridColumnRecWH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec_wh", "{0:N0}")})
+        Me.GridColumnRecWH.Visible = True
+        Me.GridColumnRecWH.VisibleIndex = 8
         Me.GridColumnRecWH.Width = 69
         '
         'GridColumnDelWH
@@ -779,6 +781,8 @@ Partial Class FormSNIOut
         Me.GridColumnDelWH.FieldName = "qty_del_wh"
         Me.GridColumnDelWH.Name = "GridColumnDelWH"
         Me.GridColumnDelWH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_del_wh", "{0:N0}")})
+        Me.GridColumnDelWH.Visible = True
+        Me.GridColumnDelWH.VisibleIndex = 7
         Me.GridColumnDelWH.Width = 76
         '
         'FormSNIOut
