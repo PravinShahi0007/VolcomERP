@@ -9953,6 +9953,12 @@
     <Compile Include="ReportSNIBudget.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSNIOut.Designer.vb">
+      <DependentUpon>ReportSNIOut.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSNIOut.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSNIPpsList.Designer.vb">
       <DependentUpon>ReportSNIPpsList.vb</DependentUpon>
     </Compile>
@@ -15427,6 +15433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSNIBudget.resx">
       <DependentUpon>ReportSNIBudget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSNIOut.resx">
+      <DependentUpon>ReportSNIOut.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSNIPpsList.resx">
       <DependentUpon>ReportSNIPpsList.vb</DependentUpon>
