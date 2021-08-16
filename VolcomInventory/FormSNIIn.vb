@@ -52,10 +52,10 @@
     Sub allowDelete()
         If GVBarcode.RowCount <= 0 Then
             BDelete.Enabled = False
-            PCProduct.Visible = True
+
         Else
             BDelete.Enabled = True
-            PCProduct.Visible = False
+
         End If
     End Sub
 

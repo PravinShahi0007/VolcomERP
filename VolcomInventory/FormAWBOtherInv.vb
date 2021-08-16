@@ -411,13 +411,13 @@ INNER JOIN tb_m_departement dep ON dep.`id_departement`=dd.`id_departement`"
 
             Dim query = From table1 In tb1
                         Group Join table_tmp In tb2
-                            On table1("AWB").ToString.ToLower Equals table_tmp("awbill_no").ToString.ToLower Into awb = Group
+                            On table1("AWB").ToString.Replace("'", "").ToLower Equals table_tmp("awbill_no").ToString.ToLower Into awb = Group
                         From result_awb In awb.DefaultIfEmpty()
                         Select New With
                             {
                                 .id_awb_office_det = If(result_awb Is Nothing, "0", result_awb("id_awb_office_det")),
                                 .inv_number = If(table1("Nomor Invoice").ToString = "", "", table1("Nomor Invoice")),
-                                .awbill_no = If(result_awb Is Nothing, table1("AWB"), result_awb("awbill_no")),
+                                .awbill_no = If(result_awb Is Nothing, table1("AWB").ToString.Replace("'", ""), result_awb("awbill_no")),
                                 .sub_district = If(result_awb Is Nothing, "", result_awb("sub_district")),
                                 .id_departement = If(result_awb Is Nothing, "0", result_awb("id_departement")),
                                 .departement = If(result_awb Is Nothing, "", result_awb("departement")),
