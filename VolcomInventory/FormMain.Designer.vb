@@ -325,6 +325,7 @@ Partial Class FormMain
         Me.NBPOList = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAdditionalCost = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSNIrealisasi = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSNIBarcode = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBLinePlanProduction = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGSales = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBSalesTarget = New DevExpress.XtraNavBar.NavBarItem()
@@ -526,7 +527,6 @@ Partial Class FormMain
         Me.NBSampleStorage = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSampleTrf = New DevExpress.XtraNavBar.NavBarItem()
         Me.NavBarItem2 = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSNIBarcode = New DevExpress.XtraNavBar.NavBarItem()
         Me.MenuImages = New DevExpress.Utils.ImageCollection(Me.components)
         Me.XTMDI = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
         Me.BBCompanyContact = New DevExpress.XtraBars.BarButtonItem()
@@ -2779,6 +2779,12 @@ Partial Class FormMain
         Me.NBSNIrealisasi.Name = "NBSNIrealisasi"
         Me.NBSNIrealisasi.SmallImage = CType(resources.GetObject("NBSNIrealisasi.SmallImage"), System.Drawing.Image)
         '
+        'NBSNIBarcode
+        '
+        Me.NBSNIBarcode.Caption = "SNI Barcode"
+        Me.NBSNIBarcode.Name = "NBSNIBarcode"
+        Me.NBSNIBarcode.SmallImage = CType(resources.GetObject("NBSNIBarcode.SmallImage"), System.Drawing.Image)
+        '
         'NBLinePlanProduction
         '
         Me.NBLinePlanProduction.Caption = "Line Plan"
@@ -4001,11 +4007,6 @@ Partial Class FormMain
         '
         Me.NavBarItem2.Caption = "NavBarItem2"
         Me.NavBarItem2.Name = "NavBarItem2"
-        '
-        'NBSNIBarcode
-        '
-        Me.NBSNIBarcode.Caption = "SNI Barcode"
-        Me.NBSNIBarcode.Name = "NBSNIBarcode"
         '
         'MenuImages
         '
