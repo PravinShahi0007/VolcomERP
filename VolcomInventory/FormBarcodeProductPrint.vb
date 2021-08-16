@@ -61,80 +61,109 @@ Public Class FormBarcodeProductPrint
         TEHeightError.EditValue = 0
 
         If Not id_product = "-1" Then
-            Dim id_design As String = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("id_design").ToString
+            Dim id_design As String = ""
 
-            TEDesignCode.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("design_code").ToString
-            TEDesignName.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("design_display_name").ToString.Replace("’", "'").Replace("””", """")
-            TEProdCode.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("product_full_code").ToString
+            If is_sni Then
+                id_design = FormSNIBarcode.GVProdList.GetFocusedRowCellValue("id_design").ToString()
 
-            TECurPrice.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("currency").ToString
+                TEDesignCode.EditValue = FormSNIBarcode.GVProdList.GetFocusedRowCellValue("design_code").ToString
+                TEDesignName.EditValue = FormSNIBarcode.GVProdList.GetFocusedRowCellValue("design_display_name").ToString.Replace("’", "'").Replace("””", """")
+                TEProdCode.EditValue = FormSNIBarcode.GVProdList.GetFocusedRowCellValue("product_full_code").ToString
 
-            TESize.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("Size").ToString
-            TEColor.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("Color_display").ToString
-            TERetCode.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("ret_code").ToString
+                TECurPrice.EditValue = FormSNIBarcode.GVProdList.GetFocusedRowCellValue("currency").ToString
 
-            TEQtyOrder.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("qty_order").ToString
-            TEQtyRec.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("qty_rec").ToString
+                TESize.EditValue = FormSNIBarcode.GVProdList.GetFocusedRowCellValue("Size").ToString
+                TEColor.EditValue = FormSNIBarcode.GVProdList.GetFocusedRowCellValue("Color_display").ToString
+                TERetCode.EditValue = FormSNIBarcode.GVProdList.GetFocusedRowCellValue("ret_code").ToString
 
-            pre_viewImages("2", PEView, id_design, False)
+                TEQtyOrder.EditValue = FormSNIBarcode.GVProdList.GetFocusedRowCellValue("qty_order").ToString
+                TEQtyRec.EditValue = FormSNIBarcode.GVProdList.GetFocusedRowCellValue("qty_rec").ToString
 
-            For i As Integer = 0 To FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("digit_code") - 1
-                format_string += "0"
-            Next
+                pre_viewImages("2", PEView, id_design, False)
 
-            If get_setup_field("print_barcode_old").ToString = "1" Then
-                format_string = "0000"
-                SEPrintFrom.Properties.DisplayFormat.FormatString = "0000"
-                SEPrintFrom.Properties.EditMask = "0000"
-                SEPrintFrom.Properties.MaxValue = "9999"
-                SEPrintFrom.Properties.MinValue = "1"
+                For i As Integer = 0 To FormSNIBarcode.GVProdList.GetFocusedRowCellValue("digit_code") - 1
+                    format_string += "0"
+                Next
 
-                SEPrintTo.Properties.DisplayFormat.FormatString = "0000"
-                SEPrintTo.Properties.EditMask = "0000"
-                SEPrintTo.Properties.MaxValue = "9999"
-                SEPrintTo.Properties.MinValue = "1"
-                SEPrintTo.EditValue = "1"
+                TEProdBarcode.EditValue = TEProdCode.EditValue
 
-                TECurPrice.Text = "Rp"
-                TEPrice.Properties.ReadOnly = False
-            ElseIf get_setup_field("print_barcode_old").ToString = "2" Then
-                format_string = "0000"
-                SEPrintFrom.Properties.DisplayFormat.FormatString = "0000"
-                SEPrintFrom.Properties.EditMask = "0000"
-                SEPrintFrom.Properties.MaxValue = "9999"
-                SEPrintFrom.Properties.MinValue = "1"
-
-                SEPrintTo.Properties.DisplayFormat.FormatString = "0000"
-                SEPrintTo.Properties.EditMask = "0000"
-                SEPrintTo.Properties.MaxValue = "9999"
-                SEPrintTo.Properties.MinValue = "1"
-                SEPrintTo.EditValue = "1"
-
-                TEPrice.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("design_price")
-                TEPrice.Properties.ReadOnly = True
+                load_printer()
             Else
-                TEPrice.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("design_price")
+                id_design = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("id_design").ToString()
 
-                SEPrintFrom.Properties.DisplayFormat.FormatString = format_string
-                SEPrintFrom.Properties.EditMask = format_string
-                SEPrintFrom.Properties.MaxValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("range_akhir").ToString
-                SEPrintFrom.Properties.MinValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("range_awal").ToString
+                TEDesignCode.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("design_code").ToString
+                TEDesignName.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("design_display_name").ToString.Replace("’", "'").Replace("””", """")
+                TEProdCode.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("product_full_code").ToString
 
-                SEPrintTo.Properties.DisplayFormat.FormatString = format_string
-                SEPrintTo.Properties.EditMask = format_string
-                SEPrintTo.Properties.MaxValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("range_akhir").ToString
-                SEPrintTo.Properties.MinValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("range_awal").ToString
-                SEPrintTo.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("range_akhir").ToString
+                TECurPrice.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("currency").ToString
 
-                TEPrice.Properties.ReadOnly = True
+                TESize.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("Size").ToString
+                TEColor.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("Color_display").ToString
+                TERetCode.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("ret_code").ToString
+
+                TEQtyOrder.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("qty_order").ToString
+                TEQtyRec.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("qty_rec").ToString
+
+                pre_viewImages("2", PEView, id_design, False)
+
+                For i As Integer = 0 To FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("digit_code") - 1
+                    format_string += "0"
+                Next
+
+                If get_setup_field("print_barcode_old").ToString = "1" Then
+                    format_string = "0000"
+                    SEPrintFrom.Properties.DisplayFormat.FormatString = "0000"
+                    SEPrintFrom.Properties.EditMask = "0000"
+                    SEPrintFrom.Properties.MaxValue = "9999"
+                    SEPrintFrom.Properties.MinValue = "1"
+
+                    SEPrintTo.Properties.DisplayFormat.FormatString = "0000"
+                    SEPrintTo.Properties.EditMask = "0000"
+                    SEPrintTo.Properties.MaxValue = "9999"
+                    SEPrintTo.Properties.MinValue = "1"
+                    SEPrintTo.EditValue = "1"
+
+                    TECurPrice.Text = "Rp"
+                    TEPrice.Properties.ReadOnly = False
+                ElseIf get_setup_field("print_barcode_old").ToString = "2" Then
+                    format_string = "0000"
+                    SEPrintFrom.Properties.DisplayFormat.FormatString = "0000"
+                    SEPrintFrom.Properties.EditMask = "0000"
+                    SEPrintFrom.Properties.MaxValue = "9999"
+                    SEPrintFrom.Properties.MinValue = "1"
+
+                    SEPrintTo.Properties.DisplayFormat.FormatString = "0000"
+                    SEPrintTo.Properties.EditMask = "0000"
+                    SEPrintTo.Properties.MaxValue = "9999"
+                    SEPrintTo.Properties.MinValue = "1"
+                    SEPrintTo.EditValue = "1"
+
+                    TEPrice.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("design_price")
+                    TEPrice.Properties.ReadOnly = True
+                Else
+                    TEPrice.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("design_price")
+
+                    SEPrintFrom.Properties.DisplayFormat.FormatString = format_string
+                    SEPrintFrom.Properties.EditMask = format_string
+                    SEPrintFrom.Properties.MaxValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("range_akhir").ToString
+                    SEPrintFrom.Properties.MinValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("range_awal").ToString
+
+                    SEPrintTo.Properties.DisplayFormat.FormatString = format_string
+                    SEPrintTo.Properties.EditMask = format_string
+                    SEPrintTo.Properties.MaxValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("range_akhir").ToString
+                    SEPrintTo.Properties.MinValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("range_awal").ToString
+                    SEPrintTo.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("range_akhir").ToString
+
+                    TEPrice.Properties.ReadOnly = True
+                End If
+
+                TEProdBarcode.EditValue = TEProdCode.EditValue
+
+                load_unique()
+                load_printer()
+                load_last_unique()
             End If
-
-            TEProdBarcode.EditValue = TEProdCode.EditValue
-
-            load_unique()
-            load_printer()
         End If
-        load_last_unique()
     End Sub
 
     Sub load_last_unique()
