@@ -628,6 +628,7 @@ Partial Public Class ReportProductionKO
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel47, Me.XrLabel46, Me.XrLabel43, Me.XrLabel44, Me.XrLabel45, Me.XrLabel40, Me.XrLabel41, Me.XrLabel42, Me.XrLabel39, Me.XrLabel38, Me.XrLabel37, Me.XrLabel36, Me.XrLabel35, Me.XrLabel34, Me.XrLabel33, Me.XrLabel32, Me.XrLabel31, Me.XrLabel24, Me.XrLabel22, Me.XrLabel21})
         Me.ReportFooter.HeightF = 289.6667!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrLabel47

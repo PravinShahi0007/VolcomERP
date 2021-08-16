@@ -415,6 +415,7 @@ WHERE qco.id_qc_sni_out='" & id & "'"
         Report.LNo.Text = TxtNumber.Text.ToString
         Report.LTo.Text = SLEVendor.Text
         Report.LNote.Text = MENote.Text
+        Report.XRBarcode.Text = TxtNumber.Text.ToString
         '
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
