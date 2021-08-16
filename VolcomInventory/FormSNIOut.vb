@@ -28,7 +28,7 @@
             GroupControlListBarcode.Visible = False
             SCCQC.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
 
-            Dim q As String = "SELECT emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`,qco.notes
+            Dim q As String = "SELECT emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`,qco.notes,qco.id_report_status
 FROM tb_qc_sni_out qco
 INNER JOIN tb_m_user usr ON qco.created_by=usr.id_user
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
@@ -43,6 +43,7 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 '
                 MENote.Text = dt.Rows(0)("notes").ToString
+                LEReportStatus.EditValue = dt.Rows(0)("id_report_status").ToString
             End If
             load_det()
 
