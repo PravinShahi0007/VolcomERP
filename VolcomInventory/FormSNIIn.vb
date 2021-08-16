@@ -12,6 +12,53 @@
         viewReportStatus()
     End Sub
 
+    Sub viewReportStatus()
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
+    End Sub
+
+    Sub view_vendor()
+        Dim query As String = "SELECT comp.id_comp,comp.comp_number, comp.comp_name FROM tb_m_comp comp WHERE comp.id_comp_cat='1' OR comp.id_comp_cat='2'"
+        viewSearchLookupQuery(SLEVendor, query, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Sub view_barcode_list()
+        Dim query As String = "SELECT ('0') AS no, ('') AS product_full_code, ('0') AS id_prod_order_det, ('1') AS is_fix "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCBarcode.DataSource = data
+        deleteRowsBc()
+        allowDelete()
+    End Sub
+
+    'DeleteRows
+    Sub deleteRowsBc()
+        GVBarcode.DeleteRow(GVBarcode.FocusedRowHandle)
+    End Sub
+
+    'Focus Column Code
+    Sub focusColumnCodeBc()
+        GVBarcode.FocusedColumn = GVBarcode.VisibleColumns(0)
+        GVBarcode.ShowEditor()
+    End Sub
+    'New Row
+    Sub newRowsBc()
+        GVBarcode.AddNewRow()
+        GCBarcode.RefreshDataSource()
+        GVBarcode.RefreshData()
+        GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+    End Sub
+
+    Sub allowDelete()
+        If GVBarcode.RowCount <= 0 Then
+            BDelete.Enabled = False
+            PCProduct.Visible = True
+        Else
+            BDelete.Enabled = True
+            PCProduct.Visible = False
+        End If
+    End Sub
+
     Private Sub TESNIOutNo_KeyDown(sender As Object, e As KeyEventArgs) Handles TESNIOutNo.KeyDown
         If e.KeyCode = Keys.Enter Then
             If TESNIOutNo.Text = "" Then
