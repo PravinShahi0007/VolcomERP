@@ -988,4 +988,72 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Function mainQueryFailOpenOrder()
+        Dim query As String = "FROM tb_pl_sales_order_del_det dd
+        INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+        INNER JOIN (
+	        SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
+	        FROM tb_sales_order_det_status stt
+	        INNER JOIN (
+	           SELECT stt.id_sales_order_det, MAX(stt.status_date) AS `status_date`
+	           FROM tb_sales_order_det_status stt
+	           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = stt.id_sales_order_det
+	           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	           INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+	           INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	           WHERE so.id_report_status=6 AND c.id_comp_group=64
+	           GROUP BY stt.id_sales_order_det
+	        ) max_stt ON max_stt.id_sales_order_det = stt.id_sales_order_det AND max_stt.status_date = stt.status_date
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = stt.id_sales_order_det
+	        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        WHERE so.id_report_status=6 AND c.id_comp_group=64
+	        GROUP BY stt.id_sales_order_det
+        ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+	        SELECT dd.id_sales_order_det, sp.id_sales_pos, sp.report_mark_type, (spd.design_price - sod.discount) AS `amount`
+	        FROM tb_sales_pos sp 
+	        INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = spd.id_pl_sales_order_del_det
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = sp.id_store_contact_from
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        INNER JOIN tb_lookup_memo_type mt ON mt.id_memo_type = sp.id_memo_type
+	        WHERE sp.id_report_status=6 AND c.id_comp_group=64 AND mt.is_receive_payment=1 AND sp.is_close_rec_payment=2
+	        GROUP BY dd.id_sales_order_det
+        ) sal ON sal.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+	        SELECT dd.id_sales_order_det, sp.id_sales_pos, sp.report_mark_type, ((spd.design_price*-1) - (sod.discount*-1)) AS `amount`
+	        FROM tb_sales_pos sp 
+	        INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+	        INNER JOIN tb_sales_pos_det spr ON spr.id_sales_pos_det = spd.id_sales_pos_det_ref
+	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = spr.id_pl_sales_order_del_det
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = sp.id_store_contact_from
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        INNER JOIN tb_lookup_memo_type mt ON mt.id_memo_type = sp.id_memo_type
+	        WHERE sp.id_report_status=6 AND c.id_comp_group=64 AND mt.is_receive_payment=2 AND sp.is_close_rec_payment=2
+	        GROUP BY dd.id_sales_order_det
+        ) cn ON cn.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+	        SELECT rord.id_sales_order_det, rts.id_sales_return
+	        FROM tb_sales_return rts
+	        INNER JOIN tb_sales_return_det rtsd ON rtsd.id_sales_return = rts.id_sales_return
+	        INNER JOIN tb_sales_return_order_det rord ON rord.id_sales_return_order_det =rtsd.id_sales_return_order_det
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = rts.id_store_contact_from
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        WHERE rts.id_report_status=6 AND c.id_comp_group=64 AND !ISNULL(rord.id_sales_order_det)
+	        GROUP BY rord.id_sales_order_det
+        ) rts ON rts.id_sales_order_det = sod.id_sales_order_det
+        WHERE d.id_report_status=6 AND c.id_comp_group=64 AND stt.`status`='failed' 
+        AND !ISNULL(sal.id_sales_order_det) AND !ISNULL(cn.id_sales_order_det) AND !ISNULL(rts.id_sales_order_det)
+        GROUP BY sod.id_sales_order_det "
+        Return query
+    End Function
 End Class
