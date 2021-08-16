@@ -1,15 +1,87 @@
 ﻿Public Class FormSNIIn
     Public id As String = "-1"
     Public id_out As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub FormSNIIn_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        load_head
+        load_head()
     End Sub
 
     Sub load_head()
         view_vendor()
         view_barcode_list()
         viewReportStatus()
+
+        If id = "-1" Then
+            'new
+            BtnSave.Visible = True
+            PanelNavBarcode.Visible = True
+            '
+            BtnPrint.Visible = False
+            BMark.Visible = False
+            BtnAttachment.Visible = False
+            BtnSave.Visible = True
+        Else
+            'edit
+            GroupControlListBarcode.Visible = False
+            SCCQC.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+            TESNIOutNo.Properties.ReadOnly = True
+
+            Dim q As String = "SELECT emp.employee_name,qci.number,qci.`created_date`,qco.id_comp_to,qci.id_qc_sni_out,qci.notes,qci.id_report_status,qco.number AS out_number
+FROM tb_qc_sni_in qci
+INNER JOIN tb_qc_sni_out qco ON qco.id_qc_sni_out=qci.id_qc_sni_out
+INNER JOIN tb_m_user usr ON qci.created_by=usr.id_user
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE qci.id_qc_sni_in='" & id & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                id_out = dt.Rows(0)("id_qc_sni_out").ToString
+                '
+                SLEVendor.EditValue = dt.Rows(0)("id_comp_to").ToString
+                SLEVendor.Properties.ReadOnly = True
+                '
+                TESNIOutNo.Text = dt.Rows(0)("out_number").ToString
+                TxtNumber.Text = dt.Rows(0)("number").ToString
+                DEProposeDate.EditValue = dt.Rows(0)("created_date")
+                TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
+                '
+                MENote.Text = dt.Rows(0)("notes").ToString
+                LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", dt.Rows(0)("id_report_status").ToString)
+            End If
+            load_det_view()
+
+            GridColumnQtyOut.Visible = False
+            GridColumnQtyRemaining.Visible = False
+
+            BtnSave.Visible = False
+            PanelNavBarcode.Visible = False
+            MENote.Enabled = False
+            '
+            BtnPrint.Visible = True
+            BMark.Visible = True
+            BtnAttachment.Visible = True
+            BtnSave.Visible = False
+        End If
+    End Sub
+
+    Sub load_det_view()
+        Dim q As String = "SELECT '' AS `no`,qco.`id_qc_sni_out_det`,pdp.`id_product`,po.`id_prod_order`,pod.id_prod_order_det,recd.id_prod_order_rec_det,recd.`id_prod_order_rec`,po.`prod_order_number`,rec.`prod_order_rec_number`,p.`product_full_code`,dsg.`design_display_name` AS `name`
+,cd.`display_name` AS size
+,qcid.qty AS qty_in
+FROM tb_qc_sni_in_det qcid 
+INNER JOIN `tb_qc_sni_out_det` qco ON qco.id_qc_sni_out_det=qcid.id_qc_sni_out_det
+INNER JOIN tb_prod_order_rec_det recd ON recd.`id_prod_order_rec_det`=qco.`id_prod_order_rec_det`
+INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec`
+INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=recd.`id_prod_order_det`
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=pod.`id_prod_order`
+INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
+INNER JOIN tb_m_product p ON p.`id_product`=pdp.`id_product`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=p.`id_design`
+INNER JOIN tb_m_code_detail cd ON cd.code=p.`product_code` AND cd.`id_code`=33
+WHERE qcid.id_qc_sni_in='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCDetail.DataSource = dt
+        GVDetail.BestFitColumns()
     End Sub
 
     Sub viewReportStatus()
@@ -220,7 +292,7 @@ WHERE qco.id_qc_sni_out='" & id_out & "'"
 
         For i As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
             Dim id_qc_sni_out As String = GVDetail.GetRowCellValue(i, "id_qc_sni_out_det").ToString
-            prod_check = GVDetail.GetRowCellValue(i, "design_display_name").ToString
+            prod_check = GVDetail.GetRowCellValue(i, "name").ToString
 
             Dim qc As String = "SELECT qcod.id_qc_sni_out_det,qcod.qty,IFNULL(qci.qty,0) AS qty_in,(qcod.qty-IFNULL(qci.qty,0)) AS qty_rem
 FROM `tb_qc_sni_out_det` qcod
@@ -271,9 +343,11 @@ WHERE qcod.id_qc_sni_out_det='" & id_qc_sni_out & "'"
                         'Detail return
                         For j As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
                             Try
-                                query = "INSERT tb_qc_sni_in_det(`id_qc_sni_in`,`id_qc_sni_out_det`,`qty`) "
-                                query += "VALUES('" + id + "', '" + GVDetail.GetRowCellValue(j, "id_qc_sni_out_det").ToString + "', '" + decimalSQL(Decimal.Parse(GVDetail.GetRowCellValue(j, "qty_in").ToString).ToString) + "') "
-                                execute_non_query(query, True, "", "", "", "")
+                                If Not GVDetail.GetRowCellValue(j, "qty_in").ToString = "0" Then
+                                    query = "INSERT tb_qc_sni_in_det(`id_qc_sni_in`,`id_qc_sni_out_det`,`qty`) "
+                                    query += "VALUES('" + id + "', '" + GVDetail.GetRowCellValue(j, "id_qc_sni_out_det").ToString + "', '" + decimalSQL(Decimal.Parse(GVDetail.GetRowCellValue(j, "qty_in").ToString).ToString) + "') "
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
                             Catch ex As Exception
                                 stopCustom(ex.ToString)
                             End Try
@@ -304,5 +378,26 @@ WHERE qcod.id_qc_sni_out_det='" & id_qc_sni_out & "'"
 
     Private Sub FormSNIIn_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "331"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        FormDocumentUpload.id_report = id
+        FormDocumentUpload.is_view = is_view
+        FormDocumentUpload.report_mark_type = "331"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
     End Sub
 End Class

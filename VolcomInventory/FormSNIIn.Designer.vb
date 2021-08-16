@@ -64,7 +64,7 @@ Partial Class FormSNIIn
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyOut = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControlListBarcode = New DevExpress.XtraEditors.GroupControl()
@@ -80,7 +80,7 @@ Partial Class FormSNIIn
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TESNIOutNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -475,7 +475,7 @@ Partial Class FormSNIIn
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn9, Me.GridColumn4, Me.GridColumnNox, Me.GridColumn3, Me.GridColumnRec, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumn11, Me.GridColumn10})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn9, Me.GridColumn4, Me.GridColumnNox, Me.GridColumn3, Me.GridColumnRec, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQtyOut, Me.GridColumnQtyRemaining, Me.GridColumn10})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -572,24 +572,24 @@ Partial Class FormSNIIn
         Me.GridColumnSize.VisibleIndex = 5
         Me.GridColumnSize.Width = 79
         '
-        'GridColumnQty
+        'GridColumnQtyOut
         '
-        Me.GridColumnQty.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQty.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQty.Caption = "Qty Out"
-        Me.GridColumnQty.ColumnEdit = Me.RepositoryItemSpinEdit1
-        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
-        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQty.FieldName = "qty"
-        Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnQty.OptionsColumn.ReadOnly = True
-        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
-        Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 6
-        Me.GridColumnQty.Width = 117
+        Me.GridColumnQtyOut.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtyOut.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyOut.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtyOut.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyOut.Caption = "Qty Out"
+        Me.GridColumnQtyOut.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.GridColumnQtyOut.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyOut.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyOut.FieldName = "qty"
+        Me.GridColumnQtyOut.Name = "GridColumnQtyOut"
+        Me.GridColumnQtyOut.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnQtyOut.OptionsColumn.ReadOnly = True
+        Me.GridColumnQtyOut.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
+        Me.GridColumnQtyOut.Visible = True
+        Me.GridColumnQtyOut.VisibleIndex = 6
+        Me.GridColumnQtyOut.Width = 117
         '
         'RepositoryItemSpinEdit1
         '
@@ -753,21 +753,21 @@ Partial Class FormSNIIn
         Me.BScan.TabIndex = 5
         Me.BScan.Text = "Start Scan"
         '
-        'GridColumn11
+        'GridColumnQtyRemaining
         '
-        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.Caption = "Qty Remaining"
-        Me.GridColumn11.DisplayFormat.FormatString = "N0"
-        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn11.FieldName = "qty_remaining"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowFocus = False
-        Me.GridColumn11.OptionsColumn.ReadOnly = True
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 7
+        Me.GridColumnQtyRemaining.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtyRemaining.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyRemaining.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtyRemaining.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyRemaining.Caption = "Qty Remaining"
+        Me.GridColumnQtyRemaining.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyRemaining.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyRemaining.FieldName = "qty_remaining"
+        Me.GridColumnQtyRemaining.Name = "GridColumnQtyRemaining"
+        Me.GridColumnQtyRemaining.OptionsColumn.AllowFocus = False
+        Me.GridColumnQtyRemaining.OptionsColumn.ReadOnly = True
+        Me.GridColumnQtyRemaining.Visible = True
+        Me.GridColumnQtyRemaining.VisibleIndex = 7
         '
         'FormSNIIn
         '
@@ -868,7 +868,7 @@ Partial Class FormSNIIn
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyOut As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents GroupControlListBarcode As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCBarcode As DevExpress.XtraGrid.GridControl
@@ -886,5 +886,5 @@ Partial Class FormSNIIn
     Friend WithEvents TESNIOutNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyRemaining As DevExpress.XtraGrid.Columns.GridColumn
 End Class
