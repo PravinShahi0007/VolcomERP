@@ -10174,6 +10174,33 @@ WHERE qco.id_qc_sni_out='" & id_report & "'"
                 FormSNIQC.load_list()
             Catch ex As Exception
             End Try
+        ElseIf report_mark_type = "331" Then
+            'SNI QC Out
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                query = "INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
+SELECT recd.id_prod_order_rec AS id_prod_order_rec,qco.`id_prod_order_det`,qco.id_product,qco.`qty`,NOW(),qc.`created_by`,qc.id_qc_sni_in,'331' AS `report_mark_type`,'QC SNI In' AS `note` 
+FROM `tb_qc_sni_in_det` qci
+INNER JOIN `tb_qc_sni_out_det` qco ON qco.id_qc_sni_out_det=qci.id_qc_sni_out_det
+INNER JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec_det=qco.id_prod_order_rec_det
+INNER JOIN tb_qc_sni_in qc ON qc.id_qc_sni_in=qci.id_qc_sni_in
+WHERE qci.id_qc_sni_in='" & id_report & "'"
+                execute_non_query(query, True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_qc_sni_in SET id_report_status='{0}' WHERE id_qc_sni_in ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            Try
+                FormSNIIn.load_head()
+                FormSNIQC.load_list()
+            Catch ex As Exception
+            End Try
         End If
 
         'adding lead time

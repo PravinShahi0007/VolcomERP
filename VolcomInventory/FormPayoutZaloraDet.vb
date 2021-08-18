@@ -59,6 +59,7 @@ FROM tb_payout_zalora_cat c"
     Sub allow_status()
         If is_confirm = "2" And is_view = "-1" Then
             BtnRefreshZaloraPayout.Visible = True
+            BtnRefreshFailedOrder.Visible = True
             MENote.Properties.ReadOnly = False
             BtnSaveChanges.Visible = True
             BtnConfirm.Visible = True
@@ -73,6 +74,7 @@ FROM tb_payout_zalora_cat c"
             GCSummary.ContextMenuStrip = CMSComparison
         Else
             BtnRefreshZaloraPayout.Visible = False
+            BtnRefreshFailedOrder.Visible = False
             MENote.Properties.ReadOnly = True
             BtnSaveChanges.Visible = False
             BtnConfirm.Visible = False
@@ -180,6 +182,7 @@ FROM tb_payout_zalora_cat c"
         'update komisi
         execute_non_query("UPDATE tb_payout_zalora SET comm=0, comm_tax=0 WHERE id_payout_zalora='" + id + "' ", True, "", "", "", "")
 
+        'update detail data
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
@@ -193,6 +196,16 @@ FROM tb_payout_zalora_cat c"
             FormMain.SplashScreenManager1.SetWaitFormDescription("Checking " + dtyp.Rows(i)("transaction_type").ToString)
             validate_payout_by_type(typ, is_update_all)
         Next
+
+        'get fail order
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Checking failed order")
+        insertFailOrder()
+
+
+        '
         FormMain.SplashScreenManager1.CloseWaitForm()
         viewDetailAll()
 
@@ -515,6 +528,34 @@ LEFT JOIN (
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewFailedOrder()
+        Cursor = Cursors.WaitCursor
+        '---- SUMMARY
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading Failed Order")
+        Dim query As String = "SELECT f.id_payout_zalora_close_fail,f.id_sales_order_det, sod.item_id, sod.ol_store_id, so.sales_order_ol_shop_number AS `order_number`, 
+        so.sales_order_ol_shop_date AS `order_date`, so.customer_name,
+        f.id_sales_pos_det, sp.sales_pos_number, sp.sales_pos_date, f.report_mark_type, f.amount, f.id_sales_return_det, r.sales_return_number, r.sales_return_date
+        FROM tb_payout_zalora_close_fail f
+        INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = f.id_sales_pos_det 
+        INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = f.id_sales_order_det
+        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+        INNER JOIN tb_sales_return_det rd ON rd.id_sales_return_det = f.id_sales_return_det
+        INNER JOIN tb_sales_return r ON r.id_sales_return = rd.id_sales_return
+        WHERE f.id_payout_zalora=" + id + "
+        ORDER BY so.sales_order_ol_shop_date ASC,sod.item_id ASC, sp.id_sales_pos ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCFailOrder.DataSource = data
+        GCFailOrder.RefreshDataSource()
+        GVFailOrder.RefreshData()
+        GVFailOrder.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
 
     Sub viewDetailRecon(ByVal id_cat As String)
         Cursor = Cursors.WaitCursor
@@ -656,6 +697,8 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             End If
         ElseIf XTCData.SelectedTabPageIndex = 1 Then
             PanelControlDetail.Visible = True
+        ElseIf XTCData.SelectedTabPageIndex = 2 Then
+            viewFailedOrder()
         End If
     End Sub
 
@@ -987,5 +1030,105 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             FormPayoutZaloraReconSummary.ShowDialog()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Function tableFromFailOpenOrder()
+        Dim query As String = "FROM tb_pl_sales_order_del_det dd
+        INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+        INNER JOIN (
+	        SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
+	        FROM tb_sales_order_det_status stt
+	        INNER JOIN (
+	           SELECT stt.id_sales_order_det, MAX(stt.status_date) AS `status_date`
+	           FROM tb_sales_order_det_status stt
+	           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = stt.id_sales_order_det
+	           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	           INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+	           INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	           WHERE so.id_report_status=6 AND c.id_comp_group=64
+	           GROUP BY stt.id_sales_order_det
+	        ) max_stt ON max_stt.id_sales_order_det = stt.id_sales_order_det AND max_stt.status_date = stt.status_date
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = stt.id_sales_order_det
+	        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        WHERE so.id_report_status=6 AND c.id_comp_group=64
+	        GROUP BY stt.id_sales_order_det
+        ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+	        SELECT dd.id_sales_order_det, spd.id_sales_pos_det, sp.report_mark_type, (spd.design_price - sod.discount) AS `amount`, sp.id_acc_ar
+	        FROM tb_sales_pos sp 
+	        INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = spd.id_pl_sales_order_del_det
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = sp.id_store_contact_from
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        INNER JOIN tb_lookup_memo_type mt ON mt.id_memo_type = sp.id_memo_type
+	        WHERE sp.id_report_status=6 AND c.id_comp_group=64 AND mt.is_receive_payment=1 AND sp.is_close_rec_payment=2
+	        GROUP BY dd.id_sales_order_det
+        ) sal ON sal.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+	        SELECT dd.id_sales_order_det, spd.id_sales_pos_det, sp.report_mark_type, ((spd.design_price*-1) - (sod.discount*-1)) AS `amount`, sp.id_acc_ar
+	        FROM tb_sales_pos sp 
+	        INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+	        INNER JOIN tb_sales_pos_det spr ON spr.id_sales_pos_det = spd.id_sales_pos_det_ref
+	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = spr.id_pl_sales_order_del_det
+	        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = sp.id_store_contact_from
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        INNER JOIN tb_lookup_memo_type mt ON mt.id_memo_type = sp.id_memo_type
+	        WHERE sp.id_report_status=6 AND c.id_comp_group=64 AND mt.is_receive_payment=2 AND sp.is_close_rec_payment=2
+	        GROUP BY dd.id_sales_order_det
+        ) cn ON cn.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+	        SELECT rord.id_sales_order_det, rtsd.id_sales_return_det
+	        FROM tb_sales_return rts
+	        INNER JOIN tb_sales_return_det rtsd ON rtsd.id_sales_return = rts.id_sales_return
+	        INNER JOIN tb_sales_return_order_det rord ON rord.id_sales_return_order_det =rtsd.id_sales_return_order_det
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = rts.id_store_contact_from
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        WHERE rts.id_report_status=6 AND c.id_comp_group=64 AND !ISNULL(rord.id_sales_order_det)
+	        GROUP BY rord.id_sales_order_det
+        ) rts ON rts.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+	        SELECT f.id_sales_order_det 
+	        FROM tb_payout_zalora_close_fail f
+	        WHERE f.id_payout_zalora!=" + id + "
+	        GROUP BY f.id_sales_order_det
+        ) f ON f.id_sales_order_det = sod.id_sales_order_det
+        WHERE d.id_report_status=6 AND c.id_comp_group=64 AND stt.`status`='failed' 
+        AND !ISNULL(sal.id_sales_order_det) AND !ISNULL(cn.id_sales_order_det) AND !ISNULL(rts.id_sales_order_det) AND ISNULL(f.id_sales_order_det)
+        GROUP BY sod.id_sales_order_det "
+        Return query
+    End Function
+
+    Sub insertFailOrder()
+        Cursor = Cursors.WaitCursor
+        Dim tbl As String = tableFromFailOpenOrder()
+        Dim query As String = "DELETE FROM tb_payout_zalora_close_fail WHERE id_payout_zalora='" + id + "';
+        INSERT INTO tb_payout_zalora_close_fail(id_payout_zalora, id_sales_order_det, id_sales_pos_det, report_mark_type, amount, id_sales_return_det, id_acc) 
+        SELECT '" + id + "', sod.id_sales_order_det, sal.id_sales_pos_det, sal.report_mark_type,sal.amount, rts.id_sales_return_det, sal.id_acc_ar "
+        query += tbl
+        query += "UNION ALL
+        SELECT '" + id + "', sod.id_sales_order_det, cn.id_sales_pos_det, cn.report_mark_type,cn.amount, rts.id_sales_return_det, cn.id_acc_ar "
+        query += tbl
+        execute_non_query_long(query, True, "", "", "", "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnRefreshFailedOrder_Click(sender As Object, e As EventArgs) Handles BtnRefreshFailedOrder.Click
+        'get fail order
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Checking failed order")
+        insertFailOrder()
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        viewFailedOrder()
+        viewDetailAll()
     End Sub
 End Class

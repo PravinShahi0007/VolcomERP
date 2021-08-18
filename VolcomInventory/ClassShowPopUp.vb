@@ -480,6 +480,9 @@
         ElseIf report_mark_type = "330" Then
             'sni qc out
             FormSNIOut.Close()
+        ElseIf report_mark_type = "331" Then
+            'sni qc in
+            FormSNIIn.Close()
         End If
     End Sub
     Sub show()
@@ -1555,6 +1558,11 @@ GROUP BY rec.`id_prod_order`"
             FormSNIOut.id = id_report
             FormSNIOut.is_view = "1"
             FormSNIOut.ShowDialog()
+        ElseIf report_mark_type = "331" Then
+            'sni qc out
+            FormSNIIn.id = id_report
+            FormSNIIn.is_view = "1"
+            FormSNIIn.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2776,10 +2784,10 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_ar_eval_note"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "330" Then
+        ElseIf report_mark_type = "331" Then
             'sni qc out
-            table_name = "tb_qc_sni_out"
-            field_id = "id_qc_sni_out"
+            table_name = "tb_qc_sni_in"
+            field_id = "id_qc_sni_in"
             field_number = "number"
             field_date = "created_date"
         Else

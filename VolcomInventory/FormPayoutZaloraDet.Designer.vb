@@ -143,6 +143,25 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnid_payout_zalora_cat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_sales_pos_cn_det = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_cn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.XTPFailedOrder = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCFailOrder = New DevExpress.XtraGrid.GridControl()
+        Me.GVFailOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_payout_zalora_close_fail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_sales_order_det = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnitem_id = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnol_store_id = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_sales_pos_det = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_pos_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_pos_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_mark_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_sales_return_det = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_return_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_return_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnRefreshFailedOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlDetail = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
@@ -197,6 +216,9 @@ Partial Class FormPayoutZaloraDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkCN, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPFailedOrder.SuspendLayout()
+        CType(Me.GCFailOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVFailOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControlDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -570,7 +592,7 @@ Partial Class FormPayoutZaloraDet
         Me.XTCData.SelectedTabPage = Me.XTPSummary
         Me.XTCData.Size = New System.Drawing.Size(1205, 419)
         Me.XTCData.TabIndex = 2
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail, Me.XTPFailedOrder})
         '
         'XTPSummary
         '
@@ -1328,6 +1350,171 @@ Partial Class FormPayoutZaloraDet
         Me.BandedGridColumnid_cn.FieldName = "id_cn"
         Me.BandedGridColumnid_cn.Name = "BandedGridColumnid_cn"
         '
+        'XTPFailedOrder
+        '
+        Me.XTPFailedOrder.Controls.Add(Me.GCFailOrder)
+        Me.XTPFailedOrder.Controls.Add(Me.BtnRefreshFailedOrder)
+        Me.XTPFailedOrder.Name = "XTPFailedOrder"
+        Me.XTPFailedOrder.Size = New System.Drawing.Size(1199, 391)
+        Me.XTPFailedOrder.Text = "Closing Failed Order"
+        '
+        'GCFailOrder
+        '
+        Me.GCFailOrder.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCFailOrder.Location = New System.Drawing.Point(0, 31)
+        Me.GCFailOrder.MainView = Me.GVFailOrder
+        Me.GCFailOrder.Name = "GCFailOrder"
+        Me.GCFailOrder.Size = New System.Drawing.Size(1199, 360)
+        Me.GCFailOrder.TabIndex = 0
+        Me.GCFailOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFailOrder})
+        '
+        'GVFailOrder
+        '
+        Me.GVFailOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_payout_zalora_close_fail, Me.GridColumnid_sales_order_det, Me.GridColumnitem_id, Me.GridColumnol_store_id, Me.GridColumnorder_number, Me.GridColumnorder_date, Me.GridColumncustomer_name, Me.GridColumnid_sales_pos_det, Me.GridColumnsales_pos_number, Me.GridColumnsales_pos_date, Me.GridColumnreport_mark_type, Me.GridColumnamount, Me.GridColumnid_sales_return_det, Me.GridColumnsales_return_number, Me.GridColumnsales_return_date})
+        Me.GVFailOrder.GridControl = Me.GCFailOrder
+        Me.GVFailOrder.Name = "GVFailOrder"
+        Me.GVFailOrder.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVFailOrder.OptionsBehavior.ReadOnly = True
+        Me.GVFailOrder.OptionsFind.AlwaysVisible = True
+        Me.GVFailOrder.OptionsView.AllowCellMerge = True
+        Me.GVFailOrder.OptionsView.ColumnAutoWidth = False
+        Me.GVFailOrder.OptionsView.ShowFooter = True
+        Me.GVFailOrder.OptionsView.ShowGroupedColumns = True
+        Me.GVFailOrder.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_payout_zalora_close_fail
+        '
+        Me.GridColumnid_payout_zalora_close_fail.Caption = "id_payout_zalora_close_fail"
+        Me.GridColumnid_payout_zalora_close_fail.FieldName = "id_payout_zalora_close_fail"
+        Me.GridColumnid_payout_zalora_close_fail.Name = "GridColumnid_payout_zalora_close_fail"
+        '
+        'GridColumnid_sales_order_det
+        '
+        Me.GridColumnid_sales_order_det.Caption = "id_sales_order_det"
+        Me.GridColumnid_sales_order_det.FieldName = "id_sales_order_det"
+        Me.GridColumnid_sales_order_det.Name = "GridColumnid_sales_order_det"
+        '
+        'GridColumnitem_id
+        '
+        Me.GridColumnitem_id.Caption = "Item Id"
+        Me.GridColumnitem_id.FieldName = "item_id"
+        Me.GridColumnitem_id.Name = "GridColumnitem_id"
+        Me.GridColumnitem_id.Visible = True
+        Me.GridColumnitem_id.VisibleIndex = 0
+        '
+        'GridColumnol_store_id
+        '
+        Me.GridColumnol_store_id.Caption = "Ol. Store Id"
+        Me.GridColumnol_store_id.FieldName = "ol_store_id"
+        Me.GridColumnol_store_id.Name = "GridColumnol_store_id"
+        Me.GridColumnol_store_id.Visible = True
+        Me.GridColumnol_store_id.VisibleIndex = 1
+        '
+        'GridColumnorder_number
+        '
+        Me.GridColumnorder_number.Caption = "Order No."
+        Me.GridColumnorder_number.FieldName = "order_number"
+        Me.GridColumnorder_number.Name = "GridColumnorder_number"
+        Me.GridColumnorder_number.Visible = True
+        Me.GridColumnorder_number.VisibleIndex = 2
+        '
+        'GridColumnorder_date
+        '
+        Me.GridColumnorder_date.Caption = "Order Date"
+        Me.GridColumnorder_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnorder_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnorder_date.FieldName = "order_date"
+        Me.GridColumnorder_date.Name = "GridColumnorder_date"
+        Me.GridColumnorder_date.Visible = True
+        Me.GridColumnorder_date.VisibleIndex = 3
+        '
+        'GridColumncustomer_name
+        '
+        Me.GridColumncustomer_name.Caption = "Customer"
+        Me.GridColumncustomer_name.FieldName = "customer_name"
+        Me.GridColumncustomer_name.Name = "GridColumncustomer_name"
+        Me.GridColumncustomer_name.Visible = True
+        Me.GridColumncustomer_name.VisibleIndex = 4
+        '
+        'GridColumnid_sales_pos_det
+        '
+        Me.GridColumnid_sales_pos_det.Caption = "id_sales_pos_det"
+        Me.GridColumnid_sales_pos_det.FieldName = "id_sales_pos_det"
+        Me.GridColumnid_sales_pos_det.Name = "GridColumnid_sales_pos_det"
+        '
+        'GridColumnsales_pos_number
+        '
+        Me.GridColumnsales_pos_number.Caption = "Sales No."
+        Me.GridColumnsales_pos_number.FieldName = "sales_pos_number"
+        Me.GridColumnsales_pos_number.Name = "GridColumnsales_pos_number"
+        Me.GridColumnsales_pos_number.Visible = True
+        Me.GridColumnsales_pos_number.VisibleIndex = 5
+        '
+        'GridColumnsales_pos_date
+        '
+        Me.GridColumnsales_pos_date.Caption = "Created Sales Date"
+        Me.GridColumnsales_pos_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_pos_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnsales_pos_date.FieldName = "sales_pos_date"
+        Me.GridColumnsales_pos_date.Name = "GridColumnsales_pos_date"
+        Me.GridColumnsales_pos_date.Visible = True
+        Me.GridColumnsales_pos_date.VisibleIndex = 6
+        '
+        'GridColumnreport_mark_type
+        '
+        Me.GridColumnreport_mark_type.Caption = "report_mark_type"
+        Me.GridColumnreport_mark_type.FieldName = "report_mark_type"
+        Me.GridColumnreport_mark_type.Name = "GridColumnreport_mark_type"
+        '
+        'GridColumnamount
+        '
+        Me.GridColumnamount.Caption = "Amount"
+        Me.GridColumnamount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount.FieldName = "amount"
+        Me.GridColumnamount.Name = "GridColumnamount"
+        Me.GridColumnamount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
+        Me.GridColumnamount.Visible = True
+        Me.GridColumnamount.VisibleIndex = 7
+        '
+        'GridColumnid_sales_return_det
+        '
+        Me.GridColumnid_sales_return_det.Caption = "id_sales_return_det"
+        Me.GridColumnid_sales_return_det.FieldName = "id_sales_return_det"
+        Me.GridColumnid_sales_return_det.Name = "GridColumnid_sales_return_det"
+        '
+        'GridColumnsales_return_number
+        '
+        Me.GridColumnsales_return_number.Caption = "Return No."
+        Me.GridColumnsales_return_number.FieldName = "sales_return_number"
+        Me.GridColumnsales_return_number.Name = "GridColumnsales_return_number"
+        Me.GridColumnsales_return_number.Visible = True
+        Me.GridColumnsales_return_number.VisibleIndex = 8
+        '
+        'GridColumnsales_return_date
+        '
+        Me.GridColumnsales_return_date.Caption = "Create Return Date"
+        Me.GridColumnsales_return_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_return_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_return_date.FieldName = "sales_return_date"
+        Me.GridColumnsales_return_date.Name = "GridColumnsales_return_date"
+        Me.GridColumnsales_return_date.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnsales_return_date.Visible = True
+        Me.GridColumnsales_return_date.VisibleIndex = 9
+        '
+        'BtnRefreshFailedOrder
+        '
+        Me.BtnRefreshFailedOrder.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnRefreshFailedOrder.Image = CType(resources.GetObject("BtnRefreshFailedOrder.Image"), System.Drawing.Image)
+        Me.BtnRefreshFailedOrder.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnRefreshFailedOrder.Location = New System.Drawing.Point(0, 0)
+        Me.BtnRefreshFailedOrder.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BtnRefreshFailedOrder.Name = "BtnRefreshFailedOrder"
+        Me.BtnRefreshFailedOrder.Size = New System.Drawing.Size(1199, 31)
+        Me.BtnRefreshFailedOrder.TabIndex = 6
+        Me.BtnRefreshFailedOrder.Text = "Refresh Failed Order"
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.PanelControlDetail)
@@ -1484,6 +1671,9 @@ Partial Class FormPayoutZaloraDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkCN, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPFailedOrder.ResumeLayout(False)
+        CType(Me.GCFailOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVFailOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControlDetail, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1626,4 +1816,23 @@ Partial Class FormPayoutZaloraDet
     Friend WithEvents GridColumncol_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMSComparison As ContextMenuStrip
     Friend WithEvents ManualReconcileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents XTPFailedOrder As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCFailOrder As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVFailOrder As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BtnRefreshFailedOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_payout_zalora_close_fail As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_sales_order_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnitem_id As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnol_store_id As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnorder_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnorder_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncustomer_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_sales_pos_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_pos_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_pos_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_mark_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_sales_return_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_return_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_return_date As DevExpress.XtraGrid.Columns.GridColumn
 End Class
