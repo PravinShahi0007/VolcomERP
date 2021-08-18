@@ -39,6 +39,7 @@ Partial Public Class ReportSNIOut
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XRBarcode = New DevExpress.XtraReports.UI.XRBarCode()
         Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
         Me.LCreatedDate = New DevExpress.XtraReports.UI.XRLabel()
@@ -56,11 +57,10 @@ Partial Public Class ReportSNIOut
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrPanel2 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.PNote = New DevExpress.XtraReports.UI.XRPanel()
         Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XRBarcode = New DevExpress.XtraReports.UI.XRBarCode()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -239,6 +239,20 @@ Partial Public Class ReportSNIOut
         Me.PageHeader.HeightF = 116.4584!
         Me.PageHeader.Name = "PageHeader"
         '
+        'XRBarcode
+        '
+        Me.XRBarcode.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XRBarcode.LocationFloat = New DevExpress.Utils.PointFloat(479.75!, 0!)
+        Me.XRBarcode.Name = "XRBarcode"
+        Me.XRBarcode.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
+        Me.XRBarcode.ShowText = False
+        Me.XRBarcode.SizeF = New System.Drawing.SizeF(296.2501!, 25.0!)
+        Me.XRBarcode.StylePriority.UseBorders = False
+        Me.XRBarcode.StylePriority.UseTextAlignment = False
+        Me.XRBarcode.Symbology = Code128Generator1
+        Me.XRBarcode.Text = "1231225"
+        Me.XRBarcode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'LTitle
         '
         Me.LTitle.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -409,7 +423,7 @@ Partial Public Class ReportSNIOut
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XrPanel2})
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.PNote})
         Me.ReportFooter.HeightF = 72.29169!
         Me.ReportFooter.Name = "ReportFooter"
         '
@@ -437,18 +451,18 @@ Partial Public Class ReportSNIOut
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
-        'XrPanel2
+        'PNote
         '
-        Me.XrPanel2.BorderColor = System.Drawing.Color.Black
-        Me.XrPanel2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+        Me.PNote.BorderColor = System.Drawing.Color.Black
+        Me.PNote.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrPanel2.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LNote, Me.XrLabel9, Me.XrLabel14})
-        Me.XrPanel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrPanel2.Name = "XrPanel2"
-        Me.XrPanel2.SizeF = New System.Drawing.SizeF(785.9999!, 47.29169!)
-        Me.XrPanel2.StylePriority.UseBorderColor = False
-        Me.XrPanel2.StylePriority.UseBorders = False
+        Me.PNote.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LNote, Me.XrLabel9, Me.XrLabel14})
+        Me.PNote.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.PNote.Name = "PNote"
+        Me.PNote.SizeF = New System.Drawing.SizeF(785.9999!, 47.29169!)
+        Me.PNote.StylePriority.UseBorderColor = False
+        Me.PNote.StylePriority.UseBorders = False
         '
         'LNote
         '
@@ -482,20 +496,6 @@ Partial Public Class ReportSNIOut
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(11.45833!, 13.58335!)
         Me.XrLabel14.StylePriority.UseBorders = False
         Me.XrLabel14.Text = ":"
-        '
-        'XRBarcode
-        '
-        Me.XRBarcode.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XRBarcode.LocationFloat = New DevExpress.Utils.PointFloat(479.75!, 0!)
-        Me.XRBarcode.Name = "XRBarcode"
-        Me.XRBarcode.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
-        Me.XRBarcode.ShowText = False
-        Me.XRBarcode.SizeF = New System.Drawing.SizeF(296.2501!, 25.0!)
-        Me.XRBarcode.StylePriority.UseBorders = False
-        Me.XRBarcode.StylePriority.UseTextAlignment = False
-        Me.XRBarcode.Symbology = Code128Generator1
-        Me.XRBarcode.Text = "1231225"
-        Me.XRBarcode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportSNIOut
         '
@@ -544,7 +544,7 @@ Partial Public Class ReportSNIOut
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents XrPanel2 As DevExpress.XtraReports.UI.XRPanel
+    Friend WithEvents PNote As DevExpress.XtraReports.UI.XRPanel
     Friend WithEvents LNote As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel

@@ -395,6 +395,7 @@ SELECT 'no' AS is_check,t.sorting,t.tax_report,36 AS report_mark_type,tr.id_acc_
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans` AND tr.id_report_status=6
 INNER JOIN tb_a_acc a ON a.id_acc=atx.id_acc AND a.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=a.id_acc
 INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
 WHERE ISNULL(tr.`date_tax_report`) AND DATE(tr.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL
@@ -977,6 +978,7 @@ SELECT 'no' AS is_check,t.sorting,t.tax_report,36 AS report_mark_type,tr.id_acc_
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans` AND tr.id_report_status=6
 INNER JOIN tb_a_acc a ON a.id_acc=atx.id_acc AND a.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=a.id_acc
 INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
 WHERE DATE(tr.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_tax_report`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL

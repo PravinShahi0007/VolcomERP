@@ -3279,18 +3279,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     End If
                 ElseIf FormSNIWH.XTCInOut.SelectedTabPageIndex = 2 Then
                     'del new
-                    If FormSNIWH.GVSNIWaitRec.RowCount > 0 Then
-                        FormSNIOut.id = FormSNIWH.GVSNIWaitRec.GetFocusedRowCellValue("id_qc_sni_out").ToString
+                    If FormSNIWH.GVWaitDel.RowCount > 0 Then
+                        FormSNIOut.id = FormSNIWH.GVWaitDel.GetFocusedRowCellValue("id_qc_sni_out").ToString
                         FormSNIOut.is_new = True
                         FormSNIOut.is_del_wh = True
                         FormSNIOut.ShowDialog()
                     End If
                 ElseIf FormSNIWH.XTCInOut.SelectedTabPageIndex = 3 Then
                     'del list
-                    If FormSNIWH.GVSNIWaitRec.RowCount > 0 Then
-                        FormSNIOut.id = FormSNIWH.GVSNIWaitRec.GetFocusedRowCellValue("id_qc_sni_out").ToString
-                        FormSNIOut.is_new = True
-                        FormSNIOut.is_del_wh = False
+                    If FormSNIWH.GVDelList.RowCount > 0 Then
+                        FormSNIOut.id = FormSNIWH.GVDelList.GetFocusedRowCellValue("id_qc_sni_out").ToString
+                        FormSNIOut.is_new = False
+                        FormSNIOut.is_del_wh = True
                         FormSNIOut.ShowDialog()
                     End If
                 End If

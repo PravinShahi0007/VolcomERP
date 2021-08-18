@@ -640,16 +640,19 @@ WHERE qco.id_qc_sni_out='" & id & "'"
         If is_rec_wh Then
             Report.rmt = "332"
             Report.LTitle.Text = "Receiving SNI in WH"
-            Report.LNote.Visible = False
+            Report.PNote.Visible = False
+            Report.XRBarcode.Visible = False
         ElseIf is_del_wh Then
             Report.rmt = "333"
             Report.LTitle.Text = "Delivery SNI From WH"
-            Report.LNote.Visible = False
+            Report.PNote.Visible = False
+            Report.XRBarcode.Visible = False
         Else
             Report.rmt = "330"
-            Report.LNote.Visible = True
+            Report.PNote.Visible = True
             Report.LNote.Text = MENote.Text
             Report.XrTable1.Visible = True
+            Report.XRBarcode.Visible = True
         End If
         '
         'Show the report's preview. 
