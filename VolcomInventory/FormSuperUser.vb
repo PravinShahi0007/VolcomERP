@@ -112,6 +112,8 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        FormStoreStatus.id_comp_cat = "6"
+        FormStoreStatus.ShowDialog()
         'closing soh sal period
         'For i = 6 To 12
         'execute_non_query_long_time("CALL view_closing_stock_sal_period('2020', '" + i.ToString + "')", True, "", "", "", "")
