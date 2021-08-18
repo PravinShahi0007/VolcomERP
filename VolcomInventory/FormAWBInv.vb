@@ -581,14 +581,14 @@ GROUP BY d.`id_inbound_awb`"
 
             Dim query = From table1 In tb1
                         Group Join table_tmp In tb2
-                            On table1("AWB").ToString.ToLower Equals table_tmp("awbill_no").ToString.ToLower Into awb = Group
+                            On table1("AWB").ToString.Replace("'", "").ToLower Equals table_tmp("awbill_no").ToString.ToLower Into awb = Group
                         From result_awb In awb.DefaultIfEmpty()
                         Select New With
                             {
                                 .id_del_manifest = If(result_awb Is Nothing, "", result_awb("id_del_manifest")),
                                 .inv_number = If(table1("Nomor Invoice").ToString = "", "", table1("Nomor Invoice")),
                                 .id_inbound_awb = If(result_awb Is Nothing, "", result_awb("id_inbound_awb")),
-                                .awbill_no = If(result_awb Is Nothing, table1("AWB"), result_awb("awbill_no")),
+                                .awbill_no = If(result_awb Is Nothing, table1("AWB").ToString.Replace("'", ""), result_awb("awbill_no").ToString),
                                 .sub_district = If(result_awb Is Nothing, "", result_awb("sub_district")),
                                 .comp_name = If(result_awb Is Nothing, "", result_awb("comp_name")),
                                 .comp_number = If(result_awb Is Nothing, "", result_awb("comp_number")),

@@ -41,7 +41,7 @@ Partial Class FormSNIOut
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.LNote = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -80,6 +80,8 @@ Partial Class FormSNIOut
         Me.PCProduct = New DevExpress.XtraEditors.PanelControl()
         Me.BDeleteProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddProduct = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnRecWH = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDelWH = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -202,9 +204,9 @@ Partial Class FormSNIOut
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl3.Location = New System.Drawing.Point(31, 18)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(12, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl3.TabIndex = 8909
-        Me.LabelControl3.Text = "To"
+        Me.LabelControl3.Text = "SNI Vendor"
         '
         'PanelHeaderLeft
         '
@@ -287,7 +289,7 @@ Partial Class FormSNIOut
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl3.Controls.Add(Me.PanelBottomRight)
         Me.GroupControl3.Controls.Add(Me.MENote)
-        Me.GroupControl3.Controls.Add(Me.LabelControl18)
+        Me.GroupControl3.Controls.Add(Me.LNote)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl3.Location = New System.Drawing.Point(0, 460)
         Me.GroupControl3.Name = "GroupControl3"
@@ -339,13 +341,13 @@ Partial Class FormSNIOut
         Me.MENote.Size = New System.Drawing.Size(355, 59)
         Me.MENote.TabIndex = 6
         '
-        'LabelControl18
+        'LNote
         '
-        Me.LabelControl18.Location = New System.Drawing.Point(25, 11)
-        Me.LabelControl18.Name = "LabelControl18"
-        Me.LabelControl18.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl18.TabIndex = 138
-        Me.LabelControl18.Text = "Note"
+        Me.LNote.Location = New System.Drawing.Point(25, 11)
+        Me.LNote.Name = "LNote"
+        Me.LNote.Size = New System.Drawing.Size(23, 13)
+        Me.LNote.TabIndex = 138
+        Me.LNote.Text = "Note"
         '
         'PanelControl3
         '
@@ -367,7 +369,7 @@ Partial Class FormSNIOut
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(604, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(588, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(101, 36)
         Me.BtnAttachment.TabIndex = 13
@@ -378,7 +380,7 @@ Partial Class FormSNIOut
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(705, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(689, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 36)
         Me.BtnPrint.TabIndex = 12
@@ -400,7 +402,7 @@ Partial Class FormSNIOut
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(780, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(764, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 36)
         Me.BtnCancel.TabIndex = 11
@@ -411,9 +413,9 @@ Partial Class FormSNIOut
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(855, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(839, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(75, 36)
+        Me.BtnSave.Size = New System.Drawing.Size(91, 36)
         Me.BtnSave.TabIndex = 10
         Me.BtnSave.Text = "Save"
         '
@@ -456,7 +458,7 @@ Partial Class FormSNIOut
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn9, Me.GridColumn4, Me.GridColumnNox, Me.GridColumn3, Me.GridColumnRec, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn9, Me.GridColumn4, Me.GridColumnNox, Me.GridColumn3, Me.GridColumnRec, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnRecWH, Me.GridColumnDelWH})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -499,7 +501,7 @@ Partial Class FormSNIOut
         Me.GridColumnNox.OptionsColumn.ReadOnly = True
         Me.GridColumnNox.Visible = True
         Me.GridColumnNox.VisibleIndex = 0
-        Me.GridColumnNox.Width = 51
+        Me.GridColumnNox.Width = 44
         '
         'GridColumn3
         '
@@ -508,7 +510,7 @@ Partial Class FormSNIOut
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 107
+        Me.GridColumn3.Width = 93
         '
         'GridColumnRec
         '
@@ -517,7 +519,7 @@ Partial Class FormSNIOut
         Me.GridColumnRec.Name = "GridColumnRec"
         Me.GridColumnRec.Visible = True
         Me.GridColumnRec.VisibleIndex = 1
-        Me.GridColumnRec.Width = 107
+        Me.GridColumnRec.Width = 93
         '
         'GridColumnCode
         '
@@ -527,7 +529,7 @@ Partial Class FormSNIOut
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 3
-        Me.GridColumnCode.Width = 111
+        Me.GridColumnCode.Width = 97
         '
         'GridColumnName
         '
@@ -537,7 +539,7 @@ Partial Class FormSNIOut
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 4
-        Me.GridColumnName.Width = 298
+        Me.GridColumnName.Width = 261
         '
         'GridColumnSize
         '
@@ -551,7 +553,7 @@ Partial Class FormSNIOut
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 5
-        Me.GridColumnSize.Width = 79
+        Me.GridColumnSize.Width = 69
         '
         'GridColumnQty
         '
@@ -570,7 +572,7 @@ Partial Class FormSNIOut
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 6
-        Me.GridColumnQty.Width = 117
+        Me.GridColumnQty.Width = 92
         '
         'RepositoryItemSpinEdit1
         '
@@ -751,6 +753,38 @@ Partial Class FormSNIOut
         Me.BAddProduct.TabIndex = 9
         Me.BAddProduct.Text = "Add Product"
         '
+        'GridColumnRecWH
+        '
+        Me.GridColumnRecWH.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnRecWH.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnRecWH.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnRecWH.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnRecWH.Caption = "Qty Rec WH"
+        Me.GridColumnRecWH.DisplayFormat.FormatString = "N0"
+        Me.GridColumnRecWH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnRecWH.FieldName = "qty_rec_wh"
+        Me.GridColumnRecWH.Name = "GridColumnRecWH"
+        Me.GridColumnRecWH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec_wh", "{0:N0}")})
+        Me.GridColumnRecWH.Visible = True
+        Me.GridColumnRecWH.VisibleIndex = 8
+        Me.GridColumnRecWH.Width = 69
+        '
+        'GridColumnDelWH
+        '
+        Me.GridColumnDelWH.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnDelWH.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnDelWH.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnDelWH.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnDelWH.Caption = "Qty Del WH"
+        Me.GridColumnDelWH.DisplayFormat.FormatString = "N0"
+        Me.GridColumnDelWH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDelWH.FieldName = "qty_del_wh"
+        Me.GridColumnDelWH.Name = "GridColumnDelWH"
+        Me.GridColumnDelWH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_del_wh", "{0:N0}")})
+        Me.GridColumnDelWH.Visible = True
+        Me.GridColumnDelWH.VisibleIndex = 7
+        Me.GridColumnDelWH.Width = 76
+        '
         'FormSNIOut
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -825,7 +859,7 @@ Partial Class FormSNIOut
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LNote As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
@@ -870,4 +904,6 @@ Partial Class FormSNIOut
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DEProposeDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRecWH As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDelWH As DevExpress.XtraGrid.Columns.GridColumn
 End Class
