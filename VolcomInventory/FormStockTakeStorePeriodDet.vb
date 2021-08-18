@@ -36,6 +36,12 @@
             Exit Sub
         End If
 
+        If GVExternalUser.RowCount = 0 Then
+            stopCustom("Please generate user.")
+
+            Exit Sub
+        End If
+
         FormMain.SplashScreenManager1.ShowWaitForm()
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Save data...")
