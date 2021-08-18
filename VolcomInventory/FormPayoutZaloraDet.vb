@@ -50,7 +50,6 @@ FROM tb_payout_zalora_cat c"
         If is_load_all Then
             viewSummary()
             viewERPPayout()
-            viewFailedOrder()
             SLECat.EditValue = "0"
         End If
         allow_status()
@@ -465,7 +464,6 @@ WHERE d.id_payout_zalora='" + id + "' AND !ISNULL(d.id_sales_pos_det) AND (od.fa
         SLECat.EditValue = "0"
         viewSummary()
         viewERPPayout()
-        viewFailedOrder()
     End Sub
 
     Sub viewSummary()
@@ -699,6 +697,8 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
             End If
         ElseIf XTCData.SelectedTabPageIndex = 1 Then
             PanelControlDetail.Visible = True
+        ElseIf XTCData.SelectedTabPageIndex = 2 Then
+            viewFailedOrder()
         End If
     End Sub
 
@@ -1060,7 +1060,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
 	        GROUP BY stt.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
-	        SELECT dd.id_sales_order_det, spd.id_sales_pos_det, sp.report_mark_type, (spd.design_price - sod.discount) AS `amount`
+	        SELECT dd.id_sales_order_det, spd.id_sales_pos_det, sp.report_mark_type, (spd.design_price - sod.discount) AS `amount`, sp.id_acc_ar
 	        FROM tb_sales_pos sp 
 	        INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
 	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = spd.id_pl_sales_order_del_det
@@ -1072,7 +1072,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
 	        GROUP BY dd.id_sales_order_det
         ) sal ON sal.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
-	        SELECT dd.id_sales_order_det, spd.id_sales_pos_det, sp.report_mark_type, ((spd.design_price*-1) - (sod.discount*-1)) AS `amount`
+	        SELECT dd.id_sales_order_det, spd.id_sales_pos_det, sp.report_mark_type, ((spd.design_price*-1) - (sod.discount*-1)) AS `amount`, sp.id_acc_ar
 	        FROM tb_sales_pos sp 
 	        INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
 	        INNER JOIN tb_sales_pos_det spr ON spr.id_sales_pos_det = spd.id_sales_pos_det_ref
@@ -1110,11 +1110,11 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
         Cursor = Cursors.WaitCursor
         Dim tbl As String = tableFromFailOpenOrder()
         Dim query As String = "DELETE FROM tb_payout_zalora_close_fail WHERE id_payout_zalora='" + id + "';
-        INSERT INTO tb_payout_zalora_close_fail(id_payout_zalora, id_sales_order_det, id_sales_pos_det, report_mark_type, amount, id_sales_return_det) 
-        SELECT '" + id + "', sod.id_sales_order_det, sal.id_sales_pos_det, sal.report_mark_type,sal.amount, rts.id_sales_return_det "
+        INSERT INTO tb_payout_zalora_close_fail(id_payout_zalora, id_sales_order_det, id_sales_pos_det, report_mark_type, amount, id_sales_return_det, id_acc) 
+        SELECT '" + id + "', sod.id_sales_order_det, sal.id_sales_pos_det, sal.report_mark_type,sal.amount, rts.id_sales_return_det, sal.id_acc_ar "
         query += tbl
         query += "UNION ALL
-        SELECT '" + id + "', sod.id_sales_order_det, cn.id_sales_pos_det, cn.report_mark_type,cn.amount, rts.id_sales_return_det "
+        SELECT '" + id + "', sod.id_sales_order_det, cn.id_sales_pos_det, cn.report_mark_type,cn.amount, rts.id_sales_return_det, cn.id_acc_ar "
         query += tbl
         execute_non_query_long(query, True, "", "", "", "")
         Cursor = Cursors.Default
@@ -1129,5 +1129,6 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
         insertFailOrder()
         FormMain.SplashScreenManager1.CloseWaitForm()
         viewFailedOrder()
+        viewDetailAll()
     End Sub
 End Class
