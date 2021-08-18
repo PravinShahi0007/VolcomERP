@@ -124,5 +124,20 @@
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
         Dim is_active As String = SLESetStatus.EditValue.ToString
 
+        'cek comp
+        Dim err_comp As String = ""
+        GVData.ActiveFilterString = ""
+        GVData.ActiveFilterString = "[is_active]='" + is_active + "'"
+        For i As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
+            If i > 0 Then
+                err_comp += ","
+            End If
+            err_comp += GVData.GetRowCellValue(i, "comp_number").ToString
+        Next
+        GVData.ActiveFilterString = ""
+
+        If err_comp <> "" Then
+            warningCustom("These accounts already " + SLESetStatus.Text + " :" + System.Environment.NewLine + err_comp)
+        End If
     End Sub
 End Class
