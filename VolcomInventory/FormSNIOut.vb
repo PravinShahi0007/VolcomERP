@@ -33,6 +33,7 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                 PanelNavBarcode.Visible = True
                 BtnPrint.Visible = False
                 BtnSave.Visible = True
+                BMark.Visible = False
 
                 load_det()
                 can_scan()
@@ -63,6 +64,7 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                 SCCQC.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
 
                 PanelNavBarcode.Visible = False
+                BMark.Visible = True
                 BtnPrint.Visible = True
                 BtnSave.Visible = False
             End If
@@ -72,10 +74,67 @@ WHERE qco.id_qc_sni_out='" & id & "'"
             MENote.Visible = False
             LNote.Visible = False
             '
-            BMark.Visible = False
             BtnAttachment.Visible = False
         ElseIf is_del_wh Then
             GridColumnRecWH.Visible = False
+            'del wh
+            GroupControl3.Visible = False
+
+            If is_new Then
+                Dim q As String = "SELECT qco.`id_comp_to`
+FROM tb_qc_sni_out qco
+WHERE qco.id_qc_sni_out='" & id & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    SLEVendor.EditValue = dt.Rows(0)("id_comp_to").ToString
+                    SLEVendor.Properties.ReadOnly = True
+                End If
+
+                PanelNavBarcode.Visible = True
+                BtnPrint.Visible = False
+                BtnSave.Visible = True
+                BMark.Visible = False
+
+                load_det()
+                can_scan()
+            Else
+                GridColumnRecWH.Visible = False
+                GridColumnDelWH.Visible = False
+
+                Dim q As String = "SELECT emp.employee_name,qco.del_wh_number,qco.`del_wh_created_date`,qco.`id_comp_to`,qco.notes,qco.id_report_status
+FROM tb_qc_sni_out qco
+INNER JOIN tb_m_user usr ON qco.del_wh_created_by=usr.id_user
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE qco.id_qc_sni_out='" & id & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    SLEVendor.EditValue = dt.Rows(0)("id_comp_to").ToString
+                    SLEVendor.Properties.ReadOnly = True
+                    '
+                    TxtNumber.Text = dt.Rows(0)("del_wh_number").ToString
+                    DEProposeDate.EditValue = dt.Rows(0)("del_wh_created_date")
+                    TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
+                    '
+                    MENote.Text = dt.Rows(0)("notes").ToString
+                    LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", dt.Rows(0)("id_report_status").ToString)
+                End If
+                load_det()
+
+                GroupControlListBarcode.Visible = False
+                SCCQC.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+
+                PanelNavBarcode.Visible = False
+                BMark.Visible = True
+                BtnPrint.Visible = True
+                BtnSave.Visible = False
+            End If
+
+            PCProduct.Visible = False
+            PanelBottomRight.Visible = False
+            MENote.Visible = False
+            LNote.Visible = False
+            '
+            BtnAttachment.Visible = False
         Else
             GridColumnRecWH.Visible = False
             GridColumnDelWH.Visible = False
@@ -380,10 +439,13 @@ WHERE qco.id_qc_sni_out='" & id & "'"
 
                         'Main tbale
                         Dim query As String = ""
-                        query = "UPDATE tb_qc_sni_out SET `is_rec_wh`=1,`rec_wh_created_by`='" & id_user & "',`rec_wh_created_date`=NOW() WHERE id_qc_sni_out='" & id & "' "
+                        query = "UPDATE tb_qc_sni_out SET `is_scan_rec_wh`=1,`rec_wh_created_by`='" & id_user & "',`rec_wh_created_date`=NOW() WHERE id_qc_sni_out='" & id & "' "
 
                         execute_non_query(query, True, "", "", "", "")
                         execute_non_query("CALL gen_number('" & id & "','332')", True, "", "", "", "")
+
+                        'submit
+                        submit_who_prepared("332", id, id_user)
 
                         FormSNIWH.XTCInOut.SelectedTabPageIndex = 1
                         FormSNIWH.load_list()
@@ -400,7 +462,47 @@ WHERE qco.id_qc_sni_out='" & id & "'"
                 End If
             End If
         ElseIf is_del_wh Then
+            'cek dengan requisition di DB
+            cond_check = True
+            For i As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
+                If Not GVDetail.GetRowCellValue(i, "qty") = GVDetail.GetRowCellValue(i, "qty_del_wh") Then
+                    cond_check = False
+                    Exit For
+                End If
+            Next
+            If Not cond_check Then
+                errorCustom("Qty not match !")
+            Else
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    Try
+                        BtnSave.Enabled = False
 
+                        'Main tbale
+                        Dim query As String = ""
+                        query = "UPDATE tb_qc_sni_out SET `is_scan_del_wh`=1,`del_wh_created_by`='" & id_user & "',`del_wh_created_date`=NOW() WHERE id_qc_sni_out='" & id & "' "
+
+                        execute_non_query(query, True, "", "", "", "")
+                        execute_non_query("CALL gen_number('" & id & "','333')", True, "", "", "", "")
+
+                        'submit
+                        submit_who_prepared("333", id, id_user)
+
+                        FormSNIWH.XTCInOut.SelectedTabPageIndex = 3
+                        FormSNIWH.load_list()
+                        FormSNIWH.GVRecList.FocusedRowHandle = find_row(FormSNIWH.GVRecList, "id_qc_sni_out", id)
+                        infoCustom("Receiving WH SNI out saved")
+                        '
+                        is_new = False
+                        '
+                        load_head()
+                    Catch ex As Exception
+                        stopCustom(ex.ToString)
+                    End Try
+                    Cursor = Cursors.Default
+                End If
+            End If
         Else
             'cek dengan requisition di DB
             For i As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
@@ -488,7 +590,13 @@ WHERE qco.id_qc_sni_out='" & id & "'"
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-        FormReportMark.report_mark_type = "330"
+        If is_rec_wh Then
+            FormReportMark.report_mark_type = "332"
+        ElseIf is_del_wh Then
+            FormReportMark.report_mark_type = "333"
+        Else
+            FormReportMark.report_mark_type = "330"
+        End If
         FormReportMark.is_view = is_view
         FormReportMark.id_report = id
         FormReportMark.ShowDialog()
@@ -527,8 +635,22 @@ WHERE qco.id_qc_sni_out='" & id & "'"
         Report.LCreatedDate.Text = Date.Parse(DEProposeDate.EditValue.ToString).ToString("dd MMMM yyyy")
         Report.LNo.Text = TxtNumber.Text.ToString
         Report.LTo.Text = SLEVendor.Text
-        Report.LNote.Text = MENote.Text
         Report.XRBarcode.Text = TxtNumber.Text.ToString
+        '
+        If is_rec_wh Then
+            Report.rmt = "332"
+            Report.LTitle.Text = "Receiving SNI in WH"
+            Report.LNote.Visible = False
+        ElseIf is_del_wh Then
+            Report.rmt = "333"
+            Report.LTitle.Text = "Delivery SNI From WH"
+            Report.LNote.Visible = False
+        Else
+            Report.rmt = "330"
+            Report.LNote.Visible = True
+            Report.LNote.Text = MENote.Text
+            Report.XrTable1.Visible = True
+        End If
         '
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

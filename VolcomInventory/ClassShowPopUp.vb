@@ -483,6 +483,12 @@
         ElseIf report_mark_type = "331" Then
             'sni qc in
             FormSNIIn.Close()
+        ElseIf report_mark_type = "332" Then
+            'sni rec wh
+            FormSNIOut.Close()
+        ElseIf report_mark_type = "333" Then
+            'sni del wh
+            FormSNIOut.Close()
         End If
     End Sub
     Sub show()
@@ -1563,6 +1569,20 @@ GROUP BY rec.`id_prod_order`"
             FormSNIIn.id = id_report
             FormSNIIn.is_view = "1"
             FormSNIIn.ShowDialog()
+        ElseIf report_mark_type = "332" Then
+            'sni rec wh
+            FormSNIOut.id = id_report
+            FormSNIOut.is_view = "1"
+            FormSNIOut.is_rec_wh = True
+            FormSNIOut.is_new = False
+            FormSNIOut.ShowDialog()
+        ElseIf report_mark_type = "333" Then
+            'sni del wh
+            FormSNIOut.id = id_report
+            FormSNIOut.is_del_wh = True
+            FormSNIOut.is_new = False
+            FormSNIOut.is_view = "1"
+            FormSNIOut.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2784,12 +2804,30 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_ar_eval_note"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "331" Then
+        ElseIf report_mark_type = "330" Then
             'sni qc out
+            table_name = "tb_qc_sni_out"
+            field_id = "id_qc_sni_out"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "331" Then
+            'sni qc in
             table_name = "tb_qc_sni_in"
             field_id = "id_qc_sni_in"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "332" Then
+            'sni wh rec
+            table_name = "tb_qc_sni_out"
+            field_id = "id_qc_sni_out"
+            field_number = "rec_wh_number"
+            field_date = "rec_wh_created_date"
+        ElseIf report_mark_type = "333" Then
+            'sni wh del
+            table_name = "tb_qc_sni_out"
+            field_id = "id_qc_sni_out"
+            field_number = "del_wh_number"
+            field_date = "del_wh_created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

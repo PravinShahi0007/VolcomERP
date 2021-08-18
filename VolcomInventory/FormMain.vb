@@ -3271,8 +3271,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     End If
                 ElseIf FormSNIWH.XTCInOut.SelectedTabPageIndex = 1 Then
                     'rec list
-                    If FormSNIWH.GVSNIWaitRec.RowCount > 0 Then
-                        FormSNIOut.id = FormSNIWH.GVSNIWaitRec.GetFocusedRowCellValue("id_qc_sni_out").ToString
+                    If FormSNIWH.GVRecList.RowCount > 0 Then
+                        FormSNIOut.id = FormSNIWH.GVRecList.GetFocusedRowCellValue("id_qc_sni_out").ToString
                         FormSNIOut.is_new = False
                         FormSNIOut.is_rec_wh = True
                         FormSNIOut.ShowDialog()
