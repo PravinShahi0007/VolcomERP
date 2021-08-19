@@ -41,28 +41,19 @@ Partial Class FormStockTakeStoreVerDet
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.BGVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -71,6 +62,12 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -281,21 +278,11 @@ Partial Class FormStockTakeStoreVerDet
         '
         'BGVData
         '
-        Me.BGVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand7, Me.gridBand4, Me.gridBand5, Me.gridBand6})
-        Me.BGVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23})
+        Me.BGVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6})
+        Me.BGVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21})
         Me.BGVData.GridControl = Me.GCData
         Me.BGVData.Name = "BGVData"
         Me.BGVData.OptionsView.ShowGroupPanel = False
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 300
         '
         'BandedGridColumn1
         '
@@ -331,15 +318,6 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn4.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn4.Visible = True
         '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "Selisih Awal"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn5)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn6)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 150
-        '
         'BandedGridColumn5
         '
         Me.BandedGridColumn5.Caption = "Qty"
@@ -362,15 +340,6 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumn6.Visible = True
         '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "Verifikasi"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn7)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn8)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 150
-        '
         'BandedGridColumn7
         '
         Me.BandedGridColumn7.Caption = "Qty"
@@ -392,42 +361,6 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn8.UnboundExpression = "[qty_ver] * [price]"
         Me.BandedGridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumn8.Visible = True
-        '
-        'gridBand7
-        '
-        Me.gridBand7.Caption = "Adjustment"
-        Me.gridBand7.Columns.Add(Me.BandedGridColumn22)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumn23)
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.VisibleIndex = 3
-        Me.gridBand7.Width = 150
-        '
-        'BandedGridColumn22
-        '
-        Me.BandedGridColumn22.Caption = "Qty"
-        Me.BandedGridColumn22.FieldName = "qty_adj"
-        Me.BandedGridColumn22.Name = "BandedGridColumn22"
-        Me.BandedGridColumn22.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumn22.Visible = True
-        '
-        'BandedGridColumn23
-        '
-        Me.BandedGridColumn23.Caption = "Value"
-        Me.BandedGridColumn23.FieldName = "value_adj"
-        Me.BandedGridColumn23.Name = "BandedGridColumn23"
-        Me.BandedGridColumn23.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumn23.UnboundExpression = "[qty_adj] * [price]"
-        Me.BandedGridColumn23.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-        Me.BandedGridColumn23.Visible = True
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "Selisih Akhir"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn9)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn10)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 4
-        Me.gridBand4.Width = 150
         '
         'BandedGridColumn9
         '
@@ -453,15 +386,6 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumn10.Visible = True
         '
-        'gridBand5
-        '
-        Me.gridBand5.Columns.Add(Me.BandedGridColumn16)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumn11)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumn14)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 5
-        Me.gridBand5.Width = 150
-        '
         'BandedGridColumn16
         '
         Me.BandedGridColumn16.Caption = "Remark"
@@ -483,16 +407,6 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn14.FieldName = "report_number"
         Me.BandedGridColumn14.Name = "BandedGridColumn14"
         Me.BandedGridColumn14.OptionsColumn.AllowEdit = False
-        '
-        'gridBand6
-        '
-        Me.gridBand6.Caption = "SOH"
-        Me.gridBand6.Columns.Add(Me.BandedGridColumn18)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumn19)
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.Visible = False
-        Me.gridBand6.VisibleIndex = -1
-        Me.gridBand6.Width = 150
         '
         'BandedGridColumn18
         '
@@ -549,6 +463,62 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn21.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn21.UnboundExpression = "[qty_scan] * [price]"
         Me.BandedGridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn4)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 300
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Selisih Awal"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn6)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 150
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Verifikasi"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn8)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 150
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Selisih Akhir"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn9)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn10)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 150
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn16)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn11)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn14)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 4
+        Me.gridBand5.Width = 150
+        '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "SOH"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn18)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn19)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.Visible = False
+        Me.gridBand6.VisibleIndex = -1
+        Me.gridBand6.Width = 150
         '
         'FormStockTakeStoreVerDet
         '
@@ -625,9 +595,6 @@ Partial Class FormStockTakeStoreVerDet
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn22 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn23 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
