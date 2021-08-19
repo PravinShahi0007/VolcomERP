@@ -117,6 +117,7 @@
     Sub resetView()
         GCData.DataSource = Nothing
         GVData.ActiveFilterString = ""
+        TxtReason.Text = ""
         PanelControlActivate.Visible = False
     End Sub
 
@@ -218,5 +219,30 @@
                 resetView()
             End If
         End If
+    End Sub
+
+    Private Sub BtnHistory_Click(sender As Object, e As EventArgs) Handles BtnHistory.Click
+        Cursor = Cursors.WaitCursor
+        FormStoreStatusHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportToXLSTrf_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSTrf.Click
+        Cursor = Cursors.WaitCursor
+        Dim save As SaveFileDialog = New SaveFileDialog
+
+        save.Filter = "Excel File | *.xlsx"
+        save.ShowDialog()
+
+        If Not save.FileName = "" Then
+            Dim op As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx
+
+            op.ExportType = DevExpress.Export.ExportType.DataAware
+
+            GVData.ExportToXlsx(save.FileName, op)
+
+            infoCustom("File saved.")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

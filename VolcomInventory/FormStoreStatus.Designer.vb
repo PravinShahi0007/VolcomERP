@@ -21,6 +21,7 @@ Partial Class FormStoreStatus
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStoreStatus))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLSTrf = New DevExpress.XtraEditors.SimpleButton()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusInvoice = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -87,6 +88,7 @@ Partial Class FormStoreStatus
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnHistory)
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLSTrf)
         Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Controls.Add(Me.SLEStatusInvoice)
@@ -99,10 +101,19 @@ Partial Class FormStoreStatus
         Me.PanelControl1.Size = New System.Drawing.Size(806, 49)
         Me.PanelControl1.TabIndex = 0
         '
+        'BtnHistory
+        '
+        Me.BtnHistory.Image = CType(resources.GetObject("BtnHistory.Image"), System.Drawing.Image)
+        Me.BtnHistory.Location = New System.Drawing.Point(487, 14)
+        Me.BtnHistory.Name = "BtnHistory"
+        Me.BtnHistory.Size = New System.Drawing.Size(70, 20)
+        Me.BtnHistory.TabIndex = 8929
+        Me.BtnHistory.Text = "History"
+        '
         'BtnExportToXLSTrf
         '
         Me.BtnExportToXLSTrf.Image = CType(resources.GetObject("BtnExportToXLSTrf.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(487, 14)
+        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(560, 14)
         Me.BtnExportToXLSTrf.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSTrf.Name = "BtnExportToXLSTrf"
         Me.BtnExportToXLSTrf.Size = New System.Drawing.Size(106, 20)
@@ -390,7 +401,7 @@ Partial Class FormStoreStatus
         Me.GridColumncomp_number.Name = "GridColumncomp_number"
         Me.GridColumncomp_number.OptionsColumn.ReadOnly = True
         Me.GridColumncomp_number.Visible = True
-        Me.GridColumncomp_number.VisibleIndex = 1
+        Me.GridColumncomp_number.VisibleIndex = 2
         '
         'GridColumncomp_name
         '
@@ -399,7 +410,8 @@ Partial Class FormStoreStatus
         Me.GridColumncomp_name.Name = "GridColumncomp_name"
         Me.GridColumncomp_name.OptionsColumn.ReadOnly = True
         Me.GridColumncomp_name.Visible = True
-        Me.GridColumncomp_name.VisibleIndex = 2
+        Me.GridColumncomp_name.VisibleIndex = 1
+        Me.GridColumncomp_name.Width = 118
         '
         'GridColumnid_comp_groupx
         '
@@ -564,4 +576,5 @@ Partial Class FormStoreStatus
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnHistory As DevExpress.XtraEditors.SimpleButton
 End Class
