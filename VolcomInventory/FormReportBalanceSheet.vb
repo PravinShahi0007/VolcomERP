@@ -395,6 +395,7 @@ SELECT 'no' AS is_check,t.sorting,t.tax_report,36 AS report_mark_type,tr.id_acc_
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans` AND tr.id_report_status=6
 INNER JOIN tb_a_acc a ON a.id_acc=atx.id_acc AND a.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=a.id_acc
 INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
 WHERE ISNULL(tr.`date_tax_report`) AND DATE(tr.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL
@@ -977,6 +978,7 @@ SELECT 'no' AS is_check,t.sorting,t.tax_report,36 AS report_mark_type,tr.id_acc_
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans` AND tr.id_report_status=6
 INNER JOIN tb_a_acc a ON a.id_acc=atx.id_acc AND a.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=a.id_acc
 INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
 WHERE DATE(tr.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_tax_report`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL
@@ -1388,18 +1390,23 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             'LEFT JOIN tb_tax_pph_summary_det AS s ON s.id_tax_report = r.id_tax_report
             'LEFT JOIN tb_tax_pph_summary AS p ON t.date_tax_report = p.period_from AND p.id_report_status = 6
             'WHERE t.id_acc_trans IN (" + id + ") AND r.id_type = 1"
-            Dim q As String = "SELECT GROUP_CONCAT(DISTINCT t.acc_trans_number) AS err
+
+
+            Dim q As String = "SELECT GROUP_CONCAT(DISTINCT t.acc_trans_number) AS err, l.`id_type`
 FROM tb_a_acc_trans t 
+INNER JOIN tb_a_acc_trans_det d ON t.`id_acc_trans` = d.`id_acc_trans`
+INNER JOIN tb_a_acc AS a ON d.`id_acc` = a.`id_acc`
+INNER JOIN tb_lookup_tax_report AS l ON a.`id_tax_report` = l.`id_tax_report`
 INNER JOIN 
 (
-	SELECT id_summary,period_from
+	SELECT id_summary,period_from,1 AS tax_type
 	FROM tb_tax_pph_summary 
 	WHERE id_report_status=6
-	UNION
-	SELECT id_summary,period_from
+	UNION ALL
+	SELECT id_summary,period_from,2 AS tax_type
 	FROM tb_tax_ppn_summary 
 	WHERE id_report_status=6
-)hsum ON hsum.period_from=t.date_tax_report AND t.id_acc_trans IN (" + id + ") "
+)hsum ON hsum.period_from=t.date_tax_report AND t.id_acc_trans IN (" + id + ") AND l.`id_type` = hsum.tax_type"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If Not dt.Rows(0)("err").ToString = "" Then
                 err_text = "Laporan tax untuk jurnal nomor " & dt.Rows(0)("err").ToString & " sudah terkunci"

@@ -83,7 +83,7 @@
 FROM tb_qc_sni_out qco
 INNER JOIN tb_m_user usr ON qco.created_by=usr.id_user
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=qco.id_report_status AND qco.id_report_status=6 AND qco.is_rec_wh=2
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=qco.id_report_status AND qco.id_report_status=6 AND qco.is_rec_wh=2 AND qco.is_scan_rec_wh=2
 ORDER BY qco.id_qc_sni_out DESC"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCSNIWaitRec.DataSource = dt
@@ -94,29 +94,29 @@ ORDER BY qco.id_qc_sni_out DESC"
 FROM tb_qc_sni_out qco
 INNER JOIN tb_m_user usr ON qco.created_by=usr.id_user
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=qco.id_report_status AND qco.id_report_status=6 AND qco.is_rec_wh=1
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=qco.id_report_status_rec AND qco.id_report_status=6 AND qco.is_scan_rec_wh=1 
 ORDER BY qco.id_qc_sni_out DESC"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCRecList.DataSource = dt
             GVRecList.BestFitColumns()
-        ElseIf XTCInOut.SelectedTabPageIndex = 3 Then
+        ElseIf XTCInOut.SelectedTabPageIndex = 2 Then
             'waiting to del
             Dim q As String = "SELECT qco.id_qc_sni_out,emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`,sts.report_status
 FROM tb_qc_sni_out qco
 INNER JOIN tb_m_user usr ON qco.created_by=usr.id_user
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=qco.id_report_status AND qco.id_report_status=6 AND qco.is_rec_wh=1 AND qco.is_del_wh=2
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=qco.id_report_status AND qco.id_report_status=6 AND qco.is_rec_wh=1 AND qco.is_del_wh=2 AND qco.is_scan_del_wh=2
 ORDER BY qco.id_qc_sni_out DESC"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCWaitDel.DataSource = dt
             GVWaitDel.BestFitColumns()
-        ElseIf XTCInOut.SelectedTabPageIndex = 4 Then
+        ElseIf XTCInOut.SelectedTabPageIndex = 3 Then
             'del list
             Dim q As String = "SELECT qco.id_qc_sni_out,emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`,sts.report_status
 FROM tb_qc_sni_out qco
 INNER JOIN tb_m_user usr ON qco.created_by=usr.id_user
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=qco.id_report_status AND qco.id_report_status=6 AND qco.is_rec_wh=1 AND qco.is_del_wh=1
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=qco.id_report_status_del AND qco.id_report_status=6 AND qco.is_rec_wh=1 AND qco.is_scan_del_wh=1
 ORDER BY qco.id_qc_sni_out DESC"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCDelList.DataSource = dt

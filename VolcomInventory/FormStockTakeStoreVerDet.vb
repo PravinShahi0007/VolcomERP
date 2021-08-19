@@ -34,10 +34,11 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, 0 AS qty_ver, 0 AS qty_adj, '' AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_soh, d.scan_qty AS qty_scan
+            SELECT d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, 0 AS qty_ver, '' AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_soh, d.scan_qty AS qty_scan
             FROM tb_st_store_bap_det AS d
             LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
             WHERE d.id_st_store_bap = " + id_st_store_bap + "
+            ORDER BY p.name ASC
         "
 
         Dim data_detail As DataTable = execute_query(query_detail, -1, True, "", "", "", "")
@@ -60,28 +61,33 @@
                         If data_detail.Rows(j)("id_report").ToString = "" Then
                             data_detail.Rows(j)("id_report") = data_ver.Rows(i)("id_report").ToString
                         Else
-                            data_detail.Rows(j)("id_report") = "," + data_ver.Rows(i)("id_report").ToString
+                            data_detail.Rows(j)("id_report") += "," + data_ver.Rows(i)("id_report").ToString
                         End If
 
                         If data_detail.Rows(j)("report_number").ToString = "" Then
                             data_detail.Rows(j)("report_number") = data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_number") = "," + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_number") += "," + data_ver.Rows(i)("report_number").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type") = data_ver.Rows(i)("report_mark_type").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type") = "," + data_ver.Rows(i)("report_mark_type").ToString
+                            data_detail.Rows(j)("report_mark_type") += "," + data_ver.Rows(i)("report_mark_type").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type_name").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type_name") = data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type_name") = "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_mark_type_name") += "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         End If
 
-                        data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        If data_detail.Rows(j)("note").ToString = "" Then
+                            data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        Else
+                            data_detail.Rows(j)("note") += "," + data_ver.Rows(i)("note").ToString
+                        End If
+
                         data_detail.Rows(j)("qty_ver") += Decimal.Parse(data_ver.Rows(i)("qty").ToString)
                     End If
                 Next
@@ -91,36 +97,66 @@
                         If data_detail.Rows(j)("id_report").ToString = "" Then
                             data_detail.Rows(j)("id_report") = data_ver.Rows(i)("id_report").ToString
                         Else
-                            data_detail.Rows(j)("id_report") = "," + data_ver.Rows(i)("id_report").ToString
+                            data_detail.Rows(j)("id_report") += "," + data_ver.Rows(i)("id_report").ToString
                         End If
 
                         If data_detail.Rows(j)("report_number").ToString = "" Then
                             data_detail.Rows(j)("report_number") = data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_number") = "," + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_number") += "," + data_ver.Rows(i)("report_number").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type") = data_ver.Rows(i)("report_mark_type").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type") = "," + data_ver.Rows(i)("report_mark_type").ToString
+                            data_detail.Rows(j)("report_mark_type") += "," + data_ver.Rows(i)("report_mark_type").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type_name").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type_name") = data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type_name") = "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_mark_type_name") += "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         End If
 
-                        data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        If data_detail.Rows(j)("note").ToString = "" Then
+                            data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        Else
+                            data_detail.Rows(j)("note") += "," + data_ver.Rows(i)("note").ToString
+                        End If
+
                         data_detail.Rows(j)("qty_ver") += Decimal.Parse(data_ver.Rows(i)("qty").ToString)
                     End If
                 Next
             ElseIf data_ver.Rows(i)("report_mark_type").ToString = "0" Then
                 For j = 0 To data_detail.Rows.Count - 1
                     If data_detail.Rows(j)("id_product").ToString = data_ver.Rows(i)("id_product").ToString Then
-                        data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
-                        data_detail.Rows(j)("qty_adj") += Decimal.Parse(data_ver.Rows(i)("qty").ToString)
+                        Dim inOut As String = ""
+
+                        If Decimal.Parse(data_ver.Rows(i)("qty").ToString) > 0 Then
+                            inOut = "In"
+                        Else
+                            inOut = "Out"
+                        End If
+
+                        If data_detail.Rows(j)("report_mark_type").ToString = "" Then
+                            data_detail.Rows(j)("report_mark_type") = "Adjustment " + inOut
+                        Else
+                            data_detail.Rows(j)("report_mark_type") += "," + "Adjustment " + inOut
+                        End If
+
+                        If data_detail.Rows(j)("report_mark_type_name").ToString = "" Then
+                            data_detail.Rows(j)("report_mark_type_name") = "Adjustment " + inOut
+                        Else
+                            data_detail.Rows(j)("report_mark_type_name") += "," + "Adjustment " + inOut
+                        End If
+
+                        If data_detail.Rows(j)("note").ToString = "" Then
+                            data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        Else
+                            data_detail.Rows(j)("note") += "," + data_ver.Rows(i)("note").ToString
+                        End If
+
+                        data_detail.Rows(j)("qty_ver") += Decimal.Parse(data_ver.Rows(i)("qty").ToString)
                     End If
                 Next
             Else
@@ -129,28 +165,33 @@
                         If data_detail.Rows(j)("id_report").ToString = "" Then
                             data_detail.Rows(j)("id_report") = data_ver.Rows(i)("id_report").ToString
                         Else
-                            data_detail.Rows(j)("id_report") = "," + data_ver.Rows(i)("id_report").ToString
+                            data_detail.Rows(j)("id_report") += "," + data_ver.Rows(i)("id_report").ToString
                         End If
 
                         If data_detail.Rows(j)("report_number").ToString = "" Then
                             data_detail.Rows(j)("report_number") = data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_number") = "," + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_number") += "," + data_ver.Rows(i)("report_number").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type") = data_ver.Rows(i)("report_mark_type").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type") = "," + data_ver.Rows(i)("report_mark_type").ToString
+                            data_detail.Rows(j)("report_mark_type") += "," + data_ver.Rows(i)("report_mark_type").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type_name").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type_name") = data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type_name") = "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_mark_type_name") += "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         End If
 
-                        data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        If data_detail.Rows(j)("note").ToString = "" Then
+                            data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        Else
+                            data_detail.Rows(j)("note") += "," + data_ver.Rows(i)("note").ToString
+                        End If
+
                         data_detail.Rows(j)("qty_ver") += Decimal.Parse(data_ver.Rows(i)("qty").ToString)
                     End If
                 Next
@@ -310,28 +351,38 @@
 
                     data_over.Rows.Add(row_over)
                 End If
-
-                If Not BGVData.GetRowCellValue(i, "qty_adj") = 0 Then
-                    Dim row_adj As DataRow = data_adj.NewRow
-
-                    row_adj("no") = data_adj.Rows.Count + 1
-                    row_adj("full_code") = BGVData.GetRowCellValue(i, "full_code").ToString
-                    row_adj("code") = BGVData.GetRowCellValue(i, "full_code").ToString.Substring(0, 9)
-                    row_adj("description") = BGVData.GetRowCellValue(i, "name").ToString
-                    row_adj("size") = BGVData.GetRowCellValue(i, "size").ToString
-                    row_adj("qty") = Math.Abs(BGVData.GetRowCellValue(i, "qty_adj"))
-                    row_adj("price") = BGVData.GetRowCellValue(i, "price")
-                    row_adj("amount") = BGVData.GetRowCellValue(i, "price") * Math.Abs(BGVData.GetRowCellValue(i, "qty_adj"))
-
-                    If BGVData.GetRowCellValue(i, "qty_adj") > 0 Then
-                        row_adj("remark") = "Adjustment In"
-                    ElseIf BGVData.GetRowCellValue(i, "qty_adj") < 0 Then
-                        row_adj("remark") = "Adjustment Out"
-                    End If
-
-                    data_adj.Rows.Add(row_adj)
-                End If
             End If
+        Next
+
+        'add adjustment
+        Dim dt_adj As DataTable = execute_query("
+            SELECT p.full_code, p.name, p.size, SUM(v.qty) AS qty, d.price
+            FROM tb_st_store_bap_ver AS v
+            LEFT JOIN tb_st_store_bap_det AS d ON v.id_st_store_bap_det = d.id_st_store_bap_det
+            LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
+            WHERE d.id_st_store_bap = " + id_st_store_bap + " AND v.report_mark_type = 0
+            GROUP BY d.id_product 
+        ", -1, True, "", "", "", "")
+
+        For i = 0 To dt_adj.Rows.Count - 1
+            Dim row_adj As DataRow = data_adj.NewRow
+
+            row_adj("no") = data_adj.Rows.Count + 1
+            row_adj("full_code") = dt_adj.Rows(i)("full_code").ToString
+            row_adj("code") = dt_adj.Rows(i)("full_code").ToString.ToString.Substring(0, 9)
+            row_adj("description") = dt_adj.Rows(i)("name").ToString
+            row_adj("size") = dt_adj.Rows(i)("size").ToString
+            row_adj("qty") = Math.Abs(dt_adj.Rows(i)("qty"))
+            row_adj("price") = dt_adj.Rows(i)("price")
+            row_adj("amount") = dt_adj.Rows(i)("price") * Math.Abs(dt_adj.Rows(i)("qty"))
+
+            If dt_adj.Rows(i)("qty") > 0 Then
+                row_adj("remark") = "Adjustment In"
+            ElseIf dt_adj.Rows(i)("qty") < 0 Then
+                row_adj("remark") = "Adjustment Out"
+            End If
+
+            data_adj.Rows.Add(row_adj)
         Next
 
         'add nihil

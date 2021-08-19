@@ -72,4 +72,70 @@ ORDER BY inv.id_awb_inv_sum DESC"
         GCInvoiceOffice.DataSource = dt
         GVInvoiceOffice.BestFitColumns()
     End Sub
+
+    Private Sub Form3PLInvoiceVerification_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_vendor()
+
+        DEStartAWBList.EditValue = Now
+        DEUntilAWBList.EditValue = Now
+    End Sub
+
+    Sub load_vendor()
+        Dim q As String = "SELECT 'ALL' AS id_comp,'ALL' comp_name
+UNION ALL
+SELECT id_comp,comp_name FROM tb_m_comp WHERE id_comp_cat='7' AND is_active='1'"
+        viewSearchLookupQuery(SLE3PLAWBList, q, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Private Sub BViewAWBList_Click(sender As Object, e As EventArgs) Handles BViewAWBList.Click
+        load_awb_list()
+    End Sub
+
+    Sub load_awb_list()
+        Dim qw As String = ""
+
+        If Not SLE3PLAWBList.EditValue.ToString = "ALL" Then
+            qw = " AND awb.id_comp='" & SLE3PLAWBList.EditValue.ToString & "'"
+        End If
+
+        Dim q As String = "SELECT awbo.id_awb_office_det,awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IFNULL(c.comp_number,'') AS comp_number,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
+,awb.pickup_date
+,awbo.`client_note`,IFNULL(invo.inv_number,'') AS inv_number,v.`comp_name` AS vendor_name
+,IFNULL(invo.amount_final,0) AS amount_final
+FROM `tb_awb_office_det` awbo 
+INNER JOIN tb_awb_office awb ON awb.id_awb_office=awbo.id_awb_office
+INNER JOIN tb_m_departement dep ON dep.id_departement=awbo.id_departement
+LEFT JOIN tb_m_comp c ON c.id_comp=awbo.`id_client`
+INNER JOIN tb_m_comp v ON v.`id_comp`=awb.`id_comp`
+INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=awbo.id_sub_district
+LEFT JOIN  
+(
+    SELECT id_awb_office_det,inv.inv_number,amount_final
+    FROM tb_awb_inv_sum_other invo 
+    INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invo.id_awb_inv_sum AND inv.id_report_status=6
+)invo ON invo.id_awb_office_det=awbo.id_awb_office_det
+WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStartAWBList.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(awb.pickup_date)<='" & Date.Parse(DEUntilAWBList.EditValue.ToString).ToString("yyyy-MM-dd") & "' " & qw
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCList.DataSource = dt
+        GVList.BestFitColumns()
+    End Sub
+
+    Private Sub BExportOffice_Click(sender As Object, e As EventArgs) Handles BExportOffice.Click
+        Cursor = Cursors.WaitCursor
+        Dim save As SaveFileDialog = New SaveFileDialog
+
+        save.Filter = "Excel File | *.xlsx"
+        save.ShowDialog()
+
+        If Not save.FileName = "" Then
+            Dim op As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx
+
+            op.ExportType = DevExpress.Export.ExportType.DataAware
+
+            GVList.ExportToXlsx(save.FileName, op)
+
+            infoCustom("File saved.")
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class
