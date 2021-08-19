@@ -515,7 +515,7 @@ Partial Class FormSalesDelOrder
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewCombinedDeliveryToolStripMenuItem, Me.SMPrePrint, Me.SMPrint, Me.FileAttachmentToolStripMenuItem, Me.DownloadShippingLabelToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(210, 136)
+        Me.ViewMenu.Size = New System.Drawing.Size(210, 114)
         '
         'ViewCombinedDeliveryToolStripMenuItem
         '
