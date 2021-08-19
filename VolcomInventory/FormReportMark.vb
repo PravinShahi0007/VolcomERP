@@ -10004,8 +10004,10 @@ pdd.additional_cost = dsg.prod_order_cop_pd_addcost,
 pdd.additional_price = IF(dsg.prod_order_cop_pd_addcost>0,opt.default_add_price,0)
 WHERE pd.is_pd=2 AND dsg.id_design='" & dt.Rows(i)("id_design").ToString & "'"
                     execute_non_query(query, True, "", "", "", "")
+
                     'line list update qty
-                    qu = ""
+                    qu = "CALL update_pdp_sni('" & id_report & "')"
+                    execute_non_query(query, True, "", "", "", "")
 
                     'send mail to md
                     Try

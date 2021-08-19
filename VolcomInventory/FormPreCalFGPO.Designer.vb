@@ -21,10 +21,10 @@ Partial Class FormPreCalFGPO
     Private Sub InitializeComponent()
         Me.GCPreCal = New DevExpress.XtraGrid.GridControl()
         Me.GVPreCal = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.GCPreCal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPreCal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -33,10 +33,10 @@ Partial Class FormPreCalFGPO
         'GCPreCal
         '
         Me.GCPreCal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPreCal.Location = New System.Drawing.Point(0, 55)
+        Me.GCPreCal.Location = New System.Drawing.Point(0, 49)
         Me.GCPreCal.MainView = Me.GVPreCal
         Me.GCPreCal.Name = "GCPreCal"
-        Me.GCPreCal.Size = New System.Drawing.Size(1006, 539)
+        Me.GCPreCal.Size = New System.Drawing.Size(1006, 545)
         Me.GCPreCal.TabIndex = 0
         Me.GCPreCal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPreCal})
         '
@@ -45,35 +45,34 @@ Partial Class FormPreCalFGPO
         Me.GVPreCal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.GVPreCal.GridControl = Me.GCPreCal
         Me.GVPreCal.Name = "GVPreCal"
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1006, 55)
-        Me.PanelControl1.TabIndex = 1
+        Me.GVPreCal.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "GridColumn2"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 0
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "GridColumn3"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1006, 49)
+        Me.PanelControl1.TabIndex = 1
         '
         'FormPreCalFGPO
         '
