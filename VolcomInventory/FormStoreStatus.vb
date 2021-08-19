@@ -1,9 +1,21 @@
 ﻿Public Class FormStoreStatus
     Public id_comp_cat As String = "-1"
+    Dim dt_mail As DataTable
 
     Private Sub FormStoreStatus_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_group_store()
         load_status()
+
+        'load
+        Dim qmail As String = "SELECT mail_comp_title_active,
+        mail_comp_title_non_active,
+        mail_store_title_active,
+        mail_store_title_non_active,
+        mail_comp_title_content_opening,
+        mail_comp_title_content_active,
+        mail_comp_title_content_non_active
+        FROM tb_opt "
+        dt_mail = execute_query(qmail, -1, True, "", "", "", "")
     End Sub
 
     Sub load_group_store()
@@ -171,6 +183,26 @@
                     'email
                     Dim email_info As String = ""
                     Try
+                        Dim mm As New ClassSendEmail()
+                        mm.report_mark_type = "store_activation"
+                        mm.par1 = dt_mail.Rows(0)("mail_comp_title_content_opening").ToString
+                        If is_active = "1" Then
+                            If id_comp_cat = "6" Then
+                                mm.titl = dt_mail.Rows(0)("mail_store_title_active").ToString
+                            Else
+                                mm.titl = dt_mail.Rows(0)("mail_comp_title_active").ToString
+                            End If
+                            mm.par2 = dt_mail.Rows(0)("mail_comp_title_content_active").ToString
+                        Else
+                            If id_comp_cat = "6" Then
+                                mm.titl = dt_mail.Rows(0)("mail_store_title_non_active").ToString
+                            Else
+                                mm.titl = dt_mail.Rows(0)("mail_comp_title_non_active").ToString
+                            End If
+                            mm.par2 = dt_mail.Rows(0)("mail_comp_title_content_non_active").ToString + TxtReason.Text + "."
+                        End If
+                        mm.dt = execute_query("SELECT comp_number, comp_name FROM tb_m_comp WHERE id_comp IN (" + id_comp_in + ")", -1, True, "", "", "", "")
+                        mm.send_email()
                         email_info = "Success"
                     Catch ex As Exception
                         email_info = "Error : " + ex.ToString
