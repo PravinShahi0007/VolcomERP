@@ -119,8 +119,10 @@
 
         If view_bap = "0" Then
             SBBAPPelaksanaan.Visible = False
+            SBStopScan.Visible = True
         Else
             SBBAPPelaksanaan.Visible = True
+            SBStopScan.Visible = False
         End If
     End Sub
 
@@ -299,5 +301,54 @@
         Dim volcomClientHost As String = get_setup_field("volcom_client_host")
 
         Process.Start(volcomClientHost + "/stocktake/getBAPPelakasanaan/" + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString)
+    End Sub
+
+    Private Sub SBStopScan_Click(sender As Object, e As EventArgs) Handles SBStopScan.Click
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to stop scan ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = DialogResult.Yes Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+
+            Net.ServicePointManager.Expect100Continue = True
+            Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
+
+            Dim accessToken As String = FormStockTakeStorePeriodDet.getAccessToken()
+
+            Dim wc As Net.WebClient = New Net.WebClient()
+
+            wc.Headers.Add("Authorization", accessToken)
+
+            Dim volcomClientHost As String = get_setup_field("volcom_client_host")
+
+            Dim url As String = volcomClientHost + "/api/stocktake/stop"
+
+            Dim param As Specialized.NameValueCollection = New Specialized.NameValueCollection
+
+            param.Add("id_period", GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString)
+
+            Dim responseArray As Byte() = wc.UploadValues(url, "POST", param)
+
+            Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+            Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+            If json("status") = "success" Then
+                execute_non_query("
+                UPDATE tb_st_store_period SET is_stop_scan = 1, stop_scan_date = NOW() WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString,
+                True, "", "", "", "")
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
+
+                infoCustom("Stop Scan Completed.")
+            Else
+                FormMain.SplashScreenManager1.CloseWaitForm()
+
+                errorCustom("Stop Scan Error.")
+            End If
+
+            view_compare()
+        End If
     End Sub
 End Class
