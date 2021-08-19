@@ -486,9 +486,9 @@
         ElseIf report_mark_type = "332" Then
             'sni rec wh
             FormSNIOut.Close()
-        ElseIf report_mark_type = "333" Then
-            'sni del wh
-            FormSNIOut.Close()
+        ElseIf report_mark_type = "334" Then
+            'pre cal fgpo
+            FormPreCalFGPO.Close()
         End If
     End Sub
     Sub show()
@@ -1583,6 +1583,11 @@ GROUP BY rec.`id_prod_order`"
             FormSNIOut.is_new = False
             FormSNIOut.is_view = "1"
             FormSNIOut.ShowDialog()
+        ElseIf report_mark_type = "334" Then
+            'pre cal FGPO
+            FormPreCalFGPODet.id = id_report
+            FormPreCalFGPODet.is_view = "1"
+            FormPreCalFGPODet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2828,6 +2833,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_qc_sni_out"
             field_number = "del_wh_number"
             field_date = "del_wh_created_date"
+        ElseIf report_mark_type = "334" Then
+            'sni wh del
+            table_name = "tb_pre_cal_fgpo"
+            field_id = "id_pre_cal_fgpo"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

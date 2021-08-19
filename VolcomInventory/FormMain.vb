@@ -307,7 +307,7 @@ Public Class FormMain
             RGAreaPrint.Visible = False
         End If
 
-        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Or formName = "FormScanReturn" Or formName = "FormSNIQC" Then
+        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Or formName = "FormScanReturn" Or formName = "FormSNIQC" Or formName = "FormPreCalFGPO" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
     End Sub
@@ -423,7 +423,7 @@ Public Class FormMain
             RGAreaPrint.Visible = True
         End If
 
-        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Or formName = "FormScanReturn" Or formName = "FormSNIQC" Then
+        If formName = "FormEmpLeave" Or formName = "FormInbound3PL" Or formName = "FormScanReturn" Or formName = "FormSNIQC" Or formName = "FormPreCalFGPO" Then
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
         ''mapping COA
@@ -1951,6 +1951,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormSNIIn.id = "-1"
                 FormSNIIn.ShowDialog()
             End If
+        ElseIf formName = "FormPreCalFGPO" Then
+            FormPreCalFGPODet.id = "-1"
+            FormPreCalFGPODet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3293,6 +3296,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                         FormSNIOut.is_del_wh = True
                         FormSNIOut.ShowDialog()
                     End If
+                End If
+            ElseIf formName = "FormPreCalFGPO" Then
+                If FormPreCalFGPO.GVPreCal.RowCount > 0 Then
+                    FormPreCalFGPODet.id = FormPreCalFGPO.GVPreCal.GetFocusedRowCellValue("id_pre_cal_fgpo").ToString
+                    FormSNIOut.ShowDialog()
                 End If
             Else
                 RPSubMenu.Visible = False
@@ -8761,6 +8769,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     print(FormSNIQC.GCSNIIn, "List SNI In from QC")
                 End If
             End If
+        ElseIf formName = "FormPreCalFGPO" Then
+            print(FormPreCalFGPO.GCPreCal, "List Pre Calculation ")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9779,6 +9789,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSNIWH" Then
             FormSNIWH.Close()
             FormSNIWH.Dispose()
+        ElseIf formName = "FormPreCalFGPO" Then
+            FormPreCalFGPO.Close()
+            FormPreCalFGPO.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10815,6 +10828,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNIQC.load_list()
         ElseIf formName = "FormSNIWH" Then
             FormSNIWH.load_list()
+        ElseIf formName = "FormPreCalFGPO" Then
+            FormPreCalFGPO.load_list()
         End If
     End Sub
     'Switch
@@ -16479,6 +16494,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNIWH.Show()
             FormSNIWH.WindowState = FormWindowState.Maximized
             FormSNIWH.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPreCal_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPreCal.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPreCalFGPO.MdiParent = Me
+            FormPreCalFGPO.Show()
+            FormPreCalFGPO.WindowState = FormWindowState.Maximized
+            FormPreCalFGPO.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
