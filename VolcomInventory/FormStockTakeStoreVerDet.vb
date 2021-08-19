@@ -60,28 +60,33 @@
                         If data_detail.Rows(j)("id_report").ToString = "" Then
                             data_detail.Rows(j)("id_report") = data_ver.Rows(i)("id_report").ToString
                         Else
-                            data_detail.Rows(j)("id_report") = "," + data_ver.Rows(i)("id_report").ToString
+                            data_detail.Rows(j)("id_report") += "," + data_ver.Rows(i)("id_report").ToString
                         End If
 
                         If data_detail.Rows(j)("report_number").ToString = "" Then
                             data_detail.Rows(j)("report_number") = data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_number") = "," + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_number") += "," + data_ver.Rows(i)("report_number").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type") = data_ver.Rows(i)("report_mark_type").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type") = "," + data_ver.Rows(i)("report_mark_type").ToString
+                            data_detail.Rows(j)("report_mark_type") += "," + data_ver.Rows(i)("report_mark_type").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type_name").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type_name") = data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type_name") = "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_mark_type_name") += "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         End If
 
-                        data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        If data_detail.Rows(j)("note").ToString = "" Then
+                            data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        Else
+                            data_detail.Rows(j)("note") += "," + data_ver.Rows(i)("note").ToString
+                        End If
+
                         data_detail.Rows(j)("qty_ver") += Decimal.Parse(data_ver.Rows(i)("qty").ToString)
                     End If
                 Next
@@ -91,28 +96,33 @@
                         If data_detail.Rows(j)("id_report").ToString = "" Then
                             data_detail.Rows(j)("id_report") = data_ver.Rows(i)("id_report").ToString
                         Else
-                            data_detail.Rows(j)("id_report") = "," + data_ver.Rows(i)("id_report").ToString
+                            data_detail.Rows(j)("id_report") += "," + data_ver.Rows(i)("id_report").ToString
                         End If
 
                         If data_detail.Rows(j)("report_number").ToString = "" Then
                             data_detail.Rows(j)("report_number") = data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_number") = "," + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_number") += "," + data_ver.Rows(i)("report_number").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type") = data_ver.Rows(i)("report_mark_type").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type") = "," + data_ver.Rows(i)("report_mark_type").ToString
+                            data_detail.Rows(j)("report_mark_type") += "," + data_ver.Rows(i)("report_mark_type").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type_name").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type_name") = data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type_name") = "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_mark_type_name") += "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         End If
 
-                        data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        If data_detail.Rows(j)("note").ToString = "" Then
+                            data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        Else
+                            data_detail.Rows(j)("note") += "," + data_ver.Rows(i)("note").ToString
+                        End If
+
                         data_detail.Rows(j)("qty_ver") += Decimal.Parse(data_ver.Rows(i)("qty").ToString)
                     End If
                 Next
@@ -130,16 +140,21 @@
                         If data_detail.Rows(j)("report_mark_type").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type") = "Adjustment " + inOut
                         Else
-                            data_detail.Rows(j)("report_mark_type") = "," + "Adjustment " + inOut
+                            data_detail.Rows(j)("report_mark_type") += "," + "Adjustment " + inOut
                         End If
 
                         If data_detail.Rows(j)("report_mark_type_name").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type_name") = "Adjustment " + inOut
                         Else
-                            data_detail.Rows(j)("report_mark_type_name") = "," + "Adjustment " + inOut
+                            data_detail.Rows(j)("report_mark_type_name") += "," + "Adjustment " + inOut
                         End If
 
-                        data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        If data_detail.Rows(j)("note").ToString = "" Then
+                            data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        Else
+                            data_detail.Rows(j)("note") += "," + data_ver.Rows(i)("note").ToString
+                        End If
+
                         data_detail.Rows(j)("qty_ver") += Decimal.Parse(data_ver.Rows(i)("qty").ToString)
                     End If
                 Next
@@ -149,28 +164,33 @@
                         If data_detail.Rows(j)("id_report").ToString = "" Then
                             data_detail.Rows(j)("id_report") = data_ver.Rows(i)("id_report").ToString
                         Else
-                            data_detail.Rows(j)("id_report") = "," + data_ver.Rows(i)("id_report").ToString
+                            data_detail.Rows(j)("id_report") += "," + data_ver.Rows(i)("id_report").ToString
                         End If
 
                         If data_detail.Rows(j)("report_number").ToString = "" Then
                             data_detail.Rows(j)("report_number") = data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_number") = "," + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_number") += "," + data_ver.Rows(i)("report_number").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type") = data_ver.Rows(i)("report_mark_type").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type") = "," + data_ver.Rows(i)("report_mark_type").ToString
+                            data_detail.Rows(j)("report_mark_type") += "," + data_ver.Rows(i)("report_mark_type").ToString
                         End If
 
                         If data_detail.Rows(j)("report_mark_type_name").ToString = "" Then
                             data_detail.Rows(j)("report_mark_type_name") = data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         Else
-                            data_detail.Rows(j)("report_mark_type_name") = "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
+                            data_detail.Rows(j)("report_mark_type_name") += "," + data_ver.Rows(i)("report_mark_type_name").ToString + " - " + data_ver.Rows(i)("report_number").ToString
                         End If
 
-                        data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        If data_detail.Rows(j)("note").ToString = "" Then
+                            data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        Else
+                            data_detail.Rows(j)("note") += "," + data_ver.Rows(i)("note").ToString
+                        End If
+
                         data_detail.Rows(j)("qty_ver") += Decimal.Parse(data_ver.Rows(i)("qty").ToString)
                     End If
                 Next
