@@ -14,7 +14,7 @@
 FROM (
     SELECT 0 AS NO,a.ol_number,md.id_comp AS id_3pl,sts.report_status,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
     c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city
-    ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
+    ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight, c.is_active
     FROM tb_del_manifest_det AS mdet
     INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` 
     AND ISNULL(md.`id_report_status`)
@@ -193,11 +193,23 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
             End If
         Next
 
+        'store not active
+        Dim err_not_active As String = ""
+        For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+            If Not GVList.IsGroupRow(i) Then
+                If GVList.GetRowCellValue(i, "is_active").ToString = "2" Then
+                    err_not_active += GVList.GetRowCellValue(i, "combine_number").ToString + " (" + GVList.GetRowCellValue(i, "comp_number").ToString + " - " + GVList.GetRowCellValue(i, "comp_name").ToString + ")" + System.Environment.NewLine
+                End If
+            End If
+        Next
+
         '
         If not_ok Then
             warningCustom("Some Outbound not scanned.")
         ElseIf err_hold <> "" Then
             warningCustom("Hold delivery : " + System.Environment.NewLine + err_hold)
+        ElseIf err_not_active <> "" Then
+            warningCustom("Store not active : " + System.Environment.NewLine + err_not_active)
         Else
             'complete
             Try
