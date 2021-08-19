@@ -76,6 +76,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel25 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLNo = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLLampiran = New DevExpress.XtraReports.UI.XRLabel()
@@ -101,7 +102,6 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         CType(Me.GCAdjustment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAdjustment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCOver, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -219,9 +219,11 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         '
         Me.GridColumn19.Caption = "No"
         Me.GridColumn19.FieldName = "no"
+        Me.GridColumn19.MaxWidth = 35
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 0
+        Me.GridColumn19.Width = 35
         '
         'GridColumn20
         '
@@ -230,6 +232,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 1
+        Me.GridColumn20.Width = 78
         '
         'GridColumn21
         '
@@ -238,22 +241,27 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 2
+        Me.GridColumn21.Width = 78
         '
         'GridColumn22
         '
         Me.GridColumn22.Caption = "Desc"
         Me.GridColumn22.FieldName = "description"
+        Me.GridColumn22.MinWidth = 150
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 3
+        Me.GridColumn22.Width = 150
         '
         'GridColumn23
         '
         Me.GridColumn23.Caption = "Size"
         Me.GridColumn23.FieldName = "size"
+        Me.GridColumn23.MaxWidth = 50
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 4
+        Me.GridColumn23.Width = 50
         '
         'GridColumn24
         '
@@ -263,9 +271,11 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn24.DisplayFormat.FormatString = "N0"
         Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn24.FieldName = "qty"
+        Me.GridColumn24.MaxWidth = 50
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 5
+        Me.GridColumn24.Width = 50
         '
         'GridColumn25
         '
@@ -278,6 +288,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 6
+        Me.GridColumn25.Width = 78
         '
         'GridColumn26
         '
@@ -290,6 +301,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 7
+        Me.GridColumn26.Width = 78
         '
         'GridColumn27
         '
@@ -298,6 +310,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 8
+        Me.GridColumn27.Width = 88
         '
         'XrLabel29
         '
@@ -366,9 +379,11 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         '
         Me.GridColumn10.Caption = "No"
         Me.GridColumn10.FieldName = "no"
+        Me.GridColumn10.MaxWidth = 35
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
+        Me.GridColumn10.Width = 35
         '
         'GridColumn11
         '
@@ -377,6 +392,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 1
+        Me.GridColumn11.Width = 76
         '
         'GridColumn12
         '
@@ -385,22 +401,27 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 2
+        Me.GridColumn12.Width = 76
         '
         'GridColumn13
         '
         Me.GridColumn13.Caption = "Desc"
         Me.GridColumn13.FieldName = "description"
+        Me.GridColumn13.MinWidth = 150
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 3
+        Me.GridColumn13.Width = 150
         '
         'GridColumn14
         '
         Me.GridColumn14.Caption = "Size"
         Me.GridColumn14.FieldName = "size"
+        Me.GridColumn14.MaxWidth = 50
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.Width = 50
         '
         'GridColumn15
         '
@@ -410,9 +431,11 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn15.DisplayFormat.FormatString = "N0"
         Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn15.FieldName = "qty"
+        Me.GridColumn15.MaxWidth = 50
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 5
+        Me.GridColumn15.Width = 50
         '
         'GridColumn16
         '
@@ -425,6 +448,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 6
+        Me.GridColumn16.Width = 76
         '
         'GridColumn17
         '
@@ -437,6 +461,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 7
+        Me.GridColumn17.Width = 76
         '
         'GridColumn18
         '
@@ -445,6 +470,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 8
+        Me.GridColumn18.Width = 87
         '
         'WinControlContainer1
         '
@@ -480,9 +506,11 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         '
         Me.GridColumn1.Caption = "No"
         Me.GridColumn1.FieldName = "no"
+        Me.GridColumn1.MaxWidth = 35
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 35
         '
         'GridColumn2
         '
@@ -491,6 +519,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 76
         '
         'GridColumn3
         '
@@ -499,22 +528,27 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 76
         '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Desc"
         Me.GridColumn4.FieldName = "description"
+        Me.GridColumn4.MinWidth = 150
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.Width = 150
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Size"
         Me.GridColumn5.FieldName = "size"
+        Me.GridColumn5.MaxWidth = 50
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.Width = 50
         '
         'GridColumn6
         '
@@ -524,9 +558,11 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn6.DisplayFormat.FormatString = "N0"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "qty"
+        Me.GridColumn6.MaxWidth = 50
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.Width = 50
         '
         'GridColumn7
         '
@@ -539,6 +575,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.Width = 76
         '
         'GridColumn8
         '
@@ -551,6 +588,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.Width = 76
         '
         'GridColumn9
         '
@@ -559,6 +597,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 8
+        Me.GridColumn9.Width = 102
         '
         'XrLabel26
         '
@@ -661,6 +700,15 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.XrLabel25, Me.XLNo, Me.XLLampiran, Me.XLToko, Me.XLPerihal, Me.XLDari, Me.XrLabel14, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XLKepada, Me.XrLabel3, Me.XrLabel2, Me.XLDateCreated, Me.XrLine1})
         Me.ReportHeader.HeightF = 216.1501!
         Me.ReportHeader.Name = "ReportHeader"
+        '
+        'XrPictureBox1
+        '
+        Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
+        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
         '
         'XrLabel25
         '
@@ -916,15 +964,6 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
-        '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
-        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
         '
         'ReportStockTakeStoreBAPHasil
         '

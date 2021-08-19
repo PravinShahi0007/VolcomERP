@@ -38,6 +38,7 @@
             FROM tb_st_store_bap_det AS d
             LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
             WHERE d.id_st_store_bap = " + id_st_store_bap + "
+            ORDER BY p.name ASC
         "
 
         Dim data_detail As DataTable = execute_query(query_detail, -1, True, "", "", "", "")
