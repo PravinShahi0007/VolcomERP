@@ -13,7 +13,7 @@
 
     Sub form_load()
         Dim query As String = "
-            SELECT b.id_st_store_bap, b.number, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, DATE_FORMAT(b.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, r.report_status
+            SELECT b.id_st_store_bap, b.number, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, DATE_FORMAT(b.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, b.id_report_status, r.report_status
             FROM tb_st_store_bap AS b
             LEFT JOIN tb_m_comp AS c ON b.id_comp = c.id_comp
             LEFT JOIN tb_m_user AS u ON b.created_by = u.id_user
@@ -45,38 +45,38 @@
         data.Columns.Add("price", GetType(Decimal))
         data.Columns.Add("selisih_awal_qty", GetType(Integer))
         data.Columns.Add("verifikasi_qty", GetType(Integer))
-        data.Columns.Add("adjustment_qty", GetType(Integer))
         data.Columns.Add("selisih_akhir_qty", GetType(Integer))
         data.Columns.Add("remark", GetType(String))
         data.Columns.Add("note", GetType(String))
 
         For i = 0 To GVData.RowCount - 1
-            FormStockTakeStoreVerDet.WindowState = FormWindowState.Minimized
+            If Not GVData.GetRowCellValue(i, "id_report_status").ToString = "5" Then
+                FormStockTakeStoreVerDet.WindowState = FormWindowState.Minimized
 
-            FormStockTakeStoreVerDet.id_st_store_bap = GVData.GetRowCellValue(i, "id_st_store_bap").ToString
-            FormStockTakeStoreVerDet.Show()
+                FormStockTakeStoreVerDet.id_st_store_bap = GVData.GetRowCellValue(i, "id_st_store_bap").ToString
+                FormStockTakeStoreVerDet.Show()
 
-            For j = 1 To FormStockTakeStoreVerDet.BGVData.RowCount - 1
-                Dim row As DataRow = data.NewRow
+                For j = 1 To FormStockTakeStoreVerDet.BGVData.RowCount - 1
+                    Dim row As DataRow = data.NewRow
 
-                row("id_st_store_period") = FormStockTakeStorePeriod.GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
-                row("id_comp") = FormStockTakeStoreVerDet.SLUEAccount.EditValue.ToString
-                row("id_product") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "id_product")
-                row("id_price") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "id_price")
-                row("price") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "price")
-                row("selisih_awal_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")
-                row("verifikasi_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_ver")
-                row("adjustment_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_adj")
-                row("selisih_akhir_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_akhir")
-                row("remark") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "report_mark_type_name")
-                row("note") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "note")
+                    row("id_st_store_period") = FormStockTakeStorePeriod.GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
+                    row("id_comp") = FormStockTakeStoreVerDet.SLUEAccount.EditValue.ToString
+                    row("id_product") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "id_product")
+                    row("id_price") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "id_price")
+                    row("price") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "price")
+                    row("selisih_awal_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")
+                    row("verifikasi_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_ver")
+                    row("selisih_akhir_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_akhir")
+                    row("remark") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "report_mark_type_name")
+                    row("note") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "note")
 
-                data.Rows.Add(row)
-            Next
+                    data.Rows.Add(row)
+                Next
 
-            FormStockTakeStoreVerDet.Close()
+                FormStockTakeStoreVerDet.Close()
 
-            FormStockTakeStoreVerDet.WindowState = FormWindowState.Maximized
+                FormStockTakeStoreVerDet.WindowState = FormWindowState.Maximized
+            End If
         Next
 
         Dim out As String = Newtonsoft.Json.JsonConvert.SerializeObject(data)
