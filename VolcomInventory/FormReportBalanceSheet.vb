@@ -1390,18 +1390,23 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
             'LEFT JOIN tb_tax_pph_summary_det AS s ON s.id_tax_report = r.id_tax_report
             'LEFT JOIN tb_tax_pph_summary AS p ON t.date_tax_report = p.period_from AND p.id_report_status = 6
             'WHERE t.id_acc_trans IN (" + id + ") AND r.id_type = 1"
-            Dim q As String = "SELECT GROUP_CONCAT(DISTINCT t.acc_trans_number) AS err
+
+
+            Dim q As String = "SELECT GROUP_CONCAT(DISTINCT t.acc_trans_number) AS err, l.`id_type`
 FROM tb_a_acc_trans t 
+INNER JOIN tb_a_acc_trans_det d ON t.`id_acc_trans` = d.`id_acc_trans`
+INNER JOIN tb_a_acc AS a ON d.`id_acc` = a.`id_acc`
+INNER JOIN tb_lookup_tax_report AS l ON a.`id_tax_report` = l.`id_tax_report`
 INNER JOIN 
 (
-	SELECT id_summary,period_from
+	SELECT id_summary,period_from,1 AS tax_type
 	FROM tb_tax_pph_summary 
 	WHERE id_report_status=6
-	UNION
-	SELECT id_summary,period_from
+	UNION ALL
+	SELECT id_summary,period_from,2 AS tax_type
 	FROM tb_tax_ppn_summary 
 	WHERE id_report_status=6
-)hsum ON hsum.period_from=t.date_tax_report AND t.id_acc_trans IN (" + id + ") "
+)hsum ON hsum.period_from=t.date_tax_report AND t.id_acc_trans IN (" + id + ") AND l.`id_type` = hsum.tax_type"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If Not dt.Rows(0)("err").ToString = "" Then
                 err_text = "Laporan tax untuk jurnal nomor " & dt.Rows(0)("err").ToString & " sudah terkunci"
