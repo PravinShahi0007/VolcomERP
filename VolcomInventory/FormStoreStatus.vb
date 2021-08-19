@@ -142,39 +142,49 @@
         ElseIf is_active = "2" And TxtReason.Text = "" Then
             warningCustom("Please fill reason")
         Else
+            'OK
             GVData.ActiveFilterString = "[is_select]='Yes' "
-            Dim reason As String = addSlashes(TxtReason.Text)
             Dim id_comp_in As String = ""
+            Dim comp_info As String = ""
             For s As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
                 If s > 0 Then
                     id_comp_in += ","
+                    comp_info += System.Environment.NewLine
                 End If
                 id_comp_in += GVData.GetRowCellValue(s, "id_comp").ToString
+                comp_info += GVData.GetRowCellValue(s, "comp_number").ToString + " - " + GVData.GetRowCellValue(s, "comp_name").ToString
             Next
-            If id_comp_in <> "" Then
-                'update
-                Dim query As String = "UPDATE tb_m_comp SET is_active='" + is_active + "' WHERE id_comp IN (" + id_comp_in + ");
-                INSERT INTO tb_log_store_activation(log_date, log_updated_by, id_comp, is_active, reason) 
-                SELECT NOW(), " + id_user + ", c.id_comp, " + is_active + ", " + reason + "
-                FROM tb_m_comp c WHERE c.id_comp IN (" + id_comp_in + ");"
-                execute_non_query(query, True, "", "", "", "")
+            GVData.ActiveFilterString = ""
 
-                'email
-                Dim email_info As String = ""
-                Try
-                    email_info = "Success"
-                Catch ex As Exception
-                    email_info = "Error : " + ex.ToString
-                End Try
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Selected account : " + System.Environment.NewLine + comp_info + System.Environment.NewLine + System.Environment.NewLine + "Are you sure want to set this account as '" + SLESetStatus.Text.ToString + "' ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim reason As String = addSlashes(TxtReason.Text)
 
-                Dim info As String = ""
-                info += "Updated status : Success " + System.Environment.NewLine
-                info += "Send email to related dept. : " + email_info + System.Environment.NewLine
-                infoCustom(info)
-            Else
-                infoCustom("Nothing action")
+                If id_comp_in <> "" Then
+                    'update
+                    Dim query As String = "UPDATE tb_m_comp SET is_active='" + is_active + "' WHERE id_comp IN (" + id_comp_in + ");
+                    INSERT INTO tb_log_store_activation(log_date, log_updated_by, id_comp, is_active, reason) 
+                    SELECT NOW(), " + id_user + ", c.id_comp, " + is_active + ", '" + reason + "'
+                    FROM tb_m_comp c WHERE c.id_comp IN (" + id_comp_in + ");"
+                    execute_non_query(query, True, "", "", "", "")
+
+                    'email
+                    Dim email_info As String = ""
+                    Try
+                        email_info = "Success"
+                    Catch ex As Exception
+                        email_info = "Error : " + ex.ToString
+                    End Try
+
+                    Dim info As String = ""
+                    info += "Updated status : Success " + System.Environment.NewLine
+                    info += "Send email to related dept. : " + email_info + System.Environment.NewLine
+                    infoCustom(info)
+                Else
+                    infoCustom("Nothing action")
+                End If
+                resetView()
             End If
-            resetView()
         End If
     End Sub
 End Class
