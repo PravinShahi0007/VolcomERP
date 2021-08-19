@@ -79,6 +79,7 @@ Partial Class Form3PLInvoiceVerification
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.DEStartAWBList = New DevExpress.XtraEditors.DateEdit()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -401,7 +402,7 @@ Partial Class Form3PLInvoiceVerification
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn10, Me.GridColumn11, Me.GridColumn22, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn24, Me.GridColumn20, Me.GridColumn25})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn10, Me.GridColumn11, Me.GridColumn22, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn26, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn24, Me.GridColumn20, Me.GridColumn25})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -477,7 +478,7 @@ Partial Class Form3PLInvoiceVerification
         Me.GridColumn16.FieldName = "comp_name"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 5
+        Me.GridColumn16.VisibleIndex = 6
         Me.GridColumn16.Width = 99
         '
         'GridColumn17
@@ -492,7 +493,7 @@ Partial Class Form3PLInvoiceVerification
         Me.GridColumn18.FieldName = "sub_district"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.VisibleIndex = 7
         Me.GridColumn18.Width = 99
         '
         'GridColumn19
@@ -501,7 +502,7 @@ Partial Class Form3PLInvoiceVerification
         Me.GridColumn19.FieldName = "client_note"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 7
+        Me.GridColumn19.VisibleIndex = 8
         Me.GridColumn19.Width = 99
         '
         'GridColumn24
@@ -517,7 +518,7 @@ Partial Class Form3PLInvoiceVerification
         Me.GridColumn20.FieldName = "inv_number"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 8
+        Me.GridColumn20.VisibleIndex = 9
         Me.GridColumn20.Width = 110
         '
         'GridColumn25
@@ -532,7 +533,7 @@ Partial Class Form3PLInvoiceVerification
         Me.GridColumn25.FieldName = "amount_final"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 9
+        Me.GridColumn25.VisibleIndex = 10
         '
         'PanelControl1
         '
@@ -651,6 +652,14 @@ Partial Class Form3PLInvoiceVerification
         Me.DEStartAWBList.Size = New System.Drawing.Size(172, 20)
         Me.DEStartAWBList.TabIndex = 24
         '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Code"
+        Me.GridColumn26.FieldName = "comp_number"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 5
+        '
         'Form3PLInvoiceVerification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -750,4 +759,5 @@ Partial Class Form3PLInvoiceVerification
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BExportOffice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

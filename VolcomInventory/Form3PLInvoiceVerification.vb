@@ -98,7 +98,7 @@ SELECT id_comp,comp_name FROM tb_m_comp WHERE id_comp_cat='7' AND is_active='1'"
             qw = " AND awb.id_comp='" & SLE3PLAWBList.EditValue.ToString & "'"
         End If
 
-        Dim q As String = "SELECT awbo.id_awb_office_det,awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
+        Dim q As String = "SELECT awbo.id_awb_office_det,awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IFNULL(c.comp_number,'') AS comp_number,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
 ,awb.pickup_date
 ,awbo.`client_note`,IFNULL(invo.inv_number,'') AS inv_number,v.`comp_name` AS vendor_name
 ,IFNULL(invo.amount_final,0) AS amount_final
