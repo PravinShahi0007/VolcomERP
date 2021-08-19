@@ -707,6 +707,18 @@
         ElseIf report_mark_type = "329" Then
             'eval note
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_ar_eval_note WHERE id_ar_eval_note = '{0}'", id_report)
+        ElseIf report_mark_type = "330" Then
+            'qc sni out
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_qc_sni_out WHERE id_qc_sni_out = '{0}'", id_report)
+        ElseIf report_mark_type = "331" Then
+            'qc sni in
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_qc_sni_in WHERE id_qc_sni_in = '{0}'", id_report)
+        ElseIf report_mark_type = "332" Then
+            'qc sni in
+            query = String.Format("SELECT id_report_status_rec AS id_report_status, rec_wh_number as report_number FROM tb_qc_sni_out WHERE id_qc_sni_out = '{0}'", id_report)
+        ElseIf report_mark_type = "333" Then
+            'qc sni in
+            query = String.Format("SELECT id_report_status_del AS id_report_status, del_wh_number as report_number FROM tb_qc_sni_out WHERE id_qc_sni_out = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -9992,8 +10004,10 @@ pdd.additional_cost = dsg.prod_order_cop_pd_addcost,
 pdd.additional_price = IF(dsg.prod_order_cop_pd_addcost>0,opt.default_add_price,0)
 WHERE pd.is_pd=2 AND dsg.id_design='" & dt.Rows(i)("id_design").ToString & "'"
                     execute_non_query(query, True, "", "", "", "")
+
                     'line list update qty
-                    qu = ""
+                    qu = "CALL update_pdp_sni('" & id_report & "')"
+                    execute_non_query(query, True, "", "", "", "")
 
                     'send mail to md
                     Try
@@ -10199,6 +10213,46 @@ WHERE qci.id_qc_sni_in='" & id_report & "'"
             Try
                 FormSNIIn.load_head()
                 FormSNIQC.load_list()
+            Catch ex As Exception
+            End Try
+        ElseIf report_mark_type = "332" Then
+            'SNI Rec WH
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                query = "UPDATE tb_qc_sni_out SET `is_rec_wh`=1,id_report_status_rec=6 WHERE id_qc_sni_out='" & id_report & "' "
+                execute_non_query(query, True, "", "", "", "")
+            Else
+                query = "UPDATE tb_qc_sni_out SET `is_rec_wh`=2,`is_scan_rec_wh`=2,`rec_wh_created_by`=NULL,`rec_wh_created_date`=NULL,rec_wh_number=NULL,id_report_status_rec=5 WHERE id_qc_sni_out='" & id_report & "' "
+                execute_non_query(query, True, "", "", "", "")
+            End If
+
+            'refresh view
+            Try
+                FormSNIOut.load_head()
+                FormSNIWH.load_list()
+            Catch ex As Exception
+            End Try
+        ElseIf report_mark_type = "333" Then
+            'SNI Del WH
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                query = "UPDATE tb_qc_sni_out SET `is_del_wh`=1,id_report_status_del=6 WHERE id_qc_sni_out='" & id_report & "' "
+                execute_non_query(query, True, "", "", "", "")
+            Else
+                query = "UPDATE tb_qc_sni_out SET `is_del_wh`=2,`is_scan_del_wh`=2,`del_wh_created_by`=NULL,`del_wh_created_date`=NULL,del_wh_number=NULL,id_report_status_del=5 WHERE id_qc_sni_out='" & id_report & "' "
+                execute_non_query(query, True, "", "", "", "")
+            End If
+
+            'refresh view
+            Try
+                FormSNIOut.load_head()
+                FormSNIWH.load_list()
             Catch ex As Exception
             End Try
         End If

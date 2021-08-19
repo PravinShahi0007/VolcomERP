@@ -65,6 +65,7 @@ Partial Class FormStockTakeStorePeriod
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnScanList = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBStopScan = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -439,6 +440,7 @@ Partial Class FormStockTakeStorePeriod
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBStopScan)
         Me.PanelControl1.Controls.Add(Me.SBBAPPelaksanaan)
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControl1.Controls.Add(Me.BtnScanList)
@@ -488,6 +490,16 @@ Partial Class FormStockTakeStorePeriod
         Me.SBSync.Size = New System.Drawing.Size(94, 41)
         Me.SBSync.TabIndex = 0
         Me.SBSync.Text = "Sync"
+        '
+        'SBStopScan
+        '
+        Me.SBStopScan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBStopScan.Image = CType(resources.GetObject("SBStopScan.Image"), System.Drawing.Image)
+        Me.SBStopScan.Location = New System.Drawing.Point(655, 2)
+        Me.SBStopScan.Name = "SBStopScan"
+        Me.SBStopScan.Size = New System.Drawing.Size(110, 41)
+        Me.SBStopScan.TabIndex = 4
+        Me.SBStopScan.Text = "Stop Scan"
         '
         'FormStockTakeStorePeriod
         '
@@ -559,4 +571,5 @@ Partial Class FormStockTakeStorePeriod
     Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents SBBAPPelaksanaan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBStopScan As DevExpress.XtraEditors.SimpleButton
 End Class

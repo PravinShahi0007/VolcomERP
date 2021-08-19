@@ -94,8 +94,8 @@ SELECT id_comp,comp_name FROM tb_m_comp WHERE id_comp_cat='7' AND is_active='1'"
     Sub load_awb_list()
         Dim qw As String = ""
 
-        If Not SLECargo.EditValue.ToString = "ALL" Then
-            qw = " AND awb.id_comp='" & SLECargo.EditValue.ToString & "'"
+        If Not SLE3PLAWBList.EditValue.ToString = "ALL" Then
+            qw = " AND awb.id_comp='" & SLE3PLAWBList.EditValue.ToString & "'"
         End If
 
         Dim q As String = "SELECT awbo.id_awb_office_det,awbo.`awbill_no`,dep.id_departement,dep.departement,awbo.`jml_koli`,awbo.id_client,IF(ISNULL(awbo.id_client),'Not Registered',c.comp_name) AS comp_name,dis.id_sub_district,dis.sub_district
