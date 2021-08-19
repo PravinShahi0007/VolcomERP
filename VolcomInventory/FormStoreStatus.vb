@@ -53,10 +53,10 @@
         aa.`area`, cty.id_city, cty.city, sta.id_state, sta.state, rep.id_employee, rep.employee_name, ls.log_date, ls.reason
         FROM tb_m_comp c 
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        INNER JOIN tb_m_area aa ON aa.id_area = c.id_area
-        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
-        INNER JOIN tb_m_state sta ON sta.id_state = cty.id_state
-        INNER JOIN tb_m_employee rep ON rep.id_employee = c.id_employee_rep
+        LEFT JOIN tb_m_area aa ON aa.id_area = c.id_area
+        LEFT JOIN tb_m_city cty ON cty.id_city = c.id_city
+        LEFT JOIN tb_m_state sta ON sta.id_state = cty.id_state
+        LEFT JOIN tb_m_employee rep ON rep.id_employee = c.id_employee_rep
         LEFT JOIN (
 	        SELECT ls.id_comp, ls.`log_date`, ls.reason
 	        FROM tb_log_store_activation ls
@@ -104,6 +104,7 @@
 
     Sub resetView()
         GCData.DataSource = Nothing
+        GVData.ActiveFilterString = ""
         PanelControlActivate.Visible = False
     End Sub
 
@@ -127,7 +128,7 @@
         'cek comp
         Dim err_comp As String = ""
         GVData.ActiveFilterString = ""
-        GVData.ActiveFilterString = "[is_active]='" + is_active + "'"
+        GVData.ActiveFilterString = "[is_select]='Yes' AND [is_active]='" + is_active + "'"
         For i As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
             If i > 0 Then
                 err_comp += ","
@@ -137,7 +138,43 @@
         GVData.ActiveFilterString = ""
 
         If err_comp <> "" Then
-            warningCustom("These accounts already " + SLESetStatus.Text + " :" + System.Environment.NewLine + err_comp)
+            warningCustom("These accounts already '" + SLESetStatus.Text + "' :" + System.Environment.NewLine + err_comp)
+        ElseIf is_active = "2" And TxtReason.Text = "" Then
+            warningCustom("Please fill reason")
+        Else
+            GVData.ActiveFilterString = "[is_select]='Yes' "
+            Dim reason As String = addSlashes(TxtReason.Text)
+            Dim id_comp_in As String = ""
+            For s As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
+                If s > 0 Then
+                    id_comp_in += ","
+                End If
+                id_comp_in += GVData.GetRowCellValue(s, "id_comp").ToString
+            Next
+            If id_comp_in <> "" Then
+                'update
+                Dim query As String = "UPDATE tb_m_comp SET is_active='" + is_active + "' WHERE id_comp IN (" + id_comp_in + ");
+                INSERT INTO tb_log_store_activation(log_date, log_updated_by, id_comp, is_active, reason) 
+                SELECT NOW(), " + id_user + ", c.id_comp, " + is_active + ", " + reason + "
+                FROM tb_m_comp c WHERE c.id_comp IN (" + id_comp_in + ");"
+                execute_non_query(query, True, "", "", "", "")
+
+                'email
+                Dim email_info As String = ""
+                Try
+                    email_info = "Success"
+                Catch ex As Exception
+                    email_info = "Error : " + ex.ToString
+                End Try
+
+                Dim info As String = ""
+                info += "Updated status : Success " + System.Environment.NewLine
+                info += "Send email to related dept. : " + email_info + System.Environment.NewLine
+                infoCustom(info)
+            Else
+                infoCustom("Nothing action")
+            End If
+            resetView()
         End If
     End Sub
 End Class
