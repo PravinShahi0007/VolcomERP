@@ -3,6 +3,7 @@
     Dim dt_mail As DataTable
 
     Private Sub FormStoreStatus_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_comp_cat()
         load_group_store()
         load_status()
 
@@ -18,9 +19,19 @@
         dt_mail = execute_query(qmail, -1, True, "", "", "", "")
     End Sub
 
+    Sub load_comp_cat()
+        Dim query As String = "SELECT c.id_comp_cat, c.comp_cat_name FROM tb_m_comp_cat c 
+        WHERE 1=1 "
+        If id_comp_cat <> "-1" Then
+            query += "AND id_comp_cat IN (" + id_comp_cat + ") "
+        End If
+        query += "ORDER BY c.comp_cat_name ASC "
+        viewSearchLookupQuery(SLECategory, query, "id_comp_cat", "comp_cat_name", "id_comp_cat")
+    End Sub
+
     Sub load_group_store()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT 0 AS id_comp_group, 'All' AS comp_group, 'All Group' AS description 
+        Dim query As String = "Select 0 As id_comp_group, 'All' AS comp_group, 'All Group' AS description 
         UNION
         SELECT cg.id_comp_group, cg.comp_group, cg.description 
         FROM tb_m_comp_group cg "
@@ -47,8 +58,9 @@
         'where
         'category
         Dim cond As String = ""
-        If id_comp_cat <> "-1" Then
-            cond += "AND c.id_comp_cat IN (" + id_comp_cat + ")"
+        Dim id_cat As String = SLECategory.EditValue.ToString
+        If id_cat <> "-1" Then
+            cond += "AND c.id_comp_cat IN (" + id_cat + ")"
         End If
         'group
         Dim id_store_group As String = SLEStoreGroup.EditValue.ToString
@@ -186,6 +198,7 @@
                     Try
                         Dim mm As New ClassSendEmail()
                         mm.report_mark_type = "store_activation"
+                        mm.opt = SLECategory.EditValue.ToString
                         mm.par1 = dt_mail.Rows(0)("mail_comp_title_content_opening").ToString
                         If is_active = "1" Then
                             If id_comp_cat = "6" Then
@@ -244,5 +257,9 @@
             infoCustom("File saved.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLECategory_EditValueChanged(sender As Object, e As EventArgs) Handles SLECategory.EditValueChanged
+        resetView()
     End Sub
 End Class

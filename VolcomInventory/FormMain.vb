@@ -16512,4 +16512,31 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBStoreActivation_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStoreActivation.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStoreStatus.MdiParent = Me
+            FormStoreStatus.id_comp_cat = "6"
+            FormStoreStatus.Show()
+            FormStoreStatus.WindowState = FormWindowState.Maximized
+            FormStoreStatus.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAccountActivation_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAccountActivation.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStoreStatus.MdiParent = Me
+            FormStoreStatus.Show()
+            FormStoreStatus.WindowState = FormWindowState.Maximized
+            FormStoreStatus.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
