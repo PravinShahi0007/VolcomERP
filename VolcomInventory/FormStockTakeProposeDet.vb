@@ -5,7 +5,7 @@
     Public cc_mail As DataTable = New DataTable
 
     Private Sub FormStockTakeProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TENumber.EditValue = "001/EXT/IAD-SRT/VII/21"
+        TENumber.EditValue = "[autogenerate]"
         TECreatedAt.EditValue = DateTime.Parse(Now.ToString).ToString("dd MMMM yyyy HH:mm:ss")
         TECreatedBy.EditValue = get_emp(id_user, "3")
         DEPeriodFrom.EditValue = Now
@@ -367,11 +367,22 @@
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
         Dim id_comp_group As String = SLUEGroup.EditValue.ToString
         Dim id_comp_contact As String = SLUEContact.EditValue.ToString
-        Dim number As String = TENumber.EditValue.ToString
         Dim start_period As String = Date.Parse(DEPeriodFrom.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim end_period As String = Date.Parse(DEPeriodTo.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim start_time As String = DateTime.Parse(TETimeFrom.EditValue.ToString).ToString("HH:mm:ss")
         Dim end_time As String = DateTime.Parse(TETimeTo.EditValue.ToString).ToString("HH:mm:ss")
+
+        Dim number As String = execute_query("
+            SELECT CONCAT(LPAD(((
+                SELECT COUNT(*)
+                FROM tb_st_store_propose AS p
+                WHERE YEAR(p.created_at) = YEAR(NOW())
+            ) + 1), 3, '0'), '/EXT/IAD-SRT/', (
+		        SELECT `code`
+		        FROM tb_ot_memo_number_mon
+		        WHERE `month` = MONTH(NOW())
+            ), '/', (SELECT DATE_FORMAT(NOW(), '%y'))) AS surat_number
+        ", 0, True, "", "", "", "")
 
         Dim query_head As String = "
             INSERT INTO tb_st_store_propose (id_comp_group, id_comp_contact, number, start_period, end_period, start_time, end_time, created_at, created_by) VALUES (" + id_comp_group + ", " + id_comp_contact + ", '" + number + "', '" + start_period + "', '" + end_period + "', '" + start_time + "', '" + end_time + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID();
