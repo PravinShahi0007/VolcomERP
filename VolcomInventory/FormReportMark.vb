@@ -9970,6 +9970,11 @@ WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
             End If
 
             If id_status_reportx = "6" Then
+                'line list update qty
+                Dim qus As String = ""
+                qus = "CALL update_pdp_sni('" & id_report & "')"
+                execute_non_query(qus, True, "", "", "", "")
+
                 'get id_design and cost per pcs
                 Dim qd As String = "SELECT spl.*,qty.qty,tot.total,ROUND(tot.total/qty.qty,2) AS cost
 FROM `tb_sni_pps_list` spl
@@ -10003,11 +10008,7 @@ pdd.prod_demand_design_total_cost = dsg.prod_order_cop_pd,
 pdd.additional_cost = dsg.prod_order_cop_pd_addcost,
 pdd.additional_price = IF(dsg.prod_order_cop_pd_addcost>0,opt.default_add_price,0)
 WHERE pd.is_pd=2 AND dsg.id_design='" & dt.Rows(i)("id_design").ToString & "'"
-                    execute_non_query(query, True, "", "", "", "")
-
-                    'line list update qty
-                    qu = "CALL update_pdp_sni('" & id_report & "')"
-                    execute_non_query(query, True, "", "", "", "")
+                    execute_non_query(qu, True, "", "", "", "")
 
                     'send mail to md
                     Try

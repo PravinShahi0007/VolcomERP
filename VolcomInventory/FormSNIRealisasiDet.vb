@@ -216,16 +216,35 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
     End Sub
 
     Sub usage_artikel()
-        Dim q As String = "SELECT b.id_design,0.00 AS bom_design_price,b.id_product,b.id_sni_pps_budget,b.budget_desc,b.budget_value,b.budget_qty,IFNULL(rec.qty,0) AS rec_qty,0 AS ret_qty
+        Dim q As String = "SELECT b.id_design,0.00 AS bom_design_price,b.id_product,b.id_sni_pps_budget,b.budget_desc,b.budget_value,b.budget_qty
+,IFNULL(rec.qty,0) AS rec_qty
+,IFNULL(ret.qty,0) AS ret_qty
 ,qc.id_prod_order_rec_det,qc.id_prod_order_det
 FROM `tb_sni_pps_budget` b
 LEFT JOIN 
 (
-	SELECT rec.`id_sni_pps`,recd.id_product,SUM(recd.qty) AS qty
-	FROM `tb_sni_rec_det` recd 
-	INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND rec.`id_report_status`=6
-	GROUP BY recd.`id_product`
-)rec ON rec.`id_product`=b.`id_product` AND rec.id_sni_pps=b.`id_sni_pps`
+	SELECT t.id_product,SUM(qty) AS qty
+    FROM(
+        SELECT recd.id_product,SUM(recd.qty) AS qty
+        FROM `tb_sni_rec_det` recd 
+        INNER JOIN tb_sni_rec rec ON rec.`id_sni_rec`=recd.`id_sni_rec` AND rec.`id_report_status`=6
+        GROUP BY recd.`id_product`
+        UNION ALL
+        SELECT outd.id_product,SUM(outd.qty) AS qty
+        FROM `tb_qc_sni_out_det` outd 
+        INNER JOIN tb_qc_sni_out `outh` ON outh.`id_qc_sni_out`=outd.`id_qc_sni_out` AND outh.`id_report_status`=6
+        GROUP BY outd.`id_product`
+    )t
+    GROUP BY t.id_product
+)rec ON rec.`id_product`=b.`id_product` 
+LEFT JOIN 
+(
+	SELECT outd.id_product,SUM(ind.qty) AS qty
+    FROM `tb_qc_sni_in_det` ind 
+    INNER JOIN tb_qc_sni_in `inh` ON inh.`id_qc_sni_in`=ind.`id_qc_sni_in` AND inh.`id_report_status`=6
+    INNER JOIN tb_qc_sni_out_det outd ON outd.id_qc_sni_out_det=ind.id_qc_sni_out_det
+    GROUP BY outd.`id_product`
+)ret ON ret.`id_product`=b.`id_product` 
 LEFT JOIN 
 (
 	SELECT recd.id_prod_order_rec_det,recd.id_prod_order_det,pdp.`id_product`
@@ -263,7 +282,8 @@ AND NOT ISNULL(b.id_design) AND NOT ISNULL(b.id_product)"
 FROM tb_prod_order_det pod
 INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design AND po.id_report_status=6
-WHERE pdd.id_design='" & id_design & "'"
+WHERE pdd.id_design='" & id_design & "'
+HAVING NOT ISNULL(qty_order)"
         Dim dt_total As DataTable = execute_query(q, -1, True, "", "", "", "")
         '
         If dt_total.Rows.Count > 0 Then
