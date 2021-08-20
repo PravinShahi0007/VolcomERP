@@ -1,6 +1,7 @@
 ﻿Public Class FormPopUpProd
     Public id_pop_up As String = "-1"
     Public id_prod_order As String = "-1"
+    Public id_comp As String = "-1"
     ' Dim product_image_path As String = get_setup_field("pic_path_product") & "\"
     '1 = Mat Purchase Receive
     '2 = Mat Return Out
@@ -25,8 +26,9 @@
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season, "
         query += "DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date, "
         query += "DATE_FORMAT(DATE_ADD(a.prod_order_date,INTERVAL a.prod_order_lead_time DAY),'%d %M %Y') AS prod_order_lead_time, "
-        query += "cm.comp_number AS `vendor_code`, cm.comp_name AS `vendor` "
-        query += "FROM tb_prod_order a "
+        query += "cm.comp_number AS `vendor_code`, cm.comp_name AS `vendor`,SUM(pod.prod_order_qty) AS qty,IFNULL(wo.id_currency,1) AS id_currency,IFNULL(ovh.ovh_price,0) AS price "
+        query += "FROM tb_prod_order_det pod
+INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design "
         query += "INNER JOIN tb_lookup_report_status c ON a.id_report_status = c.id_report_status "
         query += "INNER JOIN tb_m_design d ON b.id_design = d.id_design "
@@ -48,6 +50,13 @@
         If id_pop_up = "8" Then 'Return MRS
             query += " OR a.id_report_status='5' OR a.id_report_status='6' "
         End If
+
+        If Not id_comp = "-1" Then
+            query += " AND cm.id_comp='" & id_comp & "'"
+        End If
+
+        query += " GROUP BY a.id_prod_order "
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         data.Columns.Add("images", GetType(Image))
 
@@ -346,6 +355,20 @@
                 Else
                     warningCustom("Vendor not found")
                 End If
+            Else
+                warningCustom("No data selected.")
+            End If
+        ElseIf id_pop_up = "12" Then
+            'pre cal
+            If GVProd.RowCount > 0 And GVProd.FocusedRowHandle >= 0 Then
+                FormPreCalFGPODet.GVListFGPO.AddNewRow()
+                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("id_prod_order", GVProd.GetFocusedRowCellValue("id_prod_order").ToString)
+                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("prod_order_number", GVProd.GetFocusedRowCellValue("prod_order_number").ToString)
+                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("design_display_name", GVProd.GetFocusedRowCellValue("design_name").ToString)
+                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("design_code", GVProd.GetFocusedRowCellValue("design_code").ToString)
+                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("id_currency", GVProd.GetFocusedRowCellValue("id_currency").ToString)
+                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("price", GVProd.GetFocusedRowCellValue("price"))
+                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("qty", GVProd.GetFocusedRowCellValue("qty"))
             Else
                 warningCustom("No data selected.")
             End If

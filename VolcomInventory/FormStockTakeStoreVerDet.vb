@@ -234,11 +234,19 @@
     End Sub
 
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
-        Dim query As String = "UPDATE tb_st_store_bap SET id_report_status = 1 WHERE id_st_store_bap = " + id_st_store_bap
+        Dim is_volcom_store As String = execute_query("SELECT is_volcom_store FROM tb_m_store WHERE id_store = (SELECT id_store FROM tb_m_comp WHERE id_comp = " + SLUEAccount.EditValue.ToString + ")", 0, True, "", "", "", "")
+
+        Dim report_mark_type As String = "324"
+
+        If is_volcom_store = "1" Then
+            report_mark_type = "335"
+        End If
+
+        Dim query As String = "UPDATE tb_st_store_bap SET id_report_status = 1, report_mark_type = " + report_mark_type + " WHERE id_st_store_bap = " + id_st_store_bap
 
         execute_non_query(query, True, "", "", "", "")
 
-        submit_who_prepared("324", id_st_store_bap, id_user)
+        submit_who_prepared(report_mark_type, id_st_store_bap, id_user)
 
         Close()
     End Sub
@@ -274,6 +282,12 @@
         Dim date_created As String = execute_query("
             SELECT DATE_FORMAT(created_at, '%d %M %Y') AS created_at
             FROM tb_st_store_bap
+            WHERE id_st_store_bap = " + id_st_store_bap + "
+        ", 0, True, "", "", "", "")
+
+        Dim report_mark_type As String = execute_query("
+            SELECT report_mark_type
+            FROM tb_st_store_bap 
             WHERE id_st_store_bap = " + id_st_store_bap + "
         ", 0, True, "", "", "", "")
 
@@ -438,6 +452,7 @@
         End If
 
         Report.id = id_st_store_bap
+        Report.report_mark_type = report_mark_type
 
         Report.GCMissing.DataSource = data_missing
         Report.GCOver.DataSource = data_over
@@ -467,7 +482,13 @@
     Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
         Cursor = Cursors.WaitCursor
 
-        FormReportMark.report_mark_type = "324"
+        Dim report_mark_type As String = execute_query("
+            SELECT report_mark_type
+            FROM tb_st_store_bap 
+            WHERE id_st_store_bap = " + id_st_store_bap + "
+        ", 0, True, "", "", "", "")
+
+        FormReportMark.report_mark_type = report_mark_type
         FormReportMark.id_report = id_st_store_bap
 
         FormReportMark.ShowDialog()

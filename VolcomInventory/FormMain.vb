@@ -8771,6 +8771,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormPreCalFGPO" Then
             print(FormPreCalFGPO.GCPreCal, "List Pre Calculation ")
+        ElseIf formName = "FormStoreStatus" Then
+            print(FormStoreStatus.GCData, "Store Status List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9792,6 +9794,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPreCalFGPO" Then
             FormPreCalFGPO.Close()
             FormPreCalFGPO.Dispose()
+        ElseIf formName = "FormStoreStatus" Then
+            FormStoreStatus.Close()
+            FormStoreStatus.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -16507,6 +16512,33 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPreCalFGPO.Show()
             FormPreCalFGPO.WindowState = FormWindowState.Maximized
             FormPreCalFGPO.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBStoreActivation_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStoreActivation.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStoreStatus.MdiParent = Me
+            FormStoreStatus.id_comp_cat = "6"
+            FormStoreStatus.Show()
+            FormStoreStatus.WindowState = FormWindowState.Maximized
+            FormStoreStatus.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAccountActivation_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAccountActivation.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStoreStatus.MdiParent = Me
+            FormStoreStatus.Show()
+            FormStoreStatus.WindowState = FormWindowState.Maximized
+            FormStoreStatus.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

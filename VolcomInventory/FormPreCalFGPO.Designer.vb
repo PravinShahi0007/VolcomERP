@@ -25,6 +25,7 @@ Partial Class FormPreCalFGPO
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCPreCal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPreCal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -42,7 +43,7 @@ Partial Class FormPreCalFGPO
         '
         'GVPreCal
         '
-        Me.GVPreCal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GVPreCal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
         Me.GVPreCal.GridControl = Me.GCPreCal
         Me.GVPreCal.Name = "GVPreCal"
         Me.GVPreCal.OptionsView.ShowGroupPanel = False
@@ -54,14 +55,14 @@ Partial Class FormPreCalFGPO
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.Caption = "Number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "GridColumn3"
+        Me.GridColumn3.Caption = "Created By"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
@@ -73,6 +74,13 @@ Partial Class FormPreCalFGPO
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1006, 49)
         Me.PanelControl1.TabIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Vendor FGPO"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
         '
         'FormPreCalFGPO
         '
@@ -100,4 +108,5 @@ Partial Class FormPreCalFGPO
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

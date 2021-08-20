@@ -11,7 +11,7 @@
 
     Private Sub SBNew_Click(sender As Object, e As EventArgs) Handles SBNew.Click
         Dim query_head As String = "
-            INSERT INTO tb_st_store_bap (id_st_store_period, id_comp, id_report_status, created_at, created_by) VALUES (" + FormStockTakeStorePeriod.GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + ", " + SLUEAccount.EditValue.ToString + ", 0, NOW(), " + id_user + "); SELECT LAST_INSERT_ID();
+            INSERT INTO tb_st_store_bap (id_st_store_period, id_comp, id_report_status, report_mark_type, created_at, created_by) VALUES (" + FormStockTakeStorePeriod.GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + ", " + SLUEAccount.EditValue.ToString + ", 0, 0, NOW(), " + id_user + "); SELECT LAST_INSERT_ID();
         "
 
         Dim id_st_store_bap As String = execute_query(query_head, 0, True, "", "", "", "")

@@ -20,7 +20,7 @@ WHERE p.id_odm_print='" & id_print & "'"
 FROM (
     SELECT 0 AS NO,dis.sub_district,sts.id_report_status,a.ol_number,sts.report_status AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
     c.id_comp_group, md.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city
-    ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight
+    ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight, c.is_active
     FROM tb_del_manifest_det AS mdet
     INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest`
     INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=md.id_sub_district
@@ -132,8 +132,20 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
             End If
         Next
 
+        'store not active
+        Dim err_not_active As String = ""
+        For i As Integer = 0 To GVListHistory.RowCount - 1 - GetGroupRowCount(GVListHistory)
+            If Not GVListHistory.IsGroupRow(i) Then
+                If GVListHistory.GetRowCellValue(i, "is_active").ToString = "2" Then
+                    err_not_active += GVListHistory.GetRowCellValue(i, "combine_number").ToString + " (" + GVListHistory.GetRowCellValue(i, "comp_number").ToString + " - " + GVListHistory.GetRowCellValue(i, "comp_name").ToString + ")" + System.Environment.NewLine
+                End If
+            End If
+        Next
+
         If err_hold <> "" Then
             warningCustom("Hold delivery : " + System.Environment.NewLine + err_hold)
+        ElseIf err_not_active <> "" Then
+            warningCustom("Store not active : " + System.Environment.NewLine + err_not_active)
         Else
             Cursor = Cursors.WaitCursor
 

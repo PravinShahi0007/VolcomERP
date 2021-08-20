@@ -66,7 +66,7 @@ ORDER BY qco.id_qc_sni_out DESC"
             GVSNIOut.BestFitColumns()
         ElseIf XTCInOut.SelectedTabPageIndex = 1 Then
             'SNI In
-            Dim q As String = "SELECT emp.employee_name,qco.number,qco.`created_date`,qco.`id_comp_to`,sts.report_status
+            Dim q As String = "SELECT emp.employee_name,qci.number,qci.`created_date`,sts.report_status
 FROM tb_qc_sni_in qci
 INNER JOIN tb_m_user usr ON qci.created_by=usr.id_user
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee

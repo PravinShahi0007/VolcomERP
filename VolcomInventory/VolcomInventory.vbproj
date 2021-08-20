@@ -7426,6 +7426,18 @@
     <Compile Include="FormStockValas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStoreStatus.Designer.vb">
+      <DependentUpon>FormStoreStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStoreStatusHistory.Designer.vb">
+      <DependentUpon>FormStoreStatusHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreStatusHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSUMockMark.Designer.vb">
       <DependentUpon>FormSUMockMark.vb</DependentUpon>
     </Compile>
@@ -14042,6 +14054,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockValas.resx">
       <DependentUpon>FormStockValas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreStatus.resx">
+      <DependentUpon>FormStoreStatus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreStatusHistory.resx">
+      <DependentUpon>FormStoreStatusHistory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSUMockMark.resx">
       <DependentUpon>FormSUMockMark.vb</DependentUpon>
