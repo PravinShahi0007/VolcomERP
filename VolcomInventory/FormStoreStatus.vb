@@ -262,4 +262,13 @@
     Private Sub SLECategory_EditValueChanged(sender As Object, e As EventArgs) Handles SLECategory.EditValueChanged
         resetView()
     End Sub
+
+    Private Sub FormStoreStatus_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+    End Sub
+
+    Private Sub FormStoreStatus_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
 End Class
