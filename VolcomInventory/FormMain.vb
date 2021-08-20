@@ -8771,6 +8771,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormPreCalFGPO" Then
             print(FormPreCalFGPO.GCPreCal, "List Pre Calculation ")
+        ElseIf formName = "FormStoreStatus" Then
+            print(FormStoreStatus.GCData, "Store Status List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9792,6 +9794,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPreCalFGPO" Then
             FormPreCalFGPO.Close()
             FormPreCalFGPO.Dispose()
+        ElseIf formName = "FormStoreStatus" Then
+            FormStoreStatus.Close()
+            FormStoreStatus.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
