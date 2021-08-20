@@ -1,4 +1,6 @@
 ﻿Public Class FormStoreStatusHistory
+    Public id_comp_cat As String = "-1"
+
     Private Sub FormStoreStatusHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT l.log_date, e.employee_name, c.comp_number, c.comp_name, IF(c.is_active=1,'Active','Not Active') AS `status`, l.reason

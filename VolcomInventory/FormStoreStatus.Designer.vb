@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormStoreStatus
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormStoreStatus
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStoreStatus))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -65,6 +65,9 @@ Partial Class FormStoreStatus
         Me.GridColumnstate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnemployee_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnlog_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLECategory = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEStatusInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,10 +87,14 @@ Partial Class FormStoreStatus
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LabelControl4)
+        Me.PanelControl1.Controls.Add(Me.SLECategory)
         Me.PanelControl1.Controls.Add(Me.BtnHistory)
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLSTrf)
         Me.PanelControl1.Controls.Add(Me.BView)
@@ -98,13 +105,13 @@ Partial Class FormStoreStatus
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(806, 49)
+        Me.PanelControl1.Size = New System.Drawing.Size(806, 62)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnHistory
         '
         Me.BtnHistory.Image = CType(resources.GetObject("BtnHistory.Image"), System.Drawing.Image)
-        Me.BtnHistory.Location = New System.Drawing.Point(487, 14)
+        Me.BtnHistory.Location = New System.Drawing.Point(492, 28)
         Me.BtnHistory.Name = "BtnHistory"
         Me.BtnHistory.Size = New System.Drawing.Size(70, 20)
         Me.BtnHistory.TabIndex = 8929
@@ -113,7 +120,7 @@ Partial Class FormStoreStatus
         'BtnExportToXLSTrf
         '
         Me.BtnExportToXLSTrf.Image = CType(resources.GetObject("BtnExportToXLSTrf.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(560, 14)
+        Me.BtnExportToXLSTrf.Location = New System.Drawing.Point(565, 28)
         Me.BtnExportToXLSTrf.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSTrf.Name = "BtnExportToXLSTrf"
         Me.BtnExportToXLSTrf.Size = New System.Drawing.Size(106, 20)
@@ -123,7 +130,7 @@ Partial Class FormStoreStatus
         'BView
         '
         Me.BView.Image = CType(resources.GetObject("BView.Image"), System.Drawing.Image)
-        Me.BView.Location = New System.Drawing.Point(423, 14)
+        Me.BView.Location = New System.Drawing.Point(428, 28)
         Me.BView.Name = "BView"
         Me.BView.Size = New System.Drawing.Size(60, 20)
         Me.BView.TabIndex = 8927
@@ -131,7 +138,7 @@ Partial Class FormStoreStatus
         '
         'SLEStatusInvoice
         '
-        Me.SLEStatusInvoice.Location = New System.Drawing.Point(269, 14)
+        Me.SLEStatusInvoice.Location = New System.Drawing.Point(270, 28)
         Me.SLEStatusInvoice.Name = "SLEStatusInvoice"
         Me.SLEStatusInvoice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStatusInvoice.Properties.ShowClearButton = False
@@ -163,7 +170,7 @@ Partial Class FormStoreStatus
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(232, 17)
+        Me.LabelControl5.Location = New System.Drawing.Point(270, 12)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl5.TabIndex = 8926
@@ -171,7 +178,7 @@ Partial Class FormStoreStatus
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(16, 17)
+        Me.LabelControl3.Location = New System.Drawing.Point(119, 12)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(58, 13)
         Me.LabelControl3.TabIndex = 8924
@@ -179,7 +186,7 @@ Partial Class FormStoreStatus
         '
         'SLEStoreGroup
         '
-        Me.SLEStoreGroup.Location = New System.Drawing.Point(81, 14)
+        Me.SLEStoreGroup.Location = New System.Drawing.Point(119, 28)
         Me.SLEStoreGroup.Name = "SLEStoreGroup"
         Me.SLEStoreGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStoreGroup.Properties.ShowClearButton = False
@@ -334,11 +341,11 @@ Partial Class FormStoreStatus
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 49)
+        Me.GCData.Location = New System.Drawing.Point(0, 62)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCData.Size = New System.Drawing.Size(806, 372)
+        Me.GCData.Size = New System.Drawing.Size(806, 359)
         Me.GCData.TabIndex = 2
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -494,6 +501,31 @@ Partial Class FormStoreStatus
         Me.GridColumnlog_date.Visible = True
         Me.GridColumnlog_date.VisibleIndex = 4
         '
+        'SLECategory
+        '
+        Me.SLECategory.Location = New System.Drawing.Point(10, 28)
+        Me.SLECategory.Name = "SLECategory"
+        Me.SLECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECategory.Properties.ShowClearButton = False
+        Me.SLECategory.Properties.View = Me.GridView2
+        Me.SLECategory.Size = New System.Drawing.Size(105, 20)
+        Me.SLECategory.TabIndex = 8930
+        '
+        'GridView2
+        '
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 12)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl4.TabIndex = 8931
+        Me.LabelControl4.Text = "Category"
+        '
         'FormStoreStatus
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -528,6 +560,8 @@ Partial Class FormStoreStatus
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -577,4 +611,7 @@ Partial Class FormStoreStatus
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnHistory As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLECategory As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

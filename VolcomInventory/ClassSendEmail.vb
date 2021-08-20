@@ -3837,7 +3837,7 @@ FROM tb_opt o "
             FROM tb_mail_acc_activation md
             LEFT JOIN tb_m_user usr ON usr.`id_user`=md.id_user
             LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-            WHERE is_to=1 "
+            WHERE is_to=1 AND md.id_comp_cat='" + opt + "' "
             Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_mail.Rows.Count - 1
                 Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_external").ToString, data_send_mail.Rows(i)("employee_name").ToString)
@@ -3849,7 +3849,7 @@ FROM tb_opt o "
             FROM tb_mail_acc_activation md
             LEFT JOIN tb_m_user usr ON usr.`id_user`=md.id_user
             LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-            WHERE is_to=2 "
+            WHERE is_to=2 AND md.id_comp_cat='" + opt + "' "
             Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_cc.Rows.Count - 1
                 Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
