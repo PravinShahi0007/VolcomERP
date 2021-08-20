@@ -6,7 +6,7 @@
     Sub load_awb()
         Dim q As String = "SELECT 'yes' AS is_check,d.`awbill_no`,emp.`employee_name`,od.`id_odm_sc`,od.`created_date`,d.id_comp
 FROM tb_odm_sc_det odd
-INNER JOIN tb_odm_sc od ON odd.`id_odm_sc`=od.`id_odm_sc`
+INNER JOIN tb_odm_sc od ON odd.`id_odm_sc`=od.`id_odm_sc` AND od.id_report_status!=5
 INNER JOIN tb_m_user usr ON usr.`id_user`=od.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_del_manifest d ON d.`id_del_manifest`=odd.`id_del_manifest`

@@ -10126,15 +10126,15 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void
             End If
 
             If id_status_reportx = "6" Then
-                'sni in return
+                'sni cop
 
-                query = String.Format("INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
-                INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
-SELECT recd.id_prod_order_rec,recd.id_prod_order_det,ret.id_product,ret.ret_qty,NOW() AS date_reff,'{0}' AS created_by,ret.id_sni_realisasi,327 AS rmt,'Return SNI' AS note
-FROM `tb_sni_realisasi_return` ret
-INNER JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec_det=ret.id_prod_order_rec_det
-WHERE ret.id_sni_realisasi ='{1}' AND ret.ret_qty>0 ", id_user, id_report)
-                execute_non_query(query, True, "", "", "", "")
+                '                query = String.Format("INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
+                '                INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
+                'SELECT recd.id_prod_order_rec,recd.id_prod_order_det,ret.id_product,ret.ret_qty,NOW() AS date_reff,'{0}' AS created_by,ret.id_sni_realisasi,327 AS rmt,'Return SNI' AS note
+                'FROM `tb_sni_realisasi_return` ret
+                'INNER JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec_det=ret.id_prod_order_rec_det
+                'WHERE ret.id_sni_realisasi ='{1}' AND ret.ret_qty>0 ", id_user, id_report)
+                '                execute_non_query(query, True, "", "", "", "")
             End If
 
             'update

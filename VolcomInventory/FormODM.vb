@@ -203,13 +203,22 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
             End If
         Next
 
-        '
+        'already input awb
+        Dim awb_already As Boolean = False
+        Dim qawb As String = "SELECT * FROM `tb_odm_sc` WHERE awbill_no='" & addSlashes(TEAWB.Text) & "' AND id_report_status!=5"
+        Dim dtawb As DataTable = execute_query(qawb, -1, True, "", "", "", "")
+        If dtawb.Rows.Count > 0 Then
+            awb_already = True
+        End If
+
         If not_ok Then
             warningCustom("Some Outbound not scanned.")
         ElseIf err_hold <> "" Then
             warningCustom("Hold delivery : " + System.Environment.NewLine + err_hold)
         ElseIf err_not_active <> "" Then
             warningCustom("Store not active : " + System.Environment.NewLine + err_not_active)
+        ElseIf awb_already Then
+            warningCustom("AWB already scanned, please contact administrator")
         Else
             'complete
             Try
@@ -279,6 +288,7 @@ WHERE dd.`id_del_manifest`='" & GVList.GetRowCellValue(i, "id_del_manifest").ToS
                 'log scan security
                 Dim qlog As String = "INSERT INTO tb_log_scan_security(reff,log_date,log_by,log) VALUES('" & addSlashes(TEAWB.Text) & "',NOW(),'" & id_user & "','" & addSlashes(ex.ToString) & "')"
                 execute_non_query(qlog, True, "", "", "", "")
+
                 warningCustom(ex.ToString)
                 FormMain.SplashScreenManager1.CloseWaitForm()
             End Try
