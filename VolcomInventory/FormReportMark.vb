@@ -692,7 +692,7 @@
         ElseIf report_mark_type = "323" Then
             'stocktake partial
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_st_store_partial WHERE id_st_store_partial = '{0}'", id_report)
-        ElseIf report_mark_type = "324" Then
+        ElseIf report_mark_type = "324" Or report_mark_type = "335" Then
             'stocktake verification
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_st_store_bap WHERE id_st_store_bap = '{0}'", id_report)
         ElseIf report_mark_type = "321" Then
@@ -10033,7 +10033,7 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & dt.Rows(i)("id_design").ToString & "'"
             'update status
             query = String.Format("UPDATE tb_st_store_partial SET id_report_status='{0}' WHERE id_st_store_partial ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "324" Then
+        ElseIf report_mark_type = "324" Or report_mark_type = "335" Then
             'stocktake verification
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
