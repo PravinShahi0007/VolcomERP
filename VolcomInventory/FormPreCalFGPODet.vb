@@ -2,13 +2,20 @@
     Public id As String = "-1"
     Public is_view As String = "-1"
     Private Sub FormPreCalFGPODet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Sub load_head()
         load_type()
         load_vendor()
 
         If id = "-1" Then
             'new
+
         Else
             'edit
+            Dim q As String = ""
+
         End If
 
         load_list_fgpo()
@@ -62,18 +69,32 @@ SELECT 2 AS id_type,'FCL' AS type"
     End Sub
 
     Private Sub BPropose_Click(sender As Object, e As EventArgs) Handles BPropose.Click
-        Dim q As String = "INSERT INTO `tb_pre_cal_fgpo`(created_date,created_by,id_report_status) VALUES(NOW(),'" & id_user & "','1');SELECT LAST_INSERT_ID();"
-        id = execute_query(q, 0, True, "", "", "", "")
-        'detail
-        q = "INSERT INTO `tb_pre_cal_fgpo_list`(`id_pre_cal_fgpo`,`id_prod_order`,`id_currency`,`price`,`qty`) VALUES"
-        For i As Integer = 0 To GVListFGPO.RowCount - 1
-            If Not i = 0 Then
-                q += ","
+        If id = "-1" Then
+            'new
+            If GVListFGPO.RowCount = 0 Then
+                warningCustom("Please pick PO")
+            ElseIf TECBM.EditValue <= 0 Or TECTN.EditValue <= 0 Or TEWeight.EditValue <= 0 Then
+                warningCustom("Please complete all your input")
+            Else
+                Dim q As String = "INSERT INTO `tb_pre_cal_fgpo`(created_date,created_by,id_report_status) VALUES(NOW(),'" & id_user & "','1');SELECT LAST_INSERT_ID();"
+                id = execute_query(q, 0, True, "", "", "", "")
+
+                execute_non_query("CALL gen_number('" & id & "','334')", True, "", "", "", "")
+
+                'detail
+                q = "INSERT INTO `tb_pre_cal_fgpo_list`(`id_pre_cal_fgpo`,`id_prod_order`,`id_currency`,`price`,`qty`) VALUES"
+                For i As Integer = 0 To GVListFGPO.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id & "','" & GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVListFGPO.GetRowCellValue(i, "id_currency").ToString & "','" & decimalSQL(Decimal.Parse(GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString).ToString) & "','" & GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString & "')"
+                Next
+
+                execute_non_query(q, True, "", "", "", "")
             End If
-            q += "('" & id & "','" & GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVListFGPO.GetRowCellValue(i, "id_currency").ToString & "','" & decimalSQL(Decimal.Parse(GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString).ToString) & "','" & GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString & "')"
+        Else
+            'edit
 
-        Next
-
-        execute_non_query(q, True, "", "", "", "")
+        End If
     End Sub
 End Class
