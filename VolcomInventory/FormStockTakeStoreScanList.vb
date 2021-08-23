@@ -7,14 +7,11 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT s.id_product,s.scanned_code, p.product_name  AS `name`, cd.code_detail_name AS `size`,s.qty, s.created_date,
-        IF(s.is_unique_not_found=1,'Yes', 'No') AS `is_unique_not_found_view`, IF(s.is_no_tag=1,'Yes', 'No') AS `is_no_tag_view`, image
-        FROM tb_st_store s
-        INNER JOIN tb_m_product p ON p.id_product = s.id_product
-        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
-        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
-        WHERE s.id_st_store_period='" + id_period + "'
-        ORDER BY s.created_date ASC "
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
+        Dim query As String = "CALL view_st_scanned_list(" + id_period + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         For i = 0 To data.Rows.Count - 1
@@ -25,6 +22,7 @@
 
         GCData.DataSource = data
         GVData.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
 
