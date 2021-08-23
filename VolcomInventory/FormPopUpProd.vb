@@ -40,6 +40,16 @@ INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
         LEFT JOIN tb_m_ovh_price ovh ON ovh.id_ovh_price = wo.id_ovh_price
         LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovh.id_comp_contact
         LEFT JOIN tb_m_comp cm ON cm.id_comp = cc.id_comp "
+
+        If id_pop_up = "12" Then
+            query += "LEFT JOIN (
+    SELECT pcl.`id_prod_order`
+    FROM `tb_pre_cal_fgpo_list` pcl
+    INNER JOIN tb_pre_cal_fgpo pc ON pc.`id_pre_cal_fgpo`=pcl.`id_pre_cal_fgpo` AND pc.`id_report_status`!=5
+    GROUP BY pcl.id_prod_order
+) pcl ON pcl.id_prod_order=a.id_prod_order "
+        End If
+
         query += "WHERE (a.id_report_status = '6') "
         If id_prod_order <> "-1" Then
             query += "AND a.id_prod_order = '" + id_prod_order + "' "
@@ -53,6 +63,10 @@ INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
 
         If Not id_comp = "-1" Then
             query += " AND cm.id_comp='" & id_comp & "'"
+        End If
+
+        If id_pop_up = "12" Then
+            query += " AND ISNULL(pcl.id_prod_order) "
         End If
 
         query += " GROUP BY a.id_prod_order "
@@ -361,14 +375,30 @@ INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
         ElseIf id_pop_up = "12" Then
             'pre cal
             If GVProd.RowCount > 0 And GVProd.FocusedRowHandle >= 0 Then
-                FormPreCalFGPODet.GVListFGPO.AddNewRow()
-                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("id_prod_order", GVProd.GetFocusedRowCellValue("id_prod_order").ToString)
-                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("prod_order_number", GVProd.GetFocusedRowCellValue("prod_order_number").ToString)
-                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("design_display_name", GVProd.GetFocusedRowCellValue("design_name").ToString)
-                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("design_code", GVProd.GetFocusedRowCellValue("design_code").ToString)
-                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("id_currency", GVProd.GetFocusedRowCellValue("id_currency").ToString)
-                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("price", GVProd.GetFocusedRowCellValue("price"))
-                FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("qty", GVProd.GetFocusedRowCellValue("qty"))
+                Dim is_already As Boolean = False
+                For i = 0 To FormPreCalFGPODet.GVListFGPO.RowCount - 1
+                    If FormPreCalFGPODet.GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString = GVProd.GetFocusedRowCellValue("id_prod_order").ToString Then
+                        is_already = True
+                        Exit For
+                    End If
+                Next
+                'check
+                If is_already Then
+                    warningCustom("PO sudah dipilih")
+                Else
+                    FormPreCalFGPODet.GVListFGPO.AddNewRow()
+                    FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("id_prod_order", GVProd.GetFocusedRowCellValue("id_prod_order").ToString)
+                    FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("prod_order_number", GVProd.GetFocusedRowCellValue("prod_order_number").ToString)
+                    FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("design_display_name", GVProd.GetFocusedRowCellValue("design_name").ToString)
+                    FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("design_code", GVProd.GetFocusedRowCellValue("design_code").ToString)
+                    FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("id_currency", GVProd.GetFocusedRowCellValue("id_currency").ToString)
+                    FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("price", GVProd.GetFocusedRowCellValue("price"))
+                    FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("qty", GVProd.GetFocusedRowCellValue("qty"))
+                    FormPreCalFGPODet.GVListFGPO.RefreshData()
+                    FormPreCalFGPODet.GVListFGPO.UpdateTotalSummary()
+                    FormPreCalFGPODet.GCListFGPO.Refresh()
+                End If
+
             Else
                 warningCustom("No data selected.")
             End If

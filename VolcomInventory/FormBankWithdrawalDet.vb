@@ -1862,7 +1862,7 @@ WHERE id_stock_valas = (SELECT MAX(id_stock_valas) FROM `tb_stock_valas` WHERE i
                     End If
 
                     If report_mark_type = "139" Or report_mark_type = "202" Then
-                        id_coa_tag = FormBankWithdrawal.GVPOList.GetRowCellValue(0, "id_coa_tag").ToString
+                        id_coa_tag = FormBankWithdrawal.GVPOList.GetRowCellValue(0, "po_coa_tag").ToString
                     ElseIf report_mark_type = "157" Then 'expense
                         id_coa_tag = FormBankWithdrawal.GVExpense.GetRowCellValue(0, "id_coa_tag").ToString
                     ElseIf report_mark_type = "192" Then 'payroll
