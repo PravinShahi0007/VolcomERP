@@ -36,6 +36,7 @@ Partial Class FormStockTakeStoreScanList
         Me.GridColumnis_no_tag_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.GridColumnunique_code_remark = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,7 +88,7 @@ Partial Class FormStockTakeStoreScanList
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumnscanned_code, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnqty, Me.GridColumncreated_date, Me.GridColumnis_unique_not_found_view, Me.GridColumnis_no_tag_view, Me.GridColumn1})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumnscanned_code, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnqty, Me.GridColumncreated_date, Me.GridColumnis_unique_not_found_view, Me.GridColumnis_no_tag_view, Me.GridColumn1, Me.GridColumnunique_code_remark})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -154,7 +155,8 @@ Partial Class FormStockTakeStoreScanList
         Me.GridColumnis_unique_not_found_view.FieldName = "is_unique_not_found_view"
         Me.GridColumnis_unique_not_found_view.Name = "GridColumnis_unique_not_found_view"
         Me.GridColumnis_unique_not_found_view.Visible = True
-        Me.GridColumnis_unique_not_found_view.VisibleIndex = 5
+        Me.GridColumnis_unique_not_found_view.VisibleIndex = 6
+        Me.GridColumnis_unique_not_found_view.Width = 99
         '
         'RepositoryItemCheckEdit1
         '
@@ -170,7 +172,7 @@ Partial Class FormStockTakeStoreScanList
         Me.GridColumnis_no_tag_view.FieldName = "is_no_tag_view"
         Me.GridColumnis_no_tag_view.Name = "GridColumnis_no_tag_view"
         Me.GridColumnis_no_tag_view.Visible = True
-        Me.GridColumnis_no_tag_view.VisibleIndex = 6
+        Me.GridColumnis_no_tag_view.VisibleIndex = 7
         '
         'GridColumn1
         '
@@ -179,12 +181,21 @@ Partial Class FormStockTakeStoreScanList
         Me.GridColumn1.FieldName = "image"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 7
+        Me.GridColumn1.VisibleIndex = 8
         '
         'RepositoryItemHyperLinkEdit1
         '
         Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
         Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
+        '
+        'GridColumnunique_code_remark
+        '
+        Me.GridColumnunique_code_remark.Caption = "Unique Code Remark"
+        Me.GridColumnunique_code_remark.FieldName = "unique_code_remark"
+        Me.GridColumnunique_code_remark.Name = "GridColumnunique_code_remark"
+        Me.GridColumnunique_code_remark.Visible = True
+        Me.GridColumnunique_code_remark.VisibleIndex = 5
+        Me.GridColumnunique_code_remark.Width = 163
         '
         'FormStockTakeStoreScanList
         '
@@ -223,4 +234,5 @@ Partial Class FormStockTakeStoreScanList
     Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents GridColumnunique_code_remark As DevExpress.XtraGrid.Columns.GridColumn
 End Class
