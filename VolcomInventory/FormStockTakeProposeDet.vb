@@ -24,6 +24,62 @@
         load_report_status()
         load_group()
         load_contact()
+
+        SBMark.Enabled = False
+
+        If Not id_st_store_propose = "-1" Then
+            Dim data_head As DataTable = execute_query("
+                SELECT p.number, p.start_period, p.end_period, p.start_time, p.end_time, p.id_comp_group, p.id_comp_contact, DATE_FORMAT(p.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, p.id_report_status
+                FROM tb_st_store_propose AS p
+                LEFT JOIN tb_m_comp_group AS g ON p.id_comp_group = g.id_comp_group
+                LEFT JOIN tb_m_user AS u ON p.created_by = u.id_user
+                LEFT JOIN tb_m_employee AS e ON u.id_employee = e.id_employee
+                WHERE p.id_st_store_propose = " + id_st_store_propose + "
+            ", -1, True, "", "", "", "")
+
+            TENumber.EditValue = data_head.Rows(0)("number").ToString
+            DEPeriodFrom.EditValue = data_head.Rows(0)("start_period")
+            DEPeriodTo.EditValue = data_head.Rows(0)("end_period")
+            TETimeFrom.EditValue = data_head.Rows(0)("start_time")
+            TETimeTo.EditValue = data_head.Rows(0)("end_time")
+            SLUEGroup.EditValue = data_head.Rows(0)("id_comp_group")
+            SLUEContact.EditValue = data_head.Rows(0)("id_comp_contact")
+            SLUEReportStatus.EditValue = data_head.Rows(0)("id_report_status")
+            TECreatedAt.EditValue = data_head.Rows(0)("created_by").ToString
+            TECreatedBy.EditValue = data_head.Rows(0)("created_at").ToString
+
+            TENumber.ReadOnly = True
+            DEPeriodFrom.ReadOnly = True
+            DEPeriodTo.ReadOnly = True
+            TETimeFrom.ReadOnly = True
+            TETimeTo.ReadOnly = True
+            SLUEGroup.ReadOnly = True
+            SLUEContact.ReadOnly = True
+            SLUEReportStatus.ReadOnly = True
+            TECreatedAt.ReadOnly = True
+            TECreatedBy.ReadOnly = True
+            SBMark.Enabled = True
+            SBSubmit.Enabled = False
+
+            Dim data_store As DataTable = execute_query("
+                SELECT id_store
+                FROM tb_st_store_propose_det
+                WHERE id_st_store_propose = " + id_st_store_propose + "
+            ", -1, True, "", "", "", "")
+
+            For i = 0 To GVStore.RowCount - 1
+                For j = 0 To data_store.Rows.Count - 1
+                    If GVStore.GetRowCellValue(i, "id_store").ToString = data_store.Rows(j)("id_store").ToString Then
+                        GVStore.SetRowCellValue(i, "is_select", "yes")
+                    End If
+                Next
+            Next
+
+            GVStore.OptionsBehavior.ReadOnly = True
+        End If
+
+        load_surat_ijin()
+        load_email()
     End Sub
 
     Sub load_group()
@@ -174,7 +230,10 @@
             </ul>
         "
 
-        WBSuratIjin.DocumentText = html
+        WBSuratIjin.Navigate("about:blank")
+        WBSuratIjin.Document.OpenNew(False)
+        WBSuratIjin.Document.Write(html)
+        WBSuratIjin.Refresh()
     End Sub
 
     Sub load_email()
@@ -316,7 +375,10 @@
             <p style='margin: 0px; line-height: 1.5;'>Terima kasih atas perhatiannya.</p>
         "
 
-        WBEmail.DocumentText = html
+        WBEmail.Navigate("about:blank")
+        WBEmail.Document.OpenNew(False)
+        WBEmail.Document.Write(html)
+        WBEmail.Refresh()
     End Sub
 
     Sub load_report_status()
@@ -385,7 +447,7 @@
         ", 0, True, "", "", "", "")
 
         Dim query_head As String = "
-            INSERT INTO tb_st_store_propose (id_comp_group, id_comp_contact, number, start_period, end_period, start_time, end_time, created_at, created_by) VALUES (" + id_comp_group + ", " + id_comp_contact + ", '" + number + "', '" + start_period + "', '" + end_period + "', '" + start_time + "', '" + end_time + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID();
+            INSERT INTO tb_st_store_propose (id_comp_group, id_comp_contact, number, start_period, end_period, id_report_status, start_time, end_time, created_at, created_by) VALUES (" + id_comp_group + ", " + id_comp_contact + ", '" + number + "', '" + start_period + "', '" + end_period + "', 1, '" + start_time + "', '" + end_time + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID();
         "
 
         id_st_store_propose = execute_query(query_head, 0, True, "", "", "", "")
