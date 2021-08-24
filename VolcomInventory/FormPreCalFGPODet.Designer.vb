@@ -53,7 +53,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCUFGPO = New DevExpress.XtraEditors.PanelControl()
         Me.PCFGPOList = New DevExpress.XtraEditors.PanelControl()
         Me.BPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPVendor = New DevExpress.XtraTab.XtraTabPage()
@@ -62,7 +62,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCUVendor = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         Me.BDeleteVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddVendor = New DevExpress.XtraEditors.SimpleButton()
@@ -70,19 +70,47 @@ Partial Class FormPreCalFGPODet
         Me.BPrevVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.BNextVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPOrignCharges = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
+        Me.GCOrign = New DevExpress.XtraGrid.GridControl()
+        Me.GVOrign = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PCUOrign = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelOrign = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddOrign = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEVendorOrign = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCOrign = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton7 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.XTPFreightCharges = New DevExpress.XtraTab.XtraTabPage()
-        Me.PCFreight = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton6 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BDraftOrign = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrevOrign = New DevExpress.XtraEditors.SimpleButton()
+        Me.BNextOrign = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPDestCharges = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDest = New DevExpress.XtraGrid.GridControl()
+        Me.GVDest = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PCUDest = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelDest = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddDest = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEVendorDest = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PCDest = New DevExpress.XtraEditors.PanelControl()
+        Me.BDraftDest = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrevDest = New DevExpress.XtraEditors.SimpleButton()
+        Me.BNextDest = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPAdmCharges = New DevExpress.XtraTab.XtraTabPage()
         Me.PCAdm = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton5 = New DevExpress.XtraEditors.SimpleButton()
@@ -115,29 +143,41 @@ Partial Class FormPreCalFGPODet
         Me.XTPFGPO.SuspendLayout()
         CType(Me.GCListFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
+        CType(Me.PCUFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCUFGPO.SuspendLayout()
         CType(Me.PCFGPOList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCFGPOList.SuspendLayout()
         Me.XTPVendor.SuspendLayout()
         CType(Me.GCVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVVendor, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCUVendor, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCUVendor.SuspendLayout()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.PCVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCVendor.SuspendLayout()
         Me.XTPOrignCharges.SuspendLayout()
-        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl8.SuspendLayout()
+        CType(Me.GCOrign, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVOrign, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCUOrign, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCUOrign.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         CType(Me.SLEVendorOrign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCOrign, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCOrign.SuspendLayout()
-        Me.XTPFreightCharges.SuspendLayout()
-        CType(Me.PCFreight, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCFreight.SuspendLayout()
+        Me.XTPDestCharges.SuspendLayout()
+        CType(Me.GCDest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCUDest, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCUDest.SuspendLayout()
+        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl8.SuspendLayout()
+        CType(Me.SLEVendorDest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCDest, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCDest.SuspendLayout()
         Me.XTPAdmCharges.SuspendLayout()
         CType(Me.PCAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAdm.SuspendLayout()
@@ -265,7 +305,7 @@ Partial Class FormPreCalFGPODet
         '
         'GridColumn42
         '
-        Me.GridColumn42.Caption = "3PL"
+        Me.GridColumn42.Caption = "Vendor FGPO"
         Me.GridColumn42.FieldName = "comp_name"
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.Visible = True
@@ -350,12 +390,12 @@ Partial Class FormPreCalFGPODet
         Me.XTC.SelectedTabPage = Me.XTPFGPO
         Me.XTC.Size = New System.Drawing.Size(1022, 416)
         Me.XTC.TabIndex = 2
-        Me.XTC.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGPO, Me.XTPVendor, Me.XTPOrignCharges, Me.XTPFreightCharges, Me.XTPAdmCharges})
+        Me.XTC.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGPO, Me.XTPVendor, Me.XTPOrignCharges, Me.XTPDestCharges, Me.XTPAdmCharges})
         '
         'XTPFGPO
         '
         Me.XTPFGPO.Controls.Add(Me.GCListFGPO)
-        Me.XTPFGPO.Controls.Add(Me.PanelControl5)
+        Me.XTPFGPO.Controls.Add(Me.PCUFGPO)
         Me.XTPFGPO.Controls.Add(Me.PCFGPOList)
         Me.XTPFGPO.Name = "XTPFGPO"
         Me.XTPFGPO.Size = New System.Drawing.Size(1016, 388)
@@ -462,14 +502,14 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn7.VisibleIndex = 5
         Me.GridColumn7.Width = 150
         '
-        'PanelControl5
+        'PCUFGPO
         '
-        Me.PanelControl5.Controls.Add(Me.PanelControl4)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(1016, 43)
-        Me.PanelControl5.TabIndex = 5
+        Me.PCUFGPO.Controls.Add(Me.PanelControl4)
+        Me.PCUFGPO.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCUFGPO.Location = New System.Drawing.Point(0, 0)
+        Me.PCUFGPO.Name = "PCUFGPO"
+        Me.PCUFGPO.Size = New System.Drawing.Size(1016, 43)
+        Me.PCUFGPO.TabIndex = 5
         '
         'PCFGPOList
         '
@@ -502,7 +542,7 @@ Partial Class FormPreCalFGPODet
         'XTPVendor
         '
         Me.XTPVendor.Controls.Add(Me.GCVendor)
-        Me.XTPVendor.Controls.Add(Me.PanelControl3)
+        Me.XTPVendor.Controls.Add(Me.PCUVendor)
         Me.XTPVendor.Controls.Add(Me.PCVendor)
         Me.XTPVendor.Name = "XTPVendor"
         Me.XTPVendor.Size = New System.Drawing.Size(1016, 388)
@@ -550,14 +590,14 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn10.VisibleIndex = 1
         Me.GridColumn10.Width = 1215
         '
-        'PanelControl3
+        'PCUVendor
         '
-        Me.PanelControl3.Controls.Add(Me.PanelControl7)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1016, 43)
-        Me.PanelControl3.TabIndex = 6
+        Me.PCUVendor.Controls.Add(Me.PanelControl7)
+        Me.PCUVendor.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCUVendor.Location = New System.Drawing.Point(0, 0)
+        Me.PCUVendor.Name = "PCUVendor"
+        Me.PCUVendor.Size = New System.Drawing.Size(1016, 43)
+        Me.PCUVendor.TabIndex = 6
         '
         'PanelControl7
         '
@@ -640,21 +680,136 @@ Partial Class FormPreCalFGPODet
         '
         'XTPOrignCharges
         '
-        Me.XTPOrignCharges.Controls.Add(Me.PanelControl8)
+        Me.XTPOrignCharges.Controls.Add(Me.GCOrign)
+        Me.XTPOrignCharges.Controls.Add(Me.PCUOrign)
         Me.XTPOrignCharges.Controls.Add(Me.PCOrign)
         Me.XTPOrignCharges.Name = "XTPOrignCharges"
         Me.XTPOrignCharges.Size = New System.Drawing.Size(1016, 388)
         Me.XTPOrignCharges.Text = "Orign Charges"
         '
-        'PanelControl8
+        'GCOrign
         '
-        Me.PanelControl8.Controls.Add(Me.LabelControl10)
-        Me.PanelControl8.Controls.Add(Me.SLEVendorOrign)
-        Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl8.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl8.Name = "PanelControl8"
-        Me.PanelControl8.Size = New System.Drawing.Size(1016, 43)
-        Me.PanelControl8.TabIndex = 7
+        Me.GCOrign.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCOrign.Location = New System.Drawing.Point(0, 43)
+        Me.GCOrign.MainView = Me.GVOrign
+        Me.GCOrign.Name = "GCOrign"
+        Me.GCOrign.Size = New System.Drawing.Size(1016, 303)
+        Me.GCOrign.TabIndex = 8
+        Me.GCOrign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOrign})
+        '
+        'GVOrign
+        '
+        Me.GVOrign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
+        Me.GVOrign.GridControl = Me.GCOrign
+        Me.GVOrign.Name = "GVOrign"
+        Me.GVOrign.OptionsView.ShowFooter = True
+        Me.GVOrign.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID"
+        Me.GridColumn13.FieldName = "id_pre_cal_fgpo_det"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Description"
+        Me.GridColumn14.FieldName = "desc"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        Me.GridColumn14.Width = 387
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn17.Caption = "Price"
+        Me.GridColumn17.DisplayFormat.FormatString = "N2"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn17.FieldName = "unit_price_in_rp"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
+        Me.GridColumn17.Width = 184
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.Caption = "Qty"
+        Me.GridColumn18.DisplayFormat.FormatString = "N2"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn18.FieldName = "qty"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 2
+        Me.GridColumn18.Width = 198
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.Caption = "Total"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "total_in_rp"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_in_rp", "{0:N2}")})
+        Me.GridColumn19.UnboundExpression = "[unit_price_in_rp] * [qty]"
+        Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
+        Me.GridColumn19.Width = 229
+        '
+        'PCUOrign
+        '
+        Me.PCUOrign.Controls.Add(Me.PanelControl3)
+        Me.PCUOrign.Controls.Add(Me.LabelControl10)
+        Me.PCUOrign.Controls.Add(Me.SLEVendorOrign)
+        Me.PCUOrign.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCUOrign.Location = New System.Drawing.Point(0, 0)
+        Me.PCUOrign.Name = "PCUOrign"
+        Me.PCUOrign.Size = New System.Drawing.Size(1016, 43)
+        Me.PCUOrign.TabIndex = 7
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.BDelOrign)
+        Me.PanelControl3.Controls.Add(Me.BAddOrign)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(794, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(220, 39)
+        Me.PanelControl3.TabIndex = 101
+        '
+        'BDelOrign
+        '
+        Me.BDelOrign.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelOrign.Image = CType(resources.GetObject("BDelOrign.Image"), System.Drawing.Image)
+        Me.BDelOrign.Location = New System.Drawing.Point(35, 0)
+        Me.BDelOrign.Name = "BDelOrign"
+        Me.BDelOrign.Size = New System.Drawing.Size(93, 39)
+        Me.BDelOrign.TabIndex = 4
+        Me.BDelOrign.Text = "Delete"
+        '
+        'BAddOrign
+        '
+        Me.BAddOrign.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddOrign.Image = CType(resources.GetObject("BAddOrign.Image"), System.Drawing.Image)
+        Me.BAddOrign.Location = New System.Drawing.Point(128, 0)
+        Me.BAddOrign.Name = "BAddOrign"
+        Me.BAddOrign.Size = New System.Drawing.Size(92, 39)
+        Me.BAddOrign.TabIndex = 5
+        Me.BAddOrign.Text = "Add"
         '
         'LabelControl10
         '
@@ -688,7 +843,7 @@ Partial Class FormPreCalFGPODet
         '
         'GridColumn12
         '
-        Me.GridColumn12.Caption = "3PL"
+        Me.GridColumn12.Caption = "Forwarder"
         Me.GridColumn12.FieldName = "comp_name"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
@@ -696,106 +851,310 @@ Partial Class FormPreCalFGPODet
         '
         'PCOrign
         '
-        Me.PCOrign.Controls.Add(Me.SimpleButton7)
-        Me.PCOrign.Controls.Add(Me.SimpleButton2)
+        Me.PCOrign.Controls.Add(Me.BDraftOrign)
+        Me.PCOrign.Controls.Add(Me.BPrevOrign)
+        Me.PCOrign.Controls.Add(Me.BNextOrign)
         Me.PCOrign.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PCOrign.Location = New System.Drawing.Point(0, 346)
         Me.PCOrign.Name = "PCOrign"
         Me.PCOrign.Size = New System.Drawing.Size(1016, 42)
         Me.PCOrign.TabIndex = 6
         '
-        'SimpleButton7
+        'BDraftOrign
         '
-        Me.SimpleButton7.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.SimpleButton7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton7.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton7.Appearance.Options.UseBackColor = True
-        Me.SimpleButton7.Appearance.Options.UseFont = True
-        Me.SimpleButton7.Appearance.Options.UseForeColor = True
-        Me.SimpleButton7.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton7.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton7.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.SimpleButton7.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.SimpleButton7.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.SimpleButton7.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton7.Name = "SimpleButton7"
-        Me.SimpleButton7.Size = New System.Drawing.Size(133, 38)
-        Me.SimpleButton7.TabIndex = 23
-        Me.SimpleButton7.Text = "Previous"
+        Me.BDraftOrign.Appearance.BackColor = System.Drawing.Color.SlateBlue
+        Me.BDraftOrign.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BDraftOrign.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BDraftOrign.Appearance.Options.UseBackColor = True
+        Me.BDraftOrign.Appearance.Options.UseFont = True
+        Me.BDraftOrign.Appearance.Options.UseForeColor = True
+        Me.BDraftOrign.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDraftOrign.Location = New System.Drawing.Point(771, 2)
+        Me.BDraftOrign.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BDraftOrign.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BDraftOrign.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BDraftOrign.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BDraftOrign.Name = "BDraftOrign"
+        Me.BDraftOrign.Size = New System.Drawing.Size(110, 38)
+        Me.BDraftOrign.TabIndex = 24
+        Me.BDraftOrign.Text = "Save"
         '
-        'SimpleButton2
+        'BPrevOrign
         '
-        Me.SimpleButton2.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.SimpleButton2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton2.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton2.Appearance.Options.UseBackColor = True
-        Me.SimpleButton2.Appearance.Options.UseFont = True
-        Me.SimpleButton2.Appearance.Options.UseForeColor = True
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton2.Location = New System.Drawing.Point(881, 2)
-        Me.SimpleButton2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.SimpleButton2.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.SimpleButton2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.SimpleButton2.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(133, 38)
-        Me.SimpleButton2.TabIndex = 21
-        Me.SimpleButton2.Text = "Next"
+        Me.BPrevOrign.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrevOrign.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrevOrign.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrevOrign.Appearance.Options.UseBackColor = True
+        Me.BPrevOrign.Appearance.Options.UseFont = True
+        Me.BPrevOrign.Appearance.Options.UseForeColor = True
+        Me.BPrevOrign.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPrevOrign.Location = New System.Drawing.Point(2, 2)
+        Me.BPrevOrign.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrevOrign.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrevOrign.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrevOrign.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrevOrign.Name = "BPrevOrign"
+        Me.BPrevOrign.Size = New System.Drawing.Size(133, 38)
+        Me.BPrevOrign.TabIndex = 23
+        Me.BPrevOrign.Text = "Previous"
         '
-        'XTPFreightCharges
+        'BNextOrign
         '
-        Me.XTPFreightCharges.Controls.Add(Me.PCFreight)
-        Me.XTPFreightCharges.Name = "XTPFreightCharges"
-        Me.XTPFreightCharges.Size = New System.Drawing.Size(1016, 388)
-        Me.XTPFreightCharges.Text = "Freight Charges"
+        Me.BNextOrign.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BNextOrign.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BNextOrign.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BNextOrign.Appearance.Options.UseBackColor = True
+        Me.BNextOrign.Appearance.Options.UseFont = True
+        Me.BNextOrign.Appearance.Options.UseForeColor = True
+        Me.BNextOrign.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BNextOrign.Location = New System.Drawing.Point(881, 2)
+        Me.BNextOrign.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BNextOrign.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BNextOrign.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BNextOrign.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BNextOrign.Name = "BNextOrign"
+        Me.BNextOrign.Size = New System.Drawing.Size(133, 38)
+        Me.BNextOrign.TabIndex = 21
+        Me.BNextOrign.Text = "Next"
         '
-        'PCFreight
+        'XTPDestCharges
         '
-        Me.PCFreight.Controls.Add(Me.SimpleButton6)
-        Me.PCFreight.Controls.Add(Me.SimpleButton3)
-        Me.PCFreight.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCFreight.Location = New System.Drawing.Point(0, 346)
-        Me.PCFreight.Name = "PCFreight"
-        Me.PCFreight.Size = New System.Drawing.Size(1016, 42)
-        Me.PCFreight.TabIndex = 6
+        Me.XTPDestCharges.Controls.Add(Me.GCDest)
+        Me.XTPDestCharges.Controls.Add(Me.PCUDest)
+        Me.XTPDestCharges.Controls.Add(Me.PCDest)
+        Me.XTPDestCharges.Name = "XTPDestCharges"
+        Me.XTPDestCharges.Size = New System.Drawing.Size(1016, 388)
+        Me.XTPDestCharges.Text = "Destination Charges"
         '
-        'SimpleButton6
+        'GCDest
         '
-        Me.SimpleButton6.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.SimpleButton6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton6.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton6.Appearance.Options.UseBackColor = True
-        Me.SimpleButton6.Appearance.Options.UseFont = True
-        Me.SimpleButton6.Appearance.Options.UseForeColor = True
-        Me.SimpleButton6.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton6.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton6.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.SimpleButton6.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.SimpleButton6.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.SimpleButton6.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton6.Name = "SimpleButton6"
-        Me.SimpleButton6.Size = New System.Drawing.Size(133, 38)
-        Me.SimpleButton6.TabIndex = 23
-        Me.SimpleButton6.Text = "Previous"
+        Me.GCDest.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDest.Location = New System.Drawing.Point(0, 43)
+        Me.GCDest.MainView = Me.GVDest
+        Me.GCDest.Name = "GCDest"
+        Me.GCDest.Size = New System.Drawing.Size(1016, 303)
+        Me.GCDest.TabIndex = 9
+        Me.GCDest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDest})
         '
-        'SimpleButton3
+        'GVDest
         '
-        Me.SimpleButton3.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.SimpleButton3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton3.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton3.Appearance.Options.UseBackColor = True
-        Me.SimpleButton3.Appearance.Options.UseFont = True
-        Me.SimpleButton3.Appearance.Options.UseForeColor = True
-        Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton3.Location = New System.Drawing.Point(881, 2)
-        Me.SimpleButton3.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.SimpleButton3.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.SimpleButton3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.SimpleButton3.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(133, 38)
-        Me.SimpleButton3.TabIndex = 21
-        Me.SimpleButton3.Text = "Next"
+        Me.GVDest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
+        Me.GVDest.GridControl = Me.GCDest
+        Me.GVDest.Name = "GVDest"
+        Me.GVDest.OptionsView.ShowFooter = True
+        Me.GVDest.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "ID"
+        Me.GridColumn20.FieldName = "id_pre_cal_fgpo_det"
+        Me.GridColumn20.Name = "GridColumn20"
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Description"
+        Me.GridColumn21.FieldName = "desc"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 0
+        Me.GridColumn21.Width = 387
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.Caption = "Price"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "unit_price_in_rp"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 1
+        Me.GridColumn22.Width = 184
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn23.Caption = "Qty"
+        Me.GridColumn23.DisplayFormat.FormatString = "N2"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn23.FieldName = "qty"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 2
+        Me.GridColumn23.Width = 198
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn24.Caption = "Total"
+        Me.GridColumn24.DisplayFormat.FormatString = "N2"
+        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn24.FieldName = "total_in_rp"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_in_rp", "{0:N2}")})
+        Me.GridColumn24.UnboundExpression = "[unit_price_in_rp] * [qty]"
+        Me.GridColumn24.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 3
+        Me.GridColumn24.Width = 229
+        '
+        'PCUDest
+        '
+        Me.PCUDest.Controls.Add(Me.PanelControl8)
+        Me.PCUDest.Controls.Add(Me.LabelControl11)
+        Me.PCUDest.Controls.Add(Me.SLEVendorDest)
+        Me.PCUDest.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCUDest.Location = New System.Drawing.Point(0, 0)
+        Me.PCUDest.Name = "PCUDest"
+        Me.PCUDest.Size = New System.Drawing.Size(1016, 43)
+        Me.PCUDest.TabIndex = 8
+        '
+        'PanelControl8
+        '
+        Me.PanelControl8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl8.Controls.Add(Me.BDelDest)
+        Me.PanelControl8.Controls.Add(Me.BAddDest)
+        Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl8.Location = New System.Drawing.Point(794, 2)
+        Me.PanelControl8.Name = "PanelControl8"
+        Me.PanelControl8.Size = New System.Drawing.Size(220, 39)
+        Me.PanelControl8.TabIndex = 101
+        '
+        'BDelDest
+        '
+        Me.BDelDest.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelDest.Image = CType(resources.GetObject("BDelDest.Image"), System.Drawing.Image)
+        Me.BDelDest.Location = New System.Drawing.Point(35, 0)
+        Me.BDelDest.Name = "BDelDest"
+        Me.BDelDest.Size = New System.Drawing.Size(93, 39)
+        Me.BDelDest.TabIndex = 4
+        Me.BDelDest.Text = "Delete"
+        '
+        'BAddDest
+        '
+        Me.BAddDest.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddDest.Image = CType(resources.GetObject("BAddDest.Image"), System.Drawing.Image)
+        Me.BAddDest.Location = New System.Drawing.Point(128, 0)
+        Me.BAddDest.Name = "BAddDest"
+        Me.BAddDest.Size = New System.Drawing.Size(92, 39)
+        Me.BAddDest.TabIndex = 5
+        Me.BAddDest.Text = "Add"
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(87, 13)
+        Me.LabelControl11.TabIndex = 99
+        Me.LabelControl11.Text = "Vendor Forwarder"
+        '
+        'SLEVendorDest
+        '
+        Me.SLEVendorDest.Location = New System.Drawing.Point(104, 11)
+        Me.SLEVendorDest.Name = "SLEVendorDest"
+        Me.SLEVendorDest.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendorDest.Properties.View = Me.GridView4
+        Me.SLEVendorDest.Size = New System.Drawing.Size(212, 20)
+        Me.SLEVendorDest.TabIndex = 100
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.FieldName = "id_comp"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Forwarder"
+        Me.GridColumn16.FieldName = "comp_name"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'PCDest
+        '
+        Me.PCDest.Controls.Add(Me.BDraftDest)
+        Me.PCDest.Controls.Add(Me.BPrevDest)
+        Me.PCDest.Controls.Add(Me.BNextDest)
+        Me.PCDest.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCDest.Location = New System.Drawing.Point(0, 346)
+        Me.PCDest.Name = "PCDest"
+        Me.PCDest.Size = New System.Drawing.Size(1016, 42)
+        Me.PCDest.TabIndex = 6
+        '
+        'BDraftDest
+        '
+        Me.BDraftDest.Appearance.BackColor = System.Drawing.Color.SlateBlue
+        Me.BDraftDest.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BDraftDest.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BDraftDest.Appearance.Options.UseBackColor = True
+        Me.BDraftDest.Appearance.Options.UseFont = True
+        Me.BDraftDest.Appearance.Options.UseForeColor = True
+        Me.BDraftDest.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDraftDest.Location = New System.Drawing.Point(771, 2)
+        Me.BDraftDest.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BDraftDest.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BDraftDest.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BDraftDest.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BDraftDest.Name = "BDraftDest"
+        Me.BDraftDest.Size = New System.Drawing.Size(110, 38)
+        Me.BDraftDest.TabIndex = 25
+        Me.BDraftDest.Text = "Save"
+        '
+        'BPrevDest
+        '
+        Me.BPrevDest.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrevDest.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrevDest.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrevDest.Appearance.Options.UseBackColor = True
+        Me.BPrevDest.Appearance.Options.UseFont = True
+        Me.BPrevDest.Appearance.Options.UseForeColor = True
+        Me.BPrevDest.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPrevDest.Location = New System.Drawing.Point(2, 2)
+        Me.BPrevDest.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrevDest.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrevDest.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrevDest.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrevDest.Name = "BPrevDest"
+        Me.BPrevDest.Size = New System.Drawing.Size(133, 38)
+        Me.BPrevDest.TabIndex = 23
+        Me.BPrevDest.Text = "Previous"
+        '
+        'BNextDest
+        '
+        Me.BNextDest.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BNextDest.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BNextDest.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BNextDest.Appearance.Options.UseBackColor = True
+        Me.BNextDest.Appearance.Options.UseFont = True
+        Me.BNextDest.Appearance.Options.UseForeColor = True
+        Me.BNextDest.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BNextDest.Location = New System.Drawing.Point(881, 2)
+        Me.BNextDest.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BNextDest.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BNextDest.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BNextDest.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BNextDest.Name = "BNextDest"
+        Me.BNextDest.Size = New System.Drawing.Size(133, 38)
+        Me.BNextDest.TabIndex = 21
+        Me.BNextDest.Text = "Next"
         '
         'XTPAdmCharges
         '
@@ -990,30 +1349,43 @@ Partial Class FormPreCalFGPODet
         Me.XTPFGPO.ResumeLayout(False)
         CType(Me.GCListFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListFGPO, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
+        CType(Me.PCUFGPO, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCUFGPO.ResumeLayout(False)
         CType(Me.PCFGPOList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCFGPOList.ResumeLayout(False)
         Me.XTPVendor.ResumeLayout(False)
         CType(Me.GCVendor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVVendor, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCUVendor, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCUVendor.ResumeLayout(False)
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl7.ResumeLayout(False)
         CType(Me.PCVendor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCVendor.ResumeLayout(False)
         Me.XTPOrignCharges.ResumeLayout(False)
-        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl8.ResumeLayout(False)
-        Me.PanelControl8.PerformLayout()
+        CType(Me.GCOrign, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVOrign, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCUOrign, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCUOrign.ResumeLayout(False)
+        Me.PCUOrign.PerformLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         CType(Me.SLEVendorOrign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCOrign, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCOrign.ResumeLayout(False)
-        Me.XTPFreightCharges.ResumeLayout(False)
-        CType(Me.PCFreight, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCFreight.ResumeLayout(False)
+        Me.XTPDestCharges.ResumeLayout(False)
+        CType(Me.GCDest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCUDest, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCUDest.ResumeLayout(False)
+        Me.PCUDest.PerformLayout()
+        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl8.ResumeLayout(False)
+        CType(Me.SLEVendorDest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCDest, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCDest.ResumeLayout(False)
         Me.XTPAdmCharges.ResumeLayout(False)
         CType(Me.PCAdm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAdm.ResumeLayout(False)
@@ -1061,7 +1433,7 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCUFGPO As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECTN As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
@@ -1077,12 +1449,12 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents BPrevVendor As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPOrignCharges As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PCOrign As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton7 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents XTPFreightCharges As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents PCFreight As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton6 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrevOrign As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BNextOrign As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPDestCharges As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PCDest As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BPrevDest As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BNextDest As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPAdmCharges As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PCAdm As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton5 As DevExpress.XtraEditors.SimpleButton
@@ -1092,14 +1464,42 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCUVendor As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDeleteVendor As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAddVendor As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCUOrign As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEVendorOrign As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOrign As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVOrign As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BDelOrign As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddOrign As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BDraftOrign As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCDest As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDest As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PCUDest As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BDelDest As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddDest As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEVendorDest As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BDraftDest As DevExpress.XtraEditors.SimpleButton
 End Class
